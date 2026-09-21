@@ -25,8 +25,11 @@ namespace ARPG.Editor
         const string CorpsesObjectName = "Corpse Spawner";
         const string StairsObjectName = "Stairs Up";
 
-        // The stairway sits a couple of cells from the player start at (0, -7), inside the room.
-        static readonly Vector2Int StairsCell = new Vector2Int(2, -8);
+        // The stairway sits in the near-west part of the room, about 4.5 units from the player start at (0, -7) so it
+        // is not walked onto by accident. It must stay at least 3 cells clear of the two near walls (the bottom-left
+        // and bottom-right edges of the room): wall blocks are tall sprites that draw over the cells just behind
+        // them, which hid the stairway when it stood against the wall at (2, -8).
+        static readonly Vector2Int StairsCell = new Vector2Int(-6, -3);
 
         [MenuItem("Tools/ARPG/Add Survival To Sandbox")]
         public static void Build()
