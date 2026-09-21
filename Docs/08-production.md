@@ -8,7 +8,7 @@ Assumptions: a small team of one to three people, part time or full time, with t
 |---|---|---|---|
 | M0 Prototype | 2 to 3 weeks | Prove input, feel and performance | Stick, 40 enemies, one auto-cast skill, drops with beams, holds 60 fps on iPhone 12 |
 | M1 Vertical slice | 8 to 10 weeks | One class, the walkable town, one zone, boss, loot and Forge | 20 minutes of play a tester can finish without help, item comparison works, save works |
-| M2 Alpha | 16 to 20 weeks | All systems, act 1 to 3 content, the launch class (Wratborn) | Full loop through level 36, balance simulator running |
+| M2 Alpha | 16 to 20 weeks | All systems, act 1 to 3 content, the launch class (Wrathborn) | Full loop through level 36, balance simulator running |
 | M3 Beta | 12 to 16 weeks | Acts 4 and 5, endgame, polish, accessibility | Feature complete, TestFlight beta, performance targets met on all devices |
 | M4 Release candidate | 4 to 6 weeks | Bug fixing, store assets | Zero known crashes, App Review submission |
 | M5 Launch and support | Ongoing | Patch cadence, balance updates | Post-launch plan in this file |
@@ -20,10 +20,10 @@ Total: about 12 to 14 months for a solo developer with commissioned art. A reduc
 | Tier | Contents | Use |
 |---|---|---|
 | Core | Stick, auto-combat, 1 class, act 1, loot, Forge, save | Must ship |
-| Full | 1 class (Wratborn), 5 acts, endgame, all legendaries | Target for 1.0 |
+| Full | 1 class (Wrathborn), 5 acts, endgame, all legendaries | Target for 1.0 |
 | Stretch | Extra classes as later content, hardcore mode, iPad, Android, more Abyss features | After 1.0 |
 
-If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigil tiers, Imprint, achievements beyond 30, story cutscenes, then a class or an act.
+If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigil tiers, Imprint, achievements beyond 30, story cutscenes, then an act.
 
 ## Team roles
 
@@ -55,13 +55,11 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 1. Price point: decide at launch. Compare against similar premium mobile action RPGs then.
 2. Skill loadout depth: four slots with trigger conditions is the plan. Decide after the M0 test whether trigger conditions confuse new players.
 3. Demo: decide after beta whether to offer one. It helps a premium title but costs extra scope.
-4. The launch class: the Wratborn is a barbarian-style warrior. Is it the Warden from 02-classes-and-skills.md reworked, or a new class that replaces all three drafts? Confirm the spelling of the name.
-5. Selling later classes: a paid class add-on would be an in-app purchase on iOS, which conflicts with the premium, no in-app purchases decision. Free updates, a paid add-on, or a change to that decision?
-6. Recurring content: the weekly seed and weekly challenges are cut. Does the Abyss depth leaderboard stay?
-7. Portal scrolls: how many can be carried, whether the town sells them, and whether the first one is guaranteed.
-8. The corpse rule: which items and how much gold are lost, what happens on a second death before the corpse is reached, whether a corpse can expire, and what the Ember Shard is for now that it is no longer an instant revive.
-9. The sleep mechanic: how a game session resets and what it resets (level layouts, enemies, chests).
-10. Menus without a pause menu: where Settings and the loot filter live, and whether opening the inventory screen pauses the game.
+4. Selling later classes: decide after launch. A paid class add-on would be an in-app purchase on iOS, which conflicts with the premium, no in-app purchases decision.
+5. The sleep mechanic: how a game session resets, what it resets (level layouts, enemies, chests), and whether a corpse survives it.
+6. One-time unlocks such as extra stash tabs or loadout presets were tied to the Ember Shard, which is removed. What gates them now?
+7. Achievements: the Game Center achievements are cut with the other online features. Are achievements kept as local ones?
+8. The Wrathborn rework: how the Warden becomes a rage-themed barbarian (skill list, keystones, and whether it leans Stillness or Momentum).
 
 ## Decision log
 
@@ -78,17 +76,19 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-21 | Structure: Diablo 1 style, not a survivor game. A safe town, then a dungeon descended level by level | User |
 | 2026-09-21 | Town: a walkable scene with no enemies, NPCs open their panels when walked up to (replaces the non-walkable hub panel) | User |
 | 2026-09-21 | Dungeon: Diablo 1 style descent by stairs, about 6 levels per act (replaces picking zones from a world map) | User |
-| 2026-09-21 | Classes: 1.0 launches with one class, the Wratborn, a barbarian-style warrior. More classes come later as new content | User |
+| 2026-09-21 | Classes: 1.0 launches with one class, the Wrathborn, a barbarian-style warrior, a rework of the Warden. More classes come later as new content. How they are sold is decided after launch | User |
 | 2026-09-21 | Hardcore mode moves to a post-launch update | User |
 | 2026-09-21 | Weekly Abyss seed cut, and no weekly challenges or similar recurring content | User |
 | 2026-09-21 | Platform: iPhone only for 1.0, no iPad support | User |
 | 2026-09-21 | Localization: English only for 1.0 | User |
 | 2026-09-21 | Deferred: price (at launch), skill trigger depth (after the M0 test), demo (after beta) | User |
-| 2026-09-21 | Returning to town: a portal scroll consumable used from the UI, found on the early dungeon levels | User |
-| 2026-09-21 | Death: the character is sent to town and loses its gear until it reaches its corpse. Return by an open portal or by waypoints. Replaces the free checkpoint revive and the no item loss rule | User |
+| 2026-09-21 | Returning to town: a permanent Portal Tome found around level 3, free to use from the UI. No consumable scrolls. Before the Tome the player walks back | User |
+| 2026-09-21 | Death: the character is sent to town and loses its equipped gear (backpack, gold and Stash are kept) until it reaches its corpse. The corpse never expires, and a second death leaves the first corpse in place. Return by an open portal or by waypoints. Replaces the free checkpoint revive and the no item loss rule | User |
 | 2026-09-21 | Persistence: Diablo 1 style within a game session (layout, dead enemies, chests). A sleep mechanic resets the session, design pending | User |
-| 2026-09-21 | Menus: no separate pause menu. One inventory button opens stats, inventory, equipped gear and loadout | User |
+| 2026-09-21 | Menus: no separate pause menu. One inventory button opens stats, inventory, equipped gear, loadout, Settings and the loot filter, and pauses the game | User |
 | 2026-09-21 | Fast travel: waypoints in levels and the Waystone in town. The world map screen is dropped | User |
+| 2026-09-21 | No online features in 1.0: the Abyss leaderboard and Game Center are cut. iCloud save sync stays | User |
+| 2026-09-21 | The Ember Shard is removed from the game | User |
 
 ## Post-launch plan (draft)
 

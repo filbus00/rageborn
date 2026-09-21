@@ -36,7 +36,7 @@ Each act has one town, a small safe scene the player walks through with the stic
 
 - Stairs: the exit room of each level holds stairs down and the start room holds stairs up.
 - Waypoints: each level has a waypoint the player activates by stepping on it. From any activated waypoint, or from the Waystone in town, the player can jump to any other activated waypoint. A list screen opens from the waypoint or the Waystone. Rifts and the Abyss are entered from an NPC in town.
-- Portal scroll: a consumable the player uses from the UI. It opens a portal to town, and the portal stays open so the player can come back through it. The first scrolls are found on the early levels of the dungeon.
+- Portal Tome: a permanent item found around level 3 of the dungeon. It stays with the character, is free to use and is used from the UI. It opens a portal to town, and the portal stays open so the player can come back through it. Before the Tome the player walks back to town by the stairs. There are no consumable portal scrolls.
 - Persistence: within a game session a level keeps its seeded layout, its dead enemies and its opened chests when the player leaves and comes back. A sleep mechanic resets the session. Its rules are not designed yet.
 - Death: the character is sent to town, see 01-core-gameplay.md.
 
@@ -102,8 +102,8 @@ Optional bosses appear in the boss rotation from Vigil II. They drop legendaries
 
 - An endless dungeon. Each floor is a compact room with a 90 second timer, a guardian on every fifth floor.
 - Floor enemy level rises 2 per floor. Every 10 floors the player picks a boon from three, active for the rest of the run.
-- Rewards: materials on each floor, item drops from guardians, Ember Shard at depth milestones.
-- Death ends the run. Depth is submitted to a Game Center leaderboard.
+- Rewards: materials on each floor, item drops from guardians.
+- Death ends the run. The deepest floor reached is kept as the player's personal best.
 
 ### Boss rotation
 
@@ -111,7 +111,7 @@ A list of all bosses, each usable at any unlocked difficulty tier. A boss can be
 
 ### Achievements
 
-Around 60 Game Center achievements. Examples: clear each act without using a potion, reach Abyss depth 50 with a Fortress build, collect all class legendaries, win with a build that has no active skill of a certain tag.
+Around 60 achievements. Examples: clear each act without using a potion, reach Abyss depth 50 with a Fortress build, collect all class legendaries, win with a build that has no active skill of a certain tag.
 
 ## Audio and art direction
 

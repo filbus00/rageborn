@@ -5,7 +5,7 @@ Rageborn: isometric Diablo-style action RPG for iOS. Unity 6000.6.2f1, URP 2D re
 The design docs in `Docs/` are the source of truth for design decisions. Start at `Docs/00-vision-and-scope.md`. If code and docs disagree, ask before changing either.
 
 - 2D isometric sprites: Isometric `Grid`/`Tilemap` for the world, sprite characters.
-- Portrait only, iPhone only (no iPad in 1.0), iOS 16+, target 60 fps (`GameBootstrap`).
+- Portrait only, iPhone only (no iPad in 1.0), iOS 16+, target 60 fps (`GameBootstrap`). No online features in 1.0 (no Game Center or leaderboards); iCloud save sync only.
 - One-thumb control: a floating stick is the only input. Attacks and skills fire automatically, so there are no skill buttons, no tap-to-move and no dodge button.
 - Company Filbus Software, bundle ID `com.filipbusic.rageborn`.
 - Diablo 1 structure, not a survivor game: the player starts in a safe walkable town and descends a dungeon level by level by stairs. Enemies are packs placed in rooms that idle until aggro, and they never spawn around the player. See `Docs/00-vision-and-scope.md` and `Docs/05-world-and-content.md`.

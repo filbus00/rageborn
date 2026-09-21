@@ -50,21 +50,22 @@ Players aged 18 to 45 who know Diablo, Path of Exile or Vampire Survivors style 
 | Dungeon | Diablo 1 style descent by stairs. Each act is a dungeon of about 6 seeded levels below its own town | User |
 | Players | Single player, offline first | Recommendation |
 | Platform | iPhone only for 1.0. No iPad support, no Android | User |
-| Classes | 1.0 launches with one class, the Wratborn, a barbarian-style warrior. More classes come later as new content | User |
+| Classes | 1.0 launches with one class, the Wrathborn, a barbarian-style warrior and a rework of the Warden in 02-classes-and-skills.md. More classes come later as new content. How they are sold is decided after launch | User |
 | Recurring content | No weekly seed, weekly challenges or similar live content | User |
-| Death | The character is sent to town and loses its gear until it reaches its corpse, see 01-core-gameplay.md | User |
-| Menus | No separate pause menu. One inventory button opens stats, inventory, equipped gear and loadout | User |
+| Online features | None in 1.0: no leaderboards and no Game Center. iCloud save sync stays, because it only copies the save between the player's own devices through Apple | User |
+| Death | The character is sent to town and loses its equipped gear until it reaches its corpse, see 01-core-gameplay.md | User |
+| Menus | No separate pause menu. One inventory button opens stats, inventory, equipped gear, loadout, Settings and the loot filter, and pauses the game | User |
 
 ## Scope for version 1.0
 
 In scope:
 
-- One class (the Wratborn) with eight active skills and one passive tree
+- One class (the Wrathborn) with eight active skills and one passive tree
 - Five acts, each a town above a dungeon of about 6 levels, seeded procedural layouts
 - Character level cap 60, then a Paragon track to 200 for endgame
 - Ten equipment slots, four rarities, about 90 affixes, 60 legendary items
 - Abyss endless dungeon and five bosses in a repeatable boss rotation
-- Local save with iCloud sync, Game Center leaderboards for Abyss depth
+- Local save with iCloud sync
 - English UI at launch, string tables ready for localization
 
 Out of scope for 1.0:
@@ -75,6 +76,7 @@ Out of scope for 1.0:
 - Offline idle gains
 - Hardcore mode (a post-launch update)
 - iPad support
+- Online features such as leaderboards and Game Center
 - Languages other than English
 
 ## Success criteria

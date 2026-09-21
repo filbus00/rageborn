@@ -9,7 +9,7 @@ Decision: Unity 6000.6.2f1 with C#, the Universal Render Pipeline with the 2D Re
 - Hundreds of data-defined objects (items, affixes, skills, enemies) with tooling to edit and validate them.
 - Many simultaneous entities on screen (40 enemies, projectiles, effects) at 60 frames per second on phones.
 - 2D lighting, skeletal animation, particle effects, audio mixing with layers.
-- Mature iOS build, profiling, Game Center, iCloud and haptics support.
+- Mature iOS build, profiling, iCloud and haptics support.
 - A path to Android later if the game earns it.
 
 ### Comparison
@@ -20,7 +20,7 @@ Decision: Unity 6000.6.2f1 with C#, the Universal Render Pipeline with the 2D Re
 | 2D lighting and skeletal animation | Built in 2D Renderer and 2D Animation package | Built in, good for 2D | Limited, SpriteKit lighting is basic, animation by hand |
 | Performance with many entities | Good with pooling, DOTS optional | Good for 2D, C# path adds overhead | Good for simple nodes, heavy for large effect counts |
 | iOS profiling and debugging | Unity profiler plus Xcode Instruments | Godot profiler, iOS export with Xcode | Best, native Instruments |
-| Apple services (Game Center, CloudKit, haptics) | Plugins or thin native bridge | Plugins or native bridge | Direct |
+| Apple services (CloudKit, haptics) | Plugins or thin native bridge | Plugins or native bridge | Direct |
 | Android later | Straightforward | Straightforward | Rewrite |
 | Asset store and community | Very large | Growing | Small for games |
 | Cost and licensing | Free tier with revenue limits, licensing terms have changed before and must be checked at project start | Free and open source, MIT | Free with Apple developer account |
@@ -63,7 +63,7 @@ Project settings are applied by the editor menu command Tools > ARPG > Apply Pro
 1. Data layer: ScriptableObject definitions for items, affixes, skills, enemies, zones, and loot tables. Exported to JSON at build time for tests and simulation.
 2. Simulation layer: pure C# classes with no Unity dependency for stats, damage, loot rolls and progression. Unit testable and used by the balance simulator.
 3. Presentation layer: MonoBehaviours for rendering, animation, VFX, audio and UI.
-4. Services: save, settings, analytics (optional), Game Center, iCloud.
+4. Services: save, settings, analytics (optional), iCloud.
 
 ### Key systems
 
@@ -121,7 +121,7 @@ Techniques: object pooling for all entities, texture atlases per act, sprite bat
 
 - The premium model needs no analytics. If added, use privacy preserving, opt-in event counts only (session length, level, crashes), and follow Apple App Tracking Transparency rules by not tracking across apps.
 - Crash reporting through Xcode Organizer and MetricKit, with no third party SDK required.
-- Game Center is the only online service in 1.0.
+- 1.0 has no online features. iCloud only copies the save between the player's own devices through Apple, and the game never requires a connection.
 
 ### Testing
 

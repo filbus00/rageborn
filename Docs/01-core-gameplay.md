@@ -111,9 +111,10 @@ Bosses use phases. Each boss has three phases with a distinct attack set and an 
 ## Death and recovery
 
 - On death the character falls and is sent to the town.
-- The character loses all its gear at the death spot, where a corpse marks it. The gear is regained by walking to the corpse and picking it up.
-- To get back to the corpse the player can use a portal that is still open, or the waypoints across the dungeon levels, see 05-world-and-content.md.
-- This replaces the earlier free checkpoint revive, the Ember Shard instant revive and the no item loss rule. Which items and how much gold count as gear, what happens on a second death before the corpse is reached, and what the Ember Shard is for now are open questions, see 08-production.md.
+- The character loses its equipped gear at the death spot, where a corpse marks it. The gear is regained by walking to the corpse and picking it up. The backpack, gold and the Stash are kept.
+- The corpse never expires. If the character dies again before reaching it, the first corpse stays where it is and the second holds nothing, because nothing is equipped. Whether a corpse survives the sleep reset is decided with the sleep design, see 08-production.md.
+- To get back to the corpse the player can use a portal that is still open (made with the Portal Tome, found around level 3 of the dungeon) or the waypoints across the dungeon levels, see 05-world-and-content.md. Before the Tome the player walks.
+- This replaces the earlier free checkpoint revive, the instant revive and the no item loss rule.
 - Hardcore mode is not in 1.0. It is planned as a post-launch update.
 
 ## Auto features that protect one-handed play
@@ -121,7 +122,7 @@ Bosses use phases. Each boss has three phases with a distinct attack set and an 
 - Auto-loot: items within 2.5 units are picked up when the player is not under attack in the last 1.5 seconds, or when the room clears. Gold and materials are always auto-picked.
 - Loot filter: see 03-itemization.md.
 - Auto-potion: one potion type, heals 40 percent life over 3 seconds. Charges refill from kills. Fires at 35 percent life, configurable from 20 to 60.
-- Inventory button: sits at the lower edge in the thumb arc and opens one screen with character stats, inventory, equipped gear and loadout. There is no separate pause menu. Whether opening it pauses the game is an open question.
+- Inventory button: sits at the lower edge in the thumb arc and opens one screen with character stats, inventory, equipped gear and loadout. There is no separate pause menu. The screen also holds Settings and the loot filter, and the game is paused while it is open.
 
 ## Session structure
 

@@ -48,13 +48,12 @@ The safe area insets are respected on all notched devices. The game is iPhone on
 | Stash | Same as inventory | Search field, filter chips |
 | Forge | Reforge, Socket, Temper, Imprint, Transmog | One action per tab |
 | Results | End of zone summary and drops | Swipe through upgrades, tap Equip |
-| Character | Character stats, inventory, equipped gear and loadout | Opened by the inventory button. There is no separate pause menu |
+| Character | Character stats, inventory, equipped gear and loadout, plus Settings and the loot filter | Opened by the inventory button. There is no separate pause menu, and the game is paused while it is open |
 | Settings | Controls, audio, haptics, accessibility | Grouped, searchable |
-| Leaderboard | Abyss depth | Game Center |
 
 ## Navigation
 
-- Menus in town: the Forge, Stash, Trainer and Waystone open by walking up to their NPCs. Character, Loadout and Inventory open from the inventory button, in town and in the dungeon. There is no separate pause menu, so where Settings and the loot filter live is an open question, see 08-production.md.
+- Menus in town: the Forge, Stash, Trainer and Waystone open by walking up to their NPCs. Character, Loadout and Inventory open from the inventory button, in town and in the dungeon. There is no separate pause menu. Settings and the loot filter are on the same screen, and the game pauses while it is open.
 - A persistent back gesture on every screen using the system edge swipe. Where an edge swipe conflicts, a back button sits at the lower left or lower right by handedness setting.
 - Sheets dismiss with a downward swipe on the handle.
 

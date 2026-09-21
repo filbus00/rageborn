@@ -1,6 +1,6 @@
 # Classes and skills
 
-> 1.0 ships one class, the Wratborn, a barbarian-style warrior. Which of the three drafts below it reworks or replaces is an open question, see 08-production.md. The other classes are content for after launch.
+> 1.0 ships one class, the Wrathborn, a barbarian-style warrior. It is the Warden below, reworked. The rework is not designed yet, see 08-production.md. The Ranger and Hexer are drafts for later classes.
 
 ## Design rules
 

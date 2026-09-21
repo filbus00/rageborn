@@ -9,7 +9,7 @@
 | Skill level and modifiers | 1 to 20 per skill | Hours 0 to 30 | Build shaping |
 | Paragon | 1 to 200 after level 60 | Hours 18 onward | Slow stat growth, keeps XP relevant |
 | Difficulty tier | Vigil I to Vigil V | After act 5 | Raises enemy level and drop quality |
-| Abyss depth | 1 to unbounded | Endgame | Leaderboard content and top item level |
+| Abyss depth | 1 to unbounded | Endgame | Personal best and top item level |
 
 ## XP curve
 
@@ -73,7 +73,6 @@ Enemy level offsets apply on top of the player's level for scaling formulas. Ene
 | Cinders | Salvage magic | Add socket to magic and rare | Socket |
 | Bloodstone | Salvage rare, elites | Reforge, sockets | Forge |
 | Soulglass | Salvage legendary, bosses | Temper, Reroll values, Imprint | Forge |
-| Ember Shard | Rare drop from bosses, Abyss milestones | One-time unlocks. Its former use as an instant revive is under review, see 08-production.md | Rare use |
 
 Gold drops scale with level: normal enemy drops 0.6 times L to the power 1.3, elite 8 times that. Forge costs use the same curve times an action multiplier. The intended feel: gold is plentiful early and becomes a real limit only when reforging repeatedly at endgame.
 
