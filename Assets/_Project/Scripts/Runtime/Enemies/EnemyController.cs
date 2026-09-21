@@ -7,8 +7,14 @@ namespace ARPG
     /// </summary>
     public enum EnemyState
     {
+        /// <summary>Standing at its home spot until the player comes within aggro range.</summary>
         Idle,
+
+        /// <summary>Chasing the player.</summary>
         Approach,
+
+        /// <summary>The leash broke: walking back to the home spot. Ignores the player until it arrives.</summary>
+        Return,
     }
 
     /// <summary>
@@ -21,8 +27,20 @@ namespace ARPG
         // How hard the player pushes enemies out of its space, relative to separation between enemies. Tuning value.
         const float PlayerPushWeight = 3f;
 
+        // An enemy counts as home when it is this close to its home spot, in ground units.
+        const float ArriveDistance = 0.2f;
+
+        // A blocked step is retried turned by this angle either way, so enemies slide along walls (60 degrees).
+        const float SlideAngle = 1.0471976f;
+
+        // A wall is one cell thick, which is 0.707 across on the ground. A step longer than that could jump over it
+        // (a long frame at speed 3.6 covers over a unit), so steps are split into pieces no longer than this.
+        const float MaxStepLength = 0.25f;
+
         EnemyDefinition definition;
+        EnemyPack pack;
         Vector2 ground;
+        Vector2 home;
         float leashTimer;
 
         public EnemyState State { get; private set; }
@@ -32,13 +50,20 @@ namespace ARPG
         /// <summary>Position on the ground plane, in ground units.</summary>
         public Vector2 GroundPosition => ground;
 
+        /// <summary>Where the enemy stands while idle and returns to after losing the player.</summary>
+        public Vector2 HomePosition => home;
+
         /// <summary>This enemy's id in the manager's spatial hash for the current frame.</summary>
         internal int HashId { get; set; }
 
-        internal void Activate(EnemyDefinition data, Vector2 groundPosition, bool aggroed)
+        /// <param name="groundPosition">Where the enemy appears. This becomes its home spot.</param>
+        /// <param name="owner">The pack the enemy belongs to, used to find its way home. Can be null.</param>
+        internal void Activate(EnemyDefinition data, Vector2 groundPosition, bool aggroed, EnemyPack owner)
         {
             definition = data;
+            pack = owner;
             ground = groundPosition;
+            home = groundPosition;
             leashTimer = 0f;
             State = aggroed ? EnemyState.Approach : EnemyState.Idle;
             SyncTransform();
@@ -47,28 +72,45 @@ namespace ARPG
 
         internal void Deactivate() => gameObject.SetActive(false);
 
-        /// <summary>Advances the enemy by one frame. Returns false when it gave up and should return to the pool.</summary>
-        internal bool Tick(float deltaTime, EnemyManager world)
+        /// <summary>Advances the enemy by one frame.</summary>
+        internal void Tick(float deltaTime, EnemyManager world)
         {
             var playerGround = world.PlayerGround;
             var distance = Vector2.Distance(ground, playerGround);
 
-            if (distance > definition.LeashRange)
+            switch (State)
             {
-                leashTimer += deltaTime;
-                if (leashTimer >= definition.LeashSeconds)
-                    return false;
-            }
-            else
-            {
-                leashTimer = 0f;
-            }
+                case EnemyState.Idle:
+                    if (distance > definition.AggroRange)
+                        return;
+                    State = EnemyState.Approach;
+                    leashTimer = 0f;
+                    break;
 
-            if (State == EnemyState.Idle)
-            {
-                if (distance > definition.AggroRange)
-                    return true;
-                State = EnemyState.Approach;
+                case EnemyState.Approach:
+                    if (distance > definition.LeashRange)
+                    {
+                        leashTimer += deltaTime;
+                        if (leashTimer >= definition.LeashSeconds)
+                        {
+                            State = EnemyState.Return;
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        leashTimer = 0f;
+                    }
+                    break;
+
+                case EnemyState.Return:
+                    if (Vector2.Distance(ground, home) <= ArriveDistance)
+                    {
+                        State = EnemyState.Idle;
+                        return;
+                    }
+                    Move(HomeDirection(world) * (definition.MoveSpeed * deltaTime), world);
+                    return;
             }
 
             // Close enough to stop closing in; the pushes below still run so a crowd spreads around the player.
@@ -82,7 +124,15 @@ namespace ARPG
                 desired.Normalize();
 
             Move(desired * (definition.MoveSpeed * deltaTime), world);
-            return true;
+        }
+
+        Vector2 HomeDirection(EnemyManager world)
+        {
+            // With a clear line the straight route home is best; otherwise follow the pack's field to its anchor.
+            if (!world.Nav.HasLineOfSight(ground, home) && pack != null && pack.TryGetHomeDirection(ground, out var direction))
+                return direction;
+
+            return (home - ground).normalized;
         }
 
         Vector2 Separation(EnemyManager world)
@@ -117,15 +167,40 @@ namespace ARPG
 
         void Move(Vector2 step, EnemyManager world)
         {
-            if (step == Vector2.zero)
+            var length = step.magnitude;
+            if (length <= 0f)
                 return;
 
+            // Normal frames are one piece. A hitch produces a long step that is walked in pieces, so a wall still stops it.
+            var pieces = Mathf.CeilToInt(length / MaxStepLength);
+            var piece = step / pieces;
+            for (var i = 0; i < pieces; i++)
+                MovePiece(piece, world);
+        }
+
+        void MovePiece(Vector2 step, EnemyManager world)
+        {
+            if (TryStep(step, world) || TryStep(Rotate(step, SlideAngle), world))
+                return;
+            TryStep(Rotate(step, -SlideAngle), world);
+        }
+
+        bool TryStep(Vector2 step, EnemyManager world)
+        {
             var next = ground + step;
             if (!world.Nav.IsWalkable(IsoMath.GroundToCell(next)))
-                return;
+                return false;
 
             ground = next;
             SyncTransform();
+            return true;
+        }
+
+        static Vector2 Rotate(Vector2 vector, float radians)
+        {
+            var cos = Mathf.Cos(radians);
+            var sin = Mathf.Sin(radians);
+            return new Vector2(vector.x * cos - vector.y * sin, vector.x * sin + vector.y * cos);
         }
 
         void SyncTransform()

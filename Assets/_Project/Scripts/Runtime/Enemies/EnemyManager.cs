@@ -16,8 +16,11 @@ namespace ARPG
         [Tooltip("Instances created up front. Spawning never allocates while there is one free in the pool.")]
         [SerializeField, Min(1)] int poolSize = 64;
 
-        [Tooltip("Left empty, the first Tilemap in the scene is used.")]
+        [Tooltip("Left empty, the first Tilemap that is not on the Obstacle layer is used.")]
         [SerializeField] Tilemap groundTilemap;
+
+        [Tooltip("Tilemaps whose tiles block movement. Left empty, every Tilemap on the Obstacle layer is used.")]
+        [SerializeField] Tilemap[] obstacleTilemaps;
 
         [Tooltip("Left empty, the first PlayerController in the scene is used.")]
         [SerializeField] PlayerController player;
@@ -64,17 +67,16 @@ namespace ARPG
                 return;
             }
 
-            if (groundTilemap == null)
-                groundTilemap = FindAnyObjectByType<Tilemap>();
             if (player == null)
                 player = FindAnyObjectByType<PlayerController>();
+            FindTilemaps();
             if (groundTilemap == null || player == null)
             {
                 Debug.LogError("[ARPG] EnemyManager needs a ground Tilemap and a PlayerController in the scene.", this);
                 return;
             }
 
-            Nav = NavGridBaker.Bake(groundTilemap, GameLayers.ObstacleMask);
+            Nav = NavGridBaker.Bake(groundTilemap, obstacleTilemaps);
             flow = new FlowField(Nav);
             Hash = CreateHash(Nav);
 
@@ -97,14 +99,13 @@ namespace ARPG
             for (var i = 0; i < active.Count; i++)
                 active[i].HashId = Hash.Insert(active[i].GroundPosition);
 
-            // Backwards so an enemy can be swap-removed while looping.
-            for (var i = active.Count - 1; i >= 0; i--)
-                if (!active[i].Tick(deltaTime, this))
-                    Despawn(i);
+            for (var i = 0; i < active.Count; i++)
+                active[i].Tick(deltaTime, this);
         }
 
-        /// <summary>Activates a pooled enemy at a ground position.</summary>
-        public EnemyController Spawn(EnemyDefinition definition, Vector2 groundPosition, bool aggroed)
+        /// <summary>Activates a pooled enemy at a ground position, which becomes its home spot.</summary>
+        /// <param name="pack">The pack the enemy belongs to, or null.</param>
+        public EnemyController Spawn(EnemyDefinition definition, Vector2 groundPosition, bool aggroed, EnemyPack pack = null)
         {
             EnemyController enemy;
             if (pool.Count > 0)
@@ -117,7 +118,7 @@ namespace ARPG
                 enemy = CreateInstance();
             }
 
-            enemy.Activate(definition, groundPosition, aggroed);
+            enemy.Activate(definition, groundPosition, aggroed, pack);
             active.Add(enemy);
             return enemy;
         }
@@ -132,15 +133,23 @@ namespace ARPG
             return (target - from).normalized;
         }
 
-        void Despawn(int index)
+        void FindTilemaps()
         {
-            var enemy = active[index];
-            var last = active.Count - 1;
-            active[index] = active[last];
-            active.RemoveAt(last);
+            if (groundTilemap != null && obstacleTilemaps != null && obstacleTilemaps.Length > 0)
+                return;
 
-            enemy.Deactivate();
-            pool.Push(enemy);
+            var obstacleLayer = LayerMask.NameToLayer(GameLayers.Obstacle);
+            var found = new List<Tilemap>();
+            foreach (var tilemap in FindObjectsByType<Tilemap>(FindObjectsInactive.Exclude))
+            {
+                if (obstacleLayer >= 0 && tilemap.gameObject.layer == obstacleLayer)
+                    found.Add(tilemap);
+                else if (groundTilemap == null)
+                    groundTilemap = tilemap;
+            }
+
+            if (obstacleTilemaps == null || obstacleTilemaps.Length == 0)
+                obstacleTilemaps = found.ToArray();
         }
 
         void RefreshFlow(float deltaTime)

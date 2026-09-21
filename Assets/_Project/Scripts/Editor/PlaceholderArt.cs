@@ -69,9 +69,48 @@ namespace ARPG.Editor
             });
         }
 
+        /// <summary>
+        /// An isometric wall block: a 2:1 diamond footprint across the full width, a top face and two side faces.
+        /// The center of the footprint sits at 0.5 of the width horizontally and a quarter of the footprint width
+        /// vertically, so import it with that custom pivot and it stands on its cell.
+        /// </summary>
+        public static Texture2D WallBlock(int width, int height, Color32 top, Color32 left, Color32 right)
+        {
+            var half = width * 0.5f;
+            var footprintHalfHeight = width * 0.25f;
+            var wallHeight = height - width * 0.5f;
+            var topCenterY = footprintHalfHeight + wallHeight;
+            var outlineColor = Darken(left, 0.55f);
+            const float outline = 2f;
+
+            return Generate(width, height, (x, y) =>
+            {
+                var px = x + 0.5f;
+                var py = y + 0.5f;
+                var slope = footprintHalfHeight - Mathf.Abs(px - half) * (footprintHalfHeight / half);
+                var lower = slope;
+                var upper = topCenterY + slope;
+
+                if (py < lower || py > upper)
+                    return new Color32(0, 0, 0, 0);
+
+                // Distance from the center of the top face, normalized so 1 is its outline.
+                var topDistance = Mathf.Abs(px - half) / half + Mathf.Abs(py - topCenterY) / footprintHalfHeight;
+                if (topDistance <= 1f)
+                    return topDistance > 0.93f ? outlineColor : top;
+
+                var isEdge = py - lower < outline || px < outline || px > width - outline || Mathf.Abs(px - half) < 1f;
+                if (isEdge)
+                    return outlineColor;
+                return px < half ? left : right;
+            });
+        }
+
         /// <summary>Writes the texture as a PNG, imports it as a sprite and returns the sprite.</summary>
+        /// <param name="customPivot">Used when <paramref name="alignment"/> is Custom, as a fraction of the sprite size.</param>
         public static Sprite ImportSprite(
-            string path, Texture2D texture, int pixelsPerUnit, SpriteAlignment alignment, FilterMode filter)
+            string path, Texture2D texture, int pixelsPerUnit, SpriteAlignment alignment, FilterMode filter,
+            Vector2? customPivot = null)
         {
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             File.WriteAllBytes(path, texture.EncodeToPNG());
@@ -90,6 +129,8 @@ namespace ARPG.Editor
             var settings = new TextureImporterSettings();
             importer.ReadTextureSettings(settings);
             settings.spriteAlignment = (int)alignment;
+            if (alignment == SpriteAlignment.Custom)
+                settings.spritePivot = customPivot ?? new Vector2(0.5f, 0.5f);
             importer.SetTextureSettings(settings);
 
             importer.SaveAndReimport();

@@ -5,9 +5,9 @@ using UnityEngine;
 namespace ARPG.Editor
 {
     /// <summary>
-    /// Adds the placeholder swarmer enemy, the enemy manager and the spawner to the sandbox scene.
-    /// Run from Tools > ARPG > Add Enemies To Sandbox. Running it again rebuilds the prefab and the scene objects
-    /// but keeps the tuned values of an existing enemy definition.
+    /// Adds the placeholder swarmer enemy and the enemy manager to the sandbox scene. Enemies appear through
+    /// <see cref="EnemyPack"/>s, see TestRoomBuilder. Run from Tools > ARPG > Add Enemies To Sandbox. Running it
+    /// again rebuilds the prefab and the manager but keeps the tuned values of an existing enemy definition.
     /// </summary>
     public static class EnemySceneBuilder
     {
@@ -20,7 +20,9 @@ namespace ARPG.Editor
 
         // Names of the scene objects this builder owns, so a rerun can replace them.
         const string ManagerObjectName = "Enemy Manager";
-        const string SpawnerObjectName = "Enemy Spawner";
+
+        // An earlier version added a ring spawner (survivor style). It is gone; a rerun removes its leftover object.
+        const string RemovedSpawnerObjectName = "Enemy Spawner";
 
         [MenuItem("Tools/ARPG/Add Enemies To Sandbox")]
         public static void Build()
@@ -35,24 +37,20 @@ namespace ARPG.Editor
                 return;
 
             var scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
-            PlayerSceneBuilder.RemoveExisting(scene, ManagerObjectName, SpawnerObjectName);
+            PlayerSceneBuilder.RemoveExisting(scene, ManagerObjectName, RemovedSpawnerObjectName);
 
-            var definition = LoadOrCreateDefinition();
+            LoadOrCreateDefinition();
             var prefab = BuildPrefab();
 
             var manager = new GameObject(ManagerObjectName, typeof(EnemyManager)).GetComponent<EnemyManager>();
             SetReference(manager, "prefab", prefab.GetComponent<EnemyController>());
 
-            var spawner = new GameObject(SpawnerObjectName, typeof(EnemySpawner)).GetComponent<EnemySpawner>();
-            SetReference(spawner, "manager", manager);
-            SetReference(spawner, "definition", definition);
-
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
-            Debug.Log("[ARPG] Swarmer enemy, enemy manager and spawner added to the sandbox scene.");
+            Debug.Log("[ARPG] Swarmer enemy and enemy manager added to the sandbox scene.");
         }
 
-        static EnemyDefinition LoadOrCreateDefinition()
+        internal static EnemyDefinition LoadOrCreateDefinition()
         {
             var definition = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(DefinitionPath);
             if (definition != null)
@@ -95,7 +93,7 @@ namespace ARPG.Editor
             return prefab;
         }
 
-        static void SetReference(Object target, string field, Object value)
+        internal static void SetReference(Object target, string field, Object value)
         {
             var serialized = new SerializedObject(target);
             serialized.FindProperty(field).objectReferenceValue = value;
