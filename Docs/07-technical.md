@@ -82,7 +82,7 @@ Project settings are applied by the editor menu command Tools > ARPG > Apply Pro
 
 ### Determinism
 
-The simulation layer uses a seeded random generator per system (loot, combat, generation). Given a seed, a zone can be replayed for debugging and for the weekly Abyss seed. Rendering and physics are non-deterministic and do not influence logic.
+The simulation layer uses a seeded random generator per system (loot, combat, generation). Given a seed, a zone can be replayed for debugging. Rendering and physics are non-deterministic and do not influence logic.
 
 ### Performance budget
 
@@ -104,7 +104,8 @@ Techniques: object pooling for all entities, texture atlases per act, sprite bat
 
 - Storage: a JSON document per character plus one shared file for account data (stash, settings, achievements), written to app storage.
 - Write rules: atomic write to a temporary file, then rename. Keep the last 3 versions as backups.
-- Triggers: on item pickup batch (2 second debounce), on Forge action, on level up, on zone exit, on app background.
+- Triggers: on item pickup batch (2 second debounce), on Forge action, on level up, on zone exit, on death, on app background.
+- Level state and corpse: for each level visited in the current game session, the seed, killed packs and opened chests, plus any corpse with its gear, are saved with the character so quitting the app never loses a corpse run.
 - Schema version: an integer in each file, with migration functions from each prior version.
 - iCloud: CloudKit private database syncs save documents. Conflicts resolve by the latest modified time per character, with the losing version stored as a backup and a visible restore option.
 - Corruption: on read failure, the game tries backups in order and reports which one it loaded.
@@ -138,7 +139,7 @@ Techniques: object pooling for all entities, texture atlases per act, sprite bat
 - CI builds a signed TestFlight build on every merge to the main branch.
 - Internal test group of 10, external group of 100 for beta.
 - Release channels: TestFlight, then App Store. Price and region setup in App Store Connect.
-- App Store items to prepare early: age rating (violence, fantasy), privacy nutrition label (data not collected if no analytics), screenshots in portrait, preview video, localizations.
+- App Store items to prepare early: age rating (violence, fantasy), privacy nutrition label (data not collected if no analytics), screenshots in portrait, preview video. English only for 1.0.
 
 ## Art pipeline
 

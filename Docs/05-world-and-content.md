@@ -30,7 +30,15 @@ Each act has one town above one dungeon. The dungeon is descended level by level
 
 ## Town
 
-Each act has one town, a small safe scene the player walks through with the stick. There are no enemies and no combat. NPCs stand at fixed spots for the Forge, the Stash, the Class Trainer and the Waystone. Walking up to an NPC opens its bottom sheet panel, so nothing in the world needs a tap. The dungeon entrance is a stairway the player walks into. A new character begins in the act 1 town, at the ruined chapel. The Waystone travels to any level the player has already reached.
+Each act has one town, a small safe scene the player walks through with the stick. There are no enemies and no combat. NPCs stand at fixed spots for the Forge, the Stash, the Class Trainer and the Waystone. Walking up to an NPC opens its bottom sheet panel, so nothing in the world needs a tap. The dungeon entrance is a stairway the player walks into. A new character begins in the act 1 town, at the ruined chapel. The Waystone jumps to any activated waypoint, see Getting around below.
+
+### Getting around
+
+- Stairs: the exit room of each level holds stairs down and the start room holds stairs up.
+- Waypoints: each level has a waypoint the player activates by stepping on it. From any activated waypoint, or from the Waystone in town, the player can jump to any other activated waypoint. A list screen opens from the waypoint or the Waystone. Rifts and the Abyss are entered from an NPC in town.
+- Portal scroll: a consumable the player uses from the UI. It opens a portal to town, and the portal stays open so the player can come back through it. The first scrolls are found on the early levels of the dungeon.
+- Persistence: within a game session a level keeps its seeded layout, its dead enemies and its opened chests when the player leaves and comes back. A sleep mechanic resets the session. Its rules are not designed yet.
+- Death: the character is sent to town, see 01-core-gameplay.md.
 
 ## Level generation
 
@@ -96,7 +104,6 @@ Optional bosses appear in the boss rotation from Vigil II. They drop legendaries
 - Floor enemy level rises 2 per floor. Every 10 floors the player picks a boon from three, active for the rest of the run.
 - Rewards: materials on each floor, item drops from guardians, Ember Shard at depth milestones.
 - Death ends the run. Depth is submitted to a Game Center leaderboard.
-- Weekly seed: a shared seed rotates each week so results compare fairly. The seed is not tied to a real-time event and the game never requires online play.
 
 ### Boss rotation
 

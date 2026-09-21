@@ -8,7 +8,7 @@ Document status: draft 0.2, 2026-09-21. This file is the entry point to the desi
 |---|---|
 | 00-vision-and-scope.md | Pitch, pillars, audience, decisions made, scope limits, glossary |
 | 01-core-gameplay.md | Controls, combat, auto-skill system, enemy behavior, death and recovery |
-| 02-classes-and-skills.md | Three classes, skill lists, skill modifiers, passive tree |
+| 02-classes-and-skills.md | Class drafts (1.0 ships one class), skill lists, skill modifiers, passive tree |
 | 03-itemization.md | Slots, rarities, affixes, drops, loot filter, crafting, formulas |
 | 04-progression-and-economy.md | XP curve, difficulty tiers, gold and material sinks, session pacing |
 | 05-world-and-content.md | Setting, zones, enemy roster, bosses, endgame modes |
@@ -49,13 +49,17 @@ Players aged 18 to 45 who know Diablo, Path of Exile or Vampire Survivors style 
 | Town | A walkable scene with no enemies. NPCs open their panels when the player walks up to them. The way into the dungeon is a stairway the player walks into | User |
 | Dungeon | Diablo 1 style descent by stairs. Each act is a dungeon of about 6 seeded levels below its own town | User |
 | Players | Single player, offline first | Recommendation |
-| Platform | iPhone first, iPad supported by layout scaling, Android not in scope for 1.0 | Recommendation |
+| Platform | iPhone only for 1.0. No iPad support, no Android | User |
+| Classes | 1.0 launches with one class, the Wratborn, a barbarian-style warrior. More classes come later as new content | User |
+| Recurring content | No weekly seed, weekly challenges or similar live content | User |
+| Death | The character is sent to town and loses its gear until it reaches its corpse, see 01-core-gameplay.md | User |
+| Menus | No separate pause menu. One inventory button opens stats, inventory, equipped gear and loadout | User |
 
 ## Scope for version 1.0
 
 In scope:
 
-- Three classes, eight active skills each, one passive tree each
+- One class (the Wratborn) with eight active skills and one passive tree
 - Five acts, each a town above a dungeon of about 6 levels, seeded procedural layouts
 - Character level cap 60, then a Paragon track to 200 for endgame
 - Ten equipment slots, four rarities, about 90 affixes, 60 legendary items
@@ -65,10 +69,13 @@ In scope:
 
 Out of scope for 1.0:
 
-- Multiplayer, trading, guilds, live events
+- Multiplayer, trading, guilds, live events, weekly seeds and challenges
 - Manual skill activation, dodge rolls, any second input
 - Controller support and Android
 - Offline idle gains
+- Hardcore mode (a post-launch update)
+- iPad support
+- Languages other than English
 
 ## Success criteria
 

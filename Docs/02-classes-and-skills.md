@@ -1,5 +1,7 @@
 # Classes and skills
 
+> 1.0 ships one class, the Wratborn, a barbarian-style warrior. Which of the three drafts below it reworks or replaces is an open question, see 08-production.md. The other classes are content for after launch.
+
 ## Design rules
 
 - The player never presses a skill. Every skill must be useful when fired by the auto-cast system.

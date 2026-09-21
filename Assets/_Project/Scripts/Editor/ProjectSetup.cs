@@ -41,6 +41,9 @@ namespace ARPG.Editor
 
             PlayerSettings.iOS.targetOSVersionString = "16.0";
 
+            // iPhone only for 1.0 (Docs/00-vision-and-scope.md).
+            PlayerSettings.iOS.targetDevice = iOSTargetDevice.iPhoneOnly;
+
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.iOS, ScriptingImplementation.IL2CPP);
 
             PlayerSettings.iOS.hideHomeButton = true;

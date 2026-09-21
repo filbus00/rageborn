@@ -18,7 +18,7 @@ Assume a 6.1 inch phone held in one hand. Comfortable thumb reach covers the low
 | Middle 25 to 60 percent | Play field. Dialogs and drop popups appear here |
 | Bottom 60 to 100 percent | Stick zone in combat, menu controls out of combat |
 
-The safe area insets are respected on all notched devices. On iPad, the layout centers a phone-width column with the world visible outside it, and the stick zone is anywhere in the lower half.
+The safe area insets are respected on all notched devices. The game is iPhone only for 1.0.
 
 ## HUD in combat
 
@@ -48,13 +48,13 @@ The safe area insets are respected on all notched devices. On iPad, the layout c
 | Stash | Same as inventory | Search field, filter chips |
 | Forge | Reforge, Socket, Temper, Imprint, Transmog | One action per tab |
 | Results | End of zone summary and drops | Swipe through upgrades, tap Equip |
-| Pause | Resume, Filter, Settings, Leave zone | Thumb reachable |
+| Character | Character stats, inventory, equipped gear and loadout | Opened by the inventory button. There is no separate pause menu |
 | Settings | Controls, audio, haptics, accessibility | Grouped, searchable |
-| Leaderboard | Abyss depth, weekly seed | Game Center |
+| Leaderboard | Abyss depth | Game Center |
 
 ## Navigation
 
-- Menus in town: the Forge, Stash, Trainer and Waystone open by walking up to their NPCs. Where Character, Loadout and Inventory open from is an open question, see 08-production.md.
+- Menus in town: the Forge, Stash, Trainer and Waystone open by walking up to their NPCs. Character, Loadout and Inventory open from the inventory button, in town and in the dungeon. There is no separate pause menu, so where Settings and the loot filter live is an open question, see 08-production.md.
 - A persistent back gesture on every screen using the system edge swipe. Where an edge swipe conflicts, a back button sits at the lower left or lower right by handedness setting.
 - Sheets dismiss with a downward swipe on the handle.
 
@@ -67,7 +67,7 @@ The most important build screen.
 - Drag handles reorder the priority. A tooltip explains the priority rule: higher slots are considered first.
 - The trigger condition is a chip on each slot. A tap opens the list of conditions in the bottom sheet.
 - A simulator strip at the bottom shows a 10 second auto-play of the loadout on a training dummy pack so the player sees how the order behaves.
-- Saved loadouts: 3 presets per character, switchable from the pause menu.
+- Saved loadouts: 3 presets per character, switchable from this screen.
 
 ## Results screen
 

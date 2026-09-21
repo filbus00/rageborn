@@ -152,7 +152,7 @@ Preset filters:
 Rules:
 
 - Filtered items are still picked up and auto-salvaged for materials. They never take an inventory slot.
-- The filter can be changed in the pause menu in two taps.
+- The filter can be changed from the inventory screen in two taps.
 - A custom filter allows rules by rarity, slot, affix tag and minimum item level.
 - The filter never hides Legendary items by default.
 

@@ -8,11 +8,11 @@ The only combat input is the floating thumb stick.
 - Dead zone: 8 percent of stick radius. Stick radius is 64 points by default, adjustable from 48 to 96 in settings.
 - Analog output: direction is continuous 360 degrees. Speed scales from 0 to 100 percent between dead zone and full radius. Full deflection equals the character move speed. Base move speed is 4 ground units per second (a starting value for tuning).
 - Release: the character stops with 80 ms of deceleration. Releasing counts as standing still for Stillness.
-- Left-hand and right-hand mode: the touch zone is symmetric. A setting moves the pause button and the quick menu handle to the matching corner.
+- Left-hand and right-hand mode: the touch zone is symmetric. A setting moves the inventory button to the matching corner.
 - Stick drift: if the thumb slides more than 1.6 times the radius from the base, the base follows the thumb so the player never runs out of pad.
 - Interruptions: a system gesture, call or notification pauses the game. Returning shows a 3 second resume countdown.
 
-No tap, swipe, long press or double tap has a combat function. The top of the screen holds read-only status. The bottom 38 percent outside the touch zone holds nothing interactive during combat except the pause handle, positioned inside the thumb arc.
+No tap, swipe, long press or double tap has a combat function. The top of the screen holds read-only status. The bottom 38 percent outside the touch zone holds nothing interactive during combat except the inventory button, positioned inside the thumb arc.
 
 ## Camera and perspective
 
@@ -110,17 +110,18 @@ Bosses use phases. Each boss has three phases with a distinct attack set and an 
 
 ## Death and recovery
 
-- On death the character falls and a 3 second timer starts.
-- The player may revive at the last checkpoint at no cost, with a 10 percent gold penalty capped at 1,000 gold, or immediately at the death spot by paying one Ember Shard, a rare material earned in play and never sold.
-- Item loss: none. Loot already picked up stays with the player.
-- Hardcore mode is unlocked after clearing act 3. A dead hardcore character moves to the Hall of Ashes. Its equipment stays in a shared stash for other characters.
+- On death the character falls and is sent to the town.
+- The character loses all its gear at the death spot, where a corpse marks it. The gear is regained by walking to the corpse and picking it up.
+- To get back to the corpse the player can use a portal that is still open, or the waypoints across the dungeon levels, see 05-world-and-content.md.
+- This replaces the earlier free checkpoint revive, the Ember Shard instant revive and the no item loss rule. Which items and how much gold count as gear, what happens on a second death before the corpse is reached, and what the Ember Shard is for now are open questions, see 08-production.md.
+- Hardcore mode is not in 1.0. It is planned as a post-launch update.
 
 ## Auto features that protect one-handed play
 
 - Auto-loot: items within 2.5 units are picked up when the player is not under attack in the last 1.5 seconds, or when the room clears. Gold and materials are always auto-picked.
 - Loot filter: see 03-itemization.md.
 - Auto-potion: one potion type, heals 40 percent life over 3 seconds. Charges refill from kills. Fires at 35 percent life, configurable from 20 to 60.
-- Pause: the pause handle sits at the lower edge in the thumb arc. A single tap pauses. A second tap resumes.
+- Inventory button: sits at the lower edge in the thumb arc and opens one screen with character stats, inventory, equipped gear and loadout. There is no separate pause menu. Whether opening it pauses the game is an open question.
 
 ## Session structure
 

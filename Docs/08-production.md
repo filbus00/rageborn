@@ -8,20 +8,20 @@ Assumptions: a small team of one to three people, part time or full time, with t
 |---|---|---|---|
 | M0 Prototype | 2 to 3 weeks | Prove input, feel and performance | Stick, 40 enemies, one auto-cast skill, drops with beams, holds 60 fps on iPhone 12 |
 | M1 Vertical slice | 8 to 10 weeks | One class, the walkable town, one zone, boss, loot and Forge | 20 minutes of play a tester can finish without help, item comparison works, save works |
-| M2 Alpha | 16 to 20 weeks | All systems, act 1 to 3 content, three classes rough | Full loop through level 36, balance simulator running |
+| M2 Alpha | 16 to 20 weeks | All systems, act 1 to 3 content, the launch class (Wratborn) | Full loop through level 36, balance simulator running |
 | M3 Beta | 12 to 16 weeks | Acts 4 and 5, endgame, polish, accessibility | Feature complete, TestFlight beta, performance targets met on all devices |
-| M4 Release candidate | 4 to 6 weeks | Bug fixing, localization pass, store assets | Zero known crashes, App Review submission |
+| M4 Release candidate | 4 to 6 weeks | Bug fixing, store assets | Zero known crashes, App Review submission |
 | M5 Launch and support | Ongoing | Patch cadence, balance updates | Post-launch plan in this file |
 
-Total: about 12 to 14 months for a solo developer with commissioned art. A reduced version 1.0 with three acts, three classes and half the legendaries could ship in about 9 months.
+Total: about 12 to 14 months for a solo developer with commissioned art. A reduced version 1.0 with three acts, three classes and half the legendaries could ship in about 9 months. These estimates assumed three classes and have not been rerun since the decision on 2026-09-21 to launch with one class.
 
 ## Scope tiers
 
 | Tier | Contents | Use |
 |---|---|---|
 | Core | Stick, auto-combat, 1 class, act 1, loot, Forge, save | Must ship |
-| Full | 3 classes, 5 acts, endgame, all legendaries | Target for 1.0 |
-| Stretch | Extra classes, Android, iPad-specific UI, more Abyss features | After 1.0 |
+| Full | 1 class (Wratborn), 5 acts, endgame, all legendaries | Target for 1.0 |
+| Stretch | Extra classes as later content, hardcore mode, iPad, Android, more Abyss features | After 1.0 |
 
 If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigil tiers, Imprint, achievements beyond 30, story cutscenes, then a class or an act.
 
@@ -46,25 +46,22 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | Content volume too large | High | High | Scope tiers, reuse enemy rigs with palette swaps, procedural rooms |
 | One-hand menus become cramped | Low | Medium | Bottom sheet pattern from the start, test on a 6.1 inch phone with one hand |
 | Engine licensing or platform rule changes | Low | Medium | Keep simulation layer engine free, pin the Unity version (currently 6000.6.2f1, check before production whether a long-term-support release is preferable) |
-| Premium price limits reach | Medium | Medium | Strong store page, free demo variant considered for post-launch (not decided) |
+| Premium price limits reach | Medium | Medium | Strong store page, free demo variant, decided after beta |
 | Save corruption or loot loss | Low | High | Atomic writes, backups, kill tests |
 | App Review rejection | Low | Medium | Follow guidelines, no third party tracking, clear age rating |
 
 ## Open questions
 
-1. Price point: premium price not set. Compare against similar premium mobile action RPGs at launch time before deciding.
-2. Class count at launch: three is the plan, two is the fallback.
-3. Hardcore mode: keep or move to a post-launch update.
-4. Skill loadout depth: four slots with trigger conditions is the plan. Decide after the M0 test whether trigger conditions confuse new players.
-5. Weekly Abyss seed: whether to include in 1.0 or ship in an update.
-6. iPad: scaled phone layout only, or a separate layout.
-7. Localization: launch languages beyond English.
-8. Whether to include a demo. It helps a premium title but costs extra scope.
-9. Returning to town from deep in the dungeon: a free Return to town in the pause menu, a portal scroll, or only by walking up the stairs and the Waystone.
-10. Death and checkpoints: revive at the last checkpoint is the current rule. Is the checkpoint the stairs the player last arrived by, or the town?
-11. Level persistence: does leaving a level and coming back keep its layout and its dead enemies?
-12. Menu access: the hub tab bar is gone, so where do Character, Loadout and Inventory open from, in town and in the dungeon?
-13. Whether the Waystone map fully replaces the world map screen, as assumed in 06-ui-ux.md.
+1. Price point: decide at launch. Compare against similar premium mobile action RPGs then.
+2. Skill loadout depth: four slots with trigger conditions is the plan. Decide after the M0 test whether trigger conditions confuse new players.
+3. Demo: decide after beta whether to offer one. It helps a premium title but costs extra scope.
+4. The launch class: the Wratborn is a barbarian-style warrior. Is it the Warden from 02-classes-and-skills.md reworked, or a new class that replaces all three drafts? Confirm the spelling of the name.
+5. Selling later classes: a paid class add-on would be an in-app purchase on iOS, which conflicts with the premium, no in-app purchases decision. Free updates, a paid add-on, or a change to that decision?
+6. Recurring content: the weekly seed and weekly challenges are cut. Does the Abyss depth leaderboard stay?
+7. Portal scrolls: how many can be carried, whether the town sells them, and whether the first one is guaranteed.
+8. The corpse rule: which items and how much gold are lost, what happens on a second death before the corpse is reached, whether a corpse can expire, and what the Ember Shard is for now that it is no longer an instant revive.
+9. The sleep mechanic: how a game session resets and what it resets (level layouts, enemies, chests).
+10. Menus without a pause menu: where Settings and the loot filter live, and whether opening the inventory screen pauses the game.
 
 ## Decision log
 
@@ -81,12 +78,23 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-21 | Structure: Diablo 1 style, not a survivor game. A safe town, then a dungeon descended level by level | User |
 | 2026-09-21 | Town: a walkable scene with no enemies, NPCs open their panels when walked up to (replaces the non-walkable hub panel) | User |
 | 2026-09-21 | Dungeon: Diablo 1 style descent by stairs, about 6 levels per act (replaces picking zones from a world map) | User |
+| 2026-09-21 | Classes: 1.0 launches with one class, the Wratborn, a barbarian-style warrior. More classes come later as new content | User |
+| 2026-09-21 | Hardcore mode moves to a post-launch update | User |
+| 2026-09-21 | Weekly Abyss seed cut, and no weekly challenges or similar recurring content | User |
+| 2026-09-21 | Platform: iPhone only for 1.0, no iPad support | User |
+| 2026-09-21 | Localization: English only for 1.0 | User |
+| 2026-09-21 | Deferred: price (at launch), skill trigger depth (after the M0 test), demo (after beta) | User |
+| 2026-09-21 | Returning to town: a portal scroll consumable used from the UI, found on the early dungeon levels | User |
+| 2026-09-21 | Death: the character is sent to town and loses its gear until it reaches its corpse. Return by an open portal or by waypoints. Replaces the free checkpoint revive and the no item loss rule | User |
+| 2026-09-21 | Persistence: Diablo 1 style within a game session (layout, dead enemies, chests). A sleep mechanic resets the session, design pending | User |
+| 2026-09-21 | Menus: no separate pause menu. One inventory button opens stats, inventory, equipped gear and loadout | User |
+| 2026-09-21 | Fast travel: waypoints in levels and the Waystone in town. The world map screen is dropped | User |
 
 ## Post-launch plan (draft)
 
 - Weeks 1 to 4: bug fixes, crash review, balance patch based on player reports and simulation.
 - Month 2 to 3: quality of life update (loot filter presets, more loadouts, extra stash tabs).
-- Month 4 onward: a free content update with a fourth class or a new Abyss ruleset if sales justify it. Paid expansions are possible without changing the premium principle.
+- Month 4 onward: new classes and hardcore mode as post-launch content if sales justify it. How later classes are sold is an open question, see below.
 
 ## Immediate next steps
 
