@@ -15,6 +15,9 @@ namespace ARPG
 
         LifePool life;
 
+        // Far in the past, so a fresh character counts as not recently hit.
+        float lastHitTime = -1000f;
+
         /// <summary>Raised once, when a hit kills the character.</summary>
         public event Action Died;
 
@@ -30,6 +33,9 @@ namespace ARPG
         public float DamageTaken { get; private set; }
 
         public int HitsTaken { get; private set; }
+
+        /// <summary>Seconds since the character last took a hit. Auto-loot waits for this to pass 1.5.</summary>
+        public float SecondsSinceLastHit => Time.time - lastHitTime;
 
         /// <summary>Armor of the character. Only a weapon exists so far, and weapons give none.</summary>
         public float Armor => 0f;
@@ -49,6 +55,7 @@ namespace ARPG
             var damage = rawDamage * (1f - CombatFormulas.ArmorReduction(Armor, attackerLevel));
             DamageTaken += damage;
             HitsTaken++;
+            lastHitTime = Time.time;
 
             var killed = life.TakeDamage(damage);
             GameSession.Current.LifeFraction = life.Fraction;

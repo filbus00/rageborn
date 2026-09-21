@@ -102,6 +102,33 @@ namespace ARPG.Editor
             });
         }
 
+        /// <summary>
+        /// A vertical column of light: brightest at the bottom, fading to nothing at the top, with soft sides. White,
+        /// tinted at runtime. Its pivot belongs at the bottom center.
+        /// </summary>
+        public static Texture2D Beam(int width, int height)
+        {
+            return Generate(width, height, (x, y) =>
+            {
+                var side = Mathf.Abs(x + 0.5f - width * 0.5f) / (width * 0.5f);
+                var fade = 1f - (y + 0.5f) / height;
+                var alpha = Mathf.Clamp01(1f - side * side) * fade * 0.85f;
+                return new Color32(255, 255, 255, (byte)(alpha * 255f));
+            });
+        }
+
+        /// <summary>A solid white 2:1 diamond, tinted at runtime. Sits on the ground like a tile.</summary>
+        public static Texture2D Diamond(int width, int height)
+        {
+            return Generate(width, height, (x, y) =>
+            {
+                var dx = Mathf.Abs(x + 0.5f - width * 0.5f) / (width * 0.5f);
+                var dy = Mathf.Abs(y + 0.5f - height * 0.5f) / (height * 0.5f);
+                var alpha = Mathf.Clamp01((1f - (dx + dy)) * 8f);
+                return new Color32(255, 255, 255, (byte)(alpha * 255f));
+            });
+        }
+
         /// <summary>A white filled circle, tinted at runtime.</summary>
         public static Texture2D Disc(int size)
         {

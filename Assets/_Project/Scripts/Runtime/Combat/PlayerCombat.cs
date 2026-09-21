@@ -79,7 +79,7 @@ namespace ARPG
         /// Average damage of the equipped weapon, before skill multipliers and armor. A character that has lost its
         /// weapon fights unarmed, which the weapon curve values at item level 0.
         /// </summary>
-        public float WeaponDamage => CombatFormulas.WeaponAverageDamage(GameSession.Current.Equipment.WeaponItemLevel);
+        public float WeaponDamage => GameSession.Current.Equipment.WeaponDamage;
 
         public float SkillCooldownRemaining(int slot) => cooldowns != null && slot >= 0 && slot < cooldowns.Length ? cooldowns[slot] : 0f;
 

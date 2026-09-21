@@ -17,6 +17,10 @@ MonoBehaviour:
   armor: 0
   bodyRadius: 0.3
   deathSeconds: 0.25
+  attackRange: 1
+  attackWindupSeconds: 0.35
+  attackRecoverSeconds: 0.65
+  damageMultiplier: 1
   moveSpeed: 3.6
   aggroRange: 7
   leashRange: 20

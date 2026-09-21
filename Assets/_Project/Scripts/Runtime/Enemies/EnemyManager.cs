@@ -48,7 +48,16 @@ namespace ARPG
         float flowCooldown;
         bool flowValid;
 
+        /// <summary>Raised when an enemy is killed, with the enemy. Loot listens to it.</summary>
+        public event System.Action<EnemyController> Killed;
+
         public bool IsReady { get; private set; }
+
+        /// <summary>
+        /// How many living enemies are engaged with the player (approaching, winding up or recovering). Zero means the
+        /// room is clear, which lets loot be picked up while nobody is attacking. Counted each frame.
+        /// </summary>
+        public int EngagedCount { get; private set; }
 
         public int ActiveCount => active.Count;
 
@@ -118,15 +127,26 @@ namespace ARPG
             }
 
             // Backwards so a finished enemy can be swap-removed while looping.
+            var engaged = 0;
             for (var i = active.Count - 1; i >= 0; i--)
             {
                 var enemy = active[i];
                 if (enemy.IsAlive)
+                {
                     enemy.Tick(deltaTime, this);
+                    var state = enemy.State;
+                    if (state == EnemyState.Approach || state == EnemyState.Attack || state == EnemyState.Recover)
+                        engaged++;
+                }
                 else if (enemy.TickDeath(deltaTime))
+                {
                     Despawn(i);
+                }
             }
+            EngagedCount = engaged;
         }
+
+        internal void NotifyKilled(EnemyController enemy) => Killed?.Invoke(enemy);
 
         /// <summary>
         /// Fills <paramref name="results"/> with the living enemies whose centers are within radius of a ground
@@ -162,7 +182,7 @@ namespace ARPG
                 enemy = CreateInstance();
             }
 
-            enemy.Activate(definition, groundPosition, aggroed, pack);
+            enemy.Activate(definition, groundPosition, aggroed, pack, this);
             active.Add(enemy);
             return enemy;
         }

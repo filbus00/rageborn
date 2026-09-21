@@ -60,6 +60,7 @@ namespace ARPG
 
         EnemyDefinition definition;
         EnemyPack pack;
+        EnemyManager manager;
         SpriteRenderer[] renderers;
         Vector2 ground;
         Vector2 home;
@@ -95,10 +96,12 @@ namespace ARPG
 
         /// <param name="groundPosition">Where the enemy appears. This becomes its home spot.</param>
         /// <param name="owner">The pack the enemy belongs to, used to find its way home. Can be null.</param>
-        internal void Activate(EnemyDefinition data, Vector2 groundPosition, bool aggroed, EnemyPack owner)
+        /// <param name="owningManager">The manager, told when the enemy dies.</param>
+        internal void Activate(EnemyDefinition data, Vector2 groundPosition, bool aggroed, EnemyPack owner, EnemyManager owningManager)
         {
             definition = data;
             pack = owner;
+            manager = owningManager;
             ground = groundPosition;
             home = groundPosition;
             leashTimer = 0f;
@@ -212,6 +215,7 @@ namespace ARPG
                 State = EnemyState.Dead;
                 deathTimer = definition.DeathSeconds;
                 pack?.NotifyDeath(this);
+                manager?.NotifyKilled(this);
                 return true;
             }
 

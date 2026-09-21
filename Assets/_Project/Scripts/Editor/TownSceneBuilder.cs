@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -20,7 +21,7 @@ namespace ARPG.Editor
         static readonly Vector2Int StairsCell = new Vector2Int(5, 5);
 
         static readonly string[] RemovedObjects =
-            { "Enemy Manager", "Test Room", "Player Combat", "Corpse Spawner", "Stairs Up" };
+            { "Enemy Manager", "Test Room", "Player Combat", "Corpse Spawner", "Stairs Up", "Loot System" };
 
         [MenuItem("Tools/ARPG/Create Town Scene")]
         public static void Build()
@@ -43,8 +44,13 @@ namespace ARPG.Editor
             }
 
             if (AssetDatabase.LoadAssetAtPath<SceneAsset>(TownPath) != null)
-                AssetDatabase.DeleteAsset(TownPath);
-            if (!AssetDatabase.CopyAsset(SandboxPath, TownPath))
+            {
+                // Overwrite the file in place. Deleting and copying the asset would give the town a new GUID every
+                // time, which churns its .meta file and leaves the build settings pointing at the old one.
+                File.Copy(SandboxPath, TownPath, true);
+                AssetDatabase.ImportAsset(TownPath, ImportAssetOptions.ForceUpdate);
+            }
+            else if (!AssetDatabase.CopyAsset(SandboxPath, TownPath))
             {
                 Debug.LogError($"[ARPG] Could not copy {SandboxPath} to {TownPath}.");
                 return;
