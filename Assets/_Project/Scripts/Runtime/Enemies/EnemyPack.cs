@@ -33,6 +33,9 @@ namespace ARPG
 
         public IReadOnlyList<EnemyController> Members => members;
 
+        /// <summary>How many members of this pack have been killed. Killed enemies stay dead while the level is loaded.</summary>
+        public int KilledCount { get; private set; }
+
         /// <summary>The pack's center on the ground plane.</summary>
         public Vector2 Anchor => anchor;
 
@@ -66,6 +69,13 @@ namespace ARPG
 
                 members.Add(manager.Spawn(definition, position, false, this));
             }
+        }
+
+        /// <summary>Called by a member when it dies. The pack never respawns it.</summary>
+        internal void NotifyDeath(EnemyController member)
+        {
+            if (members.Remove(member))
+                KilledCount++;
         }
 
         /// <summary>

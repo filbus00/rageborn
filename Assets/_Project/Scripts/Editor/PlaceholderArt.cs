@@ -58,6 +58,28 @@ namespace ARPG.Editor
             });
         }
 
+        /// <summary>
+        /// A white pie slice that points along +x and spans the given angle, filling the square. Brighter toward the
+        /// rim so a sweep reads as a slash. Tinted at runtime.
+        /// </summary>
+        public static Texture2D Wedge(int size, float arcDegrees)
+        {
+            var radius = size * 0.5f;
+            var halfArc = arcDegrees * 0.5f;
+
+            return Generate(size, size, (x, y) =>
+            {
+                var dx = x + 0.5f - radius;
+                var dy = y + 0.5f - radius;
+                var distance = Mathf.Sqrt(dx * dx + dy * dy);
+                if (distance > radius || Mathf.Abs(Mathf.Atan2(dy, dx) * Mathf.Rad2Deg) > halfArc)
+                    return new Color32(255, 255, 255, 0);
+
+                var rim = Mathf.Clamp01((distance / radius - 0.55f) / 0.45f);
+                return new Color32(255, 255, 255, (byte)(255f * (0.25f + 0.75f * rim)));
+            });
+        }
+
         /// <summary>A white filled circle, tinted at runtime.</summary>
         public static Texture2D Disc(int size)
         {

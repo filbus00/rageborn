@@ -9,6 +9,7 @@ namespace ARPG
     /// navigation grid, the flow field toward the player and the spatial hash of enemy positions.
     /// Logic runs in Update for now; combat will move it to a fixed timestep (Docs/07-technical.md).
     /// </summary>
+    [DefaultExecutionOrder(-100)]
     public class EnemyManager : MonoBehaviour
     {
         [SerializeField] EnemyController prefab;
@@ -37,6 +38,10 @@ namespace ARPG
         readonly List<EnemyController> active = new List<EnemyController>();
         readonly Stack<EnemyController> pool = new Stack<EnemyController>();
         readonly List<int> neighbourBuffer = new List<int>(32);
+        readonly List<int> queryBuffer = new List<int>(64);
+
+        // The enemies inserted into the spatial hash this frame, indexed by hash id.
+        readonly List<EnemyController> hashed = new List<EnemyController>(64);
 
         FlowField flow;
         Vector2Int flowCell;
@@ -95,12 +100,47 @@ namespace ARPG
             PlayerGround = IsoMath.WorldToGround(player.transform.position);
             RefreshFlow(deltaTime);
 
+            // Dead enemies are left out of the hash so they are neither targeted nor pushed against.
             Hash.Clear();
+            hashed.Clear();
             for (var i = 0; i < active.Count; i++)
-                active[i].HashId = Hash.Insert(active[i].GroundPosition);
+            {
+                var enemy = active[i];
+                if (!enemy.IsAlive)
+                    continue;
 
-            for (var i = 0; i < active.Count; i++)
-                active[i].Tick(deltaTime, this);
+                enemy.HashId = Hash.Insert(enemy.GroundPosition);
+                hashed.Add(enemy);
+            }
+
+            // Backwards so a finished enemy can be swap-removed while looping.
+            for (var i = active.Count - 1; i >= 0; i--)
+            {
+                var enemy = active[i];
+                if (enemy.IsAlive)
+                    enemy.Tick(deltaTime, this);
+                else if (enemy.TickDeath(deltaTime))
+                    Despawn(i);
+            }
+        }
+
+        /// <summary>
+        /// Fills <paramref name="results"/> with the living enemies whose centers are within radius of a ground
+        /// position, as they stood at the start of this frame. Does not allocate.
+        /// </summary>
+        public void QueryEnemies(Vector2 center, float radius, List<EnemyController> results)
+        {
+            results.Clear();
+            if (!IsReady)
+                return;
+
+            Hash.Query(center, radius, queryBuffer);
+            for (var i = 0; i < queryBuffer.Count; i++)
+            {
+                var enemy = hashed[queryBuffer[i]];
+                if (enemy.IsAlive)
+                    results.Add(enemy);
+            }
         }
 
         /// <summary>Activates a pooled enemy at a ground position, which becomes its home spot.</summary>
@@ -121,6 +161,17 @@ namespace ARPG
             enemy.Activate(definition, groundPosition, aggroed, pack);
             active.Add(enemy);
             return enemy;
+        }
+
+        void Despawn(int index)
+        {
+            var enemy = active[index];
+            var last = active.Count - 1;
+            active[index] = active[last];
+            active.RemoveAt(last);
+
+            enemy.Deactivate();
+            pool.Push(enemy);
         }
 
         /// <summary>The unit ground direction an enemy at <paramref name="from"/> should walk to reach the target.</summary>

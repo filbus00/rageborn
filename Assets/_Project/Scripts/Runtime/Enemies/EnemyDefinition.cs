@@ -9,6 +9,21 @@ namespace ARPG
     [CreateAssetMenu(menuName = "ARPG/Enemy Definition", fileName = "Enemy")]
     public class EnemyDefinition : ScriptableObject
     {
+        [Tooltip("Sets life, damage and how much armor is worth through the formulas in Docs/03-itemization.md.")]
+        [SerializeField, Min(1)] int level = 1;
+
+        [Tooltip("Archetype adjustment on the level's base life. The docs call the Husk swarmer low health but give no number, so this is 1 until tuned.")]
+        [SerializeField, Min(0.1f)] float lifeMultiplier = 1f;
+
+        [Tooltip("Reduces the damage taken through the armor formula. The docs give no enemy armor values, so this is 0 until tuned.")]
+        [SerializeField, Min(0f)] float armor;
+
+        [Tooltip("Radius of the body on the ground, in ground units. A sweep hits when it reaches this far past the enemy's center. Tuning value.")]
+        [SerializeField, Min(0.05f)] float bodyRadius = 0.3f;
+
+        [Tooltip("Seconds the death animation takes before the enemy leaves the level. Tuning value.")]
+        [SerializeField, Min(0f)] float deathSeconds = 0.25f;
+
         [Tooltip("Ground units per second. Tuning value: swarmers are fast, but this stays under the player's 4 so they can be kited.")]
         [SerializeField, Min(0f)] float moveSpeed = 3.6f;
 
@@ -27,6 +42,11 @@ namespace ARPG
         [Tooltip("Enemies closer than this push each other apart, which gives a swarm its loose cluster. Tuning value.")]
         [SerializeField, Min(0.1f)] float separationRadius = 0.8f;
 
+        public int Level => level;
+        public float MaxLife => CombatFormulas.EnemyLife(level) * lifeMultiplier;
+        public float Armor => armor;
+        public float BodyRadius => bodyRadius;
+        public float DeathSeconds => deathSeconds;
         public float MoveSpeed => moveSpeed;
         public float AggroRange => aggroRange;
         public float LeashRange => leashRange;

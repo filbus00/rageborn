@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ARPG
 {
     /// <summary>
-    /// The enemy states from Docs/01-core-gameplay.md that exist so far. Attack, Recover and Death arrive with combat.
+    /// The enemy states from Docs/01-core-gameplay.md that exist so far. Attack and Recover arrive with enemy attacks.
     /// </summary>
     public enum EnemyState
     {
@@ -15,6 +15,9 @@ namespace ARPG
 
         /// <summary>The leash broke: walking back to the home spot. Ignores the player until it arrives.</summary>
         Return,
+
+        /// <summary>Killed. Plays a short fade and then leaves the level. Cannot be hit or targeted.</summary>
+        Dead,
     }
 
     /// <summary>
@@ -37,13 +40,28 @@ namespace ARPG
         // (a long frame at speed 3.6 covers over a unit), so steps are split into pieces no longer than this.
         const float MaxStepLength = 0.25f;
 
+        // A hit makes the enemy swell briefly, and death shrinks it while it fades. Placeholder feedback.
+        const float PunchSeconds = 0.1f;
+        const float PunchScale = 0.2f;
+        const float DeathEndScale = 0.6f;
+
         EnemyDefinition definition;
         EnemyPack pack;
+        SpriteRenderer[] renderers;
         Vector2 ground;
         Vector2 home;
         float leashTimer;
+        float life;
+        float punchTimer;
+        float deathTimer;
 
         public EnemyState State { get; private set; }
+
+        public bool IsAlive => State != EnemyState.Dead;
+
+        public float Life => life;
+
+        public float MaxLife => definition != null ? definition.MaxLife : 0f;
 
         public EnemyDefinition Definition => definition;
 
@@ -56,6 +74,8 @@ namespace ARPG
         /// <summary>This enemy's id in the manager's spatial hash for the current frame.</summary>
         internal int HashId { get; set; }
 
+        void Awake() => renderers = GetComponentsInChildren<SpriteRenderer>(true);
+
         /// <param name="groundPosition">Where the enemy appears. This becomes its home spot.</param>
         /// <param name="owner">The pack the enemy belongs to, used to find its way home. Can be null.</param>
         internal void Activate(EnemyDefinition data, Vector2 groundPosition, bool aggroed, EnemyPack owner)
@@ -65,7 +85,11 @@ namespace ARPG
             ground = groundPosition;
             home = groundPosition;
             leashTimer = 0f;
+            life = data.MaxLife;
+            punchTimer = 0f;
+            deathTimer = 0f;
             State = aggroed ? EnemyState.Approach : EnemyState.Idle;
+            SetVisuals(1f, 1f);
             SyncTransform();
             gameObject.SetActive(true);
         }
@@ -75,6 +99,8 @@ namespace ARPG
         /// <summary>Advances the enemy by one frame.</summary>
         internal void Tick(float deltaTime, EnemyManager world)
         {
+            UpdatePunch(deltaTime);
+
             var playerGround = world.PlayerGround;
             var distance = Vector2.Distance(ground, playerGround);
 
@@ -124,6 +150,61 @@ namespace ARPG
                 desired.Normalize();
 
             Move(desired * (definition.MoveSpeed * deltaTime), world);
+        }
+
+        /// <summary>
+        /// Deals damage that has already been through the hit formula. Returns true when this hit killed the enemy.
+        /// A hit wakes an idle or returning enemy and sends it after the player.
+        /// </summary>
+        public bool TakeDamage(float amount)
+        {
+            if (!IsAlive)
+                return false;
+
+            life -= amount;
+            if (life <= 0f)
+            {
+                life = 0f;
+                State = EnemyState.Dead;
+                deathTimer = definition.DeathSeconds;
+                pack?.NotifyDeath(this);
+                return true;
+            }
+
+            punchTimer = PunchSeconds;
+            if (State != EnemyState.Approach)
+            {
+                State = EnemyState.Approach;
+                leashTimer = 0f;
+            }
+            return false;
+        }
+
+        /// <summary>Advances the death fade. Returns true once the enemy is finished and can return to the pool.</summary>
+        internal bool TickDeath(float deltaTime)
+        {
+            deathTimer -= deltaTime;
+            var duration = Mathf.Max(definition.DeathSeconds, 1e-4f);
+            var remaining = Mathf.Clamp01(deathTimer / duration);
+            SetVisuals(remaining, Mathf.Lerp(DeathEndScale, 1f, remaining));
+            return deathTimer <= 0f;
+        }
+
+        void UpdatePunch(float deltaTime)
+        {
+            if (punchTimer <= 0f)
+                return;
+
+            punchTimer = Mathf.Max(0f, punchTimer - deltaTime);
+            SetVisuals(1f, 1f + PunchScale * (punchTimer / PunchSeconds));
+        }
+
+        void SetVisuals(float alpha, float scale)
+        {
+            transform.localScale = new Vector3(scale, scale, 1f);
+            var color = new Color(1f, 1f, 1f, alpha);
+            for (var i = 0; i < renderers.Length; i++)
+                renderers[i].color = color;
         }
 
         Vector2 HomeDirection(EnemyManager world)

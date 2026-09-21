@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09072702d011e42458b2a9de074ced96, type: 3}
   m_Name: Swarmer
   m_EditorClassIdentifier: ARPG.Runtime::ARPG.EnemyDefinition
+  level: 1
+  lifeMultiplier: 1
+  armor: 0
+  bodyRadius: 0.3
+  deathSeconds: 0.25
   moveSpeed: 3.6
   aggroRange: 7
   leashRange: 20
