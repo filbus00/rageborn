@@ -8,6 +8,7 @@ The design docs in `Docs/` are the source of truth for design decisions. Start a
 - Portrait only, iOS 16+, target 60 fps (`GameBootstrap`).
 - One-thumb control: a floating stick is the only input. Attacks and skills fire automatically, so there are no skill buttons, no tap-to-move and no dodge button.
 - Company Filbus Software, bundle ID `com.filipbusic.rageborn`.
+- Diablo 1 structure, not a survivor game: the player starts in a safe walkable town and descends a dungeon level by level by stairs. Enemies are packs placed in rooms that idle until aggro, and they never spawn around the player. See `Docs/00-vision-and-scope.md` and `Docs/05-world-and-content.md`.
 
 # Layout
 
@@ -34,7 +35,7 @@ The design docs in `Docs/` are the source of truth for design decisions. Start a
 
 # Enemies
 
-- `EnemyManager` owns the pool and everything enemies share: a `NavGrid` baked from the Ground tilemap and the Obstacle layer (`NavGridBaker`), a `FlowField` (one Dijkstra from the player's cell, not A* per enemy) and a `SpatialHash` of enemy positions. It ticks every `EnemyController` once per frame, so enemies have no `Update`. `EnemySpawner` keeps N alive on a ring around the player.
+- `EnemyManager` owns the pool and everything enemies share: a `NavGrid` baked from the Ground tilemap and the Obstacle layer (`NavGridBaker`), a `FlowField` (one Dijkstra from the player's cell, not A* per enemy) and a `SpatialHash` of enemy positions. It ticks every `EnemyController` once per frame, so enemies have no `Update`. `EnemySpawner` keeps N alive on a ring around the player, but that is only the M0 stress test: real enemies are placed as packs in rooms (see the structure note above), so do not build game features on the ring spawner.
 - Enemies have no Rigidbody or collider. They live in ground space and only the transform is projected with `IsoMath`. Find neighbours and targets through the spatial hash. Keep the per-frame path allocation free (measured at 0 bytes and about 0.07 ms for 40 enemies in the editor).
 - `EnemyDefinition` (ScriptableObject) holds the tuning. Its values marked as tuning are not in the docs yet. Existing states are Idle and Approach; Attack, Recover and Death come with combat.
 - `Tools > ARPG > Add Enemies To Sandbox` builds the swarmer prefab, the definition (`Data/Enemies/Swarmer.asset`) and the scene objects. Rerunning it keeps the tuned definition.

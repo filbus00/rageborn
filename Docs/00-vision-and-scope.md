@@ -45,6 +45,9 @@ Players aged 18 to 45 who know Diablo, Path of Exile or Vampire Survivors style 
 | Business model | Premium, one-time price, no in-app purchases | User |
 | Engine | Unity 6000.6.2f1 with the Universal Render Pipeline in 2D mode, see 07-technical.md | User |
 | Camera and art | Isometric view (2:1 dimetric), 2D sprites with skeletal animation, isometric Tilemap for the world | User |
+| Game structure | Diablo 1 style: a safe town, then a dungeon descended level by level. Not a survivor or horde game: enemies are packs placed in rooms, idle until aggro, and killed enemies stay dead | User |
+| Town | A walkable scene with no enemies. NPCs open their panels when the player walks up to them. The way into the dungeon is a stairway the player walks into | User |
+| Dungeon | Diablo 1 style descent by stairs. Each act is a dungeon of about 6 seeded levels below its own town | User |
 | Players | Single player, offline first | Recommendation |
 | Platform | iPhone first, iPad supported by layout scaling, Android not in scope for 1.0 | Recommendation |
 
@@ -53,7 +56,7 @@ Players aged 18 to 45 who know Diablo, Path of Exile or Vampire Survivors style 
 In scope:
 
 - Three classes, eight active skills each, one passive tree each
-- Five acts of about 6 zones each, seeded procedural layouts
+- Five acts, each a town above a dungeon of about 6 levels, seeded procedural layouts
 - Character level cap 60, then a Paragon track to 200 for endgame
 - Ten equipment slots, four rarities, about 90 affixes, 60 legendary items
 - Abyss endless dungeon and five bosses in a repeatable boss rotation
@@ -85,7 +88,9 @@ Out of scope for 1.0:
 | Affix | A random modifier on an item, prefix or suffix |
 | Tier (affix) | Strength band of an affix, T1 strongest, gated by item level |
 | Item level (ilvl) | Power budget of a dropped item, equal to the zone level at drop time |
-| Pack | A group of enemies spawned together |
+| Pack | A group of enemies placed together in a room by the level generator |
+| Town | The safe, walkable scene above each act's dungeon: no enemies, with NPCs for the Forge, Stash, Trainer and Waystone |
+| Level | One seeded room layout in a dungeon, entered by stairs. Earlier drafts and other files call it a zone; the two words mean the same thing |
 | Elite | Stronger enemy with one or two modifiers, guaranteed drops |
 | Rift | A time-limited zone run, used in the campaign as a repeatable farm |
 | Abyss | Endless dungeon mode with rising floor depth |

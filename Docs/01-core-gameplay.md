@@ -96,7 +96,9 @@ Enemies use one of six archetypes. Each has a state machine of Idle, Aggro, Appr
 | Charger | Winds up then rushes in a straight line | Sidestep during the windup |
 | Support | Buffs or heals nearby enemies, stays behind the pack | Reach it, or use area skills |
 
-Aggro range is 7 units for normal enemies and 10 for elites. Leash range is 20 units. Enemies stop tracking when the player is beyond leash range for 4 seconds. Pack sizes range from 3 to 12 for normal packs.
+Aggro range is 7 units for normal enemies and 10 for elites. Leash range is 20 units. Enemies stop tracking when the player is beyond leash range for 4 seconds, then walk back to where they started and return to Idle. Pack sizes range from 3 to 12 for normal packs.
+
+Placement: the level generator puts each pack in a room, and it idles at its home spot until the player comes within aggro range. Nothing spawns around the player and there are no waves. Killed enemies stay dead while the level is loaded. The town is a safe zone with no enemies.
 
 ### Elite modifiers
 
@@ -124,10 +126,10 @@ Bosses use phases. Each boss has three phases with a distinct attack set and an 
 
 A typical session:
 
-1. Open game, tap Continue. The character appears in the last zone within 5 seconds.
-2. Play a zone or rift for 3 to 8 minutes.
+1. Open game, tap Continue. The character appears where they left off, in the town or on a dungeon level, within 5 seconds. A new character starts in the town.
+2. Walk down the stairs and play a level or rift for 3 to 8 minutes.
 3. On the results panel, review drops that beat current gear. Equip with one tap.
-4. Optionally spend gold and materials at the Forge.
+4. Optionally walk to the Forge in town and spend gold and materials.
 5. Leave. The state is saved.
 
 ## Feedback

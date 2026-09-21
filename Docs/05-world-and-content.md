@@ -18,7 +18,7 @@ Story is delivered in about 30 minutes of short scenes across the campaign. Skip
 
 ## Structure
 
-| Act | Zones | Player level | Boss | Signature enemies |
+| Act | Levels | Player level | Boss | Signature enemies |
 |---|---|---|---|---|
 | 1 Ashfields | 6 | 1 to 12 | Cinder Warden | Husks, ghouls, wolves, bandit archers |
 | 2 Drowned Reach | 6 | 12 to 24 | The Tidewife | Drowned, leech swarms, marsh casters |
@@ -26,16 +26,21 @@ Story is delivered in about 30 minutes of short scenes across the campaign. Skip
 | 4 Iron Spire | 6 | 36 to 48 | Warlord Kaeth | Armored knights, siege brutes, banner bearers |
 | 5 The Hollow | 6 | 48 to 60 | The First Watchman | Void wraiths, corrupted allies, elite mixed packs |
 
-Each act has one hub, a small non-combat screen with the Forge, Stash, Class Trainer and Waystone travel. The hub is one scrollable panel reachable from the pause menu at any time, so no walking is required.
+Each act has one town above one dungeon. The dungeon is descended level by level: the exit room of each level holds stairs down to the next, and its start room holds stairs up (on the first level they lead back to the town).
 
-## Zone generation
+## Town
 
-Zones are built from hand-authored rooms joined by a seeded generator.
+Each act has one town, a small safe scene the player walks through with the stick. There are no enemies and no combat. NPCs stand at fixed spots for the Forge, the Stash, the Class Trainer and the Waystone. Walking up to an NPC opens its bottom sheet panel, so nothing in the world needs a tap. The dungeon entrance is a stairway the player walks into. A new character begins in the act 1 town, at the ruined chapel. The Waystone travels to any level the player has already reached.
+
+## Level generation
+
+Levels are built from hand-authored rooms joined by a seeded generator.
 
 - Room library: 30 rooms per act, each 20 by 20 units, three sizes.
-- Layout: a start room, 5 to 8 rooms of mixed type, an exit room. A zone takes 4 to 8 minutes to clear.
+- Layout: a start room with the stairs up, 5 to 8 rooms of mixed type, an exit room with the stairs down. A level takes 4 to 8 minutes to clear.
 - Room types: combat (60 percent), elite (15), treasure (10), shrine (10), ambush (5).
-- Every zone has one guaranteed elite pack and one guaranteed chest. Zone bosses appear on the last zone of each act.
+- Every level has one guaranteed elite pack and one guaranteed chest. The act boss waits on the last level of each act.
+- Packs are placed by the generator and idle until the player comes within aggro range, see 01-core-gameplay.md.
 - Mini-map: a small overlay at the top corner showing explored rooms, chests and the exit arrow. It is read-only.
 
 ### Shrines

@@ -7,7 +7,7 @@ Assumptions: a small team of one to three people, part time or full time, with t
 | Milestone | Duration | Goal | Exit criteria |
 |---|---|---|---|
 | M0 Prototype | 2 to 3 weeks | Prove input, feel and performance | Stick, 40 enemies, one auto-cast skill, drops with beams, holds 60 fps on iPhone 12 |
-| M1 Vertical slice | 8 to 10 weeks | One class, one zone, boss, loot and Forge | 20 minutes of play a tester can finish without help, item comparison works, save works |
+| M1 Vertical slice | 8 to 10 weeks | One class, the walkable town, one zone, boss, loot and Forge | 20 minutes of play a tester can finish without help, item comparison works, save works |
 | M2 Alpha | 16 to 20 weeks | All systems, act 1 to 3 content, three classes rough | Full loop through level 36, balance simulator running |
 | M3 Beta | 12 to 16 weeks | Acts 4 and 5, endgame, polish, accessibility | Feature complete, TestFlight beta, performance targets met on all devices |
 | M4 Release candidate | 4 to 6 weeks | Bug fixing, localization pass, store assets | Zero known crashes, App Review submission |
@@ -60,6 +60,11 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 6. iPad: scaled phone layout only, or a separate layout.
 7. Localization: launch languages beyond English.
 8. Whether to include a demo. It helps a premium title but costs extra scope.
+9. Returning to town from deep in the dungeon: a free Return to town in the pause menu, a portal scroll, or only by walking up the stairs and the Waystone.
+10. Death and checkpoints: revive at the last checkpoint is the current rule. Is the checkpoint the stairs the player last arrived by, or the town?
+11. Level persistence: does leaving a level and coming back keep its layout and its dead enemies?
+12. Menu access: the hub tab bar is gone, so where do Character, Loadout and Inventory open from, in town and in the dungeon?
+13. Whether the Waystone map fully replaces the world map screen, as assumed in 06-ui-ux.md.
 
 ## Decision log
 
@@ -73,6 +78,9 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-21 | Engine: Unity 6000.6.2f1, URP 2D Renderer, iOS | User |
 | 2026-09-21 | Camera and art: isometric, 2D sprites (not 3D) | User |
 | 2026-09-21 | Bundle identifier com.filipbusic.rageborn, company Filbus Software | User |
+| 2026-09-21 | Structure: Diablo 1 style, not a survivor game. A safe town, then a dungeon descended level by level | User |
+| 2026-09-21 | Town: a walkable scene with no enemies, NPCs open their panels when walked up to (replaces the non-walkable hub panel) | User |
+| 2026-09-21 | Dungeon: Diablo 1 style descent by stairs, about 6 levels per act (replaces picking zones from a world map) | User |
 
 ## Post-launch plan (draft)
 
@@ -82,7 +90,7 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 
 ## Immediate next steps
 
-1. Run the M0 prototype: stick, pooled enemies, one auto-cast skill, item drop and pickup, performance test on a real device.
+1. Run the M0 prototype: stick, pooled enemies placed as packs in a walled test room (40 in view), one auto-cast skill, item drop and pickup, performance test on a real device.
 2. Build the balance simulator skeleton from the formulas in 03-itemization.md and 04-progression-and-economy.md.
 3. Write the item and affix data sheets (CSV) for the first 30 affixes and 10 legendaries.
 4. Produce a paper prototype of the loadout and results screens and test one-hand reach.

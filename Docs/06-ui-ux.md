@@ -38,8 +38,8 @@ The safe area insets are respected on all notched devices. On iPad, the layout c
 |---|---|---|
 | Title | Continue, New Character, Settings | Continue is the largest button |
 | Character select | Up to 12 characters, sort by last played | Shows class, level, power score |
-| Hub | Access to Forge, Stash, Trainer, Waystone | One panel, tab bar at the bottom |
-| World map | Choose zone, tier, rift, Abyss | Vertical scroll, act headers, recommended power per zone |
+| Town panels | Forge, Stash, Trainer, Waystone, each opened by walking up to its NPC in the town | Bottom sheet |
+| Waystone map | Choose a level already reached, tier, rift, Abyss | Opened at the Waystone. Vertical scroll, act headers, recommended power per level |
 | Loadout | Choose four skills, order, triggers, keystone | Drag to reorder, tap to open trigger picker |
 | Skill detail | Level, modifiers, tags | Bottom sheet |
 | Passive tree | Spend points | Pan by drag, tap to select, pinch to zoom with a fallback zoom slider |
@@ -54,7 +54,7 @@ The safe area insets are respected on all notched devices. On iPad, the layout c
 
 ## Navigation
 
-- A bottom tab bar in the hub: Play, Character, Forge, Stash, More.
+- Menus in town: the Forge, Stash, Trainer and Waystone open by walking up to their NPCs. Where Character, Loadout and Inventory open from is an open question, see 08-production.md.
 - A persistent back gesture on every screen using the system edge swipe. Where an edge swipe conflicts, a back button sits at the lower left or lower right by handedness setting.
 - Sheets dismiss with a downward swipe on the handle.
 
@@ -78,7 +78,7 @@ The most important build screen.
 
 ## Onboarding
 
-- First 10 minutes are a scripted zone. The stick is taught by a ghost thumb overlay for 5 seconds only.
+- First 10 minutes: a short scripted scene in the town, then a scripted first level. The stick is taught by a ghost thumb overlay for 5 seconds only.
 - Auto-attack and auto-skills are not taught with text. Enemies die, so the player learns by seeing.
 - The first legendary drop is guaranteed at minute 20 of play, from a scripted elite. A short tooltip walks through comparing and equipping it.
 - The Forge is introduced after the first Rare drop.
