@@ -30,5 +30,21 @@ namespace ARPG
             var ground = WorldToGround(stick);
             return ground / ground.magnitude * magnitude;
         }
+
+        /// <summary>
+        /// Ground position of the center of an isometric tilemap cell. Assumes the Grid sits at the world origin with
+        /// a 1 x 0.5 cell size. In ground space the tile lattice is a square grid rotated by 45 degrees: a neighbour
+        /// across an edge is 0.707 units away and a neighbour across a corner is 1 unit away.
+        /// </summary>
+        public static Vector2 CellToGround(Vector2Int cell) =>
+            new Vector2((cell.x - cell.y) * 0.5f, (cell.x + cell.y) * 0.5f + 0.5f);
+
+        /// <summary>The tilemap cell whose diamond contains the ground position. Inverse of <see cref="CellToGround"/>.</summary>
+        public static Vector2Int GroundToCell(Vector2 ground)
+        {
+            // A cell diamond is a unit square in (u, v), where u and v are its coordinates along the lattice axes.
+            var y = ground.y - 0.5f;
+            return new Vector2Int(Mathf.FloorToInt(y + ground.x + 0.5f), Mathf.FloorToInt(y - ground.x + 0.5f));
+        }
     }
 }

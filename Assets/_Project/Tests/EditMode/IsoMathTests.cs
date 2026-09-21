@@ -55,5 +55,42 @@ namespace ARPG.Tests
         {
             Assert.AreEqual(Vector2.zero, IsoMath.StickToGround(Vector2.zero));
         }
+
+        [Test]
+        public void CellToGround_MatchesTheIsometricGridMeasuredInTheEditor()
+        {
+            // Cell centers measured from Tilemap.GetCellCenterWorld on the Sandbox grid, with world y doubled.
+            Assert.AreEqual(new Vector2(0f, 0.5f), IsoMath.CellToGround(new Vector2Int(0, 0)));
+            Assert.AreEqual(new Vector2(0.5f, 1f), IsoMath.CellToGround(new Vector2Int(1, 0)));
+            Assert.AreEqual(new Vector2(-0.5f, 1f), IsoMath.CellToGround(new Vector2Int(0, 1)));
+            Assert.AreEqual(new Vector2(0f, 1.5f), IsoMath.CellToGround(new Vector2Int(1, 1)));
+            Assert.AreEqual(new Vector2(-2.5f, 0f), IsoMath.CellToGround(new Vector2Int(-3, 2)));
+            Assert.AreEqual(new Vector2(-1f, 6.5f), IsoMath.CellToGround(new Vector2Int(5, 7)));
+        }
+
+        [Test]
+        public void GroundToCell_RoundTripsCellCenters()
+        {
+            for (var y = -20; y <= 20; y++)
+            for (var x = -20; x <= 20; x++)
+            {
+                var cell = new Vector2Int(x, y);
+                Assert.AreEqual(cell, IsoMath.GroundToCell(IsoMath.CellToGround(cell)), $"cell {cell}");
+            }
+        }
+
+        [Test]
+        public void GroundToCell_StaysInTheCell_NearEveryEdgeOfTheDiamond()
+        {
+            var cell = new Vector2Int(3, -2);
+            var center = IsoMath.CellToGround(cell);
+
+            // The diamond has half-diagonals of 0.5 on the ground; 0.45 is inside, 0.55 is in a neighbour.
+            foreach (var offset in new[] { Vector2.right, Vector2.left, Vector2.up, Vector2.down })
+            {
+                Assert.AreEqual(cell, IsoMath.GroundToCell(center + offset * 0.45f), $"inside toward {offset}");
+                Assert.AreNotEqual(cell, IsoMath.GroundToCell(center + offset * 0.55f), $"outside toward {offset}");
+            }
+        }
     }
 }

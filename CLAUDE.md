@@ -23,6 +23,7 @@ The design docs in `Docs/` are the source of truth for design decisions. Start a
 - Characters and props use the `Entities` sorting layer so they Y-sort against each other.
 - Gameplay ranges are in ground space (1 unit = one tile width). Stick input is unprojected from screen space (screen Y doubled) before moving characters. See `Docs/01-core-gameplay.md`.
 - No NavMesh in 2D. Enemy navigation is a grid pathfinder over the tilemap.
+- In ground space the tile lattice is a square grid rotated 45 degrees: an edge neighbour is 0.707 away, a corner neighbour 1.0. `IsoMath.CellToGround`/`GroundToCell` convert (they assume the Grid sits at the world origin).
 
 # Player, input and camera
 
@@ -30,6 +31,14 @@ The design docs in `Docs/` are the source of truth for design decisions. Start a
 - `Tools > ARPG > Add Player And Camera To Sandbox` generates the placeholder art, the `Player` prefab and the scene wiring. It rebuilds the Player, Stick Input and Stick Canvas objects if run again.
 - Components find each other at runtime (`FindAnyObjectByType`) when their reference fields are empty.
 - EditMode tests are in `Assets/_Project/Tests/EditMode`. The pure math (`StickMath`, `IsoMath`) has no Unity scene dependency.
+
+# Enemies
+
+- `EnemyManager` owns the pool and everything enemies share: a `NavGrid` baked from the Ground tilemap and the Obstacle layer (`NavGridBaker`), a `FlowField` (one Dijkstra from the player's cell, not A* per enemy) and a `SpatialHash` of enemy positions. It ticks every `EnemyController` once per frame, so enemies have no `Update`. `EnemySpawner` keeps N alive on a ring around the player.
+- Enemies have no Rigidbody or collider. They live in ground space and only the transform is projected with `IsoMath`. Find neighbours and targets through the spatial hash. Keep the per-frame path allocation free (measured at 0 bytes and about 0.07 ms for 40 enemies in the editor).
+- `EnemyDefinition` (ScriptableObject) holds the tuning. Its values marked as tuning are not in the docs yet. Existing states are Idle and Approach; Attack, Recover and Death come with combat.
+- `Tools > ARPG > Add Enemies To Sandbox` builds the swarmer prefab, the definition (`Data/Enemies/Swarmer.asset`) and the scene objects. Rerunning it keeps the tuned definition.
+- The pure classes (`NavGrid`, `FlowField`, `SpatialHash`) are covered by EditMode tests.
 
 # Notes
 

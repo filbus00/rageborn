@@ -49,7 +49,7 @@ namespace ARPG.Editor
             Debug.Log("[ARPG] Player, floating stick and follow camera added to the sandbox scene.");
         }
 
-        static void RemoveExisting(UnityEngine.SceneManagement.Scene scene, params string[] names)
+        internal static void RemoveExisting(UnityEngine.SceneManagement.Scene scene, params string[] names)
         {
             foreach (var root in scene.GetRootGameObjects())
                 if (System.Array.IndexOf(names, root.name) >= 0)
@@ -154,7 +154,7 @@ namespace ARPG.Editor
                 camera.gameObject.AddComponent<FollowCamera>();
         }
 
-        static SpriteRenderer AddSprite(Transform parent, string name, Sprite sprite, string sortingLayer, Material material)
+        internal static SpriteRenderer AddSprite(Transform parent, string name, Sprite sprite, string sortingLayer, Material material)
         {
             var go = new GameObject(name, typeof(SpriteRenderer));
             go.transform.SetParent(parent, false);
@@ -167,7 +167,7 @@ namespace ARPG.Editor
             return spriteRenderer;
         }
 
-        static void SetLayer(GameObject go, string layerName)
+        internal static void SetLayer(GameObject go, string layerName)
         {
             var layer = LayerMask.NameToLayer(layerName);
             if (layer < 0)
@@ -178,7 +178,7 @@ namespace ARPG.Editor
             go.layer = layer;
         }
 
-        static Material Default2DMaterial() =>
+        internal static Material Default2DMaterial() =>
             GraphicsSettings.defaultRenderPipeline != null
                 ? GraphicsSettings.defaultRenderPipeline.default2DMaterial
                 : null;
