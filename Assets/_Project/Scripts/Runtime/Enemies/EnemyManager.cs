@@ -56,6 +56,9 @@ namespace ARPG
 
         public NavGrid Nav { get; private set; }
 
+        /// <summary>The player's life, or null when the scene has none. Enemies attack it.</summary>
+        public PlayerHealth Player { get; private set; }
+
         /// <summary>The player's position on the ground plane this frame.</summary>
         public Vector2 PlayerGround { get; private set; }
 
@@ -74,6 +77,7 @@ namespace ARPG
 
             if (player == null)
                 player = FindAnyObjectByType<PlayerController>();
+            Player = FindAnyObjectByType<PlayerHealth>();
             FindTilemaps();
             if (groundTilemap == null || player == null)
             {

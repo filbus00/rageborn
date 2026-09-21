@@ -104,6 +104,28 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void EnemyHitOnPlayer_IsTheLevelCurve_WithoutArmor()
+        {
+            Assert.AreEqual(3f, CombatFormulas.EnemyHitOnPlayer(1, 1f, 0f), 1e-5f);
+            Assert.AreEqual(4.5f, CombatFormulas.EnemyHitOnPlayer(1, 1.5f, 0f), 1e-5f, "an archetype multiplier scales it");
+        }
+
+        [Test]
+        public void EnemyHitOnPlayer_IsReducedByArmorAgainstTheAttackersLevel()
+        {
+            // At level 1, 450 armor blocks 450 / (450 + 450) = half of the hit.
+            Assert.AreEqual(1.5f, CombatFormulas.EnemyHitOnPlayer(1, 1f, 450f), 1e-4f);
+        }
+
+        [Test]
+        public void AnUnarmedCharacter_StillDoesDamage_FromTheLevelZeroWeaponCurve()
+        {
+            // Item level 0 gives the curve's base of 6, a little under the 8.6 of the level 1 starting weapon.
+            Assert.AreEqual(6f, CombatFormulas.WeaponAverageDamage(0), 1e-5f);
+            Assert.Less(CombatFormulas.WeaponAverageDamage(0), CombatFormulas.WeaponAverageDamage(1));
+        }
+
+        [Test]
         public void LevelOneBasicHit_KillsALevelOneEnemyInOneHit()
         {
             // The docs aim for a normal enemy to die in 0.6 to 1.2 seconds; at 1.4 attacks a second, one hit does it.

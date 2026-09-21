@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ARPG
 {
     /// <summary>
-    /// The enemy states from Docs/01-core-gameplay.md that exist so far. Attack and Recover arrive with enemy attacks.
+    /// The enemy states from Docs/01-core-gameplay.md.
     /// </summary>
     public enum EnemyState
     {
@@ -15,6 +15,12 @@ namespace ARPG
 
         /// <summary>The leash broke: walking back to the home spot. Ignores the player until it arrives.</summary>
         Return,
+
+        /// <summary>Winding up an attack. Stands still and swells as a tell; the hit lands when the wind-up ends.</summary>
+        Attack,
+
+        /// <summary>Standing still after an attack, before it can attack again.</summary>
+        Recover,
 
         /// <summary>Killed. Plays a short fade and then leaves the level. Cannot be hit or targeted.</summary>
         Dead,
@@ -40,6 +46,13 @@ namespace ARPG
         // (a long frame at speed 3.6 covers over a unit), so steps are split into pieces no longer than this.
         const float MaxStepLength = 0.25f;
 
+        // An attack lands if the player is still within this much of the attack range when the wind-up ends, so a step
+        // back just as it lands is forgiven. Tuning value.
+        const float AttackForgiveness = 0.3f;
+
+        // How much the enemy swells over its wind-up. Placeholder tell.
+        const float WindupScale = 0.2f;
+
         // A hit makes the enemy swell briefly, and death shrinks it while it fades. Placeholder feedback.
         const float PunchSeconds = 0.1f;
         const float PunchScale = 0.2f;
@@ -51,6 +64,7 @@ namespace ARPG
         Vector2 ground;
         Vector2 home;
         float leashTimer;
+        float stateTimer;
         float life;
         float punchTimer;
         float deathTimer;
@@ -73,6 +87,9 @@ namespace ARPG
 
         /// <summary>This enemy's id in the manager's spatial hash for the current frame.</summary>
         internal int HashId { get; set; }
+
+        /// <summary>Which slot of its pack the enemy fills, so a kill can be remembered across scene loads.</summary>
+        internal int PackSlot { get; set; }
 
         void Awake() => renderers = GetComponentsInChildren<SpriteRenderer>(true);
 
@@ -127,7 +144,34 @@ namespace ARPG
                     {
                         leashTimer = 0f;
                     }
+
+                    if (CanAttack(world, distance))
+                    {
+                        State = EnemyState.Attack;
+                        stateTimer = definition.AttackWindupSeconds;
+                        return;
+                    }
                     break;
+
+                case EnemyState.Attack:
+                    stateTimer -= deltaTime;
+                    SetVisuals(1f, 1f + WindupScale * (1f - Mathf.Clamp01(stateTimer / Mathf.Max(definition.AttackWindupSeconds, 1e-4f))));
+                    if (stateTimer <= 0f)
+                    {
+                        LandAttack(world, distance);
+                        State = EnemyState.Recover;
+                        stateTimer = definition.AttackRecoverSeconds;
+                        SetVisuals(1f, 1f);
+                    }
+                    Hold(world, playerGround, deltaTime);
+                    return;
+
+                case EnemyState.Recover:
+                    stateTimer -= deltaTime;
+                    if (stateTimer <= 0f)
+                        State = EnemyState.Approach;
+                    Hold(world, playerGround, deltaTime);
+                    return;
 
                 case EnemyState.Return:
                     if (Vector2.Distance(ground, home) <= ArriveDistance)
@@ -172,7 +216,9 @@ namespace ARPG
             }
 
             punchTimer = PunchSeconds;
-            if (State != EnemyState.Approach)
+
+            // A hit wakes an idle or returning enemy. One that is mid-attack keeps attacking.
+            if (State == EnemyState.Idle || State == EnemyState.Return)
             {
                 State = EnemyState.Approach;
                 leashTimer = 0f;
@@ -205,6 +251,28 @@ namespace ARPG
             var color = new Color(1f, 1f, 1f, alpha);
             for (var i = 0; i < renderers.Length; i++)
                 renderers[i].color = color;
+        }
+
+        bool CanAttack(EnemyManager world, float distance) =>
+            world.Player != null && world.Player.IsAlive && distance <= definition.AttackRange;
+
+        void LandAttack(EnemyManager world, float distance)
+        {
+            if (world.Player == null || !world.Player.IsAlive || distance > definition.AttackRange + AttackForgiveness)
+                return;
+
+            var damage = CombatFormulas.EnemyHitDamage(definition.Level) * definition.DamageMultiplier;
+            world.Player.TakeHit(damage, definition.Level);
+        }
+
+        // Stands its ground while attacking or recovering, but is still pushed apart from the crowd and the player.
+        void Hold(EnemyManager world, Vector2 playerGround, float deltaTime)
+        {
+            var desired = Separation(world) + PushAway(playerGround, definition.StopDistance) * PlayerPushWeight;
+            if (desired.sqrMagnitude > 1f)
+                desired.Normalize();
+
+            Move(desired * (definition.MoveSpeed * deltaTime), world);
         }
 
         Vector2 HomeDirection(EnemyManager world)

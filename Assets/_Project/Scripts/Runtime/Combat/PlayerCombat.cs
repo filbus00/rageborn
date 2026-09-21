@@ -36,9 +36,6 @@ namespace ARPG
         [Tooltip("Left empty, the first EnemyManager in the scene is used.")]
         [SerializeField] EnemyManager enemies;
 
-        [Tooltip("Item level of the equipped weapon. There is no gear yet, so it is fixed here.")]
-        [SerializeField, Min(1)] int weaponItemLevel = 1;
-
         [Tooltip("Docs: attacks per second starts at 1.4.")]
         [SerializeField, Min(0.1f)] float attacksPerSecond = 1.4f;
 
@@ -78,8 +75,11 @@ namespace ARPG
 
         public int SkillCastCount { get; private set; }
 
-        /// <summary>Average damage of the equipped weapon, before skill multipliers and armor.</summary>
-        public float WeaponDamage => CombatFormulas.WeaponAverageDamage(weaponItemLevel);
+        /// <summary>
+        /// Average damage of the equipped weapon, before skill multipliers and armor. A character that has lost its
+        /// weapon fights unarmed, which the weapon curve values at item level 0.
+        /// </summary>
+        public float WeaponDamage => CombatFormulas.WeaponAverageDamage(GameSession.Current.Equipment.WeaponItemLevel);
 
         public float SkillCooldownRemaining(int slot) => cooldowns != null && slot >= 0 && slot < cooldowns.Length ? cooldowns[slot] : 0f;
 

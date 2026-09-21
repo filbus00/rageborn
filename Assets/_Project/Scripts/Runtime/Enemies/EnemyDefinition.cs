@@ -24,6 +24,18 @@ namespace ARPG
         [Tooltip("Seconds the death animation takes before the enemy leaves the level. Tuning value.")]
         [SerializeField, Min(0f)] float deathSeconds = 0.25f;
 
+        [Tooltip("The enemy starts an attack when the player is this close, in ground units. The docs give no swarmer attack numbers, so the attack values are tuning.")]
+        [SerializeField, Min(0.1f)] float attackRange = 1f;
+
+        [Tooltip("Seconds between starting an attack and it landing. The enemy swells during this time as a tell, and the player can step out of range. Tuning value.")]
+        [SerializeField, Min(0f)] float attackWindupSeconds = 0.35f;
+
+        [Tooltip("Seconds the enemy stands after an attack before it can attack again. Tuning value.")]
+        [SerializeField, Min(0f)] float attackRecoverSeconds = 0.65f;
+
+        [Tooltip("Archetype adjustment on the level's base hit damage from Docs/03-itemization.md. 1 until tuned.")]
+        [SerializeField, Min(0f)] float damageMultiplier = 1f;
+
         [Tooltip("Ground units per second. Tuning value: swarmers are fast, but this stays under the player's 4 so they can be kited.")]
         [SerializeField, Min(0f)] float moveSpeed = 3.6f;
 
@@ -47,6 +59,10 @@ namespace ARPG
         public float Armor => armor;
         public float BodyRadius => bodyRadius;
         public float DeathSeconds => deathSeconds;
+        public float AttackRange => attackRange;
+        public float AttackWindupSeconds => attackWindupSeconds;
+        public float AttackRecoverSeconds => attackRecoverSeconds;
+        public float DamageMultiplier => damageMultiplier;
         public float MoveSpeed => moveSpeed;
         public float AggroRange => aggroRange;
         public float LeashRange => leashRange;

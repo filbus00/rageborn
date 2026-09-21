@@ -80,6 +80,28 @@ namespace ARPG.Editor
             });
         }
 
+        /// <summary>
+        /// A stairwell seen from above: a 2:1 diamond made of nested diamonds that alternate between two tones,
+        /// so it reads as steps leading down. The same shape as a ground tile, so it sits on a cell.
+        /// </summary>
+        public static Texture2D Stairs(int width, int height, Color32 dark, Color32 light)
+        {
+            var outline = Darken(dark, 0.5f);
+            return Generate(width, height, (x, y) =>
+            {
+                var dx = Mathf.Abs(x + 0.5f - width * 0.5f) / (width * 0.5f);
+                var dy = Mathf.Abs(y + 0.5f - height * 0.5f) / (height * 0.5f);
+                var distance = dx + dy;
+                if (distance > 1f)
+                    return new Color32(0, 0, 0, 0);
+                if (distance > 0.94f)
+                    return outline;
+
+                // Four steps from the rim inward.
+                return (int)(distance * 4f) % 2 == 0 ? light : dark;
+            });
+        }
+
         /// <summary>A white filled circle, tinted at runtime.</summary>
         public static Texture2D Disc(int size)
         {

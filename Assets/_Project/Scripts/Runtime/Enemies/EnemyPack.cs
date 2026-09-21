@@ -30,6 +30,7 @@ namespace ARPG
 
         Vector2 anchor;
         FlowField homeField;
+        string packKey;
 
         public IReadOnlyList<EnemyController> Members => members;
 
@@ -61,21 +62,35 @@ namespace ARPG
             }
 
             anchor = IsoMath.WorldToGround(transform.position);
+
+            // Killed enemies stay dead while the session lasts, so a pack that was cleared earlier comes back cleared.
+            packKey = gameObject.scene.name + "/" + name;
             for (var i = 0; i < count; i++)
             {
+                if (GameSession.Current.IsKilled(packKey, i))
+                {
+                    KilledCount++;
+                    continue;
+                }
+
                 var position = anchor + SlotOffset(i, count, radius);
                 if (!manager.Nav.IsWalkable(IsoMath.GroundToCell(position)))
                     continue;
 
-                members.Add(manager.Spawn(definition, position, false, this));
+                var member = manager.Spawn(definition, position, false, this);
+                member.PackSlot = i;
+                members.Add(member);
             }
         }
 
         /// <summary>Called by a member when it dies. The pack never respawns it.</summary>
         internal void NotifyDeath(EnemyController member)
         {
-            if (members.Remove(member))
-                KilledCount++;
+            if (!members.Remove(member))
+                return;
+
+            KilledCount++;
+            GameSession.Current.RecordKill(packKey, member.PackSlot);
         }
 
         /// <summary>

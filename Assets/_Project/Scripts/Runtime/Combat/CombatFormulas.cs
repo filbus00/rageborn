@@ -23,6 +23,13 @@ namespace ARPG
         /// <summary>Life of a normal enemy of the given level.</summary>
         public static float EnemyLife(int level) => 8f * Mathf.Pow(level, 1.9f);
 
+        /// <summary>
+        /// Damage the player takes from one enemy hit: the enemy's level curve times an archetype multiplier, reduced
+        /// by the player's armor. Docs: player armor uses the same formula against the attacker's level.
+        /// </summary>
+        public static float EnemyHitOnPlayer(int enemyLevel, float damageMultiplier, float playerArmor) =>
+            EnemyHitDamage(enemyLevel) * damageMultiplier * (1f - ArmorReduction(playerArmor, enemyLevel));
+
         /// <summary>Base life of a character of the given level, before Vitality and gear.</summary>
         public static float CharacterBaseLife(int level) => 80f + 20f * level;
 
