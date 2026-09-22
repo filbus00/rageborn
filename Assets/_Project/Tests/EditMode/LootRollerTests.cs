@@ -167,7 +167,49 @@ namespace ARPG.Tests
 
             Assert.IsNotNull(found);
             Assert.AreEqual(17, found.ItemLevel);
-            Assert.AreEqual(ItemSlot.Weapon, found.Slot);
+        }
+
+        [Test]
+        public void ADrop_CanLandInAnyOfTheDroppableSlots()
+        {
+            // Not just weapons any more: Docs/03-itemization.md's ten slots are added as items for them exist, and
+            // weapon, chest and helm all exist now.
+            var roller = new LootRoller(4);
+            var seen = new System.Collections.Generic.HashSet<ItemSlot>();
+            for (var i = 0; i < 5000; i++)
+            {
+                var item = roller.RollDrop(LootSource.NormalEnemy, 1, 0f);
+                if (item != null)
+                    seen.Add(item.Slot);
+            }
+
+            Assert.IsTrue(seen.Contains(ItemSlot.Weapon));
+            Assert.IsTrue(seen.Contains(ItemSlot.Chest));
+            Assert.IsTrue(seen.Contains(ItemSlot.Helm));
+        }
+
+        [Test]
+        public void ADrop_CarriesAffixes_MatchingItsRarity()
+        {
+            // Roll until a Common and a Rare of the same slot both drop, and check the docs' affix counts:
+            // Common 0, Rare 2 to 3 of each kind (capped by the slot's eligible pool).
+            var roller = new LootRoller(7);
+            Item common = null, rare = null;
+            for (var i = 0; i < 20_000 && (common == null || rare == null); i++)
+            {
+                var item = roller.RollDrop(LootSource.NormalEnemy, 60, 0f);
+                if (item == null || item.Slot != ItemSlot.Weapon)
+                    continue;
+                if (item.Rarity == ItemRarity.Common)
+                    common ??= item;
+                else if (item.Rarity == ItemRarity.Rare)
+                    rare ??= item;
+            }
+
+            Assert.IsNotNull(common, "a common weapon should drop within 20000 kills");
+            Assert.IsNotNull(rare, "a rare weapon should drop within 20000 kills");
+            Assert.AreEqual(0, common.Affixes.Count);
+            Assert.GreaterOrEqual(rare.Affixes.Count, 2);
         }
 
         [Test]

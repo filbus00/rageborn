@@ -14,7 +14,7 @@ namespace ARPG
             Current = Max;
         }
 
-        public float Max { get; }
+        public float Max { get; private set; }
 
         public float Current { get; private set; }
 
@@ -41,5 +41,15 @@ namespace ARPG
 
         /// <summary>Sets life to a fraction of the maximum. Used to carry life across scenes and to revive.</summary>
         public void SetFraction(float fraction) => Current = Mathf.Clamp01(fraction) * Max;
+
+        /// <summary>Changes the maximum, keeping the current fraction (equipping more life does not itself heal or
+        /// hurt the character in absolute terms, it scales with the new maximum). Used when gear changes mid-session.</summary>
+        public void SetMax(float newMax)
+        {
+            newMax = Mathf.Max(newMax, 1e-4f);
+            var fraction = Fraction;
+            Max = newMax;
+            Current = Mathf.Clamp01(fraction) * Max;
+        }
     }
 }

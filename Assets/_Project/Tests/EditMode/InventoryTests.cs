@@ -85,5 +85,37 @@ namespace ARPG.Tests
 
             Assert.AreEqual(CombatFormulas.WeaponAverageDamage(30), weapon.WeaponAverageDamage, 1e-3f);
         }
+
+        [Test]
+        public void OnlyChestAndHelm_HaveABaseArmorValue()
+        {
+            Assert.AreEqual(CombatFormulas.BaseArmorPerPiece(20), new Item(ItemSlot.Chest, ItemRarity.Common, 20).ArmorValue, 1e-3f);
+            Assert.AreEqual(CombatFormulas.BaseArmorPerPiece(20), new Item(ItemSlot.Helm, ItemRarity.Common, 20).ArmorValue, 1e-3f);
+            Assert.AreEqual(0f, new Item(ItemSlot.Weapon, ItemRarity.Common, 20).ArmorValue);
+        }
+
+        [Test]
+        public void AffixSum_AddsUpEveryMatchingRoll_AndIgnoresOthers()
+        {
+            var affixes = new[]
+            {
+                new AffixRoll(AffixId.CriticalChance, 3, 5f),
+                new AffixRoll(AffixId.CriticalChance, 5, 2f),
+                new AffixRoll(AffixId.AttackSpeed, 1, 10f),
+            };
+            var item = new Item(ItemSlot.Weapon, ItemRarity.Rare, 30, affixes);
+
+            Assert.AreEqual(7f, item.CriticalChancePercent, 1e-4f);
+            Assert.AreEqual(10f, item.AttackSpeedPercent, 1e-4f);
+            Assert.AreEqual(0f, item.LifeOnHit);
+        }
+
+        [Test]
+        public void AnItemWithNoAffixesGiven_HasAnEmptyAffixList()
+        {
+            var item = new Item(ItemSlot.Weapon, ItemRarity.Common, 1);
+
+            Assert.IsEmpty(item.Affixes);
+        }
     }
 }

@@ -6,7 +6,8 @@ namespace ARPG
     /// <summary>
     /// The player's life. Enemies call <see cref="TakeHit"/>; armor is applied here. Life is carried between scenes
     /// through <see cref="GameSession"/>, so taking stairs does not heal. Death is announced through <see cref="Died"/>
-    /// and handled by <see cref="DeathFlow"/>.
+    /// and handled by <see cref="DeathFlow"/>. Max life and armor read live from the equipped gear, so the inventory
+    /// screen changing equipment updates them without a scene reload.
     /// </summary>
     public class PlayerHealth : MonoBehaviour
     {
@@ -14,6 +15,7 @@ namespace ARPG
         const int CharacterLevel = 1;
 
         LifePool life;
+        GameSession session;
 
         // Far in the past, so a fresh character counts as not recently hit.
         float lastHitTime = -1000f;
@@ -25,7 +27,7 @@ namespace ARPG
 
         public float Life => life != null ? life.Current : 0f;
 
-        public float MaxLife => life != null ? life.Max : CombatFormulas.CharacterBaseLife(CharacterLevel);
+        public float MaxLife => life != null ? life.Max : ComputeMaxLife();
 
         public float Fraction => life != null ? life.Fraction : 1f;
 
@@ -37,13 +39,21 @@ namespace ARPG
         /// <summary>Seconds since the character last took a hit. Auto-loot waits for this to pass 1.5.</summary>
         public float SecondsSinceLastHit => Time.time - lastHitTime;
 
-        /// <summary>Armor of the character. Only a weapon exists so far, and weapons give none.</summary>
-        public float Armor => 0f;
+        /// <summary>Armor from equipped Chest and Helm pieces: their base value by item level plus any Armor affix.</summary>
+        public float Armor => GameSession.Current.Equipment.TotalArmor;
 
         void Awake()
         {
-            life = new LifePool(CombatFormulas.CharacterBaseLife(CharacterLevel));
-            life.SetFraction(GameSession.Current.LifeFraction);
+            session = GameSession.Current;
+            life = new LifePool(ComputeMaxLife());
+            life.SetFraction(session.LifeFraction);
+            session.Changed += HandleEquipmentChanged;
+        }
+
+        void OnDestroy()
+        {
+            if (session != null)
+                session.Changed -= HandleEquipmentChanged;
         }
 
         /// <summary>Takes a hit from an attacker of the given level. The raw damage is reduced by armor here.</summary>
@@ -58,9 +68,23 @@ namespace ARPG
             lastHitTime = Time.time;
 
             var killed = life.TakeDamage(damage);
-            GameSession.Current.LifeFraction = life.Fraction;
+            session.LifeFraction = life.Fraction;
             if (killed)
                 Died?.Invoke();
         }
+
+        /// <summary>Heals the character, for example from a Life on Hit affix. No effect once dead.</summary>
+        public void Heal(float amount)
+        {
+            if (!IsAlive || amount <= 0f)
+                return;
+
+            life.Heal(amount);
+            session.LifeFraction = life.Fraction;
+        }
+
+        void HandleEquipmentChanged() => life.SetMax(ComputeMaxLife());
+
+        static float ComputeMaxLife() => CombatFormulas.CharacterBaseLife(CharacterLevel) + GameSession.Current.Equipment.TotalLifeBonus;
     }
 }

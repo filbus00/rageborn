@@ -9,6 +9,8 @@ namespace ARPG.Tests
 
         static Item Weapon(int itemLevel, ItemRarity rarity = ItemRarity.Common) => new Item(ItemSlot.Weapon, rarity, itemLevel);
 
+        static Item Chest(int itemLevel, ItemRarity rarity = ItemRarity.Common) => new Item(ItemSlot.Chest, rarity, itemLevel);
+
         static void FillBackpack(GameSession session)
         {
             while (!session.Inventory.IsFull)
@@ -23,6 +25,8 @@ namespace ARPG.Tests
             Assert.IsFalse(session.Equipment.IsEmpty);
             Assert.AreEqual(1, session.Equipment.Weapon.ItemLevel);
             Assert.AreEqual(ItemRarity.Common, session.Equipment.Weapon.Rarity);
+            Assert.IsNull(session.Equipment.Chest);
+            Assert.IsNull(session.Equipment.Helm);
             Assert.IsEmpty(session.Corpses);
             Assert.AreEqual(0, session.Inventory.Count);
             Assert.AreEqual(0, session.Gold);
@@ -39,6 +43,28 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void EquipmentState_With_ChangesOneSlot_AndKeepsTheOthers()
+        {
+            var weapon = Weapon(1);
+            var chest = Chest(10);
+            var state = new EquipmentState(weapon).With(ItemSlot.Chest, chest);
+
+            Assert.AreSame(weapon, state.Weapon);
+            Assert.AreSame(chest, state.Chest);
+            Assert.IsNull(state.Helm);
+        }
+
+        [Test]
+        public void EquipmentState_TotalArmor_SumsArmorPieces_PlusTheirArmorAffix()
+        {
+            var affix = new[] { new AffixRoll(AffixId.Armor, 5, 20f) };
+            var chest = new Item(ItemSlot.Chest, ItemRarity.Magic, 10, affix);
+            var state = new EquipmentState(chest);
+
+            Assert.AreEqual(chest.ArmorValue + 20f, state.TotalArmor, 1e-4f);
+        }
+
+        [Test]
         public void Die_LeavesTheEquippedWeaponInACorpse_AndUnequipsTheCharacter()
         {
             var session = new GameSession();
@@ -52,6 +78,20 @@ namespace ARPG.Tests
             Assert.AreSame(worn, corpse.Gear.Weapon);
             Assert.IsTrue(session.Equipment.IsEmpty);
             Assert.AreEqual(1, session.Corpses.Count);
+        }
+
+        [Test]
+        public void Die_LeavesEveryEquippedSlot_InTheSameCorpse()
+        {
+            var session = new GameSession();
+            var chest = Chest(5, ItemRarity.Rare);
+            session.PickUp(chest);
+            session.EquipFromInventory(chest);
+
+            var corpse = session.Die("Sandbox", DeathSpot);
+
+            Assert.AreSame(chest, corpse.Gear.Chest);
+            Assert.IsNotNull(corpse.Gear.Weapon);
         }
 
         [Test]
@@ -97,8 +137,9 @@ namespace ARPG.Tests
         {
             var session = new GameSession();
             session.Die("Sandbox", DeathSpot);
-            session.PickUp(Weapon(3));
-            var found = session.Equipment.Weapon;
+            var found = Weapon(3);
+            session.PickUp(found);
+            session.EquipFromInventory(found);
 
             var second = session.Die("Sandbox", new Vector2(-6f, 2f));
 
@@ -137,7 +178,9 @@ namespace ARPG.Tests
             var session = new GameSession();
             var old = session.Equipment.Weapon;
             var corpse = session.Die("Sandbox", DeathSpot);
-            session.PickUp(Weapon(5));
+            var better = Weapon(5);
+            session.PickUp(better);
+            session.EquipFromInventory(better);
 
             Assert.IsTrue(session.Retrieve(corpse));
 
@@ -166,7 +209,9 @@ namespace ARPG.Tests
         {
             var session = new GameSession();
             var corpse = session.Die("Sandbox", DeathSpot);
-            session.PickUp(Weapon(5));
+            var better = Weapon(5);
+            session.PickUp(better);
+            session.EquipFromInventory(better);
             FillBackpack(session);
 
             var retrieved = session.Retrieve(corpse);
@@ -175,6 +220,21 @@ namespace ARPG.Tests
             Assert.AreEqual(1, session.Corpses.Count, "the corpse stays where it is");
             Assert.AreEqual(5, session.Equipment.Weapon.ItemLevel);
             Assert.AreEqual(Inventory.DefaultCapacity, session.Inventory.Count);
+        }
+
+        [Test]
+        public void Retrieve_ResolvesEverySlot_AsOneAllOrNothingTransaction()
+        {
+            var session = new GameSession();
+            var chest = Chest(4, ItemRarity.Rare);
+            session.PickUp(chest);
+            session.EquipFromInventory(chest);
+            var corpse = session.Die("Sandbox", DeathSpot);
+
+            Assert.IsTrue(session.Retrieve(corpse));
+
+            Assert.IsNotNull(session.Equipment.Weapon);
+            Assert.AreSame(chest, session.Equipment.Chest);
         }
 
         [Test]
@@ -201,48 +261,22 @@ namespace ARPG.Tests
             var ok = session.PickUp(item);
 
             Assert.IsTrue(ok);
+            Assert.IsTrue(session.Inventory.Contains(item));
             Assert.Greater(raised, 0);
         }
 
         [Test]
-        public void PickUp_EquipsAWeaponThatBeatsTheWornOne_AndKeepsTheOldOne()
+        public void PickUp_NeverAutoEquips_EvenABetterWeapon()
         {
+            // The equip screen is the only way to equip now; PickUp only bags what was found.
             var session = new GameSession();
-            var old = session.Equipment.Weapon;
+            var worn = session.Equipment.Weapon;
             var better = Weapon(4, ItemRarity.Rare);
 
             session.PickUp(better);
 
-            Assert.AreSame(better, session.Equipment.Weapon);
-            Assert.IsTrue(session.Inventory.Contains(old));
-            Assert.IsFalse(session.Inventory.Contains(better), "it left the backpack to be worn");
-            Assert.AreEqual(1, session.Inventory.Count);
-        }
-
-        [Test]
-        public void PickUp_KeepsTheWornWeapon_WhenTheFoundOneIsNoBetter()
-        {
-            var session = new GameSession();
-            var worn = session.Equipment.Weapon;
-            var same = Weapon(1, ItemRarity.Magic);
-
-            session.PickUp(same);
-
-            Assert.AreSame(worn, session.Equipment.Weapon, "with no affixes yet, the same item level means the same damage");
-            Assert.IsTrue(session.Inventory.Contains(same));
-        }
-
-        [Test]
-        public void PickUp_EquipsAnyWeaponWhenUnarmed()
-        {
-            var session = new GameSession();
-            session.Die("Sandbox", DeathSpot);
-            var found = Weapon(1);
-
-            session.PickUp(found);
-
-            Assert.AreSame(found, session.Equipment.Weapon);
-            Assert.AreEqual(0, session.Inventory.Count);
+            Assert.AreSame(worn, session.Equipment.Weapon);
+            Assert.IsTrue(session.Inventory.Contains(better));
         }
 
         [Test]
@@ -253,6 +287,100 @@ namespace ARPG.Tests
 
             Assert.IsFalse(session.PickUp(Weapon(9)));
             Assert.AreEqual(Inventory.DefaultCapacity, session.Inventory.Count);
+        }
+
+        [Test]
+        public void EquipFromInventory_SwapsTheWornItem_IntoTheBackpack()
+        {
+            var session = new GameSession();
+            var old = session.Equipment.Weapon;
+            var better = Weapon(4, ItemRarity.Rare);
+            session.PickUp(better);
+
+            var ok = session.EquipFromInventory(better);
+
+            Assert.IsTrue(ok);
+            Assert.AreSame(better, session.Equipment.Weapon);
+            Assert.IsTrue(session.Inventory.Contains(old));
+            Assert.IsFalse(session.Inventory.Contains(better), "it left the backpack to be worn");
+        }
+
+        [Test]
+        public void EquipFromInventory_FillsAnEmptySlot_WithoutNeedingRoomForAnything()
+        {
+            var session = new GameSession();
+            var chest = Chest(3, ItemRarity.Magic);
+            session.PickUp(chest);
+
+            Assert.IsTrue(session.EquipFromInventory(chest));
+            Assert.AreSame(chest, session.Equipment.Chest);
+        }
+
+        [Test]
+        public void EquipFromInventory_Fails_WhenTheItemIsNotInTheBackpack()
+        {
+            var session = new GameSession();
+
+            Assert.IsFalse(session.EquipFromInventory(Weapon(9)));
+        }
+
+        [Test]
+        public void EquipFromInventory_StillWorks_WithAFullBackpack()
+        {
+            // Equipping an item already in the backpack is a net-zero slot change (it swaps places with what was
+            // worn), so a full backpack never blocks it.
+            var session = new GameSession();
+            var better = Weapon(4, ItemRarity.Rare);
+            session.PickUp(better);
+            FillBackpack(session);
+
+            var ok = session.EquipFromInventory(better);
+
+            Assert.IsTrue(ok);
+            Assert.AreSame(better, session.Equipment.Weapon);
+            Assert.AreEqual(Inventory.DefaultCapacity, session.Inventory.Count, "the old weapon took the freed slot");
+        }
+
+        [Test]
+        public void Unequip_MovesTheItem_ToTheBackpack()
+        {
+            var session = new GameSession();
+            var worn = session.Equipment.Weapon;
+
+            var ok = session.Unequip(ItemSlot.Weapon);
+
+            Assert.IsTrue(ok);
+            Assert.IsNull(session.Equipment.Weapon);
+            Assert.IsTrue(session.Inventory.Contains(worn));
+        }
+
+        [Test]
+        public void Unequip_Fails_WhenTheSlotIsAlreadyEmpty()
+        {
+            var session = new GameSession();
+
+            Assert.IsFalse(session.Unequip(ItemSlot.Chest));
+        }
+
+        [Test]
+        public void Discard_RemovesAnItem_FromTheBackpackForGood()
+        {
+            var session = new GameSession();
+            var item = Weapon(2);
+            session.PickUp(item);
+
+            var ok = session.Discard(item);
+
+            Assert.IsTrue(ok);
+            Assert.IsFalse(session.Inventory.Contains(item));
+        }
+
+        [Test]
+        public void Discard_Fails_WhenTheItemIsNotInTheBackpack()
+        {
+            var session = new GameSession();
+
+            Assert.IsFalse(session.Discard(Weapon(2)));
         }
 
         [Test]

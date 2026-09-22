@@ -1,15 +1,15 @@
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ARPG.Editor
 {
     /// <summary>
-    /// Adds loot to the sandbox scene: the placeholder beam, marker and coin art, a Loot System object that drops
-    /// and picks up loot, and a small text readout of gold, the backpack and the weapon on the HUD.
-    /// Run from Tools > ARPG > Add Loot To Sandbox, after Add Survival To Sandbox (it needs the HUD). Running it again
-    /// rebuilds the object and the readout. Create Town Scene copies the result, so run that afterwards.
+    /// Adds loot to the sandbox scene: the placeholder beam, marker and coin art, and a Loot System object that
+    /// drops and picks it up. The readout of what was found is the inventory screen (Add Inventory Screen To
+    /// Sandbox), not built here.
+    /// Run from Tools > ARPG > Add Loot To Sandbox, after Add Survival To Sandbox (it needs the HUD). Running it
+    /// again rebuilds the object. Create Town Scene copies the result, so run that afterwards.
     /// </summary>
     public static class LootSceneBuilder
     {
@@ -21,7 +21,6 @@ namespace ARPG.Editor
         // Names of the scene objects this builder owns, so a rerun can replace them.
         const string LootObjectName = "Loot System";
         const string HudObjectName = "HUD Canvas";
-        const string TextObjectName = "Loot Text";
 
         [MenuItem("Tools/ARPG/Add Loot To Sandbox")]
         public static void Build()
@@ -61,11 +60,9 @@ namespace ARPG.Editor
             EnemySceneBuilder.SetReference(director, "coinSprite", coin);
             EnemySceneBuilder.SetReference(director, "beamSprite", beam);
 
-            BuildReadout(hud.transform);
-
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
-            Debug.Log("[ARPG] Loot drops, auto-loot and the gold and weapon readout added to the sandbox scene.");
+            Debug.Log("[ARPG] Loot drops and auto-loot added to the sandbox scene.");
         }
 
         static GameObject FindRoot(UnityEngine.SceneManagement.Scene scene, string name)
@@ -74,34 +71,6 @@ namespace ARPG.Editor
                 if (root.name == name)
                     return root;
             return null;
-        }
-
-        static void BuildReadout(Transform hud)
-        {
-            var old = hud.Find(TextObjectName);
-            if (old != null)
-                Object.DestroyImmediate(old.gameObject);
-
-            var go = new GameObject(TextObjectName, typeof(RectTransform), typeof(Text), typeof(LootHud));
-            go.transform.SetParent(hud, false);
-
-            // Under the life bar, in the read-only top of the screen.
-            var rect = go.GetComponent<RectTransform>();
-            rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 1f);
-            rect.pivot = new Vector2(0.5f, 1f);
-            rect.anchoredPosition = new Vector2(0f, -205f);
-            rect.sizeDelta = new Vector2(900f, 100f);
-
-            var text = go.GetComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            text.fontSize = 32;
-            text.alignment = TextAnchor.UpperCenter;
-            text.color = Color.white;
-            text.raycastTarget = false;
-            text.text = "Gold 0";
-
-            go.AddComponent<Shadow>().effectDistance = new Vector2(2f, -2f);
-            EnemySceneBuilder.SetReference(go.GetComponent<LootHud>(), "label", text);
         }
     }
 }

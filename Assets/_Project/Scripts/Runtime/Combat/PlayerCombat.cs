@@ -36,6 +36,9 @@ namespace ARPG
         [Tooltip("Left empty, the first EnemyManager in the scene is used.")]
         [SerializeField] EnemyManager enemies;
 
+        [Tooltip("Left empty, the first PlayerHealth in the scene is used. Heals from the Life on Hit affix.")]
+        [SerializeField] PlayerHealth health;
+
         [Tooltip("Docs: attacks per second starts at 1.4.")]
         [SerializeField, Min(0.1f)] float attacksPerSecond = 1.4f;
 
@@ -89,6 +92,8 @@ namespace ARPG
                 player = FindAnyObjectByType<PlayerController>();
             if (enemies == null)
                 enemies = FindAnyObjectByType<EnemyManager>();
+            if (health == null)
+                health = FindAnyObjectByType<PlayerHealth>();
 
             if (skills == null)
                 skills = new SkillDefinition[0];
@@ -179,7 +184,8 @@ namespace ARPG
 
         void BasicAttack(Vector2 origin, Vector2 aim)
         {
-            attackTimer = 1f / attacksPerSecond;
+            var equipment = GameSession.Current.Equipment;
+            attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f));
             BasicAttackCount++;
 
             var hits = Sweep(origin, aim, basicRange, basicArcDegrees, 1f, basicEffectSprite, basicEffectColor);
@@ -201,7 +207,8 @@ namespace ARPG
                 if (!focus.TrySpend(skill.FocusCost))
                     continue;
 
-                cooldowns[i] = skill.CooldownSeconds;
+                var cdr = GameSession.Current.Equipment.CooldownReductionPercent / 100f;
+                cooldowns[i] = skill.CooldownSeconds * Mathf.Max(0.1f, 1f - cdr);
                 castTimer = GlobalCastSeconds;
                 SkillCastCount++;
                 Sweep(origin, aim, skill.Range, skill.ArcDegrees, skill.DamageMultiplier, skill.EffectSprite, skill.EffectColor);
@@ -223,7 +230,13 @@ namespace ARPG
         /// <summary>Damages every candidate inside the sweep. Returns how many it hit.</summary>
         int Sweep(Vector2 origin, Vector2 aim, float range, float arcDegrees, float multiplier, Sprite sprite, Color color)
         {
+            var equipment = GameSession.Current.Equipment;
             var weaponDamage = WeaponDamage;
+            var flatAdded = equipment.FlatWeaponDamageBonus;
+            var increasedSum = equipment.IncreasedDamagePercent / 100f;
+            var criticalChance = equipment.CriticalChancePercent / 100f;
+            var criticalDamageBonus = equipment.CriticalDamagePercent / 100f;
+            var lifeOnHit = equipment.LifeOnHit;
             var hits = 0;
 
             for (var i = 0; i < candidates.Count; i++)
@@ -237,11 +250,16 @@ namespace ARPG
                     continue;
 
                 hits++;
+                var critical = UnityEngine.Random.value < criticalChance;
                 var damage = CombatFormulas.HitDamage(
-                    weaponDamage, multiplier, 0f, 0f, 1f, false, 0f, enemy.Definition.Armor, enemy.Definition.Level);
+                    weaponDamage, multiplier, flatAdded, increasedSum, 1f, critical, criticalDamageBonus,
+                    enemy.Definition.Armor, enemy.Definition.Level);
                 if (enemy.TakeDamage(damage))
                     Kills++;
             }
+
+            if (hits > 0 && lifeOnHit > 0f && health != null)
+                health.Heal(lifeOnHit * hits);
 
             var effect = effects[nextEffect];
             nextEffect = (nextEffect + 1) % effects.Length;

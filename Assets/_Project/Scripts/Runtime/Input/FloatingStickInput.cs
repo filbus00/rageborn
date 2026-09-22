@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
@@ -97,14 +98,20 @@ namespace ARPG
             for (var i = 0; i < touches.Count; i++)
             {
                 var touch = touches[i];
-                if (touch.began && touch.screenPosition.y <= Screen.height * touchZoneHeight)
-                {
-                    activeFinger = touch.finger.index;
-                    origin = touch.screenPosition;
-                    thumb = origin;
-                    Value = Vector2.zero;
-                    return;
-                }
+                if (!touch.began || touch.screenPosition.y > Screen.height * touchZoneHeight)
+                    continue;
+
+                // Enhanced Touch reads raw touches, with no idea a Canvas is on top. A touch that begins on a UI
+                // element (the inventory screen's buttons, now that one exists in this zone) starts that UI
+                // interaction only, not the stick.
+                if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(touch.finger.index))
+                    continue;
+
+                activeFinger = touch.finger.index;
+                origin = touch.screenPosition;
+                thumb = origin;
+                Value = Vector2.zero;
+                return;
             }
         }
 

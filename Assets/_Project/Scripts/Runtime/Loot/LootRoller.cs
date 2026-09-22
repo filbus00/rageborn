@@ -20,6 +20,10 @@ namespace ARPG
         // Bad luck protection: the legendary weight doubles after this many kills without one, and triples after twice this.
         public const int BadLuckThreshold = 300;
 
+        // Every slot that can drop, weighted evenly. No per-slot drop-table weighting yet (Docs/03-itemization.md
+        // does not specify one); a real drop table can replace this later.
+        static readonly ItemSlot[] DroppableSlots = { ItemSlot.Weapon, ItemSlot.Chest, ItemSlot.Helm };
+
         readonly System.Random random;
 
         public LootRoller(int seed) => random = new System.Random(seed);
@@ -76,7 +80,9 @@ namespace ARPG
             if (rarity == ItemRarity.Legendary)
                 KillsSinceLegendary = 0;
 
-            return new Item(ItemSlot.Weapon, rarity, itemLevel);
+            var slot = DroppableSlots[random.Next(DroppableSlots.Length)];
+            var affixes = AffixRoller.Roll(slot, rarity, itemLevel, random);
+            return new Item(slot, rarity, itemLevel, affixes);
         }
 
         /// <summary>
