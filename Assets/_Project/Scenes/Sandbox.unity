@@ -324,6 +324,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125371286}
   m_CullTransparentMesh: 1
+--- !u!1 &144854560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 144854562}
+  - component: {fileID: 144854561}
+  m_Layer: 0
+  m_Name: Enemy Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &144854561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144854560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961fd903548fb4e0cb5ce28ff8967c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ARPG.Runtime::ARPG.EnemyManager
+  prefab: {fileID: 7090216148500762421, guid: 2a87fcbc1420b4e0cb23c27c6641b419, type: 3}
+  poolSize: 64
+  groundTilemap: {fileID: 0}
+  obstacleTilemaps: []
+  player: {fileID: 0}
+  hashCellSize: 2
+  flowRefreshSeconds: 0.15
+  flowRange: 24
+--- !u!4 &144854562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144854560}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &218381558
 GameObject:
   m_ObjectHideFlags: 0
@@ -44446,58 +44498,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!1 &1130513489
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1130513491}
-  - component: {fileID: 1130513490}
-  m_Layer: 0
-  m_Name: Enemy Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1130513490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130513489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 961fd903548fb4e0cb5ce28ff8967c9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ARPG.Runtime::ARPG.EnemyManager
-  prefab: {fileID: 7090216148500762421, guid: 2a87fcbc1420b4e0cb23c27c6641b419, type: 3}
-  poolSize: 64
-  groundTilemap: {fileID: 0}
-  obstacleTilemaps: []
-  player: {fileID: 0}
-  hashCellSize: 2
-  flowRefreshSeconds: 0.15
-  flowRange: 24
---- !u!4 &1130513491
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130513489}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1136182197
 GameObject:
   m_ObjectHideFlags: 0
@@ -46294,7 +46294,6 @@ SceneRoots:
   - {fileID: 1497093072}
   - {fileID: 673347717}
   - {fileID: 659476714}
-  - {fileID: 1130513491}
   - {fileID: 1278696535}
   - {fileID: 1328080444}
   - {fileID: 1482267162}
@@ -46307,3 +46306,4 @@ SceneRoots:
   - {fileID: 1528262342}
   - {fileID: 2115947685}
   - {fileID: 218381559}
+  - {fileID: 144854562}

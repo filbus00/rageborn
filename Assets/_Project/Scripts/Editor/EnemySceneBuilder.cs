@@ -118,6 +118,18 @@ namespace ARPG.Editor
             var body = PlayerSceneBuilder.AddSprite(root.transform, "Body", bodySprite, GameSortingLayers.Entities, material);
             body.spriteSortPoint = SpriteSortPoint.Pivot;
 
+            // Elite modifier tells: white so a per-modifier color tint at runtime is a true, clean color, not a
+            // multiply against an already-colored sprite (the mistake VisualTint made on the body). WorldUI so they
+            // always draw on top, regardless of the Entities layer's Y-sort. Hidden until an elite claims one.
+            var iconSprite = PlaceholderArt.ImportSprite(
+                $"{CharacterArtFolder}/PlaceholderModifierIcon.png", PlaceholderArt.Disc(32),
+                PixelsPerUnit, SpriteAlignment.Center, FilterMode.Bilinear);
+            for (var i = 0; i < EnemyController.MaxModifierIcons; i++)
+            {
+                var icon = PlayerSceneBuilder.AddSprite(root.transform, $"Modifier Icon {i}", iconSprite, GameSortingLayers.WorldUI, material);
+                icon.gameObject.SetActive(false);
+            }
+
             var prefab = PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
             Object.DestroyImmediate(root);
             return prefab;

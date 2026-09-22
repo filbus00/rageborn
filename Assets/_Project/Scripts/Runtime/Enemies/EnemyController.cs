@@ -60,6 +60,17 @@ namespace ARPG
         const float FrozenSlowMultiplier = 0.5f;
         const float FrozenSlowSeconds = 1.5f;
 
+        /// <summary>Docs: an elite carries at most two modifiers. Matches how many icon child sprites the prefab
+        /// gets (EnemySceneBuilder.BuildPrefab); a third curated modifier would need a third slot there too.</summary>
+        public const int MaxModifierIcons = 2;
+
+        // Local-space layout of the modifier icons above the head, tuned for how it looks on an Elite's own
+        // VisualScale (the only rank that ever shows any): a fixed local offset scales with it automatically.
+        const float ModifierIconLocalY = 0.95f;
+        const float ModifierIconSpacingX = 0.18f;
+
+        static readonly EliteModifiers[] ModifierIconOrder = { EliteModifiers.Hasted, EliteModifiers.Vampiric, EliteModifiers.Frozen };
+
         // How much the enemy swells over its wind-up. Placeholder tell.
         const float WindupScale = 0.2f;
 
@@ -75,6 +86,7 @@ namespace ARPG
         SpriteRenderer[] renderers;
         SpriteRenderer bodyRenderer;
         Sprite defaultBodySprite;
+        SpriteRenderer[] modifierIcons;
         Vector2 ground;
         Vector2 home;
         float leashTimer;
@@ -119,13 +131,35 @@ namespace ARPG
 
         void Awake()
         {
-            renderers = GetComponentsInChildren<SpriteRenderer>(true);
+            // Modifier icons keep their own per-modifier color (UpdateModifierIcons), so they must not be in the
+            // set SetVisuals resets to a flat white*alpha every windup, punch and death tick.
+            var all = GetComponentsInChildren<SpriteRenderer>(true);
+            var tinted = new System.Collections.Generic.List<SpriteRenderer>(all.Length);
+            modifierIcons = new SpriteRenderer[MaxModifierIcons];
+            foreach (var r in all)
+            {
+                var iconIndex = IconIndexFromName(r.gameObject.name);
+                if (iconIndex >= 0)
+                    modifierIcons[iconIndex] = r;
+                else
+                    tinted.Add(r);
+            }
+            renderers = tinted.ToArray();
+
             var body = transform.Find("Body");
             if (body != null)
             {
                 bodyRenderer = body.GetComponent<SpriteRenderer>();
                 defaultBodySprite = bodyRenderer.sprite;
             }
+        }
+
+        static int IconIndexFromName(string name)
+        {
+            for (var i = 0; i < MaxModifierIcons; i++)
+                if (name == $"Modifier Icon {i}")
+                    return i;
+            return -1;
         }
 
         /// <param name="groundPosition">Where the enemy appears. This becomes its home spot.</param>
@@ -150,11 +184,69 @@ namespace ARPG
             if (bodyRenderer != null)
                 bodyRenderer.sprite = data.BodySprite != null ? data.BodySprite : defaultBodySprite;
             SetVisuals(1f, 1f);
+            UpdateModifierIcons();
             SyncTransform();
             gameObject.SetActive(true);
         }
 
         internal void Deactivate() => gameObject.SetActive(false);
+
+        /// <summary>Shows a small colored dot above the head for each active modifier (Docs/01-core-gameplay.md:
+        /// no visual spec given, this is a placeholder tell), in a fixed order so the display is stable. Hidden
+        /// entirely for a Normal or Champion, which never carry any.</summary>
+        void UpdateModifierIcons()
+        {
+            if (modifierIcons == null)
+                return;
+
+            var activeCount = 0;
+            foreach (var candidate in ModifierIconOrder)
+                if (HasModifier(candidate))
+                    activeCount++;
+
+            var shown = 0;
+            foreach (var candidate in ModifierIconOrder)
+            {
+                if (!HasModifier(candidate))
+                    continue;
+
+                var icon = modifierIcons[shown];
+                if (icon != null)
+                {
+                    icon.gameObject.SetActive(true);
+                    icon.color = ModifierColor(candidate);
+                    var x = activeCount == 1 ? 0f : (shown == 0 ? -ModifierIconSpacingX : ModifierIconSpacingX);
+                    icon.transform.localPosition = new Vector3(x, ModifierIconLocalY, 0f);
+                }
+                shown++;
+            }
+
+            for (; shown < modifierIcons.Length; shown++)
+                if (modifierIcons[shown] != null)
+                    modifierIcons[shown].gameObject.SetActive(false);
+        }
+
+        static Color ModifierColor(EliteModifiers modifier)
+        {
+            switch (modifier)
+            {
+                case EliteModifiers.Hasted: return new Color32(255, 230, 60, 255);
+                // Not red: every enemy sprite in this project is already red or crimson (Swarmer, Elite's own
+                // tint), so a red Vampiric dot barely reads against its own owner. Green stands apart from all of it.
+                case EliteModifiers.Vampiric: return new Color32(60, 200, 110, 255);
+                case EliteModifiers.Frozen: return new Color32(120, 220, 255, 255);
+                default: return Color.white;
+            }
+        }
+
+        void HideModifierIcons()
+        {
+            if (modifierIcons == null)
+                return;
+            foreach (var icon in modifierIcons)
+                if (icon != null)
+                    icon.gameObject.SetActive(false);
+        }
 
         /// <summary>Advances the enemy by one frame.</summary>
         internal void Tick(float deltaTime, EnemyManager world)
@@ -254,6 +346,7 @@ namespace ARPG
                 life = 0f;
                 State = EnemyState.Dead;
                 deathTimer = definition.DeathSeconds;
+                HideModifierIcons();
                 pack?.NotifyDeath(this);
                 manager?.NotifyKilled(this);
                 return true;
