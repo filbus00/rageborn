@@ -53,6 +53,13 @@ namespace ARPG
         // Docs/03-itemization.md: elite (and boss, not built yet) damage ignores 15 percent of player armor.
         const float EliteArmorIgnorePercent = 0.15f;
 
+        // Docs/01-core-gameplay.md gives no numbers for elite modifiers; these are tuning values.
+        const float HastedMoveSpeedMultiplier = 1.3f;
+        const float HastedAttackSpeedMultiplier = 1.3f;
+        const float VampiricHealFraction = 0.5f;
+        const float FrozenSlowMultiplier = 0.5f;
+        const float FrozenSlowSeconds = 1.5f;
+
         // How much the enemy swells over its wind-up. Placeholder tell.
         const float WindupScale = 0.2f;
 
@@ -62,6 +69,7 @@ namespace ARPG
         const float DeathEndScale = 0.6f;
 
         EnemyDefinition definition;
+        EliteModifiers modifiers;
         EnemyPack pack;
         EnemyManager manager;
         SpriteRenderer[] renderers;
@@ -84,6 +92,18 @@ namespace ARPG
         public float MaxLife => definition != null ? definition.MaxLife : 0f;
 
         public EnemyDefinition Definition => definition;
+
+        /// <summary>The modifiers this elite rolled at spawn. Always None for a Normal or Champion.</summary>
+        public EliteModifiers Modifiers => modifiers;
+
+        public bool HasModifier(EliteModifiers modifier) => (modifiers & modifier) != 0;
+
+        /// <summary>Docs: Hasted is plus 30 percent move and attack speed.</summary>
+        float EffectiveMoveSpeed => definition.MoveSpeed * (HasModifier(EliteModifiers.Hasted) ? HastedMoveSpeedMultiplier : 1f);
+
+        float EffectiveAttackWindupSeconds => definition.AttackWindupSeconds / (HasModifier(EliteModifiers.Hasted) ? HastedAttackSpeedMultiplier : 1f);
+
+        float EffectiveAttackRecoverSeconds => definition.AttackRecoverSeconds / (HasModifier(EliteModifiers.Hasted) ? HastedAttackSpeedMultiplier : 1f);
 
         /// <summary>Position on the ground plane, in ground units.</summary>
         public Vector2 GroundPosition => ground;
@@ -111,9 +131,11 @@ namespace ARPG
         /// <param name="groundPosition">Where the enemy appears. This becomes its home spot.</param>
         /// <param name="owner">The pack the enemy belongs to, used to find its way home. Can be null.</param>
         /// <param name="owningManager">The manager, told when the enemy dies.</param>
-        internal void Activate(EnemyDefinition data, Vector2 groundPosition, bool aggroed, EnemyPack owner, EnemyManager owningManager)
+        /// <param name="rolledModifiers">Rolled by the caller (only for an Elite); None for everything else.</param>
+        internal void Activate(EnemyDefinition data, Vector2 groundPosition, bool aggroed, EnemyPack owner, EnemyManager owningManager, EliteModifiers rolledModifiers = EliteModifiers.None)
         {
             definition = data;
+            modifiers = rolledModifiers;
             pack = owner;
             manager = owningManager;
             ground = groundPosition;
@@ -169,19 +191,19 @@ namespace ARPG
                     if (CanAttack(world, distance))
                     {
                         State = EnemyState.Attack;
-                        stateTimer = definition.AttackWindupSeconds;
+                        stateTimer = EffectiveAttackWindupSeconds;
                         return;
                     }
                     break;
 
                 case EnemyState.Attack:
                     stateTimer -= deltaTime;
-                    SetVisuals(1f, 1f + WindupScale * (1f - Mathf.Clamp01(stateTimer / Mathf.Max(definition.AttackWindupSeconds, 1e-4f))));
+                    SetVisuals(1f, 1f + WindupScale * (1f - Mathf.Clamp01(stateTimer / Mathf.Max(EffectiveAttackWindupSeconds, 1e-4f))));
                     if (stateTimer <= 0f)
                     {
                         LandAttack(world, distance);
                         State = EnemyState.Recover;
-                        stateTimer = definition.AttackRecoverSeconds;
+                        stateTimer = EffectiveAttackRecoverSeconds;
                         SetVisuals(1f, 1f);
                     }
                     Hold(world, playerGround, deltaTime);
@@ -200,7 +222,7 @@ namespace ARPG
                         State = EnemyState.Idle;
                         return;
                     }
-                    Move(HomeDirection(world) * (definition.MoveSpeed * deltaTime), world);
+                    Move(HomeDirection(world) * (EffectiveMoveSpeed * deltaTime), world);
                     return;
             }
 
@@ -214,7 +236,7 @@ namespace ARPG
             if (desired.sqrMagnitude > 1f)
                 desired.Normalize();
 
-            Move(desired * (definition.MoveSpeed * deltaTime), world);
+            Move(desired * (EffectiveMoveSpeed * deltaTime), world);
         }
 
         /// <summary>
@@ -290,6 +312,11 @@ namespace ARPG
             var damage = CombatFormulas.EnemyHitDamage(definition.Level) * definition.DamageMultiplier;
             var armorIgnorePercent = definition.Rank == EnemyRank.Elite ? EliteArmorIgnorePercent : 0f;
             world.Player.TakeHit(damage, definition.Level, armorIgnorePercent);
+
+            if (HasModifier(EliteModifiers.Vampiric))
+                life = Mathf.Min(definition.MaxLife, life + damage * VampiricHealFraction);
+            if (HasModifier(EliteModifiers.Frozen))
+                world.PlayerController?.ApplySlow(FrozenSlowMultiplier, FrozenSlowSeconds);
         }
 
         // Stands its ground while attacking or recovering, but is still pushed apart from the crowd and the player.
@@ -299,7 +326,7 @@ namespace ARPG
             if (desired.sqrMagnitude > 1f)
                 desired.Normalize();
 
-            Move(desired * (definition.MoveSpeed * deltaTime), world);
+            Move(desired * (EffectiveMoveSpeed * deltaTime), world);
         }
 
         Vector2 HomeDirection(EnemyManager world)

@@ -20,6 +20,7 @@ namespace ARPG
 
         Rigidbody2D body;
         Vector2 groundVelocity;
+        readonly SlowDebuff slow = new SlowDebuff();
 
         /// <summary>Current velocity on the ground plane, in ground units per second.</summary>
         public Vector2 GroundVelocity => groundVelocity;
@@ -35,12 +36,19 @@ namespace ARPG
                 input = FindAnyObjectByType<FloatingStickInput>();
         }
 
+        /// <summary>Slows movement to <paramref name="multiplier"/> of normal speed for this many seconds, such as
+        /// an elite's Frozen modifier. See <see cref="SlowDebuff"/> for how overlapping applications combine.</summary>
+        public void ApplySlow(float multiplier, float seconds) => slow.Apply(multiplier, seconds);
+
         void FixedUpdate()
         {
-            var stick = input != null ? input.Value : Vector2.zero;
-            var target = IsoMath.StickToGround(stick) * moveSpeed;
+            slow.Tick(Time.fixedDeltaTime);
+            var effectiveMoveSpeed = moveSpeed * slow.Multiplier;
 
-            var maxChange = moveSpeed / accelerationTime * Time.fixedDeltaTime;
+            var stick = input != null ? input.Value : Vector2.zero;
+            var target = IsoMath.StickToGround(stick) * effectiveMoveSpeed;
+
+            var maxChange = effectiveMoveSpeed / accelerationTime * Time.fixedDeltaTime;
             groundVelocity = Vector2.MoveTowards(groundVelocity, target, maxChange);
 
             body.linearVelocity = IsoMath.GroundToWorld(groundVelocity);

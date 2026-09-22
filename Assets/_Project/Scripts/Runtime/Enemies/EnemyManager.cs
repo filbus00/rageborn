@@ -68,6 +68,10 @@ namespace ARPG
         /// <summary>The player's life, or null when the scene has none. Enemies attack it.</summary>
         public PlayerHealth Player { get; private set; }
 
+        /// <summary>The player's own controller, or null when the scene has none. Used for effects that touch
+        /// movement directly, such as an elite's Frozen modifier, not damage.</summary>
+        public PlayerController PlayerController => player;
+
         /// <summary>The player's position on the ground plane this frame.</summary>
         public Vector2 PlayerGround { get; private set; }
 
@@ -75,6 +79,10 @@ namespace ARPG
 
         /// <summary>Scratch list for spatial hash queries. Single threaded, so one shared list is enough.</summary>
         internal List<int> NeighbourBuffer => neighbourBuffer;
+
+        // Elite modifiers are flavor randomness, not economy like loot, so this is not seeded for replay (same
+        // precedent as PlayerCombat's crit roll).
+        readonly System.Random modifierRandom = new System.Random();
 
         void Awake()
         {
@@ -182,7 +190,9 @@ namespace ARPG
                 enemy = CreateInstance();
             }
 
-            enemy.Activate(definition, groundPosition, aggroed, pack, this);
+            // Docs/01-core-gameplay.md: only elites carry modifiers, one or two, rolled fresh at spawn.
+            var modifiers = definition.Rank == EnemyRank.Elite ? EliteModifierRoller.Roll(modifierRandom) : EliteModifiers.None;
+            enemy.Activate(definition, groundPosition, aggroed, pack, this, modifiers);
             active.Add(enemy);
             return enemy;
         }
