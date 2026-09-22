@@ -116,9 +116,12 @@ namespace ARPG.Editor
 
         static void BuildFade()
         {
-            // Its own canvas above the HUD, so a fade also covers the life bar.
+            // Its own canvas above the HUD, so a fade also covers the life bar. Saved transparent: ScreenFade.Awake
+            // sets it opaque the moment play starts, and every Screen Space Overlay canvas draws as a huge rectangle
+            // in the Scene view (its corner sits at the world origin), so a black-saved overlay showed there as a
+            // black square over the ground beyond that corner.
             var canvasObject = NewCanvas(FadeObjectName, 100);
-            var overlay = NewImage("Overlay", canvasObject.transform, Color.black);
+            var overlay = NewImage("Overlay", canvasObject.transform, new Color(0f, 0f, 0f, 0f));
             Stretch(overlay.rectTransform, 0f);
 
             var fade = overlay.gameObject.AddComponent<ScreenFade>();
