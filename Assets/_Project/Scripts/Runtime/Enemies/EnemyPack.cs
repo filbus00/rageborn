@@ -17,6 +17,9 @@ namespace ARPG
 
         [SerializeField] EnemyDefinition definition;
 
+        [Tooltip("Left empty, every member uses definition. Set to give the pack a single Champion leader (Docs/03-itemization.md, its own loot table) in slot 0; the rest of the pack still uses definition. For a pack that is entirely Elite, set definition itself to an Elite EnemyDefinition instead.")]
+        [SerializeField] EnemyDefinition championDefinition;
+
         [Tooltip("Docs: pack sizes range from 3 to 12 for normal packs.")]
         [SerializeField, Range(3, 12)] int count = 8;
 
@@ -77,7 +80,8 @@ namespace ARPG
                 if (!manager.Nav.IsWalkable(IsoMath.GroundToCell(position)))
                     continue;
 
-                var member = manager.Spawn(definition, position, false, this);
+                var slotDefinition = i == 0 && championDefinition != null ? championDefinition : definition;
+                var member = manager.Spawn(slotDefinition, position, false, this);
                 member.PackSlot = i;
                 members.Add(member);
             }

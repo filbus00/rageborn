@@ -106,5 +106,33 @@ namespace ARPG.Tests
 
             Assert.AreEqual(1, SweepGeometry.PickTarget(Origin, Vector2.right, positions));
         }
+
+        [Test]
+        public void PickTarget_WithNoWeights_BehavesExactlyAsBeforeTheParameterExisted()
+        {
+            var positions = new List<Vector2> { Origin + new Vector2(2f, 0f), Origin + new Vector2(1f, 0f) };
+
+            Assert.AreEqual(1, SweepGeometry.PickTarget(Origin, Vector2.right, positions, null));
+        }
+
+        [Test]
+        public void PickTarget_APreferredCandidate_WinsOverAnUnweightedCloserOne()
+        {
+            // Docs/01-core-gameplay.md: elites and bosses get a 30 percent range weight bonus. At 1.0 units the
+            // preferred candidate's effective distance (0.7) beats the plain candidate at 0.8.
+            var positions = new List<Vector2> { Origin + new Vector2(0.8f, 0f), Origin + new Vector2(1.0f, 0f) };
+            var weights = new List<float> { 1f, SweepGeometry.PreferredTargetWeight };
+
+            Assert.AreEqual(1, SweepGeometry.PickTarget(Origin, Vector2.right, positions, weights));
+        }
+
+        [Test]
+        public void PickTarget_TheBonus_DoesNotOverrideAMuchCloserCandidate()
+        {
+            var positions = new List<Vector2> { Origin + new Vector2(0.3f, 0f), Origin + new Vector2(2f, 0f) };
+            var weights = new List<float> { 1f, SweepGeometry.PreferredTargetWeight };
+
+            Assert.AreEqual(0, SweepGeometry.PickTarget(Origin, Vector2.right, positions, weights));
+        }
     }
 }

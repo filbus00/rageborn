@@ -76,12 +76,23 @@ namespace ARPG
             var loot = GameSession.Current.Loot;
             var level = enemy.Definition.Level;
             var at = enemy.GroundPosition;
+            var source = ToLootSource(enemy.Definition.Rank);
 
-            DropGold(loot.RollGold(LootSource.NormalEnemy, level), at);
+            DropGold(loot.RollGold(source, level), at);
 
-            var item = loot.RollDrop(LootSource.NormalEnemy, level, magicFind);
-            if (item != null)
-                DropItem(item, at + Scatter());
+            var items = loot.RollDrops(source, level, magicFind);
+            for (var i = 0; i < items.Count; i++)
+                DropItem(items[i], at + Scatter());
+        }
+
+        static LootSource ToLootSource(EnemyRank rank)
+        {
+            switch (rank)
+            {
+                case EnemyRank.Champion: return LootSource.Champion;
+                case EnemyRank.Elite: return LootSource.Elite;
+                default: return LootSource.NormalEnemy;
+            }
         }
 
         /// <summary>Puts gold on the ground at a ground position. Chests, elites and bosses will use this too.</summary>

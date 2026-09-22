@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0289b4dd11466421e978641b016f68c7
+guid: 611c63a4ae9374a57b4de0464def1812
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3426079242256861170
-    second: PlaceholderWall_0
+      213: 3185380291670748678
+    second: PlaceholderSwarmerChampion_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -49,8 +49,8 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.5, y: 0.25}
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -116,7 +116,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlaceholderWall_0
+      name: PlaceholderSwarmerChampion_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e08b0f0d41f1470d0800000000000000
-      internalID: -3426079242256861170
+      spriteID: 60ea0979f7eb43c20800000000000000
+      internalID: 3185380291670748678
       vertices: []
       indices: 
       edges: []
@@ -163,7 +163,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PlaceholderWall_0: -3426079242256861170
+      PlaceholderSwarmerChampion_0: 3185380291670748678
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

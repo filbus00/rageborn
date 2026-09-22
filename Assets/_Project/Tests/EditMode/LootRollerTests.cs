@@ -262,5 +262,121 @@ namespace ARPG.Tests
             Assert.GreaterOrEqual(new LootRoller(0).RollGold(LootSource.NormalEnemy, 1), 1);
             Assert.GreaterOrEqual(new LootRoller(0).RollGold(LootSource.NormalEnemy, 0), 1);
         }
+
+        [Test]
+        public void EliteGold_IsEightTimesNormal()
+        {
+            // Docs/04-progression-and-economy.md.
+            var roller = new LootRoller(0);
+
+            Assert.AreEqual(roller.RollGold(LootSource.NormalEnemy, 10) * 8, roller.RollGold(LootSource.Elite, 10));
+        }
+
+        [Test]
+        public void ChampionGold_FollowsTheNormalFormula_UntilTuned()
+        {
+            var roller = new LootRoller(0);
+
+            Assert.AreEqual(roller.RollGold(LootSource.NormalEnemy, 10), roller.RollGold(LootSource.Champion, 10));
+        }
+
+        [TestCase(LootSource.NormalEnemy, LootRoller.NormalEnemyDropChance)]
+        [TestCase(LootSource.Champion, LootRoller.ChampionDropChance)]
+        [TestCase(LootSource.Elite, LootRoller.EliteDropChance)]
+        public void DropChance_MatchesTheDocsTable(LootSource source, float expected)
+        {
+            Assert.AreEqual(expected, LootRoller.DropChance(source), 1e-6f);
+        }
+
+        [Test]
+        public void Champion_NeverDropsBelowMagic()
+        {
+            var roller = new LootRoller(12);
+            var sawADrop = false;
+
+            for (var i = 0; i < 2000; i++)
+            {
+                var item = roller.RollDrop(LootSource.Champion, 1, 0f);
+                if (item == null)
+                    continue;
+
+                sawADrop = true;
+                Assert.GreaterOrEqual(item.Rarity, ItemRarity.Magic);
+            }
+
+            Assert.IsTrue(sawADrop, "a champion drops 25 percent of the time, so 2000 kills should see one");
+        }
+
+        [Test]
+        public void Elite_AlwaysDrops_OneOrTwoItems_NeverBelowMagic()
+        {
+            var roller = new LootRoller(9);
+            var sawOne = false;
+            var sawTwo = false;
+
+            for (var i = 0; i < 200; i++)
+            {
+                var items = roller.RollDrops(LootSource.Elite, 1, 0f);
+                Assert.GreaterOrEqual(items.Count, 1, "docs: elite drops 100 percent of the time");
+                Assert.LessOrEqual(items.Count, 2);
+                sawOne |= items.Count == 1;
+                sawTwo |= items.Count == 2;
+
+                foreach (var item in items)
+                    Assert.GreaterOrEqual(item.Rarity, ItemRarity.Magic);
+            }
+
+            Assert.IsTrue(sawOne, "1 to 2 items: some kills should drop just 1");
+            Assert.IsTrue(sawTwo, "1 to 2 items: some kills should drop 2");
+        }
+
+        [Test]
+        public void Elite_SometimesFloorsAtRare_InsteadOfMagic()
+        {
+            var roller = new LootRoller(3);
+            var sawRareFloor = false;
+
+            for (var i = 0; i < 500 && !sawRareFloor; i++)
+            {
+                var items = roller.RollDrops(LootSource.Elite, 1, 0f);
+                foreach (var item in items)
+                    if (item.Rarity == ItemRarity.Rare)
+                        sawRareFloor = true; // Common/Magic never roll naturally floor to Rare on their own at low MF odds this consistently; treated as the floor kicking in.
+            }
+
+            Assert.IsTrue(sawRareFloor, "docs: elite floors at Rare 30 percent of the time");
+        }
+
+        [Test]
+        public void NormalEnemy_StillHasNoRarityFloor()
+        {
+            // A regression check: adding Champion and Elite floors must not touch the normal enemy's own table.
+            var roller = new LootRoller(21);
+            var sawCommon = false;
+
+            for (var i = 0; i < 2000 && !sawCommon; i++)
+            {
+                var item = roller.RollDrop(LootSource.NormalEnemy, 1, 0f);
+                if (item != null && item.Rarity == ItemRarity.Common)
+                    sawCommon = true;
+            }
+
+            Assert.IsTrue(sawCommon);
+        }
+
+        [Test]
+        public void RollDrop_Singular_ReturnsTheFirstOfWhatRollDropsWouldGive()
+        {
+            var a = new LootRoller(55);
+            var b = new LootRoller(55);
+
+            var single = a.RollDrop(LootSource.Elite, 20, 0f);
+            var plural = b.RollDrops(LootSource.Elite, 20, 0f);
+
+            if (plural.Count == 0)
+                Assert.IsNull(single);
+            else
+                Assert.AreEqual(plural[0].Rarity, single.Rarity);
+        }
     }
 }

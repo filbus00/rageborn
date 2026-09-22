@@ -62,6 +62,7 @@ namespace ARPG
         readonly List<EnemyController> candidates = new List<EnemyController>(32);
         readonly List<EnemyController> inReach = new List<EnemyController>(32);
         readonly List<Vector2> inReachPositions = new List<Vector2>(32);
+        readonly List<float> inReachWeights = new List<float>(32);
 
         FocusPool focus;
         float[] cooldowns;
@@ -169,6 +170,7 @@ namespace ARPG
             var reach = LongestReach();
             inReach.Clear();
             inReachPositions.Clear();
+            inReachWeights.Clear();
             for (var i = 0; i < candidates.Count; i++)
             {
                 if (!InReach(origin, candidates[i], reach))
@@ -176,9 +178,11 @@ namespace ARPG
 
                 inReach.Add(candidates[i]);
                 inReachPositions.Add(candidates[i].GroundPosition);
+                // Docs: elites and bosses (bosses not built yet) get a range weight bonus so they are preferred.
+                inReachWeights.Add(candidates[i].Definition.Rank == EnemyRank.Elite ? SweepGeometry.PreferredTargetWeight : 1f);
             }
 
-            var index = SweepGeometry.PickTarget(origin, facing, inReachPositions);
+            var index = SweepGeometry.PickTarget(origin, facing, inReachPositions, inReachWeights);
             return index >= 0 ? inReach[index] : null;
         }
 

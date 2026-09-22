@@ -50,6 +50,9 @@ namespace ARPG
         // back just as it lands is forgiven. Tuning value.
         const float AttackForgiveness = 0.3f;
 
+        // Docs/03-itemization.md: elite (and boss, not built yet) damage ignores 15 percent of player armor.
+        const float EliteArmorIgnorePercent = 0.15f;
+
         // How much the enemy swells over its wind-up. Placeholder tell.
         const float WindupScale = 0.2f;
 
@@ -62,6 +65,8 @@ namespace ARPG
         EnemyPack pack;
         EnemyManager manager;
         SpriteRenderer[] renderers;
+        SpriteRenderer bodyRenderer;
+        Sprite defaultBodySprite;
         Vector2 ground;
         Vector2 home;
         float leashTimer;
@@ -92,7 +97,16 @@ namespace ARPG
         /// <summary>Which slot of its pack the enemy fills, so a kill can be remembered across scene loads.</summary>
         internal int PackSlot { get; set; }
 
-        void Awake() => renderers = GetComponentsInChildren<SpriteRenderer>(true);
+        void Awake()
+        {
+            renderers = GetComponentsInChildren<SpriteRenderer>(true);
+            var body = transform.Find("Body");
+            if (body != null)
+            {
+                bodyRenderer = body.GetComponent<SpriteRenderer>();
+                defaultBodySprite = bodyRenderer.sprite;
+            }
+        }
 
         /// <param name="groundPosition">Where the enemy appears. This becomes its home spot.</param>
         /// <param name="owner">The pack the enemy belongs to, used to find its way home. Can be null.</param>
@@ -109,6 +123,10 @@ namespace ARPG
             punchTimer = 0f;
             deathTimer = 0f;
             State = aggroed ? EnemyState.Approach : EnemyState.Idle;
+            // The renderer is pooled and reused across definitions, so a Normal spawn must reset it explicitly:
+            // otherwise it would keep showing whatever a previous occupant (say, an Elite) last set it to.
+            if (bodyRenderer != null)
+                bodyRenderer.sprite = data.BodySprite != null ? data.BodySprite : defaultBodySprite;
             SetVisuals(1f, 1f);
             SyncTransform();
             gameObject.SetActive(true);
@@ -249,8 +267,12 @@ namespace ARPG
             SetVisuals(1f, 1f + PunchScale * (punchTimer / PunchSeconds));
         }
 
-        void SetVisuals(float alpha, float scale)
+        // scaleMultiplier is the transient part (wind-up swell, hit punch, death shrink); the definition's own
+        // VisualScale is the permanent part that makes a Champion or Elite read as bigger at a glance. Color comes
+        // from the sprite itself (see EnemyDefinition.BodySprite), not a runtime tint, so this only fades alpha.
+        void SetVisuals(float alpha, float scaleMultiplier)
         {
+            var scale = definition.VisualScale * scaleMultiplier;
             transform.localScale = new Vector3(scale, scale, 1f);
             var color = new Color(1f, 1f, 1f, alpha);
             for (var i = 0; i < renderers.Length; i++)
@@ -266,7 +288,8 @@ namespace ARPG
                 return;
 
             var damage = CombatFormulas.EnemyHitDamage(definition.Level) * definition.DamageMultiplier;
-            world.Player.TakeHit(damage, definition.Level);
+            var armorIgnorePercent = definition.Rank == EnemyRank.Elite ? EliteArmorIgnorePercent : 0f;
+            world.Player.TakeHit(damage, definition.Level, armorIgnorePercent);
         }
 
         // Stands its ground while attacking or recovering, but is still pushed apart from the crowd and the player.

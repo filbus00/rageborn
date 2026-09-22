@@ -2,10 +2,13 @@ using UnityEngine;
 
 namespace ARPG
 {
-    /// <summary>Where a drop comes from. The drop table in Docs/03-itemization.md has more sources, added as they exist.</summary>
+    /// <summary>Where a drop comes from. The drop table in Docs/03-itemization.md has more sources (zone chests,
+    /// bosses, Abyss guardians), added as they exist.</summary>
     public enum LootSource
     {
         NormalEnemy,
+        Champion,
+        Elite,
     }
 
     /// <summary>
@@ -14,8 +17,17 @@ namespace ARPG
     /// </summary>
     public sealed class LootRoller
     {
-        // Docs/03-itemization.md: chance that a normal enemy drops an item.
+        // Docs/03-itemization.md drop table.
         public const float NormalEnemyDropChance = 0.06f;
+        public const float ChampionDropChance = 0.25f;
+        public const float EliteDropChance = 1f;
+
+        // Docs: Elite's rarity floor is Magic, or Rare with this chance.
+        const float EliteRareFloorChance = 0.30f;
+
+        // Docs/04-progression-and-economy.md: elite gold is 8 times the normal formula. Champion gold is not
+        // specified, so it follows the normal formula until tuned.
+        const float EliteGoldMultiplier = 8f;
 
         // Bad luck protection: the legendary weight doubles after this many kills without one, and triples after twice this.
         public const int BadLuckThreshold = 300;
@@ -65,37 +77,86 @@ namespace ARPG
         }
 
         /// <summary>
-        /// Registers a kill and rolls whether it drops an item. Returns the item, or null for no drop.
+        /// Registers a kill and rolls whether it drops an item. Returns the item, or null for no drop. For a source
+        /// that can drop more than one item (Elite), this is the first; use <see cref="RollDrops"/> for all of them.
         /// </summary>
         /// <param name="itemLevel">The item level of a drop, which equals the zone level.</param>
         /// <param name="magicFind">Magic Find as a fraction, 0.5 for 50 percent.</param>
         public Item RollDrop(LootSource source, int itemLevel, float magicFind)
         {
+            var drops = RollDrops(source, itemLevel, magicFind);
+            return drops.Count > 0 ? drops[0] : null;
+        }
+
+        /// <summary>
+        /// Registers a kill and rolls its drops per <see cref="LootSource"/> (Docs/03-itemization.md): a normal
+        /// enemy or Champion drops at most one item, an Elite 1 to 2, each at least the source's rarity floor
+        /// (Common for a normal enemy, Magic for a Champion, Magic or 30 percent of the time Rare for an Elite).
+        /// Empty when nothing dropped.
+        /// </summary>
+        public System.Collections.Generic.IReadOnlyList<Item> RollDrops(LootSource source, int itemLevel, float magicFind)
+        {
             KillsSinceLegendary++;
 
             if (random.NextDouble() >= DropChance(source))
-                return null;
+                return System.Array.Empty<Item>();
 
-            var rarity = RollRarity(magicFind);
-            if (rarity == ItemRarity.Legendary)
-                KillsSinceLegendary = 0;
+            var floor = RarityFloor(source);
+            var count = DropCount(source);
+            var items = new Item[count];
+            for (var i = 0; i < count; i++)
+            {
+                var rarity = RollRarity(magicFind);
+                if (rarity < floor)
+                    rarity = floor;
+                if (rarity == ItemRarity.Legendary)
+                    KillsSinceLegendary = 0;
 
-            var slot = DroppableSlots[random.Next(DroppableSlots.Length)];
-            var affixes = AffixRoller.Roll(slot, rarity, itemLevel, random);
-            return new Item(slot, rarity, itemLevel, affixes);
+                var slot = DroppableSlots[random.Next(DroppableSlots.Length)];
+                var affixes = AffixRoller.Roll(slot, rarity, itemLevel, random);
+                items[i] = new Item(slot, rarity, itemLevel, affixes);
+            }
+            return items;
         }
 
         /// <summary>
         /// Gold from a kill. Docs/04-progression-and-economy.md: a normal enemy drops 0.6 times its level to the power
-        /// 1.3. It is rounded, with a floor of 1 so a drop is never empty.
+        /// 1.3, an elite 8 times that. It is rounded, with a floor of 1 so a drop is never empty.
         /// </summary>
         public int RollGold(LootSource source, int level)
         {
             var amount = 0.6f * Mathf.Pow(Mathf.Max(1, level), 1.3f);
+            if (source == LootSource.Elite)
+                amount *= EliteGoldMultiplier;
             return Mathf.Max(1, Mathf.RoundToInt(amount));
         }
 
-        public static float DropChance(LootSource source) => NormalEnemyDropChance;
+        public static float DropChance(LootSource source)
+        {
+            switch (source)
+            {
+                case LootSource.Champion: return ChampionDropChance;
+                case LootSource.Elite: return EliteDropChance;
+                default: return NormalEnemyDropChance;
+            }
+        }
+
+        // Docs: Elite drops 1 to 2 items; every other source drops at most 1.
+        int DropCount(LootSource source) => source == LootSource.Elite ? 1 + random.Next(2) : 1;
+
+        ItemRarity RarityFloor(LootSource source)
+        {
+            switch (source)
+            {
+                case LootSource.Champion:
+                    return ItemRarity.Magic;
+                case LootSource.Elite:
+                    // One roll for the whole drop, not per item: either every item from this kill floors at Rare or none do.
+                    return random.NextDouble() < EliteRareFloorChance ? ItemRarity.Rare : ItemRarity.Magic;
+                default:
+                    return ItemRarity.Common;
+            }
+        }
 
         ItemRarity RollRarity(float magicFind)
         {

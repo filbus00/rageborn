@@ -8,15 +8,19 @@ namespace ARPG.Editor
 {
     /// <summary>
     /// Adds a walled test room to the sandbox: a perimeter, a divider with a two cell gap so enemies have to route
-    /// around it, and four packs of 10 (the M0 target of 40 enemies). It exists to exercise pathfinding, aggro and
-    /// leash behaviour. Run from Tools > ARPG > Add Test Room To Sandbox, after Add Enemies To Sandbox.
-    /// Running Create Sandbox Scene again rebuilds the Grid, which removes the walls; run this again afterwards.
+    /// around it, four packs of 10 (the M0 target of 40 enemies, one with a Champion leader) and one smaller Elite
+    /// pack. It exists to exercise pathfinding, aggro and leash behaviour. Run from Tools > ARPG > Add Test Room To
+    /// Sandbox, after Add Enemies To Sandbox. Running Create Sandbox Scene again rebuilds the Grid, which removes
+    /// the walls; run this again afterwards.
     /// </summary>
     public static class TestRoomBuilder
     {
         const string ScenePath = "Assets/_Project/Scenes/Sandbox.unity";
         const string WallSpritePath = "Assets/_Project/Art/Tilesets/PlaceholderWall.png";
         const string WallTilePath = "Assets/_Project/Art/Tilesets/PlaceholderWall.asset";
+        const string ChampionDefinitionPath = "Assets/_Project/Data/Enemies/SwarmerChampion.asset";
+        const string EliteDefinitionPath = "Assets/_Project/Data/Enemies/SwarmerElite.asset";
+        const string CharacterArtFolder = "Assets/_Project/Art/Characters";
 
         const int PixelsPerUnit = 128;
 
@@ -50,6 +54,17 @@ namespace ARPG.Editor
         // Small enough that a pack of 10 fits between the walls and the divider.
         const float PackRadius = 1.8f;
 
+        // Docs/03-itemization.md: Champion is a single pack leader. This is the one pack that gets one, so it is
+        // visible early without crossing the divider.
+        const string ChampionPackName = "Pack West (near)";
+
+        // Docs/05-world-and-content.md: every level has one guaranteed elite pack. Smaller than a normal pack (an
+        // elite pack is a rarer, tougher encounter, not another crowd), centered between the two far packs.
+        const string ElitePackName = "Pack Elite (far)";
+        static readonly Vector2Int EliteCell = new Vector2Int(0, 4);
+        const int EliteCount = 4;
+        const float EliteRadius = 1.1f;
+
         [MenuItem("Tools/ARPG/Add Test Room To Sandbox")]
         public static void Build()
         {
@@ -77,7 +92,25 @@ namespace ARPG.Editor
                 Object.DestroyImmediate(oldWalls.gameObject);
 
             BuildWalls(grid, CreateWallTile());
-            BuildPacks(EnemySceneBuilder.LoadOrCreateDefinition());
+
+            var normal = EnemySceneBuilder.LoadOrCreateDefinition();
+            // Each rank gets its own sprite, not a runtime tint: SpriteRenderer.color multiplies the sprite's own
+            // (already red) pixels, so a tint can only darken toward brown, never reach a clean gold or crimson.
+            var championSprite = ImportBodySprite("SwarmerChampion", new Color32(224, 168, 50, 255));
+            var eliteSprite = ImportBodySprite("SwarmerElite", new Color32(176, 40, 90, 255));
+
+            // Tuning values: no target time to kill is fixed yet, so these are starting points, not a fit to the
+            // docs' 5-9 second elite kill time at recommended gear.
+            var champion = EnemySceneBuilder.LoadOrCreateVariant(
+                ChampionDefinitionPath, EnemyRank.Champion,
+                lifeMultiplier: 3f, damageMultiplier: 1.6f, bodyRadius: 0.4f, aggroRange: 7f,
+                visualScale: 1.4f, bodySprite: championSprite);
+            var elite = EnemySceneBuilder.LoadOrCreateVariant(
+                EliteDefinitionPath, EnemyRank.Elite,
+                lifeMultiplier: 6f, damageMultiplier: 2.5f, bodyRadius: 0.45f, aggroRange: 10f,
+                visualScale: 1.6f, bodySprite: eliteSprite);
+
+            BuildPacks(normal, champion, elite);
 
             var start = IsoMath.GroundToWorld(IsoMath.CellToGround(PlayerStartCell));
             player.transform.position = new Vector3(start.x, start.y, 0f);
@@ -86,6 +119,12 @@ namespace ARPG.Editor
             EditorSceneManager.SaveScene(scene);
             Debug.Log("[ARPG] Test room added to the sandbox scene.");
         }
+
+        static Sprite ImportBodySprite(string name, Color32 color) =>
+            PlaceholderArt.ImportSprite(
+                $"{CharacterArtFolder}/Placeholder{name}.png",
+                PlaceholderArt.Capsule(80, 112, color),
+                PixelsPerUnit, SpriteAlignment.BottomCenter, FilterMode.Bilinear);
 
         static Tile CreateWallTile()
         {
@@ -155,26 +194,36 @@ namespace ARPG.Editor
                     yield return new Vector2Int(x, DividerY);
         }
 
-        static void BuildPacks(EnemyDefinition definition)
+        static void BuildPacks(EnemyDefinition definition, EnemyDefinition championDefinition, EnemyDefinition eliteDefinition)
         {
             var room = new GameObject(RoomObjectName);
 
             foreach (var (name, cell) in Packs)
             {
-                var pack = new GameObject(name, typeof(EnemyPack));
-                pack.transform.SetParent(room.transform, false);
-
-                var world = IsoMath.GroundToWorld(IsoMath.CellToGround(cell));
-                pack.transform.position = new Vector3(world.x, world.y, 0f);
-
-                var component = pack.GetComponent<EnemyPack>();
-                EnemySceneBuilder.SetReference(component, "definition", definition);
-
-                var serialized = new SerializedObject(component);
-                serialized.FindProperty("count").intValue = PackSize;
-                serialized.FindProperty("radius").floatValue = PackRadius;
-                serialized.ApplyModifiedPropertiesWithoutUndo();
+                var pack = CreatePack(room.transform, name, cell, definition, PackSize, PackRadius);
+                if (name == ChampionPackName)
+                    EnemySceneBuilder.SetReference(pack, "championDefinition", championDefinition);
             }
+
+            CreatePack(room.transform, ElitePackName, EliteCell, eliteDefinition, EliteCount, EliteRadius);
+        }
+
+        static EnemyPack CreatePack(Transform parent, string name, Vector2Int cell, EnemyDefinition definition, int count, float radius)
+        {
+            var pack = new GameObject(name, typeof(EnemyPack));
+            pack.transform.SetParent(parent, false);
+
+            var world = IsoMath.GroundToWorld(IsoMath.CellToGround(cell));
+            pack.transform.position = new Vector3(world.x, world.y, 0f);
+
+            var component = pack.GetComponent<EnemyPack>();
+            EnemySceneBuilder.SetReference(component, "definition", definition);
+
+            var serialized = new SerializedObject(component);
+            serialized.FindProperty("count").intValue = count;
+            serialized.FindProperty("radius").floatValue = radius;
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+            return component;
         }
     }
 }

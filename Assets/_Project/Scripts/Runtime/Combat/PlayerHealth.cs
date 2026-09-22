@@ -60,13 +60,16 @@ namespace ARPG
                 session.Changed -= HandleEquipmentChanged;
         }
 
-        /// <summary>Takes a hit from an attacker of the given level. The raw damage is reduced by armor here.</summary>
-        public void TakeHit(float rawDamage, int attackerLevel)
+        /// <summary>Takes a hit from an attacker of the given level. The raw damage is reduced by armor here.
+        /// <paramref name="armorIgnorePercent"/> is the share of armor the attack ignores, 0.15 for an elite's 15
+        /// percent (Docs/03-itemization.md).</summary>
+        public void TakeHit(float rawDamage, int attackerLevel, float armorIgnorePercent = 0f)
         {
             if (!IsAlive)
                 return;
 
-            var damage = rawDamage * (1f - CombatFormulas.ArmorReduction(Armor, attackerLevel));
+            var effectiveArmor = Armor * (1f - Mathf.Clamp01(armorIgnorePercent));
+            var damage = rawDamage * (1f - CombatFormulas.ArmorReduction(effectiveArmor, attackerLevel));
             DamageTaken += damage;
             HitsTaken++;
             lastHitTime = Time.time;

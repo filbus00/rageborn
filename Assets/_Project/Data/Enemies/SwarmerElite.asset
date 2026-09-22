@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09072702d011e42458b2a9de074ced96, type: 3}
+  m_Name: SwarmerElite
+  m_EditorClassIdentifier: ARPG.Runtime::ARPG.EnemyDefinition
+  level: 1
+  rank: 2
+  lifeMultiplier: 6
+  armor: 0
+  bodyRadius: 0.45
+  deathSeconds: 0.25
+  attackRange: 1
+  attackWindupSeconds: 0.35
+  attackRecoverSeconds: 0.65
+  damageMultiplier: 2.5
+  moveSpeed: 3.6
+  aggroRange: 10
+  leashRange: 20
+  leashSeconds: 4
+  stopDistance: 0.7
+  separationRadius: 0.8
+  visualScale: 1.6
+  bodySprite: {fileID: 21300000, guid: a410772113ab44947a65539d8f066cd8, type: 3}

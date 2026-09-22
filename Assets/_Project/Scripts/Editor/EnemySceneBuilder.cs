@@ -62,6 +62,36 @@ namespace ARPG.Editor
             return definition;
         }
 
+        /// <summary>
+        /// Loads a Champion or Elite variant of the swarmer, creating it with the given starting tuning if it does
+        /// not exist yet. Only touches those fields on creation, the same way LoadOrCreateDefinition leaves Swarmer
+        /// at its class defaults: a rerun never stomps values tuned by hand afterward in the Inspector.
+        /// </summary>
+        internal static EnemyDefinition LoadOrCreateVariant(
+            string path, EnemyRank rank, float lifeMultiplier, float damageMultiplier, float bodyRadius,
+            float aggroRange, float visualScale, Sprite bodySprite)
+        {
+            var definition = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(path);
+            if (definition != null)
+                return definition;
+
+            definition = ScriptableObject.CreateInstance<EnemyDefinition>();
+            AssetDatabase.CreateAsset(definition, path);
+
+            var serialized = new SerializedObject(definition);
+            serialized.FindProperty("rank").enumValueIndex = (int)rank;
+            serialized.FindProperty("lifeMultiplier").floatValue = lifeMultiplier;
+            serialized.FindProperty("damageMultiplier").floatValue = damageMultiplier;
+            serialized.FindProperty("bodyRadius").floatValue = bodyRadius;
+            serialized.FindProperty("aggroRange").floatValue = aggroRange;
+            serialized.FindProperty("visualScale").floatValue = visualScale;
+            serialized.FindProperty("bodySprite").objectReferenceValue = bodySprite;
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+
+            AssetDatabase.SaveAssets();
+            return definition;
+        }
+
         static GameObject BuildPrefab()
         {
             var bodySprite = PlaceholderArt.ImportSprite(

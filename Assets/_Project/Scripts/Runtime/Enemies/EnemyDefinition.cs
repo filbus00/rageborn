@@ -2,6 +2,16 @@ using UnityEngine;
 
 namespace ARPG
 {
+    /// <summary>Docs/00-vision-and-scope.md and Docs/03-itemization.md: a pack has rank-and-file Normal members, at
+    /// most one Champion (its pack leader), or is entirely made of Elite members. Drives loot source, the targeting
+    /// preference bonus and the armor-ignoring bite on an attack (Docs/01 and 03), on top of tougher stats.</summary>
+    public enum EnemyRank
+    {
+        Normal,
+        Champion,
+        Elite,
+    }
+
     /// <summary>
     /// Data for one enemy type. Ranges are in ground units. Values marked as tuning are starting points that
     /// Docs/01-core-gameplay.md does not fix yet.
@@ -11,6 +21,9 @@ namespace ARPG
     {
         [Tooltip("Sets life, damage and how much armor is worth through the formulas in Docs/03-itemization.md.")]
         [SerializeField, Min(1)] int level = 1;
+
+        [Tooltip("Normal, Champion (a pack's lone leader) or Elite (every member of its pack). See Docs/00 and Docs/03.")]
+        [SerializeField] EnemyRank rank = EnemyRank.Normal;
 
         [Tooltip("Archetype adjustment on the level's base life. The docs call the Husk swarmer low health but give no number, so this is 1 until tuned.")]
         [SerializeField, Min(0.1f)] float lifeMultiplier = 1f;
@@ -54,7 +67,17 @@ namespace ARPG
         [Tooltip("Enemies closer than this push each other apart, which gives a swarm its loose cluster. Tuning value.")]
         [SerializeField, Min(0.1f)] float separationRadius = 0.8f;
 
+        [Tooltip("Multiplies the sprite's base size, so a Champion or Elite reads as bigger at a glance. Tuning value.")]
+        [SerializeField, Min(0.1f)] float visualScale = 1f;
+
+        [Tooltip("Left empty, the prefab's own body sprite is used (every Normal enemy). Set to give a Champion or " +
+                 "Elite variant its own color: SpriteRenderer.color multiplies the sprite's own pixels, so tinting " +
+                 "an already-colored sprite at runtime cannot reach a clean, distinct color, only a darker shade " +
+                 "of the same hue. A separate sprite is the only way to get a real color difference.")]
+        [SerializeField] Sprite bodySprite;
+
         public int Level => level;
+        public EnemyRank Rank => rank;
         public float MaxLife => CombatFormulas.EnemyLife(level) * lifeMultiplier;
         public float Armor => armor;
         public float BodyRadius => bodyRadius;
@@ -69,5 +92,9 @@ namespace ARPG
         public float LeashSeconds => leashSeconds;
         public float StopDistance => stopDistance;
         public float SeparationRadius => separationRadius;
+        public float VisualScale => visualScale;
+
+        /// <summary>Null for a Normal enemy, which keeps the prefab's own body sprite.</summary>
+        public Sprite BodySprite => bodySprite;
     }
 }
