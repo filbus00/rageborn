@@ -46,10 +46,15 @@ namespace ARPG
         SlotUi[] slots;
         readonly StringBuilder statsBuilder = new StringBuilder(256);
 
+        /// <summary>The screen in the current scene, or null when it has none. Lets <see cref="HitStop"/> tell
+        /// this pause apart from its own, much shorter one when they happen to overlap.</summary>
+        public static InventoryScreen Current { get; private set; }
+
         public bool IsOpen => panelRoot != null && panelRoot.activeSelf;
 
         void Awake()
         {
+            Current = this;
             if (health == null)
                 health = FindAnyObjectByType<PlayerHealth>();
 
@@ -76,6 +81,8 @@ namespace ARPG
             // Defensive: a scene change while the screen happened to be open must not leave the next scene paused.
             if (IsOpen)
                 Time.timeScale = 1f;
+            if (Current == this)
+                Current = null;
         }
 
         public void Toggle()

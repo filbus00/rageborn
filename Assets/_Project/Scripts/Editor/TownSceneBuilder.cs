@@ -21,7 +21,10 @@ namespace ARPG.Editor
         static readonly Vector2Int StairsCell = new Vector2Int(5, 5);
 
         static readonly string[] RemovedObjects =
-            { "Enemy Manager", "Test Room", "Player Combat", "Corpse Spawner", "Stairs Up", "Loot System" };
+        {
+            "Enemy Manager", "Test Room", "Player Combat", "Hit Stop", "Damage Numbers Canvas", "Corpse Spawner",
+            "Stairs Up", "Loot System",
+        };
 
         [MenuItem("Tools/ARPG/Create Town Scene")]
         public static void Build()

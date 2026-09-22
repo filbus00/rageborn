@@ -24,6 +24,9 @@ namespace ARPG
         // It only has to exceed the largest enemy body radius.
         const float QueryMargin = 1f;
 
+        // Tuning values; Docs give no numbers for hit feedback.
+        const float HitStopOnKillSeconds = 0.05f;
+
         // Below this speed, in ground units per second, the character keeps its last facing.
         const float FacingSpeedThreshold = 0.2f;
 
@@ -254,8 +257,15 @@ namespace ARPG
                 var damage = CombatFormulas.HitDamage(
                     weaponDamage, multiplier, flatAdded, increasedSum, 1f, critical, criticalDamageBonus,
                     enemy.Definition.Armor, enemy.Definition.Level);
+
+                var world = IsoMath.GroundToWorld(enemy.GroundPosition);
+                DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);
+
                 if (enemy.TakeDamage(damage))
+                {
                     Kills++;
+                    HitStop.Instance?.Trigger(HitStopOnKillSeconds);
+                }
             }
 
             if (hits > 0 && lifeOnHit > 0f && health != null)

@@ -16,6 +16,7 @@ namespace ARPG
 
         LifePool life;
         GameSession session;
+        PlayerController player;
 
         // Far in the past, so a fresh character counts as not recently hit.
         float lastHitTime = -1000f;
@@ -44,6 +45,9 @@ namespace ARPG
 
         void Awake()
         {
+            // This object is a bare data holder, not positioned on the player, so the player's own transform is
+            // needed to place a damage number correctly.
+            player = FindAnyObjectByType<PlayerController>();
             session = GameSession.Current;
             life = new LifePool(ComputeMaxLife());
             life.SetFraction(session.LifeFraction);
@@ -66,6 +70,9 @@ namespace ARPG
             DamageTaken += damage;
             HitsTaken++;
             lastHitTime = Time.time;
+
+            if (player != null)
+                DamageNumbers.Current?.Show(player.transform.position, damage, critical: false, isDamageToPlayer: true);
 
             var killed = life.TakeDamage(damage);
             session.LifeFraction = life.Fraction;
