@@ -1,6 +1,8 @@
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -53,12 +55,29 @@ namespace ARPG.Editor
 
             PlayerSceneBuilder.RemoveExisting(scene, CanvasObjectName);
 
+            // A Canvas needs its own GraphicRaycaster for its buttons to be clickable, and the scene needs exactly
+            // one EventSystem to route input to any of them. Neither existed before this screen added the first
+            // real UI buttons the player taps.
+            if (hud.GetComponent<GraphicRaycaster>() == null)
+                hud.AddComponent<GraphicRaycaster>();
+            EnsureEventSystem();
+
             var openButton = BuildBagButton(hud.transform);
             BuildInventoryCanvas(openButton);
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             Debug.Log("[ARPG] Inventory and equip screen added to the sandbox scene.");
+        }
+
+        static void EnsureEventSystem()
+        {
+            if (Object.FindAnyObjectByType<EventSystem>() != null)
+                return;
+
+            // The new Input System's own UI input module, not the legacy StandaloneInputModule (CLAUDE.md: new
+            // Input System only). Its Reset() wires sensible default point/click/touch actions on its own.
+            new GameObject("Event System", typeof(EventSystem), typeof(InputSystemUIInputModule));
         }
 
         static GameObject FindRoot(Scene scene, string name)
