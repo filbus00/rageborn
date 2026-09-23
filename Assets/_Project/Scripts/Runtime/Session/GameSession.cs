@@ -118,8 +118,8 @@ namespace ARPG
     /// <summary>
     /// Everything that has to survive changing scene within one game session: equipment, the backpack, gold, corpses,
     /// which enemies were killed, life and the loot roller. Pure, so it can be tested; <see cref="Current"/> holds
-    /// the live one. A future sleep mechanic resets the session (Docs/08-production.md, open question 5), and saving
-    /// to disk builds on this.
+    /// the live one. A future sleep mechanic resets the session (Docs/08-production.md, open question 5).
+    /// <see cref="SaveCodec"/> writes it to disk and reads it back, and <see cref="SaveDirector"/> decides when.
     /// </summary>
     public sealed class GameSession
     {
@@ -135,17 +135,27 @@ namespace ARPG
         }
 
         /// <param name="lootSeed">Seeds the loot rolls, so a session can be replayed.</param>
-        public GameSession(int lootSeed)
+        /// <param name="killsSinceLegendary">The bad luck counter to carry on from, when restoring a save.</param>
+        public GameSession(int lootSeed, int killsSinceLegendary = 0)
         {
-            Loot = new LootRoller(lootSeed);
+            Loot = new LootRoller(lootSeed, killsSinceLegendary);
             Equipment = EquipmentState.Starting;
         }
 
-        /// <summary>The live session. Replaced at the start of every play, so nothing leaks between editor plays.</summary>
+        /// <summary>The live session. Replaced at the start of every play, so nothing leaks between editor plays,
+        /// and then by the loaded save when there is one (<see cref="Install"/>).</summary>
         public static GameSession Current => current;
+
+        /// <summary>Makes a session the live one. Only for startup, before any scene object has read
+        /// <see cref="Current"/>: objects that cached the old one would keep listening to it.</summary>
+        public static void Install(GameSession session) => current = session ?? throw new ArgumentNullException(nameof(session));
 
         /// <summary>Raised when equipment, the backpack or gold changes. The HUD and the inventory screen listen to it.</summary>
         public event Action Changed;
+
+        /// <summary>Raised on every change a save must capture: everything <see cref="Changed"/> covers, plus kills and
+        /// deaths. Life is not included, it changes every hit; the save picks it up when it is next written.</summary>
+        public event Action Modified;
 
         public EquipmentState Equipment { get; private set; }
 
@@ -168,7 +178,7 @@ namespace ARPG
         public void Equip(EquipmentState equipment)
         {
             Equipment = equipment;
-            Changed?.Invoke();
+            NotifyChanged();
         }
 
         public void AddGold(int amount)
@@ -177,7 +187,7 @@ namespace ARPG
                 return;
 
             Gold += amount;
-            Changed?.Invoke();
+            NotifyChanged();
         }
 
         /// <summary>
@@ -190,7 +200,7 @@ namespace ARPG
             if (!Inventory.TryAdd(item))
                 return false;
 
-            Changed?.Invoke();
+            NotifyChanged();
             return true;
         }
 
@@ -213,7 +223,7 @@ namespace ARPG
             }
 
             Equipment = Equipment.With(item.Slot, item);
-            Changed?.Invoke();
+            NotifyChanged();
             return true;
         }
 
@@ -226,7 +236,7 @@ namespace ARPG
                 return false;
 
             Equipment = Equipment.With(slot, null);
-            Changed?.Invoke();
+            NotifyChanged();
             return true;
         }
 
@@ -239,7 +249,7 @@ namespace ARPG
             if (item == null || !Inventory.Remove(item))
                 return false;
 
-            Changed?.Invoke();
+            NotifyChanged();
             return true;
         }
 
@@ -251,10 +261,21 @@ namespace ARPG
                 slots = new HashSet<int>();
                 killed[packKey] = slots;
             }
-            slots.Add(slot);
+            if (slots.Add(slot))
+                Modified?.Invoke();
         }
 
         public bool IsKilled(string packKey, int slot) => killed.TryGetValue(packKey, out var slots) && slots.Contains(slot);
+
+        /// <summary>The keys of every pack with at least one member killed, for saving.</summary>
+        public IEnumerable<string> KilledPackKeys => killed.Keys;
+
+        /// <summary>The killed member slots of one pack, for saving. Empty for a pack with no kills.</summary>
+        public IEnumerable<int> KilledSlots(string packKey) =>
+            killed.TryGetValue(packKey, out var slots) ? slots : (IEnumerable<int>)Array.Empty<int>();
+
+        /// <summary>Puts back a corpse read from a save.</summary>
+        internal void RestoreCorpse(Corpse corpse) => corpses.Add(corpse);
 
         /// <summary>
         /// The character dies: its equipped gear stays behind as a corpse where it fell (Docs/01-core-gameplay.md).
@@ -265,12 +286,15 @@ namespace ARPG
         {
             LifeFraction = 1f;
             if (Equipment.IsEmpty)
+            {
+                Modified?.Invoke();
                 return null;
+            }
 
             var corpse = new Corpse(levelId, groundPosition, Equipment);
             corpses.Add(corpse);
             Equipment = EquipmentState.Empty;
-            Changed?.Invoke();
+            NotifyChanged();
             return corpse;
         }
 
@@ -313,8 +337,14 @@ namespace ARPG
                 Inventory.TryAdd(item);
             Equipment = newEquipment;
             corpses.Remove(corpse);
-            Changed?.Invoke();
+            NotifyChanged();
             return true;
+        }
+
+        void NotifyChanged()
+        {
+            Changed?.Invoke();
+            Modified?.Invoke();
         }
 
         /// <summary>A rough, slot-agnostic "is this better" used only to decide what to re-equip on retrieval: higher

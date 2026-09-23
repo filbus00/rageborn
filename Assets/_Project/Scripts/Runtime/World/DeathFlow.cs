@@ -47,6 +47,9 @@ namespace ARPG
             }
 
             GameSession.Current.Die(SceneManager.GetActiveScene().name, ground);
+
+            // At once, not after the debounce: quitting the app during the fade must not undo the death.
+            SaveDirector.SaveNow();
             StartCoroutine(SendToTown());
         }
 

@@ -1,0 +1,197 @@
+using System.Collections.Generic;
+using NUnit.Framework;
+using UnityEngine;
+
+namespace ARPG.Tests
+{
+    public class SaveCodecTests
+    {
+        static Item RareWeapon() => new Item(ItemSlot.Weapon, ItemRarity.Rare, 12, new[]
+        {
+            new AffixRoll(AffixId.FlatWeaponDamage, 5, 17.25f),
+            new AffixRoll(AffixId.CriticalChance, 4, 1.5f),
+        });
+
+        static GameSession RoundTrip(GameSession session, List<string> warnings = null)
+        {
+            var json = SaveCodec.ToJson(SaveCodec.Capture(session, 1234));
+            Assert.IsTrue(SaveCodec.TryParse(json, out var data, out var error), error);
+            return SaveCodec.Restore(data, lootSeed: 7, warnings);
+        }
+
+        static void AssertSameItem(Item expected, Item actual)
+        {
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(expected.Slot, actual.Slot);
+            Assert.AreEqual(expected.Rarity, actual.Rarity);
+            Assert.AreEqual(expected.ItemLevel, actual.ItemLevel);
+            Assert.AreEqual(expected.Affixes.Count, actual.Affixes.Count);
+            for (var i = 0; i < expected.Affixes.Count; i++)
+            {
+                Assert.AreEqual(expected.Affixes[i].Id, actual.Affixes[i].Id);
+                Assert.AreEqual(expected.Affixes[i].Tier, actual.Affixes[i].Tier);
+                Assert.AreEqual(expected.Affixes[i].Value, actual.Affixes[i].Value, 1e-5f);
+            }
+        }
+
+        [Test]
+        public void ARoundTrip_KeepsEverythingASaveMustHold()
+        {
+            var session = new GameSession(1, killsSinceLegendary: 123);
+            var weapon = RareWeapon();
+            var helm = new Item(ItemSlot.Helm, ItemRarity.Magic, 8, new[] { new AffixRoll(AffixId.CooldownReduction, 5, 2f) });
+            var bagged = new Item(ItemSlot.Chest, ItemRarity.Common, 3);
+            session.Equip(EquipmentState.Empty.With(ItemSlot.Weapon, weapon).With(ItemSlot.Helm, helm));
+            session.PickUp(bagged);
+            session.AddGold(345);
+            session.LifeFraction = 0.4f;
+            session.RecordKill("Sandbox/Pack West", 2);
+            session.RecordKill("Sandbox/Pack West", 5);
+            session.RecordKill("Sandbox/Pack East", 0);
+
+            // A corpse holding the gear, then new gear on the character.
+            session.Die("Sandbox", new Vector2(4.5f, -3.25f));
+            session.Equip(new EquipmentState(new Item(ItemSlot.Weapon, ItemRarity.Common, 1)));
+            session.LifeFraction = 0.4f;
+
+            var loaded = RoundTrip(session);
+
+            Assert.AreEqual(345, loaded.Gold);
+            Assert.AreEqual(0.4f, loaded.LifeFraction, 1e-5f);
+            Assert.AreEqual(123, loaded.Loot.KillsSinceLegendary);
+            AssertSameItem(session.Equipment.Weapon, loaded.Equipment.Weapon);
+            Assert.IsNull(loaded.Equipment.Helm);
+            Assert.AreEqual(1, loaded.Inventory.Count);
+            AssertSameItem(bagged, loaded.Inventory.Items[0]);
+
+            Assert.AreEqual(1, loaded.Corpses.Count);
+            var corpse = loaded.Corpses[0];
+            Assert.AreEqual("Sandbox", corpse.LevelId);
+            Assert.AreEqual(new Vector2(4.5f, -3.25f), corpse.GroundPosition);
+            AssertSameItem(weapon, corpse.Gear.Weapon);
+            AssertSameItem(helm, corpse.Gear.Helm);
+
+            Assert.IsTrue(loaded.IsKilled("Sandbox/Pack West", 2));
+            Assert.IsTrue(loaded.IsKilled("Sandbox/Pack West", 5));
+            Assert.IsTrue(loaded.IsKilled("Sandbox/Pack East", 0));
+            Assert.IsFalse(loaded.IsKilled("Sandbox/Pack West", 3));
+        }
+
+        [Test]
+        public void ARoundTrip_OfACharacterWithNothingEquipped_StaysUnequipped()
+        {
+            var session = new GameSession();
+            session.Equip(EquipmentState.Empty);
+
+            Assert.IsTrue(RoundTrip(session).Equipment.IsEmpty);
+        }
+
+        [Test]
+        public void Enums_AreSavedByName_NotByNumber()
+        {
+            var session = new GameSession();
+            session.Equip(new EquipmentState(RareWeapon()));
+
+            var json = SaveCodec.ToJson(SaveCodec.Capture(session, 0));
+
+            StringAssert.Contains("\"Weapon\"", json);
+            StringAssert.Contains("\"Rare\"", json);
+            StringAssert.Contains("\"FlatWeaponDamage\"", json);
+        }
+
+        [Test]
+        public void UnknownNames_AreLeftOut_WithAWarning_AndTheRestLoads()
+        {
+            var data = new SaveData { version = SaveData.CurrentVersion, gold = 10 };
+            data.backpack.Add(new ItemData { slot = "Boots", rarity = "Magic", itemLevel = 5 });
+            data.backpack.Add(new ItemData { slot = "7", rarity = "Magic", itemLevel = 5 });
+            var chest = new ItemData { slot = "Chest", rarity = "Magic", itemLevel = 5 };
+            chest.affixes.Add(new AffixData { id = "Thorns", tier = 5, value = 3f });
+            chest.affixes.Add(new AffixData { id = "Life", tier = 5, value = 40f });
+            data.backpack.Add(chest);
+            var warnings = new List<string>();
+
+            var session = SaveCodec.Restore(data, 1, warnings);
+
+            Assert.AreEqual(10, session.Gold);
+            Assert.AreEqual(1, session.Inventory.Count);
+            Assert.AreEqual(ItemSlot.Chest, session.Inventory.Items[0].Slot);
+            Assert.AreEqual(40f, session.Inventory.Items[0].LifeBonus);
+            Assert.AreEqual(3, warnings.Count);
+        }
+
+        [Test]
+        public void ASavedLifeOfZero_LoadsAsFullLife()
+        {
+            var data = new SaveData { version = SaveData.CurrentVersion, lifeFraction = 0f };
+
+            Assert.AreEqual(1f, SaveCodec.Restore(data, 1).LifeFraction);
+        }
+
+        [TestCase("")]
+        [TestCase("   ")]
+        [TestCase("not json at all")]
+        [TestCase("{\"version\":1,\"gold\":5,\"equipped\":[{\"slot\":\"Wea")]
+        [TestCase("{\"gold\":5}")]
+        [TestCase("{\"version\":0}")]
+        public void TryParse_RejectsWhatIsNotASave(string json)
+        {
+            Assert.IsFalse(SaveCodec.TryParse(json, out var data, out var error));
+            Assert.IsNull(data);
+            Assert.IsNotEmpty(error);
+        }
+
+        [Test]
+        public void TryParse_RejectsASaveFromANewerBuild()
+        {
+            var json = "{\"version\":" + (SaveData.CurrentVersion + 1) + ",\"gold\":5}";
+
+            Assert.IsFalse(SaveCodec.TryParse(json, out _, out var error));
+            StringAssert.Contains("newer", error);
+        }
+
+        [Test]
+        public void TryParse_FillsInMissingLists()
+        {
+            Assert.IsTrue(SaveCodec.TryParse("{\"version\":1,\"gold\":5}", out var data, out _));
+
+            Assert.AreEqual(5, data.gold);
+            Assert.IsNotNull(data.equipped);
+            Assert.IsNotNull(data.backpack);
+            Assert.IsNotNull(data.corpses);
+            Assert.IsNotNull(data.killed);
+        }
+
+        [Test]
+        public void Modified_IsRaised_ForEverythingASaveCaptures()
+        {
+            var session = new GameSession();
+            var count = 0;
+            session.Modified += () => count++;
+
+            session.AddGold(5);
+            Assert.AreEqual(1, count, "gold");
+            session.PickUp(new Item(ItemSlot.Chest, ItemRarity.Common, 1));
+            Assert.AreEqual(2, count, "pickup");
+            session.RecordKill("pack", 0);
+            Assert.AreEqual(3, count, "kill");
+            session.RecordKill("pack", 0);
+            Assert.AreEqual(3, count, "the same kill twice is not a change");
+            session.Equip(EquipmentState.Empty);
+            session.Die("Sandbox", Vector2.zero);
+            Assert.AreEqual(5, count, "a death with nothing equipped still changes life and must be saved");
+        }
+
+        [Test]
+        public void Kills_DoNotRaiseChanged_WhichTheHudListensTo()
+        {
+            var session = new GameSession();
+            var changed = 0;
+            session.Changed += () => changed++;
+
+            session.RecordKill("pack", 0);
+
+            Assert.AreEqual(0, changed);
+        }
+    }
+}

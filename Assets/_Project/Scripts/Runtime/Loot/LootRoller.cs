@@ -38,7 +38,13 @@ namespace ARPG
 
         readonly System.Random random;
 
-        public LootRoller(int seed) => random = new System.Random(seed);
+        /// <param name="killsSinceLegendary">Where the bad luck counter starts, for a character loaded from a save. The
+        /// generator's own state is not saved; a loaded session reseeds it.</param>
+        public LootRoller(int seed, int killsSinceLegendary = 0)
+        {
+            random = new System.Random(seed);
+            KillsSinceLegendary = killsSinceLegendary < 0 ? 0 : killsSinceLegendary;
+        }
 
         /// <summary>Kills since the last legendary drop. Every kill counts, whether or not it dropped anything.</summary>
         public int KillsSinceLegendary { get; private set; }
