@@ -112,6 +112,57 @@ namespace ARPG.Editor
 
             var lifeBar = bar.gameObject.AddComponent<LifeBar>();
             EnemySceneBuilder.SetReference(lifeBar, "fill", fill.rectTransform);
+
+            AddExperienceBar(canvasObject.transform);
+        }
+
+        const string ExperienceBarName = "Experience Bar";
+        const string LevelLabelName = "Level";
+
+        /// <summary>
+        /// The thin gold XP bar right under the life bar and the level number to the left of both. Idempotent: it
+        /// replaces an existing one, so it can be added to a scene whose HUD was built before it existed.
+        /// </summary>
+        public static void AddExperienceBar(Transform hudCanvas)
+        {
+            foreach (var existing in new[] { ExperienceBarName, LevelLabelName })
+            {
+                var child = hudCanvas.Find(existing);
+                if (child != null)
+                    Object.DestroyImmediate(child.gameObject);
+            }
+
+            // The life bar spans 720 wide from 160 down, 30 tall; this sits just below it.
+            var bar = NewImage(ExperienceBarName, hudCanvas, new Color(0f, 0f, 0f, 0.6f));
+            var barRect = bar.rectTransform;
+            barRect.anchorMin = barRect.anchorMax = new Vector2(0.5f, 1f);
+            barRect.pivot = new Vector2(0.5f, 1f);
+            barRect.anchoredPosition = new Vector2(0f, -196f);
+            barRect.sizeDelta = new Vector2(720f, 14f);
+
+            var fill = NewImage("Fill", bar.transform, new Color(0.95f, 0.75f, 0.25f, 1f));
+            Stretch(fill.rectTransform, 3f);
+
+            var labelObject = new GameObject(LevelLabelName, typeof(RectTransform), typeof(Text));
+            labelObject.transform.SetParent(hudCanvas, false);
+            var labelRect = (RectTransform)labelObject.transform;
+            labelRect.anchorMin = labelRect.anchorMax = new Vector2(0.5f, 1f);
+            labelRect.pivot = new Vector2(1f, 1f);
+            labelRect.anchoredPosition = new Vector2(-372f, -154f);
+            labelRect.sizeDelta = new Vector2(110f, 60f);
+            var label = labelObject.GetComponent<Text>();
+            label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            label.fontSize = 44;
+            label.fontStyle = FontStyle.Bold;
+            label.alignment = TextAnchor.MiddleRight;
+            label.color = new Color(0.95f, 0.75f, 0.25f, 1f);
+            label.raycastTarget = false;
+            label.text = "1";
+            labelObject.AddComponent<Shadow>().effectDistance = new Vector2(2f, -2f);
+
+            var experienceBar = bar.gameObject.AddComponent<ExperienceBar>();
+            EnemySceneBuilder.SetReference(experienceBar, "fill", fill.rectTransform);
+            EnemySceneBuilder.SetReference(experienceBar, "levelLabel", label);
         }
 
         static void BuildFade()

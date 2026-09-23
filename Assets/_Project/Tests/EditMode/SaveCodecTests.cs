@@ -78,6 +78,41 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void ARoundTrip_KeepsLevelAndXp()
+        {
+            var session = new GameSession();
+            session.GrantExperience(Experience.XpToNextLevel(1) + Experience.XpToNextLevel(2) + 123);
+
+            var loaded = RoundTrip(session);
+
+            Assert.AreEqual(3, loaded.Level);
+            Assert.AreEqual(123, loaded.Progress.Xp);
+        }
+
+        [Test]
+        public void AVersionOneSave_LoadsAsLevelOne_WithEverythingElseKept()
+        {
+            // Written by the first save format, before level and XP existed.
+            const string versionOne =
+                "{\"version\":1,\"savedAtUnixMs\":1790193348575,\"gold\":17,\"lifeFraction\":0.5,\"killsSinceLegendary\":17," +
+                "\"equipped\":[],\"backpack\":[{\"slot\":\"Helm\",\"rarity\":\"Magic\",\"itemLevel\":2,\"affixes\":[]}]," +
+                "\"corpses\":[{\"levelId\":\"Sandbox\",\"x\":3.5,\"y\":-3.0,\"gear\":[{\"slot\":\"Weapon\",\"rarity\":\"Common\",\"itemLevel\":1,\"affixes\":[]}]}]," +
+                "\"killed\":[{\"packKey\":\"Sandbox/Pack East (near)\",\"slots\":[0,1,2]}]}";
+
+            Assert.IsTrue(SaveCodec.TryParse(versionOne, out var data, out var error), error);
+            Assert.AreEqual(SaveData.CurrentVersion, data.version);
+            var session = SaveCodec.Restore(data, 1);
+
+            Assert.AreEqual(1, session.Level);
+            Assert.AreEqual(0, session.Progress.Xp);
+            Assert.AreEqual(17, session.Gold);
+            Assert.AreEqual(0.5f, session.LifeFraction, 1e-5f);
+            Assert.AreEqual(ItemSlot.Helm, session.Inventory.Items[0].Slot);
+            Assert.AreEqual(1, session.Corpses.Count);
+            Assert.IsTrue(session.IsKilled("Sandbox/Pack East (near)", 2));
+        }
+
+        [Test]
         public void ARoundTrip_OfACharacterWithNothingEquipped_StaysUnequipped()
         {
             var session = new GameSession();

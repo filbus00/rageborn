@@ -117,7 +117,7 @@ namespace ARPG
 
     /// <summary>
     /// Everything that has to survive changing scene within one game session: equipment, the backpack, gold, corpses,
-    /// which enemies were killed, life and the loot roller. Pure, so it can be tested; <see cref="Current"/> holds
+    /// which enemies were killed, life, level and XP, and the loot roller. Pure, so it can be tested; <see cref="Current"/> holds
     /// the live one. A future sleep mechanic resets the session (Docs/08-production.md, open question 5).
     /// <see cref="SaveCodec"/> writes it to disk and reads it back, and <see cref="SaveDirector"/> decides when.
     /// </summary>
@@ -164,6 +164,13 @@ namespace ARPG
         public int Gold { get; private set; }
 
         public LootRoller Loot { get; }
+
+        public CharacterProgress Progress { get; private set; } = new CharacterProgress();
+
+        public int Level => Progress.Level;
+
+        /// <summary>Raised with the new level when the character levels up, after <see cref="Changed"/>.</summary>
+        public event Action<int> LeveledUp;
 
         public IReadOnlyList<Corpse> Corpses => corpses;
 
@@ -252,6 +259,29 @@ namespace ARPG
             NotifyChanged();
             return true;
         }
+
+        /// <summary>
+        /// Adds XP. A level up raises <see cref="Changed"/> (maximum life depends on level) and then
+        /// <see cref="LeveledUp"/>. Returns how many levels were gained.
+        /// </summary>
+        public int GrantExperience(int amount)
+        {
+            var before = Progress.Xp;
+            var gained = Progress.Add(amount);
+            if (gained > 0)
+            {
+                NotifyChanged();
+                LeveledUp?.Invoke(Level);
+            }
+            else if (Progress.Xp != before)
+            {
+                Modified?.Invoke();
+            }
+            return gained;
+        }
+
+        /// <summary>Puts back the level and XP read from a save.</summary>
+        internal void RestoreProgress(int level, int xp) => Progress = new CharacterProgress(level, xp);
 
         /// <summary>Records that a pack's member was killed. It stays dead while the session lasts.</summary>
         public void RecordKill(string packKey, int slot)

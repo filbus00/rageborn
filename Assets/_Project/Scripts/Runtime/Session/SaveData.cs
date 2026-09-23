@@ -13,7 +13,8 @@ namespace ARPG
     [Serializable]
     public sealed class SaveData
     {
-        public const int CurrentVersion = 1;
+        /// <summary>1: the first. 2: adds level and experience.</summary>
+        public const int CurrentVersion = 2;
 
         public int version;
 
@@ -23,6 +24,10 @@ namespace ARPG
         public int gold;
         public float lifeFraction = 1f;
         public int killsSinceLegendary;
+        public int level = 1;
+
+        /// <summary>XP toward the next level, not the lifetime total.</summary>
+        public int experience;
         public List<ItemData> equipped = new List<ItemData>();
         public List<ItemData> backpack = new List<ItemData>();
         public List<CorpseData> corpses = new List<CorpseData>();

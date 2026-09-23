@@ -6,15 +6,25 @@ namespace ARPG
 {
     /// <summary>
     /// Turns a <see cref="GameSession"/> into <see cref="SaveData"/> and JSON and back. Pure, no file access (that is
-    /// <see cref="SaveStore"/>). What is saved: equipment, the backpack, gold, life, corpses, killed pack members and
-    /// the bad luck counter. The loot generator's own state is not: a loaded session gets a fresh seed.
+    /// <see cref="SaveStore"/>). What is saved: equipment, the backpack, gold, life, level and XP, corpses, killed pack
+    /// members and the bad luck counter. The loot generator's own state is not: a loaded session gets a fresh seed.
     /// </summary>
     public static class SaveCodec
     {
-        // One step per old version: Migrations[v] upgrades a version v save to v + 1. Index 0 is unused. Version 1 is
-        // the first, so there are none yet; when SaveData.CurrentVersion goes to 2, add the 1 to 2 step here, and a
-        // test that loads a saved version 1 file.
-        static readonly Func<SaveData, SaveData>[] Migrations = { null };
+        // One step per old version: Migrations[v] upgrades a version v save to v + 1 (the loop then bumps the version
+        // number). Index 0 is unused. Each step comes with a test that loads a file written in the old version.
+        static readonly Func<SaveData, SaveData>[] Migrations =
+        {
+            null,
+            MigrateFrom1, // 1 to 2: level and experience did not exist, so the character was level 1.
+        };
+
+        static SaveData MigrateFrom1(SaveData data)
+        {
+            data.level = 1;
+            data.experience = 0;
+            return data;
+        }
 
         public static SaveData Capture(GameSession session, long savedAtUnixMs)
         {
@@ -25,6 +35,8 @@ namespace ARPG
                 gold = session.Gold,
                 lifeFraction = session.LifeFraction,
                 killsSinceLegendary = session.Loot.KillsSinceLegendary,
+                level = session.Progress.Level,
+                experience = session.Progress.Xp,
                 equipped = CaptureEquipment(session.Equipment),
             };
 
@@ -59,6 +71,7 @@ namespace ARPG
         public static GameSession Restore(SaveData data, int lootSeed, List<string> warnings = null)
         {
             var session = new GameSession(lootSeed, data.killsSinceLegendary);
+            session.RestoreProgress(data.level, data.experience);
 
             session.Equip(RestoreEquipment(data.equipped, warnings));
 

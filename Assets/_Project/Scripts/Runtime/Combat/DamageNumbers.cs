@@ -65,6 +65,7 @@ namespace ARPG
             text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             text.fontStyle = FontStyle.Bold;
             text.alignment = TextAnchor.MiddleCenter;
+            text.horizontalOverflow = HorizontalWrapMode.Overflow; // a callout like "LEVEL 12" is wider than a number
             text.raycastTarget = false;
             go.AddComponent<Shadow>().effectDistance = new Vector2(2f, -2f);
 
@@ -93,6 +94,26 @@ namespace ARPG
 
             if (cam != null)
                 Reposition(ref slots[index]); // avoid a one-frame flash at wherever this slot last was
+        }
+
+        /// <summary>Pops a line of text at a world position, on the same float-and-fade path as a number. Used for the
+        /// level-up callout.</summary>
+        public void ShowText(Vector3 worldPosition, string text, Color color, int fontSize)
+        {
+            if (slots == null || slots.Length == 0)
+                return;
+
+            var index = FindFreeOrOldest();
+            slots[index].WorldOrigin = worldPosition;
+            slots[index].Elapsed = 0f;
+            slots[index].Active = true;
+            slots[index].Label.text = text;
+            slots[index].Label.color = color;
+            slots[index].Label.fontSize = fontSize;
+            slots[index].Rect.gameObject.SetActive(true);
+
+            if (cam != null)
+                Reposition(ref slots[index]);
         }
 
         int FindFreeOrOldest()

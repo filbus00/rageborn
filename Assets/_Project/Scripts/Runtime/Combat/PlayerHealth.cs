@@ -12,7 +12,6 @@ namespace ARPG
     public class PlayerHealth : MonoBehaviour
     {
         // There is no progression yet, so the character is level 1.
-        const int CharacterLevel = 1;
 
         LifePool life;
         GameSession session;
@@ -95,6 +94,6 @@ namespace ARPG
 
         void HandleEquipmentChanged() => life.SetMax(ComputeMaxLife());
 
-        static float ComputeMaxLife() => CombatFormulas.CharacterBaseLife(CharacterLevel) + GameSession.Current.Equipment.TotalLifeBonus;
+        static float ComputeMaxLife() => CombatFormulas.CharacterBaseLife(GameSession.Current.Level) + GameSession.Current.Equipment.TotalLifeBonus;
     }
 }
