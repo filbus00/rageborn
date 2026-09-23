@@ -106,6 +106,7 @@ Techniques: object pooling for all entities, texture atlases per act, sprite bat
 - Write rules: atomic write to a temporary file, then rename. Keep the last 3 versions as backups.
 - Triggers: on item pickup batch (2 second debounce), on Forge action, on level up, on zone exit, on death, on app background.
 - Level state and corpse: for each level visited in the current game session, the seed, killed packs and opened chests, plus any corpse with its gear, are saved with the character so quitting the app never loses a corpse run.
+- Resume: loading a saved game restarts in town. The character's position in a level is not saved.
 - Schema version: an integer in each file, with migration functions from each prior version.
 - iCloud: CloudKit private database syncs save documents. Conflicts resolve by the latest modified time per character, with the losing version stored as a backup and a visible restore option.
 - Corruption: on read failure, the game tries backups in order and reports which one it loaded.

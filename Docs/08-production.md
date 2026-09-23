@@ -89,6 +89,7 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-21 | Fast travel: waypoints in levels and the Waystone in town. The world map screen is dropped | User |
 | 2026-09-21 | No online features in 1.0: the Abyss leaderboard and Game Center are cut. iCloud save sync stays | User |
 | 2026-09-21 | The Ember Shard is removed from the game | User |
+| 2026-09-23 | Loading a saved game restarts in town | User |
 
 ## Post-launch plan (draft)
 
