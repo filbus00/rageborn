@@ -117,7 +117,7 @@ namespace ARPG
 
     /// <summary>
     /// Everything that has to survive changing scene within one game session: equipment, the backpack, gold, corpses,
-    /// which enemies were killed, life, level and XP, and the loot roller. Pure, so it can be tested; <see cref="Current"/> holds
+    /// which enemies were killed, life, level and XP, potion charges, and the loot roller. Pure, so it can be tested; <see cref="Current"/> holds
     /// the live one. A future sleep mechanic resets the session (Docs/08-production.md, open question 5).
     /// <see cref="SaveCodec"/> writes it to disk and reads it back, and <see cref="SaveDirector"/> decides when.
     /// </summary>
@@ -140,6 +140,7 @@ namespace ARPG
         {
             Loot = new LootRoller(lootSeed, killsSinceLegendary);
             Equipment = EquipmentState.Starting;
+            SetPotion(new AutoPotion());
         }
 
         /// <summary>The live session. Replaced at the start of every play, so nothing leaks between editor plays,
@@ -166,6 +167,9 @@ namespace ARPG
         public LootRoller Loot { get; }
 
         public CharacterProgress Progress { get; private set; } = new CharacterProgress();
+
+        /// <summary>The auto-potion's charges and kill progress. Its changes raise <see cref="Modified"/>.</summary>
+        public AutoPotion Potion { get; private set; }
 
         public int Level => Progress.Level;
 
@@ -281,6 +285,19 @@ namespace ARPG
             }
             return gained;
         }
+
+        /// <summary>Puts back the potion charges read from a save.</summary>
+        internal void RestorePotion(int charges, int killProgress) => SetPotion(new AutoPotion(charges, killProgress));
+
+        void SetPotion(AutoPotion potion)
+        {
+            if (Potion != null)
+                Potion.Changed -= RaiseModified;
+            Potion = potion;
+            Potion.Changed += RaiseModified;
+        }
+
+        void RaiseModified() => Modified?.Invoke();
 
         /// <summary>Puts back the level and XP read from a save.</summary>
         internal void RestoreProgress(int level, int xp) => Progress = new CharacterProgress(level, xp);

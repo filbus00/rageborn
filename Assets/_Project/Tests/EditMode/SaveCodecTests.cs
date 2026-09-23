@@ -90,6 +90,40 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void ARoundTrip_KeepsPotionCharges()
+        {
+            var session = new GameSession();
+            // Fire two potions (the second once the first heal has run out), then 7 kills toward the next charge.
+            session.Potion.Tick(AutoPotion.HealSeconds, 0.1f, true, out _);
+            session.Potion.Tick(AutoPotion.HealSeconds, 0.1f, true, out _);
+            for (var i = 0; i < 7; i++)
+                session.Potion.RegisterKill();
+
+            var loaded = RoundTrip(session);
+
+            Assert.AreEqual(1, loaded.Potion.Charges);
+            Assert.AreEqual(7, loaded.Potion.KillProgress);
+        }
+
+        [Test]
+        public void AVersionTwoSave_LoadsWithFullPotions_AndItsLevelKept()
+        {
+            // Written by save format 2, before potions existed.
+            const string versionTwo =
+                "{\"version\":2,\"savedAtUnixMs\":1,\"gold\":101,\"lifeFraction\":0.6,\"killsSinceLegendary\":25," +
+                "\"level\":2,\"experience\":24,\"equipped\":[],\"backpack\":[],\"corpses\":[],\"killed\":[]}";
+
+            Assert.IsTrue(SaveCodec.TryParse(versionTwo, out var data, out var error), error);
+            var session = SaveCodec.Restore(data, 1);
+
+            Assert.AreEqual(AutoPotion.MaxCharges, session.Potion.Charges);
+            Assert.AreEqual(0, session.Potion.KillProgress);
+            Assert.AreEqual(2, session.Level);
+            Assert.AreEqual(24, session.Progress.Xp);
+            Assert.AreEqual(101, session.Gold);
+        }
+
+        [Test]
         public void AVersionOneSave_LoadsAsLevelOne_WithEverythingElseKept()
         {
             // Written by the first save format, before level and XP existed.

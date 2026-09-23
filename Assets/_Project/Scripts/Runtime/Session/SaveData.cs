@@ -13,8 +13,8 @@ namespace ARPG
     [Serializable]
     public sealed class SaveData
     {
-        /// <summary>1: the first. 2: adds level and experience.</summary>
-        public const int CurrentVersion = 2;
+        /// <summary>1: the first. 2: adds level and experience. 3: adds potion charges.</summary>
+        public const int CurrentVersion = 3;
 
         public int version;
 
@@ -28,6 +28,9 @@ namespace ARPG
 
         /// <summary>XP toward the next level, not the lifetime total.</summary>
         public int experience;
+
+        public int potionCharges = AutoPotion.MaxCharges;
+        public int potionKillProgress;
         public List<ItemData> equipped = new List<ItemData>();
         public List<ItemData> backpack = new List<ItemData>();
         public List<CorpseData> corpses = new List<CorpseData>();

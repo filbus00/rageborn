@@ -6,8 +6,8 @@ namespace ARPG
 {
     /// <summary>
     /// Turns a <see cref="GameSession"/> into <see cref="SaveData"/> and JSON and back. Pure, no file access (that is
-    /// <see cref="SaveStore"/>). What is saved: equipment, the backpack, gold, life, level and XP, corpses, killed pack
-    /// members and the bad luck counter. The loot generator's own state is not: a loaded session gets a fresh seed.
+    /// <see cref="SaveStore"/>). What is saved: equipment, the backpack, gold, life, level and XP, potion charges,
+    /// corpses, killed pack members and the bad luck counter. The loot generator's own state is not: a loaded session gets a fresh seed.
     /// </summary>
     public static class SaveCodec
     {
@@ -17,12 +17,20 @@ namespace ARPG
         {
             null,
             MigrateFrom1, // 1 to 2: level and experience did not exist, so the character was level 1.
+            MigrateFrom2, // 2 to 3: potions did not exist; start with full charges.
         };
 
         static SaveData MigrateFrom1(SaveData data)
         {
             data.level = 1;
             data.experience = 0;
+            return data;
+        }
+
+        static SaveData MigrateFrom2(SaveData data)
+        {
+            data.potionCharges = AutoPotion.MaxCharges;
+            data.potionKillProgress = 0;
             return data;
         }
 
@@ -37,6 +45,8 @@ namespace ARPG
                 killsSinceLegendary = session.Loot.KillsSinceLegendary,
                 level = session.Progress.Level,
                 experience = session.Progress.Xp,
+                potionCharges = session.Potion.Charges,
+                potionKillProgress = session.Potion.KillProgress,
                 equipped = CaptureEquipment(session.Equipment),
             };
 
@@ -72,6 +82,7 @@ namespace ARPG
         {
             var session = new GameSession(lootSeed, data.killsSinceLegendary);
             session.RestoreProgress(data.level, data.experience);
+            session.RestorePotion(data.potionCharges, data.potionKillProgress);
 
             session.Equip(RestoreEquipment(data.equipped, warnings));
 

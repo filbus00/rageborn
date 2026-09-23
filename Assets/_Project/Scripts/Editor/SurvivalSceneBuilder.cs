@@ -116,6 +116,59 @@ namespace ARPG.Editor
             EnemySceneBuilder.SetReference(lifeBar, "fill", fill.rectTransform);
 
             AddExperienceBar(canvasObject.transform);
+            AddPotionPips(canvasObject.transform);
+        }
+
+        const string PotionPipsName = "Potion Pips";
+
+        /// <summary>
+        /// The auto-potion's charges: one square pip per charge right of the life bar, filling bottom-up as kills
+        /// refill it. Idempotent, like <see cref="AddExperienceBar"/>, so it can be added to an existing HUD.
+        /// </summary>
+        public static void AddPotionPips(Transform hudCanvas)
+        {
+            var existing = hudCanvas.Find(PotionPipsName);
+            if (existing != null)
+                Object.DestroyImmediate(existing.gameObject);
+
+            const float pipSize = 34f;
+            const float gap = 10f;
+
+            var row = new GameObject(PotionPipsName, typeof(RectTransform));
+            row.transform.SetParent(hudCanvas, false);
+            var rowRect = (RectTransform)row.transform;
+            rowRect.anchorMin = rowRect.anchorMax = new Vector2(0.5f, 1f);
+            rowRect.pivot = new Vector2(0f, 1f);
+            // Just right of the 720 wide life bar, level with it.
+            rowRect.anchoredPosition = new Vector2(376f, -158f);
+            rowRect.sizeDelta = new Vector2(AutoPotion.MaxCharges * (pipSize + gap), pipSize);
+
+            var fills = new Image[AutoPotion.MaxCharges];
+            for (var i = 0; i < fills.Length; i++)
+            {
+                var back = NewImage($"Pip {i + 1}", row.transform, new Color(0f, 0f, 0f, 0.6f));
+                var backRect = back.rectTransform;
+                backRect.anchorMin = backRect.anchorMax = backRect.pivot = new Vector2(0f, 1f);
+                backRect.anchoredPosition = new Vector2(i * (pipSize + gap), 0f);
+                backRect.sizeDelta = new Vector2(pipSize, pipSize);
+
+                var fill = NewImage("Fill", back.transform, new Color(0.35f, 0.85f, 0.45f, 1f));
+                Stretch(fill.rectTransform, 4f);
+                // A filled image needs a sprite; Unity's built-in white square is always available in the editor.
+                fill.sprite = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
+                fill.type = Image.Type.Filled;
+                fill.fillMethod = Image.FillMethod.Vertical;
+                fill.fillOrigin = (int)Image.OriginVertical.Bottom;
+                fills[i] = fill;
+            }
+
+            var pips = row.AddComponent<PotionPips>();
+            var serialized = new SerializedObject(pips);
+            var array = serialized.FindProperty("fills");
+            array.arraySize = fills.Length;
+            for (var i = 0; i < fills.Length; i++)
+                array.GetArrayElementAtIndex(i).objectReferenceValue = fills[i];
+            serialized.ApplyModifiedPropertiesWithoutUndo();
         }
 
         const string ExperienceBarName = "Experience Bar";
