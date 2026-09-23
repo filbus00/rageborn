@@ -29,7 +29,9 @@ namespace ARPG.Editor
         // is not walked onto by accident. It must stay at least 3 cells clear of the two near walls (the bottom-left
         // and bottom-right edges of the room): wall blocks are tall sprites that draw over the cells just behind
         // them, which hid the stairway when it stood against the wall at (2, -8).
-        static readonly Vector2Int StairsCell = new Vector2Int(-6, -3);
+        // Two cells behind the test room's arrival point, on the side away from the room, so the player does not land
+        // on it and is not walked back into it by heading for the room.
+        static readonly Vector2Int StairsCell = TestRoomBuilder.PlayerStartCell + new Vector2Int(0, -2);
 
         [MenuItem("Tools/ARPG/Add Survival To Sandbox")]
         public static void Build()

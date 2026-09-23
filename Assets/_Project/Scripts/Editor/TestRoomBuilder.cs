@@ -37,10 +37,16 @@ namespace ARPG.Editor
         const int DividerY = 0;
         static readonly int[] DividerGap = { -1, 0 };
 
-        static readonly Vector2Int PlayerStartCell = new Vector2Int(0, -7);
+        // A doorway two cells wide in the south wall (the one at InteriorMin - 1), the way in from the arrival point.
+        static readonly int[] DoorGap = { -1, 0 };
 
-        // Pack centers in cell coordinates. The two near packs are within aggro range of the start, the two far
-        // ones are behind the divider and idle until the player approaches.
+        // Outside the room, south of the door, where the stairs from the town put the player. Arriving must not start
+        // a fight: the nearest pack members (the near packs, centered at (+-4, -5) with radius 1.8) are about 8.5
+        // ground units away, beyond the 7 unit aggro range. SurvivalSceneBuilder puts the stairway up just behind it.
+        internal static readonly Vector2Int PlayerStartCell = new Vector2Int(0, -19);
+
+        // Pack centers in cell coordinates. The two near packs are just inside the door and wake as the player walks
+        // in; the two far ones are behind the divider and idle until the player approaches.
         static readonly (string name, Vector2Int cell)[] Packs =
         {
             ("Pack West (near)", new Vector2Int(-4, -5)),
@@ -179,7 +185,8 @@ namespace ARPG.Editor
         {
             for (var x = InteriorMin - 1; x <= InteriorMax + 1; x++)
             {
-                yield return new Vector2Int(x, InteriorMin - 1);
+                if (System.Array.IndexOf(DoorGap, x) < 0)
+                    yield return new Vector2Int(x, InteriorMin - 1);
                 yield return new Vector2Int(x, InteriorMax + 1);
             }
 

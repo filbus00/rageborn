@@ -52,7 +52,7 @@ Project settings are applied by the editor menu command Tools > ARPG > Apply Pro
 - World: an isometric Grid with a cell size of 1 by 0.5 world units and a Tilemap per layer (ground, decor). Tile art is 128 by 64 pixel diamonds at 128 pixels per unit.
 - Sorting: the 2D Renderer uses a custom transparency sort axis of (0, 1, 0), so anything lower on screen draws in front. Sprite pivots sit at the character's feet. Characters and props share the Entities sorting layer so they sort against each other.
 - Sorting layers, back to front: Ground, Decals, Entities, Effects, WorldUI.
-- Camera: fixed orthographic, size 8 for the 9 by 16 portrait framing.
+- Camera: fixed orthographic, size 10: 20 world units tall, about 9 wide on an iPhone in portrait.
 - Movement and ranges are computed in ground space and projected for display, see the camera section of 01-core-gameplay.md.
 - Pathfinding: Unity's NavMesh is not available for 2D, so enemy navigation uses a grid pathfinder over the tilemap plus steering, with the spatial hash grid for queries.
 

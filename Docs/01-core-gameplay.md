@@ -19,7 +19,7 @@ No tap, swipe, long press or double tap has a combat function. The top of the sc
 - Isometric view: a fixed orthographic camera over a 2:1 dimetric grid (a tile is twice as wide as it is tall on screen). No rotation and no perspective. Characters are 2D sprites.
 - Units: 1 unit is one tile width on screen (128 pixels of art). Every range and radius in these docs is measured on the ground plane in these units, so a circle on the ground appears on screen as an ellipse twice as wide as it is tall.
 - Stick input is converted from screen space to ground space (the screen Y component is doubled before normalizing) so the character moves at the same speed in every direction on the ground.
-- Portrait framing shows roughly 9 by 16 screen units around the player. The player sits at 45 percent of screen height so more space is visible ahead in the movement direction.
+- Portrait framing shows 20 world units top to bottom (orthographic size 10), about 9 across on an iPhone, around the player. The player sits at 45 percent of screen height so more space is visible ahead in the movement direction.
 - The camera leads the movement direction by up to 1.5 units with smoothing of 0.25 seconds.
 - Screen shake is capped and can be disabled.
 

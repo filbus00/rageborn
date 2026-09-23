@@ -15,7 +15,7 @@ The design docs in `Docs/` are the source of truth for design decisions. Start a
 - `Assets/_Project/` holds all game content. `Assets/Settings/` (URP and input assets) comes from the Unity template.
 - `Scripts/Runtime` is the `ARPG.Runtime` assembly (namespace `ARPG`), `Scripts/Editor` is `ARPG.Editor`.
 - Physics/sorting layer names live in `GameLayers.cs`. `Tools > ARPG > Apply Project Setup` (`ProjectSetup.cs`) creates them in TagManager and applies iOS, identity and sorting settings. It is idempotent. Keep the two files in sync.
-- `Scenes/Sandbox.unity` is the dev scene (built by `Tools > ARPG > Create Sandbox Scene`, which rebuilds the Grid if you run it again): isometric Grid (cell 1 x 0.5) with a `Ground` Tilemap of generated placeholder tiles and a portrait-framed camera (orthographic size 8). Replace the tiles with real art later.
+- `Scenes/Sandbox.unity` is the dev scene (built by `Tools > ARPG > Create Sandbox Scene`, which rebuilds the Grid if you run it again): isometric Grid (cell 1 x 0.5) with a `Ground` Tilemap of generated placeholder tiles and a portrait-framed camera (orthographic size 10, zoomed out from 8 at the user's request). Replace the tiles with real art later.
 
 # Isometric conventions
 
@@ -111,7 +111,7 @@ The design docs in `Docs/` are the source of truth for design decisions. Start a
 - The simulator runs on the Mac's CPU and GPU, so its numbers do not show whether the game holds 60 fps on an iPhone 12 (the M0 exit criterion). On the iPhone 17 simulator on 2026-09-23: 60 fps with a worst frame of 17.4 ms, both idle in town and fighting 28 enemies, with no hitches and about one GC per minute when idle. Use it as a smoke test and to catch regressions. A device test is still owed.
 - Unity's player log goes to stdout, not the unified log. Capture it with `xcrun simctl launch --console-pty booted com.filipbusic.rageborn > player.log`.
 - Known build log noise: "More than one global light" appears whenever the editor has both scenes open at once (each scene has one global light, so it is harmless in game). Bloom and the other post-processing shaders are stripped, so URP logs that post-processing passes will not run. The Unity AI package (`com.unity.ai.inference`) compiles its Sentis shaders into the build. On the simulator, injected touches sometimes log "Touch was already deallocated" from native code, and once the first injected drag after launch did not move the player at all; not seen with real input yet.
-- The test room puts the Sandbox player start within about 3 units of two "near" packs, so arriving by the stairs starts a fight at once. That is fine for testing but not for real levels, where arrival points must be outside aggro range.
+- The Sandbox player start (where the stairs from the town arrive) is outside the test room, south of a two-cell doorway in its south wall, about 8.5 ground units from the nearest pack member, so arriving never starts a fight (aggro is 7). The stairway up is 2 cells behind it. Real levels need the same rule. For camera size 10 to show no void past the ground's edge from there, the placeholder ground is 96 x 96 cells (`SandboxSceneBuilder.HalfExtent` 48).
 
 # Notes
 

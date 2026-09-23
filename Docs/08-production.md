@@ -93,6 +93,7 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-23 | XP level-difference steps count from the edge of the plus or minus 3 band (4 below gives 88 percent) | User |
 | 2026-09-23 | Champions give more XP and gold than normal enemies. The multiplier, 3 times, is a tuning value picked by Claude | User |
 | 2026-09-23 | A level up refills life | User |
+| 2026-09-23 | Camera zoomed out: orthographic size 10 instead of 8, which felt too close | User |
 
 ## Post-launch plan (draft)
 

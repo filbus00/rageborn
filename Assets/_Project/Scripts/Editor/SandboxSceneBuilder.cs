@@ -26,10 +26,13 @@ namespace ARPG.Editor
         const int PixelsPerUnit = 128;
         static readonly Vector3 CellSize = new Vector3(1f, 0.5f, 1f);
 
-        // The 9 x 16 portrait view (camera size 8) must sit inside the diamond: |x|/HalfExtent + |y|/(HalfExtent/2) < 1
-        // at the screen corner (4.5, 8), which HalfExtent 32 satisfies with room to move.
-        const int HalfExtent = 32;
-        const float PortraitCameraSize = 8f;
+        // Camera size 10 (the user's decision, 2026-09-23; the docs had 8, which felt too zoomed in) shows about
+        // 9 x 20 world units on an iPhone. The view must sit inside the diamond, |x|/HalfExtent + |y|/(HalfExtent/2) < 1,
+        // wherever the player can stand. The test room's arrival point is at world (9.5, -4.75); with the camera's
+        // framing offset and lead the lower corner of the view reaches about (14.1, -15.3), which needs HalfExtent 45.
+        // 48 leaves a little room to move.
+        const int HalfExtent = 48;
+        const float PortraitCameraSize = 10f;
 
         [MenuItem("Tools/ARPG/Create Sandbox Scene")]
         public static void Create()
@@ -67,7 +70,7 @@ namespace ARPG.Editor
             var camera = Camera.main;
             if (camera == null)
             {
-                Debug.LogWarning("[ARPG] No Main Camera found; set the orthographic size to 8 manually.");
+                Debug.LogWarning("[ARPG] No Main Camera found; set the orthographic size to 10 manually.");
                 return;
             }
 
