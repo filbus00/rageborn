@@ -16,9 +16,12 @@ namespace ARPG
         public const float BonusPerLevelAbove = 0.08f;
         public const float MaxLevelDifferenceMultiplier = 1.5f;
 
-        /// <summary>Elites give 8 times normal XP (the docs). Champion XP is not in the docs, so a Champion gives
-        /// normal XP until it is tuned, the same as its gold.</summary>
+        /// <summary>Elites give 8 times normal XP (the docs).</summary>
         public const float EliteXpMultiplier = 8f;
+
+        /// <summary>A Champion gives more than a normal enemy (the user's decision, 2026-09-23); 3 times is a tuning
+        /// value, between normal and elite, the same as its gold.</summary>
+        public const float ChampionXpMultiplier = 3f;
 
         /// <summary>XP needed to go from <paramref name="level"/> to the next: 400 times level to the power 2.2,
         /// rounded.</summary>
@@ -34,9 +37,9 @@ namespace ARPG
 
         /// <summary>
         /// Full XP within 3 levels either way. Beyond that, 12 percent less per level the enemy is further below the
-        /// character (down to nothing) and 8 percent more per level it is further above (up to 150 percent). The docs
-        /// do not say whether the steps count from the edge of the band or from an even level; this counts from the
-        /// edge, so an enemy 4 levels below gives 88 percent, not 52.
+        /// character (down to nothing) and 8 percent more per level it is further above (up to 150 percent). The steps
+        /// count from the edge of the band (the user's decision, 2026-09-23), so an enemy 4 levels below gives 88
+        /// percent, not 52.
         /// </summary>
         public static float LevelDifferenceMultiplier(int characterLevel, int enemyLevel)
         {
@@ -48,7 +51,15 @@ namespace ARPG
             return 1f;
         }
 
-        public static float RankMultiplier(EnemyRank rank) => rank == EnemyRank.Elite ? EliteXpMultiplier : 1f;
+        public static float RankMultiplier(EnemyRank rank)
+        {
+            switch (rank)
+            {
+                case EnemyRank.Elite: return EliteXpMultiplier;
+                case EnemyRank.Champion: return ChampionXpMultiplier;
+                default: return 1f;
+            }
+        }
 
         /// <summary>The XP a kill gives, rounded.</summary>
         public static int KillXp(int characterLevel, int enemyLevel, EnemyRank rank) =>

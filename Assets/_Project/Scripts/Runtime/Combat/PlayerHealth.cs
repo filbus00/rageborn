@@ -51,12 +51,16 @@ namespace ARPG
             life = new LifePool(ComputeMaxLife());
             life.SetFraction(session.LifeFraction);
             session.Changed += HandleEquipmentChanged;
+            session.LeveledUp += HandleLeveledUp;
         }
 
         void OnDestroy()
         {
             if (session != null)
+            {
                 session.Changed -= HandleEquipmentChanged;
+                session.LeveledUp -= HandleLeveledUp;
+            }
         }
 
         /// <summary>Takes a hit from an attacker of the given level. The raw damage is reduced by armor here.
@@ -93,6 +97,9 @@ namespace ARPG
         }
 
         void HandleEquipmentChanged() => life.SetMax(ComputeMaxLife());
+
+        // A level up refills life. The session already holds the full fraction; the pool follows it.
+        void HandleLeveledUp(int level) => life.SetFraction(session.LifeFraction);
 
         static float ComputeMaxLife() => CombatFormulas.CharacterBaseLife(GameSession.Current.Level) + GameSession.Current.Equipment.TotalLifeBonus;
     }

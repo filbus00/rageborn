@@ -43,10 +43,10 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void AnElite_GivesEightTimesNormal_AndAChampion_GivesNormal()
+        public void AnElite_GivesEightTimesNormal_AndAChampion_ThreeTimes()
         {
             Assert.AreEqual(64, Experience.KillXp(1, 1, EnemyRank.Elite));
-            Assert.AreEqual(8, Experience.KillXp(1, 1, EnemyRank.Champion));
+            Assert.AreEqual(24, Experience.KillXp(1, 1, EnemyRank.Champion));
         }
 
         [TestCase(10, 7, 1f)]
@@ -140,6 +140,19 @@ namespace ARPG.Tests
             Assert.AreEqual(1, changed, "maximum life depends on level");
             Assert.AreEqual(2, leveledTo);
             Assert.AreEqual(2, session.Level);
+        }
+
+        [Test]
+        public void ALevelUp_RefillsLife_ButPlainXpDoesNot()
+        {
+            var session = new GameSession();
+            session.LifeFraction = 0.3f;
+
+            session.GrantExperience(8);
+            Assert.AreEqual(0.3f, session.LifeFraction);
+
+            session.GrantExperience(400);
+            Assert.AreEqual(1f, session.LifeFraction);
         }
     }
 }

@@ -25,9 +25,10 @@ namespace ARPG
         // Docs: Elite's rarity floor is Magic, or Rare with this chance.
         const float EliteRareFloorChance = 0.30f;
 
-        // Docs/04-progression-and-economy.md: elite gold is 8 times the normal formula. Champion gold is not
-        // specified, so it follows the normal formula until tuned.
+        // Docs/04-progression-and-economy.md: elite gold is 8 times the normal formula. A Champion gives more than a
+        // normal enemy (the user's decision, 2026-09-23); 3 times is a tuning value, between normal and elite.
         const float EliteGoldMultiplier = 8f;
+        public const float ChampionGoldMultiplier = 3f;
 
         // Bad luck protection: the legendary weight doubles after this many kills without one, and triples after twice this.
         public const int BadLuckThreshold = 300;
@@ -127,13 +128,15 @@ namespace ARPG
 
         /// <summary>
         /// Gold from a kill. Docs/04-progression-and-economy.md: a normal enemy drops 0.6 times its level to the power
-        /// 1.3, an elite 8 times that. It is rounded, with a floor of 1 so a drop is never empty.
+        /// 1.3, a Champion 3 times that and an elite 8 times. It is rounded, with a floor of 1 so a drop is never empty.
         /// </summary>
         public int RollGold(LootSource source, int level)
         {
             var amount = 0.6f * Mathf.Pow(Mathf.Max(1, level), 1.3f);
             if (source == LootSource.Elite)
                 amount *= EliteGoldMultiplier;
+            else if (source == LootSource.Champion)
+                amount *= ChampionGoldMultiplier;
             return Mathf.Max(1, Mathf.RoundToInt(amount));
         }
 

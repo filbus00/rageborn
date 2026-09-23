@@ -261,8 +261,9 @@ namespace ARPG
         }
 
         /// <summary>
-        /// Adds XP. A level up raises <see cref="Changed"/> (maximum life depends on level) and then
-        /// <see cref="LeveledUp"/>. Returns how many levels were gained.
+        /// Adds XP. A level up refills life (the user's decision, 2026-09-23, as in Diablo 1), raises
+        /// <see cref="Changed"/> (maximum life depends on level) and then <see cref="LeveledUp"/>. Returns how many
+        /// levels were gained.
         /// </summary>
         public int GrantExperience(int amount)
         {
@@ -270,6 +271,7 @@ namespace ARPG
             var gained = Progress.Add(amount);
             if (gained > 0)
             {
+                LifeFraction = 1f;
                 NotifyChanged();
                 LeveledUp?.Invoke(Level);
             }

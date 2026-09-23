@@ -13,7 +13,7 @@
 
 ## XP curve
 
-XP needed to advance from level n to n plus 1: 400 times n to the power 2.2, rounded. Enemy XP at level L: 8 times L to the power 1.5. XP is scaled by the level difference between player and enemy: 100 percent within plus or minus 3 levels, dropping 12 percent per level below, and 8 percent per level above (capped at 150 percent).
+XP needed to advance from level n to n plus 1: 400 times n to the power 2.2, rounded. Enemy XP at level L: 8 times L to the power 1.5. XP is scaled by the level difference between player and enemy: 100 percent within plus or minus 3 levels, dropping 12 percent per level below, and 8 percent per level above (capped at 150 percent). The steps count from the edge of that band: an enemy 4 levels below gives 88 percent, 5 below 76 percent.
 
 | Level | XP to next | Cumulative XP | Normal enemy XP | Kills per level |
 |---|---|---|---|---|
@@ -27,7 +27,7 @@ XP needed to advance from level n to n plus 1: 400 times n to the power 2.2, rou
 | 50 | 2,186,724 | 35,268,944 | 2,828 | 773 |
 | 60 | 3,265,824 | 62,877,084 | 3,718 | 878 |
 
-Total normal-enemy kills from level 1 to 60 at even level: about 31,400. At an average of 30 kills per minute this is about 17 hours. Elites give 8 times normal XP, bosses 60 times, zone completion bonus 20 percent of a level at that tier. The target for a first play through is 15 to 20 hours to level 60.
+Total normal-enemy kills from level 1 to 60 at even level: about 31,400. At an average of 30 kills per minute this is about 17 hours. Elites give 8 times normal XP, Champions 3 times, bosses 60 times, zone completion bonus 20 percent of a level at that tier. The target for a first play through is 15 to 20 hours to level 60.
 
 Level pacing targets:
 
@@ -41,6 +41,7 @@ Level pacing targets:
 
 ## Level rewards
 
+- Every level up refills life.
 - Level 2 onward: 1 passive point per level.
 - Skill point: 1 per level to level 30, 1 per 2 levels after.
 - Level 1: Class base skills 1 and 2. Additional skills unlock at levels 3, 6, 10, 14, 18, 22.
@@ -74,7 +75,7 @@ Enemy level offsets apply on top of the player's level for scaling formulas. Ene
 | Bloodstone | Salvage rare, elites | Reforge, sockets | Forge |
 | Soulglass | Salvage legendary, bosses | Temper, Reroll values, Imprint | Forge |
 
-Gold drops scale with level: normal enemy drops 0.6 times L to the power 1.3, elite 8 times that. Forge costs use the same curve times an action multiplier. The intended feel: gold is plentiful early and becomes a real limit only when reforging repeatedly at endgame.
+Gold drops scale with level: normal enemy drops 0.6 times L to the power 1.3, Champion 3 times that, elite 8 times that. Forge costs use the same curve times an action multiplier. The intended feel: gold is plentiful early and becomes a real limit only when reforging repeatedly at endgame.
 
 Economy rules:
 

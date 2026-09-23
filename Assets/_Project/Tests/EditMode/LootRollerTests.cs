@@ -273,11 +273,13 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void ChampionGold_FollowsTheNormalFormula_UntilTuned()
+        public void ChampionGold_IsThreeTimesTheNormalFormula()
         {
             var roller = new LootRoller(0);
 
-            Assert.AreEqual(roller.RollGold(LootSource.NormalEnemy, 10), roller.RollGold(LootSource.Champion, 10));
+            // 0.6 x 10^1.3 = 11.97; three times that is 35.9, rounded once at the end.
+            Assert.AreEqual(12, roller.RollGold(LootSource.NormalEnemy, 10));
+            Assert.AreEqual(36, roller.RollGold(LootSource.Champion, 10));
         }
 
         [TestCase(LootSource.NormalEnemy, LootRoller.NormalEnemyDropChance)]
