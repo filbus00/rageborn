@@ -90,6 +90,10 @@ namespace ARPG
 
             for (var i = 0; i < Layout.Packs.Count; i++)
                 AddPack(root, i, Layout.Packs[i]);
+
+            var playerController = FindAnyObjectByType<PlayerController>();
+            if (playerController != null)
+                gameObject.AddComponent<Minimap>().Init(Layout, levelId, playerController.transform);
         }
 
         /// <summary>A corpse on this level whose spot is no longer floor (the generator changed since it fell) moves to

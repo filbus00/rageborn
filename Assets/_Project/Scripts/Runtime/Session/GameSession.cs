@@ -129,6 +129,7 @@ namespace ARPG
         readonly List<Corpse> corpses = new List<Corpse>();
         readonly Dictionary<string, HashSet<int>> killed = new Dictionary<string, HashSet<int>>();
         readonly HashSet<string> openedChests = new HashSet<string>();
+        readonly Dictionary<string, bool[]> explored = new Dictionary<string, bool[]>();
 
         static GameSession current = new GameSession(Environment.TickCount);
 
@@ -358,6 +359,21 @@ namespace ARPG
         /// <summary>The killed member slots of one pack, for saving. Empty for a pack with no kills.</summary>
         public IEnumerable<int> KilledSlots(string packKey) =>
             killed.TryGetValue(packKey, out var slots) ? slots : (IEnumerable<int>)Array.Empty<int>();
+
+        /// <summary>
+        /// The mini-map's explored flags for a level (<see cref="MinimapReveal"/>), kept while the session lasts so a
+        /// level's map is still drawn on coming back. Not saved: a loaded game starts with every map blank. A level
+        /// whose size changed (a new generator) starts over.
+        /// </summary>
+        public bool[] ExploredCells(string levelId, int cellCount)
+        {
+            if (!explored.TryGetValue(levelId, out var cells) || cells.Length != cellCount)
+            {
+                cells = new bool[cellCount];
+                explored[levelId] = cells;
+            }
+            return cells;
+        }
 
         /// <summary>Records that a chest was opened. It stays open while the session lasts.</summary>
         public void RecordOpened(string chestKey)

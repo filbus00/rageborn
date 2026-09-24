@@ -5,8 +5,9 @@ using UnityEngine.UI;
 namespace ARPG
 {
     /// <summary>
-    /// A small read-out in the top right corner for checking the 60 fps target (Docs/08-production.md, M0 exit
-    /// criteria): average fps and frame time, the worst frame and the hitch count over the last two seconds,
+    /// A small read-out in the top left corner, under the life bar and clear of the mini-map, for checking the 60 fps
+    /// target (Docs/08-production.md, M0 exit criteria): average fps and frame time, the worst frame and the hitch
+    /// count over the last two seconds,
     /// garbage collections since start, the managed heap and the live enemy count. Created from code in the editor
     /// and in development builds only, and kept across scene changes, so no scene needs to be rebuilt for it.
     /// </summary>
@@ -49,7 +50,7 @@ namespace ARPG
             var background = new GameObject("Panel", typeof(RectTransform), typeof(Image));
             background.transform.SetParent(transform, false);
             panel = (RectTransform)background.transform;
-            panel.anchorMin = panel.anchorMax = panel.pivot = new Vector2(1f, 1f);
+            panel.anchorMin = panel.anchorMax = panel.pivot = new Vector2(0f, 1f);
             panel.sizeDelta = new Vector2(330f, 200f);
             var image = background.GetComponent<Image>();
             image.color = new Color(0f, 0f, 0f, 0.55f);
@@ -106,8 +107,8 @@ namespace ARPG
                 return;
             var unitsPerPixel = canvasRect.rect.height / Screen.height;
             var topInset = (Screen.height - Screen.safeArea.yMax) * unitsPerPixel;
-            var rightInset = (Screen.width - Screen.safeArea.xMax) * unitsPerPixel;
-            panel.anchoredPosition = new Vector2(-rightInset - 12f, -topInset - 80f);
+            var leftInset = Screen.safeArea.xMin * unitsPerPixel;
+            panel.anchoredPosition = new Vector2(leftInset + 12f, -topInset - 190f);
         }
     }
 }
