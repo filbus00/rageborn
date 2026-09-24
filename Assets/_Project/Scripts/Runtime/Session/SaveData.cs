@@ -14,8 +14,8 @@ namespace ARPG
     public sealed class SaveData
     {
         /// <summary>1: the first. 2: adds level and experience. 3: adds potion charges. 4: adds the dungeon seed and
-        /// opened chests.</summary>
-        public const int CurrentVersion = 4;
+        /// opened chests. 5: adds the dungeon generator version.</summary>
+        public const int CurrentVersion = 5;
 
         public int version;
 
@@ -35,6 +35,9 @@ namespace ARPG
 
         /// <summary>Seeds every dungeon level of the game session, so each keeps its layout.</summary>
         public int dungeonSeed;
+
+        /// <summary>The <see cref="DungeonGenerator.Version"/> that built the levels the kills and chests refer to.</summary>
+        public int dungeonVersion;
         public List<ItemData> equipped = new List<ItemData>();
         public List<ItemData> backpack = new List<ItemData>();
         public List<CorpseData> corpses = new List<CorpseData>();

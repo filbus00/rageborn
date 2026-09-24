@@ -138,6 +138,53 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void ASaveFromAnotherDungeonGenerator_ForgetsDungeonKillsAndChests_ButNotTheRest()
+        {
+            var session = new GameSession();
+            session.RecordKill("Dungeon 1/Pack 3", 0);
+            session.RecordKill("Sandbox/Pack West (near)", 2);
+            session.RecordOpened("Dungeon 1/Chest 0");
+            session.Die("Dungeon 1", new Vector2(3f, 4f));
+            var data = SaveCodec.Capture(session, 1);
+            data.dungeonVersion = DungeonGenerator.Version - 1;
+            var warnings = new List<string>();
+
+            var loaded = SaveCodec.Restore(data, 1, warnings);
+
+            Assert.IsFalse(loaded.IsKilled("Dungeon 1/Pack 3", 0), "a dungeon kill from another layout");
+            Assert.IsFalse(loaded.IsOpened("Dungeon 1/Chest 0"));
+            Assert.IsTrue(loaded.IsKilled("Sandbox/Pack West (near)", 2), "hand-built scenes keep theirs");
+            Assert.AreEqual(1, loaded.Corpses.Count, "corpses are never dropped");
+            Assert.AreEqual(DungeonGenerator.Version, loaded.DungeonVersion);
+            Assert.AreEqual(1, warnings.Count);
+        }
+
+        [Test]
+        public void ASaveFromThisDungeonGenerator_KeepsItsDungeonRecords()
+        {
+            var session = new GameSession();
+            session.RecordKill("Dungeon 1/Pack 3", 0);
+
+            Assert.IsTrue(RoundTrip(session).IsKilled("Dungeon 1/Pack 3", 0));
+        }
+
+        [Test]
+        public void MoveCorpse_KeepsItsLevelAndGear()
+        {
+            var session = new GameSession();
+            var weapon = session.Equipment.Weapon;
+            var corpse = session.Die("Dungeon 2", new Vector2(1f, 1f));
+
+            var moved = session.MoveCorpse(corpse, new Vector2(8f, 9f));
+
+            Assert.AreEqual(1, session.Corpses.Count);
+            Assert.AreSame(moved, session.Corpses[0]);
+            Assert.AreEqual("Dungeon 2", moved.LevelId);
+            Assert.AreEqual(new Vector2(8f, 9f), moved.GroundPosition);
+            Assert.AreSame(weapon, moved.Gear.Weapon);
+        }
+
+        [Test]
         public void OpeningAChest_IsSaved_OnceEach()
         {
             var session = new GameSession();

@@ -23,8 +23,9 @@ namespace ARPG.Editor
         const string EnvironmentArtFolder = "Assets/_Project/Art/Environment";
         const int PixelsPerUnit = 128;
 
-        // Every level spawns all its packs at load, up to about 90 enemies; the pool should not have to grow.
-        const int EnemyPoolSize = 128;
+        // Every level spawns all its packs at load, typically 100 to 180 enemies in the bigger levels; the pool should
+        // not have to grow.
+        const int EnemyPoolSize = 200;
 
         static readonly string[] RemovedObjects = { "Test Room", "Stairs Up" };
 

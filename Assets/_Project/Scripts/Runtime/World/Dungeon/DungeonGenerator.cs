@@ -41,8 +41,13 @@ namespace ARPG
             }
         }
 
+        const string LevelIdPrefix = "Dungeon ";
+
         /// <summary>The id a dungeon level uses for kills, chests and corpses, in place of a scene name.</summary>
-        public static string LevelId(int depth) => "Dungeon " + depth;
+        public static string LevelId(int depth) => LevelIdPrefix + depth;
+
+        /// <summary>Whether a level id, or a key that starts with one ("Dungeon 2/Pack 3"), belongs to a generated level.</summary>
+        public static bool IsDungeonKey(string key) => key != null && key.StartsWith(LevelIdPrefix, StringComparison.Ordinal);
     }
 
     /// <summary>The generator's knobs. The defaults are the game's; tests can change them. Every value not quoted from
@@ -53,9 +58,9 @@ namespace ARPG
         public int MinMiddleRooms = 5;
         public int MaxMiddleRooms = 8;
 
-        /// <summary>Cells between neighbouring room centers. Room insides are at most <see cref="MaxRoomSize"/>, so
-        /// every corridor is at least 6 cells long.</summary>
-        public int Pitch = 34;
+        /// <summary>Cells between neighbouring room centers. Room insides are at most <see cref="MaxRoomSize"/> (36,
+        /// about 25 ground units), so every corridor is at least 6 cells long.</summary>
+        public int Pitch = 44;
 
         public int MaxRoomSize => Pitch - 8;
 
@@ -65,7 +70,7 @@ namespace ARPG
         public int EliteWeight = 15;
         public int TreasureWeight = 10;
 
-        /// <summary>Room size mix for middle rooms: small (up to 16 cells), medium (up to 22), large.</summary>
+        /// <summary>Room size mix for middle rooms: small (up to 22 cells), medium (up to 30), large.</summary>
         public int SmallWeight = 30;
         public int MediumWeight = 50;
         public int LargeWeight = 20;
@@ -101,8 +106,15 @@ namespace ARPG
     /// </summary>
     public static class DungeonGenerator
     {
-        const int SmallMax = 16;
-        const int MediumMax = 22;
+        /// <summary>
+        /// Which generator built the saved dungeon. Bump it whenever the same seed would build a different level (room
+        /// library, sizes, pack rules): a save from another version forgets its dungeon kills and chests, which would
+        /// otherwise land on the wrong packs. 1: the first, small rooms. 2: bigger, open rooms, 5 cell doorways.
+        /// </summary>
+        public const int Version = 2;
+
+        const int SmallMax = 22;
+        const int MediumMax = 30;
 
         // The chance a new room grows off the most recent one rather than any earlier one: higher makes a longer main
         // path, lower a bushier level.
@@ -434,13 +446,17 @@ namespace ARPG
             {
                 case RoomKind.Combat:
                 {
-                    var packs = size <= SmallMax ? 1 : size <= MediumMax ? random.Next(1, 3) : random.Next(2, 4);
+                    // Bigger rooms hold more packs, so an open hall is a fight, not a walk.
+                    var packs = size <= SmallMax ? random.Next(1, 3) : size <= MediumMax ? random.Next(2, 4) : random.Next(3, 5);
                     for (var i = 0; i < packs; i++)
                         TryPlacePack(layout, roomIndex, NormalKind(random, settings), random.Next(settings.MinPackSize, settings.MaxPackSize + 1), random, settings);
                     break;
                 }
                 case RoomKind.Elite:
                     TryPlacePack(layout, roomIndex, PackKind.Elite, random.Next(settings.MinElitePackSize, settings.MaxElitePackSize + 1), random, settings);
+                    // A large elite room also holds a normal pack, so the elites are not alone in a big empty hall.
+                    if (size > MediumMax)
+                        TryPlacePack(layout, roomIndex, NormalKind(random, settings), random.Next(settings.MinPackSize, settings.MaxPackSize + 1), random, settings);
                     break;
                 case RoomKind.Treasure:
                     TryPlacePack(layout, roomIndex, PackKind.Normal, random.Next(settings.MinGuardPackSize, settings.MaxGuardPackSize + 1), random, settings);

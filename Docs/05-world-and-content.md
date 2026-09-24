@@ -44,7 +44,7 @@ Each act has one town, a small safe scene the player walks through with the stic
 
 Levels are built from hand-authored rooms joined by a seeded generator.
 
-- Room library: 30 rooms per act, each 20 by 20 units, three sizes.
+- Room library: 30 rooms per act in three sizes, from about 14 to 25 units across, mostly open halls. Doorways and the corridors between rooms are 5 cells (about 3.5 units) wide.
 - Layout: a start room with the stairs up, 5 to 8 rooms of mixed type, an exit room with the stairs down. A level takes 4 to 8 minutes to clear.
 - Room types: combat (60 percent), elite (15), treasure (10), shrine (10), ambush (5).
 - Every level has one guaranteed elite pack and one guaranteed chest. The act boss waits on the last level of each act.

@@ -29,18 +29,18 @@ namespace ARPG.Tests
         [Test]
         public void Parse_ReadsRowsTopDown()
         {
-            var shape = RoomShape.Parse("t", "#......\n.......\n.......\n.......\n.......\n.......\n.......");
+            var shape = RoomShape.Parse("t", "#........\n.........\n.........\n.........\n.........\n.........\n.........\n.........\n.........");
 
-            Assert.AreEqual(7, shape.Size);
-            Assert.IsTrue(shape.IsBlocked(0, 6), "the first text row is the top row");
+            Assert.AreEqual(9, shape.Size);
+            Assert.IsTrue(shape.IsBlocked(0, 8), "the first text row is the top row");
             Assert.IsFalse(shape.IsBlocked(0, 0));
         }
 
-        [TestCase("........\n........\n........\n........\n........\n........\n........", "not square")]
-        [TestCase(".......\n.......\n.......\n...x...\n.......\n.......\n.......", "unknown character")]
-        [TestCase(".......\n.......\n.......\n......#\n.......\n.......\n.......", "blocks its doorway")]
-        [TestCase(".......\n.#####.\n.#...#.\n.#...#.\n.#####.\n.......\n.......", "blocks its doorway")]
-        [TestCase(".#......\n##......\n........\n........\n........\n........\n........\n........", "cannot be reached")]
+        [TestCase("..........\n..........\n..........\n..........\n..........\n..........\n..........\n..........\n..........", "not square")]
+        [TestCase(".........\n.........\n.........\n.........\n....x....\n.........\n.........\n.........\n.........", "unknown character")]
+        [TestCase(".........\n.........\n.........\n.........\n........#\n.........\n.........\n.........\n.........", "blocks its doorway")]
+        [TestCase(".........\n.#######.\n.#.....#.\n.#.....#.\n.#.....#.\n.#.....#.\n.#.....#.\n.#######.\n.........", "blocks its doorway")]
+        [TestCase(".#........\n##........\n..........\n..........\n..........\n..........\n..........\n..........\n..........\n..........", "cannot be reached")]
         public void Parse_RejectsUnusableRooms(string text, string reason)
         {
             var e = Assert.Throws<FormatException>(() => RoomShape.Parse("bad", text));

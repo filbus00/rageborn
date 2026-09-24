@@ -12,8 +12,9 @@ namespace ARPG
     /// </summary>
     public sealed class RoomShape
     {
-        /// <summary>Doorways are this many cells wide, matching the corridors.</summary>
-        public const int DoorWidth = 3;
+        /// <summary>Doorways are this many cells wide, matching the corridors. 5 (it was 3) keeps the level open and
+        /// lets a pack follow the player through without jamming.</summary>
+        public const int DoorWidth = 5;
 
         /// <summary>Cells kept clear inside each doorway, so a pillar can never close a door.</summary>
         public const int DoorApproachDepth = 2;
@@ -109,7 +110,7 @@ namespace ARPG
             foreach (var side in Sides)
                 foreach (var cell in DoorApproach(side))
                     if (IsBlocked(cell))
-                        throw new FormatException($"Room {Name} blocks its doorway at cell {cell}; keep the middle three cells of each side and the two rows inside them clear.");
+                        throw new FormatException($"Room {Name} blocks its doorway at cell {cell}; keep the middle {DoorWidth} cells of each side and the {DoorApproachDepth} rows inside them clear.");
 
             // Every floor cell must be reachable from a doorway, or packs and chests could be placed where the player cannot go.
             var seen = new bool[Size, Size];

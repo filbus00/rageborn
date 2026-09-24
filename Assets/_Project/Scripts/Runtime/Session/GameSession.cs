@@ -156,6 +156,29 @@ namespace ARPG
         /// which stairs the player should arrive by. Not saved: a loaded game starts in town.</summary>
         public LevelTravel Travel { get; set; }
 
+        /// <summary>The <see cref="DungeonGenerator.Version"/> the recorded dungeon kills and chests belong to.</summary>
+        public int DungeonVersion { get; internal set; } = DungeonGenerator.Version;
+
+        /// <summary>
+        /// Forgets every killed pack member and opened chest on a generated level, for when the generator changed and
+        /// those records would land on different packs and chests. Hand-built scenes keep theirs. Corpses are kept;
+        /// <see cref="MoveCorpse"/> puts one back on floor if its spot is now a wall. Returns how many packs and chests
+        /// it forgot.
+        /// </summary>
+        public int ForgetDungeonLevels()
+        {
+            var packs = new List<string>();
+            foreach (var key in killed.Keys)
+                if (DungeonRules.IsDungeonKey(key))
+                    packs.Add(key);
+            foreach (var key in packs)
+                killed.Remove(key);
+            var forgotten = packs.Count + openedChests.RemoveWhere(DungeonRules.IsDungeonKey);
+            if (forgotten > 0)
+                Modified?.Invoke();
+            return forgotten;
+        }
+
         /// <summary>The live session. Replaced at the start of every play, so nothing leaks between editor plays,
         /// and then by the loaded save when there is one (<see cref="Install"/>).</summary>
         public static GameSession Current => current;
@@ -346,6 +369,20 @@ namespace ARPG
         public bool IsOpened(string chestKey) => openedChests.Contains(chestKey);
 
         public IEnumerable<string> OpenedChests => openedChests;
+
+        /// <summary>Moves a corpse to another spot on its level, gear untouched: used when the spot it fell on is no
+        /// longer floor, so a corpse run can never become impossible.</summary>
+        public Corpse MoveCorpse(Corpse corpse, Vector2 groundPosition)
+        {
+            var index = corpses.IndexOf(corpse);
+            if (index < 0)
+                return corpse;
+
+            var moved = new Corpse(corpse.LevelId, groundPosition, corpse.Gear);
+            corpses[index] = moved;
+            Modified?.Invoke();
+            return moved;
+        }
 
         /// <summary>Puts back a corpse read from a save.</summary>
         internal void RestoreCorpse(Corpse corpse) => corpses.Add(corpse);

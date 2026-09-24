@@ -19,6 +19,7 @@ namespace ARPG
             MigrateFrom1, // 1 to 2: level and experience did not exist, so the character was level 1.
             MigrateFrom2, // 2 to 3: potions did not exist; start with full charges.
             MigrateFrom3, // 3 to 4: no dungeon existed; give the session a dungeon seed.
+            MigrateFrom4, // 4 to 5: the generator version was not saved; 0 means unknown, so dungeon records are dropped.
         };
 
         static SaveData MigrateFrom1(SaveData data)
@@ -44,6 +45,12 @@ namespace ARPG
             return data;
         }
 
+        static SaveData MigrateFrom4(SaveData data)
+        {
+            data.dungeonVersion = 0;
+            return data;
+        }
+
         public static SaveData Capture(GameSession session, long savedAtUnixMs)
         {
             var data = new SaveData
@@ -58,6 +65,7 @@ namespace ARPG
                 potionCharges = session.Potion.Charges,
                 potionKillProgress = session.Potion.KillProgress,
                 dungeonSeed = session.DungeonSeed,
+                dungeonVersion = session.DungeonVersion,
                 equipped = CaptureEquipment(session.Equipment),
             };
 
@@ -125,6 +133,11 @@ namespace ARPG
             foreach (var pack in data.killed)
                 foreach (var slot in pack.slots)
                     session.RecordKill(pack.packKey, slot);
+
+            // Records made on levels an older generator built would land on the wrong packs and chests now.
+            if (data.dungeonVersion != DungeonGenerator.Version && session.ForgetDungeonLevels() > 0)
+                warnings?.Add($"The dungeon generator changed (version {data.dungeonVersion} to {DungeonGenerator.Version}); dungeon kills and chests were reset.");
+            session.DungeonVersion = DungeonGenerator.Version;
 
             return session;
         }

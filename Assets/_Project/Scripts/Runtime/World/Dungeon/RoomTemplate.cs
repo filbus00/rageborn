@@ -5,7 +5,7 @@ namespace ARPG
 {
     /// <summary>
     /// One hand-authored room for the dungeon generator (Docs/05-world-and-content.md, room library), drawn as text in
-    /// the inspector: one row per line, '.' for floor and '#' for a pillar or wall piece, square, with the middle three
+    /// the inspector: one row per line, '.' for floor and '#' for a pillar or wall piece, square, with the middle five
     /// cells of each side and the two rows inside them left clear for the doorways. See <see cref="RoomShape.Parse"/>.
     /// </summary>
     [CreateAssetMenu(menuName = "ARPG/Room Template", fileName = "Room")]

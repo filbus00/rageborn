@@ -74,6 +74,7 @@ namespace ARPG
             Layout = DungeonGenerator.Generate(DungeonRules.LevelSeed(session.DungeonSeed, depth), depth, shapes, settings);
 
             Paint();
+            RescueCorpses(session);
             PlacePlayer(arrival == Arrival.FromBelow && Layout.HasStairsDown ? Layout.ArrivalFromBelow : Layout.ArrivalFromAbove);
 
             var root = new GameObject("Level " + depth).transform;
@@ -89,6 +90,20 @@ namespace ARPG
 
             for (var i = 0; i < Layout.Packs.Count; i++)
                 AddPack(root, i, Layout.Packs[i]);
+        }
+
+        /// <summary>A corpse on this level whose spot is no longer floor (the generator changed since it fell) moves to
+        /// the arrival point, so its gear can always be reached. Runs before the corpse spawner places the markers.</summary>
+        void RescueCorpses(GameSession session)
+        {
+            var corpses = session.Corpses;
+            for (var i = 0; i < corpses.Count; i++)
+            {
+                var corpse = corpses[i];
+                if (corpse.LevelId != levelId || Layout.IsFloor(IsoMath.GroundToCell(corpse.GroundPosition)))
+                    continue;
+                session.MoveCorpse(corpse, IsoMath.CellToGround(Layout.ArrivalFromAbove));
+            }
         }
 
         void OnDestroy()
