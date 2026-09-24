@@ -6,9 +6,11 @@ namespace ARPG
 {
     /// <summary>
     /// The inventory and equip screen (Docs/03-itemization.md, Docs/08-production.md decision: no separate pause
-    /// menu, just this). Opened from a HUD button, it shows equipped gear and character stats, lists the backpack,
-    /// and lets the player equip, unequip and discard items. Opening it sets <see cref="Time.timeScale"/> to 0,
-    /// which is the game's only pause. Replaces the placeholder <c>LootHud</c> text readout.
+    /// menu, just this). Opened from a HUD button, it shows equipped gear and character stats and lists the
+    /// backpack, each row with an upgrade arrow and the power score change (<see cref="PowerScore"/>). Tapping a row or
+    /// an equipped slot opens the item sheet (<see cref="ItemSheet"/>) with the full comparison. A green arrow on the
+    /// Bag button says the backpack holds an upgrade (Docs/06-ui-ux.md, upgrade badge). Opening it sets
+    /// <see cref="Time.timeScale"/> to 0, which is the game's only pause.
     /// </summary>
     public class InventoryScreen : MonoBehaviour
     {
@@ -45,6 +47,9 @@ namespace ARPG
 
         SlotUi[] slots;
         readonly StringBuilder statsBuilder = new StringBuilder(256);
+        ItemSheet sheet;
+        Text upgradeBadge;
+        GameSession session;
 
         /// <summary>The screen in the current scene, or null when it has none. Lets <see cref="HitStop"/> tell
         /// this pause apart from its own, much shorter one when they happen to overlap.</summary>
@@ -66,9 +71,22 @@ namespace ARPG
             };
 
             if (openButton != null)
+            {
                 openButton.onClick.AddListener(Toggle);
+                upgradeBadge = CreateBadge(openButton.transform);
+            }
             if (closeButton != null)
                 closeButton.onClick.AddListener(Close);
+
+            if (panelRoot != null)
+            {
+                sheet = ItemSheet.Create(panelRoot.transform);
+                sheet.Changed += Refresh;
+            }
+
+            session = GameSession.Current;
+            session.Changed += RefreshBadge;
+            RefreshBadge();
 
             // Never start paused, whatever state the scene was saved in.
             if (panelRoot != null)
@@ -83,6 +101,8 @@ namespace ARPG
                 Time.timeScale = 1f;
             if (Current == this)
                 Current = null;
+            if (session != null)
+                session.Changed -= RefreshBadge;
         }
 
         public void Toggle()
@@ -108,6 +128,8 @@ namespace ARPG
             if (panelRoot == null)
                 return;
 
+            if (sheet != null)
+                sheet.Hide();
             panelRoot.SetActive(false);
             Time.timeScale = 1f;
         }
@@ -124,6 +146,35 @@ namespace ARPG
                 statsText.text = BuildStats(session, equipment);
 
             RebuildBackpack(session);
+            RefreshBadge();
+        }
+
+        /// <summary>Shows the badge while any backpack item would raise the power score.</summary>
+        void RefreshBadge()
+        {
+            if (upgradeBadge == null)
+                return;
+
+            var current = GameSession.Current;
+            var items = current.Inventory.Items;
+            var any = false;
+            for (var i = 0; i < items.Count && !any; i++)
+                any = PowerScore.IsUpgrade(current.Equipment, items[i], current.Level);
+            upgradeBadge.gameObject.SetActive(any);
+        }
+
+        static Text CreateBadge(Transform button)
+        {
+            var text = NewText(button, "\u25B2", TextAnchor.MiddleCenter);
+            text.fontSize = 40;
+            text.color = ItemSheet.GainColor;
+            var rect = text.rectTransform;
+            rect.anchorMin = rect.anchorMax = new Vector2(1f, 1f);
+            rect.pivot = new Vector2(0.5f, 0.5f);
+            rect.anchoredPosition = new Vector2(-8f, -8f);
+            rect.sizeDelta = new Vector2(56f, 56f);
+            text.gameObject.name = "Upgrade Badge";
+            return text;
         }
 
         void RefreshSlot(GameSession session, EquipmentState equipment, SlotUi ui)
@@ -142,14 +193,10 @@ namespace ARPG
 
             ui.Button.onClick.RemoveAllListeners();
             ui.Button.interactable = item != null;
-            if (item != null)
+            if (item != null && sheet != null)
             {
                 var slot = ui.Slot;
-                ui.Button.onClick.AddListener(() =>
-                {
-                    session.Unequip(slot);
-                    Refresh();
-                });
+                ui.Button.onClick.AddListener(() => sheet.ShowEquipped(slot));
             }
         }
 
@@ -197,32 +244,46 @@ namespace ARPG
 
             var items = session.Inventory.Items;
             for (var i = 0; i < items.Count; i++)
-                CreateRow(session, items[i]);
+                CreateRow(session, items, i);
         }
 
-        void CreateRow(GameSession session, Item item)
+        void CreateRow(GameSession session, System.Collections.Generic.IReadOnlyList<Item> items, int index)
         {
-            var row = new GameObject("Item Row", typeof(RectTransform), typeof(Image), typeof(HorizontalLayoutGroup), typeof(LayoutElement));
+            var item = items[index];
+            var row = new GameObject("Item Row", typeof(RectTransform), typeof(Image), typeof(HorizontalLayoutGroup), typeof(LayoutElement), typeof(Button));
             row.transform.SetParent(listContent, false);
 
             row.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.35f);
+            // The whole row opens the item sheet; its own buttons still take their taps first.
+            if (sheet != null)
+                row.GetComponent<Button>().onClick.AddListener(() => sheet.ShowBackpack(items, index));
+            // Docs/06-ui-ux.md: tap targets at least 48 points; the canvas has 3 units per point.
             var layout = row.GetComponent<LayoutElement>();
-            layout.minHeight = 90f;
-            layout.preferredHeight = 90f;
+            layout.minHeight = 150f;
+            layout.preferredHeight = 150f;
 
+            // The layout group must control widths, or the label's flexible width is ignored and long names wrap.
             var group = row.GetComponent<HorizontalLayoutGroup>();
-            group.padding = new RectOffset(16, 16, 8, 8);
-            group.spacing = 12f;
+            group.padding = new RectOffset(16, 16, 12, 12);
+            group.spacing = 16f;
             group.childAlignment = TextAnchor.MiddleLeft;
             group.childControlHeight = true;
-            group.childControlWidth = false;
+            group.childControlWidth = true;
             group.childForceExpandHeight = true;
+            group.childForceExpandWidth = false;
 
             var swatch = NewImage(row.transform, LootColors.Of(item.Rarity));
             AddLayoutSize(swatch.gameObject, 24f, -1f);
 
             var label = NewText(row.transform, ItemSummary(item), TextAnchor.MiddleLeft);
             AddLayoutSize(label.gameObject, -1f, 1f);
+
+            // Comparison before reading (Docs/06-ui-ux.md): the arrow and the power change come first to the eye.
+            var change = PowerScore.Change(session.Equipment, item, session.Level);
+            var arrow = NewText(row.transform, $"{ItemSheet.Arrow(change)} {change * 100f:+0;-0;0}%", TextAnchor.MiddleRight);
+            arrow.color = ItemSheet.DirectionColor(change);
+            arrow.fontStyle = FontStyle.Bold;
+            AddLayoutSize(arrow.gameObject, 150f, -1f);
 
             var equip = NewButton(row.transform, "Equip", () =>
             {
@@ -240,7 +301,7 @@ namespace ARPG
         }
 
         static string ItemSummary(Item item) =>
-            $"{item.Rarity} {item.Slot} - item level {item.ItemLevel}, {item.Affixes.Count} affixes";
+            $"{ItemComparison.Name(item)} - item level {item.ItemLevel}, {item.Affixes.Count} affixes";
 
         static void AddLayoutSize(GameObject go, float width, float flexibleWidth)
         {

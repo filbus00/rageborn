@@ -409,8 +409,8 @@ namespace ARPG
         }
 
         /// <summary>
-        /// Picks up a corpse's gear, slot by slot. Each piece is equipped when the character has nothing or something
-        /// worse there; otherwise it goes to the backpack. This is an all-or-nothing transaction: when the backpack
+        /// Picks up a corpse's gear, slot by slot. Each piece is equipped when the character has nothing there or it
+        /// raises the power score (<see cref="PowerScore"/>); otherwise it goes to the backpack. This is an all-or-nothing transaction: when the backpack
         /// cannot hold everything that has to move there, nothing happens and the corpse stays where it is.
         /// </summary>
         public bool Retrieve(Corpse corpse)
@@ -428,7 +428,7 @@ namespace ARPG
                     continue;
 
                 var worn = newEquipment.Get(slot);
-                if (worn == null || IsUpgrade(found, worn))
+                if (worn == null || PowerScore.Change(newEquipment, found, Level) > 0f)
                 {
                     if (worn != null)
                         toBag.Add(worn);
@@ -456,11 +456,5 @@ namespace ARPG
             Changed?.Invoke();
             Modified?.Invoke();
         }
-
-        /// <summary>A rough, slot-agnostic "is this better" used only to decide what to re-equip on retrieval: higher
-        /// item level wins, rarity breaks a tie. Not the docs' power score (Docs/03-itemization.md), which needs a
-        /// full damage-per-second and effective-life model this project does not have yet.</summary>
-        static bool IsUpgrade(Item candidate, Item current) =>
-            candidate.ItemLevel != current.ItemLevel ? candidate.ItemLevel > current.ItemLevel : candidate.Rarity > current.Rarity;
     }
 }
