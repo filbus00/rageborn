@@ -260,7 +260,7 @@ namespace ARPG
                 var critical = UnityEngine.Random.value < criticalChance;
                 var damage = CombatFormulas.HitDamage(
                     weaponDamage, multiplier, flatAdded, increasedSum, 1f, critical, criticalDamageBonus,
-                    enemy.Definition.Armor, enemy.Definition.Level);
+                    enemy.Definition.Armor, enemy.Level);
 
                 var world = IsoMath.GroundToWorld(enemy.GroundPosition);
                 DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);

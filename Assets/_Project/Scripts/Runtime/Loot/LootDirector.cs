@@ -74,7 +74,7 @@ namespace ARPG
         void OnKilled(EnemyController enemy)
         {
             var loot = GameSession.Current.Loot;
-            var level = enemy.Definition.Level;
+            var level = enemy.Level;
             var at = enemy.GroundPosition;
             var source = ToLootSource(enemy.Definition.Rank);
 
@@ -93,6 +93,18 @@ namespace ARPG
                 case EnemyRank.Elite: return LootSource.Elite;
                 default: return LootSource.NormalEnemy;
             }
+        }
+
+        /// <summary>Rolls a zone chest's loot (Docs/03-itemization.md: 1 to 3 items, Magic or better, and gold) at an
+        /// item level and scatters it around the chest.</summary>
+        public void DropChest(int itemLevel, Vector2 ground)
+        {
+            var loot = GameSession.Current.Loot;
+            DropGold(loot.RollGold(LootSource.ZoneChest, itemLevel), ground + Scatter());
+
+            var items = loot.RollDrops(LootSource.ZoneChest, itemLevel, magicFind);
+            for (var i = 0; i < items.Count; i++)
+                DropItem(items[i], ground + Scatter());
         }
 
         /// <summary>Puts gold on the ground at a ground position. Chests, elites and bosses will use this too.</summary>

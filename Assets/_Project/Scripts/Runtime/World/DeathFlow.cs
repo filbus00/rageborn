@@ -46,7 +46,7 @@ namespace ARPG
                     body.linearVelocity = Vector2.zero;
             }
 
-            GameSession.Current.Die(SceneManager.GetActiveScene().name, ground);
+            GameSession.Current.Die(LevelContext.CurrentId, ground);
 
             // At once, not after the debounce: quitting the app during the fade must not undo the death.
             SaveDirector.SaveNow();

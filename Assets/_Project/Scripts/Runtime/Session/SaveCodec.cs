@@ -7,7 +7,7 @@ namespace ARPG
     /// <summary>
     /// Turns a <see cref="GameSession"/> into <see cref="SaveData"/> and JSON and back. Pure, no file access (that is
     /// <see cref="SaveStore"/>). What is saved: equipment, the backpack, gold, life, level and XP, potion charges,
-    /// corpses, killed pack members and the bad luck counter. The loot generator's own state is not: a loaded session gets a fresh seed.
+    /// corpses, killed pack members, opened chests, the dungeon seed and the bad luck counter. The loot generator's own state is not: a loaded session gets a fresh seed.
     /// </summary>
     public static class SaveCodec
     {
@@ -18,6 +18,7 @@ namespace ARPG
             null,
             MigrateFrom1, // 1 to 2: level and experience did not exist, so the character was level 1.
             MigrateFrom2, // 2 to 3: potions did not exist; start with full charges.
+            MigrateFrom3, // 3 to 4: no dungeon existed; give the session a dungeon seed.
         };
 
         static SaveData MigrateFrom1(SaveData data)
@@ -34,6 +35,15 @@ namespace ARPG
             return data;
         }
 
+        static SaveData MigrateFrom3(SaveData data)
+        {
+            // Any number will do, since no dungeon level was ever visited; take it from the save time so it differs
+            // between saves.
+            data.dungeonSeed = DungeonRules.LevelSeed((int)(data.savedAtUnixMs ^ (data.savedAtUnixMs >> 32)), 0);
+            data.openedChests = new List<string>();
+            return data;
+        }
+
         public static SaveData Capture(GameSession session, long savedAtUnixMs)
         {
             var data = new SaveData
@@ -47,6 +57,7 @@ namespace ARPG
                 experience = session.Progress.Xp,
                 potionCharges = session.Potion.Charges,
                 potionKillProgress = session.Potion.KillProgress,
+                dungeonSeed = session.DungeonSeed,
                 equipped = CaptureEquipment(session.Equipment),
             };
 
@@ -61,6 +72,9 @@ namespace ARPG
                     y = corpse.GroundPosition.y,
                     gear = CaptureEquipment(corpse.Gear),
                 });
+
+            data.openedChests.AddRange(session.OpenedChests);
+            data.openedChests.Sort(StringComparer.Ordinal);
 
             foreach (var key in session.KilledPackKeys)
             {
@@ -83,6 +97,9 @@ namespace ARPG
             var session = new GameSession(lootSeed, data.killsSinceLegendary);
             session.RestoreProgress(data.level, data.experience);
             session.RestorePotion(data.potionCharges, data.potionKillProgress);
+            session.DungeonSeed = data.dungeonSeed;
+            foreach (var chest in data.openedChests)
+                session.RecordOpened(chest);
 
             session.Equip(RestoreEquipment(data.equipped, warnings));
 
@@ -161,6 +178,7 @@ namespace ARPG
             parsed.backpack ??= new List<ItemData>();
             parsed.corpses ??= new List<CorpseData>();
             parsed.killed ??= new List<KilledPackData>();
+            parsed.openedChests ??= new List<string>();
 
             data = parsed;
             error = null;

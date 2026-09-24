@@ -7,10 +7,10 @@ namespace ARPG.Editor
 {
     /// <summary>
     /// Builds a minimal town by copying the sandbox and stripping it of everything hostile: no enemies, no combat,
-    /// no walls. What is left is the ground, the player, the camera, the life bar and a stairway down to the dungeon
-    /// (Docs/05-world-and-content.md: the town is a small safe scene). The NPCs come later.
-    /// Run from Tools > ARPG > Create Town Scene, after Add Survival To Sandbox. Running it again rebuilds the town
-    /// from the current sandbox.
+    /// no walls. What is left is the ground, the player, the camera, the life bar and a stairway down to the first
+    /// dungeon level (Docs/05-world-and-content.md: the town is a small safe scene). The NPCs come later.
+    /// Run from Tools > ARPG > Create Town Scene, after Add Inventory Screen To Sandbox, then run Create Dungeon Scene.
+    /// Running it again rebuilds the town from the current sandbox.
     /// </summary>
     public static class TownSceneBuilder
     {
@@ -72,21 +72,18 @@ namespace ARPG.Editor
             var start = IsoMath.GroundToWorld(IsoMath.CellToGround(Vector2Int.zero));
             player.transform.position = new Vector3(start.x, start.y, 0f);
 
-            SurvivalSceneBuilder.AddStairs("Stairs Down", StairsCell, "Sandbox");
+            // Down into the first level of the dungeon (Docs/05-world-and-content.md: the dungeon entrance is a
+            // stairway in the town).
+            var stairs = SurvivalSceneBuilder.AddStairs("Stairs Down", StairsCell, "Dungeon");
+            stairs.GetComponent<SceneExit>().Configure("Dungeon", 1, Arrival.FromAbove);
+            EditorUtility.SetDirty(stairs.GetComponent<SceneExit>());
 
             EditorSceneManager.MarkSceneDirty(town);
             EditorSceneManager.SaveScene(town);
 
             // The town is where a new character starts, so it comes first.
-            EditorBuildSettings.scenes = new[]
-            {
-                new EditorBuildSettingsScene(TownPath, true),
-                new EditorBuildSettingsScene(SandboxPath, true),
-            };
-
-            // Unity keeps the build settings in memory until the project is saved; write them so a clone has the Town.
-            AssetDatabase.SaveAssets();
-            Debug.Log($"[ARPG] Town scene created at {TownPath}. Build settings: Town, then Sandbox.");
+            DungeonSceneBuilder.WriteBuildSettings();
+            Debug.Log($"[ARPG] Town scene created at {TownPath}.");
         }
     }
 }

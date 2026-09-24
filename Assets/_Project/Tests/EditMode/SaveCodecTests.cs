@@ -106,6 +106,52 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void ARoundTrip_KeepsTheDungeonSeed_AndOpenedChests()
+        {
+            var session = new GameSession(5);
+            session.RecordOpened("Dungeon 2/Chest 0");
+            session.RecordOpened("Dungeon 4/Chest 1");
+
+            var loaded = RoundTrip(session);
+
+            Assert.AreEqual(session.DungeonSeed, loaded.DungeonSeed);
+            Assert.IsTrue(loaded.IsOpened("Dungeon 2/Chest 0"));
+            Assert.IsTrue(loaded.IsOpened("Dungeon 4/Chest 1"));
+            Assert.IsFalse(loaded.IsOpened("Dungeon 1/Chest 0"));
+        }
+
+        [Test]
+        public void AVersionThreeSave_LoadsWithADungeonSeed_AndNoOpenedChests()
+        {
+            const string versionThree =
+                "{\"version\":3,\"savedAtUnixMs\":1790193596882,\"gold\":60,\"lifeFraction\":1.0,\"killsSinceLegendary\":0," +
+                "\"level\":3,\"experience\":10,\"potionCharges\":2,\"potionKillProgress\":4," +
+                "\"equipped\":[],\"backpack\":[],\"corpses\":[],\"killed\":[]}";
+
+            Assert.IsTrue(SaveCodec.TryParse(versionThree, out var data, out var error), error);
+            var session = SaveCodec.Restore(data, 1);
+
+            Assert.AreNotEqual(0, session.DungeonSeed);
+            Assert.IsEmpty(session.OpenedChests);
+            Assert.AreEqual(3, session.Level);
+            Assert.AreEqual(2, session.Potion.Charges);
+        }
+
+        [Test]
+        public void OpeningAChest_IsSaved_OnceEach()
+        {
+            var session = new GameSession();
+            var modified = 0;
+            session.Modified += () => modified++;
+
+            session.RecordOpened("Dungeon 1/Chest 0");
+            session.RecordOpened("Dungeon 1/Chest 0");
+
+            Assert.AreEqual(1, modified);
+            Assert.IsTrue(session.IsOpened("Dungeon 1/Chest 0"));
+        }
+
+        [Test]
         public void AVersionTwoSave_LoadsWithFullPotions_AndItsLevelKept()
         {
             // Written by save format 2, before potions existed.

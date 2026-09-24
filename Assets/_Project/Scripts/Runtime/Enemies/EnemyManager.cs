@@ -177,7 +177,8 @@ namespace ARPG
 
         /// <summary>Activates a pooled enemy at a ground position, which becomes its home spot.</summary>
         /// <param name="pack">The pack the enemy belongs to, or null.</param>
-        public EnemyController Spawn(EnemyDefinition definition, Vector2 groundPosition, bool aggroed, EnemyPack pack = null)
+        /// <param name="level">The enemy's level; 0 uses the definition's own.</param>
+        public EnemyController Spawn(EnemyDefinition definition, Vector2 groundPosition, bool aggroed, EnemyPack pack = null, int level = 0)
         {
             EnemyController enemy;
             if (pool.Count > 0)
@@ -192,7 +193,7 @@ namespace ARPG
 
             // Docs/01-core-gameplay.md: only elites carry modifiers, one or two, rolled fresh at spawn.
             var modifiers = definition.Rank == EnemyRank.Elite ? EliteModifierRoller.Roll(modifierRandom) : EliteModifiers.None;
-            enemy.Activate(definition, groundPosition, aggroed, pack, this, modifiers);
+            enemy.Activate(definition, groundPosition, aggroed, pack, this, modifiers, level);
             active.Add(enemy);
             return enemy;
         }

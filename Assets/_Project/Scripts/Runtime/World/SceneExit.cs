@@ -6,7 +6,9 @@ namespace ARPG
 {
     /// <summary>
     /// A stairway. Walking onto it fades out and loads another scene, with no button (Docs/05-world-and-content.md).
-    /// The player arrives wherever that scene placed it, which is next to its own stairway.
+    /// A hand-built scene puts the player wherever it placed them, next to its own stairway. A stairway into the
+    /// dungeon also names the depth and which way the player arrives (<see cref="LevelTravel"/>), and the dungeon
+    /// scene builds that level and puts the player by the matching stairs.
     /// </summary>
     [RequireComponent(typeof(Collider2D))]
     public class SceneExit : MonoBehaviour
@@ -18,6 +20,20 @@ namespace ARPG
         [SerializeField, Min(0f)] float armSeconds = 0.75f;
 
         [SerializeField, Min(0f)] float fadeSeconds = 0.35f;
+
+        [Tooltip("For a stairway into the dungeon scene: the depth to build, 1 for its first level. 0 for any other scene.")]
+        [SerializeField, Min(0)] int targetDepth;
+
+        [Tooltip("Which stairs of the target level the player arrives by.")]
+        [SerializeField] Arrival arrival;
+
+        /// <summary>Sets a stairway up from code, as a generated dungeon level does, before it can be walked onto.</summary>
+        public void Configure(string scene, int depth, Arrival arriveBy)
+        {
+            targetScene = scene;
+            targetDepth = depth;
+            arrival = arriveBy;
+        }
 
         static bool loading;
 
@@ -38,6 +54,8 @@ namespace ARPG
             if (fade != null)
                 yield return fade.FadeOut(fadeSeconds);
 
+            if (targetDepth > 0)
+                GameSession.Current.Travel = new LevelTravel(targetDepth, arrival);
             SceneManager.LoadScene(targetScene);
         }
     }

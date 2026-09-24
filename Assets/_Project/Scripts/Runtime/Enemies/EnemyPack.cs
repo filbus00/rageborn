@@ -29,6 +29,9 @@ namespace ARPG
         [Tooltip("Left empty, the first EnemyManager in the scene is used.")]
         [SerializeField] EnemyManager manager;
 
+        [Tooltip("The members' level. 0 uses each definition's own level.")]
+        [SerializeField, Min(0)] int level;
+
         readonly List<EnemyController> members = new List<EnemyController>();
 
         Vector2 anchor;
@@ -54,6 +57,16 @@ namespace ARPG
             return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * distance;
         }
 
+        /// <summary>Sets a pack up from code, as the dungeon generator does, before its Start runs.</summary>
+        public void Configure(EnemyDefinition memberDefinition, EnemyDefinition leaderDefinition, int memberCount, float spreadRadius, int memberLevel)
+        {
+            definition = memberDefinition;
+            championDefinition = leaderDefinition;
+            count = Mathf.Clamp(memberCount, 1, 12);
+            radius = spreadRadius;
+            level = memberLevel;
+        }
+
         void Start()
         {
             if (manager == null)
@@ -67,7 +80,8 @@ namespace ARPG
             anchor = IsoMath.WorldToGround(transform.position);
 
             // Killed enemies stay dead while the session lasts, so a pack that was cleared earlier comes back cleared.
-            packKey = gameObject.scene.name + "/" + name;
+            // Keyed by level, not scene: every dungeon level shares one scene.
+            packKey = LevelContext.CurrentId + "/" + name;
             for (var i = 0; i < count; i++)
             {
                 if (GameSession.Current.IsKilled(packKey, i))
@@ -81,7 +95,7 @@ namespace ARPG
                     continue;
 
                 var slotDefinition = i == 0 && championDefinition != null ? championDefinition : definition;
-                var member = manager.Spawn(slotDefinition, position, false, this);
+                var member = manager.Spawn(slotDefinition, position, false, this, level);
                 member.PackSlot = i;
                 members.Add(member);
             }

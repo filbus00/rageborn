@@ -78,7 +78,11 @@ namespace ARPG
 
         public int Level => level;
         public EnemyRank Rank => rank;
-        public float MaxLife => CombatFormulas.EnemyLife(level) * lifeMultiplier;
+        public float MaxLife => MaxLifeAt(level);
+
+        /// <summary>Life for this archetype at another level, for an enemy a dungeon level spawns above or below the
+        /// definition's own level.</summary>
+        public float MaxLifeAt(int atLevel) => CombatFormulas.EnemyLife(atLevel) * lifeMultiplier;
         public float Armor => armor;
         public float BodyRadius => bodyRadius;
         public float DeathSeconds => deathSeconds;

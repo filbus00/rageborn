@@ -9,6 +9,9 @@ namespace ARPG
         NormalEnemy,
         Champion,
         Elite,
+
+        /// <summary>A dungeon level's chest (Docs/03-itemization.md: "Zone chest").</summary>
+        ZoneChest,
     }
 
     /// <summary>
@@ -21,6 +24,7 @@ namespace ARPG
         public const float NormalEnemyDropChance = 0.06f;
         public const float ChampionDropChance = 0.25f;
         public const float EliteDropChance = 1f;
+        public const float ZoneChestDropChance = 1f;
 
         // Docs: Elite's rarity floor is Magic, or Rare with this chance.
         const float EliteRareFloorChance = 0.30f;
@@ -29,6 +33,9 @@ namespace ARPG
         // normal enemy (the user's decision, 2026-09-23); 3 times is a tuning value, between normal and elite.
         const float EliteGoldMultiplier = 8f;
         public const float ChampionGoldMultiplier = 3f;
+
+        // Chest gold is not in the docs. Tuning: 5 times a normal enemy's, between a Champion and an Elite.
+        public const float ZoneChestGoldMultiplier = 5f;
 
         // Bad luck protection: the legendary weight doubles after this many kills without one, and triples after twice this.
         public const int BadLuckThreshold = 300;
@@ -103,7 +110,9 @@ namespace ARPG
         /// </summary>
         public System.Collections.Generic.IReadOnlyList<Item> RollDrops(LootSource source, int itemLevel, float magicFind)
         {
-            KillsSinceLegendary++;
+            // Bad luck protection counts kills; opening a chest is not one.
+            if (source != LootSource.ZoneChest)
+                KillsSinceLegendary++;
 
             if (random.NextDouble() >= DropChance(source))
                 return System.Array.Empty<Item>();
@@ -137,6 +146,8 @@ namespace ARPG
                 amount *= EliteGoldMultiplier;
             else if (source == LootSource.Champion)
                 amount *= ChampionGoldMultiplier;
+            else if (source == LootSource.ZoneChest)
+                amount *= ZoneChestGoldMultiplier;
             return Mathf.Max(1, Mathf.RoundToInt(amount));
         }
 
@@ -146,18 +157,28 @@ namespace ARPG
             {
                 case LootSource.Champion: return ChampionDropChance;
                 case LootSource.Elite: return EliteDropChance;
+                case LootSource.ZoneChest: return ZoneChestDropChance;
                 default: return NormalEnemyDropChance;
             }
         }
 
-        // Docs: Elite drops 1 to 2 items; every other source drops at most 1.
-        int DropCount(LootSource source) => source == LootSource.Elite ? 1 + random.Next(2) : 1;
+        // Docs: an Elite drops 1 to 2 items, a zone chest 1 to 3; every other source at most 1.
+        int DropCount(LootSource source)
+        {
+            switch (source)
+            {
+                case LootSource.Elite: return 1 + random.Next(2);
+                case LootSource.ZoneChest: return 1 + random.Next(3);
+                default: return 1;
+            }
+        }
 
         ItemRarity RarityFloor(LootSource source)
         {
             switch (source)
             {
                 case LootSource.Champion:
+                case LootSource.ZoneChest:
                     return ItemRarity.Magic;
                 case LootSource.Elite:
                     // One roll for the whole drop, not per item: either every item from this kill floors at Rare or none do.

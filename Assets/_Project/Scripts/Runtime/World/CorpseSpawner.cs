@@ -13,7 +13,7 @@ namespace ARPG
 
         void Start()
         {
-            var levelId = gameObject.scene.name;
+            var levelId = LevelContext.CurrentId;
             var corpses = GameSession.Current.Corpses;
             for (var i = 0; i < corpses.Count; i++)
                 if (corpses[i].LevelId == levelId)

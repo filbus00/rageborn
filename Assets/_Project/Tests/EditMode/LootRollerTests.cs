@@ -367,6 +367,44 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void AZoneChest_AlwaysDrops_OneToThreeItems_NeverBelowMagic()
+        {
+            var roller = new LootRoller(3);
+            var counts = new System.Collections.Generic.HashSet<int>();
+
+            for (var i = 0; i < 300; i++)
+            {
+                var items = roller.RollDrops(LootSource.ZoneChest, 5, 0f);
+                Assert.That(items.Count, Is.InRange(1, 3));
+                counts.Add(items.Count);
+                foreach (var item in items)
+                    Assert.GreaterOrEqual(item.Rarity, ItemRarity.Magic);
+            }
+
+            CollectionAssert.AreEquivalent(new[] { 1, 2, 3 }, counts);
+        }
+
+        [Test]
+        public void OpeningAChest_IsNotAKill_ForBadLuckProtection()
+        {
+            var roller = new LootRoller(3, killsSinceLegendary: 10);
+
+            roller.RollDrops(LootSource.ZoneChest, 5, 0f);
+
+            // Unless the chest itself dropped a legendary, which resets the counter.
+            Assert.That(roller.KillsSinceLegendary, Is.EqualTo(10).Or.EqualTo(0));
+        }
+
+        [Test]
+        public void ChestGold_IsFiveTimesTheNormalFormula()
+        {
+            var roller = new LootRoller(0);
+
+            // 0.6 x 10^1.3 = 11.97; five times that is 59.9, rounded once at the end.
+            Assert.AreEqual(60, roller.RollGold(LootSource.ZoneChest, 10));
+        }
+
+        [Test]
         public void RollDrop_Singular_ReturnsTheFirstOfWhatRollDropsWouldGive()
         {
             var a = new LootRoller(55);

@@ -101,7 +101,11 @@ namespace ARPG
 
         public float Life => life;
 
-        public float MaxLife => definition != null ? definition.MaxLife : 0f;
+        public float MaxLife => definition != null ? definition.MaxLifeAt(Level) : 0f;
+
+        /// <summary>This enemy's level: the definition's own, unless whoever spawned it set another (a dungeon level
+        /// sets it from its depth). Damage, life, armor, loot and XP all read this, not the definition.</summary>
+        public int Level { get; private set; }
 
         public EnemyDefinition Definition => definition;
 
@@ -166,16 +170,18 @@ namespace ARPG
         /// <param name="owner">The pack the enemy belongs to, used to find its way home. Can be null.</param>
         /// <param name="owningManager">The manager, told when the enemy dies.</param>
         /// <param name="rolledModifiers">Rolled by the caller (only for an Elite); None for everything else.</param>
-        internal void Activate(EnemyDefinition data, Vector2 groundPosition, bool aggroed, EnemyPack owner, EnemyManager owningManager, EliteModifiers rolledModifiers = EliteModifiers.None)
+        /// <param name="level">The enemy's level; 0 or less uses the definition's own.</param>
+        internal void Activate(EnemyDefinition data, Vector2 groundPosition, bool aggroed, EnemyPack owner, EnemyManager owningManager, EliteModifiers rolledModifiers = EliteModifiers.None, int level = 0)
         {
             definition = data;
+            Level = level > 0 ? level : data.Level;
             modifiers = rolledModifiers;
             pack = owner;
             manager = owningManager;
             ground = groundPosition;
             home = groundPosition;
             leashTimer = 0f;
-            life = data.MaxLife;
+            life = MaxLife;
             punchTimer = 0f;
             deathTimer = 0f;
             State = aggroed ? EnemyState.Approach : EnemyState.Idle;
@@ -402,12 +408,12 @@ namespace ARPG
             if (world.Player == null || !world.Player.IsAlive || distance > definition.AttackRange + AttackForgiveness)
                 return;
 
-            var damage = CombatFormulas.EnemyHitDamage(definition.Level) * definition.DamageMultiplier;
+            var damage = CombatFormulas.EnemyHitDamage(Level) * definition.DamageMultiplier;
             var armorIgnorePercent = definition.Rank == EnemyRank.Elite ? EliteArmorIgnorePercent : 0f;
-            world.Player.TakeHit(damage, definition.Level, armorIgnorePercent);
+            world.Player.TakeHit(damage, Level, armorIgnorePercent);
 
             if (HasModifier(EliteModifiers.Vampiric))
-                life = Mathf.Min(definition.MaxLife, life + damage * VampiricHealFraction);
+                life = Mathf.Min(MaxLife, life + damage * VampiricHealFraction);
             if (HasModifier(EliteModifiers.Frozen))
                 world.PlayerController?.ApplySlow(FrozenSlowMultiplier, FrozenSlowSeconds);
         }

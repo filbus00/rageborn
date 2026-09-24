@@ -117,7 +117,8 @@ namespace ARPG
 
     /// <summary>
     /// Everything that has to survive changing scene within one game session: equipment, the backpack, gold, corpses,
-    /// which enemies were killed, life, level and XP, potion charges, and the loot roller. Pure, so it can be tested; <see cref="Current"/> holds
+    /// which enemies were killed, which chests were opened, life, level and XP, potion charges, the dungeon's seed and
+    /// the loot roller. Pure, so it can be tested; <see cref="Current"/> holds
     /// the live one. A future sleep mechanic resets the session (Docs/08-production.md, open question 5).
     /// <see cref="SaveCodec"/> writes it to disk and reads it back, and <see cref="SaveDirector"/> decides when.
     /// </summary>
@@ -127,6 +128,7 @@ namespace ARPG
 
         readonly List<Corpse> corpses = new List<Corpse>();
         readonly Dictionary<string, HashSet<int>> killed = new Dictionary<string, HashSet<int>>();
+        readonly HashSet<string> openedChests = new HashSet<string>();
 
         static GameSession current = new GameSession(Environment.TickCount);
 
@@ -141,7 +143,18 @@ namespace ARPG
             Loot = new LootRoller(lootSeed, killsSinceLegendary);
             Equipment = EquipmentState.Starting;
             SetPotion(new AutoPotion());
+
+            // Its own number, not the loot seed itself, so the dungeon and the drops do not move in step.
+            DungeonSeed = DungeonRules.LevelSeed(lootSeed, 0);
         }
+
+        /// <summary>Seeds every dungeon level of this game session (<see cref="DungeonRules.LevelSeed"/>), so each keeps
+        /// its layout when the player leaves and comes back. Saved. The future sleep mechanic rolls a new one.</summary>
+        public int DungeonSeed { get; internal set; }
+
+        /// <summary>Where the next scene load is headed, set by a stairway before it loads: which dungeon depth, and
+        /// which stairs the player should arrive by. Not saved: a loaded game starts in town.</summary>
+        public LevelTravel Travel { get; set; }
 
         /// <summary>The live session. Replaced at the start of every play, so nothing leaks between editor plays,
         /// and then by the loaded save when there is one (<see cref="Install"/>).</summary>
@@ -322,6 +335,17 @@ namespace ARPG
         /// <summary>The killed member slots of one pack, for saving. Empty for a pack with no kills.</summary>
         public IEnumerable<int> KilledSlots(string packKey) =>
             killed.TryGetValue(packKey, out var slots) ? slots : (IEnumerable<int>)Array.Empty<int>();
+
+        /// <summary>Records that a chest was opened. It stays open while the session lasts.</summary>
+        public void RecordOpened(string chestKey)
+        {
+            if (openedChests.Add(chestKey))
+                Modified?.Invoke();
+        }
+
+        public bool IsOpened(string chestKey) => openedChests.Contains(chestKey);
+
+        public IEnumerable<string> OpenedChests => openedChests;
 
         /// <summary>Puts back a corpse read from a save.</summary>
         internal void RestoreCorpse(Corpse corpse) => corpses.Add(corpse);

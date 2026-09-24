@@ -13,8 +13,9 @@ namespace ARPG
     [Serializable]
     public sealed class SaveData
     {
-        /// <summary>1: the first. 2: adds level and experience. 3: adds potion charges.</summary>
-        public const int CurrentVersion = 3;
+        /// <summary>1: the first. 2: adds level and experience. 3: adds potion charges. 4: adds the dungeon seed and
+        /// opened chests.</summary>
+        public const int CurrentVersion = 4;
 
         public int version;
 
@@ -31,10 +32,16 @@ namespace ARPG
 
         public int potionCharges = AutoPotion.MaxCharges;
         public int potionKillProgress;
+
+        /// <summary>Seeds every dungeon level of the game session, so each keeps its layout.</summary>
+        public int dungeonSeed;
         public List<ItemData> equipped = new List<ItemData>();
         public List<ItemData> backpack = new List<ItemData>();
         public List<CorpseData> corpses = new List<CorpseData>();
         public List<KilledPackData> killed = new List<KilledPackData>();
+
+        /// <summary>Opened chests, by level and chest ("Dungeon 2/Chest 0").</summary>
+        public List<string> openedChests = new List<string>();
     }
 
     [Serializable]
