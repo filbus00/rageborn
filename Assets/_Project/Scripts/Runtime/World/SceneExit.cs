@@ -41,13 +41,16 @@ namespace ARPG
         void Awake()
         {
             loading = false;
-            // Counted from whichever is later, the scene start or this stairway appearing (a boss's stairs appear mid-level).
-            armedAt = Time.timeSinceLevelLoad + armSeconds;
+            // Counted from this stairway appearing, which covers both the scene start and a boss's stairs appearing
+            // mid-level. Time.time, not timeSinceLevelLoad: during a scene's first Awake calls the latter still holds the
+            // previous scene's time, which left the next level's stairs dead for as long as the last level had taken
+            // (found by the autopilot on 2026-09-26).
+            armedAt = Time.time + armSeconds;
         }
 
         void OnTriggerStay2D(Collider2D other)
         {
-            if (loading || Time.timeSinceLevelLoad < armedAt || other.GetComponentInParent<PlayerController>() == null)
+            if (loading || Time.time < armedAt || other.GetComponentInParent<PlayerController>() == null)
                 return;
 
             loading = true;

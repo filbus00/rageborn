@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ARPG
@@ -61,13 +62,40 @@ namespace ARPG
     {
         readonly GameObject root;
         readonly Transform fill;
+        static readonly List<GroundMarker> live = new List<GroundMarker>();
 
-        GroundMarker(GameObject root, Transform fill, float duration)
+        GroundMarker(GameObject root, Transform fill, float duration, bool isCircle, Vector2 center, float radius)
         {
             this.root = root;
             this.fill = fill;
             Duration = duration;
+            IsCircle = isCircle;
+            Center = center;
+            Radius = radius;
+            live.Add(this);
         }
+
+        /// <summary>Every marker not yet destroyed, shown or hidden. For development tools (the autopilot steps out of
+        /// circles), not gameplay.</summary>
+        public static IReadOnlyList<GroundMarker> Live
+        {
+            get
+            {
+                // Markers of an unloaded scene are gone without Destroy being called.
+                live.RemoveAll(m => m.root == null);
+                return live;
+            }
+        }
+
+        // Domain reload is off in the editor, so statics survive between plays.
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetForNewPlay() => live.Clear();
+
+        /// <summary>A filling ground circle (a slam, a rain drop), as opposed to a line or the boss's ring.</summary>
+        public bool IsCircle { get; }
+        public Vector2 Center { get; private set; }
+        public float Radius { get; private set; }
+        public bool IsVisible => root != null && root.activeInHierarchy;
 
         public float Duration { get; private set; }
         public float Elapsed { get; private set; }
@@ -80,7 +108,7 @@ namespace ARPG
             Place(root.transform, ground, radius);
             var fillObject = NewSprite("Fill", TelegraphArt.Disc, color, root.transform, 41);
             fillObject.transform.localScale = Vector3.zero;
-            return new GroundMarker(root, fillObject.transform, duration);
+            return new GroundMarker(root, fillObject.transform, duration, true, ground, radius);
         }
 
         /// <summary>A lasting ring (the burning arena edge), fading in over <paramref name="duration"/> seconds.</summary>
@@ -88,7 +116,7 @@ namespace ARPG
         {
             var root = NewSprite("Fire Ring", TelegraphArt.Ring, color, parent, 39);
             Place(root.transform, ground, radius);
-            return new GroundMarker(root, null, duration);
+            return new GroundMarker(root, null, duration, false, ground, radius);
         }
 
         /// <summary>A thin line on the ground from one point to another (projectile and charge telegraphs).</summary>
@@ -96,12 +124,14 @@ namespace ARPG
         {
             var root = NewSprite("Line", TelegraphArt.Line, color, parent, 42);
             PlaceLine(root.transform, from, to, width);
-            return new GroundMarker(root, null, duration);
+            return new GroundMarker(root, null, duration, false, from, 0f);
         }
 
         /// <summary>Shows a circle marker again somewhere else, its fill starting over.</summary>
         public void RestartCircle(Vector2 ground, float radius, float duration)
         {
+            Center = ground;
+            Radius = radius;
             Place(root.transform, ground, radius);
             Restart(duration);
         }
@@ -139,6 +169,7 @@ namespace ARPG
 
         public void Destroy()
         {
+            live.Remove(this);
             if (root != null)
                 UnityEngine.Object.Destroy(root);
         }
