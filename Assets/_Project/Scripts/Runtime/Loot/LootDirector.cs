@@ -91,6 +91,7 @@ namespace ARPG
             {
                 case EnemyRank.Champion: return LootSource.Champion;
                 case EnemyRank.Elite: return LootSource.Elite;
+                case EnemyRank.Boss: return LootSource.Boss;
                 default: return LootSource.NormalEnemy;
             }
         }

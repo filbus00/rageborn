@@ -21,6 +21,8 @@ namespace ARPG.Editor
         public const string TownPath = "Assets/_Project/Scenes/Town.unity";
         const string RoomsFolder = "Assets/_Project/Data/Rooms";
         const string EnvironmentArtFolder = "Assets/_Project/Art/Environment";
+        const string CharacterArtFolder = "Assets/_Project/Art/Characters";
+        public const string BossDefinitionPath = "Assets/_Project/Data/Enemies/CinderWarden.asset";
         const int PixelsPerUnit = 128;
 
         // Every level spawns all its packs at load, typically 100 to 180 enemies in the bigger levels; the pool should
@@ -44,6 +46,7 @@ namespace ARPG.Editor
             // Art first: importing it refreshes the asset database, which would leave room templates created just before
             // it as dead references (they were all null in the scene the first time).
             var (chestClosed, chestOpen) = CreateChestArt();
+            LoadOrCreateBoss();
 
             EditorSceneManager.OpenScene(SandboxPath, OpenSceneMode.Single);
             if (Object.FindAnyObjectByType<EnemyManager>() == null || Object.FindAnyObjectByType<LootDirector>() == null)
@@ -104,6 +107,8 @@ namespace ARPG.Editor
             serialized.FindProperty("normalEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>("Assets/_Project/Data/Enemies/Swarmer.asset");
             serialized.FindProperty("championEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>("Assets/_Project/Data/Enemies/SwarmerChampion.asset");
             serialized.FindProperty("eliteEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>("Assets/_Project/Data/Enemies/SwarmerElite.asset");
+            // Loaded again by path, not kept from creation: an import in between can leave a fresh asset reference dead.
+            serialized.FindProperty("bossEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(BossDefinitionPath);
             serialized.FindProperty("stairsSprite").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Sprite>($"{EnvironmentArtFolder}/PlaceholderStairs.png");
             serialized.FindProperty("chestClosedSprite").objectReferenceValue = chestClosed;
             serialized.FindProperty("chestOpenSprite").objectReferenceValue = chestOpen;
@@ -147,6 +152,28 @@ namespace ARPG.Editor
                 templates.Add(AssetDatabase.LoadAssetAtPath<RoomTemplate>(AssetDatabase.GUIDToAssetPath(guid)));
             templates.Sort((a, b) => string.CompareOrdinal(a.name, b.name));
             return templates;
+        }
+
+        /// <summary>
+        /// The Cinder Warden's definition, created with starting tuning if missing and left alone afterwards, like the
+        /// swarmer variants. 15 times a normal enemy's life: about 13,500 at level 12, which a level 10 character with
+        /// level-appropriate gear (roughly 130 damage per second) takes about 100 seconds to kill, inside the docs'
+        /// 60 to 120 second target for a zone boss (Docs/04-progression-and-economy.md). Its attacks live in
+        /// <see cref="CinderWardenFight"/>, not here.
+        /// </summary>
+        static EnemyDefinition LoadOrCreateBoss()
+        {
+            var existing = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(BossDefinitionPath);
+            if (existing != null)
+                return existing;
+
+            var sprite = PlaceholderArt.ImportSprite(
+                $"{CharacterArtFolder}/PlaceholderCinderWarden.png",
+                PlaceholderArt.Capsule(120, 170, new Color32(222, 104, 38, 255)),
+                PixelsPerUnit, SpriteAlignment.BottomCenter, FilterMode.Bilinear);
+            return EnemySceneBuilder.LoadOrCreateVariant(
+                BossDefinitionPath, EnemyRank.Boss, lifeMultiplier: 15f, damageMultiplier: 1f, bodyRadius: 0.9f,
+                aggroRange: 12f, visualScale: 1.6f, bodySprite: sprite);
         }
 
         static (Sprite closed, Sprite open) CreateChestArt()

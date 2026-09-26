@@ -109,6 +109,16 @@ namespace ARPG
 
         public EnemyDefinition Definition => definition;
 
+        /// <summary>
+        /// A boss (or any enemy a fight script drives): its pack AI does not run, and the script moves it with
+        /// <see cref="ScriptedMove"/> and attacks for it. Targeting, damage, death, loot and XP work as for any enemy.
+        /// Cleared on every spawn, since instances are pooled.
+        /// </summary>
+        public bool Scripted { get; set; }
+
+        /// <summary>Raised with the damage of every hit this enemy takes, the killing one included. Cleared on spawn.</summary>
+        public event System.Action<float> Damaged;
+
         /// <summary>The modifiers this elite rolled at spawn. Always None for a Normal or Champion.</summary>
         public EliteModifiers Modifiers => modifiers;
 
@@ -175,6 +185,8 @@ namespace ARPG
         {
             definition = data;
             Level = level > 0 ? level : data.Level;
+            Scripted = false;
+            Damaged = null;
             modifiers = rolledModifiers;
             pack = owner;
             manager = owningManager;
@@ -258,6 +270,8 @@ namespace ARPG
         internal void Tick(float deltaTime, EnemyManager world)
         {
             UpdatePunch(deltaTime);
+            if (Scripted)
+                return;
 
             var playerGround = world.PlayerGround;
             var distance = Vector2.Distance(ground, playerGround);
@@ -347,6 +361,7 @@ namespace ARPG
                 return false;
 
             life -= amount;
+            Damaged?.Invoke(amount);
             if (life <= 0f)
             {
                 life = 0f;
@@ -409,7 +424,7 @@ namespace ARPG
                 return;
 
             var damage = CombatFormulas.EnemyHitDamage(Level) * definition.DamageMultiplier;
-            var armorIgnorePercent = definition.Rank == EnemyRank.Elite ? EliteArmorIgnorePercent : 0f;
+            var armorIgnorePercent = definition.Rank == EnemyRank.Elite || definition.Rank == EnemyRank.Boss ? EliteArmorIgnorePercent : 0f;
             world.Player.TakeHit(damage, Level, armorIgnorePercent);
 
             if (HasModifier(EliteModifiers.Vampiric))
@@ -465,6 +480,13 @@ namespace ARPG
             }
 
             return offset / distance * (1f - distance / radius);
+        }
+
+        /// <summary>Moves a <see cref="Scripted"/> enemy by a ground step, walls respected (long steps go in pieces).</summary>
+        public void ScriptedMove(Vector2 step)
+        {
+            if (manager != null && IsAlive)
+                Move(step, manager);
         }
 
         void Move(Vector2 step, EnemyManager world)

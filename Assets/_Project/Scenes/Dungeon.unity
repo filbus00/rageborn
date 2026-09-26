@@ -2141,72 +2141,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!1 &1011056099
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1011056101}
-  - component: {fileID: 1011056100}
-  m_Layer: 0
-  m_Name: Dungeon Level
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1011056100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011056099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be8615c5ff41f42bbaad7fe0240a56d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ARPG.Runtime::ARPG.DungeonLevel
-  ground: {fileID: 2073303093}
-  walls: {fileID: 1344340674}
-  floorTiles:
-  - {fileID: 11400000, guid: 97bb48253b531462bb21081a40013b3a, type: 2}
-  - {fileID: 11400000, guid: 9d34ada91b8cf4fff9093fc07591afe0, type: 2}
-  wallTile: {fileID: 11400000, guid: e7b6e9788f6a543b598193bddbe2c0ec, type: 2}
-  rooms:
-  - {fileID: 11400000, guid: 2be1cdbdb67df4f088e45b55f26837eb, type: 2}
-  - {fileID: 11400000, guid: fe91120f3b029434a88708faf9b7f81c, type: 2}
-  - {fileID: 11400000, guid: dcfd772f27c3741788f22656c119e897, type: 2}
-  - {fileID: 11400000, guid: ad33cb2678a3047d9be950306cf40a49, type: 2}
-  - {fileID: 11400000, guid: e572bb6d9c3704e69a37d245e8a012ab, type: 2}
-  - {fileID: 11400000, guid: bb4819628620e495d8f0f48ee3ccaa61, type: 2}
-  normalEnemy: {fileID: 11400000, guid: 6201683d235cd497094aad33e35dde91, type: 2}
-  championEnemy: {fileID: 11400000, guid: 1d3eff58cf0584336a232caad7cf094f, type: 2}
-  eliteEnemy: {fileID: 11400000, guid: b534de20524154da69da32ef53b994f4, type: 2}
-  stairsSprite: {fileID: 21300000, guid: be650e1a0d01c40ae9f98acb58e0e2a7, type: 3}
-  chestClosedSprite: {fileID: 21300000, guid: a3c9c0854b4a747afa99803640373c33, type: 3}
-  chestOpenSprite: {fileID: 21300000, guid: eb42cd9a51ce0444c8a15463243cec35, type: 3}
-  dungeonScene: Dungeon
-  townScene: Town
-  editorDepth: 1
---- !u!4 &1011056101
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011056099}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1037409634
 GameObject:
   m_ObjectHideFlags: 0
@@ -2473,6 +2407,73 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157644342}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1232702582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1232702584}
+  - component: {fileID: 1232702583}
+  m_Layer: 0
+  m_Name: Dungeon Level
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1232702583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232702582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8615c5ff41f42bbaad7fe0240a56d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ARPG.Runtime::ARPG.DungeonLevel
+  ground: {fileID: 2073303093}
+  walls: {fileID: 1344340674}
+  floorTiles:
+  - {fileID: 11400000, guid: 97bb48253b531462bb21081a40013b3a, type: 2}
+  - {fileID: 11400000, guid: 9d34ada91b8cf4fff9093fc07591afe0, type: 2}
+  wallTile: {fileID: 11400000, guid: e7b6e9788f6a543b598193bddbe2c0ec, type: 2}
+  rooms:
+  - {fileID: 11400000, guid: 2be1cdbdb67df4f088e45b55f26837eb, type: 2}
+  - {fileID: 11400000, guid: fe91120f3b029434a88708faf9b7f81c, type: 2}
+  - {fileID: 11400000, guid: dcfd772f27c3741788f22656c119e897, type: 2}
+  - {fileID: 11400000, guid: ad33cb2678a3047d9be950306cf40a49, type: 2}
+  - {fileID: 11400000, guid: e572bb6d9c3704e69a37d245e8a012ab, type: 2}
+  - {fileID: 11400000, guid: bb4819628620e495d8f0f48ee3ccaa61, type: 2}
+  normalEnemy: {fileID: 11400000, guid: 6201683d235cd497094aad33e35dde91, type: 2}
+  championEnemy: {fileID: 11400000, guid: 1d3eff58cf0584336a232caad7cf094f, type: 2}
+  eliteEnemy: {fileID: 11400000, guid: b534de20524154da69da32ef53b994f4, type: 2}
+  bossEnemy: {fileID: 11400000, guid: 755ef9ba5cf994db8b7b6a7c0257f248, type: 2}
+  stairsSprite: {fileID: 21300000, guid: be650e1a0d01c40ae9f98acb58e0e2a7, type: 3}
+  chestClosedSprite: {fileID: 21300000, guid: a3c9c0854b4a747afa99803640373c33, type: 3}
+  chestOpenSprite: {fileID: 21300000, guid: eb42cd9a51ce0444c8a15463243cec35, type: 3}
+  dungeonScene: Dungeon
+  townScene: Town
+  editorDepth: 1
+--- !u!4 &1232702584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232702582}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -4674,4 +4675,4 @@ SceneRoots:
   - {fileID: 1560429590}
   - {fileID: 1157644345}
   - {fileID: 1950967442}
-  - {fileID: 1011056101}
+  - {fileID: 1232702584}

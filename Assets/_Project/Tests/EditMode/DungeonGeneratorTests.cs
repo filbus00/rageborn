@@ -85,7 +85,11 @@ namespace ARPG.Tests
 
                 Assert.That(layout.Rooms.Count, Is.InRange(7, 10), label + ": 5 to 8 rooms between start and exit");
                 Assert.AreEqual(1, layout.Rooms.Count(r => r.Kind == RoomKind.Start), label);
-                Assert.AreEqual(1, layout.Rooms.Count(r => r.Kind == RoomKind.Exit), label);
+                var lastLevel = depth == DungeonRules.LevelsPerAct;
+                Assert.AreEqual(lastLevel ? 0 : 1, layout.Rooms.Count(r => r.Kind == RoomKind.Exit), label);
+                Assert.AreEqual(lastLevel ? 1 : 0, layout.Rooms.Count(r => r.Kind == RoomKind.Boss), label + ": the act boss waits on the last level");
+                Assert.AreEqual(lastLevel, layout.HasBossArena, label);
+                Assert.IsFalse(layout.Packs.Any(p => layout.Rooms[p.Room].Kind == RoomKind.Boss), label + ": no packs in the arena");
                 Assert.GreaterOrEqual(layout.Rooms.Count(r => r.Kind == RoomKind.Elite), 1, label);
                 Assert.GreaterOrEqual(layout.Chests.Count, 1, label + ": one guaranteed chest");
                 Assert.GreaterOrEqual(layout.Packs.Count(p => p.Kind == PackKind.Elite), 1, label + ": one guaranteed elite pack");
@@ -207,6 +211,37 @@ namespace ARPG.Tests
 
             Assert.AreEqual(seeds.Count, seeds.Distinct().Count());
             Assert.AreEqual(DungeonRules.LevelSeed(42, 3), DungeonRules.LevelSeed(42, 3));
+        }
+
+        [Test]
+        public void TheBossArena_IsAUsableRoom_WithTheDocsRadius()
+        {
+            var arena = DungeonGenerator.BossArenaShape;
+            var text = new System.Text.StringBuilder();
+            for (var y = arena.Size - 1; y >= 0; y--)
+            {
+                for (var x = 0; x < arena.Size; x++)
+                    text.Append(arena.IsBlocked(x, y) ? '#' : '.');
+                text.Append('\n');
+            }
+
+            // Parsing runs the same checks a hand-drawn room gets: doorways clear, every floor cell reachable.
+            Assert.DoesNotThrow(() => RoomShape.Parse("arena", text.ToString()));
+            Assert.LessOrEqual(arena.Size, new DungeonSettings().MaxRoomSize);
+            // Docs/05: radius 12 units. A cell edge is 0.707 units.
+            Assert.AreEqual(12f, DungeonGenerator.BossArenaRadiusCells * 0.7071f, 1f);
+        }
+
+        [Test]
+        public void TheArenaCenterAndEntry_AreFloor_AndReachable()
+        {
+            for (var seed = 1; seed <= 20; seed++)
+            {
+                var layout = DungeonGenerator.Generate(seed, DungeonRules.LevelsPerAct, Library());
+                Assert.IsTrue(layout.IsFloor(layout.BossArenaCenter), $"seed {seed}");
+                Assert.IsTrue(Flood(layout, layout.ArrivalFromAbove).Contains(layout.BossArenaCenter), $"seed {seed}");
+                Assert.IsTrue(layout.IsFloor(layout.BossArenaEntry), $"seed {seed}: entry");
+            }
         }
 
         [Test]

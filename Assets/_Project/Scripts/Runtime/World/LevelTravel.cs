@@ -8,6 +8,10 @@ namespace ARPG
 
         /// <summary>Up the stairs from the level below: at the level's stairs down.</summary>
         FromBelow,
+
+        /// <summary>Development only (<see cref="DevShortcuts"/>): just inside the boss arena, so the boss can be tested
+        /// without fighting through the level. Anywhere else it means <see cref="FromAbove"/>.</summary>
+        AtBoss,
     }
 
     /// <summary>A trip between scenes: the dungeon depth to build and where to arrive. Set by the stairway that starts

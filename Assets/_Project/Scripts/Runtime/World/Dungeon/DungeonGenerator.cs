@@ -110,8 +110,37 @@ namespace ARPG
         /// Which generator built the saved dungeon. Bump it whenever the same seed would build a different level (room
         /// library, sizes, pack rules): a save from another version forgets its dungeon kills and chests, which would
         /// otherwise land on the wrong packs. 1: the first, small rooms. 2: bigger, open rooms, 5 cell doorways.
+        /// 3: the last level's exit room is the boss arena.
         /// </summary>
-        public const int Version = 2;
+        public const int Version = 3;
+
+        /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
+        /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
+        public const int BossArenaRadiusCells = 18;
+
+        static RoomShape bossArena;
+
+        /// <summary>The arena as a room shape: a disc of floor in a 36 cell square, blocked outside it.</summary>
+        public static RoomShape BossArenaShape
+        {
+            get
+            {
+                if (bossArena != null)
+                    return bossArena;
+                var size = BossArenaRadiusCells * 2;
+                var blocked = new bool[size, size];
+                var center = BossArenaRadiusCells;
+                for (var x = 0; x < size; x++)
+                    for (var y = 0; y < size; y++)
+                    {
+                        var dx = x + 0.5f - center;
+                        var dy = y + 0.5f - center;
+                        blocked[x, y] = dx * dx + dy * dy > BossArenaRadiusCells * BossArenaRadiusCells;
+                    }
+                bossArena = new RoomShape("Boss Arena", blocked);
+                return bossArena;
+            }
+        }
 
         const int SmallMax = 22;
         const int MediumMax = 30;
@@ -174,7 +203,7 @@ namespace ARPG
                 if (i == 0)
                     kinds[i] = RoomKind.Start;
                 else if (i == exit)
-                    kinds[i] = RoomKind.Exit;
+                    kinds[i] = depth >= DungeonRules.LevelsPerAct ? RoomKind.Boss : RoomKind.Exit;
                 else
                 {
                     kinds[i] = RollKind(random, settings);
@@ -194,7 +223,9 @@ namespace ARPG
             var chosen = new RoomShape[macros.Count];
             for (var i = 0; i < macros.Count; i++)
             {
-                if (kinds[i] == RoomKind.Start)
+                if (kinds[i] == RoomKind.Boss)
+                    chosen[i] = BossArenaShape;
+                else if (kinds[i] == RoomKind.Start)
                     chosen[i] = Pick(random, small, medium, large);
                 else if (kinds[i] == RoomKind.Exit)
                     chosen[i] = Pick(random, medium, large, small);
@@ -256,6 +287,12 @@ namespace ARPG
 
             var exitRoom = layout.Rooms[exit];
             layout.HasStairsDown = depth < DungeonRules.LevelsPerAct;
+            if (exitRoom.Kind == RoomKind.Boss)
+            {
+                layout.HasBossArena = true;
+                layout.BossArenaCenter = new Vector2Int(exitRoom.Interior.xMin + BossArenaRadiusCells, exitRoom.Interior.yMin + BossArenaRadiusCells);
+                layout.BossArenaRadius = BossArenaRadiusCells;
+            }
             if (layout.HasStairsDown)
             {
                 // In the corner furthest from the doorway the player walks in by, so arriving from below lands clear of
@@ -279,7 +316,8 @@ namespace ARPG
             {
                 var order = new List<int>();
                 for (var i = 1; i < layout.Rooms.Count; i++)
-                    order.Add(i);
+                    if (layout.Rooms[i].Kind != RoomKind.Boss)
+                        order.Add(i);
                 order.Sort((a, b) => treeDepth[b].CompareTo(treeDepth[a]));
                 foreach (var i in order)
                     if (TryPlacePack(layout, i, PackKind.Elite, random.Next(settings.MinElitePackSize, settings.MaxElitePackSize + 1), random, settings))

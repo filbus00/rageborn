@@ -10,6 +10,9 @@ namespace ARPG
         Normal,
         Champion,
         Elite,
+
+        /// <summary>An act boss (Docs/05-world-and-content.md), driven by its own fight script, not the pack AI.</summary>
+        Boss,
     }
 
     /// <summary>

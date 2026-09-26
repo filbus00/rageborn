@@ -23,6 +23,9 @@ namespace ARPG
         /// value, between normal and elite, the same as its gold.</summary>
         public const float ChampionXpMultiplier = 3f;
 
+        /// <summary>Docs: bosses give 60 times normal XP.</summary>
+        public const float BossXpMultiplier = 60f;
+
         /// <summary>XP needed to go from <paramref name="level"/> to the next: 400 times level to the power 2.2,
         /// rounded.</summary>
         public static int XpToNextLevel(int level)
@@ -57,6 +60,7 @@ namespace ARPG
             {
                 case EnemyRank.Elite: return EliteXpMultiplier;
                 case EnemyRank.Champion: return ChampionXpMultiplier;
+                case EnemyRank.Boss: return BossXpMultiplier;
                 default: return 1f;
             }
         }

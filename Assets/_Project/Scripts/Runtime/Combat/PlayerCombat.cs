@@ -179,7 +179,8 @@ namespace ARPG
                 inReach.Add(candidates[i]);
                 inReachPositions.Add(candidates[i].GroundPosition);
                 // Docs: elites and bosses (bosses not built yet) get a range weight bonus so they are preferred.
-                inReachWeights.Add(candidates[i].Definition.Rank == EnemyRank.Elite ? SweepGeometry.PreferredTargetWeight : 1f);
+                var rank = candidates[i].Definition.Rank;
+                inReachWeights.Add(rank == EnemyRank.Elite || rank == EnemyRank.Boss ? SweepGeometry.PreferredTargetWeight : 1f);
             }
 
             var index = SweepGeometry.PickTarget(origin, facing, inReachPositions, inReachWeights);

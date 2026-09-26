@@ -19,6 +19,9 @@ namespace ARPG
         Combat,
         Elite,
         Treasure,
+
+        /// <summary>The act boss's circular arena, in place of the exit room on the act's last level.</summary>
+        Boss,
     }
 
     public enum PackKind
@@ -104,10 +107,23 @@ namespace ARPG
         /// <summary>Where the player stands on coming down from the level above (or the town).</summary>
         public Vector2Int ArrivalFromAbove { get; internal set; }
 
-        /// <summary>False on the last level of the act, which has no stairs down (its boss is not built yet).</summary>
+        /// <summary>False on the last level of the act, which ends in the boss arena instead.</summary>
         public bool HasStairsDown { get; internal set; }
 
         public Vector2Int StairsDown { get; internal set; }
+
+        /// <summary>True on the act's last level, where the exit room is the boss arena.</summary>
+        public bool HasBossArena { get; internal set; }
+
+        /// <summary>The arena's middle, where the boss waits.</summary>
+        public Vector2Int BossArenaCenter { get; internal set; }
+
+        /// <summary>The arena's floor radius in cells (0.707 ground units each).</summary>
+        public int BossArenaRadius { get; internal set; }
+
+        /// <summary>Three cells inside the arena's rim: where the development shortcut to the boss lands, close enough
+        /// that the fight starts.</summary>
+        public Vector2Int BossArenaEntry => BossArenaCenter - new Vector2Int(0, BossArenaRadius - 3);
 
         /// <summary>Where the player stands on coming up from the level below.</summary>
         public Vector2Int ArrivalFromBelow { get; internal set; }

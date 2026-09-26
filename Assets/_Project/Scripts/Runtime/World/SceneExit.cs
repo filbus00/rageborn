@@ -36,12 +36,18 @@ namespace ARPG
         }
 
         static bool loading;
+        float armedAt;
 
-        void Awake() => loading = false;
+        void Awake()
+        {
+            loading = false;
+            // Counted from whichever is later, the scene start or this stairway appearing (a boss's stairs appear mid-level).
+            armedAt = Time.timeSinceLevelLoad + armSeconds;
+        }
 
         void OnTriggerStay2D(Collider2D other)
         {
-            if (loading || Time.timeSinceLevelLoad < armSeconds || other.GetComponentInParent<PlayerController>() == null)
+            if (loading || Time.timeSinceLevelLoad < armedAt || other.GetComponentInParent<PlayerController>() == null)
                 return;
 
             loading = true;

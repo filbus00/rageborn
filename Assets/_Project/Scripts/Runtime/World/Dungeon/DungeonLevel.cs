@@ -25,6 +25,9 @@ namespace ARPG
         [SerializeField] EnemyDefinition championEnemy;
         [SerializeField] EnemyDefinition eliteEnemy;
 
+        [Tooltip("The act boss, fought in the arena on the act's last level.")]
+        [SerializeField] EnemyDefinition bossEnemy;
+
         [SerializeField] Sprite stairsSprite;
         [SerializeField] Sprite chestClosedSprite;
         [SerializeField] Sprite chestOpenSprite;
@@ -75,7 +78,7 @@ namespace ARPG
 
             Paint();
             RescueCorpses(session);
-            PlacePlayer(arrival == Arrival.FromBelow && Layout.HasStairsDown ? Layout.ArrivalFromBelow : Layout.ArrivalFromAbove);
+            PlacePlayer(ArrivalCell(arrival));
 
             var root = new GameObject("Level " + depth).transform;
             if (depth > 1)
@@ -91,9 +94,47 @@ namespace ARPG
             for (var i = 0; i < Layout.Packs.Count; i++)
                 AddPack(root, i, Layout.Packs[i]);
 
+            if (Layout.HasBossArena)
+                SetUpBoss(session, root);
+
             var playerController = FindAnyObjectByType<PlayerController>();
             if (playerController != null)
                 gameObject.AddComponent<Minimap>().Init(Layout, levelId, playerController.transform);
+        }
+
+        Vector2Int ArrivalCell(Arrival arrival)
+        {
+            if (arrival == Arrival.FromBelow && Layout.HasStairsDown)
+                return Layout.ArrivalFromBelow;
+            if (arrival == Arrival.AtBoss && Layout.HasBossArena)
+                return Layout.BossArenaEntry;
+            return Layout.ArrivalFromAbove;
+        }
+
+        /// <summary>
+        /// The act boss waits in the arena until it is killed; after that, and for good in this game session, the arena
+        /// holds stairs back to the town instead (there is no act 2 yet to go down to). The stairs stand near the arena's
+        /// far edge, not in its middle, so walking over to the boss's loot does not end the level.
+        /// </summary>
+        void SetUpBoss(GameSession session, Transform root)
+        {
+            var key = levelId + "/Boss";
+            var stairsCell = Layout.BossArenaCenter + new Vector2Int(0, Layout.BossArenaRadius - 4);
+            if (session.IsKilled(key, 0))
+            {
+                AddStairs(root, "Stairs To Town", stairsCell, townScene, 0, Arrival.FromAbove);
+                return;
+            }
+            if (bossEnemy == null)
+            {
+                Debug.LogError("[ARPG] The boss arena has no boss definition.", this);
+                return;
+            }
+
+            var fight = new GameObject("Cinder Warden Fight").AddComponent<CinderWardenFight>();
+            fight.Configure(bossEnemy, normalEnemy, Layout.EnemyLevel, IsoMath.CellToGround(Layout.BossArenaCenter),
+                Layout.BossArenaRadius * 0.7071f, key,
+                () => AddStairs(root, "Stairs To Town", stairsCell, townScene, 0, Arrival.FromAbove));
         }
 
         /// <summary>A corpse on this level whose spot is no longer floor (the generator changed since it fell) moves to

@@ -12,6 +12,9 @@ namespace ARPG
 
         /// <summary>A dungeon level's chest (Docs/03-itemization.md: "Zone chest").</summary>
         ZoneChest,
+
+        /// <summary>An act boss.</summary>
+        Boss,
     }
 
     /// <summary>
@@ -25,6 +28,15 @@ namespace ARPG
         public const float ChampionDropChance = 0.25f;
         public const float EliteDropChance = 1f;
         public const float ZoneChestDropChance = 1f;
+        public const float BossDropChance = 1f;
+
+        // Docs/03-itemization.md: a boss drops 4 to 6 items, Rare or better, with one legendary chance of 35 percent.
+        public const int MinBossItems = 4;
+        public const int MaxBossItems = 6;
+        public const float BossLegendaryChance = 0.35f;
+
+        // Boss gold is not in the docs. Tuning: 20 times a normal enemy's.
+        public const float BossGoldMultiplier = 20f;
 
         // Docs: Elite's rarity floor is Magic, or Rare with this chance.
         const float EliteRareFloorChance = 0.30f;
@@ -105,8 +117,9 @@ namespace ARPG
         /// <summary>
         /// Registers a kill and rolls its drops per <see cref="LootSource"/> (Docs/03-itemization.md): a normal
         /// enemy or Champion drops at most one item, an Elite 1 to 2, each at least the source's rarity floor
-        /// (Common for a normal enemy, Magic for a Champion, Magic or 30 percent of the time Rare for an Elite).
-        /// Empty when nothing dropped.
+        /// (Common for a normal enemy, Magic for a Champion, Magic or 30 percent of the time Rare for an Elite). A
+        /// zone chest drops 1 to 3 at Magic or better, a boss 4 to 6 at Rare or better, the first of them Legendary
+        /// 35 percent of the time. Empty when nothing dropped.
         /// </summary>
         public System.Collections.Generic.IReadOnlyList<Item> RollDrops(LootSource source, int itemLevel, float magicFind)
         {
@@ -120,11 +133,15 @@ namespace ARPG
             var floor = RarityFloor(source);
             var count = DropCount(source);
             var items = new Item[count];
+            // Docs: "one legendary chance of 35 percent" for a boss: one roll per kill, on top of the normal weights.
+            var bossLegendary = source == LootSource.Boss && random.NextDouble() < BossLegendaryChance;
             for (var i = 0; i < count; i++)
             {
                 var rarity = RollRarity(magicFind);
                 if (rarity < floor)
                     rarity = floor;
+                if (i == 0 && bossLegendary)
+                    rarity = ItemRarity.Legendary;
                 if (rarity == ItemRarity.Legendary)
                     KillsSinceLegendary = 0;
 
@@ -148,6 +165,8 @@ namespace ARPG
                 amount *= ChampionGoldMultiplier;
             else if (source == LootSource.ZoneChest)
                 amount *= ZoneChestGoldMultiplier;
+            else if (source == LootSource.Boss)
+                amount *= BossGoldMultiplier;
             return Mathf.Max(1, Mathf.RoundToInt(amount));
         }
 
@@ -158,6 +177,7 @@ namespace ARPG
                 case LootSource.Champion: return ChampionDropChance;
                 case LootSource.Elite: return EliteDropChance;
                 case LootSource.ZoneChest: return ZoneChestDropChance;
+                case LootSource.Boss: return BossDropChance;
                 default: return NormalEnemyDropChance;
             }
         }
@@ -169,6 +189,7 @@ namespace ARPG
             {
                 case LootSource.Elite: return 1 + random.Next(2);
                 case LootSource.ZoneChest: return 1 + random.Next(3);
+                case LootSource.Boss: return MinBossItems + random.Next(MaxBossItems - MinBossItems + 1);
                 default: return 1;
             }
         }
@@ -180,6 +201,8 @@ namespace ARPG
                 case LootSource.Champion:
                 case LootSource.ZoneChest:
                     return ItemRarity.Magic;
+                case LootSource.Boss:
+                    return ItemRarity.Rare;
                 case LootSource.Elite:
                     // One roll for the whole drop, not per item: either every item from this kill floors at Rare or none do.
                     return random.NextDouble() < EliteRareFloorChance ? ItemRarity.Rare : ItemRarity.Magic;

@@ -1,0 +1,140 @@
+using System;
+using UnityEngine;
+
+namespace ARPG
+{
+    /// <summary>
+    /// Placeholder sprites for telegraphs and boss effects, made in code once and shared: a circle with a hard outline
+    /// and a soft fill, a solid disc for the fill that grows, a ring for the burning arena edge, a line and an ember.
+    /// Each is one world unit across, so scaling a sprite by its size in world units sizes it.
+    /// </summary>
+    public static class TelegraphArt
+    {
+        const int Size = 128;
+
+        static Sprite circle, disc, ring, line, ember;
+
+        /// <summary>Docs/01-core-gameplay.md: a hard outline and a soft fill.</summary>
+        public static Sprite Circle => circle != null ? circle : circle = Make("Telegraph Circle", r => r > 1f ? 0f : r > 0.93f ? 1f : 0.16f);
+
+        public static Sprite Disc => disc != null ? disc : disc = Make("Telegraph Disc", r => r > 1f ? 0f : 0.5f);
+
+        /// <summary>A band from 72 to 100 percent of the radius: the Cinder Warden's burning arena edge.</summary>
+        public static Sprite Ring => ring != null ? ring : ring = Make("Fire Ring", r => r > 1f || r < 0.72f ? 0f : r > 0.96f || r < 0.75f ? 0.9f : 0.42f);
+
+        public static Sprite Line => line != null ? line : line = Make("Telegraph Line", r => 1f);
+
+        public static Sprite Ember => ember != null ? ember : ember = Make("Ember", r => r > 1f ? 0f : 1f - r * 0.6f);
+
+        /// <summary>A white sprite whose alpha at each pixel is <paramref name="alpha"/> of its distance from the
+        /// center, 0 there and 1 at the edge.</summary>
+        static Sprite Make(string name, Func<float, float> alpha)
+        {
+            var texture = new Texture2D(Size, Size, TextureFormat.RGBA32, false)
+            {
+                name = name,
+                filterMode = FilterMode.Bilinear,
+                wrapMode = TextureWrapMode.Clamp,
+            };
+            var pixels = new Color32[Size * Size];
+            var half = Size / 2f;
+            for (var y = 0; y < Size; y++)
+                for (var x = 0; x < Size; x++)
+                {
+                    var r = Mathf.Sqrt((x + 0.5f - half) * (x + 0.5f - half) + (y + 0.5f - half) * (y + 0.5f - half)) / half;
+                    pixels[x + y * Size] = new Color32(255, 255, 255, (byte)(Mathf.Clamp01(alpha(r)) * 255f));
+                }
+            texture.SetPixels32(pixels);
+            texture.Apply(false, true);
+            return Sprite.Create(texture, new Rect(0, 0, Size, Size), new Vector2(0.5f, 0.5f), Size);
+        }
+    }
+
+    /// <summary>
+    /// A telegraph drawn on the ground (Docs/01-core-gameplay.md, kiting and telegraphs): a circle or a line in ground
+    /// space, projected to the isometric view, with an inner fill that grows until the attack lands. The fight that made
+    /// it advances it with the same clock as its attack, so a pause or a stagger stops it too.
+    /// </summary>
+    public sealed class GroundMarker
+    {
+        readonly GameObject root;
+        readonly Transform fill;
+
+        GroundMarker(GameObject root, Transform fill, float duration)
+        {
+            this.root = root;
+            this.fill = fill;
+            Duration = duration;
+        }
+
+        public float Duration { get; }
+        public float Elapsed { get; private set; }
+        public bool Done => Elapsed >= Duration;
+
+        /// <summary>A ground circle of the given radius, filling over <paramref name="duration"/> seconds.</summary>
+        public static GroundMarker Circle(Vector2 ground, float radius, float duration, Color color, Transform parent)
+        {
+            var root = NewSprite("Telegraph", TelegraphArt.Circle, color, parent, 40);
+            Place(root.transform, ground, radius);
+            var fillObject = NewSprite("Fill", TelegraphArt.Disc, color, root.transform, 41);
+            fillObject.transform.localScale = Vector3.zero;
+            return new GroundMarker(root, fillObject.transform, duration);
+        }
+
+        /// <summary>A lasting ring (the burning arena edge), fading in over <paramref name="duration"/> seconds.</summary>
+        public static GroundMarker Ring(Vector2 ground, float radius, float duration, Color color, Transform parent)
+        {
+            var root = NewSprite("Fire Ring", TelegraphArt.Ring, color, parent, 39);
+            Place(root.transform, ground, radius);
+            return new GroundMarker(root, null, duration);
+        }
+
+        /// <summary>A thin line on the ground from one point to another (projectile and charge telegraphs).</summary>
+        public static GroundMarker Line(Vector2 from, Vector2 to, float width, float duration, Color color, Transform parent)
+        {
+            var root = NewSprite("Line", TelegraphArt.Line, color, parent, 42);
+            var a = IsoMath.GroundToWorld(from);
+            var b = IsoMath.GroundToWorld(to);
+            var delta = b - a;
+            root.transform.position = (a + b) / 2f;
+            root.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg);
+            root.transform.localScale = new Vector3(delta.magnitude, width, 1f);
+            return new GroundMarker(root, null, duration);
+        }
+
+        /// <summary>Advances the fill. A ring fades in instead.</summary>
+        public void Advance(float deltaSeconds)
+        {
+            Elapsed += deltaSeconds;
+            var t = Duration > 0f ? Mathf.Clamp01(Elapsed / Duration) : 1f;
+            if (fill != null)
+                fill.localScale = new Vector3(t, t, 1f);
+        }
+
+        public void Destroy()
+        {
+            if (root != null)
+                UnityEngine.Object.Destroy(root);
+        }
+
+        // A ground circle of radius r is an ellipse r wide and r/2 tall on screen.
+        static void Place(Transform transform, Vector2 ground, float radius)
+        {
+            transform.position = IsoMath.GroundToWorld(ground);
+            transform.localScale = new Vector3(radius * 2f, radius * 2f * IsoMath.GroundSquash, 1f);
+        }
+
+        internal static GameObject NewSprite(string name, Sprite sprite, Color color, Transform parent, int order)
+        {
+            var go = new GameObject(name, typeof(SpriteRenderer));
+            go.transform.SetParent(parent, false);
+            var spriteRenderer = go.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = sprite;
+            spriteRenderer.color = color;
+            // On the ground, under every character (Decals draws between the floor and the Entities layer).
+            spriteRenderer.sortingLayerName = GameSortingLayers.Decals;
+            spriteRenderer.sortingOrder = order;
+            return go;
+        }
+    }
+}
