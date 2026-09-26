@@ -131,6 +131,7 @@ namespace ARPG
         readonly HashSet<string> openedChests = new HashSet<string>();
         readonly Dictionary<string, bool[]> explored = new Dictionary<string, bool[]>();
         readonly int[] materials = new int[Enum.GetValues(typeof(CraftingMaterial)).Length];
+        readonly SortedSet<int> waypoints = new SortedSet<int>();
         Onboarding onboarding;
 
         static GameSession current = new GameSession(Environment.TickCount);
@@ -223,6 +224,54 @@ namespace ARPG
         public LootRoller Loot { get; }
 
         public CharacterProgress Progress { get; private set; } = new CharacterProgress();
+
+        /// <summary>The depths whose waypoint the character has stepped on (Docs/05), in order. Saved.</summary>
+        public IReadOnlyCollection<int> Waypoints => waypoints;
+
+        public bool HasWaypoint(int depth) => waypoints.Contains(depth);
+
+        /// <summary>Activates a depth's waypoint. Returns true the first time.</summary>
+        public bool ActivateWaypoint(int depth)
+        {
+            if (depth < 1 || !waypoints.Add(depth))
+                return false;
+            Modified?.Invoke();
+            return true;
+        }
+
+        /// <summary>Whether the character owns the Portal Tome (Docs/05: permanent, free to use from the UI). Saved.</summary>
+        public bool HasPortalTome { get; private set; }
+
+        public void GivePortalTome()
+        {
+            if (HasPortalTome)
+                return;
+            HasPortalTome = true;
+            NotifyChanged();
+        }
+
+        /// <summary>The depth an open town portal stands on, 0 when none is open. One portal at a time. Saved.</summary>
+        public int PortalDepth { get; private set; }
+
+        /// <summary>Where on its level the open portal stands, in ground units.</summary>
+        public Vector2 PortalPosition { get; private set; }
+
+        /// <summary>Opens a portal on a depth, replacing any other: Docs/05, it stays open so the player can come back.</summary>
+        public void OpenPortal(int depth, Vector2 groundPosition)
+        {
+            PortalDepth = depth;
+            PortalPosition = groundPosition;
+            Modified?.Invoke();
+        }
+
+        /// <summary>Closes the portal, when the player has come back through it (as in Diablo 1).</summary>
+        public void ClosePortal()
+        {
+            if (PortalDepth == 0)
+                return;
+            PortalDepth = 0;
+            Modified?.Invoke();
+        }
 
         /// <summary>What the character has been taught (Docs/06, onboarding). Its changes raise <see cref="Modified"/>.</summary>
         public Onboarding Onboarding => onboarding;

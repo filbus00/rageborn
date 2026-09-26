@@ -12,6 +12,12 @@ namespace ARPG
         /// <summary>Development only (<see cref="DevShortcuts"/>): just inside the boss arena, so the boss can be tested
         /// without fighting through the level. Anywhere else it means <see cref="FromAbove"/>.</summary>
         AtBoss,
+
+        /// <summary>By waypoint travel: beside the level's waypoint.</summary>
+        AtWaypoint,
+
+        /// <summary>Back through the town portal: where the portal was opened. The portal then closes.</summary>
+        AtPortal,
     }
 
     /// <summary>A trip between scenes: the dungeon depth to build and where to arrive. Set by the stairway that starts

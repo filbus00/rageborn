@@ -35,8 +35,8 @@ Each act has one town, a small safe scene the player walks through with the stic
 ### Getting around
 
 - Stairs: the exit room of each level holds stairs down and the start room holds stairs up.
-- Waypoints: each level has a waypoint the player activates by stepping on it. From any activated waypoint, or from the Waystone in town, the player can jump to any other activated waypoint. A list screen opens from the waypoint or the Waystone. Rifts and the Abyss are entered from an NPC in town.
-- Portal Tome: a permanent item found around level 3 of the dungeon. It stays with the character, is free to use and is used from the UI. It opens a portal to town, and the portal stays open so the player can come back through it. Before the Tome the player walks back to town by the stairs. There are no consumable portal scrolls.
+- Waypoints: each level has a waypoint, in its start room (decision of 2026-09-26), that the player activates by stepping on it. From any activated waypoint, or from the Waystone in town, the player can jump to any other activated waypoint. A list screen opens from the waypoint or the Waystone. Rifts and the Abyss are entered from an NPC in town.
+- Portal Tome: a permanent item, given by an NPC, the Wanderer, on dungeon depth 3 (decision of 2026-09-26). It stays with the character, is free to use and is used from the UI. It opens a portal to town, and the portal stays open so the player can come back through it. Before the Tome the player walks back to town by the stairs. There are no consumable portal scrolls.
 - Persistence: within a game session a level keeps its seeded layout, its dead enemies and its opened chests when the player leaves and comes back. A sleep mechanic resets the session. Its rules are not designed yet.
 - Death: the character is sent to town, see 01-core-gameplay.md.
 

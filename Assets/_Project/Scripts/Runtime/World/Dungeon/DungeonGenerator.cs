@@ -13,6 +13,10 @@ namespace ARPG
         /// <summary>Docs/05-world-and-content.md: about 6 levels per act.</summary>
         public const int LevelsPerAct = 6;
 
+        /// <summary>Docs/05: the Portal Tome is found around level 3; the Wanderer gives it on this depth (the user's
+        /// choice, 2026-09-26).</summary>
+        public const int PortalTomeDepth = 3;
+
         /// <summary>
         /// The enemy level of each depth, 1 to 6 (index 0 unused). Tuning: they follow the level a character reaches by
         /// clearing each level, measured with the balance report. The first version spread Docs/05's act 1 range of player
@@ -283,6 +287,10 @@ namespace ARPG
                     startDoors.Add(DoorMidpoint(startRoom, macros[i] - macros[0]));
             layout.StairsUp = NearestFloor(layout, startRoom.Interior, CornerAwayFrom(startRoom.Interior, startDoors), null, 0);
             layout.ArrivalFromAbove = NearestFloor(layout, startRoom.Interior, Vector2Int.RoundToInt(Vector2.Lerp(layout.StairsUp, Center(startRoom.Interior), 0.35f)), layout.StairsUp, 2);
+            // Docs/05: each level has a waypoint. In the start room (the user's choice), further in than the arrival
+            // point, so it is passed on the way in but not stood on when arriving by the stairs. No random numbers are
+            // drawn, so older layouts are unchanged.
+            layout.Waypoint = NearestFloor(layout, startRoom.Interior, Vector2Int.RoundToInt(Vector2.Lerp(layout.StairsUp, Center(startRoom.Interior), 0.75f)), layout.ArrivalFromAbove, 3);
 
             var exitRoom = layout.Rooms[exit];
             layout.HasStairsDown = depth < DungeonRules.LevelsPerAct;
@@ -305,6 +313,14 @@ namespace ARPG
             for (var i = 0; i < layout.Rooms.Count; i++)
                 if (layout.Rooms[i].Kind == RoomKind.Treasure)
                     layout.Chests.Add(NearestFloor(layout, layout.Rooms[i].Interior, Center(layout.Rooms[i].Interior), null, 0));
+
+            // A spot beside the first treasure chest for the Wanderer, who gives the Portal Tome on its depth.
+            for (var i = 0; i < layout.Rooms.Count && !layout.HasWandererSpot; i++)
+                if (layout.Rooms[i].Kind == RoomKind.Treasure)
+                {
+                    layout.WandererSpot = NearestFloor(layout, layout.Rooms[i].Interior, layout.Chests[0] + new Vector2Int(3, 0), layout.Chests[0], 2);
+                    layout.HasWandererSpot = true;
+                }
 
             for (var i = 0; i < layout.Rooms.Count; i++)
                 PlacePacks(layout, i, random, settings);

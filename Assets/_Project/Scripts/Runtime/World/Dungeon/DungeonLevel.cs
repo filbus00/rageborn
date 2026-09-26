@@ -52,6 +52,9 @@ namespace ARPG
 
         public DungeonLayout Layout { get; private set; }
 
+        /// <summary>This level's depth, 1 for the first.</summary>
+        public int Depth => depth;
+
         void Awake()
         {
             var session = GameSession.Current;
@@ -87,7 +90,16 @@ namespace ARPG
 
             Paint();
             RescueCorpses(session);
-            PlacePlayer(ArrivalCell(arrival));
+            if (arrival == Arrival.AtPortal && session.PortalDepth == depth)
+            {
+                // Back through the portal: it closes behind the player (as in Diablo 1).
+                PlacePlayerAt(session.PortalPosition);
+                session.ClosePortal();
+            }
+            else
+            {
+                PlacePlayer(ArrivalCell(arrival));
+            }
 
             var root = new GameObject("Level " + depth).transform;
             if (depth > 1)
@@ -106,6 +118,13 @@ namespace ARPG
             if (Layout.HasBossArena)
                 SetUpBoss(session, root);
 
+            // Docs/05: a waypoint on every level; the Wanderer with the Portal Tome on its depth; an open portal.
+            Waypoint.Create(depth, IsoMath.CellToGround(Layout.Waypoint), root);
+            if (depth == DungeonRules.PortalTomeDepth && Layout.HasWandererSpot)
+                Wanderer.Create(IsoMath.CellToGround(Layout.WandererSpot), root);
+            if (session.PortalDepth == depth)
+                TownPortal.Create(false, depth, session.PortalPosition, root);
+
             var playerController = FindAnyObjectByType<PlayerController>();
             if (playerController != null)
                 gameObject.AddComponent<Minimap>().Init(Layout, levelId, playerController.transform);
@@ -117,6 +136,8 @@ namespace ARPG
                 return Layout.ArrivalFromBelow;
             if (arrival == Arrival.AtBoss && Layout.HasBossArena)
                 return Layout.BossArenaEntry;
+            if (arrival == Arrival.AtWaypoint)
+                return Layout.Waypoint;
             return Layout.ArrivalFromAbove;
         }
 
@@ -198,6 +219,18 @@ namespace ARPG
         {
             var world = IsoMath.GroundToWorld(IsoMath.CellToGround(cell));
             return new Vector3(world.x, world.y, 0f);
+        }
+
+        void PlacePlayerAt(Vector2 ground)
+        {
+            var player = FindAnyObjectByType<PlayerController>();
+            if (player == null)
+                return;
+            var world = IsoMath.GroundToWorld(ground);
+            var position = new Vector3(world.x, world.y, 0f);
+            player.transform.position = position;
+            if (player.TryGetComponent<Rigidbody2D>(out var body))
+                body.position = position;
         }
 
         void PlacePlayer(Vector2Int cell)

@@ -15,8 +15,9 @@ namespace ARPG
     {
         /// <summary>1: the first. 2: adds level and experience. 3: adds potion charges. 4: adds the dungeon seed and
         /// opened chests. 5: adds the dungeon generator version. 6: adds salvage materials and each item's reforge and
-        /// temper counts. 7: adds what the character has been taught (onboarding) and play time.</summary>
-        public const int CurrentVersion = 7;
+        /// temper counts. 7: adds what the character has been taught (onboarding) and play time. 8: adds activated
+        /// waypoints, the Portal Tome and an open portal.</summary>
+        public const int CurrentVersion = 8;
 
         public int version;
 
@@ -56,6 +57,15 @@ namespace ARPG
         public bool seenLegendary;
         public bool legendaryHintShown;
         public float playSeconds;
+
+        /// <summary>Depths whose waypoint is activated.</summary>
+        public List<int> waypoints = new List<int>();
+        public bool hasPortalTome;
+
+        /// <summary>The open portal's depth (0 for none) and ground position.</summary>
+        public int portalDepth;
+        public float portalX;
+        public float portalY;
     }
 
     [Serializable]

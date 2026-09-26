@@ -22,6 +22,7 @@ namespace ARPG
             MigrateFrom4, // 4 to 5: the generator version was not saved; 0 means unknown, so dungeon records are dropped.
             MigrateFrom5, // 5 to 6: the Forge did not exist; no materials, and no item was ever reforged or tempered.
             MigrateFrom6, // 6 to 7: onboarding did not exist; an existing character needs no lessons (see the step).
+            MigrateFrom7, // 7 to 8: no waypoints, Tome or portal existed.
         };
 
         static SaveData MigrateFrom1(SaveData data)
@@ -76,6 +77,14 @@ namespace ARPG
             return data;
         }
 
+        static SaveData MigrateFrom7(SaveData data)
+        {
+            data.waypoints = new List<int>();
+            data.hasPortalTome = false;
+            data.portalDepth = 0;
+            return data;
+        }
+
         static IEnumerable<ItemData> AllItems(SaveData data)
         {
             foreach (var item in data.equipped ?? new List<ItemData>())
@@ -107,6 +116,11 @@ namespace ARPG
                 seenLegendary = session.Onboarding.SeenLegendary,
                 legendaryHintShown = session.Onboarding.LegendaryHintShown,
                 playSeconds = session.Onboarding.PlaySeconds,
+                waypoints = new List<int>(session.Waypoints),
+                hasPortalTome = session.HasPortalTome,
+                portalDepth = session.PortalDepth,
+                portalX = session.PortalPosition.x,
+                portalY = session.PortalPosition.y,
                 equipped = CaptureEquipment(session.Equipment),
             };
 
@@ -151,6 +165,12 @@ namespace ARPG
             session.RestoreProgress(data.level, data.experience);
             session.RestorePotion(data.potionCharges, data.potionKillProgress);
             session.DungeonSeed = data.dungeonSeed;
+            foreach (var depth in data.waypoints)
+                session.ActivateWaypoint(depth);
+            if (data.hasPortalTome)
+                session.GivePortalTome();
+            if (data.portalDepth > 0)
+                session.OpenPortal(data.portalDepth, new Vector2(data.portalX, data.portalY));
             session.RestoreOnboarding(new Onboarding(data.stickTaught, data.forgeIntroduced, data.seenLegendary, data.legendaryHintShown, data.playSeconds));
             foreach (var chest in data.openedChests)
                 session.RecordOpened(chest);
@@ -247,6 +267,7 @@ namespace ARPG
             parsed.killed ??= new List<KilledPackData>();
             parsed.openedChests ??= new List<string>();
             parsed.materials ??= new List<MaterialData>();
+            parsed.waypoints ??= new List<int>();
 
             data = parsed;
             error = null;

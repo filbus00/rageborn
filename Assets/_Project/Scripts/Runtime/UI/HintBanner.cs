@@ -20,6 +20,8 @@ namespace ARPG
         Text text;
         float remaining;
 
+        public static HintBanner Current { get; private set; }
+
         public static HintBanner Create()
         {
             var canvasObject = new GameObject("Hint Banner Canvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster), typeof(CanvasGroup));
@@ -34,6 +36,7 @@ namespace ARPG
 
             var banner = canvasObject.AddComponent<HintBanner>();
             banner.Build();
+            Current = banner;
             return banner;
         }
 

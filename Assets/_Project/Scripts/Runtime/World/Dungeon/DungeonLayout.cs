@@ -107,6 +107,13 @@ namespace ARPG
         /// <summary>Where the player stands on coming down from the level above (or the town).</summary>
         public Vector2Int ArrivalFromAbove { get; internal set; }
 
+        /// <summary>The level's waypoint, in the start room (Docs/05).</summary>
+        public Vector2Int Waypoint { get; internal set; }
+
+        /// <summary>Where the Wanderer stands on the Portal Tome's depth: beside the first treasure chest.</summary>
+        public Vector2Int WandererSpot { get; internal set; }
+        public bool HasWandererSpot { get; internal set; }
+
         /// <summary>False on the last level of the act, which ends in the boss arena instead.</summary>
         public bool HasStairsDown { get; internal set; }
 
