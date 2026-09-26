@@ -34,6 +34,13 @@ namespace ARPG
         const float StuckSeconds = 15f;
         const float FlowRefreshSeconds = 0.5f;
 
+        // Pinned on a wall corner (the flow field steps diagonally past corners, and the player's physics body catches on
+        // them): no progress for this long while pushing, then steer this far to one side for a moment, alternating.
+        const float PinnedSeconds = 0.4f;
+        const float PinnedDistance = 0.15f;
+        const float SidestepSeconds = 0.5f;
+        const float SidestepDegrees = 70f;
+
         sealed class DepthStats
         {
             public float FirstEntry = -1f, LastExit, MinLife = 1f, DamageTaken;
@@ -64,6 +71,11 @@ namespace ARPG
         object target;
         float targetSince;
         float targetBestDistance;
+
+        Vector2 pinCheckFrom;
+        float pinCheckTimer;
+        float sidestepTimer;
+        float sidestepSign = 1f;
 
         /// <summary>Starts a run in this play session, if the editor menu asked for one.</summary>
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -218,7 +230,44 @@ namespace ARPG
 
             var me = IsoMath.WorldToGround(player.transform.position);
             var move = depth == 0 ? TownMove(me) : DungeonMove(me);
+            move = Unpin(me, move);
             stick.TestOverride = move.sqrMagnitude > 1e-4f ? new Vector2(move.x, move.y * IsoMath.GroundSquash).normalized : Vector2.zero;
+        }
+
+        Vector2 Unpin(Vector2 me, Vector2 move)
+        {
+            if (sidestepTimer > 0f)
+            {
+                sidestepTimer -= Time.deltaTime;
+                return Rotate(move, SidestepDegrees * sidestepSign);
+            }
+
+            pinCheckTimer += Time.deltaTime;
+            if (move.sqrMagnitude < 1e-4f)
+            {
+                pinCheckTimer = 0f;
+                pinCheckFrom = me;
+                return move;
+            }
+            if (pinCheckTimer >= PinnedSeconds)
+            {
+                if (Vector2.Distance(me, pinCheckFrom) < PinnedDistance)
+                {
+                    sidestepTimer = SidestepSeconds;
+                    sidestepSign = -sidestepSign;
+                }
+                pinCheckTimer = 0f;
+                pinCheckFrom = me;
+            }
+            return move;
+        }
+
+        static Vector2 Rotate(Vector2 vector, float degrees)
+        {
+            var radians = degrees * Mathf.Deg2Rad;
+            var cos = Mathf.Cos(radians);
+            var sin = Mathf.Sin(radians);
+            return new Vector2(vector.x * cos - vector.y * sin, vector.x * sin + vector.y * cos);
         }
 
         Vector2 TownMove(Vector2 me)
