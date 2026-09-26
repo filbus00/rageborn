@@ -32,6 +32,10 @@ namespace ARPG
 
         public bool IsActive => activeFinger >= 0;
 
+        /// <summary>Editor and development builds only: a stick value a script sets to drive the character in a play-mode
+        /// test (no touches can be injected there). Null hands control back to the touch.</summary>
+        public Vector2? TestOverride { get; set; }
+
         /// <summary>Where the stick base sits, in screen pixels.</summary>
         public Vector2 BaseScreenPosition => origin;
 
@@ -69,6 +73,12 @@ namespace ARPG
 
         void Update()
         {
+            if (TestOverride.HasValue && Debug.isDebugBuild)
+            {
+                Value = Vector2.ClampMagnitude(TestOverride.Value, 1f);
+                return;
+            }
+
             var touches = Touch.activeTouches;
 
             if (IsActive)

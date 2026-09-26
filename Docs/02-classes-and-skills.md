@@ -1,6 +1,6 @@
 # Classes and skills
 
-> 1.0 ships one class, the Wrathborn, a barbarian-style warrior. It is the Warden below, reworked. The rework is not designed yet, see 08-production.md. The Ranger and Hexer are drafts for later classes.
+> 1.0 ships one class, the Wrathborn, a barbarian-style warrior (designed 2026-09-26, below). It replaces the Warden draft, whose skills it does not reuse; the Warden stays below as reference. The Ranger and Hexer are drafts for later classes.
 
 ## Design rules
 
@@ -21,7 +21,32 @@
 
 Diminishing returns apply to attack speed above 3.0 per second, cooldown reduction above 40 percent and dodge above 35 percent (hard cap 50 percent).
 
-## Class 1: Warden (melee, Stillness leaning)
+## Class 0: Wrathborn (melee, Momentum leaning) — the launch class
+
+Decided 2026-09-26 (08-production.md, decision log): Rage as the resource, a Momentum lean, an all-new barbarian skill set (none of the Warden's skills), and for the M1 slice the first 4 skills unlocking by level. All numbers are starting tuning.
+
+Base: melee, reach 2.0 units, basic attack a 120 degree sweep, as the Warden's.
+
+Resource, Rage (replaces Focus for this class): 0 to 100, starts empty. A basic attack that hits gains 6 (once per swing), each hit taken gains 3. After 3 seconds without dealing or taking a hit it drains 5 per second. The basic attack is the generator and every skill but Battle Roar spends Rage, so a fight opens on plain swings and builds.
+
+Lean: Momentum, by the rules in 01-core-gameplay.md. Bull Rush adds stacks and Blood Frenzy and the Juggernaut keystone feed on them.
+
+| Skill | Type | Cost | Cooldown | Trigger | Description |
+|---|---|---|---|---|---|
+| Hew | Sweep | 20 Rage | 3 s | 2 or more enemies in reach | 180 degree sweep for 170 percent weapon damage |
+| Bull Rush | Charge | 15 Rage | 6 s | Moving, an enemy 3 to 6 units ahead | Charges through the line, 150 percent to everything hit and knockback, plus 1 Momentum stack per enemy hit |
+| Hurl Axe | Projectile | 10 Rage | 4 s | An enemy 4 to 9 units away in sight | A thrown axe, 200 percent to the first enemy hit |
+| Ground Breaker | Area | 35 Rage | 8 s | 4 or more enemies within 3.5 units | Slam, 3.5 unit radius, 280 percent, slows 30 percent for 2 s |
+| Battle Roar | Buff | none | 15 s | 3 or more enemies near and Rage below 30 | Gains 40 Rage and plus 20 percent damage for 6 s |
+| Rending Spin | Channel | 40 Rage | 12 s | Moving, 3 or more enemies near | 2.5 s spin at full movement speed, 90 percent every 0.3 s, applies a bleed |
+| Blood Frenzy | Buff | 20 Rage | 14 s | In combat with 3 or more Momentum stacks | Plus 30 percent attack speed for 6 s, plus 5 percent more per Momentum stack |
+| Skullsplitter | Execute | 25 Rage | 5 s | A target below 25 percent life, or an elite or boss | 350 percent to one target, 800 percent below 25 percent life |
+
+Keystones: Berserker (below 50 percent life, plus 30 percent damage and double Rage gain), Juggernaut (each Momentum stack also gives 3 percent damage reduction, and stopping loses half the stacks instead of all).
+
+M1 vertical slice: the first four unlock and equip themselves as the character levels through act 1: Hew at level 1, Hurl Axe at 2, Bull Rush at 4, Ground Breaker at 6. Battle Roar, Rending Spin, Blood Frenzy, Skullsplitter, the keystones, skill points and levels, modifiers and the loadout screen come after the slice.
+
+## Class 1: Warden (melee, Stillness leaning) — draft, replaced by the Wrathborn
 
 Base: high life, medium speed, short range (2.0 units), strong armor.
 Basic attack: sword or mace sweep in a 120 degree arc.

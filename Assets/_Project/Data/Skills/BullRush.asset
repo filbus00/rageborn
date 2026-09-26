@@ -10,14 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b800c5fde4a6841a2a27c7fd419314d4, type: 3}
-  m_Name: Cleave
+  m_Name: BullRush
   m_EditorClassIdentifier: ARPG.Runtime::ARPG.SkillDefinition
-  displayName: Cleave
-  focusCost: 15
-  cooldownSeconds: 2.5
-  damageMultiplier: 1.8
-  arcDegrees: 200
-  range: 2
-  trigger: 0
-  effectSprite: {fileID: 21300000, guid: 4865bf4d2969e4d2aa5997ce2fc9c63b, type: 3}
-  effectColor: {r: 1, g: 0.75, b: 0.35, a: 0.55}
+  displayName: Bull Rush
+  kind: 2
+  unlockLevel: 4
+  rageCost: 15
+  cooldownSeconds: 6
+  damageMultiplier: 1.5
+  arcDegrees: 180
+  range: 6
+  minRange: 3
+  minEnemies: 1
+  speed: 16
+  effectStrength: 1.5
+  effectSeconds: 0
+  effectSprite: {fileID: 21300000, guid: c0fe476a0cbff4d86be2a9c8d33eb7f4, type: 3}
+  effectColor: {r: 1, g: 0.85, b: 0.5, a: 0.5}

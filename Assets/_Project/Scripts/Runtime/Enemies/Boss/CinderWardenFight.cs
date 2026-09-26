@@ -264,7 +264,7 @@ namespace ARPG
                 yield return null;
 
             if (Vector2.Distance(manager.PlayerGround, at) <= SlamRadius)
-                HitPlayer(SlamDamage);
+                HitPlayer(SlamDamage, dodgeable: false);
             cooldown = 0.9f;
         }
 
@@ -373,7 +373,7 @@ namespace ARPG
             foreach (var (at, _) in drops)
                 if (Vector2.Distance(manager.PlayerGround, at) <= RainRadius)
                 {
-                    HitPlayer(RainDamage);
+                    HitPlayer(RainDamage, dodgeable: false);
                     break;
                 }
             cooldown = 1f;
@@ -398,7 +398,7 @@ namespace ARPG
             if (fireTickTimer <= 0f)
             {
                 fireTickTimer = 0.5f;
-                HitPlayer(FireDamagePerSecond * 0.5f);
+                HitPlayer(FireDamagePerSecond * 0.5f, dodgeable: false);
             }
         }
 
@@ -448,12 +448,13 @@ namespace ARPG
             bar.Hide();
         }
 
-        void HitPlayer(float multiplier)
+        // Docs/01: dodge works on projectiles and melee (the embers, a charge), not on ground shapes (slam, rain, fire).
+        void HitPlayer(float multiplier, bool dodgeable = true)
         {
             if (manager.Player == null || !manager.Player.IsAlive)
                 return;
             var damage = CombatFormulas.EnemyHitDamage(level) * bossDefinition.DamageMultiplier * multiplier;
-            manager.Player.TakeHit(damage, level, ArmorIgnore);
+            manager.Player.TakeHit(damage, level, ArmorIgnore, dodgeable);
         }
 
         void WalkTowards(Vector2 target, float stopAt)

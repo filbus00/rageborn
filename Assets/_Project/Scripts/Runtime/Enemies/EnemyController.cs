@@ -106,6 +106,9 @@ namespace ARPG
         Vector2 attackCenter;
         Vector2 attackAim;
 
+        // A player skill's slow (Ground Breaker). Reset on every spawn.
+        readonly SlowDebuff slow = new SlowDebuff();
+
         // Made on first use and reused, one of each since a pooled instance can be any archetype.
         GroundMarker slamMarker;
         GroundMarker aimMarker;
@@ -140,7 +143,7 @@ namespace ARPG
         public bool HasModifier(EliteModifiers modifier) => (modifiers & modifier) != 0;
 
         /// <summary>Docs: Hasted is plus 30 percent move and attack speed.</summary>
-        float EffectiveMoveSpeed => definition.MoveSpeed * (HasModifier(EliteModifiers.Hasted) ? HastedMoveSpeedMultiplier : 1f);
+        float EffectiveMoveSpeed => definition.MoveSpeed * slow.Multiplier * (HasModifier(EliteModifiers.Hasted) ? HastedMoveSpeedMultiplier : 1f);
 
         float EffectiveAttackWindupSeconds => definition.AttackWindupSeconds / (HasModifier(EliteModifiers.Hasted) ? HastedAttackSpeedMultiplier : 1f);
 
@@ -208,6 +211,7 @@ namespace ARPG
             ground = groundPosition;
             home = groundPosition;
             leashTimer = 0f;
+            slow.Clear();
             life = MaxLife;
             punchTimer = 0f;
             deathTimer = 0f;
@@ -296,6 +300,7 @@ namespace ARPG
         internal void Tick(float deltaTime, EnemyManager world)
         {
             UpdatePunch(deltaTime);
+            slow.Tick(deltaTime);
             if (Scripted)
                 return;
 
@@ -528,8 +533,11 @@ namespace ARPG
                     break;
             }
 
-            world.Player.TakeHit(damage, Level, armorIgnorePercent);
-            ApplyOnHitEffects(world, damage);
+            // Docs/01: a brute's slam is a ground shape, avoided only by moving, so Momentum's dodge does not apply.
+            var hpBefore = world.Player.Life;
+            world.Player.TakeHit(damage, Level, armorIgnorePercent, dodgeable: definition.Archetype != EnemyArchetype.Brute);
+            if (world.Player.Life < hpBefore)
+                ApplyOnHitEffects(world, damage);
         }
 
         /// <summary>An elite's Vampiric and Frozen modifiers, after one of its hits landed (an arrow's too).</summary>
@@ -609,6 +617,16 @@ namespace ARPG
             }
 
             return offset / distance * (1f - distance / radius);
+        }
+
+        /// <summary>Slows the enemy's movement to <paramref name="multiplier"/> for a while (a player skill).</summary>
+        public void ApplySlow(float multiplier, float seconds) => slow.Apply(multiplier, seconds);
+
+        /// <summary>Knocks the enemy along a ground offset, walls respected. A scripted boss is not moved.</summary>
+        public void Push(Vector2 offset)
+        {
+            if (manager != null && IsAlive && !Scripted)
+                Move(offset, manager);
         }
 
         /// <summary>Moves a <see cref="Scripted"/> enemy by a ground step, walls respected (long steps go in pieces).</summary>

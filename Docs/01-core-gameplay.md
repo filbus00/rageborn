@@ -55,12 +55,14 @@ Trigger conditions, chosen per slot in the loadout screen:
 
 The global cast timer is 0.35 seconds. Skills never cancel each other. A skill with a channel time locks lower priority skills until it ends.
 
-### Resource: Focus
+### Resource: Focus (Rage for the Wrathborn)
+
+The launch class, the Wrathborn, uses Rage instead of Focus (02-classes-and-skills.md). Focus stays the resource for later classes.
 
 - Focus range is 0 to 100. It regenerates 6 per second and gains 4 on each basic attack hit.
 - Skills cost Focus or use cooldowns only. Every skill has a cooldown between 1.5 and 20 seconds.
 - Most skills cost 15 to 40 Focus. Cooldown-only skills cost nothing but have a longer cooldown.
-- Focus is shown as an arc around the character so the player does not look away from the action.
+- Focus (or Rage) is shown as an arc around the character so the player does not look away from the action.
 
 ## Stillness and Momentum
 

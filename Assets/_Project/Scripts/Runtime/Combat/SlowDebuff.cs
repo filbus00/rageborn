@@ -23,6 +23,13 @@ namespace ARPG
             remainingSeconds = Mathf.Max(remainingSeconds, seconds);
         }
 
+        /// <summary>Ends any slow at once, as a pooled enemy's respawn does.</summary>
+        public void Clear()
+        {
+            remainingSeconds = 0f;
+            Multiplier = 1f;
+        }
+
         public void Tick(float deltaTime)
         {
             if (!IsActive)

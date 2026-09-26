@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4865bf4d2969e4d2aa5997ce2fc9c63b
+guid: ff90b81d888644753a5435aece93daaf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5078208326076331957
-    second: SweepCleave_0
+      213: -3476000538949611799
+    second: ThrownAxe_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,7 +116,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SweepCleave_0
+      name: ThrownAxe_0
       rect:
         serializedVersion: 2
-        x: 52
+        x: 0
         y: 0
-        width: 76
-        height: 128
+        width: 56
+        height: 56
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5b7f53b219b697640800000000000000
-      internalID: 5078208326076331957
+      spriteID: 9ee87dc2de3c2cfc0800000000000000
+      internalID: -3476000538949611799
       vertices: []
       indices: 
       edges: []
@@ -163,7 +163,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SweepCleave_0: 5078208326076331957
+      ThrownAxe_0: -3476000538949611799
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

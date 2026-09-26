@@ -1,53 +1,88 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ARPG
 {
-    /// <summary>When an auto-cast skill is allowed to fire. Docs/01-core-gameplay.md lists more, added as skills need them.</summary>
-    public enum SkillTrigger
+    /// <summary>What a skill does when it fires. Buff, Channel and Execute skills come with the rest of the Wrathborn's
+    /// list after the M1 slice (Docs/02-classes-and-skills.md).</summary>
+    public enum SkillKind
     {
-        /// <summary>Fire whenever off cooldown, affordable and a target is in reach.</summary>
-        Always,
+        /// <summary>A melee sweep in front of the character (Hew).</summary>
+        Sweep,
+
+        /// <summary>A thrown projectile at an enemy further away, stopped by the first enemy or wall (Hurl Axe).</summary>
+        Projectile,
+
+        /// <summary>A dash along the movement direction that hits and knocks back everything on the way (Bull Rush).</summary>
+        Charge,
+
+        /// <summary>A slam around the character that hits and slows everything in its radius (Ground Breaker).</summary>
+        Slam,
     }
 
     /// <summary>
-    /// Data for one melee sweep skill. Ranges are in ground units. The placeholder skill is Cleave from the Warden
-    /// draft in Docs/02-classes-and-skills.md, until the Wrathborn's own skills are designed.
+    /// Data for one auto-cast skill. Ranges are in ground units. The Wrathborn's first four (Docs/02-classes-and-skills.md)
+    /// are Hew, Hurl Axe, Bull Rush and Ground Breaker; each fires by itself when its kind's trigger passes (see
+    /// <see cref="PlayerCombat"/>), and unlocks at <see cref="UnlockLevel"/>.
     /// </summary>
     [CreateAssetMenu(menuName = "ARPG/Skill Definition", fileName = "Skill")]
     public class SkillDefinition : ScriptableObject
     {
-        [SerializeField] string displayName = "Cleave";
+        [SerializeField] string displayName = "Hew";
 
-        [Tooltip("Focus spent on each cast. Docs: most skills cost 15 to 40, Cleave 15.")]
-        [SerializeField, Min(0f)] float focusCost = 15f;
+        [SerializeField] SkillKind kind = SkillKind.Sweep;
 
-        [Tooltip("Seconds before the skill can fire again. Docs: Cleave 2.5.")]
-        [SerializeField, Min(0f)] float cooldownSeconds = 2.5f;
+        [Tooltip("The character level that unlocks the skill. Docs: Hew 1, Hurl Axe 2, Bull Rush 4, Ground Breaker 6.")]
+        [SerializeField, Min(1)] int unlockLevel = 1;
 
-        [Tooltip("Damage as a multiple of weapon damage. Docs: Cleave 180 percent, so 1.8.")]
-        [SerializeField, Min(0f)] float damageMultiplier = 1.8f;
+        [Tooltip("Rage spent on each cast.")]
+        [FormerlySerializedAs("focusCost")]
+        [SerializeField, Min(0f)] float rageCost = 20f;
 
-        [Tooltip("Width of the sweep in degrees. Docs: Cleave 200.")]
-        [SerializeField, Range(10f, 360f)] float arcDegrees = 200f;
+        [SerializeField, Min(0f)] float cooldownSeconds = 3f;
 
-        [Tooltip("How far the sweep reaches from the character, in ground units. The docs give the class reach of 2.0 and no separate skill radius, so Cleave uses it.")]
+        [Tooltip("Damage as a multiple of weapon damage: 1.7 for 170 percent.")]
+        [SerializeField, Min(0f)] float damageMultiplier = 1.7f;
+
+        [Tooltip("Sweep only: width in degrees.")]
+        [SerializeField, Range(10f, 360f)] float arcDegrees = 180f;
+
+        [Tooltip("Sweep: reach. Projectile and Charge: the farthest target that triggers it. Slam: radius.")]
         [SerializeField, Min(0.1f)] float range = 2f;
 
-        [SerializeField] SkillTrigger trigger = SkillTrigger.Always;
+        [Tooltip("Projectile and Charge: the nearest target that triggers it, so the skill is not wasted in melee.")]
+        [SerializeField, Min(0f)] float minRange;
 
-        [Tooltip("Placeholder slash art. A wedge that points along +x, sized to a 1 unit diameter.")]
+        [Tooltip("Sweep and Slam: how many enemies must be in the area for it to fire.")]
+        [SerializeField, Min(1)] int minEnemies = 1;
+
+        [Tooltip("Projectile: speed. Charge: dash speed. Ground units per second.")]
+        [SerializeField, Min(0f)] float speed = 14f;
+
+        [Tooltip("Charge: how far enemies are knocked back. Slam: movement speed multiplier while slowed (0.7 for 30 percent).")]
+        [SerializeField, Min(0f)] float effectStrength;
+
+        [Tooltip("Slam: how long the slow lasts.")]
+        [SerializeField, Min(0f)] float effectSeconds;
+
+        [Tooltip("Placeholder art: the sweep's wedge, the projectile or the slam's disc.")]
         [SerializeField] Sprite effectSprite;
 
-        [Tooltip("Tint of the slash. Kept translucent so the character stays readable under it.")]
         [SerializeField] Color effectColor = new Color(1f, 0.75f, 0.35f, 0.55f);
 
         public string DisplayName => displayName;
-        public float FocusCost => focusCost;
+        public SkillKind Kind => kind;
+        public int UnlockLevel => unlockLevel;
+        public float RageCost => rageCost;
         public float CooldownSeconds => cooldownSeconds;
         public float DamageMultiplier => damageMultiplier;
         public float ArcDegrees => arcDegrees;
         public float Range => range;
-        public SkillTrigger Trigger => trigger;
+        public float MinRange => minRange;
+        public int MinEnemies => minEnemies;
+        public float Speed => speed;
+        public float EffectStrength => effectStrength;
+        public float EffectSeconds => effectSeconds;
         public Sprite EffectSprite => effectSprite;
         public Color EffectColor => effectColor;
     }

@@ -74,8 +74,9 @@ namespace ARPG
 
                 if (outcome == EnemyProjectileFlight.Outcome.HitPlayer && world.Player != null && world.Player.IsAlive)
                 {
+                    var lifeBefore = world.Player.Life;
                     world.Player.TakeHit(shot.Damage, shot.Level, shot.ArmorIgnore);
-                    if (shot.Shooter != null && shot.Shooter.IsAlive)
+                    if (world.Player.Life < lifeBefore && shot.Shooter != null && shot.Shooter.IsAlive)
                         shot.Shooter.ApplyOnHitEffects(world, shot.Damage);
                 }
 

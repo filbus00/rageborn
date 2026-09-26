@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace ARPG.Editor
 {
     /// <summary>
-    /// Adds automatic combat to the sandbox scene: the placeholder Cleave skill, the slash art, a Player Combat
+    /// Adds automatic combat to the sandbox scene: the Wrathborn's skills (<see cref="WrathbornSkillsBuilder"/>), the slash art, a Player Combat
     /// object, and the hit feedback that reads it (floating damage numbers, a brief hit stop on a kill). Player
     /// Combat and Hit Stop are separate objects that find what they need at runtime, so rebuilding the player does
     /// not remove them.
@@ -17,7 +17,6 @@ namespace ARPG.Editor
     {
         const string ScenePath = "Assets/_Project/Scenes/Sandbox.unity";
         const string EffectsArtFolder = "Assets/_Project/Art/Effects";
-        const string CleavePath = "Assets/_Project/Data/Skills/Cleave.asset";
 
         const int PixelsPerUnit = 128;
         const int WedgeSize = 128;
@@ -49,17 +48,11 @@ namespace ARPG.Editor
             PlayerSceneBuilder.RemoveExisting(scene, CombatObjectName, HitStopObjectName, DamageNumbersObjectName);
 
             var basicSprite = ImportWedge("SweepBasic", 120f);
-            var cleaveSprite = ImportWedge("SweepCleave", 200f);
-            var cleave = LoadOrCreateCleave(cleaveSprite);
+            var skills = WrathbornSkillsBuilder.LoadOrCreateAll();
 
             var combat = new GameObject(CombatObjectName, typeof(PlayerCombat)).GetComponent<PlayerCombat>();
             EnemySceneBuilder.SetReference(combat, "basicEffectSprite", basicSprite);
-
-            var serialized = new SerializedObject(combat);
-            var skills = serialized.FindProperty("skills");
-            skills.arraySize = 1;
-            skills.GetArrayElementAtIndex(0).objectReferenceValue = cleave;
-            serialized.ApplyModifiedPropertiesWithoutUndo();
+            WrathbornSkillsBuilder.Assign(combat, skills);
 
             new GameObject(HitStopObjectName, typeof(HitStop));
             BuildDamageNumbers();
@@ -89,21 +82,5 @@ namespace ARPG.Editor
             PlaceholderArt.ImportSprite(
                 $"{EffectsArtFolder}/{name}.png", PlaceholderArt.Wedge(WedgeSize, arcDegrees),
                 PixelsPerUnit, SpriteAlignment.Center, FilterMode.Bilinear);
-
-        static SkillDefinition LoadOrCreateCleave(Sprite effectSprite)
-        {
-            var skill = AssetDatabase.LoadAssetAtPath<SkillDefinition>(CleavePath);
-            if (skill == null)
-            {
-                skill = ScriptableObject.CreateInstance<SkillDefinition>();
-                AssetDatabase.CreateAsset(skill, CleavePath);
-            }
-
-            // The sprite reference is refreshed on every run; the numbers stay as tuned.
-            EnemySceneBuilder.SetReference(skill, "effectSprite", effectSprite);
-            EditorUtility.SetDirty(skill);
-            AssetDatabase.SaveAssets();
-            return skill;
-        }
     }
 }

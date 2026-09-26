@@ -25,14 +25,15 @@ namespace ARPG.Editor
         const string OutputPath = "Logs/BalanceReport.md";
         const string EnemiesFolder = "Assets/_Project/Data/Enemies";
 
-        // How many enemies a swing catches in a crowd: the basic attack is a 120 degree sweep, Cleave 200. Assumptions.
+        // How many enemies a swing catches in a crowd: the basic attack is a 120 degree sweep, Hew 180. Assumptions.
         const float CrowdTargetsBasic = 2f;
-        const float CrowdTargetsCleave = 3f;
+        const float CrowdTargetsHew = 3f;
 
-        // Cleave (Data/Skills/Cleave.asset): 180 percent, every 2.5 s. Focus (15 a cast, 6 a second plus 4 a hitting
-        // swing) never runs out at that rate, so the cooldown sets it.
-        const float CleaveMultiplier = 1.8f;
-        const float CleaveCooldown = 2.5f;
+        // Hew (Data/Skills/Hew.asset): 170 percent, every 3 s, 20 Rage. The basic attack builds 6 Rage a swing at 1.4
+        // swings a second, more than Hew spends, so the cooldown sets its rate. Hurl Axe, Bull Rush and Ground Breaker
+        // are not modeled yet.
+        const float HewMultiplier = 1.7f;
+        const float HewCooldown = 3f;
 
         // How many husks can reach the character at once: a ring around it, pushed apart. An assumption.
         const int HusksInReach = 5;
@@ -160,8 +161,8 @@ namespace ARPG.Editor
                     var power = PowerScore.Evaluate(gear, charLevel);
                     var hit = power.DamagePerSecond / PowerScore.BaseAttacksPerSecond / (1f + gear.AttackSpeedPercent / 100f);
                     var swings = PowerScore.BaseAttacksPerSecond * (1f + gear.AttackSpeedPercent / 100f);
-                    var single = hit * (swings + CleaveMultiplier / CleaveCooldown);
-                    var crowd = hit * (swings * CrowdTargetsBasic + CleaveMultiplier / CleaveCooldown * CrowdTargetsCleave);
+                    var single = hit * (swings + HewMultiplier / HewCooldown);
+                    var crowd = hit * (swings * CrowdTargetsBasic + HewMultiplier / HewCooldown * CrowdTargetsHew);
 
                     var armor = gear.TotalArmor;
                     var maxLife = CombatFormulas.CharacterBaseLife(charLevel) + gear.TotalLifeBonus;
@@ -179,7 +180,7 @@ namespace ARPG.Editor
             }
 
             text.AppendLine();
-            text.AppendLine($"Assumptions: a crowd swing catches {CrowdTargetsBasic} enemies with the basic attack and {CrowdTargetsCleave} with Cleave; {HusksInReach} husks can reach the character at once; fight time is the level's total enemy life over crowd DPS, with no walking; the potion (3 charges of 40 percent) and dodging telegraphs are left out.");
+            text.AppendLine($"Assumptions: a crowd swing catches {CrowdTargetsBasic} enemies with the basic attack and {CrowdTargetsHew} with Hew (the only skill modeled); {HusksInReach} husks can reach the character at once; fight time is the level's total enemy life over crowd DPS, with no walking; the potion (3 charges of 40 percent) and dodging telegraphs are left out.");
 
             Directory.CreateDirectory(Path.GetDirectoryName(OutputPath));
             File.WriteAllText(OutputPath, text.ToString());

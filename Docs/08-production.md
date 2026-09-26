@@ -59,7 +59,7 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 5. The sleep mechanic: how a game session resets, what it resets (level layouts, enemies, chests), and whether a corpse survives it.
 6. One-time unlocks such as extra stash tabs or loadout presets were tied to the Ember Shard, which is removed. What gates them now?
 7. Achievements: the Game Center achievements are cut with the other online features. Are achievements kept as local ones?
-8. The Wrathborn rework: how the Warden becomes a rage-themed barbarian (skill list, keystones, and whether it leans Stillness or Momentum).
+8. The Wrathborn rework: decided 2026-09-26, see 02-classes-and-skills.md and the decision log.
 9. Salvaging happens only at the Forge (decision of 2026-09-26), but the loot filter in 03-itemization.md auto-salvages filtered items as they are picked up, anywhere. When the loot filter is built: do filtered items auto-salvage in the dungeon anyway, wait in the backpack until the Forge, or get left on the ground?
 
 ## Decision log
@@ -95,10 +95,15 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-23 | Champions give more XP and gold than normal enemies. The multiplier, 3 times, is a tuning value picked by Claude | User |
 | 2026-09-23 | A level up refills life | User |
 | 2026-09-23 | Camera zoomed out: orthographic size 10 instead of 8, which felt too close | User |
+| 2026-09-24 | Dungeon levels bigger and more open: rooms up to about 25 units across instead of 20, mostly open, with 5 cell doorways and corridors | User |
 | 2026-09-26 | Forge, first version: Salvage, Reforge affix, Reroll values and Temper. Socket, Imprint and Transmog wait until gems, legendary powers and appearances exist | User |
 | 2026-09-26 | Reforge turns the chosen affix into a new random affix of the same kind (prefix or suffix) at the same tier; it can land on the same stat | User |
 | 2026-09-26 | Salvage and every Forge action happen only at the smith in town. The dungeon keeps Discard, which gives nothing back. Replaces Salvage on the item tooltip (03-itemization.md) | User |
-| 2026-09-24 | Dungeon levels bigger and more open: rooms up to about 25 units across instead of 20, mostly open, with 5 cell doorways and corridors | User |
+| 2026-09-26 | The Wrathborn's resource is Rage (built by hitting and being hit, drains out of combat), not Focus | User |
+| 2026-09-26 | The Wrathborn leans Momentum | User |
+| 2026-09-26 | The Wrathborn gets an all-new barbarian skill set, none of the Warden's; Claude's draft of 8 skills and 2 keystones accepted as written (02-classes-and-skills.md) | User |
+| 2026-09-26 | M1 slice: the first 4 skills unlock by level and equip themselves; the rest of the skill system comes after the slice | User |
+| 2026-09-26 | Balance left as it is for now, after the first balance report | User |
 
 ## Post-launch plan (draft)
 

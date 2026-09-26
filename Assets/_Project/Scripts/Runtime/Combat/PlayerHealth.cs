@@ -11,7 +11,7 @@ namespace ARPG
     /// </summary>
     public class PlayerHealth : MonoBehaviour
     {
-        // There is no progression yet, so the character is level 1.
+        static readonly Color DodgeColor = new Color(0.6f, 0.9f, 1f);
 
         LifePool life;
         GameSession session;
@@ -22,6 +22,12 @@ namespace ARPG
 
         /// <summary>Raised once, when a hit kills the character.</summary>
         public event Action Died;
+
+        /// <summary>Raised with the damage of every hit that lands (not a dodged one). The Wrathborn gains Rage from it.</summary>
+        public event Action<float> HitTaken;
+
+        // Flavor randomness like the crit roll, not economy: not seeded.
+        readonly System.Random dodgeRandom = new System.Random();
 
         public bool IsAlive => life != null && !life.IsDead;
 
@@ -65,14 +71,26 @@ namespace ARPG
 
         /// <summary>Takes a hit from an attacker of the given level. The raw damage is reduced by armor here.
         /// <paramref name="armorIgnorePercent"/> is the share of armor the attack ignores, 0.15 for an elite's 15
-        /// percent (Docs/03-itemization.md).</summary>
-        public void TakeHit(float rawDamage, int attackerLevel, float armorIgnorePercent = 0f)
+        /// percent (Docs/03-itemization.md). Docs/01: dodge (from Momentum) applies to projectiles and melee, not to
+        /// ground telegraph shapes, which are avoided only by moving; those pass <paramref name="dodgeable"/> false.
+        /// Stillness reduces the damage.</summary>
+        public void TakeHit(float rawDamage, int attackerLevel, float armorIgnorePercent = 0f, bool dodgeable = true)
         {
             if (!IsAlive)
                 return;
 
+            var stance = player != null ? player.Stance : null;
+            if (dodgeable && stance != null && dodgeRandom.NextDouble() < stance.DodgeChance)
+            {
+                if (player != null)
+                    DamageNumbers.Current?.ShowText(player.transform.position + Vector3.up * 1.2f, "DODGE", DodgeColor, 34);
+                return;
+            }
+
             var effectiveArmor = Armor * (1f - Mathf.Clamp01(armorIgnorePercent));
             var damage = rawDamage * (1f - CombatFormulas.ArmorReduction(effectiveArmor, attackerLevel));
+            if (stance != null)
+                damage *= 1f - stance.DamageReduction;
             DamageTaken += damage;
             HitsTaken++;
             lastHitTime = Time.time;
@@ -82,6 +100,7 @@ namespace ARPG
 
             var killed = life.TakeDamage(damage);
             session.LifeFraction = life.Fraction;
+            HitTaken?.Invoke(damage);
             if (killed)
                 Died?.Invoke();
         }
