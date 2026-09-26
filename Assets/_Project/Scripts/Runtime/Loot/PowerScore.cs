@@ -51,7 +51,7 @@ namespace ARPG
             var expectedHit = hit * (1f + critChance * (critMultiplier - 1f));
             var dps = expectedHit * BaseAttacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f);
 
-            var maxLife = CombatFormulas.CharacterBaseLife(characterLevel) + equipment.TotalLifeBonus;
+            var maxLife = CombatFormulas.CharacterLife(characterLevel) + equipment.TotalLifeBonus;
             var effectiveLife = maxLife / (1f - CombatFormulas.ArmorReduction(equipment.TotalArmor, characterLevel));
 
             return new PowerSnapshot(dps, effectiveLife);

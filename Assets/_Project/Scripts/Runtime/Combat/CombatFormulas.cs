@@ -33,6 +33,21 @@ namespace ARPG
         /// <summary>Base life of a character of the given level, before Vitality and gear.</summary>
         public static float CharacterBaseLife(int level) => 80f + 20f * level;
 
+        /// <summary>Docs/02: each Vitality point gives 8 life.</summary>
+        public const float LifePerVitality = 8f;
+
+        /// <summary>
+        /// Stand-in Vitality from levels, until the passive tree exists (the user's choice, 2026-09-26): every level from
+        /// 2 grants this many points. Docs/03's base life is "before Vitality and gear", and with only three gear slots
+        /// built the character fell far short of the enemy damage curve. Tuning, set with the balance report.
+        /// </summary>
+        public const float VitalityPerLevel = 8f;
+
+        public static float StandInVitality(int level) => VitalityPerLevel * Mathf.Max(0, level - 1);
+
+        /// <summary>A character's life before gear: base life plus the stand-in Vitality.</summary>
+        public static float CharacterLife(int level) => CharacterBaseLife(level) + StandInVitality(level) * LifePerVitality;
+
         /// <summary>Armor per equipment piece of the given item level.</summary>
         public static float BaseArmorPerPiece(int itemLevel) => 8f + 3.1f * itemLevel;
 

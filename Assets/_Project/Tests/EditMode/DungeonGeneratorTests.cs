@@ -196,10 +196,10 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void EnemyLevel_SpreadsTheActOverItsSixLevels()
+        public void EnemyLevel_RisesThroughTheAct_FollowingTheCharacter()
         {
             Assert.AreEqual(1, DungeonRules.EnemyLevel(1));
-            Assert.AreEqual(12, DungeonRules.EnemyLevel(DungeonRules.LevelsPerAct));
+            Assert.AreEqual(7, DungeonRules.EnemyLevel(DungeonRules.LevelsPerAct));
             for (var depth = 2; depth <= DungeonRules.LevelsPerAct; depth++)
                 Assert.Greater(DungeonRules.EnemyLevel(depth), DungeonRules.EnemyLevel(depth - 1));
         }

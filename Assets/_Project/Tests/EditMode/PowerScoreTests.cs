@@ -35,7 +35,7 @@ namespace ARPG.Tests
             var armored = PowerScore.Evaluate(new EquipmentState(Chest(10)), 5).EffectiveLife;
             var lifeChest = PowerScore.Evaluate(new EquipmentState(Chest(10, new AffixRoll(AffixId.Life, 5, 50f))), 5).EffectiveLife;
 
-            Assert.AreEqual(CombatFormulas.CharacterBaseLife(5), bare, 1e-3f);
+            Assert.AreEqual(CombatFormulas.CharacterLife(5), bare, 1e-3f);
             Assert.Greater(armored, bare);
             Assert.Greater(lifeChest, armored);
         }

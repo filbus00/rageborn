@@ -13,17 +13,16 @@ namespace ARPG
         /// <summary>Docs/05-world-and-content.md: about 6 levels per act.</summary>
         public const int LevelsPerAct = 6;
 
-        // Docs/05: act 1 spans player levels 1 to 12. The docs do not map that onto the six levels; this spreads it
-        // evenly (tuning): depth 1 holds level 1 enemies, depth 6 level 12.
-        public const int ActFirstEnemyLevel = 1;
-        public const int ActLastEnemyLevel = 12;
+        /// <summary>
+        /// The enemy level of each depth, 1 to 6 (index 0 unused). Tuning: they follow the level a character reaches by
+        /// clearing each level, measured with the balance report. The first version spread Docs/05's act 1 range of player
+        /// levels 1 to 12 evenly (1, 3, 5, 8, 10, 12), and the character fell three levels behind; the user chose to
+        /// flatten it (2026-09-26). With lower enemy levels a clear also gives less XP, so act 1 now ends near
+        /// character level 7, not 12.
+        /// </summary>
+        static readonly int[] ActOneEnemyLevels = { 0, 1, 2, 3, 4, 5, 7 };
 
-        public static int EnemyLevel(int depth)
-        {
-            depth = Mathf.Clamp(depth, 1, LevelsPerAct);
-            var t = (depth - 1) / (float)(LevelsPerAct - 1);
-            return Mathf.RoundToInt(Mathf.Lerp(ActFirstEnemyLevel, ActLastEnemyLevel, t));
-        }
+        public static int EnemyLevel(int depth) => ActOneEnemyLevels[Mathf.Clamp(depth, 1, LevelsPerAct)];
 
         /// <summary>A level's seed, mixed from the session's dungeon seed and the depth, so the whole dungeon of a game
         /// session is one saved number and each level still differs.</summary>

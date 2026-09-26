@@ -120,6 +120,6 @@ namespace ARPG
         // A level up refills life. The session already holds the full fraction; the pool follows it.
         void HandleLeveledUp(int level) => life.SetFraction(session.LifeFraction);
 
-        static float ComputeMaxLife() => CombatFormulas.CharacterBaseLife(GameSession.Current.Level) + GameSession.Current.Equipment.TotalLifeBonus;
+        static float ComputeMaxLife() => CombatFormulas.CharacterLife(GameSession.Current.Level) + GameSession.Current.Equipment.TotalLifeBonus;
     }
 }

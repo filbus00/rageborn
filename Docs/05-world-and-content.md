@@ -20,7 +20,7 @@ Story is delivered in about 30 minutes of short scenes across the campaign. Skip
 
 | Act | Levels | Player level | Boss | Signature enemies |
 |---|---|---|---|---|
-| 1 Ashfields | 6 | 1 to 12 | Cinder Warden | Husks, ghouls, wolves, bandit archers |
+| 1 Ashfields | 6 | 1 to about 7 (enemy levels 1 to 7; flattened from 1 to 12 on 2026-09-26, see 08-production.md) | Cinder Warden | Husks, ghouls, wolves, bandit archers |
 | 2 Drowned Reach | 6 | 12 to 24 | The Tidewife | Drowned, leech swarms, marsh casters |
 | 3 Bone Orchard | 6 | 24 to 36 | Saint Marrow | Skeleton knights, bone chargers, grave priests |
 | 4 Iron Spire | 6 | 36 to 48 | Warlord Kaeth | Armored knights, siege brutes, banner bearers |

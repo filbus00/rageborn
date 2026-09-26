@@ -202,7 +202,7 @@ namespace ARPG
 
         string BuildStats(GameSession session, EquipmentState equipment)
         {
-            var maxLife = health != null ? health.MaxLife : CombatFormulas.CharacterBaseLife(session.Level) + equipment.TotalLifeBonus;
+            var maxLife = health != null ? health.MaxLife : CombatFormulas.CharacterLife(session.Level) + equipment.TotalLifeBonus;
             var armor = health != null ? health.Armor : equipment.TotalArmor;
 
             statsBuilder.Clear();

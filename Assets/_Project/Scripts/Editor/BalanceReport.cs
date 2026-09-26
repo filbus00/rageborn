@@ -51,7 +51,11 @@ namespace ARPG.Editor
             Debug.Log($"[ARPG] Balance report written to {OutputPath}.\n{report}");
         }
 
-        public static string Run()
+        public static string Run() => Run(DungeonRules.EnemyLevel, CombatFormulas.VitalityPerLevel);
+
+        /// <summary>The report with other enemy levels by depth or another stand-in Vitality per level, to try tuning
+        /// before changing the game.</summary>
+        public static string Run(System.Func<int, int> enemyLevel, float vitalityPerLevel)
         {
             var shapes = new List<RoomShape>();
             foreach (var guid in AssetDatabase.FindAssets("t:RoomTemplate", new[] { "Assets/_Project/Data/Rooms" }))
@@ -86,7 +90,7 @@ namespace ARPG.Editor
                     var stats = depths[depth];
                     var levelSeed = DungeonRules.LevelSeed(dungeonSeed, depth);
                     var layout = DungeonGenerator.Generate(levelSeed, depth, shapes, settings);
-                    var level = layout.EnemyLevel;
+                    var level = enemyLevel(depth);
                     stats.EntryLevel += progress.Level;
 
                     var kills = new List<EnemyDefinition>();
@@ -137,6 +141,8 @@ namespace ARPG.Editor
             text.AppendLine();
             text.AppendLine($"{Seeds} generated dungeons, every enemy killed, depth by depth. Averages. Made by Tools > ARPG > Balance Report ({nameof(BalanceReport)}.cs); see its summary for what the model assumes.");
             text.AppendLine();
+            text.AppendLine($"Stand-in Vitality: {vitalityPerLevel} points per level from level 2, {vitalityPerLevel * CombatFormulas.LifePerVitality} life a level.");
+            text.AppendLine();
             text.AppendLine("## Enemies and progression");
             text.AppendLine();
             text.AppendLine("| Depth | Enemy level | Husks | Champions | Elites | Ghouls | Archers | Enemy life total | XP | Character level in → out | Gold |");
@@ -144,7 +150,7 @@ namespace ARPG.Editor
             for (var d = 1; d <= DungeonRules.LevelsPerAct; d++)
             {
                 var x = depths[d];
-                text.AppendLine($"| {d} | {DungeonRules.EnemyLevel(d)} | {x.Husks / Seeds:0} | {x.Champions / Seeds:0.0} | {x.Elites / Seeds:0.0} | {x.Ghouls / Seeds:0.0} | {x.Archers / Seeds:0.0} | {x.Life / Seeds:0} | {x.Xp / Seeds:0} | {x.EntryLevel / Seeds:0.0} → {x.ExitLevel / Seeds:0.0} | {x.Gold / Seeds:0} |");
+                text.AppendLine($"| {d} | {enemyLevel(d)} | {x.Husks / Seeds:0} | {x.Champions / Seeds:0.0} | {x.Elites / Seeds:0.0} | {x.Ghouls / Seeds:0.0} | {x.Archers / Seeds:0.0} | {x.Life / Seeds:0} | {x.Xp / Seeds:0} | {x.EntryLevel / Seeds:0.0} → {x.ExitLevel / Seeds:0.0} | {x.Gold / Seeds:0} |");
             }
 
             foreach (var typical in new[] { false, true })
@@ -158,8 +164,8 @@ namespace ARPG.Editor
                 {
                     var x = depths[d];
                     var charLevel = Mathf.RoundToInt(x.EntryLevel / Seeds);
-                    var level = DungeonRules.EnemyLevel(d);
-                    var gearLevel = d == 1 ? 0 : DungeonRules.EnemyLevel(d - 1);
+                    var level = enemyLevel(d);
+                    var gearLevel = d == 1 ? 0 : enemyLevel(d - 1);
                     var gear = Gear(gearLevel, typical);
                     var power = PowerScore.Evaluate(gear, charLevel);
                     var hit = power.DamagePerSecond / PowerScore.BaseAttacksPerSecond / (1f + gear.AttackSpeedPercent / 100f);
@@ -193,7 +199,8 @@ namespace ARPG.Editor
                     }
 
                     var armor = gear.TotalArmor;
-                    var maxLife = CombatFormulas.CharacterBaseLife(charLevel) + gear.TotalLifeBonus;
+                    var maxLife = CombatFormulas.CharacterBaseLife(charLevel) + vitalityPerLevel * Mathf.Max(0, charLevel - 1) * CombatFormulas.LifePerVitality + gear.TotalLifeBonus;
+                    var effectiveLife = maxLife / (1f - CombatFormulas.ArmorReduction(gear.TotalArmor, charLevel));
                     var huskHit = CombatFormulas.EnemyHitOnPlayer(level, husk.DamageMultiplier, armor);
                     var ghoulHit = CombatFormulas.EnemyHitOnPlayer(level, ghoul.DamageMultiplier, armor);
                     var arrowHit = CombatFormulas.EnemyHitOnPlayer(level, archer.DamageMultiplier, armor);
@@ -207,7 +214,7 @@ namespace ARPG.Editor
                     var fight = x.Life / Seeds / crowd;
                     var bossTime = d == DungeonRules.LevelsPerAct ? $"{boss.MaxLifeAt(level) / single:0} s" : "";
 
-                    text.AppendLine($"| {d} | {charLevel} | {hit:0} | {single:0} | {crowd:0} | {husk.MaxLifeAt(level) / single:0.0} s | {ghoul.MaxLifeAt(level) / single:0.0} s | {maxLife:0} ({power.EffectiveLife:0}) | {huskHit:0} | {ghoulHit:0} | {arrowHit:0} | {diesTo5:0.0} s | {kills5:0.0} s | {fight:0} s | {bossTime} |");
+                    text.AppendLine($"| {d} | {charLevel} | {hit:0} | {single:0} | {crowd:0} | {husk.MaxLifeAt(level) / single:0.0} s | {ghoul.MaxLifeAt(level) / single:0.0} s | {maxLife:0} ({effectiveLife:0}) | {huskHit:0} | {ghoulHit:0} | {arrowHit:0} | {diesTo5:0.0} s | {kills5:0.0} s | {fight:0} s | {bossTime} |");
                 }
             }
 

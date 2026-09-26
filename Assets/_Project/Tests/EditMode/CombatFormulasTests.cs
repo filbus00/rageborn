@@ -20,6 +20,9 @@ namespace ARPG.Tests
             Assert.AreEqual(8f, CombatFormulas.EnemyLife(1), 1e-4f);
             Assert.AreEqual(3f, CombatFormulas.EnemyHitDamage(1), 1e-4f);
             Assert.AreEqual(100f, CombatFormulas.CharacterBaseLife(1), 1e-4f);
+            // The stand-in Vitality starts at level 2: 8 points a level, 8 life a point.
+            Assert.AreEqual(100f, CombatFormulas.CharacterLife(1), 1e-4f);
+            Assert.AreEqual(80f + 20f * 5f + 4f * 8f * 8f, CombatFormulas.CharacterLife(5), 1e-4f);
             Assert.AreEqual(11.1f, CombatFormulas.BaseArmorPerPiece(1), 1e-4f);
         }
 
