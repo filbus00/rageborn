@@ -279,6 +279,7 @@ namespace ARPG
             attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f));
             BasicAttackCount++;
 
+            Sfx.Play(SoundId.Swing, 0.6f);
             var hits = Sweep(origin, aim, basicRange, basicArcDegrees, 1f, basicEffectSprite, basicEffectColor);
 
             // Docs/02: Rage is gained on a basic attack hit, once per swing that lands, however many it hits.
@@ -327,6 +328,8 @@ namespace ARPG
                 castCounts[i]++;
                 rage.MarkCombat();
 
+                Sfx.Play(skill.Kind == SkillKind.Sweep ? SoundId.Hew : skill.Kind == SkillKind.Slam ? SoundId.GroundBreaker
+                    : skill.Kind == SkillKind.Projectile ? SoundId.AxeThrow : SoundId.BullRush);
                 switch (skill.Kind)
                 {
                     case SkillKind.Sweep:
@@ -616,6 +619,11 @@ namespace ARPG
             {
                 Kills++;
                 HitStop.Instance?.Trigger(HitStopOnKillSeconds);
+                Sfx.Play(SoundId.Kill);
+            }
+            else
+            {
+                Sfx.Play(critical ? SoundId.Crit : SoundId.Hit);
             }
         }
 

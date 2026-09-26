@@ -154,6 +154,9 @@ namespace ARPG
             drop.ShowItem(item, ground);
             active.Add(drop);
             ItemDropCount++;
+            // Docs/01 and Docs/05: a distinct sound per rarity.
+            Sfx.Play(item.Rarity == ItemRarity.Legendary ? SoundId.DropLegendary : item.Rarity == ItemRarity.Rare ? SoundId.DropRare
+                : item.Rarity == ItemRarity.Magic ? SoundId.DropMagic : SoundId.DropCommon);
         }
 
         LootDrop TakeDrop()

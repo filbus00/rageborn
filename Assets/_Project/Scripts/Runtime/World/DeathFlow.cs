@@ -32,6 +32,7 @@ namespace ARPG
 
         void OnDied()
         {
+            Sfx.Play(SoundId.Death);
             var player = FindAnyObjectByType<PlayerController>();
             var combat = FindAnyObjectByType<PlayerCombat>();
             if (combat != null)

@@ -222,6 +222,7 @@ namespace ARPG
         {
             phase = newPhase;
             bar.Flash();
+            Sfx.Play(SoundId.BossPhase);
             CancelAttack();
             cooldown = 1f;
 
@@ -263,6 +264,7 @@ namespace ARPG
             while (!marker.Done)
                 yield return null;
 
+            Sfx.Play(SoundId.EnemySlam);
             if (Vector2.Distance(manager.PlayerGround, at) <= SlamRadius)
                 HitPlayer(SlamDamage, dodgeable: false);
             cooldown = 0.9f;

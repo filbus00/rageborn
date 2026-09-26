@@ -58,11 +58,13 @@ namespace ARPG
                 if (drop.IsGold)
                 {
                     session.AddGold(drop.GoldAmount);
+                    Sfx.Play(SoundId.Gold);
                     GoldPickedUp += drop.GoldAmount;
                     loot.Release(drop);
                 }
                 else if (quiet && session.PickUp(drop.Item))
                 {
+                    Sfx.Play(SoundId.Pickup);
                     ItemsPickedUp++;
                     loot.Release(drop);
                 }

@@ -516,6 +516,7 @@ namespace ARPG
             switch (definition.Archetype)
             {
                 case EnemyArchetype.Brute:
+                    Sfx.Play(SoundId.EnemySlam, 0.8f);
                     // Only the circle counts: stepping out of it is the counterplay, however close the brute is.
                     if (Vector2.Distance(world.PlayerGround, attackCenter) > definition.SlamRadius)
                         return;
@@ -523,6 +524,7 @@ namespace ARPG
 
                 case EnemyArchetype.Archer:
                     // The arrow does the hitting, or a wall stops it.
+                    Sfx.Play(SoundId.ArrowShot, 0.7f);
                     world.Projectiles.Fire(this, ground + attackAim * definition.BodyRadius, attackAim * definition.ProjectileSpeed,
                         definition.AttackRange + ArrowOvershoot, damage, Level, armorIgnorePercent);
                     return;

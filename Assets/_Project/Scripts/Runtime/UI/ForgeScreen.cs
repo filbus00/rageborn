@@ -248,7 +248,11 @@ namespace ARPG
                 yieldText.color = MaterialColor(material);
                 yieldText.alignment = TextAnchor.MiddleRight;
                 Fixed(yieldText.gameObject, 230f);
-                Fixed(NewButton(row, "Salvage", () => session.Salvage(item)).gameObject, 220f);
+                Fixed(NewButton(row, "Salvage", () =>
+                {
+                    if (session.Salvage(item))
+                        Sfx.Play(SoundId.Forge, 0.6f);
+                }).gameObject, 220f);
             }
 
             var bulk = CountBelowRare(session);
@@ -261,6 +265,8 @@ namespace ARPG
                         junk.Add(item);
                 foreach (var item in junk)
                     session.Salvage(item);
+                if (junk.Count > 0)
+                    Sfx.Play(SoundId.Forge, 0.8f);
             });
             FixedHeight(bulkButton.gameObject, ButtonHeight);
             SetEnabled(bulkButton, bulk > 0);
@@ -397,6 +403,7 @@ namespace ARPG
             }
             if (tab == Tab.Temper && !ForgeRules.CanTemper(result, selectedAffix))
                 selectedAffix = -1;
+            Sfx.Play(SoundId.Forge);
             Render();
         }
 

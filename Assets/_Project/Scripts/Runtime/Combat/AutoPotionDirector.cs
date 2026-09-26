@@ -74,6 +74,7 @@ namespace ARPG
 
             if (fired && player != null)
                 DamageNumbers.Current?.ShowText(player.transform.position + CalloutOffset, "POTION", CalloutColor, CalloutFontSize);
+                Sfx.Play(SoundId.Potion);
         }
     }
 }

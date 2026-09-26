@@ -101,6 +101,7 @@ namespace ARPG
             var killed = life.TakeDamage(damage);
             session.LifeFraction = life.Fraction;
             HitTaken?.Invoke(damage);
+            Sfx.Play(SoundId.Hurt);
             if (killed)
                 Died?.Invoke();
         }

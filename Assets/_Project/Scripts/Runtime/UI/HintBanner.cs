@@ -86,6 +86,7 @@ namespace ARPG
         {
             text.text = message;
             remaining = ShowSeconds;
+            Sfx.Play(SoundId.Hint);
         }
 
         void Update()

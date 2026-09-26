@@ -59,6 +59,7 @@ namespace ARPG
             var gained = session.GrantExperience(Experience.KillXp(session.Level, enemy.Level, definition.Rank));
             if (gained > 0 && player != null)
                 DamageNumbers.Current?.ShowText(player.transform.position + CalloutOffset, $"LEVEL {session.Level}", LevelUpColor, LevelUpFontSize);
+                Sfx.Play(SoundId.LevelUp);
         }
     }
 }
