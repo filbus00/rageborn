@@ -21,6 +21,7 @@ namespace ARPG
             MigrateFrom3, // 3 to 4: no dungeon existed; give the session a dungeon seed.
             MigrateFrom4, // 4 to 5: the generator version was not saved; 0 means unknown, so dungeon records are dropped.
             MigrateFrom5, // 5 to 6: the Forge did not exist; no materials, and no item was ever reforged or tempered.
+            MigrateFrom6, // 6 to 7: onboarding did not exist; an existing character needs no lessons (see the step).
         };
 
         static SaveData MigrateFrom1(SaveData data)
@@ -60,6 +61,21 @@ namespace ARPG
             return data;
         }
 
+        // A character from before onboarding has played already: it knows the stick and has met the smith. Its first
+        // Legendary is only guaranteed if it has never had one, counting play time from now.
+        static SaveData MigrateFrom6(SaveData data)
+        {
+            data.stickTaught = true;
+            data.forgeIntroduced = true;
+            data.seenLegendary = false;
+            foreach (var item in AllItems(data))
+                if (item.rarity == nameof(ItemRarity.Legendary))
+                    data.seenLegendary = true;
+            data.legendaryHintShown = data.seenLegendary;
+            data.playSeconds = 0f;
+            return data;
+        }
+
         static IEnumerable<ItemData> AllItems(SaveData data)
         {
             foreach (var item in data.equipped ?? new List<ItemData>())
@@ -86,6 +102,11 @@ namespace ARPG
                 potionKillProgress = session.Potion.KillProgress,
                 dungeonSeed = session.DungeonSeed,
                 dungeonVersion = session.DungeonVersion,
+                stickTaught = session.Onboarding.StickTaught,
+                forgeIntroduced = session.Onboarding.ForgeIntroduced,
+                seenLegendary = session.Onboarding.SeenLegendary,
+                legendaryHintShown = session.Onboarding.LegendaryHintShown,
+                playSeconds = session.Onboarding.PlaySeconds,
                 equipped = CaptureEquipment(session.Equipment),
             };
 
@@ -130,6 +151,7 @@ namespace ARPG
             session.RestoreProgress(data.level, data.experience);
             session.RestorePotion(data.potionCharges, data.potionKillProgress);
             session.DungeonSeed = data.dungeonSeed;
+            session.RestoreOnboarding(new Onboarding(data.stickTaught, data.forgeIntroduced, data.seenLegendary, data.legendaryHintShown, data.playSeconds));
             foreach (var chest in data.openedChests)
                 session.RecordOpened(chest);
 

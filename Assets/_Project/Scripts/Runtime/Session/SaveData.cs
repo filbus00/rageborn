@@ -15,8 +15,8 @@ namespace ARPG
     {
         /// <summary>1: the first. 2: adds level and experience. 3: adds potion charges. 4: adds the dungeon seed and
         /// opened chests. 5: adds the dungeon generator version. 6: adds salvage materials and each item's reforge and
-        /// temper counts.</summary>
-        public const int CurrentVersion = 6;
+        /// temper counts. 7: adds what the character has been taught (onboarding) and play time.</summary>
+        public const int CurrentVersion = 7;
 
         public int version;
 
@@ -49,6 +49,13 @@ namespace ARPG
 
         /// <summary>Salvage materials held, by name. A material with none is left out.</summary>
         public List<MaterialData> materials = new List<MaterialData>();
+
+        /// <summary>Onboarding (Docs/06): what has been taught, and play time for the guaranteed first Legendary.</summary>
+        public bool stickTaught;
+        public bool forgeIntroduced;
+        public bool seenLegendary;
+        public bool legendaryHintShown;
+        public float playSeconds;
     }
 
     [Serializable]

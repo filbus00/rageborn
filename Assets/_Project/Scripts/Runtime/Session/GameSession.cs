@@ -131,6 +131,7 @@ namespace ARPG
         readonly HashSet<string> openedChests = new HashSet<string>();
         readonly Dictionary<string, bool[]> explored = new Dictionary<string, bool[]>();
         readonly int[] materials = new int[Enum.GetValues(typeof(CraftingMaterial)).Length];
+        Onboarding onboarding;
 
         static GameSession current = new GameSession(Environment.TickCount);
 
@@ -146,6 +147,7 @@ namespace ARPG
             ForgeRandom = new System.Random(DungeonRules.LevelSeed(lootSeed, -1));
             Equipment = EquipmentState.Starting;
             SetPotion(new AutoPotion());
+            SetOnboarding(new Onboarding());
 
             // Its own number, not the loot seed itself, so the dungeon and the drops do not move in step.
             DungeonSeed = DungeonRules.LevelSeed(lootSeed, 0);
@@ -222,6 +224,23 @@ namespace ARPG
 
         public CharacterProgress Progress { get; private set; } = new CharacterProgress();
 
+        /// <summary>What the character has been taught (Docs/06, onboarding). Its changes raise <see cref="Modified"/>.</summary>
+        public Onboarding Onboarding => onboarding;
+
+        /// <summary>Raised with an item after it went into the backpack. Onboarding hints listen to it.</summary>
+        public event Action<Item> PickedUp;
+
+        /// <summary>Puts back the onboarding state read from a save.</summary>
+        internal void RestoreOnboarding(Onboarding restored) => SetOnboarding(restored);
+
+        void SetOnboarding(Onboarding value)
+        {
+            if (onboarding != null)
+                onboarding.Changed -= RaiseModified;
+            onboarding = value;
+            onboarding.Changed += RaiseModified;
+        }
+
         /// <summary>The auto-potion's charges and kill progress. Its changes raise <see cref="Modified"/>.</summary>
         public AutoPotion Potion { get; private set; }
 
@@ -266,6 +285,7 @@ namespace ARPG
                 return false;
 
             NotifyChanged();
+            PickedUp?.Invoke(item);
             return true;
         }
 

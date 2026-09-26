@@ -85,6 +85,14 @@ namespace ARPG
                 DropItem(items[i], at + Scatter());
 
             GrantMaterials(source, at);
+
+            // Docs/06: the first Legendary is guaranteed at minute 20 of play, from an elite.
+            var onboarding = GameSession.Current.Onboarding;
+            if (source == LootSource.Elite && onboarding.LegendaryDue)
+            {
+                onboarding.MarkGuaranteeDropped();
+                DropItem(loot.RollItem(ItemRarity.Legendary, level), at + Scatter());
+            }
         }
 
         /// <summary>Docs/04: Bloodstone also comes from elites and Soulglass from bosses. Materials are always picked up
