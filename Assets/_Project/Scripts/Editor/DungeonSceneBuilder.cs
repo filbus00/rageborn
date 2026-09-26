@@ -162,9 +162,10 @@ namespace ARPG.Editor
 
         /// <summary>
         /// The Cinder Warden's definition, created with starting tuning if missing and left alone afterwards, like the
-        /// swarmer variants. 15 times a normal enemy's life: about 13,500 at level 12, which a level 10 character with
-        /// level-appropriate gear (roughly 130 damage per second) takes about 100 seconds to kill, inside the docs'
-        /// 60 to 120 second target for a zone boss (Docs/04-progression-and-economy.md). Its attacks live in
+        /// swarmer variants. 30 times a normal enemy's life: about 9,700 at level 7, which the balance report's character
+        /// arriving at level 6 with typical gear (about 140 damage per second on one target) kills in about 70 seconds,
+        /// inside the docs' 60 to 120 second target for a zone boss (Docs/04-progression-and-economy.md). It was 15 until
+        /// act 1's enemy levels were flattened (2026-09-26), which put the fight at 35 seconds. Its attacks live in
         /// <see cref="CinderWardenFight"/>, not here.
         /// </summary>
         static EnemyDefinition LoadOrCreateBoss()
@@ -178,7 +179,7 @@ namespace ARPG.Editor
                 PlaceholderArt.Capsule(120, 170, new Color32(222, 104, 38, 255)),
                 PixelsPerUnit, SpriteAlignment.BottomCenter, FilterMode.Bilinear);
             return EnemySceneBuilder.LoadOrCreateVariant(
-                BossDefinitionPath, EnemyRank.Boss, lifeMultiplier: 15f, damageMultiplier: 1f, bodyRadius: 0.9f,
+                BossDefinitionPath, EnemyRank.Boss, lifeMultiplier: 30f, damageMultiplier: 1f, bodyRadius: 0.9f,
                 aggroRange: 12f, visualScale: 1.6f, bodySprite: sprite);
         }
 

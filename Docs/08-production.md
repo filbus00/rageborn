@@ -107,6 +107,7 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-26 | Bull Rush builds Rage: it costs nothing and gains 15, so it can open a fight | User |
 | 2026-09-26 | Slot order Ground Breaker, Hurl Axe, Bull Rush, Hew, so the slam is not starved of Rage by Hew | User |
 | 2026-09-26 | Balance fix after the second balance report: act 1's enemy levels by depth flattened to follow the character (1, 2, 3, 4, 5, 7 instead of 1 to 12 spread evenly), so act 1 now ends near character level 7, not 12; and a stand-in Vitality of 8 points per level from level 2 (64 life a level) until the passive tree exists. Both values are Claude's, picked with the balance report | User |
+| 2026-09-26 | The Cinder Warden's life raised from 15 to 30 times a normal enemy's, after the flatter enemy levels put the fight at 35 s; now about 70 s with typical gear (Docs/04 target 60 to 120 s) | User |
 
 ## Post-launch plan (draft)
 

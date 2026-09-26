@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: ARPG.Runtime::ARPG.EnemyDefinition
   level: 1
   rank: 3
-  lifeMultiplier: 15
+  archetype: 0
+  slamRadius: 2
+  preferredRange: 5
+  projectileSpeed: 9
+  lifeMultiplier: 30
   armor: 0
   bodyRadius: 0.9
   deathSeconds: 0.25
