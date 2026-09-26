@@ -27,6 +27,7 @@ namespace ARPG
         readonly StanceStacks stance = new StanceStacks();
         Vector2 dashVelocity;
         float dashSeconds;
+        SpriteEffects effects;
 
         /// <summary>Current velocity on the ground plane, in ground units per second.</summary>
         public Vector2 GroundVelocity => groundVelocity;
@@ -46,7 +47,15 @@ namespace ARPG
             body = GetComponent<Rigidbody2D>();
             if (input == null)
                 input = FindAnyObjectByType<FloatingStickInput>();
+            var bodySprite = transform.Find("Body");
+            if (bodySprite != null && bodySprite.TryGetComponent<SpriteRenderer>(out var bodyRenderer))
+                effects = new SpriteEffects(new[] { bodyRenderer });
         }
+
+        /// <summary>Flashes the character's body a color for a moment, such as red when hit.</summary>
+        public void Flash(Color color, float seconds) => effects?.Flash(color, seconds);
+
+        void Update() => effects?.Tick(Time.deltaTime);
 
         /// <summary>Slows movement to <paramref name="multiplier"/> of normal speed for this many seconds, such as
         /// an elite's Frozen modifier. See <see cref="SlowDebuff"/> for how overlapping applications combine.</summary>

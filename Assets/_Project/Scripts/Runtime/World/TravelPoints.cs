@@ -33,6 +33,7 @@ namespace ARPG
             waypoint.glow = TravelArt.GroundRing(go.transform, 1.4f, DormantColor);
             TravelArt.Label(go.transform, depth > 0 ? "Waypoint" : "Waystone", new Color(0.6f, 0.85f, 1f));
             waypoint.Refresh();
+            WorldLights.AddTravel(go.transform);
             return waypoint;
         }
 
@@ -80,6 +81,7 @@ namespace ARPG
             TravelArt.GroundRing(go.transform, 1.2f, PortalColor);
             TravelArt.Standing(go.transform, 0.9f, 1.8f, PortalColor);
             TravelArt.Label(go.transform, inTown ? $"Portal to level {depth}" : "Portal to town", new Color(0.6f, 0.8f, 1f), 2.1f);
+            WorldLights.AddTravel(go.transform);
             return portal;
         }
 
@@ -156,6 +158,12 @@ namespace ARPG
             renderer.sortingLayerName = GameSortingLayers.Entities;
             body.transform.localPosition = new Vector3(0f, 0.55f, 0f);
             body.transform.localScale = new Vector3(0.7f, 1.1f, 1f);
+            // A figure is a character, not an effect: lit like one, with a shadow at its feet.
+            var pipeline = UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline;
+            if (pipeline != null && pipeline.default2DMaterial != null)
+                renderer.sharedMaterial = pipeline.default2DMaterial;
+            var shadow = GroundMarker.NewSprite("Shadow", TelegraphArt.Disc, new Color(0f, 0f, 0f, 0.4f), parent, 0);
+            shadow.transform.localScale = new Vector3(0.9f, 0.9f * IsoMath.GroundSquash, 1f);
         }
 
         public static void Label(Transform parent, string text, Color color, float height = 1.1f)

@@ -46,6 +46,7 @@ namespace ARPG
             // previous scene's time, which left the next level's stairs dead for as long as the last level had taken
             // (found by the autopilot on 2026-09-26).
             armedAt = Time.time + armSeconds;
+            WorldLights.AddStairs(transform);
         }
 
         void OnTriggerStay2D(Collider2D other)

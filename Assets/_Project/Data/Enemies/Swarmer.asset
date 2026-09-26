@@ -13,10 +13,15 @@ MonoBehaviour:
   m_Name: Swarmer
   m_EditorClassIdentifier: ARPG.Runtime::ARPG.EnemyDefinition
   level: 1
+  rank: 0
+  archetype: 0
+  slamRadius: 2
+  preferredRange: 5
+  projectileSpeed: 9
   lifeMultiplier: 1
   armor: 0
   bodyRadius: 0.3
-  deathSeconds: 0.25
+  deathSeconds: 0.45
   attackRange: 1
   attackWindupSeconds: 0.35
   attackRecoverSeconds: 0.65
@@ -27,3 +32,5 @@ MonoBehaviour:
   leashSeconds: 4
   stopDistance: 0.7
   separationRadius: 0.8
+  visualScale: 1
+  bodySprite: {fileID: 0}

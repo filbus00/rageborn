@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace ARPG
 {
@@ -26,9 +25,8 @@ namespace ARPG
             effect.spriteRenderer.sortingLayerName = GameSortingLayers.Effects;
             effect.spriteRenderer.enabled = false;
 
-            var pipeline = GraphicsSettings.currentRenderPipeline;
-            if (pipeline != null && pipeline.default2DMaterial != null)
-                effect.spriteRenderer.sharedMaterial = pipeline.default2DMaterial;
+            // Unlit, so a swing reads in the dark as well as in the light.
+            SpriteMaterials.MakeUnlit(effect.spriteRenderer);
 
             return effect;
         }

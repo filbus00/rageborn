@@ -12,6 +12,7 @@ namespace ARPG
     public class PlayerHealth : MonoBehaviour
     {
         static readonly Color DodgeColor = new Color(0.6f, 0.9f, 1f);
+        static readonly Color HurtFlashColor = new Color(1f, 0.25f, 0.2f);
 
         LifePool life;
         GameSession session;
@@ -96,7 +97,10 @@ namespace ARPG
             lastHitTime = Time.time;
 
             if (player != null)
+            {
                 DamageNumbers.Current?.Show(player.transform.position, damage, critical: false, isDamageToPlayer: true);
+                player.Flash(HurtFlashColor, 0.14f);
+            }
 
             var killed = life.TakeDamage(damage);
             session.LifeFraction = life.Fraction;

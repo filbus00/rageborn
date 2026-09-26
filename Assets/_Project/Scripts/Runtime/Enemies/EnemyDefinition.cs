@@ -66,7 +66,7 @@ namespace ARPG
         [SerializeField, Min(0.05f)] float bodyRadius = 0.3f;
 
         [Tooltip("Seconds the death animation takes before the enemy leaves the level. Tuning value.")]
-        [SerializeField, Min(0f)] float deathSeconds = 0.25f;
+        [SerializeField, Min(0f)] float deathSeconds = 0.45f;
 
         [Tooltip("The enemy starts an attack when the player is this close, in ground units. The docs give no swarmer attack numbers, so the attack values are tuning.")]
         [SerializeField, Min(0.1f)] float attackRange = 1f;

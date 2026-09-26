@@ -84,7 +84,8 @@ namespace ARPG
         // A hit makes the enemy swell briefly, and death shrinks it while it fades. Placeholder feedback.
         const float PunchSeconds = 0.1f;
         const float PunchScale = 0.2f;
-        const float DeathEndScale = 0.6f;
+        const float DeathEndScale = 0.85f;
+        const float FlashSeconds = 0.1f;
 
         EnemyDefinition definition;
         EliteModifiers modifiers;
@@ -94,6 +95,8 @@ namespace ARPG
         SpriteRenderer bodyRenderer;
         Sprite defaultBodySprite;
         SpriteRenderer[] modifierIcons;
+        SpriteRenderer shadowRenderer;
+        SpriteEffects effects;
         Vector2 ground;
         Vector2 home;
         float leashTimer;
@@ -178,6 +181,17 @@ namespace ARPG
             }
             renderers = tinted.ToArray();
 
+            // The hit flash and the dissolve are for the body; the shadow only fades.
+            var bodies = new System.Collections.Generic.List<SpriteRenderer>(tinted.Count);
+            foreach (var r in tinted)
+            {
+                if (r.gameObject.name == "Shadow")
+                    shadowRenderer = r;
+                else
+                    bodies.Add(r);
+            }
+            effects = new SpriteEffects(bodies.ToArray());
+
             var body = transform.Find("Body");
             if (body != null)
             {
@@ -220,6 +234,7 @@ namespace ARPG
             // otherwise it would keep showing whatever a previous occupant (say, an Elite) last set it to.
             if (bodyRenderer != null)
                 bodyRenderer.sprite = data.BodySprite != null ? data.BodySprite : defaultBodySprite;
+            effects.Clear();
             SetVisuals(1f, 1f);
             UpdateModifierIcons();
             HideTelegraphs();
@@ -407,6 +422,7 @@ namespace ARPG
 
             life -= amount;
             Damaged?.Invoke(amount);
+            effects.Flash(Color.white, FlashSeconds);
             if (life <= 0f)
             {
                 life = 0f;
@@ -447,12 +463,18 @@ namespace ARPG
             deathTimer -= deltaTime;
             var duration = Mathf.Max(definition.DeathSeconds, 1e-4f);
             var remaining = Mathf.Clamp01(deathTimer / duration);
-            SetVisuals(remaining, Mathf.Lerp(DeathEndScale, 1f, remaining));
+            // The body burns away (SpriteEffects) while the shadow fades under it.
+            SetVisuals(1f, Mathf.Lerp(DeathEndScale, 1f, remaining));
+            if (shadowRenderer != null)
+                shadowRenderer.color = new Color(1f, 1f, 1f, remaining);
+            effects.Tick(deltaTime);
+            effects.SetDissolve(1f - remaining);
             return deathTimer <= 0f;
         }
 
         void UpdatePunch(float deltaTime)
         {
+            effects.Tick(deltaTime);
             if (punchTimer <= 0f)
                 return;
 

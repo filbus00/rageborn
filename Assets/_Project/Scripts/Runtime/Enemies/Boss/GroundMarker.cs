@@ -201,6 +201,8 @@ namespace ARPG
             // On the ground, under every character (Decals draws between the floor and the Entities layer).
             spriteRenderer.sortingLayerName = GameSortingLayers.Decals;
             spriteRenderer.sortingOrder = order;
+            // Telegraphs and effects must read in a dark dungeon, so no 2D light dims them.
+            SpriteMaterials.MakeUnlit(spriteRenderer);
             return go;
         }
     }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace ARPG
 {
@@ -104,10 +103,7 @@ namespace ARPG
             return spriteRenderer;
         }
 
-        static Material DefaultMaterial()
-        {
-            var pipeline = GraphicsSettings.currentRenderPipeline;
-            return pipeline != null ? pipeline.default2DMaterial : null;
-        }
+        // Unlit: a drop's marker and beam must be seen in the dark, which is how loot is found in a dark dungeon.
+        static Material DefaultMaterial() => SpriteMaterials.Unlit;
     }
 }

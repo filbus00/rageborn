@@ -213,6 +213,7 @@ namespace ARPG
             walls.ClearAllTiles();
             ground.SetTilesBlock(area, groundTiles);
             walls.SetTilesBlock(area, wallTiles);
+            WorldLights.ShadeGround(ground);
         }
 
         static Vector3 CellWorld(Vector2Int cell)

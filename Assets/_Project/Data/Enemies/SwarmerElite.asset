@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: ARPG.Runtime::ARPG.EnemyDefinition
   level: 1
   rank: 2
+  archetype: 0
+  slamRadius: 2
+  preferredRange: 5
+  projectileSpeed: 9
   lifeMultiplier: 6
   armor: 0
   bodyRadius: 0.45
-  deathSeconds: 0.25
+  deathSeconds: 0.45
   attackRange: 1
   attackWindupSeconds: 0.35
   attackRecoverSeconds: 0.65
