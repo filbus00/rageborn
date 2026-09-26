@@ -23,6 +23,8 @@ namespace ARPG.Editor
         const string EnvironmentArtFolder = "Assets/_Project/Art/Environment";
         const string CharacterArtFolder = "Assets/_Project/Art/Characters";
         public const string BossDefinitionPath = "Assets/_Project/Data/Enemies/CinderWarden.asset";
+        public const string GhoulDefinitionPath = "Assets/_Project/Data/Enemies/Ghoul.asset";
+        public const string ArcherDefinitionPath = "Assets/_Project/Data/Enemies/BanditArcher.asset";
         const int PixelsPerUnit = 128;
 
         // Every level spawns all its packs at load, typically 100 to 180 enemies in the bigger levels; the pool should
@@ -47,6 +49,8 @@ namespace ARPG.Editor
             // it as dead references (they were all null in the scene the first time).
             var (chestClosed, chestOpen) = CreateChestArt();
             LoadOrCreateBoss();
+            LoadOrCreateGhoul();
+            LoadOrCreateArcher();
 
             EditorSceneManager.OpenScene(SandboxPath, OpenSceneMode.Single);
             if (Object.FindAnyObjectByType<EnemyManager>() == null || Object.FindAnyObjectByType<LootDirector>() == null)
@@ -109,6 +113,8 @@ namespace ARPG.Editor
             serialized.FindProperty("eliteEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>("Assets/_Project/Data/Enemies/SwarmerElite.asset");
             // Loaded again by path, not kept from creation: an import in between can leave a fresh asset reference dead.
             serialized.FindProperty("bossEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(BossDefinitionPath);
+            serialized.FindProperty("ghoulEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(GhoulDefinitionPath);
+            serialized.FindProperty("archerEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(ArcherDefinitionPath);
             serialized.FindProperty("stairsSprite").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Sprite>($"{EnvironmentArtFolder}/PlaceholderStairs.png");
             serialized.FindProperty("chestClosedSprite").objectReferenceValue = chestClosed;
             serialized.FindProperty("chestOpenSprite").objectReferenceValue = chestOpen;
@@ -174,6 +180,74 @@ namespace ARPG.Editor
             return EnemySceneBuilder.LoadOrCreateVariant(
                 BossDefinitionPath, EnemyRank.Boss, lifeMultiplier: 15f, damageMultiplier: 1f, bodyRadius: 0.9f,
                 aggroRange: 12f, visualScale: 1.6f, bodySprite: sprite);
+        }
+
+        /// <summary>Creates the Ghoul and Bandit Archer definitions if missing, without rebuilding the dungeon scene.</summary>
+        [MenuItem("Tools/ARPG/Create Act 1 Enemies")]
+        public static void CreateActOneEnemies()
+        {
+            LoadOrCreateGhoul();
+            LoadOrCreateArcher();
+        }
+
+        /// <summary>
+        /// Act 1's brute (Docs/05-world-and-content.md: Ghoul, slow slam, 2 unit radius), created with starting tuning if
+        /// missing and left alone afterwards. Three times a husk's life and a little over twice its hit, slow enough to
+        /// walk away from; the slam fills for 0.9 s, inside the docs' 0.6 to 1.2. Sickly green (Docs/05: cold blue and
+        /// sickly green for enemies).
+        /// </summary>
+        static EnemyDefinition LoadOrCreateGhoul()
+        {
+            var existing = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(GhoulDefinitionPath);
+            if (existing != null)
+                return existing;
+
+            var sprite = PlaceholderArt.ImportSprite(
+                $"{CharacterArtFolder}/PlaceholderGhoul.png",
+                PlaceholderArt.Capsule(104, 120, new Color32(112, 150, 70, 255)),
+                PixelsPerUnit, SpriteAlignment.BottomCenter, FilterMode.Bilinear);
+            return EnemySceneBuilder.LoadOrCreateVariant(
+                GhoulDefinitionPath, EnemyRank.Normal, lifeMultiplier: 3f, damageMultiplier: 2.2f, bodyRadius: 0.45f,
+                aggroRange: 7f, visualScale: 1.2f, bodySprite: sprite, configure: so =>
+                {
+                    so.FindProperty("archetype").enumValueIndex = (int)EnemyArchetype.Brute;
+                    so.FindProperty("slamRadius").floatValue = 2f;
+                    so.FindProperty("attackRange").floatValue = 1.6f;
+                    so.FindProperty("attackWindupSeconds").floatValue = 0.9f;
+                    so.FindProperty("attackRecoverSeconds").floatValue = 1.2f;
+                    so.FindProperty("moveSpeed").floatValue = 2.2f;
+                    so.FindProperty("stopDistance").floatValue = 1.1f;
+                    so.FindProperty("separationRadius").floatValue = 1.2f;
+                });
+        }
+
+        /// <summary>
+        /// Act 1's archer (Docs/05: Bandit Archer, line telegraph; Docs/01: keeps distance). Frailer than a husk and a
+        /// bit harder hitting; aims for 0.4 s (the docs' projectile line), then looses an arrow at 9 units per second from
+        /// up to 7.5 away, and backs off to 5 when the player closes in. Cold blue.
+        /// </summary>
+        static EnemyDefinition LoadOrCreateArcher()
+        {
+            var existing = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(ArcherDefinitionPath);
+            if (existing != null)
+                return existing;
+
+            var sprite = PlaceholderArt.ImportSprite(
+                $"{CharacterArtFolder}/PlaceholderBanditArcher.png",
+                PlaceholderArt.Capsule(64, 116, new Color32(84, 120, 190, 255)),
+                PixelsPerUnit, SpriteAlignment.BottomCenter, FilterMode.Bilinear);
+            return EnemySceneBuilder.LoadOrCreateVariant(
+                ArcherDefinitionPath, EnemyRank.Normal, lifeMultiplier: 0.7f, damageMultiplier: 1.2f, bodyRadius: 0.3f,
+                aggroRange: 7f, visualScale: 1f, bodySprite: sprite, configure: so =>
+                {
+                    so.FindProperty("archetype").enumValueIndex = (int)EnemyArchetype.Archer;
+                    so.FindProperty("attackRange").floatValue = 7.5f;
+                    so.FindProperty("attackWindupSeconds").floatValue = 0.4f;
+                    so.FindProperty("attackRecoverSeconds").floatValue = 1.3f;
+                    so.FindProperty("preferredRange").floatValue = 5f;
+                    so.FindProperty("projectileSpeed").floatValue = 9f;
+                    so.FindProperty("moveSpeed").floatValue = 3f;
+                });
         }
 
         static (Sprite closed, Sprite open) CreateChestArt()

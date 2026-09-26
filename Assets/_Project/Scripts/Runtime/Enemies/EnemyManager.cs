@@ -77,6 +77,9 @@ namespace ARPG
 
         internal SpatialHash Hash { get; private set; }
 
+        /// <summary>Archer arrows in flight, ticked after the enemies each frame.</summary>
+        public EnemyProjectiles Projectiles { get; private set; }
+
         /// <summary>Scratch list for spatial hash queries. Single threaded, so one shared list is enough.</summary>
         internal List<int> NeighbourBuffer => neighbourBuffer;
 
@@ -105,6 +108,7 @@ namespace ARPG
             Nav = NavGridBaker.Bake(groundTilemap, obstacleTilemaps);
             flow = new FlowField(Nav);
             Hash = CreateHash(Nav);
+            Projectiles = new EnemyProjectiles(transform);
 
             for (var i = 0; i < poolSize; i++)
                 pool.Push(CreateInstance());
@@ -152,6 +156,8 @@ namespace ARPG
                 }
             }
             EngagedCount = engaged;
+
+            Projectiles.Tick(deltaTime, this);
         }
 
         internal void NotifyKilled(EnemyController enemy) => Killed?.Invoke(enemy);

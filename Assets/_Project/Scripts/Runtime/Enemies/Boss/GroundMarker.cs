@@ -53,7 +53,9 @@ namespace ARPG
     /// <summary>
     /// A telegraph drawn on the ground (Docs/01-core-gameplay.md, kiting and telegraphs): a circle or a line in ground
     /// space, projected to the isometric view, with an inner fill that grows until the attack lands. The fight that made
-    /// it advances it with the same clock as its attack, so a pause or a stagger stops it too.
+    /// it advances it with the same clock as its attack, so a pause or a stagger stops it too. An enemy keeps one marker
+    /// and reuses it for every attack (<see cref="RestartCircle"/>, <see cref="RestartLine"/>, <see cref="Hide"/>), so a
+    /// fight creates no objects.
     /// </summary>
     public sealed class GroundMarker
     {
@@ -67,7 +69,7 @@ namespace ARPG
             Duration = duration;
         }
 
-        public float Duration { get; }
+        public float Duration { get; private set; }
         public float Elapsed { get; private set; }
         public bool Done => Elapsed >= Duration;
 
@@ -93,13 +95,37 @@ namespace ARPG
         public static GroundMarker Line(Vector2 from, Vector2 to, float width, float duration, Color color, Transform parent)
         {
             var root = NewSprite("Line", TelegraphArt.Line, color, parent, 42);
-            var a = IsoMath.GroundToWorld(from);
-            var b = IsoMath.GroundToWorld(to);
-            var delta = b - a;
-            root.transform.position = (a + b) / 2f;
-            root.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg);
-            root.transform.localScale = new Vector3(delta.magnitude, width, 1f);
+            PlaceLine(root.transform, from, to, width);
             return new GroundMarker(root, null, duration);
+        }
+
+        /// <summary>Shows a circle marker again somewhere else, its fill starting over.</summary>
+        public void RestartCircle(Vector2 ground, float radius, float duration)
+        {
+            Place(root.transform, ground, radius);
+            Restart(duration);
+        }
+
+        /// <summary>Shows a line marker again along another segment.</summary>
+        public void RestartLine(Vector2 from, Vector2 to, float width, float duration)
+        {
+            PlaceLine(root.transform, from, to, width);
+            Restart(duration);
+        }
+
+        public void Hide()
+        {
+            if (root != null)
+                root.SetActive(false);
+        }
+
+        void Restart(float duration)
+        {
+            Duration = duration;
+            Elapsed = 0f;
+            if (fill != null)
+                fill.localScale = Vector3.zero;
+            root.SetActive(true);
         }
 
         /// <summary>Advances the fill. A ring fades in instead.</summary>
@@ -115,6 +141,16 @@ namespace ARPG
         {
             if (root != null)
                 UnityEngine.Object.Destroy(root);
+        }
+
+        static void PlaceLine(Transform transform, Vector2 from, Vector2 to, float width)
+        {
+            var a = IsoMath.GroundToWorld(from);
+            var b = IsoMath.GroundToWorld(to);
+            var delta = b - a;
+            transform.position = (a + b) / 2f;
+            transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg);
+            transform.localScale = new Vector3(delta.magnitude, width, 1f);
         }
 
         // A ground circle of radius r is an ellipse r wide and r/2 tall on screen.

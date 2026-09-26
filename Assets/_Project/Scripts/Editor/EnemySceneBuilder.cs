@@ -69,7 +69,7 @@ namespace ARPG.Editor
         /// </summary>
         internal static EnemyDefinition LoadOrCreateVariant(
             string path, EnemyRank rank, float lifeMultiplier, float damageMultiplier, float bodyRadius,
-            float aggroRange, float visualScale, Sprite bodySprite)
+            float aggroRange, float visualScale, Sprite bodySprite, System.Action<SerializedObject> configure = null)
         {
             var definition = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(path);
             if (definition != null)
@@ -86,6 +86,7 @@ namespace ARPG.Editor
             serialized.FindProperty("aggroRange").floatValue = aggroRange;
             serialized.FindProperty("visualScale").floatValue = visualScale;
             serialized.FindProperty("bodySprite").objectReferenceValue = bodySprite;
+            configure?.Invoke(serialized);
             serialized.ApplyModifiedPropertiesWithoutUndo();
 
             AssetDatabase.SaveAssets();

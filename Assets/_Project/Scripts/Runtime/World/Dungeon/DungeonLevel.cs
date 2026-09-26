@@ -25,6 +25,12 @@ namespace ARPG
         [SerializeField] EnemyDefinition championEnemy;
         [SerializeField] EnemyDefinition eliteEnemy;
 
+        [Tooltip("Act 1's brute (Docs/05): mixed into packs from depth 2 (PackComposition).")]
+        [SerializeField] EnemyDefinition ghoulEnemy;
+
+        [Tooltip("Act 1's archer (Docs/05): mixed into packs from depth 2 (PackComposition).")]
+        [SerializeField] EnemyDefinition archerEnemy;
+
         [Tooltip("The act boss, fought in the arena on the act's last level.")]
         [SerializeField] EnemyDefinition bossEnemy;
 
@@ -41,6 +47,8 @@ namespace ARPG
         [SerializeField, Min(1)] int editorDepth = 1;
 
         string levelId;
+        int depth;
+        int levelSeed;
 
         public DungeonLayout Layout { get; private set; }
 
@@ -48,7 +56,7 @@ namespace ARPG
         {
             var session = GameSession.Current;
             var travel = session.Travel;
-            var depth = travel.Depth > 0 ? travel.Depth : editorDepth;
+            depth = travel.Depth > 0 ? travel.Depth : editorDepth;
             var arrival = travel.Depth > 0 ? travel.Arrival : Arrival.FromAbove;
             session.Travel = default;
 
@@ -74,7 +82,8 @@ namespace ARPG
             if (eliteEnemy != null)
                 settings.EliteAggroRange = eliteEnemy.AggroRange;
 
-            Layout = DungeonGenerator.Generate(DungeonRules.LevelSeed(session.DungeonSeed, depth), depth, shapes, settings);
+            levelSeed = DungeonRules.LevelSeed(session.DungeonSeed, depth);
+            Layout = DungeonGenerator.Generate(levelSeed, depth, shapes, settings);
 
             Paint();
             RescueCorpses(session);
@@ -246,9 +255,32 @@ namespace ARPG
             go.transform.SetParent(parent, false);
             go.transform.position = CellWorld(placement.Cell);
 
-            var member = placement.Kind == PackKind.Elite ? eliteEnemy : normalEnemy;
-            var leader = placement.Kind == PackKind.WithChampion ? championEnemy : null;
-            go.AddComponent<EnemyPack>().Configure(member, leader, placement.Count, placement.Radius, Layout.EnemyLevel);
+            var pack = go.AddComponent<EnemyPack>();
+            if (placement.Kind == PackKind.Elite)
+            {
+                pack.Configure(eliteEnemy, null, placement.Count, placement.Radius, Layout.EnemyLevel);
+                return;
+            }
+
+            var members = PackComposition.Roll(depth, placement.Kind, placement.Count, levelSeed, index);
+            var perSlot = new EnemyDefinition[members.Length];
+            for (var i = 0; i < members.Length; i++)
+                perSlot[i] = Definition(members[i]);
+            if (placement.Kind == PackKind.WithChampion && perSlot.Length > 0)
+                perSlot[0] = championEnemy;
+            pack.Configure(perSlot, placement.Radius, Layout.EnemyLevel);
+        }
+
+        // A missing ghoul or archer definition falls back to a husk, so an older scene still fills its packs.
+        EnemyDefinition Definition(PackMember member)
+        {
+            switch (member)
+            {
+                case PackMember.None: return null;
+                case PackMember.Ghoul: return ghoulEnemy != null ? ghoulEnemy : normalEnemy;
+                case PackMember.Archer: return archerEnemy != null ? archerEnemy : normalEnemy;
+                default: return normalEnemy;
+            }
         }
 
         static void SetLayer(GameObject go, string layerName)

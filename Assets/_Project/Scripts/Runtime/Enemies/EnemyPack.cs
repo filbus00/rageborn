@@ -34,6 +34,10 @@ namespace ARPG
 
         readonly List<EnemyController> members = new List<EnemyController>();
 
+        // Set from code for a mixed pack: one definition per slot, null for a slot left empty. Overrides definition,
+        // championDefinition and count.
+        EnemyDefinition[] slotDefinitions;
+
         Vector2 anchor;
         FlowField homeField;
         string packKey;
@@ -65,6 +69,22 @@ namespace ARPG
             count = Mathf.Clamp(memberCount, 1, 12);
             radius = spreadRadius;
             level = memberLevel;
+            slotDefinitions = null;
+        }
+
+        /// <summary>Sets up a mixed pack: one definition per slot (null leaves the slot empty). Kills are still
+        /// remembered by slot, so the same slots must get the same enemies each time the level loads.</summary>
+        public void Configure(EnemyDefinition[] perSlot, float spreadRadius, int memberLevel)
+        {
+            slotDefinitions = perSlot;
+            count = perSlot.Length;
+            radius = spreadRadius;
+            level = memberLevel;
+            definition = null;
+            championDefinition = null;
+            foreach (var slot in perSlot)
+                if (slot != null && definition == null)
+                    definition = slot;
         }
 
         void Start()
@@ -94,11 +114,25 @@ namespace ARPG
                 if (!manager.Nav.IsWalkable(IsoMath.GroundToCell(position)))
                     continue;
 
-                var slotDefinition = i == 0 && championDefinition != null ? championDefinition : definition;
+                var slotDefinition = slotDefinitions != null ? slotDefinitions[i]
+                    : i == 0 && championDefinition != null ? championDefinition : definition;
+                if (slotDefinition == null)
+                    continue;
                 var member = manager.Spawn(slotDefinition, position, false, this, level);
                 member.PackSlot = i;
                 members.Add(member);
             }
+        }
+
+        /// <summary>
+        /// A member engaged the player: every idle member joins in (Docs/01: a pack idles until the player comes within
+        /// aggro range). Without it, an archer at the back of a pack stood idle just past its own aggro range while the
+        /// rest of the pack fought. Members walking home are left alone; they come back when the player is in range.
+        /// </summary>
+        internal void Alert()
+        {
+            for (var i = 0; i < members.Count; i++)
+                members[i].Wake();
         }
 
         /// <summary>Called by a member when it dies. The pack never respawns it.</summary>

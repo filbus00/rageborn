@@ -15,6 +15,22 @@ namespace ARPG
         Boss,
     }
 
+    /// <summary>How an enemy fights (Docs/01-core-gameplay.md, enemy behavior). Caster, Charger and Support are not
+    /// built yet.</summary>
+    public enum EnemyArchetype
+    {
+        /// <summary>Fast, low health, chases in a loose cluster and bites at melee reach.</summary>
+        Swarmer,
+
+        /// <summary>Slow, high health; its slam paints a ground circle that fills during the wind-up, then hits
+        /// whoever is still inside.</summary>
+        Brute,
+
+        /// <summary>Keeps its distance and shoots when it can see the player: a line telegraph, then a projectile
+        /// that walls stop.</summary>
+        Archer,
+    }
+
     /// <summary>
     /// Data for one enemy type. Ranges are in ground units. Values marked as tuning are starting points that
     /// Docs/01-core-gameplay.md does not fix yet.
@@ -27,6 +43,18 @@ namespace ARPG
 
         [Tooltip("Normal, Champion (a pack's lone leader) or Elite (every member of its pack). See Docs/00 and Docs/03.")]
         [SerializeField] EnemyRank rank = EnemyRank.Normal;
+
+        [Tooltip("How it fights: Swarmer bites at reach, Brute slams a ground circle, Archer shoots from range.")]
+        [SerializeField] EnemyArchetype archetype = EnemyArchetype.Swarmer;
+
+        [Tooltip("Brute only: radius of the slam, in ground units. Docs/05: the Ghoul's slam is 2 units.")]
+        [SerializeField, Min(0.5f)] float slamRadius = 2f;
+
+        [Tooltip("Archer only: the distance it tries to keep from the player, backing off when closer. Tuning value.")]
+        [SerializeField, Min(1f)] float preferredRange = 5f;
+
+        [Tooltip("Archer only: projectile speed in ground units per second. Tuning value.")]
+        [SerializeField, Min(1f)] float projectileSpeed = 9f;
 
         [Tooltip("Archetype adjustment on the level's base life. The docs call the Husk swarmer low health but give no number, so this is 1 until tuned.")]
         [SerializeField, Min(0.1f)] float lifeMultiplier = 1f;
@@ -81,6 +109,10 @@ namespace ARPG
 
         public int Level => level;
         public EnemyRank Rank => rank;
+        public EnemyArchetype Archetype => archetype;
+        public float SlamRadius => slamRadius;
+        public float PreferredRange => preferredRange;
+        public float ProjectileSpeed => projectileSpeed;
         public float MaxLife => MaxLifeAt(level);
 
         /// <summary>Life for this archetype at another level, for an enemy a dungeon level spawns above or below the

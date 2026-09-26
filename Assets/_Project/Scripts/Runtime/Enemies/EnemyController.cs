@@ -71,6 +71,13 @@ namespace ARPG
 
         static readonly EliteModifiers[] ModifierIconOrder = { EliteModifiers.Hasted, EliteModifiers.Vampiric, EliteModifiers.Frozen };
 
+        // Docs/01-core-gameplay.md: hard red outline, soft fill. The same red as the boss's telegraphs.
+        static readonly Color TelegraphColor = new Color(1f, 0.22f, 0.12f, 0.95f);
+
+        // An archer's aim line (Docs/01: a thin line in the aim direction) and how far past its range an arrow flies.
+        const float AimLineWidth = 0.07f;
+        const float ArrowOvershoot = 2f;
+
         // How much the enemy swells over its wind-up. Placeholder tell.
         const float WindupScale = 0.2f;
 
@@ -94,6 +101,14 @@ namespace ARPG
         float life;
         float punchTimer;
         float deathTimer;
+
+        // A brute's slam lands where it stood when the wind-up began; an archer shoots where it aimed then.
+        Vector2 attackCenter;
+        Vector2 attackAim;
+
+        // Made on first use and reused, one of each since a pooled instance can be any archetype.
+        GroundMarker slamMarker;
+        GroundMarker aimMarker;
 
         public EnemyState State { get; private set; }
 
@@ -203,11 +218,22 @@ namespace ARPG
                 bodyRenderer.sprite = data.BodySprite != null ? data.BodySprite : defaultBodySprite;
             SetVisuals(1f, 1f);
             UpdateModifierIcons();
+            HideTelegraphs();
             SyncTransform();
             gameObject.SetActive(true);
         }
 
-        internal void Deactivate() => gameObject.SetActive(false);
+        internal void Deactivate()
+        {
+            HideTelegraphs();
+            gameObject.SetActive(false);
+        }
+
+        void HideTelegraphs()
+        {
+            slamMarker?.Hide();
+            aimMarker?.Hide();
+        }
 
         /// <summary>Shows a small colored dot above the head for each active modifier (Docs/01-core-gameplay.md:
         /// no visual spec given, this is a placeholder tell), in a fixed order so the display is stable. Hidden
@@ -283,6 +309,7 @@ namespace ARPG
                         return;
                     State = EnemyState.Approach;
                     leashTimer = 0f;
+                    pack?.Alert();
                     break;
 
                 case EnemyState.Approach:
@@ -300,10 +327,16 @@ namespace ARPG
                         leashTimer = 0f;
                     }
 
-                    if (CanAttack(world, distance))
+                    // Archers only shoot what they can see; the check is skipped for everyone else.
+                    var lineOfSight = definition.Archetype != EnemyArchetype.Archer || world.Nav.HasLineOfSight(ground, playerGround);
+                    if (CanAttack(world, distance) && lineOfSight)
                     {
-                        State = EnemyState.Attack;
-                        stateTimer = EffectiveAttackWindupSeconds;
+                        BeginAttack(world, playerGround);
+                        return;
+                    }
+                    if (definition.Archetype == EnemyArchetype.Archer)
+                    {
+                        Reposition(world, playerGround, distance, lineOfSight, deltaTime);
                         return;
                     }
                     break;
@@ -311,9 +344,12 @@ namespace ARPG
                 case EnemyState.Attack:
                     stateTimer -= deltaTime;
                     SetVisuals(1f, 1f + WindupScale * (1f - Mathf.Clamp01(stateTimer / Mathf.Max(EffectiveAttackWindupSeconds, 1e-4f))));
+                    slamMarker?.Advance(deltaTime);
+                    aimMarker?.Advance(deltaTime);
                     if (stateTimer <= 0f)
                     {
                         LandAttack(world, distance);
+                        HideTelegraphs();
                         State = EnemyState.Recover;
                         stateTimer = EffectiveAttackRecoverSeconds;
                         SetVisuals(1f, 1f);
@@ -325,7 +361,11 @@ namespace ARPG
                     stateTimer -= deltaTime;
                     if (stateTimer <= 0f)
                         State = EnemyState.Approach;
-                    Hold(world, playerGround, deltaTime);
+                    // An archer uses the time between shots to get back to its range.
+                    if (definition.Archetype == EnemyArchetype.Archer)
+                        Reposition(world, playerGround, distance, world.Nav.HasLineOfSight(ground, playerGround), deltaTime);
+                    else
+                        Hold(world, playerGround, deltaTime);
                     return;
 
                 case EnemyState.Return:
@@ -368,6 +408,7 @@ namespace ARPG
                 State = EnemyState.Dead;
                 deathTimer = definition.DeathSeconds;
                 HideModifierIcons();
+                HideTelegraphs();
                 pack?.NotifyDeath(this);
                 manager?.NotifyKilled(this);
                 return true;
@@ -375,13 +416,24 @@ namespace ARPG
 
             punchTimer = PunchSeconds;
 
-            // A hit wakes an idle or returning enemy. One that is mid-attack keeps attacking.
+            // A hit wakes an idle or returning enemy, and its pack with it. One that is mid-attack keeps attacking.
             if (State == EnemyState.Idle || State == EnemyState.Return)
             {
                 State = EnemyState.Approach;
                 leashTimer = 0f;
+                pack?.Alert();
             }
             return false;
+        }
+
+        /// <summary>Called by the pack when another member engaged: an idle member joins in. It does not alert the
+        /// pack again.</summary>
+        internal void Wake()
+        {
+            if (State != EnemyState.Idle)
+                return;
+            State = EnemyState.Approach;
+            leashTimer = 0f;
         }
 
         /// <summary>Advances the death fade. Returns true once the enemy is finished and can return to the pool.</summary>
@@ -418,19 +470,96 @@ namespace ARPG
         bool CanAttack(EnemyManager world, float distance) =>
             world.Player != null && world.Player.IsAlive && distance <= definition.AttackRange;
 
+        /// <summary>Starts the wind-up. A brute paints its slam circle where it stands and an archer its aim line toward
+        /// the player; both fill for the length of the wind-up (Docs/01: 0.6 to 1.2 s for a ground shape, 0.4 s for a
+        /// projectile line), and the attack lands on that spot or line even if the player has moved.</summary>
+        void BeginAttack(EnemyManager world, Vector2 playerGround)
+        {
+            State = EnemyState.Attack;
+            stateTimer = EffectiveAttackWindupSeconds;
+            attackCenter = ground;
+
+            switch (definition.Archetype)
+            {
+                case EnemyArchetype.Brute:
+                    if (slamMarker == null)
+                        slamMarker = GroundMarker.Circle(ground, definition.SlamRadius, stateTimer, TelegraphColor, world.transform);
+                    else
+                        slamMarker.RestartCircle(ground, definition.SlamRadius, stateTimer);
+                    break;
+
+                case EnemyArchetype.Archer:
+                    var aim = playerGround - ground;
+                    attackAim = aim.sqrMagnitude > 1e-4f ? aim.normalized : Vector2.down;
+                    var end = ground + attackAim * (definition.AttackRange + ArrowOvershoot);
+                    if (aimMarker == null)
+                        aimMarker = GroundMarker.Line(ground, end, AimLineWidth, stateTimer, TelegraphColor, world.transform);
+                    else
+                        aimMarker.RestartLine(ground, end, AimLineWidth, stateTimer);
+                    break;
+            }
+        }
+
         void LandAttack(EnemyManager world, float distance)
         {
-            if (world.Player == null || !world.Player.IsAlive || distance > definition.AttackRange + AttackForgiveness)
+            if (world.Player == null || !world.Player.IsAlive)
                 return;
 
             var damage = CombatFormulas.EnemyHitDamage(Level) * definition.DamageMultiplier;
             var armorIgnorePercent = definition.Rank == EnemyRank.Elite || definition.Rank == EnemyRank.Boss ? EliteArmorIgnorePercent : 0f;
-            world.Player.TakeHit(damage, Level, armorIgnorePercent);
 
+            switch (definition.Archetype)
+            {
+                case EnemyArchetype.Brute:
+                    // Only the circle counts: stepping out of it is the counterplay, however close the brute is.
+                    if (Vector2.Distance(world.PlayerGround, attackCenter) > definition.SlamRadius)
+                        return;
+                    break;
+
+                case EnemyArchetype.Archer:
+                    // The arrow does the hitting, or a wall stops it.
+                    world.Projectiles.Fire(this, ground + attackAim * definition.BodyRadius, attackAim * definition.ProjectileSpeed,
+                        definition.AttackRange + ArrowOvershoot, damage, Level, armorIgnorePercent);
+                    return;
+
+                default:
+                    if (distance > definition.AttackRange + AttackForgiveness)
+                        return;
+                    break;
+            }
+
+            world.Player.TakeHit(damage, Level, armorIgnorePercent);
+            ApplyOnHitEffects(world, damage);
+        }
+
+        /// <summary>An elite's Vampiric and Frozen modifiers, after one of its hits landed (an arrow's too).</summary>
+        internal void ApplyOnHitEffects(EnemyManager world, float damage)
+        {
             if (HasModifier(EliteModifiers.Vampiric))
                 life = Mathf.Min(MaxLife, life + damage * VampiricHealFraction);
             if (HasModifier(EliteModifiers.Frozen))
                 world.PlayerController?.ApplySlow(FrozenSlowMultiplier, FrozenSlowSeconds);
+        }
+
+        /// <summary>An archer between shots: closes in until it can see the player in range, backs off when the player
+        /// comes too close, otherwise holds (<see cref="ArcherSteering"/>). Still spreads from the crowd.</summary>
+        void Reposition(EnemyManager world, Vector2 playerGround, float distance, bool lineOfSight, float deltaTime)
+        {
+            var desired = Vector2.zero;
+            switch (ArcherSteering.Intent(distance, lineOfSight, definition.PreferredRange, definition.AttackRange))
+            {
+                case 1:
+                    desired = world.ChaseDirection(ground, playerGround);
+                    break;
+                case -1:
+                    desired = distance > 1e-4f ? (ground - playerGround) / distance : Vector2.zero;
+                    break;
+            }
+            desired += Separation(world) + PushAway(playerGround, definition.StopDistance) * PlayerPushWeight;
+            if (desired.sqrMagnitude > 1f)
+                desired.Normalize();
+
+            Move(desired * (EffectiveMoveSpeed * deltaTime), world);
         }
 
         // Stands its ground while attacking or recovering, but is still pushed apart from the crowd and the player.
