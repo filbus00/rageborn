@@ -25,15 +25,15 @@ namespace ARPG.Editor
         const string OutputPath = "Logs/BalanceReport.md";
         const string EnemiesFolder = "Assets/_Project/Data/Enemies";
 
-        // How many enemies a swing catches in a crowd: the basic attack is a 120 degree sweep, Hew 180. Assumptions.
+        // How many enemies a hit catches in a crowd, by skill kind. Assumptions. The basic attack is a 120 degree sweep.
         const float CrowdTargetsBasic = 2f;
-        const float CrowdTargetsHew = 3f;
+        const float CrowdTargetsSweep = 3f;
+        const float CrowdTargetsSlam = 5f;
+        const float CrowdTargetsCharge = 3f;
 
-        // Hew (Data/Skills/Hew.asset): 170 percent, every 3 s, 20 Rage. The basic attack builds 6 Rage a swing at 1.4
-        // swings a second, more than Hew spends, so the cooldown sets its rate. Hurl Axe, Bull Rush and Ground Breaker
-        // are not modeled yet.
-        const float HewMultiplier = 1.7f;
-        const float HewCooldown = 3f;
+        // The Wrathborn fights standing in a crowd: 5 Stillness stacks (Docs/01), 30 percent increased damage and 20
+        // percent damage reduction.
+        const bool AssumeStillness = true;
 
         // How many husks can reach the character at once: a ring around it, pushed apart. An assumption.
         const int HusksInReach = 5;
@@ -67,6 +67,9 @@ namespace ARPG.Editor
             var ghoul = Load("Ghoul");
             var archer = Load("BanditArcher");
             var boss = Load("CinderWarden");
+            var skills = new List<SkillDefinition>();
+            foreach (var guid in AssetDatabase.FindAssets("t:SkillDefinition", new[] { "Assets/_Project/Data/Skills" }))
+                skills.Add(AssetDatabase.LoadAssetAtPath<SkillDefinition>(AssetDatabase.GUIDToAssetPath(guid)));
 
             var depths = new DepthStats[DungeonRules.LevelsPerAct + 1];
             for (var d = 1; d <= DungeonRules.LevelsPerAct; d++)
@@ -161,8 +164,33 @@ namespace ARPG.Editor
                     var power = PowerScore.Evaluate(gear, charLevel);
                     var hit = power.DamagePerSecond / PowerScore.BaseAttacksPerSecond / (1f + gear.AttackSpeedPercent / 100f);
                     var swings = PowerScore.BaseAttacksPerSecond * (1f + gear.AttackSpeedPercent / 100f);
-                    var single = hit * (swings + HewMultiplier / HewCooldown);
-                    var crowd = hit * (swings * CrowdTargetsBasic + HewMultiplier / HewCooldown * CrowdTargetsHew);
+                    // Every unlocked skill at its cooldown, unless Rage cannot pay for that: then all spenders slow down
+                    // together. Rage comes from basic swings that land (6 each) and Bull Rush; hits taken are left out.
+                    var stillness = AssumeStillness ? StanceStacks.MaxStacks * StanceStacks.StillnessDamagePerStack : 0f;
+                    hit *= 1f + stillness;
+                    var rageIn = swings * RagePool.PerBasicHit;
+                    var rageOut = 0f;
+                    foreach (var skill in skills)
+                        if (SkillRules.IsUnlocked(skill.UnlockLevel, charLevel))
+                        {
+                            rageIn += skill.RageGain / skill.CooldownSeconds;
+                            rageOut += skill.RageCost / skill.CooldownSeconds;
+                        }
+                    var rageShare = rageOut > rageIn ? rageIn / rageOut : 1f;
+                    var single = hit * swings;
+                    var crowd = hit * swings * CrowdTargetsBasic;
+                    foreach (var skill in skills)
+                    {
+                        if (!SkillRules.IsUnlocked(skill.UnlockLevel, charLevel))
+                            continue;
+                        var rate = skill.DamageMultiplier / skill.CooldownSeconds * (skill.RageCost > 0f ? rageShare : 1f);
+                        var targets = skill.Kind == SkillKind.Sweep ? CrowdTargetsSweep : skill.Kind == SkillKind.Slam ? CrowdTargetsSlam
+                            : skill.Kind == SkillKind.Charge ? CrowdTargetsCharge : 1f;
+                        crowd += hit * rate * targets;
+                        // Against one target: a sweep needs 2 enemies and a slam 4, so neither fires on a lone enemy.
+                        if (skill.Kind == SkillKind.Projectile || skill.Kind == SkillKind.Charge)
+                            single += hit * rate;
+                    }
 
                     var armor = gear.TotalArmor;
                     var maxLife = CombatFormulas.CharacterBaseLife(charLevel) + gear.TotalLifeBonus;
@@ -170,6 +198,10 @@ namespace ARPG.Editor
                     var ghoulHit = CombatFormulas.EnemyHitOnPlayer(level, ghoul.DamageMultiplier, armor);
                     var arrowHit = CombatFormulas.EnemyHitOnPlayer(level, archer.DamageMultiplier, armor);
                     var huskCycle = husk.AttackWindupSeconds + husk.AttackRecoverSeconds;
+                    var reduction = AssumeStillness ? StanceStacks.MaxStacks * StanceStacks.StillnessReductionPerStack : 0f;
+                    huskHit *= 1f - reduction;
+                    ghoulHit *= 1f - reduction;
+                    arrowHit *= 1f - reduction;
                     var diesTo5 = maxLife / (HusksInReach * huskHit / huskCycle);
                     var kills5 = HusksInReach * husk.MaxLifeAt(level) / crowd;
                     var fight = x.Life / Seeds / crowd;
@@ -180,7 +212,7 @@ namespace ARPG.Editor
             }
 
             text.AppendLine();
-            text.AppendLine($"Assumptions: a crowd swing catches {CrowdTargetsBasic} enemies with the basic attack and {CrowdTargetsHew} with Hew (the only skill modeled); {HusksInReach} husks can reach the character at once; fight time is the level's total enemy life over crowd DPS, with no walking; the potion (3 charges of 40 percent) and dodging telegraphs are left out.");
+            text.AppendLine($"Assumptions: every skill unlocked at the character's level fires at its cooldown, slowed together when Rage from basic swings and Bull Rush cannot pay; in a crowd the basic attack catches {CrowdTargetsBasic} enemies, Hew {CrowdTargetsSweep}, Ground Breaker {CrowdTargetsSlam}, Bull Rush {CrowdTargetsCharge}, Hurl Axe 1; against one target Hew and Ground Breaker do not fire; the character stands with 5 Stillness stacks (+30 percent damage, 20 percent less damage taken, included in Hit and in the enemy hits); {HusksInReach} husks can reach the character at once; fight time is the level's total enemy life over crowd DPS, with no walking; the potion (3 charges of 40 percent), hits taken giving Rage, and dodging are left out.");
 
             Directory.CreateDirectory(Path.GetDirectoryName(OutputPath));
             File.WriteAllText(OutputPath, text.ToString());
