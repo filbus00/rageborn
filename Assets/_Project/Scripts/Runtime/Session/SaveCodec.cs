@@ -7,7 +7,7 @@ namespace ARPG
     /// <summary>
     /// Turns a <see cref="GameSession"/> into <see cref="SaveData"/> and JSON and back. Pure, no file access (that is
     /// <see cref="SaveStore"/>). What is saved: equipment, the backpack, gold, life, level and XP, potion charges,
-    /// corpses, killed pack members, opened chests, the dungeon seed and the bad luck counter. The loot generator's own state is not: a loaded session gets a fresh seed.
+    /// corpses, killed pack members, opened chests, the dungeon seed, salvage materials and the bad luck counter. The loot generator's own state is not: a loaded session gets a fresh seed.
     /// </summary>
     public static class SaveCodec
     {
@@ -20,6 +20,7 @@ namespace ARPG
             MigrateFrom2, // 2 to 3: potions did not exist; start with full charges.
             MigrateFrom3, // 3 to 4: no dungeon existed; give the session a dungeon seed.
             MigrateFrom4, // 4 to 5: the generator version was not saved; 0 means unknown, so dungeon records are dropped.
+            MigrateFrom5, // 5 to 6: the Forge did not exist; no materials, and no item was ever reforged or tempered.
         };
 
         static SaveData MigrateFrom1(SaveData data)
@@ -51,6 +52,25 @@ namespace ARPG
             return data;
         }
 
+        static SaveData MigrateFrom5(SaveData data)
+        {
+            data.materials = new List<MaterialData>();
+            foreach (var item in AllItems(data))
+                item.reforges = item.tempers = 0;
+            return data;
+        }
+
+        static IEnumerable<ItemData> AllItems(SaveData data)
+        {
+            foreach (var item in data.equipped ?? new List<ItemData>())
+                yield return item;
+            foreach (var item in data.backpack ?? new List<ItemData>())
+                yield return item;
+            foreach (var corpse in data.corpses ?? new List<CorpseData>())
+                foreach (var item in corpse.gear ?? new List<ItemData>())
+                    yield return item;
+        }
+
         public static SaveData Capture(GameSession session, long savedAtUnixMs)
         {
             var data = new SaveData
@@ -80,6 +100,10 @@ namespace ARPG
                     y = corpse.GroundPosition.y,
                     gear = CaptureEquipment(corpse.Gear),
                 });
+
+            foreach (CraftingMaterial material in Enum.GetValues(typeof(CraftingMaterial)))
+                if (session.Materials(material) > 0)
+                    data.materials.Add(new MaterialData { name = material.ToString(), amount = session.Materials(material) });
 
             data.openedChests.AddRange(session.OpenedChests);
             data.openedChests.Sort(StringComparer.Ordinal);
@@ -119,6 +143,14 @@ namespace ARPG
             }
 
             session.AddGold(data.gold);
+
+            foreach (var material in data.materials)
+            {
+                if (TryParseEnum(material.name, out CraftingMaterial parsed))
+                    session.RestoreMaterial(parsed, material.amount);
+                else
+                    warnings?.Add($"Left out an unknown material ({material.name}).");
+            }
 
             // A saved character is alive. A zero would come back as a character that can never die again.
             session.LifeFraction = data.lifeFraction > 0f ? Mathf.Min(data.lifeFraction, 1f) : 1f;
@@ -192,6 +224,7 @@ namespace ARPG
             parsed.corpses ??= new List<CorpseData>();
             parsed.killed ??= new List<KilledPackData>();
             parsed.openedChests ??= new List<string>();
+            parsed.materials ??= new List<MaterialData>();
 
             data = parsed;
             error = null;
@@ -217,6 +250,8 @@ namespace ARPG
                 slot = item.Slot.ToString(),
                 rarity = item.Rarity.ToString(),
                 itemLevel = item.ItemLevel,
+                reforges = item.Reforges,
+                tempers = item.Tempers,
             };
             foreach (var affix in item.Affixes)
                 data.affixes.Add(new AffixData { id = affix.Id.ToString(), tier = affix.Tier, value = affix.Value });
@@ -266,7 +301,7 @@ namespace ARPG
                 }
             }
 
-            return new Item(slot, rarity, data.itemLevel, affixes.ToArray());
+            return new Item(slot, rarity, data.itemLevel, affixes.ToArray(), data.reforges, data.tempers);
         }
 
         // Enum.TryParse also accepts numbers and any defined value's number, so "7" would parse as a slot that does not

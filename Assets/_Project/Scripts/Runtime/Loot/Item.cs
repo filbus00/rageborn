@@ -27,12 +27,16 @@ namespace ARPG
     {
         static readonly AffixRoll[] NoAffixes = System.Array.Empty<AffixRoll>();
 
-        public Item(ItemSlot slot, ItemRarity rarity, int itemLevel, AffixRoll[] affixes = null)
+        /// <param name="reforges">How many times the Forge has reforged it, which raises the next reforge's cost.</param>
+        /// <param name="tempers">How many times it has been tempered, at most <see cref="ForgeRules.MaxTempers"/>.</param>
+        public Item(ItemSlot slot, ItemRarity rarity, int itemLevel, AffixRoll[] affixes = null, int reforges = 0, int tempers = 0)
         {
             Slot = slot;
             Rarity = rarity;
             ItemLevel = itemLevel < 1 ? 1 : itemLevel;
             Affixes = affixes ?? NoAffixes;
+            Reforges = reforges < 0 ? 0 : reforges;
+            Tempers = tempers < 0 ? 0 : tempers;
         }
 
         public ItemSlot Slot { get; }
@@ -43,6 +47,12 @@ namespace ARPG
 
         /// <summary>The affixes rolled on this item. Empty for Common items.</summary>
         public System.Collections.Generic.IReadOnlyList<AffixRoll> Affixes { get; }
+
+        /// <summary>Times reforged at the Forge (<see cref="ForgeRules"/>). Saved with the item.</summary>
+        public int Reforges { get; }
+
+        /// <summary>Times tempered at the Forge (<see cref="ForgeRules"/>). Saved with the item.</summary>
+        public int Tempers { get; }
 
         /// <summary>Average weapon damage, from the curve in Docs/03-itemization.md. Zero for items that are not weapons.</summary>
         public float WeaponAverageDamage => Slot == ItemSlot.Weapon ? CombatFormulas.WeaponAverageDamage(ItemLevel) : 0f;

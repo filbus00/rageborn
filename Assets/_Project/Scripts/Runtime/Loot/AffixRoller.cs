@@ -55,7 +55,8 @@ namespace ARPG
             }
         }
 
-        static List<AffixId> EligibleIds(AffixKind kind, ItemSlot slot)
+        /// <summary>Every affix of a kind that can roll on a slot, in <see cref="AffixId"/> order.</summary>
+        public static List<AffixId> EligibleIds(AffixKind kind, ItemSlot slot)
         {
             var list = new List<AffixId>();
             foreach (AffixId id in System.Enum.GetValues(typeof(AffixId)))
@@ -87,13 +88,19 @@ namespace ARPG
             return best + random.Next(AffixTable.WorstTier - best + 1);
         }
 
-        static float RollValue(AffixId id, int tier, System.Random random)
+        /// <summary>A value uniformly within the tier's range for this affix.</summary>
+        public static float RollValue(AffixId id, int tier, System.Random random)
+        {
+            var (min, max) = ValueRange(id, tier);
+            return min + (float)random.NextDouble() * (max - min);
+        }
+
+        /// <summary>The lowest and highest value an affix can roll at a tier: its T1 range scaled by the tier's shares.</summary>
+        public static (float min, float max) ValueRange(AffixId id, int tier)
         {
             var definition = AffixTable.Get(id);
             var scale = AffixTable.GetTier(tier);
-            var min = definition.T1Min * scale.LowShare;
-            var max = definition.T1Max * scale.HighShare;
-            return min + (float)random.NextDouble() * (max - min);
+            return (definition.T1Min * scale.LowShare, definition.T1Max * scale.HighShare);
         }
     }
 }

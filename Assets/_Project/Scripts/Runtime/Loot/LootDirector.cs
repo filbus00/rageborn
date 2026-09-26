@@ -83,7 +83,29 @@ namespace ARPG
             var items = loot.RollDrops(source, level, magicFind);
             for (var i = 0; i < items.Count; i++)
                 DropItem(items[i], at + Scatter());
+
+            GrantMaterials(source, at);
         }
+
+        /// <summary>Docs/04: Bloodstone also comes from elites and Soulglass from bosses. Materials are always picked up
+        /// (Docs/01), so they go straight to the character, with a callout where the enemy fell.</summary>
+        static void GrantMaterials(LootSource source, Vector2 at)
+        {
+            CraftingMaterial material;
+            int amount;
+            if (source == LootSource.Elite)
+                (material, amount) = (CraftingMaterial.Bloodstone, ForgeRules.EliteBloodstone);
+            else if (source == LootSource.Boss)
+                (material, amount) = (CraftingMaterial.Soulglass, ForgeRules.BossSoulglass);
+            else
+                return;
+
+            GameSession.Current.AddMaterial(material, amount);
+            var world = IsoMath.GroundToWorld(at);
+            DamageNumbers.Current?.ShowText(new Vector3(world.x, world.y + 1.2f, 0f), $"+{amount} {material}", MaterialCalloutColor, 40);
+        }
+
+        static readonly Color MaterialCalloutColor = new Color(0.85f, 0.55f, 1f);
 
         static LootSource ToLootSource(EnemyRank rank)
         {

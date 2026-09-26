@@ -130,6 +130,7 @@ namespace ARPG
         readonly Dictionary<string, HashSet<int>> killed = new Dictionary<string, HashSet<int>>();
         readonly HashSet<string> openedChests = new HashSet<string>();
         readonly Dictionary<string, bool[]> explored = new Dictionary<string, bool[]>();
+        readonly int[] materials = new int[Enum.GetValues(typeof(CraftingMaterial)).Length];
 
         static GameSession current = new GameSession(Environment.TickCount);
 
@@ -142,6 +143,7 @@ namespace ARPG
         public GameSession(int lootSeed, int killsSinceLegendary = 0)
         {
             Loot = new LootRoller(lootSeed, killsSinceLegendary);
+            ForgeRandom = new System.Random(DungeonRules.LevelSeed(lootSeed, -1));
             Equipment = EquipmentState.Starting;
             SetPotion(new AutoPotion());
 
@@ -200,6 +202,21 @@ namespace ARPG
         public Inventory Inventory { get; } = new Inventory();
 
         public int Gold { get; private set; }
+
+        /// <summary>Rolls the Forge's reforges and rerolls. Like the loot roller, seeded from the session and not saved.</summary>
+        public System.Random ForgeRandom { get; }
+
+        /// <summary>How much of a salvage material the character holds (Docs/04: all materials stack without limit).</summary>
+        public int Materials(CraftingMaterial material) => materials[(int)material];
+
+        public void AddMaterial(CraftingMaterial material, int amount)
+        {
+            if (amount <= 0)
+                return;
+
+            materials[(int)material] += amount;
+            NotifyChanged();
+        }
 
         public LootRoller Loot { get; }
 
@@ -289,8 +306,9 @@ namespace ARPG
         }
 
         /// <summary>
-        /// Removes an item from the backpack for good. Stands in for salvage until crafting materials exist
-        /// (Docs/03-itemization.md); it returns nothing yet. Returns false when the item was not in the backpack.
+        /// Removes an item from the backpack for good, for nothing. Salvaging for materials happens only at the Forge in
+        /// town (the user's decision, 2026-09-26), so this is what the dungeon offers. Returns false when the item was
+        /// not in the backpack.
         /// </summary>
         public bool Discard(Item item)
         {
@@ -300,6 +318,49 @@ namespace ARPG
             NotifyChanged();
             return true;
         }
+
+        /// <summary>
+        /// Salvages a backpack item at the Forge: it is gone and its materials are added
+        /// (<see cref="ForgeRules.SalvageYield"/>). Equipped items are not salvaged. Returns false when the item was not
+        /// in the backpack.
+        /// </summary>
+        public bool Salvage(Item item)
+        {
+            if (item == null || !Inventory.Remove(item))
+                return false;
+
+            var (material, amount) = ForgeRules.SalvageYield(item);
+            materials[(int)material] += amount;
+            NotifyChanged();
+            return true;
+        }
+
+        public bool CanAfford(ForgeCost cost) => Gold >= cost.Gold && Materials(cost.Material) >= cost.Amount;
+
+        /// <summary>
+        /// Pays for a Forge action and puts its result where the original was, in the backpack or worn. Returns false,
+        /// changing nothing, when the original is neither or the cost cannot be paid.
+        /// </summary>
+        public bool ApplyForge(Item original, Item result, ForgeCost cost)
+        {
+            if (original == null || result == null || result.Slot != original.Slot || !CanAfford(cost))
+                return false;
+
+            if (!Inventory.Replace(original, result))
+            {
+                if (Equipment.Get(original.Slot) != original)
+                    return false;
+                Equipment = Equipment.With(original.Slot, result);
+            }
+
+            Gold -= cost.Gold;
+            materials[(int)cost.Material] -= cost.Amount;
+            NotifyChanged();
+            return true;
+        }
+
+        /// <summary>Puts back the materials read from a save.</summary>
+        internal void RestoreMaterial(CraftingMaterial material, int amount) => materials[(int)material] = Math.Max(0, amount);
 
         /// <summary>
         /// Adds XP. A level up refills life (the user's decision, 2026-09-23, as in Diablo 1), raises

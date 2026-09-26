@@ -151,7 +151,7 @@ Preset filters:
 
 Rules:
 
-- Filtered items are still picked up and auto-salvaged for materials. They never take an inventory slot.
+- Filtered items are still picked up and auto-salvaged for materials. They never take an inventory slot. Open: salvage now happens only at the Forge (08-production.md, open question 9).
 - The filter can be changed from the inventory screen in two taps.
 - A custom filter allows rules by rarity, slot, affix tag and minimum item level.
 - The filter never hides Legendary items by default.
@@ -163,11 +163,11 @@ Power score is a single number computed from an item's contribution to damage pe
 - Inventory: 40 slots. Items stack vertically in a scrolling list, no grid tetris.
 - Stash: 120 slots at start, expandable to 300 with gold.
 - Shared stash across characters on the same device.
-- Salvage: tap and hold to salvage, or bulk salvage by rarity and below a chosen level. Salvage returns materials by rarity: Ash (common), Cinders (magic), Bloodstone (rare), Soulglass (legendary).
+- Salvage: only at the Forge in town (decision of 2026-09-26). Salvage one item, or bulk salvage by rarity and below a chosen level. Salvage returns materials by rarity: Ash (common), Cinders (magic), Bloodstone (rare), Soulglass (legendary).
 
 ## Forge (crafting)
 
-The Forge is a menu, not a world location. Every action has a gold cost and a material cost.
+The Forge is a bottom sheet opened by walking up to the smith in town (05-world-and-content.md), with one action per tab and Salvage as the first tab. Every action has a gold cost and a material cost. The first version builds Salvage, Reforge affix, Reroll values and Temper (decision of 2026-09-26). Reforge turns the chosen affix into a new random affix of the same kind at the same tier, and can land on the same stat.
 
 | Action | Effect | Cost basis |
 |---|---|---|
@@ -185,5 +185,5 @@ Cost escalation: each reforge on the same item raises its material cost by 25 pe
 - Tooltips open as a bottom sheet, reachable with the thumb.
 - Layout order: name and rarity, power score with an arrow, base stat, affixes with tier dots, sockets, unique power text, comparison strip.
 - The comparison strip shows the equipped item side by side and highlights gains in green and losses in red.
-- Actions sit in one row at the bottom: Equip, Salvage, Lock. Lock prevents salvage and stash cleaning.
+- Actions sit in one row at the bottom: Equip, Discard, Lock. Lock prevents discarding, salvage and stash cleaning. Salvage is at the Forge in town, not on the tooltip (decision of 2026-09-26).
 - Swipe left and right on the sheet moves between drops in the results list.

@@ -12,7 +12,8 @@ namespace ARPG
     /// change with an arrow, the affixes with tier dots, the comparison strip against the equipped item with gains in
     /// green and losses in red, and one row of large buttons. A backpack item offers Equip and Discard, an equipped one
     /// Unequip. Swiping sideways moves through the backpack. Built in code by <see cref="InventoryScreen"/>; sockets,
-    /// unique powers, Salvage and Lock come with the systems behind them.
+    /// unique powers and Lock come with the systems behind them. Salvage is at the Forge in town, not here (the user's
+    /// decision, 2026-09-26).
     /// </summary>
     public class ItemSheet : MonoBehaviour
     {

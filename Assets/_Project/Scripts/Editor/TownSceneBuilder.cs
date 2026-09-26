@@ -8,9 +8,10 @@ namespace ARPG.Editor
     /// <summary>
     /// Builds a minimal town by copying the sandbox and stripping it of everything hostile: no enemies, no combat,
     /// no walls. What is left is the ground, the player, the camera, the life bar and a stairway down to the first
-    /// dungeon level (Docs/05-world-and-content.md: the town is a small safe scene). The NPCs come later.
+    /// dungeon level (Docs/05-world-and-content.md: the town is a small safe scene), plus the smith who opens the Forge.
+    /// The Stash, Trainer and Waystone NPCs come later.
     /// Run from Tools > ARPG > Create Town Scene, after Add Inventory Screen To Sandbox, then run Create Dungeon Scene.
-    /// Running it again rebuilds the town from the current sandbox.
+    /// Running it again rebuilds the town from the current sandbox. Add Forge To Town adds or rebuilds just the smith.
     /// </summary>
     public static class TownSceneBuilder
     {
@@ -19,6 +20,11 @@ namespace ARPG.Editor
 
         // The town stairway is five cells up the map from the player.
         static readonly Vector2Int StairsCell = new Vector2Int(5, 5);
+
+        // The smith stands up and to the left of the start, the other way from the stairs.
+        static readonly Vector2Int ForgeCell = new Vector2Int(-4, 4);
+        const string ForgeObjectName = "Forge Smith";
+        const string CharacterArtFolder = "Assets/_Project/Art/Characters";
 
         static readonly string[] RemovedObjects =
         {
@@ -78,12 +84,75 @@ namespace ARPG.Editor
             stairs.GetComponent<SceneExit>().Configure("Dungeon", 1, Arrival.FromAbove);
             EditorUtility.SetDirty(stairs.GetComponent<SceneExit>());
 
+            PlaceForge();
+
             EditorSceneManager.MarkSceneDirty(town);
             EditorSceneManager.SaveScene(town);
 
             // The town is where a new character starts, so it comes first.
             DungeonSceneBuilder.WriteBuildSettings();
             Debug.Log($"[ARPG] Town scene created at {TownPath}.");
+        }
+
+        /// <summary>Adds the smith to the existing town without rebuilding it, or rebuilds just the smith.</summary>
+        [MenuItem("Tools/ARPG/Add Forge To Town")]
+        public static void AddForge()
+        {
+            if (AssetDatabase.LoadAssetAtPath<SceneAsset>(TownPath) == null)
+            {
+                Debug.LogError($"[ARPG] {TownPath} not found. Run Create Town Scene first.");
+                return;
+            }
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+                return;
+
+            var town = EditorSceneManager.OpenScene(TownPath, OpenSceneMode.Single);
+            PlaceForge();
+            EditorSceneManager.MarkSceneDirty(town);
+            EditorSceneManager.SaveScene(town);
+            Debug.Log("[ARPG] Forge smith added to the town.");
+        }
+
+        static void PlaceForge()
+        {
+            var existing = GameObject.Find(ForgeObjectName);
+            if (existing != null)
+                Object.DestroyImmediate(existing);
+
+            // A dark iron figure: a placeholder until there is character art.
+            var sprite = PlaceholderArt.ImportSprite(
+                $"{CharacterArtFolder}/PlaceholderSmith.png",
+                PlaceholderArt.Capsule(96, 150, new Color32(92, 84, 96, 255)),
+                128, SpriteAlignment.BottomCenter, FilterMode.Bilinear);
+
+            var go = new GameObject(ForgeObjectName, typeof(SpriteRenderer), typeof(CircleCollider2D), typeof(ForgeNpc));
+            var world = IsoMath.GroundToWorld(IsoMath.CellToGround(ForgeCell));
+            go.transform.position = new Vector3(world.x, world.y, 0f);
+            PlayerSceneBuilder.SetLayer(go, GameLayers.Interactable);
+
+            var spriteRenderer = go.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = sprite;
+            spriteRenderer.sortingLayerName = GameSortingLayers.Entities;
+            spriteRenderer.spriteSortPoint = SpriteSortPoint.Pivot;
+            var material = PlayerSceneBuilder.Default2DMaterial();
+            if (material != null)
+                spriteRenderer.sharedMaterial = material;
+
+            // Walking up to the smith, not onto it, opens the Forge: the trigger reaches a little past the figure.
+            var collider = go.GetComponent<CircleCollider2D>();
+            collider.isTrigger = true;
+            collider.radius = 0.8f;
+
+            var label = new GameObject("Label", typeof(TextMesh));
+            label.transform.SetParent(go.transform, false);
+            label.transform.localPosition = new Vector3(0f, 1.35f, 0f);
+            var text = label.GetComponent<TextMesh>();
+            text.text = "Forge";
+            text.anchor = TextAnchor.LowerCenter;
+            text.characterSize = 0.08f;
+            text.fontSize = 48;
+            text.color = new Color(1f, 0.6f, 0.3f);
+            label.GetComponent<MeshRenderer>().sortingLayerName = GameSortingLayers.WorldUI;
         }
     }
 }

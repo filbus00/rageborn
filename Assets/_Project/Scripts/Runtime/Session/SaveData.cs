@@ -14,8 +14,9 @@ namespace ARPG
     public sealed class SaveData
     {
         /// <summary>1: the first. 2: adds level and experience. 3: adds potion charges. 4: adds the dungeon seed and
-        /// opened chests. 5: adds the dungeon generator version.</summary>
-        public const int CurrentVersion = 5;
+        /// opened chests. 5: adds the dungeon generator version. 6: adds salvage materials and each item's reforge and
+        /// temper counts.</summary>
+        public const int CurrentVersion = 6;
 
         public int version;
 
@@ -45,6 +46,16 @@ namespace ARPG
 
         /// <summary>Opened chests, by level and chest ("Dungeon 2/Chest 0").</summary>
         public List<string> openedChests = new List<string>();
+
+        /// <summary>Salvage materials held, by name. A material with none is left out.</summary>
+        public List<MaterialData> materials = new List<MaterialData>();
+    }
+
+    [Serializable]
+    public sealed class MaterialData
+    {
+        public string name;
+        public int amount;
     }
 
     [Serializable]
@@ -54,6 +65,10 @@ namespace ARPG
         public string rarity;
         public int itemLevel;
         public List<AffixData> affixes = new List<AffixData>();
+
+        /// <summary>Times the Forge reforged or tempered the item; both raise or limit later Forge actions.</summary>
+        public int reforges;
+        public int tempers;
     }
 
     [Serializable]

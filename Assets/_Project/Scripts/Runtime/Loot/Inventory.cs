@@ -35,6 +35,17 @@ namespace ARPG
 
         public bool Remove(Item item) => items.Remove(item);
 
+        /// <summary>Swaps an item for another in the same place in the list, as the Forge does. Returns false when the
+        /// old item is not here.</summary>
+        public bool Replace(Item old, Item replacement)
+        {
+            var index = items.IndexOf(old);
+            if (index < 0 || replacement == null)
+                return false;
+            items[index] = replacement;
+            return true;
+        }
+
         public bool Contains(Item item) => items.Contains(item);
     }
 }
