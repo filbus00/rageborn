@@ -104,6 +104,8 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-26 | The Wrathborn gets an all-new barbarian skill set, none of the Warden's; Claude's draft of 8 skills and 2 keystones accepted as written (02-classes-and-skills.md) | User |
 | 2026-09-26 | M1 slice: the first 4 skills unlock by level and equip themselves; the rest of the skill system comes after the slice | User |
 | 2026-09-26 | Balance left as it is for now, after the first balance report | User |
+| 2026-09-26 | Bull Rush builds Rage: it costs nothing and gains 15, so it can open a fight | User |
+| 2026-09-26 | Slot order Ground Breaker, Hurl Axe, Bull Rush, Hew, so the slam is not starved of Rage by Hew | User |
 
 ## Post-launch plan (draft)
 

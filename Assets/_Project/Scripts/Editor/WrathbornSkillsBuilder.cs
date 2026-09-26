@@ -10,7 +10,7 @@ namespace ARPG.Editor
     /// Breaker, as assets in Data/Skills, with their placeholder art. A skill is created with the docs' numbers if missing
     /// and its numbers are left alone afterwards, so tuning survives a rerun; the art references are refreshed.
     /// Tools > ARPG > Create Wrathborn Skills also puts them on the Player Combat of the sandbox and dungeon scenes, in
-    /// slot order. Add Combat To Sandbox uses them too, so rebuilding the scene chain keeps them.
+    /// slot order: Ground Breaker, Hurl Axe, Bull Rush, Hew. Add Combat To Sandbox uses them too, so rebuilding the scene chain keeps them.
     /// </summary>
     public static class WrathbornSkillsBuilder
     {
@@ -89,7 +89,8 @@ namespace ARPG.Editor
             });
             var rush = LoadOrCreate("BullRush", rushArt, so =>
             {
-                Set(so, SkillKind.Charge, unlock: 4, cost: 15f, cooldown: 6f, multiplier: 1.5f, range: 6f);
+                Set(so, SkillKind.Charge, unlock: 4, cost: 0f, cooldown: 6f, multiplier: 1.5f, range: 6f);
+                so.FindProperty("rageGain").floatValue = 15f; // the opener: it builds Rage (the user's choice, 2026-09-26)
                 so.FindProperty("displayName").stringValue = "Bull Rush";
                 so.FindProperty("minRange").floatValue = 3f;
                 so.FindProperty("speed").floatValue = 16f;
@@ -107,7 +108,9 @@ namespace ARPG.Editor
             });
 
             AssetDatabase.SaveAssets();
-            return new[] { Reload(hew), Reload(axe), Reload(rush), Reload(breaker) };
+            // Slot order, which is cast priority: the slam first, so a big crowd gets it before Hew spends the Rage (the
+            // user's choice, 2026-09-26).
+            return new[] { Reload(breaker), Reload(axe), Reload(rush), Reload(hew) };
         }
 
         static void Set(SerializedObject so, SkillKind kind, int unlock, float cost, float cooldown, float multiplier, float range)

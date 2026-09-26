@@ -6,10 +6,11 @@ namespace ARPG
     /// <summary>
     /// The player's automatic combat from Docs/01-core-gameplay.md, for the Wrathborn (Docs/02-classes-and-skills.md).
     /// Every frame it picks a target, swings the basic attack at the attack rate, and fires the unlocked skills in slot
-    /// order whenever the global cast timer is free and a skill's trigger passes: Hew (a sweep, 2 or more enemies in
-    /// reach), Hurl Axe (a thrown axe at an enemy 4 to 9 units away in sight), Bull Rush (a charge while moving at an
-    /// enemy 3 to 6 units ahead) and Ground Breaker (a slam with 4 or more enemies around). Skills cost Rage, which the
-    /// basic attack and hits taken build (<see cref="RagePool"/>); Stillness adds damage (<see cref="StanceStacks"/>).
+    /// order whenever the global cast timer is free and a skill's trigger passes. The slots, in order: Ground Breaker (a
+    /// slam with 4 or more enemies around), Hurl Axe (a thrown axe at an enemy 4 to 9 units away in sight), Bull Rush (a
+    /// charge while moving at an enemy 3 to 6 units ahead, which gains Rage instead of costing it) and Hew (a sweep, 2 or
+    /// more enemies in reach). Skills cost Rage, which the basic attack, hits taken and Bull Rush build
+    /// (<see cref="RagePool"/>); Stillness adds damage (<see cref="StanceStacks"/>).
     /// There is no input: movement is the only thing the player controls.
     /// Runs in Update for now; combat will move to a fixed timestep (Docs/07-technical.md).
     /// </summary>
@@ -317,6 +318,8 @@ namespace ARPG
                 }
 
                 rage.TrySpend(skill.RageCost);
+                if (skill.RageGain > 0f)
+                    rage.Gain(skill.RageGain);
                 var cdr = GameSession.Current.Equipment.CooldownReductionPercent / 100f;
                 cooldowns[i] = skill.CooldownSeconds * Mathf.Max(0.1f, 1f - cdr);
                 castTimer = GlobalCastSeconds;

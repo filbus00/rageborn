@@ -39,6 +39,9 @@ namespace ARPG
         [FormerlySerializedAs("focusCost")]
         [SerializeField, Min(0f)] float rageCost = 20f;
 
+        [Tooltip("Rage gained on each cast: a generator. Docs: Bull Rush costs nothing and gains 15, so it can open a fight.")]
+        [SerializeField, Min(0f)] float rageGain;
+
         [SerializeField, Min(0f)] float cooldownSeconds = 3f;
 
         [Tooltip("Damage as a multiple of weapon damage: 1.7 for 170 percent.")]
@@ -74,6 +77,7 @@ namespace ARPG
         public SkillKind Kind => kind;
         public int UnlockLevel => unlockLevel;
         public float RageCost => rageCost;
+        public float RageGain => rageGain;
         public float CooldownSeconds => cooldownSeconds;
         public float DamageMultiplier => damageMultiplier;
         public float ArcDegrees => arcDegrees;
