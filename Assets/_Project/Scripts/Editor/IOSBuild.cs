@@ -28,6 +28,9 @@ namespace ARPG.Editor
             // The SDK is a project setting; put it back so a simulator build does not leave the project on it.
             var previousSdk = PlayerSettings.iOS.sdkVersion;
             PlayerSettings.iOS.sdkVersion = sdk;
+            // Saved before building: without it the export sometimes kept the SDK on disk and a simulator build came
+            // out as a device project that xcodebuild could not build for the simulator (2026-09-26).
+            AssetDatabase.SaveAssets();
             try
             {
                 var options = new BuildPlayerOptions
