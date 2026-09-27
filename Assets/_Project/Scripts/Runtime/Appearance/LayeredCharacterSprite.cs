@@ -31,8 +31,10 @@ namespace ARPG
         // The sheets of the playing animation, looked up when the animation or the look changes, so a frame allocates
         // nothing.
         readonly Sheet[] current = new Sheet[LayerCount];
-        // Seconds per animation from the character's timing file ("<grip>_<clip> <seconds>"), written by the sprite bake.
+        // Seconds per animation from the character's timing file ("<grip>_<clip> <seconds> [<ground speed>]"), written by
+        // the sprite bake, and the ground speed a locomotion clip was recorded at.
         readonly Dictionary<string, float> timing = new Dictionary<string, float>();
+        readonly Dictionary<string, float> speeds = new Dictionary<string, float>();
         bool timingLoaded;
         float currentSeconds;
         readonly Dictionary<string, Sheet> sheets = new Dictionary<string, Sheet>();
@@ -90,6 +92,23 @@ namespace ARPG
         /// <summary>Whether the body has this animation in the current look and grip.</summary>
         public bool Has(string animationName) => SheetFor(AppearanceLayer.Body, animationName) != null;
 
+        /// <summary>The ground speed (units a second) a locomotion animation was recorded at, or 0 when unknown.</summary>
+        public float RecordedSpeed(string animationName)
+        {
+            PlaybackSeconds(animationName, null);
+            return speeds.TryGetValue(AppearanceRules.GripCode(appearance.Grip) + "_" + animationName, out var found) ||
+                   speeds.TryGetValue(animationName, out found) ? found : 0f;
+        }
+
+        /// <summary>How fast a loop plays: 1 as recorded, 2 twice as fast. Set every frame for locomotion.</summary>
+        public float Rate { get; set; } = 1f;
+
+        /// <summary>The sheet row shown (0 south, then clockwise seen from above).</summary>
+        public int Row => row;
+
+        /// <summary>Shows a row directly (a turn is played in the row it starts from).</summary>
+        public void FaceRow(int value) => row = ((value % 8) + 8) % 8;
+
         /// <summary>A one-shot's natural length in seconds, or 0 when the body has no such animation.</summary>
         public float LengthOf(string animationName)
         {
@@ -143,7 +162,7 @@ namespace ARPG
 
         void Update()
         {
-            time += Time.deltaTime;
+            time += Time.deltaTime * (loop ? Rate : 1f);
             Apply();
         }
 
@@ -152,7 +171,11 @@ namespace ARPG
             for (var i = 0; i < LayerCount; i++)
                 current[i] = SheetFor((AppearanceLayer)i, animation);
             currentSeconds = PlaybackSeconds(animation, current[0]);
+            CurrentRecordedSpeed = RecordedSpeed(animation);
         }
+
+        /// <summary>The playing animation's <see cref="RecordedSpeed"/>, looked up when it started.</summary>
+        public float CurrentRecordedSpeed { get; private set; }
 
         /// <summary>How long the animation plays: its real length from the timing file, else its frames at 12 a second.</summary>
         float PlaybackSeconds(string animationName, Sheet sheet)
@@ -165,9 +188,12 @@ namespace ARPG
                     foreach (var line in file.text.Split('\n'))
                     {
                         var parts = line.Trim().Split(' ');
-                        if (parts.Length == 2 && float.TryParse(parts[1], System.Globalization.NumberStyles.Float,
-                                System.Globalization.CultureInfo.InvariantCulture, out var seconds))
+                        if (parts.Length >= 2 && float.TryParse(parts[1], System.Globalization.NumberStyles.Float,
+                                System.Globalization.CultureInfo.InvariantCulture, out var seconds) && seconds > 0f)
                             timing[parts[0]] = seconds;
+                        if (parts.Length >= 3 && float.TryParse(parts[2], System.Globalization.NumberStyles.Float,
+                                System.Globalization.CultureInfo.InvariantCulture, out var speed))
+                            speeds[parts[0]] = speed;
                     }
             }
             if (timing.TryGetValue(AppearanceRules.GripCode(appearance.Grip) + "_" + animationName, out var found) ||

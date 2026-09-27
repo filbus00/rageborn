@@ -70,6 +70,7 @@ namespace ARPG.Editor
             var target = new RenderTexture(new RenderTextureDescriptor(size, size, RenderTextureFormat.ARGBHalf, 24) { sRGB = false });
             var readback = new Texture2D(size, size, TextureFormat.RGBAHalf, false, true);
             var depthOnly = new Material(Shader.Find("ARPG/Depth Only"));
+            var speeds = new Dictionary<string, float>();
 
             try
             {
@@ -85,6 +86,8 @@ namespace ARPG.Editor
                         if (clip.clip == null || string.IsNullOrEmpty(clip.name))
                             continue;
                         var times = SpriteBakeMath.SampleTimes(clip.clip.length, clip.frames, clip.loop, job.framesPerSecond);
+                        if (clip.loop)
+                            speeds[$"{(string.IsNullOrEmpty(gripSet.grip) ? "" : gripSet.grip + "_")}{clip.name}"] = MeasureGroundSpeed(stage.Bodies[0], clip.clip);
 
                         foreach (var layer in LayersFor(stage, gripSet.grip))
                         {
@@ -124,7 +127,7 @@ namespace ARPG.Editor
                 Object.DestroyImmediate(depthOnly);
             }
 
-            written.Add(WriteTiming(job));
+            written.Add(WriteTiming(job, speeds));
             Debug.Log($"{job.name}: baked {written.Count} file(s):\n" + string.Join("\n", written));
             return written;
         }
@@ -134,14 +137,23 @@ namespace ARPG.Editor
         /// <c>&lt;grip&gt;_&lt;clip&gt; &lt;seconds&gt;</c> (just <c>&lt;clip&gt;</c> without a grip), which
         /// <see cref="LayeredCharacterSprite"/> reads so a sheet plays over its animation's real length.
         /// </summary>
-        static string WriteTiming(SpriteBakeJob job)
+        static string WriteTiming(SpriteBakeJob job, Dictionary<string, float> speeds)
         {
+            var culture = System.Globalization.CultureInfo.InvariantCulture;
             var lines = new List<string>();
             foreach (var grip in job.grips)
                 foreach (var clip in grip.clips)
-                    if (clip.clip != null && clip.playbackSeconds > 0f)
-                        lines.Add($"{(string.IsNullOrEmpty(grip.grip) ? "" : grip.grip + "_")}{clip.name} " +
-                                  clip.playbackSeconds.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture));
+                {
+                    if (clip.clip == null)
+                        continue;
+                    var key = $"{(string.IsNullOrEmpty(grip.grip) ? "" : grip.grip + "_")}{clip.name}";
+                    var seconds = clip.playbackSeconds > 0f ? clip.playbackSeconds : 0f;
+                    speeds.TryGetValue(key, out var speed);
+                    if (seconds <= 0f && speed <= 0f)
+                        continue;
+                    // A third number is the ground speed (units a second) the clip looks right at, for locomotion clips.
+                    lines.Add($"{key} {seconds.ToString("0.###", culture)}" + (speed > 0.01f ? " " + speed.ToString("0.###", culture) : ""));
+                }
             var folder = job.outputFolder.TrimEnd('/');
             Directory.CreateDirectory(folder);
             var path = $"{folder}/{job.characterName}_timing.txt";
@@ -401,6 +413,32 @@ namespace ARPG.Editor
             if (!string.IsNullOrEmpty(piece.transformPath))
                 return body.Root.transform.Find(piece.transformPath);
             return body.Animator.isHuman ? body.Animator.GetBoneTransform(piece.bone) : null;
+        }
+
+        // The ground speed a loop looks right at, in game units: the planted foot's slide, sampled 60 times a second on the
+        // scaled first body (so the units are the game's), facing the camera, then the body is put back in its rest pose.
+        static float MeasureGroundSpeed(BodyInstance body, AnimationClip clip)
+        {
+            if (!body.Animator.isHuman)
+                return 0f;
+            var feet = new[] { body.Animator.GetBoneTransform(HumanBodyBones.LeftFoot), body.Animator.GetBoneTransform(HumanBodyBones.RightFoot) };
+            if (feet[0] == null || feet[1] == null)
+                return 0f;
+            const float rate = 60f;
+            var count = Mathf.Max(2, Mathf.RoundToInt(clip.length * rate)) + 1;
+            var samples = new[] { new Vector3[count], new Vector3[count] };
+            for (var i = 0; i < count; i++)
+            {
+                body.RestPose.Restore();
+                clip.SampleAnimation(body.Root, clip.length * i / (count - 1));
+                body.Root.transform.localPosition = body.RootPosition;
+                body.Root.transform.localRotation = Quaternion.identity;
+                samples[0][i] = feet[0].position;
+                samples[1][i] = feet[1].position;
+            }
+            body.RestPose.Restore();
+            // A foot within 3 cm (game units; the character stands about 1.3) of its lowest point is planted.
+            return SpriteBakeMath.PlantedFootSpeed(samples, rate, 0.03f);
         }
 
         static void AddLight(Scene scene, string name, Vector3 direction, Color color, float intensity)

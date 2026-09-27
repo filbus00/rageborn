@@ -30,6 +30,21 @@ MonoBehaviour:
       frames: 10
       loop: 1
       playbackSeconds: 0.70000005
+    - name: run_back
+      clip: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      frames: 10
+      loop: 1
+      playbackSeconds: 0.6333334
+    - name: run_turn_right
+      clip: {fileID: -203655887218126122, guid: b4c35843f789943c4987f97eebc7f4e2, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 0.7666667
+    - name: run_turn_left
+      clip: {fileID: 4061839508520268033, guid: b4c35843f789943c4987f97eebc7f4e2, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 0.7666667
     - name: attack
       clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
       frames: 10

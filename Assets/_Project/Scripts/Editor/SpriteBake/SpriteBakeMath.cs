@@ -94,6 +94,41 @@ namespace ARPG.Editor
         }
 
         /// <summary>
+        /// The ground speed a locomotion clip looks right at: how fast a planted foot slides along the ground in an
+        /// in-place clip (the body stays put, so the planted foot travels backward at the speed the body would go). A foot
+        /// counts as planted while it is within <paramref name="contactTolerance"/> of the lowest point either foot reaches
+        /// (the floor), so a foot that never comes down never counts. Feet positions are
+        /// per foot, per sample, <paramref name="sampleRate"/> samples a second, in the units the game uses. 0 when no foot
+        /// is ever planted between two samples (an idle, an attack in place).
+        /// </summary>
+        public static float PlantedFootSpeed(Vector3[][] feet, float sampleRate, float contactTolerance)
+        {
+            float sum = 0f;
+            var count = 0;
+            var lowest = float.MaxValue;
+            foreach (var samples in feet)
+                if (samples != null)
+                    foreach (var p in samples)
+                        lowest = Mathf.Min(lowest, p.y);
+            var limit = lowest + contactTolerance;
+            foreach (var samples in feet)
+            {
+                if (samples == null || samples.Length < 2)
+                    continue;
+                for (var i = 1; i < samples.Length; i++)
+                {
+                    if (samples[i].y > limit || samples[i - 1].y > limit)
+                        continue;
+                    var step = samples[i] - samples[i - 1];
+                    step.y = 0f;
+                    sum += step.magnitude * sampleRate;
+                    count++;
+                }
+            }
+            return count > 0 ? sum / count : 0f;
+        }
+
+        /// <summary>
         /// Recovers colour and transparency from the same frame rendered over black and over white: where the two differ
         /// the background showed through. Returns straight (not premultiplied) colour, linear-blend exact for any renderer,
         /// which is why the bake renders twice rather than trusting the camera's alpha (HDR drops it).

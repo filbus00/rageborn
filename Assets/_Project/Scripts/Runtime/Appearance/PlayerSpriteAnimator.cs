@@ -5,10 +5,11 @@ namespace ARPG
     /// <summary>
     /// Shows the player as its baked, layered sprites (<see cref="LayeredCharacterSprite"/>) wearing what is equipped
     /// (<see cref="AppearanceRules"/>), once the character's sheets exist; until then the placeholder body stays. Plays
-    /// idle and run from the movement, the basic attack fitted to the attack rate, a skill's animation when it fires
-    /// (Hew, Hurl Axe, Bull Rush for as long as the dash lasts, Ground Breaker), hit when struck and nothing else is
-    /// playing, and death, held. An animation the sheets lack falls back to the attack, then to idle. Facing follows the
-    /// movement, and the aim while an attack or skill plays. Added to the player by <see cref="PlayerController"/>.
+    /// idle and the locomotion from the movement (<see cref="LocomotionRules"/>: the run at the actual speed, a turn clip
+    /// for a one-row change of direction, a backward run facing the target when retreating from a fight), and standing
+    /// still the basic attack fitted to the attack rate, a skill's animation (Hew, Hurl Axe, Ground Breaker), and hit;
+    /// Bull Rush plays for as long as the dash lasts, and death is held. An animation the sheets lack falls back to the
+    /// attack, then to idle. Added to the player by <see cref="PlayerController"/>.
     /// </summary>
     public class PlayerSpriteAnimator : MonoBehaviour
     {
@@ -16,6 +17,12 @@ namespace ARPG
 
         const float HitSeconds = 0.3f;
         const float RunThreshold = 0.5f;
+
+        // How long the character must stand before the idle shows, so a quick reversal does not flash it.
+        const float IdleGraceSeconds = 0.1f;
+
+        // How long after an attack, a skill or a hit the character still counts as fighting (for the backward run).
+        const float CombatMemorySeconds = 1.2f;
 
         string character = DefaultCharacter;
         PlayerController player;
@@ -29,6 +36,11 @@ namespace ARPG
         bool dead;
         bool dashing;
         bool inAction;
+        bool turning;
+        int turnTo;
+        float runRecordedSpeed;
+        float lastCombatTime = -100f;
+        float stillFor;
         Vector2 aim = Vector2.down;
 
         /// <summary>Which character's sheets to show (Resources/Characters/&lt;name&gt;). Changing it rebuilds the look.</summary>
@@ -126,47 +138,47 @@ namespace ARPG
             }
         }
 
+        // While the character moves, attacks and skills do not play on its body: a full-body swing over a body sliding
+        // along the ground is what made it look like running on ice (the user, 2026-09-27). The run keeps going and the
+        // slash effect shows the hit; standing still, the swing plays. Bull Rush is its own movement and always plays.
+        bool Moving => player != null && player.GroundVelocity.magnitude > RunThreshold;
+
         void OnBasicAttack(Vector2 direction, float interval)
         {
-            if (!showing || dead)
-                return;
+            lastCombatTime = Time.time;
             aim = direction;
+            if (!showing || dead || Moving)
+                return;
             var length = sprite.LengthOf("attack");
             PlayAction("attack", length > 0f ? Mathf.Min(length, interval) : 0f);
         }
 
         void OnSkillCast(SkillDefinition skill, Vector2 direction)
         {
+            lastCombatTime = Time.time;
+            aim = direction;
             if (!showing || dead)
                 return;
-            aim = direction;
-            switch (skill.Kind)
+            if (skill.Kind == SkillKind.Charge)
             {
-                case SkillKind.Charge:
-                    dashing = true;
-                    if (sprite.Has("bull_rush"))
-                    {
-                        inAction = true;
-                        sprite.Play("bull_rush", true);
-                        return;
-                    }
-                    PlayAction("attack", 0f);
-                    return;
-                case SkillKind.Sweep:
-                    PlayAction("hew", 0f);
-                    return;
-                case SkillKind.Projectile:
-                    PlayAction("hurl_axe", 0f);
-                    return;
-                default:
-                    PlayAction("ground_breaker", 0f);
-                    return;
+                dashing = true;
+                turning = false;
+                if (sprite.Has("bull_rush"))
+                {
+                    inAction = true;
+                    sprite.Play("bull_rush", true);
+                }
+                return;
             }
+            if (Moving)
+                return;
+            PlayAction(skill.Kind == SkillKind.Sweep ? "hew" : skill.Kind == SkillKind.Projectile ? "hurl_axe" : "ground_breaker", 0f);
         }
 
         void OnHit(float damage)
         {
-            if (!showing || dead || inAction || !sprite.Has("hit"))
+            lastCombatTime = Time.time;
+            if (!showing || dead || inAction || Moving || !sprite.Has("hit"))
                 return;
             inAction = true;
             sprite.Play("hit", false, HitSeconds);
@@ -185,7 +197,10 @@ namespace ARPG
             if (name == null)
                 return;
             inAction = true;
+            turning = false;
+            sprite.Rate = 1f;
             sprite.Play(name, false, seconds);
+            sprite.Face(aim);
         }
 
         void Update()
@@ -194,23 +209,81 @@ namespace ARPG
                 return;
 
             var velocity = player.GroundVelocity;
-            if (dashing && !player.IsDashing)
+            var speed = velocity.magnitude;
+
+            if (dashing)
             {
+                if (player.IsDashing)
+                {
+                    sprite.Face(velocity);
+                    sprite.Rate = LocomotionRules.PlaybackRate(speed, sprite.CurrentRecordedSpeed);
+                    return;
+                }
                 dashing = false;
                 inAction = false;
             }
-            if (inAction && sprite.Finished)
-                inAction = false;
 
             if (inAction)
             {
-                sprite.Face(dashing ? velocity : aim);
+                // Starting to move cuts a swing short rather than sliding it across the floor.
+                if (!sprite.Finished && speed <= RunThreshold)
+                    return;
+                inAction = false;
+            }
+
+            if (speed <= RunThreshold)
+            {
+                // A reversal passes through standing for a frame or two; only a real stop shows the idle.
+                stillFor += Time.deltaTime;
+                if (stillFor < IdleGraceSeconds && sprite.Animation != "idle")
+                    return;
+                turning = false;
+                sprite.Rate = 1f;
+                sprite.Loop("idle");
+                return;
+            }
+            stillFor = 0f;
+
+            // Retreating from what it fights, the character faces it and runs backward.
+            var fighting = Time.time - lastCombatTime < CombatMemorySeconds;
+            if (fighting && LocomotionRules.IsBackpedal(aim, velocity) && sprite.Has("run_back"))
+            {
+                turning = false;
+                sprite.FaceRow(LocomotionRules.ChooseRow(sprite.Row, aim));
+                sprite.Loop("run_back");
+                sprite.Rate = LocomotionRules.PlaybackRate(speed, sprite.CurrentRecordedSpeed);
                 return;
             }
 
-            var moving = velocity.magnitude > RunThreshold;
-            sprite.Face(velocity);
-            sprite.Loop(moving ? "run" : "idle");
+            if (turning)
+            {
+                if (!sprite.Finished)
+                    return;
+                turning = false;
+                sprite.FaceRow(turnTo);
+                sprite.Play("run", true);
+            }
+
+            var row = LocomotionRules.ChooseRow(sprite.Row, velocity);
+            var step = sprite.Animation == "run" ? LocomotionRules.TurnStep(sprite.Row, row) : 0;
+            var turn = step > 0 ? "run_turn_right" : "run_turn_left";
+            if (step != 0 && sprite.Has(turn))
+            {
+                // The turn clip curves the body about 40 degrees from the row it starts in, which is where the new row is:
+                // it plays in the old row, as fast as the run would at this speed, then the run goes on in the new one.
+                turning = true;
+                turnTo = row;
+                var runRate = LocomotionRules.PlaybackRate(speed, runRecordedSpeed > 0f ? runRecordedSpeed : sprite.CurrentRecordedSpeed);
+                sprite.Rate = 1f;
+                sprite.Play(turn, false, sprite.LengthOf(turn) / runRate);
+                return;
+            }
+
+            sprite.FaceRow(row);
+            sprite.Loop("run");
+            if (sprite.CurrentRecordedSpeed > 0f)
+                runRecordedSpeed = sprite.CurrentRecordedSpeed;
+            sprite.Rate = LocomotionRules.PlaybackRate(speed, sprite.CurrentRecordedSpeed);
         }
     }
 }

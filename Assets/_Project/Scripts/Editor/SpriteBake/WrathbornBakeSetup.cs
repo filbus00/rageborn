@@ -23,7 +23,8 @@ namespace ARPG.Editor
         // The brief's frame counts and loops (section 4.4); the idle has twice the brief's, since Mixamo's idles are long.
         static readonly (string name, int frames, bool loop)[] Animations =
         {
-            ("idle", 24, true), ("run", 10, true), ("attack", 10, false), ("hew", 12, false), ("hurl_axe", 10, false),
+            ("idle", 24, true), ("run", 10, true), ("run_back", 10, true), ("run_turn_right", 10, false), ("run_turn_left", 10, false),
+            ("attack", 10, false), ("hew", 12, false), ("hurl_axe", 10, false),
             ("bull_rush", 8, true), ("ground_breaker", 14, false), ("hit", 4, false), ("death", 16, false),
         };
 
@@ -130,25 +131,64 @@ namespace ARPG.Editor
             importer.SaveAndReimport();
         }
 
-        // The animation file for a grip, or for the reference grip's idle the body's own clip.
+        // The animation file for a grip, or for the reference grip's idle the body's own clip. A left-hand variant
+        // (<name> ending in _left) with no file of its own is the _right file mirrored: Unity mirrors a humanoid clip's
+        // motion, not the model, so the weapon stays in the right hand (the user's suggestion, 2026-09-27).
         static AnimationClip ClipFor(string grip, string name, bool loop, Avatar avatar, string referenceBody)
         {
             var path = $"{Folder}/{Character}_{grip}_{name}.fbx";
             if (File.Exists(path))
+                return ConfigureAnimation(path, loop, avatar, name, false);
+            if (name.EndsWith("_left"))
             {
-                var importer = (ModelImporter)AssetImporter.GetAtPath(path);
-                importer.animationType = ModelImporterAnimationType.Human;
-                importer.avatarSetup = ModelImporterAvatarSetup.CopyFromOther;
-                importer.sourceAvatar = avatar;
-                importer.materialImportMode = ModelImporterMaterialImportMode.None;
-                KeepClipsInPlace(importer, loop);
-                importer.SaveAndReimport();
-                return FirstClip(path);
+                var right = $"{Folder}/{Character}_{grip}_{name.Substring(0, name.Length - 5)}_right.fbx";
+                if (File.Exists(right))
+                    return ConfigureAnimation(right, loop, avatar, name, true);
             }
             // The body was downloaded with its idle, which serves the one-handed grip until each grip has its own.
             if (name == "idle" && grip == "1h")
                 return FirstClip(referenceBody);
             return null;
+        }
+
+        // Sets a Mixamo animation file up as a humanoid clip in place, and returns the clip named clipName: the file's own
+        // clip, or with mirrored a second, mirrored copy of it added to the same file.
+        static AnimationClip ConfigureAnimation(string path, bool loop, Avatar avatar, string clipName, bool mirrored)
+        {
+            var importer = (ModelImporter)AssetImporter.GetAtPath(path);
+            importer.animationType = ModelImporterAnimationType.Human;
+            importer.avatarSetup = ModelImporterAvatarSetup.CopyFromOther;
+            importer.sourceAvatar = avatar;
+            importer.materialImportMode = ModelImporterMaterialImportMode.None;
+            var clips = importer.clipAnimations.Length > 0 ? importer.clipAnimations.ToList() : importer.defaultClipAnimations.ToList();
+            var own = clips[0];
+            if (!mirrored)
+                own.name = clipName;
+            SetInPlace(own, loop);
+            clips[0] = own;
+            if (mirrored)
+            {
+                clips.RemoveAll(c => c.name == clipName);
+                var copy = importer.defaultClipAnimations[0];
+                copy.name = clipName;
+                copy.mirror = true;
+                SetInPlace(copy, loop);
+                clips.Add(copy);
+            }
+            importer.clipAnimations = clips.ToArray();
+            importer.SaveAndReimport();
+            return AssetDatabase.LoadAllAssetsAtPath(path).OfType<AnimationClip>().FirstOrDefault(c => c.name == clipName);
+        }
+
+        static void SetInPlace(ModelImporterClipAnimation clip, bool loop)
+        {
+            clip.loopTime = loop;
+            clip.lockRootRotation = true;
+            clip.lockRootHeightY = true;
+            clip.lockRootPositionXZ = true;
+            clip.keepOriginalOrientation = true;
+            clip.keepOriginalPositionY = true;
+            clip.keepOriginalPositionXZ = true;
         }
 
         static void KeepClipsInPlace(ModelImporter importer, bool loop)
