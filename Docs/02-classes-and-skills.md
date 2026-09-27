@@ -140,3 +140,98 @@ Respec costs gold that scales with level, capped at 5,000. Free respec is availa
 | Blood mage | Hexer | Life cost, Blood Nova, leech | Wades in, sustains through leech |
 
 Balance target: at equal gear level, the median time to clear a standard zone should stay within 20 percent across archetypes.
+
+## Full-game plan: the Wrathborn in full (proposed, not decided)
+
+Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). The Wrathborn's eight skills and two keystones were accepted as written on 2026-09-26, so their table above is not changed: where this section expands a one-line entry it only fills in what the line leaves open (radius of "near", animation, timing), and every new effect is a modifier, not a change to the skill. All numbers below are proposals and tuning values. Questions are numbered as in `08-production.md`, "Open questions from the full-game plan".
+
+### Skill tags (proposed)
+
+Gear scales skills by tag (above, "Skill gems and sockets"). The Wrathborn uses eight tags, four of them from the list above (Sweep, Area, Channel, Movement) and four new (Melee, Projectile, Buff, Execute).
+
+| Skill | Tags |
+|---|---|
+| Hew | Melee, Sweep |
+| Bull Rush | Melee, Movement |
+| Hurl Axe | Projectile |
+| Ground Breaker | Melee, Area |
+| Battle Roar | Buff |
+| Rending Spin | Melee, Sweep, Channel, Movement |
+| Blood Frenzy | Buff |
+| Skullsplitter | Melee, Execute |
+
+### The four skills after the slice (details proposed)
+
+Unlock levels follow 04's proposal (Q4): 9, 12, 15, 18.
+
+| Skill | From the table above (decided) | Filled in (proposed) |
+|---|---|---|
+| Battle Roar | Buff, no cost, 15 s, 3 or more enemies near and Rage below 30; gains 40 Rage and plus 20 percent damage for 6 s | "Near" is within 5 units, the same area the other buffs use. The damage is an increased modifier (03's formula, step 2). Cast time 0.4 s, 12-frame roar animation; the global cast timer applies. A red ring pulses once from the player, no telegraph needed since it hurts no one. It is the only skill that can fire when Rage is too low for everything else, so it sits well in slot 1 or 2 |
+| Rending Spin | Channel, 40 Rage, 12 s, moving and 3 or more enemies near; 2.5 s spin at full movement speed, 90 percent every 0.3 s, applies a bleed | "Near" is within 4 units. The spin hits everything within the basic reach (2.0) each tick: 8 ticks. The bleed deals 40 percent weapon damage over 4 s, refreshed by later ticks, not stacked. The basic attack pauses during the spin and, by 01's channel rule, lower slots wait until it ends. Moving during the spin counts as moving for Momentum. A looping 8-frame spin animation in 16 directions is unnecessary: the spin is one direction-free loop (09) |
+| Blood Frenzy | Buff, 20 Rage, 14 s, in combat with 3 or more Momentum stacks; plus 30 percent attack speed for 6 s, plus 5 percent more per Momentum stack | "In combat" means a hit dealt or taken within the last 3 s, the same test as the Rage drain. The per-stack part follows the live stack count during the 6 s (a player who keeps moving keeps it). Cast time 0.2 s; a red vapour on the character while it lasts |
+| Skullsplitter | Execute, 25 Rage, 5 s, a target below 25 percent life, or an elite or boss; 350 percent to one target, 800 percent below 25 percent life | The target must be within the basic reach plus 0.5. Below 25 percent is read when the blow lands, 0.3 s after the cast, so a target that drops under during the wind-up gets the 800. Against a boss the 800 applies below 25 percent of its life, which also falls in phase 3. 12-frame overhead chop |
+
+### Skill levels 1 to 20 (proposed)
+
+- A skill starts at level 1 when it unlocks. Each skill point raises one skill by one level. A skill's level cannot exceed the character's level minus its unlock level plus 1, so points cannot all go into one skill at level 2.
+- Points: 1 per level to 30, then 1 per 2 levels (04), 44 by level 60. Maxing four skills costs 76 points, so a character at 60 has about three skills at 20 or eight at about level 6: a real choice.
+- Gear adds levels (03, the skill level affixes) on top, up to level 25.
+- Scaling per level above 1: damage skills gain 7 percent of their level 1 multiplier (Hew 170 percent at level 1, 289 at 10, 396 at 20). Battle Roar gains 1 percent damage per level (20 to 39 percent). Blood Frenzy gains 1 percent attack speed per level (30 to 49). Bull Rush's Rage gain, every Rage cost and every cooldown stay fixed, so the loadout's rhythm does not change with levels.
+- Modifier slots open at skill levels 5, 10 and 15 (above). Picking one of three is free and can be changed at the Trainer for the respec price (04).
+
+### Skill modifiers (proposed: 72 options, 24 choices)
+
+One pick from three at each of skill levels 5, 10 and 15.
+
+| Skill | Level 5 | Level 10 | Level 15 |
+|---|---|---|---|
+| Hew | Wide Arc (sweep becomes 270 degrees); Rending Edge (bleed, 40 percent over 4 s); Sunder (hit enemies take 10 percent more damage for 4 s) | Follow-through (a second sweep at 60 percent); Reaping (heal 1 percent life per enemy hit); Rage Feeder (refund 4 Rage per enemy hit, up to 20) | Shockwave (the sweep sends a 5-unit wave, 60 percent); Momentum Cleave (plus 8 percent damage per Momentum stack); Echo (cooldown 1 s shorter when it hits 4 or more) |
+| Bull Rush | Trample (reaches targets up to 9 away); Shoulder Guard (20 percent less damage taken during the dash and 2 s after); Stampede (gains 25 Rage instead of 15) | Double Rush (charges back through the line within 1 s, 60 percent); Stunning Impact (the first enemy hit is stunned 1 s); Wake of Fire (burning trail for 3 s, 30 percent per second) | Unstoppable (cooldown 2 s shorter per elite hit); Momentum Surge (sets Momentum to its cap); Breaker Finish (ends in a slam, radius 2, 100 percent) |
+| Hurl Axe | Ricochet (bounces to 2 more enemies at 70 percent); Heavy Axe (plus 30 percent damage and knockback); Quick Throw (cooldown 3 s) | Twin Axes (two axes in a 15 degree fan); Returning Axe (flies back, hitting again at 70 percent); Crippling (slows 40 percent for 3 s) | Piercing (passes through every enemy; walls still stop it); Rage Throw (free while Rage is below 30); Marked (the target takes 15 percent more damage for 5 s) |
+| Ground Breaker | Wide Crater (radius 4.5); Aftershock (a second slam 1 s later, 50 percent); Quake (stuns 0.8 s instead of slowing) | Fissures (3 cracks run 6 units outward, 80 percent); Hair Trigger (fires with 3 enemies instead of 4); Rage Quake (costs 25 Rage) | Seismic (consumes Momentum: plus 10 percent damage per stack); Tremor Field (the crater slows 50 percent for 4 s); Crusher (plus 40 percent against elites and bosses) |
+| Battle Roar | Rallying (plus 15 percent move speed while active); Intimidate (enemies within 5 deal 20 percent less damage for 4 s); Deep Breath (gains 60 Rage) | War Cry (lasts 9 s); Second Wind (heals 10 percent life); Dread (enemies within 4 flee for 1.5 s) | Endless Roar (cooldown 10 s); Battle Trance (basic hits give double Rage while active); Unyielding (20 percent less damage taken while active) |
+| Rending Spin | Whirl (a tick every 0.25 s); Deep Wounds (bleed doubled); Wide Spin (reach plus 0.8) | Lasting Spin (3.5 s); Undertow (enemies within 4 drift 1 unit a second toward the player); Rage Spin (each tick that hits an elite refunds 2 Rage) | Blade Storm (ends by throwing 3 axes outward, 100 percent each); Endless Motion (Momentum gains a stack every 0.5 s while spinning); Bloodbath (heals 0.5 percent life per enemy hit per tick, up to 3 percent a tick) |
+| Blood Frenzy | Lingering (lasts 8 s); Bloodlust (Life on Hit plus 50 percent while active); Swift Frenzy (plus 10 percent move speed while active) | Frenzied Rage (basic hits give 3 more Rage while active); Thirst (each kill adds 0.5 s, up to 4 s); Low Threshold (fires at 2 Momentum stacks) | Berserk Blood (plus 2 percent damage per 10 percent life missing while active); Frenzy Chain (an elite kill resets the cooldown, once per cast); Overdrive (10 percent per stack instead of 5, costs 30 Rage) |
+| Skullsplitter | Executioner (the threshold is 30 percent); Cleaving Split (enemies within 1.5 of the target take 50 percent); Refund (a kill refunds 15 Rage) | Ruthless (a kill sets the cooldown to 2 s); Bleeding Skull (bleed, 100 percent over 4 s); Elite Hunter (plus 30 percent against elites and bosses) | Headsman (a kill heals 5 percent life); Stagger Split (adds 10 to a boss's stagger meter); Double Split (strikes twice, the second at 50 percent) |
+
+Rules the modifiers keep: none adds a button or a timing input; none takes control of the character (the dash of Bull Rush is the one movement a skill makes, and it was decided); crowd control only ever lands on enemies.
+
+### Keystones (placement proposed, Q5)
+
+Berserker and Juggernaut are decided as written above. The keystone count and where keystones are bought are open: the passive tree section above says 3 keystones per class, "choose one, cost 3 points"; the Wrathborn has 2; the glossary in 00 puts a keystone in the loadout. Proposed (Q5 option A): the Wrathborn's tree holds his 2 keystones, one at the end of the Wrath branch (Berserker) and one at the end of the Stampede branch (Juggernaut), each costing 3 points and available from level 20 (04); both can be bought, and the loadout screen picks which one is active. Changing it is free out of combat.
+
+### Passive tree (proposed)
+
+Kept from above: 60 nodes over three branches, one point per level from level 2 (59 at level 60), node types minor, notable, keystone and gateway, respec at the Trainer. For the Wrathborn: 1 start node, 36 minor, 18 notable, 2 keystones, 3 gateways = 60. Buying everything costs 63 points, so a level 60 character leaves 4 nodes out. The node type table above says 3 keystones; with 2 the counts still reach 60 because of the start node (Q5).
+
+Layout: a start node in the middle with three branches going up, left and right. Each branch has an inner half (6 minor, 3 notable) and an outer half behind a gateway (6 minor, 3 notable, and the keystone for Wrath and Stampede). A gateway opens after 15 points in the whole tree. The tree scrolls in one direction on the phone (06, Passive tree), so the branches are drawn as three columns.
+
+| Branch | Theme | Minor nodes (6 of each kind across the branch, 2 of each per half) |
+|---|---|---|
+| Wrath (up) | Rage, damage, crits | Plus 4 percent damage; plus 1.5 percent critical chance; plus 10 percent critical damage |
+| Stampede (left) | Momentum, speed, dodge | Plus 3 percent move speed; plus 3 percent attack speed; plus 1.5 percent dodge |
+| Scar (right) | Life, armor, sustain | Plus 4 percent life; plus 8 percent armor; plus 2 Life on Hit |
+
+Notables (proposed numbers):
+
+| Branch | Inner half | Outer half |
+|---|---|---|
+| Wrath | Red Mist: basic hits give 8 Rage instead of 6. Bloodied Edge: plus 15 percent damage to enemies below 50 percent life. Short Fuse: Rage drains after 5 s without combat instead of 3 | Carnage: kills give 3 Rage. Butcher: critical hits deal plus 30 percent damage to bleeding enemies. Hatred: plus 1 percent damage per 10 Rage held. Keystone: Berserker |
+| Stampede | Road Runner: Momentum builds a stack every 0.45 s instead of 0.6. Sure Footed: Momentum lasts 2 s after stopping instead of 1.2. Battering Ram: Movement skills deal plus 25 percent damage | Hit and Run: each Momentum stack also gives 2 percent attack speed. Tailwind: plus 1 Momentum cap. Crashing Wave: Bull Rush's cooldown is 1 s shorter per enemy hit. Keystone: Juggernaut |
+| Scar | Thick Hide: plus 20 percent armor. Scar Tissue: 5 percent less damage from elites and bosses. Iron Lungs: the potion heals 50 percent instead of 40 | Unbroken: while below 35 percent life, 15 percent less damage taken. Blood Price: Life on Hit plus 50 percent. Old Wounds: plus 1 Stillness cap and plus 10 percent life (a door to a standing build for a Momentum class) |
+
+The stand-in Vitality (8 points a level, built, 2026-09-26) stays until the tree and the attribute source (Q6) are built; the Scar branch and the attributes together must give about the same life at each level, which the balance report can check.
+
+### Attributes for the Wrathborn (proposed, Q6)
+
+The attribute table above stands. Will's "Focus regeneration" has no meaning for Rage; proposed for the Wrathborn: plus 0.5 percent Rage gained per point instead.
+
+Where points come from is not written anywhere; only the stand-in Vitality exists. Options are in Q6. The recommendation is automatic class growth, so the one-thumb game gains no extra screen and the built balance carries over: per level from level 2, 8 Vitality (the stand-in, unchanged), 2 Might, 2 Agility and 1 Will. Paragon points (04) are the only free choice. The Diablo 2 style alternative (5 free points a level) is in Q6.
+
+### Loadout and triggers
+
+The loadout screen (06) and the per-slot trigger picker (01) are designed; the built game uses one fixed trigger per skill kind, and existing question 2 defers the picker until the M0 test. Proposed (Q15): each skill keeps its trigger from the table above as its default, and the picker offers two alternatives per skill from 01's list (for example Hew: "2 or more in reach", "Always", "Elite present"). The loadout keeps 4 slots and the keystone.
+
+### What the Ranger and Hexer would need (post-launch, not expanded)
+
+They stay drafts (decided: one class at launch). Neither can be built on the launch systems alone. They would need: the Focus resource (a `FocusPool` exists and is unused); a player projectile basic attack (enemies already have projectiles); placed ground effects that deal damage over time (Caltrops, traps, Plague Cloud); summons with their own AI (Falcon, Raise Thrall); their own off-hand items (quiver, orb, 03); their own grips, gear looks and a 16-direction bake of each look (09); a passive tree and 8 skills with modifiers each; their share of the Legendaries (03 plans 20 per class). A second class is roughly the size of M1 again in code and larger in art.
