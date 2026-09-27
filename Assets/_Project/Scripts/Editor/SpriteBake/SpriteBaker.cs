@@ -5,8 +5,6 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.U2D.Sprites;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.Playables;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -68,7 +66,6 @@ namespace ARPG.Editor
             var rendererData = LoadOrCreateRendererData();
             var rendererIndex = AddRenderer(pipeline, rendererData);
             var scene = EditorSceneManager.NewPreviewScene();
-            var graphs = new List<PlayableGraph>();
             var size = job.cellSize * Mathf.Max(1, job.supersample);
             var target = new RenderTexture(new RenderTextureDescriptor(size, size, RenderTextureFormat.ARGBHalf, 24) { sRGB = false });
             var readback = new Texture2D(size, size, TextureFormat.RGBAHalf, false, true);
@@ -89,16 +86,6 @@ namespace ARPG.Editor
                             continue;
                         var times = SpriteBakeMath.SampleTimes(clip.clip.length, clip.frames, clip.loop, job.framesPerSecond);
 
-                        // One graph per body, all playing this clip.
-                        var playables = new AnimationClipPlayable[stage.Bodies.Count];
-                        for (var b = 0; b < stage.Bodies.Count; b++)
-                        {
-                            playables[b] = AnimationPlayableUtilities.PlayClip(stage.Bodies[b].Animator, clip.clip, out var graph);
-                            playables[b].SetApplyFootIK(false);
-                            graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
-                            graphs.Add(graph);
-                        }
-
                         foreach (var layer in LayersFor(stage, gripSet.grip))
                         {
                             var sheet = new SheetWriter(job, job.SheetName(layer.Layer, layer.Look, gripSet.grip, clip.name), times.Length);
@@ -110,11 +97,15 @@ namespace ARPG.Editor
                                 {
                                     var body = stage.Bodies[poseIndex];
                                     // A generic clip writes only the bones it animates; the rest would keep the last clip's
-                                    // pose (the first test attack ran on frozen running legs).
+                                    // pose (the first test attack ran on frozen running legs). SampleAnimation poses humanoid
+                                    // and generic clips alike; a PlayableGraph evaluated in the editor left a humanoid in its
+                                    // bind pose (the Wrathborn's first bake). The root is put back after, so a clip that was
+                                    // not downloaded in place still stays on the spot.
                                     body.RestPose.Restore();
-                                    playables[poseIndex].SetTime(times[frame]);
-                                    playables[poseIndex].SetTime(times[frame]); // Twice, so no root motion delta carries over.
-                                    playables[poseIndex].GetGraph().Evaluate(0f);
+                                    clip.clip.SampleAnimation(body.Root, times[frame]);
+                                    body.Root.transform.localPosition = body.RootPosition;
+                                    body.Root.transform.localRotation = Quaternion.identity;
+                                    body.Skin();
 
                                     stage.Show(layer, depthOnly);
                                     sheet.Put(row, frame, RenderCell(stage.Camera, target, readback, job));
@@ -122,18 +113,10 @@ namespace ARPG.Editor
                             }
                             written.AddRange(sheet.Save());
                         }
-
-                        foreach (var graph in graphs)
-                            if (graph.IsValid())
-                                graph.Destroy();
-                        graphs.Clear();
                     }
             }
             finally
             {
-                foreach (var graph in graphs)
-                    if (graph.IsValid())
-                        graph.Destroy();
                 EditorSceneManager.ClosePreviewScene(scene);
                 RemoveRenderer(pipeline, rendererData);
                 Object.DestroyImmediate(target);
@@ -141,8 +124,30 @@ namespace ARPG.Editor
                 Object.DestroyImmediate(depthOnly);
             }
 
-            Debug.Log($"{job.name}: baked {written.Count} sheet(s):\n" + string.Join("\n", written));
+            written.Add(WriteTiming(job));
+            Debug.Log($"{job.name}: baked {written.Count} file(s):\n" + string.Join("\n", written));
             return written;
+        }
+
+        /// <summary>
+        /// Writes <c>&lt;character&gt;_timing.txt</c> beside the sheets: one line per grip and clip with a playback length,
+        /// <c>&lt;grip&gt;_&lt;clip&gt; &lt;seconds&gt;</c> (just <c>&lt;clip&gt;</c> without a grip), which
+        /// <see cref="LayeredCharacterSprite"/> reads so a sheet plays over its animation's real length.
+        /// </summary>
+        static string WriteTiming(SpriteBakeJob job)
+        {
+            var lines = new List<string>();
+            foreach (var grip in job.grips)
+                foreach (var clip in grip.clips)
+                    if (clip.clip != null && clip.playbackSeconds > 0f)
+                        lines.Add($"{(string.IsNullOrEmpty(grip.grip) ? "" : grip.grip + "_")}{clip.name} " +
+                                  clip.playbackSeconds.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture));
+            var folder = job.outputFolder.TrimEnd('/');
+            Directory.CreateDirectory(folder);
+            var path = $"{folder}/{job.characterName}_timing.txt";
+            File.WriteAllLines(path, lines);
+            AssetDatabase.ImportAsset(path);
+            return path;
         }
 
         /// <summary>What one sheet shows: a body alone, or a piece hanging on the first body.</summary>
@@ -158,9 +163,53 @@ namespace ARPG.Editor
         {
             public GameObject Root;
             public Animator Animator;
+            public Vector3 RootPosition;
             public Pose RestPose;
             public Renderer[] Renderers;
             public Material[][] Materials;
+            public SkinProxy[] Skins;
+
+            /// <summary>Brings every skinned mesh's stand-in to the current pose (see <see cref="SkinProxy"/>).</summary>
+            public void Skin()
+            {
+                foreach (var skin in Skins)
+                    skin.Update();
+            }
+        }
+
+        /// <summary>
+        /// A skinned mesh drawn as a plain mesh baked from its current pose. In the editor a skinned mesh is re-skinned
+        /// once per editor frame, not per camera render, so rendering it straight after posing drew its rest shape carried
+        /// rigidly by the hip bone (the Wrathborn's first real bake: a run with no running). The bake draws this stand-in
+        /// instead and hides the skinned renderer.
+        /// </summary>
+        sealed class SkinProxy
+        {
+            readonly SkinnedMeshRenderer skinned;
+            readonly Transform transform;
+            readonly Mesh mesh = new Mesh();
+            public readonly MeshRenderer Renderer;
+
+            public SkinProxy(SkinnedMeshRenderer skinned, Scene scene)
+            {
+                this.skinned = skinned;
+                var go = new GameObject(skinned.name + " (posed)", typeof(MeshFilter), typeof(MeshRenderer));
+                SceneManager.MoveGameObjectToScene(go, scene);
+                transform = go.transform;
+                go.GetComponent<MeshFilter>().sharedMesh = mesh;
+                Renderer = go.GetComponent<MeshRenderer>();
+                Renderer.sharedMaterials = skinned.sharedMaterials;
+                skinned.enabled = false;
+                Update();
+            }
+
+            public void Update()
+            {
+                // With useScale the baked vertices carry the renderer's scale, so the stand-in has none of its own.
+                skinned.BakeMesh(mesh, true);
+                transform.SetPositionAndRotation(skinned.transform.position, skinned.transform.rotation);
+                transform.localScale = Vector3.one;
+            }
         }
 
         sealed class PieceInstance
@@ -282,15 +331,20 @@ namespace ARPG.Editor
                     model.transform.localScale *= scale;
                 model.transform.localPosition = offset;
 
-                var renderers = model.GetComponentsInChildren<Renderer>(true);
+                // Taken before the pieces go on, so their own transforms are left alone.
+                var restPose = new Pose(model.transform);
+                var skins = model.GetComponentsInChildren<SkinnedMeshRenderer>(true).Select(s => new SkinProxy(s, scene)).ToArray();
+                var renderers = model.GetComponentsInChildren<MeshRenderer>(true).Cast<Renderer>()
+                    .Concat(skins.Select(s => (Renderer)s.Renderer)).ToArray();
                 stage.Bodies.Add(new BodyInstance
                 {
                     Root = model,
                     Animator = animator,
-                    // Taken before the pieces go on, so their own transforms are left alone.
-                    RestPose = new Pose(model.transform),
+                    RootPosition = model.transform.localPosition,
+                    RestPose = restPose,
                     Renderers = renderers,
                     Materials = renderers.Select(r => r.sharedMaterials).ToArray(),
+                    Skins = skins,
                 });
             }
 

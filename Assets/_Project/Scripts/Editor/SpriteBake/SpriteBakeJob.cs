@@ -29,6 +29,9 @@ namespace ARPG.Editor
 
             [Tooltip("A loop spreads its frames over the clip without repeating the first at the end.")]
             public bool loop = true;
+
+            [Tooltip("How long the game plays the sheet, in seconds; 0 plays its frames at 12 per second. Written to the character's timing file.")]
+            public float playbackSeconds;
         }
 
         [Serializable]

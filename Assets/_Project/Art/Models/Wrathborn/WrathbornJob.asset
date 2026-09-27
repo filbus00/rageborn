@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b7ef2a89c554486bb05c81650498d7, type: 3}
+  m_Name: WrathbornJob
+  m_EditorClassIdentifier: ARPG.Editor::ARPG.Editor.SpriteBakeJob
+  characterName: wrathborn
+  bodies:
+  - look: leather
+    model: {fileID: 919132149155446097, guid: c46a16e74c0f443f6b409fb5a5dad276, type: 3}
+  pieces: []
+  grips:
+  - grip: 1h
+    clips:
+    - name: idle
+      clip: {fileID: -203655887218126122, guid: c46a16e74c0f443f6b409fb5a5dad276, type: 3}
+      frames: 24
+      loop: 1
+      playbackSeconds: 9.933333
+    - name: run
+      clip: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
+      frames: 10
+      loop: 1
+      playbackSeconds: 0.70000005
+    - name: attack
+      clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 2.4
+  cellSize: 256
+  pivot: {x: 128, y: 40}
+  targetHeightPixels: 170
+  supersample: 4
+  framesPerSecond: 12
+  outputFolder: Assets/_Project/Resources/Characters/wrathborn

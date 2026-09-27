@@ -12,7 +12,8 @@ namespace ARPG
     /// Sheets load from Resources (Characters/&lt;character&gt;/&lt;sheet name&gt;, see
     /// <see cref="AppearanceRules.SheetName"/>) when a look is first shown, and a changed look lets go of the old sheets,
     /// so only the equipped looks are in memory (the brief, decision 5). A sheet split per direction (over 4096 px) loads
-    /// as its eight files. Frames are 12 per second, as baked.
+    /// as its eight files. A sheet plays over its animation's real length when the character's timing file
+    /// (Characters/&lt;character&gt;/&lt;character&gt;_timing, written by the bake) gives one, else at 12 frames a second.
     /// </summary>
     public class LayeredCharacterSprite : MonoBehaviour
     {
@@ -30,6 +31,10 @@ namespace ARPG
         // The sheets of the playing animation, looked up when the animation or the look changes, so a frame allocates
         // nothing.
         readonly Sheet[] current = new Sheet[LayerCount];
+        // Seconds per animation from the character's timing file ("<grip>_<clip> <seconds>"), written by the sprite bake.
+        readonly Dictionary<string, float> timing = new Dictionary<string, float>();
+        bool timingLoaded;
+        float currentSeconds;
         readonly Dictionary<string, Sheet> sheets = new Dictionary<string, Sheet>();
         readonly List<SpriteRenderer> visible = new List<SpriteRenderer>(LayerCount);
         string character;
@@ -89,7 +94,7 @@ namespace ARPG
         public float LengthOf(string animationName)
         {
             var sheet = SheetFor(AppearanceLayer.Body, animationName);
-            return sheet != null ? sheet.Frames / FramesPerSecond : 0f;
+            return sheet != null ? PlaybackSeconds(animationName, sheet) : 0f;
         }
 
         public void SetAppearance(CharacterAppearance next)
@@ -128,7 +133,7 @@ namespace ARPG
         }
 
         /// <summary>Whether a one-shot has shown its last frame.</summary>
-        public bool Finished => !loop && time >= (duration > 0f ? duration : current[0] != null ? current[0].Frames / FramesPerSecond : 0f);
+        public bool Finished => !loop && time >= (duration > 0f ? duration : currentSeconds);
 
         public void Face(Vector2 groundDirection)
         {
@@ -146,6 +151,29 @@ namespace ARPG
         {
             for (var i = 0; i < LayerCount; i++)
                 current[i] = SheetFor((AppearanceLayer)i, animation);
+            currentSeconds = PlaybackSeconds(animation, current[0]);
+        }
+
+        /// <summary>How long the animation plays: its real length from the timing file, else its frames at 12 a second.</summary>
+        float PlaybackSeconds(string animationName, Sheet sheet)
+        {
+            if (!timingLoaded)
+            {
+                timingLoaded = true;
+                var file = Resources.Load<TextAsset>($"Characters/{character}/{character}_timing");
+                if (file != null)
+                    foreach (var line in file.text.Split('\n'))
+                    {
+                        var parts = line.Trim().Split(' ');
+                        if (parts.Length == 2 && float.TryParse(parts[1], System.Globalization.NumberStyles.Float,
+                                System.Globalization.CultureInfo.InvariantCulture, out var seconds))
+                            timing[parts[0]] = seconds;
+                    }
+            }
+            if (timing.TryGetValue(AppearanceRules.GripCode(appearance.Grip) + "_" + animationName, out var found) ||
+                timing.TryGetValue(animationName, out found))
+                return found;
+            return sheet != null ? sheet.Frames / FramesPerSecond : 0f;
         }
 
         void Apply()
@@ -168,9 +196,10 @@ namespace ARPG
         {
             if (frames <= 1)
                 return 0;
+            var length = currentSeconds > 0f ? currentSeconds : frames / FramesPerSecond;
             if (loop)
-                return Mathf.FloorToInt(time * FramesPerSecond) % frames;
-            var progress = duration > 0f ? time / duration : time * FramesPerSecond / frames;
+                return Mathf.FloorToInt(time / length * frames) % frames;
+            var progress = time / (duration > 0f ? duration : length);
             return Mathf.Clamp(Mathf.FloorToInt(progress * frames), 0, frames - 1);
         }
 
@@ -179,7 +208,18 @@ namespace ARPG
             var look = appearance.LookOf(layer);
             if (string.IsNullOrEmpty(look) || string.IsNullOrEmpty(character))
                 return null;
-            var name = AppearanceRules.SheetName(character, layer, look, appearance.Grip, animationName);
+            var sheet = LoadCached(AppearanceRules.SheetName(character, layer, look, appearance.Grip, animationName));
+            // While the art is being made not every look exists yet: a missing body or weapon shows the reference look
+            // (the approved model sheet's), so the character is never drawn without a body or with an empty hand it
+            // should not have. A missing helm or off-hand simply stays off.
+            var fallback = AppearanceRules.FallbackLook(layer);
+            if (sheet == null && fallback != null && fallback != look)
+                sheet = LoadCached(AppearanceRules.SheetName(character, layer, fallback, appearance.Grip, animationName));
+            return sheet;
+        }
+
+        Sheet LoadCached(string name)
+        {
             if (sheets.TryGetValue(name, out var cached))
                 return cached;
             var sheet = Load($"Characters/{character}/{name}");

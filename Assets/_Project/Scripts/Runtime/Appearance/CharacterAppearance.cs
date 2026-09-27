@@ -92,6 +92,17 @@ namespace ARPG
             LookOf(OneHandWeaponLooks, equipment.Weapon),
             GripFor(false, false, false));
 
+        /// <summary>
+        /// The look shown when a layer's own look has no sheets yet: the body and weapon of the approved model sheet
+        /// (leather, the bearded axe). Null for the helm and off-hand, which then stay off.
+        /// </summary>
+        public static string FallbackLook(AppearanceLayer layer) => layer switch
+        {
+            AppearanceLayer.Body => "leather",
+            AppearanceLayer.Weapon => "bearded_axe",
+            _ => null,
+        };
+
         /// <summary>The sprite sheets' short names (the brief's file names).</summary>
         public static string GripCode(CharacterGrip grip) => grip switch
         {
