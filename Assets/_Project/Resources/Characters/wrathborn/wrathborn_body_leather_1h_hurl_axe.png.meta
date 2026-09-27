@@ -528,7 +528,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -609,9 +609,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3840
-        width: 256
-        height: 256
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -630,10 +630,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_s_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 3840
-        width: 256
-        height: 256
+        x: 128
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -652,10 +652,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_s_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 3840
-        width: 256
-        height: 256
+        x: 256
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -674,10 +674,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_s_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 3840
-        width: 256
-        height: 256
+        x: 384
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -696,10 +696,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_s_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3840
-        width: 256
-        height: 256
+        x: 512
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -718,10 +718,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_s_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 3840
-        width: 256
-        height: 256
+        x: 640
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -740,10 +740,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_s_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 3840
-        width: 256
-        height: 256
+        x: 768
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -762,10 +762,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_s_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 3840
-        width: 256
-        height: 256
+        x: 896
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -784,10 +784,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_s_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 3840
-        width: 256
-        height: 256
+        x: 1024
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -806,10 +806,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_s_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 3840
-        width: 256
-        height: 256
+        x: 1152
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -829,9 +829,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3584
-        width: 256
-        height: 256
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -850,10 +850,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ssw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 3584
-        width: 256
-        height: 256
+        x: 128
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -872,10 +872,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ssw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 3584
-        width: 256
-        height: 256
+        x: 256
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -894,10 +894,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ssw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 3584
-        width: 256
-        height: 256
+        x: 384
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -916,10 +916,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ssw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3584
-        width: 256
-        height: 256
+        x: 512
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -938,10 +938,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ssw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 3584
-        width: 256
-        height: 256
+        x: 640
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -960,10 +960,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ssw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 3584
-        width: 256
-        height: 256
+        x: 768
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -982,10 +982,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ssw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 3584
-        width: 256
-        height: 256
+        x: 896
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1004,10 +1004,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ssw_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 3584
-        width: 256
-        height: 256
+        x: 1024
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1026,10 +1026,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ssw_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 3584
-        width: 256
-        height: 256
+        x: 1152
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1049,9 +1049,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3328
-        width: 256
-        height: 256
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1070,10 +1070,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 3328
-        width: 256
-        height: 256
+        x: 128
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1092,10 +1092,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 3328
-        width: 256
-        height: 256
+        x: 256
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1114,10 +1114,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 3328
-        width: 256
-        height: 256
+        x: 384
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1136,10 +1136,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3328
-        width: 256
-        height: 256
+        x: 512
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1158,10 +1158,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 3328
-        width: 256
-        height: 256
+        x: 640
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1180,10 +1180,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 3328
-        width: 256
-        height: 256
+        x: 768
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1202,10 +1202,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 3328
-        width: 256
-        height: 256
+        x: 896
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1224,10 +1224,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sw_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 3328
-        width: 256
-        height: 256
+        x: 1024
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1246,10 +1246,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sw_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 3328
-        width: 256
-        height: 256
+        x: 1152
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1269,9 +1269,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3072
-        width: 256
-        height: 256
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1290,10 +1290,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wsw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 3072
-        width: 256
-        height: 256
+        x: 128
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1312,10 +1312,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wsw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 3072
-        width: 256
-        height: 256
+        x: 256
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1334,10 +1334,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wsw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 3072
-        width: 256
-        height: 256
+        x: 384
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1356,10 +1356,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wsw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3072
-        width: 256
-        height: 256
+        x: 512
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1378,10 +1378,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wsw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 3072
-        width: 256
-        height: 256
+        x: 640
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1400,10 +1400,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wsw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 3072
-        width: 256
-        height: 256
+        x: 768
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1422,10 +1422,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wsw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 3072
-        width: 256
-        height: 256
+        x: 896
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1444,10 +1444,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wsw_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 3072
-        width: 256
-        height: 256
+        x: 1024
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1466,10 +1466,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wsw_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 3072
-        width: 256
-        height: 256
+        x: 1152
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1489,9 +1489,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2816
-        width: 256
-        height: 256
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1510,10 +1510,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_w_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2816
-        width: 256
-        height: 256
+        x: 128
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1532,10 +1532,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_w_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2816
-        width: 256
-        height: 256
+        x: 256
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1554,10 +1554,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_w_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2816
-        width: 256
-        height: 256
+        x: 384
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1576,10 +1576,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_w_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2816
-        width: 256
-        height: 256
+        x: 512
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1598,10 +1598,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_w_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 2816
-        width: 256
-        height: 256
+        x: 640
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1620,10 +1620,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_w_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2816
-        width: 256
-        height: 256
+        x: 768
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1642,10 +1642,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_w_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 2816
-        width: 256
-        height: 256
+        x: 896
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1664,10 +1664,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_w_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 2816
-        width: 256
-        height: 256
+        x: 1024
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1686,10 +1686,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_w_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 2816
-        width: 256
-        height: 256
+        x: 1152
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1709,9 +1709,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2560
-        width: 256
-        height: 256
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1730,10 +1730,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wnw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2560
-        width: 256
-        height: 256
+        x: 128
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1752,10 +1752,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wnw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2560
-        width: 256
-        height: 256
+        x: 256
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1774,10 +1774,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wnw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2560
-        width: 256
-        height: 256
+        x: 384
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1796,10 +1796,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wnw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2560
-        width: 256
-        height: 256
+        x: 512
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1818,10 +1818,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wnw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 2560
-        width: 256
-        height: 256
+        x: 640
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1840,10 +1840,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wnw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2560
-        width: 256
-        height: 256
+        x: 768
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1862,10 +1862,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wnw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 2560
-        width: 256
-        height: 256
+        x: 896
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1884,10 +1884,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wnw_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 2560
-        width: 256
-        height: 256
+        x: 1024
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1906,10 +1906,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_wnw_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 2560
-        width: 256
-        height: 256
+        x: 1152
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1929,9 +1929,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2304
-        width: 256
-        height: 256
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1950,10 +1950,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2304
-        width: 256
-        height: 256
+        x: 128
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1972,10 +1972,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2304
-        width: 256
-        height: 256
+        x: 256
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1994,10 +1994,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2304
-        width: 256
-        height: 256
+        x: 384
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2016,10 +2016,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2304
-        width: 256
-        height: 256
+        x: 512
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2038,10 +2038,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 2304
-        width: 256
-        height: 256
+        x: 640
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2060,10 +2060,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2304
-        width: 256
-        height: 256
+        x: 768
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2082,10 +2082,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 2304
-        width: 256
-        height: 256
+        x: 896
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2104,10 +2104,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nw_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 2304
-        width: 256
-        height: 256
+        x: 1024
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2126,10 +2126,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nw_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 2304
-        width: 256
-        height: 256
+        x: 1152
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2149,9 +2149,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2048
-        width: 256
-        height: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2170,10 +2170,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nnw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2048
-        width: 256
-        height: 256
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2192,10 +2192,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nnw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2048
-        width: 256
-        height: 256
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2214,10 +2214,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nnw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2048
-        width: 256
-        height: 256
+        x: 384
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2236,10 +2236,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nnw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2048
-        width: 256
-        height: 256
+        x: 512
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2258,10 +2258,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nnw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 2048
-        width: 256
-        height: 256
+        x: 640
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2280,10 +2280,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nnw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2048
-        width: 256
-        height: 256
+        x: 768
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2302,10 +2302,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nnw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 2048
-        width: 256
-        height: 256
+        x: 896
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2324,10 +2324,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nnw_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 2048
-        width: 256
-        height: 256
+        x: 1024
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2346,10 +2346,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nnw_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 2048
-        width: 256
-        height: 256
+        x: 1152
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2369,9 +2369,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1792
-        width: 256
-        height: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2390,10 +2390,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_n_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1792
-        width: 256
-        height: 256
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2412,10 +2412,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_n_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1792
-        width: 256
-        height: 256
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2434,10 +2434,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_n_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1792
-        width: 256
-        height: 256
+        x: 384
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2456,10 +2456,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_n_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1792
-        width: 256
-        height: 256
+        x: 512
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2478,10 +2478,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_n_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1792
-        width: 256
-        height: 256
+        x: 640
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2500,10 +2500,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_n_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1792
-        width: 256
-        height: 256
+        x: 768
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2522,10 +2522,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_n_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1792
-        width: 256
-        height: 256
+        x: 896
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2544,10 +2544,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_n_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1792
-        width: 256
-        height: 256
+        x: 1024
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2566,10 +2566,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_n_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1792
-        width: 256
-        height: 256
+        x: 1152
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2589,9 +2589,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1536
-        width: 256
-        height: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2610,10 +2610,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nne_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1536
-        width: 256
-        height: 256
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2632,10 +2632,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nne_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1536
-        width: 256
-        height: 256
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2654,10 +2654,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nne_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1536
-        width: 256
-        height: 256
+        x: 384
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2676,10 +2676,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nne_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1536
-        width: 256
-        height: 256
+        x: 512
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2698,10 +2698,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nne_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1536
-        width: 256
-        height: 256
+        x: 640
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2720,10 +2720,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nne_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1536
-        width: 256
-        height: 256
+        x: 768
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2742,10 +2742,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nne_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1536
-        width: 256
-        height: 256
+        x: 896
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2764,10 +2764,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nne_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1536
-        width: 256
-        height: 256
+        x: 1024
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2786,10 +2786,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_nne_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1536
-        width: 256
-        height: 256
+        x: 1152
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2809,9 +2809,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1280
-        width: 256
-        height: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2830,10 +2830,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ne_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1280
-        width: 256
-        height: 256
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2852,10 +2852,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ne_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1280
-        width: 256
-        height: 256
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2874,10 +2874,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ne_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1280
-        width: 256
-        height: 256
+        x: 384
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2896,10 +2896,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ne_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1280
-        width: 256
-        height: 256
+        x: 512
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2918,10 +2918,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ne_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1280
-        width: 256
-        height: 256
+        x: 640
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2940,10 +2940,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ne_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1280
-        width: 256
-        height: 256
+        x: 768
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2962,10 +2962,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ne_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1280
-        width: 256
-        height: 256
+        x: 896
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2984,10 +2984,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ne_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1280
-        width: 256
-        height: 256
+        x: 1024
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3006,10 +3006,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ne_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1280
-        width: 256
-        height: 256
+        x: 1152
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3029,9 +3029,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
-        width: 256
-        height: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3050,10 +3050,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ene_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1024
-        width: 256
-        height: 256
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3072,10 +3072,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ene_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1024
-        width: 256
-        height: 256
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3094,10 +3094,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ene_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1024
-        width: 256
-        height: 256
+        x: 384
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3116,10 +3116,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ene_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1024
-        width: 256
-        height: 256
+        x: 512
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3138,10 +3138,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ene_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1024
-        width: 256
-        height: 256
+        x: 640
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3160,10 +3160,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ene_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1024
-        width: 256
-        height: 256
+        x: 768
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3182,10 +3182,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ene_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1024
-        width: 256
-        height: 256
+        x: 896
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3204,10 +3204,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ene_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1024
-        width: 256
-        height: 256
+        x: 1024
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3226,10 +3226,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ene_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1024
-        width: 256
-        height: 256
+        x: 1152
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3249,9 +3249,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 256
-        height: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3270,10 +3270,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_e_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 768
-        width: 256
-        height: 256
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3292,10 +3292,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_e_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 768
-        width: 256
-        height: 256
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3314,10 +3314,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_e_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 256
-        height: 256
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3336,10 +3336,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_e_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 768
-        width: 256
-        height: 256
+        x: 512
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3358,10 +3358,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_e_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 768
-        width: 256
-        height: 256
+        x: 640
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3380,10 +3380,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_e_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 768
-        width: 256
-        height: 256
+        x: 768
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3402,10 +3402,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_e_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 768
-        width: 256
-        height: 256
+        x: 896
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3424,10 +3424,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_e_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 768
-        width: 256
-        height: 256
+        x: 1024
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3446,10 +3446,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_e_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 768
-        width: 256
-        height: 256
+        x: 1152
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3469,9 +3469,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
-        width: 256
-        height: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3490,10 +3490,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ese_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3512,10 +3512,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ese_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3534,10 +3534,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ese_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 512
-        width: 256
-        height: 256
+        x: 384
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3556,10 +3556,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ese_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 512
-        width: 256
-        height: 256
+        x: 512
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3578,10 +3578,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ese_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 512
-        width: 256
-        height: 256
+        x: 640
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3600,10 +3600,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ese_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 512
-        width: 256
-        height: 256
+        x: 768
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3622,10 +3622,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ese_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 512
-        width: 256
-        height: 256
+        x: 896
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3644,10 +3644,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ese_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 512
-        width: 256
-        height: 256
+        x: 1024
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3666,10 +3666,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_ese_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 512
-        width: 256
-        height: 256
+        x: 1152
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3689,9 +3689,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 256
-        height: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3710,10 +3710,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_se_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3732,10 +3732,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_se_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 256
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3754,10 +3754,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_se_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 256
-        width: 256
-        height: 256
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3776,10 +3776,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_se_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 256
-        width: 256
-        height: 256
+        x: 512
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3798,10 +3798,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_se_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 256
-        width: 256
-        height: 256
+        x: 640
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3820,10 +3820,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_se_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 256
-        width: 256
-        height: 256
+        x: 768
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3842,10 +3842,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_se_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 256
-        width: 256
-        height: 256
+        x: 896
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3864,10 +3864,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_se_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 256
-        width: 256
-        height: 256
+        x: 1024
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3886,10 +3886,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_se_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 256
-        width: 256
-        height: 256
+        x: 1152
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3910,8 +3910,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3930,10 +3930,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sse_01
       rect:
         serializedVersion: 2
-        x: 256
+        x: 128
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3952,10 +3952,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sse_02
       rect:
         serializedVersion: 2
-        x: 512
+        x: 256
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3974,10 +3974,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sse_03
       rect:
         serializedVersion: 2
-        x: 768
+        x: 384
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3996,10 +3996,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sse_04
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 512
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4018,10 +4018,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sse_05
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 640
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4040,10 +4040,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sse_06
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 768
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4062,10 +4062,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sse_07
       rect:
         serializedVersion: 2
-        x: 1792
+        x: 896
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4084,10 +4084,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sse_08
       rect:
         serializedVersion: 2
-        x: 2048
+        x: 1024
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4106,10 +4106,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_hurl_axe_sse_09
       rect:
         serializedVersion: 2
-        x: 2304
+        x: 1152
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}

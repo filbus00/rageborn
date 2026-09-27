@@ -390,7 +390,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -471,9 +471,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3840
-        width: 256
-        height: 256
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -492,10 +492,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 3840
-        width: 256
-        height: 256
+        x: 128
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -514,10 +514,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 3840
-        width: 256
-        height: 256
+        x: 256
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -536,10 +536,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 3840
-        width: 256
-        height: 256
+        x: 384
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -558,10 +558,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3840
-        width: 256
-        height: 256
+        x: 512
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -580,10 +580,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 3840
-        width: 256
-        height: 256
+        x: 640
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -602,10 +602,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 3840
-        width: 256
-        height: 256
+        x: 768
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -624,10 +624,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 3840
-        width: 256
-        height: 256
+        x: 896
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -646,10 +646,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 3840
-        width: 256
-        height: 256
+        x: 1024
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -668,10 +668,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 3840
-        width: 256
-        height: 256
+        x: 1152
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -690,10 +690,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 3840
-        width: 256
-        height: 256
+        x: 1280
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -712,10 +712,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 3840
-        width: 256
-        height: 256
+        x: 1408
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -734,10 +734,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 3840
-        width: 256
-        height: 256
+        x: 1536
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -756,10 +756,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_s_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 3840
-        width: 256
-        height: 256
+        x: 1664
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -779,9 +779,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3584
-        width: 256
-        height: 256
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -800,10 +800,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 3584
-        width: 256
-        height: 256
+        x: 128
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -822,10 +822,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 3584
-        width: 256
-        height: 256
+        x: 256
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -844,10 +844,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 3584
-        width: 256
-        height: 256
+        x: 384
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -866,10 +866,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3584
-        width: 256
-        height: 256
+        x: 512
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -888,10 +888,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 3584
-        width: 256
-        height: 256
+        x: 640
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -910,10 +910,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 3584
-        width: 256
-        height: 256
+        x: 768
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -932,10 +932,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 3584
-        width: 256
-        height: 256
+        x: 896
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -954,10 +954,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 3584
-        width: 256
-        height: 256
+        x: 1024
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -976,10 +976,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 3584
-        width: 256
-        height: 256
+        x: 1152
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -998,10 +998,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 3584
-        width: 256
-        height: 256
+        x: 1280
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1020,10 +1020,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 3584
-        width: 256
-        height: 256
+        x: 1408
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1042,10 +1042,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 3584
-        width: 256
-        height: 256
+        x: 1536
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1064,10 +1064,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ssw_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 3584
-        width: 256
-        height: 256
+        x: 1664
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1087,9 +1087,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3328
-        width: 256
-        height: 256
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1108,10 +1108,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 3328
-        width: 256
-        height: 256
+        x: 128
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1130,10 +1130,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 3328
-        width: 256
-        height: 256
+        x: 256
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1152,10 +1152,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 3328
-        width: 256
-        height: 256
+        x: 384
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1174,10 +1174,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3328
-        width: 256
-        height: 256
+        x: 512
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1196,10 +1196,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 3328
-        width: 256
-        height: 256
+        x: 640
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1218,10 +1218,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 3328
-        width: 256
-        height: 256
+        x: 768
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1240,10 +1240,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 3328
-        width: 256
-        height: 256
+        x: 896
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1262,10 +1262,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 3328
-        width: 256
-        height: 256
+        x: 1024
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1284,10 +1284,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 3328
-        width: 256
-        height: 256
+        x: 1152
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1306,10 +1306,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 3328
-        width: 256
-        height: 256
+        x: 1280
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1328,10 +1328,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 3328
-        width: 256
-        height: 256
+        x: 1408
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1350,10 +1350,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 3328
-        width: 256
-        height: 256
+        x: 1536
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1372,10 +1372,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sw_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 3328
-        width: 256
-        height: 256
+        x: 1664
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1395,9 +1395,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3072
-        width: 256
-        height: 256
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1416,10 +1416,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 3072
-        width: 256
-        height: 256
+        x: 128
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1438,10 +1438,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 3072
-        width: 256
-        height: 256
+        x: 256
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1460,10 +1460,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 3072
-        width: 256
-        height: 256
+        x: 384
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1482,10 +1482,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3072
-        width: 256
-        height: 256
+        x: 512
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1504,10 +1504,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 3072
-        width: 256
-        height: 256
+        x: 640
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1526,10 +1526,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 3072
-        width: 256
-        height: 256
+        x: 768
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1548,10 +1548,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 3072
-        width: 256
-        height: 256
+        x: 896
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1570,10 +1570,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 3072
-        width: 256
-        height: 256
+        x: 1024
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1592,10 +1592,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 3072
-        width: 256
-        height: 256
+        x: 1152
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1614,10 +1614,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 3072
-        width: 256
-        height: 256
+        x: 1280
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1636,10 +1636,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 3072
-        width: 256
-        height: 256
+        x: 1408
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1658,10 +1658,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 3072
-        width: 256
-        height: 256
+        x: 1536
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1680,10 +1680,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wsw_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 3072
-        width: 256
-        height: 256
+        x: 1664
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1703,9 +1703,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2816
-        width: 256
-        height: 256
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1724,10 +1724,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2816
-        width: 256
-        height: 256
+        x: 128
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1746,10 +1746,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2816
-        width: 256
-        height: 256
+        x: 256
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1768,10 +1768,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2816
-        width: 256
-        height: 256
+        x: 384
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1790,10 +1790,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2816
-        width: 256
-        height: 256
+        x: 512
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1812,10 +1812,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 2816
-        width: 256
-        height: 256
+        x: 640
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1834,10 +1834,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2816
-        width: 256
-        height: 256
+        x: 768
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1856,10 +1856,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 2816
-        width: 256
-        height: 256
+        x: 896
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1878,10 +1878,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 2816
-        width: 256
-        height: 256
+        x: 1024
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1900,10 +1900,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 2816
-        width: 256
-        height: 256
+        x: 1152
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1922,10 +1922,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 2816
-        width: 256
-        height: 256
+        x: 1280
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1944,10 +1944,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 2816
-        width: 256
-        height: 256
+        x: 1408
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1966,10 +1966,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 2816
-        width: 256
-        height: 256
+        x: 1536
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1988,10 +1988,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_w_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 2816
-        width: 256
-        height: 256
+        x: 1664
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2011,9 +2011,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2560
-        width: 256
-        height: 256
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2032,10 +2032,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2560
-        width: 256
-        height: 256
+        x: 128
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2054,10 +2054,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2560
-        width: 256
-        height: 256
+        x: 256
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2076,10 +2076,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2560
-        width: 256
-        height: 256
+        x: 384
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2098,10 +2098,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2560
-        width: 256
-        height: 256
+        x: 512
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2120,10 +2120,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 2560
-        width: 256
-        height: 256
+        x: 640
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2142,10 +2142,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2560
-        width: 256
-        height: 256
+        x: 768
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2164,10 +2164,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 2560
-        width: 256
-        height: 256
+        x: 896
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2186,10 +2186,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 2560
-        width: 256
-        height: 256
+        x: 1024
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2208,10 +2208,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 2560
-        width: 256
-        height: 256
+        x: 1152
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2230,10 +2230,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 2560
-        width: 256
-        height: 256
+        x: 1280
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2252,10 +2252,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 2560
-        width: 256
-        height: 256
+        x: 1408
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2274,10 +2274,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 2560
-        width: 256
-        height: 256
+        x: 1536
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2296,10 +2296,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_wnw_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 2560
-        width: 256
-        height: 256
+        x: 1664
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2319,9 +2319,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2304
-        width: 256
-        height: 256
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2340,10 +2340,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2304
-        width: 256
-        height: 256
+        x: 128
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2362,10 +2362,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2304
-        width: 256
-        height: 256
+        x: 256
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2384,10 +2384,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2304
-        width: 256
-        height: 256
+        x: 384
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2406,10 +2406,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2304
-        width: 256
-        height: 256
+        x: 512
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2428,10 +2428,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 2304
-        width: 256
-        height: 256
+        x: 640
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2450,10 +2450,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2304
-        width: 256
-        height: 256
+        x: 768
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2472,10 +2472,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 2304
-        width: 256
-        height: 256
+        x: 896
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2494,10 +2494,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 2304
-        width: 256
-        height: 256
+        x: 1024
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2516,10 +2516,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 2304
-        width: 256
-        height: 256
+        x: 1152
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2538,10 +2538,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 2304
-        width: 256
-        height: 256
+        x: 1280
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2560,10 +2560,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 2304
-        width: 256
-        height: 256
+        x: 1408
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2582,10 +2582,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 2304
-        width: 256
-        height: 256
+        x: 1536
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2604,10 +2604,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nw_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 2304
-        width: 256
-        height: 256
+        x: 1664
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2627,9 +2627,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2048
-        width: 256
-        height: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2648,10 +2648,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2048
-        width: 256
-        height: 256
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2670,10 +2670,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2048
-        width: 256
-        height: 256
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2692,10 +2692,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2048
-        width: 256
-        height: 256
+        x: 384
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2714,10 +2714,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2048
-        width: 256
-        height: 256
+        x: 512
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2736,10 +2736,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 2048
-        width: 256
-        height: 256
+        x: 640
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2758,10 +2758,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2048
-        width: 256
-        height: 256
+        x: 768
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2780,10 +2780,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 2048
-        width: 256
-        height: 256
+        x: 896
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2802,10 +2802,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 2048
-        width: 256
-        height: 256
+        x: 1024
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2824,10 +2824,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 2048
-        width: 256
-        height: 256
+        x: 1152
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2846,10 +2846,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 2048
-        width: 256
-        height: 256
+        x: 1280
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2868,10 +2868,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 2048
-        width: 256
-        height: 256
+        x: 1408
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2890,10 +2890,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 2048
-        width: 256
-        height: 256
+        x: 1536
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2912,10 +2912,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nnw_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 2048
-        width: 256
-        height: 256
+        x: 1664
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2935,9 +2935,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1792
-        width: 256
-        height: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2956,10 +2956,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1792
-        width: 256
-        height: 256
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2978,10 +2978,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1792
-        width: 256
-        height: 256
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3000,10 +3000,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1792
-        width: 256
-        height: 256
+        x: 384
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3022,10 +3022,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1792
-        width: 256
-        height: 256
+        x: 512
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3044,10 +3044,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1792
-        width: 256
-        height: 256
+        x: 640
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3066,10 +3066,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1792
-        width: 256
-        height: 256
+        x: 768
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3088,10 +3088,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1792
-        width: 256
-        height: 256
+        x: 896
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3110,10 +3110,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1792
-        width: 256
-        height: 256
+        x: 1024
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3132,10 +3132,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1792
-        width: 256
-        height: 256
+        x: 1152
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3154,10 +3154,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 1792
-        width: 256
-        height: 256
+        x: 1280
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3176,10 +3176,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 1792
-        width: 256
-        height: 256
+        x: 1408
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3198,10 +3198,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1792
-        width: 256
-        height: 256
+        x: 1536
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3220,10 +3220,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_n_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 1792
-        width: 256
-        height: 256
+        x: 1664
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3243,9 +3243,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1536
-        width: 256
-        height: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3264,10 +3264,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1536
-        width: 256
-        height: 256
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3286,10 +3286,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1536
-        width: 256
-        height: 256
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3308,10 +3308,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1536
-        width: 256
-        height: 256
+        x: 384
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3330,10 +3330,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1536
-        width: 256
-        height: 256
+        x: 512
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3352,10 +3352,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1536
-        width: 256
-        height: 256
+        x: 640
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3374,10 +3374,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1536
-        width: 256
-        height: 256
+        x: 768
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3396,10 +3396,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1536
-        width: 256
-        height: 256
+        x: 896
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3418,10 +3418,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1536
-        width: 256
-        height: 256
+        x: 1024
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3440,10 +3440,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1536
-        width: 256
-        height: 256
+        x: 1152
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3462,10 +3462,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 1536
-        width: 256
-        height: 256
+        x: 1280
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3484,10 +3484,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 1536
-        width: 256
-        height: 256
+        x: 1408
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3506,10 +3506,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1536
-        width: 256
-        height: 256
+        x: 1536
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3528,10 +3528,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_nne_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 1536
-        width: 256
-        height: 256
+        x: 1664
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3551,9 +3551,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1280
-        width: 256
-        height: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3572,10 +3572,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1280
-        width: 256
-        height: 256
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3594,10 +3594,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1280
-        width: 256
-        height: 256
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3616,10 +3616,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1280
-        width: 256
-        height: 256
+        x: 384
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3638,10 +3638,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1280
-        width: 256
-        height: 256
+        x: 512
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3660,10 +3660,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1280
-        width: 256
-        height: 256
+        x: 640
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3682,10 +3682,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1280
-        width: 256
-        height: 256
+        x: 768
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3704,10 +3704,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1280
-        width: 256
-        height: 256
+        x: 896
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3726,10 +3726,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1280
-        width: 256
-        height: 256
+        x: 1024
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3748,10 +3748,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1280
-        width: 256
-        height: 256
+        x: 1152
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3770,10 +3770,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 1280
-        width: 256
-        height: 256
+        x: 1280
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3792,10 +3792,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 1280
-        width: 256
-        height: 256
+        x: 1408
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3814,10 +3814,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1280
-        width: 256
-        height: 256
+        x: 1536
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3836,10 +3836,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ne_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 1280
-        width: 256
-        height: 256
+        x: 1664
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3859,9 +3859,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
-        width: 256
-        height: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3880,10 +3880,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1024
-        width: 256
-        height: 256
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3902,10 +3902,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1024
-        width: 256
-        height: 256
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3924,10 +3924,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1024
-        width: 256
-        height: 256
+        x: 384
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3946,10 +3946,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1024
-        width: 256
-        height: 256
+        x: 512
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3968,10 +3968,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1024
-        width: 256
-        height: 256
+        x: 640
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3990,10 +3990,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1024
-        width: 256
-        height: 256
+        x: 768
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4012,10 +4012,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1024
-        width: 256
-        height: 256
+        x: 896
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4034,10 +4034,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1024
-        width: 256
-        height: 256
+        x: 1024
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4056,10 +4056,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1024
-        width: 256
-        height: 256
+        x: 1152
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4078,10 +4078,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 1024
-        width: 256
-        height: 256
+        x: 1280
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4100,10 +4100,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 1024
-        width: 256
-        height: 256
+        x: 1408
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4122,10 +4122,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1024
-        width: 256
-        height: 256
+        x: 1536
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4144,10 +4144,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ene_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 1024
-        width: 256
-        height: 256
+        x: 1664
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4167,9 +4167,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 256
-        height: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4188,10 +4188,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 768
-        width: 256
-        height: 256
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4210,10 +4210,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 768
-        width: 256
-        height: 256
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4232,10 +4232,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 256
-        height: 256
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4254,10 +4254,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 768
-        width: 256
-        height: 256
+        x: 512
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4276,10 +4276,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 768
-        width: 256
-        height: 256
+        x: 640
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4298,10 +4298,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 768
-        width: 256
-        height: 256
+        x: 768
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4320,10 +4320,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 768
-        width: 256
-        height: 256
+        x: 896
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4342,10 +4342,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 768
-        width: 256
-        height: 256
+        x: 1024
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4364,10 +4364,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 768
-        width: 256
-        height: 256
+        x: 1152
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4386,10 +4386,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 768
-        width: 256
-        height: 256
+        x: 1280
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4408,10 +4408,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 768
-        width: 256
-        height: 256
+        x: 1408
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4430,10 +4430,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 768
-        width: 256
-        height: 256
+        x: 1536
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4452,10 +4452,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_e_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 768
-        width: 256
-        height: 256
+        x: 1664
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4475,9 +4475,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
-        width: 256
-        height: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4496,10 +4496,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4518,10 +4518,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4540,10 +4540,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 512
-        width: 256
-        height: 256
+        x: 384
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4562,10 +4562,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 512
-        width: 256
-        height: 256
+        x: 512
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4584,10 +4584,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 512
-        width: 256
-        height: 256
+        x: 640
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4606,10 +4606,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 512
-        width: 256
-        height: 256
+        x: 768
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4628,10 +4628,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 512
-        width: 256
-        height: 256
+        x: 896
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4650,10 +4650,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 512
-        width: 256
-        height: 256
+        x: 1024
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4672,10 +4672,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 512
-        width: 256
-        height: 256
+        x: 1152
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4694,10 +4694,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 512
-        width: 256
-        height: 256
+        x: 1280
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4716,10 +4716,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 512
-        width: 256
-        height: 256
+        x: 1408
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4738,10 +4738,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 512
-        width: 256
-        height: 256
+        x: 1536
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4760,10 +4760,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_ese_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 512
-        width: 256
-        height: 256
+        x: 1664
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4783,9 +4783,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 256
-        height: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4804,10 +4804,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4826,10 +4826,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 256
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4848,10 +4848,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 256
-        width: 256
-        height: 256
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4870,10 +4870,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 256
-        width: 256
-        height: 256
+        x: 512
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4892,10 +4892,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 256
-        width: 256
-        height: 256
+        x: 640
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4914,10 +4914,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 256
-        width: 256
-        height: 256
+        x: 768
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4936,10 +4936,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 256
-        width: 256
-        height: 256
+        x: 896
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4958,10 +4958,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_08
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 256
-        width: 256
-        height: 256
+        x: 1024
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4980,10 +4980,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_09
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 256
-        width: 256
-        height: 256
+        x: 1152
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5002,10 +5002,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 256
-        width: 256
-        height: 256
+        x: 1280
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5024,10 +5024,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_11
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 256
-        width: 256
-        height: 256
+        x: 1408
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5046,10 +5046,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_12
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 256
-        width: 256
-        height: 256
+        x: 1536
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5068,10 +5068,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_se_13
       rect:
         serializedVersion: 2
-        x: 3328
-        y: 256
-        width: 256
-        height: 256
+        x: 1664
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5092,8 +5092,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5112,10 +5112,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_01
       rect:
         serializedVersion: 2
-        x: 256
+        x: 128
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5134,10 +5134,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_02
       rect:
         serializedVersion: 2
-        x: 512
+        x: 256
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5156,10 +5156,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_03
       rect:
         serializedVersion: 2
-        x: 768
+        x: 384
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5178,10 +5178,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_04
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 512
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5200,10 +5200,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_05
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 640
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5222,10 +5222,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_06
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 768
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5244,10 +5244,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_07
       rect:
         serializedVersion: 2
-        x: 1792
+        x: 896
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5266,10 +5266,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_08
       rect:
         serializedVersion: 2
-        x: 2048
+        x: 1024
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5288,10 +5288,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_09
       rect:
         serializedVersion: 2
-        x: 2304
+        x: 1152
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5310,10 +5310,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_10
       rect:
         serializedVersion: 2
-        x: 2560
+        x: 1280
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5332,10 +5332,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_11
       rect:
         serializedVersion: 2
-        x: 2816
+        x: 1408
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5354,10 +5354,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_12
       rect:
         serializedVersion: 2
-        x: 3072
+        x: 1536
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5376,10 +5376,10 @@ TextureImporter:
       name: wrathborn_weapon_bearded_axe_1h_ground_breaker_sse_13
       rect:
         serializedVersion: 2
-        x: 3328
+        x: 1664
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}

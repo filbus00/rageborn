@@ -10,7 +10,8 @@ namespace ARPG.Editor
     /// </summary>
     public static class SpriteBakeMath
     {
-        /// <summary>Final pixels per metre across the screen: one world unit is 128 px, and a tile's 1 m diagonal is 128 px.</summary>
+        /// <summary>Final pixels per metre across the screen at full resolution: one world unit is 128 px, and a tile's 1 m
+        /// diagonal is 128 px. A job can bake at a lower resolution (<see cref="SpriteBakeJob.pixelsPerUnit"/>).</summary>
         public const float PixelsPerMeter = 128f;
 
         /// <summary>The camera looks down 30 degrees, so a ground length along the view shows at half (the 2:1 tile).</summary>
@@ -44,12 +45,12 @@ namespace ARPG.Editor
 
         /// <summary>The orthographic size (half the view's height in metres) that makes a square cell of this many final
         /// pixels.</summary>
-        public static float OrthographicSize(int cellSize) => cellSize * 0.5f / PixelsPerMeter;
+        public static float OrthographicSize(int cellSize, float pixelsPerMeter = PixelsPerMeter) => cellSize * 0.5f / pixelsPerMeter;
 
         /// <summary>How far the view's centre sits from the pivot, in screen metres (right and up), so the model's feet at
         /// the origin land on the pivot pixel, measured from the cell's bottom left.</summary>
-        public static Vector2 CenterFromPivot(int cellSize, Vector2 pivot) =>
-            new Vector2((cellSize * 0.5f - pivot.x) / PixelsPerMeter, (cellSize * 0.5f - pivot.y) / PixelsPerMeter);
+        public static Vector2 CenterFromPivot(int cellSize, Vector2 pivot, float pixelsPerMeter = PixelsPerMeter) =>
+            new Vector2((cellSize * 0.5f - pivot.x) / pixelsPerMeter, (cellSize * 0.5f - pivot.y) / pixelsPerMeter);
 
         /// <summary>
         /// How tall a box of this height and depth (metres, depth along the view) shows on screen: the camera's tilt
@@ -61,11 +62,11 @@ namespace ARPG.Editor
 
         /// <summary>The uniform scale that makes a model showing this many metres high on screen show this many pixels
         /// high. Zero or less keeps the model's own size.</summary>
-        public static float ModelScale(float screenHeightMeters, float targetHeightPixels)
+        public static float ModelScale(float screenHeightMeters, float targetHeightPixels, float pixelsPerMeter = PixelsPerMeter)
         {
             if (targetHeightPixels <= 0f || screenHeightMeters <= 0f)
                 return 1f;
-            return targetHeightPixels / (screenHeightMeters * PixelsPerMeter);
+            return targetHeightPixels / (screenHeightMeters * pixelsPerMeter);
         }
 
         /// <summary>
@@ -116,6 +117,25 @@ namespace ARPG.Editor
             var start = Mathf.Max(0f, first * seconds - pad);
             var end = keepEnd ? length : Mathf.Min(length, (last + 1) * seconds + pad);
             return new Vector2(start, end);
+        }
+
+        /// <summary>
+        /// Where the legs of a moving action are in their loop at each frame: the action's frames are played in the game
+        /// over <paramref name="playbackSeconds"/>, and the legs run through the loop at <paramref name="legRate"/> times
+        /// its recorded pace (the character's speed over the loop's recorded ground speed), so the feet keep pace with the
+        /// ground while the arms swing. Loop times, in 0 to <paramref name="loopLength"/>.
+        /// </summary>
+        public static float[] LegTimes(int frames, bool includeEnd, float playbackSeconds, float legRate, float loopLength)
+        {
+            var times = new float[frames];
+            if (loopLength <= 0f)
+                return times;
+            for (var i = 0; i < frames; i++)
+            {
+                var progress = frames == 1 ? 0f : includeEnd ? i / (float)(frames - 1) : i / (float)frames;
+                times[i] = Mathf.Repeat(progress * playbackSeconds * legRate, loopLength);
+            }
+            return times;
         }
 
         /// <summary>Whether a sheet of a row per direction fits the texture limit, else one file per direction.</summary>

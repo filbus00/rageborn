@@ -6,8 +6,9 @@ namespace ARPG
     /// Shows the player as its baked, layered sprites (<see cref="LayeredCharacterSprite"/>) wearing what is equipped
     /// (<see cref="AppearanceRules"/>), once the character's sheets exist; until then the placeholder body stays. Plays
     /// idle and the locomotion from the movement (<see cref="LocomotionRules"/>: the run at the actual speed, a turn clip
-    /// for a one-row change of direction, a backward run facing the target when retreating from a fight), and standing
-    /// still the basic attack fitted to the attack rate, a skill's animation (Hew, Hurl Axe, Ground Breaker), and hit;
+    /// for a one-row change of direction, a backward run facing the target when retreating from a fight), the basic
+    /// attack fitted to the attack rate and a skill's animation (Hew, Hurl Axe, Ground Breaker), standing or, while the
+    /// character moves, their <c>_move</c> variants with running legs, and hit when standing;
     /// Bull Rush plays for as long as the dash lasts, and death is held. An animation the sheets lack falls back to the
     /// attack, then to idle. Added to the player by <see cref="PlayerController"/>.
     /// </summary>
@@ -31,6 +32,7 @@ namespace ARPG
         PlayerHealth health;
         LayeredCharacterSprite sprite;
         bool skillPlaying;
+        string action;
         SpriteRenderer placeholder;
         GameSession session;
         bool showing;
@@ -140,23 +142,23 @@ namespace ARPG
             }
         }
 
-        // While the character moves, attacks and skills do not play on its body: a full-body swing over a body sliding
-        // along the ground is what made it look like running on ice (the user, 2026-09-27). The run keeps going and the
-        // slash effect shows the hit; standing still, the swing plays. Bull Rush is its own movement and always plays.
+        // While the character moves, attacks and skills play their _move variants, whose legs run (the owner, 2026-09-27:
+        // "the player will be moving most of the time. The various animations need to play even when the character is
+        // moving"). A full-body swing over a body sliding along the ground had looked like running on ice, so without a
+        // _move sheet nothing plays while moving and the slash effect shows the hit. Bull Rush always plays.
         bool Moving => player != null && player.GroundVelocity.magnitude > RunThreshold;
 
         void OnBasicAttack(Vector2 direction, float interval)
         {
             lastCombatTime = Time.time;
             aim = direction;
-            if (!showing || dead || Moving)
+            if (!showing || dead)
                 return;
             // A skill plays out: the basic attack runs on its own timer and cut Hew off 0.2 s into its swing.
             if (inAction && skillPlaying && !sprite.Finished)
                 return;
-            var length = sprite.LengthOf("attack");
-            PlayAction("attack", length > 0f ? Mathf.Min(length, interval) : 0f);
-            skillPlaying = false;
+            if (PlayAction("attack", interval))
+                skillPlaying = false;
         }
 
         void OnSkillCast(SkillDefinition skill, Vector2 direction)
@@ -169,6 +171,7 @@ namespace ARPG
             {
                 dashing = true;
                 turning = false;
+                action = null;
                 if (sprite.Has("bull_rush"))
                 {
                     inAction = true;
@@ -176,13 +179,10 @@ namespace ARPG
                 }
                 return;
             }
-            if (Moving)
-                return;
             var skillAnimation = skill.Kind == SkillKind.Sweep ? "hew" : skill.Kind == SkillKind.Projectile ? "hurl_axe" : "ground_breaker";
             // Capped, so a skill's animation never holds the character longer than the moment it is for.
-            var length = sprite.LengthOf(skillAnimation);
-            PlayAction(skillAnimation, length > 0f ? Mathf.Min(length, MaxSkillSeconds) : 0f);
-            skillPlaying = true;
+            if (PlayAction(skillAnimation, MaxSkillSeconds))
+                skillPlaying = true;
         }
 
         void OnHit(float damage)
@@ -192,6 +192,7 @@ namespace ARPG
                 return;
             inAction = true;
             skillPlaying = false;
+            action = null;
             sprite.Play("hit", false, HitSeconds);
         }
 
@@ -202,16 +203,25 @@ namespace ARPG
                 sprite.Play("death", false);
         }
 
-        void PlayAction(string animation, float seconds)
+        // Plays an action, or its moving variant while the character moves, for its length up to maxSeconds; an action
+        // the sheets lack falls back to the attack. False when nothing could play (moving, with no moving sheet).
+        bool PlayAction(string animation, float maxSeconds)
         {
-            var name = sprite.Has(animation) ? animation : sprite.Has("attack") ? "attack" : null;
-            if (name == null)
-                return;
+            var moving = Moving;
+            var baseName = sprite.Has(animation) ? animation : sprite.Has("attack") ? "attack" : null;
+            if (baseName == null)
+                return false;
+            var name = LocomotionRules.ActionSheet(baseName, moving);
+            if (!sprite.Has(name))
+                return false;
+            var length = sprite.LengthOf(name);
+            action = baseName;
             inAction = true;
             turning = false;
             sprite.Rate = 1f;
-            sprite.Play(name, false, seconds);
-            sprite.Face(aim);
+            sprite.Play(name, false, length > 0f ? Mathf.Min(length, maxSeconds) : 0f);
+            sprite.Face(LocomotionRules.ActionFacing(aim, player.GroundVelocity, moving));
+            return true;
         }
 
         void Update()
@@ -236,10 +246,30 @@ namespace ARPG
 
             if (inAction)
             {
-                // Starting to move cuts a swing short rather than sliding it across the floor.
-                if (!sprite.Finished && speed <= RunThreshold)
-                    return;
+                if (!sprite.Finished)
+                {
+                    // Setting off or stopping mid-swing goes on in the other variant at the same point, so the legs follow
+                    // the ground. Without a moving sheet, setting off cuts the swing rather than sliding it along the floor.
+                    // A hit reaction (no action) only plays standing.
+                    var moving = speed > RunThreshold;
+                    var name = action != null ? LocomotionRules.ActionSheet(action, moving) : moving ? null : sprite.Animation;
+                    if (name != null && name != sprite.Animation)
+                    {
+                        if (sprite.Has(name))
+                            sprite.Switch(name);
+                        else if (moving)
+                            name = null;
+                    }
+                    if (name != null)
+                    {
+                        if (moving)
+                            sprite.FaceRow(LocomotionRules.ChooseRow(sprite.Row,
+                                LocomotionRules.ActionFacing(aim, velocity, true), sprite.DirectionCount));
+                        return;
+                    }
+                }
                 inAction = false;
+                action = null;
             }
 
             if (speed <= RunThreshold)

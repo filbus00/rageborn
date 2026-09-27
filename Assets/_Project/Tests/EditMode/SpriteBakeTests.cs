@@ -39,6 +39,9 @@ namespace ARPG.Tests
             var scale = SpriteBakeMath.ModelScale(screen, 170f);
             Assert.AreEqual(170f, screen * scale * SpriteBakeMath.PixelsPerMeter, 1e-3f);
             Assert.AreEqual(1f, SpriteBakeMath.ModelScale(screen, 0f), "0 keeps the model's size");
+            var half = SpriteBakeMath.ModelScale(screen, 85f, 64f);
+            Assert.AreEqual(scale, half, 1e-5f, "half the pixels at half the pixels per unit is the same size in the game");
+            Assert.AreEqual(1f, SpriteBakeMath.OrthographicSize(128, 64f), 1e-5f, "a 128 cell at 64 per unit frames the same metre");
         }
 
         [Test]

@@ -432,7 +432,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -513,9 +513,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3840
-        width: 256
-        height: 256
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -534,10 +534,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_s_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 3840
-        width: 256
-        height: 256
+        x: 128
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -556,10 +556,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_s_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 3840
-        width: 256
-        height: 256
+        x: 256
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -578,10 +578,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_s_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 3840
-        width: 256
-        height: 256
+        x: 384
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -600,10 +600,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_s_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3840
-        width: 256
-        height: 256
+        x: 512
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -622,10 +622,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_s_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 3840
-        width: 256
-        height: 256
+        x: 640
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -644,10 +644,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_s_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 3840
-        width: 256
-        height: 256
+        x: 768
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -666,10 +666,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_s_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 3840
-        width: 256
-        height: 256
+        x: 896
+        y: 1920
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -689,9 +689,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3584
-        width: 256
-        height: 256
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -710,10 +710,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ssw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 3584
-        width: 256
-        height: 256
+        x: 128
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -732,10 +732,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ssw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 3584
-        width: 256
-        height: 256
+        x: 256
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -754,10 +754,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ssw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 3584
-        width: 256
-        height: 256
+        x: 384
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -776,10 +776,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ssw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3584
-        width: 256
-        height: 256
+        x: 512
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -798,10 +798,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ssw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 3584
-        width: 256
-        height: 256
+        x: 640
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -820,10 +820,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ssw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 3584
-        width: 256
-        height: 256
+        x: 768
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -842,10 +842,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ssw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 3584
-        width: 256
-        height: 256
+        x: 896
+        y: 1792
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -865,9 +865,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3328
-        width: 256
-        height: 256
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -886,10 +886,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 3328
-        width: 256
-        height: 256
+        x: 128
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -908,10 +908,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 3328
-        width: 256
-        height: 256
+        x: 256
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -930,10 +930,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 3328
-        width: 256
-        height: 256
+        x: 384
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -952,10 +952,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3328
-        width: 256
-        height: 256
+        x: 512
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -974,10 +974,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 3328
-        width: 256
-        height: 256
+        x: 640
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -996,10 +996,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 3328
-        width: 256
-        height: 256
+        x: 768
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1018,10 +1018,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 3328
-        width: 256
-        height: 256
+        x: 896
+        y: 1664
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1041,9 +1041,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3072
-        width: 256
-        height: 256
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1062,10 +1062,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wsw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 3072
-        width: 256
-        height: 256
+        x: 128
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1084,10 +1084,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wsw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 3072
-        width: 256
-        height: 256
+        x: 256
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1106,10 +1106,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wsw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 3072
-        width: 256
-        height: 256
+        x: 384
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1128,10 +1128,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wsw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3072
-        width: 256
-        height: 256
+        x: 512
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1150,10 +1150,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wsw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 3072
-        width: 256
-        height: 256
+        x: 640
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1172,10 +1172,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wsw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 3072
-        width: 256
-        height: 256
+        x: 768
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1194,10 +1194,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wsw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 3072
-        width: 256
-        height: 256
+        x: 896
+        y: 1536
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1217,9 +1217,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2816
-        width: 256
-        height: 256
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1238,10 +1238,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_w_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2816
-        width: 256
-        height: 256
+        x: 128
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1260,10 +1260,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_w_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2816
-        width: 256
-        height: 256
+        x: 256
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1282,10 +1282,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_w_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2816
-        width: 256
-        height: 256
+        x: 384
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1304,10 +1304,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_w_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2816
-        width: 256
-        height: 256
+        x: 512
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1326,10 +1326,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_w_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 2816
-        width: 256
-        height: 256
+        x: 640
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1348,10 +1348,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_w_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2816
-        width: 256
-        height: 256
+        x: 768
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1370,10 +1370,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_w_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 2816
-        width: 256
-        height: 256
+        x: 896
+        y: 1408
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1393,9 +1393,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2560
-        width: 256
-        height: 256
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1414,10 +1414,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wnw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2560
-        width: 256
-        height: 256
+        x: 128
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1436,10 +1436,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wnw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2560
-        width: 256
-        height: 256
+        x: 256
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1458,10 +1458,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wnw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2560
-        width: 256
-        height: 256
+        x: 384
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1480,10 +1480,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wnw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2560
-        width: 256
-        height: 256
+        x: 512
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1502,10 +1502,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wnw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 2560
-        width: 256
-        height: 256
+        x: 640
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1524,10 +1524,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wnw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2560
-        width: 256
-        height: 256
+        x: 768
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1546,10 +1546,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_wnw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 2560
-        width: 256
-        height: 256
+        x: 896
+        y: 1280
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1569,9 +1569,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2304
-        width: 256
-        height: 256
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1590,10 +1590,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2304
-        width: 256
-        height: 256
+        x: 128
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1612,10 +1612,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2304
-        width: 256
-        height: 256
+        x: 256
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1634,10 +1634,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2304
-        width: 256
-        height: 256
+        x: 384
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1656,10 +1656,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2304
-        width: 256
-        height: 256
+        x: 512
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1678,10 +1678,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 2304
-        width: 256
-        height: 256
+        x: 640
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1700,10 +1700,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2304
-        width: 256
-        height: 256
+        x: 768
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1722,10 +1722,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 2304
-        width: 256
-        height: 256
+        x: 896
+        y: 1152
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1745,9 +1745,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2048
-        width: 256
-        height: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1766,10 +1766,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nnw_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2048
-        width: 256
-        height: 256
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1788,10 +1788,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nnw_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2048
-        width: 256
-        height: 256
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1810,10 +1810,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nnw_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 2048
-        width: 256
-        height: 256
+        x: 384
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1832,10 +1832,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nnw_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2048
-        width: 256
-        height: 256
+        x: 512
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1854,10 +1854,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nnw_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 2048
-        width: 256
-        height: 256
+        x: 640
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1876,10 +1876,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nnw_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2048
-        width: 256
-        height: 256
+        x: 768
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1898,10 +1898,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nnw_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 2048
-        width: 256
-        height: 256
+        x: 896
+        y: 1024
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1921,9 +1921,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1792
-        width: 256
-        height: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1942,10 +1942,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_n_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1792
-        width: 256
-        height: 256
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1964,10 +1964,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_n_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1792
-        width: 256
-        height: 256
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1986,10 +1986,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_n_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1792
-        width: 256
-        height: 256
+        x: 384
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2008,10 +2008,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_n_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1792
-        width: 256
-        height: 256
+        x: 512
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2030,10 +2030,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_n_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1792
-        width: 256
-        height: 256
+        x: 640
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2052,10 +2052,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_n_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1792
-        width: 256
-        height: 256
+        x: 768
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2074,10 +2074,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_n_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1792
-        width: 256
-        height: 256
+        x: 896
+        y: 896
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2097,9 +2097,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1536
-        width: 256
-        height: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2118,10 +2118,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nne_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1536
-        width: 256
-        height: 256
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2140,10 +2140,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nne_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1536
-        width: 256
-        height: 256
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2162,10 +2162,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nne_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1536
-        width: 256
-        height: 256
+        x: 384
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2184,10 +2184,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nne_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1536
-        width: 256
-        height: 256
+        x: 512
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2206,10 +2206,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nne_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1536
-        width: 256
-        height: 256
+        x: 640
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2228,10 +2228,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nne_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1536
-        width: 256
-        height: 256
+        x: 768
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2250,10 +2250,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_nne_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1536
-        width: 256
-        height: 256
+        x: 896
+        y: 768
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2273,9 +2273,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1280
-        width: 256
-        height: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2294,10 +2294,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ne_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1280
-        width: 256
-        height: 256
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2316,10 +2316,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ne_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1280
-        width: 256
-        height: 256
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2338,10 +2338,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ne_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1280
-        width: 256
-        height: 256
+        x: 384
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2360,10 +2360,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ne_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1280
-        width: 256
-        height: 256
+        x: 512
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2382,10 +2382,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ne_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1280
-        width: 256
-        height: 256
+        x: 640
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2404,10 +2404,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ne_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1280
-        width: 256
-        height: 256
+        x: 768
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2426,10 +2426,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ne_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1280
-        width: 256
-        height: 256
+        x: 896
+        y: 640
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2449,9 +2449,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
-        width: 256
-        height: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2470,10 +2470,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ene_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1024
-        width: 256
-        height: 256
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2492,10 +2492,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ene_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1024
-        width: 256
-        height: 256
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2514,10 +2514,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ene_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1024
-        width: 256
-        height: 256
+        x: 384
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2536,10 +2536,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ene_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1024
-        width: 256
-        height: 256
+        x: 512
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2558,10 +2558,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ene_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1024
-        width: 256
-        height: 256
+        x: 640
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2580,10 +2580,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ene_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1024
-        width: 256
-        height: 256
+        x: 768
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2602,10 +2602,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ene_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1024
-        width: 256
-        height: 256
+        x: 896
+        y: 512
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2625,9 +2625,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 256
-        height: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2646,10 +2646,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_e_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 768
-        width: 256
-        height: 256
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2668,10 +2668,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_e_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 768
-        width: 256
-        height: 256
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2690,10 +2690,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_e_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 256
-        height: 256
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2712,10 +2712,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_e_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 768
-        width: 256
-        height: 256
+        x: 512
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2734,10 +2734,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_e_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 768
-        width: 256
-        height: 256
+        x: 640
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2756,10 +2756,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_e_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 768
-        width: 256
-        height: 256
+        x: 768
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2778,10 +2778,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_e_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 768
-        width: 256
-        height: 256
+        x: 896
+        y: 384
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2801,9 +2801,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
-        width: 256
-        height: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2822,10 +2822,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ese_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2844,10 +2844,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ese_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2866,10 +2866,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ese_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 512
-        width: 256
-        height: 256
+        x: 384
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2888,10 +2888,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ese_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 512
-        width: 256
-        height: 256
+        x: 512
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2910,10 +2910,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ese_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 512
-        width: 256
-        height: 256
+        x: 640
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2932,10 +2932,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ese_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 512
-        width: 256
-        height: 256
+        x: 768
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2954,10 +2954,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_ese_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 512
-        width: 256
-        height: 256
+        x: 896
+        y: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2977,9 +2977,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 256
-        height: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2998,10 +2998,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_se_01
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3020,10 +3020,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_se_02
       rect:
         serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 256
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3042,10 +3042,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_se_03
       rect:
         serializedVersion: 2
-        x: 768
-        y: 256
-        width: 256
-        height: 256
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3064,10 +3064,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_se_04
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 256
-        width: 256
-        height: 256
+        x: 512
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3086,10 +3086,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_se_05
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 256
-        width: 256
-        height: 256
+        x: 640
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3108,10 +3108,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_se_06
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 256
-        width: 256
-        height: 256
+        x: 768
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3130,10 +3130,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_se_07
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 256
-        width: 256
-        height: 256
+        x: 896
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3154,8 +3154,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3174,10 +3174,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sse_01
       rect:
         serializedVersion: 2
-        x: 256
+        x: 128
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3196,10 +3196,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sse_02
       rect:
         serializedVersion: 2
-        x: 512
+        x: 256
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3218,10 +3218,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sse_03
       rect:
         serializedVersion: 2
-        x: 768
+        x: 384
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3240,10 +3240,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sse_04
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 512
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3262,10 +3262,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sse_05
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 640
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3284,10 +3284,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sse_06
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 768
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3306,10 +3306,10 @@ TextureImporter:
       name: wrathborn_body_leather_1h_bull_rush_sse_07
       rect:
         serializedVersion: 2
-        x: 1792
+        x: 896
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 9
       pivot: {x: 0.5, y: 0.15625}
       border: {x: 0, y: 0, z: 0, w: 0}

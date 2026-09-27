@@ -90,6 +90,14 @@ namespace ARPG.Editor
                         var times = SpriteBakeMath.SampleTimes(windowEnd - windowStart, clip.frames, clip.loop, job.framesPerSecond);
                         for (var t = 0; t < times.Length; t++)
                             times[t] += windowStart;
+                        float[] legTimes = null;
+                        if (clip.legs != null)
+                        {
+                            // The legs run at the game's pace: the loop's recorded ground speed is measured on the body.
+                            var recorded = MeasureGroundSpeed(stage.Bodies[0], clip.legs);
+                            var legRate = recorded > 0.01f ? clip.legsGroundSpeed / recorded : 1f;
+                            legTimes = SpriteBakeMath.LegTimes(times.Length, !clip.loop, clip.playbackSeconds, legRate, clip.legs.length);
+                        }
                         if (clip.loop)
                             speeds[$"{(string.IsNullOrEmpty(gripSet.grip) ? "" : gripSet.grip + "_")}{clip.name}"] = MeasureGroundSpeed(stage.Bodies[0], clip.clip);
 
@@ -110,13 +118,24 @@ namespace ARPG.Editor
                                     // bind pose (the Wrathborn's first bake). The root is put back after, so a clip that was
                                     // not downloaded in place still stays on the spot.
                                     body.RestPose.Restore();
-                                    clip.clip.SampleAnimation(body.Root, times[frame]);
+                                    if (legTimes != null && body.LowerBody != null)
+                                    {
+                                        // A moving action: the hips and legs of the run under the clip's spine, arms and head,
+                                        // as an avatar mask would blend them, so it swings while it runs.
+                                        clip.legs.SampleAnimation(body.Root, legTimes[frame]);
+                                        body.CaptureLowerBody();
+                                        body.RestPose.Restore();
+                                        clip.clip.SampleAnimation(body.Root, times[frame]);
+                                        body.RestoreLowerBody();
+                                    }
+                                    else
+                                        clip.clip.SampleAnimation(body.Root, times[frame]);
                                     body.Root.transform.localPosition = body.RootPosition;
                                     body.Root.transform.localRotation = Quaternion.identity;
                                     // A one-shot keeps its hips over the ground spot they start on. On a humanoid the
                                     // clip's travel rides on the hips, not the root: Ground Breaker leapt out of the top
                                     // of its cells and the death slid out of the side. Loops are recorded in place.
-                                    if (!clip.loop && body.Hips != null)
+                                    if (!clip.loop && body.Hips != null && legTimes == null)
                                     {
                                         var hips = body.Root.transform.parent.InverseTransformPoint(body.Hips.position);
                                         if (frame == 0)
@@ -198,6 +217,27 @@ namespace ARPG.Editor
             public Renderer[] Renderers;
             public Material[][] Materials;
             public SkinProxy[] Skins;
+            // The hips and legs, for a moving action's blend; null without a humanoid rig.
+            public Transform[] LowerBody;
+            Vector3[] lowerPositions;
+            Quaternion[] lowerRotations;
+
+            public void CaptureLowerBody()
+            {
+                lowerPositions ??= new Vector3[LowerBody.Length];
+                lowerRotations ??= new Quaternion[LowerBody.Length];
+                for (var i = 0; i < LowerBody.Length; i++)
+                {
+                    lowerPositions[i] = LowerBody[i].localPosition;
+                    lowerRotations[i] = LowerBody[i].localRotation;
+                }
+            }
+
+            public void RestoreLowerBody()
+            {
+                for (var i = 0; i < LowerBody.Length; i++)
+                    LowerBody[i].SetLocalPositionAndRotation(lowerPositions[i], lowerRotations[i]);
+            }
 
             /// <summary>Brings every skinned mesh's stand-in to the current pose (see <see cref="SkinProxy"/>).</summary>
             public void Skin()
@@ -355,7 +395,7 @@ namespace ARPG.Editor
                     // Measured in the first body's rest pose (the A-pose of a rig-ready model), facing the camera (S), as
                     // most frames show it; the measure is the whole box, so a little generous.
                     var rest = MeasureBounds(model);
-                    scale = SpriteBakeMath.ModelScale(SpriteBakeMath.ScreenHeight(rest.size.y, rest.size.z), job.targetHeightPixels);
+                    scale = SpriteBakeMath.ModelScale(SpriteBakeMath.ScreenHeight(rest.size.y, rest.size.z), job.targetHeightPixels, job.pixelsPerUnit);
                     model.transform.localScale *= scale;
                     rest = MeasureBounds(model);
                     offset = new Vector3(-rest.center.x, -rest.min.y, -rest.center.z);
@@ -374,6 +414,14 @@ namespace ARPG.Editor
                     Root = model,
                     Animator = animator,
                     Hips = animator.isHuman ? animator.GetBoneTransform(HumanBodyBones.Hips) : null,
+                    LowerBody = animator.isHuman
+                        ? new[]
+                        {
+                            HumanBodyBones.Hips, HumanBodyBones.LeftUpperLeg, HumanBodyBones.LeftLowerLeg, HumanBodyBones.LeftFoot,
+                            HumanBodyBones.LeftToes, HumanBodyBones.RightUpperLeg, HumanBodyBones.RightLowerLeg,
+                            HumanBodyBones.RightFoot, HumanBodyBones.RightToes,
+                        }.Select(animator.GetBoneTransform).Where(t => t != null).ToArray()
+                        : null,
                     RootPosition = model.transform.localPosition,
                     RestPose = restPose,
                     Renderers = renderers,
@@ -407,7 +455,7 @@ namespace ARPG.Editor
             var cameraObject = new GameObject("Bake Camera");
             SceneManager.MoveGameObjectToScene(cameraObject, scene);
             cameraObject.transform.rotation = Quaternion.Euler(SpriteBakeMath.ElevationDegrees, 0f, 0f);
-            var center = SpriteBakeMath.CenterFromPivot(job.cellSize, job.pivot);
+            var center = SpriteBakeMath.CenterFromPivot(job.cellSize, job.pivot, job.pixelsPerUnit);
             var cameraTransform = cameraObject.transform;
             cameraTransform.position = cameraTransform.right * center.x + cameraTransform.up * center.y - cameraTransform.forward * 50f;
 
@@ -415,7 +463,7 @@ namespace ARPG.Editor
             camera.enabled = false;
             camera.scene = scene;
             camera.orthographic = true;
-            camera.orthographicSize = SpriteBakeMath.OrthographicSize(job.cellSize);
+            camera.orthographicSize = SpriteBakeMath.OrthographicSize(job.cellSize, job.pixelsPerUnit);
             camera.nearClipPlane = 0.1f;
             camera.farClipPlane = 100f;
             camera.clearFlags = CameraClearFlags.SolidColor;
@@ -649,14 +697,14 @@ namespace ARPG.Editor
             }
         }
 
-        // Sliced sprites with the feet pivot, 128 pixels per unit. A rebake keeps each sprite's id by name, so animations
+        // Sliced sprites with the feet pivot, at the job's pixels per unit. A rebake keeps each sprite's id by name, so animations
         // that already use the sprites keep working.
         static void ConfigureImporter(SpriteBakeJob job, string path, List<(string name, Rect rect)> rects)
         {
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Multiple;
-            importer.spritePixelsPerUnit = SpriteBakeMath.PixelsPerMeter;
+            importer.spritePixelsPerUnit = job.pixelsPerUnit;
             importer.alphaIsTransparency = true;
             importer.mipmapEnabled = false;
             importer.filterMode = FilterMode.Bilinear;

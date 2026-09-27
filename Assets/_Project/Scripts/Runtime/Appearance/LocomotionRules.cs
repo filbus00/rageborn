@@ -59,6 +59,21 @@ namespace ARPG
             return degrees > 0f ? 1 : -1;
         }
 
+        /// <summary>The suffix of an action's moving variant: the run's hips and legs under the action's torso, baked by
+        /// the sprite bake, so the character swings while it runs.</summary>
+        public const string MovingSuffix = "_move";
+
+        /// <summary>The sheet an action plays: its moving variant while the character moves, else the action itself.</summary>
+        public static string ActionSheet(string action, bool moving) => moving ? action + MovingSuffix : action;
+
+        /// <summary>
+        /// Which way the character faces during an action: toward what it strikes, unless it is running away from it, when
+        /// a swing toward the target would show the running legs going backward; then it faces the way it runs (the slash
+        /// still shows where the blow lands).
+        /// </summary>
+        public static Vector2 ActionFacing(Vector2 aim, Vector2 velocity, bool moving) =>
+            moving && IsBackpedal(aim, velocity) ? velocity : aim;
+
         public static bool IsBackpedal(Vector2 aim, Vector2 velocity) =>
             aim.sqrMagnitude > 1e-6f && velocity.sqrMagnitude > 1e-6f && Vector2.Angle(aim, velocity) > BackpedalDegrees;
 

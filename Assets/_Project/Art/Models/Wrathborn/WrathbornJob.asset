@@ -41,6 +41,8 @@ MonoBehaviour:
       start: 0
       end: 9.933333
       riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
     - name: run
       clip: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
       frames: 10
@@ -49,6 +51,8 @@ MonoBehaviour:
       start: 0
       end: 0.70000005
       riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
     - name: run_back
       clip: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
       frames: 10
@@ -57,6 +61,8 @@ MonoBehaviour:
       start: 0
       end: 0.6333334
       riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
     - name: run_turn_right
       clip: {fileID: -203655887218126122, guid: b4c35843f789943c4987f97eebc7f4e2, type: 3}
       frames: 10
@@ -65,6 +71,8 @@ MonoBehaviour:
       start: 0
       end: 0.7666667
       riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
     - name: run_turn_left
       clip: {fileID: 4061839508520268033, guid: b4c35843f789943c4987f97eebc7f4e2, type: 3}
       frames: 10
@@ -73,6 +81,8 @@ MonoBehaviour:
       start: 0
       end: 0.7666667
       riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
     - name: attack
       clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
       frames: 10
@@ -81,6 +91,8 @@ MonoBehaviour:
       start: 0.4
       end: 2.2
       riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
     - name: hew
       clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
       frames: 12
@@ -89,6 +101,8 @@ MonoBehaviour:
       start: 1.8000001
       end: 4
       riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
     - name: hurl_axe
       clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
       frames: 10
@@ -97,6 +111,8 @@ MonoBehaviour:
       start: 0
       end: 1.8000001
       riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
     - name: bull_rush
       clip: {fileID: -203655887218126122, guid: 254d5d3580d534b53b50c418b3e69a26, type: 3}
       frames: 8
@@ -105,6 +121,8 @@ MonoBehaviour:
       start: 0
       end: 0.5
       riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
     - name: ground_breaker
       clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
       frames: 14
@@ -113,6 +131,8 @@ MonoBehaviour:
       start: 0.2
       end: 1.8000001
       riseScale: 0.4
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
     - name: hit
       clip: {fileID: -203655887218126122, guid: 522218c870a974560854d26f6035207b, type: 3}
       frames: 4
@@ -121,6 +141,8 @@ MonoBehaviour:
       start: 0
       end: 0.7666667
       riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
     - name: death
       clip: {fileID: -203655887218126122, guid: fe5840418d08e441e88dd3b835e6f644, type: 3}
       frames: 16
@@ -129,9 +151,52 @@ MonoBehaviour:
       start: 1
       end: 2.4
       riseScale: 1
-  cellSize: 256
-  pivot: {x: 128, y: 40}
-  targetHeightPixels: 185
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+    - name: attack_move
+      clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0.4
+      end: 2.2
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
+      legsGroundSpeed: 4.4
+    - name: hew_move
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
+      legsGroundSpeed: 4.4
+    - name: hurl_axe_move
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
+      legsGroundSpeed: 4.4
+    - name: ground_breaker_move
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0.2
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
+      legsGroundSpeed: 4.4
+  pixelsPerUnit: 64
+  cellSize: 128
+  pivot: {x: 64, y: 20}
+  targetHeightPixels: 92.5
   supersample: 4
   framesPerSecond: 12
   directions: 16

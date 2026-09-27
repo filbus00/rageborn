@@ -115,6 +115,27 @@ namespace ARPG.Tests
             Assert.AreEqual(new Vector2(0f, 5f), SpriteBakeMath.ActiveWindow(new float[50], 10f, 5f, 0.2f, false), "no motion keeps it all");
         }
 
+        [Test]
+        public void Actions_PlayTheirMovingVariant_AndFaceTheRunWhenFleeing()
+        {
+            Assert.AreEqual("hew_move", LocomotionRules.ActionSheet("hew", true));
+            Assert.AreEqual("hew", LocomotionRules.ActionSheet("hew", false));
+            Assert.AreEqual(Vector2.right, LocomotionRules.ActionFacing(Vector2.right, Vector2.up, true), "sideways: faces the target");
+            Assert.AreEqual(Vector2.down, LocomotionRules.ActionFacing(Vector2.up, Vector2.down, true), "fleeing: faces the run");
+            Assert.AreEqual(Vector2.up, LocomotionRules.ActionFacing(Vector2.up, Vector2.down, false), "standing: faces the target");
+        }
+
+        [Test]
+        public void MovingActionLegs_KeepPaceWithTheGround()
+        {
+            // A 0.7 s run loop at 1.5 times its pace under an action played over 1 s, 11 frames with both ends.
+            var times = SpriteBakeMath.LegTimes(11, true, 1f, 1.5f, 0.7f);
+            Assert.AreEqual(0f, times[0], 1e-5f);
+            Assert.AreEqual(0.15f, times[1], 1e-5f, "0.1 s of play is 0.15 s of the loop");
+            Assert.AreEqual(Mathf.Repeat(1.5f, 0.7f), times[10], 1e-5f, "wraps around the loop");
+            Assert.AreEqual(0f, SpriteBakeMath.LegTimes(3, true, 1f, 1.5f, 0f)[2], "no loop, no legs");
+        }
+
         static Vector2 Rotate(Vector2 v, float degrees) => Quaternion.Euler(0f, 0f, degrees) * v;
     }
 }

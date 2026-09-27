@@ -146,6 +146,32 @@ namespace ARPG
             Apply();
         }
 
+        /// <summary>
+        /// Swaps a one-shot for another at the same point of its progress and with the same duration, such as a swing
+        /// that goes on from standing to running (its <c>_move</c> variant) when the character sets off mid-swing.
+        /// </summary>
+        public void Switch(string animationName)
+        {
+            var progress = Progress;
+            animation = animationName;
+            loop = false;
+            Resolve();
+            time = progress * (duration > 0f ? duration : currentSeconds);
+            Apply();
+        }
+
+        /// <summary>How far a one-shot has played, 0 to 1 (0 for a loop).</summary>
+        public float Progress
+        {
+            get
+            {
+                if (loop)
+                    return 0f;
+                var length = duration > 0f ? duration : currentSeconds;
+                return length > 0f ? Mathf.Clamp01(time / length) : 1f;
+            }
+        }
+
         /// <summary>Keeps a looping animation's place when it is already playing (idle to idle), else starts it.</summary>
         public void Loop(string animationName)
         {

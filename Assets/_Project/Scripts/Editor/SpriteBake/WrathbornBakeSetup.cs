@@ -124,11 +124,15 @@ namespace ARPG.Editor
             }
             job.characterName = Character;
             job.outputFolder = $"Assets/_Project/Resources/Characters/{Character}";
-            job.cellSize = 256;
-            job.pivot = new Vector2(128f, 40f);
+            // Half resolution, drawn at the same size (the owner, 2026-09-27: "the game is quite high res, it can drop
+            // more in resolution. It can be the same as d2"): 64 pixels per unit, so every number below is half the
+            // brief's. He stands about 85 px, close to Diablo 2's heroes, and his sheets take a quarter of the memory.
+            job.pixelsPerUnit = 64f;
+            job.cellSize = 128;
+            job.pivot = new Vector2(64f, 20f);
             // The height is measured on the rest pose's whole box, arms out in the A-pose and all; 170 gave 155 px
-            // standing, so 185 gives the brief's 170.
-            job.targetHeightPixels = 185f;
+            // standing at full resolution, so 185 gave the brief's 170. Halved.
+            job.targetHeightPixels = 92.5f;
             job.supersample = 4;
             // 16 directions, as Diablo 2 gave its heroes, so the facing is never more than 11 degrees off the path (the
             // user's request of 2026-09-27; 8 left up to 22).
@@ -160,6 +164,7 @@ namespace ARPG.Editor
                         riseScale = name == "ground_breaker" ? 0.4f : 1f,
                     });
                 }
+                AddMovingActions(set);
                 if (set.clips.Count > 0)
                     job.grips.Add(set);
             }
@@ -169,6 +174,40 @@ namespace ARPG.Editor
             Debug.Log($"Wrathborn bake job: {job.bodies.Count} bod(ies) ({string.Join(", ", job.bodies.Select(b => b.look))}), " +
                       string.Join("; ", job.grips.Select(g => $"{g.grip}: {string.Join(", ", g.clips.Select(c => c.name))}")));
             return job;
+        }
+
+        // The actions that play while the character runs, and how long the game plays each (PlayerSpriteAnimator: the
+        // basic attack fitted to the attack interval, 1.4 a second before attack speed; a skill at most 1.2 s).
+        static readonly (string name, float seconds)[] MovingActions =
+        {
+            ("attack", 1f / 1.4f), ("hew", 1.2f), ("hurl_axe", 1.2f), ("ground_breaker", 1.2f),
+        };
+
+        /// <summary>The frame rate of a moving action's sheet: the legs cycle about twice a second under it, and 10 to 12
+        /// frames a second made them stutter where the run's own sheet plays about 20.</summary>
+        const float MovingFramesPerSecond = 20f;
+
+        // Adds <name>_move for each action: the run's hips and legs under the action's torso (the owner, 2026-09-27: "the
+        // player will be moving most of the time. The various animations need to play even when the character is moving").
+        static void AddMovingActions(SpriteBakeJob.GripSet set)
+        {
+            var run = set.clips.FirstOrDefault(c => c.name == "run");
+            if (run == null)
+                return;
+            foreach (var (name, seconds) in MovingActions)
+            {
+                var action = set.clips.FirstOrDefault(c => c.name == name);
+                if (action == null)
+                    continue;
+                var play = Mathf.Min(seconds, action.playbackSeconds);
+                set.clips.Add(new SpriteBakeJob.Clip
+                {
+                    name = name + "_move", clip = action.clip, loop = false,
+                    frames = Mathf.Max(action.frames, Mathf.RoundToInt(play * MovingFramesPerSecond) + 1),
+                    start = action.start, end = action.end, playbackSeconds = play,
+                    legs = run.clip, legsGroundSpeed = 4.4f,
+                });
+            }
         }
 
         // How much the body moves over a clip, 60 samples a second: the distance the hands, feet, head and hips travel

@@ -39,6 +39,12 @@ namespace ARPG.Editor
 
             [Tooltip("How much of the hips' rise a one-shot keeps, 0 to 1: a leap taller than the cell is flattened to fit.")]
             public float riseScale = 1f;
+
+            [Tooltip("A moving variant of an action: the hips and legs come from this loop (the run) while the spine, arms and head come from the clip, so the character can swing while it runs. Empty for a normal clip.")]
+            public AnimationClip legs;
+
+            [Tooltip("The ground speed (game units a second) the legs of a moving variant run at: the loop plays at this over its recorded speed.")]
+            public float legsGroundSpeed = 4.4f;
         }
 
         [Serializable]
@@ -98,7 +104,10 @@ namespace ARPG.Editor
 
         public List<GripSet> grips = new List<GripSet>();
 
-        [Tooltip("Cell size in final pixels: 256 for characters and enemies, 512 for bosses.")]
+        [Tooltip("Final pixels per game unit. 128 is full resolution (a tile's 1 m diagonal is 128 px); 64 bakes at half the resolution, drawn at the same size in the game (the Wrathborn since 2026-09-27: the owner allowed Diablo 2's resolution). Cell size, pivot and height are in these final pixels.")]
+        public float pixelsPerUnit = SpriteBakeMath.PixelsPerMeter;
+
+        [Tooltip("Cell size in final pixels: 256 for characters and enemies, 512 for bosses (at 128 pixels per unit).")]
         public int cellSize = 256;
 
         [Tooltip("Where the feet sit in every cell, in final pixels from the bottom left.")]
