@@ -278,13 +278,13 @@ Built affixes keep their built numbers. Ranges are T1 at item level 60; lower ti
 | 4 | Armor | P | 90 to 130 | Chest, helm, gloves, boots, shield | Built (chest, helm) |
 | 5 | Increased Rage gained (Focus regeneration for later classes) | P | 10 to 16 percent | Amulet, ring, shield | Designed |
 | 6 | Added area | P | 8 to 14 percent | Weapon, helm, amulet | Designed |
-| 7 to 14 | Plus levels to Melee, Sweep, Area, Movement, Projectile, Buff, Channel or Execute skills (one affix per tag) | P | 1 to 2 | Weapon, off-hand, amulet | Designed (skill level by tag) |
+| 7 to 14 | Plus levels to Melee, Sweep, Area, Movement, Projectile, Buff, Channel or Execute skills (one affix per tag, in that order) | P | 1 to 2 | Weapon, off-hand, amulet | Designed (skill level by tag) |
 | 15 | Life regeneration | P | 8 to 14 per second | Chest, belt, ring | Designed |
 | 16 | Increased armor | P | 15 to 25 percent | Chest, helm, shield, gloves, boots | Proposed |
 | 17 | Maximum life | P | 5 to 9 percent | Chest, belt, amulet | Proposed |
 | 18 | Damage to elites and bosses | P | 10 to 16 percent | Weapon, amulet, ring | Proposed |
 | 19 | Bleed damage | P | 20 to 35 percent | Weapon, gloves | Proposed |
-| 20 to 27 | Increased damage of Melee, Sweep, Area, Movement, Projectile, Buff (the buff's own numbers), Channel or Execute skills | P | 12 to 20 percent | Weapon, gloves, helm, amulet | Proposed |
+| 20 to 27 | Increased damage of Melee, Sweep, Area, Movement, Projectile, Buff (the buff's own numbers), Channel or Execute skills (in that order) | P | 12 to 20 percent | Weapon, gloves, helm, amulet | Proposed |
 | 28 | Block chance | P | 6 to 10 percent | Shield | Proposed |
 | 29 | Damage reduction against projectiles | P | 6 to 10 percent | Chest, shield | Proposed |
 | 30 | Damage reduction against melee | P | 6 to 10 percent | Chest, shield | Proposed |
@@ -309,7 +309,7 @@ Built affixes keep their built numbers. Ranges are T1 at item level 60; lower ti
 | 52 | Magic Find | S | 8 to 12 percent | Amulet, ring, boots | Designed |
 | 53 | Stillness stack cap | S | Fixed 1, from item level 35 | Belt, boots, helm | Designed |
 | 54 | Momentum stack cap | S | Fixed 1, from item level 35 | Belt, boots, helm | Designed |
-| 55 to 62 | Plus levels to one named skill (one affix per Wrathborn skill) | S | 1 to 2 | Helm, gloves, amulet, off-hand | Proposed |
+| 55 to 62 | Plus levels to one named skill, one affix per skill in this order: Hew, Bull Rush, Hurl Axe, Ground Breaker, Battle Roar, Rending Spin, Blood Frenzy, Skullsplitter | S | 1 to 2 | Helm, gloves, amulet, off-hand | Proposed |
 | 63 | Gold find | S | 15 to 25 percent | Amulet, ring, belt | Proposed |
 | 64 | Life on kill | S | 20 to 40 | Weapon, ring, belt | Proposed |
 | 65 | Rage on kill | S | 2 to 4 | Weapon, ring | Proposed |
@@ -357,7 +357,7 @@ Each has a fixed base (its band's look is replaced by its own), four fixed affix
 | 8 | Kaeth's Oath | 2h weapon | 1, 2, 27, 18 | Skullsplitter's threshold is 35 percent, and its kills reset Bull Rush | Skullsplitter, Bull Rush |
 | 9 | Tidebreaker | 2h weapon | 1, 2, 25, 73 | Battle Roar also slams: radius 3, 200 percent, knockback | Battle Roar |
 | 10 | The Iron Promise | Shield | 4, 28, 30, 85 | A block gives 8 Rage and 1 Stillness stack | Rage, Stillness |
-| 11 | Ramward | Shield | 4, 28, 3, 11 | Bull Rush deals double damage, and every hit during the dash is blocked | Bull Rush |
+| 11 | Ramward | Shield | 4, 28, 3, 10 | Bull Rush deals double damage, and every hit during the dash is blocked | Bull Rush |
 | 12 | Ember Aegis | Shield | 4, 28, 49, 77 | Every 8 s, the next ground shape that hits deals 50 percent less | Shared |
 | 13 | Crown of the Unburned | Helm | 3, 4, 44, 12 | Battle Roar gives double Rage and can fire at any Rage | Battle Roar |
 | 14 | Ashen Mask | Helm | 3, 16, 44, 80 | Blood Frenzy also gives 20 percent damage reduction | Blood Frenzy |
@@ -384,7 +384,7 @@ Each has a fixed base (its band's look is replaced by its own), four fixed affix
 | 35 | Tooth of the Hunger | Amulet | 14, 27, 42, 64 | A Skullsplitter kill heals 10 percent life | Skullsplitter |
 | 36 | The Drowned Locket | Amulet | 17, 49, 76, 15 | The first hit taken every 6 s deals half damage | Shared |
 | 37 | The Last Toll | Ring | 41, 42, 49, 3 | When the character would die: restore 40 percent life and deal 800 percent in radius 8; cooldown 90 s (above) | Shared |
-| 38 | Band of the Charging Bull | Ring | 40, 23, 65, 58 | Bull Rush's cooldown is 3 s shorter and it holds 2 charges | Bull Rush |
+| 38 | Band of the Charging Bull | Ring | 40, 23, 65, 56 | Bull Rush's cooldown is 3 s shorter and it holds 2 charges | Bull Rush |
 | 39 | Ring of Endless Spin | Ring | 41, 26, 66, 60 | Rending Spin lasts as long as Rage remains, 12 Rage a second after its first 2.5 s | Rending Spin |
 | 40 | Seal of the Gambler | Ring | 52, 63, 41, 42 | Elites drop one more item, and the character takes 10 percent more damage | Shared |
 
