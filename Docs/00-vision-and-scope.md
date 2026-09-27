@@ -15,6 +15,8 @@ Document status: draft 0.2, 2026-09-21. This file is the entry point to the desi
 | 06-ui-ux.md | Screen inventory, one-hand layout, menus, feedback, accessibility |
 | 07-technical.md | Engine recommendation, architecture, data, save, performance, tooling |
 | 08-production.md | Milestones, team assumptions, risks, open questions, decision log |
+| 09-art-brief.md | Art brief for AI generation: style, asset lists, sizes, prompts |
+| 10-full-game-plan.md | Scope map of the whole game (Built, Partly built, Designed, Proposed), written 2026-09-27; a proposal, not decisions |
 
 ## Pitch
 
