@@ -52,7 +52,8 @@ Project settings are applied by the editor menu command Tools > ARPG > Apply Pro
 - World: an isometric Grid with a cell size of 1 by 0.5 world units and a Tilemap per layer (ground, decor). Tile art is 128 by 64 pixel diamonds at 128 pixels per unit.
 - Sorting: the 2D Renderer uses a custom transparency sort axis of (0, 1, 0), so anything lower on screen draws in front. Sprite pivots sit at the character's feet. Characters and props share the Entities sorting layer so they sort against each other.
 - Sorting layers, back to front: Ground, Decals, Entities, Effects, WorldUI.
-- Camera: fixed orthographic, size 10: 20 world units tall, about 9 wide on an iPhone in portrait.
+- Camera: fixed orthographic, size 7.5: 15 world units tall, about 7 wide on an iPhone in portrait (size 10 until 2026-09-28).
+- Render resolution: the URP render scale is set at startup (`RenderResolution`) to a whole fraction of the screen that brings its long side closest to 870 pixels (1/3 on 3x iPhones, their point resolution; 1/2 on 2x ones), with the point upscaling filter, for Diablo 2's low-resolution look (the owner, 2026-09-28). Screen space overlay canvases draw after the upscale at full resolution. It also cuts the world's pixel work about ninefold on a 3x phone.
 - Movement and ranges are computed in ground space and projected for display, see the camera section of 01-core-gameplay.md.
 - Pathfinding: Unity's NavMesh is not available for 2D, so enemy navigation uses a grid pathfinder over the tilemap plus steering, with the spatial hash grid for queries.
 

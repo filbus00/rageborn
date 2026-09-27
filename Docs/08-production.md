@@ -366,6 +366,7 @@ Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). All 26 were 
 | 2026-09-27 | Full-game plan Q24: Transmog after launch (not the recommendation) | User |
 | 2026-09-27 | Full-game plan Q25: Optional bosses in the boss rotation only, from Vigil II | User |
 | 2026-09-27 | Full-game plan Q26: No vendor; salvage gives a little gold | User |
+| 2026-09-28 | "Do it, diablo 2 style on all and move the camera 25% closer. The player really small and far away now": the whole world renders at about Diablo 2's resolution with hard pixels (HUD sharp), and the camera is 25 percent closer (orthographic size 7.5 instead of 10). Earlier the same day: the Wrathborn's sprites at half resolution ("the game is quite high res, it can drop more in resolution. It can be the same as d2", said while answering Q3) | User |
 
 ## Post-launch plan (draft)
 

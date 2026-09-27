@@ -18,7 +18,7 @@ How to read it:
 | Item | Status | Where | Notes |
 |---|---|---|---|
 | Floating stick, movement only | Built | 01 | Stick size, dead zone and handedness settings not built (Settings screen) |
-| Isometric camera, lead, size 10 | Built | 01 | Screen shake and its setting not built |
+| Isometric camera, lead, size 7.5, world at Diablo 2 resolution | Built | 01 | Screen shake and its setting not built |
 | Auto-target and basic attack | Built | 01 | Runs in Update; the docs ask for a fixed timestep |
 | Auto-cast by slot order and trigger | Partly built | 01, 02 | Fixed trigger per skill kind; the picker is decided (Q15: default plus two alternatives), not built |
 | Stillness and Momentum | Built | 01 | |

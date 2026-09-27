@@ -32,7 +32,9 @@ namespace ARPG.Editor
         // framing offset and lead the lower corner of the view reaches about (14.1, -15.3), which needs HalfExtent 45.
         // 48 leaves a little room to move.
         const int HalfExtent = 48;
-        const float PortraitCameraSize = 10f;
+        // 7.5: 25 percent closer than the 10 it had (the owner, 2026-09-28: "move the camera 25% closer. The player really
+        // small and far away now"). It was 8 before that, zoomed out at the owner's request.
+        const float PortraitCameraSize = 7.5f;
 
         [MenuItem("Tools/ARPG/Create Sandbox Scene")]
         public static void Create()

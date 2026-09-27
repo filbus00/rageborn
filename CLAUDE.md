@@ -15,7 +15,7 @@ The design docs in `Docs/` are the source of truth for design decisions. Start a
 - `Assets/_Project/` holds all game content. `Assets/Settings/` (URP and input assets) comes from the Unity template.
 - `Scripts/Runtime` is the `ARPG.Runtime` assembly (namespace `ARPG`), `Scripts/Editor` is `ARPG.Editor`.
 - Physics/sorting layer names live in `GameLayers.cs`. `Tools > ARPG > Apply Project Setup` (`ProjectSetup.cs`) creates them in TagManager and applies iOS, identity and sorting settings. It is idempotent. Keep the two files in sync.
-- `Scenes/Sandbox.unity` is the dev scene (built by `Tools > ARPG > Create Sandbox Scene`, which rebuilds the Grid if you run it again): isometric Grid (cell 1 x 0.5) with a `Ground` Tilemap of generated placeholder tiles and a portrait-framed camera (orthographic size 10, zoomed out from 8 at the user's request). Replace the tiles with real art later.
+- `Scenes/Sandbox.unity` is the dev scene (built by `Tools > ARPG > Create Sandbox Scene`, which rebuilds the Grid if you run it again): isometric Grid (cell 1 x 0.5) with a `Ground` Tilemap of generated placeholder tiles and a portrait-framed camera (orthographic size 7.5: zoomed out from 8 to 10 at the user's request, then 25 percent closer on 2026-09-28, "The player really small and far away now"; Town and Dungeon have the same). Replace the tiles with real art later.
 
 # Isometric conventions
 
@@ -29,6 +29,7 @@ The design docs in `Docs/` are the source of truth for design decisions. Start a
 # Player, input and camera
 
 - `StickMath` (pure) and `FloatingStickInput` (Enhanced Touch, mouse-simulated in the editor) produce a screen-space stick value. `PlayerController` converts it to ground space with `IsoMath` and drives a `Rigidbody2D`. `FollowCamera` follows with the lead and framing from the docs. `StickVisual` draws the stick on an overlay canvas.
+- Render resolution (the owner, 2026-09-28: "diablo 2 style on all"): `RenderResolution` (runs before the first scene) sets the URP asset's render scale to 1 over `Factor(long side)`, the whole number bringing the long side closest to 870 px (3 on 3x iPhones, their point resolution: 402 x 874 on an iPhone 17; 2 on 2x ones), with the point upscaling filter, so the world is drawn in hard 3 x 3 pixels. Screen space overlay canvases (HUD, bag, stick, damage numbers, Rage arc) draw after the upscale and stay sharp; world-space `TextMesh` labels are pixelated with the world. The pipeline is an asset, so in the editor the original scale and filter are put back when play mode ends. Game-view captures rendered by hand to a RenderTexture (the Notes' method) do not go through the render scale, so check the look on the simulator.
 - `FloatingStickInput` ignores a touch that begins over a UI element (`EventSystem.IsPointerOverGameObject`), so a tap on an inventory-screen button inside the stick's touch zone starts that button, not the stick underneath it.
 - `Tools > ARPG > Add Player And Camera To Sandbox` generates the placeholder art, the `Player` prefab and the scene wiring. It rebuilds the Player, Stick Input and Stick Canvas objects if run again.
 - Components find each other at runtime (`FindAnyObjectByType`) when their reference fields are empty.

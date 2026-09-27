@@ -949,7 +949,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1149,6 +1149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ARPG.Runtime::ARPG.DeathFlow
   townScene: Town
   fadeSeconds: 0.8
+  holdSeconds: 1.2
 --- !u!114 &551062540
 MonoBehaviour:
   m_ObjectHideFlags: 0
