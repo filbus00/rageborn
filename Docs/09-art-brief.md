@@ -110,6 +110,8 @@ AI tools drift. Hold everything together this way:
 | Tiles, walls, props, icons, UI, key art | **Route B, direct 2D image generation** | Single images, no animation |
 | Effects | Route B for single images; frame sequences as described in Step 8 | |
 
+**Route A in this project: the sprite bake tool.** The Unity editor bakes a rigged model and its animations into finished sheets with every rule below (camera, scale, directions, pivot, transparency, layout, splitting, import): make a Sprite Bake Job asset and run Tools > ARPG > Sprite Bake > Bake Selected Jobs (details in `CLAUDE.md`, Sprite bake). Hand over the model as FBX (humanoid rig) and the animations as FBX clips, in place (no root motion), rather than rendered frames. The settings below are for rendering in another 3D tool instead.
+
 **Route A render settings (Blender or any 3D tool):**
 
 - Camera: **orthographic**. Rotation: X 60 degrees (a 30 degree look-down), Z 45 degrees plus 45 degrees per direction step: S = 45, SW = 90, W = 135, NW = 180, N = 225, NE = 270, E = 315, SE = 0. Check this so that direction S shows the model's front.
