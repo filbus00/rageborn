@@ -206,7 +206,7 @@ Kept from above: 60 nodes over three branches, one point per level from level 2 
 
 Layout: a start node in the middle with three branches going up, left and right. Each branch has an inner half (6 minor, 3 notable) and an outer half behind a gateway (6 minor, 3 notable, and the keystone for Wrath and Stampede). A gateway opens after 15 points in the whole tree. The tree scrolls in one direction on the phone (06, Passive tree), so the branches are drawn as three columns.
 
-| Branch | Theme | Minor nodes (6 of each kind across the branch, 2 of each per half) |
+| Branch | Theme | Minor nodes (3 kinds, 4 of each across the branch, 2 of each per half) |
 |---|---|---|
 | Wrath (up) | Rage, damage, crits | Plus 4 percent damage; plus 1.5 percent critical chance; plus 10 percent critical damage |
 | Stampede (left) | Momentum, speed, dodge | Plus 3 percent move speed; plus 3 percent attack speed; plus 1.5 percent dodge |
