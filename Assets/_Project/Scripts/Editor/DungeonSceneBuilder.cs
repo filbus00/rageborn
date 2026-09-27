@@ -107,6 +107,7 @@ namespace ARPG.Editor
                 AssetDatabase.LoadAssetAtPath<TileBase>("Assets/_Project/Art/Tilesets/PlaceholderTile_B.asset"),
             });
             serialized.FindProperty("wallTile").objectReferenceValue = AssetDatabase.LoadAssetAtPath<TileBase>("Assets/_Project/Art/Tilesets/PlaceholderWall.asset");
+            serialized.FindProperty("lowWallTile").objectReferenceValue = CreateLowWallTile();
             SetArray(serialized.FindProperty("rooms"), rooms.ToArray());
             serialized.FindProperty("normalEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>("Assets/_Project/Data/Enemies/Swarmer.asset");
             serialized.FindProperty("championEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>("Assets/_Project/Data/Enemies/SwarmerChampion.asset");
@@ -249,6 +250,58 @@ namespace ARPG.Editor
                     so.FindProperty("projectileSpeed").floatValue = 9f;
                     so.FindProperty("moveSpeed").floatValue = 3f;
                 });
+        }
+
+        const string LowWallTilePath = "Assets/_Project/Art/Tilesets/PlaceholderWallLow.asset";
+
+        /// <summary>
+        /// Adds the cut-down wall to the existing dungeon scene without rebuilding it: creates the tile and sets
+        /// <c>DungeonLevel.lowWallTile</c>. Idempotent.
+        /// </summary>
+        [MenuItem("Tools/ARPG/Add Low Walls To Dungeon")]
+        public static void AddLowWalls()
+        {
+            CreateLowWallTile();
+            var scene = EditorSceneManager.OpenScene(DungeonPath, OpenSceneMode.Single);
+            // Loaded again by path: opening a scene unloads assets nothing references yet, and the fresh tile came back
+            // null the first time.
+            var tile = AssetDatabase.LoadAssetAtPath<Tile>(LowWallTilePath);
+            var level = Object.FindAnyObjectByType<DungeonLevel>();
+            if (level == null)
+            {
+                Debug.LogError("[ARPG] The dungeon scene has no Dungeon Level.");
+                return;
+            }
+            var serialized = new SerializedObject(level);
+            serialized.FindProperty("lowWallTile").objectReferenceValue = tile;
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            Debug.Log("[ARPG] Low walls added to the dungeon scene.");
+        }
+
+        // The placeholder wall block (128 x 128, 64 px of wall above its footprint) cut down to a 16 px stub, same colors,
+        // same footprint and pivot, so it sits in the wall line and still reads as wall.
+        static Tile CreateLowWallTile()
+        {
+            const int width = 128;
+            const int height = 80;
+            var sprite = PlaceholderArt.ImportSprite(
+                $"{Path.GetDirectoryName(LowWallTilePath)}/PlaceholderWallLow.png",
+                PlaceholderArt.WallBlock(width, height, new Color32(112, 112, 122, 255), new Color32(84, 84, 96, 255), new Color32(58, 58, 70, 255)),
+                PixelsPerUnit, SpriteAlignment.Custom, FilterMode.Point, new Vector2(0.5f, width * 0.25f / height));
+            var tile = AssetDatabase.LoadAssetAtPath<Tile>(LowWallTilePath);
+            if (tile == null)
+            {
+                tile = ScriptableObject.CreateInstance<Tile>();
+                AssetDatabase.CreateAsset(tile, LowWallTilePath);
+            }
+            tile.sprite = sprite;
+            // The collider is the whole cell, as for the full wall: a low wall blocks just the same.
+            tile.colliderType = Tile.ColliderType.Grid;
+            EditorUtility.SetDirty(tile);
+            AssetDatabase.SaveAssets();
+            return tile;
         }
 
         static (Sprite closed, Sprite open) CreateChestArt()

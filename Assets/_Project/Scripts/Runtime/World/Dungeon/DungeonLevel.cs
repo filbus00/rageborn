@@ -18,6 +18,9 @@ namespace ARPG
         [SerializeField] TileBase[] floorTiles;
         [SerializeField] TileBase wallTile;
 
+        [Tooltip("The cut-down wall for walls between the camera and a room (WallRules). Empty draws every wall full height.")]
+        [SerializeField] TileBase lowWallTile;
+
         [Tooltip("The room library the generator draws from.")]
         [SerializeField] RoomTemplate[] rooms;
 
@@ -206,7 +209,9 @@ namespace ARPG
                     // shows the void behind it.
                     groundTiles[index] = floorTiles[((x + y) & 1) % floorTiles.Length];
                     if (cell == DungeonCell.Wall)
-                        wallTiles[index] = wallTile;
+                        wallTiles[index] = lowWallTile != null && WallRules.IsCameraSide(IsFloorCell, bounds.xMin + x, bounds.yMin + y)
+                            ? lowWallTile
+                            : wallTile;
                 }
 
             ground.ClearAllTiles();
@@ -215,6 +220,8 @@ namespace ARPG
             walls.SetTilesBlock(area, wallTiles);
             WorldLights.ShadeGround(ground);
         }
+
+        bool IsFloorCell(int x, int y) => Layout.Get(x, y) == DungeonCell.Floor;
 
         static Vector3 CellWorld(Vector2Int cell)
         {
