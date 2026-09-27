@@ -32,6 +32,13 @@ namespace ARPG.Editor
 
             [Tooltip("How long the game plays the sheet, in seconds; 0 plays its frames at 12 per second. Written to the character's timing file.")]
             public float playbackSeconds;
+
+            [Tooltip("The part of the clip to sample, in seconds: from start to end (an end of 0 is the clip's end). Mixamo clips often carry a long stance before and after the action.")]
+            public float start;
+            public float end;
+
+            [Tooltip("How much of the hips' rise a one-shot keeps, 0 to 1: a leap taller than the cell is flattened to fit.")]
+            public float riseScale = 1f;
         }
 
         [Serializable]

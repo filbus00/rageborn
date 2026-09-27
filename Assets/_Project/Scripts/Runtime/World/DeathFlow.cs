@@ -15,6 +15,9 @@ namespace ARPG
 
         [SerializeField, Min(0f)] float fadeSeconds = 0.8f;
 
+        [Tooltip("How long the fallen character is seen before the fade starts. The Wrathborn's death takes 1.4 s; with the fade straight away it was dark before the body reached the floor.")]
+        [SerializeField, Min(0f)] float holdSeconds = 1.2f;
+
         PlayerHealth health;
 
         void Start()
@@ -56,6 +59,7 @@ namespace ARPG
 
         IEnumerator SendToTown()
         {
+            yield return new WaitForSeconds(holdSeconds);
             var fade = ScreenFade.Current;
             if (fade != null)
                 yield return fade.FadeOut(fadeSeconds);

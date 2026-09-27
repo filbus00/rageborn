@@ -85,7 +85,11 @@ namespace ARPG.Editor
                     {
                         if (clip.clip == null || string.IsNullOrEmpty(clip.name))
                             continue;
-                        var times = SpriteBakeMath.SampleTimes(clip.clip.length, clip.frames, clip.loop, job.framesPerSecond);
+                        var windowEnd = clip.end > clip.start ? Mathf.Min(clip.end, clip.clip.length) : clip.clip.length;
+                        var windowStart = Mathf.Clamp(clip.start, 0f, windowEnd);
+                        var times = SpriteBakeMath.SampleTimes(windowEnd - windowStart, clip.frames, clip.loop, job.framesPerSecond);
+                        for (var t = 0; t < times.Length; t++)
+                            times[t] += windowStart;
                         if (clip.loop)
                             speeds[$"{(string.IsNullOrEmpty(gripSet.grip) ? "" : gripSet.grip + "_")}{clip.name}"] = MeasureGroundSpeed(stage.Bodies[0], clip.clip);
 
@@ -93,6 +97,7 @@ namespace ARPG.Editor
                         {
                             var sheet = new SheetWriter(job, job.SheetName(layer.Layer, layer.Look, gripSet.grip, clip.name), times.Length);
                             var poseIndex = layer.BodyIndex;
+                            var hipsStart = Vector3.zero;
                             for (var row = 0; row < job.DirectionCount; row++)
                             {
                                 stage.Turntable.rotation = Quaternion.LookRotation(SpriteBakeMath.Facing(row, job.DirectionCount), Vector3.up);
@@ -108,6 +113,18 @@ namespace ARPG.Editor
                                     clip.clip.SampleAnimation(body.Root, times[frame]);
                                     body.Root.transform.localPosition = body.RootPosition;
                                     body.Root.transform.localRotation = Quaternion.identity;
+                                    // A one-shot keeps its hips over the ground spot they start on. On a humanoid the
+                                    // clip's travel rides on the hips, not the root: Ground Breaker leapt out of the top
+                                    // of its cells and the death slid out of the side. Loops are recorded in place.
+                                    if (!clip.loop && body.Hips != null)
+                                    {
+                                        var hips = body.Root.transform.parent.InverseTransformPoint(body.Hips.position);
+                                        if (frame == 0)
+                                            hipsStart = hips;
+                                        var drift = hips - hipsStart;
+                                        drift.y *= 1f - Mathf.Clamp01(clip.riseScale);
+                                        body.Root.transform.localPosition = body.RootPosition - drift;
+                                    }
                                     body.Skin();
 
                                     stage.Show(layer, depthOnly);
@@ -175,6 +192,7 @@ namespace ARPG.Editor
         {
             public GameObject Root;
             public Animator Animator;
+            public Transform Hips;
             public Vector3 RootPosition;
             public Pose RestPose;
             public Renderer[] Renderers;
@@ -355,6 +373,7 @@ namespace ARPG.Editor
                 {
                     Root = model,
                     Animator = animator,
+                    Hips = animator.isHuman ? animator.GetBoneTransform(HumanBodyBones.Hips) : null,
                     RootPosition = model.transform.localPosition,
                     RestPose = restPose,
                     Renderers = renderers,

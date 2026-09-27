@@ -16,6 +16,7 @@ namespace ARPG
         public const string DefaultCharacter = "wrathborn";
 
         const float HitSeconds = 0.3f;
+        const float MaxSkillSeconds = 1.2f;
         const float RunThreshold = 0.5f;
 
         // How long the character must stand before the idle shows, so a quick reversal does not flash it.
@@ -29,6 +30,7 @@ namespace ARPG
         PlayerCombat combat;
         PlayerHealth health;
         LayeredCharacterSprite sprite;
+        bool skillPlaying;
         SpriteRenderer placeholder;
         GameSession session;
         bool showing;
@@ -149,8 +151,12 @@ namespace ARPG
             aim = direction;
             if (!showing || dead || Moving)
                 return;
+            // A skill plays out: the basic attack runs on its own timer and cut Hew off 0.2 s into its swing.
+            if (inAction && skillPlaying && !sprite.Finished)
+                return;
             var length = sprite.LengthOf("attack");
             PlayAction("attack", length > 0f ? Mathf.Min(length, interval) : 0f);
+            skillPlaying = false;
         }
 
         void OnSkillCast(SkillDefinition skill, Vector2 direction)
@@ -172,7 +178,11 @@ namespace ARPG
             }
             if (Moving)
                 return;
-            PlayAction(skill.Kind == SkillKind.Sweep ? "hew" : skill.Kind == SkillKind.Projectile ? "hurl_axe" : "ground_breaker", 0f);
+            var skillAnimation = skill.Kind == SkillKind.Sweep ? "hew" : skill.Kind == SkillKind.Projectile ? "hurl_axe" : "ground_breaker";
+            // Capped, so a skill's animation never holds the character longer than the moment it is for.
+            var length = sprite.LengthOf(skillAnimation);
+            PlayAction(skillAnimation, length > 0f ? Mathf.Min(length, MaxSkillSeconds) : 0f);
+            skillPlaying = true;
         }
 
         void OnHit(float damage)
@@ -181,6 +191,7 @@ namespace ARPG
             if (!showing || dead || inAction || Moving || !sprite.Has("hit"))
                 return;
             inAction = true;
+            skillPlaying = false;
             sprite.Play("hit", false, HitSeconds);
         }
 

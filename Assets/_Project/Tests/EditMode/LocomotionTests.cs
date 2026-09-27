@@ -90,6 +90,31 @@ namespace ARPG.Tests
             Assert.AreEqual(1, LocomotionRules.ChooseRow(0, Rotate(Vector2.down, -22f), 16));
         }
 
+        [Test]
+        public void ActiveWindow_IsTheBusyStretch_BridgingShortPauses()
+        {
+            // 10 samples a second over 5 s: sway everywhere, a swing at 2 to 2.6 s, a pause, a step back at 3 to 3.4 s.
+            var motion = new float[50];
+            for (var i = 0; i < 50; i++)
+                motion[i] = 0.1f;
+            for (var i = 20; i < 26; i++)
+                motion[i] = 1f;
+            for (var i = 30; i < 34; i++)
+                motion[i] = 0.6f;
+            var window = SpriteBakeMath.ActiveWindow(motion, 10f, 5f, 0.2f, false);
+            Assert.AreEqual(1.8f, window.x, 1e-4f);
+            Assert.AreEqual(3.6f, window.y, 1e-4f);
+            Assert.AreEqual(5f, SpriteBakeMath.ActiveWindow(motion, 10f, 5f, 0.2f, true).y, 1e-4f, "a death keeps its last pose");
+
+            // A second burst after a pause longer than 0.8 s is not part of it.
+            for (var i = 30; i < 34; i++)
+                motion[i] = 0.1f;
+            for (var i = 40; i < 44; i++)
+                motion[i] = 0.6f;
+            Assert.AreEqual(2.8f, SpriteBakeMath.ActiveWindow(motion, 10f, 5f, 0.2f, false).y, 1e-4f);
+            Assert.AreEqual(new Vector2(0f, 5f), SpriteBakeMath.ActiveWindow(new float[50], 10f, 5f, 0.2f, false), "no motion keeps it all");
+        }
+
         static Vector2 Rotate(Vector2 v, float degrees) => Quaternion.Euler(0f, 0f, degrees) * v;
     }
 }

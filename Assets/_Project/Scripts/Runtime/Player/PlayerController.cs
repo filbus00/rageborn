@@ -71,6 +71,9 @@ namespace ARPG
 
         void Update() => effects?.Tick(Time.deltaTime);
 
+        // A death disables this component, which stops the tick: the killing blow's red flash stayed on the fallen body.
+        void OnDisable() => effects?.Clear();
+
         /// <summary>Slows movement to <paramref name="multiplier"/> of normal speed for this many seconds, such as
         /// an elite's Frozen modifier. See <see cref="SlowDebuff"/> for how overlapping applications combine.</summary>
         public void ApplySlow(float multiplier, float seconds) => slow.Apply(multiplier, seconds);

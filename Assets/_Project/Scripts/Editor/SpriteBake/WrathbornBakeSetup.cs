@@ -146,9 +146,19 @@ namespace ARPG.Editor
                 foreach (var (name, frames, loop) in Animations)
                 {
                     var clip = ClipFor(grip, name, loop, avatar, bodies[0]);
-                    // Played over the animation's real length: Mixamo clips run from 0.7 s (a run) to 10 s (an idle).
-                    if (clip != null)
-                        set.clips.Add(new SpriteBakeJob.Clip { name = name, clip = clip, frames = frames, loop = loop, playbackSeconds = clip.length });
+                    if (clip == null)
+                        continue;
+                    // A one-shot is sampled only where its action is (Mixamo's Hew was 5.2 s with the swing in about two
+                    // seconds of it; its 12 frames went mostly on the stance around it). A loop keeps its whole cycle.
+                    // Played over the sampled span's real length: Mixamo clips run from 0.7 s (a run) to 10 s (an idle).
+                    var window = loop ? new Vector2(0f, clip.length) : ActionWindow(bodies[0], clip, name == "death");
+                    set.clips.Add(new SpriteBakeJob.Clip
+                    {
+                        name = name, clip = clip, frames = frames, loop = loop,
+                        start = window.x, end = window.y, playbackSeconds = window.y - window.x,
+                        // Ground Breaker leaps about a body height, above the top of its cells.
+                        riseScale = name == "ground_breaker" ? 0.4f : 1f,
+                    });
                 }
                 if (set.clips.Count > 0)
                     job.grips.Add(set);
@@ -159,6 +169,42 @@ namespace ARPG.Editor
             Debug.Log($"Wrathborn bake job: {job.bodies.Count} bod(ies) ({string.Join(", ", job.bodies.Select(b => b.look))}), " +
                       string.Join("; ", job.grips.Select(g => $"{g.grip}: {string.Join(", ", g.clips.Select(c => c.name))}")));
             return job;
+        }
+
+        // How much the body moves over a clip, 60 samples a second: the distance the hands, feet, head and hips travel
+        // between samples, relative to the hips' start, on the body model at its own size.
+        static Vector2 ActionWindow(string bodyPath, AnimationClip clip, bool keepEnd)
+        {
+            var body = (GameObject)Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(bodyPath));
+            try
+            {
+                var animator = body.GetComponent<Animator>();
+                var bones = new[]
+                {
+                    HumanBodyBones.LeftHand, HumanBodyBones.RightHand, HumanBodyBones.LeftFoot, HumanBodyBones.RightFoot,
+                    HumanBodyBones.Head, HumanBodyBones.Hips,
+                }.Select(animator.GetBoneTransform).Where(t => t != null).ToArray();
+                const float rate = 60f;
+                var count = Mathf.Max(2, Mathf.RoundToInt(clip.length * rate));
+                var motion = new float[count];
+                var previous = new Vector3[bones.Length];
+                for (var i = 0; i <= count; i++)
+                {
+                    clip.SampleAnimation(body, clip.length * i / count);
+                    for (var b = 0; b < bones.Length; b++)
+                    {
+                        var position = body.transform.InverseTransformPoint(bones[b].position);
+                        if (i > 0)
+                            motion[i - 1] += (position - previous[b]).magnitude;
+                        previous[b] = position;
+                    }
+                }
+                return SpriteBakeMath.ActiveWindow(motion, rate, clip.length, 0.2f, keepEnd);
+            }
+            finally
+            {
+                Object.DestroyImmediate(body);
+            }
         }
 
         static string Look(string bodyPath) => Path.GetFileNameWithoutExtension(bodyPath).Substring($"{Character}_body_".Length);

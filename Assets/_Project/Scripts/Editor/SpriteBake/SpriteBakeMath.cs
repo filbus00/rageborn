@@ -83,6 +83,41 @@ namespace ARPG.Editor
             return times;
         }
 
+        /// <summary>
+        /// Where a one-shot's action is. <paramref name="motion"/> is how far the body's key points moved between samples.
+        /// Summed into 0.2 s bins, the action is the bins above 40 percent of the busiest one, pauses up to 0.8 s bridged,
+        /// the run holding the busiest bin, widened by <paramref name="pad"/> seconds each side. Mixamo's Hew was 5.2 s of
+        /// idle sway with the swing in about 2 s of it. With <paramref name="keepEnd"/> it runs to the clip's end (a death,
+        /// whose last pose is held). A clip with no motion keeps its whole length.
+        /// </summary>
+        public static Vector2 ActiveWindow(float[] motion, float sampleRate, float length, float pad, bool keepEnd)
+        {
+            const float binSeconds = 0.2f, threshold = 0.4f, bridgeSeconds = 0.8f;
+            var perBin = Mathf.Max(1, Mathf.RoundToInt(binSeconds * sampleRate));
+            var bins = new float[(motion.Length + perBin - 1) / perBin];
+            for (var i = 0; i < motion.Length; i++)
+                bins[i / perBin] += motion[i];
+            var peak = 0;
+            for (var i = 1; i < bins.Length; i++)
+                if (bins[i] > bins[peak])
+                    peak = i;
+            if (bins.Length == 0 || bins[peak] <= 1e-6f)
+                return new Vector2(0f, length);
+            var busy = bins[peak] * threshold;
+            var maxGap = Mathf.RoundToInt(bridgeSeconds / binSeconds);
+            int first = peak, last = peak;
+            for (var i = peak - 1; i >= 0 && first - i <= maxGap + 1; i--)
+                if (bins[i] >= busy)
+                    first = i;
+            for (var i = peak + 1; i < bins.Length && i - last <= maxGap + 1; i++)
+                if (bins[i] >= busy)
+                    last = i;
+            var seconds = perBin / sampleRate;
+            var start = Mathf.Max(0f, first * seconds - pad);
+            var end = keepEnd ? length : Mathf.Min(length, (last + 1) * seconds + pad);
+            return new Vector2(start, end);
+        }
+
         /// <summary>Whether a sheet of a row per direction fits the texture limit, else one file per direction.</summary>
         public static bool NeedsSplit(int frames, int cellSize, int count = DirectionCount) =>
             frames * cellSize > MaxSheetSize || count * cellSize > MaxSheetSize;
