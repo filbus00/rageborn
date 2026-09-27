@@ -17,7 +17,7 @@ Decision: Unity 6000.6.2f1 with C#, the Universal Render Pipeline with the 2D Re
 | Criterion | Unity | Godot 4 | Native Swift with SpriteKit |
 |---|---|---|---|
 | Data tooling for items and skills | ScriptableObjects, custom editors, Addressables | Resources and custom editor plugins, less mature | Build everything by hand, JSON files |
-| 2D lighting and skeletal animation | Built in 2D Renderer and 2D Animation package | Built in, good for 2D | Limited, SpriteKit lighting is basic, animation by hand |
+| 2D lighting and skeletal animation (when engines were compared; the game now uses frame sprites pre-rendered from 3D, 2026-09-27) | Built in 2D Renderer and 2D Animation package | Built in, good for 2D | Limited, SpriteKit lighting is basic, animation by hand |
 | Performance with many entities | Good with pooling, DOTS optional | Good for 2D, C# path adds overhead | Good for simple nodes, heavy for large effect counts |
 | iOS profiling and debugging | Unity profiler plus Xcode Instruments | Godot profiler, iOS export with Xcode | Best, native Instruments |
 | Apple services (CloudKit, haptics) | Plugins or thin native bridge | Plugins or native bridge | Direct |
@@ -145,7 +145,7 @@ Techniques: object pooling for all entities, texture atlases per act, sprite bat
 ## Art pipeline
 
 - Concept: paintover sheets per enemy, silhouette tests at the size they appear on a phone.
-- Characters and enemies: layered PSD, imported with the Unity 2D Animation package, 8 directions built from a small set of rigged parts, mirrored where possible.
+- Characters and enemies: 3D models rendered frame by frame into sprite sheets by the editor's sprite bake (decision of 2026-09-27; 09, Route A and 4.5), 8 directions for enemies and 16 for the player, gear as separate layers stacked at runtime (Q22 replaced the earlier layered PSD and 2D Animation plan).
 - Environments: isometric tile sets per act, 128 by 64 pixel diamond tiles at 128 pixels per unit (one tile is 1 by 0.5 world units), a set of decor props, baked shadows.
 - VFX: sprite sheet particles and a small library of shader effects (dissolve, hit flash, outline for rarity).
 - Item icons: 128 by 128 icons, 60 legendary unique icons, base type icons shared across rarity with a color frame.
@@ -157,11 +157,15 @@ Techniques: object pooling for all entities, texture atlases per act, sprite bat
 - Music stems: 4 to 6 layers per act, crossfaded by pack size.
 - SFX: 300 sounds estimated, priority system that drops low priority sounds when more than 16 voices play.
 
-## Full-game plan: technical needs (proposed, not decided)
+## Full-game plan: technical needs (proposed, with the owner's decisions of 2026-09-27)
 
-Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). Proposals and estimates only. Questions are numbered as in `08-production.md`.
+Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). Proposals and estimates, except where marked **Decided**. Questions are numbered as in `08-production.md`.
 
-### Sprite memory and app size (Q3)
+### Sprite memory and app size (decided, Q3)
+
+**Decided (Q3, 2026-09-27):** measure act 1 on a phone first, then trim with the levers below. The owner's note: "measure, then trim, also note that the game is quite high res, it can drop more in resolution. It can be the same as d2". So the character's height in pixels is one of the levers: the Wrathborn is baked 185 px tall today, while Diablo 2's heroes stood roughly 80 to 100 px on an 800 by 600 screen. Halving the height cuts texture memory and disk about four times.
+
+Measured on 2026-09-27, after the estimates below were written: the Wrathborn's leather body in the one-handed grip, 12 animations in 16 directions at 185 px, is 153 million pixels: 584 MB uncompressed, about 64 MB as ASTC 6x6, 41 MB of PNG on disk. That is one body look in one grip, before the helm, weapon and off-hand layers.
 
 Estimates from the brief's frame counts (09), for ASTC 4x4 (1 byte per pixel, 64 KB per 256 px cell) before trimming empty space. The brief's own number (09, section 14: the player's 9 sheets at 8 directions, about 50 MB compressed) matches this method. Real numbers must be measured, as decided for act 1 ("measured on a phone before cutting").
 
@@ -187,7 +191,9 @@ Proposed ways to fit, all compatible with the decisions (Q3 lists them as option
 4. Stream looks by act: Unity Addressables in per-act groups, with acts 2 to 5 and their looks as Apple on-demand resources or background assets, so the installed app holds act 1 and the town only.
 5. Fewer frames for short actions (skills at 8 frames instead of 10 to 14).
 
-If none of these is enough, the remaining levers change a decision (fewer looks per act, fewer grips, or drawing the player's 3D model at runtime instead of baked frames) and are for the owner (Q3).
+6. A lower character resolution, down to Diablo 2's (allowed by the owner, Q3).
+
+If none of these is enough, the remaining levers change a decision (fewer looks per act, fewer grips, or drawing the player's 3D model at runtime instead of baked frames) and are for the owner.
 
 ### Content data
 
@@ -202,9 +208,9 @@ Each is a version bump with a migration and a test, as built: skills (levels, mo
 
 The balance report and the autopilot cover act 1. Proposed: both take an act and a tier as input, so every act on every tier can be checked against 04's targets before it ships, and the report adds the four later skills and the passive tree when they exist.
 
-## Audio and haptics plan (proposed, not decided)
+## Audio and haptics plan (proposed, with the owner's decision of 2026-09-27)
 
-Built: synthesized placeholder effects with 16 voices and priorities, and a placeholder synth music loop (`CLAUDE.md`, Sound). The plan below is for the real audio. Source of the music and sounds (commissioned, licensed, or generated with AI tools like the art): Q21.
+Built: synthesized placeholder effects with 16 voices and priorities, and a placeholder synth music loop (`CLAUDE.md`, Sound). The plan below is for the real audio. **Decided (Q21, 2026-09-27):** the music and sounds are generated with AI tools, like the art, not commissioned or licensed. The structure below is a proposal.
 
 ### Music
 

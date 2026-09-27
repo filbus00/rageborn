@@ -26,11 +26,11 @@ The safe area insets are respected on all notched devices. The game is iPhone on
 - Focus: an arc on the character's feet.
 - Skill icons: four small icons in a row at the top showing cooldown state. They are not buttons. Cooldown sweeps are drawn on top.
 - Potion charges: three pips beside the life bar.
-- Stillness and Momentum stacks: pips above the character's head, colored blue and amber.
+- Stillness and Momentum stacks: five pips under the Rage arc at the character's feet, cyan for Momentum and amber for Stillness (as built; Q22).
 - Boss bar: a wide bar just below the top row with phase markers.
 - Damage numbers: small, grouped and pooled. Player damage taken is red and centered on the character.
 - Loot drop labels: rarity color, name for Rare and above only. Common and Magic show as a small colored diamond.
-- Mini-map: a corner overlay, 88 by 88 points, collapsed by default in combat.
+- Mini-map: a small map at the top right, always shown, a 48-cell window around the player; a tap toggles the whole level, large and see-through (as built; Q22).
 
 ## Screen inventory
 
@@ -39,15 +39,15 @@ The safe area insets are respected on all notched devices. The game is iPhone on
 | Title | Continue, New Character, Settings | Continue is the largest button |
 | Character select | Up to 12 characters, sort by last played | Shows class, level, power score |
 | Town panels | Forge, Stash, Trainer, Waystone, each opened by walking up to its NPC in the town | Bottom sheet |
-| Waystone map | Choose a level already reached, tier, rift, Abyss | Opened at the Waystone. Vertical scroll, act headers, recommended power per level |
+| Waystone map | Choose a level already reached and a tier | Opened at the Waystone. Vertical scroll, act headers, recommended power per level. Rifts and the Abyss are entered at the Watcher (05; Q22) |
 | Loadout | Choose four skills, order, triggers, keystone | Drag to reorder, tap to open trigger picker |
 | Skill detail | Level, modifiers, tags | Bottom sheet |
 | Passive tree | Spend points | Pan by drag, tap to select, pinch to zoom with a fallback zoom slider |
 | Equipment | Ten slots on a paper doll | Tap a slot, opens a filtered list |
 | Inventory | Scrolling list, filter and sort chips | Long press for multi select |
 | Stash | Same as inventory | Search field, filter chips |
-| Forge | Reforge, Socket, Temper, Imprint, Transmog | One action per tab |
-| Results | End of zone summary and drops | Swipe through upgrades, tap Equip |
+| Forge | Salvage, Reforge, Reroll, Temper, Socket, Imprint | One action per tab (Transmog after launch, decided 2026-09-27, Q24) |
+| Results | Drops since the last town visit, shown on arriving in town (decided 2026-09-27, Q19) | Swipe through upgrades, tap Equip |
 | Character | Character stats, inventory, equipped gear and loadout, plus Settings and the loot filter | Opened by the inventory button. There is no separate pause menu, and the game is paused while it is open |
 | Settings | Controls, audio, haptics, accessibility | Grouped, searchable |
 
@@ -72,14 +72,15 @@ The most important build screen.
 
 - A vertical list of drops, best first, with upgrade arrows and power score deltas.
 - One tap on an upgrade shows the comparison sheet.
-- Big buttons at the bottom: Equip all upgrades, Salvage the rest, Continue.
+- It opens on arriving in town with new items (decided 2026-09-27, Q19).
+- Big buttons at the bottom: Equip all upgrades, Mark the rest for salvage (moves them to the salvage pouch the smith empties, since salvage happens only at the Forge; Q19), Continue.
 - Equip all upgrades is undoable for 10 seconds.
 
 ## Onboarding
 
 - First 10 minutes: a short scripted scene in the town, then a scripted first level. The stick is taught by a ghost thumb overlay for 5 seconds only.
 - Auto-attack and auto-skills are not taught with text. Enemies die, so the player learns by seeing.
-- The first legendary drop is guaranteed at minute 20 of play, from a scripted elite. A short tooltip walks through comparing and equipping it.
+- The first legendary drop is guaranteed at minute 20 of play, from the next elite killed (as built; Q22). A short tooltip walks through comparing and equipping it.
 - The Forge is introduced after the first Rare drop.
 - Loot filter is introduced after 200 items dropped.
 
@@ -108,9 +109,9 @@ The most important build screen.
 - Numbers use tabular figures so stat changes do not shift the layout.
 - Rarity colors: Common #9A9A9A, Magic #4A7BD4, Rare #E0C040, Legendary #E07A20, Cursed #9B4FD0. All contrast tested against panel background.
 
-## Full-game plan: screens (proposed, not decided)
+## Full-game plan: screens (proposed, with the owner's decisions of 2026-09-27)
 
-Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). Layouts for every screen in the inventory above that is not built yet, and for the screens the other proposals need. All follow the principles above: controls in the lower 60 percent, reading at the top, bottom sheets, 48 point minimum and 56 preferred tap targets, one decision per screen. Built screens (the Bag inventory and item sheet, the Forge sheet, the waypoint list, the hint banner) keep their built layouts. Questions are numbered as in `08-production.md`.
+Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). Layouts for every screen in the inventory above that is not built yet, and for the screens the other proposals need. All follow the principles above: controls in the lower 60 percent, reading at the top, bottom sheets, 48 point minimum and 56 preferred tap targets, one decision per screen. Built screens (the Bag inventory and item sheet, the Forge sheet, the waypoint list, the hint banner) keep their built layouts. Questions are numbered as in `08-production.md`; their answers (2026-09-27) are decisions, the layouts are proposals.
 
 ### Common frame
 
@@ -131,13 +132,13 @@ Decided: one inventory button opens stats, inventory, equipped gear, loadout, Se
 
 ### Loadout (Skills tab)
 
-As designed above (Loadout screen), with details:
+As designed above (Loadout screen), opening at level 9 when Battle Roar unlocks (decided, Q4), with details:
 
 - Four slot rows (80 points tall) in priority order: icon, name, level, the trigger chip, the three modifier picks as small icons. A drag handle on the right reorders them.
 - Under the slots: the keystone row (Berserker or Juggernaut, from level 20 when bought in the tree; 02).
-- Tapping a slot opens the skill list sheet: all eight skills, locked ones with their unlock level, each with an Equip button. Tapping the trigger chip opens the trigger sheet (Q15).
+- Tapping a slot opens the skill list sheet: all eight skills, locked ones with their unlock level, each with an Equip button. Tapping the trigger chip opens the trigger sheet: the skill's default trigger and two alternatives (decided, Q15).
 - The simulator strip (above) stays a proposal for after launch: it needs a training scene that the one-thumb game does not otherwise have.
-- Presets: three chips above the action row; presets 2 and 3 are bought with gold (04, Q16).
+- Presets: three chips above the action row; presets 2 and 3 are bought with gold (04; decided, Q16).
 
 ### Skill detail
 
@@ -153,11 +154,11 @@ A read-only list, grouped: Offense (hit, damage per second, attack speed, crit),
 
 ### Loot filter (Filter tab)
 
-Presets as 56 point cards (Everything, Smart, Upgrades only, Legendary only) with the active one marked, two taps from the combat screen as designed. "Custom" opens a rule list: each rule is a row "Hide Magic below item level 20 in Gloves"; Add rule opens three pickers one after another (rarity, slot, minimum item level), one decision per step. Filtered items go where Q11 decides.
+Presets as 56 point cards (Everything, Smart, Upgrades only, Legendary only) with the active one marked, two taps from the combat screen as designed. "Custom" opens a rule list: each rule is a row "Hide Magic below item level 20 in Gloves"; Add rule opens three pickers one after another (rarity, slot, minimum item level), one decision per step. Filtered items go to the salvage pouch, which the smith empties in one tap (decided, Q11).
 
 ### Journal tab
 
-The Codex of Legendaries found (05, Endgame), lore landmarks read, achievements (Q17), and the personal bests (deepest Abyss floor, fastest rift). Read only.
+The Codex of Legendaries found (05, Endgame), lore landmarks read, achievements (60, local, no rewards; decided, Q17), and the personal bests (deepest Abyss floor, fastest rift). Read only.
 
 ### Settings tab
 
@@ -210,15 +211,15 @@ Built today: a list of Town and the activated waypoints. Proposed:
 - A tier chip row (Vigil I to V, locked ones greyed) above the list. Waypoints are kept per tier, as Diablo 2 did per difficulty.
 - The list: act headers (with the town first), then the depths with enemy level and the recommended power score (04, Difficulty adaptation). The current spot is shown but not a button (built).
 - A Bosses page (from Vigil II): every boss killed, with Fight (costs a Boss Sigil, 05) at the chosen tier.
-- 05 says rifts and the Abyss are entered from an NPC in town; the screen table above puts them on the Waystone map. Proposed: the Watcher holds them (Q22).
+- Rifts and the Abyss are entered at the Watcher, the NPC in town of 05; the screen table above now says so (Q22).
 
 ### Results
 
-Designed above (a list of drops, best first, Equip all upgrades, Salvage the rest, Continue, undo for 10 s). Proposed (Q19): it opens on arriving in town when anything was picked up since the last visit, never in the dungeon (a level has no end screen in a stair-descent game). "Salvage the rest" would break the Forge-only salvage decision; proposed instead: "Mark the rest for salvage", which moves them to the salvage pouch the smith empties (03, Loot filter).
+Designed above (a list of drops, best first, Equip all upgrades, Salvage the rest, Continue, undo for 10 s). **Decided (Q19, 2026-09-27):** it opens on arriving in town when anything was picked up since the last visit, never in the dungeon (a level has no end screen in a stair-descent game), and "Salvage the rest" becomes "Mark the rest for salvage", which moves them to the salvage pouch the smith empties (03, Loot filter), since salvage happens only at the Forge.
 
 ### Story scenes
 
-A bottom panel over the paused game: the speaker's portrait on the left, 2 to 3 lines of text, a tap anywhere advances, Skip at the lower right. Scenes in town let the player keep walking once they end. Format Q20.
+A bottom panel over the paused game: the speaker's portrait on the left, 2 to 3 lines of text, a tap anywhere advances, Skip at the lower right. Scenes in town let the player keep walking once they end. In-engine, text, no voice (decided, Q20).
 
 ### HUD additions
 

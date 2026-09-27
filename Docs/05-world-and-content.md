@@ -14,17 +14,17 @@ Tone: grim, weathered, quiet. Color palette is desaturated stone, ash and rust, 
 4. Act 4, Iron Spire: a fortress of sworn knights who serve the Hollow willingly.
 5. Act 5, The Hollow: the source. The final boss is the first watchman, whose failure began the fall.
 
-Story is delivered in about 30 minutes of short scenes across the campaign. Skippable at all times.
+Story is delivered in short scenes across the campaign, about 20 minutes in all (25 scenes, below). Skippable at all times. Scenes are made in-engine from sprites, portraits and text lines, with no voice (decided 2026-09-27, Q20).
 
 ## Structure
 
-| Act | Levels | Player level | Boss | Signature enemies |
+| Act | Levels | Player level (Vigil I, the first of five passes, decided 2026-09-27, Q1) | Boss | Signature enemies |
 |---|---|---|---|---|
 | 1 Ashfields | 6 | 1 to about 7 (enemy levels 1 to 7; flattened from 1 to 12 on 2026-09-26, see 08-production.md) | Cinder Warden | Husks, ghouls, wolves, bandit archers |
-| 2 Drowned Reach | 6 | 12 to 24 | The Tidewife | Drowned, leech swarms, marsh casters |
-| 3 Bone Orchard | 6 | 24 to 36 | Saint Marrow | Skeleton knights, bone chargers, grave priests |
-| 4 Iron Spire | 6 | 36 to 48 | Warlord Kaeth | Armored knights, siege brutes, banner bearers |
-| 5 The Hollow | 6 | 48 to 60 | The First Watchman | Void wraiths, corrupted allies, elite mixed packs |
+| 2 Drowned Reach | 6 | 7 to about 12 (enemy levels 9 to 14, proposed) | The Tidewife | Drowned, leech swarms, marsh casters |
+| 3 Bone Orchard | 6 | 12 to about 16 (enemy levels 14 to 18, proposed) | Saint Marrow | Skeleton knights, bone chargers, grave priests |
+| 4 Iron Spire | 6 | 16 to about 19 (enemy levels 18 to 21, proposed) | Warlord Kaeth | Armored knights, siege brutes, banner bearers |
+| 5 The Hollow | 6 | 19 to about 21 (enemy levels 21 to 23, proposed); level 60 is reached over the later Vigil tiers (04) | The First Watchman | Void wraiths, corrupted allies, elite mixed packs |
 
 Each act has one town above one dungeon. The dungeon is descended level by level: the exit room of each level holds stairs down to the next, and its start room holds stairs up (on the first level they lead back to the town).
 
@@ -37,7 +37,7 @@ Each act has one town, a small safe scene the player walks through with the stic
 - Stairs: the exit room of each level holds stairs down and the start room holds stairs up.
 - Waypoints: each level has a waypoint, in its start room (decision of 2026-09-26), that the player activates by stepping on it. From any activated waypoint, or from the Waystone in town, the player can jump to any other activated waypoint. A list screen opens from the waypoint or the Waystone. Rifts and the Abyss are entered from an NPC in town.
 - Portal Tome: a permanent item, given by an NPC, the Wanderer, on dungeon depth 3 (decision of 2026-09-26). It stays with the character, is free to use and is used from the UI. It opens a portal to town, and the portal stays open so the player can come back through it. Before the Tome the player walks back to town by the stairs. There are no consumable portal scrolls.
-- Persistence: within a game session a level keeps its seeded layout, its dead enemies and its opened chests when the player leaves and comes back. A sleep mechanic resets the session. Its rules are not designed yet.
+- Persistence: within a game session a level keeps its seeded layout, its dead enemies and its opened chests when the player leaves and comes back. A sleep mechanic resets the session: a bed in each town's inn (decided 2026-09-27, Q14; rules under "Sleep" below).
 - Death: the character is sent to town, see 01-core-gameplay.md.
 
 ## Level generation
@@ -53,11 +53,11 @@ Levels are built from hand-authored rooms joined by a seeded generator.
 
 ### Shrines
 
-A shrine is stepped on to activate. Effects last 60 seconds: Speed, Fury (damage), Warding (damage reduction), Fortune (Magic Find), Focus (regeneration). One shrine per room at most.
+A shrine is stepped on to activate. Effects last 60 seconds: Speed, Fury (damage), Warding (damage reduction), Fortune (Magic Find), Wrath (the Wrathborn's Rage; the Focus shrine of the drafts' Focus classes, renamed for a Rage class, Q22). One shrine per room at most.
 
 ## Enemy roster (launch)
 
-Count: 40 normal enemy types, 15 elite modifiers used across them, 5 act bosses, 4 optional bosses. Each enemy has a sprite set with 8 direction facing, 4 states, and 2 palette swaps per act.
+Count: 40 normal enemy types, 15 elite modifiers used across them, 5 act bosses, 4 optional bosses. Each enemy has a sprite set with 8 direction facing and the art brief's 5 animations, plus champion and elite sheet sets (09, 5.1; this replaces "4 states and 2 palette swaps per act", Q22).
 
 Per act examples (archetypes from 01-core-gameplay.md):
 
@@ -96,6 +96,7 @@ Optional bosses appear in the boss rotation from Vigil II. They drop legendaries
 - Timed zones of 5 minutes with a kill goal.
 - Rift keys drop from elites and bosses. Keys set difficulty tier and modifiers.
 - A completed rift gives a chest with 3 items, at least one Rare.
+- A death ends the run and returns the character to town with its gear, no corpse (decided 2026-09-27, Q13).
 - Rift modifiers, two per key: Bloodlust, Hexed (enemies curse), Frozen Ground, Swarm, Champion Horde.
 
 ### Abyss
@@ -103,7 +104,7 @@ Optional bosses appear in the boss rotation from Vigil II. They drop legendaries
 - An endless dungeon. Each floor is a compact room with a 90 second timer, a guardian on every fifth floor.
 - Floor enemy level rises 2 per floor. Every 10 floors the player picks a boon from three, active for the rest of the run.
 - Rewards: materials on each floor, item drops from guardians.
-- Death ends the run. The deepest floor reached is kept as the player's personal best.
+- Death ends the run and returns the character to town with its gear, no corpse (decided 2026-09-27, Q13). The deepest floor reached is kept as the player's personal best.
 
 ### Boss rotation
 
@@ -111,43 +112,50 @@ A list of all bosses, each usable at any unlocked difficulty tier. A boss can be
 
 ### Achievements
 
-Around 60 achievements. Examples: clear each act without using a potion, reach Abyss depth 50 with a Fortress build, collect all class legendaries, win with a build that has no active skill of a certain tag.
+60 achievements, local only (no Game Center in 1.0), recorded in the Journal, with no rewards (decided 2026-09-27, Q17). Examples: clear each act without using a potion, reach Abyss depth 50 with a Fortress build, collect all class legendaries, win with a build that has no active skill of a certain tag.
 
 ## Audio and art direction
 
 - Art: in the style of the original Diablo 2 but not a copy (2026-09-27): sprites pre-rendered from 3D models, frame by frame in 8 directions at 12 fps, 256 by 256 cells for standard enemies, 512 by 512 for bosses, isometric perspective. Environments are tile-based with lit layers. Walls on a room's camera-facing sides are drawn cut down, so they never hide the character. The full brief is 09-art-brief.md.
 - Lighting: dark scenes lit by the player's ember and enemy effects. Dynamic 2D lights on the player and a few props only, for performance.
-- Music: sparse, low strings, choir, drum layers. Layered stems respond to pack size and elite presence.
+- Music: sparse, low strings, choir, drum layers. Layered stems respond to pack size and elite presence. Music and sounds are made with AI generation tools, like the art (decided 2026-09-27, Q21).
 - Sound: heavy, tactile, low frequency emphasis. Rarity-specific pickup sounds.
 
 ## Content counts for 1.0
 
+One class at launch (decided 2026-09-21); these counts replace the earlier three-class table (decided 2026-09-27, Q23; 10-full-game-plan.md, section 14).
+
 | Category | Count |
 |---|---|
 | Acts | 5 |
-| Zones | 30 |
-| Hand-authored rooms | 150 |
+| Dungeon levels | 30 |
+| Hand-authored rooms | 150 (30 per act) plus 5 boss arenas |
+| Towns | 5 (one per act) |
 | Normal enemies | 40 |
-| Bosses | 9 |
-| Classes | 3 |
-| Active skills | 24 |
-| Skill modifiers | 216 |
-| Legendary items | 60 |
-| Affixes | 90 |
+| Elite modifiers | 15 |
+| Bosses | 9: 5 act bosses and 4 optional |
+| Classes | 1 |
+| Active skills | 8 |
+| Skill modifiers | 24 choices at 3 levels, 72 options |
+| Passive nodes | 60 |
+| Legendary items | 40 (Q7) |
+| Item sets | none (Q18) |
+| Affixes | about 90 |
 | Gems | 4 types, 5 tiers |
 | Achievements | 60 |
+| Story scenes | 25 short scenes, about 20 minutes |
 
-## Full-game plan: world and content (proposed, not decided)
+## Full-game plan: world and content (proposed, with the owner's decisions of 2026-09-27)
 
-Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). Everything in this section is a proposal: names, numbers, behaviors and story. Numbers are tuning values. Nothing above is changed by it. Questions are numbered as in `08-production.md`, "Open questions from the full-game plan".
+Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). Everything in this section is a proposal: names, numbers, behaviors and story, except where marked **Decided** (the owner's answers of 2026-09-27). Numbers are tuning values. The text above now follows those decisions. Questions are numbered as in `08-production.md`, "Open questions from the full-game plan".
 
 Rules every proposal here keeps (decided above or in 00 and 01): enemies are packs placed in rooms, idle until aggro, and never spawn around the player; killed enemies stay dead for the session; the stick is the only input; every dangerous attack is telegraphed; ground shapes cannot be dodged by chance, only by moving; the town is safe.
 
 ### Acts at a glance
 
-The player level column above (act 2 at 12 to 24 and so on) cannot be reached with 6 levels per act (Q1, and 04, "The gap between the XP curve and the campaign"). The enemy levels below are the Vigil I levels of 04's recommended plan and change with Q1.
+The player level column above used to say act 2 at 12 to 24 and so on, which cannot be reached with 6 levels per act (04, "The gap between the XP curve and the campaign"). **Decided (Q1, 2026-09-27):** the campaign is played five times, once per Vigil tier, and the column now shows Vigil I. The enemy levels below are 04's Vigil I proposal. **Decided (Q9):** each act has a damage element, as the column below lists.
 
-| Act | Town | Dungeon | Depths 1 to 3 | Depths 4 to 6 | Damage element (Q9) | Vigil I enemy levels | Boss |
+| Act | Town | Dungeon | Depths 1 to 3 | Depths 4 to 6 | Damage element (decided, Q9) | Vigil I enemy levels | Boss |
 |---|---|---|---|---|---|---|---|
 | 1 Ashfields | Emberwatch, the ruined chapel village | The chapel's catacombs | Crypts: burial niches, bone piles, soot | Burned barrows: collapsed tombs opening into ash-choked earth | Fire | 1 to 7 (built) | Cinder Warden (built) |
 | 2 Drowned Reach | Saltmere, a stilt village on the last dry hill | The sunken watch-keep | Flooded cellars: shallow water, rotting timber | Drowned halls: deeper water channels, coral-grown stone | Cold | 9 to 14 | The Tidewife |
@@ -167,7 +175,7 @@ Every town has the same five services, placed so every NPC is within 12 units of
 | Stash keeper | yes | The Stash (03, 06) |
 | Trainer | yes | Respec of the passive tree and of skill points (02, 04); a short reminder of the loadout rules |
 | Waystone | yes (act 1 built) | The Waystone map (06): waypoints, tiers, boss rotation |
-| The Watcher | yes, from the first act 5 boss kill | Rifts and the Abyss (Endgame, below). 05 above says "an NPC in town" enters them |
+| The Watcher | yes, from the first act 5 boss kill | Rifts and the Abyss (Endgame, below), the "NPC in town" of 05 above; 06's Waystone map now points here (Q22) |
 | Story NPC | one per town | Plays the act's town scenes; otherwise one line of idle talk |
 
 The Wanderer (built, act 1 depth 3) stays the only NPC in a dungeon.
@@ -329,7 +337,7 @@ The First Watchman (act 5, shadow):
 | 2 | Void Fields: 3 circles (radius 3) that fill in 1.2 s and stay 12 s, 0.8 hit per second. Mixed adds: 2 enemies from each earlier act's roster every 15 s, up to 8, walking in from the arena's four gates | Void Fields last 16 s |
 | 3 | The edges close: a band at the rim shrinks the arena from radius 12.7 to 6 over 30 s and stays (1.2 hit per second inside it). Void rain: a circle (radius 1.5) on the player's spot every second, 0.9 s, 0.9 | The arena shrinks to 5 |
 
-Optional bosses (in the boss rotation from Vigil II, 05 above; each rewards a different build, with a higher Legendary chance: 60 percent on Vigil II rising to 100 on Vigil V, proposed):
+Optional bosses (in the boss rotation from Vigil II, 05 above, decided 2026-09-27, Q25; each rewards a different build, with a higher Legendary chance: 60 percent on Vigil II rising to 100 on Vigil V, proposed):
 
 | Boss | Where it lives | Rewards | Phase 1 | Phase 2 | Phase 3 |
 |---|---|---|---|---|---|
@@ -348,17 +356,17 @@ Optional bosses (in the boss rotation from Vigil II, 05 above; each rewards a di
 | Fury | Plus 30 percent damage |
 | Warding | 25 percent less damage taken |
 | Fortune | Plus 100 percent Magic Find (above the 200 percent gear cap, shrines are separate) |
-| Focus | For the Wrathborn: Rage never drains and gains 50 percent more. The name comes from the Focus resource; proposed name for the Wrathborn: Wrath shrine (Q22) |
+| Focus | For the Wrathborn: Rage never drains and gains 50 percent more. The name comes from the Focus resource; renamed Wrath shrine (Q22) |
 
 A shrine room holds one shrine on a plinth and 1 or 2 normal packs; shrines are marked on the mini-map once seen.
 
-### Ambush rooms (Q12)
+### Ambush rooms (decided, Q12)
 
-05 above lists ambush rooms (5 percent). 01 and the structure decision say nothing spawns around the player and there are no waves. Proposed reading that keeps the decision: an ambush room's packs are placed at level load like every other pack, but lie dormant and visible (mounds of ash, bodies in the water, bone piles) around the room's edges; crossing the room's middle wakes them all at once from where they lie. Nothing is created during play. If the owner reads "ambush" as enemies appearing, it conflicts with the decision, hence the question.
+05 above lists ambush rooms (5 percent). 01 and the structure decision say nothing spawns around the player and there are no waves. **Decided (Q12, 2026-09-27):** an ambush room's packs are placed at level load like every other pack, but lie dormant and visible (mounds of ash, bodies in the water, bone piles) around the room's edges; crossing the room's middle wakes them all at once from where they lie. Nothing is created during play.
 
 ### Story and scenes (proposed)
 
-The outline above stands. Scenes are short (20 to 60 seconds), skippable at all times, and do not take control away in the dungeon: they play in town, at a boss's first sight (5 seconds, the boss name and one line), and after a boss kill. Format: Q20 (recommended: in-engine, the characters as sprites, text lines with a portrait, no voice acting). 25 scenes, about 20 minutes in total.
+The outline above stands. Scenes are short (20 to 60 seconds), skippable at all times, and do not take control away in the dungeon: they play in town, at a boss's first sight (5 seconds, the boss name and one line), and after a boss kill. Format, **decided (Q20, 2026-09-27):** in-engine, the characters as sprites, text lines with a portrait, no voice acting. 25 scenes, about 20 minutes in total (proposed).
 
 | Act | Opening (town) | Middle | Boss | Closing | Lore landmarks in the dungeon |
 |---|---|---|---|---|---|
@@ -374,11 +382,11 @@ Lore delivery: short item flavor text on every Legendary (one sentence), lore la
 
 The act 1 boss already adds Stairs To Town (built). Proposed: from act 1 to 4, the boss kill also unlocks the next act's town on the Waystone map, and the stairs lead to that town the first time. Each act's town has its own Waystone; every waypoint of every act is on one map (06, Waystone map).
 
-### Sleep (Q14)
+### Sleep (decided, Q14)
 
-05 above says a sleep mechanic resets the session, rules not designed. Proposed: a bed in each town's inn (a walk-up spot). Sleeping asks one confirmation, then gives every dungeon level of every act new seeds, restores killed enemies and closed chests, and keeps waypoints, the Portal Tome and the portal. Corpses stay, moved to the arrival point of their level. This is the only way to farm a finished level without rifts.
+05 above says a sleep mechanic resets the session. **Decided (Q14, 2026-09-27):** a bed in each town's inn (a walk-up spot). Sleeping asks one confirmation, then gives every dungeon level of every act new seeds, restores killed enemies and closed chests, and keeps waypoints, the Portal Tome and the portal. Corpses stay, moved to the arrival point of their level. This is the only way to farm a finished level without rifts.
 
-## Full-game plan: endgame (proposed, not decided)
+## Full-game plan: endgame (proposed, with the owner's decisions of 2026-09-27)
 
 Written 2026-09-27. Rules kept: no online features, no weekly seeds or recurring live content (decided); everything is offline and local.
 
@@ -404,21 +412,21 @@ Kept from above: an endless dungeon, one compact room per floor, 90 second timer
 - Floor enemy level: the chosen tier's lowest level plus 2 per floor, up to 160 (03's item level cap). A floor is one room with 3 to 5 packs; the stairs down open when all are dead. The timer running out ends the run with what was collected.
 - Guardians: an elite pack with 2 modifiers plus a champion leader on floors 5, 15, 25; an optional boss from the rotation on floors 10, 20, 30 and so on.
 - Boons (pick 1 of 3 every 10 floors, for the rest of the run): plus 20 percent damage; plus 20 percent life; potion charges refill on every floor; plus 1 Momentum and Stillness cap; skills cost 25 percent less Rage; plus 50 percent Magic Find; the first death this run is prevented (once); elites drop an extra item; plus 15 percent attack speed; plus 10 percent cooldown reduction; ground telegraphs fill 15 percent slower; plus 2 levels to all skills.
-- Death: ends the run. Whether the character also leaves a corpse there (01's death rule) is Q13; recommended: in the Abyss and rifts, death ends the run and returns the character to town with its gear, no corpse, since the level no longer exists.
+- Death, **decided (Q13, 2026-09-27):** in the Abyss and rifts, death ends the run and returns the character to town with its gear, no corpse, since the level no longer exists.
 - Cursed items drop from depth 30 onward (03).
 
 ### Boss rotation
 
-Kept from above. Proposed: a page of the Waystone map (06) listing every boss killed at least once, at any tier unlocked. A fight costs one Boss Sigil (dropped by rift completions, 50 percent, and Abyss guardians, 100 percent); act bosses can also be fought for free the campaign way. The fight is the boss arena alone, with Stairs To Town after the kill. Optional bosses appear from Vigil II (above).
+Kept from above. Proposed: a page of the Waystone map (06) listing every boss killed at least once, at any tier unlocked. A fight costs one Boss Sigil (dropped by rift completions, 50 percent, and Abyss guardians, 100 percent); act bosses can also be fought for free the campaign way. The fight is the boss arena alone, with Stairs To Town after the kill. Optional bosses appear in the rotation from Vigil II (above; decided 2026-09-27, Q25).
 
-### Achievements (proposed list of 60, local only, Q17)
+### Achievements (60, local, no rewards: decided, Q17; the list is proposed)
 
 | Group | Achievements |
 |---|---|
 | Story (10) | Kill each act boss (5); finish each Vigil tier (5) |
 | Combat (10) | Clear a level without potions; clear an act without potions (05 above); kill 1,000 / 10,000 enemies; kill 100 elites; break a boss's stagger 3 times in one fight; kill a pack of 12 with one Ground Breaker; dodge 100 hits; win a boss fight without being hit by a ground shape; kill every optional boss |
 | Build (10) | Buy both keystones; reach skill level 20; unlock every modifier of one skill; fill the passive tree; clear a level with no Sweep skill equipped (05 above's example, adapted); 5 Momentum stacks for 60 s; 5 Stillness stacks through a boss phase; reach 200 percent Magic Find; reach 50 percent cooldown reduction; clear Abyss floor 50 with a Momentum-leaning build (05 above's Fortress example, adapted to the Wrathborn) |
-| Loot (12) | Find a Legendary; find 10 / all 40 Legendaries (Codex); find a Cursed item; equip a full set of 10 Legendaries or Rares; temper an affix to T1; reforge 50 times; socket a Perfect gem; salvage 1,000 items; fill the stash; transmog every shown slot; find a T1 affix |
+| Loot (12) | Find a Legendary; find 10 / all 40 Legendaries (Codex); find a Cursed item; equip a full set of 10 Legendaries or Rares; temper an affix to T1; reforge 50 times; socket a Perfect gem; salvage 1,000 items; fill the stash; wear a Legendary in every shown slot (replaces "transmog every shown slot": Transmog comes after launch, Q24); find a T1 affix |
 | Endgame (10) | Abyss floors 10, 25, 50, 75, 100; complete 10 / 100 rifts; complete a rift in under 3 minutes; kill a boss from the rotation on Vigil V; Paragon 50 |
 | Exploration (8) | Activate every waypoint in an act (5 achievements, one per act); read every lore landmark; walk up to every NPC in every town; recover your corpse 10 times |
 

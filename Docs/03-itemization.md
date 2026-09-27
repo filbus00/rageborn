@@ -6,18 +6,18 @@ Loot is the reason to play. This file defines what drops, how it is rolled, how 
 
 Ten slots: weapon, off-hand, helm, chest, gloves, boots, belt, amulet, ring 1, ring 2.
 
-Weapons have a base damage range and base attack speed. The off-hand slot accepts shields (Warden), quivers (Ranger) or focus orbs (Hexer). Class restrictions apply to weapon and off-hand only. All other slots are shared across classes.
+Weapons have a base damage range and base attack speed. The off-hand slot holds, for the Wrathborn, nothing, a one-handed weapon or a shield, or is emptied by a two-handed weapon (decision of 2026-09-27, below); quivers and focus orbs belong to the post-launch Ranger and Hexer drafts (Q22). Class restrictions apply to weapon and off-hand only. All other slots are shared across classes.
 
 ## Appearance
 
 Decided 2026-09-27 (08-production.md): the game is gear oriented like Diablo 2, and equipped gear is displayed on the character.
 
-- The Wrathborn's off-hand (decision of 2026-09-27): "can in offhand hold: nothing, offhand weapon, shield, or use two hand". So he fights in one of four grips: one-handed with an empty off-hand, dual wield, weapon and shield, or two-handed. A two-handed weapon needs both hands, so the off-hand is empty while one is equipped (Claude's reading of "use two hand"; the equip rule is not built). Each grip has its own animation set, as in Diablo 2.
+- The Wrathborn's off-hand (decision of 2026-09-27): "can in offhand hold: nothing, offhand weapon, shield, or use two hand". So he fights in one of four grips: one-handed with an empty off-hand, dual wield, weapon and shield, or two-handed. A two-handed weapon needs both hands, so the off-hand is empty while one is equipped (Claude's reading of "use two hand", confirmed with the grip rules on 2026-09-27, Q10; the equip rule is not built). Each grip has its own animation set, as in Diablo 2.
 - Shown slots: weapon, off-hand, helm and chest armour. The chest armour sets the torso, arms and legs. Gloves, boots, belt, amulet and rings do not change the character's look (at about 170 px tall they would barely read).
 - Looks come in tiers by item level: 3 per shown slot in act 1 (weapon: hatchet, bearded axe, war axe; chest: padded, leather, mail; helm: cap, nasal helm, great helm), more tiers added with each act. Every item of a tier looks the same on the character, as Diablo 2's light, medium and heavy armour did. The item's icon matches its tier.
 - Every legendary in a shown slot has its own unique model and icon.
 - An empty helm slot shows the bare head and an empty weapon slot empty hands, matching the game, where a character with no weapon fights unarmed (Claude's reading, not a separate decision).
-- The Forge's Transmog (below) changes an item's look; its rules are not designed yet.
+- The Forge's Transmog (below) changes an item's look; it comes after launch (decided 2026-09-27, Q24).
 - How the art is built (a body per chest look, helms, weapons and off-hands as separate pieces, baked into sprite layers the game stacks) is in 09-art-brief.md, section 4.5.
 
 ## Item level
@@ -32,7 +32,7 @@ Item level equals the zone level where the item drops, capped at 60 in the campa
 | Magic | Blue | 1 prefix, 1 suffix | Early game fill |
 | Rare | Yellow | 2 to 3 prefixes, 2 to 3 suffixes | Main gearing path |
 | Legendary | Orange | 4 fixed and 2 random affixes plus one unique power | Build defining |
-| Cursed (variant) | Purple | Legendary with a curse drawback and a stronger power | Endgame only, from Abyss depth 30 onward |
+| Cursed (variant) | Purple | Legendary with a curse drawback and a stronger power | Endgame only, from Abyss depth 30 onward (04's tier table now agrees, Q22) |
 
 Base drop weights for a normal kill at zone level equal to player level:
 
@@ -137,7 +137,7 @@ Each legendary has three parts: a fixed base type, four fixed affix slots with r
 | Hollow Saint's Chain | Amulet | Summons are also affected by your Stillness and Momentum stacks |
 | Thornroot Belt | Belt | Elites you kill drop a healing shrine that lasts 10 s |
 
-Design rule: a legendary power must change what the skill loadout does, not only add a number. About 60 legendaries ship in 1.0, 20 per class plus 20 shared.
+Design rule: a legendary power must change what the skill loadout does, not only add a number. 40 legendaries ship in 1.0: 24 tied to Wrathborn skills and 16 shared (decided 2026-09-27, Q7; the earlier 60 assumed three classes). The examples above for the Warden, Ranger and Hexer wait for those classes.
 
 Cursed variants carry a stronger power and a drawback, for example: The Last Toll (Cursed) triggers every 45 s but reduces max life by 25 percent.
 
@@ -163,7 +163,7 @@ Preset filters:
 
 Rules:
 
-- Filtered items are still picked up and auto-salvaged for materials. They never take an inventory slot. Open: salvage now happens only at the Forge (08-production.md, open question 9).
+- Filtered items are still picked up, into a salvage pouch that takes no backpack slots; the smith offers to salvage them all in one tap (decided 2026-09-27, Q11, since salvage happens only at the Forge). They never take an inventory slot.
 - The filter can be changed from the inventory screen in two taps.
 - A custom filter allows rules by rarity, slot, affix tag and minimum item level.
 - The filter never hides Legendary items by default.
@@ -185,10 +185,10 @@ The Forge is a bottom sheet opened by walking up to the smith in town (05-world-
 |---|---|---|
 | Reforge affix | Reroll one chosen affix on a Rare item, same tier band | Bloodstone plus gold that rises with each reroll on the same item |
 | Reroll values | Reroll numeric values of all affixes on a Legendary item within their ranges | Soulglass plus gold |
-| Add socket | Adds one socket to an item with fewer than its maximum | Bloodstone |
+| Add socket | Adds one socket to an item with fewer than its maximum | Cinders on a Rare, Bloodstone on a Legendary (04, material economy; a proposal) |
 | Temper | Raises the tier of one affix by one step, up to T1 | Soulglass, limited to 3 uses per item |
 | Imprint | Copies a legendary power onto a Rare item of the same slot, destroying the legendary | Soulglass, endgame only |
-| Transmog | Changes appearance only | Gold |
+| Transmog | Changes appearance only | After launch (decided, Q24) |
 
 Cost escalation: each reforge on the same item raises its material cost by 25 percent. This creates a natural stopping point and keeps drops relevant.
 
@@ -200,9 +200,9 @@ Cost escalation: each reforge on the same item raises its material cost by 25 pe
 - Actions sit in one row at the bottom: Equip, Discard, Lock. Lock prevents discarding, salvage and stash cleaning. Salvage is at the Forge in town, not on the tooltip (decision of 2026-09-26).
 - Swipe left and right on the sheet moves between drops in the results list.
 
-## Full-game plan: items (proposed, not decided)
+## Full-game plan: items (proposed, with the owner's decisions of 2026-09-27)
 
-Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). Everything below is a proposal; numbers are tuning values. Nothing above is changed by it. Questions are numbered as in `08-production.md`, "Open questions from the full-game plan".
+Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). Everything below is a proposal and numbers are tuning values, except where marked **Decided** (the owner's answers of 2026-09-27; questions are numbered as in `08-production.md`, "Open questions from the full-game plan"). The text above now follows those decisions.
 
 ### The ten slots for the Wrathborn
 
@@ -222,7 +222,7 @@ Built: weapon, chest, helm. Proposed for the other seven:
 | Amulet | none | none | No |
 | Ring (2 slots) | none | none | No |
 
-Grips (decided: nothing, an off-hand weapon, a shield, or a two-handed weapon; the equip rule is not built). Proposed mechanics (Q10):
+Grips (decided: nothing, an off-hand weapon, a shield, or a two-handed weapon; the equip rule is not built). **Decided (Q10, 2026-09-27):** the grips play differently, as follows (the numbers are tuning):
 
 - One-handed, off-hand empty: the reference. Nothing extra.
 - Dual wield: swings alternate hands, each using its own weapon's damage; plus 15 percent attack speed; both weapons' affixes count. Skills use the main-hand weapon.
@@ -256,15 +256,15 @@ Decided: shown slots have looks in tiers by item level, 3 per slot in act 1, mor
 
 The first rows of act 1 are the brief's (09, 4.5). An off-hand weapon uses the one-handed weapon's look. Gloves, boots, belts, amulets and rings have no look on the character (decided) and get one icon per act band (5 per slot, 09).
 
-Every shown look is one more set of baked sheets (a body per chest look, a piece per helm, weapon and shield look). How many the phone and the app size can hold is Q3.
+Every shown look is one more set of baked sheets (a body per chest look, a piece per helm, weapon and shield look). How many the phone and the app size can hold is found by measuring act 1 on a phone and then trimming; the character's resolution may drop to Diablo 2's (decided 2026-09-27, Q3; 07).
 
-### Item level above 60 (Q8)
+### Item level above 60 (decided, Q8)
 
-Item levels go to 160 in the Abyss (above), but affix tiers stop at T1 (item level 60). Proposed (Q8 option A): base damage and armor keep following their formulas to 160 (a level 160 weapon averages about 2,450 damage), and an affix rolled on an item above level 60 has its T1 range raised by 1 percent per level above 60, up to plus 100 percent at 160. No new tier names. Tempering (built) still stops at T1.
+Item levels go to 160 in the Abyss (above), but affix tiers stop at T1 (item level 60). **Decided (Q8, 2026-09-27):** base damage and armor keep following their formulas to 160 (a level 160 weapon averages about 2,450 damage), and an affix rolled on an item above level 60 has its T1 range raised by 1 percent per level above 60, up to plus 100 percent at 160. No new tier names. Tempering (built) still stops at T1.
 
-### Elements and resistances (Q9)
+### Elements and resistances (decided, Q9)
 
-The resistance suffixes and the 75 percent cap exist in the docs above, but nothing deals elemental damage. Proposed: basic melee hits are physical everywhere; each act's casters, projectiles and boss ground shapes deal the act's element (05: act 1 fire, 2 cold, 3 poison, 4 physical and fire, 5 shadow). Resistance reduces that damage by its percent (above). As in Diablo 2, each Vigil tier after the first lowers the character's resistances: minus 15 on Vigil II, 30 on III, 45 on IV, 60 on V and the Abyss (tuning), so resistance gear matters later and not at the start. Act 1 as built has no elements; the Cinder Warden's fire would become fire damage.
+The resistance suffixes and the 75 percent cap exist in the docs above, but nothing deals elemental damage. **Decided (Q9, 2026-09-27):** each act has an element, and each Vigil tier after the first lowers the character's resistances by 15. The details: basic melee hits are physical everywhere; each act's casters, projectiles and boss ground shapes deal the act's element (05: act 1 fire, 2 cold, 3 poison, 4 physical and fire, 5 shadow). Resistance reduces that damage by its percent (above). As in Diablo 2, each Vigil tier after the first lowers the character's resistances: minus 15 on Vigil II, 30 on III, 45 on IV, 60 on V and the Abyss (tuning), so resistance gear matters later and not at the start. Act 1 as built has no elements; the Cinder Warden's fire would become fire damage.
 
 ### Affix pool (proposed, 88 affixes)
 
@@ -339,9 +339,9 @@ Built affixes keep their built numbers. Ranges are T1 at item level 60; lower ti
 
 Counts: 39 prefixes, 49 suffixes, 88 in all (above: "about 90"). Every slot has at least 3 of each kind eligible once all ten slots exist, so a Rare's 2 to 3 of each always fits.
 
-### Legendaries for launch (proposed: 40, Q7)
+### Legendaries for launch (40 decided, Q7; each one proposed)
 
-00 and the section above plan 60 (20 per class plus 20 shared), which assumed three classes. Proposed for one class: 40, of which 24 are tied to Wrathborn skills and 16 are shared rules any later class can use. 20 are in shown slots and need their own model (decided: every legendary in a shown slot has one). The two shared examples above that fit (The Last Toll, Thornroot Belt) are kept; the other four examples belong to the Warden, Ranger and Hexer and wait for them.
+00 and the section above planned 60 (20 per class plus 20 shared), which assumed three classes. **Decided (Q7, 2026-09-27):** 40, of which 24 are tied to Wrathborn skills and 16 are shared rules any later class can use. 20 are in shown slots and need their own model (decided: every legendary in a shown slot has one). The two shared examples above that fit (The Last Toll, Thornroot Belt) are kept; the other four examples belong to the Warden, Ranger and Hexer and wait for them.
 
 Each has a fixed base (its band's look is replaced by its own), four fixed affixes (values rolled in the item level's tier), two random affixes and the power (the section above). Fixed affixes are given by number from the affix table.
 
@@ -392,11 +392,11 @@ Drop rules: every Legendary can drop anywhere its item level allows, with a mini
 
 ### Cursed items (proposed details)
 
-Kept from above: purple, a Legendary with a curse and a stronger power, from Abyss depth 30 (04 has Vigil II as the Cursed pool's start in its tier table, a conflict: Q22). Proposed: every Legendary has a Cursed form with its power's numbers raised by 50 percent and one drawback rolled from: 20 percent less max life; no auto-potion; Rage drains even in combat at 2 a second; 30 percent less to all resistances; 20 percent more damage from elites; Momentum and Stillness caps minus 2; 10 percent less move speed; no Life on Hit. Salvage gives 2 Soulglass. Magic Find does not affect Cursed items (above).
+Kept from above: purple, a Legendary with a curse and a stronger power, from Abyss depth 30 (04's tier table said Vigil II; it now follows this, Q22). Proposed: every Legendary has a Cursed form with its power's numbers raised by 50 percent and one drawback rolled from: 20 percent less max life; no auto-potion; Rage drains even in combat at 2 a second; 30 percent less to all resistances; 20 percent more damage from elites; Momentum and Stillness caps minus 2; 10 percent less move speed; no Life on Hit. Salvage gives 2 Soulglass. Magic Find does not affect Cursed items (above).
 
-### Sets (Q18)
+### Sets (decided, Q18)
 
-No sets are in the docs. Proposed: none in 1.0. Each set would need its own looks on the character and would compete with the Legendaries for the same slots; the 40 Legendaries already carry the build-changing role.
+No sets are in the docs. **Decided (Q18, 2026-09-27):** none in 1.0. Each set would need its own looks on the character and would compete with the Legendaries for the same slots; the 40 Legendaries already carry the build-changing role.
 
 ### Sockets and gems (proposed numbers)
 
@@ -411,10 +411,10 @@ Kept from above: Rare items 0 to 2 sockets, Legendary 1 to 3; four colours in fi
 
 Values are Chipped, Flawed, Normal, Flawless, Perfect. Drops: elites 10 percent, chests 20, bosses 1 to 2; the tier drops by item level (Chipped from 1, Flawed from 15, Normal from 30, Flawless from 45); Perfect only by fusion. Gems stack in their own pouch, not in the 40 backpack slots. Removing a gem at the Forge returns it for gold (10 times the curve at the item's level). Fusion costs are in 04.
 
-### Loot filter (proposed, with Q11)
+### Loot filter (decided, Q11)
 
-The design above stands (presets, custom rules, never hides Legendaries by default). Its auto-salvage conflicts with the decision that salvage happens only at the Forge (existing question 9, repeated as Q11). Proposed (Q11 option A): filtered items are picked up into a separate salvage pouch that does not use backpack slots and cannot be opened in the dungeon; walking up to the smith offers "Salvage N filtered items" as one tap in the Salvage tab. Salvage still only happens at the Forge, and the player never walks past loot. The filter's introduction stays at 200 items dropped (06).
+The design above stands (presets, custom rules, never hides Legendaries by default). Its auto-salvage conflicted with the decision that salvage happens only at the Forge (existing question 9, repeated as Q11). **Decided (Q11, 2026-09-27):** filtered items are picked up into a separate salvage pouch that does not use backpack slots and cannot be opened in the dungeon; walking up to the smith offers "Salvage N filtered items" as one tap in the Salvage tab. Salvage still only happens at the Forge, and the player never walks past loot. The filter's introduction stays at 200 items dropped (06).
 
-### Transmog (Q24)
+### Transmog (after launch, Q24)
 
-Designed as a Forge action for gold, rules not designed. Proposed: the Forge's Transmog tab lists every look the character has ever picked up for that slot (tiers and legendaries alike); choosing one changes only the item's look and icon, for 10 times the gold curve plus 4 Ash (04). Removing a transmog is free. A legendary's look can be put on any item of its slot once that legendary has been found.
+Designed as a Forge action for gold. **Decided (Q24, 2026-09-27):** Transmog comes after launch, not in 1.0. The rules below are kept as a proposal for then: the Forge's Transmog tab lists every look the character has ever picked up for that slot (tiers and legendaries alike); choosing one changes only the item's look and icon, for 10 times the gold curve plus 4 Ash (04). Removing a transmog is free. A legendary's look can be put on any item of its slot once that legendary has been found.

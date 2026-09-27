@@ -27,16 +27,16 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 
 ## Milestones to 1.0 (proposed, not decided)
 
-Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). All 26 were answered by the user the same day; each answer is under its question and in the decision log. The milestones above stay as they are; this is a proposal for how to get from where the project is today to 1.0 and the first updates. Sizes assume one developer writing the code with Claude and the owner producing the art with AI tools (09's pipeline: images, image-to-3D, Mixamo, the sprite bake), and are rough.
+Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). The milestones above stay as they are; this is a proposal for how to get from where the project is today to 1.0 and the first updates. Sizes assume one developer writing the code with Claude and the owner producing the art with AI tools (09's pipeline: images, image-to-3D, Mixamo, the sprite bake), and are rough.
 
 Where the project is on 2026-09-27 (`CLAUDE.md`): M0 is done except the device test on an iPhone 12. M1's slice is mostly built: the town, act 1's six levels and its boss, three enemies, three item slots, loot, the Forge, saving, onboarding, placeholder audio and the first real art (the Wrathborn's leather body and axe). Missing for M1's exit: real act 1 art, and a tester finishing 20 minutes without help.
 
 | Milestone | Size | Content | Exit criteria | The owner produces | Code |
 |---|---|---|---|---|---|
-| M1 close | 3 to 5 weeks | Act 1 art (09, steps 1 to 11), the device test, the sprite budget measured (Q3), answers to Q1 to Q6 | 60 fps on an iPhone 12 in the act 1 boss fight; memory measured with the real Wrathborn looks and act 1 enemies; 3 testers finish act 1 without help | Style frames, act 1 terrain, 4 bodies, 3 helms, 9 weapons and shields, 3 enemies, the Cinder Warden, 2 NPCs, props, effects, icons, UI, key art | Trimmed atlases, streaming groups (07), the off-hand slot and grips as items, fixes from testing |
+| M1 close | 3 to 5 weeks | Act 1 art (09, steps 1 to 11), the device test, the sprite budget measured and trimmed (Q3, answered 2026-09-27 with Q1 to Q6) | 60 fps on an iPhone 12 in the act 1 boss fight; memory measured with the real Wrathborn looks and act 1 enemies; 3 testers finish act 1 without help | Style frames, act 1 terrain, 4 bodies, 3 helms, 9 weapons and shields, 3 enemies, the Cinder Warden, 2 NPCs, props, effects, icons, UI, key art | Trimmed atlases, streaming groups (07), the off-hand slot and grips as items, fixes from testing |
 | M2a Systems | 8 to 10 weeks | The full Wrathborn (8 skills, levels, modifiers, loadout, triggers per Q15, keystones, passive tree, attributes), the other 7 slots, the affix pool, gems and sockets, the stash and trainer, the Settings screen, the loot filter, results, CSV data tables | Act 1 playable with every system; the balance report models skills, tree and gear; save migrations tested | The 4 later skill animations per grip and look, skill and modifier icons, tree art, slot icons for the 7 new slots (act 1 band) | Everything listed; about 60 percent of the remaining code |
 | M2b Acts 2 and 3 | 10 to 12 weeks | Towns, 16 enemies, the Tidewife and Saint Marrow, 60 rooms, the elite modifiers of acts 2 and 3, shrines and ambush rooms, the story scenes of acts 1 to 3, elements and resistances | Vigil I playable through act 3 in about 2 hours; balance report and autopilot green for acts 1 to 3 | Two acts of terrain, enemies, bosses, NPCs, portraits, props, looks for 6 bands | Caster, Charger and Support archetypes, the new behaviours, the scene player |
-| M3 Beta | 14 to 18 weeks | Acts 4 and 5, Warlord Kaeth and the First Watchman, Vigil II to V, rifts, the Abyss, the boss rotation and 4 optional bosses, 40 legendaries with powers, Cursed items, Transmog and Imprint, achievements and the Codex, real music and sounds, accessibility, iCloud sync | Feature complete; level 60 reachable in 15 to 20 hours by the autopilot; TestFlight beta of 100; performance targets on all target devices | Two acts of art, 20 legendary models, 40 legendary icons, the optional bosses, music and sounds (Q21) | Tier plumbing, endgame modes, legendary powers, audio mixer |
+| M3 Beta | 14 to 18 weeks | Acts 4 and 5, Warlord Kaeth and the First Watchman, Vigil II to V, rifts, the Abyss, the boss rotation and 4 optional bosses, 40 legendaries with powers, Cursed items, Imprint (Transmog after launch, Q24), achievements and the Codex, real music and sounds, accessibility, iCloud sync | Feature complete; level 60 reachable in 15 to 20 hours by the autopilot; TestFlight beta of 100; performance targets on all target devices | Two acts of art, 20 legendary models, 40 legendary icons, the optional bosses, music and sounds (Q21) | Tier plumbing, endgame modes, legendary powers, audio mixer |
 | M4 Release candidate | 4 to 6 weeks | Bugs, store page, screenshots, preview video, price (open question 1) | Zero known crashes; App Review passed | Store art | Fixes |
 | 1.1 Quality of life | 4 weeks after launch | The post-launch plan above: more filter presets, loadouts, stash tabs; balance from player reports | | | |
 | 1.2 Hardcore | 4 to 6 weeks | Hardcore mode (decided as post-launch) | | | |
@@ -51,7 +51,7 @@ Total to 1.0 from today: about 40 to 50 weeks for one developer, most of it limi
 | Designer and programmer | Systems, data, tools, UI code | Developer |
 | Artist (2D) | Characters, enemies, tiles, item icons, UI | Contract |
 | VFX and animation | Effects, rigs | Contract or the same artist |
-| Composer and sound | Music stems, SFX | Contract or licensed library |
+| Composer and sound | Music stems, SFX | Generated with AI tools, like the art (decided 2026-09-27, Q21) |
 | QA | Device testing, balance runs | Community testers in beta |
 
 ## Risks
@@ -72,14 +72,14 @@ Total to 1.0 from today: about 40 to 50 weeks for one developer, most of it limi
 ## Open questions
 
 1. Price point: decide at launch. Compare against similar premium mobile action RPGs then.
-2. Skill loadout depth: four slots with trigger conditions is the plan. Decide after the M0 test whether trigger conditions confuse new players.
+2. Skill loadout depth: four slots with trigger conditions is the plan. Answered 2026-09-27 (Q15): each skill keeps a default trigger with two alternatives in a picker.
 3. Demo: decide after beta whether to offer one. It helps a premium title but costs extra scope.
 4. Selling later classes: decide after launch. A paid class add-on would be an in-app purchase on iOS, which conflicts with the premium, no in-app purchases decision.
-5. The sleep mechanic: how a game session resets, what it resets (level layouts, enemies, chests), and whether a corpse survives it.
-6. One-time unlocks such as extra stash tabs or loadout presets were tied to the Ember Shard, which is removed. What gates them now?
-7. Achievements: the Game Center achievements are cut with the other online features. Are achievements kept as local ones?
+5. The sleep mechanic: answered 2026-09-27 (Q14): a bed in each town's inn; new seeds for every dungeon level, enemies and chests back; waypoints, the Tome and the portal stay; corpses stay, moved to their level's arrival point.
+6. One-time unlocks such as extra stash tabs or loadout presets were tied to the Ember Shard, which is removed. Answered 2026-09-27 (Q16): gold.
+7. Achievements: the Game Center achievements are cut with the other online features. Answered 2026-09-27 (Q17): 60 local achievements in the Journal, no rewards.
 8. The Wrathborn rework: decided 2026-09-26, see 02-classes-and-skills.md and the decision log.
-9. Salvaging happens only at the Forge (decision of 2026-09-26), but the loot filter in 03-itemization.md auto-salvages filtered items as they are picked up, anywhere. When the loot filter is built: do filtered items auto-salvage in the dungeon anyway, wait in the backpack until the Forge, or get left on the ground?
+9. Salvaging happens only at the Forge (decision of 2026-09-26), but the loot filter in 03-itemization.md auto-salvages filtered items as they are picked up, anywhere. Answered 2026-09-27 (Q11): filtered items go to a salvage pouch that takes no backpack slots, and the smith salvages them in one tap.
 
 ## Open questions from the full-game plan
 

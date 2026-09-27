@@ -256,7 +256,7 @@ Silhouette notes: wide shoulders, the lantern at the hip, the axe head always cl
 ### 4.3 Sprite size
 
 - Cell: **256 x 256 px**.
-- The character stands about **170 px tall** at the final size (about 1.3 world units), as wide as roughly half the cell at rest.
+- The character stands about **170 px tall** at the final size (about 1.3 world units), as wide as roughly half the cell at rest. This height is a lever for the sprite budget: the owner allows it to drop to Diablo 2's (roughly 80 to 100 px) if the phone measurement needs it (decided 2026-09-27, Q3; 07, Sprite memory and app size). Models are made the same either way; only the bake's target height changes.
 - **Pivot: (128, 40)** measured from the cell's bottom-left, that is, centred, 40 px up. The soles of the feet touch this point in every frame. Attacks may reach into the rest of the cell but must not leave it.
 
 ### 4.4 Animations

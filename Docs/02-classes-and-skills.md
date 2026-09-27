@@ -123,7 +123,7 @@ Node types:
 |---|---|---|
 | Minor | 36 | Plus 3 percent life, plus 2 percent crit |
 | Notable | 18 | Warden: Unmoving, Stillness stacks give 3 percent life regeneration each |
-| Keystone | 3 | Class keystones listed above, choose one, cost 3 points |
+| Keystone | 2 for the Wrathborn | Class keystones listed above, 3 points each, both can be bought, from level 20; the loadout picks the active one (decided 2026-09-27, Q4 and Q5; the drafts for later classes list 2 options each) |
 | Gateway | 3 | Locks the next branch until a condition is met, for example 30 points spent |
 
 Respec costs gold that scales with level, capped at 5,000. Free respec is available once per act clear during the campaign.
@@ -141,9 +141,9 @@ Respec costs gold that scales with level, capped at 5,000. Free respec is availa
 
 Balance target: at equal gear level, the median time to clear a standard zone should stay within 20 percent across archetypes.
 
-## Full-game plan: the Wrathborn in full (proposed, not decided)
+## Full-game plan: the Wrathborn in full (proposed, with the owner's decisions of 2026-09-27)
 
-Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). The Wrathborn's eight skills and two keystones were accepted as written on 2026-09-26, so their table above is not changed: where this section expands a one-line entry it only fills in what the line leaves open (radius of "near", animation, timing), and every new effect is a modifier, not a change to the skill. All numbers below are proposals and tuning values. Questions are numbered as in `08-production.md`, "Open questions from the full-game plan".
+Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). The Wrathborn's eight skills and two keystones were accepted as written on 2026-09-26, so their table above is not changed: where this section expands a one-line entry it only fills in what the line leaves open (radius of "near", animation, timing), and every new effect is a modifier, not a change to the skill. All numbers below are proposals and tuning values, except where a paragraph is marked **Decided** (the owner's answers of 2026-09-27 to the questions numbered as in `08-production.md`, "Open questions from the full-game plan").
 
 ### Skill tags (proposed)
 
@@ -162,7 +162,7 @@ Gear scales skills by tag (above, "Skill gems and sockets"). The Wrathborn uses 
 
 ### The four skills after the slice (details proposed)
 
-Unlock levels follow 04's proposal (Q4): 9, 12, 15, 18.
+**Decided (Q4, 2026-09-27):** they unlock at levels 9, 12, 15 and 18 (Battle Roar, Rending Spin, Blood Frenzy, Skullsplitter); the built four keep 1, 2, 4 and 6, and all four slots are open from level 1.
 
 | Skill | From the table above (decided) | Filled in (proposed) |
 |---|---|---|
@@ -196,13 +196,13 @@ One pick from three at each of skill levels 5, 10 and 15.
 
 Rules the modifiers keep: none adds a button or a timing input; none takes control of the character (the dash of Bull Rush is the one movement a skill makes, and it was decided); crowd control only ever lands on enemies.
 
-### Keystones (placement proposed, Q5)
+### Keystones (decided, Q5)
 
-Berserker and Juggernaut are decided as written above. The keystone count and where keystones are bought are open: the passive tree section above says 3 keystones per class, "choose one, cost 3 points"; the Wrathborn has 2; the glossary in 00 puts a keystone in the loadout. Proposed (Q5 option A): the Wrathborn's tree holds his 2 keystones, one at the end of the Wrath branch (Berserker) and one at the end of the Stampede branch (Juggernaut), each costing 3 points and available from level 20 (04); both can be bought, and the loadout screen picks which one is active. Changing it is free out of combat.
+Berserker and Juggernaut are decided as written above. **Decided (Q5 and Q4, 2026-09-27):** the Wrathborn has 2 keystones (not the 3 per class the passive tree section above describes), and his tree holds them, one at the end of the Wrath branch (Berserker) and one at the end of the Stampede branch (Juggernaut), each costing 3 points and available from level 20 (04); both can be bought, and the loadout screen picks which one is active. Changing it is free out of combat (the last sentence is a proposal).
 
 ### Passive tree (proposed)
 
-Kept from above: 60 nodes over three branches, one point per level from level 2 (59 at level 60), node types minor, notable, keystone and gateway, respec at the Trainer. For the Wrathborn: 1 start node, 36 minor, 18 notable, 2 keystones, 3 gateways = 60. Buying everything costs 63 points, so a level 60 character leaves 4 nodes out. The node type table above says 3 keystones; with 2 the counts still reach 60 because of the start node (Q5).
+Kept from above: 60 nodes over three branches, one point per level from level 2 (59 at level 60), node types minor, notable, keystone and gateway, respec at the Trainer. For the Wrathborn: 1 start node, 36 minor, 18 notable, 2 keystones, 3 gateways = 60. Buying everything costs 63 points, so a level 60 character leaves 4 nodes out. The node type table above says 3 keystones; the Wrathborn has 2 (decided, Q5), and the counts still reach 60 because of the start node.
 
 Layout: a start node in the middle with three branches going up, left and right. Each branch has an inner half (6 minor, 3 notable) and an outer half behind a gateway (6 minor, 3 notable, and the keystone for Wrath and Stampede). A gateway opens after 15 points in the whole tree. The tree scrolls in one direction on the phone (06, Passive tree), so the branches are drawn as three columns.
 
@@ -220,17 +220,15 @@ Notables (proposed numbers):
 | Stampede | Road Runner: Momentum builds a stack every 0.45 s instead of 0.6. Sure Footed: Momentum lasts 2 s after stopping instead of 1.2. Battering Ram: Movement skills deal plus 25 percent damage | Hit and Run: each Momentum stack also gives 2 percent attack speed. Tailwind: plus 1 Momentum cap. Crashing Wave: Bull Rush's cooldown is 1 s shorter per enemy hit. Keystone: Juggernaut |
 | Scar | Thick Hide: plus 20 percent armor. Scar Tissue: 5 percent less damage from elites and bosses. Iron Lungs: the potion heals 50 percent instead of 40 | Unbroken: while below 35 percent life, 15 percent less damage taken. Blood Price: Life on Hit plus 50 percent. Old Wounds: plus 1 Stillness cap and plus 10 percent life (a door to a standing build for a Momentum class) |
 
-The stand-in Vitality (8 points a level, built, 2026-09-26) stays until the tree and the attribute source (Q6) are built; the Scar branch and the attributes together must give about the same life at each level, which the balance report can check.
+The stand-in Vitality (8 points a level, built, 2026-09-26) stays until the tree and the attribute growth (decided, Q6) are built; the Scar branch and the attributes together must give about the same life at each level, which the balance report can check.
 
-### Attributes for the Wrathborn (proposed, Q6)
+### Attributes for the Wrathborn (decided, Q6)
 
-The attribute table above stands. Will's "Focus regeneration" has no meaning for Rage; proposed for the Wrathborn: plus 0.5 percent Rage gained per point instead.
-
-Where points come from is not written anywhere; only the stand-in Vitality exists. Options are in Q6. The recommendation is automatic class growth, so the one-thumb game gains no extra screen and the built balance carries over: per level from level 2, 8 Vitality (the stand-in, unchanged), 2 Might, 2 Agility and 1 Will. Paragon points (04) are the only free choice. The Diablo 2 style alternative (5 free points a level) is in Q6.
+The attribute table above stands. **Decided (Q6, 2026-09-27):** attributes grow automatically with the class, so the one-thumb game gains no extra screen and the built balance carries over: per level from level 2, 8 Vitality (the stand-in, unchanged), 2 Might, 2 Agility and 1 Will. Paragon points (04) are the only free choice. For the Wrathborn, Will gives Rage gained instead of Focus regeneration (Focus means nothing for Rage); the amount, plus 0.5 percent per point, is a proposal.
 
 ### Loadout and triggers
 
-The loadout screen (06) and the per-slot trigger picker (01) are designed; the built game uses one fixed trigger per skill kind, and existing question 2 defers the picker until the M0 test. Proposed (Q15): each skill keeps its trigger from the table above as its default, and the picker offers two alternatives per skill from 01's list (for example Hew: "2 or more in reach", "Always", "Elite present"). The loadout keeps 4 slots and the keystone.
+The loadout screen (06) and the per-slot trigger picker (01) are designed; the built game uses one fixed trigger per skill kind. **Decided (Q15, 2026-09-27):** each skill keeps its trigger from the table above as its default, and the picker offers two alternatives per skill from 01's list (which two is a proposal, for example Hew: "2 or more in reach", "Always", "Elite present"). The loadout screen opens at level 9 (Q4). The loadout keeps 4 slots and the keystone.
 
 ### What the Ranger and Hexer would need (post-launch, not expanded)
 
