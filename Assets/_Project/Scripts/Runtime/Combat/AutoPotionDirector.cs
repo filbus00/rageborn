@@ -72,9 +72,14 @@ namespace ARPG
             if (heal > 0f)
                 health.Heal(heal * health.MaxLife);
 
-            if (fired && player != null)
-                DamageNumbers.Current?.ShowText(player.transform.position + CalloutOffset, "POTION", CalloutColor, CalloutFontSize);
+            // Braced: the sound once sat on the line after an unbraced if, so it played every frame, a constant jumble
+            // under everything that the user took for bad music (found by recording the game's audio, 2026-09-27).
+            if (fired)
+            {
+                if (player != null)
+                    DamageNumbers.Current?.ShowText(player.transform.position + CalloutOffset, "POTION", CalloutColor, CalloutFontSize);
                 Sfx.Play(SoundId.Potion);
+            }
         }
     }
 }

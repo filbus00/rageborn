@@ -57,9 +57,13 @@ namespace ARPG
             var session = GameSession.Current;
             var definition = enemy.Definition;
             var gained = session.GrantExperience(Experience.KillXp(session.Level, enemy.Level, definition.Rank));
-            if (gained > 0 && player != null)
-                DamageNumbers.Current?.ShowText(player.transform.position + CalloutOffset, $"LEVEL {session.Level}", LevelUpColor, LevelUpFontSize);
+            // Braced: the sound once sat on the line after an unbraced if and played on every kill (2026-09-27).
+            if (gained > 0)
+            {
+                if (player != null)
+                    DamageNumbers.Current?.ShowText(player.transform.position + CalloutOffset, $"LEVEL {session.Level}", LevelUpColor, LevelUpFontSize);
                 Sfx.Play(SoundId.LevelUp);
+            }
         }
     }
 }

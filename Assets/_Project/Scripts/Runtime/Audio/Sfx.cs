@@ -82,7 +82,15 @@ namespace ARPG
         {
             if (instance != null)
                 instance.PlayInternal(id, volume);
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Played?.Invoke(id, volume);
+#endif
         }
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        /// <summary>Every request to play a sound, played or not (for <see cref="AudioCapture"/>). Development only.</summary>
+        public static event System.Action<SoundId, float> Played;
+#endif
 
         void PlayInternal(SoundId id, float volume)
         {
