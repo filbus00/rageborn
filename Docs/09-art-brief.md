@@ -241,7 +241,7 @@ Prompt for a wall block:
 
 A survivor who carries the last ember of the Vigil (`05-world-and-content.md`). A barbarian-style warrior (`02-classes-and-skills.md`), fighting with rage and momentum. Not Diablo 2's Barbarian: no horned helm, no bare-chested fur-and-loincloth look.
 
-**Look:** a heavy, broad man in his forties. Scarred, shaved head, short dark beard with ash in it. Layered, mismatched salvaged armour: a dented iron pauldron on the left shoulder, a boiled-leather cuirass under a rust-red wrapped sash, chain skirt, heavy boots, bandaged forearms. A small **iron lantern-cage hangs at his belt with a glowing ember inside**: his signature, and the reason the light follows him. Weapon: a single-handed, heavy, bearded axe (the default weapon; weapon swaps are not shown on the sprite in 1.0).
+**Look:** a heavy, broad man in his forties. Scarred, shaved head, short dark beard with ash in it. Layered, mismatched salvaged armour: a dented iron pauldron on the left shoulder, a boiled-leather cuirass under a rust-red wrapped sash, chain skirt, heavy boots, bandaged forearms. A small **iron lantern-cage hangs at his belt with a glowing ember inside**: his signature, and the reason the light follows him. Weapon: a single-handed, heavy, bearded axe. **Equipped gear shows on him** (decision of 2026-09-27): his armour, helm and weapon change with what he wears, so he is built from pieces, see 4.5. The model sheet shows him in the middle armour tier (leather), bare-headed, with the middle weapon tier (the bearded axe).
 
 Silhouette notes: wide shoulders, the lantern at the hip, the axe head always clear of the body.
 
@@ -274,6 +274,53 @@ Silhouette notes: wide shoulders, the lantern at the hip, the axe head always cl
 Size of each sheet: 8 rows x frames columns of 256 px cells (for example idle: 3072 x 2048; death, the widest, 4096 x 2048).
 
 Later skills (not needed yet): Battle Roar, Rending Spin, Blood Frenzy, Skullsplitter.
+
+With gear shown (4.5), each animation above is baked once per layer: the file names become `wrathborn_body_<look>_<animation>.png`, `wrathborn_helm_<look>_<animation>.png` and `wrathborn_weapon_<look>_<animation>.png`, same cells, same pivot, same frames. For Hurl Axe the weapon layer is simply empty from the throw until the new axe is drawn.
+
+### 4.5 Equipped gear on the character
+
+Decided 2026-09-27 (`08-production.md`): the game is gear oriented like Diablo 2, and equipped gear is displayed on the character. Shown slots: **weapon, off-hand, helm, chest armour** (the chest armour sets the torso, arms and legs). Looks: **3 tiers per slot in act 1**, and **a unique model for every legendary** (`03-itemization.md`, Appearance).
+
+**How the pieces are built.** Soft armour that bends with the body is hard to fit onto a model as a separate AI-generated piece, while rigid things are easy. So:
+
+| Layer | What it is | How it is made | Attached to |
+|---|---|---|---|
+| Body | The whole man in one chest armour look: torso, arms, legs, boots, the lantern. **Bare head, empty hands** | A full character model per chest look, generated and rigged like the first (Steps 1 and 2 of the 3D workflow). All bodies must come from the **same A-pose turnaround** with only the armour changed, and be rigged with the same Mixamo marker placement, so helms and weapons fit every body | The skeleton (Mixamo rig) |
+| Helm | One helm | A rigid prop, generated like the axe (no rig) | The head bone |
+| Weapon | One weapon | A rigid prop, like the axe | The right hand bone |
+| Off-hand | One shield or other off-hand item | A rigid prop | The left forearm bone. **Not needed yet**: the Wrathborn's off-hand is not designed (`03-itemization.md` lists shields for the Warden) |
+
+**How they are baked.** The sprite bake renders each layer on its own with the other pieces present but invisible, so they still hide what is behind them: a weapon swung behind his back comes out cut exactly where the body covers it. The game then draws body, then helm, then weapon (and off-hand) on top of each other with no per-direction draw-order table, which Diablo 2 needed. Helm, weapon and off-hand layers are baked against the middle body tier; the other bodies share its proportions, so the cut lines match closely enough at 170 px.
+
+**What to make for act 1:**
+
+| Piece | Looks | Notes |
+|---|---|---|
+| Body | `padded` (item levels 1 to 3), `leather` (4 to 6, **the approved model sheet**), `mail` (7 and up) | Make `padded` and `mail` by editing the approved A-pose turnaround (prompts below), not from scratch, so the man and his proportions stay identical |
+| Helm | `cap`, `nasal`, `great` | Rigid, like the axe. The same looks as the helm icons in 10.2 |
+| Weapon | `hatchet`, `bearded_axe` (**the approved axe**), `war_axe` | Rigid. The same looks as the weapon icons in 10.2 |
+| Legendary pieces | One per legendary in a shown slot | Added as legendaries are designed (`03-itemization.md`, Legendary items) |
+
+Everything keeps his signature: the ember lantern on the left hip is part of **every** body.
+
+**Prompt for a body variant** (attach the approved A-pose turnaround as the reference image):
+
+> Edit the reference image. Keep the same man, face, beard, build, pose, camera, lighting, background, the same bandaged forearms, the same iron lantern with the glowing ember at his left hip, the same boots. Change only his armour to: [ARMOUR]. Three views as in the reference: front, left profile, back. Bare head, empty hands. Not: helmet, weapon, different pose, different proportions, text, watermark.
+
+- `padded`: *a patched, quilted grey-brown gambeson with a rope belt, no metal, a torn cloth sash, plain wool trousers*
+- `mail`: *a knee-length rusted chainmail hauberk over leather, a dented iron breastplate strapped over it, iron pauldrons on both shoulders, the rust-red sash over the mail*
+
+**Prompt for a helm** (attach the approved model sheet as the style reference):
+
+> Helmet design sheet for the barbarian in the reference image, three views on a flat mid-grey background: front, left side, back. [HELM]. Worn, dented, darkened iron with rust, matching the reference's materials. Orthographic, even soft light, no head inside, no shadow. Not: horns, wings, ornament, glowing, clean new steel, text, watermark.
+
+- `cap`: *a simple dented iron skullcap with a leather chin strap*
+- `nasal`: *a conical iron helm with a nasal guard and a mail aventail hanging at the back and sides*
+- `great`: *a closed, flat-topped great helm with breathing holes and a narrow eye slit, scorched*
+
+Weapons use the axe prompt given earlier, with the hatchet (a small rusted hatchet with a wrapped wooden handle) and the war axe (a broad war axe with a spiked back and iron bands on the haft) in place of the bearded axe.
+
+**Engine work this needs** (not built yet): the sprite bake's layer mode (render one piece with the others as invisible occluders), a character renderer that stacks the layers frame by frame, and a table from an equipped item (slot, tier by item level, or its legendary) to its look.
 
 ---
 
@@ -433,6 +480,8 @@ These are gameplay-critical: the player dodges them. They must read instantly on
 
 ### 10.2 Base types needed now (3 slots exist: weapon, chest, helm)
 
+Each icon matches the look the item shows on the character (4.5): the icon of a tier and its 3D piece are the same design.
+
 Two to three looks per slot, picked by item level band so gear visibly improves as the player descends:
 
 | File | Content |
@@ -574,3 +623,7 @@ For every delivered file, also give: the prompt used, the tool and model, the se
 1. **Animation method: frame sprites pre-rendered from 3D** (Route A in 0.7), not skeletal 2D animation. `00-vision-and-scope.md`, `05-world-and-content.md` and `07-technical.md` now say so.
 2. **Frame budget: the full set for act 1** (8 directions, 12 fps, 256 px cells, 512 for the boss), measured for memory and frame rate on a phone before anything is cut. The player's 9 sheets are 768 cells, about 190 MB uncompressed and about 50 MB compressed (ASTC 4x4).
 3. **Walls: low walls on the camera side**, as Diablo 2 did. Walls on a room's camera-facing sides use the low variants (3.2), so the character is never hidden. The engine needs work to pick the low variant for those cells.
+4. **Equipped gear is displayed on the character** ("The game will be gear oriented just like diablo 2. It is very important that new gear equipped is displayed on the model."). Shown slots as in Diablo 2: weapon, off-hand, helm, chest armour.
+5. **Looks: tiers plus unique legendaries.** 3 tiers per shown slot in act 1, more per act, and every legendary its own model. How it is built: 4.5.
+
+Memory consequence of 4 and 5: every body look is a full set of sheets (about 50 MB compressed for the Wrathborn), so the game must keep **only the equipped looks** in memory and load a look when it is equipped, never all of them at once. Helm and weapon layers are mostly empty space and pack small once trimmed. To be measured on a phone with the first real bodies.

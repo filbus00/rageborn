@@ -8,6 +8,17 @@ Ten slots: weapon, off-hand, helm, chest, gloves, boots, belt, amulet, ring 1, r
 
 Weapons have a base damage range and base attack speed. The off-hand slot accepts shields (Warden), quivers (Ranger) or focus orbs (Hexer). Class restrictions apply to weapon and off-hand only. All other slots are shared across classes.
 
+## Appearance
+
+Decided 2026-09-27 (08-production.md): the game is gear oriented like Diablo 2, and equipped gear is displayed on the character.
+
+- Shown slots: weapon, off-hand, helm and chest armour. The chest armour sets the torso, arms and legs. Gloves, boots, belt, amulet and rings do not change the character's look (at about 170 px tall they would barely read).
+- Looks come in tiers by item level: 3 per shown slot in act 1 (weapon: hatchet, bearded axe, war axe; chest: padded, leather, mail; helm: cap, nasal helm, great helm), more tiers added with each act. Every item of a tier looks the same on the character, as Diablo 2's light, medium and heavy armour did. The item's icon matches its tier.
+- Every legendary in a shown slot has its own unique model and icon.
+- An empty helm slot shows the bare head and an empty weapon slot empty hands, matching the game, where a character with no weapon fights unarmed (Claude's reading, not a separate decision).
+- The Forge's Transmog (below) changes an item's look; its rules are not designed yet.
+- How the art is built (a body per chest look, helms, weapons and off-hands as separate pieces, baked into sprite layers the game stacks) is in 09-art-brief.md, section 4.5.
+
 ## Item level
 
 Item level equals the zone level where the item drops, capped at 60 in the campaign and rising in Abyss to a cap of 160. Item level gates affix tiers and base item names.

@@ -45,6 +45,7 @@ Players aged 18 to 45 who know Diablo, Path of Exile or Vampire Survivors style 
 | Business model | Premium, one-time price, no in-app purchases | User |
 | Engine | Unity 6000.6.2f1 with the Universal Render Pipeline in 2D mode, see 07-technical.md | User |
 | Camera and art | Isometric view (2:1 dimetric), 2D frame-by-frame sprites pre-rendered from 3D models in 8 directions (2026-09-27, replaces skeletal animation), isometric Tilemap for the world | User |
+| Gear on the character | Gear oriented like Diablo 2: equipped gear is displayed on the character (2026-09-27). Weapon, off-hand, helm and chest armour show; looks come in tiers by item level, and every legendary has its own. See 03-itemization.md, Appearance | User |
 | Game structure | Diablo 1 style: a safe town, then a dungeon descended level by level. Not a survivor or horde game: enemies are packs placed in rooms, idle until aggro, and killed enemies stay dead | User |
 | Town | A walkable scene with no enemies. NPCs open their panels when the player walks up to them. The way into the dungeon is a stairway the player walks into | User |
 | Dungeon | Diablo 1 style descent by stairs. Each act is a dungeon of about 6 seeded levels below its own town | User |

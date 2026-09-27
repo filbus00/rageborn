@@ -114,6 +114,9 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-27 | Characters are frame-by-frame sprites pre-rendered from 3D models in 8 directions, not skeletal animation | User |
 | 2026-09-27 | Act 1 art gets the full frame set (8 directions, 12 fps), measured on a phone before cutting | User |
 | 2026-09-27 | Walls on a room's camera-facing sides are drawn cut down, as in Diablo 2, so they never hide the character | User |
+| 2026-09-27 | "The game will be gear oriented just like diablo 2. It is very important that new gear equipped is displayed on the model." | User |
+| 2026-09-27 | Shown slots, like Diablo 2: weapon, off-hand, helm and chest armour; the chest armour also sets the arms and legs. Gloves, boots, belt and jewellery do not show | User |
+| 2026-09-27 | Looks per shown slot: tiers by item level (3 per slot in act 1, more with each act), plus a unique model for every legendary | User |
 
 ## Post-launch plan (draft)
 
