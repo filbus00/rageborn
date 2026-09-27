@@ -173,7 +173,7 @@ Replaces the tier table above if Q1 option A is chosen. Elite chance is the shar
 | Tier | Opens | Enemy levels | Item level cap | Elite rooms | Extra rules (from the table above, kept) |
 |---|---|---|---|---|---|
 | Vigil I | New character | 1 to 23 | 23 | 15 percent (built) | Campaign, story scenes play |
-| Vigil II | Vigil I act 5 boss | 25 to 38 | 38 | 17 percent | Elites roll 2 modifiers more often (50 instead of 30 percent, tuning). Cursed items: see Q22 (03 says Abyss depth 30) |
+| Vigil II | Vigil I act 5 boss | 25 to 38 | 38 | 17 percent | Elites roll two modifiers 75 percent of the time instead of the built 50 (tuning); Vigil IV and V always two. Cursed items: see Q22 (03 says Abyss depth 30) |
 | Vigil III | Vigil II act 5 boss | 37 to 47 | 47 | 19 percent | Bosses gain their Vigil III attack (05, Bosses, one extra attack per phase) |
 | Vigil IV | Vigil III act 5 boss | 46 to 55 | 55 | 21 percent | Champions drop at a Rare floor |
 | Vigil V | Vigil IV act 5 boss | 54 to 62 | 62 | 23 percent | Boss attacks faster (fill times 80 percent), best drop table |

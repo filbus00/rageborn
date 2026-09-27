@@ -269,7 +269,7 @@ Pack mixes (the built rule for act 1, `PackComposition`, extended): in each act,
 
 ### Elite modifiers (15, proposed)
 
-01 lists eight; three are built (Hasted, Vampiric, Frozen). Proposed numbers for the other five and seven more. An elite rolls one modifier on Vigil I and II and two on Vigil III and above (the built roller already rolls one or two; which count on which tier is tuning). Modifiers open by act on Vigil I so the list grows as the player learns.
+01 lists eight; three are built (Hasted, Vampiric, Frozen). Proposed numbers for the other five and seven more. The built roller gives an elite one or two modifiers with equal chance; proposed: the chance of two rises with the tier (04, tier table: 75 percent on Vigil II and III, always two on IV and V). Modifiers open by act on Vigil I so the list grows as the player learns.
 
 | Modifier | Effect (proposed numbers) | Icon colour (09) | Opens |
 |---|---|---|---|
