@@ -119,6 +119,7 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-27 | Looks per shown slot: tiers by item level (3 per slot in act 1, more with each act), plus a unique model for every legendary | User |
 | 2026-09-27 | The Wrathborn's off-hand: "can in offhand hold: nothing, offhand weapon, shield, or use two hand" | User |
 | 2026-09-27 | Each grip (one-handed with an empty off-hand, dual wield, weapon and shield, two-handed) has its own animation set, as in Diablo 2 | User |
+| 2026-09-27 | Retreating from a fight shows the character facing the target and running backward, the one exception to "the body faces the movement direction" (Docs/01, facing) | User |
 
 ## Post-launch plan (draft)
 

@@ -29,7 +29,7 @@ Combat is real time. The character is always eligible to attack. The auto-attack
 
 1. Target selection. The character targets the nearest enemy in attack range that is inside a 200 degree forward cone. If none, the nearest enemy in range regardless of facing. Elites and bosses get a 30 percent range weight bonus so they are preferred when near.
 2. Attack while moving. Basic attacks continue during movement. Melee classes attack at full rate when the target is in reach. Ranged classes attack at full rate always.
-3. Facing. The body faces the movement direction. The weapon arm turns to the target. This keeps kiting readable.
+3. Facing. The body faces the movement direction. The weapon arm turns to the target. This keeps kiting readable. With sprite characters the arm cannot turn on its own, so retreating from a fight (moving more than 112.5 degrees away from the target within 1.2 s of an attack, skill or hit) shows the character facing the target and running backward (decision of 2026-09-27). Targeting still uses the movement direction.
 4. Attack rate. One basic attack per 1 / attacks per second. Attacks per second starts at 1.4 and is modified by gear and skills.
 
 ## Auto-cast skill system
