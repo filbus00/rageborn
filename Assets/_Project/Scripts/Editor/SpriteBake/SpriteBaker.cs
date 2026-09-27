@@ -217,8 +217,11 @@ namespace ARPG.Editor
 
             public void Update()
             {
-                // With useScale the baked vertices carry the renderer's scale, so the stand-in has none of its own.
-                skinned.BakeMesh(mesh, true);
+                // Measured, not guessed: with useScale false and the renderer's position and rotation (no scale), the baked
+                // vertices land on the bones at any body scale. The first version passed true, which came out 1.55 times
+                // too big at the bake's scale of 0.645 and grown around the wrong point: the body drew about 200 px tall
+                // instead of 170 and a held axe hung 25 cm off the hand it was fixed to.
+                skinned.BakeMesh(mesh, false);
                 transform.SetPositionAndRotation(skinned.transform.position, skinned.transform.rotation);
                 transform.localScale = Vector3.one;
             }
@@ -371,9 +374,14 @@ namespace ARPG.Editor
                     continue;
                 }
                 var instance = (GameObject)Object.Instantiate(piece.prefab, holder, false);
-                instance.transform.localPosition = piece.localPosition;
-                instance.transform.localRotation = Quaternion.Euler(piece.localEuler);
-                instance.transform.localScale = Vector3.one * piece.scale;
+                if (piece.autoGrip && stage.Bodies[0].Animator.isHuman)
+                    PlaceInFist(stage.Bodies[0], piece, instance.transform, holder);
+                else
+                {
+                    instance.transform.localPosition = piece.localPosition;
+                    instance.transform.localRotation = Quaternion.Euler(piece.localEuler);
+                    instance.transform.localScale = Vector3.one * piece.scale;
+                }
                 stage.Pieces.Add(new PieceInstance { Definition = piece, Renderers = instance.GetComponentsInChildren<Renderer>(true) });
             }
 
@@ -406,6 +414,32 @@ namespace ARPG.Editor
             AddLight(scene, "Fill", new Vector3(-0.8f, -0.25f, 0.3f), new Color(0.7f, 0.78f, 0.9f), 0.35f);
             AddLight(scene, "Rim", new Vector3(0f, -0.35f, -1f), new Color(0.9f, 0.85f, 0.8f), 0.6f);
             return stage;
+        }
+
+        /// <summary>
+        /// Puts a weapon in a hand from the hand's bones in the rest pose: the haft across the palm (from the little
+        /// finger toward the index, so the head is on the thumb side), the blade in line with the knuckles (the way the
+        /// fingers point), the grip a little past the middle of the palm. The weapon keeps its real size: it is scaled like
+        /// the body, whatever scale the hand bone carries.
+        /// </summary>
+        static void PlaceInFist(BodyInstance body, SpriteBakeJob.Piece piece, Transform weapon, Transform hand)
+        {
+            var animator = body.Animator;
+            var left = piece.bone == HumanBodyBones.LeftHand;
+            var index = animator.GetBoneTransform(left ? HumanBodyBones.LeftIndexProximal : HumanBodyBones.RightIndexProximal);
+            var little = animator.GetBoneTransform(left ? HumanBodyBones.LeftLittleProximal : HumanBodyBones.RightLittleProximal);
+            var middle = animator.GetBoneTransform(left ? HumanBodyBones.LeftMiddleProximal : HumanBodyBones.RightMiddleProximal);
+            if (index == null || little == null || middle == null)
+            {
+                Debug.LogWarning($"{piece.look}: the hand has no finger bones to grip with; placed at the hand.");
+                weapon.localPosition = Vector3.zero;
+                weapon.localRotation = Quaternion.identity;
+                return;
+            }
+            var up = (index.position - little.position).normalized;
+            var forward = Vector3.ProjectOnPlane(middle.position - hand.position, up).normalized;
+            weapon.SetPositionAndRotation(Vector3.Lerp(hand.position, middle.position, 0.6f), Quaternion.LookRotation(forward, up));
+            weapon.localScale = Vector3.one * (body.Root.transform.lossyScale.x / Mathf.Max(hand.lossyScale.x, 1e-6f)) * piece.scale;
         }
 
         static Transform Holder(BodyInstance body, SpriteBakeJob.Piece piece)
@@ -475,7 +509,7 @@ namespace ARPG.Editor
                 if (renderer is SkinnedMeshRenderer skinned)
                 {
                     var mesh = new Mesh();
-                    skinned.BakeMesh(mesh, true);
+                    skinned.BakeMesh(mesh, false); // See SkinProxy.Update: false with position and rotation is exact.
                     var matrix = Matrix4x4.TRS(skinned.transform.position, skinned.transform.rotation, Vector3.one);
                     foreach (var vertex in mesh.vertices)
                         Add(matrix.MultiplyPoint3x4(vertex));

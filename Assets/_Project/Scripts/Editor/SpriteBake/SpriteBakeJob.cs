@@ -61,6 +61,9 @@ namespace ARPG.Editor
             [Tooltip("For a rig without an avatar: the path of the holding transform under the body, such as Hips/Spine/ArmR/HandR. Wins over the bone when set.")]
             public string transformPath = "";
 
+            [Tooltip("For a weapon on a humanoid hand: place it from the finger bones instead of the offsets below. The prefab must have its grip at the origin, the haft along +Y with the head up and the blade toward +Z, in the body's units (metres).")]
+            public bool autoGrip;
+
             public Vector3 localPosition;
             public Vector3 localEuler;
             public float scale = 1f;

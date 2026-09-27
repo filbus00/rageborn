@@ -16,7 +16,20 @@ MonoBehaviour:
   bodies:
   - look: leather
     model: {fileID: 919132149155446097, guid: c46a16e74c0f443f6b409fb5a5dad276, type: 3}
-  pieces: []
+  pieces:
+  - layer: 3
+    look: bearded_axe
+    prefab: {fileID: 5868527692102103599, guid: 0229cbbb6ea37438d97dd64cd1100e2f, type: 3}
+    bone: 18
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
+    - dual
+    - shield
   grips:
   - grip: 1h
     clips:
@@ -52,7 +65,7 @@ MonoBehaviour:
       playbackSeconds: 2.4
   cellSize: 256
   pivot: {x: 128, y: 40}
-  targetHeightPixels: 170
+  targetHeightPixels: 185
   supersample: 4
   framesPerSecond: 12
   directions: 16

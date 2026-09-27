@@ -1,0 +1,745 @@
+fileFormatVersion: 2
+guid: 96381ee1cc32d46e8b364a32cbf231da
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1903156071972487248
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_0
+  - first:
+      213: 3399847037096399091
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_1
+  - first:
+      213: -5618819391486299938
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_2
+  - first:
+      213: -87093513807586592
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_3
+  - first:
+      213: -1014536225910517086
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_4
+  - first:
+      213: -888105657512050271
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_5
+  - first:
+      213: 5591507913507046477
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_6
+  - first:
+      213: 2235220780078435313
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_7
+  - first:
+      213: 3355306094975980144
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_8
+  - first:
+      213: 5175476625346888274
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_9
+  - first:
+      213: -2998003321791813951
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_10
+  - first:
+      213: 414937483809986460
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_11
+  - first:
+      213: 3140591074437011295
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_12
+  - first:
+      213: 3423838319354335188
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_13
+  - first:
+      213: 1170046893548652828
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_14
+  - first:
+      213: -5293114300161495860
+    second: wrathborn_weapon_bearded_axe_1h_idle_wnw_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_10
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c66829ecd3f466d0800000000000000
+      internalID: -2998003321791813951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_11
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c971d7e617722c500800000000000000
+      internalID: 414937483809986460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_12
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f57949051fe959b20800000000000000
+      internalID: 3140591074437011295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_13
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4df4c79afcae38f20800000000000000
+      internalID: 3423838319354335188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_14
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1944845377dc3010800000000000000
+      internalID: 1170046893548652828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_15
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccc655f86941b86b0800000000000000
+      internalID: -5293114300161495860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 783d78bd191024614be7e4d6964571b4
+      internalID: 227596567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_01
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e386d4e8b9bff48f5868cf6a804d4a59
+      internalID: 1935038436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_02
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b660a1d58847a4c2d9bb927ec2fd080f
+      internalID: 1656805570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_03
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 582d4af604f49492dbbff40c72f52c30
+      internalID: -834581929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_04
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b169ec16c443a467db53b0c0b3b08a2a
+      internalID: -327926023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_05
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 950bbf7a234e74d089a9c1eefec47942
+      internalID: -567289640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_06
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca97e33f8871483a9f5dd5bb0e324c6
+      internalID: 997387575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_07
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c47c1adf342341268877674e178d285
+      internalID: -753371921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_08
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d97bdfaa0b51548f2a7979d4b95367a1
+      internalID: 1770575152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_09
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 384acf60c97454ab898fcd9ce4060ad5
+      internalID: 96365813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df5e3cef3d8bb4f9991ac35d19622300
+      internalID: -51610418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_17
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47fa8d8a05ad340ef8489a7934102715
+      internalID: 496178540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_18
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e040654dade914235bc2528c0170c2df
+      internalID: 776952485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_19
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36fc0eed2b6ee4a7cb9d4ac5a0a74272
+      internalID: 1554082211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_20
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9e8dffc7be9a4b71b311433c126d72f
+      internalID: 1187256522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_21
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b264dde1b94564706be2a4b81a18a1f0
+      internalID: -1495417781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_22
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8baf905268e86423eb281f8b1186b60a
+      internalID: 1017582473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wrathborn_weapon_bearded_axe_1h_idle_wnw_23
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 391ba1271a4a845839851f8eace1e65a
+      internalID: 1844605987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6463ba100fa7e426c93fbbb16e6f5120
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_00: 227596567
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_01: 1935038436
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_02: 1656805570
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_03: -834581929
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_04: -327926023
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_05: -567289640
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_06: 997387575
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_07: -753371921
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_08: 1770575152
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_09: 96365813
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_10: -2998003321791813951
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_11: 414937483809986460
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_12: 3140591074437011295
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_13: 3423838319354335188
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_14: 1170046893548652828
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_15: -5293114300161495860
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_16: -51610418
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_17: 496178540
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_18: 776952485
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_19: 1554082211
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_20: 1187256522
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_21: -1495417781
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_22: 1017582473
+      wrathborn_weapon_bearded_axe_1h_idle_wnw_23: 1844605987
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

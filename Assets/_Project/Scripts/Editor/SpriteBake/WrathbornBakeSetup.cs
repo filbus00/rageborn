@@ -33,8 +33,71 @@ namespace ARPG.Editor
         // The body the pieces hang on and whose rest pose sets the scale: the approved model sheet's look.
         const string ReferenceBody = "leather";
 
-        /// <summary>Helms, weapons and off-hands, once their models exist (none yet: the axe is still to be made).</summary>
-        static SpriteBakeJob.Piece[] Pieces => new SpriteBakeJob.Piece[0];
+        /// <summary>
+        /// Helms, weapons and off-hands whose models exist. A one-handed weapon is <c>wrathborn_weapon_&lt;look&gt;.fbx</c>
+        /// (made by ArtSource/tools/prepare_weapon.py: grip at the origin, haft up, real size), held in the right hand for
+        /// the one-handed, dual and shield grips, placed from the finger bones.
+        /// </summary>
+        static SpriteBakeJob.Piece[] Pieces()
+        {
+            var pieces = new System.Collections.Generic.List<SpriteBakeJob.Piece>();
+            foreach (var look in AppearanceRules.OneHandWeaponLooks)
+            {
+                var held = HeldWeapon(look);
+                if (held == null)
+                    continue;
+                var piece = new SpriteBakeJob.Piece
+                {
+                    layer = AppearanceLayer.Weapon,
+                    look = look,
+                    prefab = held,
+                    bone = HumanBodyBones.RightHand,
+                    autoGrip = true,
+                };
+                piece.grips.AddRange(new[] { "1h", "dual", "shield" });
+                pieces.Add(piece);
+            }
+            return pieces.ToArray();
+        }
+
+        // The weapon model textured and turned so its blade faces +Z (which side the blade is on is read from the mesh: the
+        // blade holds most of the mass off the haft), saved as a prefab to hold.
+        static GameObject HeldWeapon(string look)
+        {
+            var path = $"{Folder}/{Character}_weapon_{look}.fbx";
+            if (!File.Exists(path))
+                return null;
+            var importer = (ModelImporter)AssetImporter.GetAtPath(path);
+            importer.animationType = ModelImporterAnimationType.None;
+            importer.importAnimation = false;
+            importer.materialImportMode = ModelImporterMaterialImportMode.ImportViaMaterialDescription;
+            importer.SaveAndReimport();
+            ApplyTexture(path, importer);
+
+            var model = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            var centroid = Vector3.zero;
+            var count = 0;
+            foreach (var filter in model.GetComponentsInChildren<MeshFilter>())
+            {
+                var toRoot = model.transform.worldToLocalMatrix * filter.transform.localToWorldMatrix;
+                foreach (var vertex in filter.sharedMesh.vertices)
+                {
+                    centroid += toRoot.MultiplyPoint3x4(vertex);
+                    count++;
+                }
+            }
+            var blade = count > 0 ? new Vector3(centroid.x / count, 0f, centroid.z / count) : Vector3.forward;
+            if (blade.sqrMagnitude < 1e-8f)
+                blade = Vector3.forward;
+
+            var root = new GameObject($"{Character}_weapon_{look}_held");
+            var instance = (GameObject)PrefabUtility.InstantiatePrefab(model);
+            instance.transform.SetParent(root.transform, false);
+            instance.transform.localRotation = Quaternion.FromToRotation(blade.normalized, Vector3.forward);
+            var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{Folder}/{Character}_weapon_{look}_held.prefab");
+            Object.DestroyImmediate(root);
+            return prefab;
+        }
 
         [MenuItem("Tools/ARPG/Sprite Bake/Set Up Wrathborn")]
         public static SpriteBakeJob SetUp()
@@ -63,7 +126,9 @@ namespace ARPG.Editor
             job.outputFolder = $"Assets/_Project/Resources/Characters/{Character}";
             job.cellSize = 256;
             job.pivot = new Vector2(128f, 40f);
-            job.targetHeightPixels = 170f;
+            // The height is measured on the rest pose's whole box, arms out in the A-pose and all; 170 gave 155 px
+            // standing, so 185 gives the brief's 170.
+            job.targetHeightPixels = 185f;
             job.supersample = 4;
             // 16 directions, as Diablo 2 gave its heroes, so the facing is never more than 11 degrees off the path (the
             // user's request of 2026-09-27; 8 left up to 22).
@@ -72,7 +137,7 @@ namespace ARPG.Editor
             foreach (var body in bodies)
                 job.bodies.Add(new SpriteBakeJob.Body { look = Look(body), model = AssetDatabase.LoadAssetAtPath<GameObject>(body) });
             job.pieces.Clear();
-            job.pieces.AddRange(Pieces);
+            job.pieces.AddRange(Pieces());
 
             job.grips.Clear();
             foreach (var grip in Grips)
@@ -108,9 +173,14 @@ namespace ARPG.Editor
             KeepClipsInPlace(importer, true);
             importer.SaveAndReimport();
 
-            // Mixamo's re-export does not carry the texture into Unity (the first bake came out white), so the texture
-            // taken from the image-to-3D GLB (<body>_albedo.png, ArtSource/tools/extract_textures.py) goes on a material
-            // of our own that replaces the model's. Mixamo keeps the mesh and its UVs, so the texture fits.
+            ApplyTexture(path, importer);
+        }
+
+        // Mixamo's re-export does not carry the texture into Unity (the first bake came out white), so the texture taken
+        // from the image-to-3D GLB (<model>_albedo.png, ArtSource/tools/extract_textures.py) goes on a material of our
+        // own that replaces the model's. Mixamo keeps the mesh and its UVs, so the texture fits.
+        static void ApplyTexture(string path, ModelImporter importer)
+        {
             var albedoPath = path.Replace(".fbx", "_albedo.png");
             var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(albedoPath);
             if (albedo == null)
