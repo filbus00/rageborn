@@ -110,6 +110,7 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-26 | The Portal Tome is given by an NPC, the Wanderer, on dungeon depth 3 | User |
 | 2026-09-26 | Each level's waypoint stands in its start room | User |
 | 2026-09-26 | The Cinder Warden's life raised from 15 to 30 times a normal enemy's, after the flatter enemy levels put the fight at 35 s; now about 70 s with typical gear (Docs/04 target 60 to 120 s) | User |
+| 2026-09-27 | Art: generated with AI, "in the style of the original diablo 2 but not a copy". The brief is 09-art-brief.md | User |
 
 ## Post-launch plan (draft)
 
