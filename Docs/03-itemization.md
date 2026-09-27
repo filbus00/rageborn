@@ -12,6 +12,7 @@ Weapons have a base damage range and base attack speed. The off-hand slot accept
 
 Decided 2026-09-27 (08-production.md): the game is gear oriented like Diablo 2, and equipped gear is displayed on the character.
 
+- The Wrathborn's off-hand (decision of 2026-09-27): "can in offhand hold: nothing, offhand weapon, shield, or use two hand". So he fights in one of four grips: one-handed with an empty off-hand, dual wield, weapon and shield, or two-handed. A two-handed weapon needs both hands, so the off-hand is empty while one is equipped (Claude's reading of "use two hand"; the equip rule is not built). Each grip has its own animation set, as in Diablo 2.
 - Shown slots: weapon, off-hand, helm and chest armour. The chest armour sets the torso, arms and legs. Gloves, boots, belt, amulet and rings do not change the character's look (at about 170 px tall they would barely read).
 - Looks come in tiers by item level: 3 per shown slot in act 1 (weapon: hatchet, bearded axe, war axe; chest: padded, leather, mail; helm: cap, nasal helm, great helm), more tiers added with each act. Every item of a tier looks the same on the character, as Diablo 2's light, medium and heavy armour did. The item's icon matches its tier.
 - Every legendary in a shown slot has its own unique model and icon.

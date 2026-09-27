@@ -25,7 +25,7 @@ Diminishing returns apply to attack speed above 3.0 per second, cooldown reducti
 
 Decided 2026-09-26 (08-production.md, decision log): Rage as the resource, a Momentum lean, an all-new barbarian skill set (none of the Warden's skills), and for the M1 slice the first 4 skills unlocking by level. All numbers are starting tuning.
 
-Base: melee, reach 2.0 units, basic attack a 120 degree sweep, as the Warden's.
+Base: melee, reach 2.0 units, basic attack a 120 degree sweep, as the Warden's. Off-hand (decision of 2026-09-27): nothing, an off-hand weapon, a shield, or a two-handed weapon instead; each grip has its own animations (03-itemization.md, Appearance).
 
 Resource, Rage (replaces Focus for this class): 0 to 100, starts empty. A basic attack that hits gains 6 (once per swing), each hit taken gains 3. After 3 seconds without dealing or taking a hit it drains 5 per second. The basic attack and Bull Rush are the generators; every other skill but Battle Roar spends Rage, so a fight opens on plain swings or a charge and builds.
 

@@ -117,6 +117,8 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-27 | "The game will be gear oriented just like diablo 2. It is very important that new gear equipped is displayed on the model." | User |
 | 2026-09-27 | Shown slots, like Diablo 2: weapon, off-hand, helm and chest armour; the chest armour also sets the arms and legs. Gloves, boots, belt and jewellery do not show | User |
 | 2026-09-27 | Looks per shown slot: tiers by item level (3 per slot in act 1, more with each act), plus a unique model for every legendary | User |
+| 2026-09-27 | The Wrathborn's off-hand: "can in offhand hold: nothing, offhand weapon, shield, or use two hand" | User |
+| 2026-09-27 | Each grip (one-handed with an empty off-hand, dual wield, weapon and shield, two-handed) has its own animation set, as in Diablo 2 | User |
 
 ## Post-launch plan (draft)
 

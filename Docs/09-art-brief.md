@@ -288,7 +288,9 @@ Decided 2026-09-27 (`08-production.md`): the game is gear oriented like Diablo 2
 | Body | The whole man in one chest armour look: torso, arms, legs, boots, the lantern. **Bare head, empty hands** | A full character model per chest look, generated and rigged like the first (Steps 1 and 2 of the 3D workflow). All bodies must come from the **same A-pose turnaround** with only the armour changed, and be rigged with the same Mixamo marker placement, so helms and weapons fit every body | The skeleton (Mixamo rig) |
 | Helm | One helm | A rigid prop, generated like the axe (no rig) | The head bone |
 | Weapon | One weapon | A rigid prop, like the axe | The right hand bone |
-| Off-hand | One shield or other off-hand item | A rigid prop | The left forearm bone. **Not needed yet**: the Wrathborn's off-hand is not designed (`03-itemization.md` lists shields for the Warden) |
+| Off-hand | A shield, or a one-handed weapon in the left hand (dual wield) | A rigid prop; an off-hand weapon reuses the one-handed weapon models | A shield on the left forearm bone, an off-hand weapon in the left hand bone |
+
+**Grips** (decision of 2026-09-27): the off-hand holds nothing, an off-hand weapon or a shield, or he uses a two-handed weapon. Each grip has **its own animation set**, as in Diablo 2, so every animation in 4.4 is needed four times, one per grip, each chosen in Mixamo to suit it: `1h` (one weapon, off-hand empty), `dual` (a weapon in each hand), `shield` (weapon and shield: shield held up while running and fighting), `2h` (a two-handed weapon: both hands on the haft, heavier swings). File names carry the grip: `wrathborn_body_leather_2h_run.png`. Two-handed weapons are their own models: for act 1 three looks, `great_axe` (a long-hafted broad axe), `maul` (a heavy iron-headed maul) and `bardiche` (a long crescent-bladed pole axe), plus shields `buckler` (a small round iron-bossed wooden shield), `round_shield` (a larger round shield with a rusted rim) and `kite_shield` (a tall scorched iron-banded kite shield).
 
 **How they are baked.** The sprite bake renders each layer on its own with the other pieces present but invisible, so they still hide what is behind them: a weapon swung behind his back comes out cut exactly where the body covers it. The game then draws body, then helm, then weapon (and off-hand) on top of each other with no per-direction draw-order table, which Diablo 2 needed. Helm, weapon and off-hand layers are baked against the middle body tier; the other bodies share its proportions, so the cut lines match closely enough at 170 px.
 
@@ -296,7 +298,7 @@ Decided 2026-09-27 (`08-production.md`): the game is gear oriented like Diablo 2
 
 | Piece | Looks | Notes |
 |---|---|---|
-| Body | `padded` (item levels 1 to 3), `leather` (4 to 6, **the approved model sheet**), `mail` (7 and up) | Make `padded` and `mail` by editing the approved A-pose turnaround (prompts below), not from scratch, so the man and his proportions stay identical |
+| Body | `bare` (nothing equipped in the chest slot: plain shirt and trousers), `padded` (item levels 1 to 3), `leather` (4 to 6, **the approved model sheet**), `mail` (7 and up) | Make `padded` and `mail` by editing the approved A-pose turnaround (prompts below), not from scratch, so the man and his proportions stay identical |
 | Helm | `cap`, `nasal`, `great` | Rigid, like the axe. The same looks as the helm icons in 10.2 |
 | Weapon | `hatchet`, `bearded_axe` (**the approved axe**), `war_axe` | Rigid. The same looks as the weapon icons in 10.2 |
 | Legendary pieces | One per legendary in a shown slot | Added as legendaries are designed (`03-itemization.md`, Legendary items) |
@@ -307,6 +309,7 @@ Everything keeps his signature: the ember lantern on the left hip is part of **e
 
 > Edit the reference image. Keep the same man, face, beard, build, pose, camera, lighting, background, the same bandaged forearms, the same iron lantern with the glowing ember at his left hip, the same boots. Change only his armour to: [ARMOUR]. Three views as in the reference: front, left profile, back. Bare head, empty hands. Not: helmet, weapon, different pose, different proportions, text, watermark.
 
+- `bare`: *a plain, sleeveless, dirty linen shirt tucked into worn wool trousers, a leather belt, no armour at all*
 - `padded`: *a patched, quilted grey-brown gambeson with a rope belt, no metal, a torn cloth sash, plain wool trousers*
 - `mail`: *a knee-length rusted chainmail hauberk over leather, a dented iron breastplate strapped over it, iron pauldrons on both shoulders, the rust-red sash over the mail*
 
@@ -625,5 +628,6 @@ For every delivered file, also give: the prompt used, the tool and model, the se
 3. **Walls: low walls on the camera side**, as Diablo 2 did. Walls on a room's camera-facing sides use the low variants (3.2), so the character is never hidden. The engine needs work to pick the low variant for those cells.
 4. **Equipped gear is displayed on the character** ("The game will be gear oriented just like diablo 2. It is very important that new gear equipped is displayed on the model."). Shown slots as in Diablo 2: weapon, off-hand, helm, chest armour.
 5. **Looks: tiers plus unique legendaries.** 3 tiers per shown slot in act 1, more per act, and every legendary its own model. How it is built: 4.5.
+6. **Off-hand and grips:** "can in offhand hold: nothing, offhand weapon, shield, or use two hand", with **an animation set per grip** (4.5).
 
 Memory consequence of 4 and 5: every body look is a full set of sheets (about 50 MB compressed for the Wrathborn), so the game must keep **only the equipped looks** in memory and load a look when it is equipped, never all of them at once. Helm and weapon layers are mostly empty space and pack small once trimmed. To be measured on a phone with the first real bodies.
