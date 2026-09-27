@@ -102,6 +102,11 @@ namespace ARPG.Editor
 
         public float framesPerSecond = 12f;
 
+        [Tooltip("Directions per animation: 8 (enemies), or 16 (the player, as Diablo 2 gave its heroes).")]
+        public int directions = 8;
+
+        public int DirectionCount => directions == 16 ? 16 : 8;
+
         [Tooltip("Where the sheets are written. The game loads a character's sheets from Resources/Characters/<name>.")]
         public string outputFolder = "Assets/_Project/Resources/Characters/character";
 

@@ -11,9 +11,9 @@ namespace ARPG
     /// </summary>
     public static class LocomotionRules
     {
-        /// <summary>The 8 rows are 45 degrees apart, so the natural switch is at 22.5 degrees off a row; past 30 the
-        /// facing switches, which leaves a margin a wobbling stick does not cross back and forth.</summary>
-        public const float RowSwitchDegrees = 30f;
+        /// <summary>How far past the natural switch (halfway between two rows) the facing must be before it changes, so a
+        /// wobbling stick does not flip it back and forth: with 8 rows it switches at 30 degrees off a row, not 22.5.</summary>
+        public const float RowSwitchMarginDegrees = 7.5f;
 
         /// <summary>Moving more than this far from the aim counts as retreating from the target.</summary>
         public const float BackpedalDegrees = 112.5f;
@@ -23,29 +23,40 @@ namespace ARPG
         public const float MinRate = 0.6f;
         public const float MaxRate = 2.2f;
 
-        /// <summary>The ground direction a sheet row faces (row 0 south, then clockwise seen from above: SW, W, NW...).</summary>
-        public static Vector2 RowDirection(int row)
+        /// <summary>A change of facing this size, either way, is a turn: the turn clip curves the body about 36 to 40
+        /// degrees, one row of 8 or two of 16.</summary>
+        public const float TurnDegrees = 45f;
+
+        /// <summary>The ground direction a sheet row faces (row 0 south, then clockwise seen from above).</summary>
+        public static Vector2 RowDirection(int row, int count = 8)
         {
-            var radians = (270f - 45f * row) * Mathf.Deg2Rad;
+            var radians = (270f - 360f / count * row) * Mathf.Deg2Rad;
             return new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
         }
 
         /// <summary>The row to show for a movement direction: the current one until the direction is past the margin.</summary>
-        public static int ChooseRow(int current, Vector2 direction)
+        public static int ChooseRow(int current, Vector2 direction, int count = 8)
         {
             if (direction.sqrMagnitude < 1e-6f)
                 return current;
-            return Vector2.Angle(RowDirection(current), direction) > RowSwitchDegrees ? AppearanceRules.DirectionRow(direction) : current;
+            var limit = 180f / count + RowSwitchMarginDegrees;
+            return Vector2.Angle(RowDirection(current, count), direction) > limit ? AppearanceRules.DirectionRow(direction, count) : current;
         }
 
         /// <summary>
-        /// A change of one row is a turn: +1 when the new row is the next clockwise seen from above (the character's
-        /// right), -1 for its left, 0 for no change or a bigger one (which just switches).
+        /// A change of facing of about <see cref="TurnDegrees"/> is a turn: +1 when the new row is clockwise seen from
+        /// above (the character's right), -1 for its left, 0 for no change, a smaller one or a bigger one (which just
+        /// switch).
         /// </summary>
-        public static int TurnStep(int from, int to)
+        public static int TurnStep(int from, int to, int count = 8)
         {
-            var delta = ((to - from) % 8 + 8) % 8;
-            return delta == 1 ? 1 : delta == 7 ? -1 : 0;
+            var delta = ((to - from) % count + count) % count;
+            var degrees = delta * 360f / count;
+            if (degrees > 180f)
+                degrees -= 360f;
+            if (Mathf.Abs(degrees) < TurnDegrees - 10f || Mathf.Abs(degrees) > TurnDegrees + 10f)
+                return 0;
+            return degrees > 0f ? 1 : -1;
         }
 
         public static bool IsBackpedal(Vector2 aim, Vector2 velocity) =>

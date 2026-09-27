@@ -66,6 +66,30 @@ namespace ARPG.Tests
                 "feet that never move: an idle");
         }
 
+        [Test]
+        public void SixteenDirections_RoundTrip_TurnOnTwoRows_AndSwitchPastTheirOwnMargin()
+        {
+            var codes = AppearanceRules.DirectionCodes(16);
+            Assert.AreEqual(16, codes.Length);
+            for (var row = 0; row < 16; row++)
+            {
+                Assert.AreEqual(row, AppearanceRules.DirectionRow(LocomotionRules.RowDirection(row, 16), 16), codes[row]);
+                var facing = SpriteBakeMath.Facing(row, 16);
+                Assert.AreEqual(row, AppearanceRules.DirectionRow(new Vector2(facing.x, facing.z), 16), "the bake renders row " + codes[row] + " that way");
+            }
+            for (var row = 0; row < 8; row++)
+                Assert.AreEqual(AppearanceRules.DirectionCodes(8)[row], codes[row * 2], "every second of the 16 is one of the 8");
+
+            Assert.AreEqual(1, LocomotionRules.TurnStep(0, 2, 16), "45 degrees to the right is a turn");
+            Assert.AreEqual(-1, LocomotionRules.TurnStep(0, 14, 16));
+            Assert.AreEqual(0, LocomotionRules.TurnStep(0, 1, 16), "22.5 just switches");
+            Assert.AreEqual(0, LocomotionRules.TurnStep(0, 4, 16), "90 just switches");
+
+            // Rows are 22.5 apart: the switch is at 11.25 plus the 7.5 margin.
+            Assert.AreEqual(0, LocomotionRules.ChooseRow(0, Rotate(Vector2.down, -15f), 16));
+            Assert.AreEqual(1, LocomotionRules.ChooseRow(0, Rotate(Vector2.down, -22f), 16));
+        }
+
         static Vector2 Rotate(Vector2 v, float degrees) => Quaternion.Euler(0f, 0f, degrees) * v;
     }
 }

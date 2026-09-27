@@ -65,6 +65,9 @@ namespace ARPG.Editor
             job.pivot = new Vector2(128f, 40f);
             job.targetHeightPixels = 170f;
             job.supersample = 4;
+            // 16 directions, as Diablo 2 gave its heroes, so the facing is never more than 11 degrees off the path (the
+            // user's request of 2026-09-27; 8 left up to 22).
+            job.directions = 16;
             job.bodies.Clear();
             foreach (var body in bodies)
                 job.bodies.Add(new SpriteBakeJob.Body { look = Look(body), model = AssetDatabase.LoadAssetAtPath<GameObject>(body) });

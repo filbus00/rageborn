@@ -19,7 +19,6 @@ namespace ARPG
     {
         public const float FramesPerSecond = 12f;
         const int LayerCount = 4;
-        static readonly string[] DirectionCodes = { "s", "sw", "w", "nw", "n", "ne", "e", "se" };
 
         sealed class Sheet
         {
@@ -46,6 +45,7 @@ namespace ARPG
         float time;
         float duration;
         int row;
+        int directionCount = 8;
 
         /// <summary>Builds the stack under a character's root, on the Entities sorting layer.</summary>
         public static LayeredCharacterSprite Create(Transform parent, string character)
@@ -107,7 +107,10 @@ namespace ARPG
         public int Row => row;
 
         /// <summary>Shows a row directly (a turn is played in the row it starts from).</summary>
-        public void FaceRow(int value) => row = ((value % 8) + 8) % 8;
+        public void FaceRow(int value) => row = ((value % directionCount) + directionCount) % directionCount;
+
+        /// <summary>How many directions the character's sheets have (8 or 16), known once a sheet is loaded.</summary>
+        public int DirectionCount => directionCount;
 
         /// <summary>A one-shot's natural length in seconds, or 0 when the body has no such animation.</summary>
         public float LengthOf(string animationName)
@@ -157,7 +160,7 @@ namespace ARPG
         public void Face(Vector2 groundDirection)
         {
             if (groundDirection.sqrMagnitude > 1e-6f)
-                row = AppearanceRules.DirectionRow(groundDirection);
+                row = AppearanceRules.DirectionRow(groundDirection, directionCount);
         }
 
         void Update()
@@ -250,6 +253,12 @@ namespace ARPG
                 return cached;
             var sheet = Load($"Characters/{character}/{name}");
             sheets[name] = sheet;
+            if (sheet != null && sheet.Rows.Length != directionCount)
+            {
+                // A row index means a different direction at another count: keep the same heading.
+                row = row * sheet.Rows.Length / directionCount;
+                directionCount = sheet.Rows.Length;
+            }
             return sheet;
         }
 
@@ -259,10 +268,26 @@ namespace ARPG
         {
             var sprites = new List<Sprite>(Resources.LoadAll<Sprite>(path));
             if (sprites.Count == 0)
-                foreach (var code in DirectionCodes)
+                foreach (var code in AppearanceRules.DirectionCodes(16))
                     sprites.AddRange(Resources.LoadAll<Sprite>($"{path}_{code}"));
             if (sprites.Count == 0)
                 return null;
+
+            // 16 directions when any frame carries a code the 8 lack (ssw, wsw...).
+            var sixteen = AppearanceRules.DirectionCodes(16);
+            var eight = AppearanceRules.DirectionCodes(8);
+            var count = 8;
+            foreach (var sprite in sprites)
+            {
+                var parts = sprite.name.Split('_');
+                if (parts.Length >= 2 && System.Array.IndexOf(eight, parts[parts.Length - 2]) < 0 &&
+                    System.Array.IndexOf(sixteen, parts[parts.Length - 2]) >= 0)
+                {
+                    count = 16;
+                    break;
+                }
+            }
+            var codes = AppearanceRules.DirectionCodes(count);
 
             var frames = 0;
             var parsed = new List<(int row, int frame, Sprite sprite)>(sprites.Count);
@@ -271,7 +296,7 @@ namespace ARPG
                 var parts = sprite.name.Split('_');
                 if (parts.Length < 2 || !int.TryParse(parts[parts.Length - 1], out var frame))
                     continue;
-                var direction = System.Array.IndexOf(DirectionCodes, parts[parts.Length - 2]);
+                var direction = System.Array.IndexOf(codes, parts[parts.Length - 2]);
                 if (direction < 0)
                     continue;
                 parsed.Add((direction, frame, sprite));
@@ -280,7 +305,7 @@ namespace ARPG
             if (frames == 0)
                 return null;
 
-            var sheet = new Sheet { Frames = frames, Rows = new Sprite[DirectionCodes.Length][] };
+            var sheet = new Sheet { Frames = frames, Rows = new Sprite[count][] };
             for (var i = 0; i < sheet.Rows.Length; i++)
                 sheet.Rows[i] = new Sprite[frames];
             foreach (var (direction, frame, sprite) in parsed)

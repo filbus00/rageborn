@@ -120,6 +120,7 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-27 | The Wrathborn's off-hand: "can in offhand hold: nothing, offhand weapon, shield, or use two hand" | User |
 | 2026-09-27 | Each grip (one-handed with an empty off-hand, dual wield, weapon and shield, two-handed) has its own animation set, as in Diablo 2 | User |
 | 2026-09-27 | Retreating from a fight shows the character facing the target and running backward, the one exception to "the body faces the movement direction" (Docs/01, facing) | User |
+| 2026-09-27 | "bake 16 directions": the player character is baked in 16 directions, as Diablo 2 did for its heroes; enemies stay at 8 | User |
 
 ## Post-launch plan (draft)
 

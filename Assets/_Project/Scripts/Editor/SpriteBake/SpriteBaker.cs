@@ -93,9 +93,9 @@ namespace ARPG.Editor
                         {
                             var sheet = new SheetWriter(job, job.SheetName(layer.Layer, layer.Look, gripSet.grip, clip.name), times.Length);
                             var poseIndex = layer.BodyIndex;
-                            for (var row = 0; row < SpriteBakeMath.DirectionCount; row++)
+                            for (var row = 0; row < job.DirectionCount; row++)
                             {
-                                stage.Turntable.rotation = Quaternion.LookRotation(SpriteBakeMath.Facing(row), Vector3.up);
+                                stage.Turntable.rotation = Quaternion.LookRotation(SpriteBakeMath.Facing(row, job.DirectionCount), Vector3.up);
                                 for (var frame = 0; frame < times.Length; frame++)
                                 {
                                     var body = stage.Bodies[poseIndex];
@@ -531,6 +531,8 @@ namespace ARPG.Editor
             readonly string name;
             readonly int frames;
             readonly bool split;
+            readonly int directions;
+            readonly string[] codes;
             readonly Vector2Int grid;
             readonly Texture2D[] textures;
             readonly List<(string, Rect)>[] rects;
@@ -541,9 +543,11 @@ namespace ARPG.Editor
                 this.name = name;
                 this.frames = frames;
                 var cell = job.cellSize;
-                split = SpriteBakeMath.NeedsSplit(frames, cell);
-                grid = split ? SpriteBakeMath.SplitGrid(frames, cell) : new Vector2Int(frames, SpriteBakeMath.DirectionCount);
-                var count = split ? SpriteBakeMath.DirectionCount : 1;
+                directions = job.DirectionCount;
+                codes = AppearanceRules.DirectionCodes(directions);
+                split = SpriteBakeMath.NeedsSplit(frames, cell, directions);
+                grid = split ? SpriteBakeMath.SplitGrid(frames, cell) : new Vector2Int(frames, directions);
+                var count = split ? directions : 1;
                 textures = new Texture2D[count];
                 rects = new List<(string, Rect)>[count];
                 for (var i = 0; i < count; i++)
@@ -568,10 +572,10 @@ namespace ARPG.Editor
                 {
                     file = 0;
                     x = frame * cell;
-                    y = (SpriteBakeMath.DirectionCount - 1 - row) * cell;
+                    y = (directions - 1 - row) * cell;
                 }
                 textures[file].SetPixels(x, y, cell, cell, pixels);
-                rects[file].Add(($"{name}_{SpriteBakeMath.DirectionCodes[row]}_{frame:00}", new Rect(x, y, cell, cell)));
+                rects[file].Add(($"{name}_{codes[row]}_{frame:00}", new Rect(x, y, cell, cell)));
             }
 
             public IEnumerable<string> Save()
@@ -581,7 +585,7 @@ namespace ARPG.Editor
                 var paths = new List<string>();
                 for (var i = 0; i < textures.Length; i++)
                 {
-                    var path = split ? $"{folder}/{name}_{SpriteBakeMath.DirectionCodes[i]}.png" : $"{folder}/{name}.png";
+                    var path = split ? $"{folder}/{name}_{codes[i]}.png" : $"{folder}/{name}.png";
                     File.WriteAllBytes(path, textures[i].EncodeToPNG());
                     Object.DestroyImmediate(textures[i]);
                     AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);

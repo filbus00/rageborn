@@ -36,6 +36,10 @@ namespace ARPG
 
         public bool IsMoving => groundVelocity.sqrMagnitude > 0.0001f;
 
+        /// <summary>Where the stick points on the ground (unit length), zero with no input. It turns at once, while the
+        /// velocity follows it over the acceleration time; the sprite's turns are judged from it.</summary>
+        public Vector2 InputDirection { get; private set; }
+
         /// <summary>Stillness and Momentum (Docs/01-core-gameplay.md), ticked with the physics step.</summary>
         public StanceStacks Stance => stance;
 
@@ -101,7 +105,9 @@ namespace ARPG
             var effectiveMoveSpeed = moveSpeed * slow.Multiplier * stance.MoveSpeedMultiplier;
 
             var stick = input != null ? input.Value : Vector2.zero;
-            var target = IsoMath.StickToGround(stick) * effectiveMoveSpeed;
+            var steer = IsoMath.StickToGround(stick);
+            InputDirection = steer.sqrMagnitude > 1e-6f ? steer.normalized : Vector2.zero;
+            var target = steer * effectiveMoveSpeed;
 
             var maxChange = effectiveMoveSpeed / accelerationTime * Time.fixedDeltaTime;
             groundVelocity = Vector2.MoveTowards(groundVelocity, target, maxChange);

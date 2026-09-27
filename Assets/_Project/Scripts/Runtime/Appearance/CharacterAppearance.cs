@@ -127,17 +127,29 @@ namespace ARPG
         public static string SheetName(string character, AppearanceLayer layer, string look, CharacterGrip grip, string animation) =>
             $"{character}_{LayerCode(layer)}_{look}_{GripCode(grip)}_{animation}";
 
+        static readonly string[] EightDirections = { "s", "sw", "w", "nw", "n", "ne", "e", "se" };
+
+        static readonly string[] SixteenDirections =
+            { "s", "ssw", "sw", "wsw", "w", "wnw", "nw", "nnw", "n", "nne", "ne", "ene", "e", "ese", "se", "sse" };
+
         /// <summary>
-        /// Which of the 8 sheet rows (S, SW, W, NW, N, NE, E, SE) faces a ground direction: the nearest of the 8, 45
-        /// degrees apart on the ground (the sprite bake's convention, x along the screen and y up it).
+        /// The sheet rows' names, in row order from the top: south first, then clockwise seen from above. 8 for enemies,
+        /// 16 for the player (as Diablo 2 gave its heroes; the user's request of 2026-09-27). Every second name of the
+        /// 16 is the 8's.
         /// </summary>
-        public static int DirectionRow(UnityEngine.Vector2 groundDirection)
+        public static string[] DirectionCodes(int count) => count == 16 ? SixteenDirections : EightDirections;
+
+        /// <summary>
+        /// Which sheet row faces a ground direction: the nearest of <paramref name="count"/> directions spread evenly
+        /// on the ground from south, clockwise seen from above (the sprite bake's convention, x along the screen, y up it).
+        /// </summary>
+        public static int DirectionRow(UnityEngine.Vector2 groundDirection, int count = 8)
         {
             if (groundDirection.sqrMagnitude < 1e-8f)
                 return 0;
             var angle = UnityEngine.Mathf.Atan2(groundDirection.y, groundDirection.x) * UnityEngine.Mathf.Rad2Deg;
-            var steps = UnityEngine.Mathf.RoundToInt((270f - angle) / 45f);
-            return ((steps % 8) + 8) % 8;
+            var steps = UnityEngine.Mathf.RoundToInt((270f - angle) / (360f / count));
+            return ((steps % count) + count) % count;
         }
     }
 }

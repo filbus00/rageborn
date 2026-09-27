@@ -51,7 +51,7 @@ Contents:
 
 ### 0.3 Directions
 
-Characters face 8 directions. Name and order them like this, always, in every sprite sheet:
+Characters face 8 directions; the player character 16 (decision of 2026-09-27, as Diablo 2 did for its heroes: with 8, a character moving between two directions shows up to 22 degrees off its path). Name and order them like this, always, in every sprite sheet:
 
 | Row | Code | Faces (on screen) |
 |---|---|---|
@@ -65,6 +65,8 @@ Characters face 8 directions. Name and order them like this, always, in every sp
 | 7 | SE | down and right |
 
 Generate all 8. Do not mirror the left side to make the right: weapons are held in the right hand, and mirroring swaps hands.
+
+The player's 16 add a row between each pair, in the same clockwise order: S, SSW, SW, WSW, W, WNW, NW, NNW, N, NNE, NE, ENE, E, ESE, SE, SSE. With 16 rows of 256 px a sheet is 4096 px tall; the sprite bake makes these from the 3D model, so nobody draws them.
 
 ### 0.4 Sprite sheet layout
 

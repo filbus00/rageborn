@@ -19,9 +19,10 @@ namespace ARPG.Editor
         /// <summary>The engine's texture limit; a sheet above it is split into one file per direction.</summary>
         public const int MaxSheetSize = 4096;
 
-        /// <summary>Row order of every sheet (the brief, 0.3).</summary>
-        public static readonly string[] DirectionCodes = { "s", "sw", "w", "nw", "n", "ne", "e", "se" };
+        /// <summary>Row order of an 8-direction sheet (the brief, 0.3); see <see cref="AppearanceRules.DirectionCodes"/>.</summary>
+        public static readonly string[] DirectionCodes = AppearanceRules.DirectionCodes(8);
 
+        /// <summary>The usual count; a job can ask for 16.</summary>
         public const int DirectionCount = 8;
 
         /// <summary>
@@ -29,15 +30,15 @@ namespace ARPG.Editor
         /// space has its x along the screen and its y up the screen, so the 8 directions are 45 degrees apart on the ground,
         /// and the diagonals show on screen at the 2:1 slope.
         /// </summary>
-        public static float GroundAngle(int row) => Mathf.Repeat(270f - 45f * row, 360f);
+        public static float GroundAngle(int row, int count = DirectionCount) => Mathf.Repeat(270f - 360f / count * row, 360f);
 
         /// <summary>
         /// Which way the model faces for a row, in the bake scene, whose camera looks along +z with +x to the right: so
         /// ground east is +x and ground north (up the screen, away from the camera) is +z. S faces the camera (-z).
         /// </summary>
-        public static Vector3 Facing(int row)
+        public static Vector3 Facing(int row, int count = DirectionCount)
         {
-            var radians = GroundAngle(row) * Mathf.Deg2Rad;
+            var radians = GroundAngle(row, count) * Mathf.Deg2Rad;
             return new Vector3(Mathf.Cos(radians), 0f, Mathf.Sin(radians));
         }
 
@@ -82,9 +83,9 @@ namespace ARPG.Editor
             return times;
         }
 
-        /// <summary>Whether a sheet of 8 rows fits the texture limit, else one file per direction.</summary>
-        public static bool NeedsSplit(int frames, int cellSize) =>
-            frames * cellSize > MaxSheetSize || DirectionCount * cellSize > MaxSheetSize;
+        /// <summary>Whether a sheet of a row per direction fits the texture limit, else one file per direction.</summary>
+        public static bool NeedsSplit(int frames, int cellSize, int count = DirectionCount) =>
+            frames * cellSize > MaxSheetSize || count * cellSize > MaxSheetSize;
 
         /// <summary>Columns and rows of one direction's own file when a sheet is split: rows as wide as the limit allows.</summary>
         public static Vector2Int SplitGrid(int frames, int cellSize)

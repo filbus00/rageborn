@@ -249,7 +249,7 @@ namespace ARPG
             if (fighting && LocomotionRules.IsBackpedal(aim, velocity) && sprite.Has("run_back"))
             {
                 turning = false;
-                sprite.FaceRow(LocomotionRules.ChooseRow(sprite.Row, aim));
+                sprite.FaceRow(LocomotionRules.ChooseRow(sprite.Row, aim, sprite.DirectionCount));
                 sprite.Loop("run_back");
                 sprite.Rate = LocomotionRules.PlaybackRate(speed, sprite.CurrentRecordedSpeed);
                 return;
@@ -264,12 +264,16 @@ namespace ARPG
                 sprite.Play("run", true);
             }
 
-            var row = LocomotionRules.ChooseRow(sprite.Row, velocity);
-            var step = sprite.Animation == "run" ? LocomotionRules.TurnStep(sprite.Row, row) : 0;
+            // Turns are judged from the stick, which turns at once: the velocity swings round over the acceleration time
+            // and with 16 rows would step through the row between, so a 45 degree change never read as one turn.
+            var heading = player.InputDirection.sqrMagnitude > 0f ? player.InputDirection : velocity;
+            var row = LocomotionRules.ChooseRow(sprite.Row, heading, sprite.DirectionCount);
+            var step = sprite.Animation == "run" ? LocomotionRules.TurnStep(sprite.Row, row, sprite.DirectionCount) : 0;
             var turn = step > 0 ? "run_turn_right" : "run_turn_left";
             if (step != 0 && sprite.Has(turn))
             {
-                // The turn clip curves the body about 40 degrees from the row it starts in, which is where the new row is:
+                // The turn clip curves the body about 40 degrees from the row it starts in, where the new row is (one row of
+                // 8, two of 16):
                 // it plays in the old row, as fast as the run would at this speed, then the run goes on in the new one.
                 turning = true;
                 turnTo = row;
