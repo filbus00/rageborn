@@ -781,7 +781,7 @@ Section 10's rules (128 x 128, no rarity colour). The icon of a shown-slot base 
 | Gems | 20 (4 colours x 5 tiers) | Ruby, Sapphire, Emerald, Onyx; chipped to perfect grow in size and clarity |
 | Keys and sigils | 3 | `rift_key` (a black iron key with a violet stone), `boss_sigil` (a wax seal with a skull), `abyss_token` |
 
-Total: 145 base icons, 40 legendary icons, 23 others.
+Total: 100 base icons (75 for the shown slots, 25 for the others), 40 legendary icons, 23 others.
 
 ### 15.9 UI
 
