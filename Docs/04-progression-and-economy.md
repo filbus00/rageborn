@@ -197,7 +197,7 @@ Base values are the built ones (03). Tiers raise chances, never lower them. All 
 | Cursed chance (a Legendary rolls Cursed) | 0 | 0 | 0 | 0 | 0 | 10 percent from depth 30 (03) |
 | Sockets roll (Rare, Legendary) | 03 | 03 | 03 | 03 | 03 | 03 |
 
-Bad-luck protection (03, built) is unchanged at every tier. At Vigil V weights, a normal kill gives a Legendary about 2.6 times as often as on Vigil I, which keeps the endgame target of one about every 12 minutes (03).
+Bad-luck protection (03, built) is unchanged at every tier. At Vigil V a normal kill gives a Legendary about 4 times as often as on Vigil I (10 percent drop chance times a weight of 4 in 100, against 6 times 1.5). The endgame target (03) is one about every 12 minutes, about twice the campaign rate, so these weights are likely too generous; the balance simulation should set them.
 
 ### Level rewards, reconciled with the build (Q4)
 
