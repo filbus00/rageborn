@@ -66,13 +66,23 @@ namespace ARPG
         /// <summary>The sheet an action plays: its moving variant while the character moves, else the action itself.</summary>
         public static string ActionSheet(string action, bool moving) => moving ? action + MovingSuffix : action;
 
+        /// <summary>How far a moving action turns the character from the way it runs toward what it strikes. The running
+        /// legs stride the way the sprite faces, so facing a target at the side made the feet slide sideways (the owner,
+        /// 2026-09-28: "It looks a bit odd when running around and attacking"); about the run turn's own lean hides it.</summary>
+        public const float MaxActionTwistDegrees = 45f;
+
         /// <summary>
-        /// Which way the character faces during an action: toward what it strikes, unless it is running away from it, when
-        /// a swing toward the target would show the running legs going backward; then it faces the way it runs (the slash
-        /// still shows where the blow lands).
+        /// Which way the character faces during an action: standing, toward what it strikes; moving, toward it but at most
+        /// <see cref="MaxActionTwistDegrees"/> off the way it runs, so the legs never stride far from the ground's motion
+        /// (the slash still shows where the blow lands).
         /// </summary>
-        public static Vector2 ActionFacing(Vector2 aim, Vector2 velocity, bool moving) =>
-            moving && IsBackpedal(aim, velocity) ? velocity : aim;
+        public static Vector2 ActionFacing(Vector2 aim, Vector2 velocity, bool moving)
+        {
+            if (!moving || velocity.sqrMagnitude < 1e-6f || aim.sqrMagnitude < 1e-6f)
+                return aim;
+            var twist = Mathf.Clamp(Vector2.SignedAngle(velocity, aim), -MaxActionTwistDegrees, MaxActionTwistDegrees);
+            return Quaternion.Euler(0f, 0f, twist) * velocity.normalized;
+        }
 
         public static bool IsBackpedal(Vector2 aim, Vector2 velocity) =>
             aim.sqrMagnitude > 1e-6f && velocity.sqrMagnitude > 1e-6f && Vector2.Angle(aim, velocity) > BackpedalDegrees;

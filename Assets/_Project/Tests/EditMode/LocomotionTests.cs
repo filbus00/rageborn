@@ -120,9 +120,14 @@ namespace ARPG.Tests
         {
             Assert.AreEqual("hew_move", LocomotionRules.ActionSheet("hew", true));
             Assert.AreEqual("hew", LocomotionRules.ActionSheet("hew", false));
-            Assert.AreEqual(Vector2.right, LocomotionRules.ActionFacing(Vector2.right, Vector2.up, true), "sideways: faces the target");
-            Assert.AreEqual(Vector2.down, LocomotionRules.ActionFacing(Vector2.up, Vector2.down, true), "fleeing: faces the run");
             Assert.AreEqual(Vector2.up, LocomotionRules.ActionFacing(Vector2.up, Vector2.down, false), "standing: faces the target");
+            var ahead = Rotate(Vector2.up, -30f);
+            Assert.Less(Vector2.Angle(ahead, LocomotionRules.ActionFacing(ahead, Vector2.up, true)), 0.01f, "30 off the run: faces the target");
+            var side = LocomotionRules.ActionFacing(Vector2.right, Vector2.up, true);
+            Assert.AreEqual(45f, Vector2.Angle(Vector2.up, side), 0.01f, "at the side: turns only 45 degrees");
+            Assert.Greater(side.x, 0f, "toward the target's side");
+            Assert.AreEqual(45f, Vector2.Angle(Vector2.down, LocomotionRules.ActionFacing(Vector2.up, Vector2.down, true)), 0.01f,
+                "fleeing: stays within 45 of the run");
         }
 
         [Test]
