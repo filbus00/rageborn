@@ -15,6 +15,8 @@ Document status: draft 0.2, 2026-09-21. This file is the entry point to the desi
 | 06-ui-ux.md | Screen inventory, one-hand layout, menus, feedback, accessibility |
 | 07-technical.md | Engine recommendation, architecture, data, save, performance, tooling |
 | 08-production.md | Milestones, team assumptions, risks, open questions, decision log |
+| 09-art-brief.md | Art brief for AI generation: style, asset lists, sizes, prompts |
+| 10-full-game-plan.md | Scope map of the whole game (Built, Partly built, Designed, Proposed), written 2026-09-27; its 26 questions were answered the same day (decisions), the rest is a proposal |
 
 ## Pitch
 
@@ -64,7 +66,7 @@ In scope:
 - One class (the Wrathborn) with eight active skills and one passive tree
 - Five acts, each a town above a dungeon of about 6 levels, seeded procedural layouts
 - Character level cap 60, then a Paragon track to 200 for endgame
-- Ten equipment slots, four rarities, about 90 affixes, 60 legendary items
+- Ten equipment slots, four rarities, about 90 affixes, 40 legendary items (decided 2026-09-27, Q7), no item sets
 - Abyss endless dungeon and five bosses in a repeatable boss rotation
 - Local save with iCloud sync
 - English UI at launch, string tables ready for localization

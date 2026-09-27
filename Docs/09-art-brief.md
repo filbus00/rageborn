@@ -256,7 +256,7 @@ Silhouette notes: wide shoulders, the lantern at the hip, the axe head always cl
 ### 4.3 Sprite size
 
 - Cell: **256 x 256 px**.
-- The character stands about **170 px tall** at the final size (about 1.3 world units), as wide as roughly half the cell at rest.
+- The character stands about **170 px tall** at the final size (about 1.3 world units), as wide as roughly half the cell at rest. This height is a lever for the sprite budget: the owner allows it to drop to Diablo 2's (roughly 80 to 100 px) if the phone measurement needs it (decided 2026-09-27, Q3; 07, Sprite memory and app size). Models are made the same either way; only the bake's target height changes.
 - **Pivot: (128, 40)** measured from the cell's bottom-left, that is, centred, 40 px up. The soles of the feet touch this point in every frame. Attacks may reach into the rest of the cell but must not leave it.
 
 ### 4.4 Animations
@@ -633,3 +633,173 @@ For every delivered file, also give: the prompt used, the tool and model, the se
 6. **Off-hand and grips:** "can in offhand hold: nothing, offhand weapon, shield, or use two hand", with **an animation set per grip** (4.5).
 
 Memory consequence of 4 and 5: every body look is a full set of sheets (about 50 MB compressed for the Wrathborn), so the game must keep **only the equipped looks** in memory and load a look when it is equipped, never all of them at once. Helm and weapon layers are mostly empty space and pack small once trimmed. To be measured on a phone with the first real bodies.
+
+---
+
+## 15. Full-game asset lists (proposed, not decided)
+
+Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). Sections 0 to 14 above are unchanged and apply to everything here: the rules, the style and negative blocks, the directions (8 for enemies, 16 for the player), 12 fps, the sheet layout, and the decided pipeline: **images, then image-to-3D, then Mixamo, then the project's sprite bake tool** (0.7, Route A) for everything animated; Route B (direct 2D) for tiles, props, icons and UI. The content (enemy names, looks, legendaries) is the proposal in 03 and 05 and changes with the owner's answers. How much of this fits in memory and on disk is open (Q3, `07-technical.md`); counts below are the full wish list before any cut.
+
+### 15.1 The Wrathborn, remaining work
+
+| Asset | Files | Notes |
+|---|---|---|
+| Later skill animations, per grip | `wrathborn_body_<look>_<grip>_battle_roar` (12 frames), `_rending_spin` (8, loop), `_blood_frenzy` (6), `_skullsplitter` (12, hit on frame 7) | Mixamo clips: a roar, a spin, a short flex, an overhead chop. Same for every helm, weapon and off-hand layer |
+| Body looks, acts 2 to 5 | 12 more bodies (03, the band table: scale, brigandine, lamellar ... vigil plate) | Edit the approved A-pose turnaround as in 4.5; same man, same lantern |
+| Helms, acts 2 to 5 | 12 rigid pieces | As 4.5 |
+| One-handed weapons, acts 2 to 5 | 12 axes | `prepare_weapon.py` as for the bearded axe |
+| Two-handed weapons | 15 (3 per act) | Act 1's great axe, maul and bardiche are in 4.5 |
+| Shields | 15 (3 per act) | Left forearm bone |
+| Legendary pieces | 20 (03: 5 one-handed, 4 two-handed, 3 shields, 4 helms, 4 chests) | Each its own model and icon; chest legendaries are full bodies |
+
+### 15.2 Terrain per act
+
+Same rules as section 3 (128 x 64 floors, 128 x 192 walls, 128 x 96 low walls, at least 4 variants each). Each act has two tilesets (05: depths 1 to 3 and 4 to 6) and a town set.
+
+| Act | Tileset | Floors | Walls and low walls | Town ground |
+|---|---|---|---|---|
+| 1 | Crypts (section 3.2), burned barrows | `barrow_floor_01..08`: packed ash earth, charred roots | `barrow_wall_block_01..04`, `_low_01..04`: earth-and-timber shoring, collapsed | Section 3.3 |
+| 2 | Flooded cellars, drowned halls | `cellar_floor_01..08`: wet flagstones, shallow water sheen; `hall_floor_01..08`: coral-grown stone | Rotting timber and wet stone; `water_edge_01..04` (a wall cell drawn as dark water) | `saltmere_boards_01..06`, `saltmere_mud_01..06` |
+| 3 | Ossuary galleries, saint's crypts | Bone-inlaid flagstones; cracked marble with grave dirt | Stacked skull walls; marble with candle niches | `gravesend_grass_01..06` (dead orchard grass), `gravesend_path_01..06` |
+| 4 | Barracks and forges, oath halls | Iron-plated floor, soot; black iron with chain grooves | Iron-banded stone; black iron with banners | `camp_mud_01..06`, `camp_planks_01..06` |
+| 5 | Broken Vigil, the void | Half-dissolved stone with violet cracks; floating slabs over blackness | Crumbling ruin; jagged void rock (#1A1224 to #6B3FA0 accents) | `refuge_ash_01..06` |
+
+Boss arenas: one floor set per act boss (`<boss>_arena_floor_01..04`), with a centre decal (512 x 256, top-down squashed by the engine) that marks the arena.
+
+### 15.3 Enemies, acts 1 to 5
+
+Section 5.1's rules apply (256 cells, pivot (128, 40), 8 directions, 5 animations: idle, run, attack, hit, death; a clear wind-up). Section 5.1 asks for a champion and an elite sheet set per enemy; `07-technical.md` proposes replacing those with a colour shader to save memory (Q3), in which case only the normal set is made. Behaviours and telegraphs are in 05.
+
+| Act | File name | Look (one line; enemy accents from the cold, sick and Hollow ranges, never ember except fire casters) | Height | Attack frames (hit frame) |
+|---|---|---|---|---|
+| 1 | `ash_wolf` | Section 5.2 | 90, longer body | 10 (6), plus a `lunge` loop of 6 |
+| 1 | `bandit_cutthroat` | A lean bandit with two knives, hood, cloth mask | 155 | 10 (4 and 7, two strikes) |
+| 1 | `ember_acolyte` | A burned cultist in scorched robes holding a smoking censer; the one act 1 enemy with ember light | 160 | 14 (9, the cast) |
+| 1 | `pyre_keeper` | A hunched figure carrying a brazier on its back, embers trailing | 150 | 12 (7) |
+| 1 | `carrion_bloat` | A swollen corpse, skin tight and green-grey, stumbling | 150, wide | 12 (burst on death frame 8) |
+| 2 | `drowned` | A pale bloated sailor, weed in the hair, cold blue eyes | 145 | 10 (7) |
+| 2 | `leech_swarm` | A cluster of black fist-sized leeches, low to the ground | 50 | 8 (5) |
+| 2 | `marsh_witch` | A thin old woman in wet rags, a staff of driftwood, green glow | 160 | 14 (9) |
+| 2 | `drowned_watchman` | A huge armoured watchman, helmet full of water, barnacled | 185 | 16 (11) |
+| 2 | `harpooner` | A fisherman with a rope harpoon, oilskin coat | 160 | 12 (8) |
+| 2 | `bog_lurker` | A long, flat, eyeless amphibian | 80, long | 10 (6), plus `submerged` idle |
+| 2 | `tide_priest` | A robed figure with a shell mask, water dripping upward | 165 | 12 (7) |
+| 2 | `mire_hound` | A drowned hound, fur plastered, cold eyes | 90, long | 10 (6) |
+| 3 | `grave_rat` | A swarm of three rats in one sprite | 40 | 8 (5) |
+| 3 | `skeleton_knight` | Bones in rusted plate with a tower shield | 175 | 12 (8) |
+| 3 | `bone_charger` | A skeletal horse-like beast of fused ribs with a skull ram | 150, long | 10 (6), plus `charge` loop of 6 |
+| 3 | `grave_priest` | A gaunt priest with a censer of green smoke | 165 | 12 (7) |
+| 3 | `ossuary_archer` | A skeleton with a bone bow | 160 | 12 (8) |
+| 3 | `mourner` | A veiled woman in black, floating slightly | 160 | 14 (9) |
+| 3 | `bone_weaver` | A many-armed thing of sewn bones | 170 | 14 (9) |
+| 3 | `corpse_hulk` | A stitched giant of corpses | 200 | 16 (11) |
+| 4 | `sworn_squire` | A young knight in black-iron half armour | 160 | 10 (7) |
+| 4 | `armored_knight` | A full black-iron knight with a longsword | 175 | 16 (6 and 12, two blows) |
+| 4 | `siege_brute` | A giant in siege armour with a ram-headed hammer | 210 | 18 (12) |
+| 4 | `banner_bearer` | A knight with a tall black banner of the Hollow's sigil | 180 with the banner | 12 (7) |
+| 4 | `crossbowman` | A heavy crossbowman with a pavise on his back | 160 | 14 (10) |
+| 4 | `warhound` | An armoured war dog with a spiked collar | 95, long | 10 (6) |
+| 4 | `iron_chaplain` | A priest in iron vestments with a burning book | 165 | 14 (9) |
+| 4 | `oathbound_lancer` | A knight on foot with a long lance | 175 | 10 (6), plus `charge` loop of 6 |
+| 5 | `hollowed` | A husk made of violet smoke and ash, faster | 145 | 10 (6) |
+| 5 | `void_spawn` | A small tumbling shard-creature | 70 | 8 (5) |
+| 5 | `void_wraith` | A tall thin shade trailing darkness | 175 | 10 (6), plus `blink` of 6 |
+| 5 | `corrupted_watchman` | A Vigil watchman, armour cracked with violet light, bow and sword | 170 | 12 (8) bow, 10 (6) sword |
+| 5 | `rift_caller` | A hooded figure holding a floating void orb | 165 | 14 (9) |
+| 5 | `hollow_colossus` | A giant of fused void stone | 230 | 18 (8 and 14) |
+| 5 | `whisperer` | A floating mask with ribbons of shadow | 150 | 12 (7) |
+| 5 | `fallen_vigil_knight` | A Vigil knight in scorched armour, shield and sword | 180 | 16 (6 and 12) |
+
+Modifier icons (5.3), 12 more at 32 x 32: `modifier_molten`, `_shielded`, `_teleporting`, `_splitting`, `_cursing`, `_plagued`, `_mortar`, `_fire_chains`, `_juggernaut`, `_enraged`, `_linked`, `_desecrator`, in the colours listed in 05.
+
+### 15.4 Bosses
+
+Section 6's rules (512 cells, pivot (256, 72), about 340 px tall, split per direction). Animations for each: `idle` 12, `walk` 12, one sheet per attack in 05's table (14 to 18 frames, the telegraph time before the impact frame), `stagger` 12 (loop), `phase` 16, `death` 24.
+
+| Boss | File | Look |
+|---|---|---|
+| The Tidewife | `tidewife` | A towering drowned woman in a captain's coat, lower body a mass of tentacles and kelp, a lantern of cold blue light |
+| Saint Marrow | `saint_marrow` | A skeletal saint in rotted vestments, a halo of floating bones, a crozier topped with a skull |
+| Warlord Kaeth | `warlord_kaeth` | A huge knight in black iron with a tower shield and a great cleaver, the Hollow's sigil burned into his breastplate |
+| The First Watchman | `first_watchman` | The first Vigil knight, armour of pale bronze half dissolved into violet void, a guttering ember in his chest |
+| The Hunger Below | `hunger_below` | A room-sized worm; only its head and front body rise from the ground (idle is `submerged`) |
+| The Ashen Twins | `ashen_twin_a`, `ashen_twin_b` | Two burned knights bound by a chain of fire, mirror poses |
+| The Sexton of Tolls | `sexton` | A gaunt bell-ringer with a bell on a yoke, a long rope |
+| The Mother of Hounds | `mother_of_hounds` | A hound the size of a horse, scarred, iron-collared |
+
+Boss effects in section 9's style: one per attack (tentacle lash, flood, wave band, bone spikes, bone ring, cleave arc, void field, void rain).
+
+### 15.5 NPCs
+
+Section 7's rules (idle only, S, SW and SE, 12 frames). Adds to the smith and the Wanderer:
+
+| NPC | File | Look |
+|---|---|---|
+| Stash keeper (every town, one model) | `npc_stash_idle` | Section 7 |
+| Trainer (every town) | `npc_trainer_idle` | Section 7 |
+| The Watcher | `npc_watcher_idle` | A blindfolded woman in a grey cloak holding an hourglass of black sand |
+| Mother Aldis | `npc_aldis_idle` | An old priestess in ash-grey vestments with a cold fire bowl |
+| Bram | `npc_bram_idle` | A ferryman with a pole and a wide hat |
+| Sister Ivy | `npc_ivy_idle` | A young gravedigger nun with a spade |
+| Captain Hale | `npc_hale_idle` | A deserter knight with his order's sigil scratched off |
+| Portraits for story scenes | `portrait_<npc>.png`, 384 x 384 | Head and shoulders, painted, one per speaking NPC and one of the Wrathborn |
+
+### 15.6 Props per act
+
+Section 8's rules. Each act: a stairs down and up pair in its tileset's material, a chest, a waypoint, a Waystone for its town, 6 to 10 decor props, and its town buildings.
+
+| Act | Props |
+|---|---|
+| 1 | Section 8 plus `shrine_plinth` (256 x 256: a stone plinth with a bowl; glows in the shrine's colour), `lore_stone` (128 x 192), `bone_pile_dormant` (for 05's ambush rooms and summoners) |
+| 2 | `boat_wreck`, `net_rack`, `stilt_house` (town, 512 x 512), `watch_tower_beached` (town landmark, 768 x 768), `kelp_01..03`, `dormant_drowned` (a body in the water) |
+| 3 | `sarcophagus_01..03`, `grave_candles`, `dead_tree_01..04` (town), `mausoleum` (town stash, 512 x 512), `bell_tower` (for the Sexton) |
+| 4 | `siege_wagon`, `tent_01..03` (town), `weapon_rack`, `forge_cold`, `banner_black_01..02`, `spire_gate` (768 x 768) |
+| 5 | `void_crystal_01..03`, `broken_vigil_fire` (the act's landmark, 512 x 512), `refuge_fire` (the town's new fire, 3 states: small, medium, great) |
+| All | `inn_bed` for sleep (05, Q14), `rift_portal` (8 frames, violet), `abyss_gate` (static, 256 x 384) |
+
+### 15.7 Effects
+
+Section 9's rules. New: `slash_rending_spin` (8 x 384 x 384, top-down, loop), `battle_roar_ring` (8 x 512 x 512, top-down), `blood_frenzy_aura` (8 x 256 x 256, loop), `skullsplitter_impact` (8 x 256 x 256), `bleed_drip` (6 x 64 x 64), one per Caster and Support effect in 05 (fire circle, water circle, poison pool, heal ring, shield ring, banner aura, void circle, curse tether), `block_flash` (5 x 128 x 128), `stun_stars` (6 x 64 x 64, loop), a gem glint (4 x 32 x 32). Telegraph shapes (9.1) add `telegraph_cone.png` (512 x 512, 120 degree wedge) and `telegraph_half_disc.png` (512 x 256).
+
+### 15.8 Item icons, all slots and tiers
+
+Section 10's rules (128 x 128, no rarity colour). The icon of a shown-slot base is the same design as its look (4.5).
+
+| Slot | Icons | Names |
+|---|---|---|
+| One-handed weapon | 15 | 03's band table |
+| Two-handed weapon | 15 | 03 |
+| Shield | 15 | 03 |
+| Helm | 15 | 03 |
+| Chest | 15 | 03 |
+| Gloves | 5 (one per act band) | wraps, leather gloves, chain gloves, gauntlets, void-iron gauntlets |
+| Boots | 5 | foot wraps, leather boots, hobnailed boots, greaves, void-iron greaves |
+| Belt | 5 | rope belt, leather belt, studded belt, plated belt, chain girdle |
+| Amulet | 5 | bone charm, iron pendant, saint's medal, oath seal, ember locket |
+| Ring | 5 | iron band, bone ring, signet, black-iron ring, voidglass ring |
+| Legendaries | 40 | 03's list; painted, with a subtle ember glow (10.1) |
+| Gems | 20 (4 colours x 5 tiers) | Ruby, Sapphire, Emerald, Onyx; chipped to perfect grow in size and clarity |
+| Keys and sigils | 3 | `rift_key` (a black iron key with a violet stone), `boss_sigil` (a wax seal with a skull), `abyss_token` |
+
+Total: 100 base icons (75 for the shown slots, 25 for the others), 40 legendary icons, 23 others.
+
+### 15.9 UI
+
+Section 11's rules. New pieces:
+
+| File | Size | Content |
+|---|---|---|
+| `ui/skill_battle_roar.png`, `_rending_spin`, `_blood_frenzy`, `_skullsplitter` | 144 x 144 | 11.4's style |
+| `ui/modifier_<skill>_<n>.png` | 96 x 96 | 72 small modifier icons, or 24 (one per skill and tier) with the option's name as text (cheaper; proposed) |
+| `ui/keystone_berserker.png`, `_juggernaut` | 192 x 192 | |
+| `ui/tree_node_minor.png`, `_notable`, `_keystone`, `_gateway`, each `_on` and `_off` | 132 to 168 | Stone discs with ember strokes |
+| `ui/tree_icon_<stat>.png` | 72 x 72 | 12 glyphs for node effects (damage, crit, life, armor, speed, dodge, Rage, Momentum, Stillness, potion, bleed, block) |
+| `ui/slot_empty_<slot>.png` | 168 x 168 | 10 slot outlines for the paper doll |
+| `ui/tab_<name>.png` | 120 x 120 | Gear, Skills, Tree, Stats, Filter, Journal, Settings |
+| `ui/tier_badge_1..5.png` | 72 x 72 | Vigil tier numerals as carved stone (the engine sets the digits; these are the plates) |
+| `ui/story_panel_9s36.png` | 1170 x 540 | The story scene panel |
+| `marketing/act_<n>_title.png` | 1170 x 2532 | One painted title card per act for the act's opening scene |
+
+### 15.10 Delivery order (proposed)
+
+Per act, the same order as section 13: style check against the approved frames, terrain, the act's enemies, its boss, its NPCs, props, effects, then icons and UI for any new system. Acts in order 2, 3, 4, 5, with the Wrathborn's looks for an act made together with that act. Estimated counts per act: about 50 terrain files, 8 enemies, 1 boss (plus the optional boss that lives there), 1 or 2 NPCs, 15 props, 10 effects, 25 item icons, 9 looks.

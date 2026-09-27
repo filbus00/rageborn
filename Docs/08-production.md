@@ -25,6 +25,25 @@ Total: about 12 to 14 months for a solo developer with commissioned art. A reduc
 
 If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigil tiers, Imprint, achievements beyond 30, story cutscenes, then an act.
 
+## Milestones to 1.0 (proposed, not decided)
+
+Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). The milestones above stay as they are; this is a proposal for how to get from where the project is today to 1.0 and the first updates. Sizes assume one developer writing the code with Claude and the owner producing the art with AI tools (09's pipeline: images, image-to-3D, Mixamo, the sprite bake), and are rough.
+
+Where the project is on 2026-09-27 (`CLAUDE.md`): M0 is done except the device test on an iPhone 12. M1's slice is mostly built: the town, act 1's six levels and its boss, three enemies, three item slots, loot, the Forge, saving, onboarding, placeholder audio and the first real art (the Wrathborn's leather body and axe). Missing for M1's exit: real act 1 art, and a tester finishing 20 minutes without help.
+
+| Milestone | Size | Content | Exit criteria | The owner produces | Code |
+|---|---|---|---|---|---|
+| M1 close | 3 to 5 weeks | Act 1 art (09, steps 1 to 11), the device test, the sprite budget measured and trimmed (Q3, answered 2026-09-27 with Q1 to Q6) | 60 fps on an iPhone 12 in the act 1 boss fight; memory measured with the real Wrathborn looks and act 1 enemies; 3 testers finish act 1 without help | Style frames, act 1 terrain, 4 bodies, 3 helms, 9 weapons and shields, 3 enemies, the Cinder Warden, 2 NPCs, props, effects, icons, UI, key art | Trimmed atlases, streaming groups (07), the off-hand slot and grips as items, fixes from testing |
+| M2a Systems | 8 to 10 weeks | The full Wrathborn (8 skills, levels, modifiers, loadout, triggers per Q15, keystones, passive tree, attributes), the other 7 slots, the affix pool, gems and sockets, the stash and trainer, the Settings screen, the loot filter, results, CSV data tables | Act 1 playable with every system; the balance report models skills, tree and gear; save migrations tested | The 4 later skill animations per grip and look, skill and modifier icons, tree art, slot icons for the 7 new slots (act 1 band) | Everything listed; about 60 percent of the remaining code |
+| M2b Acts 2 and 3 | 10 to 12 weeks | Towns, 16 enemies, the Tidewife and Saint Marrow, 60 rooms, the elite modifiers of acts 2 and 3, shrines and ambush rooms, the story scenes of acts 1 to 3, elements and resistances | Vigil I playable through act 3 in about 2 hours; balance report and autopilot green for acts 1 to 3 | Two acts of terrain, enemies, bosses, NPCs, portraits, props, looks for 6 bands | Caster, Charger and Support archetypes, the new behaviours, the scene player |
+| M3 Beta | 14 to 18 weeks | Acts 4 and 5, Warlord Kaeth and the First Watchman, Vigil II to V, rifts, the Abyss, the boss rotation and 4 optional bosses, 40 legendaries with powers, Cursed items, Imprint (Transmog after launch, Q24), achievements and the Codex, real music and sounds, accessibility, iCloud sync | Feature complete; level 60 reachable in 15 to 20 hours by the autopilot; TestFlight beta of 100; performance targets on all target devices | Two acts of art, 20 legendary models, 40 legendary icons, the optional bosses, music and sounds (Q21) | Tier plumbing, endgame modes, legendary powers, audio mixer |
+| M4 Release candidate | 4 to 6 weeks | Bugs, store page, screenshots, preview video, price (open question 1) | Zero known crashes; App Review passed | Store art | Fixes |
+| 1.1 Quality of life | 4 weeks after launch | The post-launch plan above: more filter presets, loadouts, stash tabs; balance from player reports | | | |
+| 1.2 Hardcore | 4 to 6 weeks | Hardcore mode (decided as post-launch) | | | |
+| 2.0 A second class | about the size of M2a plus its art | The Ranger or the Hexer (02, what they would need); how it is sold is open question 4 | | A full character with looks per band and grip | Focus, projectiles, placed effects or summons |
+
+Total to 1.0 from today: about 40 to 50 weeks for one developer, most of it limited by art production for acts 2 to 5. If it slips, the cut order above stands, with two additions before cutting an act: fewer looks for acts 2 to 5 (2 per act instead of the proposed 3; act 1 keeps its decided 3), and Vigil IV and V as rift-only tiers instead of full campaign passes.
+
 ## Team roles
 
 | Role | Work | Source |
@@ -32,7 +51,7 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | Designer and programmer | Systems, data, tools, UI code | Developer |
 | Artist (2D) | Characters, enemies, tiles, item icons, UI | Contract |
 | VFX and animation | Effects, rigs | Contract or the same artist |
-| Composer and sound | Music stems, SFX | Contract or licensed library |
+| Composer and sound | Music stems, SFX | Generated with AI tools, like the art (decided 2026-09-27, Q21) |
 | QA | Device testing, balance runs | Community testers in beta |
 
 ## Risks
@@ -53,14 +72,213 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 ## Open questions
 
 1. Price point: decide at launch. Compare against similar premium mobile action RPGs then.
-2. Skill loadout depth: four slots with trigger conditions is the plan. Decide after the M0 test whether trigger conditions confuse new players.
+2. Skill loadout depth: four slots with trigger conditions is the plan. Answered 2026-09-27 (Q15): each skill keeps a default trigger with two alternatives in a picker.
 3. Demo: decide after beta whether to offer one. It helps a premium title but costs extra scope.
 4. Selling later classes: decide after launch. A paid class add-on would be an in-app purchase on iOS, which conflicts with the premium, no in-app purchases decision.
-5. The sleep mechanic: how a game session resets, what it resets (level layouts, enemies, chests), and whether a corpse survives it.
-6. One-time unlocks such as extra stash tabs or loadout presets were tied to the Ember Shard, which is removed. What gates them now?
-7. Achievements: the Game Center achievements are cut with the other online features. Are achievements kept as local ones?
+5. The sleep mechanic: answered 2026-09-27 (Q14): a bed in each town's inn; new seeds for every dungeon level, enemies and chests back; waypoints, the Tome and the portal stay; corpses stay, moved to their level's arrival point.
+6. One-time unlocks such as extra stash tabs or loadout presets were tied to the Ember Shard, which is removed. Answered 2026-09-27 (Q16): gold.
+7. Achievements: the Game Center achievements are cut with the other online features. Answered 2026-09-27 (Q17): 60 local achievements in the Journal, no rewards.
 8. The Wrathborn rework: decided 2026-09-26, see 02-classes-and-skills.md and the decision log.
-9. Salvaging happens only at the Forge (decision of 2026-09-26), but the loot filter in 03-itemization.md auto-salvages filtered items as they are picked up, anywhere. When the loot filter is built: do filtered items auto-salvage in the dungeon anyway, wait in the backpack until the Forge, or get left on the ground?
+9. Salvaging happens only at the Forge (decision of 2026-09-26), but the loot filter in 03-itemization.md auto-salvages filtered items as they are picked up, anywhere. Answered 2026-09-27 (Q11): filtered items go to a salvage pouch that takes no backpack slots, and the smith salvages them in one tap.
+
+## Open questions from the full-game plan
+
+Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). All 26 were answered by the user the same day; each answer is under its question and in the decision log. Every question here comes from a proposal in the docs or a conflict found while planning. The questions above stay open as they are; five of them (2, 5, 6, 7 and 9) are repeated here with options, so all answers can be given in one pass. Ordered by how much other work waits on each answer. The first option in each list is the recommendation.
+
+**Q1. How does the character reach level 60?** With 6 levels per act, about 100 enemies a level and the built XP formulas, one pass through the five acts ends near level 19 (level 31 even with enemies 7 levels above), while 04 and 05 plan level 60 at the act 5 boss in about 17 hours. Everything about acts 2 to 5, item levels and balance depends on this (04, "The gap between the XP curve and the campaign").
+- A. Diablo 2's shape: the five Vigil tiers are five passes through the campaign with fixed enemy levels per depth; Vigil I's story ends near level 21 after about 3.5 hours, level 60 comes near the end of Vigil V at about 18 hours; the XP formulas stay. (recommended)
+- B. Keep one campaign pass to 60 by multiplying XP per kill by act (the formulas change; 60 comes in about 4 hours instead of 17).
+- C. Keep one pass by making dungeon levels 5 to 7 times bigger (against the 4 to 8 minute levels in 05).
+- D. Keep 05's act ranges and expect farming (rifts, repeated levels after a sleep reset) between acts.
+
+*Answered 2026-09-27 (A):* Five passes: the five Vigil tiers are five passes through the campaign with fixed enemy levels per depth; the XP formulas stay.
+
+**Q2. Is an enemy's level fixed per depth and tier, or set from the player's level?** 04's tier table says enemies use the player's level plus an offset; the same file says the game never scales enemies to the player; the build fixes levels per depth (act 1: 1, 2, 3, 4, 5, 7).
+- A. Fixed per depth and tier, as built; the recommended power score per level warns a player who is behind. (recommended)
+- B. The player's level plus the tier's offset, as the tier table says.
+- C. Fixed, but never more than 5 below the player (a floor so old areas stay worth something).
+
+*Answered 2026-09-27 (A):* Enemy levels fixed per depth and tier, as built.
+
+**Q3. What sprite budget can gear on the character have?** Decided: gear shows on the character, 4 layers, 4 grips, 16 directions for the player, 3 looks per shown slot in act 1 and more per act. Estimated untrimmed, one body look in one grip is about 172 MB of texture memory and act 1's shown looks alone are several gigabytes on disk, against 700 MB peak memory and 400 MB installed (07, "Sprite memory and app size").
+- A. Measure act 1 on a phone first (as decided), then fit with the non-decision levers: trimmed atlases, rank variants by a colour shader, 16 directions only for movement animations, per-act streaming (on-demand resources), fewer frames for short actions. (recommended)
+- B. As A, and also raise the installed-size target (for example to 1 GB with streaming for later acts).
+- C. Fewer looks for acts 2 to 5 (2 per act) or fewer grips.
+- D. Draw the player's 3D model at runtime instead of baked frames (would reverse the decision of 2026-09-27 on frame sprites).
+
+*Answered 2026-09-27 (A, with a note):* "measure, then trim, also note that the game is quite high res, it can drop more in resolution. It can be the same as d2".
+
+**Q4. When do the later skills unlock, and are skill slots gated?** Built: Hew 1, Hurl Axe 2, Bull Rush 4, Ground Breaker 6, all four slots in use. 04 says skills at 1, 2, 3, 6, 10, 14, 18, 22 and slots 3 and 4 at levels 8 and 20, keystone slot at 30.
+- A. Keep the built four, then Battle Roar 9, Rending Spin 12, Blood Frenzy 15, Skullsplitter 18; all four slots open from level 1; keystones from level 20; the loadout screen opens at level 9. (recommended)
+- B. Follow 04's list and move the built unlocks to match it.
+- C. As A, but keystones at 30 as 04 says (after Vigil I's story on the recommended level plan).
+
+*Answered 2026-09-27 (A):* Keep the built four, then Battle Roar 9, Rending Spin 12, Blood Frenzy 15, Skullsplitter 18; all four slots open from level 1; keystones from level 20; the loadout screen opens at level 9.
+
+**Q5. How many keystones does the Wrathborn's tree have, and where are they bought?** 02's tree has 3 keystones per class, "choose one, cost 3 points"; the Wrathborn has 2 (decided); 00's glossary puts the keystone in the loadout.
+- A. 2 keystones, bought in the tree for 3 points each at the ends of two branches; the loadout picks the active one. (recommended)
+- B. 2 keystones, choosing one locks the other (only one can ever be bought until a respec).
+- C. Design a third keystone for the Scar branch.
+
+*Answered 2026-09-27 (A):* 2 keystones, both can be bought in the tree for 3 points each; the loadout picks the active one.
+
+**Q6. Where do attribute points come from?** Only a stand-in exists (8 Vitality a level, decided 2026-09-26 until the tree exists). Nothing says how Might, Agility and Will are gained, and Will's Focus regeneration means nothing for Rage.
+- A. Automatic class growth per level (8 Vitality, 2 Might, 2 Agility, 1 Will), Paragon points free; Will gives Rage gained for the Wrathborn. No extra screen. (recommended)
+- B. 5 free points a level as in Diablo 2, with a suggested spread button.
+- C. No attribute points; attributes only from the passive tree, gear and Paragon.
+
+*Answered 2026-09-27 (A):* Automatic attribute growth per level (8 Vitality, 2 Might, 2 Agility, 1 Will), Paragon points free; Will gives Rage gained for the Wrathborn.
+
+**Q7. How many Legendaries ship in 1.0?** 00 and 03 say 60 (20 per class plus 20 shared), written for three classes. Every Legendary in a shown slot needs its own model (decided).
+- A. 40: 24 tied to Wrathborn skills, 16 shared (03's list; 20 unique models). (recommended)
+- B. 60 as written, 40 of them for the Wrathborn (about 30 models).
+- C. 30, the rest in updates.
+
+*Answered 2026-09-27 (A):* 40 Legendaries in 1.0: 24 tied to Wrathborn skills, 16 shared.
+
+**Q8. What does an item level above 60 give?** Items go to 160 in the Abyss, but affix tiers stop at T1 (60).
+- A. Base damage and armor keep their curves; affix ranges grow 1 percent per level above 60, to plus 100 percent at 160. (recommended)
+- B. A new tier T0 from item level 100.
+- C. Only the base stat grows; affixes stop at T1.
+
+*Answered 2026-09-27 (A):* Above item level 60 base stats keep their curves and affix ranges grow 1 percent per level, to plus 100 percent at 160.
+
+**Q9. Is there elemental damage?** Resistance affixes and a 75 percent cap are designed, but no enemy deals an element.
+- A. Each act has an element for its casters, projectiles and boss ground shapes (fire, cold, poison, physical and fire, shadow); tiers after Vigil I lower the character's resistances by 15 per tier, as Diablo 2 did. (recommended)
+- B. Elements without the tier penalty.
+- C. No elements; drop the resistance affixes.
+
+*Answered 2026-09-27 (A):* An element per act, and resistances lowered 15 per tier after Vigil I.
+
+**Q10. How do the four grips play?** Decided: the off-hand holds nothing, an off-hand weapon or a shield, or a two-handed weapon is used, each grip with its own animations. The rules are not decided, and the equip rule for two-handers is Claude's reading of "use two hand".
+- A. Dual wield alternates hands with plus 15 percent attack speed; a shield blocks 12 to 20 percent of melee hits and projectiles; a two-hander deals 1.6 times the damage at 0.85 times the speed with plus 0.3 reach and empties the off-hand. (recommended)
+- B. As A, but block reduces a hit by half instead of stopping it.
+- C. Grips are looks only, with no rule differences.
+
+*Answered 2026-09-27 (A):* Distinct grip rules: dual wield plus 15 percent attack speed alternating hands; shield blocks 12 to 20 percent of melee hits and projectiles; two-hander 1.6 times damage, 0.85 times speed, plus 0.3 reach, empties the off-hand.
+
+**Q11. Where do filtered items go, given salvage only at the Forge?** (Question 9 above.)
+- A. Into a salvage pouch that takes no backpack slots; the smith offers to salvage them in one tap. (recommended)
+- B. They stay on the ground.
+- C. They are salvaged where they drop (an exception to the Forge-only decision).
+
+*Answered 2026-09-27 (A):* Filtered items go to a salvage pouch that takes no backpack slots; the smith salvages them in one tap.
+
+**Q12. What is an ambush room?** 05 lists ambush rooms; 01 and the structure decision say nothing spawns around the player and there are no waves.
+- A. Packs placed at level load but lying dormant and visible at the room's edges, all waking when the player crosses the middle. Nothing is created in play. (recommended)
+- B. Drop ambush rooms.
+- C. Enemies appear from the room's doorways (an exception to the decision).
+
+*Answered 2026-09-27 (A):* Ambush rooms are dormant packs placed at level load, visible at the room's edges, waking when the player crosses the middle.
+
+**Q13. What happens on death in a rift or the Abyss?** The death rule sends the character to town without its gear until it reaches its corpse; a rift or Abyss floor no longer exists after the run.
+- A. The run ends and the character returns to town with its gear, no corpse. (recommended)
+- B. The corpse is placed in town by the Watcher.
+- C. The run ends and the gear is lost for good (a harder endgame).
+
+*Answered 2026-09-27 (A):* A death in a rift or the Abyss ends the run; the character returns to town with its gear, no corpse.
+
+**Q14. How does the sleep reset work?** (Question 5 above.)
+- A. A bed in each town's inn; after one confirmation every dungeon level gets new seeds, enemies and chests come back; waypoints, the Tome and the portal stay; corpses stay, moved to their level's arrival point. (recommended)
+- B. As A, but corpses are returned to the town.
+- C. The session resets automatically when the game is started fresh (as Diablo 1's new game).
+
+*Answered 2026-09-27 (A):* Sleep reset: a bed in each town's inn, new seeds for every dungeon level after one confirmation; waypoints, Tome and portal stay; corpses stay, moved to their level's arrival point.
+
+**Q15. Can the player choose a skill's trigger?** (Question 2 above, deferred until the M0 test.) Built: one fixed trigger per skill kind.
+- A. Each skill keeps its trigger by default, with two alternatives in a picker. (recommended)
+- B. Any of 01's seven conditions for any skill.
+- C. Fixed triggers only; the loadout is choice and order.
+
+*Answered 2026-09-27 (A):* Each skill keeps its default trigger, with two alternatives in a picker.
+
+**Q16. What gates the one-time unlocks that were tied to the Ember Shard?** (Question 6 above.)
+- A. Gold: stash tabs 2,000 to 100,000, loadout presets 5,000 and 20,000 (04). (recommended)
+- B. Progress: a tab per act cleared, a preset per Vigil tier.
+- C. Everything open from the start.
+
+*Answered 2026-09-27 (A):* One-time unlocks (stash tabs, loadout presets) are paid with gold.
+
+**Q17. Are achievements kept as local ones?** (Question 7 above.)
+- A. Yes, 60 local achievements in the Journal (05's list), no rewards. (recommended)
+- B. Yes, with small cosmetic rewards (Transmog looks).
+- C. No achievements in 1.0.
+
+*Answered 2026-09-27 (A):* 60 local achievements in the Journal, no rewards.
+
+**Q18. Are there item sets?**
+- A. None in 1.0. (recommended)
+- B. A few sets in the unshown slots only (no extra looks).
+- C. Sets in every slot.
+
+*Answered 2026-09-27 (A):* No item sets in 1.0.
+
+**Q19. When does the Results screen appear, and what replaces "Salvage the rest"?** 01 and 06 place it after a level; a stair-descent game has no level end, and salvage is Forge-only.
+- A. On arriving in town with new items; "Mark the rest for salvage" moves them to the salvage pouch. (recommended)
+- B. Drop the Results screen; the Bag's upgrade arrows are enough.
+- C. A results sheet on each stairway down.
+
+*Answered 2026-09-27 (A):* The Results screen appears on arriving in town with new items; "Mark the rest for salvage" moves them to the salvage pouch.
+
+**Q20. What are story scenes made of?**
+- A. In-engine: sprites, portraits and text lines, no voice, skippable. (recommended)
+- B. Painted stills with text, like a storybook.
+- C. Voiced scenes (English only).
+
+*Answered 2026-09-27 (A):* Story scenes in-engine: sprites, portraits and text, no voice, skippable.
+
+**Q21. Where do the real music and sounds come from?**
+- A. Commissioned stems and a licensed sound library, as 08's team roles say. (recommended)
+- B. Generated with AI tools like the art.
+- C. Keep the synthesized placeholders and improve them.
+
+*Answered 2026-09-27 (B):* Real music and sounds generated with AI tools, like the art (not the recommendation).
+
+**Q22. Docs that disagree with the build or with each other.** Each is small; the recommendation for all is to change the doc to match the build or the decision.
+- 01, session structure: "the character appears where they left off" against the decision of 2026-09-23 (a loaded game restarts in town).
+- 01, auto-loot "or when the room clears" against the built rule (nothing engaged with the character).
+- 03, off-hand: "shields (Warden), quivers (Ranger) or focus orbs (Hexer)" against the Wrathborn's off-hand decision.
+- 03 and 04: sockets on Rare and Legendary for Bloodstone (03) against Cinders for sockets on Magic and Rare (04).
+- 03 and 04: Cursed items from Abyss depth 30 (03) against Vigil II (04's tier table).
+- 04, Vigil I elite chance 10 percent against the generator's 15 percent elite rooms.
+- 05, "Each enemy has ... 4 states and 2 palette swaps per act" against the brief's 5 animations and champion and elite sheet sets (09, 5.1).
+- 05, the Focus shrine for a Rage class (proposed name: Wrath shrine).
+- 05 and 06: rifts and the Abyss entered from an NPC (05) or from the Waystone map (06).
+- 06, stance pips "above the character's head, blue and amber" against the built pips under the Rage arc (Momentum cyan, Stillness amber).
+- 06, the mini-map "88 by 88 points, collapsed by default in combat" against the built small map, always shown.
+- 06, onboarding: the first Legendary "from a scripted elite" against the built "next elite killed" after minute 20.
+- 07, art pipeline ("layered PSD, imported with the Unity 2D Animation package") and the comparison row on skeletal animation, against the decision of 2026-09-27 (frame sprites pre-rendered from 3D).
+- A. Update each doc to match the build or the decision. (recommended)
+- B. Review them one by one.
+
+*Answered 2026-09-27 (A):* Update each conflicting doc to match the build or the decision.
+
+**Q23. Update the content counts for one class?** 05's table still counts 3 classes, 24 skills, 216 modifiers and 60 Legendaries.
+- A. Replace them with the proposed counts in `10-full-game-plan.md`, section 14. (recommended)
+- B. Keep them as the long-term target including later classes.
+
+*Answered 2026-09-27 (A):* Replace Docs/05's content counts with the plan's one-class counts (10-full-game-plan.md, section 14).
+
+**Q24. How does Transmog work?**
+- A. Any look the character has picked up for that slot, for gold and 4 Ash; removing it is free. (recommended)
+- B. Only looks of the same band or lower.
+- C. Transmog after launch.
+
+*Answered 2026-09-27 (C):* Transmog after launch (not the recommendation).
+
+**Q25. When do optional bosses appear?** 05 says in the boss rotation from Vigil II.
+- A. In the boss rotation only, from Vigil II, as 05 says. (recommended)
+- B. As A, and each also placed once on its act's last level of that tier behind a sealed door that the act boss kill opens.
+- C. As rare encounters in rifts.
+
+*Answered 2026-09-27 (A):* Optional bosses in the boss rotation only, from Vigil II.
+
+**Q26. Is there a vendor to buy and sell items?** None is in the docs, but 04's currency table lists "salvage sales" as a gold source.
+- A. No vendor; salvage gives a little gold (04's proposal), so every source is a drop. (recommended)
+- B. A vendor who buys items for gold.
+- C. A vendor who also sells Common and Magic items and gems, as in Diablo 2.
+
+*Answered 2026-09-27 (A):* No vendor; salvage gives a little gold.
 
 ## Decision log
 
@@ -122,6 +340,32 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-27 | Retreating from a fight shows the character facing the target and running backward, the one exception to "the body faces the movement direction" (Docs/01, facing) | User |
 | 2026-09-27 | "bake 16 directions": the player character is baked in 16 directions, as Diablo 2 did for its heroes; enemies stay at 8 | User |
 | 2026-09-27 | Placeholder background music until real stems exist: "dark and gothic, just some basic synth sounds on a simple loop" | User |
+| 2026-09-27 | Full-game plan Q1: Five passes: the five Vigil tiers are five passes through the campaign with fixed enemy levels per depth; the XP formulas stay | User |
+| 2026-09-27 | Full-game plan Q2: Enemy levels fixed per depth and tier, as built | User |
+| 2026-09-27 | Full-game plan Q3: "measure, then trim, also note that the game is quite high res, it can drop more in resolution. It can be the same as d2" | User |
+| 2026-09-27 | Full-game plan Q4: Keep the built four, then Battle Roar 9, Rending Spin 12, Blood Frenzy 15, Skullsplitter 18; all four slots open from level 1; keystones from level 20; the loadout screen opens at level 9 | User |
+| 2026-09-27 | Full-game plan Q5: 2 keystones, both can be bought in the tree for 3 points each; the loadout picks the active one | User |
+| 2026-09-27 | Full-game plan Q6: Automatic attribute growth per level (8 Vitality, 2 Might, 2 Agility, 1 Will), Paragon points free; Will gives Rage gained for the Wrathborn | User |
+| 2026-09-27 | Full-game plan Q7: 40 Legendaries in 1.0: 24 tied to Wrathborn skills, 16 shared | User |
+| 2026-09-27 | Full-game plan Q8: Above item level 60 base stats keep their curves and affix ranges grow 1 percent per level, to plus 100 percent at 160 | User |
+| 2026-09-27 | Full-game plan Q9: An element per act, and resistances lowered 15 per tier after Vigil I | User |
+| 2026-09-27 | Full-game plan Q10: Distinct grip rules: dual wield plus 15 percent attack speed alternating hands; shield blocks 12 to 20 percent of melee hits and projectiles; two-hander 1.6 times damage, 0.85 times speed, plus 0.3 reach, empties the off-hand | User |
+| 2026-09-27 | Full-game plan Q11: Filtered items go to a salvage pouch that takes no backpack slots; the smith salvages them in one tap | User |
+| 2026-09-27 | Full-game plan Q12: Ambush rooms are dormant packs placed at level load, visible at the room's edges, waking when the player crosses the middle | User |
+| 2026-09-27 | Full-game plan Q13: A death in a rift or the Abyss ends the run; the character returns to town with its gear, no corpse | User |
+| 2026-09-27 | Full-game plan Q14: Sleep reset: a bed in each town's inn, new seeds for every dungeon level after one confirmation; waypoints, Tome and portal stay; corpses stay, moved to their level's arrival point | User |
+| 2026-09-27 | Full-game plan Q15: Each skill keeps its default trigger, with two alternatives in a picker | User |
+| 2026-09-27 | Full-game plan Q16: One-time unlocks (stash tabs, loadout presets) are paid with gold | User |
+| 2026-09-27 | Full-game plan Q17: 60 local achievements in the Journal, no rewards | User |
+| 2026-09-27 | Full-game plan Q18: No item sets in 1.0 | User |
+| 2026-09-27 | Full-game plan Q19: The Results screen appears on arriving in town with new items; "Mark the rest for salvage" moves them to the salvage pouch | User |
+| 2026-09-27 | Full-game plan Q20: Story scenes in-engine: sprites, portraits and text, no voice, skippable | User |
+| 2026-09-27 | Full-game plan Q21: Real music and sounds generated with AI tools, like the art (not the recommendation) | User |
+| 2026-09-27 | Full-game plan Q22: Update each conflicting doc to match the build or the decision | User |
+| 2026-09-27 | Full-game plan Q23: Replace Docs/05's content counts with the plan's one-class counts (10-full-game-plan.md, section 14) | User |
+| 2026-09-27 | Full-game plan Q24: Transmog after launch (not the recommendation) | User |
+| 2026-09-27 | Full-game plan Q25: Optional bosses in the boss rotation only, from Vigil II | User |
+| 2026-09-27 | Full-game plan Q26: No vendor; salvage gives a little gold | User |
 
 ## Post-launch plan (draft)
 

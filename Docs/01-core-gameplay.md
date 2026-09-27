@@ -121,7 +121,7 @@ Bosses use phases. Each boss has three phases with a distinct attack set and an 
 
 ## Auto features that protect one-handed play
 
-- Auto-loot: items within 2.5 units are picked up when the player is not under attack in the last 1.5 seconds, or when the room clears. Gold and materials are always auto-picked.
+- Auto-loot: items within 2.5 units are picked up when the player has not been hit in the last 1.5 seconds, or when nothing is engaged with the character (as built; Q22). Gold and materials are always auto-picked.
 - Loot filter: see 03-itemization.md.
 - Auto-potion: one potion type, heals 40 percent life over 3 seconds. Charges refill from kills. Fires at 35 percent life, configurable from 20 to 60.
 - Inventory button: sits at the lower edge in the thumb arc and opens one screen with character stats, inventory, equipped gear and loadout. There is no separate pause menu. The screen also holds Settings and the loot filter, and the game is paused while it is open.
@@ -130,7 +130,7 @@ Bosses use phases. Each boss has three phases with a distinct attack set and an 
 
 A typical session:
 
-1. Open game, tap Continue. The character appears where they left off, in the town or on a dungeon level, within 5 seconds. A new character starts in the town.
+1. Open game, tap Continue. The character appears in the town within 5 seconds: a loaded game always restarts in town (decision of 2026-09-23; Q22). A new character starts in the town.
 2. Walk down the stairs and play a level or rift for 3 to 8 minutes.
 3. On the results panel, review drops that beat current gear. Equip with one tap.
 4. Optionally walk to the Forge in town and spend gold and materials.
