@@ -14,13 +14,19 @@ using UnityEngine.SceneManagement;
 namespace ARPG.Editor
 {
     /// <summary>
-    /// Renders a 3D character into the game's sprite sheets (Docs/09-art-brief.md, Route A): for every clip of a
-    /// <see cref="SpriteBakeJob"/>, every direction and every frame, an orthographic render from the game's 30 degree
-    /// camera at the job's supersampling, over black and over white to recover transparency (<see cref="SpriteBakeMath.Matte"/>),
-    /// averaged down to the final cell, placed by direction row and frame column, written as a PNG and imported as
-    /// sliced sprites with the feet pivot at 128 pixels per unit.
+    /// Renders a 3D character into the game's sprite sheets (Docs/09-art-brief.md, Route A and 4.5). For every grip,
+    /// clip, layer (each body, each piece baked for that grip), direction and frame: the bodies are posed by the clip, the
+    /// layer is rendered orthographically from the game's 30 degree camera at the job's supersampling, over black and over
+    /// white to recover transparency (<see cref="SpriteBakeMath.Matte"/>), averaged down to the final cell and placed by
+    /// direction row and frame column. The sheet is written as a PNG and imported as sliced sprites with the feet pivot at
+    /// 128 pixels per unit.
     ///
-    /// The model is set up in a preview scene, so the open scenes are untouched. The project renders with the 2D
+    /// Layers: a body is rendered alone. A piece (helm, off-hand, weapon) is rendered with the first body present but
+    /// drawing only depth, so the piece comes out cut wherever the body hides it; the game draws the body first and the
+    /// pieces over it (<see cref="LayeredCharacterSprite"/>), with no draw-order table. Pieces are not cut by each other,
+    /// so a weapon passing behind a helm shows over it; rare, and the helm varies anyway.
+    ///
+    /// The models are set up in a preview scene, so the open scenes are untouched. The project renders with the 2D
     /// renderer, which draws a 3D model flat and unshaded, so the bake adds a standard (Universal) renderer to the
     /// pipeline asset for the length of the bake and gives it to its camera, then takes it out again: the game's build
     /// does not carry it.
@@ -42,13 +48,13 @@ namespace ARPG.Editor
                 Bake(job);
         }
 
-        /// <summary>Bakes every clip of the job. Returns the written file paths.</summary>
+        /// <summary>Bakes every grip, clip and layer of the job. Returns the written file paths.</summary>
         public static List<string> Bake(SpriteBakeJob job)
         {
             var written = new List<string>();
-            if (job.model == null || job.clips.Count == 0)
+            if (job.bodies.Count == 0 || job.bodies.Any(b => b.model == null) || job.grips.All(g => g.clips.Count == 0))
             {
-                Debug.LogError($"{job.name}: needs a model and at least one clip.");
+                Debug.LogError($"{job.name}: needs at least one body with a model and one clip.");
                 return written;
             }
 
@@ -62,73 +68,153 @@ namespace ARPG.Editor
             var rendererData = LoadOrCreateRendererData();
             var rendererIndex = AddRenderer(pipeline, rendererData);
             var scene = EditorSceneManager.NewPreviewScene();
-            PlayableGraph graph = default;
+            var graphs = new List<PlayableGraph>();
             var size = job.cellSize * Mathf.Max(1, job.supersample);
             var target = new RenderTexture(new RenderTextureDescriptor(size, size, RenderTextureFormat.ARGBHalf, 24) { sRGB = false });
             var readback = new Texture2D(size, size, TextureFormat.RGBAHalf, false, true);
+            var depthOnly = new Material(Shader.Find("ARPG/Depth Only"));
 
             try
             {
-                var setup = BuildStage(job, scene, rendererIndex);
-                setup.Camera.targetTexture = target;
+                var stage = BuildStage(job, scene, rendererIndex);
+                stage.Camera.targetTexture = target;
                 // The first render after the renderer is added comes out unlit (the bake's first test cell did);
                 // one thrown away warms it up.
-                setup.Camera.Render();
+                stage.Camera.Render();
 
-                foreach (var clip in job.clips)
-                {
-                    if (clip.clip == null || string.IsNullOrEmpty(clip.name))
-                        continue;
-
-                    var times = SpriteBakeMath.SampleTimes(clip.clip.length, clip.frames, clip.loop, job.framesPerSecond);
-                    var cells = new Color[SpriteBakeMath.DirectionCount, times.Length][];
-
-                    var clipPlayable = AnimationPlayableUtilities.PlayClip(setup.Animator, clip.clip, out graph);
-                    clipPlayable.SetApplyFootIK(false);
-                    graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
-
-                    for (var row = 0; row < SpriteBakeMath.DirectionCount; row++)
+                foreach (var gripSet in job.grips)
+                    foreach (var clip in gripSet.clips)
                     {
-                        setup.Turntable.rotation = Quaternion.LookRotation(SpriteBakeMath.Facing(row), Vector3.up);
-                        for (var frame = 0; frame < times.Length; frame++)
-                        {
-                            // A generic clip writes only the bones it animates; the rest would keep the last clip's pose
-                            // (the first test attack ran on frozen running legs).
-                            setup.RestPose.Restore();
-                            clipPlayable.SetTime(times[frame]);
-                            clipPlayable.SetTime(times[frame]); // Twice, so no root motion delta is carried from the last sample.
-                            graph.Evaluate(0f);
-                            cells[row, frame] = RenderCell(setup.Camera, target, readback, job);
-                        }
-                    }
-                    graph.Destroy();
+                        if (clip.clip == null || string.IsNullOrEmpty(clip.name))
+                            continue;
+                        var times = SpriteBakeMath.SampleTimes(clip.clip.length, clip.frames, clip.loop, job.framesPerSecond);
 
-                    written.AddRange(WriteSheets(job, clip.name, cells, times.Length));
-                }
+                        // One graph per body, all playing this clip.
+                        var playables = new AnimationClipPlayable[stage.Bodies.Count];
+                        for (var b = 0; b < stage.Bodies.Count; b++)
+                        {
+                            playables[b] = AnimationPlayableUtilities.PlayClip(stage.Bodies[b].Animator, clip.clip, out var graph);
+                            playables[b].SetApplyFootIK(false);
+                            graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
+                            graphs.Add(graph);
+                        }
+
+                        foreach (var layer in LayersFor(stage, gripSet.grip))
+                        {
+                            var sheet = new SheetWriter(job, job.SheetName(layer.Layer, layer.Look, gripSet.grip, clip.name), times.Length);
+                            var poseIndex = layer.BodyIndex;
+                            for (var row = 0; row < SpriteBakeMath.DirectionCount; row++)
+                            {
+                                stage.Turntable.rotation = Quaternion.LookRotation(SpriteBakeMath.Facing(row), Vector3.up);
+                                for (var frame = 0; frame < times.Length; frame++)
+                                {
+                                    var body = stage.Bodies[poseIndex];
+                                    // A generic clip writes only the bones it animates; the rest would keep the last clip's
+                                    // pose (the first test attack ran on frozen running legs).
+                                    body.RestPose.Restore();
+                                    playables[poseIndex].SetTime(times[frame]);
+                                    playables[poseIndex].SetTime(times[frame]); // Twice, so no root motion delta carries over.
+                                    playables[poseIndex].GetGraph().Evaluate(0f);
+
+                                    stage.Show(layer, depthOnly);
+                                    sheet.Put(row, frame, RenderCell(stage.Camera, target, readback, job));
+                                }
+                            }
+                            written.AddRange(sheet.Save());
+                        }
+
+                        foreach (var graph in graphs)
+                            if (graph.IsValid())
+                                graph.Destroy();
+                        graphs.Clear();
+                    }
             }
             finally
             {
-                if (graph.IsValid())
-                    graph.Destroy();
+                foreach (var graph in graphs)
+                    if (graph.IsValid())
+                        graph.Destroy();
                 EditorSceneManager.ClosePreviewScene(scene);
                 RemoveRenderer(pipeline, rendererData);
                 Object.DestroyImmediate(target);
                 Object.DestroyImmediate(readback);
+                Object.DestroyImmediate(depthOnly);
             }
 
             Debug.Log($"{job.name}: baked {written.Count} sheet(s):\n" + string.Join("\n", written));
             return written;
         }
 
-        struct Stage
+        /// <summary>What one sheet shows: a body alone, or a piece hanging on the first body.</summary>
+        sealed class LayerTarget
         {
-            public Camera Camera;
-            public Animator Animator;
-            public Transform Turntable;
-            public Pose RestPose;
+            public AppearanceLayer Layer;
+            public string Look;
+            public int BodyIndex;
+            public PieceInstance Piece;
         }
 
-        /// <summary>Every transform's local position, rotation and scale under the model, to put back before each frame.</summary>
+        sealed class BodyInstance
+        {
+            public GameObject Root;
+            public Animator Animator;
+            public Pose RestPose;
+            public Renderer[] Renderers;
+            public Material[][] Materials;
+        }
+
+        sealed class PieceInstance
+        {
+            public SpriteBakeJob.Piece Definition;
+            public Renderer[] Renderers;
+        }
+
+        sealed class Stage
+        {
+            public Camera Camera;
+            public Transform Turntable;
+            public readonly List<BodyInstance> Bodies = new List<BodyInstance>();
+            public readonly List<PieceInstance> Pieces = new List<PieceInstance>();
+
+            /// <summary>Only the layer's own meshes draw; for a piece, the first body draws depth only, to cut it.</summary>
+            public void Show(LayerTarget layer, Material depthOnly)
+            {
+                for (var b = 0; b < Bodies.Count; b++)
+                {
+                    var body = Bodies[b];
+                    var drawn = layer.Piece == null && b == layer.BodyIndex;
+                    var occluder = layer.Piece != null && b == 0;
+                    for (var r = 0; r < body.Renderers.Length; r++)
+                    {
+                        var renderer = body.Renderers[r];
+                        renderer.enabled = drawn || occluder;
+                        renderer.sharedMaterials = occluder
+                            ? Enumerable.Repeat(depthOnly, body.Materials[r].Length).ToArray()
+                            : body.Materials[r];
+                    }
+                }
+                foreach (var piece in Pieces)
+                    foreach (var renderer in piece.Renderers)
+                        renderer.enabled = piece == layer.Piece;
+            }
+        }
+
+        static IEnumerable<LayerTarget> LayersFor(Stage stage, string grip)
+        {
+            for (var b = 0; b < stage.Bodies.Count; b++)
+                yield return new LayerTarget { Layer = AppearanceLayer.Body, Look = BodyLook(stage, b), BodyIndex = b };
+            foreach (var piece in stage.Pieces)
+            {
+                var grips = piece.Definition.grips;
+                if (grips.Count > 0 && !grips.Contains(grip))
+                    continue;
+                yield return new LayerTarget { Layer = piece.Definition.layer, Look = piece.Definition.look, BodyIndex = 0, Piece = piece };
+            }
+        }
+
+        static string BodyLook(Stage stage, int index) => stage.Bodies[index].Root.name;
+
+        /// <summary>Every transform's local position, rotation and scale under a model, to put back before each frame.</summary>
         sealed class Pose
         {
             readonly Transform[] transforms;
@@ -153,37 +239,77 @@ namespace ARPG.Editor
             }
         }
 
-        // The model on a turntable at the origin, feet on the origin, scaled to the job's height; the weapon in its hand;
-        // the camera at the game's angle with the origin on the pivot pixel; lights that turn with the camera, not the model.
+        // The bodies on a turntable at the origin, feet on the origin, all scaled and placed as the first (they share its
+        // proportions); the pieces on the first body's bones; the camera at the game's angle with the origin on the pivot
+        // pixel; lights that turn with the camera, not the model.
         static Stage BuildStage(SpriteBakeJob job, Scene scene, int rendererIndex)
         {
+            var stage = new Stage();
             var turntable = new GameObject("Turntable");
             SceneManager.MoveGameObjectToScene(turntable, scene);
+            stage.Turntable = turntable.transform;
 
-            var model = (GameObject)Object.Instantiate(job.model);
-            model.name = job.model.name;
-            SceneManager.MoveGameObjectToScene(model, scene);
-            model.transform.SetParent(turntable.transform, false);
-            model.transform.localPosition = Vector3.zero;
-            model.transform.localRotation = Quaternion.identity;
+            var scale = 1f;
+            var offset = Vector3.zero;
+            for (var b = 0; b < job.bodies.Count; b++)
+            {
+                var definition = job.bodies[b];
+                var model = (GameObject)Object.Instantiate(definition.model);
+                // The look id travels as the instance's name (empty for a plain character).
+                model.name = definition.look ?? "";
+                SceneManager.MoveGameObjectToScene(model, scene);
+                model.transform.SetParent(turntable.transform, false);
+                model.transform.localPosition = Vector3.zero;
+                model.transform.localRotation = Quaternion.identity;
 
-            var animator = model.GetComponent<Animator>();
-            if (animator == null)
-                animator = model.AddComponent<Animator>();
-            animator.applyRootMotion = false;
-            animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+                var animator = model.GetComponent<Animator>();
+                if (animator == null)
+                    animator = model.AddComponent<Animator>();
+                animator.applyRootMotion = false;
+                animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
 
-            // Measured in the model's rest pose (the A-pose of a rig-ready model), before the weapon is added.
-            var rest = MeasureBounds(model);
-            // Facing the camera (S), as most frames show it; the measure is the whole box, so a little generous.
-            var scale = SpriteBakeMath.ModelScale(SpriteBakeMath.ScreenHeight(rest.size.y, rest.size.z), job.targetHeightPixels);
-            model.transform.localScale *= scale;
-            rest = MeasureBounds(model);
-            model.transform.localPosition = new Vector3(-rest.center.x, -rest.min.y, -rest.center.z);
+                if (b == 0)
+                {
+                    // Measured in the first body's rest pose (the A-pose of a rig-ready model), facing the camera (S), as
+                    // most frames show it; the measure is the whole box, so a little generous.
+                    var rest = MeasureBounds(model);
+                    scale = SpriteBakeMath.ModelScale(SpriteBakeMath.ScreenHeight(rest.size.y, rest.size.z), job.targetHeightPixels);
+                    model.transform.localScale *= scale;
+                    rest = MeasureBounds(model);
+                    offset = new Vector3(-rest.center.x, -rest.min.y, -rest.center.z);
+                }
+                else
+                    model.transform.localScale *= scale;
+                model.transform.localPosition = offset;
 
-            // Taken before the weapon goes on, so the weapon's own transforms are left alone.
-            var restPose = new Pose(model.transform);
-            AttachWeapon(job, model, animator);
+                var renderers = model.GetComponentsInChildren<Renderer>(true);
+                stage.Bodies.Add(new BodyInstance
+                {
+                    Root = model,
+                    Animator = animator,
+                    // Taken before the pieces go on, so their own transforms are left alone.
+                    RestPose = new Pose(model.transform),
+                    Renderers = renderers,
+                    Materials = renderers.Select(r => r.sharedMaterials).ToArray(),
+                });
+            }
+
+            foreach (var piece in job.pieces)
+            {
+                if (piece.prefab == null)
+                    continue;
+                var holder = Holder(stage.Bodies[0], piece);
+                if (holder == null)
+                {
+                    Debug.LogWarning($"{job.name}: no bone or path to hold {piece.look}; baked without it.");
+                    continue;
+                }
+                var instance = (GameObject)Object.Instantiate(piece.prefab, holder, false);
+                instance.transform.localPosition = piece.localPosition;
+                instance.transform.localRotation = Quaternion.Euler(piece.localEuler);
+                instance.transform.localScale = Vector3.one * piece.scale;
+                stage.Pieces.Add(new PieceInstance { Definition = piece, Renderers = instance.GetComponentsInChildren<Renderer>(true) });
+            }
 
             var cameraObject = new GameObject("Bake Camera");
             SceneManager.MoveGameObjectToScene(cameraObject, scene);
@@ -207,13 +333,20 @@ namespace ARPG.Editor
             cameraData.renderPostProcessing = false;
             cameraData.renderShadows = false;
             cameraData.antialiasing = AntialiasingMode.None;
+            stage.Camera = camera;
 
             // Key from the viewer's upper left (the brief, 0.2), a cool fill from the right, a rim from behind.
             AddLight(scene, "Key", new Vector3(0.55f, -0.75f, 0.55f), new Color(1f, 0.95f, 0.88f), 1.5f);
             AddLight(scene, "Fill", new Vector3(-0.8f, -0.25f, 0.3f), new Color(0.7f, 0.78f, 0.9f), 0.35f);
             AddLight(scene, "Rim", new Vector3(0f, -0.35f, -1f), new Color(0.9f, 0.85f, 0.8f), 0.6f);
+            return stage;
+        }
 
-            return new Stage { Camera = camera, Animator = animator, Turntable = turntable.transform, RestPose = restPose };
+        static Transform Holder(BodyInstance body, SpriteBakeJob.Piece piece)
+        {
+            if (!string.IsNullOrEmpty(piece.transformPath))
+                return body.Root.transform.Find(piece.transformPath);
+            return body.Animator.isHuman ? body.Animator.GetBoneTransform(piece.bone) : null;
         }
 
         static void AddLight(Scene scene, string name, Vector3 direction, Color color, float intensity)
@@ -226,27 +359,6 @@ namespace ARPG.Editor
             light.color = color;
             light.intensity = intensity;
             light.shadows = LightShadows.None;
-        }
-
-        static void AttachWeapon(SpriteBakeJob job, GameObject model, Animator animator)
-        {
-            var weapon = job.weapon;
-            if (weapon == null || weapon.prefab == null)
-                return;
-            Transform holder = null;
-            if (!string.IsNullOrEmpty(weapon.transformPath))
-                holder = model.transform.Find(weapon.transformPath);
-            else if (animator.isHuman)
-                holder = animator.GetBoneTransform(weapon.bone);
-            if (holder == null)
-            {
-                Debug.LogWarning($"{job.name}: no bone or path to hold the weapon; baked without it.");
-                return;
-            }
-            var instance = (GameObject)Object.Instantiate(weapon.prefab, holder, false);
-            instance.transform.localPosition = weapon.localPosition;
-            instance.transform.localRotation = Quaternion.Euler(weapon.localEuler);
-            instance.transform.localScale = Vector3.one * weapon.scale;
         }
 
         // World bounds of every mesh in the model as it stands now. A skinned mesh is baked first, since its renderer's
@@ -317,63 +429,75 @@ namespace ARPG.Editor
             return readback.GetPixels();
         }
 
-        static IEnumerable<string> WriteSheets(SpriteBakeJob job, string clipName, Color[,][] cells, int frames)
+        /// <summary>
+        /// One layer's sheet, filled cell by cell: rows are directions from the top (S first), columns frames; too big for
+        /// one texture, a file per direction with its frames in rows from the top.
+        /// </summary>
+        sealed class SheetWriter
         {
-            var cell = job.cellSize;
-            var folder = job.outputFolder.TrimEnd('/');
-            Directory.CreateDirectory(folder);
-            var paths = new List<string>();
+            readonly SpriteBakeJob job;
+            readonly string name;
+            readonly int frames;
+            readonly bool split;
+            readonly Vector2Int grid;
+            readonly Texture2D[] textures;
+            readonly List<(string, Rect)>[] rects;
 
-            if (!SpriteBakeMath.NeedsSplit(frames, cell))
+            public SheetWriter(SpriteBakeJob job, string name, int frames)
             {
-                // One sheet: rows are directions from the top (S first), columns are frames.
-                var sheet = NewSheet(frames * cell, SpriteBakeMath.DirectionCount * cell);
-                var rects = new List<(string, Rect)>();
-                for (var row = 0; row < SpriteBakeMath.DirectionCount; row++)
-                    for (var frame = 0; frame < frames; frame++)
-                    {
-                        var x = frame * cell;
-                        var y = (SpriteBakeMath.DirectionCount - 1 - row) * cell;
-                        sheet.SetPixels(x, y, cell, cell, cells[row, frame]);
-                        rects.Add(($"{job.characterName}_{clipName}_{SpriteBakeMath.DirectionCodes[row]}_{frame:00}", new Rect(x, y, cell, cell)));
-                    }
-                paths.Add(Save(job, sheet, $"{folder}/{job.characterName}_{clipName}.png", rects));
+                this.job = job;
+                this.name = name;
+                this.frames = frames;
+                var cell = job.cellSize;
+                split = SpriteBakeMath.NeedsSplit(frames, cell);
+                grid = split ? SpriteBakeMath.SplitGrid(frames, cell) : new Vector2Int(frames, SpriteBakeMath.DirectionCount);
+                var count = split ? SpriteBakeMath.DirectionCount : 1;
+                textures = new Texture2D[count];
+                rects = new List<(string, Rect)>[count];
+                for (var i = 0; i < count; i++)
+                {
+                    textures[i] = new Texture2D(grid.x * cell, grid.y * cell, TextureFormat.RGBA32, false);
+                    textures[i].SetPixels(new Color[grid.x * cell * grid.y * cell]);
+                    rects[i] = new List<(string, Rect)>();
+                }
+            }
+
+            public void Put(int row, int frame, Color[] pixels)
+            {
+                var cell = job.cellSize;
+                int file, x, y;
+                if (split)
+                {
+                    file = row;
+                    x = frame % grid.x * cell;
+                    y = (grid.y - 1 - frame / grid.x) * cell;
+                }
+                else
+                {
+                    file = 0;
+                    x = frame * cell;
+                    y = (SpriteBakeMath.DirectionCount - 1 - row) * cell;
+                }
+                textures[file].SetPixels(x, y, cell, cell, pixels);
+                rects[file].Add(($"{name}_{SpriteBakeMath.DirectionCodes[row]}_{frame:00}", new Rect(x, y, cell, cell)));
+            }
+
+            public IEnumerable<string> Save()
+            {
+                var folder = job.outputFolder.TrimEnd('/');
+                Directory.CreateDirectory(folder);
+                var paths = new List<string>();
+                for (var i = 0; i < textures.Length; i++)
+                {
+                    var path = split ? $"{folder}/{name}_{SpriteBakeMath.DirectionCodes[i]}.png" : $"{folder}/{name}.png";
+                    File.WriteAllBytes(path, textures[i].EncodeToPNG());
+                    Object.DestroyImmediate(textures[i]);
+                    AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
+                    ConfigureImporter(job, path, rects[i]);
+                    paths.Add(path);
+                }
                 return paths;
             }
-
-            // Too big for one texture: a file per direction, frames in rows from the top.
-            var grid = SpriteBakeMath.SplitGrid(frames, cell);
-            for (var row = 0; row < SpriteBakeMath.DirectionCount; row++)
-            {
-                var code = SpriteBakeMath.DirectionCodes[row];
-                var sheet = NewSheet(grid.x * cell, grid.y * cell);
-                var rects = new List<(string, Rect)>();
-                for (var frame = 0; frame < frames; frame++)
-                {
-                    var x = frame % grid.x * cell;
-                    var y = (grid.y - 1 - frame / grid.x) * cell;
-                    sheet.SetPixels(x, y, cell, cell, cells[row, frame]);
-                    rects.Add(($"{job.characterName}_{clipName}_{code}_{frame:00}", new Rect(x, y, cell, cell)));
-                }
-                paths.Add(Save(job, sheet, $"{folder}/{job.characterName}_{clipName}_{code}.png", rects));
-            }
-            return paths;
-        }
-
-        static Texture2D NewSheet(int width, int height)
-        {
-            var sheet = new Texture2D(width, height, TextureFormat.RGBA32, false);
-            sheet.SetPixels(new Color[width * height]);
-            return sheet;
-        }
-
-        static string Save(SpriteBakeJob job, Texture2D sheet, string path, List<(string name, Rect rect)> rects)
-        {
-            File.WriteAllBytes(path, sheet.EncodeToPNG());
-            Object.DestroyImmediate(sheet);
-            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
-            ConfigureImporter(job, path, rects);
-            return path;
         }
 
         // Sliced sprites with the feet pivot, 128 pixels per unit. A rebake keeps each sprite's id by name, so animations

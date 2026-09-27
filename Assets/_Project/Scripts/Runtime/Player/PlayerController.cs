@@ -50,6 +50,16 @@ namespace ARPG
             var bodySprite = transform.Find("Body");
             if (bodySprite != null && bodySprite.TryGetComponent<SpriteRenderer>(out var bodyRenderer))
                 effects = new SpriteEffects(new[] { bodyRenderer });
+            // Shows the baked, layered sprites wearing the equipped gear once the character's sheets exist.
+            if (GetComponent<PlayerSpriteAnimator>() == null)
+                gameObject.AddComponent<PlayerSpriteAnimator>();
+        }
+
+        /// <summary>Which renderers the hit flash covers: the placeholder body, or the layered sprites once they show.</summary>
+        public void SetFlashRenderers(SpriteRenderer[] renderers)
+        {
+            effects?.Clear();
+            effects = renderers != null && renderers.Length > 0 ? new SpriteEffects(renderers) : null;
         }
 
         /// <summary>Flashes the character's body a color for a moment, such as red when hit.</summary>

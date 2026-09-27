@@ -118,6 +118,13 @@ namespace ARPG
 
         public int SkillCastCount { get; private set; }
 
+        /// <summary>A basic attack starts, with its ground direction and the time until the next may start (so an
+        /// animation can fit the attack rate).</summary>
+        public event System.Action<Vector2, float> BasicAttackStarted;
+
+        /// <summary>A skill fires, with its ground direction.</summary>
+        public event System.Action<SkillDefinition, Vector2> SkillCast;
+
         public IReadOnlyList<SkillDefinition> Skills => skills;
 
         /// <summary>
@@ -278,6 +285,7 @@ namespace ARPG
             var equipment = GameSession.Current.Equipment;
             attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f));
             BasicAttackCount++;
+            BasicAttackStarted?.Invoke(aim, attackTimer);
 
             Sfx.Play(SoundId.Swing, 0.6f);
             var hits = Sweep(origin, aim, basicRange, basicArcDegrees, 1f, basicEffectSprite, basicEffectColor);
@@ -327,6 +335,9 @@ namespace ARPG
                 SkillCastCount++;
                 castCounts[i]++;
                 rage.MarkCombat();
+                SkillCast?.Invoke(skill, skill.Kind == SkillKind.Projectile && skillTarget != null
+                    ? (skillTarget.GroundPosition - origin).normalized
+                    : skill.Kind == SkillKind.Charge && skillTarget != null ? (skillTarget.GroundPosition - origin).normalized : aim);
 
                 Sfx.Play(skill.Kind == SkillKind.Sweep ? SoundId.Hew : skill.Kind == SkillKind.Slam ? SoundId.GroundBreaker
                     : skill.Kind == SkillKind.Projectile ? SoundId.AxeThrow : SoundId.BullRush);
