@@ -115,7 +115,7 @@ Around 60 achievements. Examples: clear each act without using a potion, reach A
 
 ## Audio and art direction
 
-- Art: 2D hand-painted look, 256 by 256 sprites for standard enemies, 512 by 512 for bosses, isometric perspective. Environments are tile-based with lit layers.
+- Art: in the style of the original Diablo 2 but not a copy (2026-09-27): sprites pre-rendered from 3D models, frame by frame in 8 directions at 12 fps, 256 by 256 cells for standard enemies, 512 by 512 for bosses, isometric perspective. Environments are tile-based with lit layers. Walls on a room's camera-facing sides are drawn cut down, so they never hide the character. The full brief is 09-art-brief.md.
 - Lighting: dark scenes lit by the player's ember and enemy effects. Dynamic 2D lights on the player and a few props only, for performance.
 - Music: sparse, low strings, choir, drum layers. Layered stems respond to pack size and elite presence.
 - Sound: heavy, tactile, low frequency emphasis. Rarity-specific pickup sounds.

@@ -8,7 +8,7 @@ Decision: Unity 6000.6.2f1 with C#, the Universal Render Pipeline with the 2D Re
 
 - Hundreds of data-defined objects (items, affixes, skills, enemies) with tooling to edit and validate them.
 - Many simultaneous entities on screen (40 enemies, projectiles, effects) at 60 frames per second on phones.
-- 2D lighting, skeletal animation, particle effects, audio mixing with layers.
+- 2D lighting, frame-by-frame sprite animation (pre-rendered from 3D, 2026-09-27; skeletal animation is no longer planned), particle effects, audio mixing with layers.
 - Mature iOS build, profiling, iCloud and haptics support.
 - A path to Android later if the game earns it.
 

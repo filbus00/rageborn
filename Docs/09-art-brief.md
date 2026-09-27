@@ -22,7 +22,7 @@ Contents:
 11. Step 10: UI
 12. Step 11: key art, app icon, title screen
 13. Delivery checklist
-14. Open questions for the user
+14. Decisions
 
 ---
 
@@ -206,7 +206,7 @@ All tiles use the 2:1 diamond: **128 px wide, 64 px tall at the floor**. Taller 
 | `terrain/dungeon_floor_01..08.png` | 8 | 128 x 64 | Cracked grey flagstones dusted with ash; 2 of the 8 with a little rubble, 1 with a dried blood stain, 1 with a drain grate |
 | `terrain/dungeon_floor_worn_01..04.png` | 4 | 128 x 64 | Broken flagstones with packed dirt between them, for corridors |
 | `terrain/dungeon_wall_block_01..04.png` | 4 | 128 x 192 | A free-standing wall block of rough grey stone masonry, mortar crumbling, soot stains at the top: this is used for every wall cell today, so it must look right next to itself on all sides and alone as a pillar |
-| `terrain/dungeon_wall_low_01..04.png` | 4 | 128 x 96 | The same wall cut down to 32 px high, broken off, for walls between the camera and the player (see 14, question 3) |
+| `terrain/dungeon_wall_low_01..04.png` | 4 | 128 x 96 | The same wall cut down to 32 px high, broken off, for walls between the camera and the player (decision 3 in section 14) |
 
 Prompt for a floor tile:
 
@@ -567,8 +567,8 @@ For every delivered file, also give: the prompt used, the tool and model, the se
 
 ---
 
-## 14. Open questions for the user
+## 14. Decisions (the user, 2026-09-27)
 
-1. **Animation method.** `00-vision-and-scope.md` says "2D sprites with skeletal animation", and `05-world-and-content.md` says "2D hand-painted look". Diablo 2's look comes from **pre-rendered 3D frames**, and Route A (0.7) produces exactly that, frame by frame. Skeletal 2D animation (cut-out parts moved by bones) gives a different, smoother, flatter look, and AI tools cannot yet deliver clean layered parts for 8 directions. This brief assumes frame sprite sheets. Which do you want?
-2. **Frame budget.** 8 directions x 12 fps sheets are large: the player's 9 sheets are 768 cells of 256 x 256, about 190 MB uncompressed and about 50 MB compressed (ASTC 4x4). The engine will pack and compress them, but the enemy count (40 types at launch) multiplies this. Options: fewer frames (8 fps), 6 directions, or smaller cells for small enemies. The brief keeps the full set for act 1 so it can be measured on a phone first.
-3. **Walls hiding the player.** Tall walls (128 px) will hide the character when he walks behind a wall that is nearer to the camera. Diablo 2 cut those walls down. The brief asks for low wall variants; using them needs engine work (choosing the low variant for walls on the camera side of a room, or fading walls near the player).
+1. **Animation method: frame sprites pre-rendered from 3D** (Route A in 0.7), not skeletal 2D animation. `00-vision-and-scope.md`, `05-world-and-content.md` and `07-technical.md` now say so.
+2. **Frame budget: the full set for act 1** (8 directions, 12 fps, 256 px cells, 512 for the boss), measured for memory and frame rate on a phone before anything is cut. The player's 9 sheets are 768 cells, about 190 MB uncompressed and about 50 MB compressed (ASTC 4x4).
+3. **Walls: low walls on the camera side**, as Diablo 2 did. Walls on a room's camera-facing sides use the low variants (3.2), so the character is never hidden. The engine needs work to pick the low variant for those cells.

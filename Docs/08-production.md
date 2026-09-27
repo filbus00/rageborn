@@ -111,6 +111,9 @@ If the schedule slips, cut in this order: optional bosses, fourth and fifth Vigi
 | 2026-09-26 | Each level's waypoint stands in its start room | User |
 | 2026-09-26 | The Cinder Warden's life raised from 15 to 30 times a normal enemy's, after the flatter enemy levels put the fight at 35 s; now about 70 s with typical gear (Docs/04 target 60 to 120 s) | User |
 | 2026-09-27 | Art: generated with AI, "in the style of the original diablo 2 but not a copy". The brief is 09-art-brief.md | User |
+| 2026-09-27 | Characters are frame-by-frame sprites pre-rendered from 3D models in 8 directions, not skeletal animation | User |
+| 2026-09-27 | Act 1 art gets the full frame set (8 directions, 12 fps), measured on a phone before cutting | User |
+| 2026-09-27 | Walls on a room's camera-facing sides are drawn cut down, as in Diablo 2, so they never hide the character | User |
 
 ## Post-launch plan (draft)
 
