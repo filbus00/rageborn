@@ -107,6 +107,11 @@ namespace ARPG
                  "of the same hue. A separate sprite is the only way to get a real color difference.")]
         [SerializeField] Sprite bodySprite;
 
+        [Tooltip("The baked character whose sheets animate this enemy (Resources/Characters/<name>: <name>_idle, _run, " +
+                 "_attack, _hit, _death, from the sprite bake). While they do not exist the placeholder body shows. A " +
+                 "Champion or Elite may name its own rank look (husk_champion) or share the base one.")]
+        [SerializeField] string spriteCharacter = "";
+
         public int Level => level;
         public EnemyRank Rank => rank;
         public EnemyArchetype Archetype => archetype;
@@ -135,5 +140,13 @@ namespace ARPG
 
         /// <summary>Null for a Normal enemy, which keeps the prefab's own body sprite.</summary>
         public Sprite BodySprite => bodySprite;
+
+        /// <summary>The baked character that animates this enemy, or empty for the placeholder body.</summary>
+        public string SpriteCharacter => spriteCharacter;
+
+#if UNITY_EDITOR
+        /// <summary>For the editor tools that wire baked art to the definitions.</summary>
+        public void SetSpriteCharacter(string value) => spriteCharacter = value;
+#endif
     }
 }

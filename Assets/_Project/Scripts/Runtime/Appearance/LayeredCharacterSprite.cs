@@ -20,23 +20,17 @@ namespace ARPG
         public const float FramesPerSecond = 12f;
         const int LayerCount = 4;
 
-        sealed class Sheet
-        {
-            public Sprite[][] Rows;
-            public int Frames;
-        }
-
         readonly SpriteRenderer[] renderers = new SpriteRenderer[LayerCount];
         // The sheets of the playing animation, looked up when the animation or the look changes, so a frame allocates
         // nothing.
-        readonly Sheet[] current = new Sheet[LayerCount];
+        readonly CharacterSheet[] current = new CharacterSheet[LayerCount];
         // Seconds per animation from the character's timing file ("<grip>_<clip> <seconds> [<ground speed>]"), written by
         // the sprite bake, and the ground speed a locomotion clip was recorded at.
         readonly Dictionary<string, float> timing = new Dictionary<string, float>();
         readonly Dictionary<string, float> speeds = new Dictionary<string, float>();
         bool timingLoaded;
         float currentSeconds;
-        readonly Dictionary<string, Sheet> sheets = new Dictionary<string, Sheet>();
+        readonly Dictionary<string, CharacterSheet> sheets = new Dictionary<string, CharacterSheet>();
         readonly List<SpriteRenderer> visible = new List<SpriteRenderer>(LayerCount);
         string character;
         CharacterAppearance appearance;
@@ -207,23 +201,12 @@ namespace ARPG
         public float CurrentRecordedSpeed { get; private set; }
 
         /// <summary>How long the animation plays: its real length from the timing file, else its frames at 12 a second.</summary>
-        float PlaybackSeconds(string animationName, Sheet sheet)
+        float PlaybackSeconds(string animationName, CharacterSheet sheet)
         {
             if (!timingLoaded)
             {
                 timingLoaded = true;
-                var file = Resources.Load<TextAsset>($"Characters/{character}/{character}_timing");
-                if (file != null)
-                    foreach (var line in file.text.Split('\n'))
-                    {
-                        var parts = line.Trim().Split(' ');
-                        if (parts.Length >= 2 && float.TryParse(parts[1], System.Globalization.NumberStyles.Float,
-                                System.Globalization.CultureInfo.InvariantCulture, out var seconds) && seconds > 0f)
-                            timing[parts[0]] = seconds;
-                        if (parts.Length >= 3 && float.TryParse(parts[2], System.Globalization.NumberStyles.Float,
-                                System.Globalization.CultureInfo.InvariantCulture, out var speed))
-                            speeds[parts[0]] = speed;
-                    }
+                CharacterSheets.LoadTiming(character, timing, speeds);
             }
             if (timing.TryGetValue(AppearanceRules.GripCode(appearance.Grip) + "_" + animationName, out var found) ||
                 timing.TryGetValue(animationName, out found))
@@ -258,7 +241,7 @@ namespace ARPG
             return Mathf.Clamp(Mathf.FloorToInt(progress * frames), 0, frames - 1);
         }
 
-        Sheet SheetFor(AppearanceLayer layer, string animationName)
+        CharacterSheet SheetFor(AppearanceLayer layer, string animationName)
         {
             var look = appearance.LookOf(layer);
             if (string.IsNullOrEmpty(look) || string.IsNullOrEmpty(character))
@@ -273,11 +256,11 @@ namespace ARPG
             return sheet;
         }
 
-        Sheet LoadCached(string name)
+        CharacterSheet LoadCached(string name)
         {
             if (sheets.TryGetValue(name, out var cached))
                 return cached;
-            var sheet = Load($"Characters/{character}/{name}");
+            var sheet = CharacterSheets.Load($"Characters/{character}/{name}");
             sheets[name] = sheet;
             if (sheet != null && sheet.Rows.Length != directionCount)
             {
@@ -285,62 +268,6 @@ namespace ARPG
                 row = row * sheet.Rows.Length / directionCount;
                 directionCount = sheet.Rows.Length;
             }
-            return sheet;
-        }
-
-        // A whole sheet, or its eight per-direction files. Frames are found by their names' last two parts: the
-        // direction code and the frame number. Null when the sheet does not exist.
-        static Sheet Load(string path)
-        {
-            var sprites = new List<Sprite>(Resources.LoadAll<Sprite>(path));
-            if (sprites.Count == 0)
-                foreach (var code in AppearanceRules.DirectionCodes(16))
-                    sprites.AddRange(Resources.LoadAll<Sprite>($"{path}_{code}"));
-            if (sprites.Count == 0)
-                return null;
-
-            // 16 directions when any frame carries a code the 8 lack (ssw, wsw...).
-            var sixteen = AppearanceRules.DirectionCodes(16);
-            var eight = AppearanceRules.DirectionCodes(8);
-            var count = 8;
-            foreach (var sprite in sprites)
-            {
-                var parts = sprite.name.Split('_');
-                if (parts.Length >= 2 && System.Array.IndexOf(eight, parts[parts.Length - 2]) < 0 &&
-                    System.Array.IndexOf(sixteen, parts[parts.Length - 2]) >= 0)
-                {
-                    count = 16;
-                    break;
-                }
-            }
-            var codes = AppearanceRules.DirectionCodes(count);
-
-            var frames = 0;
-            var parsed = new List<(int row, int frame, Sprite sprite)>(sprites.Count);
-            foreach (var sprite in sprites)
-            {
-                var parts = sprite.name.Split('_');
-                if (parts.Length < 2 || !int.TryParse(parts[parts.Length - 1], out var frame))
-                    continue;
-                var direction = System.Array.IndexOf(codes, parts[parts.Length - 2]);
-                if (direction < 0)
-                    continue;
-                parsed.Add((direction, frame, sprite));
-                frames = Mathf.Max(frames, frame + 1);
-            }
-            if (frames == 0)
-                return null;
-
-            var sheet = new Sheet { Frames = frames, Rows = new Sprite[count][] };
-            for (var i = 0; i < sheet.Rows.Length; i++)
-                sheet.Rows[i] = new Sprite[frames];
-            foreach (var (direction, frame, sprite) in parsed)
-                sheet.Rows[direction][frame] = sprite;
-            // A missing frame shows its neighbour rather than nothing.
-            foreach (var rowFrames in sheet.Rows)
-                for (var f = 0; f < frames; f++)
-                    if (rowFrames[f] == null)
-                        rowFrames[f] = f > 0 ? rowFrames[f - 1] : System.Array.Find(rowFrames, s => s != null);
             return sheet;
         }
     }

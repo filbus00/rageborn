@@ -72,7 +72,7 @@ namespace ARPG.Editor
             importer.importAnimation = false;
             importer.materialImportMode = ModelImporterMaterialImportMode.ImportViaMaterialDescription;
             importer.SaveAndReimport();
-            ApplyTexture(path, importer);
+            MixamoImport.ApplyTexture(path, importer);
 
             var model = AssetDatabase.LoadAssetAtPath<GameObject>(path);
             var centroid = Vector3.zero;
@@ -113,7 +113,7 @@ namespace ARPG.Editor
             }
 
             foreach (var body in bodies)
-                ConfigureBody(body);
+                MixamoImport.ConfigureBody(body);
             var avatar = AssetDatabase.LoadAllAssetsAtPath(bodies[0]).OfType<Avatar>().FirstOrDefault();
 
             var job = AssetDatabase.LoadAssetAtPath<SpriteBakeJob>(JobPath);
@@ -155,7 +155,7 @@ namespace ARPG.Editor
                     // A one-shot is sampled only where its action is (Mixamo's Hew was 5.2 s with the swing in about two
                     // seconds of it; its 12 frames went mostly on the stance around it). A loop keeps its whole cycle.
                     // Played over the sampled span's real length: Mixamo clips run from 0.7 s (a run) to 10 s (an idle).
-                    var window = loop ? new Vector2(0f, clip.length) : ActionWindow(bodies[0], clip, name == "death");
+                    var window = loop ? new Vector2(0f, clip.length) : MixamoImport.ActionWindow(bodies[0], clip, name == "death");
                     set.clips.Add(new SpriteBakeJob.Clip
                     {
                         name = name, clip = clip, frames = frames, loop = loop,
@@ -210,84 +210,7 @@ namespace ARPG.Editor
             }
         }
 
-        // How much the body moves over a clip, 60 samples a second: the distance the hands, feet, head and hips travel
-        // between samples, relative to the hips' start, on the body model at its own size.
-        static Vector2 ActionWindow(string bodyPath, AnimationClip clip, bool keepEnd)
-        {
-            var body = (GameObject)Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(bodyPath));
-            try
-            {
-                var animator = body.GetComponent<Animator>();
-                var bones = new[]
-                {
-                    HumanBodyBones.LeftHand, HumanBodyBones.RightHand, HumanBodyBones.LeftFoot, HumanBodyBones.RightFoot,
-                    HumanBodyBones.Head, HumanBodyBones.Hips,
-                }.Select(animator.GetBoneTransform).Where(t => t != null).ToArray();
-                const float rate = 60f;
-                var count = Mathf.Max(2, Mathf.RoundToInt(clip.length * rate));
-                var motion = new float[count];
-                var previous = new Vector3[bones.Length];
-                for (var i = 0; i <= count; i++)
-                {
-                    clip.SampleAnimation(body, clip.length * i / count);
-                    for (var b = 0; b < bones.Length; b++)
-                    {
-                        var position = body.transform.InverseTransformPoint(bones[b].position);
-                        if (i > 0)
-                            motion[i - 1] += (position - previous[b]).magnitude;
-                        previous[b] = position;
-                    }
-                }
-                return SpriteBakeMath.ActiveWindow(motion, rate, clip.length, 0.2f, keepEnd);
-            }
-            finally
-            {
-                Object.DestroyImmediate(body);
-            }
-        }
-
         static string Look(string bodyPath) => Path.GetFileNameWithoutExtension(bodyPath).Substring($"{Character}_body_".Length);
-
-        static void ConfigureBody(string path)
-        {
-            var importer = (ModelImporter)AssetImporter.GetAtPath(path);
-            importer.animationType = ModelImporterAnimationType.Human;
-            importer.avatarSetup = ModelImporterAvatarSetup.CreateFromThisModel;
-            importer.materialImportMode = ModelImporterMaterialImportMode.ImportViaMaterialDescription;
-            // The body's own clip is the idle it was downloaded with, which loops.
-            KeepClipsInPlace(importer, true);
-            importer.SaveAndReimport();
-
-            ApplyTexture(path, importer);
-        }
-
-        // Mixamo's re-export does not carry the texture into Unity (the first bake came out white), so the texture taken
-        // from the image-to-3D GLB (<model>_albedo.png, ArtSource/tools/extract_textures.py) goes on a material of our
-        // own that replaces the model's. Mixamo keeps the mesh and its UVs, so the texture fits.
-        static void ApplyTexture(string path, ModelImporter importer)
-        {
-            var albedoPath = path.Replace(".fbx", "_albedo.png");
-            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(albedoPath);
-            if (albedo == null)
-            {
-                Debug.LogWarning($"{path}: no {albedoPath}; the body bakes untextured.");
-                return;
-            }
-            var materialPath = path.Replace(".fbx", ".mat");
-            var material = AssetDatabase.LoadAssetAtPath<Material>(materialPath);
-            if (material == null)
-            {
-                material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-                AssetDatabase.CreateAsset(material, materialPath);
-            }
-            material.SetTexture("_BaseMap", albedo);
-            material.SetColor("_BaseColor", Color.white);
-            material.SetFloat("_Smoothness", 0.15f);
-            EditorUtility.SetDirty(material);
-            foreach (var source in AssetDatabase.LoadAllAssetsAtPath(path).OfType<Material>().Select(m => m.name).Distinct().ToList())
-                importer.AddRemap(new AssetImporter.SourceAssetIdentifier(typeof(Material), source), material);
-            importer.SaveAndReimport();
-        }
 
         // The animation file for a grip, or for the reference grip's idle the body's own clip. A left-hand variant
         // (<name> ending in _left) with no file of its own is the _right file mirrored: Unity mirrors a humanoid clip's
@@ -296,77 +219,18 @@ namespace ARPG.Editor
         {
             var path = $"{Folder}/{Character}_{grip}_{name}.fbx";
             if (File.Exists(path))
-                return ConfigureAnimation(path, loop, avatar, name, false);
+                return MixamoImport.ConfigureAnimation(path, loop, avatar, name, false);
             if (name.EndsWith("_left"))
             {
                 var right = $"{Folder}/{Character}_{grip}_{name.Substring(0, name.Length - 5)}_right.fbx";
                 if (File.Exists(right))
-                    return ConfigureAnimation(right, loop, avatar, name, true);
+                    return MixamoImport.ConfigureAnimation(right, loop, avatar, name, true);
             }
             // The body was downloaded with its idle, which serves the one-handed grip until each grip has its own.
             if (name == "idle" && grip == "1h")
-                return FirstClip(referenceBody);
+                return MixamoImport.FirstClip(referenceBody);
             return null;
         }
-
-        // Sets a Mixamo animation file up as a humanoid clip in place, and returns the clip named clipName: the file's own
-        // clip, or with mirrored a second, mirrored copy of it added to the same file.
-        static AnimationClip ConfigureAnimation(string path, bool loop, Avatar avatar, string clipName, bool mirrored)
-        {
-            var importer = (ModelImporter)AssetImporter.GetAtPath(path);
-            importer.animationType = ModelImporterAnimationType.Human;
-            importer.avatarSetup = ModelImporterAvatarSetup.CopyFromOther;
-            importer.sourceAvatar = avatar;
-            importer.materialImportMode = ModelImporterMaterialImportMode.None;
-            var clips = importer.clipAnimations.Length > 0 ? importer.clipAnimations.ToList() : importer.defaultClipAnimations.ToList();
-            var own = clips[0];
-            if (!mirrored)
-                own.name = clipName;
-            SetInPlace(own, loop);
-            clips[0] = own;
-            if (mirrored)
-            {
-                clips.RemoveAll(c => c.name == clipName);
-                var copy = importer.defaultClipAnimations[0];
-                copy.name = clipName;
-                copy.mirror = true;
-                SetInPlace(copy, loop);
-                clips.Add(copy);
-            }
-            importer.clipAnimations = clips.ToArray();
-            importer.SaveAndReimport();
-            return AssetDatabase.LoadAllAssetsAtPath(path).OfType<AnimationClip>().FirstOrDefault(c => c.name == clipName);
-        }
-
-        static void SetInPlace(ModelImporterClipAnimation clip, bool loop)
-        {
-            clip.loopTime = loop;
-            clip.lockRootRotation = true;
-            clip.lockRootHeightY = true;
-            clip.lockRootPositionXZ = true;
-            clip.keepOriginalOrientation = true;
-            clip.keepOriginalPositionY = true;
-            clip.keepOriginalPositionXZ = true;
-        }
-
-        static void KeepClipsInPlace(ModelImporter importer, bool loop)
-        {
-            var clips = importer.defaultClipAnimations;
-            foreach (var clip in clips)
-            {
-                clip.loopTime = loop;
-                clip.lockRootRotation = true;
-                clip.lockRootHeightY = true;
-                clip.lockRootPositionXZ = true;
-                clip.keepOriginalOrientation = true;
-                clip.keepOriginalPositionY = true;
-                clip.keepOriginalPositionXZ = true;
-            }
-            importer.clipAnimations = clips;
-        }
-
-        static AnimationClip FirstClip(string path) =>
-            AssetDatabase.LoadAllAssetsAtPath(path).OfType<AnimationClip>().FirstOrDefault(c => !c.name.StartsWith("__preview__"));
 
         [MenuItem("Tools/ARPG/Sprite Bake/Bake Wrathborn")]
         public static void Bake()

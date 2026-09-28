@@ -97,6 +97,15 @@ namespace ARPG
         SpriteRenderer[] modifierIcons;
         SpriteRenderer shadowRenderer;
         SpriteEffects effects;
+        Vector3 bodyDefaultPosition;
+        Vector3 bodyDefaultScale = Vector3.one;
+
+        // The baked animations of this enemy's type, or null for the placeholder body (EnemyAnimation.cs).
+        EnemyAnimationSet animationSet;
+        float animationTime;
+        int animationRow;
+        Vector2 lastGround;
+        float hitAnimationTimer;
         Vector2 ground;
         Vector2 home;
         float leashTimer;
@@ -197,6 +206,8 @@ namespace ARPG
             {
                 bodyRenderer = body.GetComponent<SpriteRenderer>();
                 defaultBodySprite = bodyRenderer.sprite;
+                bodyDefaultPosition = body.localPosition;
+                bodyDefaultScale = body.localScale;
             }
         }
 
@@ -234,6 +245,17 @@ namespace ARPG
             // otherwise it would keep showing whatever a previous occupant (say, an Elite) last set it to.
             if (bodyRenderer != null)
                 bodyRenderer.sprite = data.BodySprite != null ? data.BodySprite : defaultBodySprite;
+            // Baked sheets draw the body from its feet at their own size; the placeholder keeps the prefab's placement.
+            animationSet = bodyRenderer != null ? EnemyAnimationSet.For(data.SpriteCharacter) : null;
+            if (bodyRenderer != null)
+            {
+                bodyRenderer.transform.localPosition = animationSet != null ? Vector3.zero : bodyDefaultPosition;
+                bodyRenderer.transform.localScale = animationSet != null ? Vector3.one : bodyDefaultScale;
+            }
+            animationTime = 0f;
+            animationRow = 0;
+            lastGround = groundPosition;
+            hitAnimationTimer = 0f;
             effects.Clear();
             SetVisuals(1f, 1f);
             UpdateModifierIcons();
@@ -436,6 +458,8 @@ namespace ARPG
             }
 
             punchTimer = PunchSeconds;
+            if (State != EnemyState.Attack && State != EnemyState.Recover)
+                hitAnimationTimer = EnemyAnimationRules.HitSeconds;
 
             // A hit wakes an idle or returning enemy, and its pack with it. One that is mid-attack keeps attacking.
             if (State == EnemyState.Idle || State == EnemyState.Return)
@@ -463,8 +487,10 @@ namespace ARPG
             deathTimer -= deltaTime;
             var duration = Mathf.Max(definition.DeathSeconds, 1e-4f);
             var remaining = Mathf.Clamp01(deathTimer / duration);
-            // The body burns away (SpriteEffects) while the shadow fades under it.
+            // The body burns away (SpriteEffects) while the shadow fades under it, and falls if it has a death animation.
             SetVisuals(1f, Mathf.Lerp(DeathEndScale, 1f, remaining));
+            if (animationSet?.Death != null)
+                ShowFrame(animationSet.Death, EnemyAnimationRules.OneShotFrame(1f - remaining, animationSet.Death.Frames));
             if (shadowRenderer != null)
                 shadowRenderer.color = new Color(1f, 1f, 1f, remaining);
             effects.Tick(deltaTime);
@@ -487,11 +513,62 @@ namespace ARPG
         // from the sprite itself (see EnemyDefinition.BodySprite), not a runtime tint, so this only fades alpha.
         void SetVisuals(float alpha, float scaleMultiplier)
         {
-            var scale = definition.VisualScale * scaleMultiplier;
+            // The swell and shrink are the placeholder's tells; baked art tells with its own wind-up and fall.
+            var scale = definition.VisualScale * (animationSet != null ? 1f : scaleMultiplier);
             transform.localScale = new Vector3(scale, scale, 1f);
             var color = new Color(1f, 1f, 1f, alpha);
             for (var i = 0; i < renderers.Length; i++)
                 renderers[i].color = color;
+        }
+
+        /// <summary>
+        /// Shows this frame's sprite from the baked animations, if the type has them: the attack through its wind-up to
+        /// the strike and on through the recovery, a hit reaction, the run at the speed its feet were recorded at, or the
+        /// idle; facing the player while attacking, else the way it moves. Called by the manager after <see cref="Tick"/>.
+        /// </summary>
+        internal void Animate(float deltaTime, EnemyManager world)
+        {
+            if (animationSet == null)
+                return;
+            var velocity = deltaTime > 0f ? (ground - lastGround) / deltaTime : Vector2.zero;
+            lastGround = ground;
+            hitAnimationTimer = Mathf.Max(0f, hitAnimationTimer - deltaTime);
+            animationTime += deltaTime;
+            var speed = velocity.magnitude;
+            var count = animationSet.DirectionCount;
+
+            if ((State == EnemyState.Attack || State == EnemyState.Recover) && animationSet.Attack != null)
+            {
+                Face(State == EnemyState.Attack && definition.Archetype == EnemyArchetype.Archer ? attackAim : world.PlayerGround - ground, count);
+                var recovering = State == EnemyState.Recover;
+                var duration = recovering ? EffectiveAttackRecoverSeconds : EffectiveAttackWindupSeconds;
+                var progress = EnemyAnimationRules.AttackProgress(recovering, duration - stateTimer, duration);
+                ShowFrame(animationSet.Attack, EnemyAnimationRules.OneShotFrame(progress, animationSet.Attack.Frames));
+                return;
+            }
+            if (hitAnimationTimer > 0f && animationSet.Hit != null)
+            {
+                var progress = 1f - hitAnimationTimer / EnemyAnimationRules.HitSeconds;
+                ShowFrame(animationSet.Hit, EnemyAnimationRules.OneShotFrame(progress, animationSet.Hit.Frames));
+                return;
+            }
+            if (speed > EnemyAnimationRules.MovingSpeed && animationSet.Run != null)
+            {
+                Face(velocity, count);
+                // The run plays at the speed the enemy moves over the speed its feet were recorded at.
+                var rate = LocomotionRules.PlaybackRate(speed, animationSet.RunRecordedSpeed);
+                ShowFrame(animationSet.Run, EnemyAnimationRules.LoopFrame(animationTime * rate, animationSet.RunSeconds, animationSet.Run.Frames));
+                return;
+            }
+            ShowFrame(animationSet.Idle, EnemyAnimationRules.LoopFrame(animationTime, animationSet.IdleSeconds, animationSet.Idle.Frames));
+        }
+
+        void Face(Vector2 direction, int count) => animationRow = LocomotionRules.ChooseRow(animationRow, direction, count);
+
+        void ShowFrame(CharacterSheet sheet, int frame)
+        {
+            var row = Mathf.Clamp(animationRow, 0, sheet.Rows.Length - 1);
+            bodyRenderer.sprite = sheet.Rows[row][frame];
         }
 
         bool CanAttack(EnemyManager world, float distance) =>

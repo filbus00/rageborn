@@ -380,6 +380,31 @@ The engine shows up to 2 small dots over an Elite's head for its modifiers. Repl
 
 Flat, bold glyphs with a 1 px dark outline, readable at 12 px.
 
+### 5.4 Making an enemy, step by step (the husk first)
+
+The game side is ready (2026-09-28): an enemy type animates from its baked sheets as soon as they exist, and until then keeps its placeholder capsule. Everything below is free. Do the husk first; the ghoul and the bandit archer follow the same steps.
+
+1. **Model sheet.** One image, 2048 x 1024, not transparent: four full-body views on a flat mid-grey background (front, left side, back, three-quarter front), neutral standing pose, no camera tilt. Attach the approved style frames. Prompts:
+   - Husk: > [style block] Character model sheet for a game enemy, four full-body views on a flat mid-grey background: front, left side, back, three-quarter front. An emaciated undead corpse of the burned lands: ash-grey cracked skin with dull blue showing through the cracks, empty eye sockets with a faint cold-blue glow, tattered grey rags, long bony fingers ending in claws, hunched posture, thin limbs. Neutral standing pose, arms slightly away from the body, no weapon. [negative block]
+   - Ghoul: > [style block] Character model sheet for a game enemy, four full-body views on a flat mid-grey background: front, left side, back, three-quarter front. A bloated hunched grave-eating brute, sick green-grey skin, an oversized right arm ending in a stone-hard fist, a small normal left arm, bent forward, heavy legs, torn burial cloth. Neutral standing pose, arms slightly away from the body. [negative block]
+   - Bandit archer: > [style block] Character model sheet for a game enemy, four full-body views on a flat mid-grey background: front, left side, back, three-quarter front. A desperate human bandit: hooded, tattered brown and grey cloak, face wrapped in cloth, leather bracers, a crude wooden shortbow held in the left hand, a quiver of black-fletched arrows on the back. Neutral standing pose, arms slightly away from the body. [negative block]
+2. **A-pose image.** Ask the image tool for the front view alone, in an A-pose (arms straight, 45 degrees down from the shoulders, legs slightly apart, hands open, the bow held away from the body), on a plain background. Rigging needs the arms clear of the body.
+3. **Image to 3D.** Give the A-pose image to a free image-to-3D tool (TRELLIS on Hugging Face, or Meshy's free tier) and download the model as GLB with its texture.
+4. **Ready it for Mixamo.** In a terminal: `Blender -b -P ArtSource/tools/glb_to_fbx.py -- <model.glb> <name>_upload.fbx 1.75` (height in metres: husk 1.7, ghoul 1.9, archer 1.75; the bake sets the final size itself), and `Blender -b -P ArtSource/tools/extract_textures.py -- <model.glb> <name>_albedo` for the texture.
+5. **Rig and animate on Mixamo** (mixamo.com, a free Adobe login). Upload `<name>_upload.fbx`, place the markers, and let it rig. Then download:
+   - the character **With Skin**, in its idle, as `<name>.fbx`;
+   - each animation **Without Skin**, with **In Place** ticked where offered, as `<name>_run.fbx`, `<name>_attack.fbx`, `<name>_hit.fbx`, `<name>_death.fbx`.
+   Suggested Mixamo animations (search by these names; any close one works):
+
+   | Enemy | idle (with skin) | run | attack | hit | death |
+   |---|---|---|---|---|---|
+   | `husk` | Zombie Idle | Zombie Running | Zombie Attack | Zombie Reaction Hit | Zombie Dying |
+   | `ghoul` | Mutant Idle | Mutant Run | Mutant Jump Attack (the slam) | Big Hit To Head | Mutant Dying |
+   | `bandit_archer` | Standing Idle (longbow pack) | Standing Run Forward (longbow pack) | Standing Draw Arrow (longbow pack) | Standing React Small From Front | Standing Death Backward 01 |
+
+6. **Hand over.** Put the five files and `<name>_albedo.png` in `Assets/_Project/Art/Models/Enemies/<name>/` (or in Downloads and tell Claude), then run **Tools > ARPG > Sprite Bake > Bake Enemies**. It sets up the rig, cuts each one-shot to its action, bakes 8 directions at the brief's size (5.1: 128 px cells, pivot (64, 20), the heights in 5.2), and points the enemy definitions at the result (the husk's also dresses its champion and elite until they have their own looks). About a minute per enemy.
+7. **Rank looks** (optional, later): the same steps for `husk_champion` (gold and bronze accents) and `husk_elite` (crimson accents, faint purple eyes), each its own folder; the bake wires them to the Champion and Elite definitions instead of the base look.
+
 ---
 
 ## 6. Step 5: the act 1 boss, the Cinder Warden

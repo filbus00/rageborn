@@ -146,6 +146,7 @@ namespace ARPG
                 if (enemy.IsAlive)
                 {
                     enemy.Tick(deltaTime, this);
+                    enemy.Animate(deltaTime, this);
                     var state = enemy.State;
                     if (state == EnemyState.Approach || state == EnemyState.Attack || state == EnemyState.Recover)
                         engaged++;
