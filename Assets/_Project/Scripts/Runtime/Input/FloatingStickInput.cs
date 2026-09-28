@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
@@ -26,6 +27,10 @@ namespace ARPG
         Vector2 origin;
         Vector2 thumb;
         int activeFinger = -1;
+
+        readonly List<RaycastResult> uiHits = new List<RaycastResult>();
+        PointerEventData uiPointer;
+        EventSystem uiPointerOwner;
 
         /// <summary>Screen-space stick value. Direction is the thumb direction, magnitude is 0 to 1.</summary>
         public Vector2 Value { get; private set; }
@@ -114,7 +119,7 @@ namespace ARPG
                 // Enhanced Touch reads raw touches, with no idea a Canvas is on top. A touch that begins on a UI
                 // element (the inventory screen's buttons, now that one exists in this zone) starts that UI
                 // interaction only, not the stick.
-                if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(touch.finger.index))
+                if (IsOverUi(touch.screenPosition))
                     continue;
 
                 activeFinger = touch.finger.index;
@@ -123,6 +128,26 @@ namespace ARPG
                 Value = Vector2.zero;
                 return;
             }
+        }
+
+        /// <summary>Raycasts the UI at the touch directly. <c>EventSystem.IsPointerOverGameObject</c> asks the UI
+        /// input module, which has not seen a touch yet on the frame it begins, so a tap on the Bag button moved
+        /// the character instead (found on the simulator, 2026-09-28).</summary>
+        bool IsOverUi(Vector2 screenPosition)
+        {
+            var eventSystem = EventSystem.current;
+            if (eventSystem == null)
+                return false;
+
+            if (uiPointerOwner != eventSystem)
+            {
+                uiPointer = new PointerEventData(eventSystem);
+                uiPointerOwner = eventSystem;
+            }
+            uiPointer.position = screenPosition;
+            uiHits.Clear();
+            eventSystem.RaycastAll(uiPointer, uiHits);
+            return uiHits.Count > 0;
         }
 
         void Release()

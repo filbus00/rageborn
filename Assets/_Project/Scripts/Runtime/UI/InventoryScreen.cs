@@ -87,6 +87,7 @@ namespace ARPG
 
             if (panelRoot != null)
             {
+                SafeArea.WrapChildren((RectTransform)panelRoot.transform);
                 sheet = ItemSheet.Create(panelRoot.transform);
                 sheet.Changed += Refresh;
             }

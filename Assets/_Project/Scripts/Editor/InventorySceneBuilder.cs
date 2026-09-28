@@ -142,9 +142,10 @@ namespace ARPG.Editor
             stats.rectTransform.sizeDelta = new Vector2(1000f, 220f);
 
             var backpackLabel = NewText(panel.transform, "Backpack", 32, TextAnchor.UpperLeft);
-            backpackLabel.rectTransform.anchorMin = backpackLabel.rectTransform.anchorMax = new Vector2(0.5f, 1f);
-            backpackLabel.rectTransform.pivot = new Vector2(0.5f, 1f);
-            backpackLabel.rectTransform.anchoredPosition = new Vector2(-460f, -580f);
+            // Left-aligned with the list below it (centered at -460 it ran off the edge of a phone's screen).
+            backpackLabel.rectTransform.anchorMin = backpackLabel.rectTransform.anchorMax = new Vector2(0f, 1f);
+            backpackLabel.rectTransform.pivot = new Vector2(0f, 1f);
+            backpackLabel.rectTransform.anchoredPosition = new Vector2(40f, -580f);
             backpackLabel.rectTransform.sizeDelta = new Vector2(300f, 50f);
 
             var content = BuildScrollView(panel.transform);
