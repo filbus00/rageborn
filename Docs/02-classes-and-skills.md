@@ -17,7 +17,7 @@
 | Might | +0.5 percent melee and area damage, +1 armor |
 | Agility | +0.4 percent attack speed, +0.2 percent crit chance, +0.15 percent dodge |
 | Will | +0.5 percent spell damage, +0.5 percent Focus regeneration, +0.3 percent cooldown reduction |
-| Vitality | +8 life, +0.1 percent life regeneration per second |
+| Vitality | +8 life (no life regeneration: decided 2026-09-28, 08 open question 10) |
 
 Diminishing returns apply to attack speed above 3.0 per second, cooldown reduction above 40 percent and dodge above 35 percent (hard cap 50 percent).
 
