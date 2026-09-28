@@ -284,6 +284,10 @@ namespace ARPG
             var origin = IsoMath.WorldToGround(player.transform.position);
             UpdateFacing();
 
+            // The passive tree's Rage changes (Docs/02): Short Fuse's longer delay, Berserker's double gain below half life.
+            var tree = session.PassiveTree.Bonuses;
+            rage.DrainDelay = RagePool.DrainDelaySeconds + tree.RageDrainDelay;
+            rage.GainMultiplier = tree.Berserker && health != null && health.Fraction < 0.5f ? 2f : 1f;
             rage.Tick(deltaTime);
             stillSeconds = player.GroundVelocity.magnitude < FacingSpeedThreshold ? stillSeconds + deltaTime : 0f;
             damageBuffTimer = Mathf.Max(0f, damageBuffTimer - deltaTime);
@@ -364,7 +368,9 @@ namespace ARPG
         void BasicAttack(Vector2 origin, Vector2 aim)
         {
             var equipment = GameSession.Current.Equipment;
-            attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + AttackSpeedBuff));
+            var tree = session.PassiveTree.Bonuses;
+            attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + AttackSpeedBuff +
+                                                    tree.AttackSpeed + tree.AttackSpeedPerMomentum * player.Stance.Momentum));
             BasicAttackCount++;
             BasicAttackStarted?.Invoke(aim, attackTimer);
 
@@ -373,7 +379,7 @@ namespace ARPG
 
             // Docs/02: Rage is gained on a basic attack hit, once per swing that lands, however many it hits.
             if (hits > 0)
-                rage.Gain(RagePool.PerBasicHit);
+                rage.Gain(RagePool.PerBasicHit + tree.RagePerBasicHit);
         }
 
         /// <summary>Increased attack speed from Blood Frenzy while it lasts: its own, and more for each live Momentum
@@ -681,7 +687,7 @@ namespace ARPG
                 if (!enemy.IsAlive || !InReach(origin, enemy, basicRange))
                     continue;
                 hits++;
-                Strike(enemy, DamageOf(skill, skill.DamageMultiplier));
+                Strike(enemy, DamageOf(skill, skill.DamageMultiplier), movementSkill: true);
                 if (enemy.IsAlive && skill.BleedMultiplier > 0f && skill.BleedSeconds > 0f)
                     enemy.ApplyBleed(Damage(enemy, DamageOf(skill, skill.BleedMultiplier), false) / skill.BleedSeconds, skill.BleedSeconds);
             }
@@ -892,7 +898,13 @@ namespace ARPG
 
                 chargeHits.Add(enemy);
                 hits++;
-                Strike(enemy, DamageOf(chargeSkill, chargeSkill.DamageMultiplier));
+                Strike(enemy, DamageOf(chargeSkill, chargeSkill.DamageMultiplier), movementSkill: true);
+                // Crashing Wave (the passive tree): each enemy hit takes a second off Bull Rush's cooldown.
+                var refund = session.PassiveTree.Bonuses.BullRushRefund;
+                if (refund > 0f)
+                    for (var c = 0; c < skills.Length; c++)
+                        if (skills[c] == chargeSkill)
+                            cooldowns[c] = Mathf.Max(0f, cooldowns[c] - refund);
 
                 // Knocked out of the path to whichever side it stands, and a little forward.
                 var offset = enemy.GroundPosition - origin;
@@ -913,10 +925,11 @@ namespace ARPG
 
         /// <summary>One hit on one enemy: the hit formula with the gear's modifiers and Stillness, a crit roll, the
         /// damage number, and the kill's hit stop.</summary>
-        void Strike(EnemyController enemy, float multiplier)
+        void Strike(EnemyController enemy, float multiplier, bool movementSkill = false)
         {
-            var critical = Random.value < GameSession.Current.Equipment.CriticalChancePercent / 100f;
-            var damage = Damage(enemy, multiplier, critical);
+            var tree = session.PassiveTree.Bonuses;
+            var critical = Random.value < (GameSession.Current.Equipment.CriticalChancePercent + tree.CriticalChance) / 100f;
+            var damage = Damage(enemy, multiplier, critical, movementSkill);
 
             var world = IsoMath.GroundToWorld(enemy.GroundPosition);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);
@@ -924,6 +937,8 @@ namespace ARPG
             if (enemy.TakeDamage(damage))
             {
                 Kills++;
+                if (tree.RageOnKill > 0f)
+                    rage.Gain(tree.RageOnKill);
                 HitStop.Instance?.Trigger(HitStopOnKillSeconds);
                 Sfx.Play(SoundId.Kill);
             }
@@ -939,18 +954,32 @@ namespace ARPG
 
         /// <summary>The hit formula for this character against an enemy: the gear's modifiers, Stillness and Battle
         /// Roar as increased damage.</summary>
-        float Damage(EnemyController enemy, float multiplier, bool critical)
+        float Damage(EnemyController enemy, float multiplier, bool critical, bool movementSkill = false)
         {
             var equipment = GameSession.Current.Equipment;
+            var tree = session.PassiveTree.Bonuses;
             var increased = equipment.IncreasedDamagePercent / 100f + player.Stance.IncreasedDamage + (damageBuffTimer > 0f ? damageBuff : 0f);
+            // The passive tree (Docs/02, proposed numbers): its flat increase, Bloodied Edge against the wounded, Hatred
+            // for Rage held, Battering Ram for the movement skills, and Berserker below half life.
+            increased += tree.IncreasedDamage + tree.DamagePerTenRage * Mathf.Floor(rage.Current / 10f);
+            if (enemy.MaxLife > 0f && enemy.Life / enemy.MaxLife < 0.5f)
+                increased += tree.DamageVsWounded;
+            if (movementSkill)
+                increased += tree.MovementSkillDamage;
+            if (tree.Berserker && health != null && health.Fraction < 0.5f)
+                increased += 0.3f;
+            // Butcher: critical hits on a bleeding enemy hit harder.
+            var criticalDamage = equipment.CriticalDamagePercent / 100f + tree.CriticalDamage / 100f +
+                                 (critical && enemy.IsBleeding ? tree.CritDamageVsBleeding : 0f);
             return CombatFormulas.HitDamage(
                 WeaponDamage, multiplier, equipment.FlatWeaponDamageBonus, increased, 1f,
-                critical, equipment.CriticalDamagePercent / 100f, enemy.Definition.Armor, enemy.Level);
+                critical, criticalDamage, enemy.Definition.Armor, enemy.Level);
         }
 
         void HealOnHit(int hits)
         {
-            var lifeOnHit = GameSession.Current.Equipment.LifeOnHit;
+            var tree = session.PassiveTree.Bonuses;
+            var lifeOnHit = (GameSession.Current.Equipment.LifeOnHit + tree.LifeOnHit) * (1f + tree.MoreLifeOnHit);
             if (hits > 0 && lifeOnHit > 0f && health != null)
                 health.Heal(lifeOnHit * hits);
         }

@@ -153,6 +153,8 @@ namespace ARPG
             Loadout.Changed += RaiseModified;
             SkillLevels = new SkillLevels();
             SkillLevels.Changed += RaiseModified;
+            PassiveTree = new PassiveTree();
+            PassiveTree.Changed += RaiseModified;
 
             // Its own number, not the loot seed itself, so the dungeon and the drops do not move in step.
             DungeonSeed = DungeonRules.LevelSeed(lootSeed, 0);
@@ -302,6 +304,9 @@ namespace ARPG
 
         /// <summary>Skill points spent and each skill's level (Docs/04, Docs/02). Its changes raise <see cref="Modified"/>.</summary>
         public SkillLevels SkillLevels { get; }
+
+        /// <summary>The passive tree and its active keystone (Docs/02). Its changes raise <see cref="Modified"/>.</summary>
+        public PassiveTree PassiveTree { get; }
 
         public int Level => Progress.Level;
 

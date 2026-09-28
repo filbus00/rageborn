@@ -33,7 +33,7 @@ namespace ARPG
         /// <summary>Adds Rage and counts as combat, which holds off the drain.</summary>
         public void Gain(float amount)
         {
-            Current = Mathf.Clamp(Current + amount, 0f, Max);
+            Current = Mathf.Clamp(Current + amount * GainMultiplier, 0f, Max);
             sinceCombat = 0f;
         }
 
@@ -41,13 +41,19 @@ namespace ARPG
         /// same test as the drain, Docs/02's proposal).</summary>
         public bool InCombat => sinceCombat <= DrainDelaySeconds;
 
+        /// <summary>Seconds out of combat before the drain starts (Short Fuse lengthens it).</summary>
+        public float DrainDelay { get; set; } = DrainDelaySeconds;
+
+        /// <summary>Multiplies every gain (Berserker doubles it below half life).</summary>
+        public float GainMultiplier { get; set; } = 1f;
+
         /// <summary>Combat that gives no Rage of its own (a skill hit) still holds off the drain.</summary>
         public void MarkCombat() => sinceCombat = 0f;
 
         public void Tick(float deltaTime)
         {
             sinceCombat += deltaTime;
-            if (sinceCombat > DrainDelaySeconds)
+            if (sinceCombat > DrainDelay)
                 Current = Mathf.Max(0f, Current - DrainPerSecond * deltaTime);
         }
 

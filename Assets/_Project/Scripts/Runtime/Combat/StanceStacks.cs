@@ -24,6 +24,15 @@ namespace ARPG
         float stillnessTimer;
         float momentumTimer;
 
+        /// <summary>The passive tree's changes (Docs/02): Road Runner's faster step, Sure Footed's longer grace,
+        /// Tailwind's and Old Wounds' higher caps, and Juggernaut's keeping half on a stop. Defaults are Docs/01's.</summary>
+        public float MomentumStep { get; set; } = MomentumStepSeconds;
+        public float MomentumGrace { get; set; } = MomentumGraceSeconds;
+        public int MomentumCap { get; set; } = MaxStacks;
+        public int StillnessCap { get; set; } = MaxStacks;
+        public bool KeepHalfOnStop { get; set; }
+        bool halved;
+
         public int Stillness { get; private set; }
 
         public int Momentum { get; private set; }
@@ -46,11 +55,12 @@ namespace ARPG
                 Stillness = 0;
                 stillnessTimer = 0f;
 
+                halved = false;
                 momentumTimer += deltaTime;
-                while (momentumTimer >= MomentumStepSeconds)
+                while (momentumTimer >= MomentumStep)
                 {
-                    momentumTimer -= MomentumStepSeconds;
-                    Momentum = Mathf.Min(MaxStacks, Momentum + 1);
+                    momentumTimer -= MomentumStep;
+                    Momentum = Mathf.Min(MomentumCap, Momentum + 1);
                 }
             }
             else
@@ -58,19 +68,28 @@ namespace ARPG
                 momentumTimer = 0f;
 
                 standing += deltaTime;
-                if (standing >= MomentumGraceSeconds)
-                    Momentum = 0;
+                if (standing >= MomentumGrace && Momentum > 0)
+                {
+                    // Juggernaut: a stop loses half the stacks, once, rather than all.
+                    if (KeepHalfOnStop && !halved)
+                    {
+                        Momentum /= 2;
+                        halved = true;
+                    }
+                    else if (!KeepHalfOnStop)
+                        Momentum = 0;
+                }
 
                 stillnessTimer += deltaTime;
                 while (stillnessTimer >= StillnessStepSeconds)
                 {
                     stillnessTimer -= StillnessStepSeconds;
-                    Stillness = Mathf.Min(MaxStacks, Stillness + 1);
+                    Stillness = Mathf.Min(StillnessCap, Stillness + 1);
                 }
             }
         }
 
         /// <summary>Stacks from a skill (Bull Rush gives one per enemy it hits), capped at <see cref="MaxStacks"/>.</summary>
-        public void AddMomentum(int stacks) => Momentum = Mathf.Clamp(Momentum + stacks, 0, MaxStacks);
+        public void AddMomentum(int stacks) => Momentum = Mathf.Clamp(Momentum + stacks, 0, MomentumCap);
     }
 }

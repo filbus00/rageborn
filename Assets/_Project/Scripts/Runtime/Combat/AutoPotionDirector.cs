@@ -70,7 +70,11 @@ namespace ARPG
 
             var heal = GameSession.Current.Potion.Tick(Time.deltaTime, health.Fraction, health.IsAlive, out var fired);
             if (heal > 0f)
-                health.Heal(heal * health.MaxLife);
+            {
+                // Iron Lungs (the passive tree) heals 50 percent instead of the potion's 40.
+                var tree = GameSession.Current.PassiveTree.Bonuses;
+                health.Heal(heal * health.MaxLife * (tree.PotionHeal > 0f ? tree.PotionHeal / AutoPotion.HealFraction : 1f));
+            }
 
             // Braced: the sound once sat on the line after an unbraced if, so it played every frame, a constant jumble
             // under everything that the user took for bad music (found by recording the game's audio, 2026-09-27).

@@ -47,7 +47,7 @@ namespace ARPG
         public float SecondsSinceLastHit => Time.time - lastHitTime;
 
         /// <summary>Armor from equipped Chest and Helm pieces: their base value by item level plus any Armor affix.</summary>
-        public float Armor => GameSession.Current.Equipment.TotalArmor;
+        public float Armor => GameSession.Current.Equipment.TotalArmor * (1f + GameSession.Current.PassiveTree.Bonuses.ArmorPercent);
 
         void Awake()
         {
@@ -81,7 +81,8 @@ namespace ARPG
                 return;
 
             var stance = player != null ? player.Stance : null;
-            if (dodgeable && stance != null && dodgeRandom.NextDouble() < stance.DodgeChance)
+            var tree = session.PassiveTree.Bonuses;
+            if (dodgeable && stance != null && dodgeRandom.NextDouble() < stance.DodgeChance + tree.Dodge)
             {
                 if (player != null)
                     DamageNumbers.Current?.ShowText(player.transform.position + Vector3.up * 1.2f, "DODGE", DodgeColor, 34);
@@ -92,6 +93,14 @@ namespace ARPG
             var damage = rawDamage * (1f - CombatFormulas.ArmorReduction(effectiveArmor, attackerLevel));
             if (stance != null)
                 damage *= 1f - stance.DamageReduction;
+            // The passive tree (Docs/02): Scar Tissue against elites and bosses (the attacks that ignore armor),
+            // Unbroken below 35 percent life, Juggernaut per Momentum stack.
+            if (armorIgnorePercent > 0f)
+                damage *= 1f - tree.LessDamageFromElites;
+            if (Fraction < 0.35f)
+                damage *= 1f - tree.LowLifeReduction;
+            if (tree.Juggernaut && stance != null)
+                damage *= 1f - Mathf.Min(0.5f, 0.03f * stance.Momentum);
             DamageTaken += damage;
             HitsTaken++;
             lastHitTime = Time.time;
@@ -122,9 +131,19 @@ namespace ARPG
 
         void HandleEquipmentChanged() => life.SetMax(ComputeMaxLife());
 
+        /// <summary>Follows a change to the passive tree's life bonus (the session raises Modified for it, not Changed).</summary>
+        void Update()
+        {
+            var max = ComputeMaxLife();
+            if (!Mathf.Approximately(max, life.Max))
+                life.SetMax(max);
+        }
+
         // A level up refills life. The session already holds the full fraction; the pool follows it.
         void HandleLeveledUp(int level) => life.SetFraction(session.LifeFraction);
 
-        static float ComputeMaxLife() => CombatFormulas.CharacterLife(GameSession.Current.Level) + GameSession.Current.Equipment.TotalLifeBonus;
+        static float ComputeMaxLife() =>
+            (CombatFormulas.CharacterLife(GameSession.Current.Level) + GameSession.Current.Equipment.TotalLifeBonus) *
+            (1f + GameSession.Current.PassiveTree.Bonuses.LifePercent);
     }
 }

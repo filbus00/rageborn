@@ -16,8 +16,8 @@ namespace ARPG
         /// <summary>1: the first. 2: adds level and experience. 3: adds potion charges. 4: adds the dungeon seed and
         /// opened chests. 5: adds the dungeon generator version. 6: adds salvage materials and each item's reforge and
         /// temper counts. 7: adds what the character has been taught (onboarding) and play time. 8: adds activated
-        /// waypoints, the Portal Tome and an open portal. 9: adds the skill loadout. 10: adds skill levels.</summary>
-        public const int CurrentVersion = 10;
+        /// waypoints, the Portal Tome and an open portal. 9: adds the skill loadout. 10: adds skill levels. 11: adds the passive tree.</summary>
+        public const int CurrentVersion = 11;
 
         public int version;
 
@@ -75,6 +75,10 @@ namespace ARPG
 
         /// <summary>Skills raised above level 1, by asset name. Points are not stored: they follow from the level.</summary>
         public List<SkillLevelData> skillLevels = new List<SkillLevelData>();
+
+        /// <summary>Passive nodes bought, by id, and the keystone in effect (empty for none).</summary>
+        public List<string> passiveNodes = new List<string>();
+        public string activeKeystone = "";
     }
 
     [Serializable]

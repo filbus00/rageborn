@@ -25,6 +25,7 @@ namespace ARPG
             MigrateFrom7, // 7 to 8: no waypoints, Tome or portal existed.
             MigrateFrom8, // 8 to 9: no loadout existed; it fills itself from the level, as the skills always did.
             MigrateFrom9, // 9 to 10: skill levels did not exist; every skill is level 1 and all points are unspent.
+            MigrateFrom10, // 10 to 11: the passive tree did not exist; nothing is bought and every point is unspent.
         };
 
         static SaveData MigrateFrom1(SaveData data)
@@ -84,6 +85,13 @@ namespace ARPG
             data.waypoints = new List<int>();
             data.hasPortalTome = false;
             data.portalDepth = 0;
+            return data;
+        }
+
+        static SaveData MigrateFrom10(SaveData data)
+        {
+            data.passiveNodes = new List<string>();
+            data.activeKeystone = "";
             return data;
         }
 
@@ -174,6 +182,8 @@ namespace ARPG
                 loadoutTriggers = CaptureLoadoutTriggers(session.Loadout),
                 loadoutChosen = session.Loadout.Chosen,
                 skillLevels = CaptureSkillLevels(session.SkillLevels),
+                passiveNodes = new List<string>(session.PassiveTree.Bought),
+                activeKeystone = session.PassiveTree.ActiveKeystone ?? "",
                 equipped = CaptureEquipment(session.Equipment),
             };
 
@@ -228,6 +238,7 @@ namespace ARPG
             RestoreLoadout(session.Loadout, data);
             foreach (var entry in data.skillLevels ?? new List<SkillLevelData>())
                 session.SkillLevels.Restore(entry.skill, entry.level);
+            session.PassiveTree.Restore(data.passiveNodes, string.IsNullOrEmpty(data.activeKeystone) ? null : data.activeKeystone);
             foreach (var chest in data.openedChests)
                 session.RecordOpened(chest);
 

@@ -92,6 +92,13 @@ namespace ARPG
         {
             var deltaTime = Time.fixedDeltaTime;
             slow.Tick(deltaTime);
+            // The passive tree's Momentum and Stillness changes (Docs/02), read live like the gear.
+            var tree = GameSession.Current.PassiveTree.Bonuses;
+            stance.MomentumStep = tree.MomentumStepSeconds > 0f ? tree.MomentumStepSeconds : StanceStacks.MomentumStepSeconds;
+            stance.MomentumGrace = tree.MomentumGraceSeconds > 0f ? tree.MomentumGraceSeconds : StanceStacks.MomentumGraceSeconds;
+            stance.MomentumCap = StanceStacks.MaxStacks + (int)tree.MomentumCap;
+            stance.StillnessCap = StanceStacks.MaxStacks + (int)tree.StillnessCap;
+            stance.KeepHalfOnStop = tree.Juggernaut;
 
             if (dashSeconds > 0f)
             {
@@ -105,7 +112,7 @@ namespace ARPG
             }
 
             // Momentum is worth its speed: Docs/01, 5 percent movement speed per stack.
-            var effectiveMoveSpeed = moveSpeed * slow.Multiplier * stance.MoveSpeedMultiplier;
+            var effectiveMoveSpeed = moveSpeed * slow.Multiplier * stance.MoveSpeedMultiplier * (1f + tree.MoveSpeed);
 
             var stick = input != null ? input.Value : Vector2.zero;
             var steer = IsoMath.StickToGround(stick);

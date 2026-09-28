@@ -56,6 +56,7 @@ namespace ARPG
         public static InventoryScreen Current { get; private set; }
 
         Button skillsButton;
+        Button treeButton;
 
         public bool IsOpen => panelRoot != null && panelRoot.activeSelf;
 
@@ -80,7 +81,8 @@ namespace ARPG
             if (closeButton != null)
             {
                 closeButton.onClick.AddListener(Close);
-                skillsButton = CreateSkillsButton(closeButton);
+                skillsButton = CreateSkillsButton(closeButton, 1, "Skills", LoadoutScreen.Open);
+                treeButton = CreateSkillsButton(closeButton, 2, "Tree", PassiveTreeScreen.Open);
             }
 
             if (panelRoot != null)
@@ -136,6 +138,7 @@ namespace ARPG
             if (sheet != null)
                 sheet.Hide();
             LoadoutScreen.CloseIfOpen();
+            PassiveTreeScreen.CloseIfOpen();
             panelRoot.SetActive(false);
             Time.timeScale = 1f;
         }
@@ -163,22 +166,31 @@ namespace ARPG
                 if (label != null)
                     label.text = points > 0 ? $"Skills +{points}" : "Skills";
             }
+            // The passive tree: a point every level from 2 (Docs/02).
+            if (treeButton != null)
+            {
+                var treePoints = session.PassiveTree.Available(session.Level);
+                treeButton.gameObject.SetActive(session.Level >= 2);
+                var label = treeButton.GetComponentInChildren<Text>();
+                if (label != null)
+                    label.text = treePoints > 0 ? $"Tree +{treePoints}" : "Tree";
+            }
         }
 
-        // A copy of the Close button placed beside it, opening the loadout.
-        static Button CreateSkillsButton(Button close)
+        // A copy of the Close button placed the given number of buttons to its left, opening a page of the Bag.
+        static Button CreateSkillsButton(Button close, int place, string name, UnityEngine.Events.UnityAction open)
         {
             var copy = Instantiate(close.gameObject, close.transform.parent);
-            copy.name = "Skills Button";
+            copy.name = name + " Button";
             var button = copy.GetComponent<Button>();
             button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(LoadoutScreen.Open);
+            button.onClick.AddListener(open);
             var label = copy.GetComponentInChildren<Text>();
             if (label != null)
-                label.text = "Skills";
+                label.text = name;
             var rect = (RectTransform)copy.transform;
             var source = (RectTransform)close.transform;
-            rect.anchoredPosition = source.anchoredPosition - new Vector2(source.rect.width + 24f, 0f);
+            rect.anchoredPosition = source.anchoredPosition - new Vector2((source.rect.width + 24f) * place, 0f);
             return button;
         }
 
