@@ -31,6 +31,10 @@ namespace ARPG.Editor
 
         static readonly string[] Grips = { "1h", "dual", "shield", "2h" };
 
+        // Loops used only as the legs of moving actions, not baked as sheets of their own: Mixamo's Jog Strafe Right and
+        // Left (in place), so a swing at a target at the side runs sideways instead of sliding the running feet.
+        static readonly string[] LegsOnly = { "strafe_right", "strafe_left" };
+
         // The body the pieces hang on and whose rest pose sets the scale: the approved model sheet's look.
         const string ReferenceBody = "leather";
 
@@ -165,7 +169,14 @@ namespace ARPG.Editor
                         riseScale = name == "ground_breaker" ? 0.4f : 1f,
                     });
                 }
-                AddMovingActions(set);
+                var legs = new System.Collections.Generic.Dictionary<string, AnimationClip>();
+                foreach (var name in LegsOnly)
+                {
+                    var clip = ClipFor(grip, name, true, avatar, bodies[0]);
+                    if (clip != null)
+                        legs[name] = clip;
+                }
+                AddMovingActions(set, legs);
                 if (set.clips.Count > 0)
                     job.grips.Add(set);
             }
@@ -192,12 +203,18 @@ namespace ARPG.Editor
         // player will be moving most of the time. The various animations need to play even when the character is moving"),
         // and <name>_move_back over the backward run, for a blow at an enemy behind the way the character runs (the
         // character always faces what it strikes; the owner, 2026-09-28).
-        static void AddMovingActions(SpriteBakeJob.GripSet set)
+        static void AddMovingActions(SpriteBakeJob.GripSet set, System.Collections.Generic.Dictionary<string, AnimationClip> legsOnly)
         {
-            var legSets = new[] { ("run", LocomotionRules.MovingSuffix), ("run_back", LocomotionRules.MovingBackSuffix) };
+            var legSets = new[]
+            {
+                ("run", LocomotionRules.MovingSuffix), ("run_back", LocomotionRules.MovingBackSuffix),
+                ("strafe_right", LocomotionRules.MovingRightSuffix), ("strafe_left", LocomotionRules.MovingLeftSuffix),
+            };
             foreach (var (legsName, suffix) in legSets)
             {
-                var legs = set.clips.FirstOrDefault(c => c.name == legsName);
+                var legs = set.clips.FirstOrDefault(c => c.name == legsName)?.clip;
+                if (legs == null)
+                    legsOnly.TryGetValue(legsName, out legs);
                 if (legs == null)
                     continue;
                 foreach (var (name, seconds) in MovingActions)
@@ -211,7 +228,7 @@ namespace ARPG.Editor
                         name = name + suffix, clip = action.clip, loop = false,
                         frames = Mathf.Max(action.frames, Mathf.RoundToInt(play * MovingFramesPerSecond) + 1),
                         start = action.start, end = action.end, playbackSeconds = play,
-                        legs = legs.clip, legsGroundSpeed = 4.4f,
+                        legs = legs, legsGroundSpeed = 4.4f,
                     });
                 }
             }

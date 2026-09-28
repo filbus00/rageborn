@@ -116,20 +116,30 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void Actions_PlayOverTheForwardOrBackwardRun_ByWhereTheTargetIs()
+        public void Actions_PlayOverTheLegsThatMatchTheMotion()
         {
-            Assert.AreEqual("hew", LocomotionRules.ActionSheet("hew", false));
-            Assert.AreEqual("hew", LocomotionRules.ActionSheet("hew", false, true), "standing has no legs to choose");
+            const LocomotionRules.ActionLegs F = LocomotionRules.ActionLegs.Forward, R = LocomotionRules.ActionLegs.StrafeRight,
+                L = LocomotionRules.ActionLegs.StrafeLeft, B = LocomotionRules.ActionLegs.Back;
+            Assert.AreEqual("hew", LocomotionRules.ActionSheet("hew", false, B), "standing has no legs to choose");
             Assert.AreEqual("hew_move", LocomotionRules.ActionSheet("hew", true));
-            Assert.AreEqual("hew_move_back", LocomotionRules.ActionSheet("hew", true, true));
+            Assert.AreEqual("hew_move_back", LocomotionRules.ActionSheet("hew", true, B));
+            Assert.AreEqual("hew_move_right", LocomotionRules.ActionSheet("hew", true, R));
+            Assert.AreEqual(L, LocomotionRules.LegsOf("attack_move_left"));
+            Assert.AreEqual(F, LocomotionRules.LegsOf("run"));
 
-            Assert.IsFalse(LocomotionRules.IsActionBackward(Rotate(Vector2.up, 30f), Vector2.up), "ahead: forward legs");
-            Assert.IsFalse(LocomotionRules.IsActionBackward(Rotate(Vector2.up, 105f), Vector2.up), "just past the side: stays forward");
-            Assert.IsTrue(LocomotionRules.IsActionBackward(Rotate(Vector2.up, 115f), Vector2.up), "well behind: backward legs");
-            Assert.IsTrue(LocomotionRules.IsActionBackward(Rotate(Vector2.up, 75f), Vector2.up, true), "backward stays until 70");
-            Assert.IsFalse(LocomotionRules.IsActionBackward(Rotate(Vector2.up, 65f), Vector2.up, true), "then forward again");
-            Assert.IsTrue(LocomotionRules.IsActionBackward(Vector2.down, Vector2.up), "behind: backward legs");
-            Assert.IsFalse(LocomotionRules.IsActionBackward(Vector2.down, Vector2.zero), "standing still");
+            // Facing west (the target there) while moving north: north is the character's right.
+            Assert.AreEqual(R, LocomotionRules.LegsFor(Vector2.left, Vector2.up));
+            Assert.AreEqual(L, LocomotionRules.LegsFor(Vector2.right, Vector2.up));
+            Assert.AreEqual(F, LocomotionRules.LegsFor(Rotate(Vector2.up, 30f), Vector2.up), "ahead");
+            Assert.AreEqual(B, LocomotionRules.LegsFor(Vector2.down, Vector2.up), "behind");
+            Assert.AreEqual(F, LocomotionRules.LegsFor(Vector2.down, Vector2.zero), "standing still");
+
+            // Each set holds 10 degrees past its edge.
+            Assert.AreEqual(F, LocomotionRules.LegsFor(Rotate(Vector2.up, 50f), Vector2.up, F));
+            Assert.AreNotEqual(F, LocomotionRules.LegsFor(Rotate(Vector2.up, 50f), Vector2.up, B));
+            Assert.AreEqual(L, LocomotionRules.LegsFor(Rotate(Vector2.up, -40f), Vector2.up, L));
+            Assert.AreEqual(F, LocomotionRules.LegsFor(Rotate(Vector2.up, -30f), Vector2.up, L));
+            Assert.AreEqual(B, LocomotionRules.LegsFor(Rotate(Vector2.up, 130f), Vector2.up, B));
         }
 
         [Test]

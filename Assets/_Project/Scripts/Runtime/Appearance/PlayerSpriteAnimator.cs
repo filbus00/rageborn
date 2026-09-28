@@ -24,6 +24,9 @@ namespace ARPG
         // How long the character must stand before the idle shows, so a quick reversal does not flash it.
         const float IdleGraceSeconds = 0.1f;
 
+        // The shortest time a moving action keeps one set of legs.
+        const float LegsHoldSeconds = 0.25f;
+
         // How long after an attack, a skill or a hit the character still counts as fighting (for the backward run).
         const float CombatMemorySeconds = 1.2f;
 
@@ -44,6 +47,8 @@ namespace ARPG
         float lastCombatTime = -100f;
         float stillFor;
         Vector2 aim = Vector2.down;
+        EnemyController swingTarget;
+        float legsSince = -1f;
 
         /// <summary>Which character's sheets to show (Resources/Characters/&lt;name&gt;). Changing it rebuilds the look.</summary>
         public string Character
@@ -150,6 +155,9 @@ namespace ARPG
         {
             lastCombatTime = Time.time;
             aim = direction;
+            // The swing follows the enemy it was aimed at, not whichever one combat picks next frame: in a crowd the
+            // pick jumped between enemies and flipped the legs every few frames.
+            swingTarget = combat != null ? combat.Target : null;
             if (!showing || dead)
                 return;
             // A skill plays out: the basic attack runs on its own timer and cut Hew off 0.2 s into its swing.
@@ -224,16 +232,26 @@ namespace ARPG
             return true;
         }
 
-        // The sheet for an action: standing, the action; moving, over the forward run, or over the backward run when the
-        // target is behind (falling back to the forward one when that sheet is missing). Null when none exists.
+        // The sheet for an action: standing, the action; moving, over the legs that match the motion relative to the
+        // facing (forward, strafing right or left, backward), falling back to the forward run when a sheet is missing.
+        // Null when none exists.
         string ActionSheetFor(string baseName, bool moving, Vector2 velocity)
         {
-            var wasBackward = sprite.Animation != null && sprite.Animation.EndsWith(LocomotionRules.MovingBackSuffix);
-            if (moving && LocomotionRules.IsActionBackward(aim, velocity, wasBackward))
+            if (moving)
             {
-                var back = LocomotionRules.ActionSheet(baseName, true, true);
-                if (sprite.Has(back))
-                    return back;
+                // Judged from the stick, which is steady, rather than the velocity, which enemies bumping the character
+                // swing around; and a set of legs is kept at least LegsHoldSeconds.
+                var motion = player.InputDirection.sqrMagnitude > 0f ? player.InputDirection : velocity;
+                var current = LocomotionRules.LegsOf(sprite.Animation);
+                var legs = LocomotionRules.LegsFor(aim, motion, current);
+                if (legs != current && sprite.Animation != null && sprite.Animation.StartsWith(baseName) &&
+                    Time.time - legsSince < LegsHoldSeconds)
+                    legs = current;
+                if (legs != current)
+                    legsSince = Time.time;
+                var sheet = LocomotionRules.ActionSheet(baseName, true, legs);
+                if (sprite.Has(sheet))
+                    return sheet;
             }
             var name = LocomotionRules.ActionSheet(baseName, moving);
             return sprite.Has(name) ? name : null;
@@ -243,9 +261,9 @@ namespace ARPG
         // enemy was when the swing began. Skills keep their cast direction (Hurl Axe picks its own, farther target).
         void FollowTarget()
         {
-            if (action != "attack" || combat == null || combat.Target == null || !combat.Target.IsAlive)
+            if (action != "attack" || swingTarget == null || !swingTarget.IsAlive)
                 return;
-            var toTarget = combat.Target.GroundPosition - IsoMath.WorldToGround(player.transform.position);
+            var toTarget = swingTarget.GroundPosition - IsoMath.WorldToGround(player.transform.position);
             if (toTarget.sqrMagnitude > 1e-6f)
                 aim = toTarget.normalized;
         }

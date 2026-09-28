@@ -63,37 +63,82 @@ namespace ARPG
         /// the sprite bake, so the character swings while it runs.</summary>
         public const string MovingSuffix = "_move";
 
-        /// <summary>The suffix of an action's backward moving variant: the backward run's hips and legs under the action's
-        /// torso, for a blow struck at an enemy behind the way the character runs.</summary>
+        /// <summary>Which legs a moving action plays over: the character always faces what it strikes (the owner,
+        /// 2026-09-28), and its legs run the way it actually moves relative to that facing.</summary>
+        public enum ActionLegs
+        {
+            Forward,
+            StrafeRight,
+            StrafeLeft,
+            Back,
+        }
+
+        /// <summary>The suffix of each leg set's baked moving variant: the run's, the backward run's and the two
+        /// strafes' hips and legs under the action's torso.</summary>
         public const string MovingBackSuffix = "_move_back";
+        public const string MovingRightSuffix = "_move_right";
+        public const string MovingLeftSuffix = "_move_left";
 
-        /// <summary>Beyond this angle between the aim and the run, a moving action plays over the backward run.</summary>
-        public const float ActionBackDegrees = 90f;
+        /// <summary>Up to this angle between the facing and the motion the legs run forward; past it they strafe.</summary>
+        public const float ActionStrafeDegrees = 45f;
 
-        /// <summary>Half the dead band around <see cref="ActionBackDegrees"/>: the legs go backward past 110 degrees and
-        /// forward again below 70. Without it a target near the side flipped the legs every few frames, which read as the
-        /// character jerking left and right (the owner, 2026-09-28).</summary>
-        public const float ActionBackMargin = 20f;
+        /// <summary>Past this angle the legs run backward.</summary>
+        public const float ActionBackDegrees = 135f;
+
+        /// <summary>How far past a boundary the legs keep their set, so a target near the edge does not flip them every
+        /// few frames (which read as jerking left and right, the owner, 2026-09-28).</summary>
+        public const float ActionLegsMargin = 10f;
+
+        /// <summary>The margin the run keeps before switching back from the backward run.</summary>
+        public const float BackpedalMargin = 20f;
 
         /// <summary>
-        /// The sheet an action plays: standing, the action itself; moving, its forward moving variant, or its backward one
-        /// when the target is more than <see cref="ActionBackDegrees"/> off the way the character runs. The character
-        /// always faces what it strikes during an action (the owner, 2026-09-28: a swing turned at most 45 degrees off the
-        /// run "still swings their axe pointing away from monster sometimes"), so the legs are at most 90 degrees off the
-        /// ground's motion.
+        /// The legs for a moving action facing <paramref name="aim"/> while moving along <paramref name="velocity"/>:
+        /// forward within 45 degrees, strafing right or left to 135 (the character's right is clockwise from its facing,
+        /// the way <see cref="TurnStep"/> counts), backward beyond; the previous set holds 10 degrees past its edge.
         /// </summary>
-        public static string ActionSheet(string action, bool moving, bool backward = false) =>
-            !moving ? action : backward ? action + MovingBackSuffix : action + MovingSuffix;
+        public static ActionLegs LegsFor(Vector2 aim, Vector2 velocity, ActionLegs previous = ActionLegs.Forward)
+        {
+            if (aim.sqrMagnitude < 1e-6f || velocity.sqrMagnitude < 1e-6f)
+                return ActionLegs.Forward;
+            var signed = Vector2.SignedAngle(aim, velocity);
+            var angle = Mathf.Abs(signed);
+            var side = signed < 0f ? ActionLegs.StrafeRight : ActionLegs.StrafeLeft;
+            switch (previous)
+            {
+                case ActionLegs.Forward when angle <= ActionStrafeDegrees + ActionLegsMargin:
+                    return ActionLegs.Forward;
+                case ActionLegs.Back when angle >= ActionBackDegrees - ActionLegsMargin:
+                    return ActionLegs.Back;
+                case ActionLegs.StrafeRight:
+                case ActionLegs.StrafeLeft:
+                    if (previous == side && angle >= ActionStrafeDegrees - ActionLegsMargin && angle <= ActionBackDegrees + ActionLegsMargin)
+                        return previous;
+                    break;
+            }
+            return angle <= ActionStrafeDegrees ? ActionLegs.Forward : angle >= ActionBackDegrees ? ActionLegs.Back : side;
+        }
 
-        public static bool IsActionBackward(Vector2 aim, Vector2 velocity, bool wasBackward = false) =>
-            aim.sqrMagnitude > 1e-6f && velocity.sqrMagnitude > 1e-6f &&
-            Vector2.Angle(aim, velocity) > ActionBackDegrees + (wasBackward ? -ActionBackMargin : ActionBackMargin);
+        /// <summary>The sheet an action plays: standing, the action itself; moving, its variant for the legs.</summary>
+        public static string ActionSheet(string action, bool moving, ActionLegs legs = ActionLegs.Forward) =>
+            !moving ? action : action + LegsSuffix(legs);
+
+        public static string LegsSuffix(ActionLegs legs) =>
+            legs == ActionLegs.Back ? MovingBackSuffix : legs == ActionLegs.StrafeRight ? MovingRightSuffix
+            : legs == ActionLegs.StrafeLeft ? MovingLeftSuffix : MovingSuffix;
+
+        /// <summary>The legs a playing sheet uses, read from its name.</summary>
+        public static ActionLegs LegsOf(string sheet) =>
+            sheet == null ? ActionLegs.Forward
+            : sheet.EndsWith(MovingBackSuffix) ? ActionLegs.Back
+            : sheet.EndsWith(MovingRightSuffix) ? ActionLegs.StrafeRight
+            : sheet.EndsWith(MovingLeftSuffix) ? ActionLegs.StrafeLeft : ActionLegs.Forward;
 
         /// <summary>Retreating from the aim: past <see cref="BackpedalDegrees"/>, and once backpedalling until
-        /// <see cref="ActionBackMargin"/> under it, so the run and the backward run do not flicker at the edge.</summary>
+        /// <see cref="BackpedalMargin"/> under it, so the run and the backward run do not flicker at the edge.</summary>
         public static bool IsBackpedal(Vector2 aim, Vector2 velocity, bool wasBackpedalling = false) =>
             aim.sqrMagnitude > 1e-6f && velocity.sqrMagnitude > 1e-6f &&
-            Vector2.Angle(aim, velocity) > BackpedalDegrees - (wasBackpedalling ? ActionBackMargin : 0f);
+            Vector2.Angle(aim, velocity) > BackpedalDegrees - (wasBackpedalling ? BackpedalMargin : 0f);
 
         /// <summary>How fast to play a locomotion cycle: the actual speed over the speed it was recorded at, within limits.
         /// 1 when the recorded speed is unknown.</summary>

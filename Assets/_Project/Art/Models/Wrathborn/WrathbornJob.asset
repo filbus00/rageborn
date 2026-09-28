@@ -213,6 +213,86 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
       legsGroundSpeed: 4.4
+    - name: attack_move_right
+      clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0.4
+      end: 2.2
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+    - name: hew_move_right
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+    - name: hurl_axe_move_right
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+    - name: ground_breaker_move_right
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0.2
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+    - name: attack_move_left
+      clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0.4
+      end: 2.2
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+    - name: hew_move_left
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+    - name: hurl_axe_move_left
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+    - name: ground_breaker_move_left
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0.2
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
   pixelsPerUnit: 64
   cellSize: 128
   pivot: {x: 64, y: 20}
