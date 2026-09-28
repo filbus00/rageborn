@@ -29,16 +29,23 @@ namespace ARPG
 
         RectTransform list;
         Text hint;
-        PlayerCombat combat;
+        ClassSkills combat;
         int choosingSlot = -1;
 
         public static bool IsOpen => current != null && current.gameObject.activeSelf;
 
         public static void Open()
         {
-            var combat = FindAnyObjectByType<PlayerCombat>();
+            // The class's list from Resources, not the scene's combat: the town has none.
+            var combat = ClassSkills.Load();
             if (combat == null)
+            {
+                Debug.LogWarning("LoadoutScreen: no ClassSkills asset; run Tools > ARPG > Create Wrathborn Skills.");
                 return;
+            }
+            // A character that has not been in a fight since loading still needs its loadout filled.
+            var session = GameSession.Current;
+            session.Loadout.Fill(combat.FillList(), session.Level, session.Level);
             if (current == null)
                 current = Create();
             current.combat = combat;
@@ -155,7 +162,7 @@ namespace ARPG
             for (var slot = 0; slot < SkillLoadout.SlotCount; slot++)
             {
                 var index = slot;
-                var skill = combat.FindSkill(loadout.SkillAt(slot));
+                var skill = combat.Find(loadout.SkillAt(slot));
                 var row = NewRow(list);
                 var up = NewButton(row.transform, "Up", () => Move(index, -1));
                 Width(up.gameObject, 110f, 0f);
@@ -243,7 +250,7 @@ namespace ARPG
         void CycleTrigger(int slot)
         {
             var loadout = GameSession.Current.Loadout;
-            var skill = combat.FindSkill(loadout.SkillAt(slot));
+            var skill = combat.Find(loadout.SkillAt(slot));
             if (skill == null)
                 return;
             var choices = new System.Collections.Generic.List<SkillTrigger> { SkillTrigger.Default };

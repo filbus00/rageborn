@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afda1723a917c40939b0ae8808e38e30, type: 3}
+  m_Name: ClassSkills
+  m_EditorClassIdentifier: ARPG.Runtime::ARPG.ClassSkills
+  skills:
+  - {fileID: 11400000, guid: 1c9cd29b2abf245dcb2085800e152b4d, type: 2}
+  - {fileID: 11400000, guid: 966f5dfe4059d457c99a39e6cd58be53, type: 2}
+  - {fileID: 11400000, guid: 048a90ad27c3046f2acc4bf148358753, type: 2}
+  - {fileID: 11400000, guid: e48260332c6e24fe88f0a4ef36092902, type: 2}
+  - {fileID: 11400000, guid: 3fa45a9dd37754d9e8419a7c05b2c3be, type: 2}
+  - {fileID: 11400000, guid: 2d33e541d883243da874227ee43fe373, type: 2}
+  - {fileID: 11400000, guid: b57d8dc0750fc422a8cc3129d3726e7c, type: 2}
+  - {fileID: 11400000, guid: 38f681e64fb574712b06b09c8e712a01, type: 2}

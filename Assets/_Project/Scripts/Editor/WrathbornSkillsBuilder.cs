@@ -36,6 +36,7 @@ namespace ARPG.Editor
             // Kept as paths: opening a scene in single mode unloads assets nothing references yet, which left every
             // skill loaded before it a dead reference (all four slots came out empty the first time).
             var paths = Array.ConvertAll(LoadOrCreateAll(), AssetDatabase.GetAssetPath);
+            WriteClassSkills(paths);
             var skills = new SkillDefinition[paths.Length];
             foreach (var path in Scenes)
             {
@@ -52,6 +53,21 @@ namespace ARPG.Editor
                 EditorSceneManager.SaveScene(scene);
             }
             Debug.Log($"[ARPG] Wrathborn skills created and assigned: {string.Join(", ", Array.ConvertAll(skills, s => s.DisplayName))}.");
+        }
+
+        // The same list in Resources, for scenes without combat (the town's loadout page).
+        static void WriteClassSkills(string[] paths)
+        {
+            const string path = "Assets/_Project/Resources/" + ClassSkills.ResourcePath + ".asset";
+            var asset = AssetDatabase.LoadAssetAtPath<ClassSkills>(path);
+            if (asset == null)
+            {
+                asset = ScriptableObject.CreateInstance<ClassSkills>();
+                AssetDatabase.CreateAsset(asset, path);
+            }
+            asset.Set(Array.ConvertAll(paths, p => AssetDatabase.LoadAssetAtPath<SkillDefinition>(p)));
+            EditorUtility.SetDirty(asset);
+            AssetDatabase.SaveAssets();
         }
 
         /// <summary>Puts the skills on a Player Combat, slot 1 first.</summary>
