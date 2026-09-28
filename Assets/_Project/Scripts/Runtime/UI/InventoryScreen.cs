@@ -55,6 +55,8 @@ namespace ARPG
         /// this pause apart from its own, much shorter one when they happen to overlap.</summary>
         public static InventoryScreen Current { get; private set; }
 
+        Button skillsButton;
+
         public bool IsOpen => panelRoot != null && panelRoot.activeSelf;
 
         void Awake()
@@ -76,7 +78,10 @@ namespace ARPG
                 upgradeBadge = CreateBadge(openButton.transform);
             }
             if (closeButton != null)
+            {
                 closeButton.onClick.AddListener(Close);
+                skillsButton = CreateSkillsButton(closeButton);
+            }
 
             if (panelRoot != null)
             {
@@ -130,6 +135,7 @@ namespace ARPG
 
             if (sheet != null)
                 sheet.Hide();
+            LoadoutScreen.CloseIfOpen();
             panelRoot.SetActive(false);
             Time.timeScale = 1f;
         }
@@ -147,6 +153,26 @@ namespace ARPG
 
             RebuildBackpack(session);
             RefreshBadge();
+            // Docs/02 and Q4: the loadout opens at level 9, when there is a fifth skill to choose.
+            if (skillsButton != null)
+                skillsButton.gameObject.SetActive(session.Level >= LoadoutScreen.OpensAtLevel);
+        }
+
+        // A copy of the Close button placed beside it, opening the loadout.
+        static Button CreateSkillsButton(Button close)
+        {
+            var copy = Instantiate(close.gameObject, close.transform.parent);
+            copy.name = "Skills Button";
+            var button = copy.GetComponent<Button>();
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(LoadoutScreen.Open);
+            var label = copy.GetComponentInChildren<Text>();
+            if (label != null)
+                label.text = "Skills";
+            var rect = (RectTransform)copy.transform;
+            var source = (RectTransform)close.transform;
+            rect.anchoredPosition = source.anchoredPosition - new Vector2(source.rect.width + 24f, 0f);
+            return button;
         }
 
         /// <summary>Shows the badge while any backpack item would raise the power score.</summary>
