@@ -45,6 +45,9 @@ namespace ARPG.Editor
 
             [Tooltip("The ground speed (game units a second) the legs of a moving variant run at: the loop plays at this over its recorded speed.")]
             public float legsGroundSpeed = 4.4f;
+
+            [Tooltip("Bake only the off-hand layer: the grip has no clip of its own for this animation, so the game draws the body and weapon from the one-handed sheets and only the shield or second weapon from these.")]
+            public bool offHandOnly;
         }
 
         [Serializable]

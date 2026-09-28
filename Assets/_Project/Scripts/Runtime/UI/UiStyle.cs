@@ -187,7 +187,9 @@ namespace ARPG
         public static string SlotLabel(ItemSlot slot) => slot switch
         {
             ItemSlot.Weapon => "Axe",
+            ItemSlot.TwoHandWeapon => "Great Axe",
             ItemSlot.Ring2 => "Ring",
+            ItemSlot.OffHand => "Off-hand",
             _ => slot.ToString(),
         };
     }

@@ -57,6 +57,7 @@ namespace ARPG
         static readonly ItemSlot[] DroppableSlots =
         {
             ItemSlot.Weapon, ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Gloves, ItemSlot.Boots, ItemSlot.Belt, ItemSlot.Amulet, ItemSlot.Ring,
+            ItemSlot.Shield, ItemSlot.TwoHandWeapon,
         };
 
         readonly System.Random random;

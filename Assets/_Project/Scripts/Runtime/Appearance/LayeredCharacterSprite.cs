@@ -91,6 +91,7 @@ namespace ARPG
         {
             PlaybackSeconds(animationName, null);
             return speeds.TryGetValue(AppearanceRules.GripCode(appearance.Grip) + "_" + animationName, out var found) ||
+                   speeds.TryGetValue(AppearanceRules.GripCode(CharacterGrip.OneHand) + "_" + animationName, out found) ||
                    speeds.TryGetValue(animationName, out found) ? found : 0f;
         }
 
@@ -209,6 +210,7 @@ namespace ARPG
                 CharacterSheets.LoadTiming(character, timing, speeds);
             }
             if (timing.TryGetValue(AppearanceRules.GripCode(appearance.Grip) + "_" + animationName, out var found) ||
+                timing.TryGetValue(AppearanceRules.GripCode(CharacterGrip.OneHand) + "_" + animationName, out found) ||
                 timing.TryGetValue(animationName, out found))
                 return found;
             return sheet != null ? sheet.Frames / FramesPerSecond : 0f;
@@ -246,13 +248,24 @@ namespace ARPG
             var look = appearance.LookOf(layer);
             if (string.IsNullOrEmpty(look) || string.IsNullOrEmpty(character))
                 return null;
-            var sheet = LoadCached(AppearanceRules.SheetName(character, layer, look, appearance.Grip, animationName));
-            // While the art is being made not every look exists yet: a missing body or weapon shows the reference look
-            // (the approved model sheet's), so the character is never drawn without a body or with an empty hand it
-            // should not have. A missing helm or off-hand simply stays off.
-            var fallback = AppearanceRules.FallbackLook(layer);
+            // While the art is being made not every look exists yet: a missing look shows the grip's reference look (the
+            // models that exist), so the character is never drawn without a body or with an empty hand it should not
+            // have; a missing helm stays off. A grip bakes only the clips it has its own of (the shield's run, the
+            // two-hander's run and swing, dual wield's combo) and, for the rest, just the off-hand over the one-handed
+            // clip: body and weapon then fall back to the one-handed sheets, which move the same.
+            var grip = appearance.Grip;
+            var sheet = LoadLook(layer, look, grip, animationName);
+            if (sheet == null && layer != AppearanceLayer.OffHand && grip != CharacterGrip.OneHand)
+                sheet = LoadLook(layer, look, CharacterGrip.OneHand, animationName);
+            return sheet;
+        }
+
+        CharacterSheet LoadLook(AppearanceLayer layer, string look, CharacterGrip grip, string animationName)
+        {
+            var sheet = LoadCached(AppearanceRules.SheetName(character, layer, look, grip, animationName));
+            var fallback = AppearanceRules.FallbackLook(layer, grip);
             if (sheet == null && fallback != null && fallback != look)
-                sheet = LoadCached(AppearanceRules.SheetName(character, layer, fallback, appearance.Grip, animationName));
+                sheet = LoadCached(AppearanceRules.SheetName(character, layer, fallback, grip, animationName));
             return sheet;
         }
 

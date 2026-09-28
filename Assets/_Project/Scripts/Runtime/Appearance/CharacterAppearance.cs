@@ -88,18 +88,21 @@ namespace ARPG
         public static CharacterAppearance For(EquipmentState equipment) => new CharacterAppearance(
             LookOf(ChestLooks, equipment.Chest) ?? BareBody,
             LookOf(HelmLooks, equipment.Helm),
-            null,
-            LookOf(OneHandWeaponLooks, equipment.Weapon),
-            GripFor(false, false, false));
+            equipment.HasShield ? LookOf(ShieldLooks, equipment.OffHand)
+            : equipment.IsDualWield ? LookOf(OneHandWeaponLooks, equipment.OffHand) : null,
+            LookOf(equipment.IsTwoHanded ? TwoHandWeaponLooks : OneHandWeaponLooks, equipment.Weapon),
+            GripFor(equipment.IsTwoHanded, equipment.IsDualWield, equipment.HasShield));
 
         /// <summary>
-        /// The look shown when a layer's own look has no sheets yet: the body and weapon of the approved model sheet
-        /// (leather, the bearded axe). Null for the helm and off-hand, which then stay off.
+        /// The look shown when a layer's own look has no sheets yet, from the models that exist: the leather body, the
+        /// bearded axe (in either hand), the round shield (Viking_shield.fbx), and for a two-hander the great axe (the
+        /// bearded axe enlarged until a two-handed model exists). Null for the helm, which then stays off.
         /// </summary>
-        public static string FallbackLook(AppearanceLayer layer) => layer switch
+        public static string FallbackLook(AppearanceLayer layer, CharacterGrip grip = CharacterGrip.OneHand) => layer switch
         {
             AppearanceLayer.Body => "leather",
-            AppearanceLayer.Weapon => "bearded_axe",
+            AppearanceLayer.Weapon => grip == CharacterGrip.TwoHand ? "great_axe" : "bearded_axe",
+            AppearanceLayer.OffHand => grip == CharacterGrip.Shield ? "round_shield" : grip == CharacterGrip.DualWield ? "bearded_axe" : null,
             _ => null,
         };
 

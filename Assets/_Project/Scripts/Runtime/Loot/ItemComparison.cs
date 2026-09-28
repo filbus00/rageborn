@@ -30,7 +30,17 @@ namespace ARPG
     /// </summary>
     public static class ItemComparison
     {
-        public static string Name(Item item) => $"{item.Rarity} {item.Slot}";
+        public static string Name(Item item) => $"{item.Rarity} {KindName(item.Slot)}";
+
+        /// <summary>An item kind's name for players: Weapon is an axe (the Wrathborn's only weapon family, Docs/03).</summary>
+        public static string KindName(ItemSlot kind) => kind switch
+        {
+            ItemSlot.Weapon => "Axe",
+            ItemSlot.TwoHandWeapon => "Great Axe",
+            ItemSlot.Ring2 => "Ring",
+            ItemSlot.OffHand => "Off-hand",
+            _ => kind.ToString(),
+        };
 
         public static string AffixLabel(AffixId id)
         {
@@ -72,11 +82,13 @@ namespace ARPG
         public static List<StatLine> Lines(Item candidate, Item equipped)
         {
             var lines = new List<StatLine>();
-            if (candidate.Slot == ItemSlot.Weapon)
+            if (candidate.IsWeapon)
                 lines.Add(new StatLine("Weapon damage", candidate.WeaponAverageDamage,
                     equipped != null ? equipped.WeaponAverageDamage : CombatFormulas.WeaponAverageDamage(0), false));
             else if (Item.ArmorShare(candidate.Slot) > 0f)
                 lines.Add(new StatLine("Base armor", candidate.ArmorValue, equipped != null ? equipped.ArmorValue : 0f, false));
+            if (candidate.Slot == ItemSlot.Shield)
+                lines.Add(new StatLine("Block chance", candidate.BlockPercent, equipped != null ? equipped.BlockPercent : 0f, true));
             // Amulets and rings have no base stat: only their affixes.
 
             foreach (AffixId id in System.Enum.GetValues(typeof(AffixId)))

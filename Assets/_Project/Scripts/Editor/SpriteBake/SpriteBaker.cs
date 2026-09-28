@@ -103,6 +103,8 @@ namespace ARPG.Editor
 
                         foreach (var layer in LayersFor(stage, gripSet.grip))
                         {
+                            if (clip.offHandOnly && layer.Layer != AppearanceLayer.OffHand)
+                                continue;
                             var sheet = new SheetWriter(job, job.SheetName(layer.Layer, layer.Look, gripSet.grip, clip.name), times.Length);
                             var poseIndex = layer.BodyIndex;
                             var hipsStart = Vector3.zero;

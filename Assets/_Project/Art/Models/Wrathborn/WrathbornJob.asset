@@ -30,6 +30,39 @@ MonoBehaviour:
     - 1h
     - dual
     - shield
+  - layer: 2
+    look: bearded_axe
+    prefab: {fileID: 5868527692102103599, guid: 0229cbbb6ea37438d97dd64cd1100e2f, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - dual
+  - layer: 3
+    look: great_axe
+    prefab: {fileID: 5868527692102103599, guid: 0229cbbb6ea37438d97dd64cd1100e2f, type: 3}
+    bone: 18
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1.5
+    grips:
+    - 2h
+  - layer: 2
+    look: round_shield
+    prefab: {fileID: 8740900542307544989, guid: 0f025f3e19f5d44749aebc919f0b842e, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - shield
   grips:
   - grip: 1h
     clips:
@@ -43,6 +76,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: run
       clip: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
       frames: 10
@@ -53,6 +87,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: run_back
       clip: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
       frames: 10
@@ -63,6 +98,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: attack
       clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
       frames: 10
@@ -73,6 +109,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: hew
       clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
       frames: 12
@@ -83,6 +120,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: hurl_axe
       clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
       frames: 10
@@ -93,6 +131,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: bull_rush
       clip: {fileID: -203655887218126122, guid: 254d5d3580d534b53b50c418b3e69a26, type: 3}
       frames: 8
@@ -103,6 +142,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: ground_breaker
       clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
       frames: 14
@@ -113,6 +153,7 @@ MonoBehaviour:
       riseScale: 0.4
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: hit
       clip: {fileID: -203655887218126122, guid: 522218c870a974560854d26f6035207b, type: 3}
       frames: 4
@@ -123,6 +164,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: death
       clip: {fileID: -203655887218126122, guid: fe5840418d08e441e88dd3b835e6f644, type: 3}
       frames: 16
@@ -133,6 +175,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: attack_move
       clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
       frames: 15
@@ -143,6 +186,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: hew_move
       clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
       frames: 25
@@ -153,6 +197,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: hurl_axe_move
       clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
       frames: 25
@@ -163,6 +208,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: ground_breaker_move
       clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
       frames: 25
@@ -173,6 +219,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: attack_move_back
       clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
       frames: 15
@@ -183,6 +230,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: hew_move_back
       clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
       frames: 25
@@ -193,6 +241,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: hurl_axe_move_back
       clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
       frames: 25
@@ -203,6 +252,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: ground_breaker_move_back
       clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
       frames: 25
@@ -213,6 +263,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: attack_move_right
       clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
       frames: 15
@@ -223,6 +274,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: hew_move_right
       clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
       frames: 25
@@ -233,6 +285,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: hurl_axe_move_right
       clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
       frames: 25
@@ -243,6 +296,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: ground_breaker_move_right
       clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
       frames: 25
@@ -253,6 +307,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: attack_move_left
       clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
       frames: 15
@@ -263,6 +318,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: hew_move_left
       clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
       frames: 25
@@ -273,6 +329,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: hurl_axe_move_left
       clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
       frames: 25
@@ -283,6 +340,7 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: ground_breaker_move_left
       clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
       frames: 25
@@ -293,6 +351,684 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
       legsGroundSpeed: 4.4
+      offHandOnly: 0
+  - grip: dual
+    clips:
+    - name: idle
+      clip: {fileID: -203655887218126122, guid: c46a16e74c0f443f6b409fb5a5dad276, type: 3}
+      frames: 24
+      loop: 1
+      playbackSeconds: 9.933333
+      start: 0
+      end: 9.933333
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: run
+      clip: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
+      frames: 10
+      loop: 1
+      playbackSeconds: 0.70000005
+      start: 0
+      end: 0.70000005
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: run_back
+      clip: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      frames: 10
+      loop: 1
+      playbackSeconds: 0.6333334
+      start: 0
+      end: 0.6333334
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: attack
+      clip: {fileID: -203655887218126122, guid: 6001ca8a0fb774427a32f5feb60f8789, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 1.7666668
+      start: 0.4
+      end: 2.1666667
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hew
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 12
+      loop: 0
+      playbackSeconds: 2.1999998
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hurl_axe
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 1.8000001
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: bull_rush
+      clip: {fileID: -203655887218126122, guid: 254d5d3580d534b53b50c418b3e69a26, type: 3}
+      frames: 8
+      loop: 1
+      playbackSeconds: 0.5
+      start: 0
+      end: 0.5
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: ground_breaker
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 14
+      loop: 0
+      playbackSeconds: 1.6
+      start: 0.2
+      end: 1.8000001
+      riseScale: 0.4
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hit
+      clip: {fileID: -203655887218126122, guid: 522218c870a974560854d26f6035207b, type: 3}
+      frames: 4
+      loop: 0
+      playbackSeconds: 0.7666667
+      start: 0
+      end: 0.7666667
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: death
+      clip: {fileID: -203655887218126122, guid: fe5840418d08e441e88dd3b835e6f644, type: 3}
+      frames: 16
+      loop: 0
+      playbackSeconds: 1.4000001
+      start: 1
+      end: 2.4
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: attack_move
+      clip: {fileID: -203655887218126122, guid: 6001ca8a0fb774427a32f5feb60f8789, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0.4
+      end: 2.1666667
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hew_move
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hurl_axe_move
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: ground_breaker_move
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0.2
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 52c7801106af9435bb863cded025796b, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: attack_move_back
+      clip: {fileID: -203655887218126122, guid: 6001ca8a0fb774427a32f5feb60f8789, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0.4
+      end: 2.1666667
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hew_move_back
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hurl_axe_move_back
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: ground_breaker_move_back
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0.2
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: attack_move_right
+      clip: {fileID: -203655887218126122, guid: 6001ca8a0fb774427a32f5feb60f8789, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0.4
+      end: 2.1666667
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hew_move_right
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hurl_axe_move_right
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: ground_breaker_move_right
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0.2
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: attack_move_left
+      clip: {fileID: -203655887218126122, guid: 6001ca8a0fb774427a32f5feb60f8789, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0.4
+      end: 2.1666667
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hew_move_left
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hurl_axe_move_left
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: ground_breaker_move_left
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0.2
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+  - grip: shield
+    clips:
+    - name: idle
+      clip: {fileID: -203655887218126122, guid: c46a16e74c0f443f6b409fb5a5dad276, type: 3}
+      frames: 24
+      loop: 1
+      playbackSeconds: 9.933333
+      start: 0
+      end: 9.933333
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: run
+      clip: {fileID: -203655887218126122, guid: 87bc30f55d7df4b96aa985e08fabb9aa, type: 3}
+      frames: 10
+      loop: 1
+      playbackSeconds: 0.70000005
+      start: 0
+      end: 0.70000005
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: run_back
+      clip: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      frames: 10
+      loop: 1
+      playbackSeconds: 0.6333334
+      start: 0
+      end: 0.6333334
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: attack
+      clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 1.8000001
+      start: 0.4
+      end: 2.2
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hew
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 12
+      loop: 0
+      playbackSeconds: 2.1999998
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hurl_axe
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 1.8000001
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: bull_rush
+      clip: {fileID: -203655887218126122, guid: 254d5d3580d534b53b50c418b3e69a26, type: 3}
+      frames: 8
+      loop: 1
+      playbackSeconds: 0.5
+      start: 0
+      end: 0.5
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: ground_breaker
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 14
+      loop: 0
+      playbackSeconds: 1.6
+      start: 0.2
+      end: 1.8000001
+      riseScale: 0.4
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hit
+      clip: {fileID: -203655887218126122, guid: 522218c870a974560854d26f6035207b, type: 3}
+      frames: 4
+      loop: 0
+      playbackSeconds: 0.7666667
+      start: 0
+      end: 0.7666667
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: death
+      clip: {fileID: -203655887218126122, guid: fe5840418d08e441e88dd3b835e6f644, type: 3}
+      frames: 16
+      loop: 0
+      playbackSeconds: 1.4000001
+      start: 1
+      end: 2.4
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: attack_move
+      clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0.4
+      end: 2.2
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 87bc30f55d7df4b96aa985e08fabb9aa, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hew_move
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 87bc30f55d7df4b96aa985e08fabb9aa, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hurl_axe_move
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 87bc30f55d7df4b96aa985e08fabb9aa, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: ground_breaker_move
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0.2
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 87bc30f55d7df4b96aa985e08fabb9aa, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack_move_back
+      clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0.4
+      end: 2.2
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hew_move_back
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hurl_axe_move_back
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: ground_breaker_move_back
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0.2
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: attack_move_right
+      clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0.4
+      end: 2.2
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hew_move_right
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hurl_axe_move_right
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: ground_breaker_move_right
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0.2
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: attack_move_left
+      clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0.4
+      end: 2.2
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hew_move_left
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: hurl_axe_move_left
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+    - name: ground_breaker_move_left
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0.2
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 1
+  - grip: 2h
+    clips:
+    - name: run
+      clip: {fileID: -203655887218126122, guid: b255963c06d494318985086e46890557, type: 3}
+      frames: 10
+      loop: 1
+      playbackSeconds: 0.6
+      start: 0
+      end: 0.6
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack
+      clip: {fileID: -203655887218126122, guid: 4b3ec6d90682443989b5ccbb9ed59a9d, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 1.2666668
+      start: 0
+      end: 1.2666668
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack_move
+      clip: {fileID: -203655887218126122, guid: 4b3ec6d90682443989b5ccbb9ed59a9d, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0
+      end: 1.2666668
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: b255963c06d494318985086e46890557, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hew_move
+      clip: {fileID: -203655887218126122, guid: 9ce11acf024ec44a2a5f0a4a92e5c1ff, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 1.8000001
+      end: 4
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: b255963c06d494318985086e46890557, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hurl_axe_move
+      clip: {fileID: -203655887218126122, guid: 9680ea6ee6c7b42458fc72e30e5667cf, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: b255963c06d494318985086e46890557, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: ground_breaker_move
+      clip: {fileID: -203655887218126122, guid: dc4b3ae55aaed4fe08f0786c36832acd, type: 3}
+      frames: 25
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0.2
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: b255963c06d494318985086e46890557, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack_move_back
+      clip: {fileID: -203655887218126122, guid: 4b3ec6d90682443989b5ccbb9ed59a9d, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0
+      end: 1.2666668
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack_move_right
+      clip: {fileID: -203655887218126122, guid: 4b3ec6d90682443989b5ccbb9ed59a9d, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0
+      end: 1.2666668
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack_move_left
+      clip: {fileID: -203655887218126122, guid: 4b3ec6d90682443989b5ccbb9ed59a9d, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0
+      end: 1.2666668
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
   pixelsPerUnit: 64
   cellSize: 128
   pivot: {x: 64, y: 20}

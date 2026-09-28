@@ -86,15 +86,25 @@ namespace ARPG
             public float HighShare { get; }
         }
 
-        // The slots each affix can roll on, from Docs/03's affix table (shields and the off-hand wait for their slot).
-        static ItemSlot[] On(params ItemSlot[] slots) => slots;
+        // The slots each affix can roll on, from Docs/03's affix table. Shields have no built suffix yet (all resistances,
+        // block chance and the rest are not built), so a shield rolls prefixes only.
+        static ItemSlot[] On(params ItemSlot[] slots)
+        {
+            // A two-handed weapon rolls what a weapon rolls.
+            if (System.Array.IndexOf(slots, ItemSlot.Weapon) < 0)
+                return slots;
+            var withTwoHand = new ItemSlot[slots.Length + 1];
+            slots.CopyTo(withTwoHand, 0);
+            withTwoHand[slots.Length] = ItemSlot.TwoHandWeapon;
+            return withTwoHand;
+        }
 
         static readonly Definition[] Definitions =
         {
             new Definition(AffixKind.Prefix, 60f, 90f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Amulet, ItemSlot.Gloves)), // FlatWeaponDamage
             new Definition(AffixKind.Prefix, 18f, 26f, On(ItemSlot.Weapon, ItemSlot.Gloves, ItemSlot.Amulet)),                 // IncreasedDamage
-            new Definition(AffixKind.Prefix, 180f, 240f, On(ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Belt, ItemSlot.Boots)),    // Life
-            new Definition(AffixKind.Prefix, 90f, 130f, On(ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Gloves, ItemSlot.Boots)),   // Armor
+            new Definition(AffixKind.Prefix, 180f, 240f, On(ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Belt, ItemSlot.Boots, ItemSlot.Shield)),    // Life
+            new Definition(AffixKind.Prefix, 90f, 130f, On(ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Gloves, ItemSlot.Boots, ItemSlot.Shield)),   // Armor
             new Definition(AffixKind.Suffix, 7f, 11f, On(ItemSlot.Weapon, ItemSlot.Gloves, ItemSlot.Ring)),                    // AttackSpeed
             new Definition(AffixKind.Suffix, 4f, 7f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Amulet, ItemSlot.Gloves)),    // CriticalChance
             new Definition(AffixKind.Suffix, 20f, 30f, On(ItemSlot.Weapon, ItemSlot.Amulet, ItemSlot.Ring)),                   // CriticalDamage

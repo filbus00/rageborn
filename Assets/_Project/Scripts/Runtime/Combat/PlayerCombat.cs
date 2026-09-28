@@ -158,7 +158,15 @@ namespace ARPG
         /// Average damage of the equipped weapon, before skill multipliers and armor. A character that has lost its
         /// weapon fights unarmed, which the weapon curve values at item level 0.
         /// </summary>
-        public float WeaponDamage => GameSession.Current.Equipment.WeaponDamage;
+        public float WeaponDamage => offHandSwing ? GameSession.Current.Equipment.OffHandWeaponDamage : GameSession.Current.Equipment.WeaponDamage;
+
+        // Dual wield (Docs/03, Q10): basic swings alternate hands, each with its own weapon's damage; skills use the main
+        // hand. True only while an off-hand swing is being dealt.
+        bool offHandSwing;
+        bool nextSwingOffHand;
+
+        /// <summary>The basic attack's reach with the grip (a two-hander reaches further).</summary>
+        float BasicRange => basicRange + GameSession.Current.Equipment.GripReach;
 
         /// <summary>How many times the skill in a slot has fired since the scene started, for tests and tuning.</summary>
         public int CastCount(int slot) => castCounts != null && slot >= 0 && slot < castCounts.Length ? castCounts[slot] : 0;
@@ -330,7 +338,7 @@ namespace ARPG
 
         float LongestReach()
         {
-            var reach = basicRange;
+            var reach = BasicRange;
             for (var i = 0; i < skills.Length; i++)
                 if (IsUnlocked(i) && skills[i].Range > reach)
                     reach = skills[i].Range;
@@ -354,7 +362,7 @@ namespace ARPG
             inReachWeights.Clear();
             for (var i = 0; i < candidates.Count; i++)
             {
-                if (!InReach(origin, candidates[i], basicRange))
+                if (!InReach(origin, candidates[i], BasicRange))
                     continue;
 
                 inReach.Add(candidates[i]);
@@ -377,12 +385,16 @@ namespace ARPG
             var tree = session.PassiveTree.Bonuses;
             attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + AttackSpeedBuff +
                                                     tree.AttackSpeed + tree.AttackSpeedPerMomentum * player.Stance.Momentum +
-                                                    CharacterAttributes.At(session.Level).AttackSpeed));
+                                                    CharacterAttributes.At(session.Level).AttackSpeed + equipment.GripAttackSpeedBonus) *
+                                equipment.GripAttackSpeedFactor);
             BasicAttackCount++;
             BasicAttackStarted?.Invoke(aim, attackTimer);
 
             Sfx.Play(SoundId.Swing, 0.6f);
-            var hits = Sweep(origin, aim, basicRange, basicArcDegrees, 1f, basicEffectSprite, basicEffectColor);
+            offHandSwing = equipment.IsDualWield && nextSwingOffHand;
+            nextSwingOffHand = equipment.IsDualWield && !nextSwingOffHand;
+            var hits = Sweep(origin, aim, BasicRange, basicArcDegrees, 1f, basicEffectSprite, basicEffectColor);
+            offHandSwing = false;
 
             // Docs/02: Rage is gained on a basic attack hit, once per swing that lands, however many it hits.
             if (hits > 0)
@@ -686,12 +698,12 @@ namespace ARPG
         // Every enemy within the basic reach is hit and bleeds (Docs/02: 90 percent every 0.3 s, a bleed).
         void SpinHit(Vector2 origin, SkillDefinition skill)
         {
-            enemies.QueryEnemies(origin, basicRange + QueryMargin, nearby);
+            enemies.QueryEnemies(origin, BasicRange + QueryMargin, nearby);
             var hits = 0;
             for (var i = 0; i < nearby.Count; i++)
             {
                 var enemy = nearby[i];
-                if (!enemy.IsAlive || !InReach(origin, enemy, basicRange))
+                if (!enemy.IsAlive || !InReach(origin, enemy, BasicRange))
                     continue;
                 hits++;
                 Strike(enemy, DamageOf(skill, skill.DamageMultiplier), movementSkill: true);
@@ -704,8 +716,8 @@ namespace ARPG
                 rage.MarkCombat();
             }
             Sfx.Play(SoundId.Swing, 0.5f);
-            PlayEffect(origin, facing, basicRange, skill.EffectSprite, skill.EffectColor);
-            PlayEffect(origin, -facing, basicRange, skill.EffectSprite, skill.EffectColor);
+            PlayEffect(origin, facing, BasicRange, skill.EffectSprite, skill.EffectColor);
+            PlayEffect(origin, -facing, BasicRange, skill.EffectSprite, skill.EffectColor);
         }
 
         // --- Skullsplitter -------------------------------------------------------------------------------------

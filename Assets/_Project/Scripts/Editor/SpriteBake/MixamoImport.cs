@@ -123,10 +123,15 @@ namespace ARPG.Editor
             clip.loopTime = loop;
             clip.lockRootRotation = true;
             clip.lockRootHeightY = true;
-            clip.lockRootPositionXZ = true;
+            // A loop's travel goes to the root, which the bake puts back each frame, so a run downloaded without In Place
+            // stays on its spot (the shield's and the two-hander's runs, 2026-09-29, ran out of their cells). One-shots
+            // keep it in the pose: the bake holds their hips over their first spot itself.
+            clip.lockRootPositionXZ = !loop;
             clip.keepOriginalOrientation = true;
             clip.keepOriginalPositionY = true;
-            clip.keepOriginalPositionXZ = true;
+            // Based on the centre of mass for a loop: a Mixamo rig carries its travel on the hips, not on its root, so
+            // "Original" extracted nothing and the run still left its cell.
+            clip.keepOriginalPositionXZ = !loop;
         }
 
         internal static void KeepClipsInPlace(ModelImporter importer, bool loop)

@@ -9,6 +9,7 @@ namespace ARPG.Tests
         static readonly ItemSlot[] Droppable =
         {
             ItemSlot.Weapon, ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Gloves, ItemSlot.Boots, ItemSlot.Belt, ItemSlot.Amulet, ItemSlot.Ring,
+            ItemSlot.Shield, ItemSlot.TwoHandWeapon,
         };
 
         static Item Ring(params AffixRoll[] affixes) => new Item(ItemSlot.Ring, ItemRarity.Magic, 5, affixes);

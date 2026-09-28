@@ -206,7 +206,7 @@ namespace ARPG
             Slot(inside, equipment, ItemSlot.Gloves, new Vector2(0f, 1f), new Vector2(16f, -578f), new Vector2(200f, 190f));
             Slot(inside, equipment, ItemSlot.Amulet, new Vector2(1f, 1f), new Vector2(-16f, -16f), new Vector2(200f, 160f));
             Slot(inside, equipment, ItemSlot.Chest, new Vector2(1f, 1f), new Vector2(-16f, -192f), new Vector2(200f, 230f));
-            OffHandSlot(inside, new Vector2(-16f, -438f), new Vector2(200f, 160f));
+            Slot(inside, equipment, ItemSlot.OffHand, new Vector2(1f, 1f), new Vector2(-16f, -438f), new Vector2(200f, 160f));
             Slot(inside, equipment, ItemSlot.Boots, new Vector2(1f, 1f), new Vector2(-16f, -614f), new Vector2(200f, 170f));
             Slot(inside, equipment, ItemSlot.Ring, new Vector2(0.5f, 0f), new Vector2(-190f, 16f), new Vector2(130f, 130f));
             Slot(inside, equipment, ItemSlot.Belt, new Vector2(0.5f, 0f), new Vector2(0f, 16f), new Vector2(220f, 130f));
@@ -222,16 +222,6 @@ namespace ARPG
                 tile.gameObject.AddComponent<Button>().onClick.AddListener(() => sheet.ShowEquipped(place));
         }
 
-        // The off-hand is not built yet (it waits for its grips); its place is kept, dimmed.
-        static void OffHandSlot(Transform parent, Vector2 position, Vector2 size)
-        {
-            var tile = UiStyle.Framed(parent, "Off-hand Slot", UiStyle.EmptySlotFill, 4f);
-            UiStyle.Place(tile.rectTransform, new Vector2(1f, 1f), position, size);
-            tile.color = new Color(1f, 1f, 1f, 0.5f);
-            var label = UiStyle.Text(tile.transform, "Off-hand\n<size=20>soon</size>", 24, new Color(0.45f, 0.41f, 0.38f), TextAnchor.MiddleCenter, true);
-            UiStyle.Stretch(label.rectTransform, 8f);
-        }
-
         /// <summary>An item's tile: framed in its rarity's color on a blood-dark fill, its kind and item level; or an
         /// empty place with the kind dimmed.</summary>
         static Image ItemTile(Transform parent, Item item, string emptyLabel, int size)
@@ -242,7 +232,7 @@ namespace ARPG
             if (item != null)
                 rim.color = Color.Lerp(LootColors.Of(item.Rarity), UiStyle.Frame, item.Rarity == ItemRarity.Common ? 0.5f : 0.15f);
             var text = item != null
-                ? $"{UiStyle.SlotLabel(item.Slot)}\n<size={size - 8}><color=#9E948A>iLvl {item.ItemLevel}</color></size>"
+                ? $"{ItemComparison.KindName(item.Slot)}\n<size={size - 8}><color=#9E948A>iLvl {item.ItemLevel}</color></size>"
                 : emptyLabel;
             var label = UiStyle.Text(tile.transform, text, size, item != null ? LootColors.Of(item.Rarity) : new Color(0.4f, 0.36f, 0.33f),
                 TextAnchor.MiddleCenter, true);

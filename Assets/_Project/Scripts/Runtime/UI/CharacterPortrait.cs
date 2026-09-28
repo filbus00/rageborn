@@ -11,7 +11,7 @@ namespace ARPG
     /// </summary>
     public sealed class CharacterPortrait
     {
-        static readonly AppearanceLayer[] Layers = { AppearanceLayer.Body, AppearanceLayer.Helm, AppearanceLayer.Weapon };
+        static readonly AppearanceLayer[] Layers = { AppearanceLayer.Body, AppearanceLayer.Helm, AppearanceLayer.OffHand, AppearanceLayer.Weapon };
 
         readonly Image[] images = new Image[Layers.Length];
 
@@ -44,9 +44,12 @@ namespace ARPG
         static Sprite Frame(AppearanceLayer layer, string look, CharacterGrip grip)
         {
             var sprite = Load(layer, look, grip);
-            var fallback = AppearanceRules.FallbackLook(layer);
+            var fallback = AppearanceRules.FallbackLook(layer, grip);
             if (sprite == null && fallback != null && fallback != look)
                 sprite = Load(layer, fallback, grip);
+            // A grip's idle may be only its off-hand: body and weapon then come from the one-handed sheets.
+            if (sprite == null && layer != AppearanceLayer.OffHand && grip != CharacterGrip.OneHand)
+                return Frame(layer, look, CharacterGrip.OneHand);
             return sprite;
         }
 

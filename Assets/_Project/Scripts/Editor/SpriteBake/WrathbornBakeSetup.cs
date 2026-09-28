@@ -31,9 +31,11 @@ namespace ARPG.Editor
 
         static readonly string[] Grips = { "1h", "dual", "shield", "2h" };
 
-        // Loops used only as the legs of moving actions, not baked as sheets of their own: Mixamo's Jog Strafe Right and
-        // Left (in place), so a swing at a target at the side runs sideways instead of sliding the running feet.
-        static readonly string[] LegsOnly = { "strafe_right", "strafe_left" };
+        // The grips with something in the off-hand, which get its layer baked over the clips they borrow.
+        static readonly string[] GripsWithOffHand = { "dual", "shield" };
+
+        // The strafes (Mixamo's Jog Strafe Right and Left, in place) are only the legs of moving actions, resolved in
+        // AddMovingActions, not baked as sheets of their own.
 
         // The body the pieces hang on and whose rest pose sets the scale: the approved model sheet's look.
         const string ReferenceBody = "leather";
@@ -61,8 +63,103 @@ namespace ARPG.Editor
                 };
                 piece.grips.AddRange(new[] { "1h", "dual", "shield" });
                 pieces.Add(piece);
+                // The same axe in the left fist for dual wield (the off-hand layer).
+                var offHand = new SpriteBakeJob.Piece
+                {
+                    layer = AppearanceLayer.OffHand, look = look, prefab = held, bone = HumanBodyBones.LeftHand, autoGrip = true,
+                };
+                offHand.grips.Add("dual");
+                pieces.Add(offHand);
+            }
+
+            // The two-hander: no two-handed model exists yet, so the bearded axe half as big again stands in for the
+            // great axe (Docs/03's first two-handed look).
+            var greatAxe = HeldWeapon("bearded_axe");
+            if (greatAxe != null)
+            {
+                var piece = new SpriteBakeJob.Piece
+                {
+                    layer = AppearanceLayer.Weapon, look = AppearanceRules.TwoHandWeaponLooks[0], prefab = greatAxe,
+                    bone = HumanBodyBones.RightHand, autoGrip = true, scale = 1.5f,
+                };
+                piece.grips.Add("2h");
+                pieces.Add(piece);
+            }
+
+            foreach (var look in AppearanceRules.ShieldLooks)
+            {
+                var held = HeldShield(look);
+                if (held == null)
+                    continue;
+                var piece = new SpriteBakeJob.Piece
+                {
+                    layer = AppearanceLayer.OffHand, look = look, prefab = held, bone = HumanBodyBones.LeftHand, autoGrip = true,
+                };
+                piece.grips.Add("shield");
+                pieces.Add(piece);
             }
             return pieces.ToArray();
+        }
+
+        /// <summary>Which way a held shield's face points in the fist's frame: +1 along the fist's +X, -1 against it.
+        /// Set by looking at a bake: the face must point away from the body.</summary>
+        const float ShieldFaceSide = -1f;
+
+        // A shield model (wrathborn_shield_<look>.fbx, textured from <...>_albedo.png) made into a prefab to hold: its disc
+        // turned into the fist's up-and-forward plane (the plane PlaceInFist lays a haft and blade in), its face (the side
+        // the boss stands out on) toward ShieldFaceSide, and set a hand's breadth out from the grip so the fist holds its back.
+        static GameObject HeldShield(string look)
+        {
+            var path = $"{Folder}/{Character}_shield_{look}.fbx";
+            if (!File.Exists(path))
+                return null;
+            var importer = (ModelImporter)AssetImporter.GetAtPath(path);
+            importer.animationType = ModelImporterAnimationType.None;
+            importer.importAnimation = false;
+            importer.materialImportMode = ModelImporterMaterialImportMode.ImportViaMaterialDescription;
+            importer.SaveAndReimport();
+            MixamoImport.ApplyTexture(path, importer);
+
+            var model = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            var points = new System.Collections.Generic.List<Vector3>();
+            foreach (var filter in model.GetComponentsInChildren<MeshFilter>())
+            {
+                var toRoot = model.transform.worldToLocalMatrix * filter.transform.localToWorldMatrix;
+                foreach (var vertex in filter.sharedMesh.vertices)
+                    points.Add(toRoot.MultiplyPoint3x4(vertex));
+            }
+            if (points.Count == 0)
+                return null;
+            var min = points[0];
+            var max = points[0];
+            foreach (var p in points)
+            {
+                min = Vector3.Min(min, p);
+                max = Vector3.Max(max, p);
+            }
+            var center = (min + max) / 2f;
+            var size = max - min;
+            // The disc's normal is its thinnest axis; its face is the side the boss sticks out further on.
+            var axis = size.x <= size.y && size.x <= size.z ? Vector3.right : size.y <= size.z ? Vector3.up : Vector3.forward;
+            var front = Vector3.Dot(max - center, axis) >= Vector3.Dot(center - min, axis) ? axis : -axis;
+            var farthest = 0f;
+            foreach (var p in points)
+                farthest = Mathf.Max(farthest, Vector3.Dot(p - center, front));
+            var nearest = 0f;
+            foreach (var p in points)
+                nearest = Mathf.Min(nearest, Vector3.Dot(p - center, front));
+            if (Mathf.Abs(nearest) > farthest)
+                front = -front;
+
+            var root = new GameObject($"{Character}_shield_{look}_held");
+            var instance = (GameObject)PrefabUtility.InstantiatePrefab(model);
+            instance.transform.SetParent(root.transform, false);
+            var face = Vector3.right * ShieldFaceSide;
+            instance.transform.localRotation = Quaternion.FromToRotation(front, face);
+            instance.transform.localPosition = face * 0.07f - instance.transform.localRotation * center;
+            var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{Folder}/{Character}_shield_{look}_held.prefab");
+            Object.DestroyImmediate(root);
+            return prefab;
         }
 
         // The weapon model textured and turned so its blade faces +Z (which side the blade is on is read from the mesh: the
@@ -149,13 +246,31 @@ namespace ARPG.Editor
             job.pieces.AddRange(Pieces());
 
             job.grips.Clear();
+            // Every clip each grip plays: its own file, or the one-handed one it borrows (Docs/03's grips; the owner's
+            // Mixamo downloads of 2026-09-28 give the shield a run, the two-hander a run and a swing, dual wield a combo).
+            // A borrowed clip is baked only as the off-hand layer, since the body and weapon moving the same way are the
+            // one-handed sheets the game falls back to; a grip with no off-hand (the two-hander) borrows nothing.
+            var resolved = new System.Collections.Generic.Dictionary<string, (AnimationClip clip, bool own)>();
+            (AnimationClip clip, bool own) Resolve(string grip, string name, bool loop)
+            {
+                var key = grip + "/" + name;
+                if (resolved.TryGetValue(key, out var found))
+                    return found;
+                var own = ClipFor(grip, name, loop, avatar, bodies[0]);
+                var result = own != null ? (own, true)
+                    : grip != Grips[0] ? (Resolve(Grips[0], name, loop).clip, false) : ((AnimationClip)null, false);
+                resolved[key] = result;
+                return result;
+            }
+
             foreach (var grip in Grips)
             {
                 var set = new SpriteBakeJob.GripSet { grip = grip };
+                var hasOffHand = GripsWithOffHand.Contains(grip);
                 foreach (var (name, frames, loop) in Animations)
                 {
-                    var clip = ClipFor(grip, name, loop, avatar, bodies[0]);
-                    if (clip == null)
+                    var (clip, own) = Resolve(grip, name, loop);
+                    if (clip == null || (!own && !hasOffHand))
                         continue;
                     // A one-shot is sampled only where its action is (Mixamo's Hew was 5.2 s with the swing in about two
                     // seconds of it; its 12 frames went mostly on the stance around it). A loop keeps its whole cycle.
@@ -167,16 +282,10 @@ namespace ARPG.Editor
                         start = window.x, end = window.y, playbackSeconds = window.y - window.x,
                         // Ground Breaker leaps about a body height, above the top of its cells.
                         riseScale = name == "ground_breaker" ? 0.4f : 1f,
+                        offHandOnly = !own,
                     });
                 }
-                var legs = new System.Collections.Generic.Dictionary<string, AnimationClip>();
-                foreach (var name in LegsOnly)
-                {
-                    var clip = ClipFor(grip, name, true, avatar, bodies[0]);
-                    if (clip != null)
-                        legs[name] = clip;
-                }
-                AddMovingActions(set, legs);
+                AddMovingActions(set, grip, hasOffHand, Resolve, job.grips.Count > 0 ? job.grips[0] : set);
                 if (set.clips.Count > 0)
                     job.grips.Add(set);
             }
@@ -203,7 +312,8 @@ namespace ARPG.Editor
         // player will be moving most of the time. The various animations need to play even when the character is moving"),
         // and <name>_move_back over the backward run, for a blow at an enemy behind the way the character runs (the
         // character always faces what it strikes; the owner, 2026-09-28).
-        static void AddMovingActions(SpriteBakeJob.GripSet set, System.Collections.Generic.Dictionary<string, AnimationClip> legsOnly)
+        static void AddMovingActions(SpriteBakeJob.GripSet set, string grip, bool hasOffHand,
+            System.Func<string, string, bool, (AnimationClip clip, bool own)> resolve, SpriteBakeJob.GripSet reference)
         {
             var legSets = new[]
             {
@@ -212,23 +322,31 @@ namespace ARPG.Editor
             };
             foreach (var (legsName, suffix) in legSets)
             {
-                var legs = set.clips.FirstOrDefault(c => c.name == legsName)?.clip;
-                if (legs == null)
-                    legsOnly.TryGetValue(legsName, out legs);
-                if (legs == null)
+                var legs = resolve(grip, legsName, true);
+                if (legs.clip == null)
                     continue;
                 foreach (var (name, seconds) in MovingActions)
                 {
-                    var action = set.clips.FirstOrDefault(c => c.name == name);
-                    if (action == null)
+                    // Where the swing sits in its clip: this grip's entry, or the one-handed one it borrows.
+                    var action = set.clips.FirstOrDefault(c => c.name == name) ?? reference.clips.FirstOrDefault(c => c.name == name);
+                    var actionClip = resolve(grip, name, false);
+                    if (actionClip.clip == null)
                         continue;
-                    var play = Mathf.Min(seconds, action.playbackSeconds);
+                    // The grip's own when either half is (its run under a borrowed swing, or its swing over borrowed legs).
+                    var own = actionClip.own || legs.own;
+                    if (!own && !hasOffHand)
+                        continue;
+                    var start = action != null ? action.start : 0f;
+                    var end = action != null ? action.end : actionClip.clip.length;
+                    var length = action != null ? action.playbackSeconds : actionClip.clip.length;
+                    var play = Mathf.Min(seconds, length);
                     set.clips.Add(new SpriteBakeJob.Clip
                     {
-                        name = name + suffix, clip = action.clip, loop = false,
-                        frames = Mathf.Max(action.frames, Mathf.RoundToInt(play * MovingFramesPerSecond) + 1),
-                        start = action.start, end = action.end, playbackSeconds = play,
-                        legs = legs, legsGroundSpeed = 4.4f,
+                        name = name + suffix, clip = actionClip.clip, loop = false,
+                        frames = Mathf.Max(action != null ? action.frames : 10, Mathf.RoundToInt(play * MovingFramesPerSecond) + 1),
+                        start = start, end = end, playbackSeconds = play,
+                        legs = legs.clip, legsGroundSpeed = 4.4f,
+                        offHandOnly = !own,
                     });
                 }
             }

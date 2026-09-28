@@ -406,9 +406,14 @@ namespace ARPG
                 warnings?.Add($"Left out an item with an unknown slot or rarity ({data.slot}, {data.rarity}).");
                 return null;
             }
-            // Ring2 is a place to wear a ring, not a kind of item.
+            // Ring2 and OffHand are places to wear things, not kinds of item.
             if (slot == ItemSlot.Ring2)
                 slot = ItemSlot.Ring;
+            if (slot == ItemSlot.OffHand)
+            {
+                warnings?.Add("Left out an item saved as an off-hand kind.");
+                return null;
+            }
 
             var affixes = new List<AffixRoll>();
             if (data.affixes != null)

@@ -40,6 +40,9 @@ namespace ARPG
         public Item Helm => Get(ItemSlot.Helm);
 
         static readonly ItemSlot[] RingPlaces = { ItemSlot.Ring, ItemSlot.Ring2 };
+        static readonly ItemSlot[] HandPlaces = { ItemSlot.Weapon, ItemSlot.OffHand };
+        static readonly ItemSlot[] OffHandPlace = { ItemSlot.OffHand };
+        static readonly ItemSlot[] WeaponPlace = { ItemSlot.Weapon };
         static readonly ItemSlot[][] SinglePlaces = BuildSinglePlaces();
 
         static ItemSlot[][] BuildSinglePlaces()
@@ -50,8 +53,65 @@ namespace ARPG
             return places;
         }
 
-        /// <summary>Where an item of this kind can be worn: a ring on either hand, everything else in its own slot.</summary>
-        public static ItemSlot[] PlacesFor(ItemSlot kind) => kind == ItemSlot.Ring || kind == ItemSlot.Ring2 ? RingPlaces : SinglePlaces[(int)kind];
+        /// <summary>Where an item of this kind can be worn: a ring on either hand, a one-handed weapon in either hand
+        /// (dual wield), a shield in the off-hand, a two-hander in the weapon place, everything else in its own slot.</summary>
+        public static ItemSlot[] PlacesFor(ItemSlot kind) => kind switch
+        {
+            ItemSlot.Ring or ItemSlot.Ring2 => RingPlaces,
+            ItemSlot.Weapon => HandPlaces,
+            ItemSlot.Shield or ItemSlot.OffHand => OffHandPlace,
+            ItemSlot.TwoHandWeapon => WeaponPlace,
+            _ => SinglePlaces[(int)kind],
+        };
+
+        public Item OffHand => Get(ItemSlot.OffHand);
+
+        /// <summary>A two-handed weapon is worn: the off-hand stays empty.</summary>
+        public bool IsTwoHanded => Weapon != null && Weapon.Slot == ItemSlot.TwoHandWeapon;
+
+        /// <summary>A second one-handed weapon is worn in the off-hand.</summary>
+        public bool IsDualWield => OffHand != null && OffHand.Slot == ItemSlot.Weapon;
+
+        public bool HasShield => OffHand != null && OffHand.Slot == ItemSlot.Shield;
+
+        /// <summary>Block chance from the shield, 0 to <see cref="GripRules.MaxBlock"/>.</summary>
+        public float BlockChance => HasShield ? System.Math.Min(GripRules.MaxBlock, OffHand.BlockPercent / 100f) : 0f;
+
+        /// <summary>Average damage of the off-hand weapon's swings; the main hand's when not dual wielding.</summary>
+        public float OffHandWeaponDamage => IsDualWield ? OffHand.WeaponAverageDamage : WeaponDamage;
+
+        /// <summary>The attack speed the grip adds (dual wield) as a fraction, and the factor it multiplies by (a two-hander).</summary>
+        public float GripAttackSpeedBonus => IsDualWield ? GripRules.DualWieldAttackSpeed : 0f;
+
+        public float GripAttackSpeedFactor => IsTwoHanded ? GripRules.TwoHandAttackSpeedFactor : 1f;
+
+        /// <summary>How much further the basic attack reaches with this grip.</summary>
+        public float GripReach => IsTwoHanded ? GripRules.TwoHandReach : 0f;
+
+        /// <summary>
+        /// Wears an item in a place under the grip rules: a two-hander empties the off-hand, and anything put in the
+        /// off-hand takes a two-hander out of the weapon place. What comes off (the item that was in the place and
+        /// anything the rules push out) is added to <paramref name="displaced"/>.
+        /// </summary>
+        public EquipmentState Equip(ItemSlot place, Item item, List<Item> displaced = null)
+        {
+            var result = this;
+            void TakeOff(ItemSlot at)
+            {
+                var worn = result.Get(at);
+                if (worn == null)
+                    return;
+                displaced?.Add(worn);
+                result = result.With(at, null);
+            }
+
+            TakeOff(place);
+            if (item != null && item.Slot == ItemSlot.TwoHandWeapon)
+                TakeOff(ItemSlot.OffHand);
+            if (item != null && place == ItemSlot.OffHand && result.IsTwoHanded)
+                TakeOff(ItemSlot.Weapon);
+            return result.With(place, item);
+        }
 
         /// <summary>Where this exact item is worn, or null when it is not.</summary>
         public ItemSlot? PlaceOf(Item item)
@@ -391,17 +451,17 @@ namespace ARPG
             if (item == null || !Inventory.Contains(item))
                 return false;
 
+            // Under the grip rules a two-hander can push out both hands' items (Docs/03), so check room for all of them.
             var place = PowerScore.PlaceFor(Equipment, item, Level, PassiveTree.Bonuses);
-            var current = Equipment.Get(place);
-            Inventory.Remove(item);
-            if (current != null && !Inventory.TryAdd(current))
-            {
-                // No room for the item being swapped out: put the new one back and change nothing.
-                Inventory.TryAdd(item);
+            var displaced = new List<Item>();
+            var equipped = Equipment.Equip(place, item, displaced);
+            if (Inventory.Count - 1 + displaced.Count > Inventory.Capacity)
                 return false;
-            }
 
-            Equipment = Equipment.With(place, item);
+            Inventory.Remove(item);
+            foreach (var worn in displaced)
+                Inventory.TryAdd(worn);
+            Equipment = equipped;
             NotifyChanged();
             return true;
         }
@@ -622,11 +682,7 @@ namespace ARPG
                 // Compared in the place it was worn, so the corpse's second ring is weighed against the second hand.
                 var worn = newEquipment.Get(slot);
                 if (worn == null || PowerScore.ChangeAt(newEquipment, slot, found, Level, PassiveTree.Bonuses) > 0f)
-                {
-                    if (worn != null)
-                        toBag.Add(worn);
-                    newEquipment = newEquipment.With(slot, found);
-                }
+                    newEquipment = newEquipment.Equip(slot, found, toBag);
                 else
                 {
                     toBag.Add(found);

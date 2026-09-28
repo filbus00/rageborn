@@ -10,8 +10,11 @@ namespace ARPG
     }
 
     /// <summary>
-    /// Equipment slots. Docs list ten; nine are built (the off-hand waits for its grips). An item's own slot is its kind;
-    /// <see cref="Ring2"/> is only a place to wear a second <see cref="Ring"/>, never an item's kind.
+    /// Equipment slots, the docs' ten. An item's own slot is its kind; <see cref="Ring2"/> and <see cref="OffHand"/> are
+    /// only places to wear things, never an item's kind: a second <see cref="Ring"/>, and in the off-hand a
+    /// <see cref="Shield"/> or a one-handed <see cref="Weapon"/> (dual wield). A <see cref="TwoHandWeapon"/> is worn in
+    /// the weapon place and empties the off-hand (Docs/03, the grips). New values go at the end: saves store names, but
+    /// the order is the order worn items are saved in.
     /// </summary>
     public enum ItemSlot
     {
@@ -24,6 +27,26 @@ namespace ARPG
         Amulet,
         Ring,
         Ring2,
+        OffHand,
+        Shield,
+        TwoHandWeapon,
+    }
+
+    /// <summary>
+    /// The grips' numbers (Docs/03, decided Q10, the numbers tuning): dual wield swings alternate hands, each with its own
+    /// weapon's damage, at 15 percent more attack speed; a shield blocks 12 percent of melee hits and projectiles, 4 more
+    /// per look tier (20 at the top), capped at 50; a two-hander hits 1.6 times as hard at 0.85 times the speed (1.36 times
+    /// the damage per second, paying for the empty off-hand) and reaches 0.3 further.
+    /// </summary>
+    public static class GripRules
+    {
+        public const float DualWieldAttackSpeed = 0.15f;
+        public const float TwoHandDamageFactor = 1.6f;
+        public const float TwoHandAttackSpeedFactor = 0.85f;
+        public const float TwoHandReach = 0.3f;
+        public const float BaseBlockPercent = 12f;
+        public const float BlockPercentPerTier = 4f;
+        public const float MaxBlock = 0.5f;
     }
 
     /// <summary>
@@ -64,7 +87,17 @@ namespace ARPG
         public int Tempers { get; }
 
         /// <summary>Average weapon damage, from the curve in Docs/03-itemization.md. Zero for items that are not weapons.</summary>
-        public float WeaponAverageDamage => Slot == ItemSlot.Weapon ? CombatFormulas.WeaponAverageDamage(ItemLevel) : 0f;
+        public float WeaponAverageDamage =>
+            Slot == ItemSlot.Weapon ? CombatFormulas.WeaponAverageDamage(ItemLevel)
+            : Slot == ItemSlot.TwoHandWeapon ? CombatFormulas.WeaponAverageDamage(ItemLevel) * GripRules.TwoHandDamageFactor
+            : 0f;
+
+        public bool IsWeapon => Slot == ItemSlot.Weapon || Slot == ItemSlot.TwoHandWeapon;
+
+        /// <summary>A shield's block chance in percent, by its look tier; zero for anything else.</summary>
+        public float BlockPercent => Slot == ItemSlot.Shield
+            ? GripRules.BaseBlockPercent + GripRules.BlockPercentPerTier * AppearanceRules.Tier(ItemLevel)
+            : 0f;
 
         /// <summary>Base armor this piece grants from its item level alone, before affixes. Zero for slots that are
         /// not armor.</summary>
@@ -73,7 +106,7 @@ namespace ARPG
         /// <summary>How much of the armor curve a slot's base gives (Docs/03's proposed table: chest and helm in full,
         /// gloves and boots 60 percent, a belt 40; jewellery none).</summary>
         public static float ArmorShare(ItemSlot slot) =>
-            slot == ItemSlot.Chest || slot == ItemSlot.Helm ? 1f
+            slot == ItemSlot.Chest || slot == ItemSlot.Helm || slot == ItemSlot.Shield ? 1f
             : slot == ItemSlot.Gloves || slot == ItemSlot.Boots ? 0.6f
             : slot == ItemSlot.Belt ? 0.4f : 0f;
 

@@ -51,8 +51,10 @@ namespace ARPG
             // Unarmored target: armor scales every hit by the same factor, so it cannot change which gear is better.
             // The same sums as PlayerCombat.Damage and Strike: Might's damage counts, since the basic attack is melee.
             var increased = equipment.IncreasedDamagePercent / 100f + attributes.IncreasedDamage + (tree?.IncreasedDamage ?? 0f);
+            // Dual wield alternates the hands' swings, so a swing is worth the two weapons' average.
+            var weaponDamage = (equipment.WeaponDamage + equipment.OffHandWeaponDamage) / 2f;
             var hit = CombatFormulas.HitDamage(
-                equipment.WeaponDamage, 1f, equipment.FlatWeaponDamageBonus, increased, 1f,
+                weaponDamage, 1f, equipment.FlatWeaponDamageBonus, increased, 1f,
                 false, 0f, 0f, characterLevel);
             var critChance = Mathf.Clamp01((equipment.CriticalChancePercent + attributes.CriticalChance + (tree?.CriticalChance ?? 0f)) / 100f);
             var critMultiplier = CombatFormulas.BaseCriticalMultiplier +
@@ -65,7 +67,9 @@ namespace ARPG
             var maxLife = (CombatFormulas.CharacterLife(characterLevel) + equipment.TotalLifeBonus) * (1f + (tree?.LifePercent ?? 0f));
             var armor = (equipment.TotalArmor + attributes.Armor) * (1f + (tree?.ArmorPercent ?? 0f));
             var dodge = Mathf.Min(MaxDodge, attributes.Dodge + (tree?.Dodge ?? 0f) + equipment.DodgePercent / 100f);
-            var effectiveLife = maxLife / (1f - CombatFormulas.ArmorReduction(armor, characterLevel)) / (1f - dodge);
+            // A shield's block rolls apart from dodge (Docs/03).
+            var effectiveLife = maxLife / (1f - CombatFormulas.ArmorReduction(armor, characterLevel)) / (1f - dodge) /
+                                (1f - equipment.BlockChance);
 
             return new PowerSnapshot(dps, effectiveLife);
         }
@@ -73,7 +77,7 @@ namespace ARPG
         /// <summary>Basic attacks a second with gear, attributes and the tree, as <see cref="PlayerCombat"/> times them.</summary>
         public static float AttacksPerSecond(EquipmentState equipment, int characterLevel, PassiveBonuses tree = null) =>
             BaseAttacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + CharacterAttributes.At(Mathf.Max(1, characterLevel)).AttackSpeed +
-                                    (tree?.AttackSpeed ?? 0f));
+                                    (tree?.AttackSpeed ?? 0f) + equipment.GripAttackSpeedBonus) * equipment.GripAttackSpeedFactor;
 
         /// <summary>The character's own gear, level and tree.</summary>
         public static PowerSnapshot Evaluate(GameSession session) =>
@@ -88,14 +92,19 @@ namespace ARPG
             var places = EquipmentState.PlacesFor(candidate.Slot);
             if (places.Length == 1)
                 return places[0];
-            foreach (var place in places)
-                if (equipment.Get(place) == null)
-                    return place;
+            // A ring takes an empty hand first. A one-handed weapon goes in the main hand when that is empty or holds a
+            // two-hander; otherwise it replaces the main weapon or joins it in the off-hand, whichever scores higher.
+            if (candidate.Slot == ItemSlot.Ring)
+                foreach (var place in places)
+                    if (equipment.Get(place) == null)
+                        return place;
+            if (candidate.Slot == ItemSlot.Weapon && (equipment.Weapon == null || equipment.IsTwoHanded))
+                return ItemSlot.Weapon;
             var best = places[0];
             var bestScore = float.MinValue;
             foreach (var place in places)
             {
-                var score = Evaluate(equipment.With(place, candidate), characterLevel, tree).Score;
+                var score = Evaluate(equipment.Equip(place, candidate), characterLevel, tree).Score;
                 if (score > bestScore)
                 {
                     bestScore = score;
@@ -107,7 +116,7 @@ namespace ARPG
 
         /// <summary>The gear as it would be with <paramref name="candidate"/> equipped where <see cref="PlaceFor"/> puts it.</summary>
         public static PowerSnapshot WithItem(EquipmentState equipment, Item candidate, int characterLevel, PassiveBonuses tree = null) =>
-            Evaluate(equipment.With(PlaceFor(equipment, candidate, characterLevel, tree), candidate), characterLevel, tree);
+            Evaluate(equipment.Equip(PlaceFor(equipment, candidate, characterLevel, tree), candidate), characterLevel, tree);
 
         /// <summary>
         /// How much equipping <paramref name="candidate"/> would change the power score, as a fraction: 0.12 for 12
@@ -120,7 +129,7 @@ namespace ARPG
         public static float ChangeAt(EquipmentState equipment, ItemSlot place, Item candidate, int characterLevel, PassiveBonuses tree = null)
         {
             var now = Evaluate(equipment, characterLevel, tree).Score;
-            var then = Evaluate(equipment.With(place, candidate), characterLevel, tree).Score;
+            var then = Evaluate(equipment.Equip(place, candidate), characterLevel, tree).Score;
             return now > 0f ? then / now - 1f : 0f;
         }
 

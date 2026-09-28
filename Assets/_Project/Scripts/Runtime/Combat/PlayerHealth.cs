@@ -93,6 +93,15 @@ namespace ARPG
                     DamageNumbers.Current?.ShowText(player.transform.position + Vector3.up * 1.2f, "DODGE", DodgeColor, 34);
                 return;
             }
+            // A shield blocks a melee hit or a projectile completely, rolled apart from dodge (Docs/03, Q10).
+            var block = session.Equipment.BlockChance;
+            if (dodgeable && block > 0f && dodgeRandom.NextDouble() < block)
+            {
+                if (player != null)
+                    DamageNumbers.Current?.ShowText(player.transform.position + Vector3.up * 1.2f, "BLOCK", DodgeColor, 34);
+                Sfx.Play(SoundId.Hit, 0.5f);
+                return;
+            }
 
             var effectiveArmor = Armor * (1f - Mathf.Clamp01(armorIgnorePercent));
             var damage = rawDamage * (1f - CombatFormulas.ArmorReduction(effectiveArmor, attackerLevel));
