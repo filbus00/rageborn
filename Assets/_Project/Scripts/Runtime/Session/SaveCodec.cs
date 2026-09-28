@@ -379,12 +379,20 @@ namespace ARPG
                 var item = RestoreItem(data, warnings);
                 if (item == null)
                     continue;
-                if (equipment.Get(item.Slot) != null)
+                // Worn items are saved by kind; a second ring goes on the second hand.
+                ItemSlot? place = null;
+                foreach (var candidate in EquipmentState.PlacesFor(item.Slot))
+                    if (equipment.Get(candidate) == null)
+                    {
+                        place = candidate;
+                        break;
+                    }
+                if (place == null)
                 {
-                    warnings?.Add($"Two items saved in the {item.Slot} slot, kept the first.");
+                    warnings?.Add($"Too many items saved in the {item.Slot} slot, kept the first.");
                     continue;
                 }
-                equipment = equipment.With(item.Slot, item);
+                equipment = equipment.With(place.Value, item);
             }
             return equipment;
         }
@@ -398,6 +406,9 @@ namespace ARPG
                 warnings?.Add($"Left out an item with an unknown slot or rarity ({data.slot}, {data.rarity}).");
                 return null;
             }
+            // Ring2 is a place to wear a ring, not a kind of item.
+            if (slot == ItemSlot.Ring2)
+                slot = ItemSlot.Ring;
 
             var affixes = new List<AffixRoll>();
             if (data.affixes != null)

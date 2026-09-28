@@ -112,7 +112,8 @@ namespace ARPG
             }
 
             // Momentum is worth its speed: Docs/01, 5 percent movement speed per stack.
-            var effectiveMoveSpeed = moveSpeed * slow.Multiplier * stance.MoveSpeedMultiplier * (1f + tree.MoveSpeed);
+            var effectiveMoveSpeed = moveSpeed * slow.Multiplier * stance.MoveSpeedMultiplier *
+                                     (1f + tree.MoveSpeed + GameSession.Current.Equipment.MovementSpeedPercent / 100f);
 
             var stick = input != null ? input.Value : Vector2.zero;
             var steer = IsoMath.StickToGround(stick);

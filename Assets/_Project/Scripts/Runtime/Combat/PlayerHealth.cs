@@ -84,7 +84,9 @@ namespace ARPG
 
             var stance = player != null ? player.Stance : null;
             var tree = session.PassiveTree.Bonuses;
-            var dodge = Mathf.Min(0.5f, stance != null ? stance.DodgeChance + tree.Dodge + CharacterAttributes.At(session.Level).Dodge : 0f);
+            var dodge = Mathf.Min(0.5f, stance != null
+                ? stance.DodgeChance + tree.Dodge + CharacterAttributes.At(session.Level).Dodge + session.Equipment.DodgePercent / 100f
+                : 0f);
             if (dodgeable && stance != null && dodgeRandom.NextDouble() < dodge)
             {
                 if (player != null)

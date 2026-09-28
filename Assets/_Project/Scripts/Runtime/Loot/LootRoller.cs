@@ -54,7 +54,10 @@ namespace ARPG
 
         // Every slot that can drop, weighted evenly. No per-slot drop-table weighting yet (Docs/03-itemization.md
         // does not specify one); a real drop table can replace this later.
-        static readonly ItemSlot[] DroppableSlots = { ItemSlot.Weapon, ItemSlot.Chest, ItemSlot.Helm };
+        static readonly ItemSlot[] DroppableSlots =
+        {
+            ItemSlot.Weapon, ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Gloves, ItemSlot.Boots, ItemSlot.Belt, ItemSlot.Amulet, ItemSlot.Ring,
+        };
 
         readonly System.Random random;
 

@@ -29,7 +29,8 @@ namespace ARPG
             return array;
         }
 
-        public Item Get(ItemSlot slot) => items != null ? items[(int)slot] : null;
+        // Tolerates a shorter array (one made before a slot was added).
+        public Item Get(ItemSlot slot) => items != null && (int)slot < items.Length ? items[(int)slot] : null;
 
         /// <summary>The equipped weapon, or null when unarmed. Unarmed still fights, at the weapon curve's item level 0.</summary>
         public Item Weapon => Get(ItemSlot.Weapon);
@@ -37,6 +38,31 @@ namespace ARPG
         public Item Chest => Get(ItemSlot.Chest);
 
         public Item Helm => Get(ItemSlot.Helm);
+
+        static readonly ItemSlot[] RingPlaces = { ItemSlot.Ring, ItemSlot.Ring2 };
+        static readonly ItemSlot[][] SinglePlaces = BuildSinglePlaces();
+
+        static ItemSlot[][] BuildSinglePlaces()
+        {
+            var places = new ItemSlot[SlotCount][];
+            for (var i = 0; i < SlotCount; i++)
+                places[i] = new[] { (ItemSlot)i };
+            return places;
+        }
+
+        /// <summary>Where an item of this kind can be worn: a ring on either hand, everything else in its own slot.</summary>
+        public static ItemSlot[] PlacesFor(ItemSlot kind) => kind == ItemSlot.Ring || kind == ItemSlot.Ring2 ? RingPlaces : SinglePlaces[(int)kind];
+
+        /// <summary>Where this exact item is worn, or null when it is not.</summary>
+        public ItemSlot? PlaceOf(Item item)
+        {
+            if (items == null || item == null)
+                return null;
+            for (var i = 0; i < items.Length; i++)
+                if (items[i] == item)
+                    return (ItemSlot)i;
+            return null;
+        }
 
         /// <summary>Whether every slot is empty.</summary>
         public bool IsEmpty
@@ -57,7 +83,7 @@ namespace ARPG
         {
             var copy = new Item[SlotCount];
             if (items != null)
-                Array.Copy(items, copy, SlotCount);
+                Array.Copy(items, copy, Math.Min(items.Length, SlotCount));
             copy[(int)slot] = item;
             return new EquipmentState(copy);
         }
@@ -90,6 +116,8 @@ namespace ARPG
         public float CriticalDamagePercent => Sum(item => item.CriticalDamagePercent);
         public float LifeOnHit => Sum(item => item.LifeOnHit);
         public float CooldownReductionPercent => Sum(item => item.CooldownReductionPercent);
+        public float MovementSpeedPercent => Sum(item => item.MovementSpeedPercent);
+        public float DodgePercent => Sum(item => item.DodgePercent);
 
         public static EquipmentState Empty => new EquipmentState((Item[])null);
 
@@ -354,7 +382,8 @@ namespace ARPG
         }
 
         /// <summary>
-        /// Equips an item from the backpack into its slot, moving whatever was worn there back to the backpack.
+        /// Equips an item from the backpack into its slot, moving whatever was worn there back to the backpack. A ring
+        /// goes on an empty hand, else replaces whichever ring it beats by more (<see cref="PowerScore.PlaceFor"/>).
         /// Returns false, changing nothing, when the backpack has no room for the item being swapped out.
         /// </summary>
         public bool EquipFromInventory(Item item)
@@ -362,7 +391,8 @@ namespace ARPG
             if (item == null || !Inventory.Contains(item))
                 return false;
 
-            var current = Equipment.Get(item.Slot);
+            var place = PowerScore.PlaceFor(Equipment, item, Level, PassiveTree.Bonuses);
+            var current = Equipment.Get(place);
             Inventory.Remove(item);
             if (current != null && !Inventory.TryAdd(current))
             {
@@ -371,7 +401,7 @@ namespace ARPG
                 return false;
             }
 
-            Equipment = Equipment.With(item.Slot, item);
+            Equipment = Equipment.With(place, item);
             NotifyChanged();
             return true;
         }
@@ -432,9 +462,10 @@ namespace ARPG
 
             if (!Inventory.Replace(original, result))
             {
-                if (Equipment.Get(original.Slot) != original)
+                var place = Equipment.PlaceOf(original);
+                if (place == null)
                     return false;
-                Equipment = Equipment.With(original.Slot, result);
+                Equipment = Equipment.With(place.Value, result);
             }
 
             Gold -= cost.Gold;
@@ -588,8 +619,9 @@ namespace ARPG
                 if (found == null)
                     continue;
 
+                // Compared in the place it was worn, so the corpse's second ring is weighed against the second hand.
                 var worn = newEquipment.Get(slot);
-                if (worn == null || PowerScore.Change(newEquipment, found, Level, PassiveTree.Bonuses) > 0f)
+                if (worn == null || PowerScore.ChangeAt(newEquipment, slot, found, Level, PassiveTree.Bonuses) > 0f)
                 {
                     if (worn != null)
                         toBag.Add(worn);

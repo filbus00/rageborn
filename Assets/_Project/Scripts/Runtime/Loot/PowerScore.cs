@@ -64,7 +64,7 @@ namespace ARPG
             // tree, capped) spares that share of hits.
             var maxLife = (CombatFormulas.CharacterLife(characterLevel) + equipment.TotalLifeBonus) * (1f + (tree?.LifePercent ?? 0f));
             var armor = (equipment.TotalArmor + attributes.Armor) * (1f + (tree?.ArmorPercent ?? 0f));
-            var dodge = Mathf.Min(MaxDodge, attributes.Dodge + (tree?.Dodge ?? 0f));
+            var dodge = Mathf.Min(MaxDodge, attributes.Dodge + (tree?.Dodge ?? 0f) + equipment.DodgePercent / 100f);
             var effectiveLife = maxLife / (1f - CombatFormulas.ArmorReduction(armor, characterLevel)) / (1f - dodge);
 
             return new PowerSnapshot(dps, effectiveLife);
@@ -79,18 +79,48 @@ namespace ARPG
         public static PowerSnapshot Evaluate(GameSession session) =>
             Evaluate(session.Equipment, session.Level, session.PassiveTree.Bonuses);
 
-        /// <summary>The gear as it would be with <paramref name="candidate"/> equipped in its slot.</summary>
+        /// <summary>
+        /// Where <paramref name="candidate"/> would be worn: its own slot, or for a ring an empty hand, else the hand
+        /// where it raises the score more (so it replaces the weaker ring).
+        /// </summary>
+        public static ItemSlot PlaceFor(EquipmentState equipment, Item candidate, int characterLevel, PassiveBonuses tree = null)
+        {
+            var places = EquipmentState.PlacesFor(candidate.Slot);
+            if (places.Length == 1)
+                return places[0];
+            foreach (var place in places)
+                if (equipment.Get(place) == null)
+                    return place;
+            var best = places[0];
+            var bestScore = float.MinValue;
+            foreach (var place in places)
+            {
+                var score = Evaluate(equipment.With(place, candidate), characterLevel, tree).Score;
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    best = place;
+                }
+            }
+            return best;
+        }
+
+        /// <summary>The gear as it would be with <paramref name="candidate"/> equipped where <see cref="PlaceFor"/> puts it.</summary>
         public static PowerSnapshot WithItem(EquipmentState equipment, Item candidate, int characterLevel, PassiveBonuses tree = null) =>
-            Evaluate(equipment.With(candidate.Slot, candidate), characterLevel, tree);
+            Evaluate(equipment.With(PlaceFor(equipment, candidate, characterLevel, tree), candidate), characterLevel, tree);
 
         /// <summary>
         /// How much equipping <paramref name="candidate"/> would change the power score, as a fraction: 0.12 for 12
         /// percent better, negative for worse. Positive is an upgrade arrow.
         /// </summary>
-        public static float Change(EquipmentState equipment, Item candidate, int characterLevel, PassiveBonuses tree = null)
+        public static float Change(EquipmentState equipment, Item candidate, int characterLevel, PassiveBonuses tree = null) =>
+            ChangeAt(equipment, PlaceFor(equipment, candidate, characterLevel, tree), candidate, characterLevel, tree);
+
+        /// <summary>The same change, with the item worn in a given place.</summary>
+        public static float ChangeAt(EquipmentState equipment, ItemSlot place, Item candidate, int characterLevel, PassiveBonuses tree = null)
         {
             var now = Evaluate(equipment, characterLevel, tree).Score;
-            var then = WithItem(equipment, candidate, characterLevel, tree).Score;
+            var then = Evaluate(equipment.With(place, candidate), characterLevel, tree).Score;
             return now > 0f ? then / now - 1f : 0f;
         }
 

@@ -71,6 +71,8 @@ namespace ARPG
                 new SlotUi { Slot = ItemSlot.Weapon, Swatch = weaponSwatch, Label = weaponLabel, Button = weaponButton },
                 new SlotUi { Slot = ItemSlot.Chest, Swatch = chestSwatch, Label = chestLabel, Button = chestButton },
                 new SlotUi { Slot = ItemSlot.Helm, Swatch = helmSwatch, Label = helmLabel, Button = helmButton },
+                SmallSlot(ItemSlot.Gloves, 0), SmallSlot(ItemSlot.Boots, 1), SmallSlot(ItemSlot.Belt, 2),
+                SmallSlot(ItemSlot.Amulet, 3), SmallSlot(ItemSlot.Ring, 4), SmallSlot(ItemSlot.Ring2, 5),
             };
 
             if (openButton != null)
@@ -246,6 +248,27 @@ namespace ARPG
             return text;
         }
 
+        // The six slots that do not show on the character, in a second, smaller row under the weapon, chest and helm:
+        // copies of the chest tile (the scene holds only the first three), so the layout needs no new scene objects.
+        const float SmallSlotWidth = 170f, SmallSlotHeight = 110f, SmallSlotGap = 12f, SmallRowTop = -386f;
+
+        SlotUi SmallSlot(ItemSlot slot, int column)
+        {
+            if (chestButton == null)
+                return new SlotUi { Slot = slot };
+            var copy = Instantiate(chestButton.gameObject, chestButton.transform.parent);
+            copy.name = slot + " Slot";
+            var rect = (RectTransform)copy.transform;
+            rect.sizeDelta = new Vector2(SmallSlotWidth, SmallSlotHeight);
+            rect.anchoredPosition = new Vector2((column - 2.5f) * (SmallSlotWidth + SmallSlotGap), SmallRowTop);
+            var label = copy.GetComponentInChildren<Text>();
+            if (label != null)
+                label.fontSize = 22;
+            return new SlotUi { Slot = slot, Swatch = copy.GetComponent<Image>(), Label = label, Button = copy.GetComponent<Button>() };
+        }
+
+        static string SlotName(ItemSlot slot) => slot == ItemSlot.Ring2 ? "Ring" : slot.ToString();
+
         void RefreshSlot(GameSession session, EquipmentState equipment, SlotUi ui)
         {
             var item = equipment.Get(ui.Slot);
@@ -254,8 +277,8 @@ namespace ARPG
                 ui.Swatch.color = item != null ? LootColors.Of(item.Rarity) : EmptySlotColor;
             if (ui.Label != null)
                 ui.Label.text = item != null
-                    ? $"{ui.Slot}\n{item.Rarity}, iLvl {item.ItemLevel}\n{item.Affixes.Count} affixes"
-                    : $"{ui.Slot}\n(empty)";
+                    ? $"{SlotName(ui.Slot)}\n{item.Rarity}, iLvl {item.ItemLevel}\n{item.Affixes.Count} affixes"
+                    : $"{SlotName(ui.Slot)}\n(empty)";
 
             if (ui.Button == null)
                 return;
@@ -293,6 +316,8 @@ namespace ARPG
             statsBuilder.Append(equipment.CriticalDamagePercent.ToString("F0")).Append("%").AppendLine();
             statsBuilder.Append("Cooldown reduction ").Append(equipment.CooldownReductionPercent.ToString("F0")).Append("%   ");
             statsBuilder.Append("Life on hit ").Append(equipment.LifeOnHit.ToString("F0")).AppendLine();
+            statsBuilder.Append("Move speed +").Append(equipment.MovementSpeedPercent.ToString("F0")).Append("%   ");
+            statsBuilder.Append("Dodge +").Append(equipment.DodgePercent.ToString("F0")).Append("%   ");
             statsBuilder.Append("Backpack ").Append(session.Inventory.Count).Append("/").Append(session.Inventory.Capacity);
             return statsBuilder.ToString();
         }

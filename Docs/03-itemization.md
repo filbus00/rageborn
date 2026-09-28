@@ -206,7 +206,7 @@ Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). Everything b
 
 ### The ten slots for the Wrathborn
 
-Built: weapon, chest, helm. Proposed for the other seven:
+Built: weapon, chest, helm; and on 2026-09-28 gloves, boots, belt, amulet and two rings with the base armor below (the belt's potion charge from item level 30 is not built). The off-hand waits for its grips. Proposed for the other seven:
 
 | Slot | Base stat | Implicit (every item of the slot) | Shown on the character |
 |---|---|---|---|

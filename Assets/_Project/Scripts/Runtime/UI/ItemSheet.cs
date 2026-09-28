@@ -181,7 +181,7 @@ namespace ARPG
             var position = showingEquipped ? "equipped" : $"{index + 1} of {list.Count}, swipe for more";
             subtitle.text = $"Item level {item.ItemLevel}   ·   {position}";
 
-            var worn = equipment.Get(item.Slot);
+            var worn = showingEquipped ? item : equipment.Get(PowerScore.PlaceFor(equipment, item, session.Level, session.PassiveTree.Bonuses));
             if (showingEquipped)
             {
                 var now = PowerScore.Evaluate(equipment, session.Level, session.PassiveTree.Bonuses);

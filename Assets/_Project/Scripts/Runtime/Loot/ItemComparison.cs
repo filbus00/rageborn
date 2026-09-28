@@ -45,13 +45,16 @@ namespace ARPG
                 case AffixId.CriticalDamage: return "Critical damage";
                 case AffixId.LifeOnHit: return "Life on hit";
                 case AffixId.CooldownReduction: return "Cooldown reduction";
+                case AffixId.MovementSpeed: return "Movement speed";
+                case AffixId.DodgeChance: return "Dodge chance";
                 default: return id.ToString();
             }
         }
 
         public static bool IsPercent(AffixId id) =>
             id == AffixId.IncreasedDamage || id == AffixId.AttackSpeed || id == AffixId.CriticalChance ||
-            id == AffixId.CriticalDamage || id == AffixId.CooldownReduction;
+            id == AffixId.CriticalDamage || id == AffixId.CooldownReduction || id == AffixId.MovementSpeed ||
+            id == AffixId.DodgeChance;
 
         /// <summary>The docs' tier dots: five dots, filled for how good the tier is (T1 all five, T5 one).</summary>
         public static string TierDots(int tier)
@@ -72,8 +75,9 @@ namespace ARPG
             if (candidate.Slot == ItemSlot.Weapon)
                 lines.Add(new StatLine("Weapon damage", candidate.WeaponAverageDamage,
                     equipped != null ? equipped.WeaponAverageDamage : CombatFormulas.WeaponAverageDamage(0), false));
-            else
+            else if (Item.ArmorShare(candidate.Slot) > 0f)
                 lines.Add(new StatLine("Base armor", candidate.ArmorValue, equipped != null ? equipped.ArmorValue : 0f, false));
+            // Amulets and rings have no base stat: only their affixes.
 
             foreach (AffixId id in System.Enum.GetValues(typeof(AffixId)))
             {

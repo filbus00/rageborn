@@ -3,10 +3,10 @@ using System;
 namespace ARPG
 {
     /// <summary>
-    /// The affixes shipped so far, a curated slice of the roughly 90 in Docs/03-itemization.md: enough prefixes and
-    /// suffixes to make weapon, chest and helm drops feel different, hooked into stats the game already has (damage,
-    /// armor, life, attack speed, crits, cooldowns, life on hit). The rest of the pool (resistances, sockets, Magic
-    /// Find on gear, the other seven slots) comes later.
+    /// The affixes shipped so far, a curated slice of the 88 in Docs/03-itemization.md, hooked into stats the game
+    /// already has (damage, armor, life, attack speed, crits, cooldowns, life on hit, movement speed, dodge), on the
+    /// slots the docs list for each. The rest of the pool (resistances, sockets, Magic Find on gear) comes later.
+    /// New ids go at the end: <see cref="AffixTable"/> indexes its definitions by id.
     /// </summary>
     public enum AffixId
     {
@@ -22,6 +22,8 @@ namespace ARPG
         CriticalDamage,
         LifeOnHit,
         CooldownReduction,
+        MovementSpeed,
+        DodgeChance,
     }
 
     public enum AffixKind
@@ -84,21 +86,22 @@ namespace ARPG
             public float HighShare { get; }
         }
 
-        static readonly ItemSlot[] WeaponOnly = { ItemSlot.Weapon };
-        static readonly ItemSlot[] ChestAndHelm = { ItemSlot.Chest, ItemSlot.Helm };
-        static readonly ItemSlot[] HelmOnly = { ItemSlot.Helm };
+        // The slots each affix can roll on, from Docs/03's affix table (shields and the off-hand wait for their slot).
+        static ItemSlot[] On(params ItemSlot[] slots) => slots;
 
         static readonly Definition[] Definitions =
         {
-            new Definition(AffixKind.Prefix, 60f, 90f, WeaponOnly),      // FlatWeaponDamage
-            new Definition(AffixKind.Prefix, 18f, 26f, WeaponOnly),      // IncreasedDamage
-            new Definition(AffixKind.Prefix, 180f, 240f, ChestAndHelm),  // Life
-            new Definition(AffixKind.Prefix, 90f, 130f, ChestAndHelm),   // Armor
-            new Definition(AffixKind.Suffix, 7f, 11f, WeaponOnly),       // AttackSpeed
-            new Definition(AffixKind.Suffix, 4f, 7f, WeaponOnly),        // CriticalChance
-            new Definition(AffixKind.Suffix, 20f, 30f, WeaponOnly),      // CriticalDamage
-            new Definition(AffixKind.Suffix, 4f, 8f, WeaponOnly),        // LifeOnHit
-            new Definition(AffixKind.Suffix, 5f, 9f, HelmOnly),          // CooldownReduction
+            new Definition(AffixKind.Prefix, 60f, 90f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Amulet, ItemSlot.Gloves)), // FlatWeaponDamage
+            new Definition(AffixKind.Prefix, 18f, 26f, On(ItemSlot.Weapon, ItemSlot.Gloves, ItemSlot.Amulet)),                 // IncreasedDamage
+            new Definition(AffixKind.Prefix, 180f, 240f, On(ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Belt, ItemSlot.Boots)),    // Life
+            new Definition(AffixKind.Prefix, 90f, 130f, On(ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Gloves, ItemSlot.Boots)),   // Armor
+            new Definition(AffixKind.Suffix, 7f, 11f, On(ItemSlot.Weapon, ItemSlot.Gloves, ItemSlot.Ring)),                    // AttackSpeed
+            new Definition(AffixKind.Suffix, 4f, 7f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Amulet, ItemSlot.Gloves)),    // CriticalChance
+            new Definition(AffixKind.Suffix, 20f, 30f, On(ItemSlot.Weapon, ItemSlot.Amulet, ItemSlot.Ring)),                   // CriticalDamage
+            new Definition(AffixKind.Suffix, 4f, 8f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Gloves)),                     // LifeOnHit
+            new Definition(AffixKind.Suffix, 5f, 9f, On(ItemSlot.Helm, ItemSlot.Amulet, ItemSlot.Ring)),                       // CooldownReduction
+            new Definition(AffixKind.Suffix, 6f, 10f, On(ItemSlot.Boots)),                                                     // MovementSpeed
+            new Definition(AffixKind.Suffix, 3f, 5f, On(ItemSlot.Boots, ItemSlot.Belt, ItemSlot.Ring)),                        // DodgeChance
         };
 
         // Index 0 unused so tier numbers (1-5) index directly.

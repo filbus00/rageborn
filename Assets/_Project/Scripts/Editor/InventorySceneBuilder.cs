@@ -140,14 +140,14 @@ namespace ARPG.Editor
             var stats = NewText(panel.transform, "", 28, TextAnchor.UpperLeft);
             stats.rectTransform.anchorMin = stats.rectTransform.anchorMax = new Vector2(0.5f, 1f);
             stats.rectTransform.pivot = new Vector2(0.5f, 1f);
-            stats.rectTransform.anchoredPosition = new Vector2(0f, -420f);
+            stats.rectTransform.anchoredPosition = new Vector2(0f, -550f); // Under the second row of slots (InventoryScreen.SmallSlot).
             stats.rectTransform.sizeDelta = new Vector2(1000f, 220f);
 
             var backpackLabel = NewText(panel.transform, "Backpack", 32, TextAnchor.UpperLeft);
             // Left-aligned with the list below it (centered at -460 it ran off the edge of a phone's screen).
             backpackLabel.rectTransform.anchorMin = backpackLabel.rectTransform.anchorMax = new Vector2(0f, 1f);
             backpackLabel.rectTransform.pivot = new Vector2(0f, 1f);
-            backpackLabel.rectTransform.anchoredPosition = new Vector2(40f, -660f);
+            backpackLabel.rectTransform.anchoredPosition = new Vector2(40f, -790f);
             backpackLabel.rectTransform.sizeDelta = new Vector2(300f, 50f);
 
             var content = BuildScrollView(panel.transform);
@@ -217,7 +217,7 @@ namespace ARPG.Editor
             scrollRect.anchorMin = new Vector2(0f, 0f);
             scrollRect.anchorMax = new Vector2(1f, 1f);
             scrollRect.offsetMin = new Vector2(40f, 40f);
-            scrollRect.offsetMax = new Vector2(-40f, -700f);
+            scrollRect.offsetMax = new Vector2(-40f, -830f);
 
             scrollGo.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.25f);
 

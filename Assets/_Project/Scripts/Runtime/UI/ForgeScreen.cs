@@ -441,7 +441,7 @@ namespace ARPG
         }
 
         static bool Owns(GameSession session, Item item) =>
-            session.Inventory.Contains(item) || session.Equipment.Get(item.Slot) == item;
+            session.Inventory.Contains(item) || session.Equipment.PlaceOf(item) != null;
 
         /// <summary>Each material in its rarity's color, so Bloodstone reads as the Rare material and so on.</summary>
         static Color MaterialColor(CraftingMaterial material)

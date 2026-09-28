@@ -9,12 +9,21 @@ namespace ARPG
         Legendary,
     }
 
-    /// <summary>Equipment slots. Docs list ten; a slot is added when items for it exist.</summary>
+    /// <summary>
+    /// Equipment slots. Docs list ten; nine are built (the off-hand waits for its grips). An item's own slot is its kind;
+    /// <see cref="Ring2"/> is only a place to wear a second <see cref="Ring"/>, never an item's kind.
+    /// </summary>
     public enum ItemSlot
     {
         Weapon,
         Chest,
         Helm,
+        Gloves,
+        Boots,
+        Belt,
+        Amulet,
+        Ring,
+        Ring2,
     }
 
     /// <summary>
@@ -59,7 +68,14 @@ namespace ARPG
 
         /// <summary>Base armor this piece grants from its item level alone, before affixes. Zero for slots that are
         /// not armor.</summary>
-        public float ArmorValue => Slot == ItemSlot.Chest || Slot == ItemSlot.Helm ? CombatFormulas.BaseArmorPerPiece(ItemLevel) : 0f;
+        public float ArmorValue => CombatFormulas.BaseArmorPerPiece(ItemLevel) * ArmorShare(Slot);
+
+        /// <summary>How much of the armor curve a slot's base gives (Docs/03's proposed table: chest and helm in full,
+        /// gloves and boots 60 percent, a belt 40; jewellery none).</summary>
+        public static float ArmorShare(ItemSlot slot) =>
+            slot == ItemSlot.Chest || slot == ItemSlot.Helm ? 1f
+            : slot == ItemSlot.Gloves || slot == ItemSlot.Boots ? 0.6f
+            : slot == ItemSlot.Belt ? 0.4f : 0f;
 
         /// <summary>Sum of every rolled affix matching this id. Zero when the item has none.</summary>
         public float AffixSum(AffixId id)
@@ -80,6 +96,8 @@ namespace ARPG
         public float CriticalDamagePercent => AffixSum(AffixId.CriticalDamage);
         public float LifeOnHit => AffixSum(AffixId.LifeOnHit);
         public float CooldownReductionPercent => AffixSum(AffixId.CooldownReduction);
+        public float MovementSpeedPercent => AffixSum(AffixId.MovementSpeed);
+        public float DodgePercent => AffixSum(AffixId.DodgeChance);
 
         public override string ToString() => $"{Rarity} {Slot} (item level {ItemLevel}, {Affixes.Count} affixes)";
     }

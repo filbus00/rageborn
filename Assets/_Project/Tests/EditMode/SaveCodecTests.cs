@@ -265,7 +265,7 @@ namespace ARPG.Tests
         public void UnknownNames_AreLeftOut_WithAWarning_AndTheRestLoads()
         {
             var data = new SaveData { version = SaveData.CurrentVersion, gold = 10 };
-            data.backpack.Add(new ItemData { slot = "Boots", rarity = "Magic", itemLevel = 5 });
+            data.backpack.Add(new ItemData { slot = "Gauntlets", rarity = "Magic", itemLevel = 5 });
             data.backpack.Add(new ItemData { slot = "7", rarity = "Magic", itemLevel = 5 });
             var chest = new ItemData { slot = "Chest", rarity = "Magic", itemLevel = 5 };
             chest.affixes.Add(new AffixData { id = "Thorns", tier = 5, value = 3f });
