@@ -20,7 +20,7 @@ How to read it:
 | Floating stick, movement only | Built | 01 | Stick size, dead zone and handedness settings not built (Settings screen) |
 | Isometric camera, lead, size 7.5, world at Diablo 2 resolution | Built | 01 | Screen shake and its setting not built |
 | Auto-target and basic attack | Built | 01 | Runs in Update; the docs ask for a fixed timestep |
-| Auto-cast by slot order and trigger | Partly built | 01, 02 | Fixed trigger per skill kind; the picker is decided (Q15: default plus two alternatives), not built |
+| Auto-cast by slot order and trigger | Built | 01, 02 | Four-slot loadout with a trigger per slot: the skill's own or two alternatives (Q15), 2026-09-28 |
 | Stillness and Momentum | Built | 01 | |
 | Rage | Built | 02 | |
 | Telegraphs (ground, line) | Built | 01 | Charge telegraph built for the boss only |
@@ -37,14 +37,14 @@ How to read it:
 | Item | Status | Where | Notes |
 |---|---|---|---|
 | Hew, Hurl Axe, Bull Rush, Ground Breaker | Built | 02 | Unlock at 1, 2, 4, 6 and equip themselves |
-| Battle Roar, Rending Spin, Blood Frenzy, Skullsplitter | Designed (one line each), expanded as Proposed | 02 | Unlock at 9, 12, 15, 18: Decided (Q4) |
-| Keystones Berserker and Juggernaut | Designed | 02 | Both bought in the tree for 3 points each, from level 20, the loadout picks one: Decided (Q4, Q5) |
-| Skill levels 1 to 20 | Proposed | 02 | Scaling rule |
+| Battle Roar, Rending Spin, Blood Frenzy, Skullsplitter | Built (2026-09-28, placeholder visuals, no animations) | 02 | Unlock at 9, 12, 15, 18: Decided (Q4) |
+| Keystones Berserker and Juggernaut | Built (2026-09-28) | 02 | Both bought in the tree for 3 points each, from level 20, one active: Decided (Q4, Q5) |
+| Skill levels 1 to 20 | Built with the proposed numbers (2026-09-28) | 02 | Scaling rule tuning |
 | Skill modifiers at 5, 10, 15 (24 for the class) | Proposed | 02 | |
 | Skill tags | Proposed | 02 | Needed by gear |
-| Passive tree (60 nodes) | Proposed | 02 | Replaces the stand-in Vitality when built |
+| Passive tree (60 nodes) | Built with the proposed numbers (2026-09-28) | 02 | The stand-in Vitality stays until the attributes are built |
 | Attributes and attribute points | Designed | 02 | Automatic growth per level: Decided (Q6) |
-| Loadout screen, presets | Designed | 06 | Opens at level 9 (Q4); presets bought with gold (Q16) |
+| Loadout screen, presets | Screen built (2026-09-28); presets not | 06 | Opens at level 9 (Q4); presets bought with gold (Q16) |
 | Gear on the character (4 layers, 4 grips) | Partly built | 03, 09 | Bake and layered renderer built; off-hand and two-handers are not items; budget: measure, then trim, resolution may drop to Diablo 2's (Q3) |
 | 16 directions for the player | Built (bake and playback) | 09 | |
 | Ranger, Hexer | Designed as drafts | 02 | Post-launch, not expanded |
