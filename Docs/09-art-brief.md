@@ -41,10 +41,10 @@ Contents:
 
 | Fact | Value |
 |---|---|
-| Pixels per unit | 128. One world unit = 128 px |
-| Floor tile | a 2:1 diamond, **128 x 64 px** |
+| Pixels per unit | **64**. One world unit = 64 px (halved on 2026-09-28, see 0.8) |
+| Floor tile | a 2:1 diamond, **64 x 32 px** |
 | Camera | isometric 2:1 dimetric: looking down at **30 degrees** of elevation, rotated **45 degrees** around the vertical axis |
-| Screen | iPhone portrait. The game camera shows about 9 x 20 world units, so art is seen at about 1:1 pixels on a phone. Detail smaller than 2 px is lost |
+| Screen | iPhone portrait. The game camera shows about 7 x 15 world units, and the world is drawn at a phone's point resolution (402 x 874 on an iPhone 17) and enlarged in hard 3 x 3 pixels, Diablo 2 style (0.8). Art at 64 px a unit is seen at about 90 percent, pixel for pixel. Detail smaller than 1 px is lost; design for silhouettes and clusters of 2 to 3 px |
 | Sorting | lower on screen draws in front. **Every character and prop pivot is at its feet**, where it touches the ground |
 | Shadows | the engine draws a soft ellipse under every character. **Do not paint a cast shadow** into character sprites. Props may have a short contact shadow painted in |
 | Lighting | the engine lights the scene with real 2D lights (a warm light around the player, dark dungeons). Paint sprites with **soft light from the top left** and **no strong coloured light**, so the engine's lights can colour them |
@@ -66,14 +66,14 @@ Characters face 8 directions; the player character 16 (decision of 2026-09-27, a
 
 Generate all 8. Do not mirror the left side to make the right: weapons are held in the right hand, and mirroring swaps hands.
 
-The player's 16 add a row between each pair, in the same clockwise order: S, SSW, SW, WSW, W, WNW, NW, NNW, N, NNE, NE, ENE, E, ESE, SE, SSE. With 16 rows of 256 px a sheet is 4096 px tall; the sprite bake makes these from the 3D model, so nobody draws them.
+The player's 16 add a row between each pair, in the same clockwise order: S, SSW, SW, WSW, W, WNW, NW, NNW, N, NNE, NE, ENE, E, ESE, SE, SSE. With 16 rows of 128 px a sheet is 2048 px tall; the sprite bake makes these from the 3D model, so nobody draws them.
 
 ### 0.4 Sprite sheet layout
 
 - One PNG per character per animation: `<character>_<animation>.png`.
 - A grid of equal cells. **Rows are the 8 directions in the order above. Columns are frames, left to right.**
 - No gaps or padding between cells. The subject is centred horizontally in every cell, with its feet at the same pixel in every cell (the pivot, listed per character).
-- **No sheet larger than 4096 x 4096 px** (the texture limit the game targets). When a sheet would be larger, deliver one file per direction instead, `<character>_<animation>_<dir>.png` (for example `cinder_warden_death_sw.png`), its frames filling rows left to right and then top to bottom, 8 cells per row for 512 px cells. Every boss sheet is split this way.
+- **No sheet larger than 4096 x 4096 px** (the texture limit the game targets). When a sheet would be larger, deliver one file per direction instead, `<character>_<animation>_<dir>.png` (for example `cinder_warden_death_sw.png`), its frames filling rows left to right and then top to bottom, as many cells per row as fit in 4096 px (16 for the boss's 256 px cells). A boss sheet longer than 16 frames is split this way.
 - Frame rate: **12 frames per second** unless stated.
 - The first and last frames of a looping animation must join seamlessly.
 
@@ -117,11 +117,21 @@ AI tools drift. Hold everything together this way:
 **Route A render settings (Blender or any 3D tool):**
 
 - Camera: **orthographic**. Rotation: X 60 degrees (a 30 degree look-down), Z 45 degrees plus 45 degrees per direction step: S = 45, SW = 90, W = 135, NW = 180, N = 225, NE = 270, E = 315, SE = 0. Check this so that direction S shows the model's front.
-- Scale: one game tile is a ground square **0.707 m on a side, turned 45 degrees** (its diagonal is 1 m). Set the orthographic scale so that such a square renders as an exact **128 x 64 px diamond** at the final size; equivalently, 1 m measured left to right across the screen is 128 px. Check it by rendering a 0.707 m square plane once.
-- Character scale: scale each model so it renders at the height its section gives (the Wrathborn about 170 px), not by real-world metres; the game's ranges are tuned to that size.
+- Scale: one game tile is a ground square **0.707 m on a side, turned 45 degrees** (its diagonal is 1 m). Set the orthographic scale so that such a square renders as an exact **64 x 32 px diamond** at the final size; equivalently, 1 m measured left to right across the screen is 64 px. Check it by rendering a 0.707 m square plane once.
+- Character scale: scale each model so it renders at the height its section gives (the Wrathborn about 85 px), not by real-world metres; the game's ranges are tuned to that size.
 - Lighting: one soft key light from the camera's upper left, a dim fill, **no cast shadow onto the ground** (the ground plane is not rendered), ambient occlusion on.
 - Output: transparent film/background, render at 4x and downscale.
 - Look: a painterly or slightly gritty material and texture treatment, **not** clean plastic 3D. Post-process each frame for the hand-finished look in 1.2 if the tool allows.
+
+### 0.8 Resolution: Diablo 2 style (2026-09-28)
+
+The owner's decisions of 2026-09-28: the game "can drop more in resolution. It can be the same as d2", then "Do it, diablo 2 style on all and move the camera 25% closer". So:
+
+- The whole world (floor, walls, characters, props, effects) is drawn at a low resolution, about 870 px on the long side (a phone's point resolution: 402 x 874 on an iPhone 17), and enlarged in hard, square pixels to fill the screen, as Diablo 2's 800 x 600 looks on a big monitor. The HUD, menus, item icons and text are drawn afterwards at full resolution and stay sharp (sections 10 to 12 are unchanged).
+- The camera shows 15 world units top to bottom (it was 20), so one world unit is about 58 rendered pixels.
+- **In-world art is made at 64 pixels per unit**, half of the brief's first version: every size in sections 3 to 9 and 15 (canvas, cell, pivot, height) was halved on 2026-09-28. At 58 px a unit it is shown at about 90 percent, close to pixel for pixel. Art at the old 128 px a unit would be shrunk more than half and waste its detail.
+- Make in-world art for the look it will have: **strong silhouettes, readable value groups, and detail in clusters of 2 to 3 px**. Fine hatching, 1 px outlines on characters and small text-like marks vanish or shimmer. Generate at 4x (0.1) and downscale with a good filter, then check the result at 1:1 and at 3x with nearest-neighbour scaling, which is how the phone shows it.
+- The Wrathborn is already baked this way (the sprite bake's `pixelsPerUnit` 64). Sections 13 and 14 keep their first wording where they record what was decided at the time.
 
 ---
 
@@ -177,28 +187,28 @@ Rules:
 
 ## 2. Step 1: style frames (do these first)
 
-Three images that fix the look before any production asset. The user approves them; every later prompt uses them as references.
+Three images that fix the look before any production asset. The user approves them; every later prompt uses them as references. Since 2026-09-28 (0.8) the world in a screenshot is chunky pixel art: make frames 1 and 2 at **390 x 844** (the world's own resolution) and enlarge them 3x with nearest-neighbour scaling to 1170 x 2532; the warrior stands about 95 px tall in the 390 x 844 image. Frame 3's HUD is painted at full resolution over the enlarged frame.
 
 | # | File | Size | Content |
 |---|---|---|---|
-| 1 | `marketing/style_frame_dungeon.png` | 1170 x 2532 | A mock gameplay screenshot, portrait: a stone dungeon room seen from the game camera, pitch dark except a warm ember light pool around a barbarian warrior in the centre (about 170 px tall), a pack of pale husks at the edge of the light, a rusted chest, a doorway into darkness. No UI |
+| 1 | `marketing/style_frame_dungeon.png` | 1170 x 2532 | A mock gameplay screenshot, portrait: a stone dungeon room seen from the game camera, pitch dark except a warm ember light pool around a barbarian warrior in the centre (about 95 px tall in the 390 x 844 image, see above), a pack of pale husks at the edge of the light, a rusted chest, a doorway into darkness. No UI |
 | 2 | `marketing/style_frame_town.png` | 1170 x 2532 | The act 1 town at dusk: a ruined chapel, a smith's forge with fire, a standing waystone with blue runes, muddy cobbles, the same warrior. No UI |
 | 3 | `marketing/style_frame_ui.png` | 1170 x 2532 | Style frame 1 with the combat HUD painted over it, following Step 10's layout: slim life bar at the top, level number, potion pips, a mini-map top right, a floating stick at the bottom, a Bag button bottom right |
 
 Prompt for frame 1:
 
-> [style block] Portrait mobile game screenshot, 9:19.5, isometric dark dungeon room with floor of cracked ash-grey flagstones, heavy stone walls, one broad-shouldered barbarian warrior with a rusted axe standing in the centre, a warm orange ember light around him fading to near-black at the screen edges, six pale emaciated undead husks at the edge of the light, a rusted iron-bound chest, an arched doorway into darkness. [negative block]
+> [style block] Portrait mobile game screenshot at low resolution, chunky visible pixels like a late 1990s PC game, 9:19.5, isometric dark dungeon room with floor of cracked ash-grey flagstones, heavy stone walls, one broad-shouldered barbarian warrior with a rusted axe standing in the centre, a warm orange ember light around him fading to near-black at the screen edges, six pale emaciated undead husks at the edge of the light, a rusted iron-bound chest, an arched doorway into darkness. [negative block]
 
 ---
 
 ## 3. Step 2: terrain
 
-All tiles use the 2:1 diamond: **128 px wide, 64 px tall at the floor**. Taller tiles (walls) keep the same 128 x 64 footprint at their bottom and grow upward. Tiles must tile seamlessly with every neighbour, including themselves in every position.
+All tiles use the 2:1 diamond: **64 px wide, 32 px tall at the floor**. Taller tiles (walls) keep the same 64 x 32 footprint at their bottom and grow upward. Tiles must tile seamlessly with every neighbour, including themselves in every position.
 
 ### 3.1 Tile technical rules
 
-- Floor tile canvas: **128 x 64**. The diamond touches the canvas midpoints exactly: top (64, 0), right (128, 32), bottom (64, 64), left (0, 32). Outside the diamond is transparent.
-- Wall tile canvas: **128 x 192**. The bottom 64 px holds the 128 x 64 footprint diamond; the wall rises 128 px above it. Pivot: bottom centre (64, 0 from the bottom) — the engine places the footprint on its cell.
+- Floor tile canvas: **64 x 32**. The diamond touches the canvas midpoints exactly: top (32, 0), right (64, 16), bottom (32, 32), left (0, 16). Outside the diamond is transparent.
+- Wall tile canvas: **64 x 96**. The bottom 32 px holds the 64 x 32 footprint diamond; the wall rises 64 px above it. Pivot: bottom centre (32, 0 from the bottom) — the engine places the footprint on its cell.
 - No lighting gradient across a tile (the engine lights it). No dark rim around the diamond edge (it would draw a grid).
 - Every tile family has **at least 4 variants** of the same material so the floor does not repeat visibly. Variants differ in cracks, stains, debris, not in overall brightness.
 - Ground detail scale: one flagstone is about 1/4 to 1/2 of a tile.
@@ -207,33 +217,33 @@ All tiles use the 2:1 diamond: **128 px wide, 64 px tall at the floor**. Taller 
 
 | File | Count | Size | Content |
 |---|---|---|---|
-| `terrain/dungeon_floor_01..08.png` | 8 | 128 x 64 | Cracked grey flagstones dusted with ash; 2 of the 8 with a little rubble, 1 with a dried blood stain, 1 with a drain grate |
-| `terrain/dungeon_floor_worn_01..04.png` | 4 | 128 x 64 | Broken flagstones with packed dirt between them, for corridors |
-| `terrain/dungeon_wall_block_01..04.png` | 4 | 128 x 192 | A free-standing wall block of rough grey stone masonry, mortar crumbling, soot stains at the top: this is used for every wall cell today, so it must look right next to itself on all sides and alone as a pillar |
-| `terrain/dungeon_wall_low_01..04.png` | 4 | 128 x 96 | The same wall cut down to 32 px high, broken off, for walls between the camera and the player (decision 3 in section 14) |
+| `terrain/dungeon_floor_01..08.png` | 8 | 64 x 32 | Cracked grey flagstones dusted with ash; 2 of the 8 with a little rubble, 1 with a dried blood stain, 1 with a drain grate |
+| `terrain/dungeon_floor_worn_01..04.png` | 4 | 64 x 32 | Broken flagstones with packed dirt between them, for corridors |
+| `terrain/dungeon_wall_block_01..04.png` | 4 | 64 x 96 | A free-standing wall block of rough grey stone masonry, mortar crumbling, soot stains at the top: this is used for every wall cell today, so it must look right next to itself on all sides and alone as a pillar |
+| `terrain/dungeon_wall_low_01..04.png` | 4 | 64 x 48 | The same wall cut down to 16 px high, broken off, for walls between the camera and the player (decision 3 in section 14) |
 
 Prompt for a floor tile:
 
-> [style block] Single isometric floor tile, exact 2:1 diamond shape 128 by 64 pixels, top-down 30 degree view, cracked grey flagstones covered in fine ash, subtle rust-brown stains, seamless tileable edges, even flat lighting, no border, no shadow at the edges, transparent outside the diamond. [negative block]
+> [style block] Single isometric floor tile, exact 2:1 diamond shape 64 by 32 pixels, top-down 30 degree view, cracked grey flagstones covered in fine ash, subtle rust-brown stains, seamless tileable edges, even flat lighting, no border, no shadow at the edges, transparent outside the diamond. [negative block]
 
 Prompt for a wall block:
 
-> [style block] Single isometric wall block for a tile-based game, footprint exactly one 2:1 diamond tile 128 by 64 pixels, rising 128 pixels, rough grey stone masonry, crumbling mortar, soot at the top, two visible faces (left face lit, right face in shadow) and a broken stone top, seamless where it meets identical blocks on its sides, transparent background. [negative block]
+> [style block] Single isometric wall block for a tile-based game, footprint exactly one 2:1 diamond tile 64 by 32 pixels, rising 64 pixels, rough grey stone masonry, crumbling mortar, soot at the top, two visible faces (left face lit, right face in shadow) and a broken stone top, seamless where it meets identical blocks on its sides, transparent background. [negative block]
 
 ### 3.3 Act 1 town (the ruined chapel village)
 
 | File | Count | Size | Content |
 |---|---|---|---|
-| `terrain/town_mud_01..06.png` | 6 | 128 x 64 | Trampled dark mud with puddles and straw |
-| `terrain/town_cobble_01..06.png` | 6 | 128 x 64 | Old uneven cobbles, moss in the gaps |
-| `terrain/town_grass_01..06.png` | 6 | 128 x 64 | Dead yellow-grey grass over dirt |
-| `terrain/town_transition_mud_cobble_01..04.png` | 4 | 128 x 64 | Cobbles breaking up into mud, for the edges of the square |
+| `terrain/town_mud_01..06.png` | 6 | 64 x 32 | Trampled dark mud with puddles and straw |
+| `terrain/town_cobble_01..06.png` | 6 | 64 x 32 | Old uneven cobbles, moss in the gaps |
+| `terrain/town_grass_01..06.png` | 6 | 64 x 32 | Dead yellow-grey grass over dirt |
+| `terrain/town_transition_mud_cobble_01..04.png` | 4 | 64 x 32 | Cobbles breaking up into mud, for the edges of the square |
 
 ### 3.4 Void edge
 
 | File | Size | Content |
 |---|---|---|
-| `terrain/void_edge_01..04.png` | 128 x 64 | Floor crumbling into black darkness, for the outer edge of the town map |
+| `terrain/void_edge_01..04.png` | 64 x 32 | Floor crumbling into black darkness, for the outer edge of the town map |
 
 ---
 
@@ -255,9 +265,9 @@ Silhouette notes: wide shoulders, the lantern at the hip, the axe head always cl
 
 ### 4.3 Sprite size
 
-- Cell: **256 x 256 px**.
-- The character stands about **170 px tall** at the final size (about 1.3 world units), as wide as roughly half the cell at rest. This height is a lever for the sprite budget: the owner allows it to drop to Diablo 2's (roughly 80 to 100 px) if the phone measurement needs it (decided 2026-09-27, Q3; 07, Sprite memory and app size). Models are made the same either way; only the bake's target height changes.
-- **Pivot: (128, 40)** measured from the cell's bottom-left, that is, centred, 40 px up. The soles of the feet touch this point in every frame. Attacks may reach into the rest of the cell but must not leave it.
+- Cell: **128 x 128 px**.
+- The character stands about **85 px tall** at the final size (about 1.3 world units), as wide as roughly half the cell at rest. This height is a lever for the sprite budget: the owner allows it to drop to Diablo 2's (roughly 80 to 50 px) if the phone measurement needs it (decided 2026-09-27, Q3; 07, Sprite memory and app size). Models are made the same either way; only the bake's target height changes.
+- **Pivot: (64, 20)** measured from the cell's bottom-left, that is, centred, 20 px up. The soles of the feet touch this point in every frame. Attacks may reach into the rest of the cell but must not leave it.
 
 ### 4.4 Animations
 
@@ -273,7 +283,7 @@ Silhouette notes: wide shoulders, the lantern at the hip, the axe head always cl
 | `characters/wrathborn_hit.png` | 4 | no | A flinch from a hit |
 | `characters/wrathborn_death.png` | 16 | no | Falls to his knees, then forward. The last frame is held as the corpse |
 
-Size of each sheet: 8 rows x frames columns of 256 px cells (for example idle: 3072 x 2048; death, the widest, 4096 x 2048).
+Size of each sheet: 8 rows x frames columns of 128 px cells (for example idle: 1536 x 1024; death, the widest, 2048 x 1024).
 
 Later skills (not needed yet): Battle Roar, Rending Spin, Blood Frenzy, Skullsplitter.
 
@@ -294,7 +304,7 @@ Decided 2026-09-27 (`08-production.md`): the game is gear oriented like Diablo 2
 
 **Grips** (decision of 2026-09-27): the off-hand holds nothing, an off-hand weapon or a shield, or he uses a two-handed weapon. Each grip has **its own animation set**, as in Diablo 2, so every animation in 4.4 is needed four times, one per grip, each chosen in Mixamo to suit it: `1h` (one weapon, off-hand empty), `dual` (a weapon in each hand), `shield` (weapon and shield: shield held up while running and fighting), `2h` (a two-handed weapon: both hands on the haft, heavier swings). File names carry the grip: `wrathborn_body_leather_2h_run.png`. Two-handed weapons are their own models: for act 1 three looks, `great_axe` (a long-hafted broad axe), `maul` (a heavy iron-headed maul) and `bardiche` (a long crescent-bladed pole axe), plus shields `buckler` (a small round iron-bossed wooden shield), `round_shield` (a larger round shield with a rusted rim) and `kite_shield` (a tall scorched iron-banded kite shield).
 
-**How they are baked.** The sprite bake renders each layer on its own with the other pieces present but invisible, so they still hide what is behind them: a weapon swung behind his back comes out cut exactly where the body covers it. The game then draws body, then helm, then weapon (and off-hand) on top of each other with no per-direction draw-order table, which Diablo 2 needed. Helm, weapon and off-hand layers are baked against the middle body tier; the other bodies share its proportions, so the cut lines match closely enough at 170 px.
+**How they are baked.** The sprite bake renders each layer on its own with the other pieces present but invisible, so they still hide what is behind them: a weapon swung behind his back comes out cut exactly where the body covers it. The game then draws body, then helm, then weapon (and off-hand) on top of each other with no per-direction draw-order table, which Diablo 2 needed. Helm, weapon and off-hand layers are baked against the middle body tier; the other bodies share its proportions, so the cut lines match closely enough at 85 px.
 
 **What to make for act 1:**
 
@@ -333,7 +343,7 @@ Weapons use the axe prompt given earlier, with the hatchet (a small rusted hatch
 
 ### 5.1 Rules for every enemy
 
-- Cell **256 x 256**, pivot **(128, 40)**, 8 directions, 12 fps (unless stated), same sheet layout as the player.
+- Cell **128 x 128**, pivot **(64, 20)**, 8 directions, 12 fps (unless stated), same sheet layout as the player.
 - Every enemy has 5 animations: `idle`, `run`, `attack`, `hit`, `death`. The death's last frame is **not** held: the engine burns the body away with a dissolve effect, so the last frame is simply the body on the ground.
 - Attack frames must make the **wind-up read at a glance**: the engine gives the player a warning before an enemy hit lands (0.35 s for a husk), so the first half of the attack is a clear, exaggerated rear-back.
 - **Rank variants** (the engine swaps the whole body sprite, it cannot recolour): every enemy also needs a **Champion** sheet set (the same creature, bigger build, **gold and bronze** accents, a trophy or mark of rank) and an **Elite** sheet set (**crimson** accents, corrupted, with faint Hollow-purple glow in the eyes). The engine scales Champions by 1.4 and Elites by 1.6, so they are drawn at the normal size.
@@ -343,10 +353,10 @@ Weapons use the axe prompt given earlier, with the hatchet (a small rusted hatch
 
 | Enemy | Role in play | Look | Size in the cell |
 |---|---|---|---|
-| **Husk** (`husk`) | Swarmer, packs of 6 to 12, weak | The dead of the burned lands: an emaciated, ash-grey corpse, cracked skin showing dull blue beneath, empty eyes with a faint cold-blue glow, rags, walks hunched, claws | about 140 px tall |
-| **Ghoul** (`ghoul`) | Brute, slow ground slam of 2 units | A bloated, hunched, grave-eating brute, sick green-grey skin, an oversized right arm ending in a stone-hard fist, bent forward, heavy | about 175 px tall (the engine also scales it by 1.2) |
-| **Bandit Archer** (`bandit_archer`) | Archer, keeps its distance and shoots | A living, desperate human: hooded, tattered brown and grey cloak, a crude shortbow, a quiver of black-fletched arrows, face wrapped in cloth | about 160 px tall |
-| **Wolf** (`ash_wolf`), later | Not built yet (no archetype) | A starved grey wolf with ash in its fur, visible ribs, blue-white eyes | about 90 px tall, longer body |
+| **Husk** (`husk`) | Swarmer, packs of 6 to 12, weak | The dead of the burned lands: an emaciated, ash-grey corpse, cracked skin showing dull blue beneath, empty eyes with a faint cold-blue glow, rags, walks hunched, claws | about 70 px tall |
+| **Ghoul** (`ghoul`) | Brute, slow ground slam of 2 units | A bloated, hunched, grave-eating brute, sick green-grey skin, an oversized right arm ending in a stone-hard fist, bent forward, heavy | about 88 px tall (the engine also scales it by 1.2) |
+| **Bandit Archer** (`bandit_archer`) | Archer, keeps its distance and shoots | A living, desperate human: hooded, tattered brown and grey cloak, a crude shortbow, a quiver of black-fletched arrows, face wrapped in cloth | about 80 px tall |
+| **Wolf** (`ash_wolf`), later | Not built yet (no archetype) | A starved grey wolf with ash in its fur, visible ribs, blue-white eyes | about 45 px tall, longer body |
 
 Animation specifics:
 
@@ -364,11 +374,11 @@ The engine shows up to 2 small dots over an Elite's head for its modifiers. Repl
 
 | File | Size | Content |
 |---|---|---|
-| `enemies/modifier_hasted.png` | 32 x 32 | A yellow lightning-feather glyph |
-| `enemies/modifier_vampiric.png` | 32 x 32 | A green blood-drop with fangs (green on purpose: it must stand out against red enemies) |
-| `enemies/modifier_frozen.png` | 32 x 32 | A cyan snowflake shard |
+| `enemies/modifier_hasted.png` | 16 x 16 | A yellow lightning-feather glyph |
+| `enemies/modifier_vampiric.png` | 16 x 16 | A green blood-drop with fangs (green on purpose: it must stand out against red enemies) |
+| `enemies/modifier_frozen.png` | 16 x 16 | A cyan snowflake shard |
 
-Flat, bold glyphs with a 2 px dark outline, readable at 24 px.
+Flat, bold glyphs with a 1 px dark outline, readable at 12 px.
 
 ---
 
@@ -380,8 +390,8 @@ The keeper of the first Vigil fire, burned hollow when the fire died (`05-world-
 
 ### 6.2 Sprite size
 
-- Cell **512 x 512** (`05-world-and-content.md`), pivot **(256, 72)**.
-- It stands about **340 px tall** in the cell. (The engine currently also scales the boss by 1.6 for the placeholder; with real art the scale goes back to 1.)
+- Cell **256 x 256** (`05-world-and-content.md`), pivot **(128, 36)**.
+- It stands about **170 px tall** in the cell. (The engine currently also scales the boss by 1.6 for the placeholder; with real art the scale goes back to 1.)
 
 ### 6.3 Animations
 
@@ -400,7 +410,7 @@ The keeper of the first Vigil fire, burned hollow when the fire died (`05-world-
 
 ## 7. Step 6: NPCs
 
-NPCs stand still in town (they do not walk), so they need only an idle animation, in the **S, SW and SE** directions (3 rows). Cell 256 x 256, pivot (128, 40), 12 frames looped.
+NPCs stand still in town (they do not walk), so they need only an idle animation, in the **S, SW and SE** directions (3 rows). Cell 128 x 128, pivot (64, 20), 12 frames looped.
 
 | NPC | File | Look |
 |---|---|---|
@@ -417,25 +427,25 @@ Pivot for every prop: bottom centre of its footprint, **(width / 2, 16)** unless
 
 | File | Size | Content |
 |---|---|---|
-| `props/stairs_down.png` | 256 x 192 | A square stone stairwell sunk into the floor, steps descending into darkness, footprint 2 x 2 tiles |
-| `props/stairs_up.png` | 256 x 256 | Stone steps rising to a dark arched opening in a wall fragment, footprint 2 x 2 tiles |
-| `props/chest_closed.png` | 128 x 128 | A heavy rusted iron-bound wooden chest with a big lock, 1 tile |
-| `props/chest_open.png` | 128 x 128 | The same chest open and empty, lid back |
-| `props/waypoint_inactive.png` | 256 x 160 | A round stone platform set in the floor, 2 tiles across, carved with a ring of runes that are dark |
-| `props/waypoint_active.png` | 256 x 160 | The same with the runes glowing cold blue #5E7FA0 to #BFD9FF |
-| `props/waystone.png` | 192 x 320 | The town's Waystone: a tall standing stone, worn and leaning, with blue-glowing runes, footprint 1 tile |
-| `props/town_portal.png` | 8 frames, 192 x 320 each, one row | An upright oval rift of cold blue light with swirling edges, looped |
-| `props/forge.png` | 256 x 256 | The smith's forge: a stone hearth with a bellows, an anvil beside it, glowing coals (ember orange). Footprint 2 x 1 tiles |
-| `props/brazier.png` | 8 frames, 96 x 160, one row | An iron brazier on a tripod with a small fire, looped. Decoration for the town and the start of each level |
-| `props/barrel_01..03.png` | 96 x 128 | Rotting barrels, one broken |
-| `props/bones_01..04.png` | 128 x 64 | Scattered bones and skulls, flat on the floor (no height) |
-| `props/rubble_01..04.png` | 128 x 96 | Piles of fallen masonry |
-| `props/corpse_marker.png` | 128 x 64 | The player's own grave marker after death: a pile of the character's rusted gear with the ember lantern, dark |
-| `props/chapel_ruin.png` | 768 x 768 | The ruined chapel of the act 1 town (the town's landmark): a broken bell tower and roofless nave, footprint 5 x 4 tiles. Pivot at (384, 96) |
+| `props/stairs_down.png` | 128 x 96 | A square stone stairwell sunk into the floor, steps descending into darkness, footprint 2 x 2 tiles |
+| `props/stairs_up.png` | 128 x 128 | Stone steps rising to a dark arched opening in a wall fragment, footprint 2 x 2 tiles |
+| `props/chest_closed.png` | 64 x 64 | A heavy rusted iron-bound wooden chest with a big lock, 1 tile |
+| `props/chest_open.png` | 64 x 64 | The same chest open and empty, lid back |
+| `props/waypoint_inactive.png` | 128 x 80 | A round stone platform set in the floor, 2 tiles across, carved with a ring of runes that are dark |
+| `props/waypoint_active.png` | 128 x 80 | The same with the runes glowing cold blue #5E7FA0 to #BFD9FF |
+| `props/waystone.png` | 96 x 160 | The town's Waystone: a tall standing stone, worn and leaning, with blue-glowing runes, footprint 1 tile |
+| `props/town_portal.png` | 8 frames, 96 x 160 each, one row | An upright oval rift of cold blue light with swirling edges, looped |
+| `props/forge.png` | 128 x 128 | The smith's forge: a stone hearth with a bellows, an anvil beside it, glowing coals (ember orange). Footprint 2 x 1 tiles |
+| `props/brazier.png` | 8 frames, 48 x 80, one row | An iron brazier on a tripod with a small fire, looped. Decoration for the town and the start of each level |
+| `props/barrel_01..03.png` | 48 x 64 | Rotting barrels, one broken |
+| `props/bones_01..04.png` | 64 x 32 | Scattered bones and skulls, flat on the floor (no height) |
+| `props/rubble_01..04.png` | 64 x 48 | Piles of fallen masonry |
+| `props/corpse_marker.png` | 64 x 32 | The player's own grave marker after death: a pile of the character's rusted gear with the ember lantern, dark |
+| `props/chapel_ruin.png` | 384 x 384 | The ruined chapel of the act 1 town (the town's landmark): a broken bell tower and roofless nave, footprint 5 x 4 tiles. Pivot at (192, 48) |
 
 Prompt pattern for a prop:
 
-> [style block] Single isometric game prop on a transparent background, [description], seen from the fixed 30 degree isometric camera rotated 45 degrees, footprint [n] tiles of 128 by 64 pixel diamonds, soft short contact shadow, [palette notes]. [negative block]
+> [style block] Single isometric game prop on a transparent background, [description], seen from the fixed 30 degree isometric camera rotated 45 degrees, footprint [n] tiles of 64 by 32 pixel diamonds, soft short contact shadow, [palette notes]. [negative block]
 
 ---
 
@@ -445,21 +455,21 @@ Effects draw **unlit and additively or alpha-blended** on top of the scene in th
 
 | File | Frames x size | Content |
 |---|---|---|
-| `vfx/slash_basic.png` | 6 x 256 x 256, top-down | A 120 degree arc of pale ash-white motion streaks with orange sparks at the leading edge, pointing right (the engine rotates it) |
-| `vfx/slash_hew.png` | 6 x 384 x 384, top-down | The 180 degree version, thicker, more embers |
-| `vfx/axe_spin.png` | 8 x 96 x 96 | The thrown axe spinning, one full turn over 8 frames, side view |
-| `vfx/bull_rush_trail.png` | 6 x 256 x 128 | A dust and ash burst trailing behind a charge, pointing right |
-| `vfx/ground_breaker_impact.png` | 10 x 512 x 512, top-down | A ring of cracked ground bursting outward from the centre, dust, glowing fissures, then fading |
-| `vfx/hit_spark.png` | 5 x 96 x 96 | A small burst of sparks and dark blood flecks |
-| `vfx/crit_spark.png` | 6 x 128 x 128 | A bigger, brighter burst, ember orange |
-| `vfx/arrow.png` | 1 x 64 x 16 | A black-fletched arrow, side view, pointing right |
-| `vfx/ember_projectile.png` | 6 x 64 x 64 | A flying lump of burning ember with a short trail, pointing right |
-| `vfx/fire_ring_segment.png` | 8 x 256 x 128, top-down, loops at 12 fps | Low burning flames on the ground, tileable left to right, for the boss arena's burning edge |
-| `vfx/ember_rain_impact.png` | 8 x 256 x 256, top-down | An ember falling and bursting on the ground |
-| `vfx/level_up.png` | 12 x 256 x 384 | A column of rising ember sparks and a burst of warm light around a figure's position (no figure) |
-| `vfx/potion_heal.png` | 10 x 192 x 256 | Soft rising green-white motes |
-| `vfx/loot_beam.png` | 1 x 48 x 512 | A vertical shaft of light, **pure white** fading to transparent at the top and sides (the engine tints it by rarity) |
-| `vfx/loot_ground.png` | 1 x 96 x 48 | A small glowing diamond mark on the ground, white (tinted by the engine) |
+| `vfx/slash_basic.png` | 6 x 128 x 128, top-down | A 120 degree arc of pale ash-white motion streaks with orange sparks at the leading edge, pointing right (the engine rotates it) |
+| `vfx/slash_hew.png` | 6 x 192 x 192, top-down | The 180 degree version, thicker, more embers |
+| `vfx/axe_spin.png` | 8 x 48 x 48 | The thrown axe spinning, one full turn over 8 frames, side view |
+| `vfx/bull_rush_trail.png` | 6 x 128 x 64 | A dust and ash burst trailing behind a charge, pointing right |
+| `vfx/ground_breaker_impact.png` | 10 x 256 x 256, top-down | A ring of cracked ground bursting outward from the centre, dust, glowing fissures, then fading |
+| `vfx/hit_spark.png` | 5 x 48 x 48 | A small burst of sparks and dark blood flecks |
+| `vfx/crit_spark.png` | 6 x 64 x 64 | A bigger, brighter burst, ember orange |
+| `vfx/arrow.png` | 1 x 32 x 8 | A black-fletched arrow, side view, pointing right |
+| `vfx/ember_projectile.png` | 6 x 32 x 32 | A flying lump of burning ember with a short trail, pointing right |
+| `vfx/fire_ring_segment.png` | 8 x 128 x 64, top-down, loops at 12 fps | Low burning flames on the ground, tileable left to right, for the boss arena's burning edge |
+| `vfx/ember_rain_impact.png` | 8 x 128 x 128, top-down | An ember falling and bursting on the ground |
+| `vfx/level_up.png` | 12 x 128 x 192 | A column of rising ember sparks and a burst of warm light around a figure's position (no figure) |
+| `vfx/potion_heal.png` | 10 x 96 x 128 | Soft rising green-white motes |
+| `vfx/loot_beam.png` | 1 x 24 x 256 | A vertical shaft of light, **pure white** fading to transparent at the top and sides (the engine tints it by rarity) |
+| `vfx/loot_ground.png` | 1 x 48 x 24 | A small glowing diamond mark on the ground, white (tinted by the engine) |
 
 ### 9.1 Warning shapes on the ground (telegraphs)
 
@@ -467,10 +477,10 @@ These are gameplay-critical: the player dodges them. They must read instantly on
 
 | File | Size | Content |
 |---|---|---|
-| `vfx/telegraph_circle_edge.png` | 512 x 512 | A crisp circle outline, 12 px thick, with a jagged runic inner edge |
-| `vfx/telegraph_circle_fill.png` | 512 x 512 | A soft filled disc, brighter at the rim |
-| `vfx/telegraph_ring.png` | 512 x 512 | A thick ring band (inner radius 70 percent of the outer), for the fire ring |
-| `vfx/telegraph_line.png` | 512 x 64 | A straight band with arrow chevrons along it, pointing right, for charges and aimed shots |
+| `vfx/telegraph_circle_edge.png` | 256 x 256 | A crisp circle outline, 6 px thick, with a jagged runic inner edge |
+| `vfx/telegraph_circle_fill.png` | 256 x 256 | A soft filled disc, brighter at the rim |
+| `vfx/telegraph_ring.png` | 256 x 256 | A thick ring band (inner radius 70 percent of the outer), for the fire ring |
+| `vfx/telegraph_line.png` | 256 x 32 | A straight band with arrow chevrons along it, pointing right, for charges and aimed shots |
 
 ---
 
@@ -617,13 +627,13 @@ For every delivered file, also give: the prompt used, the tool and model, the se
 1. Transparent background, no fringe, exact canvas size.
 2. Correct camera angle: floor tiles are exact 2:1 diamonds; a character's feet sit on the pivot in every frame.
 3. All 8 directions show the same character, same colours, same gear.
-4. Reads at 1:1 on a phone: the silhouette is clear at 170 px tall.
+4. Reads at 1:1 on a phone: the silhouette is clear at 85 px tall, in hard pixels (0.8).
 5. Palette: no neon, no saturation outside fire, magic and loot.
 6. Nothing that is recognisably Diablo 2's own design.
 
 ---
 
-## 14. Decisions (the user, 2026-09-27)
+## 14. Decisions (the user, 2026-09-27 and 2026-09-28)
 
 1. **Animation method: frame sprites pre-rendered from 3D** (Route A in 0.7), not skeletal 2D animation. `00-vision-and-scope.md`, `05-world-and-content.md` and `07-technical.md` now say so.
 2. **Frame budget: the full set for act 1** (8 directions, 12 fps, 256 px cells, 512 for the boss), measured for memory and frame rate on a phone before anything is cut. The player's 9 sheets are 768 cells, about 190 MB uncompressed and about 50 MB compressed (ASTC 4x4).
@@ -631,6 +641,7 @@ For every delivered file, also give: the prompt used, the tool and model, the se
 4. **Equipped gear is displayed on the character** ("The game will be gear oriented just like diablo 2. It is very important that new gear equipped is displayed on the model."). Shown slots as in Diablo 2: weapon, off-hand, helm, chest armour.
 5. **Looks: tiers plus unique legendaries.** 3 tiers per shown slot in act 1, more per act, and every legendary its own model. How it is built: 4.5.
 6. **Off-hand and grips:** "can in offhand hold: nothing, offhand weapon, shield, or use two hand", with **an animation set per grip** (4.5).
+7. **Resolution, Diablo 2 style** (2026-09-28): "the game is quite high res, it can drop more in resolution. It can be the same as d2", then "Do it, diablo 2 style on all and move the camera 25% closer. The player really small and far away now". The world is drawn at a phone's point resolution in hard pixels and all in-world art is made at 64 px a unit; the sizes in decision 2 above are the first version's (0.8).
 
 Memory consequence of 4 and 5: every body look is a full set of sheets (about 50 MB compressed for the Wrathborn), so the game must keep **only the equipped looks** in memory and load a look when it is equipped, never all of them at once. Helm and weapon layers are mostly empty space and pack small once trimmed. To be measured on a phone with the first real bodies.
 
@@ -654,7 +665,7 @@ Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). Sections 0 t
 
 ### 15.2 Terrain per act
 
-Same rules as section 3 (128 x 64 floors, 128 x 192 walls, 128 x 96 low walls, at least 4 variants each). Each act has two tilesets (05: depths 1 to 3 and 4 to 6) and a town set.
+Same rules as section 3 (64 x 32 floors, 64 x 96 walls, 64 x 48 low walls, at least 4 variants each). Each act has two tilesets (05: depths 1 to 3 and 4 to 6) and a town set.
 
 | Act | Tileset | Floors | Walls and low walls | Town ground |
 |---|---|---|---|---|
@@ -664,57 +675,57 @@ Same rules as section 3 (128 x 64 floors, 128 x 192 walls, 128 x 96 low walls, a
 | 4 | Barracks and forges, oath halls | Iron-plated floor, soot; black iron with chain grooves | Iron-banded stone; black iron with banners | `camp_mud_01..06`, `camp_planks_01..06` |
 | 5 | Broken Vigil, the void | Half-dissolved stone with violet cracks; floating slabs over blackness | Crumbling ruin; jagged void rock (#1A1224 to #6B3FA0 accents) | `refuge_ash_01..06` |
 
-Boss arenas: one floor set per act boss (`<boss>_arena_floor_01..04`), with a centre decal (512 x 256, top-down squashed by the engine) that marks the arena.
+Boss arenas: one floor set per act boss (`<boss>_arena_floor_01..04`), with a centre decal (256 x 128, top-down squashed by the engine) that marks the arena.
 
 ### 15.3 Enemies, acts 1 to 5
 
-Section 5.1's rules apply (256 cells, pivot (128, 40), 8 directions, 5 animations: idle, run, attack, hit, death; a clear wind-up). Section 5.1 asks for a champion and an elite sheet set per enemy; `07-technical.md` proposes replacing those with a colour shader to save memory (Q3), in which case only the normal set is made. Behaviours and telegraphs are in 05.
+Section 5.1's rules apply (128 cells, pivot (64, 20), 8 directions, 5 animations: idle, run, attack, hit, death; a clear wind-up). Section 5.1 asks for a champion and an elite sheet set per enemy; `07-technical.md` proposes replacing those with a colour shader to save memory (Q3), in which case only the normal set is made. Behaviours and telegraphs are in 05.
 
 | Act | File name | Look (one line; enemy accents from the cold, sick and Hollow ranges, never ember except fire casters) | Height | Attack frames (hit frame) |
 |---|---|---|---|---|
-| 1 | `ash_wolf` | Section 5.2 | 90, longer body | 10 (6), plus a `lunge` loop of 6 |
-| 1 | `bandit_cutthroat` | A lean bandit with two knives, hood, cloth mask | 155 | 10 (4 and 7, two strikes) |
-| 1 | `ember_acolyte` | A burned cultist in scorched robes holding a smoking censer; the one act 1 enemy with ember light | 160 | 14 (9, the cast) |
-| 1 | `pyre_keeper` | A hunched figure carrying a brazier on its back, embers trailing | 150 | 12 (7) |
-| 1 | `carrion_bloat` | A swollen corpse, skin tight and green-grey, stumbling | 150, wide | 12 (burst on death frame 8) |
-| 2 | `drowned` | A pale bloated sailor, weed in the hair, cold blue eyes | 145 | 10 (7) |
-| 2 | `leech_swarm` | A cluster of black fist-sized leeches, low to the ground | 50 | 8 (5) |
-| 2 | `marsh_witch` | A thin old woman in wet rags, a staff of driftwood, green glow | 160 | 14 (9) |
-| 2 | `drowned_watchman` | A huge armoured watchman, helmet full of water, barnacled | 185 | 16 (11) |
-| 2 | `harpooner` | A fisherman with a rope harpoon, oilskin coat | 160 | 12 (8) |
-| 2 | `bog_lurker` | A long, flat, eyeless amphibian | 80, long | 10 (6), plus `submerged` idle |
-| 2 | `tide_priest` | A robed figure with a shell mask, water dripping upward | 165 | 12 (7) |
-| 2 | `mire_hound` | A drowned hound, fur plastered, cold eyes | 90, long | 10 (6) |
-| 3 | `grave_rat` | A swarm of three rats in one sprite | 40 | 8 (5) |
-| 3 | `skeleton_knight` | Bones in rusted plate with a tower shield | 175 | 12 (8) |
-| 3 | `bone_charger` | A skeletal horse-like beast of fused ribs with a skull ram | 150, long | 10 (6), plus `charge` loop of 6 |
-| 3 | `grave_priest` | A gaunt priest with a censer of green smoke | 165 | 12 (7) |
-| 3 | `ossuary_archer` | A skeleton with a bone bow | 160 | 12 (8) |
-| 3 | `mourner` | A veiled woman in black, floating slightly | 160 | 14 (9) |
-| 3 | `bone_weaver` | A many-armed thing of sewn bones | 170 | 14 (9) |
-| 3 | `corpse_hulk` | A stitched giant of corpses | 200 | 16 (11) |
-| 4 | `sworn_squire` | A young knight in black-iron half armour | 160 | 10 (7) |
-| 4 | `armored_knight` | A full black-iron knight with a longsword | 175 | 16 (6 and 12, two blows) |
-| 4 | `siege_brute` | A giant in siege armour with a ram-headed hammer | 210 | 18 (12) |
-| 4 | `banner_bearer` | A knight with a tall black banner of the Hollow's sigil | 180 with the banner | 12 (7) |
-| 4 | `crossbowman` | A heavy crossbowman with a pavise on his back | 160 | 14 (10) |
-| 4 | `warhound` | An armoured war dog with a spiked collar | 95, long | 10 (6) |
-| 4 | `iron_chaplain` | A priest in iron vestments with a burning book | 165 | 14 (9) |
-| 4 | `oathbound_lancer` | A knight on foot with a long lance | 175 | 10 (6), plus `charge` loop of 6 |
-| 5 | `hollowed` | A husk made of violet smoke and ash, faster | 145 | 10 (6) |
-| 5 | `void_spawn` | A small tumbling shard-creature | 70 | 8 (5) |
-| 5 | `void_wraith` | A tall thin shade trailing darkness | 175 | 10 (6), plus `blink` of 6 |
-| 5 | `corrupted_watchman` | A Vigil watchman, armour cracked with violet light, bow and sword | 170 | 12 (8) bow, 10 (6) sword |
-| 5 | `rift_caller` | A hooded figure holding a floating void orb | 165 | 14 (9) |
-| 5 | `hollow_colossus` | A giant of fused void stone | 230 | 18 (8 and 14) |
-| 5 | `whisperer` | A floating mask with ribbons of shadow | 150 | 12 (7) |
-| 5 | `fallen_vigil_knight` | A Vigil knight in scorched armour, shield and sword | 180 | 16 (6 and 12) |
+| 1 | `ash_wolf` | Section 5.2 | 45, longer body | 10 (6), plus a `lunge` loop of 6 |
+| 1 | `bandit_cutthroat` | A lean bandit with two knives, hood, cloth mask | 78 | 10 (4 and 7, two strikes) |
+| 1 | `ember_acolyte` | A burned cultist in scorched robes holding a smoking censer; the one act 1 enemy with ember light | 80 | 14 (9, the cast) |
+| 1 | `pyre_keeper` | A hunched figure carrying a brazier on its back, embers trailing | 75 | 12 (7) |
+| 1 | `carrion_bloat` | A swollen corpse, skin tight and green-grey, stumbling | 75, wide | 12 (burst on death frame 8) |
+| 2 | `drowned` | A pale bloated sailor, weed in the hair, cold blue eyes | 73 | 10 (7) |
+| 2 | `leech_swarm` | A cluster of black fist-sized leeches, low to the ground | 25 | 8 (5) |
+| 2 | `marsh_witch` | A thin old woman in wet rags, a staff of driftwood, green glow | 80 | 14 (9) |
+| 2 | `drowned_watchman` | A huge armoured watchman, helmet full of water, barnacled | 93 | 16 (11) |
+| 2 | `harpooner` | A fisherman with a rope harpoon, oilskin coat | 80 | 12 (8) |
+| 2 | `bog_lurker` | A long, flat, eyeless amphibian | 40, long | 10 (6), plus `submerged` idle |
+| 2 | `tide_priest` | A robed figure with a shell mask, water dripping upward | 83 | 12 (7) |
+| 2 | `mire_hound` | A drowned hound, fur plastered, cold eyes | 45, long | 10 (6) |
+| 3 | `grave_rat` | A swarm of three rats in one sprite | 20 | 8 (5) |
+| 3 | `skeleton_knight` | Bones in rusted plate with a tower shield | 88 | 12 (8) |
+| 3 | `bone_charger` | A skeletal horse-like beast of fused ribs with a skull ram | 75, long | 10 (6), plus `charge` loop of 6 |
+| 3 | `grave_priest` | A gaunt priest with a censer of green smoke | 83 | 12 (7) |
+| 3 | `ossuary_archer` | A skeleton with a bone bow | 80 | 12 (8) |
+| 3 | `mourner` | A veiled woman in black, floating slightly | 80 | 14 (9) |
+| 3 | `bone_weaver` | A many-armed thing of sewn bones | 85 | 14 (9) |
+| 3 | `corpse_hulk` | A stitched giant of corpses | 100 | 16 (11) |
+| 4 | `sworn_squire` | A young knight in black-iron half armour | 80 | 10 (7) |
+| 4 | `armored_knight` | A full black-iron knight with a longsword | 88 | 16 (6 and 12, two blows) |
+| 4 | `siege_brute` | A giant in siege armour with a ram-headed hammer | 105 | 18 (12) |
+| 4 | `banner_bearer` | A knight with a tall black banner of the Hollow's sigil | 90 with the banner | 12 (7) |
+| 4 | `crossbowman` | A heavy crossbowman with a pavise on his back | 80 | 14 (10) |
+| 4 | `warhound` | An armoured war dog with a spiked collar | 48, long | 10 (6) |
+| 4 | `iron_chaplain` | A priest in iron vestments with a burning book | 83 | 14 (9) |
+| 4 | `oathbound_lancer` | A knight on foot with a long lance | 88 | 10 (6), plus `charge` loop of 6 |
+| 5 | `hollowed` | A husk made of violet smoke and ash, faster | 73 | 10 (6) |
+| 5 | `void_spawn` | A small tumbling shard-creature | 35 | 8 (5) |
+| 5 | `void_wraith` | A tall thin shade trailing darkness | 88 | 10 (6), plus `blink` of 6 |
+| 5 | `corrupted_watchman` | A Vigil watchman, armour cracked with violet light, bow and sword | 85 | 12 (8) bow, 10 (6) sword |
+| 5 | `rift_caller` | A hooded figure holding a floating void orb | 83 | 14 (9) |
+| 5 | `hollow_colossus` | A giant of fused void stone | 115 | 18 (8 and 14) |
+| 5 | `whisperer` | A floating mask with ribbons of shadow | 75 | 12 (7) |
+| 5 | `fallen_vigil_knight` | A Vigil knight in scorched armour, shield and sword | 90 | 16 (6 and 12) |
 
-Modifier icons (5.3), 12 more at 32 x 32: `modifier_molten`, `_shielded`, `_teleporting`, `_splitting`, `_cursing`, `_plagued`, `_mortar`, `_fire_chains`, `_juggernaut`, `_enraged`, `_linked`, `_desecrator`, in the colours listed in 05.
+Modifier icons (5.3), 12 more at 16 x 16: `modifier_molten`, `_shielded`, `_teleporting`, `_splitting`, `_cursing`, `_plagued`, `_mortar`, `_fire_chains`, `_juggernaut`, `_enraged`, `_linked`, `_desecrator`, in the colours listed in 05.
 
 ### 15.4 Bosses
 
-Section 6's rules (512 cells, pivot (256, 72), about 340 px tall, split per direction). Animations for each: `idle` 12, `walk` 12, one sheet per attack in 05's table (14 to 18 frames, the telegraph time before the impact frame), `stagger` 12 (loop), `phase` 16, `death` 24.
+Section 6's rules (256 cells, pivot (128, 36), about 170 px tall, split per direction). Animations for each: `idle` 12, `walk` 12, one sheet per attack in 05's table (14 to 18 frames, the telegraph time before the impact frame), `stagger` 12 (loop), `phase` 16, `death` 24.
 
 | Boss | File | Look |
 |---|---|---|
@@ -750,16 +761,16 @@ Section 8's rules. Each act: a stairs down and up pair in its tileset's material
 
 | Act | Props |
 |---|---|
-| 1 | Section 8 plus `shrine_plinth` (256 x 256: a stone plinth with a bowl; glows in the shrine's colour), `lore_stone` (128 x 192), `bone_pile_dormant` (for 05's ambush rooms and summoners) |
-| 2 | `boat_wreck`, `net_rack`, `stilt_house` (town, 512 x 512), `watch_tower_beached` (town landmark, 768 x 768), `kelp_01..03`, `dormant_drowned` (a body in the water) |
-| 3 | `sarcophagus_01..03`, `grave_candles`, `dead_tree_01..04` (town), `mausoleum` (town stash, 512 x 512), `bell_tower` (for the Sexton) |
-| 4 | `siege_wagon`, `tent_01..03` (town), `weapon_rack`, `forge_cold`, `banner_black_01..02`, `spire_gate` (768 x 768) |
-| 5 | `void_crystal_01..03`, `broken_vigil_fire` (the act's landmark, 512 x 512), `refuge_fire` (the town's new fire, 3 states: small, medium, great) |
-| All | `inn_bed` for sleep (05, Q14), `rift_portal` (8 frames, violet), `abyss_gate` (static, 256 x 384) |
+| 1 | Section 8 plus `shrine_plinth` (128 x 128: a stone plinth with a bowl; glows in the shrine's colour), `lore_stone` (64 x 96), `bone_pile_dormant` (for 05's ambush rooms and summoners) |
+| 2 | `boat_wreck`, `net_rack`, `stilt_house` (town, 256 x 256), `watch_tower_beached` (town landmark, 384 x 384), `kelp_01..03`, `dormant_drowned` (a body in the water) |
+| 3 | `sarcophagus_01..03`, `grave_candles`, `dead_tree_01..04` (town), `mausoleum` (town stash, 256 x 256), `bell_tower` (for the Sexton) |
+| 4 | `siege_wagon`, `tent_01..03` (town), `weapon_rack`, `forge_cold`, `banner_black_01..02`, `spire_gate` (384 x 384) |
+| 5 | `void_crystal_01..03`, `broken_vigil_fire` (the act's landmark, 256 x 256), `refuge_fire` (the town's new fire, 3 states: small, medium, great) |
+| All | `inn_bed` for sleep (05, Q14), `rift_portal` (8 frames, violet), `abyss_gate` (static, 128 x 192) |
 
 ### 15.7 Effects
 
-Section 9's rules. New: `slash_rending_spin` (8 x 384 x 384, top-down, loop), `battle_roar_ring` (8 x 512 x 512, top-down), `blood_frenzy_aura` (8 x 256 x 256, loop), `skullsplitter_impact` (8 x 256 x 256), `bleed_drip` (6 x 64 x 64), one per Caster and Support effect in 05 (fire circle, water circle, poison pool, heal ring, shield ring, banner aura, void circle, curse tether), `block_flash` (5 x 128 x 128), `stun_stars` (6 x 64 x 64, loop), a gem glint (4 x 32 x 32). Telegraph shapes (9.1) add `telegraph_cone.png` (512 x 512, 120 degree wedge) and `telegraph_half_disc.png` (512 x 256).
+Section 9's rules. New: `slash_rending_spin` (8 x 192 x 192, top-down, loop), `battle_roar_ring` (8 x 256 x 256, top-down), `blood_frenzy_aura` (8 x 128 x 128, loop), `skullsplitter_impact` (8 x 128 x 128), `bleed_drip` (6 x 32 x 32), one per Caster and Support effect in 05 (fire circle, water circle, poison pool, heal ring, shield ring, banner aura, void circle, curse tether), `block_flash` (5 x 64 x 64), `stun_stars` (6 x 32 x 32, loop), a gem glint (4 x 16 x 16). Telegraph shapes (9.1) add `telegraph_cone.png` (256 x 256, 120 degree wedge) and `telegraph_half_disc.png` (256 x 128).
 
 ### 15.8 Item icons, all slots and tiers
 
