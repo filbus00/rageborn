@@ -153,9 +153,16 @@ namespace ARPG
 
             RebuildBackpack(session);
             RefreshBadge();
-            // Docs/02 and Q4: the loadout opens at level 9, when there is a fifth skill to choose.
+            // Docs/02 and Q4: the loadout opens at level 9, when there is a fifth skill to choose; before that the page
+            // only shows while there are skill points to spend (Claude's choice, 2026-09-28).
             if (skillsButton != null)
-                skillsButton.gameObject.SetActive(session.Level >= LoadoutScreen.OpensAtLevel);
+            {
+                var points = session.SkillLevels.Available(session.Level);
+                skillsButton.gameObject.SetActive(session.Level >= LoadoutScreen.OpensAtLevel || points > 0);
+                var label = skillsButton.GetComponentInChildren<Text>();
+                if (label != null)
+                    label.text = points > 0 ? $"Skills +{points}" : "Skills";
+            }
         }
 
         // A copy of the Close button placed beside it, opening the loadout.

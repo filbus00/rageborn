@@ -145,33 +145,51 @@ namespace ARPG
 
         void RenderSlots()
         {
-            hint.text = "Slot 1 fires first. Tap a skill to change it, its trigger to choose when it fires.";
-            var loadout = GameSession.Current.Loadout;
+            var session = GameSession.Current;
+            var points = session.SkillLevels.Available(session.Level);
+            var editable = session.Level >= OpensAtLevel;
+            hint.text = (points > 0 ? $"<color=#FFB45A>{points} skill point{(points == 1 ? "" : "s")} to spend (+).</color> " : "") +
+                        (editable ? "Slot 1 fires first. Tap a skill to change it, its trigger to choose when it fires."
+                            : $"Choosing skills and triggers opens at level {OpensAtLevel}.");
+            var loadout = session.Loadout;
             for (var slot = 0; slot < SkillLoadout.SlotCount; slot++)
             {
                 var index = slot;
                 var skill = combat.FindSkill(loadout.SkillAt(slot));
                 var row = NewRow(list);
                 var up = NewButton(row.transform, "Up", () => Move(index, -1));
-                Width(up.gameObject, 130f, 0f);
-                up.GetComponentInChildren<Text>().fontSize = 32;
-                up.interactable = slot > 0;
+                Width(up.gameObject, 110f, 0f);
+                up.GetComponentInChildren<Text>().fontSize = 30;
+                up.interactable = editable && slot > 0;
                 var down = NewButton(row.transform, "Down", () => Move(index, 1));
-                Width(down.gameObject, 130f, 0f);
-                down.GetComponentInChildren<Text>().fontSize = 32;
-                down.interactable = slot < SkillLoadout.SlotCount - 1;
-                var name = NewButton(row.transform, $"{slot + 1}. " + (skill != null ? skill.DisplayName : "<color=#999999>empty</color>"), () =>
+                Width(down.gameObject, 110f, 0f);
+                down.GetComponentInChildren<Text>().fontSize = 30;
+                down.interactable = editable && slot < SkillLoadout.SlotCount - 1;
+                var level = skill != null ? session.SkillLevels.LevelOf(skill.name) : 0;
+                var name = NewButton(row.transform, $"{slot + 1}. " + (skill != null ? $"{skill.DisplayName} <size=30><color=#BBBBBB>{level}</color></size>" : "<color=#999999>empty</color>"), () =>
                 {
                     choosingSlot = index;
                     Render();
                 });
                 Width(name.gameObject, 0f, 1f);
+                name.interactable = editable;
+                var raise = NewButton(row.transform, "+", () => Raise(skill));
+                Width(raise.gameObject, 100f, 0f);
+                raise.interactable = skill != null && session.SkillLevels.CanRaise(skill.name, skill.UnlockLevel, session.Level);
                 var trigger = NewButton(row.transform, skill != null ? TriggerLabel(skill, loadout.TriggerAt(slot)) : "", () => CycleTrigger(index));
-                Width(trigger.gameObject, 400f, 0f);
+                Width(trigger.gameObject, 340f, 0f);
                 trigger.GetComponent<Image>().color = skill != null ? ChipColor : LockedColor;
-                trigger.interactable = skill != null;
-                trigger.GetComponentInChildren<Text>().fontSize = 30;
+                trigger.interactable = editable && skill != null;
+                trigger.GetComponentInChildren<Text>().fontSize = 28;
             }
+        }
+
+        void Raise(SkillDefinition skill)
+        {
+            var session = GameSession.Current;
+            if (skill != null)
+                session.SkillLevels.Raise(skill.name, skill.UnlockLevel, session.Level);
+            Render();
         }
 
         void RenderChoices()
@@ -186,8 +204,9 @@ namespace ARPG
                 var chosen = skill;
                 var unlocked = level >= skill.UnlockLevel;
                 var inSlot = loadout.SlotOf(skill.name);
-                var detail = !unlocked ? $"   <size=30><color=#999999>level {skill.UnlockLevel}</color></size>"
-                    : inSlot >= 0 ? $"   <size=30><color=#999999>slot {inSlot + 1}</color></size>" : "";
+                var skillLevel = GameSession.Current.SkillLevels.LevelOf(skill.name);
+                var detail = !unlocked ? $"   <size=30><color=#999999>opens at level {skill.UnlockLevel}</color></size>"
+                    : $"   <size=30><color=#999999>level {skillLevel}" + (inSlot >= 0 ? $", slot {inSlot + 1}" : "") + "</color></size>";
                 var button = NewButton(list, skill.DisplayName + detail, () =>
                 {
                     loadout.Equip(choosingSlot, chosen.name);

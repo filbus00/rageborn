@@ -151,6 +151,8 @@ namespace ARPG
             SetOnboarding(new Onboarding());
             Loadout = new SkillLoadout();
             Loadout.Changed += RaiseModified;
+            SkillLevels = new SkillLevels();
+            SkillLevels.Changed += RaiseModified;
 
             // Its own number, not the loot seed itself, so the dungeon and the drops do not move in step.
             DungeonSeed = DungeonRules.LevelSeed(lootSeed, 0);
@@ -297,6 +299,9 @@ namespace ARPG
 
         /// <summary>The four skill slots and their triggers (Docs/01, Docs/02). Its changes raise <see cref="Modified"/>.</summary>
         public SkillLoadout Loadout { get; }
+
+        /// <summary>Skill points spent and each skill's level (Docs/04, Docs/02). Its changes raise <see cref="Modified"/>.</summary>
+        public SkillLevels SkillLevels { get; }
 
         public int Level => Progress.Level;
 

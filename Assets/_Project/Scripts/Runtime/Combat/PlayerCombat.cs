@@ -497,7 +497,7 @@ namespace ARPG
             {
                 case SkillKind.Sweep:
                     Sfx.Play(SoundId.Hew);
-                    Sweep(origin, aim, skill.Range, skill.ArcDegrees, skill.DamageMultiplier, skill.EffectSprite, skill.EffectColor);
+                    Sweep(origin, aim, skill.Range, skill.ArcDegrees, DamageOf(skill, skill.DamageMultiplier), skill.EffectSprite, skill.EffectColor);
                     break;
                 case SkillKind.Slam:
                     Sfx.Play(SoundId.GroundBreaker);
@@ -628,14 +628,15 @@ namespace ARPG
 
         void StartBuff(Vector2 origin, SkillDefinition skill)
         {
+            var level = session.SkillLevels.LevelOf(skill.name);
             if (skill.BuffDamage > 0f)
             {
-                damageBuff = skill.BuffDamage;
+                damageBuff = SkillLevels.Buff(skill.BuffDamage, level);
                 damageBuffTimer = skill.DurationSeconds;
             }
             if (skill.BuffAttackSpeed > 0f || skill.BuffAttackSpeedPerMomentum > 0f)
             {
-                speedBuff = skill.BuffAttackSpeed;
+                speedBuff = SkillLevels.Buff(skill.BuffAttackSpeed, level);
                 speedBuffPerMomentum = skill.BuffAttackSpeedPerMomentum;
                 speedBuffTimer = skill.DurationSeconds;
             }
@@ -680,9 +681,9 @@ namespace ARPG
                 if (!enemy.IsAlive || !InReach(origin, enemy, basicRange))
                     continue;
                 hits++;
-                Strike(enemy, skill.DamageMultiplier);
+                Strike(enemy, DamageOf(skill, skill.DamageMultiplier));
                 if (enemy.IsAlive && skill.BleedMultiplier > 0f && skill.BleedSeconds > 0f)
-                    enemy.ApplyBleed(Damage(enemy, skill.BleedMultiplier, false) / skill.BleedSeconds, skill.BleedSeconds);
+                    enemy.ApplyBleed(Damage(enemy, DamageOf(skill, skill.BleedMultiplier), false) / skill.BleedSeconds, skill.BleedSeconds);
             }
             if (hits > 0)
             {
@@ -710,7 +711,7 @@ namespace ARPG
             if (target == null || !target.IsAlive || !InReach(origin, target, skill.Range + 0.5f))
                 return;
             var fraction = target.MaxLife > 0f ? target.Life / target.MaxLife : 1f;
-            var multiplier = fraction < skill.ExecuteThreshold ? skill.ExecuteMultiplier : skill.DamageMultiplier;
+            var multiplier = DamageOf(skill, fraction < skill.ExecuteThreshold ? skill.ExecuteMultiplier : skill.DamageMultiplier);
             var direction = (target.GroundPosition - origin).normalized;
             Strike(target, multiplier);
             HealOnHit(1);
@@ -755,7 +756,7 @@ namespace ARPG
                 if (!enemy.IsAlive || !InReach(origin, enemy, skill.Range))
                     continue;
                 hits++;
-                Strike(enemy, skill.DamageMultiplier);
+                Strike(enemy, DamageOf(skill, skill.DamageMultiplier));
                 if (skill.EffectSeconds > 0f)
                     enemy.ApplySlow(skill.EffectStrength, skill.EffectSeconds);
             }
@@ -793,7 +794,7 @@ namespace ARPG
                 Position = origin,
                 Velocity = direction * skill.Speed,
                 MaxDistance = skill.Range + 1f,
-                Multiplier = skill.DamageMultiplier,
+                Multiplier = DamageOf(skill, skill.DamageMultiplier),
             });
         }
 
@@ -891,7 +892,7 @@ namespace ARPG
 
                 chargeHits.Add(enemy);
                 hits++;
-                Strike(enemy, chargeSkill.DamageMultiplier);
+                Strike(enemy, DamageOf(chargeSkill, chargeSkill.DamageMultiplier));
 
                 // Knocked out of the path to whichever side it stands, and a little forward.
                 var offset = enemy.GroundPosition - origin;
@@ -931,6 +932,10 @@ namespace ARPG
                 Sfx.Play(critical ? SoundId.Crit : SoundId.Hit);
             }
         }
+
+        /// <summary>A skill's damage multiplier at its level (Docs/02's proposal: plus 7 percent of level 1 a level).</summary>
+        float DamageOf(SkillDefinition skill, float levelOneMultiplier) =>
+            SkillLevels.Damage(levelOneMultiplier, session.SkillLevels.LevelOf(skill.name));
 
         /// <summary>The hit formula for this character against an enemy: the gear's modifiers, Stillness and Battle
         /// Roar as increased damage.</summary>

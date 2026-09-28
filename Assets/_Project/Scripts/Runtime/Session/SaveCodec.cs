@@ -24,6 +24,7 @@ namespace ARPG
             MigrateFrom6, // 6 to 7: onboarding did not exist; an existing character needs no lessons (see the step).
             MigrateFrom7, // 7 to 8: no waypoints, Tome or portal existed.
             MigrateFrom8, // 8 to 9: no loadout existed; it fills itself from the level, as the skills always did.
+            MigrateFrom9, // 9 to 10: skill levels did not exist; every skill is level 1 and all points are unspent.
         };
 
         static SaveData MigrateFrom1(SaveData data)
@@ -86,12 +87,26 @@ namespace ARPG
             return data;
         }
 
+        static SaveData MigrateFrom9(SaveData data)
+        {
+            data.skillLevels = new List<SkillLevelData>();
+            return data;
+        }
+
         static SaveData MigrateFrom8(SaveData data)
         {
             data.loadoutSkills = new List<string>();
             data.loadoutTriggers = new List<string>();
             data.loadoutChosen = false;
             return data;
+        }
+
+        static List<SkillLevelData> CaptureSkillLevels(SkillLevels levels)
+        {
+            var list = new List<SkillLevelData>();
+            foreach (var pair in levels.All)
+                list.Add(new SkillLevelData { skill = pair.Key, level = pair.Value });
+            return list;
         }
 
         static List<string> CaptureLoadoutSkills(SkillLoadout loadout)
@@ -158,6 +173,7 @@ namespace ARPG
                 loadoutSkills = CaptureLoadoutSkills(session.Loadout),
                 loadoutTriggers = CaptureLoadoutTriggers(session.Loadout),
                 loadoutChosen = session.Loadout.Chosen,
+                skillLevels = CaptureSkillLevels(session.SkillLevels),
                 equipped = CaptureEquipment(session.Equipment),
             };
 
@@ -210,6 +226,8 @@ namespace ARPG
                 session.OpenPortal(data.portalDepth, new Vector2(data.portalX, data.portalY));
             session.RestoreOnboarding(new Onboarding(data.stickTaught, data.forgeIntroduced, data.seenLegendary, data.legendaryHintShown, data.playSeconds));
             RestoreLoadout(session.Loadout, data);
+            foreach (var entry in data.skillLevels ?? new List<SkillLevelData>())
+                session.SkillLevels.Restore(entry.skill, entry.level);
             foreach (var chest in data.openedChests)
                 session.RecordOpened(chest);
 
