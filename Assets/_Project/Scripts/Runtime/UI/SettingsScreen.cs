@@ -14,11 +14,11 @@ namespace ARPG
     /// </summary>
     public class SettingsScreen : MonoBehaviour
     {
-        static readonly Color SheetColor = new Color(0.09f, 0.08f, 0.08f, 0.98f);
-        static readonly Color StrokeColor = new Color(0.9f, 0.45f, 0.2f);
-        static readonly Color ButtonColor = new Color(1f, 1f, 1f, 0.16f);
-        static readonly Color ChipOnColor = new Color(0.9f, 0.45f, 0.2f, 0.55f);
-        static readonly Color GroupColor = new Color(1f, 0.71f, 0.35f);
+        static readonly Color SheetColor = UiStyle.Sheet;
+        static readonly Color StrokeColor = UiStyle.Blood;
+        static readonly Color ButtonColor = UiStyle.ButtonFill;
+        static readonly Color ChipOnColor = UiStyle.Selected;
+        static readonly Color GroupColor = UiStyle.Gold;
 
         const float RowHeight = 168f; // 56 points, the docs' preferred tap target.
 
@@ -102,7 +102,7 @@ namespace ARPG
             strokeRect.sizeDelta = new Vector2(0f, 4f);
 
             var title = NewText(sheet.transform, "Settings", 56, FontStyle.Bold, TextAnchor.MiddleCenter);
-            title.color = StrokeColor;
+            title.color = UiStyle.Gold;
             Height(title.gameObject, 84f);
 
             var listObject = new GameObject("List", typeof(RectTransform), typeof(VerticalLayoutGroup));
@@ -212,6 +212,7 @@ namespace ARPG
             var go = new GameObject("Button", typeof(RectTransform), typeof(Image), typeof(Button));
             go.transform.SetParent(parent, false);
             go.GetComponent<Image>().color = ButtonColor;
+            UiStyle.Rim(go);
             go.GetComponent<Button>().onClick.AddListener(() => onClick());
             var text = NewText(go.transform, label, 40, FontStyle.Bold, TextAnchor.MiddleCenter);
             var rect = text.rectTransform;
@@ -227,11 +228,11 @@ namespace ARPG
             var go = new GameObject("Text", typeof(RectTransform), typeof(Text));
             go.transform.SetParent(parent, false);
             var text = go.GetComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            text.font = UiStyle.Title;
             text.fontSize = size;
             text.fontStyle = style;
             text.alignment = alignment;
-            text.color = Color.white;
+            text.color = UiStyle.TextMain;
             text.supportRichText = true;
             text.raycastTarget = false;
             text.horizontalOverflow = HorizontalWrapMode.Wrap;

@@ -21,9 +21,9 @@ namespace ARPG
         public static readonly Color LossColor = new Color(0.95f, 0.42f, 0.36f);
         public static readonly Color NeutralColor = new Color(0.7f, 0.7f, 0.7f);
 
-        static readonly Color SheetColor = new Color(0.09f, 0.08f, 0.08f, 0.98f);
-        static readonly Color EmberColor = new Color(1f, 0.45f, 0.15f);
-        static readonly Color ButtonColor = new Color(1f, 1f, 1f, 0.16f);
+        static readonly Color SheetColor = UiStyle.Sheet;
+        static readonly Color EmberColor = UiStyle.Blood;
+        static readonly Color ButtonColor = UiStyle.ButtonFill;
 
         // Docs/06-ui-ux.md: tap targets at least 48 points, 56 preferred. The canvas is 1170 wide for a 390 point
         // screen, so a point is 3 canvas units.
@@ -299,6 +299,7 @@ namespace ARPG
             var go = new GameObject(label + " Button", typeof(RectTransform), typeof(Image), typeof(Button));
             go.transform.SetParent(actions, false);
             go.GetComponent<Image>().color = ButtonColor;
+            UiStyle.Rim(go);
             go.GetComponent<Button>().onClick.AddListener(() => onClick());
 
             var text = NewText(go.transform, 36, FontStyle.Bold);
@@ -312,10 +313,10 @@ namespace ARPG
             var go = new GameObject("Text", typeof(RectTransform), typeof(Text));
             go.transform.SetParent(parent, false);
             var text = go.GetComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            text.font = UiStyle.Title;
             text.fontSize = size;
             text.fontStyle = style;
-            text.color = Color.white;
+            text.color = UiStyle.TextMain;
             text.supportRichText = true;
             text.raycastTarget = false;
             text.horizontalOverflow = HorizontalWrapMode.Wrap;

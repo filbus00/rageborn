@@ -14,12 +14,12 @@ namespace ARPG
     /// </summary>
     public class PassiveTreeScreen : MonoBehaviour
     {
-        static readonly Color SheetColor = new Color(0.09f, 0.08f, 0.08f, 0.98f);
-        static readonly Color StrokeColor = new Color(0.9f, 0.45f, 0.2f);
-        static readonly Color ButtonColor = new Color(1f, 1f, 1f, 0.16f);
-        static readonly Color TabActiveColor = new Color(0.9f, 0.45f, 0.2f, 0.45f);
-        static readonly Color BoughtColor = new Color(0.9f, 0.45f, 0.2f, 0.18f);
-        static readonly Color RowColor = new Color(1f, 1f, 1f, 0.05f);
+        static readonly Color SheetColor = UiStyle.Sheet;
+        static readonly Color StrokeColor = UiStyle.Blood;
+        static readonly Color ButtonColor = UiStyle.ButtonFill;
+        static readonly Color TabActiveColor = UiStyle.Selected;
+        static readonly Color BoughtColor = UiStyle.Chip;
+        static readonly Color RowColor = UiStyle.RowFill;
 
         static PassiveTreeScreen current;
 
@@ -84,7 +84,7 @@ namespace ARPG
             layout.childForceExpandWidth = true;
 
             var title = NewText(sheet.transform, "Passive Tree", 56, FontStyle.Bold, TextAnchor.MiddleCenter);
-            title.color = StrokeColor;
+            title.color = UiStyle.Gold;
             Height(title.gameObject, 90f);
             screen.points = NewText(sheet.transform, "", 34, FontStyle.Normal, TextAnchor.MiddleCenter);
             Height(screen.points.gameObject, 60f);
@@ -234,6 +234,7 @@ namespace ARPG
             var go = new GameObject("Button", typeof(RectTransform), typeof(Image), typeof(Button));
             go.transform.SetParent(parent, false);
             go.GetComponent<Image>().color = ButtonColor;
+            UiStyle.Rim(go);
             go.GetComponent<Button>().onClick.AddListener(() => onClick());
             var text = NewText(go.transform, label, 40, FontStyle.Bold, TextAnchor.MiddleCenter);
             var rect = text.rectTransform;
@@ -249,11 +250,11 @@ namespace ARPG
             var go = new GameObject("Text", typeof(RectTransform), typeof(Text));
             go.transform.SetParent(parent, false);
             var text = go.GetComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            text.font = UiStyle.Title;
             text.fontSize = size;
             text.fontStyle = style;
             text.alignment = alignment;
-            text.color = Color.white;
+            text.color = UiStyle.TextMain;
             text.supportRichText = true;
             text.raycastTarget = false;
             text.horizontalOverflow = HorizontalWrapMode.Wrap;

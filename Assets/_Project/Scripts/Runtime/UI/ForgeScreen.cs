@@ -24,12 +24,12 @@ namespace ARPG
             Temper,
         }
 
-        static readonly Color SheetColor = new Color(0.09f, 0.08f, 0.08f, 0.98f);
-        static readonly Color EmberColor = new Color(1f, 0.45f, 0.15f);
-        static readonly Color ButtonColor = new Color(1f, 1f, 1f, 0.16f);
-        static readonly Color SelectedColor = new Color(1f, 0.45f, 0.15f, 0.45f);
-        static readonly Color DisabledColor = new Color(1f, 1f, 1f, 0.05f);
-        static readonly Color RowColor = new Color(0f, 0f, 0f, 0.35f);
+        static readonly Color SheetColor = UiStyle.Sheet;
+        static readonly Color EmberColor = UiStyle.Blood;
+        static readonly Color ButtonColor = UiStyle.ButtonFill;
+        static readonly Color SelectedColor = UiStyle.Selected;
+        static readonly Color DisabledColor = UiStyle.Locked;
+        static readonly Color RowColor = UiStyle.RowFill;
 
         // Docs/06-ui-ux.md: tap targets at least 48 points, 56 preferred; 3 canvas units per point.
         const float ButtonHeight = 168f;
@@ -139,7 +139,7 @@ namespace ARPG
             var header = NewRow(panel.transform, "Header", 120f);
             var title = NewText(header, 56, FontStyle.Bold);
             title.text = "Forge";
-            title.color = EmberColor;
+            title.color = UiStyle.Gold;
             title.alignment = TextAnchor.MiddleLeft;
             Flexible(title.gameObject);
             Fixed(NewButton(header, "Close", Close).gameObject, 260f);
@@ -562,6 +562,7 @@ namespace ARPG
             var go = new GameObject(label + " Button", typeof(RectTransform), typeof(Image), typeof(Button));
             go.transform.SetParent(parent, false);
             go.GetComponent<Image>().color = ButtonColor;
+            UiStyle.Rim(go);
             go.GetComponent<Button>().onClick.AddListener(() => onClick());
 
             var text = NewText(go.transform, 36, FontStyle.Bold);
@@ -583,10 +584,10 @@ namespace ARPG
             var go = new GameObject("Text", typeof(RectTransform), typeof(Text));
             go.transform.SetParent(parent, false);
             var text = go.GetComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            text.font = UiStyle.Title;
             text.fontSize = size;
             text.fontStyle = style;
-            text.color = Color.white;
+            text.color = UiStyle.TextMain;
             text.supportRichText = true;
             text.raycastTarget = false;
             text.horizontalOverflow = HorizontalWrapMode.Wrap;

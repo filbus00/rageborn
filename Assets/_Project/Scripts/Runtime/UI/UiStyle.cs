@@ -23,6 +23,25 @@ namespace ARPG
         public static readonly Color TextMain = new Color(0.9f, 0.86f, 0.8f, 1f);
         public static readonly Color TextDim = new Color(0.62f, 0.57f, 0.52f, 1f);
 
+        // The sheets' shared tokens (item sheet, skills, tree, settings, Forge, waypoints, hints).
+        public static readonly Color Sheet = new Color(0.06f, 0.05f, 0.05f, 0.98f);
+        public static readonly Color Dim = new Color(0f, 0f, 0f, 0.6f);
+        public static readonly Color ButtonFill = new Color(0.13f, 0.1f, 0.095f, 1f);
+        public static readonly Color RowFill = new Color(0.1f, 0.08f, 0.075f, 1f);
+        public static readonly Color Selected = new Color(0.45f, 0.06f, 0.05f, 1f);
+        public static readonly Color Chip = new Color(0.3f, 0.06f, 0.05f, 1f);
+        public static readonly Color Locked = new Color(0.07f, 0.06f, 0.06f, 1f);
+
+        /// <summary>The iron rim every button and row of the sheets carries.</summary>
+        public static void Rim(GameObject go, float width = 3f)
+        {
+            if (go.GetComponent<Outline>() != null)
+                return;
+            var outline = go.AddComponent<Outline>();
+            outline.effectColor = Frame;
+            outline.effectDistance = new Vector2(width, -width);
+        }
+
         static Font body;
         static Font title;
         static Sprite circle;

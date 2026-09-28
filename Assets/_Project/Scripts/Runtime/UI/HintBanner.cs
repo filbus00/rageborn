@@ -13,8 +13,8 @@ namespace ARPG
         const float ShowSeconds = 7f;
         const float FadeSeconds = 0.3f;
 
-        static readonly Color PanelColor = new Color(0.09f, 0.08f, 0.08f, 0.94f);
-        static readonly Color EmberColor = new Color(1f, 0.45f, 0.15f);
+        static readonly Color PanelColor = UiStyle.Sheet;
+        static readonly Color EmberColor = UiStyle.Blood;
 
         CanvasGroup group;
         Text text;
@@ -75,10 +75,10 @@ namespace ARPG
             textRect.offsetMin = new Vector2(36f, 16f);
             textRect.offsetMax = new Vector2(-36f, -16f);
             text = textObject.GetComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            text.font = UiStyle.Title;
             text.fontSize = 36;
             text.alignment = TextAnchor.MiddleCenter;
-            text.color = Color.white;
+            text.color = UiStyle.TextMain;
             text.supportRichText = true;
             text.raycastTarget = false;
             text.horizontalOverflow = HorizontalWrapMode.Wrap;

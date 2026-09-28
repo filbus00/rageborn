@@ -17,11 +17,11 @@ namespace ARPG
         /// <summary>The level the loadout opens at (Q4).</summary>
         public const int OpensAtLevel = 9;
 
-        static readonly Color SheetColor = new Color(0.09f, 0.08f, 0.08f, 0.98f);
-        static readonly Color StrokeColor = new Color(0.9f, 0.45f, 0.2f);
-        static readonly Color ButtonColor = new Color(1f, 1f, 1f, 0.16f);
-        static readonly Color ChipColor = new Color(0.9f, 0.45f, 0.2f, 0.35f);
-        static readonly Color LockedColor = new Color(1f, 1f, 1f, 0.05f);
+        static readonly Color SheetColor = UiStyle.Sheet;
+        static readonly Color StrokeColor = UiStyle.Blood;
+        static readonly Color ButtonColor = UiStyle.ButtonFill;
+        static readonly Color ChipColor = UiStyle.Chip;
+        static readonly Color LockedColor = UiStyle.Locked;
 
         const float RowHeight = 168f; // 56 points, the docs' preferred tap target.
 
@@ -115,7 +115,7 @@ namespace ARPG
             strokeRect.sizeDelta = new Vector2(0f, 4f);
 
             var title = NewText(sheet.transform, "Skills", 56, FontStyle.Bold);
-            title.color = StrokeColor;
+            title.color = UiStyle.Gold;
             Height(title.gameObject, 90f);
             screen.hint = NewText(sheet.transform, "", 32, FontStyle.Normal);
             screen.hint.color = new Color(1f, 1f, 1f, 0.7f);
@@ -283,6 +283,7 @@ namespace ARPG
             var go = new GameObject("Button", typeof(RectTransform), typeof(Image), typeof(Button));
             go.transform.SetParent(parent, false);
             go.GetComponent<Image>().color = ButtonColor;
+            UiStyle.Rim(go);
             go.GetComponent<Button>().onClick.AddListener(() => onClick());
             var text = NewText(go.transform, label, 40, FontStyle.Bold);
             var rect = text.rectTransform;
@@ -298,11 +299,11 @@ namespace ARPG
             var go = new GameObject("Text", typeof(RectTransform), typeof(Text));
             go.transform.SetParent(parent, false);
             var text = go.GetComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            text.font = UiStyle.Title;
             text.fontSize = size;
             text.fontStyle = style;
             text.alignment = TextAnchor.MiddleCenter;
-            text.color = Color.white;
+            text.color = UiStyle.TextMain;
             text.supportRichText = true;
             text.raycastTarget = false;
             text.horizontalOverflow = HorizontalWrapMode.Wrap;
