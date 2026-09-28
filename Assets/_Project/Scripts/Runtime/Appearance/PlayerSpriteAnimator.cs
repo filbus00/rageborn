@@ -12,6 +12,8 @@ namespace ARPG
     /// Bull Rush plays for as long as the dash lasts, and death is held. An animation the sheets lack falls back to the
     /// attack, then to idle. Added to the player by <see cref="PlayerController"/>.
     /// </summary>
+    // After PlayerCombat, so a swing faces the target combat picked this frame, not last frame's.
+    [DefaultExecutionOrder(50)]
     public class PlayerSpriteAnimator : MonoBehaviour
     {
         public const string DefaultCharacter = "wrathborn";
@@ -215,8 +217,8 @@ namespace ARPG
             var baseName = sprite.Has(animation) ? animation : sprite.Has("attack") ? "attack" : null;
             if (baseName == null)
                 return false;
-            var name = LocomotionRules.ActionSheet(baseName, moving);
-            if (!sprite.Has(name))
+            var name = ActionSheetFor(baseName, moving, player.GroundVelocity);
+            if (name == null)
                 return false;
             var length = sprite.LengthOf(name);
             action = baseName;
@@ -224,8 +226,33 @@ namespace ARPG
             turning = false;
             sprite.Rate = 1f;
             sprite.Play(name, false, length > 0f ? Mathf.Min(length, maxSeconds) : 0f);
-            sprite.Face(LocomotionRules.ActionFacing(aim, player.GroundVelocity, moving));
+            sprite.Face(aim);
             return true;
+        }
+
+        // The sheet for an action: standing, the action; moving, over the forward run, or over the backward run when the
+        // target is behind (falling back to the forward one when that sheet is missing). Null when none exists.
+        string ActionSheetFor(string baseName, bool moving, Vector2 velocity)
+        {
+            if (moving && LocomotionRules.IsActionBackward(aim, velocity))
+            {
+                var back = LocomotionRules.ActionSheet(baseName, true, true);
+                if (sprite.Has(back))
+                    return back;
+            }
+            var name = LocomotionRules.ActionSheet(baseName, moving);
+            return sprite.Has(name) ? name : null;
+        }
+
+        // The basic swing keeps facing its target as both move, so a circling fight never swings at the air where the
+        // enemy was when the swing began. Skills keep their cast direction (Hurl Axe picks its own, farther target).
+        void FollowTarget()
+        {
+            if (action != "attack" || combat == null || combat.Target == null || !combat.Target.IsAlive)
+                return;
+            var toTarget = combat.Target.GroundPosition - IsoMath.WorldToGround(player.transform.position);
+            if (toTarget.sqrMagnitude > 1e-6f)
+                aim = toTarget.normalized;
         }
 
         void Update()
@@ -255,20 +282,16 @@ namespace ARPG
                     // Setting off or stopping mid-swing goes on in the other variant at the same point, so the legs follow
                     // the ground. Without a moving sheet, setting off cuts the swing rather than sliding it along the floor.
                     // A hit reaction (no action) only plays standing.
+                    // An action always faces what it strikes; the legs run forward or backward under it.
                     var moving = speed > RunThreshold;
-                    var name = action != null ? LocomotionRules.ActionSheet(action, moving) : moving ? null : sprite.Animation;
+                    FollowTarget();
+                    var name = action != null ? ActionSheetFor(action, moving, velocity) : moving ? null : sprite.Animation;
                     if (name != null && name != sprite.Animation)
-                    {
-                        if (sprite.Has(name))
-                            sprite.Switch(name);
-                        else if (moving)
-                            name = null;
-                    }
+                        sprite.Switch(name);
                     if (name != null)
                     {
-                        if (moving)
-                            sprite.FaceRow(LocomotionRules.ChooseRow(sprite.Row,
-                                LocomotionRules.ActionFacing(aim, velocity, true), sprite.DirectionCount));
+                        if (action != null)
+                            sprite.FaceRow(LocomotionRules.ChooseRow(sprite.Row, aim, sprite.DirectionCount));
                         return;
                     }
                 }
@@ -314,8 +337,10 @@ namespace ARPG
             var heading = player.InputDirection.sqrMagnitude > 0f ? player.InputDirection : velocity;
             var row = LocomotionRules.ChooseRow(sprite.Row, heading, sprite.DirectionCount);
             var step = sprite.Animation == "run" ? LocomotionRules.TurnStep(sprite.Row, row, sprite.DirectionCount) : 0;
-            var turn = step > 0 ? "run_turn_right" : "run_turn_left";
-            if (step != 0 && sprite.Has(turn))
+            // Only the right turn has a clip: the mirrored left turn looked wrong (the owner, 2026-09-28), so turning left
+            // switches the row straight away.
+            var turn = step > 0 ? "run_turn_right" : null;
+            if (turn != null && sprite.Has(turn))
             {
                 // The turn clip curves the body about 40 degrees from the row it starts in, where the new row is (one row of
                 // 8, two of 16):

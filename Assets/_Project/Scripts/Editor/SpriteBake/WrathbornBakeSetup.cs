@@ -21,9 +21,10 @@ namespace ARPG.Editor
         const string Character = "wrathborn";
 
         // The brief's frame counts and loops (section 4.4); the idle has twice the brief's, since Mixamo's idles are long.
+        // No run_turn_left: the mirrored turn looked wrong (the owner, 2026-09-28), so a left turn just switches rows.
         static readonly (string name, int frames, bool loop)[] Animations =
         {
-            ("idle", 24, true), ("run", 10, true), ("run_back", 10, true), ("run_turn_right", 10, false), ("run_turn_left", 10, false),
+            ("idle", 24, true), ("run", 10, true), ("run_back", 10, true), ("run_turn_right", 10, false),
             ("attack", 10, false), ("hew", 12, false), ("hurl_axe", 10, false),
             ("bull_rush", 8, true), ("ground_breaker", 14, false), ("hit", 4, false), ("death", 16, false),
         };
@@ -188,25 +189,31 @@ namespace ARPG.Editor
         const float MovingFramesPerSecond = 20f;
 
         // Adds <name>_move for each action: the run's hips and legs under the action's torso (the owner, 2026-09-27: "the
-        // player will be moving most of the time. The various animations need to play even when the character is moving").
+        // player will be moving most of the time. The various animations need to play even when the character is moving"),
+        // and <name>_move_back over the backward run, for a blow at an enemy behind the way the character runs (the
+        // character always faces what it strikes; the owner, 2026-09-28).
         static void AddMovingActions(SpriteBakeJob.GripSet set)
         {
-            var run = set.clips.FirstOrDefault(c => c.name == "run");
-            if (run == null)
-                return;
-            foreach (var (name, seconds) in MovingActions)
+            var legSets = new[] { ("run", LocomotionRules.MovingSuffix), ("run_back", LocomotionRules.MovingBackSuffix) };
+            foreach (var (legsName, suffix) in legSets)
             {
-                var action = set.clips.FirstOrDefault(c => c.name == name);
-                if (action == null)
+                var legs = set.clips.FirstOrDefault(c => c.name == legsName);
+                if (legs == null)
                     continue;
-                var play = Mathf.Min(seconds, action.playbackSeconds);
-                set.clips.Add(new SpriteBakeJob.Clip
+                foreach (var (name, seconds) in MovingActions)
                 {
-                    name = name + "_move", clip = action.clip, loop = false,
-                    frames = Mathf.Max(action.frames, Mathf.RoundToInt(play * MovingFramesPerSecond) + 1),
-                    start = action.start, end = action.end, playbackSeconds = play,
-                    legs = run.clip, legsGroundSpeed = 4.4f,
-                });
+                    var action = set.clips.FirstOrDefault(c => c.name == name);
+                    if (action == null)
+                        continue;
+                    var play = Mathf.Min(seconds, action.playbackSeconds);
+                    set.clips.Add(new SpriteBakeJob.Clip
+                    {
+                        name = name + suffix, clip = action.clip, loop = false,
+                        frames = Mathf.Max(action.frames, Mathf.RoundToInt(play * MovingFramesPerSecond) + 1),
+                        start = action.start, end = action.end, playbackSeconds = play,
+                        legs = legs.clip, legsGroundSpeed = 4.4f,
+                    });
+                }
             }
         }
 

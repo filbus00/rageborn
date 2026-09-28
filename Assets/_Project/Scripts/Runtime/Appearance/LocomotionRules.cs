@@ -63,26 +63,25 @@ namespace ARPG
         /// the sprite bake, so the character swings while it runs.</summary>
         public const string MovingSuffix = "_move";
 
-        /// <summary>The sheet an action plays: its moving variant while the character moves, else the action itself.</summary>
-        public static string ActionSheet(string action, bool moving) => moving ? action + MovingSuffix : action;
+        /// <summary>The suffix of an action's backward moving variant: the backward run's hips and legs under the action's
+        /// torso, for a blow struck at an enemy behind the way the character runs.</summary>
+        public const string MovingBackSuffix = "_move_back";
 
-        /// <summary>How far a moving action turns the character from the way it runs toward what it strikes. The running
-        /// legs stride the way the sprite faces, so facing a target at the side made the feet slide sideways (the owner,
-        /// 2026-09-28: "It looks a bit odd when running around and attacking"); about the run turn's own lean hides it.</summary>
-        public const float MaxActionTwistDegrees = 45f;
+        /// <summary>Beyond this angle between the aim and the run, a moving action plays over the backward run.</summary>
+        public const float ActionBackDegrees = 90f;
 
         /// <summary>
-        /// Which way the character faces during an action: standing, toward what it strikes; moving, toward it but at most
-        /// <see cref="MaxActionTwistDegrees"/> off the way it runs, so the legs never stride far from the ground's motion
-        /// (the slash still shows where the blow lands).
+        /// The sheet an action plays: standing, the action itself; moving, its forward moving variant, or its backward one
+        /// when the target is more than <see cref="ActionBackDegrees"/> off the way the character runs. The character
+        /// always faces what it strikes during an action (the owner, 2026-09-28: a swing turned at most 45 degrees off the
+        /// run "still swings their axe pointing away from monster sometimes"), so the legs are at most 90 degrees off the
+        /// ground's motion.
         /// </summary>
-        public static Vector2 ActionFacing(Vector2 aim, Vector2 velocity, bool moving)
-        {
-            if (!moving || velocity.sqrMagnitude < 1e-6f || aim.sqrMagnitude < 1e-6f)
-                return aim;
-            var twist = Mathf.Clamp(Vector2.SignedAngle(velocity, aim), -MaxActionTwistDegrees, MaxActionTwistDegrees);
-            return Quaternion.Euler(0f, 0f, twist) * velocity.normalized;
-        }
+        public static string ActionSheet(string action, bool moving, bool backward = false) =>
+            !moving ? action : backward ? action + MovingBackSuffix : action + MovingSuffix;
+
+        public static bool IsActionBackward(Vector2 aim, Vector2 velocity) =>
+            aim.sqrMagnitude > 1e-6f && velocity.sqrMagnitude > 1e-6f && Vector2.Angle(aim, velocity) > ActionBackDegrees;
 
         public static bool IsBackpedal(Vector2 aim, Vector2 velocity) =>
             aim.sqrMagnitude > 1e-6f && velocity.sqrMagnitude > 1e-6f && Vector2.Angle(aim, velocity) > BackpedalDegrees;

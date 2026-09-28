@@ -142,6 +142,9 @@ namespace ARPG
 
         public int SkillCastCount { get; private set; }
 
+        /// <summary>The enemy the basic attack is aimed at this frame, or null. The animation follows it through a swing.</summary>
+        public EnemyController Target { get; private set; }
+
         /// <summary>A basic attack starts, with its ground direction and the time until the next may start (so an
         /// animation can fit the attack rate).</summary>
         public event System.Action<Vector2, float> BasicAttackStarted;
@@ -308,10 +311,12 @@ namespace ARPG
                 UpdateExecute(origin, deltaTime);
 
             enemies.QueryEnemies(origin, LongestReach() + QueryMargin, candidates);
+            Target = null;
             if (candidates.Count == 0)
                 return;
 
             var target = PickTarget(origin);
+            Target = target;
             var aim = target != null ? (target.GroundPosition - origin).normalized : facing;
             if (aim.sqrMagnitude < 1e-6f)
                 aim = facing;
