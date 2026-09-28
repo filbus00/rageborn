@@ -70,6 +70,11 @@ namespace ARPG
         /// <summary>Beyond this angle between the aim and the run, a moving action plays over the backward run.</summary>
         public const float ActionBackDegrees = 90f;
 
+        /// <summary>Half the dead band around <see cref="ActionBackDegrees"/>: the legs go backward past 110 degrees and
+        /// forward again below 70. Without it a target near the side flipped the legs every few frames, which read as the
+        /// character jerking left and right (the owner, 2026-09-28).</summary>
+        public const float ActionBackMargin = 20f;
+
         /// <summary>
         /// The sheet an action plays: standing, the action itself; moving, its forward moving variant, or its backward one
         /// when the target is more than <see cref="ActionBackDegrees"/> off the way the character runs. The character
@@ -80,11 +85,15 @@ namespace ARPG
         public static string ActionSheet(string action, bool moving, bool backward = false) =>
             !moving ? action : backward ? action + MovingBackSuffix : action + MovingSuffix;
 
-        public static bool IsActionBackward(Vector2 aim, Vector2 velocity) =>
-            aim.sqrMagnitude > 1e-6f && velocity.sqrMagnitude > 1e-6f && Vector2.Angle(aim, velocity) > ActionBackDegrees;
+        public static bool IsActionBackward(Vector2 aim, Vector2 velocity, bool wasBackward = false) =>
+            aim.sqrMagnitude > 1e-6f && velocity.sqrMagnitude > 1e-6f &&
+            Vector2.Angle(aim, velocity) > ActionBackDegrees + (wasBackward ? -ActionBackMargin : ActionBackMargin);
 
-        public static bool IsBackpedal(Vector2 aim, Vector2 velocity) =>
-            aim.sqrMagnitude > 1e-6f && velocity.sqrMagnitude > 1e-6f && Vector2.Angle(aim, velocity) > BackpedalDegrees;
+        /// <summary>Retreating from the aim: past <see cref="BackpedalDegrees"/>, and once backpedalling until
+        /// <see cref="ActionBackMargin"/> under it, so the run and the backward run do not flicker at the edge.</summary>
+        public static bool IsBackpedal(Vector2 aim, Vector2 velocity, bool wasBackpedalling = false) =>
+            aim.sqrMagnitude > 1e-6f && velocity.sqrMagnitude > 1e-6f &&
+            Vector2.Angle(aim, velocity) > BackpedalDegrees - (wasBackpedalling ? ActionBackMargin : 0f);
 
         /// <summary>How fast to play a locomotion cycle: the actual speed over the speed it was recorded at, within limits.
         /// 1 when the recorded speed is unknown.</summary>

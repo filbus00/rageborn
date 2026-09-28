@@ -124,8 +124,10 @@ namespace ARPG.Tests
             Assert.AreEqual("hew_move_back", LocomotionRules.ActionSheet("hew", true, true));
 
             Assert.IsFalse(LocomotionRules.IsActionBackward(Rotate(Vector2.up, 30f), Vector2.up), "ahead: forward legs");
-            Assert.IsFalse(LocomotionRules.IsActionBackward(Rotate(Vector2.up, 89f), Vector2.up), "at the side: forward legs");
-            Assert.IsTrue(LocomotionRules.IsActionBackward(Rotate(Vector2.up, 91f), Vector2.up), "past the side: backward legs");
+            Assert.IsFalse(LocomotionRules.IsActionBackward(Rotate(Vector2.up, 105f), Vector2.up), "just past the side: stays forward");
+            Assert.IsTrue(LocomotionRules.IsActionBackward(Rotate(Vector2.up, 115f), Vector2.up), "well behind: backward legs");
+            Assert.IsTrue(LocomotionRules.IsActionBackward(Rotate(Vector2.up, 75f), Vector2.up, true), "backward stays until 70");
+            Assert.IsFalse(LocomotionRules.IsActionBackward(Rotate(Vector2.up, 65f), Vector2.up, true), "then forward again");
             Assert.IsTrue(LocomotionRules.IsActionBackward(Vector2.down, Vector2.up), "behind: backward legs");
             Assert.IsFalse(LocomotionRules.IsActionBackward(Vector2.down, Vector2.zero), "standing still");
         }

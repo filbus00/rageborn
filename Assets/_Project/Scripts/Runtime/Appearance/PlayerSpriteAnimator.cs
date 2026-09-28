@@ -234,7 +234,8 @@ namespace ARPG
         // target is behind (falling back to the forward one when that sheet is missing). Null when none exists.
         string ActionSheetFor(string baseName, bool moving, Vector2 velocity)
         {
-            if (moving && LocomotionRules.IsActionBackward(aim, velocity))
+            var wasBackward = sprite.Animation != null && sprite.Animation.EndsWith(LocomotionRules.MovingBackSuffix);
+            if (moving && LocomotionRules.IsActionBackward(aim, velocity, wasBackward))
             {
                 var back = LocomotionRules.ActionSheet(baseName, true, true);
                 if (sprite.Has(back))
@@ -314,7 +315,7 @@ namespace ARPG
 
             // Retreating from what it fights, the character faces it and runs backward.
             var fighting = Time.time - lastCombatTime < CombatMemorySeconds;
-            if (fighting && LocomotionRules.IsBackpedal(aim, velocity) && sprite.Has("run_back"))
+            if (fighting && LocomotionRules.IsBackpedal(aim, velocity, sprite.Animation == "run_back") && sprite.Has("run_back"))
             {
                 turning = false;
                 sprite.FaceRow(LocomotionRules.ChooseRow(sprite.Row, aim, sprite.DirectionCount));
