@@ -12,6 +12,7 @@ namespace ARPG
         const float Width = 960f;
         const float FlashSeconds = 0.35f;
         const float FlashAlpha = 0.35f;
+        const float GentleFlashSeconds = 1.2f;
 
         static readonly Color LifeColor = new Color(0.86f, 0.36f, 0.12f);
         static readonly Color StaggerColor = new Color(0.95f, 0.85f, 0.3f);
@@ -23,6 +24,7 @@ namespace ARPG
         Text staggerLabel;
         Image flash;
         float flashTimer;
+        bool gentleFlash;
 
         public static BossBar Create(Transform parent, string bossName)
         {
@@ -95,9 +97,13 @@ namespace ARPG
                 staggerLabel.gameObject.SetActive(staggered);
         }
 
-        /// <summary>A brief full-screen flash (Docs/06-ui-ux.md: on a boss phase change). The docs' reduce flashing
-        /// setting would turn it into a fade; Settings do not exist yet.</summary>
-        public void Flash() => flashTimer = FlashSeconds;
+        /// <summary>A brief full-screen flash (Docs/06-ui-ux.md: on a boss phase change). With reduce flashing on it is
+        /// a fade instead: a quarter as bright, rising and falling over 1.2 s rather than popping on.</summary>
+        public void Flash()
+        {
+            gentleFlash = SettingsDirector.Current.reduceFlashing;
+            flashTimer = gentleFlash ? GentleFlashSeconds : FlashSeconds;
+        }
 
         void Update()
         {
@@ -105,7 +111,9 @@ namespace ARPG
                 return;
             flashTimer = Mathf.Max(0f, flashTimer - Time.unscaledDeltaTime);
             var c = flash.color;
-            c.a = FlashAlpha * flashTimer / FlashSeconds;
+            c.a = gentleFlash
+                ? FlashAlpha * 0.25f * Mathf.Sin(Mathf.PI * flashTimer / GentleFlashSeconds)
+                : FlashAlpha * flashTimer / FlashSeconds;
             flash.color = c;
         }
 

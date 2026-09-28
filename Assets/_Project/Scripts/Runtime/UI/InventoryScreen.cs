@@ -75,6 +75,8 @@ namespace ARPG
 
             if (openButton != null)
             {
+                PlaceBagButton();
+                SettingsDirector.Changed += PlaceBagButton;
                 openButton.onClick.AddListener(Toggle);
                 upgradeBadge = CreateBadge(openButton.transform);
             }
@@ -83,6 +85,7 @@ namespace ARPG
                 closeButton.onClick.AddListener(Close);
                 skillsButton = CreateSkillsButton(closeButton, 1, "Skills", LoadoutScreen.Open);
                 treeButton = CreateSkillsButton(closeButton, 2, "Tree", PassiveTreeScreen.Open);
+                CreateSettingsButton(closeButton);
             }
 
             if (panelRoot != null)
@@ -111,6 +114,13 @@ namespace ARPG
                 Current = null;
             if (session != null)
                 session.Changed -= RefreshBadge;
+            SettingsDirector.Changed -= PlaceBagButton;
+        }
+
+        void PlaceBagButton()
+        {
+            if (openButton != null)
+                Handedness.PlaceInCorner((RectTransform)openButton.transform);
         }
 
         public void Toggle()
@@ -140,6 +150,7 @@ namespace ARPG
                 sheet.Hide();
             LoadoutScreen.CloseIfOpen();
             PassiveTreeScreen.CloseIfOpen();
+            SettingsScreen.CloseIfOpen();
             panelRoot.SetActive(false);
             Time.timeScale = 1f;
         }
@@ -193,6 +204,18 @@ namespace ARPG
             var source = (RectTransform)close.transform;
             rect.anchoredPosition = source.anchoredPosition - new Vector2((source.rect.width + 24f) * place, 0f);
             return button;
+        }
+
+        // A copy of the Close button mirrored into the top-left corner (the right side holds Tree, Skills and Close).
+        static void CreateSettingsButton(Button close)
+        {
+            var button = CreateSkillsButton(close, 0, "Settings", SettingsScreen.Open);
+            var rect = (RectTransform)button.transform;
+            var source = (RectTransform)close.transform;
+            rect.anchorMin = rect.anchorMax = new Vector2(0f, source.anchorMax.y);
+            rect.pivot = new Vector2(0f, source.pivot.y);
+            rect.anchoredPosition = new Vector2(-source.anchoredPosition.x, source.anchoredPosition.y);
+            rect.sizeDelta = new Vector2(source.sizeDelta.x + 40f, source.sizeDelta.y);
         }
 
         /// <summary>Shows the badge while any backpack item would raise the power score.</summary>

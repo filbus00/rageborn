@@ -30,11 +30,16 @@ namespace ARPG
             go.AddComponent<TravelDirector>();
         }
 
-        void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+        void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            SettingsDirector.Changed += PlaceButton;
+        }
 
         void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            SettingsDirector.Changed -= PlaceButton;
             if (session != null)
                 session.Changed -= Refresh;
         }
@@ -64,7 +69,17 @@ namespace ARPG
         void Refresh()
         {
             if (button == null && inDungeon && session.HasPortalTome)
+            {
                 button = CreateButton();
+                PlaceButton();
+            }
+        }
+
+        // Above the Bag button, in whichever corner handedness puts it.
+        void PlaceButton()
+        {
+            if (button != null)
+                Handedness.PlaceInCorner((RectTransform)button.transform.GetChild(0));
         }
 
         GameObject CreateButton()

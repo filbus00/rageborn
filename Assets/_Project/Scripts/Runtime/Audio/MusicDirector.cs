@@ -6,14 +6,16 @@ namespace ARPG
     /// <summary>
     /// Plays the background music (<see cref="MusicSynth"/>) on a loop in every scene. Created from code before the first
     /// scene and kept across scenes. The loop is rendered on a worker thread, since it takes a moment and the game should
-    /// not wait for it, then made into a clip on the main thread and faded in. No volume setting yet: Settings do not
-    /// exist.
+    /// not wait for it, then made into a clip on the main thread and faded in. The music volume setting scales it
+    /// (<see cref="GameSettings.musicVolume"/>; its default 80 is the level the music was mixed at).
     /// </summary>
     public class MusicDirector : MonoBehaviour
     {
-        /// <summary>Under the sound effects, which carry the fight.</summary>
-        public const float Volume = 0.3f;
+        /// <summary>Under the sound effects, which carry the fight: 0.3 at the default setting of 80.</summary>
+        public const float FullVolume = 0.375f;
         const float FadeSeconds = 4f;
+
+        float fade;
 
         Task<float[]> rendering;
         AudioSource source;
@@ -58,11 +60,10 @@ namespace ARPG
                 source.Play();
             }
 
-            // Unscaled, so the inventory pause does not hold the fade.
-            if (source.volume < Volume)
-                source.volume = Mathf.Min(Volume, source.volume + Volume * Time.unscaledDeltaTime / FadeSeconds);
-            else
-                enabled = false;
+            // Unscaled, so the inventory pause does not hold the fade. Kept running after it, so a volume change in
+            // Settings is heard at once.
+            fade = Mathf.Min(1f, fade + Time.unscaledDeltaTime / FadeSeconds);
+            source.volume = FullVolume * fade * SettingsDirector.Current.MusicLevel;
         }
     }
 }

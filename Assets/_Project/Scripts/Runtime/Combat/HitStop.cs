@@ -36,6 +36,9 @@ namespace ARPG
         {
             if (!timer.IsActive && Time.timeScale <= 0f)
                 return;
+            // Reduce motion turns hit stop off (Docs/06, accessibility).
+            if (SettingsDirector.Current.reduceMotion)
+                return;
 
             if (!timer.IsActive)
                 normalTimeScale = Time.timeScale;

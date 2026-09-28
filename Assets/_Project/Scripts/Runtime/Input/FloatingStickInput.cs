@@ -15,12 +15,6 @@ namespace ARPG
         // iOS points are roughly 1/163 inch.
         const float PointsPerInch = 163f;
 
-        [Tooltip("Stick radius in points. The settings screen allows 48 to 96.")]
-        [SerializeField, Range(48f, 96f)] float radiusPoints = 64f;
-
-        [Tooltip("Dead zone as a fraction of the stick radius.")]
-        [SerializeField, Range(0f, 0.3f)] float deadZone = 0.08f;
-
         [Tooltip("Touches must begin below this fraction of the screen height to spawn the stick.")]
         [SerializeField, Range(0.3f, 1f)] float touchZoneHeight = 0.62f;
 
@@ -47,7 +41,8 @@ namespace ARPG
         /// <summary>Where the thumb is, in screen pixels.</summary>
         public Vector2 ThumbScreenPosition => thumb;
 
-        public float RadiusPixels => radiusPoints * PixelsPerPoint;
+        /// <summary>The stick's radius from Settings (48 to 96 points, Docs/01).</summary>
+        public float RadiusPixels => SettingsDirector.Current.stickSize * PixelsPerPoint;
 
         static float PixelsPerPoint
         {
@@ -101,7 +96,7 @@ namespace ARPG
                     }
 
                     thumb = touch.screenPosition;
-                    Value = StickMath.Evaluate(ref origin, thumb, RadiusPixels, deadZone);
+                    Value = StickMath.Evaluate(ref origin, thumb, RadiusPixels, SettingsDirector.Current.DeadZoneFraction);
                     return;
                 }
 

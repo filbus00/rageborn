@@ -42,7 +42,8 @@ namespace ARPG
             if (player == null)
                 return;
 
-            var targetLead = player.MoveSpeed > 0f
+            // Reduce motion turns the lead off (Docs/06, accessibility).
+            var targetLead = player.MoveSpeed > 0f && !SettingsDirector.Current.reduceMotion
                 ? IsoMath.GroundToWorld(player.GroundVelocity / player.MoveSpeed * leadDistance)
                 : Vector2.zero;
             lead = Vector2.SmoothDamp(lead, targetLead, ref leadVelocity, leadSmoothTime);

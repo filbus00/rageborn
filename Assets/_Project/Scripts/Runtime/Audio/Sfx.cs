@@ -29,7 +29,7 @@ namespace ARPG
     /// follows the character, so everything that matters is near it), a little random pitch so repeats do not sound
     /// mechanical, and a minimum gap per sound so a sweep that hits eight enemies plays one hit, not eight. Uses the
     /// default iOS audio session, which follows the ring switch (Docs/01: drop sounds audible when the phone is on ring).
-    /// No volume setting yet: Settings do not exist.
+    /// The effects volume setting scales every sound (<see cref="GameSettings.effectsVolume"/>, 100 by default).
     /// </summary>
     public class Sfx : MonoBehaviour
     {
@@ -110,7 +110,7 @@ namespace ARPG
             startedAt[voice] = now;
             var source = sources[voice];
             source.clip = clips[index];
-            source.volume = Mathf.Clamp01(volume);
+            source.volume = Mathf.Clamp01(volume * SettingsDirector.Current.EffectsLevel);
             source.pitch = 1f + Random.Range(-0.06f, 0.06f);
             source.Play();
         }

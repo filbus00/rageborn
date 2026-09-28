@@ -105,26 +105,47 @@ namespace ARPG
         public LoadResult Load()
         {
             var failures = new List<string>();
+            return TryLoad<SaveData>(SaveCodec.TryParse, out var data, out var path, out var number, failures)
+                ? new LoadResult(data, path, number, failures)
+                : new LoadResult(null, null, 0, failures);
+        }
+
+        public delegate bool Parser<T>(string contents, out T value, out string error);
+
+        /// <summary>
+        /// The same fallback for any file kept by these rules (the account file's settings too): the main file, then
+        /// each backup, newest first, until one parses. <paramref name="failures"/> gets why each one tried was
+        /// rejected; nothing existing is not a failure.
+        /// </summary>
+        public bool TryLoad<T>(Parser<T> parse, out T value, out string path, out int backupNumber, List<string> failures)
+        {
             var number = 0;
-            foreach (var path in Candidates())
+            foreach (var candidate in Candidates())
             {
-                if (File.Exists(path))
+                if (File.Exists(candidate))
                 {
                     string error;
                     try
                     {
-                        if (SaveCodec.TryParse(File.ReadAllText(path, Encoding.UTF8), out var data, out error))
-                            return new LoadResult(data, path, number, failures);
+                        if (parse(File.ReadAllText(candidate, Encoding.UTF8), out value, out error))
+                        {
+                            path = candidate;
+                            backupNumber = number;
+                            return true;
+                        }
                     }
                     catch (Exception e) when (e is IOException || e is UnauthorizedAccessException)
                     {
                         error = e.Message;
                     }
-                    failures.Add($"{Path.GetFileName(path)}: {error}");
+                    failures?.Add($"{Path.GetFileName(candidate)}: {error}");
                 }
                 number++;
             }
-            return new LoadResult(null, null, 0, failures);
+            value = default;
+            path = null;
+            backupNumber = 0;
+            return false;
         }
 
         /// <summary>

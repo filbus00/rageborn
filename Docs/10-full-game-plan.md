@@ -17,7 +17,7 @@ How to read it:
 
 | Item | Status | Where | Notes |
 |---|---|---|---|
-| Floating stick, movement only | Built | 01 | Stick size, dead zone and handedness settings not built (Settings screen) |
+| Floating stick, movement only | Built | 01 | Stick size, dead zone and handedness in Settings (2026-09-28); position lock not built |
 | Isometric camera, lead, size 7.5, world at Diablo 2 resolution | Built | 01 | Screen shake and its setting not built |
 | Auto-target and basic attack | Built | 01 | Runs in Update; the docs ask for a fixed timestep |
 | Auto-cast by slot order and trigger | Built | 01, 02 | Four-slot loadout with a trigger per slot: the skill's own or two alternatives (Q15), 2026-09-28 |
@@ -27,7 +27,7 @@ How to read it:
 | Dodge | Built | 01 | |
 | Hit stop, damage numbers, flashes, dissolve | Built | 01 | Number grouping option not built |
 | Auto-loot | Built | 01, 03 | |
-| Auto-potion | Built | 01 | Threshold setting not built (Settings screen) |
+| Auto-potion | Built | 01 | Threshold in Settings (2026-09-28) |
 | Death, corpse and corpse run | Built | 01 | |
 | Haptics | Not built | 01 | Proposed list in 07, Audio and haptics plan |
 | Interruption pause and 3 s resume countdown | Not built | 01 | Save on background is built |
@@ -159,7 +159,7 @@ How to read it:
 | Stash, Trainer, Rift and Abyss sheets | Proposed layout | 06 |
 | Waystone map (tiers, rifts, Abyss) | Proposed layout | 06 |
 | Results | Proposed layout; on arriving in town, Decided (Q19) | 06 |
-| Settings | Proposed layout | 06 |
+| Settings | First version built (2026-09-28): controls, potion threshold, music and effects volume, reduce flashing and motion; the rest wait for their systems | 06 |
 | Loot filter editor | Proposed layout | 06 |
 | Story scene player | Proposed layout; in-engine text scenes, Decided (Q20) | 06 |
 

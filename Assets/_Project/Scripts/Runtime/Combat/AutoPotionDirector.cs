@@ -68,6 +68,8 @@ namespace ARPG
             if (health == null)
                 return;
 
+            // The threshold is the player's setting (Docs/01: 20 to 60 percent), read every frame so a change applies at once.
+            GameSession.Current.Potion.TriggerFraction = SettingsDirector.Current.PotionTriggerFraction;
             var heal = GameSession.Current.Potion.Tick(Time.deltaTime, health.Fraction, health.IsAlive, out var fired);
             if (heal > 0f)
             {
