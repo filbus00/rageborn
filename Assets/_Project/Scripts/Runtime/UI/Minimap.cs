@@ -19,7 +19,7 @@ namespace ARPG
         const int WindowCells = 48;
 
         // Canvas units, on the HUD's 1170 x 2532 reference.
-        const float SmallWidth = 480f;
+        const float SmallWidth = 440f;
         const float LargeWidth = 1100f;
 
         // Redrawing the texture is cheap, but not every frame while walking.
@@ -203,17 +203,21 @@ namespace ARPG
             scaler.referenceResolution = new Vector2(1170f, 2532f);
             scaler.matchWidthOrHeight = 0.5f;
 
-            // The small map, top right under the potion pips. Its box is the tap target that expands it.
+            // The small map, top right beside the portrait and bars (the owner, 2026-09-28), inside the safe area and
+            // with no backdrop. Its box is the tap target that expands it.
+            var safe = new GameObject("Safe Area", typeof(RectTransform));
+            safe.transform.SetParent(canvasObject.transform, false);
+            SafeArea.Fit((RectTransform)safe.transform);
             var box = new GameObject("Minimap", typeof(RectTransform), typeof(Image), typeof(Button));
-            box.transform.SetParent(canvasObject.transform, false);
+            box.transform.SetParent(safe.transform, false);
             var boxRect = (RectTransform)box.transform;
             boxRect.anchorMin = boxRect.anchorMax = boxRect.pivot = new Vector2(1f, 1f);
-            boxRect.anchoredPosition = new Vector2(-30f, -240f);
+            boxRect.anchoredPosition = new Vector2(-16f, -12f);
             boxRect.sizeDelta = new Vector2(SmallWidth, SmallWidth / 2f);
             box.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
             box.GetComponent<Button>().onClick.AddListener(Toggle);
 
-            smallMap = BuildDiamond(boxRect, SmallWidth, 0.6f, out _);
+            smallMap = BuildDiamond(boxRect, SmallWidth, 0f, out _);
             NewDot(boxRect, 14f);
 
             var arrow = new GameObject("Exit Arrow", typeof(RectTransform), typeof(Text));

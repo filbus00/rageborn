@@ -51,9 +51,11 @@ namespace ARPG
             background.transform.SetParent(transform, false);
             panel = (RectTransform)background.transform;
             panel.anchorMin = panel.anchorMax = panel.pivot = new Vector2(0f, 1f);
-            panel.sizeDelta = new Vector2(330f, 200f);
+            panel.sizeDelta = new Vector2(380f, 70f);
+            // No backdrop, half see-through, in the band at the very top beside the Dynamic Island (the owner,
+            // 2026-09-28), clear of the HUD.
             var image = background.GetComponent<Image>();
-            image.color = new Color(0f, 0f, 0f, 0.55f);
+            image.color = Color.clear;
             image.raycastTarget = false;
 
             var textObject = new GameObject("Text", typeof(RectTransform), typeof(Text));
@@ -61,11 +63,11 @@ namespace ARPG
             var rect = (RectTransform)textObject.transform;
             rect.anchorMin = Vector2.zero;
             rect.anchorMax = Vector2.one;
-            rect.offsetMin = new Vector2(14f, 8f);
-            rect.offsetMax = new Vector2(-14f, -8f);
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
             label = textObject.GetComponent<Text>();
             label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            label.fontSize = 30;
+            label.fontSize = 22;
             label.alignment = TextAnchor.UpperLeft;
             label.color = Color.white;
             label.raycastTarget = false;
@@ -90,13 +92,13 @@ namespace ARPG
 
             // Building this string allocates, but only twice a second, so it barely moves the GC count it reports.
             var fps = stats.AverageFps;
-            label.color = fps >= 57f ? Color.white : fps >= 45f ? new Color(1f, 0.8f, 0.2f) : new Color(1f, 0.35f, 0.3f);
+            var color = fps >= 57f ? Color.white : fps >= 45f ? new Color(1f, 0.8f, 0.2f) : new Color(1f, 0.35f, 0.3f);
+            color.a = 0.5f;
+            label.color = color;
             label.text =
-                $"{fps:0} fps  {stats.AverageSeconds * 1000f:0.0} ms\n" +
-                $"worst {stats.WorstSeconds * 1000f:0.0} ms\n" +
-                $"hitches {stats.CountOver(HitchSeconds)}/{stats.Count}\n" +
-                $"GC {GC.CollectionCount(0) - startCollections}  heap {GC.GetTotalMemory(false) / (1024f * 1024f):0.0} MB\n" +
-                $"enemies {(enemies != null ? enemies.ActiveCount : 0)}";
+                $"{fps:0} fps  {stats.AverageSeconds * 1000f:0.0} ms  worst {stats.WorstSeconds * 1000f:0.0}\n" +
+                $"hitch {stats.CountOver(HitchSeconds)}  GC {GC.CollectionCount(0) - startCollections}  " +
+                $"{GC.GetTotalMemory(false) / (1024f * 1024f):0.0} MB  {(enemies != null ? enemies.ActiveCount : 0)} en";
         }
 
         // The notch and the Dynamic Island cover the top of a portrait iPhone, so keep clear of the safe area.
@@ -108,7 +110,8 @@ namespace ARPG
             var unitsPerPixel = canvasRect.rect.height / Screen.height;
             var topInset = (Screen.height - Screen.safeArea.yMax) * unitsPerPixel;
             var leftInset = Screen.safeArea.xMin * unitsPerPixel;
-            panel.anchoredPosition = new Vector2(leftInset + 12f, -topInset - 190f);
+            // Inside the band above the safe area (the status bar's place, which the game does not show).
+            panel.anchoredPosition = new Vector2(leftInset + 16f, -Mathf.Max(8f, topInset * 0.5f - 35f));
         }
     }
 }

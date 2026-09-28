@@ -1,52 +1,31 @@
-using System.Text;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ARPG
 {
     /// <summary>
-    /// The inventory and equip screen (Docs/03-itemization.md, Docs/08-production.md decision: no separate pause
-    /// menu, just this). Opened from a HUD button, it shows equipped gear and character stats and lists the
-    /// backpack, each row with an upgrade arrow and the power score change (<see cref="PowerScore"/>). Tapping a row or
-    /// an equipped slot opens the item sheet (<see cref="ItemSheet"/>) with the full comparison. A green arrow on the
-    /// Bag button says the backpack holds an upgrade (Docs/06-ui-ux.md, upgrade badge). Opening it sets
-    /// <see cref="Time.timeScale"/> to 0, which is the game's only pause.
+    /// The Bag: the one screen the inventory button opens (Docs/03, Docs/06; no separate pause menu). Built in code after
+    /// the owner's reference of 2026-09-28: a header with the portrait, name, level and gold; the paper doll, the
+    /// character in its gear with the nine slots around it; the main stats; the Forge materials; the backpack as a grid,
+    /// each item's tile in its rarity's color with an upgrade arrow; and tabs for Skills, the passive Tree and Settings.
+    /// A tap on a slot or an item opens the item sheet (<see cref="ItemSheet"/>) with the comparison, Equip and Discard.
+    /// A green arrow on the Bag button says the backpack holds an upgrade (Docs/06, upgrade badge). Opening it sets
+    /// <see cref="Time.timeScale"/> to 0, the game's only pause. Icons, frames and the painted portrait wait for the UI
+    /// art (Docs/09); slot names and the baked character stand in.
     /// </summary>
     public class InventoryScreen : MonoBehaviour
     {
-        [Header("Panel")]
         [SerializeField] GameObject panelRoot;
         [SerializeField] Button openButton;
-        [SerializeField] Button closeButton;
-        [SerializeField] Text statsText;
-        [SerializeField] RectTransform listContent;
-
-        [Header("Equipped slots")]
-        [SerializeField] Image weaponSwatch;
-        [SerializeField] Text weaponLabel;
-        [SerializeField] Button weaponButton;
-        [SerializeField] Image chestSwatch;
-        [SerializeField] Text chestLabel;
-        [SerializeField] Button chestButton;
-        [SerializeField] Image helmSwatch;
-        [SerializeField] Text helmLabel;
-        [SerializeField] Button helmButton;
 
         [Tooltip("Left empty, the first PlayerHealth in the scene is used.")]
         [SerializeField] PlayerHealth health;
 
-        static readonly Color EmptySlotColor = new Color(1f, 1f, 1f, 0.12f);
+        const int GridColumns = 7;
+        const float Cell = 146f, CellGap = 6f;
 
-        struct SlotUi
-        {
-            public ItemSlot Slot;
-            public Image Swatch;
-            public Text Label;
-            public Button Button;
-        }
-
-        SlotUi[] slots;
-        readonly StringBuilder statsBuilder = new StringBuilder(256);
+        RectTransform content;
         ItemSheet sheet;
         Text upgradeBadge;
         GameSession session;
@@ -54,9 +33,6 @@ namespace ARPG
         /// <summary>The screen in the current scene, or null when it has none. Lets <see cref="HitStop"/> tell
         /// this pause apart from its own, much shorter one when they happen to overlap.</summary>
         public static InventoryScreen Current { get; private set; }
-
-        Button skillsButton;
-        Button treeButton;
 
         public bool IsOpen => panelRoot != null && panelRoot.activeSelf;
 
@@ -66,33 +42,26 @@ namespace ARPG
             if (health == null)
                 health = FindAnyObjectByType<PlayerHealth>();
 
-            slots = new[]
-            {
-                new SlotUi { Slot = ItemSlot.Weapon, Swatch = weaponSwatch, Label = weaponLabel, Button = weaponButton },
-                new SlotUi { Slot = ItemSlot.Chest, Swatch = chestSwatch, Label = chestLabel, Button = chestButton },
-                new SlotUi { Slot = ItemSlot.Helm, Swatch = helmSwatch, Label = helmLabel, Button = helmButton },
-                SmallSlot(ItemSlot.Gloves, 0), SmallSlot(ItemSlot.Boots, 1), SmallSlot(ItemSlot.Belt, 2),
-                SmallSlot(ItemSlot.Amulet, 3), SmallSlot(ItemSlot.Ring, 4), SmallSlot(ItemSlot.Ring2, 5),
-            };
-
             if (openButton != null)
             {
-                PlaceBagButton();
-                SettingsDirector.Changed += PlaceBagButton;
                 openButton.onClick.AddListener(Toggle);
                 upgradeBadge = CreateBadge(openButton.transform);
-            }
-            if (closeButton != null)
-            {
-                closeButton.onClick.AddListener(Close);
-                skillsButton = CreateSkillsButton(closeButton, 1, "Skills", LoadoutScreen.Open);
-                treeButton = CreateSkillsButton(closeButton, 2, "Tree", PassiveTreeScreen.Open);
-                CreateSettingsButton(closeButton);
+                // The HUD around it: portrait, bars and this button in the top-left corner (the owner, 2026-09-28).
+                HudLayout.Arrange(openButton.transform.parent);
             }
 
             if (panelRoot != null)
             {
-                SafeArea.WrapChildren((RectTransform)panelRoot.transform);
+                // The scene's old layout is replaced by the one built here.
+                for (var i = panelRoot.transform.childCount - 1; i >= 0; i--)
+                    Destroy(panelRoot.transform.GetChild(i).gameObject);
+                var background = panelRoot.GetComponent<Image>();
+                if (background != null)
+                    background.color = UiStyle.Backdrop;
+                var safe = UiStyle.Rect(panelRoot.transform, "Safe Area");
+                SafeArea.Fit(safe);
+                content = UiStyle.Rect(safe, "Content");
+                UiStyle.Stretch(content);
                 sheet = ItemSheet.Create(panelRoot.transform);
                 sheet.Changed += Refresh;
             }
@@ -116,13 +85,6 @@ namespace ARPG
                 Current = null;
             if (session != null)
                 session.Changed -= RefreshBadge;
-            SettingsDirector.Changed -= PlaceBagButton;
-        }
-
-        void PlaceBagButton()
-        {
-            if (openButton != null)
-                Handedness.PlaceInCorner((RectTransform)openButton.transform);
         }
 
         public void Toggle()
@@ -157,68 +119,326 @@ namespace ARPG
             Time.timeScale = 1f;
         }
 
+        // Rebuilt whole on every change: a few hundred UI objects, only while the game is paused.
         void Refresh()
         {
-            var session = GameSession.Current;
-            var equipment = session.Equipment;
+            if (content == null)
+                return;
+            // Destroy() is deferred to the end of the frame, so detach first: two refreshes in one frame (equip and the
+            // sheet's own change event) must not stack two layouts.
+            while (content.childCount > 0)
+            {
+                var child = content.GetChild(0);
+                child.SetParent(null);
+                Destroy(child.gameObject);
+            }
 
-            foreach (var slot in slots)
-                RefreshSlot(session, equipment, slot);
-
-            if (statsText != null)
-                statsText.text = BuildStats(session, equipment);
-
-            RebuildBackpack(session);
+            var current = GameSession.Current;
+            BuildHeader(current);
+            BuildDoll(current);
+            BuildStats(current);
+            BuildMaterials(current);
+            BuildGrid(current);
+            BuildTabs(current);
             RefreshBadge();
-            // Docs/02 and Q4: the loadout opens at level 9, when there is a fifth skill to choose; before that the page
-            // only shows while there are skill points to spend (Claude's choice, 2026-09-28).
-            if (skillsButton != null)
+        }
+
+        // --- Header -------------------------------------------------------------------------------------------------
+
+        const float HeaderHeight = 200f;
+
+        void BuildHeader(GameSession current)
+        {
+            var header = UiStyle.Place(UiStyle.Rect(content, "Header"), new Vector2(0.5f, 1f), new Vector2(0f, 0f), new Vector2(0f, HeaderHeight));
+            header.anchorMin = new Vector2(0f, 1f);
+            header.anchorMax = new Vector2(1f, 1f);
+
+            HudLayout.Portrait(header, new Vector2(24f, -12f), 176f, current.Equipment);
+
+            var name = UiStyle.Text(header, "Wrathborn", 52, UiStyle.Gold, TextAnchor.MiddleLeft, true);
+            UiStyle.Place(name.rectTransform, new Vector2(0f, 1f), new Vector2(222f, -24f), new Vector2(480f, 66f));
+            var level = UiStyle.Text(header, $"Level {current.Level}", 32, UiStyle.TextDim, TextAnchor.MiddleLeft, true);
+            UiStyle.Place(level.rectTransform, new Vector2(0f, 1f), new Vector2(224f, -92f), new Vector2(360f, 44f));
+
+            // A thin life bar under the name, as the reference has it.
+            var fraction = health != null ? Mathf.Clamp01(health.Fraction) : 1f;
+            var bar = UiStyle.Framed(header, "Life", UiStyle.FrameDark, 2f);
+            UiStyle.Place(bar.rectTransform, new Vector2(0f, 1f), new Vector2(222f, -148f), new Vector2(430f, 20f));
+            var fill = UiStyle.Image(UiStyle.FillOf(bar).transform, "Amount", UiStyle.BloodBright);
+            fill.rectTransform.anchorMin = Vector2.zero;
+            fill.rectTransform.anchorMax = new Vector2(fraction, 1f);
+            fill.rectTransform.offsetMin = fill.rectTransform.offsetMax = Vector2.zero;
+
+            var gold = UiStyle.Framed(header, "Gold", UiStyle.Panel, 3f);
+            UiStyle.Place(gold.rectTransform, new Vector2(1f, 1f), new Vector2(-190f, -40f), new Vector2(250f, 96f));
+            var goldText = UiStyle.Text(gold.transform, $"<color=#D9B77A>●</color> {current.Gold:N0}", 34, UiStyle.Gold, TextAnchor.MiddleCenter, true);
+            UiStyle.Stretch(goldText.rectTransform, 8f);
+
+            var close = UiStyle.Button(header, "Close", Close, 34);
+            UiStyle.Place((RectTransform)close.transform, new Vector2(1f, 1f), new Vector2(-24f, -32f), new Vector2(144f, 112f));
+        }
+
+        // --- Paper doll ---------------------------------------------------------------------------------------------
+
+        const float DollTop = -HeaderHeight - 8f, DollHeight = 800f;
+
+        void BuildDoll(GameSession current)
+        {
+            var doll = UiStyle.Framed(content, "Paper Doll", new Color(0.07f, 0.05f, 0.05f, 1f), 4f);
+            var rect = doll.rectTransform;
+            rect.anchorMin = new Vector2(0f, 1f);
+            rect.anchorMax = new Vector2(1f, 1f);
+            rect.pivot = new Vector2(0.5f, 1f);
+            rect.offsetMin = new Vector2(16f, DollTop - DollHeight);
+            rect.offsetMax = new Vector2(-16f, DollTop);
+            var inside = UiStyle.FillOf(doll).transform;
+
+            // A dark red glow behind the character.
+            var glow = UiStyle.Disc(inside, "Glow", new Color(0.35f, 0.05f, 0.04f, 0.35f));
+            UiStyle.Place(glow.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0f, 40f), new Vector2(560f, 560f));
+            var figure = UiStyle.Place(UiStyle.Rect(inside, "Character"), new Vector2(0.5f, 0f), new Vector2(0f, 120f), new Vector2(660f, 660f));
+            new CharacterPortrait(figure).Refresh(current.Equipment);
+
+            var equipment = current.Equipment;
+            // Left column: helm, weapon, gloves. Right: amulet, chest, off-hand, boots. Bottom: ring, belt, ring.
+            Slot(inside, equipment, ItemSlot.Helm, new Vector2(0f, 1f), new Vector2(16f, -16f), new Vector2(200f, 200f));
+            Slot(inside, equipment, ItemSlot.Weapon, new Vector2(0f, 1f), new Vector2(16f, -232f), new Vector2(200f, 330f));
+            Slot(inside, equipment, ItemSlot.Gloves, new Vector2(0f, 1f), new Vector2(16f, -578f), new Vector2(200f, 190f));
+            Slot(inside, equipment, ItemSlot.Amulet, new Vector2(1f, 1f), new Vector2(-16f, -16f), new Vector2(200f, 160f));
+            Slot(inside, equipment, ItemSlot.Chest, new Vector2(1f, 1f), new Vector2(-16f, -192f), new Vector2(200f, 230f));
+            OffHandSlot(inside, new Vector2(-16f, -438f), new Vector2(200f, 160f));
+            Slot(inside, equipment, ItemSlot.Boots, new Vector2(1f, 1f), new Vector2(-16f, -614f), new Vector2(200f, 170f));
+            Slot(inside, equipment, ItemSlot.Ring, new Vector2(0.5f, 0f), new Vector2(-190f, 16f), new Vector2(130f, 130f));
+            Slot(inside, equipment, ItemSlot.Belt, new Vector2(0.5f, 0f), new Vector2(0f, 16f), new Vector2(220f, 130f));
+            Slot(inside, equipment, ItemSlot.Ring2, new Vector2(0.5f, 0f), new Vector2(190f, 16f), new Vector2(130f, 130f));
+        }
+
+        void Slot(Transform parent, EquipmentState equipment, ItemSlot place, Vector2 anchor, Vector2 position, Vector2 size)
+        {
+            var item = equipment.Get(place);
+            var tile = ItemTile(parent, item, UiStyle.SlotLabel(place), size.y >= 160f ? 30 : 26);
+            UiStyle.Place(tile.rectTransform, anchor, position, size);
+            if (item != null)
+                tile.gameObject.AddComponent<Button>().onClick.AddListener(() => sheet.ShowEquipped(place));
+        }
+
+        // The off-hand is not built yet (it waits for its grips); its place is kept, dimmed.
+        static void OffHandSlot(Transform parent, Vector2 position, Vector2 size)
+        {
+            var tile = UiStyle.Framed(parent, "Off-hand Slot", UiStyle.EmptySlotFill, 4f);
+            UiStyle.Place(tile.rectTransform, new Vector2(1f, 1f), position, size);
+            tile.color = new Color(1f, 1f, 1f, 0.5f);
+            var label = UiStyle.Text(tile.transform, "Off-hand\n<size=20>soon</size>", 24, new Color(0.45f, 0.41f, 0.38f), TextAnchor.MiddleCenter, true);
+            UiStyle.Stretch(label.rectTransform, 8f);
+        }
+
+        /// <summary>An item's tile: framed in its rarity's color on a blood-dark fill, its kind and item level; or an
+        /// empty place with the kind dimmed.</summary>
+        static Image ItemTile(Transform parent, Item item, string emptyLabel, int size)
+        {
+            var tile = UiStyle.Framed(parent, item != null ? item.Slot + " Tile" : "Empty Tile", item != null ? UiStyle.SlotFill : UiStyle.EmptySlotFill, 4f);
+            tile.raycastTarget = true;
+            var rim = tile.transform.GetChild(0).GetComponent<Image>();
+            if (item != null)
+                rim.color = Color.Lerp(LootColors.Of(item.Rarity), UiStyle.Frame, item.Rarity == ItemRarity.Common ? 0.5f : 0.15f);
+            var text = item != null
+                ? $"{UiStyle.SlotLabel(item.Slot)}\n<size={size - 8}><color=#9E948A>iLvl {item.ItemLevel}</color></size>"
+                : emptyLabel;
+            var label = UiStyle.Text(tile.transform, text, size, item != null ? LootColors.Of(item.Rarity) : new Color(0.4f, 0.36f, 0.33f),
+                TextAnchor.MiddleCenter, true);
+            UiStyle.Stretch(label.rectTransform, 8f);
+            return tile;
+        }
+
+        // --- Stats and materials ------------------------------------------------------------------------------------
+
+        const float StatsTop = DollTop - DollHeight - 12f, StatsHeight = 200f;
+
+        void BuildStats(GameSession current)
+        {
+            var panel = UiStyle.Framed(content, "Stats", UiStyle.Panel, 3f);
+            var rect = panel.rectTransform;
+            rect.anchorMin = new Vector2(0f, 1f);
+            rect.anchorMax = new Vector2(1f, 1f);
+            rect.pivot = new Vector2(0.5f, 1f);
+            rect.offsetMin = new Vector2(16f, StatsTop - StatsHeight);
+            rect.offsetMax = new Vector2(-16f, StatsTop);
+            var inside = UiStyle.FillOf(panel).transform;
+
+            var equipment = current.Equipment;
+            var power = PowerScore.Evaluate(current);
+            var maxLife = health != null ? health.MaxLife : CombatFormulas.CharacterLife(current.Level) + equipment.TotalLifeBonus;
+            var life = health != null ? health.Fraction * maxLife : maxLife;
+            var armor = health != null ? health.Armor : equipment.TotalArmor;
+            var tree = current.PassiveTree.Bonuses;
+            var attributes = CharacterAttributes.At(current.Level);
+            var crit = equipment.CriticalChancePercent + tree.CriticalChance + attributes.CriticalChance;
+            var speed = (equipment.AttackSpeedPercent / 100f + tree.AttackSpeed + attributes.AttackSpeed) * 100f;
+
+            StatLine(inside, 0, 0, "Life", $"{life:0} / {maxLife:0}");
+            StatLine(inside, 1, 0, "Defense", $"{armor:0}");
+            StatLine(inside, 0, 1, "Damage / s", $"{power.DamagePerSecond:0}");
+            StatLine(inside, 1, 1, "Move speed", $"+{equipment.MovementSpeedPercent + tree.MoveSpeed * 100f:0}%");
+            StatLine(inside, 0, 2, "Attack speed", $"+{speed:0}%");
+            StatLine(inside, 1, 2, "Critical", $"{crit:0.#}%");
+
+            var divider = UiStyle.Image(inside, "Divider", UiStyle.Frame);
+            divider.rectTransform.anchorMin = new Vector2(0.5f, 0f);
+            divider.rectTransform.anchorMax = new Vector2(0.5f, 1f);
+            divider.rectTransform.sizeDelta = new Vector2(2f, -24f);
+        }
+
+        static void StatLine(Transform parent, int column, int row, string name, string value)
+        {
+            var line = UiStyle.Rect(parent, name);
+            line.anchorMin = new Vector2(column * 0.5f, 1f);
+            line.anchorMax = new Vector2(column * 0.5f + 0.5f, 1f);
+            line.pivot = new Vector2(0.5f, 1f);
+            line.offsetMin = new Vector2(28f, -14f - 58f * (row + 1));
+            line.offsetMax = new Vector2(-28f, -14f - 58f * row);
+            var label = UiStyle.Text(line, name, 30, UiStyle.TextDim, TextAnchor.MiddleLeft, true);
+            UiStyle.Stretch(label.rectTransform);
+            var number = UiStyle.Text(line, value, 32, UiStyle.TextMain, TextAnchor.MiddleRight, true);
+            UiStyle.Stretch(number.rectTransform);
+        }
+
+        const float MaterialsTop = StatsTop - StatsHeight - 12f, MaterialsHeight = 96f;
+
+        void BuildMaterials(GameSession current)
+        {
+            var panel = UiStyle.Framed(content, "Materials", UiStyle.Panel, 3f);
+            var rect = panel.rectTransform;
+            rect.anchorMin = new Vector2(0f, 1f);
+            rect.anchorMax = new Vector2(1f, 1f);
+            rect.pivot = new Vector2(0.5f, 1f);
+            rect.offsetMin = new Vector2(16f, MaterialsTop - MaterialsHeight);
+            rect.offsetMax = new Vector2(-16f, MaterialsTop);
+            var inside = UiStyle.FillOf(panel).transform;
+
+            var entries = new List<(string name, Color color, string count)>
             {
-                var points = session.SkillLevels.Available(session.Level);
-                skillsButton.gameObject.SetActive(session.Level >= LoadoutScreen.OpensAtLevel || points > 0);
-                var label = skillsButton.GetComponentInChildren<Text>();
-                if (label != null)
-                    label.text = points > 0 ? $"Skills +{points}" : "Skills";
-            }
-            // The passive tree: a point every level from 2 (Docs/02).
-            if (treeButton != null)
+                ("Ash", LootColors.Of(ItemRarity.Common), current.Materials(CraftingMaterial.Ash).ToString()),
+                ("Cinders", LootColors.Of(ItemRarity.Magic), current.Materials(CraftingMaterial.Cinders).ToString()),
+                ("Bloodstone", LootColors.Of(ItemRarity.Rare), current.Materials(CraftingMaterial.Bloodstone).ToString()),
+                ("Soulglass", LootColors.Of(ItemRarity.Legendary), current.Materials(CraftingMaterial.Soulglass).ToString()),
+                ("Backpack", UiStyle.TextDim, $"{current.Inventory.Count}/{current.Inventory.Capacity}"),
+            };
+            for (var i = 0; i < entries.Count; i++)
             {
-                var treePoints = session.PassiveTree.Available(session.Level);
-                treeButton.gameObject.SetActive(session.Level >= 2);
-                var label = treeButton.GetComponentInChildren<Text>();
-                if (label != null)
-                    label.text = treePoints > 0 ? $"Tree +{treePoints}" : "Tree";
+                var (name, color, count) = entries[i];
+                var cell = UiStyle.Rect(inside, name);
+                cell.anchorMin = new Vector2(i / (float)entries.Count, 0f);
+                cell.anchorMax = new Vector2((i + 1) / (float)entries.Count, 1f);
+                cell.offsetMin = cell.offsetMax = Vector2.zero;
+                if (name != "Backpack")
+                {
+                    var dot = UiStyle.Disc(cell, "Dot", color);
+                    UiStyle.Place(dot.rectTransform, new Vector2(0f, 0.5f), new Vector2(18f, 0f), new Vector2(30f, 30f));
+                }
+                var text = UiStyle.Text(cell, $"{count} <size=22><color=#9E948A>{name}</color></size>", 30, UiStyle.TextMain, TextAnchor.MiddleLeft, true);
+                text.rectTransform.anchorMin = Vector2.zero;
+                text.rectTransform.anchorMax = Vector2.one;
+                text.rectTransform.offsetMin = new Vector2(name != "Backpack" ? 56f : 16f, 0f);
+                text.rectTransform.offsetMax = Vector2.zero;
             }
         }
 
-        // A copy of the Close button placed the given number of buttons to its left, opening a page of the Bag.
-        static Button CreateSkillsButton(Button close, int place, string name, UnityEngine.Events.UnityAction open)
+        // --- Backpack grid ------------------------------------------------------------------------------------------
+
+        const float GridTop = MaterialsTop - MaterialsHeight - 12f, TabsHeight = 150f;
+
+        void BuildGrid(GameSession current)
         {
-            var copy = Instantiate(close.gameObject, close.transform.parent);
-            copy.name = name + " Button";
-            var button = copy.GetComponent<Button>();
-            button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(open);
-            var label = copy.GetComponentInChildren<Text>();
-            if (label != null)
-                label.text = name;
-            var rect = (RectTransform)copy.transform;
-            var source = (RectTransform)close.transform;
-            rect.anchoredPosition = source.anchoredPosition - new Vector2((source.rect.width + 24f) * place, 0f);
-            return button;
+            var frame = UiStyle.Framed(content, "Backpack", new Color(0.06f, 0.045f, 0.045f, 1f), 4f);
+            var rect = frame.rectTransform;
+            rect.anchorMin = new Vector2(0f, 0f);
+            rect.anchorMax = new Vector2(1f, 1f);
+            rect.offsetMin = new Vector2(16f, TabsHeight + 16f);
+            rect.offsetMax = new Vector2(-16f, GridTop);
+            var inside = (RectTransform)UiStyle.FillOf(frame).transform;
+
+            var scroll = inside.gameObject.AddComponent<ScrollRect>();
+            scroll.horizontal = false;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+            inside.gameObject.AddComponent<RectMask2D>();
+            UiStyle.FillOf(frame).raycastTarget = true;
+
+            var grid = UiStyle.Rect(inside, "Grid");
+            grid.anchorMin = new Vector2(0.5f, 1f);
+            grid.anchorMax = new Vector2(0.5f, 1f);
+            grid.pivot = new Vector2(0.5f, 1f);
+            var layout = grid.gameObject.AddComponent<GridLayoutGroup>();
+            layout.cellSize = new Vector2(Cell, Cell);
+            layout.spacing = new Vector2(CellGap, CellGap);
+            layout.padding = new RectOffset(0, 0, 10, 10);
+            layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            layout.constraintCount = GridColumns;
+            var rows = Mathf.CeilToInt(current.Inventory.Capacity / (float)GridColumns);
+            grid.sizeDelta = new Vector2(GridColumns * Cell + (GridColumns - 1) * CellGap, rows * Cell + (rows - 1) * CellGap + 20f);
+            scroll.content = grid;
+            scroll.viewport = inside;
+
+            var items = current.Inventory.Items;
+            for (var i = 0; i < current.Inventory.Capacity; i++)
+            {
+                var item = i < items.Count ? items[i] : null;
+                var tile = ItemTile(grid, item, "", 24);
+                if (item == null)
+                    continue;
+                var index = i;
+                tile.gameObject.AddComponent<Button>().onClick.AddListener(() => sheet.ShowBackpack(items, index));
+                if (PowerScore.IsUpgrade(current.Equipment, item, current.Level, current.PassiveTree.Bonuses))
+                {
+                    var arrow = UiStyle.Text(tile.transform, "▲", 30, ItemSheet.GainColor, TextAnchor.MiddleCenter);
+                    UiStyle.Place(arrow.rectTransform, new Vector2(1f, 1f), new Vector2(-6f, -4f), new Vector2(40f, 40f));
+                }
+            }
         }
 
-        // A copy of the Close button mirrored into the top-left corner (the right side holds Tree, Skills and Close).
-        static void CreateSettingsButton(Button close)
+        // --- Tabs ---------------------------------------------------------------------------------------------------
+
+        void BuildTabs(GameSession current)
         {
-            var button = CreateSkillsButton(close, 0, "Settings", SettingsScreen.Open);
-            var rect = (RectTransform)button.transform;
-            var source = (RectTransform)close.transform;
-            rect.anchorMin = rect.anchorMax = new Vector2(0f, source.anchorMax.y);
-            rect.pivot = new Vector2(0f, source.pivot.y);
-            rect.anchoredPosition = new Vector2(-source.anchoredPosition.x, source.anchoredPosition.y);
-            rect.sizeDelta = new Vector2(source.sizeDelta.x + 40f, source.sizeDelta.y);
+            var bar = UiStyle.Rect(content, "Tabs");
+            bar.anchorMin = new Vector2(0f, 0f);
+            bar.anchorMax = new Vector2(1f, 0f);
+            bar.pivot = new Vector2(0.5f, 0f);
+            bar.offsetMin = new Vector2(16f, 8f);
+            bar.offsetMax = new Vector2(-16f, 8f + TabsHeight - 8f);
+
+            // Docs/02 and Q4: the loadout opens at level 9; before that the page shows while there are skill points to
+            // spend. The passive tree: a point every level from 2.
+            var skillPoints = current.SkillLevels.Available(current.Level);
+            var treePoints = current.PassiveTree.Available(current.Level);
+            var tabs = new List<(string label, System.Action open, bool enabled, bool active)>
+            {
+                ("Inventory", null, true, true),
+                (skillPoints > 0 ? $"Skills +{skillPoints}" : "Skills", LoadoutScreen.Open,
+                    current.Level >= LoadoutScreen.OpensAtLevel || skillPoints > 0, false),
+                (treePoints > 0 ? $"Tree +{treePoints}" : "Tree", PassiveTreeScreen.Open, current.Level >= 2, false),
+                ("Settings", SettingsScreen.Open, true, false),
+            };
+            for (var i = 0; i < tabs.Count; i++)
+            {
+                var (label, open, enabled, active) = tabs[i];
+                var button = UiStyle.Button(bar, label, () => open?.Invoke(), 34, active ? UiStyle.Blood : UiStyle.Panel);
+                var rect = (RectTransform)button.transform;
+                rect.anchorMin = new Vector2(i / (float)tabs.Count, 0f);
+                rect.anchorMax = new Vector2((i + 1) / (float)tabs.Count, 1f);
+                rect.offsetMin = new Vector2(4f, 0f);
+                rect.offsetMax = new Vector2(-4f, 0f);
+                button.interactable = enabled;
+                var text = button.GetComponentInChildren<Text>();
+                if (active)
+                    text.color = UiStyle.Gold;
+                else if (!enabled)
+                    text.color = new Color(0.4f, 0.36f, 0.33f);
+                else if (label.Contains("+"))
+                    text.color = new Color(1f, 0.71f, 0.35f);
+            }
         }
+
+        // --- Upgrade badge on the Bag button ------------------------------------------------------------------------
 
         /// <summary>Shows the badge while any backpack item would raise the power score.</summary>
         void RefreshBadge()
@@ -236,217 +456,11 @@ namespace ARPG
 
         static Text CreateBadge(Transform button)
         {
-            var text = NewText(button, "\u25B2", TextAnchor.MiddleCenter);
-            text.fontSize = 40;
-            text.color = ItemSheet.GainColor;
-            var rect = text.rectTransform;
-            rect.anchorMin = rect.anchorMax = new Vector2(1f, 1f);
-            rect.pivot = new Vector2(0.5f, 0.5f);
-            rect.anchoredPosition = new Vector2(-8f, -8f);
-            rect.sizeDelta = new Vector2(56f, 56f);
+            var text = UiStyle.Text(button, "▲", 40, ItemSheet.GainColor, TextAnchor.MiddleCenter);
+            UiStyle.Place(text.rectTransform, new Vector2(1f, 1f), new Vector2(-8f, -8f), new Vector2(56f, 56f));
+            text.rectTransform.pivot = new Vector2(0.5f, 0.5f);
             text.gameObject.name = "Upgrade Badge";
             return text;
-        }
-
-        // The six slots that do not show on the character, in a second, smaller row under the weapon, chest and helm:
-        // copies of the chest tile (the scene holds only the first three), so the layout needs no new scene objects.
-        const float SmallSlotWidth = 170f, SmallSlotHeight = 110f, SmallSlotGap = 12f, SmallRowTop = -386f;
-
-        SlotUi SmallSlot(ItemSlot slot, int column)
-        {
-            if (chestButton == null)
-                return new SlotUi { Slot = slot };
-            var copy = Instantiate(chestButton.gameObject, chestButton.transform.parent);
-            copy.name = slot + " Slot";
-            var rect = (RectTransform)copy.transform;
-            rect.sizeDelta = new Vector2(SmallSlotWidth, SmallSlotHeight);
-            rect.anchoredPosition = new Vector2((column - 2.5f) * (SmallSlotWidth + SmallSlotGap), SmallRowTop);
-            var label = copy.GetComponentInChildren<Text>();
-            if (label != null)
-                label.fontSize = 22;
-            return new SlotUi { Slot = slot, Swatch = copy.GetComponent<Image>(), Label = label, Button = copy.GetComponent<Button>() };
-        }
-
-        static string SlotName(ItemSlot slot) => slot == ItemSlot.Ring2 ? "Ring" : slot.ToString();
-
-        void RefreshSlot(GameSession session, EquipmentState equipment, SlotUi ui)
-        {
-            var item = equipment.Get(ui.Slot);
-
-            if (ui.Swatch != null)
-                ui.Swatch.color = item != null ? LootColors.Of(item.Rarity) : EmptySlotColor;
-            if (ui.Label != null)
-                ui.Label.text = item != null
-                    ? $"{SlotName(ui.Slot)}\n{item.Rarity}, iLvl {item.ItemLevel}\n{item.Affixes.Count} affixes"
-                    : $"{SlotName(ui.Slot)}\n(empty)";
-
-            if (ui.Button == null)
-                return;
-
-            ui.Button.onClick.RemoveAllListeners();
-            ui.Button.interactable = item != null;
-            if (item != null && sheet != null)
-            {
-                var slot = ui.Slot;
-                ui.Button.onClick.AddListener(() => sheet.ShowEquipped(slot));
-            }
-        }
-
-        string BuildStats(GameSession session, EquipmentState equipment)
-        {
-            var maxLife = health != null ? health.MaxLife : CombatFormulas.CharacterLife(session.Level) + equipment.TotalLifeBonus;
-            var armor = health != null ? health.Armor : equipment.TotalArmor;
-
-            statsBuilder.Clear();
-            var progress = session.Progress;
-            statsBuilder.Append("Level ").Append(progress.Level).Append("   XP ");
-            if (progress.IsMaxLevel)
-                statsBuilder.Append("max");
-            else
-                statsBuilder.Append(progress.Xp).Append(" / ").Append(progress.XpToNextLevel);
-            statsBuilder.AppendLine();
-            statsBuilder.Append("Life ").Append(maxLife.ToString("F0")).Append("   ");
-            statsBuilder.Append("Armor ").Append(armor.ToString("F0")).Append("   ");
-            statsBuilder.Append("Gold ").Append(session.Gold).AppendLine();
-            statsBuilder.Append("Weapon damage ").Append(equipment.WeaponDamage.ToString("F1"));
-            statsBuilder.Append(" (+").Append(equipment.FlatWeaponDamageBonus.ToString("F0")).Append(" flat, +");
-            statsBuilder.Append(equipment.IncreasedDamagePercent.ToString("F0")).Append("% increased)").AppendLine();
-            statsBuilder.Append("Attack speed +").Append(equipment.AttackSpeedPercent.ToString("F0")).Append("%   ");
-            statsBuilder.Append("Crit ").Append(equipment.CriticalChancePercent.ToString("F0")).Append("% / +");
-            statsBuilder.Append(equipment.CriticalDamagePercent.ToString("F0")).Append("%").AppendLine();
-            statsBuilder.Append("Cooldown reduction ").Append(equipment.CooldownReductionPercent.ToString("F0")).Append("%   ");
-            statsBuilder.Append("Life on hit ").Append(equipment.LifeOnHit.ToString("F0")).AppendLine();
-            statsBuilder.Append("Move speed +").Append(equipment.MovementSpeedPercent.ToString("F0")).Append("%   ");
-            statsBuilder.Append("Dodge +").Append(equipment.DodgePercent.ToString("F0")).Append("%   ");
-            statsBuilder.Append("Backpack ").Append(session.Inventory.Count).Append("/").Append(session.Inventory.Capacity);
-            return statsBuilder.ToString();
-        }
-
-        void RebuildBackpack(GameSession session)
-        {
-            if (listContent == null)
-                return;
-
-            // Destroy() is deferred to the end of the frame, so a detach first keeps childCount correct even if
-            // Refresh runs again before the frame ends (equip and discard both call it immediately).
-            while (listContent.childCount > 0)
-            {
-                var child = listContent.GetChild(0);
-                child.SetParent(null);
-                Destroy(child.gameObject);
-            }
-
-            var items = session.Inventory.Items;
-            for (var i = 0; i < items.Count; i++)
-                CreateRow(session, items, i);
-        }
-
-        void CreateRow(GameSession session, System.Collections.Generic.IReadOnlyList<Item> items, int index)
-        {
-            var item = items[index];
-            var row = new GameObject("Item Row", typeof(RectTransform), typeof(Image), typeof(HorizontalLayoutGroup), typeof(LayoutElement), typeof(Button));
-            row.transform.SetParent(listContent, false);
-
-            row.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.35f);
-            // The whole row opens the item sheet; its own buttons still take their taps first.
-            if (sheet != null)
-                row.GetComponent<Button>().onClick.AddListener(() => sheet.ShowBackpack(items, index));
-            // Docs/06-ui-ux.md: tap targets at least 48 points; the canvas has 3 units per point.
-            var layout = row.GetComponent<LayoutElement>();
-            layout.minHeight = 150f;
-            layout.preferredHeight = 150f;
-
-            // The layout group must control widths, or the label's flexible width is ignored and long names wrap.
-            var group = row.GetComponent<HorizontalLayoutGroup>();
-            group.padding = new RectOffset(16, 16, 12, 12);
-            group.spacing = 16f;
-            group.childAlignment = TextAnchor.MiddleLeft;
-            group.childControlHeight = true;
-            group.childControlWidth = true;
-            group.childForceExpandHeight = true;
-            group.childForceExpandWidth = false;
-
-            var swatch = NewImage(row.transform, LootColors.Of(item.Rarity));
-            AddLayoutSize(swatch.gameObject, 24f, -1f);
-
-            var label = NewText(row.transform, ItemSummary(item), TextAnchor.MiddleLeft);
-            AddLayoutSize(label.gameObject, -1f, 1f);
-
-            // Comparison before reading (Docs/06-ui-ux.md): the arrow and the power change come first to the eye.
-            var change = PowerScore.Change(session.Equipment, item, session.Level, session.PassiveTree.Bonuses);
-            var arrow = NewText(row.transform, $"{ItemSheet.Arrow(change)} {change * 100f:+0;-0;0}%", TextAnchor.MiddleRight);
-            arrow.color = ItemSheet.DirectionColor(change);
-            arrow.fontStyle = FontStyle.Bold;
-            AddLayoutSize(arrow.gameObject, 150f, -1f);
-
-            var equip = NewButton(row.transform, "Equip", () =>
-            {
-                session.EquipFromInventory(item);
-                Refresh();
-            });
-            AddLayoutSize(equip.gameObject, 140f, -1f);
-
-            var discard = NewButton(row.transform, "Discard", () =>
-            {
-                session.Discard(item);
-                Refresh();
-            });
-            AddLayoutSize(discard.gameObject, 140f, -1f);
-        }
-
-        static string ItemSummary(Item item) =>
-            $"{ItemComparison.Name(item)} - item level {item.ItemLevel}, {item.Affixes.Count} affixes";
-
-        static void AddLayoutSize(GameObject go, float width, float flexibleWidth)
-        {
-            var element = go.GetComponent<LayoutElement>();
-            if (element == null)
-                element = go.AddComponent<LayoutElement>();
-            if (width >= 0f)
-                element.preferredWidth = width;
-            element.flexibleWidth = flexibleWidth;
-        }
-
-        static Image NewImage(Transform parent, Color color)
-        {
-            var go = new GameObject("Swatch", typeof(RectTransform), typeof(Image));
-            go.transform.SetParent(parent, false);
-            var image = go.GetComponent<Image>();
-            image.color = color;
-            image.raycastTarget = false;
-            return image;
-        }
-
-        static Text NewText(Transform parent, string text, TextAnchor alignment)
-        {
-            var go = new GameObject("Text", typeof(RectTransform), typeof(Text));
-            go.transform.SetParent(parent, false);
-            var label = go.GetComponent<Text>();
-            label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            label.fontSize = 26;
-            label.alignment = alignment;
-            label.color = Color.white;
-            label.raycastTarget = false;
-            label.text = text;
-            return label;
-        }
-
-        static Button NewButton(Transform parent, string label, System.Action onClick)
-        {
-            var go = new GameObject(label + " Button", typeof(RectTransform), typeof(Image), typeof(Button));
-            go.transform.SetParent(parent, false);
-            go.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.18f);
-
-            var text = NewText(go.transform, label, TextAnchor.MiddleCenter);
-            var textRect = text.GetComponent<RectTransform>();
-            textRect.anchorMin = Vector2.zero;
-            textRect.anchorMax = Vector2.one;
-            textRect.offsetMin = Vector2.zero;
-            textRect.offsetMax = Vector2.zero;
-
-            var button = go.GetComponent<Button>();
-            button.onClick.AddListener(() => onClick());
-            return button;
         }
     }
 }

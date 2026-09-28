@@ -136,7 +136,7 @@ namespace ARPG
                 (c, v) => c.stickSize = v);
             Stepper("Dead zone", $"{s.deadZone:0}%", s.deadZone, GameSettings.MinDeadZone, GameSettings.MaxDeadZone, GameSettings.DeadZoneStep,
                 (c, v) => c.deadZone = v);
-            Choice("Bag button", s.leftHanded ? "Left hand" : "Right hand", false, c => c.leftHanded = !c.leftHanded);
+            Choice("Portal button", s.leftHanded ? "Left hand" : "Right hand", false, c => c.leftHanded = !c.leftHanded);
 
             Group("Combat");
             Stepper("Auto-potion at", $"{s.potionThreshold:0}% life", s.potionThreshold,

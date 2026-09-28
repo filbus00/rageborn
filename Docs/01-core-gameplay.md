@@ -8,7 +8,7 @@ The only combat input is the floating thumb stick.
 - Dead zone: 8 percent of stick radius. Stick radius is 64 points by default, adjustable from 48 to 96 in settings.
 - Analog output: direction is continuous 360 degrees. Speed scales from 0 to 100 percent between dead zone and full radius. Full deflection equals the character move speed. Base move speed is 4 ground units per second (a starting value for tuning).
 - Release: the character stops with 80 ms of deceleration. Releasing counts as standing still for Stillness.
-- Left-hand and right-hand mode: the touch zone is symmetric. A setting moves the inventory button to the matching corner.
+- Left-hand and right-hand mode: the touch zone is symmetric. A setting moves the Portal button to the matching corner (the inventory button sits under the portrait since 2026-09-28).
 - Stick drift: if the thumb slides more than 1.6 times the radius from the base, the base follows the thumb so the player never runs out of pad.
 - Interruptions: a system gesture, call or notification pauses the game. Returning shows a 3 second resume countdown.
 
@@ -125,7 +125,7 @@ Bosses use phases. Each boss has three phases with a distinct attack set and an 
 - Auto-loot: items within 2.5 units are picked up when the player has not been hit in the last 1.5 seconds, or when nothing is engaged with the character (as built; Q22). Gold and materials are always auto-picked.
 - Loot filter: see 03-itemization.md.
 - Auto-potion: one potion type, heals 40 percent life over 3 seconds. Charges refill from kills. Fires at 35 percent life, configurable from 20 to 60.
-- Inventory button: sits at the lower edge in the thumb arc and opens one screen with character stats, inventory, equipped gear and loadout. There is no separate pause menu. The screen also holds Settings and the loot filter, and the game is paused while it is open.
+- Inventory button: sits under the portrait in the top-left corner (the owner, 2026-09-28; before, at the lower edge in the thumb arc) and opens one screen with character stats, inventory, equipped gear and loadout. There is no separate pause menu. The screen also holds Settings and the loot filter, and the game is paused while it is open.
 
 ## Session structure
 

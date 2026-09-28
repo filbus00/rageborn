@@ -9,9 +9,8 @@ using UnityEngine.UI;
 namespace ARPG.Editor
 {
     /// <summary>
-    /// Adds the inventory and equip screen: a "Bag" button on the HUD that opens a full-screen panel with the
-    /// equipped Weapon, Chest and Helm slots, a character stats readout and the scrollable backpack, each item with
-    /// Equip and Discard actions. Opening it pauses the game (Docs/08-production.md: no separate pause menu, just
+    /// Adds the inventory and equip screen: a "Bag" button on the HUD that opens a full-screen panel, whose contents
+    /// (paper doll, stats, backpack grid, tabs) <see cref="InventoryScreen"/> builds in code. Opening it pauses the game (Docs/08-production.md: no separate pause menu, just
     /// this). Replaces the placeholder "Loot Text" readout from Add Loot To Sandbox.
     /// Run from Tools > ARPG > Add Inventory Screen To Sandbox, after Add Loot To Sandbox. Running it again rebuilds
     /// the screen. Create Town Scene copies the result, so run that afterwards.
@@ -25,7 +24,6 @@ namespace ARPG.Editor
         const string LegacyReadoutName = "Loot Text";
 
         static readonly Color PanelColor = new Color(0.04f, 0.04f, 0.06f, 0.93f);
-        static readonly Color SlotEmptyColor = new Color(1f, 1f, 1f, 0.12f);
         static readonly Color ButtonColor = new Color(1f, 1f, 1f, 0.16f);
 
         [MenuItem("Tools/ARPG/Add Inventory Screen To Sandbox")]
@@ -123,138 +121,12 @@ namespace ARPG.Editor
             Stretch(panel.rectTransform, 0f);
             panel.raycastTarget = true;
 
-            // The top row is 48 point buttons (Docs/06's minimum; they were 23 until 2026-09-28): Settings at the left
-            // (added at runtime by InventoryScreen), the title beside it, Tree, Skills and Close at the right.
-            var title = NewText(panel.transform, "Inventory", 44, TextAnchor.MiddleLeft);
-            title.rectTransform.anchorMin = title.rectTransform.anchorMax = new Vector2(0f, 1f);
-            title.rectTransform.pivot = new Vector2(0f, 1f);
-            title.rectTransform.anchoredPosition = new Vector2(258f, -16f);
-            title.rectTransform.sizeDelta = new Vector2(300f, 144f);
-
-            var closeButton = BuildCloseButton(panel.transform);
-
-            var weapon = BuildSlot(panel.transform, "Weapon Slot", new Vector2(-360f, -220f));
-            var chest = BuildSlot(panel.transform, "Chest Slot", new Vector2(0f, -220f));
-            var helm = BuildSlot(panel.transform, "Helm Slot", new Vector2(360f, -220f));
-
-            var stats = NewText(panel.transform, "", 28, TextAnchor.UpperLeft);
-            stats.rectTransform.anchorMin = stats.rectTransform.anchorMax = new Vector2(0.5f, 1f);
-            stats.rectTransform.pivot = new Vector2(0.5f, 1f);
-            stats.rectTransform.anchoredPosition = new Vector2(0f, -550f); // Under the second row of slots (InventoryScreen.SmallSlot).
-            stats.rectTransform.sizeDelta = new Vector2(1000f, 220f);
-
-            var backpackLabel = NewText(panel.transform, "Backpack", 32, TextAnchor.UpperLeft);
-            // Left-aligned with the list below it (centered at -460 it ran off the edge of a phone's screen).
-            backpackLabel.rectTransform.anchorMin = backpackLabel.rectTransform.anchorMax = new Vector2(0f, 1f);
-            backpackLabel.rectTransform.pivot = new Vector2(0f, 1f);
-            backpackLabel.rectTransform.anchoredPosition = new Vector2(40f, -790f);
-            backpackLabel.rectTransform.sizeDelta = new Vector2(300f, 50f);
-
-            var content = BuildScrollView(panel.transform);
-
+            // Everything inside the panel is built in code by InventoryScreen (the owner's reference of 2026-09-28).
             var screen = canvasObject.AddComponent<InventoryScreen>();
             EnemySceneBuilder.SetReference(screen, "panelRoot", panel.gameObject);
             EnemySceneBuilder.SetReference(screen, "openButton", openButton);
-            EnemySceneBuilder.SetReference(screen, "closeButton", closeButton);
-            EnemySceneBuilder.SetReference(screen, "statsText", stats);
-            EnemySceneBuilder.SetReference(screen, "listContent", content);
-            EnemySceneBuilder.SetReference(screen, "weaponSwatch", weapon.swatch);
-            EnemySceneBuilder.SetReference(screen, "weaponLabel", weapon.label);
-            EnemySceneBuilder.SetReference(screen, "weaponButton", weapon.button);
-            EnemySceneBuilder.SetReference(screen, "chestSwatch", chest.swatch);
-            EnemySceneBuilder.SetReference(screen, "chestLabel", chest.label);
-            EnemySceneBuilder.SetReference(screen, "chestButton", chest.button);
-            EnemySceneBuilder.SetReference(screen, "helmSwatch", helm.swatch);
-            EnemySceneBuilder.SetReference(screen, "helmLabel", helm.label);
-            EnemySceneBuilder.SetReference(screen, "helmButton", helm.button);
 
             panel.gameObject.SetActive(false);
-        }
-
-        static Button BuildCloseButton(Transform panel)
-        {
-            var go = new GameObject("Close Button", typeof(RectTransform), typeof(Image), typeof(Button));
-            go.transform.SetParent(panel, false);
-
-            var rect = go.GetComponent<RectTransform>();
-            rect.anchorMin = rect.anchorMax = new Vector2(1f, 1f);
-            rect.pivot = new Vector2(1f, 1f);
-            rect.anchoredPosition = new Vector2(-24f, -16f);
-            rect.sizeDelta = new Vector2(170f, 144f);
-
-            go.GetComponent<Image>().color = ButtonColor;
-            var label = NewText(go.transform, "Close", 28, TextAnchor.MiddleCenter);
-            Stretch(label.rectTransform, 0f);
-            return go.GetComponent<Button>();
-        }
-
-        static (Image swatch, Text label, Button button) BuildSlot(Transform panel, string name, Vector2 position)
-        {
-            var go = new GameObject(name, typeof(RectTransform), typeof(Image), typeof(Button));
-            go.transform.SetParent(panel, false);
-
-            var rect = go.GetComponent<RectTransform>();
-            rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 1f);
-            rect.pivot = new Vector2(0.5f, 1f);
-            rect.anchoredPosition = position;
-            rect.sizeDelta = new Vector2(320f, 150f);
-
-            var image = go.GetComponent<Image>();
-            image.color = SlotEmptyColor;
-
-            var label = NewText(go.transform, "", 24, TextAnchor.MiddleCenter);
-            Stretch(label.rectTransform, 8f);
-
-            return (image, label, go.GetComponent<Button>());
-        }
-
-        static RectTransform BuildScrollView(Transform panel)
-        {
-            var scrollGo = new GameObject("Backpack Scroll", typeof(RectTransform), typeof(Image), typeof(ScrollRect));
-            scrollGo.transform.SetParent(panel, false);
-
-            var scrollRect = scrollGo.GetComponent<RectTransform>();
-            scrollRect.anchorMin = new Vector2(0f, 0f);
-            scrollRect.anchorMax = new Vector2(1f, 1f);
-            scrollRect.offsetMin = new Vector2(40f, 40f);
-            scrollRect.offsetMax = new Vector2(-40f, -830f);
-
-            scrollGo.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.25f);
-
-            var viewportGo = new GameObject("Viewport", typeof(RectTransform), typeof(Image), typeof(Mask));
-            viewportGo.transform.SetParent(scrollGo.transform, false);
-            var viewportRect = viewportGo.GetComponent<RectTransform>();
-            Stretch(viewportRect, 0f);
-            viewportGo.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.01f);
-            viewportGo.GetComponent<Mask>().showMaskGraphic = false;
-
-            var contentGo = new GameObject("Content", typeof(RectTransform), typeof(VerticalLayoutGroup), typeof(ContentSizeFitter));
-            contentGo.transform.SetParent(viewportGo.transform, false);
-            var contentRect = contentGo.GetComponent<RectTransform>();
-            contentRect.anchorMin = new Vector2(0f, 1f);
-            contentRect.anchorMax = new Vector2(1f, 1f);
-            contentRect.pivot = new Vector2(0.5f, 1f);
-            contentRect.anchoredPosition = Vector2.zero;
-            contentRect.sizeDelta = new Vector2(0f, 0f);
-
-            var layout = contentGo.GetComponent<VerticalLayoutGroup>();
-            layout.spacing = 8f;
-            layout.childControlHeight = true;
-            layout.childControlWidth = true;
-            layout.childForceExpandWidth = true;
-            layout.childForceExpandHeight = false;
-
-            var fitter = contentGo.GetComponent<ContentSizeFitter>();
-            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-
-            var scroll = scrollGo.GetComponent<ScrollRect>();
-            scroll.viewport = viewportRect;
-            scroll.content = contentRect;
-            scroll.horizontal = false;
-            scroll.vertical = true;
-            scroll.movementType = ScrollRect.MovementType.Clamped;
-
-            return contentRect;
         }
 
         static Image NewImage(Transform parent, string name, Color color)

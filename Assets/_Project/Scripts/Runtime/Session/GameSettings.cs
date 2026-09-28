@@ -29,7 +29,7 @@ namespace ARPG
         /// <summary>Dead zone in percent of the stick radius.</summary>
         public float deadZone = 8f;
 
-        /// <summary>Moves the Bag and Portal buttons to the lower left corner.</summary>
+        /// <summary>Moves the Portal button to the lower left corner (the Bag button sits under the portrait since 2026-09-28).</summary>
         public bool leftHanded;
 
         /// <summary>Life percent at which the auto-potion fires.</summary>
