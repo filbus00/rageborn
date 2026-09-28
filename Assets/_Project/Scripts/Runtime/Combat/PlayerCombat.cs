@@ -287,7 +287,8 @@ namespace ARPG
             // The passive tree's Rage changes (Docs/02): Short Fuse's longer delay, Berserker's double gain below half life.
             var tree = session.PassiveTree.Bonuses;
             rage.DrainDelay = RagePool.DrainDelaySeconds + tree.RageDrainDelay;
-            rage.GainMultiplier = tree.Berserker && health != null && health.Fraction < 0.5f ? 2f : 1f;
+            var attributes = CharacterAttributes.At(session.Level);
+            rage.GainMultiplier = (tree.Berserker && health != null && health.Fraction < 0.5f ? 2f : 1f) * (1f + attributes.RageGain);
             rage.Tick(deltaTime);
             stillSeconds = player.GroundVelocity.magnitude < FacingSpeedThreshold ? stillSeconds + deltaTime : 0f;
             damageBuffTimer = Mathf.Max(0f, damageBuffTimer - deltaTime);
@@ -370,7 +371,8 @@ namespace ARPG
             var equipment = GameSession.Current.Equipment;
             var tree = session.PassiveTree.Bonuses;
             attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + AttackSpeedBuff +
-                                                    tree.AttackSpeed + tree.AttackSpeedPerMomentum * player.Stance.Momentum));
+                                                    tree.AttackSpeed + tree.AttackSpeedPerMomentum * player.Stance.Momentum +
+                                                    CharacterAttributes.At(session.Level).AttackSpeed));
             BasicAttackCount++;
             BasicAttackStarted?.Invoke(aim, attackTimer);
 
@@ -490,7 +492,7 @@ namespace ARPG
             rage.TrySpend(skill.RageCost);
             if (skill.RageGain > 0f)
                 rage.Gain(skill.RageGain);
-            var cdr = GameSession.Current.Equipment.CooldownReductionPercent / 100f;
+            var cdr = GameSession.Current.Equipment.CooldownReductionPercent / 100f + CharacterAttributes.At(session.Level).CooldownReduction;
             cooldowns[i] = skill.CooldownSeconds * Mathf.Max(0.1f, 1f - cdr);
             castTimer = GlobalCastSeconds;
             SkillCastCount++;
@@ -840,7 +842,7 @@ namespace ARPG
                         var enemy = nearby[n];
                         if (!enemy.IsAlive || Vector2.Distance(enemy.GroundPosition, axe.Position) > enemy.Definition.BodyRadius + AxeHitRadius)
                             continue;
-                        Strike(enemy, axe.Multiplier);
+                        Strike(enemy, axe.Multiplier, projectile: true);
                         HealOnHit(1);
                         rage.MarkCombat();
                         done = true;
@@ -925,11 +927,12 @@ namespace ARPG
 
         /// <summary>One hit on one enemy: the hit formula with the gear's modifiers and Stillness, a crit roll, the
         /// damage number, and the kill's hit stop.</summary>
-        void Strike(EnemyController enemy, float multiplier, bool movementSkill = false)
+        void Strike(EnemyController enemy, float multiplier, bool movementSkill = false, bool projectile = false)
         {
             var tree = session.PassiveTree.Bonuses;
-            var critical = Random.value < (GameSession.Current.Equipment.CriticalChancePercent + tree.CriticalChance) / 100f;
-            var damage = Damage(enemy, multiplier, critical, movementSkill);
+            var attributes = CharacterAttributes.At(session.Level);
+            var critical = Random.value < (GameSession.Current.Equipment.CriticalChancePercent + tree.CriticalChance + attributes.CriticalChance) / 100f;
+            var damage = Damage(enemy, multiplier, critical, movementSkill, projectile);
 
             var world = IsoMath.GroundToWorld(enemy.GroundPosition);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);
@@ -954,11 +957,14 @@ namespace ARPG
 
         /// <summary>The hit formula for this character against an enemy: the gear's modifiers, Stillness and Battle
         /// Roar as increased damage.</summary>
-        float Damage(EnemyController enemy, float multiplier, bool critical, bool movementSkill = false)
+        float Damage(EnemyController enemy, float multiplier, bool critical, bool movementSkill = false, bool projectile = false)
         {
             var equipment = GameSession.Current.Equipment;
             var tree = session.PassiveTree.Bonuses;
             var increased = equipment.IncreasedDamagePercent / 100f + player.Stance.IncreasedDamage + (damageBuffTimer > 0f ? damageBuff : 0f);
+            // Might: melee and area damage (Docs/02), so not the thrown axe.
+            if (!projectile)
+                increased += CharacterAttributes.At(session.Level).IncreasedDamage;
             // The passive tree (Docs/02, proposed numbers): its flat increase, Bloodied Edge against the wounded, Hatred
             // for Rage held, Battering Ram for the movement skills, and Berserker below half life.
             increased += tree.IncreasedDamage + tree.DamagePerTenRage * Mathf.Floor(rage.Current / 10f);

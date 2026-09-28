@@ -80,6 +80,7 @@ Total to 1.0 from today: about 40 to 50 weeks for one developer, most of it limi
 7. Achievements: the Game Center achievements are cut with the other online features. Answered 2026-09-27 (Q17): 60 local achievements in the Journal, no rewards.
 8. The Wrathborn rework: decided 2026-09-26, see 02-classes-and-skills.md and the decision log.
 9. Salvaging happens only at the Forge (decision of 2026-09-26), but the loot filter in 03-itemization.md auto-salvages filtered items as they are picked up, anywhere. Answered 2026-09-27 (Q11): filtered items go to a salvage pouch that takes no backpack slots, and the smith salvages them in one tap.
+10. Vitality's life regeneration (02, Attributes: +0.1 percent a second per point) would heal 4.8 percent of max life a second at level 7 and 47 percent at level 60 with 8 Vitality a level (Q6). Is it meant per 10 points, as a flat amount, or left out? Not built until answered (2026-09-28).
 
 ## Open questions from the full-game plan
 
@@ -374,6 +375,7 @@ Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). All 26 were 
 | 2026-09-28 | The Skills page shows before level 9 whenever skill points are unspent, but only raising skill levels works there until the loadout opens at 9 (Q4); otherwise points earned from level 2 could not be spent until 9 | Claude, to review |
 | 2026-09-28 | Built with Docs/02's proposed numbers as tuning: the four later skills' filled-in details, skill levels (7 percent of level 1 damage a level, buffs 1 percent), the passive tree's nodes. Rending Spin's bleed replaces rather than stacks and is dealt in 0.5 s pulses; buffs show their name and a ground ring until they have art | Claude, to review |
 | 2026-09-28 | Passive tree layout: each half branch is a chain in the order minor, minor, notable, minor, minor, notable, minor, minor, notable; the screen is a tab per branch with a scrolling list rather than drawn columns. Scar Tissue (less damage from elites and bosses) applies to attacks that ignore armor, which only elites and the boss make | Claude, to review |
+| 2026-09-28 | Attributes built as decided (Q6) with Docs/02's per-point effects; Might counts for every hit but the thrown axe ("melee and area"); dodge capped at 50 percent. Vitality's life regeneration is not built: as written (0.1 percent of life a second per point, 8 points a level) it would heal 4.8 percent of max life a second at level 7 and 47 percent at 60, which cannot be meant; question 10 below | Claude, to review |
 
 ## Post-launch plan (draft)
 

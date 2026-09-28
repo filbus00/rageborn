@@ -47,7 +47,9 @@ namespace ARPG
         public float SecondsSinceLastHit => Time.time - lastHitTime;
 
         /// <summary>Armor from equipped Chest and Helm pieces: their base value by item level plus any Armor affix.</summary>
-        public float Armor => GameSession.Current.Equipment.TotalArmor * (1f + GameSession.Current.PassiveTree.Bonuses.ArmorPercent);
+        public float Armor =>
+            (GameSession.Current.Equipment.TotalArmor + CharacterAttributes.At(GameSession.Current.Level).Armor) *
+            (1f + GameSession.Current.PassiveTree.Bonuses.ArmorPercent);
 
         void Awake()
         {
@@ -82,7 +84,8 @@ namespace ARPG
 
             var stance = player != null ? player.Stance : null;
             var tree = session.PassiveTree.Bonuses;
-            if (dodgeable && stance != null && dodgeRandom.NextDouble() < stance.DodgeChance + tree.Dodge)
+            var dodge = Mathf.Min(0.5f, stance != null ? stance.DodgeChance + tree.Dodge + CharacterAttributes.At(session.Level).Dodge : 0f);
+            if (dodgeable && stance != null && dodgeRandom.NextDouble() < dodge)
             {
                 if (player != null)
                     DamageNumbers.Current?.ShowText(player.transform.position + Vector3.up * 1.2f, "DODGE", DodgeColor, 34);
