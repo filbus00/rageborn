@@ -10,36 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b800c5fde4a6841a2a27c7fd419314d4, type: 3}
-  m_Name: GroundBreaker
+  m_Name: RendingSpin
   m_EditorClassIdentifier: ARPG.Runtime::ARPG.SkillDefinition
-  displayName: Ground Breaker
-  kind: 3
-  unlockLevel: 6
-  rageCost: 35
+  displayName: Rending Spin
+  kind: 5
+  unlockLevel: 12
+  rageCost: 40
   rageGain: 0
-  cooldownSeconds: 8
-  damageMultiplier: 2.8
+  cooldownSeconds: 12
+  damageMultiplier: 0.9
   arcDegrees: 180
-  range: 3.5
+  range: 4
   minRange: 0
-  minEnemies: 4
+  minEnemies: 3
   speed: 14
-  effectStrength: 0.7
-  effectSeconds: 2
+  effectStrength: 0
+  effectSeconds: 0
   maxRage: 0
   minMomentum: 0
-  durationSeconds: 0
+  durationSeconds: 2.5
   buffDamage: 0
   buffAttackSpeed: 0
   buffAttackSpeedPerMomentum: 0
   tickSeconds: 0.3
-  bleedMultiplier: 0
-  bleedSeconds: 0
+  bleedMultiplier: 0.4
+  bleedSeconds: 4
   executeThreshold: 0
   executeMultiplier: 0
   windupSeconds: 0
-  triggerText: 4+ enemies within 3.5
-  animationName: ground_breaker
-  alternativeTriggers: 0200000003000000i
-  effectSprite: {fileID: 0}
-  effectColor: {r: 0.9, g: 0.55, b: 0.2, a: 0.7}
+  triggerText: Moving, 3+ enemies near
+  animationName: rending_spin
+  alternativeTriggers: 0200000006000000i
+  effectSprite: {fileID: 21300000, guid: 6e2c5e4ccb87b44559b0f96753609d03, type: 3}
+  effectColor: {r: 0.75, g: 0.15, b: 0.15, a: 0.55}

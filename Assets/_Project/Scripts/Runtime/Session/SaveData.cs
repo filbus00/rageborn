@@ -16,8 +16,8 @@ namespace ARPG
         /// <summary>1: the first. 2: adds level and experience. 3: adds potion charges. 4: adds the dungeon seed and
         /// opened chests. 5: adds the dungeon generator version. 6: adds salvage materials and each item's reforge and
         /// temper counts. 7: adds what the character has been taught (onboarding) and play time. 8: adds activated
-        /// waypoints, the Portal Tome and an open portal.</summary>
-        public const int CurrentVersion = 8;
+        /// waypoints, the Portal Tome and an open portal. 9: adds the skill loadout.</summary>
+        public const int CurrentVersion = 9;
 
         public int version;
 
@@ -66,6 +66,12 @@ namespace ARPG
         public int portalDepth;
         public float portalX;
         public float portalY;
+
+        /// <summary>The four skill slots by skill asset name (empty for none), each slot's trigger by name, and whether
+        /// the player has set them (until then the loadout fills itself).</summary>
+        public List<string> loadoutSkills = new List<string>();
+        public List<string> loadoutTriggers = new List<string>();
+        public bool loadoutChosen;
     }
 
     [Serializable]

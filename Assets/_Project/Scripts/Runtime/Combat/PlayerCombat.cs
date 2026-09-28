@@ -5,12 +5,14 @@ namespace ARPG
 {
     /// <summary>
     /// The player's automatic combat from Docs/01-core-gameplay.md, for the Wrathborn (Docs/02-classes-and-skills.md).
-    /// Every frame it picks a target, swings the basic attack at the attack rate, and fires the unlocked skills in slot
-    /// order whenever the global cast timer is free and a skill's trigger passes. The slots, in order: Ground Breaker (a
-    /// slam with 4 or more enemies around), Hurl Axe (a thrown axe at an enemy 4 to 9 units away in sight), Bull Rush (a
-    /// charge while moving at an enemy 3 to 6 units ahead, which gains Rage instead of costing it) and Hew (a sweep, 2 or
-    /// more enemies in reach). Skills cost Rage, which the basic attack, hits taken and Bull Rush build
-    /// (<see cref="RagePool"/>); Stillness adds damage (<see cref="StanceStacks"/>).
+    /// Every frame it picks a target, swings the basic attack at the attack rate, and fires the skills in the four
+    /// loadout slots (<see cref="SkillLoadout"/>) in slot order whenever the global cast timer is free, the skill is off
+    /// cooldown and paid for, a valid target or area exists and the slot's trigger passes: the skill's own (Docs/02's
+    /// trigger column) or one of its two alternatives (<see cref="SkillTriggerRules"/>). The class's eight skills:
+    /// Ground Breaker, Hurl Axe, Bull Rush and Hew (the M1 slice), Battle Roar and Blood Frenzy (buffs), Rending Spin (a
+    /// channel that holds back the lower slots and the basic attack while it spins) and Skullsplitter (an execute).
+    /// Skills cost Rage, which the basic attack, hits taken, Bull Rush and Battle Roar build (<see cref="RagePool"/>);
+    /// Stillness adds damage (<see cref="StanceStacks"/>).
     /// There is no input: movement is the only thing the player controls.
     /// Runs in Update for now; combat will move to a fixed timestep (Docs/07-technical.md).
     /// </summary>
@@ -66,8 +68,30 @@ namespace ARPG
 
         [SerializeField] Color basicEffectColor = new Color(1f, 1f, 1f, 0.55f);
 
-        [Tooltip("The class's skills in priority order, slot 1 first. Each is usable from its own unlock level.")]
+        [Tooltip("The class's skills, in the order an unchosen loadout fills its slots. Each is usable from its own unlock level.")]
         [SerializeField] SkillDefinition[] skills;
+
+        // Which class skill each loadout slot holds (an index into skills), -1 for none.
+        readonly int[] slotSkill = { -1, -1, -1, -1 };
+        float stillSeconds;
+
+        // Buffs (Battle Roar, Blood Frenzy): what they add and how long is left.
+        float damageBuff;
+        float damageBuffTimer;
+        float speedBuff;
+        float speedBuffPerMomentum;
+        float speedBuffTimer;
+
+        // The channel in progress (Rending Spin): it holds back the slots below its own and the basic attack.
+        SkillDefinition channelSkill;
+        int channelSlot = -1;
+        float channelTimer;
+        float channelTickTimer;
+
+        // The execute in its wind-up (Skullsplitter): the blow lands on its target when the timer runs out.
+        SkillDefinition executeSkill;
+        EnemyController executeTarget;
+        float executeTimer;
 
         // Everything the query found near the character, and the subset within reach that can be chosen as the target.
         readonly List<EnemyController> candidates = new List<EnemyController>(32);
@@ -138,9 +162,36 @@ namespace ARPG
 
         public float SkillCooldownRemaining(int slot) => cooldowns != null && slot >= 0 && slot < cooldowns.Length ? cooldowns[slot] : 0f;
 
-        public bool IsUnlocked(int slot) =>
-            skills != null && slot >= 0 && slot < skills.Length && skills[slot] != null &&
-            SkillRules.IsUnlocked(skills[slot].UnlockLevel, GameSession.Current.Level);
+        /// <summary>Whether the class skill at this index is unlocked at the character's level.</summary>
+        public bool IsUnlocked(int skillIndex) =>
+            skills != null && skillIndex >= 0 && skillIndex < skills.Length && skills[skillIndex] != null &&
+            SkillRules.IsUnlocked(skills[skillIndex].UnlockLevel, GameSession.Current.Level);
+
+        /// <summary>The skill in a loadout slot, or null.</summary>
+        public SkillDefinition SlotSkill(int slot) =>
+            slot >= 0 && slot < slotSkill.Length && slotSkill[slot] >= 0 ? skills[slotSkill[slot]] : null;
+
+        /// <summary>Whether a channel (Rending Spin) is spinning now.</summary>
+        public bool Channeling => channelTimer > 0f;
+
+        /// <summary>The class's skills with their unlock levels, in fill order, for the loadout.</summary>
+        public List<(string id, int unlockLevel)> ClassSkillList()
+        {
+            var list = new List<(string, int)>(skills.Length);
+            foreach (var skill in skills)
+                if (skill != null)
+                    list.Add((skill.name, skill.UnlockLevel));
+            return list;
+        }
+
+        /// <summary>The class skill with this asset name, or null.</summary>
+        public SkillDefinition FindSkill(string id)
+        {
+            foreach (var skill in skills)
+                if (skill != null && skill.name == id)
+                    return skill;
+            return null;
+        }
 
         void Awake()
         {
@@ -170,6 +221,9 @@ namespace ARPG
             session = GameSession.Current;
             knownLevel = session.Level;
             session.LeveledUp += OnLeveledUp;
+            session.Loadout.Changed += RefreshSlots;
+            session.Loadout.Fill(ClassSkillList(), session.Level, session.Level);
+            RefreshSlots();
             if (health != null)
                 health.HitTaken += OnHitTaken;
             if (player != null)
@@ -179,9 +233,24 @@ namespace ARPG
         void OnDestroy()
         {
             if (session != null)
+            {
                 session.LeveledUp -= OnLeveledUp;
+                session.Loadout.Changed -= RefreshSlots;
+            }
             if (health != null)
                 health.HitTaken -= OnHitTaken;
+        }
+
+        void RefreshSlots()
+        {
+            for (var s = 0; s < slotSkill.Length; s++)
+            {
+                var id = session.Loadout.SkillAt(s);
+                slotSkill[s] = -1;
+                for (var i = 0; i < skills.Length && id != null; i++)
+                    if (skills[i] != null && skills[i].name == id)
+                        slotSkill[s] = i;
+            }
         }
 
         void OnHitTaken(float damage) => rage.Gain(RagePool.PerHitTaken);
@@ -193,12 +262,17 @@ namespace ARPG
             foreach (var skill in skills)
                 levels.Add(skill != null ? skill.UnlockLevel : int.MaxValue);
             var unlocked = SkillRules.NewlyUnlocked(levels, knownLevel, level);
+            // A new skill takes an empty slot by itself; with the four full it waits in the Bag's Skills page.
+            session.Loadout.Fill(ClassSkillList(), level, knownLevel);
             knownLevel = level;
             if (player == null)
                 return;
             for (var i = 0; i < unlocked.Count; i++)
+            {
+                var equipped = session.Loadout.SlotOf(skills[unlocked[i]].name) >= 0;
                 DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 2.3f + 0.5f * i, 0f),
-                    "NEW SKILL: " + skills[unlocked[i]].DisplayName, NewSkillColor, 46);
+                    "NEW SKILL: " + skills[unlocked[i]].DisplayName + (equipped ? "" : " (Bag > Skills)"), NewSkillColor, 46);
+            }
         }
 
         void Update()
@@ -211,6 +285,9 @@ namespace ARPG
             UpdateFacing();
 
             rage.Tick(deltaTime);
+            stillSeconds = player.GroundVelocity.magnitude < FacingSpeedThreshold ? stillSeconds + deltaTime : 0f;
+            damageBuffTimer = Mathf.Max(0f, damageBuffTimer - deltaTime);
+            speedBuffTimer = Mathf.Max(0f, speedBuffTimer - deltaTime);
             attackTimer = Mathf.Max(0f, attackTimer - deltaTime);
             castTimer = Mathf.Max(0f, castTimer - deltaTime);
             for (var i = 0; i < cooldowns.Length; i++)
@@ -220,6 +297,10 @@ namespace ARPG
             UpdateSlamEffect(deltaTime);
             if (charging)
                 UpdateCharge(origin);
+            if (channelTimer > 0f)
+                UpdateChannel(origin, deltaTime);
+            if (executeSkill != null)
+                UpdateExecute(origin, deltaTime);
 
             enemies.QueryEnemies(origin, LongestReach() + QueryMargin, candidates);
             if (candidates.Count == 0)
@@ -233,7 +314,7 @@ namespace ARPG
             if (castTimer <= 0f && !charging)
                 TryCastSkill(origin, aim, target);
 
-            if (attackTimer <= 0f && target != null && !charging)
+            if (attackTimer <= 0f && target != null && !charging && channelTimer <= 0f)
                 BasicAttack(origin, aim);
         }
 
@@ -283,7 +364,7 @@ namespace ARPG
         void BasicAttack(Vector2 origin, Vector2 aim)
         {
             var equipment = GameSession.Current.Equipment;
-            attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f));
+            attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + AttackSpeedBuff));
             BasicAttackCount++;
             BasicAttackStarted?.Invoke(aim, attackTimer);
 
@@ -295,68 +376,156 @@ namespace ARPG
                 rage.Gain(RagePool.PerBasicHit);
         }
 
+        /// <summary>Increased attack speed from Blood Frenzy while it lasts: its own, and more for each live Momentum
+        /// stack (Docs/02).</summary>
+        float AttackSpeedBuff => speedBuffTimer > 0f ? speedBuff + speedBuffPerMomentum * player.Stance.Momentum : 0f;
+
         void TryCastSkill(Vector2 origin, Vector2 aim, EnemyController target)
         {
-            for (var i = 0; i < skills.Length; i++)
+            // Docs/01: a channel locks the lower priority slots until it ends.
+            var slots = channelTimer > 0f ? channelSlot : slotSkill.Length;
+            for (var s = 0; s < slots; s++)
             {
-                var skill = skills[i];
-                if (!IsUnlocked(i) || cooldowns[i] > 0f || skill.RageCost > rage.Current)
+                var i = slotSkill[s];
+                if (i < 0 || !IsUnlocked(i) || cooldowns[i] > 0f)
                     continue;
-
-                EnemyController skillTarget = null;
-                switch (skill.Kind)
-                {
-                    case SkillKind.Sweep:
-                        if (target == null || CountInSweep(origin, aim, skill.Range, skill.ArcDegrees) < skill.MinEnemies)
-                            continue;
-                        break;
-                    case SkillKind.Slam:
-                        if (CountAround(origin, skill.Range) < skill.MinEnemies)
-                            continue;
-                        break;
-                    case SkillKind.Projectile:
-                        skillTarget = FindRangedTarget(origin, skill);
-                        if (skillTarget == null)
-                            continue;
-                        break;
-                    case SkillKind.Charge:
-                        skillTarget = FindChargeTarget(origin, skill);
-                        if (skillTarget == null)
-                            continue;
-                        break;
-                }
-
-                rage.TrySpend(skill.RageCost);
-                if (skill.RageGain > 0f)
-                    rage.Gain(skill.RageGain);
-                var cdr = GameSession.Current.Equipment.CooldownReductionPercent / 100f;
-                cooldowns[i] = skill.CooldownSeconds * Mathf.Max(0.1f, 1f - cdr);
-                castTimer = GlobalCastSeconds;
-                SkillCastCount++;
-                castCounts[i]++;
-                rage.MarkCombat();
-                SkillCast?.Invoke(skill, skill.Kind == SkillKind.Projectile && skillTarget != null
-                    ? (skillTarget.GroundPosition - origin).normalized
-                    : skill.Kind == SkillKind.Charge && skillTarget != null ? (skillTarget.GroundPosition - origin).normalized : aim);
-
-                Sfx.Play(skill.Kind == SkillKind.Sweep ? SoundId.Hew : skill.Kind == SkillKind.Slam ? SoundId.GroundBreaker
-                    : skill.Kind == SkillKind.Projectile ? SoundId.AxeThrow : SoundId.BullRush);
-                switch (skill.Kind)
-                {
-                    case SkillKind.Sweep:
-                        Sweep(origin, aim, skill.Range, skill.ArcDegrees, skill.DamageMultiplier, skill.EffectSprite, skill.EffectColor);
-                        break;
-                    case SkillKind.Slam:
-                        Slam(origin, skill);
-                        break;
-                    case SkillKind.Projectile:
-                        ThrowAxe(origin, skillTarget.GroundPosition - origin, skill);
-                        break;
-                    case SkillKind.Charge:
-                        StartCharge(origin, skillTarget, skill);
-                        break;
-                }
+                var skill = skills[i];
+                if (skill.RageCost > rage.Current)
+                    continue;
+                if (!Ready(skill, session.Loadout.TriggerAt(s), origin, aim, target, out var skillTarget))
+                    continue;
+                Cast(i, s, skill, origin, aim, skillTarget);
                 return;
+            }
+        }
+
+        // A valid target or area first (Docs/01), then the slot's trigger: the skill's own condition (Docs/02's trigger
+        // column), or the alternative the player chose, which replaces it.
+        bool Ready(SkillDefinition skill, SkillTrigger trigger, Vector2 origin, Vector2 aim, EnemyController target, out EnemyController skillTarget)
+        {
+            skillTarget = null;
+            var own = trigger == SkillTrigger.Default;
+            switch (skill.Kind)
+            {
+                case SkillKind.Sweep:
+                {
+                    var inSweep = target != null ? CountInSweep(origin, aim, skill.Range, skill.ArcDegrees) : 0;
+                    if (inSweep < 1)
+                        return false;
+                    if (own)
+                        return inSweep >= skill.MinEnemies;
+                    break;
+                }
+                case SkillKind.Slam:
+                {
+                    var around = CountAround(origin, skill.Range);
+                    if (around < 1)
+                        return false;
+                    if (own)
+                        return around >= skill.MinEnemies;
+                    break;
+                }
+                case SkillKind.Projectile:
+                    skillTarget = FindRangedTarget(origin, skill);
+                    if (skillTarget == null)
+                        return false;
+                    if (own)
+                        return true;
+                    break;
+                case SkillKind.Charge:
+                    skillTarget = FindChargeTarget(origin, skill);
+                    if (skillTarget == null)
+                        return false;
+                    if (own)
+                        return true;
+                    break;
+                case SkillKind.Buff:
+                {
+                    var near = CountAround(origin, skill.Range);
+                    if (near < 1)
+                        return false;
+                    if (own)
+                        return near >= skill.MinEnemies &&
+                               (skill.MaxRage <= 0f || rage.Current < skill.MaxRage) &&
+                               (skill.MinMomentum <= 0 || (rage.InCombat && player.Stance.Momentum >= skill.MinMomentum));
+                    break;
+                }
+                case SkillKind.Channel:
+                {
+                    var near = CountAround(origin, skill.Range);
+                    if (near < 1)
+                        return false;
+                    if (own)
+                        return near >= skill.MinEnemies && Moving;
+                    break;
+                }
+                case SkillKind.Execute:
+                    skillTarget = FindExecuteTarget(origin, skill, own);
+                    if (skillTarget == null)
+                        return false;
+                    if (own)
+                        return true;
+                    break;
+            }
+            return SkillTriggerRules.Passes(trigger, new TriggerContext
+            {
+                EnemiesInArea = CountAround(origin, skill.Range),
+                ElitePresent = EliteAround(origin, skill.Range),
+                LifeFraction = health != null ? health.Fraction : 1f,
+                StillSeconds = stillSeconds,
+                Moving = Moving,
+            });
+        }
+
+        bool Moving => player.GroundVelocity.magnitude >= ChargeMinSpeed;
+
+        void Cast(int i, int slot, SkillDefinition skill, Vector2 origin, Vector2 aim, EnemyController skillTarget)
+        {
+            rage.TrySpend(skill.RageCost);
+            if (skill.RageGain > 0f)
+                rage.Gain(skill.RageGain);
+            var cdr = GameSession.Current.Equipment.CooldownReductionPercent / 100f;
+            cooldowns[i] = skill.CooldownSeconds * Mathf.Max(0.1f, 1f - cdr);
+            castTimer = GlobalCastSeconds;
+            SkillCastCount++;
+            castCounts[i]++;
+            rage.MarkCombat();
+            var direction = skillTarget != null ? (skillTarget.GroundPosition - origin).normalized : aim;
+            SkillCast?.Invoke(skill, direction);
+
+            switch (skill.Kind)
+            {
+                case SkillKind.Sweep:
+                    Sfx.Play(SoundId.Hew);
+                    Sweep(origin, aim, skill.Range, skill.ArcDegrees, skill.DamageMultiplier, skill.EffectSprite, skill.EffectColor);
+                    break;
+                case SkillKind.Slam:
+                    Sfx.Play(SoundId.GroundBreaker);
+                    Slam(origin, skill);
+                    break;
+                case SkillKind.Projectile:
+                    Sfx.Play(SoundId.AxeThrow);
+                    ThrowAxe(origin, skillTarget.GroundPosition - origin, skill);
+                    break;
+                case SkillKind.Charge:
+                    Sfx.Play(SoundId.BullRush);
+                    StartCharge(origin, skillTarget, skill);
+                    break;
+                case SkillKind.Buff:
+                    StartBuff(origin, skill);
+                    break;
+                case SkillKind.Channel:
+                    channelSkill = skill;
+                    channelSlot = slot;
+                    channelTimer = skill.DurationSeconds;
+                    channelTickTimer = 0f;
+                    break;
+                case SkillKind.Execute:
+                    Sfx.Play(SoundId.Swing);
+                    executeSkill = skill;
+                    executeTarget = skillTarget;
+                    executeTimer = skill.WindupSeconds;
+                    break;
             }
         }
 
@@ -418,6 +587,136 @@ namespace ARPG
                 bestDistance = distance;
             }
             return best;
+        }
+
+        bool EliteAround(Vector2 origin, float radius)
+        {
+            for (var i = 0; i < candidates.Count; i++)
+            {
+                var enemy = candidates[i];
+                var rank = enemy.Definition.Rank;
+                if (enemy.IsAlive && (rank == EnemyRank.Elite || rank == EnemyRank.Boss) && InReach(origin, enemy, radius))
+                    return true;
+            }
+            return false;
+        }
+
+        // Docs/02: Skullsplitter fires on a target below its threshold, or an elite or boss, in reach. The most wounded
+        // comes first. With another trigger chosen, any enemy in reach will do.
+        EnemyController FindExecuteTarget(Vector2 origin, SkillDefinition skill, bool strict)
+        {
+            EnemyController best = null;
+            var bestFraction = float.MaxValue;
+            for (var i = 0; i < candidates.Count; i++)
+            {
+                var enemy = candidates[i];
+                if (!enemy.IsAlive || !InReach(origin, enemy, skill.Range))
+                    continue;
+                var fraction = enemy.MaxLife > 0f ? enemy.Life / enemy.MaxLife : 1f;
+                var rank = enemy.Definition.Rank;
+                if (strict && fraction >= skill.ExecuteThreshold && rank != EnemyRank.Elite && rank != EnemyRank.Boss)
+                    continue;
+                if (fraction >= bestFraction)
+                    continue;
+                best = enemy;
+                bestFraction = fraction;
+            }
+            return best;
+        }
+
+        // --- Battle Roar and Blood Frenzy ----------------------------------------------------------------------
+
+        void StartBuff(Vector2 origin, SkillDefinition skill)
+        {
+            if (skill.BuffDamage > 0f)
+            {
+                damageBuff = skill.BuffDamage;
+                damageBuffTimer = skill.DurationSeconds;
+            }
+            if (skill.BuffAttackSpeed > 0f || skill.BuffAttackSpeedPerMomentum > 0f)
+            {
+                speedBuff = skill.BuffAttackSpeed;
+                speedBuffPerMomentum = skill.BuffAttackSpeedPerMomentum;
+                speedBuffTimer = skill.DurationSeconds;
+            }
+            Sfx.Play(skill.BuffDamage > 0f ? SoundId.BossPhase : SoundId.Crit, 0.6f);
+            // Placeholder feedback until the art exists: a ring on the ground and the name over the character.
+            if (slamMarker == null)
+                slamMarker = GroundMarker.Circle(origin, skill.Range, 0.08f, skill.EffectColor, transform);
+            else
+                slamMarker.RestartCircle(origin, skill.Range, 0.08f);
+            slamMarkerTimer = SlamEffectSeconds;
+            DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 1.8f, 0f),
+                skill.DisplayName.ToUpperInvariant(), new Color(skill.EffectColor.r, skill.EffectColor.g, skill.EffectColor.b, 1f), 40);
+        }
+
+        // --- Rending Spin --------------------------------------------------------------------------------------
+
+        void UpdateChannel(Vector2 origin, float deltaTime)
+        {
+            channelTimer -= deltaTime;
+            channelTickTimer -= deltaTime;
+            if (channelTickTimer <= 0f)
+            {
+                channelTickTimer += channelSkill.TickSeconds;
+                SpinHit(origin, channelSkill);
+            }
+            if (channelTimer <= 0f)
+            {
+                channelTimer = 0f;
+                channelSkill = null;
+                channelSlot = -1;
+            }
+        }
+
+        // Every enemy within the basic reach is hit and bleeds (Docs/02: 90 percent every 0.3 s, a bleed).
+        void SpinHit(Vector2 origin, SkillDefinition skill)
+        {
+            enemies.QueryEnemies(origin, basicRange + QueryMargin, nearby);
+            var hits = 0;
+            for (var i = 0; i < nearby.Count; i++)
+            {
+                var enemy = nearby[i];
+                if (!enemy.IsAlive || !InReach(origin, enemy, basicRange))
+                    continue;
+                hits++;
+                Strike(enemy, skill.DamageMultiplier);
+                if (enemy.IsAlive && skill.BleedMultiplier > 0f && skill.BleedSeconds > 0f)
+                    enemy.ApplyBleed(Damage(enemy, skill.BleedMultiplier, false) / skill.BleedSeconds, skill.BleedSeconds);
+            }
+            if (hits > 0)
+            {
+                HealOnHit(hits);
+                rage.MarkCombat();
+            }
+            Sfx.Play(SoundId.Swing, 0.5f);
+            PlayEffect(origin, facing, basicRange, skill.EffectSprite, skill.EffectColor);
+            PlayEffect(origin, -facing, basicRange, skill.EffectSprite, skill.EffectColor);
+        }
+
+        // --- Skullsplitter -------------------------------------------------------------------------------------
+
+        // The blow lands after the wind-up; the life threshold is read then (Docs/02's proposal), with half a unit of
+        // slack for a target that moved.
+        void UpdateExecute(Vector2 origin, float deltaTime)
+        {
+            executeTimer -= deltaTime;
+            if (executeTimer > 0f)
+                return;
+            var skill = executeSkill;
+            var target = executeTarget;
+            executeSkill = null;
+            executeTarget = null;
+            if (target == null || !target.IsAlive || !InReach(origin, target, skill.Range + 0.5f))
+                return;
+            var fraction = target.MaxLife > 0f ? target.Life / target.MaxLife : 1f;
+            var multiplier = fraction < skill.ExecuteThreshold ? skill.ExecuteMultiplier : skill.DamageMultiplier;
+            var direction = (target.GroundPosition - origin).normalized;
+            Strike(target, multiplier);
+            HealOnHit(1);
+            rage.MarkCombat();
+            Sfx.Play(SoundId.GroundBreaker, 0.8f);
+            PlayEffect(origin, direction, skill.Range, skill.EffectSprite, skill.EffectColor);
         }
 
         // --- Hew and the basic attack --------------------------------------------------------------------------
@@ -615,13 +914,8 @@ namespace ARPG
         /// damage number, and the kill's hit stop.</summary>
         void Strike(EnemyController enemy, float multiplier)
         {
-            var equipment = GameSession.Current.Equipment;
-            var stance = player.Stance;
-            var critical = Random.value < equipment.CriticalChancePercent / 100f;
-            var damage = CombatFormulas.HitDamage(
-                WeaponDamage, multiplier, equipment.FlatWeaponDamageBonus,
-                equipment.IncreasedDamagePercent / 100f + stance.IncreasedDamage, 1f,
-                critical, equipment.CriticalDamagePercent / 100f, enemy.Definition.Armor, enemy.Level);
+            var critical = Random.value < GameSession.Current.Equipment.CriticalChancePercent / 100f;
+            var damage = Damage(enemy, multiplier, critical);
 
             var world = IsoMath.GroundToWorld(enemy.GroundPosition);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);
@@ -636,6 +930,17 @@ namespace ARPG
             {
                 Sfx.Play(critical ? SoundId.Crit : SoundId.Hit);
             }
+        }
+
+        /// <summary>The hit formula for this character against an enemy: the gear's modifiers, Stillness and Battle
+        /// Roar as increased damage.</summary>
+        float Damage(EnemyController enemy, float multiplier, bool critical)
+        {
+            var equipment = GameSession.Current.Equipment;
+            var increased = equipment.IncreasedDamagePercent / 100f + player.Stance.IncreasedDamage + (damageBuffTimer > 0f ? damageBuff : 0f);
+            return CombatFormulas.HitDamage(
+                WeaponDamage, multiplier, equipment.FlatWeaponDamageBonus, increased, 1f,
+                critical, equipment.CriticalDamagePercent / 100f, enemy.Definition.Armor, enemy.Level);
         }
 
         void HealOnHit(int hits)

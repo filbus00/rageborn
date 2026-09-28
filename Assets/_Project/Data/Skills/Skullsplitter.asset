@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b800c5fde4a6841a2a27c7fd419314d4, type: 3}
-  m_Name: GroundBreaker
+  m_Name: Skullsplitter
   m_EditorClassIdentifier: ARPG.Runtime::ARPG.SkillDefinition
-  displayName: Ground Breaker
-  kind: 3
-  unlockLevel: 6
-  rageCost: 35
+  displayName: Skullsplitter
+  kind: 6
+  unlockLevel: 18
+  rageCost: 25
   rageGain: 0
-  cooldownSeconds: 8
-  damageMultiplier: 2.8
+  cooldownSeconds: 5
+  damageMultiplier: 3.5
   arcDegrees: 180
-  range: 3.5
+  range: 2.5
   minRange: 0
-  minEnemies: 4
+  minEnemies: 1
   speed: 14
-  effectStrength: 0.7
-  effectSeconds: 2
+  effectStrength: 0
+  effectSeconds: 0
   maxRage: 0
   minMomentum: 0
   durationSeconds: 0
@@ -35,11 +35,11 @@ MonoBehaviour:
   tickSeconds: 0.3
   bleedMultiplier: 0
   bleedSeconds: 0
-  executeThreshold: 0
-  executeMultiplier: 0
-  windupSeconds: 0
-  triggerText: 4+ enemies within 3.5
-  animationName: ground_breaker
-  alternativeTriggers: 0200000003000000i
-  effectSprite: {fileID: 0}
-  effectColor: {r: 0.9, g: 0.55, b: 0.2, a: 0.7}
+  executeThreshold: 0.25
+  executeMultiplier: 8
+  windupSeconds: 0.3
+  triggerText: A target below 25%, or an elite
+  animationName: skullsplitter
+  alternativeTriggers: 0100000003000000i
+  effectSprite: {fileID: 21300000, guid: bb1bfcd9508b6449b92eda139dd38f08, type: 3}
+  effectColor: {r: 1, g: 0.3, b: 0.2, a: 0.7}

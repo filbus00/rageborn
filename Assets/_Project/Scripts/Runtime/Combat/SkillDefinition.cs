@@ -3,8 +3,8 @@ using UnityEngine.Serialization;
 
 namespace ARPG
 {
-    /// <summary>What a skill does when it fires. Buff, Channel and Execute skills come with the rest of the Wrathborn's
-    /// list after the M1 slice (Docs/02-classes-and-skills.md).</summary>
+    /// <summary>What a skill does when it fires (Docs/02-classes-and-skills.md). New kinds go at the end: assets store
+    /// the number.</summary>
     public enum SkillKind
     {
         /// <summary>A melee sweep in front of the character (Hew).</summary>
@@ -18,6 +18,33 @@ namespace ARPG
 
         /// <summary>A slam around the character that hits and slows everything in its radius (Ground Breaker).</summary>
         Slam,
+
+        /// <summary>A timed boost to the character: damage and Rage (Battle Roar), attack speed (Blood Frenzy).</summary>
+        Buff,
+
+        /// <summary>A spin that hits everything in reach on a beat for a few seconds while the character keeps moving,
+        /// and holds back the lower slots and the basic attack meanwhile (Rending Spin).</summary>
+        Channel,
+
+        /// <summary>One heavy blow at one target, far heavier on a wounded one (Skullsplitter).</summary>
+        Execute,
+    }
+
+    /// <summary>
+    /// When a slot's skill fires (Docs/01-core-gameplay.md, trigger conditions). Default is the skill's own designed
+    /// condition (the trigger column of Docs/02); the others replace it, from the choices the loadout offers (Q15: each
+    /// skill keeps its default and has two alternatives). Every skill still needs a valid target or area.
+    /// </summary>
+    public enum SkillTrigger
+    {
+        Default,
+        Always,
+        EnemiesThreePlus,
+        ElitePresent,
+        LifeBelowHalf,
+        LifeAboveHalf,
+        Standing,
+        Moving,
     }
 
     /// <summary>
@@ -68,6 +95,50 @@ namespace ARPG
         [Tooltip("Slam: how long the slow lasts.")]
         [SerializeField, Min(0f)] float effectSeconds;
 
+        [Tooltip("Buff: Battle Roar fires only below this much Rage (0 for no limit).")]
+        [SerializeField, Min(0f)] float maxRage;
+
+        [Tooltip("Buff: Blood Frenzy needs this many Momentum stacks, and combat within the last 3 s.")]
+        [SerializeField, Min(0)] int minMomentum;
+
+        [Tooltip("Buff: how long it lasts. Channel: how long the spin lasts.")]
+        [SerializeField, Min(0f)] float durationSeconds;
+
+        [Tooltip("Buff: increased damage while it lasts, 0.2 for 20 percent.")]
+        [SerializeField, Min(0f)] float buffDamage;
+
+        [Tooltip("Buff: increased attack speed while it lasts, 0.3 for 30 percent.")]
+        [SerializeField, Min(0f)] float buffAttackSpeed;
+
+        [Tooltip("Buff: more attack speed per live Momentum stack, 0.05 for 5 percent.")]
+        [SerializeField, Min(0f)] float buffAttackSpeedPerMomentum;
+
+        [Tooltip("Channel: seconds between the spin's hits.")]
+        [SerializeField, Min(0.05f)] float tickSeconds = 0.3f;
+
+        [Tooltip("Channel: the bleed each hit leaves, as a multiple of weapon damage over its whole duration (0.4 for 40 percent).")]
+        [SerializeField, Min(0f)] float bleedMultiplier;
+
+        [SerializeField, Min(0f)] float bleedSeconds;
+
+        [Tooltip("Execute: below this share of its life a target takes the heavier blow (0.25).")]
+        [SerializeField, Range(0f, 1f)] float executeThreshold;
+
+        [Tooltip("Execute: the heavier blow's multiple of weapon damage (8 for 800 percent).")]
+        [SerializeField, Min(0f)] float executeMultiplier;
+
+        [Tooltip("Execute: seconds from the cast to the blow; the life threshold is read when it lands.")]
+        [SerializeField, Min(0f)] float windupSeconds;
+
+        [Tooltip("The skill's own trigger in words, for the loadout (Docs/02's trigger column).")]
+        [SerializeField] string triggerText = "";
+
+        [Tooltip("The character animation it plays (hew, hurl_axe, ...); falls back to the attack, or none for a buff.")]
+        [SerializeField] string animationName = "";
+
+        [Tooltip("The two other triggers the loadout offers for this skill besides its own (Q15).")]
+        [SerializeField] SkillTrigger[] alternativeTriggers = new SkillTrigger[0];
+
         [Tooltip("Placeholder art: the sweep's wedge, the projectile or the slam's disc.")]
         [SerializeField] Sprite effectSprite;
 
@@ -87,6 +158,21 @@ namespace ARPG
         public float Speed => speed;
         public float EffectStrength => effectStrength;
         public float EffectSeconds => effectSeconds;
+        public float MaxRage => maxRage;
+        public int MinMomentum => minMomentum;
+        public float DurationSeconds => durationSeconds;
+        public float BuffDamage => buffDamage;
+        public float BuffAttackSpeed => buffAttackSpeed;
+        public float BuffAttackSpeedPerMomentum => buffAttackSpeedPerMomentum;
+        public float TickSeconds => tickSeconds;
+        public float BleedMultiplier => bleedMultiplier;
+        public float BleedSeconds => bleedSeconds;
+        public float ExecuteThreshold => executeThreshold;
+        public float ExecuteMultiplier => executeMultiplier;
+        public float WindupSeconds => windupSeconds;
+        public System.Collections.Generic.IReadOnlyList<SkillTrigger> AlternativeTriggers => alternativeTriggers;
+        public string TriggerText => triggerText;
+        public string AnimationName => animationName;
         public Sprite EffectSprite => effectSprite;
         public Color EffectColor => effectColor;
     }

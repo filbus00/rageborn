@@ -37,6 +37,10 @@ namespace ARPG
             sinceCombat = 0f;
         }
 
+        /// <summary>Whether a hit was dealt or taken within the drain delay: "in combat" for Blood Frenzy's trigger (the
+        /// same test as the drain, Docs/02's proposal).</summary>
+        public bool InCombat => sinceCombat <= DrainDelaySeconds;
+
         /// <summary>Combat that gives no Rage of its own (a skill hit) still holds off the drain.</summary>
         public void MarkCombat() => sinceCombat = 0f;
 

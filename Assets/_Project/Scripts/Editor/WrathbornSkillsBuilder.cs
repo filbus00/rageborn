@@ -6,11 +6,14 @@ using UnityEngine;
 namespace ARPG.Editor
 {
     /// <summary>
-    /// The Wrathborn's first four skills (Docs/02-classes-and-skills.md, M1 slice): Hew, Hurl Axe, Bull Rush and Ground
-    /// Breaker, as assets in Data/Skills, with their placeholder art. A skill is created with the docs' numbers if missing
-    /// and its numbers are left alone afterwards, so tuning survives a rerun; the art references are refreshed.
-    /// Tools > ARPG > Create Wrathborn Skills also puts them on the Player Combat of the sandbox and dungeon scenes, in
-    /// slot order: Ground Breaker, Hurl Axe, Bull Rush, Hew. Add Combat To Sandbox uses them too, so rebuilding the scene chain keeps them.
+    /// The Wrathborn's eight skills (Docs/02-classes-and-skills.md): Hew, Hurl Axe, Bull Rush and Ground Breaker (the M1
+    /// slice), and Battle Roar, Rending Spin, Blood Frenzy and Skullsplitter (unlocking at 9, 12, 15 and 18, the owner's
+    /// decision of 2026-09-27, Q4), as assets in Data/Skills with their placeholder art. A skill is created with the docs'
+    /// numbers if missing and its numbers are left alone afterwards, so tuning survives a rerun; the art references, the
+    /// trigger wording, the animation name and the two alternative triggers (Q15) are refreshed. Tools > ARPG > Create
+    /// Wrathborn Skills also puts them on the Player Combat of the sandbox and dungeon scenes, in the class order an
+    /// unchosen loadout fills from: Ground Breaker, Hurl Axe, Bull Rush, Hew, then the later four. Add Combat To Sandbox
+    /// uses them too, so rebuilding the scene chain keeps them.
     /// </summary>
     public static class WrathbornSkillsBuilder
     {
@@ -106,11 +109,80 @@ namespace ARPG.Editor
                 so.FindProperty("effectSeconds").floatValue = 2f;
                 so.FindProperty("effectColor").colorValue = new Color(0.9f, 0.55f, 0.2f, 0.7f);
             });
+            var skullArt = ImportWedge("SweepSkullsplitter", 40f);
+
+            // The later four (Docs/02's table; the "filled in" details are Docs/02's proposals, tuning).
+            var roar = LoadOrCreate("BattleRoar", null, so =>
+            {
+                Set(so, SkillKind.Buff, unlock: 9, cost: 0f, cooldown: 15f, multiplier: 0f, range: 5f);
+                so.FindProperty("displayName").stringValue = "Battle Roar";
+                so.FindProperty("rageGain").floatValue = 40f;
+                so.FindProperty("minEnemies").intValue = 3;
+                so.FindProperty("maxRage").floatValue = 30f;
+                so.FindProperty("durationSeconds").floatValue = 6f;
+                so.FindProperty("buffDamage").floatValue = 0.2f;
+                so.FindProperty("effectColor").colorValue = new Color(0.9f, 0.2f, 0.15f, 0.6f);
+            });
+            var spin = LoadOrCreate("RendingSpin", hewArt, so =>
+            {
+                Set(so, SkillKind.Channel, unlock: 12, cost: 40f, cooldown: 12f, multiplier: 0.9f, range: 4f);
+                so.FindProperty("displayName").stringValue = "Rending Spin";
+                so.FindProperty("minEnemies").intValue = 3;
+                so.FindProperty("durationSeconds").floatValue = 2.5f;
+                so.FindProperty("tickSeconds").floatValue = 0.3f;
+                so.FindProperty("bleedMultiplier").floatValue = 0.4f;
+                so.FindProperty("bleedSeconds").floatValue = 4f;
+                so.FindProperty("effectColor").colorValue = new Color(0.75f, 0.15f, 0.15f, 0.55f);
+            });
+            var frenzy = LoadOrCreate("BloodFrenzy", null, so =>
+            {
+                Set(so, SkillKind.Buff, unlock: 15, cost: 20f, cooldown: 14f, multiplier: 0f, range: 6f);
+                so.FindProperty("displayName").stringValue = "Blood Frenzy";
+                so.FindProperty("minEnemies").intValue = 1;
+                so.FindProperty("minMomentum").intValue = 3;
+                so.FindProperty("durationSeconds").floatValue = 6f;
+                so.FindProperty("buffAttackSpeed").floatValue = 0.3f;
+                so.FindProperty("buffAttackSpeedPerMomentum").floatValue = 0.05f;
+                so.FindProperty("effectColor").colorValue = new Color(0.65f, 0.05f, 0.1f, 0.6f);
+            });
+            var skull = LoadOrCreate("Skullsplitter", skullArt, so =>
+            {
+                Set(so, SkillKind.Execute, unlock: 18, cost: 25f, cooldown: 5f, multiplier: 3.5f, range: 2.5f);
+                so.FindProperty("executeThreshold").floatValue = 0.25f;
+                so.FindProperty("executeMultiplier").floatValue = 8f;
+                so.FindProperty("windupSeconds").floatValue = 0.3f;
+                so.FindProperty("effectColor").colorValue = new Color(1f, 0.3f, 0.2f, 0.7f);
+            });
+
+            // Every run: the trigger words, the animation and the two alternative triggers (Q15; which two is Claude's
+            // choice of 2026-09-28, to review).
+            Describe(hew, "2+ enemies in reach", "hew", SkillTrigger.Always, SkillTrigger.ElitePresent);
+            Describe(axe, "An enemy 4 to 9 away", "hurl_axe", SkillTrigger.ElitePresent, SkillTrigger.Standing);
+            Describe(rush, "Moving, an enemy 3 to 6 ahead", "bull_rush", SkillTrigger.ElitePresent, SkillTrigger.EnemiesThreePlus);
+            Describe(breaker, "4+ enemies within 3.5", "ground_breaker", SkillTrigger.EnemiesThreePlus, SkillTrigger.ElitePresent);
+            Describe(roar, "3+ enemies near, Rage below 30", "battle_roar", SkillTrigger.Always, SkillTrigger.LifeBelowHalf);
+            Describe(spin, "Moving, 3+ enemies near", "rending_spin", SkillTrigger.EnemiesThreePlus, SkillTrigger.Standing);
+            Describe(frenzy, "In combat, 3+ Momentum", "blood_frenzy", SkillTrigger.Always, SkillTrigger.ElitePresent);
+            Describe(skull, "A target below 25%, or an elite", "skullsplitter", SkillTrigger.Always, SkillTrigger.ElitePresent);
 
             AssetDatabase.SaveAssets();
-            // Slot order, which is cast priority: the slam first, so a big crowd gets it before Hew spends the Rage (the
-            // user's choice, 2026-09-26).
-            return new[] { Reload(breaker), Reload(axe), Reload(rush), Reload(hew) };
+            // Class order, which fills an unchosen loadout: the slam first, so a big crowd gets it before Hew spends the
+            // Rage (the user's choice, 2026-09-26); the later four only matter once the player chooses them.
+            return new[] { Reload(breaker), Reload(axe), Reload(rush), Reload(hew), Reload(roar), Reload(spin), Reload(frenzy), Reload(skull) };
+        }
+
+        static void Describe(string path, string trigger, string animation, SkillTrigger first, SkillTrigger second)
+        {
+            var skill = AssetDatabase.LoadAssetAtPath<SkillDefinition>(path);
+            var so = new SerializedObject(skill);
+            so.FindProperty("triggerText").stringValue = trigger;
+            so.FindProperty("animationName").stringValue = animation;
+            var alternatives = so.FindProperty("alternativeTriggers");
+            alternatives.arraySize = 2;
+            alternatives.GetArrayElementAtIndex(0).enumValueIndex = (int)first;
+            alternatives.GetArrayElementAtIndex(1).enumValueIndex = (int)second;
+            so.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(skill);
         }
 
         static void Set(SerializedObject so, SkillKind kind, int unlock, float cost, float cooldown, float multiplier, float range)

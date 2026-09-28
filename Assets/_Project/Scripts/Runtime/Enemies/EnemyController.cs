@@ -121,6 +121,14 @@ namespace ARPG
         // A player skill's slow (Ground Breaker). Reset on every spawn.
         readonly SlowDebuff slow = new SlowDebuff();
 
+        // A bleed (Rending Spin): damage a second for a time; a new one replaces it rather than stacking (Docs/02's
+        // proposal). Dealt in pulses so the numbers do not flood.
+        const float BleedPulseSeconds = 0.5f;
+        float bleedPerSecond;
+        float bleedTimer;
+        float bleedPulse;
+        float bleedPending;
+
         // Made on first use and reused, one of each since a pooled instance can be any archetype.
         GroundMarker slamMarker;
         GroundMarker aimMarker;
@@ -237,6 +245,8 @@ namespace ARPG
             home = groundPosition;
             leashTimer = 0f;
             slow.Clear();
+            bleedTimer = 0f;
+            bleedPending = 0f;
             life = MaxLife;
             punchTimer = 0f;
             deathTimer = 0f;
@@ -338,7 +348,8 @@ namespace ARPG
         {
             UpdatePunch(deltaTime);
             slow.Tick(deltaTime);
-            if (Scripted)
+            TickBleed(deltaTime);
+            if (!IsAlive || Scripted)
                 return;
 
             var playerGround = world.PlayerGround;
@@ -469,6 +480,37 @@ namespace ARPG
                 pack?.Alert();
             }
             return false;
+        }
+
+        /// <summary>Starts or replaces a bleed: this much damage a second, already through the hit formula, for this long.</summary>
+        public void ApplyBleed(float damagePerSecond, float seconds)
+        {
+            if (!IsAlive || damagePerSecond <= 0f || seconds <= 0f)
+                return;
+            bleedPerSecond = damagePerSecond;
+            bleedTimer = seconds;
+        }
+
+        public bool IsBleeding => bleedTimer > 0f;
+
+        void TickBleed(float deltaTime)
+        {
+            if (bleedTimer <= 0f)
+                return;
+            var step = Mathf.Min(deltaTime, bleedTimer);
+            bleedTimer -= deltaTime;
+            bleedPending += bleedPerSecond * step;
+            bleedPulse += deltaTime;
+            if (bleedPulse < BleedPulseSeconds && bleedTimer > 0f)
+                return;
+            bleedPulse = 0f;
+            var damage = bleedPending;
+            bleedPending = 0f;
+            if (damage <= 0f)
+                return;
+            var world = IsoMath.GroundToWorld(ground);
+            DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, false, isDamageToPlayer: false);
+            TakeDamage(damage);
         }
 
         /// <summary>Called by the pack when another member engaged: an idle member joins in. It does not alert the

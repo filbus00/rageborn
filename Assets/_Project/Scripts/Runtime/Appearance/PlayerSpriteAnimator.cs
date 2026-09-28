@@ -179,7 +179,11 @@ namespace ARPG
                 }
                 return;
             }
-            var skillAnimation = skill.Kind == SkillKind.Sweep ? "hew" : skill.Kind == SkillKind.Projectile ? "hurl_axe" : "ground_breaker";
+            var skillAnimation = !string.IsNullOrEmpty(skill.AnimationName) ? skill.AnimationName
+                : skill.Kind == SkillKind.Sweep ? "hew" : skill.Kind == SkillKind.Projectile ? "hurl_axe" : "ground_breaker";
+            // A buff without its own animation shows nothing on the body (a swing would read as an attack).
+            if (skill.Kind == SkillKind.Buff && !sprite.Has(skillAnimation))
+                return;
             // Capped, so a skill's animation never holds the character longer than the moment it is for.
             if (PlayAction(skillAnimation, MaxSkillSeconds))
                 skillPlaying = true;

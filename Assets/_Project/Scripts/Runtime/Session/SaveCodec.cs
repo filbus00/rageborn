@@ -23,6 +23,7 @@ namespace ARPG
             MigrateFrom5, // 5 to 6: the Forge did not exist; no materials, and no item was ever reforged or tempered.
             MigrateFrom6, // 6 to 7: onboarding did not exist; an existing character needs no lessons (see the step).
             MigrateFrom7, // 7 to 8: no waypoints, Tome or portal existed.
+            MigrateFrom8, // 8 to 9: no loadout existed; it fills itself from the level, as the skills always did.
         };
 
         static SaveData MigrateFrom1(SaveData data)
@@ -85,6 +86,39 @@ namespace ARPG
             return data;
         }
 
+        static SaveData MigrateFrom8(SaveData data)
+        {
+            data.loadoutSkills = new List<string>();
+            data.loadoutTriggers = new List<string>();
+            data.loadoutChosen = false;
+            return data;
+        }
+
+        static List<string> CaptureLoadoutSkills(SkillLoadout loadout)
+        {
+            var skills = new List<string>(SkillLoadout.SlotCount);
+            for (var i = 0; i < SkillLoadout.SlotCount; i++)
+                skills.Add(loadout.SkillAt(i) ?? "");
+            return skills;
+        }
+
+        static List<string> CaptureLoadoutTriggers(SkillLoadout loadout)
+        {
+            var triggers = new List<string>(SkillLoadout.SlotCount);
+            for (var i = 0; i < SkillLoadout.SlotCount; i++)
+                triggers.Add(loadout.TriggerAt(i).ToString());
+            return triggers;
+        }
+
+        // Triggers are stored by name; one this build does not know goes back to the skill's own.
+        static void RestoreLoadout(SkillLoadout loadout, SaveData data)
+        {
+            var triggers = new List<SkillTrigger>(SkillLoadout.SlotCount);
+            foreach (var name in data.loadoutTriggers ?? new List<string>())
+                triggers.Add(Enum.TryParse(name, out SkillTrigger trigger) ? trigger : SkillTrigger.Default);
+            loadout.Restore(data.loadoutSkills, triggers, data.loadoutChosen);
+        }
+
         static IEnumerable<ItemData> AllItems(SaveData data)
         {
             foreach (var item in data.equipped ?? new List<ItemData>())
@@ -121,6 +155,9 @@ namespace ARPG
                 portalDepth = session.PortalDepth,
                 portalX = session.PortalPosition.x,
                 portalY = session.PortalPosition.y,
+                loadoutSkills = CaptureLoadoutSkills(session.Loadout),
+                loadoutTriggers = CaptureLoadoutTriggers(session.Loadout),
+                loadoutChosen = session.Loadout.Chosen,
                 equipped = CaptureEquipment(session.Equipment),
             };
 
@@ -172,6 +209,7 @@ namespace ARPG
             if (data.portalDepth > 0)
                 session.OpenPortal(data.portalDepth, new Vector2(data.portalX, data.portalY));
             session.RestoreOnboarding(new Onboarding(data.stickTaught, data.forgeIntroduced, data.seenLegendary, data.legendaryHintShown, data.playSeconds));
+            RestoreLoadout(session.Loadout, data);
             foreach (var chest in data.openedChests)
                 session.RecordOpened(chest);
 

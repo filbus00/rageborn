@@ -26,5 +26,20 @@ MonoBehaviour:
   speed: 16
   effectStrength: 1.5
   effectSeconds: 0
+  maxRage: 0
+  minMomentum: 0
+  durationSeconds: 0
+  buffDamage: 0
+  buffAttackSpeed: 0
+  buffAttackSpeedPerMomentum: 0
+  tickSeconds: 0.3
+  bleedMultiplier: 0
+  bleedSeconds: 0
+  executeThreshold: 0
+  executeMultiplier: 0
+  windupSeconds: 0
+  triggerText: Moving, an enemy 3 to 6 ahead
+  animationName: bull_rush
+  alternativeTriggers: 0300000002000000i
   effectSprite: {fileID: 21300000, guid: c0fe476a0cbff4d86be2a9c8d33eb7f4, type: 3}
   effectColor: {r: 1, g: 0.85, b: 0.5, a: 0.5}

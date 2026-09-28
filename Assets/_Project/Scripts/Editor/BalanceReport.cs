@@ -189,12 +189,15 @@ namespace ARPG.Editor
                     {
                         if (!SkillRules.IsUnlocked(skill.UnlockLevel, charLevel))
                             continue;
-                        var rate = skill.DamageMultiplier / skill.CooldownSeconds * (skill.RageCost > 0f ? rageShare : 1f);
+                        // A channel hits on every beat of its spin; a buff deals nothing itself (its bonus is left out).
+                        var hitsPerCast = skill.Kind == SkillKind.Channel && skill.TickSeconds > 0f
+                            ? Mathf.Ceil(skill.DurationSeconds / skill.TickSeconds) : 1f;
+                        var rate = skill.DamageMultiplier * hitsPerCast / skill.CooldownSeconds * (skill.RageCost > 0f ? rageShare : 1f);
                         var targets = skill.Kind == SkillKind.Sweep ? CrowdTargetsSweep : skill.Kind == SkillKind.Slam ? CrowdTargetsSlam
-                            : skill.Kind == SkillKind.Charge ? CrowdTargetsCharge : 1f;
+                            : skill.Kind == SkillKind.Charge ? CrowdTargetsCharge : skill.Kind == SkillKind.Channel ? CrowdTargetsBasic : 1f;
                         crowd += hit * rate * targets;
                         // Against one target: a sweep needs 2 enemies and a slam 4, so neither fires on a lone enemy.
-                        if (skill.Kind == SkillKind.Projectile || skill.Kind == SkillKind.Charge)
+                        if (skill.Kind == SkillKind.Projectile || skill.Kind == SkillKind.Charge || skill.Kind == SkillKind.Execute)
                             single += hit * rate;
                     }
 

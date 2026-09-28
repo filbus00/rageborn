@@ -149,6 +149,8 @@ namespace ARPG
             Equipment = EquipmentState.Starting;
             SetPotion(new AutoPotion());
             SetOnboarding(new Onboarding());
+            Loadout = new SkillLoadout();
+            Loadout.Changed += RaiseModified;
 
             // Its own number, not the loot seed itself, so the dungeon and the drops do not move in step.
             DungeonSeed = DungeonRules.LevelSeed(lootSeed, 0);
@@ -292,6 +294,9 @@ namespace ARPG
 
         /// <summary>The auto-potion's charges and kill progress. Its changes raise <see cref="Modified"/>.</summary>
         public AutoPotion Potion { get; private set; }
+
+        /// <summary>The four skill slots and their triggers (Docs/01, Docs/02). Its changes raise <see cref="Modified"/>.</summary>
+        public SkillLoadout Loadout { get; }
 
         public int Level => Progress.Level;
 
