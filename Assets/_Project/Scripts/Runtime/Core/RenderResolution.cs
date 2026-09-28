@@ -1,15 +1,21 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 namespace ARPG
 {
     /// <summary>
-    /// The game world is drawn at a low resolution and enlarged with hard pixels, as Diablo 2 looked at 800 by 600 (the
-    /// owner, 2026-09-28: "Do it, diablo 2 style on all"). The world renders at a whole fraction of the screen, chosen so
-    /// the long side is about <see cref="TargetLongSide"/> pixels: on a 3x iPhone that is its point resolution (402 by 874
-    /// on an iPhone 17), on a 2x one half its pixels. Screen space overlay canvases (the HUD, the bag, the stick, damage
-    /// numbers) are drawn after the upscale at full resolution, so text and buttons stay sharp.
+    /// The game world is drawn at a low resolution and enlarged in hard, whole pixels, as Diablo 2 looked at 800 by 600
+    /// (the owner, 2026-09-28: "Do it, diablo 2 style on all"). The world renders at a whole fraction of the screen, chosen
+    /// so the long side is about <see cref="TargetLongSide"/> pixels: on a 3x iPhone that is its point resolution (402 by
+    /// 874 on an iPhone 17), on a 2x one half its pixels. Screen space overlay canvases (the HUD, the bag, the stick,
+    /// damage numbers) are drawn after the enlargement at full resolution, so text and buttons stay sharp.
+    ///
+    /// It is done with URP's Pixel Perfect Camera in its upscale render texture mode, added to each scene's main camera
+    /// on load. The pipeline's own render scale did render the world at a third, but the 2D renderer enlarges it with
+    /// bilinear filtering unless a Pixel Perfect Camera is present (Renderer2DRendergraph picks the target's filter mode),
+    /// so the first try came out soft rather than pixelated: found by reading the simulator's pixels, where every edge
+    /// ramped over 3 pixels.
     /// </summary>
     public static class RenderResolution
     {
@@ -22,29 +28,38 @@ namespace ARPG
         /// </summary>
         public static int Factor(int screenLongSide) => Mathf.Max(1, Mathf.RoundToInt(screenLongSide / (float)TargetLongSide));
 
-        static float originalScale = 1f;
-        static UpscalingFilterSelection originalFilter;
+        /// <summary>
+        /// The pixels per unit that give a rendered height of <paramref name="renderedHeight"/> pixels the scene camera's
+        /// view (twice its orthographic size), so the framing is the scene's own, give or take the rounding (7.5 comes out
+        /// 7.53 at 874 pixels).
+        /// </summary>
+        public static int PixelsPerUnit(int renderedHeight, float orthographicSize) =>
+            Mathf.Max(1, Mathf.RoundToInt(renderedHeight / (2f * orthographicSize)));
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        static void Apply()
+        static void Install()
         {
-            if (!(GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset pipeline))
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            var camera = Camera.main;
+            if (camera == null || !camera.orthographic || camera.GetComponent<PixelPerfectCamera>() != null)
                 return;
-            originalScale = pipeline.renderScale;
-            originalFilter = pipeline.upscalingFilter;
             var factor = Factor(Mathf.Max(Screen.width, Screen.height));
-            pipeline.renderScale = 1f / factor;
-            pipeline.upscalingFilter = UpscalingFilterSelection.Point;
-#if UNITY_EDITOR
-            // The pipeline is an asset: put it back when play mode ends, so the editor's views and the saved asset keep
-            // their own settings.
-            Application.quitting += () =>
-            {
-                pipeline.renderScale = originalScale;
-                pipeline.upscalingFilter = originalFilter;
-            };
-#endif
-            Debug.Log($"RenderResolution: world at 1/{factor} of {Screen.width} x {Screen.height}");
+            // The component renders into a texture of the screen over the factor (rounded down to even) and sets the
+            // camera's orthographic size from its height and the pixels per unit.
+            var height = Screen.height / factor / 2 * 2;
+            var pixelPerfect = camera.gameObject.AddComponent<PixelPerfectCamera>();
+            pixelPerfect.refResolutionX = Screen.width / factor;
+            pixelPerfect.refResolutionY = Screen.height / factor;
+            pixelPerfect.assetsPPU = PixelsPerUnit(height, camera.orthographicSize);
+            pixelPerfect.gridSnapping = PixelPerfectCamera.GridSnapping.UpscaleRenderTexture;
+            pixelPerfect.cropFrame = PixelPerfectCamera.CropFrame.None;
+            Debug.Log($"RenderResolution: {scene.name} world at {Screen.width / factor} x {height}, " +
+                      $"{pixelPerfect.assetsPPU} px a unit, each shown as {factor} x {factor}");
         }
     }
 }

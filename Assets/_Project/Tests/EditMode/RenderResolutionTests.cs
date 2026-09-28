@@ -14,5 +14,13 @@ namespace ARPG.Tests
             Assert.AreEqual(2, RenderResolution.Factor(1334), "iPhone SE");
             Assert.AreEqual(1, RenderResolution.Factor(600), "never below 1");
         }
+
+        [Test]
+        public void PixelsPerUnit_KeepTheScenesFraming()
+        {
+            var ppu = RenderResolution.PixelsPerUnit(874, 7.5f);
+            Assert.AreEqual(58, ppu);
+            Assert.AreEqual(7.5f, 874 * 0.5f / ppu, 0.05f, "the view stays 15 units tall");
+        }
     }
 }
