@@ -202,7 +202,7 @@ namespace ARPG
         void OnPickedUp(Item item)
         {
             rarityFound[(int)item.Rarity]++;
-            if (PowerScore.IsUpgrade(session.Equipment, item, session.Level))
+            if (PowerScore.IsUpgrade(session.Equipment, item, session.Level, session.PassiveTree.Bonuses))
                 session.EquipFromInventory(item);
             else
                 session.Discard(item);
@@ -399,7 +399,7 @@ namespace ARPG
             text.AppendLine("# Autopilot report (act 1)");
             text.AppendLine();
             text.AppendLine($"Result: {how}. Game time {clock / 60f:0.0} min, {deaths} deaths, character level {session.Level}, " +
-                            $"power {PowerScore.Evaluate(session.Equipment, session.Level).Score:0}.");
+                            $"power {PowerScore.Evaluate(session).Score:0}.");
             if (bossEngagedAt >= 0f)
                 text.AppendLine($"Boss: engaged at {bossEngagedAt / 60f:0.0} min, " + (bossKilledAt >= 0f ? $"killed {bossKilledAt - bossEngagedAt:0} s later." : "not killed."));
             text.AppendLine($"Items picked up: {rarityFound[0]} Common, {rarityFound[1]} Magic, {rarityFound[2]} Rare, {rarityFound[3]} Legendary.");

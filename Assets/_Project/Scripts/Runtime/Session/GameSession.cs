@@ -589,7 +589,7 @@ namespace ARPG
                     continue;
 
                 var worn = newEquipment.Get(slot);
-                if (worn == null || PowerScore.Change(newEquipment, found, Level) > 0f)
+                if (worn == null || PowerScore.Change(newEquipment, found, Level, PassiveTree.Bonuses) > 0f)
                 {
                     if (worn != null)
                         toBag.Add(worn);

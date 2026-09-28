@@ -168,8 +168,9 @@ namespace ARPG.Editor
                     var gearLevel = d == 1 ? 0 : enemyLevel(d - 1);
                     var gear = Gear(gearLevel, typical);
                     var power = PowerScore.Evaluate(gear, charLevel);
-                    var hit = power.DamagePerSecond / PowerScore.BaseAttacksPerSecond / (1f + gear.AttackSpeedPercent / 100f);
-                    var swings = PowerScore.BaseAttacksPerSecond * (1f + gear.AttackSpeedPercent / 100f);
+                    // Attributes (by level) are counted; the passive tree is not, since how the points are spent is the player's.
+                    var swings = PowerScore.AttacksPerSecond(gear, charLevel);
+                    var hit = power.DamagePerSecond / swings;
                     // Every unlocked skill at its cooldown, unless Rage cannot pay for that: then all spenders slow down
                     // together. Rage comes from basic swings that land (6 each) and Bull Rush; hits taken are left out.
                     var stillness = AssumeStillness ? StanceStacks.MaxStacks * StanceStacks.StillnessDamagePerStack : 0f;

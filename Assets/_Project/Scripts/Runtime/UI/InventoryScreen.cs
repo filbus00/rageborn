@@ -228,7 +228,7 @@ namespace ARPG
             var items = current.Inventory.Items;
             var any = false;
             for (var i = 0; i < items.Count && !any; i++)
-                any = PowerScore.IsUpgrade(current.Equipment, items[i], current.Level);
+                any = PowerScore.IsUpgrade(current.Equipment, items[i], current.Level, current.PassiveTree.Bonuses);
             upgradeBadge.gameObject.SetActive(any);
         }
 
@@ -348,7 +348,7 @@ namespace ARPG
             AddLayoutSize(label.gameObject, -1f, 1f);
 
             // Comparison before reading (Docs/06-ui-ux.md): the arrow and the power change come first to the eye.
-            var change = PowerScore.Change(session.Equipment, item, session.Level);
+            var change = PowerScore.Change(session.Equipment, item, session.Level, session.PassiveTree.Bonuses);
             var arrow = NewText(row.transform, $"{ItemSheet.Arrow(change)} {change * 100f:+0;-0;0}%", TextAnchor.MiddleRight);
             arrow.color = ItemSheet.DirectionColor(change);
             arrow.fontStyle = FontStyle.Bold;

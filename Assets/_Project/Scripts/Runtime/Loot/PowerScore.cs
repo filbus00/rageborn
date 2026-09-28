@@ -30,52 +30,74 @@ namespace ARPG
     /// second, effective life and the class's main tags", used for the upgrade arrows and, later, the loot filter's
     /// Smart preset. It is a comparison aid; tooltips always show the raw affixes. Built from the same formulas combat
     /// uses (<see cref="CombatFormulas"/>, the basic attack's 1.4 per second), so an arrow cannot disagree with a fight.
-    /// Not counted yet: class tags (the Wrathborn's skills are not designed), Life on Hit and Cooldown Reduction, which
-    /// depend on how often the character is hit and casts. Pure.
+    /// It counts the character's attributes (from its level) and, when given, its passive tree: they add to the same
+    /// pools as gear (increased damage, crit, attack speed, armor, life), so they change which item is better
+    /// (2026-09-28). Not counted: what depends on the fight (Stillness and Momentum, buffs, Rage, Bloodied Edge, Berserker),
+    /// class tags, Life on Hit and Cooldown Reduction, which depend on how often the character is hit and casts. Pure.
     /// </summary>
     public static class PowerScore
     {
         /// <summary>Docs: attacks per second starts at 1.4, the same default <see cref="PlayerCombat"/> uses.</summary>
         public const float BaseAttacksPerSecond = 1.4f;
 
-        public static PowerSnapshot Evaluate(EquipmentState equipment, int characterLevel)
+        /// <summary>Docs/02's hard cap on dodge, as <see cref="PlayerHealth"/> applies it.</summary>
+        public const float MaxDodge = 0.5f;
+
+        public static PowerSnapshot Evaluate(EquipmentState equipment, int characterLevel, PassiveBonuses tree = null)
         {
             characterLevel = Mathf.Max(1, characterLevel);
+            var attributes = CharacterAttributes.At(characterLevel);
 
             // Unarmored target: armor scales every hit by the same factor, so it cannot change which gear is better.
+            // The same sums as PlayerCombat.Damage and Strike: Might's damage counts, since the basic attack is melee.
+            var increased = equipment.IncreasedDamagePercent / 100f + attributes.IncreasedDamage + (tree?.IncreasedDamage ?? 0f);
             var hit = CombatFormulas.HitDamage(
-                equipment.WeaponDamage, 1f, equipment.FlatWeaponDamageBonus, equipment.IncreasedDamagePercent / 100f, 1f,
+                equipment.WeaponDamage, 1f, equipment.FlatWeaponDamageBonus, increased, 1f,
                 false, 0f, 0f, characterLevel);
-            var critChance = Mathf.Clamp01(equipment.CriticalChancePercent / 100f);
-            var critMultiplier = CombatFormulas.BaseCriticalMultiplier + equipment.CriticalDamagePercent / 100f;
+            var critChance = Mathf.Clamp01((equipment.CriticalChancePercent + attributes.CriticalChance + (tree?.CriticalChance ?? 0f)) / 100f);
+            var critMultiplier = CombatFormulas.BaseCriticalMultiplier +
+                                 (equipment.CriticalDamagePercent + (tree?.CriticalDamage ?? 0f)) / 100f;
             var expectedHit = hit * (1f + critChance * (critMultiplier - 1f));
-            var dps = expectedHit * BaseAttacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f);
+            var dps = expectedHit * AttacksPerSecond(equipment, characterLevel, tree);
 
-            var maxLife = CombatFormulas.CharacterLife(characterLevel) + equipment.TotalLifeBonus;
-            var effectiveLife = maxLife / (1f - CombatFormulas.ArmorReduction(equipment.TotalArmor, characterLevel));
+            // As PlayerHealth: life and armor with the tree's percentages and Might's armor; dodge (attributes and the
+            // tree, capped) spares that share of hits.
+            var maxLife = (CombatFormulas.CharacterLife(characterLevel) + equipment.TotalLifeBonus) * (1f + (tree?.LifePercent ?? 0f));
+            var armor = (equipment.TotalArmor + attributes.Armor) * (1f + (tree?.ArmorPercent ?? 0f));
+            var dodge = Mathf.Min(MaxDodge, attributes.Dodge + (tree?.Dodge ?? 0f));
+            var effectiveLife = maxLife / (1f - CombatFormulas.ArmorReduction(armor, characterLevel)) / (1f - dodge);
 
             return new PowerSnapshot(dps, effectiveLife);
         }
 
+        /// <summary>Basic attacks a second with gear, attributes and the tree, as <see cref="PlayerCombat"/> times them.</summary>
+        public static float AttacksPerSecond(EquipmentState equipment, int characterLevel, PassiveBonuses tree = null) =>
+            BaseAttacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + CharacterAttributes.At(Mathf.Max(1, characterLevel)).AttackSpeed +
+                                    (tree?.AttackSpeed ?? 0f));
+
+        /// <summary>The character's own gear, level and tree.</summary>
+        public static PowerSnapshot Evaluate(GameSession session) =>
+            Evaluate(session.Equipment, session.Level, session.PassiveTree.Bonuses);
+
         /// <summary>The gear as it would be with <paramref name="candidate"/> equipped in its slot.</summary>
-        public static PowerSnapshot WithItem(EquipmentState equipment, Item candidate, int characterLevel) =>
-            Evaluate(equipment.With(candidate.Slot, candidate), characterLevel);
+        public static PowerSnapshot WithItem(EquipmentState equipment, Item candidate, int characterLevel, PassiveBonuses tree = null) =>
+            Evaluate(equipment.With(candidate.Slot, candidate), characterLevel, tree);
 
         /// <summary>
         /// How much equipping <paramref name="candidate"/> would change the power score, as a fraction: 0.12 for 12
         /// percent better, negative for worse. Positive is an upgrade arrow.
         /// </summary>
-        public static float Change(EquipmentState equipment, Item candidate, int characterLevel)
+        public static float Change(EquipmentState equipment, Item candidate, int characterLevel, PassiveBonuses tree = null)
         {
-            var now = Evaluate(equipment, characterLevel).Score;
-            var then = WithItem(equipment, candidate, characterLevel).Score;
+            var now = Evaluate(equipment, characterLevel, tree).Score;
+            var then = WithItem(equipment, candidate, characterLevel, tree).Score;
             return now > 0f ? then / now - 1f : 0f;
         }
 
         /// <summary>Changes smaller than this (half a percent) show as neither better nor worse.</summary>
         public const float SameThreshold = 0.005f;
 
-        public static bool IsUpgrade(EquipmentState equipment, Item candidate, int characterLevel) =>
-            Change(equipment, candidate, characterLevel) > SameThreshold;
+        public static bool IsUpgrade(EquipmentState equipment, Item candidate, int characterLevel, PassiveBonuses tree = null) =>
+            Change(equipment, candidate, characterLevel, tree) > SameThreshold;
     }
 }

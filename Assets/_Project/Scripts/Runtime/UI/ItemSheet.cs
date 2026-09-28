@@ -184,14 +184,14 @@ namespace ARPG
             var worn = equipment.Get(item.Slot);
             if (showingEquipped)
             {
-                var now = PowerScore.Evaluate(equipment, session.Level);
+                var now = PowerScore.Evaluate(equipment, session.Level, session.PassiveTree.Bonuses);
                 power.text = $"Damage per second {now.DamagePerSecond:0.#}   ·   Effective life {now.EffectiveLife:0}";
                 power.color = NeutralColor;
             }
             else
             {
-                var before = PowerScore.Evaluate(equipment, session.Level);
-                var after = PowerScore.WithItem(equipment, item, session.Level);
+                var before = PowerScore.Evaluate(equipment, session.Level, session.PassiveTree.Bonuses);
+                var after = PowerScore.WithItem(equipment, item, session.Level, session.PassiveTree.Bonuses);
                 var change = before.Score > 0f ? after.Score / before.Score - 1f : 0f;
                 power.text = $"{Arrow(change)} Power {change * 100f:+0;-0;0}%\n" +
                              $"<size=28>Damage per second {before.DamagePerSecond:0.#} → {after.DamagePerSecond:0.#}   ·   " +

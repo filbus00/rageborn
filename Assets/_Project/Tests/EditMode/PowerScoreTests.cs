@@ -13,15 +13,15 @@ namespace ARPG.Tests
             var equipment = new EquipmentState(Weapon(10));
             var expected = CombatFormulas.WeaponAverageDamage(10) * PowerScore.BaseAttacksPerSecond;
 
-            Assert.AreEqual(expected, PowerScore.Evaluate(equipment, 5).DamagePerSecond, 1e-3f);
+            Assert.AreEqual(expected, PowerScore.Evaluate(equipment, 1).DamagePerSecond, 1e-3f);
         }
 
         [Test]
         public void CritsAndAttackSpeed_RaiseDps_AsCombatWouldAverageThem()
         {
-            var plain = PowerScore.Evaluate(new EquipmentState(Weapon(10)), 5).DamagePerSecond;
-            var withCrit = PowerScore.Evaluate(new EquipmentState(Weapon(10, new AffixRoll(AffixId.CriticalChance, 5, 10f))), 5).DamagePerSecond;
-            var withSpeed = PowerScore.Evaluate(new EquipmentState(Weapon(10, new AffixRoll(AffixId.AttackSpeed, 5, 10f))), 5).DamagePerSecond;
+            var plain = PowerScore.Evaluate(new EquipmentState(Weapon(10)), 1).DamagePerSecond;
+            var withCrit = PowerScore.Evaluate(new EquipmentState(Weapon(10, new AffixRoll(AffixId.CriticalChance, 5, 10f))), 1).DamagePerSecond;
+            var withSpeed = PowerScore.Evaluate(new EquipmentState(Weapon(10, new AffixRoll(AffixId.AttackSpeed, 5, 10f))), 1).DamagePerSecond;
 
             // 10 percent crit chance at the base 150 percent crit: 1 + 0.1 x 0.5 = 5 percent more.
             Assert.AreEqual(plain * 1.05f, withCrit, 1e-3f);
@@ -31,13 +31,48 @@ namespace ARPG.Tests
         [Test]
         public void ArmorAndLife_RaiseEffectiveLife()
         {
-            var bare = PowerScore.Evaluate(EquipmentState.Empty, 5).EffectiveLife;
-            var armored = PowerScore.Evaluate(new EquipmentState(Chest(10)), 5).EffectiveLife;
-            var lifeChest = PowerScore.Evaluate(new EquipmentState(Chest(10, new AffixRoll(AffixId.Life, 5, 50f))), 5).EffectiveLife;
+            var bare = PowerScore.Evaluate(EquipmentState.Empty, 1).EffectiveLife;
+            var armored = PowerScore.Evaluate(new EquipmentState(Chest(10)), 1).EffectiveLife;
+            var lifeChest = PowerScore.Evaluate(new EquipmentState(Chest(10, new AffixRoll(AffixId.Life, 5, 50f))), 1).EffectiveLife;
 
-            Assert.AreEqual(CombatFormulas.CharacterLife(5), bare, 1e-3f);
+            Assert.AreEqual(CombatFormulas.CharacterLife(1), bare, 1e-3f);
             Assert.Greater(armored, bare);
             Assert.Greater(lifeChest, armored);
+        }
+
+        [Test]
+        public void Attributes_CountAsTheCharacterGrows()
+        {
+            // Level 1 has no attribute points (they come from level 2); level 10 has Might, Agility and their armor.
+            var equipment = new EquipmentState(Weapon(10)).With(ItemSlot.Chest, Chest(10));
+            var attributes = CharacterAttributes.At(10);
+            var plain = PowerScore.Evaluate(equipment, 1);
+            var grown = PowerScore.Evaluate(equipment, 10);
+
+            Assert.Greater(attributes.Might, 0);
+            Assert.AreEqual(PowerScore.BaseAttacksPerSecond * (1f + attributes.AttackSpeed), PowerScore.AttacksPerSecond(equipment, 10), 1e-4f);
+            Assert.Greater(grown.DamagePerSecond, plain.DamagePerSecond * (1f + attributes.IncreasedDamage) * (1f + attributes.AttackSpeed) * 0.999f);
+        }
+
+        [Test]
+        public void ThePassiveTree_ChangesWhatAnItemIsWorth()
+        {
+            var equipment = new EquipmentState(Weapon(10)).With(ItemSlot.Chest, Chest(10));
+            var damageAffix = Weapon(10, new AffixRoll(AffixId.IncreasedDamage, 5, 20f));
+            var tree = new PassiveBonuses();
+            tree.IncreasedDamage = 1f;
+            // Increased damage adds up, so with +100 percent from the tree another 20 percent is worth less.
+            Assert.Less(PowerScore.Change(equipment, damageAffix, 10, tree), PowerScore.Change(equipment, damageAffix, 10));
+
+            var brutal = new PassiveBonuses();
+            brutal.CriticalDamage = 50f;
+            var critWeapon = Weapon(10, new AffixRoll(AffixId.CriticalChance, 5, 10f));
+            // Bigger crits make crit chance worth more.
+            Assert.Greater(PowerScore.Change(equipment, critWeapon, 10, brutal), PowerScore.Change(equipment, critWeapon, 10));
+
+            var life = new PassiveBonuses();
+            life.LifePercent = 0.1f;
+            Assert.AreEqual(PowerScore.Evaluate(equipment, 10).EffectiveLife * 1.1f, PowerScore.Evaluate(equipment, 10, life).EffectiveLife, 1e-2f);
         }
 
         [Test]
