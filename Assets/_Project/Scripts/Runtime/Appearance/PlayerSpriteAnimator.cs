@@ -5,8 +5,7 @@ namespace ARPG
     /// <summary>
     /// Shows the player as its baked, layered sprites (<see cref="LayeredCharacterSprite"/>) wearing what is equipped
     /// (<see cref="AppearanceRules"/>), once the character's sheets exist; until then the placeholder body stays. Plays
-    /// idle and the locomotion from the movement (<see cref="LocomotionRules"/>: the run at the actual speed, a turn clip
-    /// for a one-row change of direction, a backward run facing the target when retreating from a fight), the basic
+    /// idle and the locomotion from the movement (<see cref="LocomotionRules"/>: the run at the actual speed, a backward run facing the target when retreating from a fight), the basic
     /// attack fitted to the attack rate and a skill's animation (Hew, Hurl Axe, Ground Breaker), standing or, while the
     /// character moves, their <c>_move</c> variants with running legs, and hit when standing;
     /// Bull Rush plays for as long as the dash lasts, and death is held. An animation the sheets lack falls back to the
@@ -42,9 +41,6 @@ namespace ARPG
         bool dead;
         bool dashing;
         bool inAction;
-        bool turning;
-        int turnTo;
-        float runRecordedSpeed;
         float lastCombatTime = -100f;
         float stillFor;
         Vector2 aim = Vector2.down;
@@ -172,7 +168,6 @@ namespace ARPG
             if (skill.Kind == SkillKind.Charge)
             {
                 dashing = true;
-                turning = false;
                 action = null;
                 if (sprite.Has("bull_rush"))
                 {
@@ -223,7 +218,6 @@ namespace ARPG
             var length = sprite.LengthOf(name);
             action = baseName;
             inAction = true;
-            turning = false;
             sprite.Rate = 1f;
             sprite.Play(name, false, length > 0f ? Mathf.Min(length, maxSeconds) : 0f);
             sprite.Face(aim);
@@ -306,7 +300,6 @@ namespace ARPG
                 stillFor += Time.deltaTime;
                 if (stillFor < IdleGraceSeconds && sprite.Animation != "idle")
                     return;
-                turning = false;
                 sprite.Rate = 1f;
                 sprite.Loop("idle");
                 return;
@@ -317,47 +310,18 @@ namespace ARPG
             var fighting = Time.time - lastCombatTime < CombatMemorySeconds;
             if (fighting && LocomotionRules.IsBackpedal(aim, velocity, sprite.Animation == "run_back") && sprite.Has("run_back"))
             {
-                turning = false;
                 sprite.FaceRow(LocomotionRules.ChooseRow(sprite.Row, aim, sprite.DirectionCount));
                 sprite.Loop("run_back");
                 sprite.Rate = LocomotionRules.PlaybackRate(speed, sprite.CurrentRecordedSpeed);
                 return;
             }
 
-            if (turning)
-            {
-                if (!sprite.Finished)
-                    return;
-                turning = false;
-                sprite.FaceRow(turnTo);
-                sprite.Play("run", true);
-            }
-
-            // Turns are judged from the stick, which turns at once: the velocity swings round over the acceleration time
-            // and with 16 rows would step through the row between, so a 45 degree change never read as one turn.
+            // No turn clips: both leaned the body into the turn, which looked wrong (the owner, 2026-09-28); a change of
+            // direction switches the row at once. Turns are judged from the stick, which turns at once.
             var heading = player.InputDirection.sqrMagnitude > 0f ? player.InputDirection : velocity;
             var row = LocomotionRules.ChooseRow(sprite.Row, heading, sprite.DirectionCount);
-            var step = sprite.Animation == "run" ? LocomotionRules.TurnStep(sprite.Row, row, sprite.DirectionCount) : 0;
-            // Only the right turn has a clip: the mirrored left turn looked wrong (the owner, 2026-09-28), so turning left
-            // switches the row straight away.
-            var turn = step > 0 ? "run_turn_right" : null;
-            if (turn != null && sprite.Has(turn))
-            {
-                // The turn clip curves the body about 40 degrees from the row it starts in, where the new row is (one row of
-                // 8, two of 16):
-                // it plays in the old row, as fast as the run would at this speed, then the run goes on in the new one.
-                turning = true;
-                turnTo = row;
-                var runRate = LocomotionRules.PlaybackRate(speed, runRecordedSpeed > 0f ? runRecordedSpeed : sprite.CurrentRecordedSpeed);
-                sprite.Rate = 1f;
-                sprite.Play(turn, false, sprite.LengthOf(turn) / runRate);
-                return;
-            }
-
             sprite.FaceRow(row);
             sprite.Loop("run");
-            if (sprite.CurrentRecordedSpeed > 0f)
-                runRecordedSpeed = sprite.CurrentRecordedSpeed;
             sprite.Rate = LocomotionRules.PlaybackRate(speed, sprite.CurrentRecordedSpeed);
         }
     }

@@ -63,16 +63,6 @@ MonoBehaviour:
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
-    - name: run_turn_right
-      clip: {fileID: -203655887218126122, guid: b4c35843f789943c4987f97eebc7f4e2, type: 3}
-      frames: 10
-      loop: 0
-      playbackSeconds: 0.7666667
-      start: 0
-      end: 0.7666667
-      riseScale: 1
-      legs: {fileID: 0}
-      legsGroundSpeed: 4.4
     - name: attack
       clip: {fileID: -203655887218126122, guid: 22141e42dd9e246a8ac11bc249b95b24, type: 3}
       frames: 10

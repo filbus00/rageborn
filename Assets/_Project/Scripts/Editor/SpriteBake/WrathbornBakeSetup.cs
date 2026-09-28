@@ -21,10 +21,10 @@ namespace ARPG.Editor
         const string Character = "wrathborn";
 
         // The brief's frame counts and loops (section 4.4); the idle has twice the brief's, since Mixamo's idles are long.
-        // No run_turn_left: the mirrored turn looked wrong (the owner, 2026-09-28), so a left turn just switches rows.
+        // No turn clips: both leaned the body into the turn, which looked wrong (the owner, 2026-09-28).
         static readonly (string name, int frames, bool loop)[] Animations =
         {
-            ("idle", 24, true), ("run", 10, true), ("run_back", 10, true), ("run_turn_right", 10, false),
+            ("idle", 24, true), ("run", 10, true), ("run_back", 10, true),
             ("attack", 10, false), ("hew", 12, false), ("hurl_axe", 10, false),
             ("bull_rush", 8, true), ("ground_breaker", 14, false), ("hit", 4, false), ("death", 16, false),
         };
