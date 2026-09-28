@@ -123,29 +123,31 @@ namespace ARPG.Editor
             Stretch(panel.rectTransform, 0f);
             panel.raycastTarget = true;
 
-            var title = NewText(panel.transform, "Inventory", 44, TextAnchor.UpperCenter);
-            title.rectTransform.anchorMin = title.rectTransform.anchorMax = new Vector2(0.5f, 1f);
-            title.rectTransform.pivot = new Vector2(0.5f, 1f);
-            title.rectTransform.anchoredPosition = new Vector2(0f, -40f);
-            title.rectTransform.sizeDelta = new Vector2(600f, 60f);
+            // The top row is 48 point buttons (Docs/06's minimum; they were 23 until 2026-09-28): Settings at the left
+            // (added at runtime by InventoryScreen), the title beside it, Tree, Skills and Close at the right.
+            var title = NewText(panel.transform, "Inventory", 44, TextAnchor.MiddleLeft);
+            title.rectTransform.anchorMin = title.rectTransform.anchorMax = new Vector2(0f, 1f);
+            title.rectTransform.pivot = new Vector2(0f, 1f);
+            title.rectTransform.anchoredPosition = new Vector2(258f, -16f);
+            title.rectTransform.sizeDelta = new Vector2(300f, 144f);
 
             var closeButton = BuildCloseButton(panel.transform);
 
-            var weapon = BuildSlot(panel.transform, "Weapon Slot", new Vector2(-360f, -140f));
-            var chest = BuildSlot(panel.transform, "Chest Slot", new Vector2(0f, -140f));
-            var helm = BuildSlot(panel.transform, "Helm Slot", new Vector2(360f, -140f));
+            var weapon = BuildSlot(panel.transform, "Weapon Slot", new Vector2(-360f, -220f));
+            var chest = BuildSlot(panel.transform, "Chest Slot", new Vector2(0f, -220f));
+            var helm = BuildSlot(panel.transform, "Helm Slot", new Vector2(360f, -220f));
 
             var stats = NewText(panel.transform, "", 28, TextAnchor.UpperLeft);
             stats.rectTransform.anchorMin = stats.rectTransform.anchorMax = new Vector2(0.5f, 1f);
             stats.rectTransform.pivot = new Vector2(0.5f, 1f);
-            stats.rectTransform.anchoredPosition = new Vector2(0f, -340f);
+            stats.rectTransform.anchoredPosition = new Vector2(0f, -420f);
             stats.rectTransform.sizeDelta = new Vector2(1000f, 220f);
 
             var backpackLabel = NewText(panel.transform, "Backpack", 32, TextAnchor.UpperLeft);
             // Left-aligned with the list below it (centered at -460 it ran off the edge of a phone's screen).
             backpackLabel.rectTransform.anchorMin = backpackLabel.rectTransform.anchorMax = new Vector2(0f, 1f);
             backpackLabel.rectTransform.pivot = new Vector2(0f, 1f);
-            backpackLabel.rectTransform.anchoredPosition = new Vector2(40f, -580f);
+            backpackLabel.rectTransform.anchoredPosition = new Vector2(40f, -660f);
             backpackLabel.rectTransform.sizeDelta = new Vector2(300f, 50f);
 
             var content = BuildScrollView(panel.transform);
@@ -177,8 +179,8 @@ namespace ARPG.Editor
             var rect = go.GetComponent<RectTransform>();
             rect.anchorMin = rect.anchorMax = new Vector2(1f, 1f);
             rect.pivot = new Vector2(1f, 1f);
-            rect.anchoredPosition = new Vector2(-24f, -24f);
-            rect.sizeDelta = new Vector2(110f, 70f);
+            rect.anchoredPosition = new Vector2(-24f, -16f);
+            rect.sizeDelta = new Vector2(170f, 144f);
 
             go.GetComponent<Image>().color = ButtonColor;
             var label = NewText(go.transform, "Close", 28, TextAnchor.MiddleCenter);
@@ -215,7 +217,7 @@ namespace ARPG.Editor
             scrollRect.anchorMin = new Vector2(0f, 0f);
             scrollRect.anchorMax = new Vector2(1f, 1f);
             scrollRect.offsetMin = new Vector2(40f, 40f);
-            scrollRect.offsetMax = new Vector2(-40f, -620f);
+            scrollRect.offsetMax = new Vector2(-40f, -700f);
 
             scrollGo.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.25f);
 
