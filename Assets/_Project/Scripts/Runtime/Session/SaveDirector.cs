@@ -59,6 +59,29 @@ namespace ARPG
                 instance.Flush();
         }
 
+        /// <summary>Starts over with a new character (the owner, 2026-09-29: a reset button in Settings). The save files
+        /// are set aside as <c>*.reset-&lt;time&gt;</c> rather than deleted, so a reset by mistake can still be recovered by
+        /// hand; then a fresh session replaces the live one and the town loads, where every scene object reads it.</summary>
+        public static void StartOver()
+        {
+            if (instance != null)
+            {
+                instance.store.SetAsideAll("reset-" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmss"));
+                instance.session.Modified -= instance.MarkDirty;
+            }
+            GameSession.Install(new GameSession(Environment.TickCount));
+            if (instance != null)
+            {
+                instance.session = GameSession.Current;
+                instance.session.Modified += instance.MarkDirty;
+                instance.dirtySince = -1f;
+            }
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(TownScene);
+        }
+
+        const string TownScene = "Town";
+
         void Awake()
         {
             store = new SaveStore(SaveDirectory);

@@ -67,7 +67,7 @@ namespace ARPG
             rect.offsetMax = Vector2.zero;
             label = textObject.GetComponent<Text>();
             label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            label.fontSize = 22;
+            label.fontSize = 19;
             label.alignment = TextAnchor.UpperLeft;
             label.color = Color.white;
             label.raycastTarget = false;
@@ -111,7 +111,18 @@ namespace ARPG
             var topInset = (Screen.height - Screen.safeArea.yMax) * unitsPerPixel;
             var leftInset = Screen.safeArea.xMin * unitsPerPixel;
             // Inside the band above the safe area (the status bar's place, which the game does not show).
-            panel.anchoredPosition = new Vector2(leftInset + 16f, -Mathf.Max(8f, topInset * 0.5f - 35f));
+            var top = Mathf.Max(8f, topInset * 0.5f - 35f);
+            // The screen's rounded corner cuts into that band: at 16 units in, the text's left edge was off the glass
+            // on the iPhone 17 (the owner, 2026-09-29). Indent by the corner's curve at the text's top, with the corner
+            // radius taken as 15.5 percent of the width (the iPhone 17's 62 of 402 points; older phones curve less).
+            var inset = 12f;
+            if (topInset > 0f)
+            {
+                var radius = canvasRect.rect.width * 0.155f;
+                var rise = Mathf.Max(0f, radius - top);
+                inset += radius - Mathf.Sqrt(Mathf.Max(0f, radius * radius - rise * rise));
+            }
+            panel.anchoredPosition = new Vector2(leftInset + inset, -top);
         }
     }
 }

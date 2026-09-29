@@ -115,9 +115,52 @@ namespace ARPG
             listLayout.childForceExpandWidth = true;
             screen.list = (RectTransform)listObject.transform;
 
-            var close = NewButton(sheet.transform, "Close", screen.Close);
-            Height(close.gameObject, RowHeight);
+            // The bottom row: Close, and the reset beside it (the sheet has no room for another row). The reset asks
+            // twice: it erases the character.
+            var bottom = new GameObject("Bottom Row", typeof(RectTransform), typeof(HorizontalLayoutGroup));
+            bottom.transform.SetParent(sheet.transform, false);
+            var bottomLayout = bottom.GetComponent<HorizontalLayoutGroup>();
+            bottomLayout.spacing = 12f;
+            bottomLayout.childControlWidth = true;
+            bottomLayout.childControlHeight = true;
+            bottomLayout.childForceExpandWidth = true;
+            bottomLayout.childForceExpandHeight = true;
+            Height(bottom, RowHeight);
+            var close = NewButton(bottom.transform, "Close", screen.Close);
+            Width(close.gameObject, 0f, 1f);
+            screen.reset = NewButton(bottom.transform, ResetLabel, screen.ResetPressed);
+            screen.reset.GetComponent<Image>().color = UiStyle.Chip;
+            Width(screen.reset.gameObject, 0f, 1f);
             return screen;
+        }
+
+        const string ResetLabel = "Reset save";
+
+        Button reset;
+        bool resetArmed;
+
+        void OnDisable() => ArmReset(false);
+
+        void ResetPressed()
+        {
+            if (!resetArmed)
+            {
+                ArmReset(true);
+                return;
+            }
+            ArmReset(false);
+            Close();
+            InventoryScreen.Current?.Close();
+            SaveDirector.StartOver();
+        }
+
+        void ArmReset(bool armed)
+        {
+            resetArmed = armed;
+            if (reset == null)
+                return;
+            reset.GetComponentInChildren<Text>().text = armed ? "Tap again to erase" : ResetLabel;
+            reset.GetComponent<Image>().color = armed ? UiStyle.BloodBright : UiStyle.Chip;
         }
 
         void Render()
