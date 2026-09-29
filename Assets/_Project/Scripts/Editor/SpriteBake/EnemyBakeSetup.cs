@@ -32,6 +32,10 @@ namespace ARPG.Editor
             { "husk", 70f }, { "ghoul", 88f }, { "bandit_archer", 80f }, { "ash_wolf", 45f },
         };
 
+        /// <summary>Cells wider than the default 128 px: the ghoul's slam swings its big arm past a 128 px cell (clipped on
+        /// the first bake, 2026-09-29).</summary>
+        static readonly Dictionary<string, int> CellSizes = new Dictionary<string, int> { { "ghoul", 192 } };
+
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
         /// until the rank has its own.</summary>
         static readonly (string definition, string character, string fallback)[] Wiring =
@@ -87,10 +91,10 @@ namespace ARPG.Editor
             job.outputFolder = $"Assets/_Project/Resources/Characters/{name}";
             // The resolution of 2026-09-28 (09, 0.8): 64 pixels a unit, half the brief's first sizes.
             job.pixelsPerUnit = 64f;
-            job.cellSize = 128;
-            job.pivot = new Vector2(64f, 20f);
             // A rank look is measured like its base type (husk_champion as husk); the engine scales ranks up itself.
             var baseName = Heights.Keys.FirstOrDefault(k => name == k || name.StartsWith(k + "_")) ?? name;
+            job.cellSize = CellSizes.TryGetValue(baseName, out var cell) ? cell : 128;
+            job.pivot = new Vector2(job.cellSize / 2f, 20f);
             // Measured on the rest pose's whole box, which the Wrathborn showed runs about 9 percent over the standing
             // height (185 asked, 170 stood), so ask that much more.
             job.targetHeightPixels = (Heights.TryGetValue(baseName, out var height) ? height : 80f) * 1.09f;
