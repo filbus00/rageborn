@@ -52,8 +52,7 @@ namespace ARPG
             panel = (RectTransform)background.transform;
             panel.anchorMin = panel.anchorMax = panel.pivot = new Vector2(0f, 1f);
             panel.sizeDelta = new Vector2(380f, 70f);
-            // No backdrop, half see-through, in the band at the very top beside the Dynamic Island (the owner,
-            // 2026-09-28), clear of the HUD.
+            // No backdrop, half see-through (the owner, 2026-09-28), under the Bag button (2026-09-29).
             var image = background.GetComponent<Image>();
             image.color = Color.clear;
             image.raycastTarget = false;
@@ -67,7 +66,7 @@ namespace ARPG
             rect.offsetMax = Vector2.zero;
             label = textObject.GetComponent<Text>();
             label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            label.fontSize = 19;
+            label.fontSize = 22;
             label.alignment = TextAnchor.UpperLeft;
             label.color = Color.white;
             label.raycastTarget = false;
@@ -101,28 +100,37 @@ namespace ARPG
                 $"{GC.GetTotalMemory(false) / (1024f * 1024f):0.0} MB  {(enemies != null ? enemies.ActiveCount : 0)} en";
         }
 
-        // The notch and the Dynamic Island cover the top of a portrait iPhone, so keep clear of the safe area.
+        // Under the HUD's Bag button, inside the safe area (the owner, 2026-09-29). The band above the safe area was
+        // tried first: beside the Dynamic Island the rounded corner cut the text's left edge, and on the owner's
+        // iPhone 11 the notch leaves too little room either side for two lines. Without a Bag button (a scene with no
+        // HUD) it sits at the safe area's top left.
         void PlaceBelowSafeAreaTop()
         {
             var canvasRect = (RectTransform)transform;
             if (Screen.height <= 0)
                 return;
             var unitsPerPixel = canvasRect.rect.height / Screen.height;
-            var topInset = (Screen.height - Screen.safeArea.yMax) * unitsPerPixel;
-            var leftInset = Screen.safeArea.xMin * unitsPerPixel;
-            // Inside the band above the safe area (the status bar's place, which the game does not show).
-            var top = Mathf.Max(8f, topInset * 0.5f - 35f);
-            // The screen's rounded corner cuts into that band: at 16 units in, the text's left edge was off the glass
-            // on the iPhone 17 (the owner, 2026-09-29). Indent by the corner's curve at the text's top, with the corner
-            // radius taken as 15.5 percent of the width (the iPhone 17's 62 of 402 points; older phones curve less).
-            var inset = 12f;
-            if (topInset > 0f)
+            var safe = Screen.safeArea;
+            var left = safe.xMin * unitsPerPixel + 24f;
+            var top = (Screen.height - safe.yMax) * unitsPerPixel + 8f;
+
+            if (bag == null)
             {
-                var radius = canvasRect.rect.width * 0.155f;
-                var rise = Mathf.Max(0f, radius - top);
-                inset += radius - Mathf.Sqrt(Mathf.Max(0f, radius * radius - rise * rise));
+                var found = GameObject.Find(BagButtonName);
+                bag = found != null ? found.GetComponent<RectTransform>() : null;
             }
-            panel.anchoredPosition = new Vector2(leftInset + inset, -top);
+            if (bag != null && bag.gameObject.activeInHierarchy)
+            {
+                bag.GetWorldCorners(corners);
+                // Overlay canvases: world corners are screen pixels. corners[0] is the bottom left.
+                left = corners[0].x * unitsPerPixel;
+                top = (Screen.height - corners[0].y) * unitsPerPixel + 10f;
+            }
+            panel.anchoredPosition = new Vector2(left, -top);
         }
+
+        const string BagButtonName = "Bag Button";
+        RectTransform bag;
+        readonly Vector3[] corners = new Vector3[4];
     }
 }
