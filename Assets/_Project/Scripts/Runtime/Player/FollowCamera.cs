@@ -43,8 +43,10 @@ namespace ARPG
                 return;
 
             // Reduce motion turns the lead off (Docs/06, accessibility).
+            // The lead is capped at its distance: Bull Rush runs at four times the move speed, and an uncapped lead shot the
+            // view 6 units ahead and back again, so the camera seemed to lose the character (the owner, 2026-09-29).
             var targetLead = player.MoveSpeed > 0f && !SettingsDirector.Current.reduceMotion
-                ? IsoMath.GroundToWorld(player.GroundVelocity / player.MoveSpeed * leadDistance)
+                ? IsoMath.GroundToWorld(Vector2.ClampMagnitude(player.GroundVelocity / player.MoveSpeed, 1f) * leadDistance)
                 : Vector2.zero;
             lead = Vector2.SmoothDamp(lead, targetLead, ref leadVelocity, leadSmoothTime);
 

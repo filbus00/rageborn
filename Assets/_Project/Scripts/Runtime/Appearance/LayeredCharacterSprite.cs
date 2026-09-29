@@ -127,6 +127,30 @@ namespace ARPG
             }
             Resolve();
             Apply();
+            Preload();
+        }
+
+        // Every animation the player can play, so all their sheets load with the look (on arriving and on equipping,
+        // behind a fade or the paused Bag) rather than the first time each plays: a sheet loading mid-fight took about
+        // 50 ms in the editor and froze the game on the phone when a big pack was engaged (the owner, 2026-09-29).
+        static readonly string[] Actions = { "attack", "hew", "hurl_axe", "ground_breaker" };
+        static readonly string[] Others = { "idle", "run", "run_back", "bull_rush", "hit", "death" };
+        static readonly string[] Legs =
+        {
+            "", LocomotionRules.MovingSuffix, LocomotionRules.MovingBackSuffix, LocomotionRules.MovingRightSuffix,
+            LocomotionRules.MovingLeftSuffix,
+        };
+
+        void Preload()
+        {
+            for (var layer = 0; layer < LayerCount; layer++)
+            {
+                foreach (var name in Others)
+                    SheetFor((AppearanceLayer)layer, name);
+                foreach (var action in Actions)
+                    foreach (var legs in Legs)
+                        SheetFor((AppearanceLayer)layer, action + legs);
+            }
         }
 
         /// <summary>Plays an animation from its start. A one-shot with a duration is stretched or squeezed to fit it (an

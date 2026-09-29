@@ -14,6 +14,11 @@ namespace ARPG
         static readonly AppearanceLayer[] Layers = { AppearanceLayer.Body, AppearanceLayer.Helm, AppearanceLayer.OffHand, AppearanceLayer.Weapon };
 
         readonly Image[] images = new Image[Layers.Length];
+        CharacterAppearance shown;
+        bool hasShown;
+
+        // Frames already found, by sheet and grip, shared by every portrait: loading a sheet reads all its sprites.
+        static readonly System.Collections.Generic.Dictionary<string, Sprite> Cache = new System.Collections.Generic.Dictionary<string, Sprite>();
 
         /// <summary>The outermost object of the portrait's frame, when it has one.</summary>
         public Transform Root { get; set; }
@@ -32,6 +37,12 @@ namespace ARPG
         public void Refresh(EquipmentState equipment)
         {
             var appearance = AppearanceRules.For(equipment);
+            // GameSession.Changed fires on every kill and gold pickup; reloading four sheets each time froze the game for
+            // half a second when a big pack died (the owner, 2026-09-29). Only a changed look reloads.
+            if (hasShown && appearance.Equals(shown))
+                return;
+            shown = appearance;
+            hasShown = true;
             for (var i = 0; i < Layers.Length; i++)
             {
                 var sprite = Frame(Layers[i], appearance.LookOf(Layers[i]), appearance.Grip);
@@ -58,8 +69,12 @@ namespace ARPG
             if (string.IsNullOrEmpty(look))
                 return null;
             var name = AppearanceRules.SheetName(PlayerSpriteAnimator.DefaultCharacter, layer, look, grip, "idle");
+            if (Cache.TryGetValue(name, out var cached))
+                return cached;
             var sheet = CharacterSheets.Load($"Characters/{PlayerSpriteAnimator.DefaultCharacter}/{name}");
-            return sheet != null && sheet.Rows.Length > 0 && sheet.Frames > 0 ? sheet.Rows[0][0] : null;
+            var sprite = sheet != null && sheet.Rows.Length > 0 && sheet.Frames > 0 ? sheet.Rows[0][0] : null;
+            Cache[name] = sprite;
+            return sprite;
         }
     }
 }
