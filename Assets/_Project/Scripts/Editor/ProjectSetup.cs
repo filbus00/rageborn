@@ -14,6 +14,8 @@ namespace ARPG.Editor
         const string Renderer2DPath = "Assets/Settings/Renderer2D.asset";
         static readonly Vector3 IsoSortAxis = new Vector3(0f, 1f, 0f);
 
+        const string AppIconPath = "Assets/_Project/Art/UI/Icon/AppIcon.png";
+
         [MenuItem("Tools/ARPG/Apply Project Setup")]
         public static void Apply()
         {
@@ -47,6 +49,24 @@ namespace ARPG.Editor
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.iOS, ScriptingImplementation.IL2CPP);
 
             PlayerSettings.iOS.hideHomeButton = true;
+
+            // Signing for the owner's phone: Xcode signs automatically with his personal team (free provisioning, so a
+            // build runs 7 days before it needs installing again).
+            PlayerSettings.iOS.appleEnableAutomaticSigning = true;
+            PlayerSettings.iOS.appleDeveloperTeamID = "ACN5244YB8";
+
+            // The app icon (the owner's, 2026-09-29), cropped inside its own frame and enlarged to 1024. iOS rounds the corners.
+            if (AssetImporter.GetAtPath(AppIconPath) is TextureImporter importer &&
+                importer.textureCompression != TextureImporterCompression.Uncompressed)
+            {
+                // Unity warns that a compressed icon loses quality.
+                importer.textureCompression = TextureImporterCompression.Uncompressed;
+                importer.mipmapEnabled = false;
+                importer.SaveAndReimport();
+            }
+            var icon = AssetDatabase.LoadAssetAtPath<Texture2D>(AppIconPath);
+            if (icon != null)
+                PlayerSettings.SetIcons(NamedBuildTarget.Unknown, new[] { icon }, IconKind.Any);
         }
 
         static void ConfigureIsometricSorting()
