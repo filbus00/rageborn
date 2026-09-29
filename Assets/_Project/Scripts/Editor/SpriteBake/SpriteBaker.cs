@@ -389,7 +389,10 @@ namespace ARPG.Editor
                 var animator = model.GetComponent<Animator>();
                 if (animator == null)
                     animator = model.AddComponent<Animator>();
-                animator.applyRootMotion = false;
+                // On, so a loop's travel (moved to the root on import, MixamoImport.SetInPlace) stays on the root, which the
+                // bake puts back every frame. Off, Unity folded it back into the hips: the two-hander's and the shield's
+                // runs slid out of their cells and measured a fifth of their speed, so the game played them at 2.2 times.
+                animator.applyRootMotion = true;
                 animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
 
                 if (b == 0)
