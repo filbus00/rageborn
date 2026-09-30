@@ -294,7 +294,7 @@ Built affixes keep their built numbers. Ranges are T1 at item level 60; lower ti
 | 4 | Armor | P | 90 to 130 | Chest, helm, gloves, boots, shield | Built (chest, helm) |
 | 5 | Increased Focus regeneration (Rage gained for the retired Wrathborn) | P | 10 to 16 percent | Amulet, ring, shield | Designed |
 | 6 | Added area | P | 8 to 14 percent | Weapon, helm, amulet | Designed |
-| 7 to 14 | Plus levels to Projectile, Cone, Pierce, Area, Movement, Buff, Channel or Execute skills (one affix per tag, in that order; the Wild Arrow's tags, 02) | P | 1 to 2 | Weapon, off-hand, amulet | Designed (skill level by tag) |
+| 7 to 14 | Plus levels to skills by tag (one affix per tag; the Wild Arrow's tags so far are Projectile, Cone, Pierce, Homing and Area, 02) | P | 1 to 2 | Weapon, off-hand, amulet | Designed (skill level by tag) |
 | 15 | Life regeneration | P | 8 to 14 per second | Chest, belt, ring | Designed |
 | 16 | Increased armor | P | 15 to 25 percent | Chest, helm, shield, gloves, boots | Proposed |
 | 17 | Maximum life | P | 5 to 9 percent | Chest, belt, amulet | Proposed |
@@ -325,7 +325,7 @@ Built affixes keep their built numbers. Ranges are T1 at item level 60; lower ti
 | 52 | Magic Find | S | 8 to 12 percent | Amulet, ring, boots | Designed |
 | 53 | Stillness stack cap | S | Fixed 1, from item level 35 | Belt, boots, helm | Designed |
 | 54 | Momentum stack cap | S | Fixed 1, from item level 35 | Belt, boots, helm | Designed |
-| 55 to 62 | Plus levels to one named skill, one affix per skill in this order: Split Shot, Vault, Piercing Shot, Arrow Rain, Hunter's Breath, Barrage, Wild Frenzy, Kill Shot (the Wild Arrow's, 2026-09-30) | S | 1 to 2 | Helm, gloves, amulet, off-hand | Proposed |
+| 55 to 62 | Plus levels to one named skill, one affix per skill: Split Arrow, Pierce Arrow, Homing Arrow, Explosive Arrow (the Wild Arrow's four, 2026-09-30; four more when its held skills are added) | S | 1 to 2 | Helm, gloves, amulet, off-hand | Proposed |
 | 63 | Gold find | S | 15 to 25 percent | Amulet, ring, belt | Proposed |
 | 64 | Life on kill | S | 20 to 40 | Weapon, ring, belt | Proposed |
 | 65 | Rage on kill | S | 2 to 4 | Weapon, ring | Proposed |

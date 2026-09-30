@@ -10,7 +10,7 @@
 - Skills level from 1 to 20 by spending skill points and gain modifier slots at levels 5, 10 and 15.
 - Class base stats differ. Gear can push any class toward any playstyle.
 
-## Attributes
+## Attributes (the retired classes'; the Wild Arrow's are in its section)
 
 | Attribute | Effect per point |
 |---|---|
@@ -23,79 +23,71 @@ Diminishing returns apply to attack speed above 3.0 per second, cooldown reducti
 
 ## Class 0: Wild Arrow (ranged, bows only, Momentum leaning) — the launch class
 
-Decided 2026-09-30 (08-production.md, decision log): the game becomes an action RPG that only uses bows. The launch class is a new hero and class, the **Wild Arrow**; the Wrathborn is retired (kept below as reference, like the Warden). The owner's answers: a new hero and class, not the Wrathborn rethemed; Focus as the resource; short bows and longbows, with a quiver in the off-hand; a clean start for saves; and, until the Wild Arrow has its own model, the Wrathborn's body baked with the bandit archer's Mixamo moveset (09, 4.6). Everything else in this section (skills, numbers, tree, keystones) is Claude's proposal, marked so, built as tuning until the owner changes it.
+Decided 2026-09-30 (08-production.md, decision log): the game becomes an action RPG that only uses bows. The launch class is a new hero and class, the **Wild Arrow**; the Wrathborn is retired (kept below as reference, like the Warden). The owner went through the design part by part the same day; what is marked **Decided** below is the owner's, the rest (numbers above all) is Claude's proposal, built as tuning until the owner changes it.
 
-Base: ranged. Basic attack: a bow shot, one arrow at the target, 14 units a second, that stops at the first enemy it meets or a wall. Reach 7.5 with a short bow, 9 with a longbow (03). The target must be in sight (no wall on the line from the character to it). Attacks per second start at 1.4, as for every class (01). Off-hand: a quiver, or nothing (03).
+**Decided (2026-09-30):** a new hero and class, not the Wrathborn rethemed; Focus as the resource; short bows and longbows with a quiver in the off-hand; a clean start for saves; the Wrathborn's body with the bandit archer's Mixamo moveset as the stand-in art (09, 4.6); how a fight plays and Focus as below; four skills for now (Split, Pierce, Homing and Explosive Arrow), the rest held; **no passive tree and no keystones for now**: stat points spent on five attributes instead (Attributes, below); a **pet** bought from a vendor in town (Pets, below).
 
-Resource, Focus (01's rules, unchanged): 0 to 100, **full on every level load**, regenerates 6 a second, and a basic arrow that hits gives 4. Skills cost Focus; Vault and Hunter's Breath cost nothing. A fight opens on skills and the basic shots keep it going, the opposite rhythm of the Wrathborn's Rage.
+### How a fight plays (decided)
 
-Lean: Momentum, by the rules in 01. A bow character kites: Momentum's speed and dodge are its defence, and Vault and Wild Frenzy feed on it. Stillness still works for a player who plants and shoots.
+Basic attack: a bow shot, one arrow at the target, 14 units a second, that stops at the first enemy it meets or a wall. Reach 7.5 with a short bow, 9 with a longbow (03). The target must be in sight (no wall on the line from the character to it). Attacks per second start at 1.4 and continue at the full rate while moving (01). Off-hand: a quiver, or nothing (03).
 
-Targeting and facing: 01's rules, with reach meaning the bow's reach and every target needing line of sight. Enemies woken by an arrow from outside their aggro range come for the character (a hit wakes a pack, as built).
+Enemy aggro range is 7 and the short bow reaches 7.5, so the character can open on a pack from just outside it; the pack then comes (a hit wakes a pack, as built). Intended: the fight starts on the player's terms, and swarmers close 7 units in under 2 s. Lean: Momentum, by the rules in 01: a bow character kites, and Momentum's speed and dodge are its defence. Stillness still works for a player who plants and shoots.
 
-| Skill | Type | Cost | Cooldown | Trigger | Description |
-|---|---|---|---|---|---|
-| Split Shot | Cone | 20 Focus | 3 s | 2 or more enemies in reach inside the forward cone | 5 arrows in a 40 degree fan at the target, 80 percent weapon damage each; each stops at the first enemy it meets |
-| Piercing Shot | Projectile | 15 Focus | 4 s | An enemy 4 to 9 units away in sight | One arrow that passes through every enemy on its line for 200 percent; walls stop it |
-| Vault | Movement | none, gains 15 Focus | 6 s | Moving, an enemy within 2.5 units | Leaps 4 units the way the character is already moving at 16 units a second, loosing 3 arrows at the nearest enemies in reach for 100 percent each; 1 Momentum stack per enemy hit. The one movement a skill makes (as Bull Rush's dash was): it goes where the stick already points, so it never takes the character somewhere the player did not steer |
-| Arrow Rain | Area | 35 Focus | 8 s | 4 or more enemies within 3 units of a point in reach | A 3 unit circle on the ground at the densest spot (a 0.5 s ring shows where), then arrows fall: 260 percent to everything inside, slowed 30 percent for 2 s |
-| Hunter's Breath | Buff | none | 15 s | 3 or more enemies within 8 units and Focus below 30 | Restores 40 Focus and plus 20 percent damage for 6 s |
-| Barrage | Channel | 40 Focus | 12 s | Moving, 3 or more enemies in reach | For 2.5 s at full movement speed, an arrow every 0.3 s at each of the 3 nearest enemies in reach, 90 percent each; barbed, so a hit leaves a bleed of 40 percent weapon damage over 4 s (replaced, not stacked) |
-| Wild Frenzy | Buff | 20 Focus | 14 s | In combat with 3 or more Momentum stacks | Plus 30 percent attack speed for 6 s, plus 5 percent more per Momentum stack |
-| Kill Shot | Execute | 25 Focus | 5 s | A target in reach and in sight below 25 percent life, or an elite or boss; the most wounded first | A 0.3 s draw, then one arrow: 350 percent, 800 percent if the target is below 25 percent life when it lands |
+### Resource: Focus (decided)
 
-Unlocks (proposed, the Wrathborn's decided levels kept, Q4): Split Shot 1, Piercing Shot 2, Vault 4, Arrow Rain 6, Hunter's Breath 9, Barrage 12, Wild Frenzy 15, Kill Shot 18. The loadout screen opens at 9. Slot order for the first four, which is cast priority: Arrow Rain, Piercing Shot, Vault, Split Shot (the Wrathborn's order of 2026-09-26 carried over: the big area skill first so the cone does not spend its Focus).
+01's rules: 0 to 100, **full on every level load**, regenerates 6 a second, and a basic arrow that hits gives 4. Skills cost Focus. A fight opens on skills and the basic shots keep it going, the opposite rhythm of the Wrathborn's Rage. Shown as the arc under the character's feet.
 
-Each skill is one of the kinds the Wrathborn's were, so the auto-cast system, triggers, levels, loadout and balance report carry over: Split Shot is the sweep's slot (a cone in reach), Piercing Shot the projectile's (Hurl Axe, now piercing), Vault the charge's (a dash along the movement), Arrow Rain the area's (Ground Breaker, placed at a distance instead of around the character), Hunter's Breath, Barrage, Wild Frenzy and Kill Shot the Buff, Channel, Buff and Execute of Battle Roar, Rending Spin, Blood Frenzy and Skullsplitter.
+### Skills (decided: these four for now)
 
-Alternative triggers (Q15, proposed, following the Wrathborn's pairs): Split Shot Always and Elite present; Piercing Shot Elite present and Standing; Vault Elite present and 3+ enemies; Arrow Rain 3+ enemies and Elite present; Hunter's Breath Always and Life below 50%; Barrage 3+ enemies (without moving) and Standing; Wild Frenzy Always and Elite present; Kill Shot Always and Elite present.
+| Skill | Unlock | Type | Cost | Cooldown | Trigger | Description |
+|---|---|---|---|---|---|---|
+| Split Arrow | 1 | Cone | 20 Focus | 3 s | 2 or more enemies in reach inside the forward cone | 5 arrows in a 40 degree fan at the target, 80 percent weapon damage each; each stops at the first enemy it meets |
+| Pierce Arrow | 2 | Projectile | 15 Focus | 4 s | An enemy 4 to 9 units away in sight | One arrow that passes through every enemy on its line for 200 percent; walls stop it |
+| Homing Arrow | 4 | Projectile | 15 Focus | 5 s | An enemy in reach and in sight | 3 arrows that curve after their targets, 120 percent each; each picks a different enemy when it can. The target must be in sight when they are loosed (the owner: no shots around corners); a wall still stops an arrow |
+| Explosive Arrow | 6 | Area | 30 Focus | 7 s | 3 or more enemies within 2.5 units of a target in sight | One arrow that bursts on hitting an enemy or a wall: 250 percent to everything within 2.5 units |
 
-Keystones (proposed; the Wrathborn's two rules, renamed and turned to Focus): **Wild Heart** (below 50 percent life, plus 30 percent damage and double Focus regeneration and gain) and **Windrunner** (each Momentum stack also gives 3 percent damage reduction, and stopping loses half the stacks instead of all). 3 points each, from level 20, both can be bought, the loadout picks the active one (Q4 and Q5, as decided for the Wrathborn).
+Slot order, which is cast priority (proposed): Explosive, Homing, Pierce, Split, so the area skill fires first on a crowd. Numbers, unlock levels and the order are proposals.
 
-### Skill tags (proposed)
+Each is one of the skill kinds the Wrathborn's were, so the auto-cast system, triggers, skill levels and loadout carry over: Split Arrow in the sweep's place (a cone in reach), Pierce Arrow in the projectile's (Hurl Axe, now piercing), Homing Arrow a projectile with steering (new: the arrow turns toward its target each step, at most 360 degrees a second, tuning), Explosive Arrow the area's (Ground Breaker, centred on the arrow's impact instead of the character).
 
-| Skill | Tags |
+Held for later (the owner, 2026-09-30: "hold it with the skills"): the other four skill slots. Proposed during the walkthrough and kept here as candidates: **Knockback Shot** (the owner's pick to replace an auto-leap, Vault: a heavy arrow at the closest enemy, 150 percent, knocks it and everything within 1.5 back 3 units, free, gains 15 Focus, 6 s, when an enemy is within 2.5), Hunter's Breath (a Focus refill), Barrage (a moving multi-shot), Wild Frenzy (attack speed from Momentum), Kill Shot (an execute). The first four take the loadout's four slots, so the loadout screen has nothing to choose until more skills exist.
+
+Alternative triggers (Q15, proposed): Split Arrow Always and Elite present; Pierce Arrow Elite present and Standing; Homing Arrow Elite present and 3+ enemies; Explosive Arrow Always and Elite present.
+
+Skill levels: the Wrathborn's rules stand (below, "Skill levels 1 to 20"): a skill starts at 1 when it unlocks, a skill point raises it one level, capped at character level minus unlock level plus 1 and at 20; each level adds 7 percent of the level 1 damage multiplier; costs and cooldowns stay. Modifiers are not proposed yet.
+
+Skill tags (proposed): Split Arrow Projectile, Cone; Pierce Arrow Projectile, Pierce; Homing Arrow Projectile, Homing; Explosive Arrow Projectile, Area. 03's skill level affixes follow them.
+
+### Attributes and stat points (decided 2026-09-30: no passive tree)
+
+The owner: "No skill trees, add stat points to spend on attributes", with the attributes "Strength, agility, vitality, speed, and one more", the fifth chosen as Focus. This replaces the passive tree and the automatic attribute growth (Q6) for the Wild Arrow; the Attributes table above is the retired classes'. Effects per point (proposed, the owner approved the split):
+
+| Attribute | Effect per point |
 |---|---|
-| Split Shot | Projectile, Cone |
-| Piercing Shot | Projectile, Pierce |
-| Vault | Projectile, Movement |
-| Arrow Rain | Area |
-| Hunter's Breath | Buff |
-| Barrage | Projectile, Channel, Movement |
-| Wild Frenzy | Buff |
-| Kill Shot | Projectile, Execute |
+| Strength | +0.5 percent damage on every arrow, +1 armor |
+| Agility | +0.2 percent crit chance, +0.2 percent dodge, +1 percent crit damage |
+| Vitality | +8 life (no regeneration, 08 open question 10) |
+| Speed | +0.4 percent attack speed, +0.2 percent move speed |
+| Focus | +0.5 percent Focus regeneration, +0.3 percent cooldown reduction, +1 max Focus |
 
-Eight tags (Projectile, Cone, Pierce, Area, Movement, Buff, Channel, Execute) replace the Wrathborn's (Melee, Sweep, and the rest); 03's skill level affixes follow them.
+- Every attribute starts at 10, and the bonuses count from 0 (the starting 10 are part of the class's base, not extra).
+- 5 points a level from level 2, so 295 at level 60 (proposed; Diablo 2's number). The points are spent from a stats page in the Bag, a + beside each attribute; unspent points show as a badge on the Bag button, as skill points do.
+- No respec for now (proposed; the Trainer could offer it for gold later). The diminishing returns above (attack speed, cooldown reduction, dodge, capped at 50) stand.
+- Balance: the Wrathborn's stand-in life (8 Vitality a level) is the reference; a character who puts 1 point in 5 into Vitality has the same life, so the balance report assumes that split until measured.
 
-### Skill levels
+### Pets (decided 2026-09-30)
 
-The Wrathborn's rules stand (below, "Skill levels 1 to 20"): a skill starts at 1 when it unlocks, a point raises it one level, capped at character level minus unlock level plus 1 and at 20; each level adds 7 percent of the level 1 damage multiplier; Hunter's Breath and Wild Frenzy gain 1 percent a level instead; costs, Vault's Focus gain and cooldowns stay fixed. Modifiers (three per skill at levels 5, 10 and 15) are not yet proposed for the Wild Arrow; the Wrathborn's table is retired with him.
+The owner: "Add a pet vendor in town. Pet is bought and levels with the player", later: a few kinds, one active, and a pet fights, draws aggro, picks up loot, gives a passive bonus and is customizable ("which enemy to attack, what to do depending on context etc"). Details proposed:
 
-### Passive tree (proposed)
-
-The Wrathborn's layout and numbers stand (60 nodes: a start node, three branches of an inner half, a gateway after 15 points and an outer half), with two branches renamed and every Rage node turned to Focus:
-
-| Branch | Theme | Minor nodes |
-|---|---|---|
-| Marksman (up, was Wrath) | Focus, damage, crits | Plus 4 percent damage; plus 1.5 percent critical chance; plus 10 percent critical damage |
-| Fleetfoot (left, was Stampede) | Momentum, speed, dodge | Plus 3 percent move speed; plus 3 percent attack speed; plus 1.5 percent dodge |
-| Scar (right, unchanged) | Life, armor, sustain | Plus 4 percent life; plus 8 percent armor; plus 2 Life on Hit |
-
-| Branch | Inner half | Outer half |
-|---|---|---|
-| Marksman | Steady Hand: basic arrows that hit give 6 Focus instead of 4. Finish Them: plus 15 percent damage to enemies below 50 percent life. Deep Breath: Focus regenerates 8 a second instead of 6 | Harvest: kills give 3 Focus. Barbed Tips: critical hits deal plus 30 percent damage to bleeding enemies. Poise: plus 1 percent damage per 10 Focus held. Keystone: Wild Heart |
-| Fleetfoot | Road Runner, Sure Footed (unchanged). Aerial Aim: Movement skills deal plus 25 percent damage | Hit and Run, Tailwind (unchanged). Second Leap: Vault's cooldown is 1 s shorter per enemy hit. Keystone: Windrunner |
-| Scar | Thick Hide, Scar Tissue, Iron Lungs (unchanged) | Unbroken, Blood Price, Old Wounds (unchanged) |
-
-### Attributes (Q6's automatic growth, proposed amounts)
-
-The attribute table above stands, with one change for a bow class: **Agility** gives plus 0.5 percent damage on every arrow (the Wrathborn's Might gave it to melee and area), and **Might** keeps plus 0.5 percent area damage (Arrow Rain) and plus 1 armor. Per level from 2: 8 Vitality (unchanged), 1 Might, 3 Agility, 1 Will. Will gives Focus regeneration, as the table says. At act 1's end (level 7): plus 9 percent arrow damage, plus 7.2 percent attack speed, plus 3.6 percent crit, plus 2.25 percent dodge.
-
-### Balance notes for a ranged class (proposed)
-
-- Enemy aggro range is 7 and the short bow reaches 7.5, so the character can open on a pack from just outside it; the pack then comes (a hit wakes it). This is intended: the fight starts on the player's terms, and swarmers close 7 units in under 2 s.
-- Enemy life and damage are unchanged at first; the balance report (a ranged model: the character kites at 5 units and fights while moving) and the autopilot (it keeps its distance instead of walking up) are rerun before anything is retuned. Docs/04's targets stand.
-- The archers (enemy) become the class's mirror: Piercing Shot and Kill Shot are its answer to them, as Hurl Axe was.
+- **The Pet Vendor**, a new NPC in every town (05, Towns), walked up to like the others. Its sheet lists the kinds, buys one for gold, switches the active pet and holds the pet's rules. Owned pets are kept; switching is free.
+- **Kinds** (proposed, three at launch, each playing differently): **Wolf** (a biter that holds enemies: plus 5 percent life to the character), **Raven** (fast and fragile, fetches loot from far away: plus 10 percent Magic Find), **Boar** (slow, tough, draws aggro: plus 10 percent armor). Prices 500, 1,500 and 3,000 gold (tuning).
+- **Levels with the player:** a pet's level is always the character's level; its life and damage follow the enemy curves at that level times its kind's multipliers (tuning). It needs no XP of its own.
+- **Fights:** it attacks an enemy by its rules (below), 80 percent weapon damage per hit (tuning).
+- **Draws aggro:** an enemy within 2 units of the pet may attack it instead of the player (the Boar most). At 0 life the pet is knocked out and comes back beside the player after 20 s; it never dies for good.
+- **Picks up loot:** out of combat it fetches gold and items within a wide radius (Raven 12, others 6) and brings them to the character, on the same rules as auto-loot (01, 03).
+- **Passive bonus:** the kind's bonus above, while it is the active pet (knocked out or not).
+- **Rules** (customizable, the owner's ask): a short list of if-then rules picked from chips, evaluated in order like the skill slots' triggers (01), no typing and one thumb: targets (what I attack; the nearest; elites first; the weakest; whatever attacks me) and behaviours (guard me when my life is below 50 percent; fetch loot only when no enemy is near; stay close; hold back from bosses). Default: attack what I attack, fetch loot out of combat.
+- Enemy AI today targets only the player: choosing the pet is new work for every archetype.
 
 ## Retired: Wrathborn (melee, Momentum leaning) — the launch class from 2026-09-26 to 2026-09-30
 
@@ -193,7 +185,7 @@ All 24 skills follow this pattern, giving 72 modifiers per class, 216 across the
 
 Skills are not socketed into gear. Gear affixes can target a skill by name (for example, plus 2 levels to Cleave) or by tag (Sweep, Area, Channel, Summon, Movement, Ground, Debuff, Control). A skill can have several tags. Tag scaling is the main way a legendary item reshapes a build.
 
-## Passive tree
+## Passive tree (the retired Wrathborn's; the Wild Arrow has none, decided 2026-09-30)
 
 Each class has a tree of 60 nodes over three branches. Nodes cost one passive point. The player gains one passive point per level from level 2, up to 59 points at level 60, so they can nearly complete the tree. Paragon points add stats but not nodes.
 
@@ -203,7 +195,7 @@ Node types:
 |---|---|---|
 | Minor | 36 | Plus 3 percent life, plus 2 percent crit |
 | Notable | 18 | Warden: Unmoving, Stillness stacks give 3 percent life regeneration each |
-| Keystone | 2 for the Wild Arrow (as for the Wrathborn) | Class keystones listed above, 3 points each, both can be bought, from level 20; the loadout picks the active one (decided 2026-09-27, Q4 and Q5; the drafts for later classes list 2 options each) |
+| Keystone | 2 for the Wrathborn (the Wild Arrow has no tree, decided 2026-09-30) | Class keystones listed above, 3 points each, both can be bought, from level 20; the loadout picks the active one (decided 2026-09-27, Q4 and Q5; the drafts for later classes list 2 options each) |
 | Gateway | 3 | Locks the next branch until a condition is met, for example 30 points spent |
 
 Respec costs gold that scales with level, capped at 5,000. Free respec is available once per act clear during the campaign.
