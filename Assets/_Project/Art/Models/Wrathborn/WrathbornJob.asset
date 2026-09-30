@@ -1029,10 +1029,11 @@ MonoBehaviour:
       legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
       legsGroundSpeed: 4.4
       offHandOnly: 0
-  pixelsPerUnit: 64
-  cellSize: 128
-  pivot: {x: 64, y: 20}
-  targetHeightPixels: 92.5
+  pixelsPerUnit: 40
+  cellSize: 80
+  pivot: {x: 40, y: 12}
+  targetHeightPixels: 57.8125
+  pixelArt: 1
   supersample: 4
   framesPerSecond: 12
   directions: 16

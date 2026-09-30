@@ -19,22 +19,18 @@ namespace ARPG
     /// </summary>
     public static class RenderResolution
     {
-        /// <summary>About Diablo 2's 800 pixels on the long side, turned to portrait.</summary>
-        public const int TargetLongSide = 870;
+        /// <summary>
+        /// About 600 pixels on the long side (the owner, 2026-09-30, "I want it pixelated": bigger pixels than Diablo 2's
+        /// 800 of 2026-09-28): 3 x 3 screen pixels a rendered pixel on a 2x iPhone like the owner's iPhone 11 (276 x 597),
+        /// 4 x 4 on a 3x one (301 x 655 on an iPhone 17).
+        /// </summary>
+        public const int TargetLongSide = 600;
 
         /// <summary>
         /// How many screen pixels each rendered pixel covers along a side: the whole number that brings the long side
         /// closest to <see cref="TargetLongSide"/>, at least 1. Whole numbers keep every enlarged pixel the same size.
         /// </summary>
         public static int Factor(int screenLongSide) => Mathf.Max(1, Mathf.RoundToInt(screenLongSide / (float)TargetLongSide));
-
-        /// <summary>
-        /// The pixels per unit that give a rendered height of <paramref name="renderedHeight"/> pixels the scene camera's
-        /// view (twice its orthographic size), so the framing is the scene's own, give or take the rounding (7.5 comes out
-        /// 7.53 at 874 pixels).
-        /// </summary>
-        public static int PixelsPerUnit(int renderedHeight, float orthographicSize) =>
-            Mathf.Max(1, Mathf.RoundToInt(renderedHeight / (2f * orthographicSize)));
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Install()
@@ -55,7 +51,10 @@ namespace ARPG
             var pixelPerfect = camera.gameObject.AddComponent<PixelPerfectCamera>();
             pixelPerfect.refResolutionX = Screen.width / factor;
             pixelPerfect.refResolutionY = Screen.height / factor;
-            pixelPerfect.assetsPPU = PixelsPerUnit(height, camera.orthographicSize);
+            // Every world sprite is drawn at PixelArt.PixelsPerUnit, so the world renders at that too and one art pixel is
+            // one rendered pixel; the view's height follows the screen (14.9 units on an iPhone 11, the scenes' 15 give
+            // or take, 16.4 on an iPhone 17). It used to follow the camera's size instead, which the art could not match.
+            pixelPerfect.assetsPPU = PixelArt.PixelsPerUnit;
             pixelPerfect.gridSnapping = PixelPerfectCamera.GridSnapping.UpscaleRenderTexture;
             pixelPerfect.cropFrame = PixelPerfectCamera.CropFrame.None;
             Debug.Log($"RenderResolution: {scene.name} world at {Screen.width / factor} x {height}, " +

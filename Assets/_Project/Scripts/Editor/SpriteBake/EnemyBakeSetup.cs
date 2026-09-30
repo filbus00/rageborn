@@ -90,14 +90,18 @@ namespace ARPG.Editor
             job.characterName = name;
             job.outputFolder = $"Assets/_Project/Resources/Characters/{name}";
             // The resolution of 2026-09-28 (09, 0.8): 64 pixels a unit, half the brief's first sizes.
-            job.pixelsPerUnit = 64f;
+            // Pixel art at the game's 40 pixels a unit (2026-09-30), five eighths of the 64 of 2026-09-28: cells, pivot and
+            // heights scale with it.
+            const float scale = PixelArt.PixelsPerUnit / 64f;
+            job.pixelsPerUnit = PixelArt.PixelsPerUnit;
+            job.pixelArt = true;
             // A rank look is measured like its base type (husk_champion as husk); the engine scales ranks up itself.
             var baseName = Heights.Keys.FirstOrDefault(k => name == k || name.StartsWith(k + "_")) ?? name;
-            job.cellSize = CellSizes.TryGetValue(baseName, out var cell) ? cell : 128;
-            job.pivot = new Vector2(job.cellSize / 2f, 20f);
+            job.cellSize = Mathf.RoundToInt((CellSizes.TryGetValue(baseName, out var cell) ? cell : 128) * scale);
+            job.pivot = new Vector2(job.cellSize / 2f, Mathf.Round(20f * scale));
             // Measured on the rest pose's whole box, which the Wrathborn showed runs about 9 percent over the standing
             // height (185 asked, 170 stood), so ask that much more.
-            job.targetHeightPixels = (Heights.TryGetValue(baseName, out var height) ? height : 80f) * 1.09f;
+            job.targetHeightPixels = (Heights.TryGetValue(baseName, out var height) ? height : 80f) * 1.09f * scale;
             job.supersample = 4;
             job.directions = 8;
             job.bodies.Clear();

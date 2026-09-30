@@ -75,10 +75,11 @@ MonoBehaviour:
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
       offHandOnly: 0
-  pixelsPerUnit: 64
-  cellSize: 128
-  pivot: {x: 64, y: 20}
-  targetHeightPixels: 87.200005
+  pixelsPerUnit: 40
+  cellSize: 80
+  pivot: {x: 40, y: 12}
+  targetHeightPixels: 54.5
+  pixelArt: 1
   supersample: 4
   framesPerSecond: 12
   directions: 8

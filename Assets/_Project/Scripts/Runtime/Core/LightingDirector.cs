@@ -65,7 +65,10 @@ namespace ARPG
             if (scene.name == SceneTravel.TownScene)
                 foreach (var tilemap in FindObjectsByType<Tilemap>(FindObjectsSortMode.None))
                     if (tilemap.name == "Ground")
+                    {
+                        DungeonArt.PaveTown(tilemap);
                         WorldLights.ShadeGround(tilemap);
+                    }
 
             // The smith's fire: the one warm prop in town besides the character.
             var forge = FindAnyObjectByType<ForgeNpc>();

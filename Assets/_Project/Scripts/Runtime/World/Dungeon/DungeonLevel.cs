@@ -215,9 +215,7 @@ namespace ARPG
                     // Only the level's outer and dividing walls are cut low on the camera side: a pillar or stub standing
                     // inside a room keeps its height (cut low, a 2 x 2 pillar read as a cross of stubs).
                     if (cell == DungeonCell.Wall)
-                        wallTiles[index] = lowWallTile != null && !InsideRoom(at) && WallRules.IsCameraSide(IsOpenCell, at.x, at.y)
-                            ? lowWallTile
-                            : wallTile;
+                        wallTiles[index] = DungeonArt.Wall(!InsideRoom(at) && WallRules.IsCameraSide(IsOpenCell, at.x, at.y));
                     else if (cell == DungeonCell.Prop && Layout.Props.TryGetValue(at, out var prop))
                         wallTiles[index] = DungeonArt.Prop(prop);
                 }

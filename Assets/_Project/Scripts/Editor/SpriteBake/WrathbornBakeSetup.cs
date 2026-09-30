@@ -229,12 +229,16 @@ namespace ARPG.Editor
             // Half resolution, drawn at the same size (the owner, 2026-09-27: "the game is quite high res, it can drop
             // more in resolution. It can be the same as d2"): 64 pixels per unit, so every number below is half the
             // brief's. He stands about 85 px, close to Diablo 2's heroes, and his sheets take a quarter of the memory.
-            job.pixelsPerUnit = 64f;
-            job.cellSize = 128;
-            job.pivot = new Vector2(64f, 20f);
+            // Then pixel art (the owner, 2026-09-30: "I want it pixelated"): the game's 40 pixels a unit, five eighths of
+            // 64, every frame snapped to the palette with a dark outline (PixelArt). He stands about 53 px.
+            const float scale = PixelArt.PixelsPerUnit / 64f;
+            job.pixelsPerUnit = PixelArt.PixelsPerUnit;
+            job.pixelArt = true;
+            job.cellSize = Mathf.RoundToInt(128 * scale);
+            job.pivot = new Vector2(job.cellSize / 2f, Mathf.Round(20f * scale));
             // The height is measured on the rest pose's whole box, arms out in the A-pose and all; 170 gave 155 px
-            // standing at full resolution, so 185 gave the brief's 170. Halved.
-            job.targetHeightPixels = 92.5f;
+            // standing at full resolution, so 185 gave the brief's 170. Halved, then scaled to 40 a unit.
+            job.targetHeightPixels = 92.5f * scale;
             job.supersample = 4;
             // 16 directions, as Diablo 2 gave its heroes, so the facing is never more than 11 degrees off the path (the
             // user's request of 2026-09-27; 8 left up to 22).

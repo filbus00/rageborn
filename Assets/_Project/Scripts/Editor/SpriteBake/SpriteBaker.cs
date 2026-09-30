@@ -604,14 +604,15 @@ namespace ARPG.Editor
             var matte = SpriteBakeMath.Matte(overBlack, overWhite);
             var cell = SpriteBakeMath.Downsample(matte, target.width, target.height, Mathf.Max(1, job.supersample));
             // Rendered and averaged in linear light; the PNG holds sRGB. (A gamma-space project renders gamma already.)
-            if (QualitySettings.activeColorSpace != ColorSpace.Linear)
-                return cell;
-            for (var i = 0; i < cell.Length; i++)
-            {
-                var c = cell[i];
-                var gamma = new Color(c.r, c.g, c.b).gamma;
-                cell[i] = new Color(gamma.r, gamma.g, gamma.b, c.a);
-            }
+            if (QualitySettings.activeColorSpace == ColorSpace.Linear)
+                for (var i = 0; i < cell.Length; i++)
+                {
+                    var c = cell[i];
+                    var gamma = new Color(c.r, c.g, c.b).gamma;
+                    cell[i] = new Color(gamma.r, gamma.g, gamma.b, c.a);
+                }
+            if (job.pixelArt)
+                PixelArt.Process(cell, job.cellSize, job.cellSize, true);
             return cell;
         }
 

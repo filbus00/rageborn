@@ -123,6 +123,14 @@ AI tools drift. Hold everything together this way:
 - Output: transparent film/background, render at 4x and downscale.
 - Look: a painterly or slightly gritty material and texture treatment, **not** clean plastic 3D. Post-process each frame for the hand-finished look in 1.2 if the tool allows.
 
+### 0.9 Pixel art (2026-09-30, replaces the sizes of 0.8)
+
+The owner, 2026-09-30: "I am not liking the art style. I want it pixelated", meaning both bigger pixels and art that reads as pixel art. So:
+
+- The world is drawn at about 600 px on the long side (3 x 3 screen pixels each on a 2x iPhone, 4 x 4 on a 3x one) and **all in-world art is made at 40 pixels per unit**, one art pixel to one rendered pixel. Every size in sections 3 to 9 and 15 scales by 40/64 from 0.8's (a character cell 80 px, the Wrathborn about 53 px tall, a floor tile 40 x 20).
+- Pixel-art rules: one shared palette of about 45 colours in ramps (stone greys, browns, blood reds, skin, moss greens, cold blue-greys, ember and gold, bone; `PixelArt` in the code), hard alpha (no soft edges), and a one-pixel warm near-black outline around characters, enemies and props (not floors and walls). Shade in 2 to 4 steps of a ramp, not gradients; no dithering noise in large areas.
+- Baked characters get this automatically (the bake snaps every frame to the palette and outlines it). Hand-made or AI-generated art should be made or downsampled to 40 px a unit and then snapped to the palette before import.
+
 ### 0.8 Resolution: Diablo 2 style (2026-09-28)
 
 The owner's decisions of 2026-09-28: the game "can drop more in resolution. It can be the same as d2", then "Do it, diablo 2 style on all and move the camera 25% closer". So:

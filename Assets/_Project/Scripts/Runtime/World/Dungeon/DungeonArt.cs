@@ -9,19 +9,71 @@ namespace ARPG
     /// assets also to make it more interesting. Like different floor textures, brushes, and whatever fits inside a
     /// dungeon"), until the tiles and props of Docs/09 exist. Four floor styles (flagstone, dark brick, packed earth,
     /// mossy stone), three variants each, with the decals drawn into a copy of the tile; and the props, standing on the
-    /// cell's middle in the wall tile's frame (128 x 128, pivot at a quarter height), blocking as walls do. Cached for the
-    /// session, so a level asks for them freely.
+    /// cell's middle in the wall tile's frame (pivot at a quarter height), blocking as walls do; and the walls, full and
+    /// cut low. Everything is drawn at 128 pixels a unit and brought down to the game's pixel art (the owner, 2026-09-30:
+    /// "I want it pixelated"): averaged to <see cref="PixelArt.PixelsPerUnit"/>, snapped to the palette, props outlined.
+    /// Cached for the session, so a level asks for them freely.
     /// </summary>
     public static class DungeonArt
     {
+        // The drawing resolution: 128 pixels a unit.
         const int TileW = 128;
         const int TileH = 64;
         const int PropSize = 128;
-        const float PixelsPerUnit = 128f;
         public const int Variants = 3;
+
+        // The game's: PixelArt.PixelsPerUnit a unit.
+        const int Unit = PixelArt.PixelsPerUnit;
 
         static readonly Dictionary<int, Tile> floors = new Dictionary<int, Tile>();
         static readonly Dictionary<PropKind, Tile> props = new Dictionary<PropKind, Tile>();
+        static Tile wall;
+        static Tile lowWall;
+
+        /// <summary>
+        /// Repaints the town's ground in the pixel-art floors: packed earth, with worn flagstone where a slow noise says a
+        /// path or square runs (the scene's own tiles were smooth placeholders at 128 pixels a unit).
+        /// </summary>
+        public static void PaveTown(Tilemap ground)
+        {
+            var bounds = ground.cellBounds;
+            var tiles = new TileBase[bounds.size.x * bounds.size.y * bounds.size.z];
+            var i = 0;
+            foreach (var cell in bounds.allPositionsWithin)
+            {
+                if (ground.HasTile(cell))
+                {
+                    var paved = Fractal(cell.x * 0.09f, cell.y * 0.09f, 404) > 0.55f;
+                    var variant = (int)(Hash(cell.x, cell.y, 9) * Variants) % Variants;
+                    var decal = Hash(cell.x, cell.y, 21) < 0.05f ? (int)DecalKind.Cracks : Hash(cell.x, cell.y, 22) < 0.02f ? (int)DecalKind.Rubble : -1;
+                    tiles[i] = Floor(paved ? 0 : 2, variant, decal);
+                }
+                i++;
+            }
+            ground.SetTilesBlock(bounds, tiles);
+        }
+
+        /// <summary>A wall block, full height or cut low (the camera-side walls, WallRules).</summary>
+        public static Tile Wall(bool low)
+        {
+            var cached = low ? lowWall : wall;
+            if (cached != null && cached.sprite != null)
+                return cached;
+            // Half a unit tall, or an eighth cut low, standing on a diamond whose middle is a quarter up the full frame.
+            var height = low ? 16 : 64;
+            var hiH = 64 + height;
+            var hi = new Color32[TileW * hiH];
+            DrawWall(hi, hiH, height);
+            var loH = Mathf.RoundToInt(hiH * Unit / 128f);
+            var lo = Resample(hi, TileW, hiH, Unit, loH);
+            PixelArt.Process(lo, Unit, loH, false);
+            var tile = MakeTile(lo, Unit, loH, new Vector2(0.5f, (Unit / 4f) / loH), Tile.ColliderType.Grid, low ? "Low Wall" : "Wall");
+            if (low)
+                lowWall = tile;
+            else
+                wall = tile;
+            return tile;
+        }
 
         /// <summary>A floor tile of a style and variant, with a decal drawn on it or none (-1).</summary>
         public static Tile Floor(int style, int variant, int decal = -1)
@@ -32,7 +84,18 @@ namespace ARPG
             var pixels = FloorPixels(style, variant);
             if (decal >= 0)
                 DrawDecal(pixels, (DecalKind)decal, variant * 31 + style * 7 + decal);
-            tile = MakeTile(pixels, TileW, TileH, new Vector2(0.5f, 0.5f), Tile.ColliderType.None, $"Floor {style}.{variant}.{decal}");
+            var lo = Resample(pixels, TileW, TileH, Unit, Unit / 2);
+            // The diamond is cut again at the low size, a touch wide, so neighbouring tiles meet with no gap.
+            for (var y = 0; y < Unit / 2; y++)
+                for (var x = 0; x < Unit; x++)
+                {
+                    var dx = Mathf.Abs(x + 0.5f - Unit * 0.5f) / (Unit * 0.5f);
+                    var dy = Mathf.Abs(y + 0.5f - Unit * 0.25f) / (Unit * 0.25f);
+                    var c = lo[x + y * Unit];
+                    lo[x + y * Unit] = dx + dy <= 1.06f ? new Color32(c.r, c.g, c.b, 255) : new Color32(0, 0, 0, 0);
+                }
+            PixelArt.Process(lo, Unit, Unit / 2, false);
+            tile = MakeTile(lo, Unit, Unit / 2, new Vector2(0.5f, 0.5f), Tile.ColliderType.None, $"Floor {style}.{variant}.{decal}");
             floors[key] = tile;
             return tile;
         }
@@ -44,7 +107,10 @@ namespace ARPG
                 return tile;
             var pixels = new Color32[PropSize * PropSize];
             DrawProp(pixels, kind);
-            tile = MakeTile(pixels, PropSize, PropSize, new Vector2(0.5f, 0.25f), Tile.ColliderType.Grid, "Prop " + kind);
+            // The soft shadow drawn under a prop would outline as a dark blob: dropped before the outline.
+            var lo = Resample(pixels, PropSize, PropSize, Unit, Unit);
+            PixelArt.Process(lo, Unit, Unit, true);
+            tile = MakeTile(lo, Unit, Unit, new Vector2(0.5f, 0.25f), Tile.ColliderType.Grid, "Prop " + kind);
             props[kind] = tile;
             return tile;
         }
@@ -53,15 +119,84 @@ namespace ARPG
         {
             var texture = new Texture2D(w, h, TextureFormat.RGBA32, false) { name = name, filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp };
             texture.SetPixels32(pixels);
-            texture.Apply(false, true);
+            // Tiles that collide stay readable: the walls tilemap's collider reads their outline even for grid colliders
+            // ("Sprite outline generation failed" once per prop and wall kind on entering the dungeon on iOS). They are
+            // 40 px squares; the floors, which do not collide, let their pixels go.
+            texture.Apply(false, collider == Tile.ColliderType.None);
             var tile = ScriptableObject.CreateInstance<Tile>();
             tile.name = name;
             // A full-rect mesh and no physics shape: Unity would otherwise trace the sprite's outline from its pixels,
             // which the texture no longer keeps on the CPU ("Sprite outline generation failed" on iOS, 2026-09-30; the
             // editor keeps a readable copy, so it passed there). Tiles need neither.
-            tile.sprite = Sprite.Create(texture, new Rect(0, 0, w, h), pivot, PixelsPerUnit, 0, SpriteMeshType.FullRect, Vector4.zero, false);
+            tile.sprite = Sprite.Create(texture, new Rect(0, 0, w, h), pivot, Unit, 0, SpriteMeshType.FullRect, Vector4.zero, false);
             tile.colliderType = collider;
             return tile;
+        }
+
+        /// <summary>Averages an image down to a smaller size, colour weighted by coverage, alpha the coverage.</summary>
+        static Color32[] Resample(Color32[] src, int sw, int sh, int dw, int dh)
+        {
+            var dst = new Color32[dw * dh];
+            for (var y = 0; y < dh; y++)
+                for (var x = 0; x < dw; x++)
+                {
+                    int x0 = x * sw / dw, x1 = Mathf.Max(x0 + 1, (x + 1) * sw / dw);
+                    int y0 = y * sh / dh, y1 = Mathf.Max(y0 + 1, (y + 1) * sh / dh);
+                    float r = 0, g = 0, b = 0, a = 0;
+                    var n = 0;
+                    for (var sy = y0; sy < y1; sy++)
+                        for (var sx = x0; sx < x1; sx++)
+                        {
+                            var c = src[sx + sy * sw];
+                            var w = c.a / 255f;
+                            r += c.r * w;
+                            g += c.g * w;
+                            b += c.b * w;
+                            a += w;
+                            n++;
+                        }
+                    dst[x + y * dw] = a <= 0f ? new Color32(0, 0, 0, 0)
+                        : new Color32((byte)(r / a), (byte)(g / a), (byte)(b / a), (byte)(255f * a / n));
+                }
+            return dst;
+        }
+
+        /// <summary>An iso block of stone: faces lit from the upper left, courses and staggered joints, a lighter top.</summary>
+        static void DrawWall(Color32[] p, int frameH, int height)
+        {
+            var stone = new Color(0.36f, 0.34f, 0.33f);
+            for (var x = 0; x < TileW; x++)
+            {
+                var dx = x + 0.5f - TileW * 0.5f;
+                var ax = Mathf.Abs(dx);
+                var bottom = ax / 2f;                 // the front corner's edge, down to the diamond's lowest point
+                var topFrontEdge = height + ax / 2f;  // where the front faces meet the top face
+                var topBack = height + TileH - ax / 2f;
+                var left = dx < 0f;
+                for (var y = 0; y < frameH; y++)
+                {
+                    if (y < bottom || y > topBack)
+                        continue;
+                    Color c;
+                    if (y <= topFrontEdge)
+                    {
+                        // A front face: courses every 11 pixels along the slope, joints staggered course to course.
+                        var along = y - bottom;
+                        var course = Mathf.FloorToInt(along / 11f);
+                        var joint = Mathf.Abs(((ax + course * 13) % 26) - 0.5f) < 1.2f;
+                        var mortar = along % 11f < 1.3f || joint;
+                        var f = (left ? 0.95f : 0.66f) * (0.9f + Hash(course, Mathf.FloorToInt((ax + course * 13) / 26f) + (left ? 0 : 50), 3) * 0.2f);
+                        c = Shade(stone, mortar ? f * 0.62f : f);
+                        if (y > topFrontEdge - 2f)
+                            c = Shade(stone, 1.25f); // the lit lip along the top edge
+                    }
+                    else
+                    {
+                        c = Shade(stone, 1.12f + Fractal(x * 0.08f, y * 0.12f, 11) * 0.12f);
+                    }
+                    p[x + y * TileW] = c;
+                }
+            }
         }
 
         // ---------- noise ----------
@@ -122,8 +257,10 @@ namespace ARPG
                 {
                     if (!IsoCoords(px, py, out var a, out var b))
                         continue;
-                    var n = Fractal(a * 6f, b * 6f, seed);
-                    var f = 0.82f + n * 0.3f;
+                    // Broad, gentle patches: at pixel-art size, fine noise snaps back and forth between palette steps
+                    // and reads as speckle (the town's earth on 2026-09-30).
+                    var n = Smooth(a * 2.5f, b * 2.5f, seed);
+                    var f = 0.93f + n * 0.12f;
                     var c = baseColor;
                     switch (style)
                     {
@@ -150,8 +287,8 @@ namespace ARPG
                         }
                         case 2: // Earth with pebbles.
                         {
-                            f = 0.75f + n * 0.45f;
-                            if (Hash(px / 3, py / 2, seed + 5) > 0.93f)
+                            f = 0.9f + n * 0.16f;
+                            if (Hash(px / 6, py / 3, seed + 5) > 0.95f)
                                 c = new Color(0.46f, 0.43f, 0.38f);
                             break;
                         }
@@ -233,7 +370,6 @@ namespace ARPG
         {
             const int cx = 64, gy = 32; // where the prop stands: the cell's middle
             var random = new System.Random((int)kind * 97 + 3);
-            Blot(p, cx + 4, gy - 2, 22, 8, new Color(0f, 0f, 0f, 0.45f), random, PropSize, PropSize); // shadow
             switch (kind)
             {
                 case PropKind.Barrel:

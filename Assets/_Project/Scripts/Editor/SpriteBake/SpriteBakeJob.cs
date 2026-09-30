@@ -119,6 +119,9 @@ namespace ARPG.Editor
         [Tooltip("How tall the character stands in final pixels (the brief: the Wrathborn about 170). 0 keeps the model's own size, 1 m across the screen being 128 px.")]
         public float targetHeightPixels = 170f;
 
+        [Tooltip("Pixel art (the owner, 2026-09-30): every frame snapped to the game's palette with hard alpha and a one-pixel dark outline (PixelArt).")]
+        public bool pixelArt;
+
         [Tooltip("Renders at this many times the final size and averages down (the brief: 4).")]
         public int supersample = 4;
 

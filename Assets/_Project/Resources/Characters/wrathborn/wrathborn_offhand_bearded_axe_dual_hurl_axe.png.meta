@@ -522,7 +522,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -603,11 +603,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1920
-        width: 128
-        height: 128
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -624,12 +624,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_s_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1920
-        width: 128
-        height: 128
+        x: 80
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -646,12 +646,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_s_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1920
-        width: 128
-        height: 128
+        x: 160
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -668,12 +668,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_s_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1920
-        width: 128
-        height: 128
+        x: 240
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -690,12 +690,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_s_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1920
-        width: 128
-        height: 128
+        x: 320
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -712,12 +712,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_s_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1920
-        width: 128
-        height: 128
+        x: 400
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -734,12 +734,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_s_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1920
-        width: 128
-        height: 128
+        x: 480
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -756,12 +756,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_s_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1920
-        width: 128
-        height: 128
+        x: 560
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -778,12 +778,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_s_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1920
-        width: 128
-        height: 128
+        x: 640
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -800,12 +800,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_s_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1920
-        width: 128
-        height: 128
+        x: 720
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -823,11 +823,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1792
-        width: 128
-        height: 128
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -844,12 +844,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ssw_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1792
-        width: 128
-        height: 128
+        x: 80
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -866,12 +866,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ssw_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1792
-        width: 128
-        height: 128
+        x: 160
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -888,12 +888,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ssw_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1792
-        width: 128
-        height: 128
+        x: 240
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -910,12 +910,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ssw_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1792
-        width: 128
-        height: 128
+        x: 320
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -932,12 +932,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ssw_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1792
-        width: 128
-        height: 128
+        x: 400
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -954,12 +954,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ssw_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1792
-        width: 128
-        height: 128
+        x: 480
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -976,12 +976,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ssw_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1792
-        width: 128
-        height: 128
+        x: 560
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -998,12 +998,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ssw_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1792
-        width: 128
-        height: 128
+        x: 640
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1020,12 +1020,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ssw_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1792
-        width: 128
-        height: 128
+        x: 720
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1043,11 +1043,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1664
-        width: 128
-        height: 128
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1064,12 +1064,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sw_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1664
-        width: 128
-        height: 128
+        x: 80
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1086,12 +1086,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sw_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1664
-        width: 128
-        height: 128
+        x: 160
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1108,12 +1108,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sw_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1664
-        width: 128
-        height: 128
+        x: 240
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1130,12 +1130,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sw_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1664
-        width: 128
-        height: 128
+        x: 320
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1152,12 +1152,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sw_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1664
-        width: 128
-        height: 128
+        x: 400
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1174,12 +1174,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sw_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1664
-        width: 128
-        height: 128
+        x: 480
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1196,12 +1196,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sw_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1664
-        width: 128
-        height: 128
+        x: 560
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1218,12 +1218,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sw_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1664
-        width: 128
-        height: 128
+        x: 640
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1240,12 +1240,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sw_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1664
-        width: 128
-        height: 128
+        x: 720
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1263,11 +1263,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1536
-        width: 128
-        height: 128
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1284,12 +1284,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wsw_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1536
-        width: 128
-        height: 128
+        x: 80
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1306,12 +1306,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wsw_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1536
-        width: 128
-        height: 128
+        x: 160
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1328,12 +1328,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wsw_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1536
-        width: 128
-        height: 128
+        x: 240
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1350,12 +1350,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wsw_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1536
-        width: 128
-        height: 128
+        x: 320
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1372,12 +1372,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wsw_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1536
-        width: 128
-        height: 128
+        x: 400
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1394,12 +1394,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wsw_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1536
-        width: 128
-        height: 128
+        x: 480
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1416,12 +1416,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wsw_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1536
-        width: 128
-        height: 128
+        x: 560
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1438,12 +1438,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wsw_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1536
-        width: 128
-        height: 128
+        x: 640
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1460,12 +1460,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wsw_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1536
-        width: 128
-        height: 128
+        x: 720
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1483,11 +1483,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1408
-        width: 128
-        height: 128
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1504,12 +1504,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_w_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1408
-        width: 128
-        height: 128
+        x: 80
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1526,12 +1526,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_w_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1408
-        width: 128
-        height: 128
+        x: 160
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1548,12 +1548,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_w_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1408
-        width: 128
-        height: 128
+        x: 240
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1570,12 +1570,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_w_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1408
-        width: 128
-        height: 128
+        x: 320
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1592,12 +1592,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_w_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1408
-        width: 128
-        height: 128
+        x: 400
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1614,12 +1614,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_w_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1408
-        width: 128
-        height: 128
+        x: 480
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1636,12 +1636,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_w_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1408
-        width: 128
-        height: 128
+        x: 560
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1658,12 +1658,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_w_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1408
-        width: 128
-        height: 128
+        x: 640
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1680,12 +1680,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_w_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1408
-        width: 128
-        height: 128
+        x: 720
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1703,11 +1703,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1280
-        width: 128
-        height: 128
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1724,12 +1724,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wnw_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1280
-        width: 128
-        height: 128
+        x: 80
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1746,12 +1746,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wnw_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1280
-        width: 128
-        height: 128
+        x: 160
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1768,12 +1768,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wnw_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1280
-        width: 128
-        height: 128
+        x: 240
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1790,12 +1790,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wnw_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1280
-        width: 128
-        height: 128
+        x: 320
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1812,12 +1812,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wnw_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1280
-        width: 128
-        height: 128
+        x: 400
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1834,12 +1834,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wnw_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1280
-        width: 128
-        height: 128
+        x: 480
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1856,12 +1856,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wnw_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1280
-        width: 128
-        height: 128
+        x: 560
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1878,12 +1878,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wnw_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1280
-        width: 128
-        height: 128
+        x: 640
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1900,12 +1900,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_wnw_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1280
-        width: 128
-        height: 128
+        x: 720
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1923,11 +1923,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1152
-        width: 128
-        height: 128
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1944,12 +1944,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nw_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1152
-        width: 128
-        height: 128
+        x: 80
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1966,12 +1966,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nw_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1152
-        width: 128
-        height: 128
+        x: 160
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1988,12 +1988,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nw_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1152
-        width: 128
-        height: 128
+        x: 240
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2010,12 +2010,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nw_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1152
-        width: 128
-        height: 128
+        x: 320
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2032,12 +2032,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nw_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1152
-        width: 128
-        height: 128
+        x: 400
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2054,12 +2054,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nw_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1152
-        width: 128
-        height: 128
+        x: 480
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2076,12 +2076,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nw_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1152
-        width: 128
-        height: 128
+        x: 560
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2098,12 +2098,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nw_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1152
-        width: 128
-        height: 128
+        x: 640
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2120,12 +2120,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nw_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1152
-        width: 128
-        height: 128
+        x: 720
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2143,11 +2143,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
-        width: 128
-        height: 128
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2164,12 +2164,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nnw_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1024
-        width: 128
-        height: 128
+        x: 80
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2186,12 +2186,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nnw_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1024
-        width: 128
-        height: 128
+        x: 160
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2208,12 +2208,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nnw_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1024
-        width: 128
-        height: 128
+        x: 240
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2230,12 +2230,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nnw_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1024
-        width: 128
-        height: 128
+        x: 320
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2252,12 +2252,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nnw_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1024
-        width: 128
-        height: 128
+        x: 400
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2274,12 +2274,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nnw_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1024
-        width: 128
-        height: 128
+        x: 480
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2296,12 +2296,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nnw_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1024
-        width: 128
-        height: 128
+        x: 560
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2318,12 +2318,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nnw_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1024
-        width: 128
-        height: 128
+        x: 640
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2340,12 +2340,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nnw_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1024
-        width: 128
-        height: 128
+        x: 720
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2363,11 +2363,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 896
-        width: 128
-        height: 128
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2384,12 +2384,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_n_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 896
-        width: 128
-        height: 128
+        x: 80
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2406,12 +2406,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_n_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 896
-        width: 128
-        height: 128
+        x: 160
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2428,12 +2428,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_n_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 896
-        width: 128
-        height: 128
+        x: 240
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2450,12 +2450,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_n_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 896
-        width: 128
-        height: 128
+        x: 320
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2472,12 +2472,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_n_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 896
-        width: 128
-        height: 128
+        x: 400
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2494,12 +2494,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_n_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 896
-        width: 128
-        height: 128
+        x: 480
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2516,12 +2516,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_n_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 896
-        width: 128
-        height: 128
+        x: 560
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2538,12 +2538,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_n_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 896
-        width: 128
-        height: 128
+        x: 640
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2560,12 +2560,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_n_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 896
-        width: 128
-        height: 128
+        x: 720
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2583,11 +2583,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 128
-        height: 128
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2604,12 +2604,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nne_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 768
-        width: 128
-        height: 128
+        x: 80
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2626,12 +2626,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nne_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 768
-        width: 128
-        height: 128
+        x: 160
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2648,12 +2648,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nne_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 768
-        width: 128
-        height: 128
+        x: 240
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2670,12 +2670,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nne_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 768
-        width: 128
-        height: 128
+        x: 320
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2692,12 +2692,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nne_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 768
-        width: 128
-        height: 128
+        x: 400
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2714,12 +2714,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nne_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 128
-        height: 128
+        x: 480
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2736,12 +2736,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nne_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 768
-        width: 128
-        height: 128
+        x: 560
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2758,12 +2758,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nne_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 768
-        width: 128
-        height: 128
+        x: 640
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2780,12 +2780,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_nne_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 768
-        width: 128
-        height: 128
+        x: 720
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2803,11 +2803,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 640
-        width: 128
-        height: 128
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2824,12 +2824,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ne_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 640
-        width: 128
-        height: 128
+        x: 80
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2846,12 +2846,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ne_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 640
-        width: 128
-        height: 128
+        x: 160
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2868,12 +2868,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ne_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 640
-        width: 128
-        height: 128
+        x: 240
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2890,12 +2890,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ne_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 640
-        width: 128
-        height: 128
+        x: 320
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2912,12 +2912,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ne_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 640
-        width: 128
-        height: 128
+        x: 400
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2934,12 +2934,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ne_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 640
-        width: 128
-        height: 128
+        x: 480
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2956,12 +2956,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ne_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 640
-        width: 128
-        height: 128
+        x: 560
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2978,12 +2978,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ne_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 640
-        width: 128
-        height: 128
+        x: 640
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3000,12 +3000,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ne_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 640
-        width: 128
-        height: 128
+        x: 720
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3023,11 +3023,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
-        width: 128
-        height: 128
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3044,12 +3044,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ene_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 512
-        width: 128
-        height: 128
+        x: 80
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3066,12 +3066,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ene_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 512
-        width: 128
-        height: 128
+        x: 160
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3088,12 +3088,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ene_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 512
-        width: 128
-        height: 128
+        x: 240
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3110,12 +3110,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ene_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 512
-        width: 128
-        height: 128
+        x: 320
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3132,12 +3132,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ene_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 512
-        width: 128
-        height: 128
+        x: 400
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3154,12 +3154,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ene_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 512
-        width: 128
-        height: 128
+        x: 480
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3176,12 +3176,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ene_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 512
-        width: 128
-        height: 128
+        x: 560
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3198,12 +3198,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ene_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 512
-        width: 128
-        height: 128
+        x: 640
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3220,12 +3220,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ene_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 512
-        width: 128
-        height: 128
+        x: 720
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3243,11 +3243,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 384
-        width: 128
-        height: 128
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3264,12 +3264,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_e_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 384
-        width: 128
-        height: 128
+        x: 80
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3286,12 +3286,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_e_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 384
-        width: 128
-        height: 128
+        x: 160
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3308,12 +3308,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_e_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 384
-        width: 128
-        height: 128
+        x: 240
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3330,12 +3330,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_e_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 384
-        width: 128
-        height: 128
+        x: 320
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3352,12 +3352,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_e_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 384
-        width: 128
-        height: 128
+        x: 400
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3374,12 +3374,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_e_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 384
-        width: 128
-        height: 128
+        x: 480
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3396,12 +3396,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_e_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 384
-        width: 128
-        height: 128
+        x: 560
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3418,12 +3418,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_e_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 384
-        width: 128
-        height: 128
+        x: 640
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3440,12 +3440,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_e_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 384
-        width: 128
-        height: 128
+        x: 720
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3463,11 +3463,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 128
-        height: 128
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3484,12 +3484,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ese_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
-        width: 128
-        height: 128
+        x: 80
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3506,12 +3506,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ese_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
-        width: 128
-        height: 128
+        x: 160
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3528,12 +3528,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ese_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 256
-        width: 128
-        height: 128
+        x: 240
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3550,12 +3550,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ese_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 256
-        width: 128
-        height: 128
+        x: 320
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3572,12 +3572,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ese_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 256
-        width: 128
-        height: 128
+        x: 400
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3594,12 +3594,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ese_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 256
-        width: 128
-        height: 128
+        x: 480
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3616,12 +3616,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ese_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 256
-        width: 128
-        height: 128
+        x: 560
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3638,12 +3638,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ese_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 256
-        width: 128
-        height: 128
+        x: 640
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3660,12 +3660,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_ese_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 256
-        width: 128
-        height: 128
+        x: 720
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3683,11 +3683,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 128
-        height: 128
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3704,12 +3704,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_se_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
-        width: 128
-        height: 128
+        x: 80
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3726,12 +3726,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_se_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 128
-        width: 128
-        height: 128
+        x: 160
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3748,12 +3748,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_se_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 128
-        width: 128
-        height: 128
+        x: 240
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3770,12 +3770,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_se_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 128
-        width: 128
-        height: 128
+        x: 320
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3792,12 +3792,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_se_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 128
-        width: 128
-        height: 128
+        x: 400
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3814,12 +3814,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_se_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 128
-        width: 128
-        height: 128
+        x: 480
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3836,12 +3836,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_se_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 128
-        width: 128
-        height: 128
+        x: 560
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3858,12 +3858,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_se_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 128
-        width: 128
-        height: 128
+        x: 640
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3880,12 +3880,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_se_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 128
-        width: 128
-        height: 128
+        x: 720
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3904,10 +3904,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3924,12 +3924,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sse_01
       rect:
         serializedVersion: 2
-        x: 128
+        x: 80
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3946,12 +3946,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sse_02
       rect:
         serializedVersion: 2
-        x: 256
+        x: 160
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3968,12 +3968,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sse_03
       rect:
         serializedVersion: 2
-        x: 384
+        x: 240
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3990,12 +3990,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sse_04
       rect:
         serializedVersion: 2
-        x: 512
+        x: 320
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4012,12 +4012,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sse_05
       rect:
         serializedVersion: 2
-        x: 640
+        x: 400
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4034,12 +4034,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sse_06
       rect:
         serializedVersion: 2
-        x: 768
+        x: 480
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4056,12 +4056,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sse_07
       rect:
         serializedVersion: 2
-        x: 896
+        x: 560
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4078,12 +4078,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sse_08
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 640
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4100,12 +4100,12 @@ TextureImporter:
       name: wrathborn_offhand_bearded_axe_dual_hurl_axe_sse_09
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 720
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

@@ -1272,7 +1272,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -1353,11 +1353,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1920
-        width: 128
-        height: 128
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1374,12 +1374,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1920
-        width: 128
-        height: 128
+        x: 80
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1396,12 +1396,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1920
-        width: 128
-        height: 128
+        x: 160
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1418,12 +1418,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1920
-        width: 128
-        height: 128
+        x: 240
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1440,12 +1440,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1920
-        width: 128
-        height: 128
+        x: 320
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1462,12 +1462,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1920
-        width: 128
-        height: 128
+        x: 400
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1484,12 +1484,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1920
-        width: 128
-        height: 128
+        x: 480
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1506,12 +1506,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1920
-        width: 128
-        height: 128
+        x: 560
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1528,12 +1528,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1920
-        width: 128
-        height: 128
+        x: 640
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1550,12 +1550,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1920
-        width: 128
-        height: 128
+        x: 720
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1572,12 +1572,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1920
-        width: 128
-        height: 128
+        x: 800
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1594,12 +1594,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 1920
-        width: 128
-        height: 128
+        x: 880
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1616,12 +1616,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1920
-        width: 128
-        height: 128
+        x: 960
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1638,12 +1638,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 1920
-        width: 128
-        height: 128
+        x: 1040
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1660,12 +1660,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1920
-        width: 128
-        height: 128
+        x: 1120
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1682,12 +1682,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1920
-        width: 128
-        height: 128
+        x: 1200
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1704,12 +1704,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1920
-        width: 128
-        height: 128
+        x: 1280
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1726,12 +1726,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 1920
-        width: 128
-        height: 128
+        x: 1360
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1748,12 +1748,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1920
-        width: 128
-        height: 128
+        x: 1440
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1770,12 +1770,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 1920
-        width: 128
-        height: 128
+        x: 1520
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1792,12 +1792,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 1920
-        width: 128
-        height: 128
+        x: 1600
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1814,12 +1814,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 1920
-        width: 128
-        height: 128
+        x: 1680
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1836,12 +1836,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 1920
-        width: 128
-        height: 128
+        x: 1760
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1858,12 +1858,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 1920
-        width: 128
-        height: 128
+        x: 1840
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1880,12 +1880,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_s_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1920
-        width: 128
-        height: 128
+        x: 1920
+        y: 1200
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1903,11 +1903,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1792
-        width: 128
-        height: 128
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1924,12 +1924,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1792
-        width: 128
-        height: 128
+        x: 80
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1946,12 +1946,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1792
-        width: 128
-        height: 128
+        x: 160
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1968,12 +1968,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1792
-        width: 128
-        height: 128
+        x: 240
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1990,12 +1990,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1792
-        width: 128
-        height: 128
+        x: 320
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2012,12 +2012,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1792
-        width: 128
-        height: 128
+        x: 400
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2034,12 +2034,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1792
-        width: 128
-        height: 128
+        x: 480
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2056,12 +2056,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1792
-        width: 128
-        height: 128
+        x: 560
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2078,12 +2078,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1792
-        width: 128
-        height: 128
+        x: 640
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2100,12 +2100,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1792
-        width: 128
-        height: 128
+        x: 720
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2122,12 +2122,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1792
-        width: 128
-        height: 128
+        x: 800
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2144,12 +2144,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 1792
-        width: 128
-        height: 128
+        x: 880
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2166,12 +2166,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1792
-        width: 128
-        height: 128
+        x: 960
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2188,12 +2188,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 1792
-        width: 128
-        height: 128
+        x: 1040
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2210,12 +2210,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1792
-        width: 128
-        height: 128
+        x: 1120
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2232,12 +2232,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1792
-        width: 128
-        height: 128
+        x: 1200
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2254,12 +2254,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1792
-        width: 128
-        height: 128
+        x: 1280
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2276,12 +2276,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 1792
-        width: 128
-        height: 128
+        x: 1360
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2298,12 +2298,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1792
-        width: 128
-        height: 128
+        x: 1440
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2320,12 +2320,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 1792
-        width: 128
-        height: 128
+        x: 1520
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2342,12 +2342,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 1792
-        width: 128
-        height: 128
+        x: 1600
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2364,12 +2364,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 1792
-        width: 128
-        height: 128
+        x: 1680
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2386,12 +2386,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 1792
-        width: 128
-        height: 128
+        x: 1760
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2408,12 +2408,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 1792
-        width: 128
-        height: 128
+        x: 1840
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2430,12 +2430,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ssw_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1792
-        width: 128
-        height: 128
+        x: 1920
+        y: 1120
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2453,11 +2453,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1664
-        width: 128
-        height: 128
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2474,12 +2474,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1664
-        width: 128
-        height: 128
+        x: 80
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2496,12 +2496,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1664
-        width: 128
-        height: 128
+        x: 160
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2518,12 +2518,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1664
-        width: 128
-        height: 128
+        x: 240
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2540,12 +2540,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1664
-        width: 128
-        height: 128
+        x: 320
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2562,12 +2562,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1664
-        width: 128
-        height: 128
+        x: 400
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2584,12 +2584,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1664
-        width: 128
-        height: 128
+        x: 480
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2606,12 +2606,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1664
-        width: 128
-        height: 128
+        x: 560
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2628,12 +2628,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1664
-        width: 128
-        height: 128
+        x: 640
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2650,12 +2650,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1664
-        width: 128
-        height: 128
+        x: 720
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2672,12 +2672,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1664
-        width: 128
-        height: 128
+        x: 800
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2694,12 +2694,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 1664
-        width: 128
-        height: 128
+        x: 880
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2716,12 +2716,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1664
-        width: 128
-        height: 128
+        x: 960
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2738,12 +2738,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 1664
-        width: 128
-        height: 128
+        x: 1040
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2760,12 +2760,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1664
-        width: 128
-        height: 128
+        x: 1120
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2782,12 +2782,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1664
-        width: 128
-        height: 128
+        x: 1200
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2804,12 +2804,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1664
-        width: 128
-        height: 128
+        x: 1280
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2826,12 +2826,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 1664
-        width: 128
-        height: 128
+        x: 1360
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2848,12 +2848,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1664
-        width: 128
-        height: 128
+        x: 1440
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2870,12 +2870,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 1664
-        width: 128
-        height: 128
+        x: 1520
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2892,12 +2892,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 1664
-        width: 128
-        height: 128
+        x: 1600
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2914,12 +2914,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 1664
-        width: 128
-        height: 128
+        x: 1680
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2936,12 +2936,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 1664
-        width: 128
-        height: 128
+        x: 1760
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2958,12 +2958,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 1664
-        width: 128
-        height: 128
+        x: 1840
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2980,12 +2980,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sw_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1664
-        width: 128
-        height: 128
+        x: 1920
+        y: 1040
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3003,11 +3003,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1536
-        width: 128
-        height: 128
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3024,12 +3024,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1536
-        width: 128
-        height: 128
+        x: 80
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3046,12 +3046,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1536
-        width: 128
-        height: 128
+        x: 160
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3068,12 +3068,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1536
-        width: 128
-        height: 128
+        x: 240
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3090,12 +3090,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1536
-        width: 128
-        height: 128
+        x: 320
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3112,12 +3112,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1536
-        width: 128
-        height: 128
+        x: 400
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3134,12 +3134,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1536
-        width: 128
-        height: 128
+        x: 480
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3156,12 +3156,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1536
-        width: 128
-        height: 128
+        x: 560
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3178,12 +3178,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1536
-        width: 128
-        height: 128
+        x: 640
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3200,12 +3200,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1536
-        width: 128
-        height: 128
+        x: 720
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3222,12 +3222,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1536
-        width: 128
-        height: 128
+        x: 800
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3244,12 +3244,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 1536
-        width: 128
-        height: 128
+        x: 880
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3266,12 +3266,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1536
-        width: 128
-        height: 128
+        x: 960
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3288,12 +3288,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 1536
-        width: 128
-        height: 128
+        x: 1040
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3310,12 +3310,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1536
-        width: 128
-        height: 128
+        x: 1120
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3332,12 +3332,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1536
-        width: 128
-        height: 128
+        x: 1200
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3354,12 +3354,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1536
-        width: 128
-        height: 128
+        x: 1280
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3376,12 +3376,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 1536
-        width: 128
-        height: 128
+        x: 1360
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3398,12 +3398,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1536
-        width: 128
-        height: 128
+        x: 1440
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3420,12 +3420,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 1536
-        width: 128
-        height: 128
+        x: 1520
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3442,12 +3442,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 1536
-        width: 128
-        height: 128
+        x: 1600
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3464,12 +3464,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 1536
-        width: 128
-        height: 128
+        x: 1680
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3486,12 +3486,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 1536
-        width: 128
-        height: 128
+        x: 1760
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3508,12 +3508,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 1536
-        width: 128
-        height: 128
+        x: 1840
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3530,12 +3530,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wsw_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1536
-        width: 128
-        height: 128
+        x: 1920
+        y: 960
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3553,11 +3553,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1408
-        width: 128
-        height: 128
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3574,12 +3574,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1408
-        width: 128
-        height: 128
+        x: 80
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3596,12 +3596,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1408
-        width: 128
-        height: 128
+        x: 160
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3618,12 +3618,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1408
-        width: 128
-        height: 128
+        x: 240
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3640,12 +3640,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1408
-        width: 128
-        height: 128
+        x: 320
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3662,12 +3662,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1408
-        width: 128
-        height: 128
+        x: 400
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3684,12 +3684,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1408
-        width: 128
-        height: 128
+        x: 480
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3706,12 +3706,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1408
-        width: 128
-        height: 128
+        x: 560
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3728,12 +3728,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1408
-        width: 128
-        height: 128
+        x: 640
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3750,12 +3750,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1408
-        width: 128
-        height: 128
+        x: 720
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3772,12 +3772,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1408
-        width: 128
-        height: 128
+        x: 800
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3794,12 +3794,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 1408
-        width: 128
-        height: 128
+        x: 880
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3816,12 +3816,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1408
-        width: 128
-        height: 128
+        x: 960
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3838,12 +3838,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 1408
-        width: 128
-        height: 128
+        x: 1040
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3860,12 +3860,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1408
-        width: 128
-        height: 128
+        x: 1120
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3882,12 +3882,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1408
-        width: 128
-        height: 128
+        x: 1200
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3904,12 +3904,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1408
-        width: 128
-        height: 128
+        x: 1280
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3926,12 +3926,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 1408
-        width: 128
-        height: 128
+        x: 1360
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3948,12 +3948,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1408
-        width: 128
-        height: 128
+        x: 1440
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3970,12 +3970,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 1408
-        width: 128
-        height: 128
+        x: 1520
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3992,12 +3992,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 1408
-        width: 128
-        height: 128
+        x: 1600
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4014,12 +4014,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 1408
-        width: 128
-        height: 128
+        x: 1680
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4036,12 +4036,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 1408
-        width: 128
-        height: 128
+        x: 1760
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4058,12 +4058,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 1408
-        width: 128
-        height: 128
+        x: 1840
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4080,12 +4080,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_w_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1408
-        width: 128
-        height: 128
+        x: 1920
+        y: 880
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4103,11 +4103,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1280
-        width: 128
-        height: 128
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4124,12 +4124,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1280
-        width: 128
-        height: 128
+        x: 80
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4146,12 +4146,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1280
-        width: 128
-        height: 128
+        x: 160
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4168,12 +4168,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1280
-        width: 128
-        height: 128
+        x: 240
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4190,12 +4190,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1280
-        width: 128
-        height: 128
+        x: 320
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4212,12 +4212,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1280
-        width: 128
-        height: 128
+        x: 400
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4234,12 +4234,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1280
-        width: 128
-        height: 128
+        x: 480
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4256,12 +4256,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1280
-        width: 128
-        height: 128
+        x: 560
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4278,12 +4278,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1280
-        width: 128
-        height: 128
+        x: 640
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4300,12 +4300,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1280
-        width: 128
-        height: 128
+        x: 720
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4322,12 +4322,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1280
-        width: 128
-        height: 128
+        x: 800
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4344,12 +4344,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 1280
-        width: 128
-        height: 128
+        x: 880
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4366,12 +4366,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1280
-        width: 128
-        height: 128
+        x: 960
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4388,12 +4388,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 1280
-        width: 128
-        height: 128
+        x: 1040
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4410,12 +4410,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1280
-        width: 128
-        height: 128
+        x: 1120
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4432,12 +4432,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1280
-        width: 128
-        height: 128
+        x: 1200
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4454,12 +4454,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1280
-        width: 128
-        height: 128
+        x: 1280
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4476,12 +4476,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 1280
-        width: 128
-        height: 128
+        x: 1360
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4498,12 +4498,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1280
-        width: 128
-        height: 128
+        x: 1440
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4520,12 +4520,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 1280
-        width: 128
-        height: 128
+        x: 1520
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4542,12 +4542,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 1280
-        width: 128
-        height: 128
+        x: 1600
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4564,12 +4564,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 1280
-        width: 128
-        height: 128
+        x: 1680
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4586,12 +4586,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 1280
-        width: 128
-        height: 128
+        x: 1760
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4608,12 +4608,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 1280
-        width: 128
-        height: 128
+        x: 1840
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4630,12 +4630,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_wnw_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1280
-        width: 128
-        height: 128
+        x: 1920
+        y: 800
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4653,11 +4653,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1152
-        width: 128
-        height: 128
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4674,12 +4674,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1152
-        width: 128
-        height: 128
+        x: 80
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4696,12 +4696,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1152
-        width: 128
-        height: 128
+        x: 160
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4718,12 +4718,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1152
-        width: 128
-        height: 128
+        x: 240
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4740,12 +4740,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1152
-        width: 128
-        height: 128
+        x: 320
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4762,12 +4762,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1152
-        width: 128
-        height: 128
+        x: 400
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4784,12 +4784,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1152
-        width: 128
-        height: 128
+        x: 480
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4806,12 +4806,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1152
-        width: 128
-        height: 128
+        x: 560
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4828,12 +4828,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1152
-        width: 128
-        height: 128
+        x: 640
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4850,12 +4850,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1152
-        width: 128
-        height: 128
+        x: 720
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4872,12 +4872,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1152
-        width: 128
-        height: 128
+        x: 800
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4894,12 +4894,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 1152
-        width: 128
-        height: 128
+        x: 880
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4916,12 +4916,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1152
-        width: 128
-        height: 128
+        x: 960
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4938,12 +4938,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 1152
-        width: 128
-        height: 128
+        x: 1040
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4960,12 +4960,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1152
-        width: 128
-        height: 128
+        x: 1120
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4982,12 +4982,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1152
-        width: 128
-        height: 128
+        x: 1200
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5004,12 +5004,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1152
-        width: 128
-        height: 128
+        x: 1280
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5026,12 +5026,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 1152
-        width: 128
-        height: 128
+        x: 1360
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5048,12 +5048,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1152
-        width: 128
-        height: 128
+        x: 1440
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5070,12 +5070,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 1152
-        width: 128
-        height: 128
+        x: 1520
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5092,12 +5092,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 1152
-        width: 128
-        height: 128
+        x: 1600
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5114,12 +5114,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 1152
-        width: 128
-        height: 128
+        x: 1680
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5136,12 +5136,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 1152
-        width: 128
-        height: 128
+        x: 1760
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5158,12 +5158,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 1152
-        width: 128
-        height: 128
+        x: 1840
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5180,12 +5180,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nw_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1152
-        width: 128
-        height: 128
+        x: 1920
+        y: 720
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5203,11 +5203,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
-        width: 128
-        height: 128
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5224,12 +5224,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 1024
-        width: 128
-        height: 128
+        x: 80
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5246,12 +5246,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1024
-        width: 128
-        height: 128
+        x: 160
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5268,12 +5268,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1024
-        width: 128
-        height: 128
+        x: 240
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5290,12 +5290,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1024
-        width: 128
-        height: 128
+        x: 320
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5312,12 +5312,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1024
-        width: 128
-        height: 128
+        x: 400
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5334,12 +5334,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1024
-        width: 128
-        height: 128
+        x: 480
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5356,12 +5356,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 1024
-        width: 128
-        height: 128
+        x: 560
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5378,12 +5378,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1024
-        width: 128
-        height: 128
+        x: 640
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5400,12 +5400,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1024
-        width: 128
-        height: 128
+        x: 720
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5422,12 +5422,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1024
-        width: 128
-        height: 128
+        x: 800
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5444,12 +5444,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 1024
-        width: 128
-        height: 128
+        x: 880
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5466,12 +5466,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1024
-        width: 128
-        height: 128
+        x: 960
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5488,12 +5488,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 1024
-        width: 128
-        height: 128
+        x: 1040
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5510,12 +5510,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1024
-        width: 128
-        height: 128
+        x: 1120
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5532,12 +5532,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1024
-        width: 128
-        height: 128
+        x: 1200
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5554,12 +5554,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1024
-        width: 128
-        height: 128
+        x: 1280
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5576,12 +5576,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 1024
-        width: 128
-        height: 128
+        x: 1360
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5598,12 +5598,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1024
-        width: 128
-        height: 128
+        x: 1440
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5620,12 +5620,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 1024
-        width: 128
-        height: 128
+        x: 1520
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5642,12 +5642,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 1024
-        width: 128
-        height: 128
+        x: 1600
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5664,12 +5664,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 1024
-        width: 128
-        height: 128
+        x: 1680
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5686,12 +5686,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 1024
-        width: 128
-        height: 128
+        x: 1760
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5708,12 +5708,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 1024
-        width: 128
-        height: 128
+        x: 1840
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5730,12 +5730,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nnw_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1024
-        width: 128
-        height: 128
+        x: 1920
+        y: 640
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5753,11 +5753,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 896
-        width: 128
-        height: 128
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5774,12 +5774,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 896
-        width: 128
-        height: 128
+        x: 80
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5796,12 +5796,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 896
-        width: 128
-        height: 128
+        x: 160
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5818,12 +5818,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 896
-        width: 128
-        height: 128
+        x: 240
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5840,12 +5840,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 896
-        width: 128
-        height: 128
+        x: 320
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5862,12 +5862,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 896
-        width: 128
-        height: 128
+        x: 400
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5884,12 +5884,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 896
-        width: 128
-        height: 128
+        x: 480
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5906,12 +5906,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 896
-        width: 128
-        height: 128
+        x: 560
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5928,12 +5928,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 896
-        width: 128
-        height: 128
+        x: 640
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5950,12 +5950,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 896
-        width: 128
-        height: 128
+        x: 720
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5972,12 +5972,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 896
-        width: 128
-        height: 128
+        x: 800
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5994,12 +5994,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 896
-        width: 128
-        height: 128
+        x: 880
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6016,12 +6016,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 896
-        width: 128
-        height: 128
+        x: 960
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6038,12 +6038,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 896
-        width: 128
-        height: 128
+        x: 1040
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6060,12 +6060,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 896
-        width: 128
-        height: 128
+        x: 1120
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6082,12 +6082,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 896
-        width: 128
-        height: 128
+        x: 1200
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6104,12 +6104,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 896
-        width: 128
-        height: 128
+        x: 1280
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6126,12 +6126,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 896
-        width: 128
-        height: 128
+        x: 1360
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6148,12 +6148,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 896
-        width: 128
-        height: 128
+        x: 1440
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6170,12 +6170,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 896
-        width: 128
-        height: 128
+        x: 1520
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6192,12 +6192,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 896
-        width: 128
-        height: 128
+        x: 1600
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6214,12 +6214,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 896
-        width: 128
-        height: 128
+        x: 1680
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6236,12 +6236,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 896
-        width: 128
-        height: 128
+        x: 1760
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6258,12 +6258,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 896
-        width: 128
-        height: 128
+        x: 1840
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6280,12 +6280,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_n_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 896
-        width: 128
-        height: 128
+        x: 1920
+        y: 560
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6303,11 +6303,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 128
-        height: 128
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6324,12 +6324,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 768
-        width: 128
-        height: 128
+        x: 80
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6346,12 +6346,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 768
-        width: 128
-        height: 128
+        x: 160
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6368,12 +6368,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 768
-        width: 128
-        height: 128
+        x: 240
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6390,12 +6390,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 768
-        width: 128
-        height: 128
+        x: 320
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6412,12 +6412,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 768
-        width: 128
-        height: 128
+        x: 400
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6434,12 +6434,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 128
-        height: 128
+        x: 480
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6456,12 +6456,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 768
-        width: 128
-        height: 128
+        x: 560
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6478,12 +6478,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 768
-        width: 128
-        height: 128
+        x: 640
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6500,12 +6500,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 768
-        width: 128
-        height: 128
+        x: 720
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6522,12 +6522,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 768
-        width: 128
-        height: 128
+        x: 800
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6544,12 +6544,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 768
-        width: 128
-        height: 128
+        x: 880
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6566,12 +6566,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 768
-        width: 128
-        height: 128
+        x: 960
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6588,12 +6588,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 768
-        width: 128
-        height: 128
+        x: 1040
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6610,12 +6610,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 768
-        width: 128
-        height: 128
+        x: 1120
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6632,12 +6632,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 768
-        width: 128
-        height: 128
+        x: 1200
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6654,12 +6654,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 768
-        width: 128
-        height: 128
+        x: 1280
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6676,12 +6676,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 768
-        width: 128
-        height: 128
+        x: 1360
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6698,12 +6698,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 768
-        width: 128
-        height: 128
+        x: 1440
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6720,12 +6720,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 768
-        width: 128
-        height: 128
+        x: 1520
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6742,12 +6742,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 768
-        width: 128
-        height: 128
+        x: 1600
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6764,12 +6764,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 768
-        width: 128
-        height: 128
+        x: 1680
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6786,12 +6786,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 768
-        width: 128
-        height: 128
+        x: 1760
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6808,12 +6808,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 768
-        width: 128
-        height: 128
+        x: 1840
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6830,12 +6830,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_nne_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 768
-        width: 128
-        height: 128
+        x: 1920
+        y: 480
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6853,11 +6853,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 640
-        width: 128
-        height: 128
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6874,12 +6874,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 640
-        width: 128
-        height: 128
+        x: 80
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6896,12 +6896,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 640
-        width: 128
-        height: 128
+        x: 160
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6918,12 +6918,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 640
-        width: 128
-        height: 128
+        x: 240
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6940,12 +6940,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 640
-        width: 128
-        height: 128
+        x: 320
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6962,12 +6962,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 640
-        width: 128
-        height: 128
+        x: 400
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6984,12 +6984,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 640
-        width: 128
-        height: 128
+        x: 480
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7006,12 +7006,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 640
-        width: 128
-        height: 128
+        x: 560
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7028,12 +7028,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 640
-        width: 128
-        height: 128
+        x: 640
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7050,12 +7050,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 640
-        width: 128
-        height: 128
+        x: 720
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7072,12 +7072,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 640
-        width: 128
-        height: 128
+        x: 800
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7094,12 +7094,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 640
-        width: 128
-        height: 128
+        x: 880
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7116,12 +7116,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 640
-        width: 128
-        height: 128
+        x: 960
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7138,12 +7138,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 640
-        width: 128
-        height: 128
+        x: 1040
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7160,12 +7160,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 640
-        width: 128
-        height: 128
+        x: 1120
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7182,12 +7182,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 640
-        width: 128
-        height: 128
+        x: 1200
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7204,12 +7204,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 640
-        width: 128
-        height: 128
+        x: 1280
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7226,12 +7226,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 640
-        width: 128
-        height: 128
+        x: 1360
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7248,12 +7248,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 640
-        width: 128
-        height: 128
+        x: 1440
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7270,12 +7270,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 640
-        width: 128
-        height: 128
+        x: 1520
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7292,12 +7292,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 640
-        width: 128
-        height: 128
+        x: 1600
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7314,12 +7314,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 640
-        width: 128
-        height: 128
+        x: 1680
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7336,12 +7336,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 640
-        width: 128
-        height: 128
+        x: 1760
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7358,12 +7358,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 640
-        width: 128
-        height: 128
+        x: 1840
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7380,12 +7380,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ne_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 640
-        width: 128
-        height: 128
+        x: 1920
+        y: 400
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7403,11 +7403,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
-        width: 128
-        height: 128
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7424,12 +7424,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 512
-        width: 128
-        height: 128
+        x: 80
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7446,12 +7446,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 512
-        width: 128
-        height: 128
+        x: 160
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7468,12 +7468,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 512
-        width: 128
-        height: 128
+        x: 240
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7490,12 +7490,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 512
-        width: 128
-        height: 128
+        x: 320
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7512,12 +7512,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 512
-        width: 128
-        height: 128
+        x: 400
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7534,12 +7534,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 512
-        width: 128
-        height: 128
+        x: 480
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7556,12 +7556,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 512
-        width: 128
-        height: 128
+        x: 560
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7578,12 +7578,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 512
-        width: 128
-        height: 128
+        x: 640
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7600,12 +7600,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 512
-        width: 128
-        height: 128
+        x: 720
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7622,12 +7622,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 512
-        width: 128
-        height: 128
+        x: 800
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7644,12 +7644,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 512
-        width: 128
-        height: 128
+        x: 880
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7666,12 +7666,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 512
-        width: 128
-        height: 128
+        x: 960
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7688,12 +7688,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 512
-        width: 128
-        height: 128
+        x: 1040
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7710,12 +7710,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 512
-        width: 128
-        height: 128
+        x: 1120
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7732,12 +7732,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 512
-        width: 128
-        height: 128
+        x: 1200
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7754,12 +7754,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 512
-        width: 128
-        height: 128
+        x: 1280
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7776,12 +7776,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 512
-        width: 128
-        height: 128
+        x: 1360
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7798,12 +7798,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 512
-        width: 128
-        height: 128
+        x: 1440
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7820,12 +7820,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 512
-        width: 128
-        height: 128
+        x: 1520
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7842,12 +7842,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 512
-        width: 128
-        height: 128
+        x: 1600
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7864,12 +7864,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 512
-        width: 128
-        height: 128
+        x: 1680
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7886,12 +7886,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 512
-        width: 128
-        height: 128
+        x: 1760
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7908,12 +7908,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 512
-        width: 128
-        height: 128
+        x: 1840
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7930,12 +7930,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ene_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 512
-        width: 128
-        height: 128
+        x: 1920
+        y: 320
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7953,11 +7953,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 384
-        width: 128
-        height: 128
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7974,12 +7974,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 384
-        width: 128
-        height: 128
+        x: 80
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7996,12 +7996,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 384
-        width: 128
-        height: 128
+        x: 160
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8018,12 +8018,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 384
-        width: 128
-        height: 128
+        x: 240
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8040,12 +8040,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 384
-        width: 128
-        height: 128
+        x: 320
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8062,12 +8062,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 384
-        width: 128
-        height: 128
+        x: 400
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8084,12 +8084,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 384
-        width: 128
-        height: 128
+        x: 480
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8106,12 +8106,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 384
-        width: 128
-        height: 128
+        x: 560
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8128,12 +8128,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 384
-        width: 128
-        height: 128
+        x: 640
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8150,12 +8150,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 384
-        width: 128
-        height: 128
+        x: 720
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8172,12 +8172,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 384
-        width: 128
-        height: 128
+        x: 800
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8194,12 +8194,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 384
-        width: 128
-        height: 128
+        x: 880
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8216,12 +8216,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 384
-        width: 128
-        height: 128
+        x: 960
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8238,12 +8238,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 384
-        width: 128
-        height: 128
+        x: 1040
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8260,12 +8260,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 384
-        width: 128
-        height: 128
+        x: 1120
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8282,12 +8282,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 384
-        width: 128
-        height: 128
+        x: 1200
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8304,12 +8304,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 384
-        width: 128
-        height: 128
+        x: 1280
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8326,12 +8326,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 384
-        width: 128
-        height: 128
+        x: 1360
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8348,12 +8348,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 384
-        width: 128
-        height: 128
+        x: 1440
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8370,12 +8370,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 384
-        width: 128
-        height: 128
+        x: 1520
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8392,12 +8392,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 384
-        width: 128
-        height: 128
+        x: 1600
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8414,12 +8414,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 384
-        width: 128
-        height: 128
+        x: 1680
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8436,12 +8436,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 384
-        width: 128
-        height: 128
+        x: 1760
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8458,12 +8458,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 384
-        width: 128
-        height: 128
+        x: 1840
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8480,12 +8480,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_e_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 384
-        width: 128
-        height: 128
+        x: 1920
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8503,11 +8503,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 128
-        height: 128
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8524,12 +8524,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
-        width: 128
-        height: 128
+        x: 80
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8546,12 +8546,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
-        width: 128
-        height: 128
+        x: 160
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8568,12 +8568,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 256
-        width: 128
-        height: 128
+        x: 240
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8590,12 +8590,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 256
-        width: 128
-        height: 128
+        x: 320
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8612,12 +8612,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 256
-        width: 128
-        height: 128
+        x: 400
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8634,12 +8634,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 256
-        width: 128
-        height: 128
+        x: 480
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8656,12 +8656,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 256
-        width: 128
-        height: 128
+        x: 560
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8678,12 +8678,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 256
-        width: 128
-        height: 128
+        x: 640
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8700,12 +8700,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 256
-        width: 128
-        height: 128
+        x: 720
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8722,12 +8722,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 256
-        width: 128
-        height: 128
+        x: 800
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8744,12 +8744,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 256
-        width: 128
-        height: 128
+        x: 880
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8766,12 +8766,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 256
-        width: 128
-        height: 128
+        x: 960
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8788,12 +8788,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 256
-        width: 128
-        height: 128
+        x: 1040
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8810,12 +8810,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 256
-        width: 128
-        height: 128
+        x: 1120
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8832,12 +8832,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 256
-        width: 128
-        height: 128
+        x: 1200
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8854,12 +8854,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 256
-        width: 128
-        height: 128
+        x: 1280
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8876,12 +8876,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 256
-        width: 128
-        height: 128
+        x: 1360
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8898,12 +8898,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 256
-        width: 128
-        height: 128
+        x: 1440
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8920,12 +8920,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 256
-        width: 128
-        height: 128
+        x: 1520
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8942,12 +8942,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 256
-        width: 128
-        height: 128
+        x: 1600
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8964,12 +8964,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 256
-        width: 128
-        height: 128
+        x: 1680
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8986,12 +8986,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 256
-        width: 128
-        height: 128
+        x: 1760
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9008,12 +9008,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 256
-        width: 128
-        height: 128
+        x: 1840
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9030,12 +9030,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_ese_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 256
-        width: 128
-        height: 128
+        x: 1920
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9053,11 +9053,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 128
-        height: 128
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9074,12 +9074,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_01
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
-        width: 128
-        height: 128
+        x: 80
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9096,12 +9096,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_02
       rect:
         serializedVersion: 2
-        x: 256
-        y: 128
-        width: 128
-        height: 128
+        x: 160
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9118,12 +9118,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_03
       rect:
         serializedVersion: 2
-        x: 384
-        y: 128
-        width: 128
-        height: 128
+        x: 240
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9140,12 +9140,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_04
       rect:
         serializedVersion: 2
-        x: 512
-        y: 128
-        width: 128
-        height: 128
+        x: 320
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9162,12 +9162,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_05
       rect:
         serializedVersion: 2
-        x: 640
-        y: 128
-        width: 128
-        height: 128
+        x: 400
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9184,12 +9184,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_06
       rect:
         serializedVersion: 2
-        x: 768
-        y: 128
-        width: 128
-        height: 128
+        x: 480
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9206,12 +9206,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_07
       rect:
         serializedVersion: 2
-        x: 896
-        y: 128
-        width: 128
-        height: 128
+        x: 560
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9228,12 +9228,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_08
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 128
-        width: 128
-        height: 128
+        x: 640
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9250,12 +9250,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_09
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 128
-        width: 128
-        height: 128
+        x: 720
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9272,12 +9272,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_10
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 128
-        width: 128
-        height: 128
+        x: 800
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9294,12 +9294,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_11
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 128
-        width: 128
-        height: 128
+        x: 880
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9316,12 +9316,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_12
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 128
-        width: 128
-        height: 128
+        x: 960
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9338,12 +9338,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_13
       rect:
         serializedVersion: 2
-        x: 1664
-        y: 128
-        width: 128
-        height: 128
+        x: 1040
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9360,12 +9360,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_14
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 128
-        width: 128
-        height: 128
+        x: 1120
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9382,12 +9382,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_15
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 128
-        width: 128
-        height: 128
+        x: 1200
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9404,12 +9404,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_16
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 128
-        width: 128
-        height: 128
+        x: 1280
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9426,12 +9426,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_17
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 128
-        width: 128
-        height: 128
+        x: 1360
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9448,12 +9448,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_18
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 128
-        width: 128
-        height: 128
+        x: 1440
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9470,12 +9470,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_19
       rect:
         serializedVersion: 2
-        x: 2432
-        y: 128
-        width: 128
-        height: 128
+        x: 1520
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9492,12 +9492,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_20
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 128
-        width: 128
-        height: 128
+        x: 1600
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9514,12 +9514,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_21
       rect:
         serializedVersion: 2
-        x: 2688
-        y: 128
-        width: 128
-        height: 128
+        x: 1680
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9536,12 +9536,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_22
       rect:
         serializedVersion: 2
-        x: 2816
-        y: 128
-        width: 128
-        height: 128
+        x: 1760
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9558,12 +9558,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_23
       rect:
         serializedVersion: 2
-        x: 2944
-        y: 128
-        width: 128
-        height: 128
+        x: 1840
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9580,12 +9580,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_se_24
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 128
-        width: 128
-        height: 128
+        x: 1920
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9604,10 +9604,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9624,12 +9624,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_01
       rect:
         serializedVersion: 2
-        x: 128
+        x: 80
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9646,12 +9646,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_02
       rect:
         serializedVersion: 2
-        x: 256
+        x: 160
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9668,12 +9668,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_03
       rect:
         serializedVersion: 2
-        x: 384
+        x: 240
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9690,12 +9690,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_04
       rect:
         serializedVersion: 2
-        x: 512
+        x: 320
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9712,12 +9712,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_05
       rect:
         serializedVersion: 2
-        x: 640
+        x: 400
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9734,12 +9734,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_06
       rect:
         serializedVersion: 2
-        x: 768
+        x: 480
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9756,12 +9756,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_07
       rect:
         serializedVersion: 2
-        x: 896
+        x: 560
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9778,12 +9778,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_08
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 640
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9800,12 +9800,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_09
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 720
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9822,12 +9822,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_10
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 800
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9844,12 +9844,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_11
       rect:
         serializedVersion: 2
-        x: 1408
+        x: 880
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9866,12 +9866,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_12
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 960
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9888,12 +9888,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_13
       rect:
         serializedVersion: 2
-        x: 1664
+        x: 1040
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9910,12 +9910,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_14
       rect:
         serializedVersion: 2
-        x: 1792
+        x: 1120
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9932,12 +9932,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_15
       rect:
         serializedVersion: 2
-        x: 1920
+        x: 1200
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9954,12 +9954,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_16
       rect:
         serializedVersion: 2
-        x: 2048
+        x: 1280
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9976,12 +9976,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_17
       rect:
         serializedVersion: 2
-        x: 2176
+        x: 1360
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9998,12 +9998,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_18
       rect:
         serializedVersion: 2
-        x: 2304
+        x: 1440
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10020,12 +10020,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_19
       rect:
         serializedVersion: 2
-        x: 2432
+        x: 1520
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10042,12 +10042,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_20
       rect:
         serializedVersion: 2
-        x: 2560
+        x: 1600
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10064,12 +10064,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_21
       rect:
         serializedVersion: 2
-        x: 2688
+        x: 1680
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10086,12 +10086,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_22
       rect:
         serializedVersion: 2
-        x: 2816
+        x: 1760
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10108,12 +10108,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_23
       rect:
         serializedVersion: 2
-        x: 2944
+        x: 1840
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10130,12 +10130,12 @@ TextureImporter:
       name: wrathborn_offhand_round_shield_shield_ground_breaker_move_left_sse_24
       rect:
         serializedVersion: 2
-        x: 3072
+        x: 1920
         y: 0
-        width: 128
-        height: 128
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.15625}
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
