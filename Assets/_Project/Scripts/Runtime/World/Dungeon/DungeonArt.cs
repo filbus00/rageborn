@@ -56,7 +56,10 @@ namespace ARPG
             texture.Apply(false, true);
             var tile = ScriptableObject.CreateInstance<Tile>();
             tile.name = name;
-            tile.sprite = Sprite.Create(texture, new Rect(0, 0, w, h), pivot, PixelsPerUnit);
+            // A full-rect mesh and no physics shape: Unity would otherwise trace the sprite's outline from its pixels,
+            // which the texture no longer keeps on the CPU ("Sprite outline generation failed" on iOS, 2026-09-30; the
+            // editor keeps a readable copy, so it passed there). Tiles need neither.
+            tile.sprite = Sprite.Create(texture, new Rect(0, 0, w, h), pivot, PixelsPerUnit, 0, SpriteMeshType.FullRect, Vector4.zero, false);
             tile.colliderType = collider;
             return tile;
         }

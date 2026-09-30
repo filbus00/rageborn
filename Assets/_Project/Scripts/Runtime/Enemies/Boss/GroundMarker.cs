@@ -47,7 +47,8 @@ namespace ARPG
                 }
             texture.SetPixels32(pixels);
             texture.Apply(false, true);
-            return Sprite.Create(texture, new Rect(0, 0, Size, Size), new Vector2(0.5f, 0.5f), Size);
+            // Full rect, no physics shape: the texture is no longer readable, and tracing its outline fails on iOS.
+            return Sprite.Create(texture, new Rect(0, 0, Size, Size), new Vector2(0.5f, 0.5f), Size, 0, SpriteMeshType.FullRect, Vector4.zero, false);
         }
     }
 
