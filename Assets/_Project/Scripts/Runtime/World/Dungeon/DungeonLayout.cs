@@ -8,6 +8,35 @@ namespace ARPG
         Void,
         Floor,
         Wall,
+
+        /// <summary>Floor with a prop standing on it (a barrel, a brazier): drawn on the floor, blocks like a wall.</summary>
+        Prop,
+    }
+
+    /// <summary>Things standing in a dungeon room (<see cref="DungeonDressing"/>). All block the way.</summary>
+    public enum PropKind
+    {
+        Barrel,
+        Crate,
+        Urn,
+        BonePile,
+        Rubble,
+        BrokenColumn,
+        Sarcophagus,
+        Brazier,
+        Candles,
+    }
+
+    /// <summary>Marks on a dungeon floor, walked over.</summary>
+    public enum DecalKind
+    {
+        Cracks,
+        Bones,
+        Blood,
+        Rubble,
+        Moss,
+        Skull,
+        Puddle,
     }
 
     /// <summary>Room types from Docs/05-world-and-content.md. Shrine and ambush rooms are not built; until they are,
@@ -37,16 +66,22 @@ namespace ARPG
 
     public readonly struct RoomPlacement
     {
-        public RoomPlacement(RoomKind kind, RoomShape shape, Vector2Int macro, RectInt interior)
+        public RoomPlacement(RoomKind kind, RoomShape shape, Vector2Int macro, RectInt interior, int style = 0)
         {
             Kind = kind;
             Shape = shape;
             Macro = macro;
             Interior = interior;
+            Style = style;
         }
 
         public RoomKind Kind { get; }
+
+        /// <summary>The hand-authored pillar layout the room was dressed with, the arena's disc, or null.</summary>
         public RoomShape Shape { get; }
+
+        /// <summary>The room's floor style, 0 to <see cref="DungeonGenerator.FloorStyles"/> - 1.</summary>
+        public int Style { get; }
 
         /// <summary>The room's slot on the coarse layout grid.</summary>
         public Vector2Int Macro { get; }
@@ -101,6 +136,25 @@ namespace ARPG
         public List<RoomPlacement> Rooms { get; } = new List<RoomPlacement>();
         public List<PackPlacement> Packs { get; } = new List<PackPlacement>();
         public List<Vector2Int> Chests { get; } = new List<Vector2Int>();
+        public Dictionary<Vector2Int, PropKind> Props { get; } = new Dictionary<Vector2Int, PropKind>();
+        public Dictionary<Vector2Int, DecalKind> Decals { get; } = new Dictionary<Vector2Int, DecalKind>();
+
+        /// <summary>The floor style of the room a cell lies in (an opening takes one of its rooms'), 0 outside rooms.</summary>
+        public int StyleAt(Vector2Int cell)
+        {
+            var best = 0;
+            foreach (var room in Rooms)
+            {
+                var r = room.Interior;
+                if (cell.x >= r.xMin - 1 && cell.x <= r.xMax && cell.y >= r.yMin - 1 && cell.y <= r.yMax)
+                {
+                    best = room.Style;
+                    if (r.Contains(cell))
+                        return best;
+                }
+            }
+            return best;
+        }
 
         public Vector2Int StairsUp { get; internal set; }
 

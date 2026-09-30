@@ -69,7 +69,7 @@ namespace ARPG.Tests
             for (var seed = 1; seed <= 20; seed++)
             {
                 var layout = DungeonGenerator.Generate(seed, 1, Library());
-                distinct.Add(string.Join(";", layout.Rooms.Select(r => r.Macro + r.Shape.Name)));
+                distinct.Add(string.Join(";", layout.Rooms.Select(r => r.Macro + "" + r.Interior)));
             }
 
             Assert.Greater(distinct.Count, 15);
@@ -243,6 +243,64 @@ namespace ARPG.Tests
                 Assert.IsTrue(layout.IsFloor(layout.BossArenaEntry), $"seed {seed}: entry");
             }
         }
+
+        [Test]
+        public void NeighbouringRooms_ShareAWall_WithNoCorridorBetween()
+        {
+            foreach (var (seed, depth) in Cases())
+            {
+                var layout = DungeonGenerator.Generate(seed, depth, Library());
+                foreach (var a in layout.Rooms)
+                    foreach (var b in layout.Rooms)
+                    {
+                        if (b.Macro == a.Macro + Vector2Int.right)
+                            Assert.AreEqual(a.Interior.xMax + 1, b.Interior.xMin, $"seed {seed}, depth {depth}");
+                        if (b.Macro == a.Macro + Vector2Int.up)
+                            Assert.AreEqual(a.Interior.yMax + 1, b.Interior.yMin, $"seed {seed}, depth {depth}");
+                    }
+            }
+        }
+
+        [Test]
+        public void Levels_AreDressed_AndPropsKeepClearOfWhatMatters()
+        {
+            foreach (var (seed, depth) in Cases())
+            {
+                var layout = DungeonGenerator.Generate(seed, depth, Library());
+                var label = $"seed {seed}, depth {depth}";
+                Assert.Greater(layout.Props.Count, 0, label + ": props");
+                Assert.Greater(layout.Decals.Count, 0, label + ": decals");
+                foreach (var pair in layout.Props)
+                    Assert.AreEqual(DungeonCell.Prop, layout.Get(pair.Key), label);
+                foreach (var pair in layout.Decals)
+                    Assert.AreNotEqual(DungeonCell.Wall, layout.Get(pair.Key), label + ": a decal on a wall");
+                Assert.LessOrEqual(layout.Props.Count(p => DungeonDressing.IsLit(p.Value)), layout.Rooms.Count, label + ": one light a room at most");
+                var spots = new List<Vector2Int> { layout.StairsUp, layout.ArrivalFromAbove, layout.Waypoint };
+                if (layout.HasStairsDown)
+                    spots.AddRange(new[] { layout.StairsDown, layout.ArrivalFromBelow });
+                spots.AddRange(layout.Chests);
+                foreach (var spot in spots)
+                    Assert.IsTrue(layout.IsFloor(spot), label + $": {spot} is blocked");
+            }
+        }
+
+        [Test]
+        public void SafeToBlock_RefusesACellThatWouldCutAPassage()
+        {
+            // A one-cell gap in a wall: blocking it would cut the level in two; a cell against a straight wall would not.
+            var layout = DungeonGenerator.Generate(5, 1, Library());
+            var room = layout.Rooms[0].Interior;
+            var gap = new Vector2Int(room.xMin + 3, room.yMin + 3);
+            for (var x = room.xMin; x < room.xMax; x++)
+                if (x != gap.x)
+                    SetCell(layout, new Vector2Int(x, gap.y), DungeonCell.Wall);
+            Assert.IsFalse(DungeonDressing.SafeToBlock(layout, gap));
+            Assert.IsTrue(DungeonDressing.SafeToBlock(layout, new Vector2Int(gap.x + 5, gap.y + 1)));
+        }
+
+        static void SetCell(DungeonLayout layout, Vector2Int cell, DungeonCell value) =>
+            typeof(DungeonLayout).GetMethod("Set", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .Invoke(layout, new object[] { cell.x, cell.y, value });
 
         [Test]
         public void ARoomTooBigForThePitch_IsRejected()

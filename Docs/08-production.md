@@ -382,6 +382,7 @@ Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). All 26 were 
 | 2026-09-28 | Vitality gives life only, no life regeneration (open question 10) | User |
 | 2026-09-28 | Attributes built as decided (Q6) with Docs/02's per-point effects; Might counts for every hit but the thrown axe ("melee and area"); dodge capped at 50 percent. Vitality's life regeneration is not built: as written (0.1 percent of life a second per point, 8 points a level) it would heal 4.8 percent of max life a second at level 7 and 47 percent at 60, which cannot be meant; question 10 below | Claude, approved by the owner 2026-09-28 |
 | 2026-09-30 | The bandit archer is dead and demonic, not a living bandit: "make the archer dead/demonic". Name, role and numbers unchanged; the look is in 09 5.2 and its prompt in 5.4 | User |
+| 2026-09-30 | Levels are connected halls, not rooms joined by corridors: "make the levels more open spaces. Just like the diablo 1 dungeons. Add some placeholder assets also to make it more interesting. Like different floor textures, brushes, and whatever fits inside a dungeon"; of three proposals (connected halls, open caverns, a few big halls) the owner chose connected halls. The numbers (room spans, arch widths, hall and loop chances, prop and decal densities) are Claude's, tuning. 05's level generation says how | User; numbers Claude's |
 
 ## Post-launch plan (draft)
 

@@ -15,6 +15,7 @@ namespace ARPG
     {
         [SerializeField] Tilemap ground;
         [SerializeField] Tilemap walls;
+        [Tooltip("No longer painted: the floors come from DungeonArt (2026-09-30). Kept so the scene's reference stays valid.")]
         [SerializeField] TileBase[] floorTiles;
         [SerializeField] TileBase wallTile;
 
@@ -205,13 +206,20 @@ namespace ARPG
                     if (cell == DungeonCell.Void)
                         continue;
                     var index = x + y * bounds.width;
-                    // A checkerboard of the placeholder tiles, as the sandbox ground uses; under walls too, so a wall never
-                    // shows the void behind it.
-                    groundTiles[index] = floorTiles[((x + y) & 1) % floorTiles.Length];
+                    var at = new Vector2Int(bounds.xMin + x, bounds.yMin + y);
+                    // The room's floor style in one of its variants, with any decal drawn on; under walls too, so a wall
+                    // never shows the void behind it.
+                    var variant = (int)(LightingRules.FloorShade(at * 7).r * 1000f) % DungeonArt.Variants;
+                    var decal = Layout.Decals.TryGetValue(at, out var kind) ? (int)kind : -1;
+                    groundTiles[index] = DungeonArt.Floor(Layout.StyleAt(at), variant, decal);
+                    // Only the level's outer and dividing walls are cut low on the camera side: a pillar or stub standing
+                    // inside a room keeps its height (cut low, a 2 x 2 pillar read as a cross of stubs).
                     if (cell == DungeonCell.Wall)
-                        wallTiles[index] = lowWallTile != null && WallRules.IsCameraSide(IsFloorCell, bounds.xMin + x, bounds.yMin + y)
+                        wallTiles[index] = lowWallTile != null && !InsideRoom(at) && WallRules.IsCameraSide(IsOpenCell, at.x, at.y)
                             ? lowWallTile
                             : wallTile;
+                    else if (cell == DungeonCell.Prop && Layout.Props.TryGetValue(at, out var prop))
+                        wallTiles[index] = DungeonArt.Prop(prop);
                 }
 
             ground.ClearAllTiles();
@@ -219,9 +227,59 @@ namespace ARPG
             ground.SetTilesBlock(area, groundTiles);
             walls.SetTilesBlock(area, wallTiles);
             WorldLights.ShadeGround(ground);
+            ShadeWalls();
+
+            // Braziers and candles light their corner of a dark level.
+            var lights = new GameObject("Prop Lights").transform;
+            lights.SetParent(transform, false);
+            foreach (var pair in Layout.Props)
+            {
+                if (!DungeonDressing.IsLit(pair.Value))
+                    continue;
+                var go = new GameObject(pair.Value.ToString());
+                go.transform.SetParent(lights, false);
+                go.transform.position = CellWorld(pair.Key);
+                var brazier = pair.Value == PropKind.Brazier;
+                var light = WorldLights.Add(go.transform, new Color(1f, 0.55f, 0.25f), brazier ? 1.3f : 0.9f, 0.3f, brazier ? 4.5f : 3f, 0.3f);
+                if (light != null)
+                    go.AddComponent<FlickerLight>().Init(light, pair.Key.x * 1.7f + pair.Key.y);
+            }
         }
 
-        bool IsFloorCell(int x, int y) => Layout.Get(x, y) == DungeonCell.Floor;
+        // Walls take a touch of their room's floor colour and each block its own shade, so a run of wall does not read
+        // as one repeated box. Props keep their own colours.
+        static readonly Color[] WallTints =
+        {
+            new Color(1f, 0.97f, 0.92f), new Color(1f, 0.86f, 0.8f), new Color(0.98f, 0.9f, 0.8f), new Color(0.88f, 0.96f, 0.88f),
+        };
+
+        void ShadeWalls()
+        {
+            var bounds = Layout.Bounds;
+            for (var x = bounds.xMin; x < bounds.xMax; x++)
+                for (var y = bounds.yMin; y < bounds.yMax; y++)
+                {
+                    var at = new Vector2Int(x, y);
+                    if (Layout.Get(at) != DungeonCell.Wall)
+                        continue;
+                    var cell = new Vector3Int(x, y, 0);
+                    var shade = LightingRules.FloorShade(at * 3);
+                    var tint = WallTints[Layout.StyleAt(at) % WallTints.Length];
+                    walls.SetTileFlags(cell, TileFlags.None);
+                    walls.SetColor(cell, new Color(tint.r * shade.g, tint.g * shade.g, tint.b * shade.g, 1f));
+                }
+        }
+
+        bool InsideRoom(Vector2Int cell)
+        {
+            foreach (var room in Layout.Rooms)
+                if (room.Interior.Contains(cell))
+                    return true;
+            return false;
+        }
+
+        // Floor for the low-wall rule: a prop stands on floor, so a wall in front of it is still a camera-side wall.
+        bool IsOpenCell(int x, int y) => Layout.Get(x, y) == DungeonCell.Floor || Layout.Get(x, y) == DungeonCell.Prop;
 
         static Vector3 CellWorld(Vector2Int cell)
         {

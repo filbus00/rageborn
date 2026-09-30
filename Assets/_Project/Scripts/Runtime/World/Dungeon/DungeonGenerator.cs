@@ -61,11 +61,21 @@ namespace ARPG
         public int MinMiddleRooms = 5;
         public int MaxMiddleRooms = 8;
 
-        /// <summary>Cells between neighbouring room centers. Room insides are at most <see cref="MaxRoomSize"/> (36,
-        /// about 25 ground units), so every corridor is at least 6 cells long.</summary>
-        public int Pitch = 44;
+        /// <summary>A room's inside is this many cells wide or tall at least and at most (the boss arena's row and column
+        /// excepted). Rooms sit wall to wall on a grid of columns and rows, each with its own width, so neighbours
+        /// differ in size.</summary>
+        public int MinRoomSpan = 18;
+        public int MaxRoomSpan = 32;
 
-        public int MaxRoomSize => Pitch - 8;
+        /// <summary>The largest hand-authored pillar layout a room may use (a room shape wider than this is refused).</summary>
+        public int MaxRoomSize => 36;
+
+        /// <summary>Chance a join along the room tree opens the whole shared wall (bar a pier at each end) into one hall,
+        /// rather than an arch.</summary>
+        public float HallJoinChance = 0.3f;
+
+        /// <summary>Chance two neighbouring rooms not joined by the tree get an arch anyway, so the level has loops.</summary>
+        public float LoopChance = 0.45f;
 
         // Docs: combat 60, elite 15, treasure 10, shrine 10, ambush 5. Shrine and ambush rooms are not built, so their
         // 15 goes to combat.
@@ -102,10 +112,14 @@ namespace ARPG
     }
 
     /// <summary>
-    /// Builds a dungeon level from hand-authored rooms and a seed (Docs/05-world-and-content.md, level generation).
-    /// Rooms sit on a coarse grid, one per slot, grown as a tree from the start room so every room is reachable; the
-    /// exit room is the one furthest from the start along the tree. Neighbours in the tree are joined by straight
-    /// corridors as wide as a doorway, and every empty cell touching floor becomes wall. Same seed, same level. Pure.
+    /// Builds a dungeon level from a seed (Docs/05-world-and-content.md, level generation), as connected halls in the
+    /// manner of Diablo 1's cathedral (the owner, 2026-09-30: the rooms-and-corridors levels were "more like corridors
+    /// with open rooms"). Rooms sit wall to wall on a grid whose columns and rows each have their own width, one room
+    /// per slot, grown as a tree from the start room so every room is reachable; the exit room is the one furthest from
+    /// the start along the tree. Tree neighbours are joined through their shared wall by a wide arch or opened into one
+    /// hall, other neighbours often by an arch too, so there are loops and no corridors. Rooms are dressed with pillar
+    /// rows, pillar grids, wall stubs or a hand-authored pillar layout, and get a floor style, props against the walls
+    /// and floor decals. Every empty cell touching floor becomes wall. Same seed, same level. Pure.
     /// </summary>
     public static class DungeonGenerator
     {
@@ -113,9 +127,9 @@ namespace ARPG
         /// Which generator built the saved dungeon. Bump it whenever the same seed would build a different level (room
         /// library, sizes, pack rules): a save from another version forgets its dungeon kills and chests, which would
         /// otherwise land on the wrong packs. 1: the first, small rooms. 2: bigger, open rooms, 5 cell doorways.
-        /// 3: the last level's exit room is the boss arena.
+        /// 3: the last level's exit room is the boss arena. 4: connected halls, props and floor styles (2026-09-30).
         /// </summary>
-        public const int Version = 3;
+        public const int Version = 4;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -216,33 +230,7 @@ namespace ARPG
             Guarantee(RoomKind.Elite, kinds, middle, random);
             Guarantee(RoomKind.Treasure, kinds, middle, random);
 
-            // 3. Shapes.
-            var small = new List<RoomShape>();
-            var medium = new List<RoomShape>();
-            var large = new List<RoomShape>();
-            foreach (var shape in shapes)
-                (shape.Size <= SmallMax ? small : shape.Size <= MediumMax ? medium : large).Add(shape);
-
-            var chosen = new RoomShape[macros.Count];
-            for (var i = 0; i < macros.Count; i++)
-            {
-                if (kinds[i] == RoomKind.Boss)
-                    chosen[i] = BossArenaShape;
-                else if (kinds[i] == RoomKind.Start)
-                    chosen[i] = Pick(random, small, medium, large);
-                else if (kinds[i] == RoomKind.Exit)
-                    chosen[i] = Pick(random, medium, large, small);
-                else
-                {
-                    var roll = random.Next(settings.SmallWeight + settings.MediumWeight + settings.LargeWeight);
-                    chosen[i] = roll < settings.SmallWeight ? Pick(random, small, medium, large)
-                        : roll < settings.SmallWeight + settings.MediumWeight ? Pick(random, medium, large, small)
-                        : Pick(random, large, medium, small);
-                }
-            }
-
-            // 4. Bounds and carving.
-            var pitch = settings.Pitch;
+            // 3. The grid: every column and row its own width; the boss arena's column and row fit its disc exactly.
             var minMacro = macros[0];
             var maxMacro = macros[0];
             foreach (var m in macros)
@@ -250,30 +238,93 @@ namespace ARPG
                 minMacro = Vector2Int.Min(minMacro, m);
                 maxMacro = Vector2Int.Max(maxMacro, m);
             }
-            var bounds = new RectInt(
-                minMacro.x * pitch - pitch / 2, minMacro.y * pitch - pitch / 2,
-                (maxMacro.x - minMacro.x + 1) * pitch, (maxMacro.y - minMacro.y + 1) * pitch);
+            var columns = maxMacro.x - minMacro.x + 1;
+            var rows = maxMacro.y - minMacro.y + 1;
+            var widths = new int[columns];
+            var heights = new int[rows];
+            for (var c = 0; c < columns; c++)
+                widths[c] = random.Next(settings.MinRoomSpan, settings.MaxRoomSpan + 1);
+            for (var r = 0; r < rows; r++)
+                heights[r] = random.Next(settings.MinRoomSpan, settings.MaxRoomSpan + 1);
+            for (var i = 0; i < macros.Count; i++)
+                if (kinds[i] == RoomKind.Boss)
+                {
+                    widths[macros[i].x - minMacro.x] = BossArenaShape.Size;
+                    heights[macros[i].y - minMacro.y] = BossArenaShape.Size;
+                }
 
-            var layout = new DungeonLayout(bounds)
+            // Wall lines: column c's inside runs from lineX[c] + 1 to lineX[c + 1] - 1; neighbours share a line.
+            var lineX = new int[columns + 1];
+            var lineY = new int[rows + 1];
+            for (var c = 0; c < columns; c++)
+                lineX[c + 1] = lineX[c] + widths[c] + 1;
+            for (var r = 0; r < rows; r++)
+                lineY[r + 1] = lineY[r] + heights[r] + 1;
+
+            var layout = new DungeonLayout(new RectInt(-1, -1, lineX[columns] + 3, lineY[rows] + 3))
             {
                 Depth = depth,
                 EnemyLevel = DungeonRules.EnemyLevel(depth),
             };
 
+            var interiors = new RectInt[macros.Count];
+            var slotOf = new Dictionary<Vector2Int, int>();
             for (var i = 0; i < macros.Count; i++)
             {
-                var shape = chosen[i];
-                var center = macros[i] * pitch;
-                var interior = new RectInt(center.x - shape.Size / 2, center.y - shape.Size / 2, shape.Size, shape.Size);
-                for (var x = 0; x < shape.Size; x++)
-                    for (var y = 0; y < shape.Size; y++)
-                        layout.Set(interior.xMin + x, interior.yMin + y, shape.IsBlocked(x, y) ? DungeonCell.Wall : DungeonCell.Floor);
-                layout.Rooms.Add(new RoomPlacement(kinds[i], shape, macros[i], interior));
+                var c = macros[i].x - minMacro.x;
+                var r = macros[i].y - minMacro.y;
+                interiors[i] = new RectInt(lineX[c] + 1, lineY[r] + 1, widths[c], heights[r]);
+                slotOf[macros[i]] = i;
             }
 
-            for (var i = 1; i < macros.Count; i++)
-                CarveCorridor(layout, layout.Rooms[parents[i]], layout.Rooms[i], pitch);
+            // 4. Carve the rooms, dress them, then open the joins (openings win over dressing).
+            var styles = new int[macros.Count];
+            var shapesUsed = new RoomShape[macros.Count];
+            for (var i = 0; i < macros.Count; i++)
+            {
+                var interior = interiors[i];
+                styles[i] = random.Next(FloorStyles);
+                if (kinds[i] == RoomKind.Boss)
+                {
+                    shapesUsed[i] = BossArenaShape;
+                    for (var x = 0; x < interior.width; x++)
+                        for (var y = 0; y < interior.height; y++)
+                            layout.Set(interior.xMin + x, interior.yMin + y, BossArenaShape.IsBlocked(x, y) ? DungeonCell.Wall : DungeonCell.Floor);
+                }
+                else
+                {
+                    for (var x = interior.xMin; x < interior.xMax; x++)
+                        for (var y = interior.yMin; y < interior.yMax; y++)
+                            layout.Set(x, y, DungeonCell.Floor);
+                    // The start and exit rooms stay open, so the stairs and the arrival have room.
+                    if (kinds[i] != RoomKind.Start && kinds[i] != RoomKind.Exit)
+                        shapesUsed[i] = Dress(layout, interior, shapes, random);
+                }
+                layout.Rooms.Add(new RoomPlacement(kinds[i], shapesUsed[i], macros[i], interior, styles[i]));
+            }
 
+            var doors = new List<Vector2Int>[macros.Count];
+            for (var i = 0; i < macros.Count; i++)
+                doors[i] = new List<Vector2Int>();
+            var joined = new HashSet<(int, int)>();
+            for (var i = 1; i < macros.Count; i++)
+            {
+                var hall = kinds[i] != RoomKind.Boss && kinds[parents[i]] != RoomKind.Boss && random.NextDouble() < settings.HallJoinChance;
+                Join(layout, parents[i], i, interiors, macros, kinds, hall, random, doors);
+                joined.Add((Mathf.Min(parents[i], i), Mathf.Max(parents[i], i)));
+            }
+            // Loops: neighbours the tree did not join. Never into the arena, which keeps its one way in.
+            for (var i = 0; i < macros.Count; i++)
+                foreach (var side in new[] { Vector2Int.right, Vector2Int.up })
+                {
+                    if (!slotOf.TryGetValue(macros[i] + side, out var j) || joined.Contains((Mathf.Min(i, j), Mathf.Max(i, j))))
+                        continue;
+                    if (kinds[i] == RoomKind.Boss || kinds[j] == RoomKind.Boss || random.NextDouble() >= settings.LoopChance)
+                        continue;
+                    Join(layout, i, j, interiors, macros, kinds, false, random, doors);
+                }
+
+            KeepReachable(layout, interiors[0]);
             WrapWalls(layout);
 
             // 5. Stairs and arrival points.
@@ -281,11 +332,7 @@ namespace ARPG
             // side of them, so heading off into the level never walks back over the stairs (the first build put them in
             // the middle with the player just below, and walking up the screen went straight back to town).
             var startRoom = layout.Rooms[0];
-            var startDoors = new List<Vector2Int>();
-            for (var i = 1; i < macros.Count; i++)
-                if (parents[i] == 0)
-                    startDoors.Add(DoorMidpoint(startRoom, macros[i] - macros[0]));
-            layout.StairsUp = NearestFloor(layout, startRoom.Interior, CornerAwayFrom(startRoom.Interior, startDoors), null, 0);
+            layout.StairsUp = NearestFloor(layout, startRoom.Interior, CornerAwayFrom(startRoom.Interior, doors[0]), null, 0);
             layout.ArrivalFromAbove = NearestFloor(layout, startRoom.Interior, Vector2Int.RoundToInt(Vector2.Lerp(layout.StairsUp, Center(startRoom.Interior), 0.35f)), layout.StairsUp, 2);
             // Docs/05: each level has a waypoint. In the start room (the user's choice), further in than the arrival
             // point, so it is passed on the way in but not stood on when arriving by the stairs. No random numbers are
@@ -304,8 +351,7 @@ namespace ARPG
             {
                 // In the corner furthest from the doorway the player walks in by, so arriving from below lands clear of
                 // the exit room's own pack, which goes toward the doorway, and the way out does not cross the stairs.
-                var exitDoor = new List<Vector2Int> { DoorMidpoint(exitRoom, macros[parents[exit]] - macros[exit]) };
-                layout.StairsDown = NearestFloor(layout, exitRoom.Interior, CornerAwayFrom(exitRoom.Interior, exitDoor), null, 0);
+                layout.StairsDown = NearestFloor(layout, exitRoom.Interior, CornerAwayFrom(exitRoom.Interior, doors[exit]), null, 0);
                 layout.ArrivalFromBelow = NearestFloor(layout, exitRoom.Interior, Vector2Int.RoundToInt(Vector2.Lerp(layout.StairsDown, Center(exitRoom.Interior), 0.35f)), layout.StairsDown, 2);
             }
 
@@ -339,6 +385,8 @@ namespace ARPG
                         break;
             }
 
+            // 7. Props against the walls and decals on the floor, last, clear of everything placed above.
+            DungeonDressing.Place(layout, doors, random);
             return layout;
         }
 
@@ -398,10 +446,6 @@ namespace ARPG
 
         static Vector2Int Center(RectInt r) => new Vector2Int(r.xMin + r.width / 2, r.yMin + r.height / 2);
 
-        /// <summary>The middle of a room's doorway on the side facing <paramref name="direction"/>.</summary>
-        static Vector2Int DoorMidpoint(RoomPlacement room, Vector2Int direction) =>
-            Center(room.Interior) + direction * (room.Shape.Size / 2);
-
         /// <summary>Of the four spots three cells in from the room's corners, the one whose nearest doorway is furthest.</summary>
         static Vector2Int CornerAwayFrom(RectInt interior, List<Vector2Int> doors)
         {
@@ -430,21 +474,161 @@ namespace ARPG
             return best;
         }
 
-        static void CarveCorridor(DungeonLayout layout, RoomPlacement a, RoomPlacement b, int pitch)
+        /// <summary>How many floor styles a room can have (<see cref="RoomPlacement.Style"/>).</summary>
+        public const int FloorStyles = 4;
+
+        /// <summary>
+        /// Opens the wall two neighbouring rooms share: an arch 5 to 11 cells wide somewhere along it, or, for a hall,
+        /// all of it but a 2 cell pier at each end. The arena's way in is 5 wide at the middle of its side, where its disc
+        /// meets the wall. Two cells in front of the opening are cleared on both sides, so dressing never blocks it.
+        /// </summary>
+        static void Join(DungeonLayout layout, int a, int b, RectInt[] interiors, List<Vector2Int> macros, RoomKind[] kinds,
+            bool hall, System.Random random, List<Vector2Int>[] doors)
         {
-            var from = a.Macro * pitch;
-            var step = b.Macro - a.Macro;
-            var half = RoomShape.DoorWidth / 2;
-            for (var t = 0; t <= pitch; t++)
+            if (macros[b].x < macros[a].x || macros[b].y < macros[a].y)
+                (a, b) = (b, a);
+            var horizontal = macros[b].x != macros[a].x;
+            var ra = interiors[a];
+            // The shared wall line and the span along it (both rooms of a column or row have the same span).
+            var line = horizontal ? ra.xMax : ra.yMax;
+            var spanMin = horizontal ? ra.yMin : ra.xMin;
+            var length = horizontal ? ra.height : ra.width;
+
+            int from, width;
+            if (kinds[a] == RoomKind.Boss || kinds[b] == RoomKind.Boss)
             {
-                var along = from + step * t;
-                for (var w = -half; w <= half; w++)
+                width = RoomShape.DoorWidth;
+                from = spanMin + length / 2 - width / 2;
+            }
+            else if (hall)
+            {
+                width = length - 4;
+                from = spanMin + 2;
+            }
+            else
+            {
+                width = Mathf.Min(random.Next(5, 12), length - 6);
+                from = spanMin + random.Next(3, length - 3 - width + 1);
+            }
+
+            for (var t = from; t < from + width; t++)
+                for (var d = -2; d <= 2; d++)
                 {
-                    var cell = step.x != 0 ? new Vector2Int(along.x, along.y + w) : new Vector2Int(along.x + w, along.y);
-                    if (!a.Interior.Contains(cell) && !b.Interior.Contains(cell))
-                        layout.Set(cell.x, cell.y, DungeonCell.Floor);
+                    var cell = horizontal ? new Vector2Int(line + d, t) : new Vector2Int(t, line + d);
+                    // Into the arena nothing is cleared: its rim stays a disc (its shape keeps the middle of each side open).
+                    if ((kinds[a] == RoomKind.Boss && d < 0) || (kinds[b] == RoomKind.Boss && d > 0))
+                        continue;
+                    layout.Set(cell.x, cell.y, DungeonCell.Floor);
+                }
+
+            var middle = from + width / 2;
+            var door = horizontal ? new Vector2Int(line, middle) : new Vector2Int(middle, line);
+            doors[a].Add(door);
+            doors[b].Add(door);
+        }
+
+        /// <summary>
+        /// Dresses a room with standing stone: a hand-authored pillar layout when one fits, else pillar rows along its
+        /// length, a grid of pillars, or stubs of wall reaching in from its sides, or nothing. Returns the authored shape
+        /// used, or null.
+        /// </summary>
+        static RoomShape Dress(DungeonLayout layout, RectInt r, IReadOnlyList<RoomShape> shapes, System.Random random)
+        {
+            var roll = random.Next(100);
+            if (roll < 30)
+            {
+                var fitting = new List<RoomShape>();
+                foreach (var shape in shapes)
+                    if (shape.Size <= Mathf.Min(r.width, r.height))
+                        fitting.Add(shape);
+                if (fitting.Count > 0)
+                {
+                    var shape = fitting[random.Next(fitting.Count)];
+                    var ox = r.xMin + (r.width - shape.Size) / 2;
+                    var oy = r.yMin + (r.height - shape.Size) / 2;
+                    for (var x = 0; x < shape.Size; x++)
+                        for (var y = 0; y < shape.Size; y++)
+                            if (shape.IsBlocked(x, y))
+                                layout.Set(ox + x, oy + y, DungeonCell.Wall);
+                    return shape;
+                }
+                roll = 30 + random.Next(70);
+            }
+
+            if (roll < 55)
+            {
+                // Two rows of pillars along the room's length, as in a nave.
+                var alongX = r.width >= r.height;
+                var length = alongX ? r.width : r.height;
+                var across = alongX ? r.height : r.width;
+                var thick = across >= 22 ? 2 : 1;
+                foreach (var offset in new[] { 4, across - 4 - thick })
+                    for (var t = 4; t + thick <= length - 4; t += 5)
+                        Block(layout, alongX ? r.xMin + t : r.xMin + offset, alongX ? r.yMin + offset : r.yMin + t, thick);
+            }
+            else if (roll < 72)
+            {
+                // A grid of square pillars.
+                for (var x = 5; x + 2 <= r.width - 5; x += 7)
+                    for (var y = 5; y + 2 <= r.height - 5; y += 7)
+                        Block(layout, r.xMin + x, r.yMin + y, 2);
+            }
+            else if (roll < 90)
+            {
+                // Stubs of wall reaching in from the sides, breaking the room into bays.
+                for (var side = 0; side < 4; side++)
+                {
+                    var alongX = side < 2;
+                    var length = alongX ? r.width : r.height;
+                    var stubs = random.Next(0, 3);
+                    for (var k = 0; k < stubs; k++)
+                    {
+                        var at = random.Next(4, length - 4);
+                        var reach = random.Next(2, 5);
+                        for (var d = 0; d < reach; d++)
+                        {
+                            var x = alongX ? r.xMin + at : side == 2 ? r.xMin + d : r.xMax - 1 - d;
+                            var y = !alongX ? r.yMin + at : side == 0 ? r.yMin + d : r.yMax - 1 - d;
+                            layout.Set(x, y, DungeonCell.Wall);
+                        }
+                    }
                 }
             }
+            return null;
+        }
+
+        static void Block(DungeonLayout layout, int x, int y, int size)
+        {
+            for (var dx = 0; dx < size; dx++)
+                for (var dy = 0; dy < size; dy++)
+                    layout.Set(x + dx, y + dy, DungeonCell.Wall);
+        }
+
+        /// <summary>Turns floor that dressing cut off from the start room into wall, so every floor cell can be walked to.</summary>
+        static void KeepReachable(DungeonLayout layout, RectInt startRoom)
+        {
+            var b = layout.Bounds;
+            var seen = new bool[b.width, b.height];
+            var queue = new Queue<Vector2Int>();
+            var start = new Vector2Int(startRoom.xMin + startRoom.width / 2, startRoom.yMin + startRoom.height / 2);
+            seen[start.x - b.xMin, start.y - b.yMin] = true;
+            queue.Enqueue(start);
+            while (queue.Count > 0)
+            {
+                var cell = queue.Dequeue();
+                foreach (var step in RoomShape.Sides)
+                {
+                    var next = cell + step;
+                    if (!layout.IsFloor(next) || seen[next.x - b.xMin, next.y - b.yMin])
+                        continue;
+                    seen[next.x - b.xMin, next.y - b.yMin] = true;
+                    queue.Enqueue(next);
+                }
+            }
+            for (var x = b.xMin; x < b.xMax; x++)
+                for (var y = b.yMin; y < b.yMax; y++)
+                    if (layout.Get(x, y) == DungeonCell.Floor && !seen[x - b.xMin, y - b.yMin])
+                        layout.Set(x, y, DungeonCell.Wall);
         }
 
         static void WrapWalls(DungeonLayout layout)
@@ -494,7 +678,8 @@ namespace ARPG
         static void PlacePacks(DungeonLayout layout, int roomIndex, System.Random random, DungeonSettings settings)
         {
             var room = layout.Rooms[roomIndex];
-            var size = room.Shape.Size;
+            // The side of a square of the same floor area, to size rooms of any proportion alike.
+            var size = Mathf.RoundToInt(Mathf.Sqrt(room.Interior.width * room.Interior.height));
             switch (room.Kind)
             {
                 case RoomKind.Combat:

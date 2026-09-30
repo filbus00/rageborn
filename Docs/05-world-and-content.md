@@ -42,9 +42,10 @@ Each act has one town, a small safe scene the player walks through with the stic
 
 ## Level generation
 
-Levels are built from hand-authored rooms joined by a seeded generator.
+Levels are connected halls, as in Diablo 1's cathedral (the owner, 2026-09-30: the rooms-and-corridors levels were "more like corridors with open rooms"; "make the levels more open spaces"). A seeded generator packs rooms of different sizes wall to wall and joins them without corridors.
 
-- Room library: 30 rooms per act in three sizes, from about 14 to 25 units across, mostly open halls. Doorways and the corridors between rooms are 5 cells (about 3.5 units) wide.
+- Rooms: rectangles about 13 to 23 units a side (18 to 32 cells), packed wall to wall on a grid whose columns and rows each have their own width. Neighbours along the level's room tree open into each other through a wide arch (5 to 11 cells) or, a third of the time, through the whole shared wall bar a pier at each end, making one hall; other neighbours often get an arch too, so there are several ways around. No corridors.
+- Dressing: rooms stand with pillar rows along their length, pillar grids, stubs of wall reaching in from their sides, or a hand-authored pillar layout from the room library (30 per act, three sizes, mostly open halls); the start and exit rooms stay open. Each room has a floor style (flagstone, dark brick, packed earth, mossy stone), props against its walls (barrels, crates, urns, bone piles, rubble, broken columns, sarcophagi, braziers and candles, at most one lit per room) and decals on its floor (cracks, bones, blood, rubble, moss, a skull, puddles). Placeholder art drawn in code until Docs/09's tiles and props exist.
 - Layout: a start room with the stairs up, 5 to 8 rooms of mixed type, an exit room with the stairs down. A level takes 4 to 8 minutes to clear.
 - Room types: combat (60 percent), elite (15), treasure (10), shrine (10), ambush (5).
 - Every level has one guaranteed elite pack and one guaranteed chest. The act boss waits on the last level of each act.
