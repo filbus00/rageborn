@@ -15,7 +15,25 @@ namespace ARPG
     [DefaultExecutionOrder(50)]
     public class PlayerSpriteAnimator : MonoBehaviour
     {
-        public const string DefaultCharacter = "wrathborn";
+        public const string WildArrowCharacter = "wild_arrow";
+        public const string WrathbornCharacter = "wrathborn";
+
+        static string defaultCharacter;
+
+        // Domain reload is off in the editor, so a bake between plays must be seen on the next play.
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetDefault() => defaultCharacter = null;
+
+        /// <summary>
+        /// The character whose sheets the player shows: the Wild Arrow once its stand-in is baked (Tools > ARPG > Sprite
+        /// Bake > Bake Wild Arrow, Docs/09 4.6); until then the retired Wrathborn's sheets, whose axe and shield layers no
+        /// longer show (bows only, 2026-09-30).
+        /// </summary>
+        public static string DefaultCharacter => defaultCharacter ??=
+            CharacterSheets.Load($"Characters/{WildArrowCharacter}/" +
+                                 AppearanceRules.SheetName(WildArrowCharacter, AppearanceLayer.Body, "leather", CharacterGrip.OneHand, "idle")) != null
+                ? WildArrowCharacter
+                : WrathbornCharacter;
 
         const float HitSeconds = 0.3f;
         const float MaxSkillSeconds = 1.2f;

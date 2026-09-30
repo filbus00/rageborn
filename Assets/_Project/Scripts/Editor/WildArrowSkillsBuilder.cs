@@ -32,6 +32,20 @@ namespace ARPG.Editor
             AssignToScenes();
         }
 
+        /// <summary>
+        /// Everything the bows-only change needs from the editor after its code is pulled, in one go: the four skills on
+        /// every combat scene and in Resources, then the Wild Arrow's stand-in bake (a few minutes; see
+        /// <see cref="WildArrowBakeSetup"/>). The Pet Vendor and pets need nothing: they are placed from code.
+        /// </summary>
+        [MenuItem("Tools/ARPG/Apply Bows Change (skills and stand-in bake)")]
+        public static void ApplyBowsChange()
+        {
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+                return;
+            AssignToScenes();
+            WildArrowBakeSetup.Bake();
+        }
+
         /// <summary>Creates the skills and puts them on every combat scene and in Resources, without asking to save the
         /// open scene first (the caller has).</summary>
         public static void AssignToScenes()

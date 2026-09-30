@@ -6,6 +6,7 @@ using UnityEngine;
 namespace ARPG.Editor
 {
     /// <summary>
+    /// Retired with the Wrathborn (bows only, 2026-09-30; the Wild Arrow's stand-in is <see cref="WildArrowBakeSetup"/>).
     /// Sets up the Wrathborn's sprite bake from the Mixamo files in Assets/_Project/Art/Models/Wrathborn
     /// (Docs/09-art-brief.md, 4.4 and 4.5): each body (<c>wrathborn_body_&lt;look&gt;.fbx</c>, downloaded with skin) gets a
     /// humanoid rig of its own; each animation file (<c>wrathborn_&lt;grip&gt;_&lt;animation&gt;.fbx</c>, without skin) gets a
@@ -72,19 +73,8 @@ namespace ARPG.Editor
                 pieces.Add(offHand);
             }
 
-            // The two-hander: no two-handed model exists yet, so the bearded axe half as big again stands in for the
-            // great axe (Docs/03's first two-handed look).
-            var greatAxe = HeldWeapon("bearded_axe");
-            if (greatAxe != null)
-            {
-                var piece = new SpriteBakeJob.Piece
-                {
-                    layer = AppearanceLayer.Weapon, look = AppearanceRules.TwoHandWeaponLooks[0], prefab = greatAxe,
-                    bone = HumanBodyBones.RightHand, autoGrip = true, scale = 1.5f,
-                };
-                piece.grips.Add("2h");
-                pieces.Add(piece);
-            }
+            // Bows only since 2026-09-30: the look lists are bows and quivers now, so the retired Wrathborn bakes no axe
+            // under a bow's name (his great-axe stand-in is gone; his axes and shield only bake when their files match).
 
             foreach (var look in AppearanceRules.ShieldLooks)
             {
