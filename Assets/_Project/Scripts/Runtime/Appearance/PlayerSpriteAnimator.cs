@@ -48,7 +48,9 @@ namespace ARPG
         // How long after an attack, a skill or a hit the character still counts as fighting (for the backward run).
         const float CombatMemorySeconds = 1.2f;
 
-        string character = DefaultCharacter;
+        // Chosen in Start, not here: DefaultCharacter loads a sheet, and Resources may not be read from a field
+        // initializer (it runs in the MonoBehaviour's constructor).
+        string character;
         PlayerController player;
         PlayerCombat combat;
         PlayerHealth health;
@@ -71,7 +73,7 @@ namespace ARPG
         /// <summary>Which character's sheets to show (Resources/Characters/&lt;name&gt;). Changing it rebuilds the look.</summary>
         public string Character
         {
-            get => character;
+            get => character ?? DefaultCharacter;
             set
             {
                 if (character == value)
@@ -96,6 +98,8 @@ namespace ARPG
 
         void Start()
         {
+            if (string.IsNullOrEmpty(character))
+                character = DefaultCharacter;
             player = GetComponent<PlayerController>();
             combat = FindAnyObjectByType<PlayerCombat>();
             health = FindAnyObjectByType<PlayerHealth>();
