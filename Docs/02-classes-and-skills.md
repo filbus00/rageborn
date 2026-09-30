@@ -73,7 +73,7 @@ The owner: "No skill trees, add stat points to spend on attributes", with the at
 - Every attribute starts at 10, and the bonuses count from 0 (the starting 10 are part of the class's base, not extra).
 - 5 points a level from level 2, so 295 at level 60 (proposed; Diablo 2's number). The points are spent from a stats page in the Bag, a + beside each attribute; unspent points show as a badge on the Bag button, as skill points do.
 - No respec for now (proposed; the Trainer could offer it for gold later). The diminishing returns above (attack speed, cooldown reduction, dodge, capped at 50) stand.
-- Balance: the Wrathborn's stand-in life (8 Vitality a level) is the reference; a character who puts 1 point in 5 into Vitality has the same life, so the balance report assumes that split until measured.
+- Balance: the class keeps the Wrathborn's life by level (the stand-in 8 Vitality a level, 64 life), and Vitality points add their 8 life each on top, so a character who never raises Vitality has the life the balance was built on. The balance report assumes one point in five on each attribute until measured.
 
 ### Pets (decided 2026-09-30)
 
