@@ -202,6 +202,10 @@ namespace ARPG
                 skillLevels = CaptureSkillLevels(session.SkillLevels),
                 passiveNodes = new List<string>(session.PassiveTree.Bought),
                 activeKeystone = session.PassiveTree.ActiveKeystone ?? "",
+                attributePoints = new List<int>(session.Attributes.ToArray()),
+                pets = session.Pets.OwnedNames(),
+                activePet = session.Pets.Active?.ToString() ?? "",
+                petRules = session.Pets.RuleNames(),
                 equipped = CaptureEquipment(session.Equipment),
             };
 
@@ -257,6 +261,8 @@ namespace ARPG
             foreach (var entry in data.skillLevels ?? new List<SkillLevelData>())
                 session.SkillLevels.Restore(entry.skill, entry.level);
             session.PassiveTree.Restore(data.passiveNodes, string.IsNullOrEmpty(data.activeKeystone) ? null : data.activeKeystone);
+            session.Attributes.Restore(data.attributePoints);
+            session.Pets.Restore(data.pets, data.activePet, data.petRules, warnings);
             foreach (var chest in data.openedChests)
                 session.RecordOpened(chest);
 

@@ -83,6 +83,9 @@ namespace ARPG
             gameObject.SetActive(false);
         }
 
+        /// <summary>Moves the drop on the ground: a pet carrying it to the character (Docs/02, Pets).</summary>
+        internal void MoveTo(Vector2 ground) => Place(ground);
+
         void Place(Vector2 ground)
         {
             GroundPosition = ground;

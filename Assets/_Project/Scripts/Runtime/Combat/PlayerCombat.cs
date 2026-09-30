@@ -254,6 +254,8 @@ namespace ARPG
             fx = new ArrowFx(transform);
 
             session = GameSession.Current;
+            focus.BonusMax = session.AttributeBonuses.MaxFocus;
+            focus.Fill();
             knownLevel = session.Level;
             session.LeveledUp += OnLeveledUp;
             session.Loadout.Changed += RefreshSlots;
@@ -322,8 +324,10 @@ namespace ARPG
             // Until the Wild Arrow's attributes replace the tree (Docs/02): Will adds to Focus regeneration, and the tree's
             // Berserker doubles the gain from hits below half life.
             var tree = session.PassiveTree.Bonuses;
-            var attributes = CharacterAttributes.At(session.Level);
-            focus.RegenMultiplier = 1f + attributes.RageGain;
+            // The Focus attribute (Docs/02): faster regeneration and a larger pool.
+            var attributes = session.AttributeBonuses;
+            focus.RegenMultiplier = 1f + attributes.FocusRegen;
+            focus.BonusMax = attributes.MaxFocus;
             focus.GainMultiplier = tree.Berserker && health != null && health.Fraction < 0.5f ? 2f : 1f;
             focus.Tick(deltaTime);
             stillSeconds = player.GroundVelocity.magnitude < FacingSpeedThreshold ? stillSeconds + deltaTime : 0f;
@@ -413,7 +417,7 @@ namespace ARPG
             var tree = session.PassiveTree.Bonuses;
             attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + AttackSpeedBuff +
                                                     tree.AttackSpeed + tree.AttackSpeedPerMomentum * player.Stance.Momentum +
-                                                    CharacterAttributes.At(session.Level).AttackSpeed + equipment.GripAttackSpeedBonus) *
+                                                    session.AttributeBonuses.AttackSpeed + equipment.GripAttackSpeedBonus) *
                                 equipment.GripAttackSpeedFactor);
             BasicAttackCount++;
             BasicAttackStarted?.Invoke(aim, attackTimer);
@@ -576,7 +580,7 @@ namespace ARPG
             focus.TrySpend(skill.RageCost);
             if (skill.RageGain > 0f)
                 focus.Gain(skill.RageGain);
-            var cdr = GameSession.Current.Equipment.CooldownReductionPercent / 100f + CharacterAttributes.At(session.Level).CooldownReduction;
+            var cdr = GameSession.Current.Equipment.CooldownReductionPercent / 100f + session.AttributeBonuses.CooldownReduction;
             cooldowns[i] = skill.CooldownSeconds * Mathf.Max(0.1f, 1f - cdr);
             castTimer = GlobalCastSeconds;
             SkillCastCount++;
@@ -1309,7 +1313,7 @@ namespace ARPG
         bool Strike(EnemyController enemy, float multiplier, bool movementSkill = false, bool projectile = false)
         {
             var tree = session.PassiveTree.Bonuses;
-            var attributes = CharacterAttributes.At(session.Level);
+            var attributes = session.AttributeBonuses;
             var critical = Random.value < (GameSession.Current.Equipment.CriticalChancePercent + tree.CriticalChance + attributes.CriticalChance) / 100f;
             var damage = Damage(enemy, multiplier, critical, movementSkill, projectile);
 
@@ -1340,8 +1344,9 @@ namespace ARPG
             var equipment = GameSession.Current.Equipment;
             var tree = session.PassiveTree.Bonuses;
             var increased = equipment.IncreasedDamagePercent / 100f + player.Stance.IncreasedDamage + (damageBuffTimer > 0f ? damageBuff : 0f);
-            // Might, on every hit: with bows everything is an arrow, until the Wild Arrow's attributes (Docs/02) replace it.
-            increased += CharacterAttributes.At(session.Level).IncreasedDamage;
+            // Strength, on every arrow (Docs/02, the Wild Arrow's attributes).
+            var attributes = session.AttributeBonuses;
+            increased += attributes.IncreasedDamage;
             // The passive tree (Docs/02, proposed numbers): its flat increase, Bloodied Edge against the wounded, Hatred
             // for Rage held, Battering Ram for the movement skills, and Berserker below half life.
             increased += tree.IncreasedDamage + tree.DamagePerTenRage * Mathf.Floor(focus.Current / 10f);
@@ -1352,7 +1357,7 @@ namespace ARPG
             if (tree.Berserker && health != null && health.Fraction < 0.5f)
                 increased += 0.3f;
             // Butcher: critical hits on a bleeding enemy hit harder.
-            var criticalDamage = equipment.CriticalDamagePercent / 100f + tree.CriticalDamage / 100f +
+            var criticalDamage = equipment.CriticalDamagePercent / 100f + tree.CriticalDamage / 100f + attributes.CriticalDamage / 100f +
                                  (critical && enemy.IsBleeding ? tree.CritDamageVsBleeding : 0f);
             return CombatFormulas.HitDamage(
                 WeaponDamage, multiplier, equipment.FlatWeaponDamageBonus, increased, 1f,

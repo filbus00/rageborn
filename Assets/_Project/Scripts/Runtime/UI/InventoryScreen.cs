@@ -8,7 +8,7 @@ namespace ARPG
     /// The Bag: the one screen the inventory button opens (Docs/03, Docs/06; no separate pause menu). Built in code after
     /// the owner's reference of 2026-09-28: a header with the portrait, name, level and gold; the paper doll, the
     /// character in its gear with the nine slots around it; the main stats; the Forge materials; the backpack as a grid,
-    /// each item's tile in its rarity's color with an upgrade arrow; and tabs for Skills, the passive Tree and Settings.
+    /// each item's tile in its rarity's color with an upgrade arrow; and tabs for Skills, Stats (the attributes) and Settings.
     /// A tap on a slot or an item opens the item sheet (<see cref="ItemSheet"/>) with the comparison, Equip and Discard.
     /// A green arrow on the Bag button says the backpack holds an upgrade (Docs/06, upgrade badge). Opening it sets
     /// <see cref="Time.timeScale"/> to 0, the game's only pause. Icons, frames and the painted portrait wait for the UI
@@ -114,6 +114,7 @@ namespace ARPG
                 sheet.Hide();
             LoadoutScreen.CloseIfOpen();
             PassiveTreeScreen.CloseIfOpen();
+            StatsScreen.CloseIfOpen();
             SettingsScreen.CloseIfOpen();
             panelRoot.SetActive(false);
             Time.timeScale = 1f;
@@ -257,18 +258,18 @@ namespace ARPG
 
             var equipment = current.Equipment;
             var power = PowerScore.Evaluate(current);
-            var maxLife = health != null ? health.MaxLife : CombatFormulas.CharacterLife(current.Level) + equipment.TotalLifeBonus;
+            var maxLife = health != null ? health.MaxLife : CombatFormulas.CharacterLife(current.Level) + current.AttributeBonuses.Life + equipment.TotalLifeBonus;
             var life = health != null ? health.Fraction * maxLife : maxLife;
             var armor = health != null ? health.Armor : equipment.TotalArmor;
             var tree = current.PassiveTree.Bonuses;
-            var attributes = CharacterAttributes.At(current.Level);
+            var attributes = current.AttributeBonuses;
             var crit = equipment.CriticalChancePercent + tree.CriticalChance + attributes.CriticalChance;
             var speed = (equipment.AttackSpeedPercent / 100f + tree.AttackSpeed + attributes.AttackSpeed) * 100f;
 
             StatLine(inside, 0, 0, "Life", $"{life:0} / {maxLife:0}");
             StatLine(inside, 1, 0, "Defense", $"{armor:0}");
             StatLine(inside, 0, 1, "Damage / s", $"{power.DamagePerSecond:0}");
-            StatLine(inside, 1, 1, "Move speed", $"+{equipment.MovementSpeedPercent + tree.MoveSpeed * 100f:0}%");
+            StatLine(inside, 1, 1, "Move speed", $"+{equipment.MovementSpeedPercent + (tree.MoveSpeed + attributes.MoveSpeed) * 100f:0}%");
             StatLine(inside, 0, 2, "Attack speed", $"+{speed:0}%");
             StatLine(inside, 1, 2, "Critical", $"{crit:0.#}%");
 
@@ -397,15 +398,15 @@ namespace ARPG
             bar.offsetMax = new Vector2(-16f, 8f + TabsHeight - 8f);
 
             // Docs/02 and Q4: the loadout opens at level 9; before that the page shows while there are skill points to
-            // spend. The passive tree: a point every level from 2.
+            // spend. Stats (Docs/02, 2026-09-30, in the retired passive tree's place): 5 points every level from 2.
             var skillPoints = current.SkillLevels.Available(current.Level);
-            var treePoints = current.PassiveTree.Available(current.Level);
+            var statPoints = current.Attributes.Available(current.Level);
             var tabs = new List<(string label, System.Action open, bool enabled, bool active)>
             {
                 ("Inventory", null, true, true),
                 (skillPoints > 0 ? $"Skills +{skillPoints}" : "Skills", LoadoutScreen.Open,
                     current.Level >= LoadoutScreen.OpensAtLevel || skillPoints > 0, false),
-                (treePoints > 0 ? $"Tree +{treePoints}" : "Tree", PassiveTreeScreen.Open, current.Level >= 2, false),
+                (statPoints > 0 ? $"Stats +{statPoints}" : "Stats", StatsScreen.Open, true, false),
                 ("Settings", SettingsScreen.Open, true, false),
             };
             for (var i = 0; i < tabs.Count; i++)

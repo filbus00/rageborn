@@ -43,13 +43,13 @@ namespace ARPG.Tests
         [Test]
         public void Attributes_CountAsTheCharacterGrows()
         {
-            // Level 1 has no attribute points (they come from level 2); level 10 has Might, Agility and their armor.
+            // Level 1 has no stat points (they come from level 2); the typical level 10 build has some in each.
             var equipment = new EquipmentState(Weapon(10)).With(ItemSlot.Chest, Chest(10));
             var attributes = CharacterAttributes.At(10);
             var plain = PowerScore.Evaluate(equipment, 1);
             var grown = PowerScore.Evaluate(equipment, 10);
 
-            Assert.Greater(attributes.Might, 0);
+            Assert.Greater(attributes.Strength, 0);
             Assert.AreEqual(PowerScore.BaseAttacksPerSecond * (1f + attributes.AttackSpeed), PowerScore.AttacksPerSecond(equipment, 10), 1e-4f);
             Assert.Greater(grown.DamagePerSecond, plain.DamagePerSecond * (1f + attributes.IncreasedDamage) * (1f + attributes.AttackSpeed) * 0.999f);
         }

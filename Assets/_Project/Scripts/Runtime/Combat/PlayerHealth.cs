@@ -48,8 +48,8 @@ namespace ARPG
 
         /// <summary>Armor from equipped Chest and Helm pieces: their base value by item level plus any Armor affix.</summary>
         public float Armor =>
-            (GameSession.Current.Equipment.TotalArmor + CharacterAttributes.At(GameSession.Current.Level).Armor) *
-            (1f + GameSession.Current.PassiveTree.Bonuses.ArmorPercent);
+            (GameSession.Current.Equipment.TotalArmor + GameSession.Current.AttributeBonuses.Armor) *
+            (1f + GameSession.Current.PassiveTree.Bonuses.ArmorPercent + PetRules.ArmorBonus(GameSession.Current.Pets.Active));
 
         void Awake()
         {
@@ -85,7 +85,7 @@ namespace ARPG
             var stance = player != null ? player.Stance : null;
             var tree = session.PassiveTree.Bonuses;
             var dodge = Mathf.Min(0.5f, stance != null
-                ? stance.DodgeChance + tree.Dodge + CharacterAttributes.At(session.Level).Dodge + session.Equipment.DodgePercent / 100f
+                ? stance.DodgeChance + tree.Dodge + session.AttributeBonuses.Dodge + session.Equipment.DodgePercent / 100f
                 : 0f);
             if (dodgeable && stance != null && dodgeRandom.NextDouble() < dodge)
             {
@@ -157,7 +157,8 @@ namespace ARPG
         void HandleLeveledUp(int level) => life.SetFraction(session.LifeFraction);
 
         static float ComputeMaxLife() =>
-            (CombatFormulas.CharacterLife(GameSession.Current.Level) + GameSession.Current.Equipment.TotalLifeBonus) *
-            (1f + GameSession.Current.PassiveTree.Bonuses.LifePercent);
+            (CombatFormulas.CharacterLife(GameSession.Current.Level) + GameSession.Current.AttributeBonuses.Life +
+             GameSession.Current.Equipment.TotalLifeBonus) *
+            (1f + GameSession.Current.PassiveTree.Bonuses.LifePercent + PetRules.LifeBonus(GameSession.Current.Pets.Active));
     }
 }

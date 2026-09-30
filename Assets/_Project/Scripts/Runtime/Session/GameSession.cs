@@ -245,6 +245,11 @@ namespace ARPG
             SkillLevels.Changed += RaiseModified;
             PassiveTree = new PassiveTree();
             PassiveTree.Changed += RaiseModified;
+            // Stat points change max life, armor and the rest, so they raise Changed (which raises Modified) too.
+            Attributes = new AttributePoints();
+            Attributes.Changed += NotifyChanged;
+            Pets = new PetState();
+            Pets.Changed += NotifyChanged;
 
             // Its own number, not the loot seed itself, so the dungeon and the drops do not move in step.
             DungeonSeed = DungeonRules.LevelSeed(lootSeed, 0);
@@ -395,8 +400,20 @@ namespace ARPG
         /// <summary>Skill points spent and each skill's level (Docs/04, Docs/02). Its changes raise <see cref="Modified"/>.</summary>
         public SkillLevels SkillLevels { get; }
 
-        /// <summary>The passive tree and its active keystone (Docs/02). Its changes raise <see cref="Modified"/>.</summary>
+        /// <summary>The retired Wrathborn's passive tree (Docs/02). The Wild Arrow has none (decided 2026-09-30), so
+        /// nothing can be bought and its bonuses stay zero; it is kept until the code reading it is cleared out.</summary>
         public PassiveTree PassiveTree { get; }
+
+        /// <summary>The stat points spent on the five attributes (Docs/02, decided 2026-09-30). Its changes raise
+        /// <see cref="Changed"/>.</summary>
+        public AttributePoints Attributes { get; }
+
+        /// <summary>What the attributes give now.</summary>
+        public CharacterAttributes AttributeBonuses => CharacterAttributes.Of(Attributes);
+
+        /// <summary>The pets bought at the Pet Vendor, the active one and its rules (Docs/02, decided 2026-09-30). Its
+        /// changes raise <see cref="Changed"/>.</summary>
+        public PetState Pets { get; }
 
         public int Level => Progress.Level;
 
@@ -417,6 +434,20 @@ namespace ARPG
         {
             Equipment = equipment;
             NotifyChanged();
+        }
+
+        /// <summary>Buys a pet at the Pet Vendor (Docs/02, Pets): pays its price in gold, and it follows the character
+        /// at once. False, and nothing changes, when it is owned already or the gold is short.</summary>
+        public bool BuyPet(PetKind kind)
+        {
+            var price = PetRules.Get(kind).Price;
+            if (Pets.Owns(kind) || Gold < price)
+                return false;
+            Gold -= price;
+            Pets.AddOwned(kind);
+            Pets.SetActive(kind);
+            NotifyChanged();
+            return true;
         }
 
         public void AddGold(int amount)

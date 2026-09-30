@@ -43,42 +43,44 @@ namespace ARPG
         /// <summary>Docs/02's hard cap on dodge, as <see cref="PlayerHealth"/> applies it.</summary>
         public const float MaxDodge = 0.5f;
 
-        public static PowerSnapshot Evaluate(EquipmentState equipment, int characterLevel, PassiveBonuses tree = null)
+        /// <param name="attributes">The character's own stat points; left out, a typical build at the level
+        /// (<see cref="CharacterAttributes.At"/>).</param>
+        public static PowerSnapshot Evaluate(EquipmentState equipment, int characterLevel, PassiveBonuses tree = null, CharacterAttributes? attributes = null)
         {
             characterLevel = Mathf.Max(1, characterLevel);
-            var attributes = CharacterAttributes.At(characterLevel);
+            var points = attributes ?? CharacterAttributes.At(characterLevel);
 
             // Unarmored target: armor scales every hit by the same factor, so it cannot change which gear is better.
             // The same sums as PlayerCombat.Damage and Strike: Might's damage counts, since the basic attack is melee.
-            var increased = equipment.IncreasedDamagePercent / 100f + attributes.IncreasedDamage + (tree?.IncreasedDamage ?? 0f);
+            var increased = equipment.IncreasedDamagePercent / 100f + points.IncreasedDamage + (tree?.IncreasedDamage ?? 0f);
             var hit = CombatFormulas.HitDamage(
                 equipment.WeaponDamage, 1f, equipment.FlatWeaponDamageBonus, increased, 1f,
                 false, 0f, 0f, characterLevel);
-            var critChance = Mathf.Clamp01((equipment.CriticalChancePercent + attributes.CriticalChance + (tree?.CriticalChance ?? 0f)) / 100f);
+            var critChance = Mathf.Clamp01((equipment.CriticalChancePercent + points.CriticalChance + (tree?.CriticalChance ?? 0f)) / 100f);
             var critMultiplier = CombatFormulas.BaseCriticalMultiplier +
-                                 (equipment.CriticalDamagePercent + (tree?.CriticalDamage ?? 0f)) / 100f;
+                                 (equipment.CriticalDamagePercent + points.CriticalDamage + (tree?.CriticalDamage ?? 0f)) / 100f;
             // A quiver's extra arrow is another basic hit that often.
             var expectedHit = hit * (1f + critChance * (critMultiplier - 1f)) * (1f + Mathf.Clamp01(equipment.ExtraArrowPercent / 100f));
-            var dps = expectedHit * AttacksPerSecond(equipment, characterLevel, tree);
+            var dps = expectedHit * AttacksPerSecond(equipment, characterLevel, tree, points);
 
             // As PlayerHealth: life and armor with the tree's percentages and Might's armor; dodge (attributes and the
             // tree, capped) spares that share of hits.
-            var maxLife = (CombatFormulas.CharacterLife(characterLevel) + equipment.TotalLifeBonus) * (1f + (tree?.LifePercent ?? 0f));
-            var armor = (equipment.TotalArmor + attributes.Armor) * (1f + (tree?.ArmorPercent ?? 0f));
-            var dodge = Mathf.Min(MaxDodge, attributes.Dodge + (tree?.Dodge ?? 0f) + equipment.DodgePercent / 100f);
+            var maxLife = (CombatFormulas.CharacterLife(characterLevel) + points.Life + equipment.TotalLifeBonus) * (1f + (tree?.LifePercent ?? 0f));
+            var armor = (equipment.TotalArmor + points.Armor) * (1f + (tree?.ArmorPercent ?? 0f));
+            var dodge = Mathf.Min(MaxDodge, points.Dodge + (tree?.Dodge ?? 0f) + equipment.DodgePercent / 100f);
             var effectiveLife = maxLife / (1f - CombatFormulas.ArmorReduction(armor, characterLevel)) / (1f - dodge);
 
             return new PowerSnapshot(dps, effectiveLife);
         }
 
         /// <summary>Basic attacks a second with gear, attributes and the tree, as <see cref="PlayerCombat"/> times them.</summary>
-        public static float AttacksPerSecond(EquipmentState equipment, int characterLevel, PassiveBonuses tree = null) =>
-            BaseAttacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + CharacterAttributes.At(Mathf.Max(1, characterLevel)).AttackSpeed +
+        public static float AttacksPerSecond(EquipmentState equipment, int characterLevel, PassiveBonuses tree = null, CharacterAttributes? attributes = null) =>
+            BaseAttacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + (attributes ?? CharacterAttributes.At(Mathf.Max(1, characterLevel))).AttackSpeed +
                                     (tree?.AttackSpeed ?? 0f) + equipment.GripAttackSpeedBonus) * equipment.GripAttackSpeedFactor;
 
         /// <summary>The character's own gear, level and tree.</summary>
         public static PowerSnapshot Evaluate(GameSession session) =>
-            Evaluate(session.Equipment, session.Level, session.PassiveTree.Bonuses);
+            Evaluate(session.Equipment, session.Level, session.PassiveTree.Bonuses, session.AttributeBonuses);
 
         /// <summary>
         /// Where <paramref name="candidate"/> would be worn: its own slot, or for a ring an empty hand, else the hand

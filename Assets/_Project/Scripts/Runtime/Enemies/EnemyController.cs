@@ -673,6 +673,9 @@ namespace ARPG
                 default:
                     if (distance > definition.AttackRange + AttackForgiveness)
                         return;
+                    // A pet beside this enemy may take the blow instead (Docs/02, Pets: it draws aggro).
+                    if (PetController.Current != null && PetController.Current.TryTakeHit(this, damage))
+                        return;
                     break;
             }
 

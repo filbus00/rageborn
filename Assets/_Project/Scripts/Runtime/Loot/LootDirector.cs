@@ -24,6 +24,9 @@ namespace ARPG
         [Tooltip("Magic Find as a fraction, 0.5 for 50 percent. There is no gear that gives it yet, so it is fixed here.")]
         [SerializeField, Min(0f)] float magicFind;
 
+        // The scene's own Magic Find and the raven's (Docs/02, Pets).
+        float MagicFind => magicFind + PetRules.MagicFindBonus(GameSession.Current.Pets.Active);
+
         // Drops from one kill are spread out a little so a coin and an item do not sit on the same spot.
         const float ScatterRadius = 0.35f;
         const float GoldenAngle = 2.3999632f;
@@ -80,7 +83,7 @@ namespace ARPG
 
             DropGold(loot.RollGold(source, level), at);
 
-            var items = loot.RollDrops(source, level, magicFind);
+            var items = loot.RollDrops(source, level, MagicFind);
             for (var i = 0; i < items.Count; i++)
                 DropItem(items[i], at + Scatter());
 
@@ -133,7 +136,7 @@ namespace ARPG
             var loot = GameSession.Current.Loot;
             DropGold(loot.RollGold(LootSource.ZoneChest, itemLevel), ground + Scatter());
 
-            var items = loot.RollDrops(LootSource.ZoneChest, itemLevel, magicFind);
+            var items = loot.RollDrops(LootSource.ZoneChest, itemLevel, MagicFind);
             for (var i = 0; i < items.Count; i++)
                 DropItem(items[i], ground + Scatter());
         }
