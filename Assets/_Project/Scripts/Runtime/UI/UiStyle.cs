@@ -186,8 +186,9 @@ namespace ARPG
         /// <summary>A short name for an item kind, standing in for its icon until the icons exist (Docs/09).</summary>
         public static string SlotLabel(ItemSlot slot) => slot switch
         {
-            ItemSlot.Weapon => "Axe",
-            ItemSlot.TwoHandWeapon => "Great Axe",
+            ItemSlot.Weapon => "Bow",
+            ItemSlot.TwoHandWeapon => "Longbow",
+            ItemSlot.Shield => "Quiver",
             ItemSlot.Ring2 => "Ring",
             ItemSlot.OffHand => "Off-hand",
             _ => slot.ToString(),

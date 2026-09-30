@@ -92,9 +92,9 @@ namespace ARPG.Tests
 
             Assert.Greater(PowerScore.Change(equipment, Weapon(20), 5), 0f);
             Assert.Less(PowerScore.Change(equipment, Weapon(3), 5), 0f);
-            // The same axe in place of the main one changes nothing; beside it (dual wield) it is worth more.
+            // The same bow in place of the worn one changes nothing (bows only: there is no second hand for it).
             Assert.AreEqual(0f, PowerScore.ChangeAt(equipment, ItemSlot.Weapon, Weapon(10), 5), 1e-5f);
-            Assert.Greater(PowerScore.Change(equipment, Weapon(10), 5), 0f);
+            Assert.AreEqual(0f, PowerScore.Change(equipment, Weapon(10), 5), 1e-5f);
         }
 
         [Test]

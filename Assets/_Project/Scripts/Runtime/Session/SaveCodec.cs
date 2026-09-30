@@ -26,7 +26,25 @@ namespace ARPG
             MigrateFrom8, // 8 to 9: no loadout existed; it fills itself from the level, as the skills always did.
             MigrateFrom9, // 9 to 10: skill levels did not exist; every skill is level 1 and all points are unspent.
             MigrateFrom10, // 10 to 11: the passive tree did not exist; nothing is bought and every point is unspent.
+            MigrateFrom11, // 11 to 12: stat points and pets did not exist. The save director sets such a save aside anyway.
         };
+
+        /// <summary>The first version written with bows only (the Wild Arrow). Older saves are the Wrathborn's: they still
+        /// parse (every migration keeps its test), but the save director sets them aside and starts a new game, the
+        /// owner's clean start of 2026-09-30.</summary>
+        public const int FirstBowsVersion = 12;
+
+        /// <summary>Whether a parsed save is from before bows only.</summary>
+        public static bool IsRetired(SaveData data) => data != null && data.readFromVersion > 0 && data.readFromVersion < FirstBowsVersion;
+
+        static SaveData MigrateFrom11(SaveData data)
+        {
+            data.attributePoints = new List<int>();
+            data.pets = new List<string>();
+            data.activePet = "";
+            data.petRules = new List<string>();
+            return data;
+        }
 
         static SaveData MigrateFrom1(SaveData data)
         {
@@ -321,6 +339,7 @@ namespace ARPG
                 return false;
             }
 
+            parsed.readFromVersion = parsed.version;
             while (parsed.version < SaveData.CurrentVersion)
             {
                 parsed = Migrations[parsed.version](parsed);
@@ -335,6 +354,10 @@ namespace ARPG
             parsed.openedChests ??= new List<string>();
             parsed.materials ??= new List<MaterialData>();
             parsed.waypoints ??= new List<int>();
+            parsed.attributePoints ??= new List<int>();
+            parsed.pets ??= new List<string>();
+            parsed.activePet ??= "";
+            parsed.petRules ??= new List<string>();
 
             data = parsed;
             error = null;

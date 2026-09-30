@@ -42,9 +42,8 @@ namespace ARPG
         const float ShotHitRadius = 0.3f;
         const float AxeSpinDegreesPerSecond = 900f;
 
-        // The basic arrow (Docs/02, the Wild Arrow): a short bow's reach until bows are items (Docs/03), its flight speed,
-        // and how far past the reach it flies before it is spent.
-        const float ShortBowReach = 7.5f;
+        // The basic arrow (Docs/02, the Wild Arrow): its flight speed, and how far past the reach it flies before it is
+        // spent. The reach is the bow's (Docs/03: a short bow 7.5, a longbow 9).
         const float ArrowSpeed = 14f;
         const float ArrowOvershoot = 2f;
 
@@ -188,8 +187,9 @@ namespace ARPG
         /// </summary>
         public float WeaponDamage => GameSession.Current.Equipment.WeaponDamage;
 
-        /// <summary>The basic arrow's reach (Docs/02: 7.5 with a short bow; the longbow's 9 comes with bows as items).</summary>
-        public float BasicRange => ShortBowReach;
+        /// <summary>The basic arrow's reach (Docs/03: 7.5 with a short bow, 9 with a longbow). Unarmed shoots as far as a
+        /// short bow, so a character never has to walk into melee.</summary>
+        public float BasicRange => GripRules.ShortBowReach + GameSession.Current.Equipment.GripReach;
 
         /// <summary>How many times the skill in a slot has fired since the scene started, for tests and tuning.</summary>
         public int CastCount(int slot) => castCounts != null && slot >= 0 && slot < castCounts.Length ? castCounts[slot] : 0;
@@ -421,6 +421,21 @@ namespace ARPG
             // One arrow at the target; it gives Focus when it hits (Docs/02).
             Sfx.Play(SoundId.ArrowShot, 0.5f);
             shots.Add(NewArrow(origin, aim * ArrowSpeed, BasicRange + ArrowOvershoot, 1f, ShotStyle.Basic, BasicTrailColor));
+
+            // The quiver's extra arrow (Docs/03): now and then a second one, at another enemy in reach when there is one.
+            if (Random.value < equipment.ExtraArrowPercent / 100f)
+            {
+                var second = aim;
+                for (var i = 0; i < inReach.Count; i++)
+                    if (inReach[i] != Target && inReach[i].IsAlive)
+                    {
+                        second = (inReach[i].GroundPosition - origin).normalized;
+                        break;
+                    }
+                if (second == aim)
+                    second = Rotate(aim, 8f);
+                shots.Add(NewArrow(origin, second * ArrowSpeed, BasicRange + ArrowOvershoot, 1f, ShotStyle.Basic, BasicTrailColor));
+            }
         }
 
         /// <summary>Increased attack speed from Blood Frenzy while it lasts: its own, and more for each live Momentum

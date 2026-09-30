@@ -24,6 +24,9 @@ namespace ARPG
         CooldownReduction,
         MovementSpeed,
         DodgeChance,
+
+        // The quiver's own (Docs/03, 2026-09-30): the chance a basic shot looses a second arrow at another enemy.
+        ExtraArrowChance,
     }
 
     public enum AffixKind
@@ -86,8 +89,8 @@ namespace ARPG
             public float HighShare { get; }
         }
 
-        // The slots each affix can roll on, from Docs/03's affix table. Shields have no built suffix yet (all resistances,
-        // block chance and the rest are not built), so a shield rolls prefixes only.
+        // The slots each affix can roll on, from Docs/03's affix table. The quiver (the Shield kind, bows only since
+        // 2026-09-30) rolls flat damage and life, and attack speed, crits and its own extra arrow (Docs/03, the Wild Arrow's slots).
         static ItemSlot[] On(params ItemSlot[] slots)
         {
             // A two-handed weapon rolls what a weapon rolls.
@@ -101,17 +104,18 @@ namespace ARPG
 
         static readonly Definition[] Definitions =
         {
-            new Definition(AffixKind.Prefix, 60f, 90f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Amulet, ItemSlot.Gloves)), // FlatWeaponDamage
+            new Definition(AffixKind.Prefix, 60f, 90f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Amulet, ItemSlot.Gloves, ItemSlot.Shield)), // FlatWeaponDamage
             new Definition(AffixKind.Prefix, 18f, 26f, On(ItemSlot.Weapon, ItemSlot.Gloves, ItemSlot.Amulet)),                 // IncreasedDamage
             new Definition(AffixKind.Prefix, 180f, 240f, On(ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Belt, ItemSlot.Boots, ItemSlot.Shield)),    // Life
-            new Definition(AffixKind.Prefix, 90f, 130f, On(ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Gloves, ItemSlot.Boots, ItemSlot.Shield)),   // Armor
-            new Definition(AffixKind.Suffix, 7f, 11f, On(ItemSlot.Weapon, ItemSlot.Gloves, ItemSlot.Ring)),                    // AttackSpeed
-            new Definition(AffixKind.Suffix, 4f, 7f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Amulet, ItemSlot.Gloves)),    // CriticalChance
-            new Definition(AffixKind.Suffix, 20f, 30f, On(ItemSlot.Weapon, ItemSlot.Amulet, ItemSlot.Ring)),                   // CriticalDamage
+            new Definition(AffixKind.Prefix, 90f, 130f, On(ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Gloves, ItemSlot.Boots)),   // Armor
+            new Definition(AffixKind.Suffix, 7f, 11f, On(ItemSlot.Weapon, ItemSlot.Gloves, ItemSlot.Ring, ItemSlot.Shield)),   // AttackSpeed
+            new Definition(AffixKind.Suffix, 4f, 7f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Amulet, ItemSlot.Gloves, ItemSlot.Shield)), // CriticalChance
+            new Definition(AffixKind.Suffix, 20f, 30f, On(ItemSlot.Weapon, ItemSlot.Amulet, ItemSlot.Ring, ItemSlot.Shield)),  // CriticalDamage
             new Definition(AffixKind.Suffix, 4f, 8f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Gloves)),                     // LifeOnHit
             new Definition(AffixKind.Suffix, 5f, 9f, On(ItemSlot.Helm, ItemSlot.Amulet, ItemSlot.Ring)),                       // CooldownReduction
             new Definition(AffixKind.Suffix, 6f, 10f, On(ItemSlot.Boots)),                                                     // MovementSpeed
             new Definition(AffixKind.Suffix, 3f, 5f, On(ItemSlot.Boots, ItemSlot.Belt, ItemSlot.Ring)),                        // DodgeChance
+            new Definition(AffixKind.Suffix, 8f, 15f, On(ItemSlot.Shield)),                                                    // ExtraArrowChance
         };
 
         // Index 0 unused so tier numbers (1-5) index directly.

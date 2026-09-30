@@ -51,15 +51,14 @@ namespace ARPG
             // Unarmored target: armor scales every hit by the same factor, so it cannot change which gear is better.
             // The same sums as PlayerCombat.Damage and Strike: Might's damage counts, since the basic attack is melee.
             var increased = equipment.IncreasedDamagePercent / 100f + attributes.IncreasedDamage + (tree?.IncreasedDamage ?? 0f);
-            // Dual wield alternates the hands' swings, so a swing is worth the two weapons' average.
-            var weaponDamage = (equipment.WeaponDamage + equipment.OffHandWeaponDamage) / 2f;
             var hit = CombatFormulas.HitDamage(
-                weaponDamage, 1f, equipment.FlatWeaponDamageBonus, increased, 1f,
+                equipment.WeaponDamage, 1f, equipment.FlatWeaponDamageBonus, increased, 1f,
                 false, 0f, 0f, characterLevel);
             var critChance = Mathf.Clamp01((equipment.CriticalChancePercent + attributes.CriticalChance + (tree?.CriticalChance ?? 0f)) / 100f);
             var critMultiplier = CombatFormulas.BaseCriticalMultiplier +
                                  (equipment.CriticalDamagePercent + (tree?.CriticalDamage ?? 0f)) / 100f;
-            var expectedHit = hit * (1f + critChance * (critMultiplier - 1f));
+            // A quiver's extra arrow is another basic hit that often.
+            var expectedHit = hit * (1f + critChance * (critMultiplier - 1f)) * (1f + Mathf.Clamp01(equipment.ExtraArrowPercent / 100f));
             var dps = expectedHit * AttacksPerSecond(equipment, characterLevel, tree);
 
             // As PlayerHealth: life and armor with the tree's percentages and Might's armor; dodge (attributes and the
@@ -67,9 +66,7 @@ namespace ARPG
             var maxLife = (CombatFormulas.CharacterLife(characterLevel) + equipment.TotalLifeBonus) * (1f + (tree?.LifePercent ?? 0f));
             var armor = (equipment.TotalArmor + attributes.Armor) * (1f + (tree?.ArmorPercent ?? 0f));
             var dodge = Mathf.Min(MaxDodge, attributes.Dodge + (tree?.Dodge ?? 0f) + equipment.DodgePercent / 100f);
-            // A shield's block rolls apart from dodge (Docs/03).
-            var effectiveLife = maxLife / (1f - CombatFormulas.ArmorReduction(armor, characterLevel)) / (1f - dodge) /
-                                (1f - equipment.BlockChance);
+            var effectiveLife = maxLife / (1f - CombatFormulas.ArmorReduction(armor, characterLevel)) / (1f - dodge);
 
             return new PowerSnapshot(dps, effectiveLife);
         }
@@ -92,14 +89,11 @@ namespace ARPG
             var places = EquipmentState.PlacesFor(candidate.Slot);
             if (places.Length == 1)
                 return places[0];
-            // A ring takes an empty hand first. A one-handed weapon goes in the main hand when that is empty or holds a
-            // two-hander; otherwise it replaces the main weapon or joins it in the off-hand, whichever scores higher.
+            // A ring takes an empty hand first, else replaces the ring it beats by more.
             if (candidate.Slot == ItemSlot.Ring)
                 foreach (var place in places)
                     if (equipment.Get(place) == null)
                         return place;
-            if (candidate.Slot == ItemSlot.Weapon && (equipment.Weapon == null || equipment.IsTwoHanded))
-                return ItemSlot.Weapon;
             var best = places[0];
             var bestScore = float.MinValue;
             foreach (var place in places)

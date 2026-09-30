@@ -16,10 +16,15 @@ namespace ARPG
         /// <summary>1: the first. 2: adds level and experience. 3: adds potion charges. 4: adds the dungeon seed and
         /// opened chests. 5: adds the dungeon generator version. 6: adds salvage materials and each item's reforge and
         /// temper counts. 7: adds what the character has been taught (onboarding) and play time. 8: adds activated
-        /// waypoints, the Portal Tome and an open portal. 9: adds the skill loadout. 10: adds skill levels. 11: adds the passive tree.</summary>
-        public const int CurrentVersion = 11;
+        /// waypoints, the Portal Tome and an open portal. 9: adds the skill loadout. 10: adds skill levels. 11: adds the passive tree.
+        /// 12: bows only, the Wild Arrow (2026-09-30): adds spent stat points and pets. A save older than 12 is the retired
+        /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses.</summary>
+        public const int CurrentVersion = 12;
 
         public int version;
+
+        /// <summary>The version the file was written in before migration, set when it is read; not saved.</summary>
+        [NonSerialized] public int readFromVersion;
 
         /// <summary>When it was written, in Unix milliseconds. iCloud conflict resolution will compare these.</summary>
         public long savedAtUnixMs;
@@ -79,6 +84,16 @@ namespace ARPG
         /// <summary>Passive nodes bought, by id, and the keystone in effect (empty for none).</summary>
         public List<string> passiveNodes = new List<string>();
         public string activeKeystone = "";
+
+        /// <summary>Stat points spent on each attribute, in <see cref="Attribute"/> order (Strength, Agility, Vitality,
+        /// Speed, Focus). Unspent points are not stored: they follow from the level.</summary>
+        public List<int> attributePoints = new List<int>();
+
+        /// <summary>Pets bought, by kind name, the one following the character (empty for none), and its rules in
+        /// order, by name.</summary>
+        public List<string> pets = new List<string>();
+        public string activePet = "";
+        public List<string> petRules = new List<string>();
     }
 
     [Serializable]

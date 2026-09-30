@@ -64,9 +64,10 @@ namespace ARPG
 
         public static readonly string[] ChestLooks = { "padded", "leather", "mail" };
         public static readonly string[] HelmLooks = { "cap", "nasal", "great" };
-        public static readonly string[] OneHandWeaponLooks = { "hatchet", "bearded_axe", "war_axe" };
-        public static readonly string[] TwoHandWeaponLooks = { "great_axe", "maul", "bardiche" };
-        public static readonly string[] ShieldLooks = { "buckler", "round_shield", "kite_shield" };
+        // Bows only since 2026-09-30 (Docs/03, act 1's looks): short bows, longbows and quivers.
+        public static readonly string[] OneHandWeaponLooks = { "hunting_bow", "recurve_bow", "horn_bow" };
+        public static readonly string[] TwoHandWeaponLooks = { "yew_longbow", "war_bow", "great_bow" };
+        public static readonly string[] ShieldLooks = { "hide_quiver", "studded_quiver", "bone_quiver" };
 
         /// <summary>Act 1's item level bands (the brief, 10.2): 1 to 3 is tier 0, 4 to 6 tier 1, 7 and up tier 2.</summary>
         public static int Tier(int itemLevel) => itemLevel <= 3 ? 0 : itemLevel <= 6 ? 1 : 2;
@@ -84,25 +85,24 @@ namespace ARPG
             return offHandWeapon ? CharacterGrip.DualWield : CharacterGrip.OneHand;
         }
 
-        /// <summary>The look of what is equipped now. Empty slots show the bare body, the bare head and empty hands.</summary>
+        /// <summary>The look of what is equipped now. Empty slots show the bare body, the bare head and empty hands.
+        /// Bows only (2026-09-30): one grip for every bow (the stand-in bakes it as "1h", Docs/09 4.6), the bow in the
+        /// weapon layer and the quiver in the off-hand layer.</summary>
         public static CharacterAppearance For(EquipmentState equipment) => new CharacterAppearance(
             LookOf(ChestLooks, equipment.Chest) ?? BareBody,
             LookOf(HelmLooks, equipment.Helm),
-            equipment.HasShield ? LookOf(ShieldLooks, equipment.OffHand)
-            : equipment.IsDualWield ? LookOf(OneHandWeaponLooks, equipment.OffHand) : null,
-            LookOf(equipment.IsTwoHanded ? TwoHandWeaponLooks : OneHandWeaponLooks, equipment.Weapon),
-            GripFor(equipment.IsTwoHanded, equipment.IsDualWield, equipment.HasShield));
+            equipment.HasQuiver ? LookOf(ShieldLooks, equipment.OffHand) : null,
+            LookOf(equipment.IsLongbow ? TwoHandWeaponLooks : OneHandWeaponLooks, equipment.Weapon),
+            CharacterGrip.OneHand);
 
         /// <summary>
-        /// The look shown when a layer's own look has no sheets yet, from the models that exist: the leather body, the
-        /// bearded axe (in either hand), the round shield (Viking_shield.fbx), and for a two-hander the great axe (the
-        /// bearded axe enlarged until a two-handed model exists). Null for the helm, which then stays off.
+        /// The look shown when a layer's own look has no sheets yet, from the models that exist: the leather body. No bow
+        /// or quiver is modelled yet (Docs/09 4.6), so those layers stay off rather than showing the retired axe or
+        /// shield; null for the helm too.
         /// </summary>
         public static string FallbackLook(AppearanceLayer layer, CharacterGrip grip = CharacterGrip.OneHand) => layer switch
         {
             AppearanceLayer.Body => "leather",
-            AppearanceLayer.Weapon => grip == CharacterGrip.TwoHand ? "great_axe" : "bearded_axe",
-            AppearanceLayer.OffHand => grip == CharacterGrip.Shield ? "round_shield" : grip == CharacterGrip.DualWield ? "bearded_axe" : null,
             _ => null,
         };
 

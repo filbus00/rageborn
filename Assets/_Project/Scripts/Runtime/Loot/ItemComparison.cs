@@ -32,11 +32,13 @@ namespace ARPG
     {
         public static string Name(Item item) => $"{item.Rarity} {KindName(item.Slot)}";
 
-        /// <summary>An item kind's name for players: Weapon is an axe (the Wrathborn's only weapon family, Docs/03).</summary>
+        /// <summary>An item kind's name for players: bows only (Docs/03, 2026-09-30), so Weapon is a short bow, the
+        /// two-handed kind a longbow and the shield kind a quiver.</summary>
         public static string KindName(ItemSlot kind) => kind switch
         {
-            ItemSlot.Weapon => "Axe",
-            ItemSlot.TwoHandWeapon => "Great Axe",
+            ItemSlot.Weapon => "Bow",
+            ItemSlot.TwoHandWeapon => "Longbow",
+            ItemSlot.Shield => "Quiver",
             ItemSlot.Ring2 => "Ring",
             ItemSlot.OffHand => "Off-hand",
             _ => kind.ToString(),
@@ -57,6 +59,7 @@ namespace ARPG
                 case AffixId.CooldownReduction: return "Cooldown reduction";
                 case AffixId.MovementSpeed: return "Movement speed";
                 case AffixId.DodgeChance: return "Dodge chance";
+                case AffixId.ExtraArrowChance: return "Extra arrow chance";
                 default: return id.ToString();
             }
         }
@@ -64,7 +67,7 @@ namespace ARPG
         public static bool IsPercent(AffixId id) =>
             id == AffixId.IncreasedDamage || id == AffixId.AttackSpeed || id == AffixId.CriticalChance ||
             id == AffixId.CriticalDamage || id == AffixId.CooldownReduction || id == AffixId.MovementSpeed ||
-            id == AffixId.DodgeChance;
+            id == AffixId.DodgeChance || id == AffixId.ExtraArrowChance;
 
         /// <summary>The docs' tier dots: five dots, filled for how good the tier is (T1 all five, T5 one).</summary>
         public static string TierDots(int tier)
@@ -88,7 +91,7 @@ namespace ARPG
             else if (Item.ArmorShare(candidate.Slot) > 0f)
                 lines.Add(new StatLine("Base armor", candidate.ArmorValue, equipped != null ? equipped.ArmorValue : 0f, false));
             if (candidate.Slot == ItemSlot.Shield)
-                lines.Add(new StatLine("Block chance", candidate.BlockPercent, equipped != null ? equipped.BlockPercent : 0f, true));
+                lines.Add(new StatLine("Quiver attack speed", candidate.QuiverAttackSpeedPercent, equipped != null ? equipped.QuiverAttackSpeedPercent : 0f, true));
             // Amulets and rings have no base stat: only their affixes.
 
             foreach (AffixId id in System.Enum.GetValues(typeof(AffixId)))

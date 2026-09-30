@@ -38,7 +38,7 @@ namespace ARPG.Tests
             var look = AppearanceRules.For(equipment);
             Assert.AreEqual("mail", look.Body);
             Assert.AreEqual("cap", look.Helm);
-            Assert.AreEqual("bearded_axe", look.Weapon);
+            Assert.AreEqual("recurve_bow", look.Weapon);
         }
 
         [Test]

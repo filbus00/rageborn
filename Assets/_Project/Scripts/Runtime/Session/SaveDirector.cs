@@ -124,6 +124,15 @@ namespace ARPG
                 return result;
             }
 
+            // Bows only (2026-09-30): a Wrathborn save is set aside, not deleted, and the game starts clean.
+            if (SaveCodec.IsRetired(result.Data))
+            {
+                var suffix = "wrathborn-" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmss");
+                store.SetAsideAll(suffix);
+                Debug.Log($"[Save] A save from before bows only; set it aside as *.{suffix} and started a new game.");
+                return new SaveStore.LoadResult(null, null, 0, result.Failures);
+            }
+
             var warnings = new List<string>();
             GameSession.Install(SaveCodec.Restore(result.Data, lootSeed, warnings));
             foreach (var warning in warnings)

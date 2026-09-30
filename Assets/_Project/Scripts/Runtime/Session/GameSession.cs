@@ -40,7 +40,6 @@ namespace ARPG
         public Item Helm => Get(ItemSlot.Helm);
 
         static readonly ItemSlot[] RingPlaces = { ItemSlot.Ring, ItemSlot.Ring2 };
-        static readonly ItemSlot[] HandPlaces = { ItemSlot.Weapon, ItemSlot.OffHand };
         static readonly ItemSlot[] OffHandPlace = { ItemSlot.OffHand };
         static readonly ItemSlot[] WeaponPlace = { ItemSlot.Weapon };
         static readonly ItemSlot[][] SinglePlaces = BuildSinglePlaces();
@@ -53,45 +52,49 @@ namespace ARPG
             return places;
         }
 
-        /// <summary>Where an item of this kind can be worn: a ring on either hand, a one-handed weapon in either hand
-        /// (dual wield), a shield in the off-hand, a two-hander in the weapon place, everything else in its own slot.</summary>
+        /// <summary>Where an item of this kind can be worn: a ring on either hand, either bow in the weapon place, a
+        /// quiver in the off-hand, everything else in its own slot (bows only, Docs/03, 2026-09-30).</summary>
         public static ItemSlot[] PlacesFor(ItemSlot kind) => kind switch
         {
             ItemSlot.Ring or ItemSlot.Ring2 => RingPlaces,
-            ItemSlot.Weapon => HandPlaces,
+            ItemSlot.Weapon or ItemSlot.TwoHandWeapon => WeaponPlace,
             ItemSlot.Shield or ItemSlot.OffHand => OffHandPlace,
-            ItemSlot.TwoHandWeapon => WeaponPlace,
             _ => SinglePlaces[(int)kind],
         };
 
         public Item OffHand => Get(ItemSlot.OffHand);
 
-        /// <summary>A two-handed weapon is worn: the off-hand stays empty.</summary>
+        /// <summary>A longbow is worn (the old two-handed weapon kind).</summary>
         public bool IsTwoHanded => Weapon != null && Weapon.Slot == ItemSlot.TwoHandWeapon;
 
-        /// <summary>A second one-handed weapon is worn in the off-hand.</summary>
-        public bool IsDualWield => OffHand != null && OffHand.Slot == ItemSlot.Weapon;
+        /// <summary>A longbow is worn.</summary>
+        public bool IsLongbow => IsTwoHanded;
 
+        /// <summary>Bows only: nothing is ever dual wielded. Kept false for the code that still asks.</summary>
+        public bool IsDualWield => false;
+
+        /// <summary>A quiver is worn in the off-hand (the old shield kind).</summary>
         public bool HasShield => OffHand != null && OffHand.Slot == ItemSlot.Shield;
 
-        /// <summary>Block chance from the shield, 0 to <see cref="GripRules.MaxBlock"/>.</summary>
-        public float BlockChance => HasShield ? System.Math.Min(GripRules.MaxBlock, OffHand.BlockPercent / 100f) : 0f;
+        public bool HasQuiver => HasShield;
 
-        /// <summary>Average damage of the off-hand weapon's swings; the main hand's when not dual wielding.</summary>
-        public float OffHandWeaponDamage => IsDualWield ? OffHand.WeaponAverageDamage : WeaponDamage;
+        /// <summary>Nothing blocks with bows only (the shield's block is retired).</summary>
+        public float BlockChance => 0f;
 
-        /// <summary>The attack speed the grip adds (dual wield) as a fraction, and the factor it multiplies by (a two-hander).</summary>
-        public float GripAttackSpeedBonus => IsDualWield ? GripRules.DualWieldAttackSpeed : 0f;
+        /// <summary>The weapon's damage; there is no off-hand weapon with bows.</summary>
+        public float OffHandWeaponDamage => WeaponDamage;
 
-        public float GripAttackSpeedFactor => IsTwoHanded ? GripRules.TwoHandAttackSpeedFactor : 1f;
+        /// <summary>The attack speed the quiver adds as a fraction, and the factor the bow multiplies by (a longbow).</summary>
+        public float GripAttackSpeedBonus => HasQuiver ? OffHand.QuiverAttackSpeedPercent / 100f : 0f;
 
-        /// <summary>How much further the basic attack reaches with this grip.</summary>
-        public float GripReach => IsTwoHanded ? GripRules.TwoHandReach : 0f;
+        public float GripAttackSpeedFactor => IsLongbow ? GripRules.LongbowAttackSpeedFactor : 1f;
+
+        /// <summary>How much further the basic arrow reaches than a short bow's 7.5 (a longbow's 9).</summary>
+        public float GripReach => IsLongbow ? GripRules.LongbowReach : 0f;
 
         /// <summary>
-        /// Wears an item in a place under the grip rules: a two-hander empties the off-hand, and anything put in the
-        /// off-hand takes a two-hander out of the weapon place. What comes off (the item that was in the place and
-        /// anything the rules push out) is added to <paramref name="displaced"/>.
+        /// Wears an item in a place. With bows only there are no grip rules left to apply (a bow and a quiver always
+        /// go together); what comes off is added to <paramref name="displaced"/>.
         /// </summary>
         public EquipmentState Equip(ItemSlot place, Item item, List<Item> displaced = null)
         {
@@ -106,10 +109,6 @@ namespace ARPG
             }
 
             TakeOff(place);
-            if (item != null && item.Slot == ItemSlot.TwoHandWeapon)
-                TakeOff(ItemSlot.OffHand);
-            if (item != null && place == ItemSlot.OffHand && result.IsTwoHanded)
-                TakeOff(ItemSlot.Weapon);
             return result.With(place, item);
         }
 
@@ -178,6 +177,9 @@ namespace ARPG
         public float CooldownReductionPercent => Sum(item => item.CooldownReductionPercent);
         public float MovementSpeedPercent => Sum(item => item.MovementSpeedPercent);
         public float DodgePercent => Sum(item => item.DodgePercent);
+
+        /// <summary>The quiver's chance, in percent, that a basic shot looses a second arrow (Docs/03, 2026-09-30).</summary>
+        public float ExtraArrowPercent => Sum(item => item.ExtraArrowPercent);
 
         public static EquipmentState Empty => new EquipmentState((Item[])null);
 

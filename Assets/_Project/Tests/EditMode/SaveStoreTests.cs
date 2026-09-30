@@ -139,6 +139,29 @@ namespace ARPG.Tests
             }
         }
 
+        [Test]
+        public void LoadAndInstall_AWrathbornSave_IsSetAside_ForACleanStart()
+        {
+            var previous = GameSession.Current;
+            try
+            {
+                store.Write(SaveCodec.ToJson(new SaveData { version = SaveCodec.FirstBowsVersion - 1, gold = 500, level = 7 }));
+                var fresh = new GameSession();
+                GameSession.Install(fresh);
+
+                var result = SaveDirector.LoadAndInstall(store, lootSeed: 1);
+
+                Assert.IsFalse(result.Loaded);
+                Assert.AreSame(fresh, GameSession.Current, "bows only starts a new game");
+                Assert.IsFalse(store.AnyExists());
+                Assert.AreEqual(1, Directory.GetFiles(directory, "*.wrathborn-*").Length, "the old save is kept, not deleted");
+            }
+            finally
+            {
+                GameSession.Install(previous);
+            }
+        }
+
         static int Gold(string path)
         {
             Assert.IsTrue(SaveCodec.TryParse(File.ReadAllText(path), out var data, out var error), error);
