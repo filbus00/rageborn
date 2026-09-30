@@ -36,7 +36,7 @@ Level pacing targets: the character reaches level 60 over five passes through th
 - Every level up refills life.
 - Level 2 onward: 1 passive point per level.
 - Skill point: 1 per level to level 30, 1 per 2 levels after.
-- Skills (decided 2026-09-27, Q4, replacing "1, 2, 3, 6, 10, 14, 18, 22"): Hew 1, Hurl Axe 2, Bull Rush 4, Ground Breaker 6 (built), Battle Roar 9, Rending Spin 12, Blood Frenzy 15, Skullsplitter 18. The loadout screen opens at level 9.
+- Skills for the Wild Arrow (2026-09-30, the same levels): Split Shot 1, Piercing Shot 2, Vault 4, Arrow Rain 6, Hunter's Breath 9, Barrage 12, Wild Frenzy 15, Kill Shot 18 (02). The retired Wrathborn's, Skills (decided 2026-09-27, Q4, replacing "1, 2, 3, 6, 10, 14, 18, 22"): Hew 1, Hurl Axe 2, Bull Rush 4, Ground Breaker 6 (built), Battle Roar 9, Rending Spin 12, Blood Frenzy 15, Skullsplitter 18. The loadout screen opens at level 9.
 - Slots (decided, Q4, replacing the slot unlocks at 8 and 20 and the keystone slot at 30): all four skill slots are open from level 1; keystones can be bought from level 20.
 - Attributes (decided, Q6): automatic growth per level, see 02.
 
@@ -196,7 +196,7 @@ Built: Hew at level 1, Hurl Axe 2, Bull Rush 4, Ground Breaker 6; all four equip
 
 | Level | Reward |
 |---|---|
-| 1, 2, 4, 6 | Hew, Hurl Axe, Bull Rush, Ground Breaker (built) |
+| 1, 2, 4, 6 | Split Shot, Piercing Shot, Vault, Arrow Rain (the Wild Arrow, 2026-09-30; the Wrathborn's Hew, Hurl Axe, Bull Rush, Ground Breaker were built) |
 | 9 | Battle Roar (Vigil I act 2). The loadout screen opens: from here the player chooses which four to carry |
 | 12 | Rending Spin (act 2 boss) |
 | 15 | Blood Frenzy (act 3) |

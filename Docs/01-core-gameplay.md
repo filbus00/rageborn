@@ -28,7 +28,7 @@ No tap, swipe, long press or double tap has a combat function. The top of the sc
 
 Combat is real time. The character is always eligible to attack. The auto-attack system runs every frame and follows four rules.
 
-1. Target selection. The character targets the nearest enemy in attack range that is inside a 200 degree forward cone. If none, the nearest enemy in range regardless of facing. Elites and bosses get a 30 percent range weight bonus so they are preferred when near.
+1. Target selection. The character targets the nearest enemy in attack range that is inside a 200 degree forward cone. With bows (the game is bows only since 2026-09-30) the range is the bow's reach, 7.5 or 9 units, and a target must be in sight: an enemy behind a wall is never picked. If none, the nearest enemy in range regardless of facing. Elites and bosses get a 30 percent range weight bonus so they are preferred when near.
 2. Attack while moving. Basic attacks continue during movement. Melee classes attack at full rate when the target is in reach. Ranged classes attack at full rate always.
 3. Facing. The body faces the movement direction. The weapon arm turns to the target. This keeps kiting readable. With sprite characters the arm cannot turn on its own, so retreating from a fight (moving more than 112.5 degrees away from the target within 1.2 s of an attack, skill or hit) shows the character facing the target and running backward (decision of 2026-09-27). Targeting still uses the movement direction.
 4. Attack rate. One basic attack per 1 / attacks per second. Attacks per second starts at 1.4 and is modified by gear and skills.
@@ -56,9 +56,9 @@ Trigger conditions, chosen per slot in the loadout screen:
 
 The global cast timer is 0.35 seconds. Skills never cancel each other. A skill with a channel time locks lower priority skills until it ends.
 
-### Resource: Focus (Rage for the Wrathborn)
+### Resource: Focus
 
-The launch class, the Wrathborn, uses Rage instead of Focus (02-classes-and-skills.md). Focus stays the resource for later classes.
+The launch class, the Wild Arrow, uses Focus (decided 2026-09-30, 02-classes-and-skills.md), full on every level load. The retired Wrathborn used Rage instead.
 
 - Focus range is 0 to 100. It regenerates 6 per second and gains 4 on each basic attack hit.
 - Skills cost Focus or use cooldowns only. Every skill has a cooldown between 1.5 and 20 seconds.

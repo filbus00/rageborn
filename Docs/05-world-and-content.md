@@ -54,7 +54,7 @@ Levels are connected halls, as in Diablo 1's cathedral (the owner, 2026-09-30: t
 
 ### Shrines
 
-A shrine is stepped on to activate. Effects last 60 seconds: Speed, Fury (damage), Warding (damage reduction), Fortune (Magic Find), Wrath (the Wrathborn's Rage; the Focus shrine of the drafts' Focus classes, renamed for a Rage class, Q22). One shrine per room at most.
+A shrine is stepped on to activate. Effects last 60 seconds: Speed, Fury (damage), Warding (damage reduction), Fortune (Magic Find), Focus (the Wild Arrow's resource; it was renamed Wrath for the Rage-using Wrathborn, Q22, and takes its first name back with the bows-only decision of 2026-09-30). One shrine per room at most.
 
 ## Enemy roster (launch)
 
@@ -357,7 +357,7 @@ Optional bosses (in the boss rotation from Vigil II, 05 above, decided 2026-09-2
 | Fury | Plus 30 percent damage |
 | Warding | 25 percent less damage taken |
 | Fortune | Plus 100 percent Magic Find (above the 200 percent gear cap, shrines are separate) |
-| Focus | For the Wrathborn: Rage never drains and gains 50 percent more. The name comes from the Focus resource; renamed Wrath shrine (Q22) |
+| Focus | Focus regenerates 50 percent faster and skills cost 25 percent less (proposed 2026-09-30 for the Wild Arrow; for the retired Wrathborn it was the Wrath shrine: Rage never drains and gains 50 percent more) |
 
 A shrine room holds one shrine on a plinth and 1 or 2 normal packs; shrines are marked on the mini-map once seen.
 
@@ -371,7 +371,7 @@ The outline above stands. Scenes are short (20 to 60 seconds), skippable at all 
 
 | Act | Opening (town) | Middle | Boss | Closing | Lore landmarks in the dungeon |
 |---|---|---|---|---|---|
-| 1 | The Wrathborn arrives at Emberwatch carrying the ember; Mother Aldis says the chapel's fire died in the night and the dead walk the crypts | The Wanderer (depth 3) gives the Portal Tome and speaks of the Vigil's other fires | The Cinder Warden: the keeper of the first fire, burned hollow | The Warden falls; the Wrathborn's ember takes its dying flame. Aldis sends him west to the Drowned Reach, where the second fire stood | 3 fallen watch-stones with carved names |
+| 1 | The Wild Arrow arrives at Emberwatch carrying the ember; Mother Aldis says the chapel's fire died in the night and the dead walk the crypts | The Wanderer (depth 3) gives the Portal Tome and speaks of the Vigil's other fires | The Cinder Warden: the keeper of the first fire, burned hollow | The Warden falls; the Wrathborn's ember takes its dying flame. Aldis sends him west to the Drowned Reach, where the second fire stood | 3 fallen watch-stones with carved names |
 | 2 | Saltmere's ferryman Bram tells of the watchmen who walked into the sea | A drowned watch-log in the keep: the watchmen chose the water over the Hollow | The Tidewife: the watch-captain's widow, who called them into the water | The second ember. Bram ferries him to the Bone Orchard | Water-logged journals |
 | 3 | Gravesend: Sister Ivy praises Saint Marrow, who "keeps the dead quiet" | Ivy learns the saint feeds the dead to the Hollow; she turns against him | Saint Marrow, who bargained with the Hollow for eternal life | The third ember, and Ivy's warning: the knights of the Spire serve the Hollow willingly | Saint's reliquaries with his sermons |
 | 4 | Captain Hale explains the order's oath to the Hollow | Hale's old banner in the oath hall, his name struck out | Warlord Kaeth, who swore the oath first | The fourth ember. The way to the Hollow opens | Oath tablets |

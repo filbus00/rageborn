@@ -32,7 +32,7 @@ How to read it:
 | Haptics | Not built | 01 | Proposed list in 07, Audio and haptics plan |
 | Interruption pause and 3 s resume countdown | Not built | 01 | Save on background is built |
 
-## 2. The Wrathborn
+## 2. The Wrathborn (retired 2026-09-30: the game is bows only and the launch class is the Wild Arrow, 02; the rows below are being redone for it)
 
 | Item | Status | Where | Notes |
 |---|---|---|---|

@@ -6,15 +6,16 @@ Loot is the reason to play. This file defines what drops, how it is rolled, how 
 
 Ten slots: weapon, off-hand, helm, chest, gloves, boots, belt, amulet, ring 1, ring 2.
 
-Weapons have a base damage range and base attack speed. The off-hand slot holds, for the Wrathborn, nothing, a one-handed weapon or a shield, or is emptied by a two-handed weapon (decision of 2026-09-27, below); quivers and focus orbs belong to the post-launch Ranger and Hexer drafts (Q22). Class restrictions apply to weapon and off-hand only. All other slots are shared across classes.
+Weapons have a base damage range and base attack speed. **Bows only** (decided 2026-09-30, 08): the weapon slot holds a short bow or a longbow, and the off-hand holds a quiver or nothing (the Wild Arrow, 02). Axes, shields, dual wield and two-handed melee weapons are retired with the Wrathborn; his grips are kept below as reference. Focus orbs belong to the Hexer draft (Q22). Class restrictions apply to weapon and off-hand only. All other slots are shared across classes.
 
 ## Appearance
 
 Decided 2026-09-27 (08-production.md): the game is gear oriented like Diablo 2, and equipped gear is displayed on the character.
 
-- The Wrathborn's off-hand (decision of 2026-09-27): "can in offhand hold: nothing, offhand weapon, shield, or use two hand". So he fights in one of four grips: one-handed with an empty off-hand, dual wield, weapon and shield, or two-handed. A two-handed weapon needs both hands, so the off-hand is empty while one is equipped (Claude's reading of "use two hand", confirmed with the grip rules on 2026-09-27, Q10; the equip rule is not built). Each grip has its own animation set, as in Diablo 2.
+- The Wild Arrow's grip (decided 2026-09-30): both hands on the bow, the quiver on the back or hip. One grip, one animation set; short bow and longbow share it (proposed, until a longbow's heavier draw is worth its own clips).
+- Retired with the Wrathborn: his off-hand (decision of 2026-09-27): "can in offhand hold: nothing, offhand weapon, shield, or use two hand". So he fights in one of four grips: one-handed with an empty off-hand, dual wield, weapon and shield, or two-handed. A two-handed weapon needs both hands, so the off-hand is empty while one is equipped (Claude's reading of "use two hand", confirmed with the grip rules on 2026-09-27, Q10; the equip rule is not built). Each grip has its own animation set, as in Diablo 2.
 - Shown slots: weapon, off-hand, helm and chest armour. The chest armour sets the torso, arms and legs. Gloves, boots, belt, amulet and rings do not change the character's look (at about 170 px tall they would barely read).
-- Looks come in tiers by item level: 3 per shown slot in act 1 (weapon: hatchet, bearded axe, war axe; chest: padded, leather, mail; helm: cap, nasal helm, great helm), more tiers added with each act. Every item of a tier looks the same on the character, as Diablo 2's light, medium and heavy armour did. The item's icon matches its tier.
+- Looks come in tiers by item level: 3 per shown slot in act 1 (bow: hunting bow, recurve bow, horn bow; longbow: yew longbow, war bow, great bow; quiver: hide quiver, studded quiver, bone quiver, proposed 2026-09-30; chest: padded, leather, mail; helm: cap, nasal helm, great helm), more tiers added with each act. Every item of a tier looks the same on the character, as Diablo 2's light, medium and heavy armour did. The item's icon matches its tier.
 - Every legendary in a shown slot has its own unique model and icon.
 - An empty helm slot shows the bare head and an empty weapon slot empty hands, matching the game, where a character with no weapon fights unarmed (Claude's reading, not a separate decision).
 - The Forge's Transmog (below) changes an item's look; it comes after launch (decided 2026-09-27, Q24).
@@ -204,7 +205,20 @@ Cost escalation: each reforge on the same item raises its material cost by 25 pe
 
 Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). Everything below is a proposal and numbers are tuning values, except where marked **Decided** (the owner's answers of 2026-09-27; questions are numbered as in `08-production.md`, "Open questions from the full-game plan"). The text above now follows those decisions.
 
-### The ten slots for the Wrathborn
+### The ten slots for the Wild Arrow (from 2026-09-30; the Wrathborn's table kept after it)
+
+Proposed 2026-09-30 with the bows-only decision. Numbers are tuning.
+
+| Slot | Base stat | Implicit (every item of the slot) | Shown on the character |
+|---|---|---|---|
+| Weapon: short bow | Weapon damage (built curve) | Reach 7.5 | Yes |
+| Weapon: longbow | Weapon damage times 1.3 | Attack speed times 0.8, reach 9 | Yes |
+| Off-hand: quiver | none | Plus 5 percent attack speed, rising to 9 with the tier | Yes |
+| The other eight | As in the Wrathborn's table below | | |
+
+A longbow's damage per second is 1.04 times a short bow's before affixes; it pays in speed for reach. Both bows take two hands, so the off-hand holds only a quiver. A quiver rolls Flat weapon damage and Life (prefixes) and Attack speed, Critical chance and Critical damage (suffixes), and two quiver-only affixes are proposed: **Extra arrow** (S, 8 to 15 percent chance that a basic shot looses a second arrow at another enemy in reach) and **Pierce** (S, fixed: basic arrows pass through 1 more enemy, from item level 20). Block, the shield affixes (28, 85 below) and dual wield are gone.
+
+### The ten slots for the Wrathborn (retired 2026-09-30)
 
 Built: weapon, chest, helm; on 2026-09-28 gloves, boots, belt, amulet and two rings with the base armor below (the belt's potion charge from item level 30 is not built); on 2026-09-29 the off-hand (shield, dual wield) and two-handed weapons with the grips below. Proposed for the other seven:
 
@@ -235,6 +249,8 @@ Weapon family: axes only for 1.0 (Hurl Axe throws the weapon, and the brief's ac
 ### Base types and looks per item level (proposed)
 
 Decided: shown slots have looks in tiers by item level, 3 per slot in act 1, more with each act, and every legendary its own look. Act 1's bands (1 to 3, 4 to 6, 7 and up) are built. Proposed: each act adds 3 looks per shown slot, and the bands spread over the whole item level range of 04's recommended level plan (Q1), so a character keeps finding better-looking gear until level 60 and in the Abyss. With act 2's looks, "7 and up" becomes 7 to 10.
+
+The Wild Arrow's columns (2026-09-30, proposed): **1h weapon** becomes the short bow (act 1: hunting bow, recurve bow, horn bow), **2h weapon** the longbow (yew longbow, war bow, great bow) and **Shield** the quiver (hide quiver, studded quiver, bone quiver). The later bands' axe, maul and shield names below are renamed when those acts get their looks.
 
 | Band | Item level | 1h weapon | 2h weapon | Shield | Helm | Chest |
 |---|---|---|---|---|---|---|
@@ -276,16 +292,16 @@ Built affixes keep their built numbers. Ranges are T1 at item level 60; lower ti
 | 2 | Increased damage | P | 18 to 26 percent | Weapon, gloves, amulet | Built (weapon) |
 | 3 | Life | P | 180 to 240 | Chest, helm, belt, boots, shield | Built (chest, helm) |
 | 4 | Armor | P | 90 to 130 | Chest, helm, gloves, boots, shield | Built (chest, helm) |
-| 5 | Increased Rage gained (Focus regeneration for later classes) | P | 10 to 16 percent | Amulet, ring, shield | Designed |
+| 5 | Increased Focus regeneration (Rage gained for the retired Wrathborn) | P | 10 to 16 percent | Amulet, ring, shield | Designed |
 | 6 | Added area | P | 8 to 14 percent | Weapon, helm, amulet | Designed |
-| 7 to 14 | Plus levels to Melee, Sweep, Area, Movement, Projectile, Buff, Channel or Execute skills (one affix per tag, in that order) | P | 1 to 2 | Weapon, off-hand, amulet | Designed (skill level by tag) |
+| 7 to 14 | Plus levels to Projectile, Cone, Pierce, Area, Movement, Buff, Channel or Execute skills (one affix per tag, in that order; the Wild Arrow's tags, 02) | P | 1 to 2 | Weapon, off-hand, amulet | Designed (skill level by tag) |
 | 15 | Life regeneration | P | 8 to 14 per second | Chest, belt, ring | Designed |
 | 16 | Increased armor | P | 15 to 25 percent | Chest, helm, shield, gloves, boots | Proposed |
 | 17 | Maximum life | P | 5 to 9 percent | Chest, belt, amulet | Proposed |
 | 18 | Damage to elites and bosses | P | 10 to 16 percent | Weapon, amulet, ring | Proposed |
 | 19 | Bleed damage | P | 20 to 35 percent | Weapon, gloves | Proposed |
 | 20 to 27 | Increased damage of Melee, Sweep, Area, Movement, Projectile, Buff (the buff's own numbers), Channel or Execute skills (in that order) | P | 12 to 20 percent | Weapon, gloves, helm, amulet | Proposed |
-| 28 | Block chance | P | 6 to 10 percent | Shield | Proposed |
+| 28 | Block chance | P | 6 to 10 percent | Shield | Retired 2026-09-30 (no shields) |
 | 29 | Damage reduction against projectiles | P | 6 to 10 percent | Chest, shield | Proposed |
 | 30 | Damage reduction against melee | P | 6 to 10 percent | Chest, shield | Proposed |
 | 31 | Thorns (damage to melee attackers) | P | 40 to 70 | Chest, shield, belt | Proposed |
@@ -309,7 +325,7 @@ Built affixes keep their built numbers. Ranges are T1 at item level 60; lower ti
 | 52 | Magic Find | S | 8 to 12 percent | Amulet, ring, boots | Designed |
 | 53 | Stillness stack cap | S | Fixed 1, from item level 35 | Belt, boots, helm | Designed |
 | 54 | Momentum stack cap | S | Fixed 1, from item level 35 | Belt, boots, helm | Designed |
-| 55 to 62 | Plus levels to one named skill, one affix per skill in this order: Hew, Bull Rush, Hurl Axe, Ground Breaker, Battle Roar, Rending Spin, Blood Frenzy, Skullsplitter | S | 1 to 2 | Helm, gloves, amulet, off-hand | Proposed |
+| 55 to 62 | Plus levels to one named skill, one affix per skill in this order: Split Shot, Vault, Piercing Shot, Arrow Rain, Hunter's Breath, Barrage, Wild Frenzy, Kill Shot (the Wild Arrow's, 2026-09-30) | S | 1 to 2 | Helm, gloves, amulet, off-hand | Proposed |
 | 63 | Gold find | S | 15 to 25 percent | Amulet, ring, belt | Proposed |
 | 64 | Life on kill | S | 20 to 40 | Weapon, ring, belt | Proposed |
 | 65 | Rage on kill | S | 2 to 4 | Weapon, ring | Proposed |
@@ -332,7 +348,7 @@ Built affixes keep their built numbers. Ranges are T1 at item level 60; lower ti
 | 82 | Damage reduction while moving | S | 4 to 7 percent | Boots, chest | Proposed |
 | 83 | Life regeneration while standing | S | 12 to 20 per second | Belt, chest | Proposed |
 | 84 | Critical chance against elites | S | 5 to 9 percent | Ring, gloves | Proposed |
-| 85 | Rage on block | S | 3 to 5 | Shield | Proposed |
+| 85 | Rage on block | S | 3 to 5 | Shield | Retired 2026-09-30 (no shields) |
 | 86 | Life on elite kill | S | 5 to 8 percent of max life | Ring, amulet | Proposed |
 | 87 | Movement speed while Momentum is at its cap | S | 5 to 8 percent | Boots | Proposed |
 | 88 | Bleed duration | S | 1 to 2 s | Weapon, gloves | Proposed |
@@ -341,7 +357,7 @@ Counts: 39 prefixes, 49 suffixes, 88 in all (above: "about 90"). Every slot has 
 
 ### Legendaries for launch (40 decided, Q7; each one proposed)
 
-00 and the section above planned 60 (20 per class plus 20 shared), which assumed three classes. **Decided (Q7, 2026-09-27):** 40, of which 24 are tied to Wrathborn skills and 16 are shared rules any later class can use. 20 are in shown slots and need their own model (decided: every legendary in a shown slot has one). The two shared examples above that fit (The Last Toll, Thornroot Belt) are kept; the other four examples belong to the Warden, Ranger and Hexer and wait for them.
+00 and the section above planned 60 (20 per class plus 20 shared), which assumed three classes. **Bows only (2026-09-30):** the 24 tied to Wrathborn skills below, and every axe, shield or two-hander among them, are retired with him and are to be redesigned for the Wild Arrow's skills and bows; the 16 shared ones stand. **Decided (Q7, 2026-09-27):** 40, of which 24 are tied to Wrathborn skills and 16 are shared rules any later class can use. 20 are in shown slots and need their own model (decided: every legendary in a shown slot has one). The two shared examples above that fit (The Last Toll, Thornroot Belt) are kept; the other four examples belong to the Warden, Ranger and Hexer and wait for them.
 
 Each has a fixed base (its band's look is replaced by its own), four fixed affixes (values rolled in the item level's tier), two random affixes and the power (the section above). Fixed affixes are given by number from the affix table.
 

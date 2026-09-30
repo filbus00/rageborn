@@ -255,7 +255,7 @@ Prompt for a wall block:
 
 ---
 
-## 4. Step 3: the player character, the Wrathborn
+## 4. Step 3: the player character, the Wrathborn (retired 2026-09-30; the Wild Arrow is in 4.6)
 
 ### 4.1 Who he is
 
@@ -344,6 +344,16 @@ Everything keeps his signature: the ember lantern on the left hip is part of **e
 Weapons use the axe prompt given earlier, with the hatchet (a small rusted hatchet with a wrapped wooden handle) and the war axe (a broad war axe with a spiked back and iron bands on the haft) in place of the bearded axe.
 
 **Engine work this needs** (not built yet): the sprite bake's layer mode (render one piece with the others as invisible occluders), a character renderer that stacks the layers frame by frame, and a table from an equipped item (slot, tier by item level, or its legendary) to its look.
+
+### 4.6 The Wild Arrow (from 2026-09-30): stand-in, then its own model
+
+Decided 2026-09-30 (08): the game uses only bows, and the player character is a new hero and class, the **Wild Arrow** (02). Sections 4.1 to 4.5 describe the retired Wrathborn; their rules (cells, pivot, 16 directions, layers per shown slot, one bake per grip) carry over.
+
+**Stand-in, until the owner picks the Wild Arrow's own model** (the owner's choice): the Wrathborn's leather body (`Art/Models/Wrathborn/wrathborn_body_leather.fbx`) baked with the bandit archer's Mixamo moveset (`Art/Models/Enemies/bandit_archer/`: Standing Idle in `bandit_archer.fbx`, Run Forward, Draw Arrow, the hit and the death). Both rigs are Mixamo humanoids, so the clips retarget through the humanoid avatar. One grip, `bow`. Every skill borrows the draw-and-loose clip until it has its own; the moving variants use the run's legs under the draw (4.4's moving-action bake). The Wrathborn's strafe and backward runs stay usable as legs. Until a bow model exists the stand-in draws an empty bow hand, as the Wrathborn once swung empty-handed before the axe.
+
+**Pieces to make for the stand-in:** one bow (`bow_recurve`, rigid, in the **left** hand bone, string toward the body) and one quiver (`quiver_hide`, rigid, on the spine or hips, fletchings up). The weapon prompt of 4.5 with *a short recurve hunting bow of dark horn and wood, a wrapped leather grip, a taut string* and *a worn hide quiver full of black-fletched arrows, a leather strap* in place of the axe.
+
+**Its own model (later, the owner's):** who the Wild Arrow is, its look, model sheet and prompts are to be written with the owner. The act 1 looks (03): bows hunting, recurve, horn; longbows yew, war bow, great bow; quivers hide, studded, bone. Suggested Mixamo animations for the `bow` grip: Standing Idle (longbow pack), Run Forward, Standing Draw Arrow and Standing Aim Recoil (basic shot), Standing Aim Overdraw (Kill Shot), a jump or dive roll (Vault), Standing Aim Walk Left/Right and Back (moving legs), a hit reaction and a death.
 
 ---
 
