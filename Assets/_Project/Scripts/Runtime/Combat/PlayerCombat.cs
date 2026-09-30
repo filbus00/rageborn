@@ -4,15 +4,17 @@ using UnityEngine;
 namespace ARPG
 {
     /// <summary>
-    /// The player's automatic combat from Docs/01-core-gameplay.md, for the Wrathborn (Docs/02-classes-and-skills.md).
-    /// Every frame it picks a target, swings the basic attack at the attack rate, and fires the skills in the four
+    /// The player's automatic combat from Docs/01-core-gameplay.md. The class is the Wild Arrow (Docs/02-classes-and-skills.md,
+    /// bows only since 2026-09-30): every frame it picks a target in the bow's reach and in sight, looses the basic arrow at
+    /// the attack rate, and fires the skills in the four
     /// loadout slots (<see cref="SkillLoadout"/>) in slot order whenever the global cast timer is free, the skill is off
     /// cooldown and paid for, a valid target or area exists and the slot's trigger passes: the skill's own (Docs/02's
     /// trigger column) or one of its two alternatives (<see cref="SkillTriggerRules"/>). The class's eight skills:
     /// Ground Breaker, Hurl Axe, Bull Rush and Hew (the M1 slice), Battle Roar and Blood Frenzy (buffs), Rending Spin (a
     /// channel that holds back the lower slots and the basic attack while it spins) and Skullsplitter (an execute).
-    /// Skills cost Rage, which the basic attack, hits taken, Bull Rush and Battle Roar build (<see cref="RagePool"/>);
-    /// Stillness adds damage (<see cref="StanceStacks"/>).
+    /// The skills are still the retired Wrathborn's until the Wild Arrow's are built; they cost Focus, which starts full,
+    /// regenerates and grows with every basic arrow that hits (<see cref="FocusPool"/>); Stillness adds damage
+    /// (<see cref="StanceStacks"/>).
     /// There is no input: movement is the only thing the player controls.
     /// Runs in Update for now; combat will move to a fixed timestep (Docs/07-technical.md).
     /// </summary>
@@ -36,9 +38,20 @@ namespace ARPG
         // A charge hits what it passes within this distance of the character's center, plus the enemy's body.
         const float ChargeHitRadius = 0.8f;
 
-        // An axe hits an enemy whose body it comes this close to.
-        const float AxeHitRadius = 0.3f;
+        // A projectile (an arrow, a thrown axe) hits an enemy whose body it comes this close to.
+        const float ShotHitRadius = 0.3f;
         const float AxeSpinDegreesPerSecond = 900f;
+
+        // The basic arrow (Docs/02, the Wild Arrow): a short bow's reach until bows are items (Docs/03), its flight speed,
+        // and how far past the reach it flies before it is spent.
+        const float ShortBowReach = 7.5f;
+        const float ArrowSpeed = 14f;
+        const float ArrowOvershoot = 2f;
+
+        // The retired Wrathborn's Rending Spin hits within his old melee reach, not the bow's, until the Wild Arrow's own
+        // skills replace his (Docs/02).
+        const float SpinReach = 2f;
+        static readonly Color ArrowColor = new Color(1f, 0.93f, 0.78f, 1f);
 
         const float EffectSeconds = 0.14f;
         const float SlamEffectSeconds = 0.25f;
@@ -57,16 +70,6 @@ namespace ARPG
 
         [Tooltip("Docs: attacks per second starts at 1.4.")]
         [SerializeField, Min(0.1f)] float attacksPerSecond = 1.4f;
-
-        [Tooltip("Docs: Wrathborn reach 2.0 units.")]
-        [SerializeField, Min(0.1f)] float basicRange = 2f;
-
-        [Tooltip("Docs: basic attack is a 120 degree sweep.")]
-        [SerializeField, Range(10f, 360f)] float basicArcDegrees = 120f;
-
-        [SerializeField] Sprite basicEffectSprite;
-
-        [SerializeField] Color basicEffectColor = new Color(1f, 1f, 1f, 0.55f);
 
         [Tooltip("The class's skills, in the order an unchosen loadout fills its slots. Each is usable from its own unlock level.")]
         [SerializeField] SkillDefinition[] skills;
@@ -100,7 +103,8 @@ namespace ARPG
         readonly List<float> inReachWeights = new List<float>(32);
         readonly List<EnemyController> nearby = new List<EnemyController>(16);
 
-        struct Axe
+        // A projectile in flight: a basic arrow (it gives Focus when it hits) or a skill's (a thrown axe spins).
+        struct Shot
         {
             public Transform Transform;
             public Vector2 Position;
@@ -108,9 +112,12 @@ namespace ARPG
             public float Travelled;
             public float MaxDistance;
             public float Multiplier;
+            public bool Basic;
+            public bool Spins;
         }
 
-        readonly List<Axe> axes = new List<Axe>(4);
+        readonly List<Shot> shots = new List<Shot>(16);
+        readonly Stack<Transform> spareArrows = new Stack<Transform>(16);
         readonly Stack<Transform> spareAxes = new Stack<Transform>(4);
 
         // The charge in progress: who it already hit, so each enemy is hit once, and what it does.
@@ -119,7 +126,7 @@ namespace ARPG
         Vector2 chargeDirection;
         SkillDefinition chargeSkill;
 
-        RagePool rage;
+        FocusPool focus;
         float[] cooldowns;
         int[] castCounts;
         float attackTimer;
@@ -132,7 +139,8 @@ namespace ARPG
         GameSession session;
         int knownLevel;
 
-        public RagePool Rage => rage;
+        /// <summary>The class's resource (Docs/02: the Wild Arrow's Focus).</summary>
+        public FocusPool Focus => focus;
 
         /// <summary>Enemies this character has killed since the scene started.</summary>
         public int Kills { get; private set; }
@@ -158,15 +166,10 @@ namespace ARPG
         /// Average damage of the equipped weapon, before skill multipliers and armor. A character that has lost its
         /// weapon fights unarmed, which the weapon curve values at item level 0.
         /// </summary>
-        public float WeaponDamage => offHandSwing ? GameSession.Current.Equipment.OffHandWeaponDamage : GameSession.Current.Equipment.WeaponDamage;
+        public float WeaponDamage => GameSession.Current.Equipment.WeaponDamage;
 
-        // Dual wield (Docs/03, Q10): basic swings alternate hands, each with its own weapon's damage; skills use the main
-        // hand. True only while an off-hand swing is being dealt.
-        bool offHandSwing;
-        bool nextSwingOffHand;
-
-        /// <summary>The basic attack's reach with the grip (a two-hander reaches further).</summary>
-        float BasicRange => basicRange + GameSession.Current.Equipment.GripReach;
+        /// <summary>The basic arrow's reach (Docs/02: 7.5 with a short bow; the longbow's 9 comes with bows as items).</summary>
+        public float BasicRange => ShortBowReach;
 
         /// <summary>How many times the skill in a slot has fired since the scene started, for tests and tuning.</summary>
         public int CastCount(int slot) => castCounts != null && slot >= 0 && slot < castCounts.Length ? castCounts[slot] : 0;
@@ -216,8 +219,8 @@ namespace ARPG
             if (skills == null)
                 skills = new SkillDefinition[0];
 
-            // Rage starts empty every time a level loads: a fight opens on plain swings (Docs/02).
-            rage = new RagePool();
+            // Focus starts full every time a level loads: a fight opens on skills (Docs/02).
+            focus = new FocusPool();
             cooldowns = new float[skills.Length];
             castCounts = new int[skills.Length];
 
@@ -264,7 +267,7 @@ namespace ARPG
             }
         }
 
-        void OnHitTaken(float damage) => rage.Gain(RagePool.PerHitTaken);
+        void OnHitTaken(float damage) => focus.MarkCombat();
 
         // Docs/02: a new skill equips itself; say so above the character, after the level callout.
         void OnLeveledUp(int level)
@@ -295,12 +298,13 @@ namespace ARPG
             var origin = IsoMath.WorldToGround(player.transform.position);
             UpdateFacing();
 
-            // The passive tree's Rage changes (Docs/02): Short Fuse's longer delay, Berserker's double gain below half life.
+            // Until the Wild Arrow's attributes replace the tree (Docs/02): Will adds to Focus regeneration, and the tree's
+            // Berserker doubles the gain from hits below half life.
             var tree = session.PassiveTree.Bonuses;
-            rage.DrainDelay = RagePool.DrainDelaySeconds + tree.RageDrainDelay;
             var attributes = CharacterAttributes.At(session.Level);
-            rage.GainMultiplier = (tree.Berserker && health != null && health.Fraction < 0.5f ? 2f : 1f) * (1f + attributes.RageGain);
-            rage.Tick(deltaTime);
+            focus.RegenMultiplier = 1f + attributes.RageGain;
+            focus.GainMultiplier = tree.Berserker && health != null && health.Fraction < 0.5f ? 2f : 1f;
+            focus.Tick(deltaTime);
             stillSeconds = player.GroundVelocity.magnitude < FacingSpeedThreshold ? stillSeconds + deltaTime : 0f;
             damageBuffTimer = Mathf.Max(0f, damageBuffTimer - deltaTime);
             speedBuffTimer = Mathf.Max(0f, speedBuffTimer - deltaTime);
@@ -309,7 +313,7 @@ namespace ARPG
             for (var i = 0; i < cooldowns.Length; i++)
                 cooldowns[i] = Mathf.Max(0f, cooldowns[i] - deltaTime);
 
-            UpdateAxes(deltaTime);
+            UpdateShots(deltaTime);
             UpdateSlamEffect(deltaTime);
             if (charging)
                 UpdateCharge(origin);
@@ -353,8 +357,9 @@ namespace ARPG
                 facing = velocity.normalized;
         }
 
-        // Docs: the target is the nearest enemy in attack range inside the forward cone, else the nearest in range.
-        // Melee reach: the skills that work further out pick their own targets.
+        // Docs: the target is the nearest enemy in attack range inside the forward cone, else the nearest in range. With a
+        // bow the range is its reach and the target must be in sight (Docs/01, 2026-09-30): an enemy behind a wall is never
+        // picked. The skills pick their own targets.
         EnemyController PickTarget(Vector2 origin)
         {
             inReach.Clear();
@@ -362,7 +367,8 @@ namespace ARPG
             inReachWeights.Clear();
             for (var i = 0; i < candidates.Count; i++)
             {
-                if (!InReach(origin, candidates[i], BasicRange))
+                if (!candidates[i].IsAlive || !InReach(origin, candidates[i], BasicRange) ||
+                    !enemies.Nav.HasLineOfSight(origin, candidates[i].GroundPosition))
                     continue;
 
                 inReach.Add(candidates[i]);
@@ -390,15 +396,10 @@ namespace ARPG
             BasicAttackCount++;
             BasicAttackStarted?.Invoke(aim, attackTimer);
 
-            Sfx.Play(SoundId.Swing, 0.6f);
-            offHandSwing = equipment.IsDualWield && nextSwingOffHand;
-            nextSwingOffHand = equipment.IsDualWield && !nextSwingOffHand;
-            var hits = Sweep(origin, aim, BasicRange, basicArcDegrees, 1f, basicEffectSprite, basicEffectColor);
-            offHandSwing = false;
-
-            // Docs/02: Rage is gained on a basic attack hit, once per swing that lands, however many it hits.
-            if (hits > 0)
-                rage.Gain(RagePool.PerBasicHit + tree.RagePerBasicHit);
+            // One arrow at the target; it gives Focus when it hits (Docs/02).
+            Sfx.Play(SoundId.AxeThrow, 0.45f);
+            var transformToUse = spareArrows.Count > 0 ? spareArrows.Pop() : CreateArrow();
+            Launch(transformToUse, origin, aim * ArrowSpeed, BasicRange + ArrowOvershoot, 1f, basic: true, spins: false);
         }
 
         /// <summary>Increased attack speed from Blood Frenzy while it lasts: its own, and more for each live Momentum
@@ -415,7 +416,7 @@ namespace ARPG
                 if (i < 0 || !IsUnlocked(i) || cooldowns[i] > 0f)
                     continue;
                 var skill = skills[i];
-                if (skill.RageCost > rage.Current)
+                if (skill.RageCost > focus.Current)
                     continue;
                 if (!Ready(skill, session.Loadout.TriggerAt(s), origin, aim, target, out var skillTarget))
                     continue;
@@ -471,8 +472,8 @@ namespace ARPG
                         return false;
                     if (own)
                         return near >= skill.MinEnemies &&
-                               (skill.MaxRage <= 0f || rage.Current < skill.MaxRage) &&
-                               (skill.MinMomentum <= 0 || (rage.InCombat && player.Stance.Momentum >= skill.MinMomentum));
+                               (skill.MaxRage <= 0f || focus.Current < skill.MaxRage) &&
+                               (skill.MinMomentum <= 0 || (focus.InCombat && player.Stance.Momentum >= skill.MinMomentum));
                     break;
                 }
                 case SkillKind.Channel:
@@ -506,15 +507,15 @@ namespace ARPG
 
         void Cast(int i, int slot, SkillDefinition skill, Vector2 origin, Vector2 aim, EnemyController skillTarget)
         {
-            rage.TrySpend(skill.RageCost);
+            focus.TrySpend(skill.RageCost);
             if (skill.RageGain > 0f)
-                rage.Gain(skill.RageGain);
+                focus.Gain(skill.RageGain);
             var cdr = GameSession.Current.Equipment.CooldownReductionPercent / 100f + CharacterAttributes.At(session.Level).CooldownReduction;
             cooldowns[i] = skill.CooldownSeconds * Mathf.Max(0.1f, 1f - cdr);
             castTimer = GlobalCastSeconds;
             SkillCastCount++;
             castCounts[i]++;
-            rage.MarkCombat();
+            focus.MarkCombat();
             var direction = skillTarget != null ? (skillTarget.GroundPosition - origin).normalized : aim;
             SkillCast?.Invoke(skill, direction);
 
@@ -695,15 +696,15 @@ namespace ARPG
             }
         }
 
-        // Every enemy within the basic reach is hit and bleeds (Docs/02: 90 percent every 0.3 s, a bleed).
+        // Every enemy within the spin's reach is hit and bleeds (Docs/02: 90 percent every 0.3 s, a bleed).
         void SpinHit(Vector2 origin, SkillDefinition skill)
         {
-            enemies.QueryEnemies(origin, BasicRange + QueryMargin, nearby);
+            enemies.QueryEnemies(origin, SpinReach + QueryMargin, nearby);
             var hits = 0;
             for (var i = 0; i < nearby.Count; i++)
             {
                 var enemy = nearby[i];
-                if (!enemy.IsAlive || !InReach(origin, enemy, BasicRange))
+                if (!enemy.IsAlive || !InReach(origin, enemy, SpinReach))
                     continue;
                 hits++;
                 Strike(enemy, DamageOf(skill, skill.DamageMultiplier), movementSkill: true);
@@ -713,11 +714,11 @@ namespace ARPG
             if (hits > 0)
             {
                 HealOnHit(hits);
-                rage.MarkCombat();
+                focus.MarkCombat();
             }
             Sfx.Play(SoundId.Swing, 0.5f);
-            PlayEffect(origin, facing, BasicRange, skill.EffectSprite, skill.EffectColor);
-            PlayEffect(origin, -facing, BasicRange, skill.EffectSprite, skill.EffectColor);
+            PlayEffect(origin, facing, SpinReach, skill.EffectSprite, skill.EffectColor);
+            PlayEffect(origin, -facing, SpinReach, skill.EffectSprite, skill.EffectColor);
         }
 
         // --- Skullsplitter -------------------------------------------------------------------------------------
@@ -740,7 +741,7 @@ namespace ARPG
             var direction = (target.GroundPosition - origin).normalized;
             Strike(target, multiplier);
             HealOnHit(1);
-            rage.MarkCombat();
+            focus.MarkCombat();
             Sfx.Play(SoundId.GroundBreaker, 0.8f);
             PlayEffect(origin, direction, skill.Range, skill.EffectSprite, skill.EffectColor);
         }
@@ -805,21 +806,34 @@ namespace ARPG
                 slamMarker.Hide();
         }
 
-        // --- Hurl Axe ------------------------------------------------------------------------------------------
+        // --- Arrows and Hurl Axe -----------------------------------------------------------------------------
 
         void ThrowAxe(Vector2 origin, Vector2 toTarget, SkillDefinition skill)
         {
             var direction = toTarget.sqrMagnitude > 1e-6f ? toTarget.normalized : facing;
             var transformToUse = spareAxes.Count > 0 ? spareAxes.Pop() : CreateAxe(skill);
-            transformToUse.gameObject.SetActive(true);
-            transformToUse.position = IsoMath.GroundToWorld(origin);
-            axes.Add(new Axe
+            Launch(transformToUse, origin, direction * skill.Speed, skill.Range + 1f, DamageOf(skill, skill.DamageMultiplier), basic: false, spins: true);
+        }
+
+        void Launch(Transform shotTransform, Vector2 origin, Vector2 velocity, float maxDistance, float multiplier, bool basic, bool spins)
+        {
+            shotTransform.gameObject.SetActive(true);
+            shotTransform.position = IsoMath.GroundToWorld(origin);
+            if (!spins)
             {
-                Transform = transformToUse,
+                // An arrow points along its flight as seen on screen.
+                var world = IsoMath.GroundToWorld(velocity);
+                shotTransform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(world.y, world.x) * Mathf.Rad2Deg);
+            }
+            shots.Add(new Shot
+            {
+                Transform = shotTransform,
                 Position = origin,
-                Velocity = direction * skill.Speed,
-                MaxDistance = skill.Range + 1f,
-                Multiplier = DamageOf(skill, skill.DamageMultiplier),
+                Velocity = velocity,
+                MaxDistance = maxDistance,
+                Multiplier = multiplier,
+                Basic = basic,
+                Spins = spins,
             });
         }
 
@@ -832,55 +846,69 @@ namespace ARPG
             return go.transform;
         }
 
-        // Each axe flies in short pieces so it can neither pass a wall nor an enemy on a long frame.
-        void UpdateAxes(float deltaTime)
+        // A placeholder arrow until it has art: the ember sprite stretched along the flight, as the enemy archers' are.
+        Transform CreateArrow()
         {
-            for (var i = axes.Count - 1; i >= 0; i--)
+            var go = GroundMarker.NewSprite("Arrow", TelegraphArt.Ember, ArrowColor, transform, 0);
+            go.GetComponent<SpriteRenderer>().sortingLayerName = GameSortingLayers.Effects;
+            go.transform.localScale = new Vector3(0.7f, 0.16f, 1f);
+            return go.transform;
+        }
+
+        // Each projectile flies in short pieces so it can neither pass a wall nor an enemy on a long frame, and stops at
+        // the first enemy it meets.
+        void UpdateShots(float deltaTime)
+        {
+            for (var i = shots.Count - 1; i >= 0; i--)
             {
-                var axe = axes[i];
-                var step = axe.Velocity * deltaTime;
+                var shot = shots[i];
+                var step = shot.Velocity * deltaTime;
                 var pieces = Mathf.Max(1, Mathf.CeilToInt(step.magnitude / EnemyProjectileFlight.MaxStep));
                 var piece = step / pieces;
                 var done = false;
                 for (var p = 0; p < pieces && !done; p++)
                 {
-                    var next = axe.Position + piece;
+                    var next = shot.Position + piece;
                     if (!enemies.Nav.IsWalkable(IsoMath.GroundToCell(next)))
                     {
                         done = true;
                         break;
                     }
-                    axe.Position = next;
-                    axe.Travelled += piece.magnitude;
+                    shot.Position = next;
+                    shot.Travelled += piece.magnitude;
 
-                    enemies.QueryEnemies(axe.Position, QueryMargin + AxeHitRadius, nearby);
+                    enemies.QueryEnemies(shot.Position, QueryMargin + ShotHitRadius, nearby);
                     for (var n = 0; n < nearby.Count; n++)
                     {
                         var enemy = nearby[n];
-                        if (!enemy.IsAlive || Vector2.Distance(enemy.GroundPosition, axe.Position) > enemy.Definition.BodyRadius + AxeHitRadius)
+                        if (!enemy.IsAlive || Vector2.Distance(enemy.GroundPosition, shot.Position) > enemy.Definition.BodyRadius + ShotHitRadius)
                             continue;
-                        Strike(enemy, axe.Multiplier, projectile: true);
+                        Strike(enemy, shot.Multiplier, projectile: true);
                         HealOnHit(1);
-                        rage.MarkCombat();
+                        if (shot.Basic)
+                            focus.Gain(FocusPool.PerBasicHit + session.PassiveTree.Bonuses.RagePerBasicHit);
+                        else
+                            focus.MarkCombat();
                         done = true;
                         break;
                     }
-                    if (axe.Travelled >= axe.MaxDistance)
+                    if (shot.Travelled >= shot.MaxDistance)
                         done = true;
                 }
 
                 if (done)
                 {
-                    axe.Transform.gameObject.SetActive(false);
-                    spareAxes.Push(axe.Transform);
-                    axes[i] = axes[axes.Count - 1];
-                    axes.RemoveAt(axes.Count - 1);
+                    shot.Transform.gameObject.SetActive(false);
+                    (shot.Spins ? spareAxes : spareArrows).Push(shot.Transform);
+                    shots[i] = shots[shots.Count - 1];
+                    shots.RemoveAt(shots.Count - 1);
                     continue;
                 }
 
-                axe.Transform.position = IsoMath.GroundToWorld(axe.Position);
-                axe.Transform.Rotate(0f, 0f, -AxeSpinDegreesPerSecond * deltaTime);
-                axes[i] = axe;
+                shot.Transform.position = IsoMath.GroundToWorld(shot.Position);
+                if (shot.Spins)
+                    shot.Transform.Rotate(0f, 0f, -AxeSpinDegreesPerSecond * deltaTime);
+                shots[i] = shot;
             }
         }
 
@@ -936,7 +964,7 @@ namespace ARPG
             if (hits > 0)
             {
                 HealOnHit(hits);
-                rage.MarkCombat();
+                focus.MarkCombat();
             }
         }
 
@@ -958,7 +986,7 @@ namespace ARPG
             {
                 Kills++;
                 if (tree.RageOnKill > 0f)
-                    rage.Gain(tree.RageOnKill);
+                    focus.Gain(tree.RageOnKill);
                 HitStop.Instance?.Trigger(HitStopOnKillSeconds);
                 Sfx.Play(SoundId.Kill);
             }
@@ -979,12 +1007,11 @@ namespace ARPG
             var equipment = GameSession.Current.Equipment;
             var tree = session.PassiveTree.Bonuses;
             var increased = equipment.IncreasedDamagePercent / 100f + player.Stance.IncreasedDamage + (damageBuffTimer > 0f ? damageBuff : 0f);
-            // Might: melee and area damage (Docs/02), so not the thrown axe.
-            if (!projectile)
-                increased += CharacterAttributes.At(session.Level).IncreasedDamage;
+            // Might, on every hit: with bows everything is an arrow, until the Wild Arrow's attributes (Docs/02) replace it.
+            increased += CharacterAttributes.At(session.Level).IncreasedDamage;
             // The passive tree (Docs/02, proposed numbers): its flat increase, Bloodied Edge against the wounded, Hatred
             // for Rage held, Battering Ram for the movement skills, and Berserker below half life.
-            increased += tree.IncreasedDamage + tree.DamagePerTenRage * Mathf.Floor(rage.Current / 10f);
+            increased += tree.IncreasedDamage + tree.DamagePerTenRage * Mathf.Floor(focus.Current / 10f);
             if (enemy.MaxLife > 0f && enemy.Life / enemy.MaxLife < 0.5f)
                 increased += tree.DamageVsWounded;
             if (movementSkill)

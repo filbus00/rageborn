@@ -4,8 +4,8 @@ using UnityEngine.UI;
 namespace ARPG
 {
     /// <summary>
-    /// Rage and the stance stacks, drawn at the character (Docs/01-core-gameplay.md: the resource is an arc around the
-    /// character so the player does not look away from the action). An arc under the feet fills with Rage; five pips
+    /// Focus and the stance stacks, drawn at the character (Docs/01-core-gameplay.md: the resource is an arc around the
+    /// character so the player does not look away from the action). An arc under the feet fills with Focus (the Wild Arrow's resource, Docs/02; the class is named for the Rage it drew first); five pips
     /// under it show Momentum (cyan) or, while there is none, Stillness (amber). An overlay canvas that follows the
     /// character's screen position, built in code by <see cref="PlayerCombat"/>.
     /// </summary>
@@ -17,7 +17,7 @@ namespace ARPG
         const int RingTextureSize = 128;
 
         static readonly Color TrackColor = new Color(0f, 0f, 0f, 0.45f);
-        static readonly Color RageColor = new Color(0.9f, 0.18f, 0.12f, 0.95f);
+        static readonly Color FocusColor = new Color(0.35f, 0.7f, 1f, 0.95f);
         static readonly Color MomentumColor = new Color(0.45f, 0.85f, 1f, 1f);
         static readonly Color StillnessColor = new Color(1f, 0.75f, 0.3f, 1f);
         static readonly Color EmptyPipColor = new Color(0f, 0f, 0f, 0.35f);
@@ -62,7 +62,7 @@ namespace ARPG
 
             track = NewImage("Track", TrackColor);
             track.fillAmount = ArcShare;
-            fill = NewImage("Rage", RageColor);
+            fill = NewImage("Focus", FocusColor);
             fill.fillAmount = 0f;
 
             pips = new Image[StanceStacks.MaxStacks];
@@ -110,7 +110,7 @@ namespace ARPG
             var size = new Vector2(radius * 2f, radius * 2f);
             track.rectTransform.sizeDelta = size;
             fill.rectTransform.sizeDelta = size;
-            fill.fillAmount = ArcShare * combat.Rage.Fraction;
+            fill.fillAmount = ArcShare * combat.Focus.Fraction;
 
             var stance = player.Stance;
             var momentum = stance.Momentum > 0;
