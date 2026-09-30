@@ -381,6 +381,7 @@ Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). All 26 were 
 | 2026-09-28 | Six more slots built from 03's proposed table (gloves, boots, belt, amulet, two rings); the off-hand waits for its grips and their animations. Only built affixes roll on them, on the slots 03 lists, plus movement speed (boots) and dodge (boots, belt, ring), both designed; drops pick the slot evenly from eight kinds, so a weapon is 1 drop in 8; a ring goes on an empty hand, else replaces the ring it beats by more | Claude, to review |
 | 2026-09-28 | Vitality gives life only, no life regeneration (open question 10) | User |
 | 2026-09-28 | Attributes built as decided (Q6) with Docs/02's per-point effects; Might counts for every hit but the thrown axe ("melee and area"); dodge capped at 50 percent. Vitality's life regeneration is not built: as written (0.1 percent of life a second per point, 8 points a level) it would heal 4.8 percent of max life a second at level 7 and 47 percent at 60, which cannot be meant; question 10 below | Claude, approved by the owner 2026-09-28 |
+| 2026-09-30 | The bandit archer is dead and demonic, not a living bandit: "make the archer dead/demonic". Name, role and numbers unchanged; the look is in 09 5.2 and its prompt in 5.4 | User |
 
 ## Post-launch plan (draft)
 
