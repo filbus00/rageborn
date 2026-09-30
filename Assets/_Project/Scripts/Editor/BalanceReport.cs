@@ -25,15 +25,20 @@ namespace ARPG.Editor
         const string OutputPath = "Logs/BalanceReport.md";
         const string EnemiesFolder = "Assets/_Project/Data/Enemies";
 
-        // How many enemies a hit catches in a crowd, by skill kind. Assumptions. The basic attack is a 120 degree sweep.
-        const float CrowdTargetsBasic = 2f;
+        // How many enemies a hit catches in a crowd, by skill kind. Assumptions. The basic attack is one arrow (bows only,
+        // 2026-09-30), which stops at the first enemy it meets.
+        const float CrowdTargetsBasic = 1f;
         const float CrowdTargetsSweep = 3f;
         const float CrowdTargetsSlam = 5f;
         const float CrowdTargetsCharge = 3f;
 
-        // The Wrathborn fights standing in a crowd: 5 Stillness stacks (Docs/01), 30 percent increased damage and 20
-        // percent damage reduction.
-        const bool AssumeStillness = true;
+        // The Wild Arrow's skills in a crowd (assumptions): Split Arrow's fan catches up to 3, a pierce arrow goes through
+        // 2.5 on its line, every homing arrow finds an enemy, and the explosive burst catches as many as a slam.
+        const float CrowdTargetsVolley = 3f;
+        const float CrowdTargetsPierce = 2.5f;
+        // The Wild Arrow kites (Docs/02): it fights moving, with Momentum's speed and dodge rather than Stillness's damage
+        // and reduction. Momentum's dodge is left out, like every dodge in this model.
+        const bool AssumeStillness = false;
 
         // How many husks can reach the character at once: a ring around it, pushed apart. An assumption.
         const int HusksInReach = 5;
@@ -71,9 +76,14 @@ namespace ARPG.Editor
             var ghoul = Load("Ghoul");
             var archer = Load("BanditArcher");
             var boss = Load("CinderWarden");
+            // The class's own skills (the Wild Arrow's, from Resources), not every asset in Data/Skills, which still holds
+            // the retired Wrathborn's.
             var skills = new List<SkillDefinition>();
-            foreach (var guid in AssetDatabase.FindAssets("t:SkillDefinition", new[] { "Assets/_Project/Data/Skills" }))
-                skills.Add(AssetDatabase.LoadAssetAtPath<SkillDefinition>(AssetDatabase.GUIDToAssetPath(guid)));
+            var classSkills = ClassSkills.Load();
+            if (classSkills != null)
+                foreach (var skill in classSkills.Skills)
+                    if (skill != null)
+                        skills.Add(skill);
 
             var depths = new DepthStats[DungeonRules.LevelsPerAct + 1];
             for (var d = 1; d <= DungeonRules.LevelsPerAct; d++)
@@ -171,11 +181,12 @@ namespace ARPG.Editor
                     // Attributes (by level) are counted; the passive tree is not, since how the points are spent is the player's.
                     var swings = PowerScore.AttacksPerSecond(gear, charLevel);
                     var hit = power.DamagePerSecond / swings;
-                    // Every unlocked skill at its cooldown, unless Rage cannot pay for that: then all spenders slow down
-                    // together. Rage comes from basic swings that land (6 each) and Bull Rush; hits taken are left out.
+                    // Every unlocked skill at its cooldown, unless Focus cannot pay for that: then all spenders slow down
+                    // together. Focus regenerates and comes from basic arrows that hit (4 each); the full pool at the start
+                    // of a level is left out (it only matters for the first fight).
                     var stillness = AssumeStillness ? StanceStacks.MaxStacks * StanceStacks.StillnessDamagePerStack : 0f;
                     hit *= 1f + stillness;
-                    var rageIn = swings * RagePool.PerBasicHit;
+                    var rageIn = FocusPool.DefaultRegenPerSecond + swings * FocusPool.PerBasicHit;
                     var rageOut = 0f;
                     foreach (var skill in skills)
                         if (SkillRules.IsUnlocked(skill.UnlockLevel, charLevel))
@@ -190,20 +201,30 @@ namespace ARPG.Editor
                     {
                         if (!SkillRules.IsUnlocked(skill.UnlockLevel, charLevel))
                             continue;
-                        // A channel hits on every beat of its spin; a buff deals nothing itself (its bonus is left out).
+                        // A channel hits on every beat of its spin; a buff deals nothing itself (its bonus is left out). A
+                        // volley or homing shot looses several arrows; against one target, one of a fan hits and every
+                        // homing arrow does.
                         var hitsPerCast = skill.Kind == SkillKind.Channel && skill.TickSeconds > 0f
-                            ? Mathf.Ceil(skill.DurationSeconds / skill.TickSeconds) : 1f;
+                            ? Mathf.Ceil(skill.DurationSeconds / skill.TickSeconds)
+                            : skill.Kind == SkillKind.HomingShot ? skill.ProjectileCount : 1f;
                         var rate = skill.DamageMultiplier * hitsPerCast / skill.CooldownSeconds * (skill.RageCost > 0f ? rageShare : 1f);
                         var targets = skill.Kind == SkillKind.Sweep ? CrowdTargetsSweep : skill.Kind == SkillKind.Slam ? CrowdTargetsSlam
-                            : skill.Kind == SkillKind.Charge ? CrowdTargetsCharge : skill.Kind == SkillKind.Channel ? CrowdTargetsBasic : 1f;
+                            : skill.Kind == SkillKind.Charge ? CrowdTargetsCharge : skill.Kind == SkillKind.Channel ? CrowdTargetsBasic
+                            : skill.Kind == SkillKind.Volley ? Mathf.Min(CrowdTargetsVolley, skill.ProjectileCount)
+                            : skill.Kind == SkillKind.PierceShot ? CrowdTargetsPierce
+                            : skill.Kind == SkillKind.ExplosiveShot ? CrowdTargetsSlam : 1f;
                         crowd += hit * rate * targets;
-                        // Against one target: a sweep needs 2 enemies and a slam 4, so neither fires on a lone enemy.
-                        if (skill.Kind == SkillKind.Projectile || skill.Kind == SkillKind.Charge || skill.Kind == SkillKind.Execute)
+                        // Against one target: a sweep needs 2 enemies, a slam 4, a volley 2 and a burst 3, so none of them
+                        // fires on a lone enemy.
+                        if (skill.Kind == SkillKind.Projectile || skill.Kind == SkillKind.Charge || skill.Kind == SkillKind.Execute ||
+                            skill.Kind == SkillKind.PierceShot || skill.Kind == SkillKind.HomingShot)
                             single += hit * rate;
                     }
 
                     var armor = gear.TotalArmor;
-                    var maxLife = CombatFormulas.CharacterBaseLife(charLevel) + vitalityPerLevel * Mathf.Max(0, charLevel - 1) * CombatFormulas.LifePerVitality + gear.TotalLifeBonus;
+                    // The class's life by level, the typical build's Vitality points (one in five) and the gear's.
+                    var maxLife = CombatFormulas.CharacterBaseLife(charLevel) + vitalityPerLevel * Mathf.Max(0, charLevel - 1) * CombatFormulas.LifePerVitality +
+                                  CharacterAttributes.At(charLevel).Life + gear.TotalLifeBonus;
                     var effectiveLife = maxLife / (1f - CombatFormulas.ArmorReduction(gear.TotalArmor, charLevel));
                     var huskHit = CombatFormulas.EnemyHitOnPlayer(level, husk.DamageMultiplier, armor);
                     var ghoulHit = CombatFormulas.EnemyHitOnPlayer(level, ghoul.DamageMultiplier, armor);
@@ -223,7 +244,7 @@ namespace ARPG.Editor
             }
 
             text.AppendLine();
-            text.AppendLine($"Assumptions: every skill unlocked at the character's level fires at its cooldown, slowed together when Rage from basic swings and Bull Rush cannot pay; in a crowd the basic attack catches {CrowdTargetsBasic} enemies, Hew {CrowdTargetsSweep}, Ground Breaker {CrowdTargetsSlam}, Bull Rush {CrowdTargetsCharge}, Hurl Axe 1; against one target Hew and Ground Breaker do not fire; the character stands with 5 Stillness stacks (+30 percent damage, 20 percent less damage taken, included in Hit and in the enemy hits); {HusksInReach} husks can reach the character at once; fight time is the level's total enemy life over crowd DPS, with no walking; the potion (3 charges of 40 percent), hits taken giving Rage, and dodging are left out.");
+            text.AppendLine($"Assumptions (the Wild Arrow, bows only): every skill unlocked at the character's level fires at its cooldown, slowed together when Focus (6 a second and 4 per basic arrow) cannot pay; in a crowd the basic arrow hits {CrowdTargetsBasic} enemy, Split Arrow up to {CrowdTargetsVolley}, Pierce Arrow {CrowdTargetsPierce}, each homing arrow 1 and Explosive Arrow {CrowdTargetsSlam}; against one target Split and Explosive Arrow do not fire; the character kites (no Stillness), with the typical build's stat points (one in five on each attribute); {HusksInReach} husks can reach the character at once, which a kiter mostly avoids, so 'dies to 5 husks' is the worst case; fight time is the level's total enemy life over crowd DPS, with no walking; the potion, the pet and dodging are left out.");
 
             Directory.CreateDirectory(Path.GetDirectoryName(OutputPath));
             File.WriteAllText(OutputPath, text.ToString());

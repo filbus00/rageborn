@@ -27,7 +27,10 @@ namespace ARPG
         const int DeathLimit = 12;
 
         const string TownScene = "Town";
-        const float StandDistance = 1.2f;
+        
+        // Bows only (2026-09-30): it shoots from about this far, and backs away from anything closer than the kite distance.
+        const float ShootDistance = 5.5f;
+        const float KiteDistance = 2.5f;
         const float EngageRange = 12f;
         const float LootRange = 10f;
         const float DangerMargin = 0.6f;
@@ -198,6 +201,19 @@ namespace ARPG
             lastCharges = session.Potion.Charges;
         }
 
+        // Stat points go round the five attributes, one in five on each: the typical build the balance report models.
+        static readonly Attribute[] AllAttributes = (Attribute[])System.Enum.GetValues(typeof(Attribute));
+
+        void SpendStatPoints()
+        {
+            while (session.Attributes.Available(session.Level) > 0)
+            {
+                var next = AllAttributes[session.Attributes.TotalSpent % AllAttributes.Length];
+                if (!session.Attributes.Spend(next, session.Level))
+                    break;
+            }
+        }
+
         // Equip what the power score calls an upgrade; throw the rest away so the bag never fills.
         void OnPickedUp(Item item)
         {
@@ -215,6 +231,7 @@ namespace ARPG
 
             clock += Time.deltaTime;
             flowAge += Time.deltaTime;
+            SpendStatPoints();
             if (depth > 0)
                 Stats(depth).LevelOut = session.Level;
             if (clock > TimeLimitSeconds)
@@ -293,10 +310,11 @@ namespace ARPG
             if (corpse != null)
                 return Go(me, corpse, IsoMath.WorldToGround(corpse.transform.position), 0f);
 
-            // 3. The nearest enemy close by: walk up to it and stand to fight.
+            // 3. The nearest enemy close by: with a bow, back off from one that is too close, stand and shoot at one in
+            // reach and in sight, else walk up until it is.
             var near = NearestEnemy(me, EngageRange);
             if (near != null)
-                return Go(me, near, near.GroundPosition, StandDistance + near.Definition.BodyRadius);
+                return Engage(me, near);
 
             // 4. Loot lying around once the fight is over.
             LootDrop bestDrop = null;
@@ -318,13 +336,35 @@ namespace ARPG
             // 5. The next enemy anywhere on the level.
             var far = NearestEnemy(me, float.MaxValue);
             if (far != null)
-                return Go(me, far, far.GroundPosition, StandDistance + far.Definition.BodyRadius);
+                return Go(me, far, far.GroundPosition, ShootDistance - 1f);
 
             // 6. The level is clear: down, or home after the boss.
             var exit = GameObject.Find(bossKilled ? "Stairs To Town" : "Stairs Down");
             if (exit != null)
                 return Go(me, exit, IsoMath.WorldToGround(exit.transform.position), 0f);
             return Vector2.zero;
+        }
+
+        // A mediocre archer: it keeps its distance by walking straight away (sliding sideways along a wall), and otherwise
+        // stands still to shoot, so its arrows get Stillness while it has room.
+        Vector2 Engage(Vector2 me, EnemyController enemy)
+        {
+            var gap = Vector2.Distance(me, enemy.GroundPosition);
+            if (gap < KiteDistance + enemy.Definition.BodyRadius)
+            {
+                var away = me - enemy.GroundPosition;
+                away = away.sqrMagnitude > 1e-4f ? away.normalized : Vector2.right;
+                foreach (var turn in new[] { 0f, 45f, -45f, 90f, -90f })
+                {
+                    var r = turn * Mathf.Deg2Rad;
+                    var step = new Vector2(away.x * Mathf.Cos(r) - away.y * Mathf.Sin(r), away.x * Mathf.Sin(r) + away.y * Mathf.Cos(r));
+                    if (enemies.Nav.IsWalkable(IsoMath.GroundToCell(me + step)))
+                        return step;
+                }
+            }
+            if (gap <= ShootDistance + enemy.Definition.BodyRadius && enemies.Nav.HasLineOfSight(me, enemy.GroundPosition))
+                return Vector2.zero;
+            return Go(me, enemy, enemy.GroundPosition, ShootDistance - 1f);
         }
 
         EnemyController NearestEnemy(Vector2 me, float range)
