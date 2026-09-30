@@ -28,6 +28,20 @@ namespace ARPG
 
         /// <summary>One heavy blow at one target, far heavier on a wounded one (Skullsplitter).</summary>
         Execute,
+
+        /// <summary>The Wild Arrow's (Docs/02, 2026-09-30): a fan of arrows at the target, each stopped by the first
+        /// enemy it meets (Split Arrow).</summary>
+        Volley,
+
+        /// <summary>One arrow that passes through every enemy on its line; walls stop it (Pierce Arrow).</summary>
+        PierceShot,
+
+        /// <summary>Arrows that curve after their own targets, each a different enemy when it can; the targets must be
+        /// in sight when they are loosed (Homing Arrow).</summary>
+        HomingShot,
+
+        /// <summary>An arrow that bursts on the first enemy or wall it hits, hurting everything around (Explosive Arrow).</summary>
+        ExplosiveShot,
     }
 
     /// <summary>
@@ -48,9 +62,10 @@ namespace ARPG
     }
 
     /// <summary>
-    /// Data for one auto-cast skill. Ranges are in ground units. The Wrathborn's first four (Docs/02-classes-and-skills.md)
-    /// are Hew, Hurl Axe, Bull Rush and Ground Breaker; each fires by itself when its kind's trigger passes (see
-    /// <see cref="PlayerCombat"/>), and unlocks at <see cref="UnlockLevel"/>.
+    /// Data for one auto-cast skill. Ranges are in ground units. The Wild Arrow's four (Docs/02-classes-and-skills.md,
+    /// 2026-09-30) are Split, Pierce, Homing and Explosive Arrow; the retired Wrathborn's kinds are kept for reference.
+    /// Each fires by itself when its kind's trigger passes (see <see cref="PlayerCombat"/>), and unlocks at
+    /// <see cref="UnlockLevel"/>. The cost is Focus (the field keeps its old name, rageCost, so assets keep their values).
     /// </summary>
     [CreateAssetMenu(menuName = "ARPG/Skill Definition", fileName = "Skill")]
     public class SkillDefinition : ScriptableObject
@@ -130,6 +145,18 @@ namespace ARPG
         [Tooltip("Execute: seconds from the cast to the blow; the life threshold is read when it lands.")]
         [SerializeField, Min(0f)] float windupSeconds;
 
+        [Tooltip("Volley and Homing: how many arrows it looses.")]
+        [SerializeField, Min(1)] int projectileCount = 1;
+
+        [Tooltip("Volley: the fan's width in degrees. Homing: how wide the arrows fan out before they curve.")]
+        [SerializeField, Min(0f)] float spreadDegrees;
+
+        [Tooltip("Explosive: the burst's radius. Its trigger counts the enemies within it around the target.")]
+        [SerializeField, Min(0f)] float burstRadius;
+
+        [Tooltip("Homing: how fast an arrow turns toward its target, degrees a second.")]
+        [SerializeField, Min(0f)] float turnDegreesPerSecond = 360f;
+
         [Tooltip("The skill's own trigger in words, for the loadout (Docs/02's trigger column).")]
         [SerializeField] string triggerText = "";
 
@@ -170,6 +197,12 @@ namespace ARPG
         public float ExecuteThreshold => executeThreshold;
         public float ExecuteMultiplier => executeMultiplier;
         public float WindupSeconds => windupSeconds;
+        public int ProjectileCount => Mathf.Max(1, projectileCount);
+        public float SpreadDegrees => spreadDegrees;
+        public float BurstRadius => burstRadius;
+        public float TurnDegreesPerSecond => turnDegreesPerSecond;
+        /// <summary>The Focus spent on each cast (the same field as <see cref="RageCost"/>).</summary>
+        public float FocusCost => rageCost;
         public System.Collections.Generic.IReadOnlyList<SkillTrigger> AlternativeTriggers => alternativeTriggers;
         public string TriggerText => triggerText;
         public string AnimationName => animationName;

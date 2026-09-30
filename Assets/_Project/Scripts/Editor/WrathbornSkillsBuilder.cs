@@ -27,7 +27,7 @@ namespace ARPG.Editor
             DungeonSceneBuilder.DungeonPath,
         };
 
-        [MenuItem("Tools/ARPG/Create Wrathborn Skills")]
+        [MenuItem("Tools/ARPG/Retired/Create Wrathborn Skills")]
         public static void BuildAndAssign()
         {
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())

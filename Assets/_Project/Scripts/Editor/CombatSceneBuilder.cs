@@ -48,7 +48,7 @@ namespace ARPG.Editor
             PlayerSceneBuilder.RemoveExisting(scene, CombatObjectName, HitStopObjectName, DamageNumbersObjectName);
 
             // The basic attack is an arrow now (the Wild Arrow, Docs/02), drawn in code; the old sweep wedge is not needed.
-            var skills = WrathbornSkillsBuilder.LoadOrCreateAll();
+            var skills = WildArrowSkillsBuilder.LoadOrCreateAll();
 
             var combat = new GameObject(CombatObjectName, typeof(PlayerCombat)).GetComponent<PlayerCombat>();
             WrathbornSkillsBuilder.Assign(combat, skills);

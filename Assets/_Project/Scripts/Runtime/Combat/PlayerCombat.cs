@@ -51,7 +51,11 @@ namespace ARPG
         // The retired Wrathborn's Rending Spin hits within his old melee reach, not the bow's, until the Wild Arrow's own
         // skills replace his (Docs/02).
         const float SpinReach = 2f;
-        static readonly Color ArrowColor = new Color(1f, 0.93f, 0.78f, 1f);
+        // Arrows fly at about chest height over their ground point (world units), and leave a trail puff this often.
+        const float ArrowHeight = 0.45f;
+        const float TrailSeconds = 0.018f;
+        const float BloodTrailSeconds = 0.03f;
+        static readonly Color BasicTrailColor = new Color(1f, 0.86f, 0.55f, 0.55f);
 
         const float EffectSeconds = 0.14f;
         const float SlamEffectSeconds = 0.25f;
@@ -103,7 +107,10 @@ namespace ARPG
         readonly List<float> inReachWeights = new List<float>(32);
         readonly List<EnemyController> nearby = new List<EnemyController>(16);
 
-        // A projectile in flight: a basic arrow (it gives Focus when it hits) or a skill's (a thrown axe spins).
+        // What a projectile in flight is: the basic arrow (it gives Focus when it hits), one of the Wild Arrow's skill
+        // arrows, or the retired Wrathborn's thrown axe (it spins).
+        enum ShotStyle { Basic, Volley, Pierce, Homing, Explosive, Axe }
+
         struct Shot
         {
             public Transform Transform;
@@ -112,13 +119,26 @@ namespace ARPG
             public float Travelled;
             public float MaxDistance;
             public float Multiplier;
-            public bool Basic;
-            public bool Spins;
+            public ShotStyle Style;
+            public Color Glow;
+            public float TrailTimer;
+            // Pierce Arrow: who it went through already, and whether it carries blood since (its trail).
+            public HashSet<EnemyController> Pierced;
+            public bool Bloodied;
+            public float BloodTimer;
+            // Homing Arrow: what it chases and how fast it turns (radians a second).
+            public EnemyController Chasing;
+            public float TurnRadians;
+            // Explosive Arrow: the burst's radius.
+            public float BurstRadius;
         }
 
-        readonly List<Shot> shots = new List<Shot>(16);
-        readonly Stack<Transform> spareArrows = new Stack<Transform>(16);
+        readonly List<Shot> shots = new List<Shot>(24);
+        readonly Stack<Transform> spareArrows = new Stack<Transform>(24);
         readonly Stack<Transform> spareAxes = new Stack<Transform>(4);
+        readonly Stack<HashSet<EnemyController>> sparePierceSets = new Stack<HashSet<EnemyController>>(4);
+        readonly List<EnemyController> homingTargets = new List<EnemyController>(8);
+        ArrowFx fx;
 
         // The charge in progress: who it already hit, so each enemy is hit once, and what it does.
         readonly HashSet<EnemyController> chargeHits = new HashSet<EnemyController>();
@@ -231,6 +251,7 @@ namespace ARPG
             effects = new SweepEffect[EffectPoolSize];
             for (var i = 0; i < effects.Length; i++)
                 effects[i] = SweepEffect.Create(root.transform);
+            fx = new ArrowFx(transform);
 
             session = GameSession.Current;
             knownLevel = session.Level;
@@ -314,6 +335,7 @@ namespace ARPG
                 cooldowns[i] = Mathf.Max(0f, cooldowns[i] - deltaTime);
 
             UpdateShots(deltaTime);
+            fx.Tick(deltaTime);
             UpdateSlamEffect(deltaTime);
             if (charging)
                 UpdateCharge(origin);
@@ -397,9 +419,8 @@ namespace ARPG
             BasicAttackStarted?.Invoke(aim, attackTimer);
 
             // One arrow at the target; it gives Focus when it hits (Docs/02).
-            Sfx.Play(SoundId.AxeThrow, 0.45f);
-            var transformToUse = spareArrows.Count > 0 ? spareArrows.Pop() : CreateArrow();
-            Launch(transformToUse, origin, aim * ArrowSpeed, BasicRange + ArrowOvershoot, 1f, basic: true, spins: false);
+            Sfx.Play(SoundId.ArrowShot, 0.5f);
+            shots.Add(NewArrow(origin, aim * ArrowSpeed, BasicRange + ArrowOvershoot, 1f, ShotStyle.Basic, BasicTrailColor));
         }
 
         /// <summary>Increased attack speed from Blood Frenzy while it lasts: its own, and more for each live Momentum
@@ -492,6 +513,36 @@ namespace ARPG
                     if (own)
                         return true;
                     break;
+                case SkillKind.Volley:
+                {
+                    // Split Arrow: at the basic attack's target, with enough enemies ahead inside the fan (and a margin).
+                    if (target == null)
+                        return false;
+                    skillTarget = target;
+                    var ahead = CountInSweep(origin, aim, skill.Range, Mathf.Max(60f, skill.SpreadDegrees + 30f));
+                    if (own)
+                        return ahead >= skill.MinEnemies;
+                    break;
+                }
+                case SkillKind.PierceShot:
+                case SkillKind.HomingShot:
+                    // Pierce Arrow: an enemy 4 to 9 away in sight. Homing Arrow: any enemy in reach and in sight.
+                    skillTarget = FindRangedTarget(origin, skill);
+                    if (skillTarget == null)
+                        return false;
+                    if (own)
+                        return true;
+                    break;
+                case SkillKind.ExplosiveShot:
+                {
+                    // Explosive Arrow: the enemy in sight with the most others within the burst around it.
+                    skillTarget = FindClusterTarget(origin, skill, out var cluster);
+                    if (skillTarget == null)
+                        return false;
+                    if (own)
+                        return cluster >= skill.MinEnemies;
+                    break;
+                }
             }
             return SkillTriggerRules.Passes(trigger, new TriggerContext
             {
@@ -552,6 +603,22 @@ namespace ARPG
                     executeTarget = skillTarget;
                     executeTimer = skill.WindupSeconds;
                     break;
+                case SkillKind.Volley:
+                    Sfx.Play(SoundId.ArrowShot, 0.9f);
+                    LooseVolley(origin, direction, skill);
+                    break;
+                case SkillKind.PierceShot:
+                    Sfx.Play(SoundId.AxeThrow, 0.8f);
+                    LoosePierce(origin, direction, skill);
+                    break;
+                case SkillKind.HomingShot:
+                    Sfx.Play(SoundId.ArrowShot, 0.9f);
+                    LooseHoming(origin, direction, skill);
+                    break;
+                case SkillKind.ExplosiveShot:
+                    Sfx.Play(SoundId.ArrowShot, 1f);
+                    shots.Add(Explosive(origin, direction, skill));
+                    break;
             }
         }
 
@@ -587,6 +654,35 @@ namespace ARPG
                 if (!enemies.Nav.HasLineOfSight(origin, enemy.GroundPosition))
                     continue;
                 best = enemy;
+                bestDistance = distance;
+            }
+            return best;
+        }
+
+        // Explosive Arrow's target: of the enemies in reach and in sight, the one with the most enemies (itself counted)
+        // within the burst around it; the nearer one on a tie.
+        EnemyController FindClusterTarget(Vector2 origin, SkillDefinition skill, out int clusterSize)
+        {
+            EnemyController best = null;
+            clusterSize = 0;
+            var bestDistance = float.MaxValue;
+            for (var i = 0; i < candidates.Count; i++)
+            {
+                var enemy = candidates[i];
+                if (!enemy.IsAlive || !InReach(origin, enemy, skill.Range))
+                    continue;
+                var count = 0;
+                for (var j = 0; j < candidates.Count; j++)
+                    if (candidates[j].IsAlive &&
+                        Vector2.Distance(candidates[j].GroundPosition, enemy.GroundPosition) <= skill.BurstRadius + candidates[j].Definition.BodyRadius)
+                        count++;
+                var distance = Vector2.Distance(origin, enemy.GroundPosition);
+                if (count < clusterSize || (count == clusterSize && distance >= bestDistance))
+                    continue;
+                if (!enemies.Nav.HasLineOfSight(origin, enemy.GroundPosition))
+                    continue;
+                best = enemy;
+                clusterSize = count;
                 bestDistance = distance;
             }
             return best;
@@ -811,30 +907,121 @@ namespace ARPG
         void ThrowAxe(Vector2 origin, Vector2 toTarget, SkillDefinition skill)
         {
             var direction = toTarget.sqrMagnitude > 1e-6f ? toTarget.normalized : facing;
-            var transformToUse = spareAxes.Count > 0 ? spareAxes.Pop() : CreateAxe(skill);
-            Launch(transformToUse, origin, direction * skill.Speed, skill.Range + 1f, DamageOf(skill, skill.DamageMultiplier), basic: false, spins: true);
-        }
-
-        void Launch(Transform shotTransform, Vector2 origin, Vector2 velocity, float maxDistance, float multiplier, bool basic, bool spins)
-        {
-            shotTransform.gameObject.SetActive(true);
-            shotTransform.position = IsoMath.GroundToWorld(origin);
-            if (!spins)
-            {
-                // An arrow points along its flight as seen on screen.
-                var world = IsoMath.GroundToWorld(velocity);
-                shotTransform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(world.y, world.x) * Mathf.Rad2Deg);
-            }
+            var axe = spareAxes.Count > 0 ? spareAxes.Pop() : CreateAxe(skill);
+            axe.gameObject.SetActive(true);
+            axe.position = IsoMath.GroundToWorld(origin);
             shots.Add(new Shot
             {
-                Transform = shotTransform,
+                Transform = axe,
+                Position = origin,
+                Velocity = direction * skill.Speed,
+                MaxDistance = skill.Range + 1f,
+                Multiplier = DamageOf(skill, skill.DamageMultiplier),
+                Style = ShotStyle.Axe,
+            });
+        }
+
+        // Split Arrow (Docs/02): the arrows spread evenly over the fan, centered on the target.
+        void LooseVolley(Vector2 origin, Vector2 direction, SkillDefinition skill)
+        {
+            var count = skill.ProjectileCount;
+            var multiplier = DamageOf(skill, skill.DamageMultiplier);
+            var glow = Glow(skill);
+            for (var k = 0; k < count; k++)
+            {
+                var angle = count > 1 ? skill.SpreadDegrees * (k / (float)(count - 1) - 0.5f) : 0f;
+                shots.Add(NewArrow(origin, Rotate(direction, angle) * skill.Speed, skill.Range + ArrowOvershoot, multiplier, ShotStyle.Volley, glow));
+            }
+        }
+
+        // Pierce Arrow (Docs/02): one arrow through every enemy on its line, until a wall or its range.
+        void LoosePierce(Vector2 origin, Vector2 direction, SkillDefinition skill)
+        {
+            var shot = NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot, DamageOf(skill, skill.DamageMultiplier), ShotStyle.Pierce, Glow(skill));
+            shot.Pierced = sparePierceSets.Count > 0 ? sparePierceSets.Pop() : new HashSet<EnemyController>();
+            shots.Add(shot);
+        }
+
+        // Homing Arrow (Docs/02): each arrow chases a different enemy in reach and in sight when there are enough,
+        // nearest first; they leave fanned out and curve in.
+        void LooseHoming(Vector2 origin, Vector2 direction, SkillDefinition skill)
+        {
+            homingTargets.Clear();
+            var count = skill.ProjectileCount;
+            // The nearest few in sight, picked without sorting the whole list (no allocation).
+            for (var pick = 0; pick < count; pick++)
+            {
+                EnemyController best = null;
+                var bestDistance = float.MaxValue;
+                for (var i = 0; i < candidates.Count; i++)
+                {
+                    var enemy = candidates[i];
+                    if (!enemy.IsAlive || homingTargets.Contains(enemy) || !InReach(origin, enemy, skill.Range))
+                        continue;
+                    var distance = Vector2.Distance(origin, enemy.GroundPosition);
+                    if (distance >= bestDistance || !enemies.Nav.HasLineOfSight(origin, enemy.GroundPosition))
+                        continue;
+                    best = enemy;
+                    bestDistance = distance;
+                }
+                if (best == null)
+                    break;
+                homingTargets.Add(best);
+            }
+            if (homingTargets.Count == 0)
+                return;
+
+            var multiplier = DamageOf(skill, skill.DamageMultiplier);
+            var glow = Glow(skill);
+            for (var k = 0; k < count; k++)
+            {
+                var chased = homingTargets[k % homingTargets.Count];
+                var toTarget = (chased.GroundPosition - origin).normalized;
+                if (toTarget.sqrMagnitude < 1e-6f)
+                    toTarget = direction;
+                var angle = count > 1 ? skill.SpreadDegrees * (k / (float)(count - 1) - 0.5f) : 0f;
+                // Curving flight covers more ground than a straight line, so it may fly further.
+                var shot = NewArrow(origin, Rotate(toTarget, angle) * skill.Speed, skill.Range * 1.6f + ArrowOvershoot, multiplier, ShotStyle.Homing, glow);
+                shot.Chasing = chased;
+                shot.TurnRadians = skill.TurnDegreesPerSecond * Mathf.Deg2Rad;
+                shots.Add(shot);
+            }
+        }
+
+        // Explosive Arrow (Docs/02): bursts on the first enemy or wall it meets.
+        Shot Explosive(Vector2 origin, Vector2 direction, SkillDefinition skill)
+        {
+            var shot = NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot, DamageOf(skill, skill.DamageMultiplier), ShotStyle.Explosive, Glow(skill));
+            shot.BurstRadius = skill.BurstRadius;
+            return shot;
+        }
+
+        static Color Glow(SkillDefinition skill) => new Color(skill.EffectColor.r, skill.EffectColor.g, skill.EffectColor.b, 0.8f);
+
+        Shot NewArrow(Vector2 origin, Vector2 velocity, float maxDistance, float multiplier, ShotStyle style, Color glow)
+        {
+            var arrow = spareArrows.Count > 0 ? spareArrows.Pop() : CreateArrow();
+            arrow.gameObject.SetActive(true);
+            PlaceArrow(arrow, origin, velocity);
+            return new Shot
+            {
+                Transform = arrow,
                 Position = origin,
                 Velocity = velocity,
                 MaxDistance = maxDistance,
                 Multiplier = multiplier,
-                Basic = basic,
-                Spins = spins,
-            });
+                Style = style,
+                Glow = glow,
+            };
+        }
+
+        // An arrow is drawn at chest height over its ground point, pointing along its flight as seen on screen.
+        static void PlaceArrow(Transform arrow, Vector2 ground, Vector2 velocity)
+        {
+            var world = IsoMath.GroundToWorld(ground);
+            arrow.position = new Vector3(world.x, world.y + ArrowHeight, 0f);
+            var screen = IsoMath.GroundToWorld(velocity);
+            arrow.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(screen.y, screen.x) * Mathf.Rad2Deg);
         }
 
         Transform CreateAxe(SkillDefinition skill)
@@ -846,31 +1033,35 @@ namespace ARPG
             return go.transform;
         }
 
-        // A placeholder arrow until it has art: the ember sprite stretched along the flight, as the enemy archers' are.
+        // The arrow's pixel-art sprite (ArrowArt), drawn over the characters.
         Transform CreateArrow()
         {
-            var go = GroundMarker.NewSprite("Arrow", TelegraphArt.Ember, ArrowColor, transform, 0);
+            var go = GroundMarker.NewSprite("Arrow", ArrowArt.Arrow, Color.white, transform, 0);
             go.GetComponent<SpriteRenderer>().sortingLayerName = GameSortingLayers.Effects;
-            go.transform.localScale = new Vector3(0.7f, 0.16f, 1f);
             return go.transform;
         }
 
-        // Each projectile flies in short pieces so it can neither pass a wall nor an enemy on a long frame, and stops at
-        // the first enemy it meets.
+        // Each projectile flies in short pieces so it can neither pass a wall nor an enemy on a long frame. Most stop at
+        // the first enemy they meet; the pierce arrow goes on through, bleeding, and the explosive one bursts.
         void UpdateShots(float deltaTime)
         {
             for (var i = shots.Count - 1; i >= 0; i--)
             {
                 var shot = shots[i];
+                if (shot.Style == ShotStyle.Homing)
+                    Steer(ref shot, deltaTime);
+
                 var step = shot.Velocity * deltaTime;
                 var pieces = Mathf.Max(1, Mathf.CeilToInt(step.magnitude / EnemyProjectileFlight.MaxStep));
                 var piece = step / pieces;
+                var direction = shot.Velocity.sqrMagnitude > 1e-6f ? shot.Velocity.normalized : Vector2.right;
                 var done = false;
                 for (var p = 0; p < pieces && !done; p++)
                 {
                     var next = shot.Position + piece;
                     if (!enemies.Nav.IsWalkable(IsoMath.GroundToCell(next)))
                     {
+                        HitWall(ref shot, direction);
                         done = true;
                         break;
                     }
@@ -878,19 +1069,14 @@ namespace ARPG
                     shot.Travelled += piece.magnitude;
 
                     enemies.QueryEnemies(shot.Position, QueryMargin + ShotHitRadius, nearby);
-                    for (var n = 0; n < nearby.Count; n++)
+                    for (var n = 0; n < nearby.Count && !done; n++)
                     {
                         var enemy = nearby[n];
                         if (!enemy.IsAlive || Vector2.Distance(enemy.GroundPosition, shot.Position) > enemy.Definition.BodyRadius + ShotHitRadius)
                             continue;
-                        Strike(enemy, shot.Multiplier, projectile: true);
-                        HealOnHit(1);
-                        if (shot.Basic)
-                            focus.Gain(FocusPool.PerBasicHit + session.PassiveTree.Bonuses.RagePerBasicHit);
-                        else
-                            focus.MarkCombat();
-                        done = true;
-                        break;
+                        if (shot.Pierced != null && shot.Pierced.Contains(enemy))
+                            continue;
+                        done = HitEnemy(ref shot, enemy, direction);
                     }
                     if (shot.Travelled >= shot.MaxDistance)
                         done = true;
@@ -898,18 +1084,151 @@ namespace ARPG
 
                 if (done)
                 {
-                    shot.Transform.gameObject.SetActive(false);
-                    (shot.Spins ? spareAxes : spareArrows).Push(shot.Transform);
+                    Retire(shot);
                     shots[i] = shots[shots.Count - 1];
                     shots.RemoveAt(shots.Count - 1);
                     continue;
                 }
 
-                shot.Transform.position = IsoMath.GroundToWorld(shot.Position);
-                if (shot.Spins)
+                if (shot.Style == ShotStyle.Axe)
+                {
+                    shot.Transform.position = IsoMath.GroundToWorld(shot.Position);
                     shot.Transform.Rotate(0f, 0f, -AxeSpinDegreesPerSecond * deltaTime);
+                }
+                else
+                {
+                    PlaceArrow(shot.Transform, shot.Position, shot.Velocity);
+                    Trail(ref shot, direction, deltaTime);
+                }
                 shots[i] = shot;
             }
+        }
+
+        // A homing arrow turns toward what it chases, at most its turn rate; once that dies it flies straight on.
+        static void Steer(ref Shot shot, float deltaTime)
+        {
+            if (shot.Chasing == null || !shot.Chasing.IsAlive)
+                return;
+            var speed = shot.Velocity.magnitude;
+            var want = shot.Chasing.GroundPosition - shot.Position;
+            if (speed < 1e-4f || want.sqrMagnitude < 1e-6f)
+                return;
+            var current = Mathf.Atan2(shot.Velocity.y, shot.Velocity.x);
+            var target = Mathf.Atan2(want.y, want.x);
+            var turn = Mathf.DeltaAngle(current * Mathf.Rad2Deg, target * Mathf.Rad2Deg) * Mathf.Deg2Rad;
+            var limit = shot.TurnRadians * deltaTime;
+            var angle = current + Mathf.Clamp(turn, -limit, limit);
+            shot.Velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * speed;
+        }
+
+        // The glow trail behind every arrow, and the pierce arrow's blood once it has gone through someone.
+        void Trail(ref Shot shot, Vector2 direction, float deltaTime)
+        {
+            var world = IsoMath.GroundToWorld(shot.Position);
+            shot.TrailTimer -= deltaTime;
+            if (shot.TrailTimer <= 0f)
+            {
+                shot.TrailTimer += TrailSeconds;
+                var size = shot.Style == ShotStyle.Basic ? 0.07f : 0.13f;
+                fx.Trail(world, IsoMath.GroundToWorld(direction), ArrowHeight, shot.Glow, size);
+            }
+            if (!shot.Bloodied)
+                return;
+            shot.BloodTimer -= deltaTime;
+            if (shot.BloodTimer <= 0f)
+            {
+                shot.BloodTimer += BloodTrailSeconds;
+                fx.BloodTrail(world, IsoMath.GroundToWorld(direction), ArrowHeight);
+            }
+        }
+
+        // Returns whether the shot is spent.
+        bool HitEnemy(ref Shot shot, EnemyController enemy, Vector2 direction)
+        {
+            var world = IsoMath.GroundToWorld(enemy.GroundPosition);
+            var screenDirection = IsoMath.GroundToWorld(direction);
+            if (shot.Style == ShotStyle.Explosive)
+            {
+                Explode(enemy.GroundPosition, shot);
+                return true;
+            }
+
+            var killed = Strike(enemy, shot.Multiplier, projectile: true);
+            HealOnHit(1);
+            if (shot.Style == ShotStyle.Basic)
+                focus.Gain(FocusPool.PerBasicHit + session.PassiveTree.Bonuses.RagePerBasicHit);
+            else
+                focus.MarkCombat();
+
+            if (shot.Style == ShotStyle.Axe)
+                return true;
+            if (shot.Style == ShotStyle.Pierce)
+            {
+                // Through the body and on, carrying its blood (the owner's blood trail, 2026-09-30).
+                shot.Pierced.Add(enemy);
+                shot.Bloodied = true;
+                fx.Blood(world, screenDirection, ArrowHeight, killed ? 2.4f : 1.6f);
+                return false;
+            }
+            fx.Blood(world, screenDirection, ArrowHeight, killed ? 1.8f : 0.8f);
+            return true;
+        }
+
+        void HitWall(ref Shot shot, Vector2 direction)
+        {
+            if (shot.Style == ShotStyle.Explosive)
+            {
+                Explode(shot.Position, shot);
+                return;
+            }
+            if (shot.Style == ShotStyle.Axe)
+                return;
+            var world = IsoMath.GroundToWorld(shot.Position);
+            var screenDirection = IsoMath.GroundToWorld(direction);
+            fx.Sparks(world, screenDirection, ArrowHeight, shot.Glow, shot.Style == ShotStyle.Basic ? 3 : 6);
+            fx.Stuck(world, screenDirection, ArrowHeight, ArrowArt.Arrow);
+        }
+
+        // Everything within the burst is hit once (the enemy the arrow struck included); a flash and embers show it.
+        void Explode(Vector2 at, Shot shot)
+        {
+            enemies.QueryEnemies(at, shot.BurstRadius + QueryMargin, nearby);
+            var hits = 0;
+            for (var n = 0; n < nearby.Count; n++)
+            {
+                var enemy = nearby[n];
+                if (!enemy.IsAlive || Vector2.Distance(enemy.GroundPosition, at) > shot.BurstRadius + enemy.Definition.BodyRadius)
+                    continue;
+                hits++;
+                if (Strike(enemy, shot.Multiplier, projectile: true))
+                    fx.Blood(IsoMath.GroundToWorld(enemy.GroundPosition), IsoMath.GroundToWorld((enemy.GroundPosition - at).normalized), ArrowHeight, 1.4f);
+            }
+            if (hits > 0)
+            {
+                HealOnHit(hits);
+                focus.MarkCombat();
+            }
+            Sfx.Play(SoundId.GroundBreaker, 0.8f);
+            fx.Burst(IsoMath.GroundToWorld(at), shot.BurstRadius, shot.Glow);
+        }
+
+        void Retire(Shot shot)
+        {
+            shot.Transform.gameObject.SetActive(false);
+            (shot.Style == ShotStyle.Axe ? spareAxes : spareArrows).Push(shot.Transform);
+            if (shot.Pierced != null)
+            {
+                shot.Pierced.Clear();
+                sparePierceSets.Push(shot.Pierced);
+            }
+        }
+
+        static Vector2 Rotate(Vector2 v, float degrees)
+        {
+            var r = degrees * Mathf.Deg2Rad;
+            var c = Mathf.Cos(r);
+            var s = Mathf.Sin(r);
+            return new Vector2(v.x * c - v.y * s, v.x * s + v.y * c);
         }
 
         // --- Bull Rush -----------------------------------------------------------------------------------------
@@ -971,8 +1290,8 @@ namespace ARPG
         // --- Shared --------------------------------------------------------------------------------------------
 
         /// <summary>One hit on one enemy: the hit formula with the gear's modifiers and Stillness, a crit roll, the
-        /// damage number, and the kill's hit stop.</summary>
-        void Strike(EnemyController enemy, float multiplier, bool movementSkill = false, bool projectile = false)
+        /// damage number, and the kill's hit stop. Returns whether it killed.</summary>
+        bool Strike(EnemyController enemy, float multiplier, bool movementSkill = false, bool projectile = false)
         {
             var tree = session.PassiveTree.Bonuses;
             var attributes = CharacterAttributes.At(session.Level);
@@ -989,11 +1308,10 @@ namespace ARPG
                     focus.Gain(tree.RageOnKill);
                 HitStop.Instance?.Trigger(HitStopOnKillSeconds);
                 Sfx.Play(SoundId.Kill);
+                return true;
             }
-            else
-            {
-                Sfx.Play(critical ? SoundId.Crit : SoundId.Hit);
-            }
+            Sfx.Play(critical ? SoundId.Crit : SoundId.Hit);
+            return false;
         }
 
         /// <summary>A skill's damage multiplier at its level (Docs/02's proposal: plus 7 percent of level 1 a level).</summary>
