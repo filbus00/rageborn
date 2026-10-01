@@ -406,6 +406,133 @@ Each has a fixed base (its band's look is replaced by its own), four fixed affix
 
 Drop rules: every Legendary can drop anywhere its item level allows, with a minimum item level per item (8 for the first 20, 20 for the rest, tuning), so a new character meets the simple ones first. A Legendary found once is recorded in the Codex (05, Endgame).
 
+### The Wild Arrow's loot depth: legendaries and synergies (proposed 2026-10-01)
+
+The owner, 2026-10-01: "start thinking about legendary weapons and synergies with gear and skills. The looting, farming and building of the characters gear will be the main depth of this game." Everything in this section is Claude's proposal for the owner to review; it replaces the 24 retired Wrathborn legendaries above and keeps the 16 shared ones (one fixed below). Numbers are tuning.
+
+#### 1. How a build is made: five layers that multiply
+
+A Wild Arrow's build is the product of five choices. Each layer alone is a small number; the depth comes from layers that point the same way.
+
+| Layer | What the player chooses | Where it comes from |
+|---|---|---|
+| The engine | Which arrow carries the damage: the basic shot, Split, Pierce, Homing, Explosive, or the pet | Skill levels and the loadout (02), tag affixes (7 to 14, 20 to 27), the bow |
+| The arrow's behaviour | What an arrow does after it leaves the bow: forks, pierces, ricochets off walls, seeks, bursts | **Arrow traits** (2, below), given by quivers, legendaries and a few affixes |
+| The condition | What makes it hit harder: crits, bleed, burn, range, Stillness or Momentum, elites, the pet's target | Affixes 18, 19, 32 to 38, 84, 88 and the new ones (4), attributes (Agility, Strength), legendary powers |
+| The fuel | What keeps it firing: Focus, cooldowns, attack speed | Focus attribute, affixes 5, 44, 40, the new Focus affixes, quiver attack speed |
+| The safety | What keeps the character alive while it does: life, armor, dodge, kiting, the pet drawing hits | Vitality, armor and life affixes, Momentum's dodge, the Boar |
+
+A legendary's job is to **connect two layers** in a way no affix can (the design rule above: it changes what the loadout does, not only a number). Example: Gallowsreach (below) connects the engine (Pierce Arrow) to the condition (bleed) through the arrow's behaviour (the blood trail it leaves), so suddenly bleed-damage affixes, Agility crits and Bloodletter's Grips all feed a Pierce build.
+
+#### 2. Arrow traits: the shared language
+
+Instead of building each legendary as a one-off, the arrows get a small set of traits that any source can grant to the basic shot, to one skill, or to every arrow. Each trait is one rule in the arrow's flight code; 40 legendaries and the quiver affixes are then mostly combinations of them.
+
+| Trait | What it does | Built today |
+|---|---|---|
+| Pierce N | Passes through N more enemies (Pierce Arrow: all) | Pierce Arrow only |
+| Fork | On its first hit, splits into 2 arrows at 45 degrees, each at 50 percent | No |
+| Ricochet | On hitting a wall, bounces once toward the nearest enemy in sight | No |
+| Seek | Turns toward a target (Homing Arrow); with Retarget, finds a new one when its target dies | Homing Arrow only |
+| Burst R | Explodes on its first hit for its damage within R | Explosive Arrow only |
+| Extra arrow | Sometimes a second arrow at another enemy | Quiver affix (built) |
+| Ailment | Applies bleed, burn or chill on hit | Bleed exists for enemies; burn and chill are new |
+| Ground mark | Leaves something on the floor where it flies or lands: a blood trail that makes enemies bleed, burning ground, frost | The blood trail is a look only today |
+
+Rules: a trait on "every arrow" includes skill arrows; traits from different sources stack where it makes sense (Pierce adds, Fork does not fork a forked arrow, a Burst arrow that forks bursts once per arrow); a fork's and ricochet's arrows keep every other trait.
+
+#### 3. Ailments: the glue between items
+
+Three ailments make "condition" items worth chasing across slots. Bleed exists; burn and chill are new and use the act 1 element (fire, Q9) and act 2's (cold).
+
+| Ailment | Effect | Stacks | Feeds |
+|---|---|---|---|
+| Bleed | Physical damage over time (built: 0.5 s pulses) | Replaces, the stronger stays | Affixes 19, 36, 88; Agility crits (Butcher-style powers) |
+| Burn | Fire damage over time, 60 percent weapon damage over 3 s | Up to 3 stacks | New affixes 92 and 93; Explosive Arrow; burning ground |
+| Chill | Slows 25 percent for 2 s; a fourth chill in 2 s freezes for 1 s (not bosses) | Counts to freeze | Affix 37 (damage to slowed), kiting |
+
+#### 4. New and changed affixes (proposed)
+
+The 88 above stand, except the Rage ones, which turn into Focus: 65 Focus on kill (2 to 4), 66 Reduced Focus costs (6 to 10 percent), 67 Focus regeneration in combat (10 to 16 percent). New, numbered on:
+
+| # | Affix | Kind | T1 range | Slots |
+|---|---|---|---|---|
+| 89 | Extra arrow chance | S | 8 to 15 percent | Quiver (built) |
+| 90 | Plus 1 pierce on every arrow | S | Fixed 1, from item level 20 | Quiver |
+| 91 | Fork chance on the first hit | S | 10 to 20 percent | Quiver, bow |
+| 92 | Ignite chance (burn) | S | 8 to 15 percent | Bow, quiver, gloves |
+| 93 | Burn damage | P | 20 to 35 percent | Bow, gloves, amulet |
+| 94 | Damage per enemy already pierced (per pierce) | P | 6 to 10 percent | Longbow, quiver |
+| 95 | Damage to enemies more than 6 units away | P | 12 to 20 percent | Longbow, helm |
+| 96 | Damage to enemies within 3 units (point blank) | P | 12 to 20 percent | Short bow, gloves |
+| 97 | Arrow speed | S | 15 to 25 percent | Bow, quiver |
+| 98 | Pet damage | P | 15 to 25 percent | Amulet, ring, belt |
+| 99 | Pet life | P | 15 to 25 percent | Chest, belt |
+| 100 | Plus 1 arrow to Split and Homing Arrow | S | Fixed 1, from item level 30 | Gloves, quiver |
+
+#### 5. The 24 Wild Arrow legendaries
+
+Fixed affixes by number from the tables above; each also rolls two random affixes. "Archetype" is the build of section 6 it anchors. Shown slots (bows, quivers, helms, chests) get their own model.
+
+| # | Name | Slot | Fixed affixes | Unique power | Archetype |
+|---|---|---|---|---|---|
+| 1 | Splinterbough | Bow | 1, 41, 91, 97 | Split Arrow's arrows fork on their first hit | Splinterstorm |
+| 2 | The Widow's Draw | Bow | 1, 41, 42, 19 | A basic arrow that crits makes its target bleed; a bleeding enemy hit by a basic arrow passes its bleed to the nearest enemy within 3 | Blood Hunter |
+| 3 | Galeheart | Bow | 1, 40, 34, 43 | At full Momentum every basic shot looses 2 more arrows in a 20 degree fan | Windrunner |
+| 4 | Hunter's Promise | Bow | 1, 2, 18, 100 | Homing Arrow looses 2 more arrows, and an arrow whose target dies seeks a new one once | Seeker |
+| 5 | Ember-Tongue | Bow | 1, 2, 92, 93 | Basic arrows always ignite; Explosive Arrow deals 60 percent more to burning enemies | Pyre |
+| 6 | Gallowsreach | Longbow | 1, 2, 94, 36 | Pierce Arrow gains 20 percent damage for each enemy it passes through, and its blood trail lies on the floor for 4 s, making enemies who walk through it bleed (40 percent a second) | Blood Hunter |
+| 7 | Stillwater Yew | Longbow | 1, 42, 35, 95 | At full Stillness the next basic arrow is a certain crit that pierces every enemy | Sniper |
+| 8 | The Long Silence | Longbow | 1, 2, 95, 72 | Reach plus 2; enemies further than 7 units take 30 percent more from arrows | Sniper |
+| 9 | Quiver of Endless Splinters | Quiver | 1, 89, 91, 40 | Every basic arrow forks | Splinterstorm |
+| 10 | Magpie's Nest | Quiver | 1, 3, 97, 89 | Arrows ricochet off walls once; a ricochet deals 30 percent more | Splinterstorm, Seeker |
+| 11 | Wind-Sworn Quiver | Quiver | 3, 90, 33, 40 | While Momentum is at its cap, every arrow pierces 2 more enemies | Windrunner |
+| 12 | Ashfall Quiver | Quiver | 1, 92, 93, 89 | Every fifth basic arrow is a free Explosive Arrow at 60 percent | Pyre |
+| 13 | Quiver of the Hollow Hound | Quiver | 3, 98, 99, 89 | Enemies the pet bites are marked for 4 s; arrows deal 25 percent more to marked enemies, and Homing Arrow seeks them first | Beastmaster |
+| 14 | Falconer's Hood | Helm | 3, 4, 44, 59 | Homing Arrow's cooldown is 2 s shorter, and each homing hit gives 2 Focus | Seeker |
+| 15 | Crown of the Unblinking Eye | Helm | 3, 4, 95, 84 | A Pierce Arrow that crits resets its own cooldown, once per cast | Sniper |
+| 16 | Hide of the Running Stag | Chest | 3, 4, 33, 82 | Plus 3 Momentum cap; each Momentum stack also gives 2 percent attack speed | Windrunner |
+| 17 | Cinder-Stitched Jerkin | Chest | 3, 4, 93, 77 | Explosive Arrow leaves burning ground for 3 s (60 percent a second) that slows enemies 20 percent | Pyre |
+| 18 | Fletcher's Fingers | Gloves | 1, 41, 100, 66 | Split Arrow looses 3 more arrows and costs 10 less Focus | Splinterstorm |
+| 19 | Bloodletter's Grips | Gloves | 19, 41, 88, 36 | Bleeding enemies take 20 percent more from arrows; crits on them add 1 s to the bleed | Blood Hunter |
+| 20 | Windrunner Treads | Boots | 43, 3, 87, 51 | After 3 s of moving without stopping, the next skill costs no Focus | Windrunner |
+| 21 | Stalker's Treads | Boots | 43, 4, 32, 53 | At full Stillness, Pierce and Explosive Arrow deal 40 percent more | Sniper, Pyre |
+| 22 | Bandolier of Many Heads | Belt | 3, 17, 89, 63 | Plus 1 arrow to every skill that looses several; the quiver's extra arrow chance is doubled | Splinterstorm, Seeker |
+| 23 | Eye of the Storm | Amulet | 2, 5, 44, 41 | Focus regenerates 50 percent faster with 3 or more enemies within 5; skills cost 25 percent less below 30 Focus | Any (fuel) |
+| 24 | Pack Leader's Signet | Ring | 98, 99, 41, 42 | The pet gets the character's attack speed and critical chance; its kills give 5 Focus | Beastmaster |
+
+The shared 16 stand, with one change: Ember Aegis was a shield; it becomes a chest (fixed 3, 4, 49, 77; same power), so shown-slot legendaries number 9 bows and longbows, 5 quivers, 3 helms (with Watchman's Visor) and 4 chests (with Warden's Plate and Ember Aegis): 21 models.
+
+#### 6. Six build archetypes the items are designed around
+
+Each needs about 3 legendaries plus the right affixes to come together, so a player is always one or two finds away from a build "turning on". The balance target in 02 (median clear time within 20 percent across archetypes) applies to these six.
+
+| Archetype | Engine | Core legendaries | Conditions and affixes | Attributes | Stance | Pet |
+|---|---|---|---|---|---|---|
+| Splinterstorm | Split Arrow and forked basic shots | Splinterbough, Quiver of Endless Splinters, Fletcher's Fingers, Bandolier | Fork, extra arrow, attack speed, point blank (96) | Speed, Agility | Momentum | Wolf |
+| Blood Hunter | Pierce Arrow and crits | Gallowsreach, The Widow's Draw, Bloodletter's Grips | Bleed (19, 36, 88), crit (41, 42), per pierce (94) | Agility | Either | Boar |
+| Pyre | Explosive Arrow and burn | Ember-Tongue, Ashfall Quiver, Cinder-Stitched Jerkin, Stalker's Treads | Ignite and burn (92, 93), area (6) | Strength | Stillness | Boar |
+| Seeker | Homing Arrow, elites first | Hunter's Promise, Falconer's Hood, Magpie's Nest | Elites (18, 84), cooldowns (44), Focus | Focus | Momentum | Raven |
+| Sniper | The longbow's basic shot | Stillwater Yew, The Long Silence, Crown of the Unblinking Eye | Range (95), crit damage (42), Stillness (32, 35) | Strength, Agility | Stillness | Raven |
+| Windrunner | Basic shots on the move | Galeheart, Wind-Sworn Quiver, Hide of the Running Stag, Windrunner Treads | Momentum (33, 34, 87), move speed (43) | Speed | Momentum | Wolf |
+| Beastmaster (seventh, a support build) | The pet | Quiver of the Hollow Hound, Pack Leader's Signet | Pet damage and life (98, 99) | Vitality, Speed | Either | Any |
+
+#### 7. The farming loop around them
+
+The goal: every session can end with "one step closer", even without a legendary drop.
+
+- **Where they drop.** Any legendary can drop anywhere its item level allows (above). On top of that each has a **home**: the act boss, an elite type or the act's chests drop it twice as often. The Codex shows each legendary's home once it has been seen once, so a player can farm for a missing piece.
+- **Bad luck protection** (built): after 300 kills without a legendary its weight doubles, after 600 it triples.
+- **Smart drops.** With one class, every drop fits the character. A legendary drop is weighted toward slots where the character wears no legendary yet (tuning: 2 to 1), so the first ones spread out.
+- **Duplicates matter.** A second copy is not waste: values roll fresh (a better copy is an upgrade), it salvages into Soulglass for the Forge, and from Vigil II it can drop Cursed (stronger power, a drawback, above).
+- **The Forge finishes items.** Temper raises affixes, Reroll values rerolls a legendary's numbers, Reforge fixes a Rare, and **Imprint** moves a legendary power onto a Rare of the same slot with better affixes. Proposed change: Imprint from act 3 rather than endgame only, so builds can mix powers mid-game; each power can be imprinted once per character.
+- **Gems** (above) turn to Focus: the Sapphire gives Focus per hit in a weapon, cooldowns in armor and Focus regeneration in jewelry.
+- **What a find feels like.** A legendary that fits the character's current engine shows a gold "Build" tag on the item sheet: its power names a skill in the loadout or a trait the character already has (the power score cannot measure powers, so this tells the player why it matters).
+
+#### 8. What the engine needs (for when it is built)
+
+In build order: item names and a legendary power id on each item (save format 13); the trait fields on the arrow (`Shot`: pierce count, fork, ricochet, retarget, ailment, ground mark), read from a per-arrow "traits" value computed from gear at the shot; burn and chill on enemies beside the built bleed; ground marks (a pooled area that hurts what stands in it, the blood trail and burning ground); event hooks for powers (on crit, on kill, on pierce, every Nth basic shot, at full Momentum or Stillness, on pet bite); the legendary table as data; the Codex. The basic shot and the four skills already fly through one code path (`PlayerCombat.UpdateShots`), so traits land in one place.
+
 ### Cursed items (proposed details)
 
 Kept from above: purple, a Legendary with a curse and a stronger power, from Abyss depth 30 (04's tier table said Vigil II; it now follows this, Q22). Proposed: every Legendary has a Cursed form with its power's numbers raised by 50 percent and one drawback rolled from: 20 percent less max life; no auto-potion; Rage drains even in combat at 2 a second; 30 percent less to all resistances; 20 percent more damage from elites; Momentum and Stillness caps minus 2; 10 percent less move speed; no Life on Hit. Salvage gives 2 Soulglass. Magic Find does not affect Cursed items (above).
