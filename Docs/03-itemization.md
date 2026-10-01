@@ -408,7 +408,7 @@ Drop rules: every Legendary can drop anywhere its item level allows, with a mini
 
 ### The Wild Arrow's loot depth: legendaries and synergies (proposed 2026-10-01)
 
-The owner, 2026-10-01: "start thinking about legendary weapons and synergies with gear and skills. The looting, farming and building of the characters gear will be the main depth of this game." Everything in this section is Claude's proposal for the owner to review; it replaces the 24 retired Wrathborn legendaries above and keeps the 16 shared ones (one fixed below). Numbers are tuning.
+The owner, 2026-10-01: "start thinking about legendary weapons and synergies with gear and skills. The looting, farming and building of the characters gear will be the main depth of this game." **Decided (the owner, 2026-10-01, asked one by one):** the six archetypes as proposed (no poison or frost build); burn and chill added beside bleed; legendaries drop anywhere with a home where they drop twice as often; Imprint stays endgame only. Everything else in this section is Claude's proposal; it replaces the 24 retired Wrathborn legendaries above and keeps the 16 shared ones (one fixed below). Numbers are tuning.
 
 #### 1. How a build is made: five layers that multiply
 
@@ -525,7 +525,7 @@ The goal: every session can end with "one step closer", even without a legendary
 - **Bad luck protection** (built): after 300 kills without a legendary its weight doubles, after 600 it triples.
 - **Smart drops.** With one class, every drop fits the character. A legendary drop is weighted toward slots where the character wears no legendary yet (tuning: 2 to 1), so the first ones spread out.
 - **Duplicates matter.** A second copy is not waste: values roll fresh (a better copy is an upgrade), it salvages into Soulglass for the Forge, and from Vigil II it can drop Cursed (stronger power, a drawback, above).
-- **The Forge finishes items.** Temper raises affixes, Reroll values rerolls a legendary's numbers, Reforge fixes a Rare, and **Imprint** moves a legendary power onto a Rare of the same slot with better affixes. Proposed change: Imprint from act 3 rather than endgame only, so builds can mix powers mid-game; each power can be imprinted once per character.
+- **The Forge finishes items.** Temper raises affixes, Reroll values rerolls a legendary's numbers, Reforge fixes a Rare, and **Imprint** moves a legendary power onto a Rare of the same slot with better affixes. **Decided (2026-10-01): Imprint stays endgame only**, so the campaign is about finding legendaries and the endgame about perfecting them.
 - **Gems** (above) turn to Focus: the Sapphire gives Focus per hit in a weapon, cooldowns in armor and Focus regeneration in jewelry.
 - **What a find feels like.** A legendary that fits the character's current engine shows a gold "Build" tag on the item sheet: its power names a skill in the loadout or a trait the character already has (the power score cannot measure powers, so this tells the player why it matters).
 
