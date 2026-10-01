@@ -130,6 +130,7 @@ The owner, 2026-09-30: "I am not liking the art style. I want it pixelated", mea
 - The world is drawn at about 600 px on the long side (3 x 3 screen pixels each on a 2x iPhone, 4 x 4 on a 3x one) and **all in-world art is made at 40 pixels per unit**, one art pixel to one rendered pixel. Every size in sections 3 to 9 and 15 scales by 40/64 from 0.8's (a character cell 80 px, the Wrathborn about 53 px tall, a floor tile 40 x 20).
 - Pixel-art rules: one shared palette of about 45 colours in ramps (stone greys, browns, blood reds, skin, moss greens, cold blue-greys, ember and gold, bone; `PixelArt` in the code), hard alpha (no soft edges), and a one-pixel warm near-black outline around characters, enemies and props (not floors and walls). Shade in 2 to 4 steps of a ramp, not gradients; no dithering noise in large areas.
 - Baked characters get this automatically (the bake snaps every frame to the palette and outlines it). Hand-made or AI-generated art should be made or downsampled to 40 px a unit and then snapped to the palette before import.
+- **Dungeon floors, decals, walls and props: drop the PNGs in `ArtSource/pixel/dungeon/` and run Tools > ARPG > Import Pixel Art** (2026-10-01). It does the shrinking, diamond cut, palette snap and prop outline, and the game uses each piece in place of its code-drawn placeholder. Names and sizes are in that folder's README. Other world art (stairs, chests, NPCs, effects) has no import path yet.
 
 ### 0.8 Resolution: Diablo 2 style (2026-09-28)
 

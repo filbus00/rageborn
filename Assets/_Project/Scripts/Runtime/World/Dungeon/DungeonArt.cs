@@ -13,6 +13,9 @@ namespace ARPG
     /// cut low. Everything is drawn at 128 pixels a unit and brought down to the game's pixel art (the owner, 2026-09-30:
     /// "I want it pixelated"): averaged to <see cref="PixelArt.PixelsPerUnit"/>, snapped to the palette, props outlined.
     /// Cached for the session, so a level asks for them freely.
+    /// Art made by hand or generated and brought in with `Tools > ARPG > Import Pixel Art` (`PixelArtImporter`, names in
+    /// <see cref="ArtNames"/>) lies in Resources/Art/Dungeon and takes the place of the code-drawn piece it names: a floor
+    /// style's imported variants replace all of its code-drawn ones, while anything not imported is still drawn here.
     /// </summary>
     public static class DungeonArt
     {
@@ -30,6 +33,82 @@ namespace ARPG
         static Tile wall;
         static Tile lowWall;
 
+        /// <summary>Where the importer puts the processed art, under Resources.</summary>
+        public const string ImportedFolder = "Art/Dungeon";
+
+        // The imported sprites by kind, loaded once at first use; empty lists where nothing was imported.
+        static bool loaded;
+        static readonly List<Sprite>[] importedFloors = new List<Sprite>[ArtNames.FloorStyles.Length];
+        static readonly Dictionary<int, List<Sprite>> importedDecals = new Dictionary<int, List<Sprite>>();
+        static readonly Dictionary<int, Sprite> importedProps = new Dictionary<int, Sprite>();
+        static Sprite importedWall;
+        static Sprite importedLowWall;
+
+        // Domain reload is off: a new play forgets the last one's tiles, so art imported in between shows.
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics()
+        {
+            floors.Clear();
+            props.Clear();
+            wall = null;
+            lowWall = null;
+            loaded = false;
+        }
+
+        static void LoadImported()
+        {
+            if (loaded)
+                return;
+            loaded = true;
+            for (var i = 0; i < importedFloors.Length; i++)
+                importedFloors[i] = new List<Sprite>();
+            importedDecals.Clear();
+            importedProps.Clear();
+            importedWall = null;
+            importedLowWall = null;
+            var all = Resources.LoadAll<Sprite>(ImportedFolder);
+            // By name, so variant 1 comes before 2 whatever order the folder lists them in.
+            System.Array.Sort(all, (x, y) => string.CompareOrdinal(x.name, y.name));
+            var floorSlots = new SortedList<int, Sprite>[importedFloors.Length];
+            var decalSlots = new Dictionary<int, SortedList<int, Sprite>>();
+            foreach (var sprite in all)
+            {
+                switch (ArtNames.Parse(sprite.name, out var index, out var variant))
+                {
+                    case ArtKind.Floor:
+                        (floorSlots[index] ??= new SortedList<int, Sprite>())[variant] = sprite;
+                        break;
+                    case ArtKind.Decal:
+                        if (!decalSlots.TryGetValue(index, out var list))
+                            decalSlots[index] = list = new SortedList<int, Sprite>();
+                        list[variant] = sprite;
+                        break;
+                    case ArtKind.Wall:
+                        importedWall = sprite;
+                        break;
+                    case ArtKind.LowWall:
+                        importedLowWall = sprite;
+                        break;
+                    case ArtKind.Prop:
+                        importedProps[index] = sprite;
+                        break;
+                }
+            }
+            for (var i = 0; i < floorSlots.Length; i++)
+                if (floorSlots[i] != null)
+                    importedFloors[i].AddRange(floorSlots[i].Values);
+            foreach (var pair in decalSlots)
+                importedDecals[pair.Key] = new List<Sprite>(pair.Value.Values);
+        }
+
+        /// <summary>How many variants a floor style has: its imported ones, else the code-drawn <see cref="Variants"/>.</summary>
+        public static int VariantCount(int style)
+        {
+            LoadImported();
+            var imported = style >= 0 && style < importedFloors.Length ? importedFloors[style].Count : 0;
+            return imported > 0 ? imported : Variants;
+        }
+
         /// <summary>
         /// Repaints the town's ground in the pixel-art floors: packed earth, with worn flagstone where a slow noise says a
         /// path or square runs (the scene's own tiles were smooth placeholders at 128 pixels a unit).
@@ -44,7 +123,8 @@ namespace ARPG
                 if (ground.HasTile(cell))
                 {
                     var paved = Fractal(cell.x * 0.09f, cell.y * 0.09f, 404) > 0.55f;
-                    var variant = (int)(Hash(cell.x, cell.y, 9) * Variants) % Variants;
+                    var count = VariantCount(paved ? 0 : 2);
+                    var variant = (int)(Hash(cell.x, cell.y, 9) * count) % count;
                     var decal = Hash(cell.x, cell.y, 21) < 0.05f ? (int)DecalKind.Cracks : Hash(cell.x, cell.y, 22) < 0.02f ? (int)DecalKind.Rubble : -1;
                     tiles[i] = Floor(paved ? 0 : 2, variant, decal);
                 }
@@ -59,13 +139,24 @@ namespace ARPG
             var cached = low ? lowWall : wall;
             if (cached != null && cached.sprite != null)
                 return cached;
+            LoadImported();
+            var imported = low ? importedLowWall : importedWall;
+            if (imported != null)
+            {
+                var importedTile = SpriteTile(imported, Tile.ColliderType.Grid);
+                if (low)
+                    lowWall = importedTile;
+                else
+                    wall = importedTile;
+                return importedTile;
+            }
             // Half a unit tall, or an eighth cut low, standing on a diamond whose middle is a quarter up the full frame.
             var height = low ? 16 : 64;
             var hiH = 64 + height;
             var hi = new Color32[TileW * hiH];
             DrawWall(hi, hiH, height);
             var loH = Mathf.RoundToInt(hiH * Unit / 128f);
-            var lo = Resample(hi, TileW, hiH, Unit, loH);
+            var lo = PixelArt.Downscale(hi, TileW, hiH, Unit, loH);
             PixelArt.Process(lo, Unit, loH, false);
             var tile = MakeTile(lo, Unit, loH, new Vector2(0.5f, (Unit / 4f) / loH), Tile.ColliderType.Grid, low ? "Low Wall" : "Wall");
             if (low)
@@ -81,19 +172,38 @@ namespace ARPG
             var key = (style * 16 + variant) * 16 + decal + 1;
             if (floors.TryGetValue(key, out var tile) && tile != null && tile.sprite != null)
                 return tile;
-            var pixels = FloorPixels(style, variant);
-            if (decal >= 0)
-                DrawDecal(pixels, (DecalKind)decal, variant * 31 + style * 7 + decal);
-            var lo = Resample(pixels, TileW, TileH, Unit, Unit / 2);
-            // The diamond is cut again at the low size, a touch wide, so neighbouring tiles meet with no gap.
-            for (var y = 0; y < Unit / 2; y++)
-                for (var x = 0; x < Unit; x++)
+            LoadImported();
+            var imported = style >= 0 && style < importedFloors.Length && importedFloors[style].Count > 0
+                ? importedFloors[style][Mathf.Abs(variant) % importedFloors[style].Count] : null;
+            if (imported != null && decal < 0)
+            {
+                tile = SpriteTile(imported, Tile.ColliderType.None);
+                floors[key] = tile;
+                return tile;
+            }
+
+            Color32[] lo;
+            var seed = variant * 31 + style * 7 + decal;
+            if (imported != null)
+            {
+                lo = PixelsOf(imported, Unit, Unit / 2);
+                if (lo == null || !StampImportedDecal(lo, decal, seed))
                 {
-                    var dx = Mathf.Abs(x + 0.5f - Unit * 0.5f) / (Unit * 0.5f);
-                    var dy = Mathf.Abs(y + 0.5f - Unit * 0.25f) / (Unit * 0.25f);
-                    var c = lo[x + y * Unit];
-                    lo[x + y * Unit] = dx + dy <= 1.06f ? new Color32(c.r, c.g, c.b, 255) : new Color32(0, 0, 0, 0);
+                    // No imported decal of this kind: draw the code's on the imported floor at the drawing size.
+                    var big = PixelArt.Enlarge(lo ?? FloorPixels(style, variant), lo != null ? Unit : TileW, lo != null ? Unit / 2 : TileH, TileW, TileH);
+                    DrawDecal(big, (DecalKind)decal, seed);
+                    lo = PixelArt.Downscale(big, TileW, TileH, Unit, Unit / 2);
                 }
+            }
+            else
+            {
+                var pixels = FloorPixels(style, variant);
+                if (decal >= 0)
+                    DrawDecal(pixels, (DecalKind)decal, seed);
+                lo = PixelArt.Downscale(pixels, TileW, TileH, Unit, Unit / 2);
+            }
+            // The diamond is cut again at the low size, a touch wide, so neighbouring tiles meet with no gap.
+            PixelArt.CutDiamond(lo, Unit);
             PixelArt.Process(lo, Unit, Unit / 2, false);
             tile = MakeTile(lo, Unit, Unit / 2, new Vector2(0.5f, 0.5f), Tile.ColliderType.None, $"Floor {style}.{variant}.{decal}");
             floors[key] = tile;
@@ -105,10 +215,17 @@ namespace ARPG
         {
             if (props.TryGetValue(kind, out var tile) && tile != null && tile.sprite != null)
                 return tile;
+            LoadImported();
+            if (importedProps.TryGetValue((int)kind, out var imported) && imported != null)
+            {
+                tile = SpriteTile(imported, Tile.ColliderType.Grid);
+                props[kind] = tile;
+                return tile;
+            }
             var pixels = new Color32[PropSize * PropSize];
             DrawProp(pixels, kind);
             // The soft shadow drawn under a prop would outline as a dark blob: dropped before the outline.
-            var lo = Resample(pixels, PropSize, PropSize, Unit, Unit);
+            var lo = PixelArt.Downscale(pixels, PropSize, PropSize, Unit, Unit);
             PixelArt.Process(lo, Unit, Unit, true);
             tile = MakeTile(lo, Unit, Unit, new Vector2(0.5f, 0.25f), Tile.ColliderType.Grid, "Prop " + kind);
             props[kind] = tile;
@@ -133,32 +250,45 @@ namespace ARPG
             return tile;
         }
 
-        /// <summary>Averages an image down to a smaller size, colour weighted by coverage, alpha the coverage.</summary>
-        static Color32[] Resample(Color32[] src, int sw, int sh, int dw, int dh)
+        /// <summary>A tile showing an imported sprite as it is.</summary>
+        static Tile SpriteTile(Sprite sprite, Tile.ColliderType collider)
         {
-            var dst = new Color32[dw * dh];
-            for (var y = 0; y < dh; y++)
-                for (var x = 0; x < dw; x++)
-                {
-                    int x0 = x * sw / dw, x1 = Mathf.Max(x0 + 1, (x + 1) * sw / dw);
-                    int y0 = y * sh / dh, y1 = Mathf.Max(y0 + 1, (y + 1) * sh / dh);
-                    float r = 0, g = 0, b = 0, a = 0;
-                    var n = 0;
-                    for (var sy = y0; sy < y1; sy++)
-                        for (var sx = x0; sx < x1; sx++)
-                        {
-                            var c = src[sx + sy * sw];
-                            var w = c.a / 255f;
-                            r += c.r * w;
-                            g += c.g * w;
-                            b += c.b * w;
-                            a += w;
-                            n++;
-                        }
-                    dst[x + y * dw] = a <= 0f ? new Color32(0, 0, 0, 0)
-                        : new Color32((byte)(r / a), (byte)(g / a), (byte)(b / a), (byte)(255f * a / n));
-                }
-            return dst;
+            var tile = ScriptableObject.CreateInstance<Tile>();
+            tile.name = sprite.name;
+            tile.sprite = sprite;
+            tile.colliderType = collider;
+            return tile;
+        }
+
+        /// <summary>An imported sprite's pixels when it has the size asked for and its texture is readable, else null.</summary>
+        static Color32[] PixelsOf(Sprite sprite, int w, int h)
+        {
+            var rect = sprite.rect;
+            if ((int)rect.width != w || (int)rect.height != h || !sprite.texture.isReadable)
+            {
+                Debug.LogWarning($"Imported art '{sprite.name}' is {rect.width} x {rect.height} or unreadable; expected {w} x {h}. Run Tools > ARPG > Import Pixel Art.");
+                return null;
+            }
+            var colors = sprite.texture.GetPixels((int)rect.x, (int)rect.y, w, h);
+            var pixels = new Color32[colors.Length];
+            for (var i = 0; i < colors.Length; i++)
+                pixels[i] = colors[i];
+            return pixels;
+        }
+
+        /// <summary>Lays an imported decal of the kind (a variant picked by the seed) over a floor's opaque pixels;
+        /// false when none of that kind was imported.</summary>
+        static bool StampImportedDecal(Color32[] floor, int decal, int seed)
+        {
+            if (!importedDecals.TryGetValue(decal, out var list) || list.Count == 0)
+                return false;
+            var mark = PixelsOf(list[Mathf.Abs(seed) % list.Count], Unit, Unit / 2);
+            if (mark == null)
+                return false;
+            for (var i = 0; i < floor.Length; i++)
+                if (floor[i].a > 0 && mark[i].a > 0)
+                    floor[i] = new Color32(mark[i].r, mark[i].g, mark[i].b, 255);
+            return true;
         }
 
         /// <summary>An iso block of stone: faces lit from the upper left, courses and staggered joints, a lighter top.</summary>

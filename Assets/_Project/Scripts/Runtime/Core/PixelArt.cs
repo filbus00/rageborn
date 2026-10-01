@@ -104,6 +104,92 @@ namespace ARPG
                 }
         }
 
+        /// <summary>
+        /// Averages an image down to a smaller size (rows from the bottom): colour weighted by coverage, alpha the
+        /// coverage. A whole-number shrink (art drawn at 2x or 4x) averages exact blocks.
+        /// </summary>
+        public static Color32[] Downscale(Color32[] src, int sw, int sh, int dw, int dh)
+        {
+            var dst = new Color32[dw * dh];
+            for (var y = 0; y < dh; y++)
+                for (var x = 0; x < dw; x++)
+                {
+                    int x0 = x * sw / dw, x1 = Mathf.Max(x0 + 1, (x + 1) * sw / dw);
+                    int y0 = y * sh / dh, y1 = Mathf.Max(y0 + 1, (y + 1) * sh / dh);
+                    float r = 0, g = 0, b = 0, a = 0;
+                    var n = 0;
+                    for (var sy = y0; sy < y1; sy++)
+                        for (var sx = x0; sx < x1; sx++)
+                        {
+                            var c = src[sx + sy * sw];
+                            var w = c.a / 255f;
+                            r += c.r * w;
+                            g += c.g * w;
+                            b += c.b * w;
+                            a += w;
+                            n++;
+                        }
+                    dst[x + y * dw] = a <= 0f ? new Color32(0, 0, 0, 0)
+                        : new Color32((byte)(r / a), (byte)(g / a), (byte)(b / a), (byte)(255f * a / n));
+                }
+            return dst;
+        }
+
+        /// <summary>Enlarges an image by repeating pixels (rows from the bottom), for drawing on it at a larger size.</summary>
+        public static Color32[] Enlarge(Color32[] src, int sw, int sh, int dw, int dh)
+        {
+            var dst = new Color32[dw * dh];
+            for (var y = 0; y < dh; y++)
+                for (var x = 0; x < dw; x++)
+                    dst[x + y * dw] = src[Mathf.Min(sw - 1, x * sw / dw) + Mathf.Min(sh - 1, y * sh / dh) * sw];
+            return dst;
+        }
+
+        /// <summary>
+        /// Cuts a floor tile of <paramref name="width"/> x width / 2 to its diamond, a touch wide so neighbouring tiles
+        /// meet with no gap; inside it every pixel is made opaque, and a clear one there takes the colour of the nearest
+        /// coloured pixel toward the middle of its row.
+        /// </summary>
+        public static void CutDiamond(Color32[] pixels, int width)
+        {
+            var height = width / 2;
+            for (var y = 0; y < height; y++)
+                for (var x = 0; x < width; x++)
+                {
+                    var dx = Mathf.Abs(x + 0.5f - width * 0.5f) / (width * 0.5f);
+                    var dy = Mathf.Abs(y + 0.5f - height * 0.5f) / (height * 0.5f);
+                    var i = x + y * width;
+                    if (dx + dy > 1.06f)
+                    {
+                        pixels[i] = new Color32(0, 0, 0, 0);
+                        continue;
+                    }
+                    var c = pixels[i];
+                    var step = x < width / 2 ? 1 : -1;
+                    for (var k = x; c.a == 0 && k >= 0 && k < width && (step > 0 ? k < width / 2 + 1 : k >= width / 2 - 1); k += step)
+                        c = pixels[k + y * width];
+                    pixels[i] = new Color32(c.r, c.g, c.b, 255);
+                }
+        }
+
+        /// <summary>How far an image's opaque colours sit from the palette on average (0 already on it, about 10 close,
+        /// 30 or more a different palette), for the importer's report.</summary>
+        public static float PaletteDistance(Color32[] pixels)
+        {
+            double sum = 0;
+            var n = 0;
+            foreach (var c in pixels)
+            {
+                if (c.a < 128)
+                    continue;
+                var s = Snap(c);
+                int dr = c.r - s.r, dg = c.g - s.g, db = c.b - s.b;
+                sum += System.Math.Sqrt(dr * dr + dg * dg + db * db);
+                n++;
+            }
+            return n == 0 ? 0f : (float)(sum / n);
+        }
+
         /// <summary>The same for linear-free <see cref="Color"/> arrays (the bake's frames, already in sRGB).</summary>
         public static void Process(Color[] pixels, int width, int height, bool outline)
         {
