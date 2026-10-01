@@ -120,6 +120,14 @@ namespace ARPG
                 new Color(0.08f, 0.04f, 0.03f, 0.55f), new Color(0.08f, 0.04f, 0.03f, 0f), false, true);
         }
 
+        /// <summary>A dark pool of blood on the floor that lasts a while (Gallowsreach's trail: enemies who walk through
+        /// it bleed).</summary>
+        public void Pool(Vector2 ground, float size, float seconds)
+        {
+            Emit(ground, Vector2.zero, 0f, 0f, seconds, size * 0.6f, size, 1f,
+                new Color(BloodDark.r, BloodDark.g, BloodDark.b, 0.75f), new Color(BloodDark.r, BloodDark.g, BloodDark.b, 0f), false, true);
+        }
+
         /// <summary>An arrow left standing in a wall, fading after a moment.</summary>
         public void Stuck(Vector2 ground, Vector2 direction, float height, Sprite arrow)
         {

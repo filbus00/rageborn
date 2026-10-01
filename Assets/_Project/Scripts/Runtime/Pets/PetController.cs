@@ -217,13 +217,23 @@ namespace ARPG
 
         void Bite(EnemyController target)
         {
-            attackTimer = definition.AttackSeconds;
             var session = GameSession.Current;
-            var damage = CombatFormulas.HitDamage(session.Equipment.WeaponDamage, definition.DamageFactor, 0f, 0f, 1f,
-                false, 0f, target.Definition.Armor, target.Level);
+            var equipment = session.Equipment;
+            // Pack Leader's Signet (Docs/03): the pet bites with the character's attack speed and crits, and its kills
+            // give Focus.
+            var signet = equipment.Wears(LegendaryId.PackLeadersSignet);
+            var speed = signet ? 1f + equipment.AttackSpeedPercent / 100f + session.AttributeBonuses.AttackSpeed : 1f;
+            attackTimer = definition.AttackSeconds / Mathf.Max(0.1f, speed);
+            var critical = signet && Random.value < (equipment.CriticalChancePercent + session.AttributeBonuses.CriticalChance) / 100f;
+            var criticalDamage = (equipment.CriticalDamagePercent + session.AttributeBonuses.CriticalDamage) / 100f;
+            var damage = CombatFormulas.HitDamage(equipment.WeaponDamage, definition.DamageFactor, 0f, 0f, 1f,
+                critical, criticalDamage, target.Definition.Armor, target.Level);
             var world = IsoMath.GroundToWorld(target.GroundPosition);
-            DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, false, isDamageToPlayer: false);
-            Sfx.Play(target.TakeDamage(damage) ? SoundId.Kill : SoundId.Hit, 0.5f);
+            DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);
+            var killed = target.TakeDamage(damage);
+            Sfx.Play(killed ? SoundId.Kill : SoundId.Hit, 0.5f);
+            if (killed && signet && combat != null)
+                combat.Focus.Gain(Legendaries.PackLeaderFocusOnKill);
         }
 
         // Loot within the kind's reach of the character and outside the character's own pick-up reach, fetched when the

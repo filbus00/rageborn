@@ -115,7 +115,7 @@ namespace ARPG
             var id = candidates[random.Next(candidates.Count)];
             var affixes = Copy(item);
             affixes[affixIndex] = new AffixRoll(id, old.Tier, AffixRoller.RollValue(id, old.Tier, random));
-            return new Item(item.Slot, item.Rarity, item.ItemLevel, affixes, item.Reforges + 1, item.Tempers);
+            return new Item(item.Slot, item.Rarity, item.ItemLevel, affixes, item.Reforges + 1, item.Tempers, item.Legendary);
         }
 
         // --- Reroll values ---------------------------------------------------------------------------------------
@@ -134,7 +134,7 @@ namespace ARPG
             var affixes = Copy(item);
             for (var i = 0; i < affixes.Length; i++)
                 affixes[i] = new AffixRoll(affixes[i].Id, affixes[i].Tier, AffixRoller.RollValue(affixes[i].Id, affixes[i].Tier, random));
-            return new Item(item.Slot, item.Rarity, item.ItemLevel, affixes, item.Reforges, item.Tempers);
+            return new Item(item.Slot, item.Rarity, item.ItemLevel, affixes, item.Reforges, item.Tempers, item.Legendary);
         }
 
         // --- Temper ----------------------------------------------------------------------------------------------
@@ -165,7 +165,7 @@ namespace ARPG
 
             var affixes = Copy(item);
             affixes[affixIndex] = new AffixRoll(old.Id, tier, newMin + place * (newMax - newMin));
-            return new Item(item.Slot, item.Rarity, item.ItemLevel, affixes, item.Reforges, item.Tempers + 1);
+            return new Item(item.Slot, item.Rarity, item.ItemLevel, affixes, item.Reforges, item.Tempers + 1, item.Legendary);
         }
 
         static AffixRoll[] Copy(Item item)

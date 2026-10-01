@@ -180,6 +180,19 @@ namespace ARPG
 
         /// <summary>The quiver's chance, in percent, that a basic shot looses a second arrow (Docs/03, 2026-09-30).</summary>
         public float ExtraArrowPercent => Sum(item => item.ExtraArrowPercent);
+        public float IgniteChancePercent => Sum(item => item.IgniteChancePercent);
+        public float ChillChancePercent => Sum(item => item.ChillChancePercent);
+
+        /// <summary>Whether a named legendary is worn, for its power (Docs/03, 2026-10-01).</summary>
+        public bool Wears(LegendaryId legendary)
+        {
+            if (items == null || legendary == LegendaryId.None)
+                return false;
+            for (var i = 0; i < items.Length; i++)
+                if (items[i] != null && items[i].Legendary == legendary)
+                    return true;
+            return false;
+        }
 
         public static EquipmentState Empty => new EquipmentState((Item[])null);
 
@@ -439,6 +452,28 @@ namespace ARPG
             NotifyChanged();
         }
 
+        readonly HashSet<LegendaryId> codex = new HashSet<LegendaryId>();
+
+        /// <summary>The named legendaries this character has found (the Codex, Docs/03): once seen, a legendary's home
+        /// is shown. Saved.</summary>
+        public bool HasSeen(LegendaryId legendary) => codex.Contains(legendary);
+
+        public IReadOnlyCollection<LegendaryId> Codex => codex;
+
+        public void RecordLegendary(LegendaryId legendary)
+        {
+            if (legendary != LegendaryId.None)
+                codex.Add(legendary);
+        }
+
+        internal List<string> CodexNames()
+        {
+            var names = new List<string>(codex.Count);
+            foreach (var id in codex)
+                names.Add(id.ToString());
+            return names;
+        }
+
         /// <summary>Buys a pet at the Pet Vendor (Docs/02, Pets): pays its price in gold, and it follows the character
         /// at once. False, and nothing changes, when it is owned already or the gold is short.</summary>
         public bool BuyPet(PetKind kind)
@@ -471,6 +506,8 @@ namespace ARPG
         {
             if (!Inventory.TryAdd(item))
                 return false;
+
+            RecordLegendary(item.Legendary);
 
             NotifyChanged();
             PickedUp?.Invoke(item);

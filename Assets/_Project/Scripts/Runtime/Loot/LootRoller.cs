@@ -62,11 +62,16 @@ namespace ARPG
 
         readonly System.Random random;
 
+        // Which named legendary a Legendary becomes, and its fixed affixes, come from a stream of their own, so adding
+        // named legendaries left every other roll of a seed where it was.
+        readonly System.Random legendaryRandom;
+
         /// <param name="killsSinceLegendary">Where the bad luck counter starts, for a character loaded from a save. The
         /// generator's own state is not saved; a loaded session reseeds it.</param>
         public LootRoller(int seed, int killsSinceLegendary = 0)
         {
             random = new System.Random(seed);
+            legendaryRandom = new System.Random(seed ^ 0x5EED1E6);
             KillsSinceLegendary = killsSinceLegendary < 0 ? 0 : killsSinceLegendary;
         }
 
@@ -151,9 +156,22 @@ namespace ARPG
 
                 var slot = DroppableSlots[random.Next(DroppableSlots.Length)];
                 var affixes = AffixRoller.Roll(slot, rarity, itemLevel, random);
-                items[i] = new Item(slot, rarity, itemLevel, affixes);
+                items[i] = rarity == ItemRarity.Legendary ? Named(slot, itemLevel, affixes, source) : new Item(slot, rarity, itemLevel, affixes);
             }
             return items;
+        }
+
+        // A Legendary becomes a named one (Docs/03, decided 2026-10-01: any can drop anywhere, twice as often at its
+        // home) when its item level allows; the slot and rolled affixes drawn for it stay in the main stream either way.
+        Item Named(ItemSlot slot, int itemLevel, AffixRoll[] rolled, LootSource source)
+        {
+            var id = Legendaries.Pick(source, itemLevel, legendaryRandom);
+            var legendary = Legendaries.Get(id);
+            if (legendary == null)
+                return new Item(slot, ItemRarity.Legendary, itemLevel, rolled);
+            var named = AffixRoller.Roll(legendary.Slot, ItemRarity.Legendary, itemLevel, legendaryRandom);
+            return new Item(legendary.Slot, ItemRarity.Legendary, itemLevel,
+                Legendaries.Affixes(legendary, itemLevel, named, legendaryRandom), 0, 0, id);
         }
 
         /// <summary>One item of a chosen rarity in a random slot, with rolled affixes: the onboarding's guaranteed first
@@ -163,7 +181,8 @@ namespace ARPG
             if (rarity == ItemRarity.Legendary)
                 KillsSinceLegendary = 0;
             var slot = DroppableSlots[random.Next(DroppableSlots.Length)];
-            return new Item(slot, rarity, itemLevel, AffixRoller.Roll(slot, rarity, itemLevel, random));
+            var affixes = AffixRoller.Roll(slot, rarity, itemLevel, random);
+            return rarity == ItemRarity.Legendary ? Named(slot, itemLevel, affixes, LootSource.Elite) : new Item(slot, rarity, itemLevel, affixes);
         }
 
         /// <summary>

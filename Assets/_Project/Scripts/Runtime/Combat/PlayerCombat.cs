@@ -110,6 +110,8 @@ namespace ARPG
         // arrows, or the retired Wrathborn's thrown axe (it spins).
         enum ShotStyle { Basic, Volley, Pierce, Homing, Explosive, Axe }
 
+        // An arrow's traits (Docs/03, "arrow traits", 2026-10-01) are set when it is loosed, from its skill and the gear
+        // (ApplyGear), so every source of a trait (a skill, a legendary, an affix) lands in this one place.
         struct Shot
         {
             public Transform Transform;
@@ -121,16 +123,48 @@ namespace ARPG
             public ShotStyle Style;
             public Color Glow;
             public float TrailTimer;
-            // Pierce Arrow: who it went through already, and whether it carries blood since (its trail).
+            // Who it went through already (pierce, or a fork's parent's target), and whether it carries blood since.
             public HashSet<EnemyController> Pierced;
             public bool Bloodied;
             public float BloodTimer;
+            // Pierce: how many more enemies it passes through (int.MaxValue for Pierce Arrow), how many it has, and the
+            // damage each adds (Gallowsreach).
+            public int PierceLeft;
+            public int PierceHits;
+            public float PierceBonus;
+            // Fork: split into two on the first hit; a fork's arrows do not fork again.
+            public bool CanFork;
+            public bool IsFork;
+            // Ricochet off walls toward the nearest enemy, and Seek's new target when the first dies.
+            public int Ricochets;
+            public int Retargets;
+            // Ailments on hit, as chances (1 for certain).
+            public float IgniteChance;
+            public float ChillChance;
+            // Stillwater Yew's certain crit, and Gallowsreach's blood pools along the trail.
+            public bool CertainCrit;
+            public bool BloodPools;
+            public float PoolTimer;
             // Homing Arrow: what it chases and how fast it turns (radians a second).
             public EnemyController Chasing;
             public float TurnRadians;
             // Explosive Arrow: the burst's radius.
             public float BurstRadius;
         }
+
+        // A patch of floor that hurts what stands in it (Docs/03, ground marks): for now Gallowsreach's blood, which
+        // makes enemies bleed. Pulsed twice a second.
+        struct GroundMark
+        {
+            public Vector2 Center;
+            public float Radius;
+            public float Left;
+            public float Pulse;
+        }
+
+        readonly List<GroundMark> marks = new List<GroundMark>(32);
+        int basicShotCount;
+        bool stillwaterSpent;
 
         readonly List<Shot> shots = new List<Shot>(24);
         readonly Stack<Transform> spareArrows = new Stack<Transform>(24);
@@ -339,6 +373,7 @@ namespace ARPG
                 cooldowns[i] = Mathf.Max(0f, cooldowns[i] - deltaTime);
 
             UpdateShots(deltaTime);
+            UpdateMarks(deltaTime);
             fx.Tick(deltaTime);
             UpdateSlamEffect(deltaTime);
             if (charging)
@@ -424,7 +459,32 @@ namespace ARPG
 
             // One arrow at the target; it gives Focus when it hits (Docs/02).
             Sfx.Play(SoundId.ArrowShot, 0.5f);
-            shots.Add(NewArrow(origin, aim * ArrowSpeed, BasicRange + ArrowOvershoot, 1f, ShotStyle.Basic, BasicTrailColor));
+            basicShotCount++;
+            var first = NewArrow(origin, aim * ArrowSpeed, BasicRange + ArrowOvershoot, 1f, ShotStyle.Basic, BasicTrailColor);
+            // Stillwater Yew: once each time Stillness fills, a certain crit that pierces every enemy.
+            var stance = player.Stance;
+            if (stance.Stillness < stance.StillnessCap)
+                stillwaterSpent = false;
+            else if (equipment.Wears(LegendaryId.StillwaterYew) && !stillwaterSpent)
+            {
+                stillwaterSpent = true;
+                first.CertainCrit = true;
+                first.PierceLeft = int.MaxValue;
+                EnsurePierceSet(ref first);
+            }
+            shots.Add(first);
+
+            // Galeheart: at full Momentum, two more arrows in a narrow fan.
+            if (equipment.Wears(LegendaryId.Galeheart) && stance.Momentum >= stance.MomentumCap)
+                for (var k = 0; k < Legendaries.GaleheartArrows; k++)
+                {
+                    var angle = (k % 2 == 0 ? 1f : -1f) * Legendaries.GaleheartFanDegrees * 0.5f;
+                    shots.Add(NewArrow(origin, Rotate(aim, angle) * ArrowSpeed, BasicRange + ArrowOvershoot, 1f, ShotStyle.Basic, BasicTrailColor));
+                }
+
+            // Ashfall Quiver: every fifth basic shot also looses a free Explosive Arrow at 60 percent.
+            if (equipment.Wears(LegendaryId.AshfallQuiver) && basicShotCount % Legendaries.AshfallEvery == 0)
+                shots.Add(AshfallArrow(origin, aim));
 
             // The quiver's extra arrow (Docs/03): now and then a second one, at another enemy in reach when there is one.
             if (Random.value < equipment.ExtraArrowPercent / 100f)
@@ -956,17 +1016,15 @@ namespace ARPG
         // Pierce Arrow (Docs/02): one arrow through every enemy on its line, until a wall or its range.
         void LoosePierce(Vector2 origin, Vector2 direction, SkillDefinition skill)
         {
-            var shot = NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot, DamageOf(skill, skill.DamageMultiplier), ShotStyle.Pierce, Glow(skill));
-            shot.Pierced = sparePierceSets.Count > 0 ? sparePierceSets.Pop() : new HashSet<EnemyController>();
-            shots.Add(shot);
+            shots.Add(NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot, DamageOf(skill, skill.DamageMultiplier), ShotStyle.Pierce, Glow(skill)));
         }
 
         // Homing Arrow (Docs/02): each arrow chases a different enemy in reach and in sight when there are enough,
-        // nearest first; they leave fanned out and curve in.
+        // nearest first; they leave fanned out and curve in. Hunter's Promise looses two more.
         void LooseHoming(Vector2 origin, Vector2 direction, SkillDefinition skill)
         {
             homingTargets.Clear();
-            var count = skill.ProjectileCount;
+            var count = skill.ProjectileCount + (session.Equipment.Wears(LegendaryId.HuntersPromise) ? Legendaries.HuntersPromiseArrows : 0);
             // The nearest few in sight, picked without sorting the whole list (no allocation).
             for (var pick = 0; pick < count; pick++)
             {
@@ -1015,6 +1073,21 @@ namespace ARPG
             return shot;
         }
 
+        // Ashfall Quiver's free Explosive Arrow: the class's Explosive Arrow at 60 percent, or its default numbers when the
+        // skill is not in the class list.
+        Shot AshfallArrow(Vector2 origin, Vector2 direction)
+        {
+            SkillDefinition explosive = null;
+            foreach (var skill in skills)
+                if (skill != null && skill.Kind == SkillKind.ExplosiveShot)
+                    explosive = skill;
+            var multiplier = (explosive != null ? DamageOf(explosive, explosive.DamageMultiplier) : 2.5f) * Legendaries.AshfallShare;
+            var shot = NewArrow(origin, direction * (explosive != null ? explosive.Speed : 15f), BasicRange + ArrowOvershoot, multiplier,
+                ShotStyle.Explosive, explosive != null ? Glow(explosive) : new Color(1f, 0.55f, 0.15f, 0.8f));
+            shot.BurstRadius = explosive != null ? explosive.BurstRadius : 2.5f;
+            return shot;
+        }
+
         static Color Glow(SkillDefinition skill) => new Color(skill.EffectColor.r, skill.EffectColor.g, skill.EffectColor.b, 0.8f);
 
         Shot NewArrow(Vector2 origin, Vector2 velocity, float maxDistance, float multiplier, ShotStyle style, Color glow)
@@ -1022,7 +1095,7 @@ namespace ARPG
             var arrow = spareArrows.Count > 0 ? spareArrows.Pop() : CreateArrow();
             arrow.gameObject.SetActive(true);
             PlaceArrow(arrow, origin, velocity);
-            return new Shot
+            var shot = new Shot
             {
                 Transform = arrow,
                 Position = origin,
@@ -1032,6 +1105,53 @@ namespace ARPG
                 Style = style,
                 Glow = glow,
             };
+            ApplyGear(ref shot);
+            return shot;
+        }
+
+        // Every trait an arrow gets from its skill and the gear (Docs/03, arrow traits; the legendaries' powers).
+        void ApplyGear(ref Shot shot)
+        {
+            var equipment = session.Equipment;
+            var stance = player.Stance;
+            shot.IgniteChance = equipment.IgniteChancePercent / 100f;
+            shot.ChillChance = equipment.ChillChancePercent / 100f;
+            if (shot.Style == ShotStyle.Pierce)
+                shot.PierceLeft = int.MaxValue;
+            if (equipment.Wears(LegendaryId.MagpiesNest))
+                shot.Ricochets = 1;
+            if (equipment.Wears(LegendaryId.WindSwornQuiver) && stance.Momentum >= stance.MomentumCap && shot.PierceLeft != int.MaxValue)
+                shot.PierceLeft += Legendaries.WindSwornPierce;
+            switch (shot.Style)
+            {
+                case ShotStyle.Basic:
+                    shot.CanFork = equipment.Wears(LegendaryId.QuiverOfEndlessSplinters);
+                    if (equipment.Wears(LegendaryId.EmberTongue))
+                        shot.IgniteChance = 1f;
+                    break;
+                case ShotStyle.Volley:
+                    shot.CanFork = equipment.Wears(LegendaryId.Splinterbough);
+                    break;
+                case ShotStyle.Pierce:
+                    if (equipment.Wears(LegendaryId.Gallowsreach))
+                    {
+                        shot.PierceBonus = Legendaries.GallowsPerPierce;
+                        shot.BloodPools = true;
+                    }
+                    break;
+                case ShotStyle.Homing:
+                    if (equipment.Wears(LegendaryId.HuntersPromise))
+                        shot.Retargets = 1;
+                    break;
+            }
+            if (shot.PierceLeft > 0)
+                EnsurePierceSet(ref shot);
+        }
+
+        void EnsurePierceSet(ref Shot shot)
+        {
+            if (shot.Pierced == null)
+                shot.Pierced = sparePierceSets.Count > 0 ? sparePierceSets.Pop() : new HashSet<EnemyController>();
         }
 
         // An arrow is drawn at chest height over its ground point, pointing along its flight as seen on screen.
@@ -1060,8 +1180,8 @@ namespace ARPG
             return go.transform;
         }
 
-        // Each projectile flies in short pieces so it can neither pass a wall nor an enemy on a long frame. Most stop at
-        // the first enemy they meet; the pierce arrow goes on through, bleeding, and the explosive one bursts.
+        // Each projectile flies in short pieces so it can neither pass a wall nor an enemy on a long frame. What it does
+        // when it meets one comes from its traits: pierce on, fork, burst, ricochet off a wall, or stop.
         void UpdateShots(float deltaTime)
         {
             for (var i = shots.Count - 1; i >= 0; i--)
@@ -1080,8 +1200,8 @@ namespace ARPG
                     var next = shot.Position + piece;
                     if (!enemies.Nav.IsWalkable(IsoMath.GroundToCell(next)))
                     {
-                        HitWall(ref shot, direction);
-                        done = true;
+                        // A ricochet turns it and ends this frame's flight; anything else spends it.
+                        done = HitWall(ref shot, direction);
                         break;
                     }
                     shot.Position = next;
@@ -1123,9 +1243,15 @@ namespace ARPG
             }
         }
 
-        // A homing arrow turns toward what it chases, at most its turn rate; once that dies it flies straight on.
-        static void Steer(ref Shot shot, float deltaTime)
+        // A homing arrow turns toward what it chases, at most its turn rate. When that dies, an arrow that may retarget
+        // (Hunter's Promise) seeks the nearest enemy in sight once; otherwise it flies straight on.
+        void Steer(ref Shot shot, float deltaTime)
         {
+            if ((shot.Chasing == null || !shot.Chasing.IsAlive) && shot.Retargets > 0)
+            {
+                shot.Retargets--;
+                shot.Chasing = NearestInSight(shot.Position, RetargetRadius, shot.Pierced);
+            }
             if (shot.Chasing == null || !shot.Chasing.IsAlive)
                 return;
             var speed = shot.Velocity.magnitude;
@@ -1140,7 +1266,30 @@ namespace ARPG
             shot.Velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * speed;
         }
 
-        // The glow trail behind every arrow, and the pierce arrow's blood once it has gone through someone.
+        // How far a retargeting or ricocheting arrow looks for a new enemy.
+        const float RetargetRadius = 8f;
+
+        EnemyController NearestInSight(Vector2 from, float radius, HashSet<EnemyController> skip)
+        {
+            enemies.QueryEnemies(from, radius, nearby);
+            EnemyController best = null;
+            var bestDistance = radius;
+            for (var n = 0; n < nearby.Count; n++)
+            {
+                var enemy = nearby[n];
+                if (!enemy.IsAlive || (skip != null && skip.Contains(enemy)))
+                    continue;
+                var distance = Vector2.Distance(from, enemy.GroundPosition);
+                if (distance >= bestDistance || !enemies.Nav.HasLineOfSight(from, enemy.GroundPosition))
+                    continue;
+                best = enemy;
+                bestDistance = distance;
+            }
+            return best;
+        }
+
+        // The glow trail behind every arrow, and the blood of one that has gone through a body: drops, and with
+        // Gallowsreach pools on the floor that make enemies bleed.
         void Trail(ref Shot shot, Vector2 direction, float deltaTime)
         {
             var world = IsoMath.GroundToWorld(shot.Position);
@@ -1159,6 +1308,50 @@ namespace ARPG
                 shot.BloodTimer += BloodTrailSeconds;
                 fx.BloodTrail(world, IsoMath.GroundToWorld(direction), ArrowHeight);
             }
+            if (!shot.BloodPools)
+                return;
+            shot.PoolTimer -= deltaTime;
+            if (shot.PoolTimer <= 0f)
+            {
+                shot.PoolTimer += BloodPoolSeconds;
+                marks.Add(new GroundMark { Center = shot.Position, Radius = BloodPoolRadius, Left = Legendaries.GallowsPoolSeconds });
+                fx.Pool(world, BloodPoolRadius * 2f, Legendaries.GallowsPoolSeconds);
+            }
+        }
+
+        // Gallowsreach's blood on the floor: a pool every quarter second of the trail, 0.6 units across.
+        const float BloodPoolSeconds = 0.25f;
+        const float BloodPoolRadius = 0.6f;
+        const float MarkPulseSeconds = 0.5f;
+
+        // Enemies standing in a blood pool bleed (Gallowsreach: 40 percent weapon damage a second), refreshed each pulse.
+        void UpdateMarks(float deltaTime)
+        {
+            for (var i = marks.Count - 1; i >= 0; i--)
+            {
+                var mark = marks[i];
+                mark.Left -= deltaTime;
+                mark.Pulse -= deltaTime;
+                if (mark.Left <= 0f)
+                {
+                    marks[i] = marks[marks.Count - 1];
+                    marks.RemoveAt(marks.Count - 1);
+                    continue;
+                }
+                if (mark.Pulse <= 0f)
+                {
+                    mark.Pulse += MarkPulseSeconds;
+                    enemies.QueryEnemies(mark.Center, mark.Radius + QueryMargin, nearby);
+                    for (var n = 0; n < nearby.Count; n++)
+                    {
+                        var enemy = nearby[n];
+                        if (!enemy.IsAlive || Vector2.Distance(enemy.GroundPosition, mark.Center) > mark.Radius + enemy.Definition.BodyRadius)
+                            continue;
+                        enemy.ApplyBleed(Damage(enemy, Legendaries.GallowsBleedPerSecond, false), MarkPulseSeconds * 2f);
+                    }
+                }
+                marks[i] = mark;
+            }
         }
 
         // Returns whether the shot is spent.
@@ -1172,8 +1365,10 @@ namespace ARPG
                 return true;
             }
 
-            var killed = Strike(enemy, shot.Multiplier, projectile: true);
+            var multiplier = shot.Multiplier * (1f + shot.PierceBonus * shot.PierceHits);
+            var killed = Strike(enemy, multiplier, projectile: true, forceCrit: shot.CertainCrit);
             HealOnHit(1);
+            Afflict(enemy, shot);
             if (shot.Style == ShotStyle.Basic)
                 focus.Gain(FocusPool.PerBasicHit + session.PassiveTree.Bonuses.RagePerBasicHit);
             else
@@ -1181,9 +1376,17 @@ namespace ARPG
 
             if (shot.Style == ShotStyle.Axe)
                 return true;
-            if (shot.Style == ShotStyle.Pierce)
+            if (shot.CanFork && !shot.IsFork)
+            {
+                shot.CanFork = false;
+                Fork(shot, enemy, direction);
+            }
+            if (shot.PierceLeft > 0)
             {
                 // Through the body and on, carrying its blood (the owner's blood trail, 2026-09-30).
+                if (shot.PierceLeft != int.MaxValue)
+                    shot.PierceLeft--;
+                shot.PierceHits++;
                 shot.Pierced.Add(enemy);
                 shot.Bloodied = true;
                 fx.Blood(world, screenDirection, ArrowHeight, killed ? 2.4f : 1.6f);
@@ -1193,25 +1396,98 @@ namespace ARPG
             return true;
         }
 
-        void HitWall(ref Shot shot, Vector2 direction)
+        // A fork: two arrows from the struck enemy at 45 degrees either side, each at half the damage, which keep every
+        // other trait but do not fork again and do not strike the enemy that split them.
+        void Fork(Shot parent, EnemyController struck, Vector2 direction)
+        {
+            var speed = parent.Velocity.magnitude;
+            var left = parent.MaxDistance - parent.Travelled;
+            if (left <= 0.5f)
+                return;
+            for (var k = 0; k < 2; k++)
+            {
+                var side = k == 0 ? 1f : -1f;
+                var arrow = spareArrows.Count > 0 ? spareArrows.Pop() : CreateArrow();
+                arrow.gameObject.SetActive(true);
+                var velocity = Rotate(direction, side * Legendaries.ForkDegrees) * speed;
+                PlaceArrow(arrow, parent.Position, velocity);
+                var fork = parent;
+                fork.Transform = arrow;
+                fork.Velocity = velocity;
+                fork.Travelled = 0f;
+                fork.MaxDistance = left;
+                fork.Multiplier = parent.Multiplier * Legendaries.ForkShare;
+                fork.IsFork = true;
+                fork.CanFork = false;
+                fork.Bloodied = false;
+                fork.Pierced = sparePierceSets.Count > 0 ? sparePierceSets.Pop() : new HashSet<EnemyController>();
+                fork.Pierced.Add(struck);
+                shots.Add(fork);
+            }
+            fx.Sparks(IsoMath.GroundToWorld(parent.Position), IsoMath.GroundToWorld(direction), ArrowHeight, parent.Glow, 4);
+        }
+
+        // Burn and chill on a hit, by the arrow's chances (Docs/03: burn is 60 percent weapon damage over 3 s a stack).
+        void Afflict(EnemyController enemy, Shot shot)
+        {
+            if (!enemy.IsAlive)
+                return;
+            var world = IsoMath.GroundToWorld(enemy.GroundPosition);
+            if (shot.IgniteChance > 0f && Random.value < shot.IgniteChance)
+            {
+                enemy.ApplyBurn(Damage(enemy, BurnShare / BurnStacks.Seconds, false));
+                fx.Sparks(world, Vector2.up, ArrowHeight, BurnColor, 3);
+            }
+            if (shot.ChillChance > 0f && Random.value < shot.ChillChance)
+            {
+                enemy.ApplyChill();
+                fx.Sparks(world, Vector2.up, ArrowHeight, ChillColor, 3);
+            }
+        }
+
+        const float BurnShare = 0.6f;
+        static readonly Color BurnColor = new Color(1f, 0.5f, 0.1f, 1f);
+        static readonly Color ChillColor = new Color(0.6f, 0.9f, 1f, 1f);
+
+        // Returns whether the shot is spent: a ricochet (Magpie's Nest) turns it toward the nearest enemy in sight and
+        // keeps it flying, a little harder; an explosive arrow bursts; anything else sparks and sticks in the wall.
+        bool HitWall(ref Shot shot, Vector2 direction)
         {
             if (shot.Style == ShotStyle.Explosive)
             {
                 Explode(shot.Position, shot);
-                return;
+                return true;
             }
             if (shot.Style == ShotStyle.Axe)
-                return;
+                return true;
             var world = IsoMath.GroundToWorld(shot.Position);
             var screenDirection = IsoMath.GroundToWorld(direction);
+            if (shot.Ricochets > 0)
+            {
+                var target = NearestInSight(shot.Position, RetargetRadius, shot.Pierced);
+                if (target != null)
+                {
+                    shot.Ricochets--;
+                    shot.Velocity = (target.GroundPosition - shot.Position).normalized * shot.Velocity.magnitude;
+                    shot.Multiplier *= 1f + Legendaries.MagpieRicochetBonus;
+                    shot.MaxDistance = shot.Travelled + RetargetRadius + ArrowOvershoot;
+                    if (shot.Style == ShotStyle.Homing)
+                        shot.Chasing = target;
+                    fx.Sparks(world, screenDirection, ArrowHeight, shot.Glow, 5);
+                    return false;
+                }
+            }
             fx.Sparks(world, screenDirection, ArrowHeight, shot.Glow, shot.Style == ShotStyle.Basic ? 3 : 6);
             fx.Stuck(world, screenDirection, ArrowHeight, ArrowArt.Arrow);
+            return true;
         }
 
         // Everything within the burst is hit once (the enemy the arrow struck included); a flash and embers show it.
+        // Ember-Tongue: burning enemies take 60 percent more from it.
         void Explode(Vector2 at, Shot shot)
         {
             enemies.QueryEnemies(at, shot.BurstRadius + QueryMargin, nearby);
+            var emberTongue = session.Equipment.Wears(LegendaryId.EmberTongue);
             var hits = 0;
             for (var n = 0; n < nearby.Count; n++)
             {
@@ -1219,8 +1495,11 @@ namespace ARPG
                 if (!enemy.IsAlive || Vector2.Distance(enemy.GroundPosition, at) > shot.BurstRadius + enemy.Definition.BodyRadius)
                     continue;
                 hits++;
-                if (Strike(enemy, shot.Multiplier, projectile: true))
+                var multiplier = shot.Multiplier * (emberTongue && enemy.IsBurning ? 1f + Legendaries.EmberTongueBurstBonus : 1f);
+                if (Strike(enemy, multiplier, projectile: true))
                     fx.Blood(IsoMath.GroundToWorld(enemy.GroundPosition), IsoMath.GroundToWorld((enemy.GroundPosition - at).normalized), ArrowHeight, 1.4f);
+                else
+                    Afflict(enemy, shot);
             }
             if (hits > 0)
             {
@@ -1310,11 +1589,11 @@ namespace ARPG
 
         /// <summary>One hit on one enemy: the hit formula with the gear's modifiers and Stillness, a crit roll, the
         /// damage number, and the kill's hit stop. Returns whether it killed.</summary>
-        bool Strike(EnemyController enemy, float multiplier, bool movementSkill = false, bool projectile = false)
+        bool Strike(EnemyController enemy, float multiplier, bool movementSkill = false, bool projectile = false, bool forceCrit = false)
         {
             var tree = session.PassiveTree.Bonuses;
             var attributes = session.AttributeBonuses;
-            var critical = Random.value < (GameSession.Current.Equipment.CriticalChancePercent + tree.CriticalChance + attributes.CriticalChance) / 100f;
+            var critical = forceCrit || Random.value < (GameSession.Current.Equipment.CriticalChancePercent + tree.CriticalChance + attributes.CriticalChance) / 100f;
             var damage = Damage(enemy, multiplier, critical, movementSkill, projectile);
 
             var world = IsoMath.GroundToWorld(enemy.GroundPosition);

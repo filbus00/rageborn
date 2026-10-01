@@ -18,8 +18,9 @@ namespace ARPG
         /// temper counts. 7: adds what the character has been taught (onboarding) and play time. 8: adds activated
         /// waypoints, the Portal Tome and an open portal. 9: adds the skill loadout. 10: adds skill levels. 11: adds the passive tree.
         /// 12: bows only, the Wild Arrow (2026-09-30): adds spent stat points and pets. A save older than 12 is the retired
-        /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses.</summary>
-        public const int CurrentVersion = 12;
+        /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses. 13: adds each
+        /// item's named legendary and the legendaries seen (the Codex).</summary>
+        public const int CurrentVersion = 13;
 
         public int version;
 
@@ -94,6 +95,9 @@ namespace ARPG
         public List<string> pets = new List<string>();
         public string activePet = "";
         public List<string> petRules = new List<string>();
+
+        /// <summary>The named legendaries the character has found, by name (the Codex, Docs/03).</summary>
+        public List<string> codex = new List<string>();
     }
 
     [Serializable]
@@ -121,6 +125,9 @@ namespace ARPG
         /// <summary>Times the Forge reforged or tempered the item; both raise or limit later Forge actions.</summary>
         public int reforges;
         public int tempers;
+
+        /// <summary>The named legendary it is, by name (empty for none).</summary>
+        public string legendary = "";
     }
 
     [Serializable]

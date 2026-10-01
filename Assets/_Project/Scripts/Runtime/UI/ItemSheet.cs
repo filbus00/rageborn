@@ -199,10 +199,36 @@ namespace ARPG
                 power.color = DirectionColor(change);
             }
 
-            affixes.text = AffixText(item);
+            affixes.text = LegendaryText(item, session) + AffixText(item);
             comparison.text = showingEquipped ? "" : ComparisonText(item, worn);
 
             BuildActions(session, item);
+        }
+
+        // A named legendary's power, its home (the Codex shows it once found; Docs/03) and a Build tag when its power
+        // names a skill in the loadout (the power score cannot weigh powers, so this says why it matters).
+        static string LegendaryText(Item item, GameSession session)
+        {
+            var legendary = item.LegendaryDefinition;
+            if (legendary == null)
+                return "";
+            var build = false;
+            for (var slot = 0; slot < SkillLoadout.SlotCount; slot++)
+            {
+                var skill = session.Loadout.SkillAt(slot);
+                var definition = skill != null ? ClassSkills.Load()?.Find(skill) : null;
+                if (definition != null && legendary.Power.Contains(definition.DisplayName))
+                    build = true;
+            }
+            var text = new StringBuilder();
+            text.Append("<color=#FF9A3D>").Append(legendary.Power).Append("</color>");
+            if (build)
+                text.Append("  <color=#FFD54A><b>Build</b></color>");
+            text.Append("\n<size=26><color=#999999>").Append(legendary.Archetype);
+            if (session.HasSeen(legendary.Id))
+                text.Append("   ·   most often from ").Append(legendary.HomeText);
+            text.Append("</color></size>\n");
+            return text.ToString();
         }
 
         static string AffixText(Item item)

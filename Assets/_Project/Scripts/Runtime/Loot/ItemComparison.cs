@@ -30,7 +30,8 @@ namespace ARPG
     /// </summary>
     public static class ItemComparison
     {
-        public static string Name(Item item) => $"{item.Rarity} {KindName(item.Slot)}";
+        /// <summary>A named legendary's name, else its rarity and kind ("Magic Bow").</summary>
+        public static string Name(Item item) => item.LegendaryDefinition != null ? item.LegendaryDefinition.Name : $"{item.Rarity} {KindName(item.Slot)}";
 
         /// <summary>An item kind's name for players: bows only (Docs/03, 2026-09-30), so Weapon is a short bow, the
         /// two-handed kind a longbow and the shield kind a quiver.</summary>
@@ -60,6 +61,8 @@ namespace ARPG
                 case AffixId.MovementSpeed: return "Movement speed";
                 case AffixId.DodgeChance: return "Dodge chance";
                 case AffixId.ExtraArrowChance: return "Extra arrow chance";
+                case AffixId.IgniteChance: return "Ignite chance";
+                case AffixId.ChillChance: return "Chill chance";
                 default: return id.ToString();
             }
         }
@@ -67,7 +70,7 @@ namespace ARPG
         public static bool IsPercent(AffixId id) =>
             id == AffixId.IncreasedDamage || id == AffixId.AttackSpeed || id == AffixId.CriticalChance ||
             id == AffixId.CriticalDamage || id == AffixId.CooldownReduction || id == AffixId.MovementSpeed ||
-            id == AffixId.DodgeChance || id == AffixId.ExtraArrowChance;
+            id == AffixId.DodgeChance || id == AffixId.ExtraArrowChance || id == AffixId.IgniteChance || id == AffixId.ChillChance;
 
         /// <summary>The docs' tier dots: five dots, filled for how good the tier is (T1 all five, T5 one).</summary>
         public static string TierDots(int tier)

@@ -529,6 +529,10 @@ The goal: every session can end with "one step closer", even without a legendary
 - **Gems** (above) turn to Focus: the Sapphire gives Focus per hit in a weapon, cooldowns in armor and Focus regeneration in jewelry.
 - **What a find feels like.** A legendary that fits the character's current engine shows a gold "Build" tag on the item sheet: its power names a skill in the loadout or a trait the character already has (the power score cannot measure powers, so this tells the player why it matters).
 
+#### Built so far (2026-10-01)
+
+The first 11 legendaries (one or more per archetype: Splinterbough, Quiver of Endless Splinters, Gallowsreach, Ember-Tongue, Ashfall Quiver, Hunter's Promise, Stillwater Yew, Wind-Sworn Quiver, Galeheart, Magpie's Nest, Pack Leader's Signet) with their powers, homes and the Codex record; the arrow traits pierce, fork, ricochet, retarget, ignite, chill, certain crit and Gallowsreach's blood pools; burn and chill on enemies; the Ignite chance and Chill chance suffixes. Choices made while building (Claude's, to review): fixed affixes come from the built pool until the rest exists; named legendaries drop from item level 3 so act 1 shows them; homes are drop sources (bosses, elites, champions, chests, any enemy) rather than enemy types; Stillwater Yew's crit fires once each time Stillness fills.
+
 #### 8. What the engine needs (for when it is built)
 
 In build order: item names and a legendary power id on each item (save format 13); the trait fields on the arrow (`Shot`: pierce count, fork, ricochet, retarget, ailment, ground mark), read from a per-arrow "traits" value computed from gear at the shot; burn and chill on enemies beside the built bleed; ground marks (a pooled area that hurts what stands in it, the blood trail and burning ground); event hooks for powers (on crit, on kill, on pierce, every Nth basic shot, at full Momentum or Stillness, on pet bite); the legendary table as data; the Codex. The basic shot and the four skills already fly through one code path (`PlayerCombat.UpdateShots`), so traits land in one place.

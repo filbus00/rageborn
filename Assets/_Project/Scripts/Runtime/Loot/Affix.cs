@@ -27,6 +27,10 @@ namespace ARPG
 
         // The quiver's own (Docs/03, 2026-09-30): the chance a basic shot looses a second arrow at another enemy.
         ExtraArrowChance,
+
+        // Ailments (Docs/03, decided 2026-10-01): the chance an arrow sets its target burning, or chills it.
+        IgniteChance,
+        ChillChance,
     }
 
     public enum AffixKind
@@ -116,6 +120,8 @@ namespace ARPG
             new Definition(AffixKind.Suffix, 6f, 10f, On(ItemSlot.Boots)),                                                     // MovementSpeed
             new Definition(AffixKind.Suffix, 3f, 5f, On(ItemSlot.Boots, ItemSlot.Belt, ItemSlot.Ring)),                        // DodgeChance
             new Definition(AffixKind.Suffix, 8f, 15f, On(ItemSlot.Shield)),                                                    // ExtraArrowChance
+            new Definition(AffixKind.Suffix, 8f, 15f, On(ItemSlot.Weapon, ItemSlot.Shield, ItemSlot.Gloves)),                  // IgniteChance
+            new Definition(AffixKind.Suffix, 8f, 15f, On(ItemSlot.Weapon, ItemSlot.Shield, ItemSlot.Gloves)),                  // ChillChance
         };
 
         // Index 0 unused so tier numbers (1-5) index directly.

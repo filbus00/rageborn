@@ -129,6 +129,13 @@ namespace ARPG
         float bleedPulse;
         float bleedPending;
 
+        // Burn and chill (Docs/03, decided 2026-10-01). Burn is dealt in pulses like the bleed; a frozen enemy stands still.
+        readonly BurnStacks burn = new BurnStacks();
+        readonly ChillMeter chill = new ChillMeter();
+        float burnPulse;
+        float burnPending;
+        static readonly Color FrozenColor = new Color(0.55f, 0.85f, 1f, 1f);
+
         // Made on first use and reused, one of each since a pooled instance can be any archetype.
         GroundMarker slamMarker;
         GroundMarker aimMarker;
@@ -247,6 +254,9 @@ namespace ARPG
             slow.Clear();
             bleedTimer = 0f;
             bleedPending = 0f;
+            burn.Clear();
+            chill.Clear();
+            burnPending = 0f;
             life = MaxLife;
             punchTimer = 0f;
             deathTimer = 0f;
@@ -349,7 +359,9 @@ namespace ARPG
             UpdatePunch(deltaTime);
             slow.Tick(deltaTime);
             TickBleed(deltaTime);
-            if (!IsAlive || Scripted)
+            TickBurn(deltaTime);
+            chill.Tick(deltaTime);
+            if (!IsAlive || Scripted || chill.IsFrozen)
                 return;
 
             var playerGround = world.PlayerGround;
@@ -492,6 +504,46 @@ namespace ARPG
         }
 
         public bool IsBleeding => bleedTimer > 0f;
+
+        public bool IsBurning => burn.IsBurning;
+
+        public bool IsFrozen => chill.IsFrozen;
+
+        /// <summary>Adds a burn stack: this much damage a second, already through the hit formula, for 3 s (up to 3).</summary>
+        public void ApplyBurn(float damagePerSecond)
+        {
+            if (!IsAlive)
+                return;
+            burn.Apply(damagePerSecond);
+        }
+
+        /// <summary>Chills: slowed a quarter for 2 s; four chills within 2 s freeze it for 1 s (never a boss).</summary>
+        public void ApplyChill()
+        {
+            if (!IsAlive)
+                return;
+            slow.Apply(1f - ChillMeter.SlowFraction, ChillMeter.SlowSeconds);
+            if (chill.Apply(definition.Rank != EnemyRank.Boss))
+                effects.Flash(FrozenColor, ChillMeter.FreezeSeconds);
+        }
+
+        void TickBurn(float deltaTime)
+        {
+            if (!burn.IsBurning && burnPending <= 0f)
+                return;
+            burnPending += burn.Tick(deltaTime);
+            burnPulse += deltaTime;
+            if (burnPulse < BleedPulseSeconds && burn.IsBurning)
+                return;
+            burnPulse = 0f;
+            var damage = burnPending;
+            burnPending = 0f;
+            if (damage <= 0f || !IsAlive)
+                return;
+            var world = IsoMath.GroundToWorld(ground);
+            DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, false, isDamageToPlayer: false);
+            TakeDamage(damage);
+        }
 
         void TickBleed(float deltaTime)
         {

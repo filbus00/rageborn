@@ -391,6 +391,7 @@ Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). All 26 were 
 | 2026-10-01 | Starting kit: a Common short bow and a Common quiver, both item level 1 (Claude's suggestion, "Do it") | User |
 | 2026-10-01 | The Wild Arrow's loot depth (03, new section): five build layers, arrow traits as a shared language for powers, burn and chill beside bleed, 12 new or changed affixes, 24 legendaries replacing the Wrathborn's, six build archetypes, legendary homes and the Codex for targeted farming, Imprint from act 3 | Claude, proposed for the owner's review |
 | 2026-10-01 | Loot depth, asked one by one: keep the six build archetypes (Splinterstorm, Blood Hunter, Pyre, Seeker, Sniper, Windrunner) plus Beastmaster; add burn and chill beside bleed; legendaries drop anywhere and twice as often at their home; Imprint endgame only | User |
+| 2026-10-01 | First legendaries built (11 of 24, one or more per archetype) with arrow traits, burn and chill; fixed affixes from the built pool, item level 3 minimum, homes as drop sources, Stillwater Yew once per Stillness fill | Claude, to review |
 
 ## Post-launch plan (draft)
 

@@ -59,8 +59,11 @@ namespace ARPG
 
         /// <param name="reforges">How many times the Forge has reforged it, which raises the next reforge's cost.</param>
         /// <param name="tempers">How many times it has been tempered, at most <see cref="ForgeRules.MaxTempers"/>.</param>
-        public Item(ItemSlot slot, ItemRarity rarity, int itemLevel, AffixRoll[] affixes = null, int reforges = 0, int tempers = 0)
+        /// <param name="legendary">Which named legendary it is (Docs/03, 2026-10-01), or None.</param>
+        public Item(ItemSlot slot, ItemRarity rarity, int itemLevel, AffixRoll[] affixes = null, int reforges = 0, int tempers = 0,
+            LegendaryId legendary = LegendaryId.None)
         {
+            Legendary = legendary;
             Slot = slot;
             Rarity = rarity;
             ItemLevel = itemLevel < 1 ? 1 : itemLevel;
@@ -70,6 +73,12 @@ namespace ARPG
         }
 
         public ItemSlot Slot { get; }
+
+        /// <summary>The named legendary this is, with its power (<see cref="Legendaries"/>), or None. Saved by name.</summary>
+        public LegendaryId Legendary { get; }
+
+        /// <summary>The named legendary's definition, or null.</summary>
+        public LegendaryDefinition LegendaryDefinition => Legendaries.Get(Legendary);
 
         public ItemRarity Rarity { get; }
 
@@ -130,6 +139,8 @@ namespace ARPG
         public float MovementSpeedPercent => AffixSum(AffixId.MovementSpeed);
         public float DodgePercent => AffixSum(AffixId.DodgeChance);
         public float ExtraArrowPercent => AffixSum(AffixId.ExtraArrowChance);
+        public float IgniteChancePercent => AffixSum(AffixId.IgniteChance);
+        public float ChillChancePercent => AffixSum(AffixId.ChillChance);
 
         public override string ToString() => $"{Rarity} {Slot} (item level {ItemLevel}, {Affixes.Count} affixes)";
     }

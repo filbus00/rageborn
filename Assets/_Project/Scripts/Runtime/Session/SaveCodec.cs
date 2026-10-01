@@ -27,7 +27,16 @@ namespace ARPG
             MigrateFrom9, // 9 to 10: skill levels did not exist; every skill is level 1 and all points are unspent.
             MigrateFrom10, // 10 to 11: the passive tree did not exist; nothing is bought and every point is unspent.
             MigrateFrom11, // 11 to 12: stat points and pets did not exist. The save director sets such a save aside anyway.
+            MigrateFrom12, // 12 to 13: no named legendaries existed; no item is one and nothing is in the Codex.
         };
+
+        static SaveData MigrateFrom12(SaveData data)
+        {
+            foreach (var item in AllItems(data))
+                item.legendary = "";
+            data.codex = new List<string>();
+            return data;
+        }
 
         /// <summary>The first version written with bows only (the Wild Arrow). Older saves are the Wrathborn's: they still
         /// parse (every migration keeps its test), but the save director sets them aside and starts a new game, the
@@ -206,6 +215,7 @@ namespace ARPG
                 pets = session.Pets.OwnedNames(),
                 activePet = session.Pets.Active?.ToString() ?? "",
                 petRules = session.Pets.RuleNames(),
+                codex = session.CodexNames(),
                 equipped = CaptureEquipment(session.Equipment),
             };
 
@@ -263,6 +273,9 @@ namespace ARPG
             session.PassiveTree.Restore(data.passiveNodes, string.IsNullOrEmpty(data.activeKeystone) ? null : data.activeKeystone);
             session.Attributes.Restore(data.attributePoints);
             session.Pets.Restore(data.pets, data.activePet, data.petRules, warnings);
+            foreach (var name in data.codex)
+                if (TryParseEnum(name, out LegendaryId seen))
+                    session.RecordLegendary(seen);
             foreach (var chest in data.openedChests)
                 session.RecordOpened(chest);
 
@@ -364,6 +377,7 @@ namespace ARPG
             parsed.pets ??= new List<string>();
             parsed.activePet ??= "";
             parsed.petRules ??= new List<string>();
+            parsed.codex ??= new List<string>();
 
             data = parsed;
             error = null;
@@ -391,6 +405,7 @@ namespace ARPG
                 itemLevel = item.ItemLevel,
                 reforges = item.Reforges,
                 tempers = item.Tempers,
+                legendary = item.Legendary == LegendaryId.None ? "" : item.Legendary.ToString(),
             };
             foreach (var affix in item.Affixes)
                 data.affixes.Add(new AffixData { id = affix.Id.ToString(), tier = affix.Tier, value = affix.Value });
@@ -456,7 +471,13 @@ namespace ARPG
                 }
             }
 
-            return new Item(slot, rarity, data.itemLevel, affixes.ToArray(), data.reforges, data.tempers);
+            var legendary = LegendaryId.None;
+            if (!string.IsNullOrEmpty(data.legendary) && !TryParseEnum(data.legendary, out legendary))
+            {
+                warnings?.Add($"Kept a {rarity} {slot} whose legendary ({data.legendary}) is unknown, without its power.");
+                legendary = LegendaryId.None;
+            }
+            return new Item(slot, rarity, data.itemLevel, affixes.ToArray(), data.reforges, data.tempers, legendary);
         }
 
         // Enum.TryParse also accepts numbers and any defined value's number, so "7" would parse as a slot that does not
