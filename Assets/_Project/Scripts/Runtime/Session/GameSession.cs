@@ -255,6 +255,8 @@ namespace ARPG
         public GameSession(int lootSeed, int killsSinceLegendary = 0)
         {
             Loot = new LootRoller(lootSeed, killsSinceLegendary);
+            // Smart drops: legendaries lean toward places with no legendary worn yet.
+            Loot.Worn = () => Equipment;
             ForgeRandom = new System.Random(DungeonRules.LevelSeed(lootSeed, -1));
             Equipment = EquipmentState.Starting;
             SetPotion(new AutoPotion());

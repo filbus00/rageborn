@@ -76,6 +76,10 @@ namespace ARPG
         /// <summary>A legendary at its home is this much likelier than elsewhere.</summary>
         public const float HomeWeight = 2f;
 
+        /// <summary>Smart drops (Docs/03, "The farming loop"): a legendary for a place where the character wears no
+        /// legendary yet is this much likelier, so the first ones spread over the gear.</summary>
+        public const float OpenSlotWeight = 2f;
+
         // The powers' numbers, read where each power lands.
         public const float ForkShare = 0.5f;
         public const float ForkDegrees = 45f;
@@ -218,24 +222,38 @@ namespace ARPG
         /// Picks a named legendary for a drop from <paramref name="source"/> at an item level: every one is possible from
         /// <see cref="MinItemLevel"/>, those at home <see cref="HomeWeight"/> times as likely. None below the minimum.
         /// </summary>
-        public static LegendaryId Pick(LootSource source, int itemLevel, System.Random random)
+        /// <param name="worn">The character's gear for smart drops, or null to weigh only by home.</param>
+        public static LegendaryId Pick(LootSource source, int itemLevel, System.Random random, EquipmentState? worn = null)
         {
             if (itemLevel < MinItemLevel)
                 return LegendaryId.None;
             var total = 0f;
             for (var i = 1; i < Table.Length; i++)
-                total += Weight(Table[i], source);
+                total += Weight(Table[i], source, worn);
             var roll = (float)random.NextDouble() * total;
             for (var i = 1; i < Table.Length; i++)
             {
-                roll -= Weight(Table[i], source);
+                roll -= Weight(Table[i], source, worn);
                 if (roll < 0f)
                     return Table[i].Id;
             }
             return Table[Table.Length - 1].Id;
         }
 
-        public static float Weight(LegendaryDefinition legendary, LootSource source) => legendary.Home == source ? HomeWeight : 1f;
+        public static float Weight(LegendaryDefinition legendary, LootSource source, EquipmentState? worn = null) =>
+            (legendary.Home == source ? HomeWeight : 1f) * (worn.HasValue && HasOpenPlace(legendary.Slot, worn.Value) ? OpenSlotWeight : 1f);
+
+        /// <summary>Whether any place an item of this kind can be worn holds no legendary (a ring: either hand).</summary>
+        public static bool HasOpenPlace(ItemSlot kind, EquipmentState worn)
+        {
+            foreach (var place in EquipmentState.PlacesFor(kind))
+            {
+                var item = worn.Get(place);
+                if (item == null || item.Rarity != ItemRarity.Legendary)
+                    return true;
+            }
+            return false;
+        }
 
         /// <summary>
         /// A named legendary's affixes: its fixed ones, each at the best tier the item level has unlocked with a rolled

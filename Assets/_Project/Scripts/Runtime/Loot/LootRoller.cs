@@ -163,9 +163,13 @@ namespace ARPG
 
         // A Legendary becomes a named one (Docs/03, decided 2026-10-01: any can drop anywhere, twice as often at its
         // home) when its item level allows; the slot and rolled affixes drawn for it stay in the main stream either way.
+        /// <summary>The character's gear, read when a legendary is named (smart drops, Docs/03); null weighs by home only.
+        /// The session sets it.</summary>
+        public System.Func<EquipmentState> Worn { get; set; }
+
         Item Named(ItemSlot slot, int itemLevel, AffixRoll[] rolled, LootSource source)
         {
-            var id = Legendaries.Pick(source, itemLevel, legendaryRandom);
+            var id = Legendaries.Pick(source, itemLevel, legendaryRandom, Worn != null ? Worn() : (EquipmentState?)null);
             var legendary = Legendaries.Get(id);
             if (legendary == null)
                 return new Item(slot, ItemRarity.Legendary, itemLevel, rolled);

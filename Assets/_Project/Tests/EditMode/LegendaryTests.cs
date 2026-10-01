@@ -52,6 +52,28 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void SmartDrops_FavourPlacesWithNoLegendaryWorn()
+        {
+            var bow = new Item(ItemSlot.Weapon, ItemRarity.Legendary, 10, null, 0, 0, LegendaryId.Galeheart);
+            var worn = EquipmentState.Empty.With(ItemSlot.Weapon, bow);
+            Assert.IsFalse(Legendaries.HasOpenPlace(ItemSlot.Weapon, worn), "the bow place holds a legendary");
+            Assert.IsFalse(Legendaries.HasOpenPlace(ItemSlot.TwoHandWeapon, worn), "a longbow goes in the same place");
+            Assert.IsTrue(Legendaries.HasOpenPlace(ItemSlot.Helm, worn));
+
+            var ring = new Item(ItemSlot.Ring, ItemRarity.Legendary, 10, null, 0, 0, LegendaryId.PackLeadersSignet);
+            Assert.IsTrue(Legendaries.HasOpenPlace(ItemSlot.Ring, worn.With(ItemSlot.Ring, ring)), "the other hand is free");
+
+            // A helm (an open place) against a bow (taken), same home: the helm is twice as likely.
+            var hood = Legendaries.Get(LegendaryId.FalconersHood);
+            var widow = Legendaries.Get(LegendaryId.WidowsDraw);
+            Assert.AreEqual(hood.Home, widow.Home);
+            Assert.AreEqual(Legendaries.OpenSlotWeight,
+                Legendaries.Weight(hood, LootSource.Boss, worn) / Legendaries.Weight(widow, LootSource.Boss, worn), 1e-4f);
+            Assert.AreEqual(1f, Legendaries.Weight(hood, LootSource.Boss) / Legendaries.Weight(widow, LootSource.Boss), 1e-4f,
+                "without the gear only the home counts");
+        }
+
+        [Test]
         public void Picking_IsNoneBelowTheMinimum_AndFavoursTheHome()
         {
             var random = new System.Random(7);
