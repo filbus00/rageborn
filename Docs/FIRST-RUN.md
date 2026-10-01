@@ -2,7 +2,9 @@
 
 Everything from the switch to bows onward (the Wild Arrow, Focus, the four arrow skills, stat points, pets, the 24
 legendaries, the Codex, the new affixes, smart drops and the pixel art import) was written in a cloud session
-**without Unity**. Nothing of it has been compiled, tested or played yet. This page is the order to bring it up in,
+**without Unity**. On 2026-10-01 it was compiled there against stand-ins of the Unity API (`Tools/CompileCheck`) and
+524 of the 529 EditMode tests passed (the other five build real tilemaps and need Unity), so step 1 should go
+cleanly; it has still never been run in Unity or played. This page is the order to bring it up in,
 what you should see at each step, and what to send back when something is off.
 
 Work through it top to bottom and stop at the first step that fails: later steps depend on earlier ones.
