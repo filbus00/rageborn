@@ -277,6 +277,17 @@ namespace ARPG
             return affixes.ToArray();
         }
 
+        /// <summary>A named legendary at an item level, its affixes rolled as a drop's would be (the loot roller and the
+        /// Codex's development shortcut both make them here).</summary>
+        public static Item Create(LegendaryId id, int itemLevel, System.Random random)
+        {
+            var legendary = Get(id);
+            if (legendary == null)
+                return null;
+            var rolled = AffixRoller.Roll(legendary.Slot, ItemRarity.Legendary, itemLevel, random);
+            return new Item(legendary.Slot, ItemRarity.Legendary, itemLevel, Affixes(legendary, itemLevel, rolled, random), 0, 0, id);
+        }
+
         static bool Contains(this IReadOnlyList<AffixId> list, AffixId id)
         {
             for (var i = 0; i < list.Count; i++)

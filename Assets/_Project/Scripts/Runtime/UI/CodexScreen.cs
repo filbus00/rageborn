@@ -164,6 +164,8 @@ namespace ARPG
             layout.childForceExpandHeight = false;
 
             var kind = $"{ItemComparison.KindName(legendary.Slot)} · {legendary.Archetype}";
+            if (DevGive)
+                AddGiveButton(row.transform, legendary);
             if (seen)
             {
                 var color = ColorUtility.ToHtmlStringRGB(LootColors.Of(ItemRarity.Legendary));
@@ -178,6 +180,31 @@ namespace ARPG
                 NewText(row.transform, "<color=#777777><b>Not yet found</b></color>", 34, FontStyle.Normal, TextAnchor.MiddleLeft);
                 NewText(row.transform, $"<color=#777777>{kind}</color>", 28, FontStyle.Normal, TextAnchor.MiddleLeft);
             }
+        }
+
+        // Development builds and the editor only: a button per entry that puts that legendary in the backpack, at the
+        // character's level (at least the legendaries' minimum), so a power can be tried without farming for it.
+        static bool DevGive => Debug.isDebugBuild;
+
+        static readonly System.Random DevRandom = new System.Random();
+
+        void AddGiveButton(Transform row, LegendaryDefinition legendary)
+        {
+            var button = NewButton(row, "DEV: give", () =>
+            {
+                var session = GameSession.Current;
+                var item = Legendaries.Create(legendary.Id, Mathf.Max(Legendaries.MinItemLevel, session.Level), DevRandom);
+                if (!session.PickUp(item))
+                {
+                    count.text = "<color=#FF6060>The backpack is full</color>";
+                    return;
+                }
+                Render();
+            });
+            var text = button.GetComponentInChildren<Text>();
+            text.fontSize = 30;
+            text.color = new Color(1f, 0.6f, 0.2f);
+            Height(button.gameObject, 64f);
         }
 
         static Button NewButton(Transform parent, string label, Action onClick)

@@ -170,12 +170,9 @@ namespace ARPG
         Item Named(ItemSlot slot, int itemLevel, AffixRoll[] rolled, LootSource source)
         {
             var id = Legendaries.Pick(source, itemLevel, legendaryRandom, Worn != null ? Worn() : (EquipmentState?)null);
-            var legendary = Legendaries.Get(id);
-            if (legendary == null)
-                return new Item(slot, ItemRarity.Legendary, itemLevel, rolled);
-            var named = AffixRoller.Roll(legendary.Slot, ItemRarity.Legendary, itemLevel, legendaryRandom);
-            return new Item(legendary.Slot, ItemRarity.Legendary, itemLevel,
-                Legendaries.Affixes(legendary, itemLevel, named, legendaryRandom), 0, 0, id);
+            return id == LegendaryId.None
+                ? new Item(slot, ItemRarity.Legendary, itemLevel, rolled)
+                : Legendaries.Create(id, itemLevel, legendaryRandom);
         }
 
         /// <summary>One item of a chosen rarity in a random slot, with rolled affixes: the onboarding's guaranteed first
