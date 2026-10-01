@@ -31,6 +31,18 @@ namespace ARPG
         // Ailments (Docs/03, decided 2026-10-01): the chance an arrow sets its target burning, or chills it.
         IgniteChance,
         ChillChance,
+
+        // The Wild Arrow's own (Docs/03, "New and changed affixes", 90 to 100; built 2026-10-01).
+        ExtraPierce,        // 90: plus 1 pierce on every arrow (fixed, from item level 20)
+        ForkChance,         // 91: chance an arrow forks on its first hit
+        BurnDamage,         // 93: burns deal more
+        DamagePerPierce,    // 94: increased damage per enemy already pierced
+        FarDamage,          // 95: increased damage to enemies more than 6 away
+        NearDamage,         // 96: increased damage to enemies within 3 (point blank)
+        ArrowSpeed,         // 97: arrows fly faster
+        PetDamage,          // 98
+        PetLife,            // 99
+        ExtraSkillArrow,    // 100: plus 1 arrow to Split and Homing Arrow (fixed, from item level 30)
     }
 
     public enum AffixKind
@@ -65,18 +77,26 @@ namespace ARPG
     {
         public readonly struct Definition
         {
-            public Definition(AffixKind kind, float t1Min, float t1Max, ItemSlot[] slots)
+            public Definition(AffixKind kind, float t1Min, float t1Max, ItemSlot[] slots, bool isFixed = false, int minItemLevel = 0)
             {
                 Kind = kind;
                 T1Min = t1Min;
                 T1Max = t1Max;
                 Slots = slots;
+                Fixed = isFixed;
+                MinItemLevel = minItemLevel;
             }
 
             public AffixKind Kind { get; }
             public float T1Min { get; }
             public float T1Max { get; }
             public ItemSlot[] Slots { get; }
+
+            /// <summary>The value is T1Min at every tier (a whole extra pierce or arrow, Docs/03's "Fixed 1").</summary>
+            public bool Fixed { get; }
+
+            /// <summary>The lowest item level that can roll it (Docs/03: plus 1 pierce from 20, plus 1 arrow from 30).</summary>
+            public int MinItemLevel { get; }
         }
 
         public readonly struct Tier
@@ -122,6 +142,16 @@ namespace ARPG
             new Definition(AffixKind.Suffix, 8f, 15f, On(ItemSlot.Shield)),                                                    // ExtraArrowChance
             new Definition(AffixKind.Suffix, 8f, 15f, On(ItemSlot.Weapon, ItemSlot.Shield, ItemSlot.Gloves)),                  // IgniteChance
             new Definition(AffixKind.Suffix, 8f, 15f, On(ItemSlot.Weapon, ItemSlot.Shield, ItemSlot.Gloves)),                  // ChillChance
+            new Definition(AffixKind.Suffix, 1f, 1f, On(ItemSlot.Shield), true, 20),                                          // ExtraPierce
+            new Definition(AffixKind.Suffix, 10f, 20f, On(ItemSlot.Shield, ItemSlot.Weapon)),                                  // ForkChance
+            new Definition(AffixKind.Prefix, 20f, 35f, On(ItemSlot.Weapon, ItemSlot.Gloves, ItemSlot.Amulet)),                 // BurnDamage
+            new Definition(AffixKind.Prefix, 6f, 10f, On(ItemSlot.TwoHandWeapon, ItemSlot.Shield)),                           // DamagePerPierce
+            new Definition(AffixKind.Prefix, 12f, 20f, On(ItemSlot.TwoHandWeapon, ItemSlot.Helm)),                            // FarDamage
+            new Definition(AffixKind.Prefix, 12f, 20f, new[] { ItemSlot.Weapon, ItemSlot.Gloves }),                           // NearDamage (short bow only)
+            new Definition(AffixKind.Suffix, 15f, 25f, On(ItemSlot.Weapon, ItemSlot.Shield)),                                  // ArrowSpeed
+            new Definition(AffixKind.Prefix, 15f, 25f, On(ItemSlot.Amulet, ItemSlot.Ring, ItemSlot.Belt)),                     // PetDamage
+            new Definition(AffixKind.Prefix, 15f, 25f, On(ItemSlot.Chest, ItemSlot.Belt)),                                     // PetLife
+            new Definition(AffixKind.Suffix, 1f, 1f, On(ItemSlot.Gloves, ItemSlot.Shield), true, 30),                          // ExtraSkillArrow
         };
 
         // Index 0 unused so tier numbers (1-5) index directly.
@@ -143,6 +173,9 @@ namespace ARPG
         public static Tier GetTier(int tier) => Tiers[tier];
 
         public static bool CanRollOn(AffixId id, ItemSlot slot) => Array.IndexOf(Get(id).Slots, slot) >= 0;
+
+        /// <summary>Whether an item of this level can roll it: the slot, and the affix's own minimum item level.</summary>
+        public static bool CanRollOn(AffixId id, ItemSlot slot, int itemLevel) => CanRollOn(id, slot) && itemLevel >= Get(id).MinItemLevel;
 
         /// <summary>The best (lowest-numbered) tier an item of this level has unlocked. Item level 1 only unlocks T5.</summary>
         public static int BestUnlockedTier(int itemLevel)

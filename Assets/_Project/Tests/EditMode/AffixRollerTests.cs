@@ -35,8 +35,8 @@ namespace ARPG.Tests
         [Test]
         public void Rare_RollsTwoOrThreeOfEachKind_OnASlotWithEnoughEligibleAffixes()
         {
-            // Weapon has 2 eligible prefixes and 4 eligible suffixes, so a Rare weapon can reach the docs' 2-3 range
-            // for suffixes; prefixes cap at the pool size of 2.
+            // A bow has 4 eligible prefixes (flat, increased, burn damage, point blank) and more suffixes, so a Rare
+            // weapon reaches the docs' 2 to 3 of each.
             for (var seed = 0; seed < 200; seed++)
             {
                 var affixes = AffixRoller.Roll(ItemSlot.Weapon, ItemRarity.Rare, 60, new Random(seed));
@@ -45,8 +45,8 @@ namespace ARPG.Tests
                 foreach (var roll in affixes)
                     if (AffixTable.Get(roll.Id).Kind == AffixKind.Prefix) prefixes++; else suffixes++;
 
-                Assert.GreaterOrEqual(prefixes, 1);
-                Assert.LessOrEqual(prefixes, 2, "the weapon prefix pool only has 2 entries");
+                Assert.GreaterOrEqual(prefixes, 2);
+                Assert.LessOrEqual(prefixes, 3);
                 Assert.GreaterOrEqual(suffixes, 2);
                 Assert.LessOrEqual(suffixes, 3);
             }
@@ -76,15 +76,15 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void ChestAtRare_OnlyRollsItsTwoEligiblePrefixes_NoSuffixes()
+        public void ChestAtRare_OnlyRollsItsThreeEligiblePrefixes_NoSuffixes()
         {
             // The curated pool has no chest-eligible suffix yet (Docs/03-itemization.md's full suffix pool, e.g.
-            // resistances, is not built). Chest items are prefixes only until it grows.
+            // resistances, is not built). Chest items are prefixes only (life, armor, pet life) until it grows.
             var affixes = AffixRoller.Roll(ItemSlot.Chest, ItemRarity.Rare, 60, new Random(3));
 
             foreach (var roll in affixes)
                 Assert.AreEqual(AffixKind.Prefix, AffixTable.Get(roll.Id).Kind);
-            Assert.LessOrEqual(affixes.Length, 2);
+            Assert.LessOrEqual(affixes.Length, 3);
         }
 
         [Test]

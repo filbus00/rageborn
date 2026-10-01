@@ -183,6 +183,10 @@ namespace ARPG
         public float IgniteChancePercent => Sum(item => item.IgniteChancePercent);
         public float ChillChancePercent => Sum(item => item.ChillChancePercent);
 
+        /// <summary>Any affix summed over everything worn, in its own unit (the Wild Arrow's affixes 90 to 100 are read
+        /// this way where they land).</summary>
+        public float AffixTotal(AffixId id) => Sum(item => item.AffixSum(id));
+
         /// <summary>Whether a named legendary is worn, for its power (Docs/03, 2026-10-01).</summary>
         public bool Wears(LegendaryId legendary)
         {

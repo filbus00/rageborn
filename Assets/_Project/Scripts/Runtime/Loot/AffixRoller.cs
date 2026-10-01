@@ -45,7 +45,7 @@ namespace ARPG
             if (count <= 0)
                 return;
 
-            var eligible = EligibleIds(kind, slot);
+            var eligible = EligibleIds(kind, slot, itemLevel);
             var picked = PickDistinct(eligible, count, random);
             foreach (var id in picked)
             {
@@ -56,11 +56,11 @@ namespace ARPG
         }
 
         /// <summary>Every affix of a kind that can roll on a slot, in <see cref="AffixId"/> order.</summary>
-        public static List<AffixId> EligibleIds(AffixKind kind, ItemSlot slot)
+        public static List<AffixId> EligibleIds(AffixKind kind, ItemSlot slot, int itemLevel = int.MaxValue)
         {
             var list = new List<AffixId>();
             foreach (AffixId id in System.Enum.GetValues(typeof(AffixId)))
-                if (AffixTable.Get(id).Kind == kind && AffixTable.CanRollOn(id, slot))
+                if (AffixTable.Get(id).Kind == kind && AffixTable.CanRollOn(id, slot, itemLevel))
                     list.Add(id);
             return list;
         }
@@ -99,6 +99,8 @@ namespace ARPG
         public static (float min, float max) ValueRange(AffixId id, int tier)
         {
             var definition = AffixTable.Get(id);
+            if (definition.Fixed)
+                return (definition.T1Min, definition.T1Min);
             var scale = AffixTable.GetTier(tier);
             return (definition.T1Min * scale.LowShare, definition.T1Max * scale.HighShare);
         }

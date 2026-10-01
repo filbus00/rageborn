@@ -77,8 +77,15 @@ namespace ARPG
             pet.model = modelObject.transform;
 
             pet.PlaceBeside(IsoMath.WorldToGround(player.transform.position));
-            pet.life = PetRules.MaxLife(kind, GameSession.Current.Level);
+            pet.life = MaxLifeOf(kind);
             return pet;
+        }
+
+        // The kind's life at the character's level, with the gear's Pet life (affix 99).
+        static float MaxLifeOf(PetKind kind)
+        {
+            var session = GameSession.Current;
+            return PetRules.MaxLife(kind, session.Level) * (1f + session.Equipment.AffixTotal(AffixId.PetLife) / 100f);
         }
 
         void OnEnable() => Current = this;
@@ -126,7 +133,7 @@ namespace ARPG
                 return;
             var deltaTime = Time.deltaTime;
             var session = GameSession.Current;
-            var maxLife = PetRules.MaxLife(kind, session.Level);
+            var maxLife = MaxLifeOf(kind);
             var playerGround = IsoMath.WorldToGround(player.transform.position);
 
             if (knockedOut > 0f)
@@ -226,7 +233,9 @@ namespace ARPG
             attackTimer = definition.AttackSeconds / Mathf.Max(0.1f, speed);
             var critical = signet && Random.value < (equipment.CriticalChancePercent + session.AttributeBonuses.CriticalChance) / 100f;
             var criticalDamage = (equipment.CriticalDamagePercent + session.AttributeBonuses.CriticalDamage) / 100f;
-            var damage = CombatFormulas.HitDamage(equipment.WeaponDamage, definition.DamageFactor, 0f, 0f, 1f,
+            // Pet damage (affix 98) as increased damage.
+            var damage = CombatFormulas.HitDamage(equipment.WeaponDamage, definition.DamageFactor, 0f,
+                equipment.AffixTotal(AffixId.PetDamage) / 100f, 1f,
                 critical, criticalDamage, target.Definition.Armor, target.Level);
             var world = IsoMath.GroundToWorld(target.GroundPosition);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);

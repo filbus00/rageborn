@@ -1046,7 +1046,8 @@ namespace ARPG
             var equipment = session.Equipment;
             var count = skill.ProjectileCount +
                         (equipment.Wears(LegendaryId.FletchersFingers) ? Legendaries.FletcherArrows : 0) +
-                        (equipment.Wears(LegendaryId.BandolierOfManyHeads) ? Legendaries.BandolierArrows : 0);
+                        (equipment.Wears(LegendaryId.BandolierOfManyHeads) ? Legendaries.BandolierArrows : 0) +
+                        Mathf.RoundToInt(equipment.AffixTotal(AffixId.ExtraSkillArrow));
             var multiplier = DamageOf(skill, skill.DamageMultiplier);
             var glow = Glow(skill);
             for (var k = 0; k < count; k++)
@@ -1080,7 +1081,8 @@ namespace ARPG
             homingTargets.Clear();
             var equipment = session.Equipment;
             var count = skill.ProjectileCount + (equipment.Wears(LegendaryId.HuntersPromise) ? Legendaries.HuntersPromiseArrows : 0) +
-                        (equipment.Wears(LegendaryId.BandolierOfManyHeads) ? Legendaries.BandolierArrows : 0);
+                        (equipment.Wears(LegendaryId.BandolierOfManyHeads) ? Legendaries.BandolierArrows : 0) +
+                        Mathf.RoundToInt(equipment.AffixTotal(AffixId.ExtraSkillArrow));
             // Quiver of the Hollow Hound: enemies the pet marked are sought first.
             var hound = equipment.Wears(LegendaryId.QuiverOfTheHollowHound);
             // The nearest few in sight, picked without sorting the whole list (no allocation).
@@ -1155,6 +1157,8 @@ namespace ARPG
         {
             var arrow = spareArrows.Count > 0 ? spareArrows.Pop() : CreateArrow();
             arrow.gameObject.SetActive(true);
+            // Arrow speed (affix 97).
+            velocity *= 1f + session.Equipment.AffixTotal(AffixId.ArrowSpeed) / 100f;
             PlaceArrow(arrow, origin, velocity);
             var shot = new Shot
             {
@@ -1183,6 +1187,11 @@ namespace ARPG
                 shot.Ricochets = 1;
             if (equipment.Wears(LegendaryId.WindSwornQuiver) && stance.Momentum >= stance.MomentumCap && shot.PierceLeft != int.MaxValue)
                 shot.PierceLeft += Legendaries.WindSwornPierce;
+            // Affix 90: pierce on every arrow; 94: damage for each enemy already pierced.
+            var extraPierce = Mathf.RoundToInt(equipment.AffixTotal(AffixId.ExtraPierce));
+            if (extraPierce > 0 && shot.PierceLeft != int.MaxValue)
+                shot.PierceLeft += extraPierce;
+            shot.PierceBonus += equipment.AffixTotal(AffixId.DamagePerPierce) / 100f;
             switch (shot.Style)
             {
                 case ShotStyle.Basic:
@@ -1205,6 +1214,9 @@ namespace ARPG
                         shot.Retargets = 1;
                     break;
             }
+            // Affix 91: a chance to fork on the first hit, for any arrow that does not already.
+            if (!shot.CanFork && Random.value < equipment.AffixTotal(AffixId.ForkChance) / 100f)
+                shot.CanFork = true;
             if (shot.PierceLeft > 0)
                 EnsurePierceSet(ref shot);
         }
@@ -1417,7 +1429,7 @@ namespace ARPG
                         }
                         // Burning ground: 60 percent weapon damage a second, dealt each pulse, and a slow.
                         enemy.ApplySlow(1f - Legendaries.CinderGroundSlow, MarkPulseSeconds * 2f);
-                        var damage = Damage(enemy, Legendaries.CinderGroundPerSecond * MarkPulseSeconds, false);
+                        var damage = Damage(enemy, Legendaries.CinderGroundPerSecond * MarkPulseSeconds, false) * BurnFactor;
                         var world = IsoMath.GroundToWorld(enemy.GroundPosition);
                         DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, false, isDamageToPlayer: false);
                         if (enemy.TakeDamage(damage))
@@ -1568,7 +1580,7 @@ namespace ARPG
             var world = IsoMath.GroundToWorld(enemy.GroundPosition);
             if (shot.IgniteChance > 0f && Random.value < shot.IgniteChance)
             {
-                enemy.ApplyBurn(Damage(enemy, BurnShare / BurnStacks.Seconds, false));
+                enemy.ApplyBurn(Damage(enemy, BurnShare / BurnStacks.Seconds, false) * BurnFactor);
                 fx.Sparks(world, Vector2.up, ArrowHeight, BurnColor, 3);
             }
             if (shot.ChillChance > 0f && Random.value < shot.ChillChance)
@@ -1579,6 +1591,9 @@ namespace ARPG
         }
 
         const float BurnShare = 0.6f;
+
+        // Affix 93: burns, and burning ground, deal more.
+        float BurnFactor => 1f + session.Equipment.AffixTotal(AffixId.BurnDamage) / 100f;
         static readonly Color BurnColor = new Color(1f, 0.5f, 0.1f, 1f);
         static readonly Color ChillColor = new Color(0.6f, 0.9f, 1f, 1f);
 
@@ -1774,6 +1789,15 @@ namespace ARPG
                 increased += tree.DamageVsWounded;
             if (movementSkill)
                 increased += tree.MovementSkillDamage;
+            // Affixes 95 and 96: arrows hit harder far away or point blank.
+            if (projectile && player != null)
+            {
+                var distance = Vector2.Distance(IsoMath.WorldToGround(player.transform.position), enemy.GroundPosition);
+                if (distance > FarDistance)
+                    increased += equipment.AffixTotal(AffixId.FarDamage) / 100f;
+                else if (distance <= NearDistance)
+                    increased += equipment.AffixTotal(AffixId.NearDamage) / 100f;
+            }
             if (tree.Berserker && health != null && health.Fraction < 0.5f)
                 increased += 0.3f;
             // Butcher: critical hits on a bleeding enemy hit harder.
@@ -1799,6 +1823,10 @@ namespace ARPG
                 more *= 1f + Legendaries.BloodletterBonus;
             return more;
         }
+
+        // Docs/03, affixes 95 and 96.
+        const float FarDistance = 6f;
+        const float NearDistance = 3f;
 
         void HealOnHit(int hits)
         {

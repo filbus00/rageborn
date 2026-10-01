@@ -63,6 +63,16 @@ namespace ARPG
                 case AffixId.ExtraArrowChance: return "Extra arrow chance";
                 case AffixId.IgniteChance: return "Ignite chance";
                 case AffixId.ChillChance: return "Chill chance";
+                case AffixId.ExtraPierce: return "Pierce on every arrow";
+                case AffixId.ForkChance: return "Fork chance";
+                case AffixId.BurnDamage: return "Burn damage";
+                case AffixId.DamagePerPierce: return "Damage per enemy pierced";
+                case AffixId.FarDamage: return "Damage beyond 6 units";
+                case AffixId.NearDamage: return "Damage within 3 units";
+                case AffixId.ArrowSpeed: return "Arrow speed";
+                case AffixId.PetDamage: return "Pet damage";
+                case AffixId.PetLife: return "Pet life";
+                case AffixId.ExtraSkillArrow: return "Arrows to Split and Homing Arrow";
                 default: return id.ToString();
             }
         }
@@ -70,7 +80,9 @@ namespace ARPG
         public static bool IsPercent(AffixId id) =>
             id == AffixId.IncreasedDamage || id == AffixId.AttackSpeed || id == AffixId.CriticalChance ||
             id == AffixId.CriticalDamage || id == AffixId.CooldownReduction || id == AffixId.MovementSpeed ||
-            id == AffixId.DodgeChance || id == AffixId.ExtraArrowChance || id == AffixId.IgniteChance || id == AffixId.ChillChance;
+            id == AffixId.DodgeChance || id == AffixId.ExtraArrowChance || id == AffixId.IgniteChance || id == AffixId.ChillChance ||
+            id == AffixId.ForkChance || id == AffixId.BurnDamage || id == AffixId.DamagePerPierce || id == AffixId.FarDamage ||
+            id == AffixId.NearDamage || id == AffixId.ArrowSpeed || id == AffixId.PetDamage || id == AffixId.PetLife;
 
         /// <summary>The docs' tier dots: five dots, filled for how good the tier is (T1 all five, T5 one).</summary>
         public static string TierDots(int tier)

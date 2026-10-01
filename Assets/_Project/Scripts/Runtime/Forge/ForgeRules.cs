@@ -107,7 +107,7 @@ namespace ARPG
             CheckIndex(item, affixIndex);
 
             var old = item.Affixes[affixIndex];
-            var candidates = AffixRoller.EligibleIds(AffixTable.Get(old.Id).Kind, item.Slot);
+            var candidates = AffixRoller.EligibleIds(AffixTable.Get(old.Id).Kind, item.Slot, item.ItemLevel);
             for (var i = 0; i < item.Affixes.Count; i++)
                 if (i != affixIndex)
                     candidates.Remove(item.Affixes[i].Id);
