@@ -489,7 +489,7 @@ Fixed affixes by number from the tables above; each also rolls two random affixe
 | 11 | Wind-Sworn Quiver | Quiver | 3, 90, 33, 40 | While Momentum is at its cap, every arrow pierces 2 more enemies | Windrunner |
 | 12 | Ashfall Quiver | Quiver | 1, 92, 93, 89 | Every fifth basic arrow is a free Explosive Arrow at 60 percent | Pyre |
 | 13 | Quiver of the Hollow Hound | Quiver | 3, 98, 99, 89 | Enemies the pet bites are marked for 4 s; arrows deal 25 percent more to marked enemies, and Homing Arrow seeks them first | Beastmaster |
-| 14 | Falconer's Hood | Helm | 3, 4, 44, 59 | Homing Arrow's cooldown is 2 s shorter, and each homing hit gives 2 Focus | Seeker |
+| 14 | Falconer's Hood | Helm | 3, 4, 44, 57 | Homing Arrow's cooldown is 2 s shorter, and each homing hit gives 2 Focus | Seeker |
 | 15 | Crown of the Unblinking Eye | Helm | 3, 4, 95, 84 | A Pierce Arrow that crits resets its own cooldown, once per cast | Sniper |
 | 16 | Hide of the Running Stag | Chest | 3, 4, 33, 82 | Plus 3 Momentum cap; each Momentum stack also gives 2 percent attack speed | Windrunner |
 | 17 | Cinder-Stitched Jerkin | Chest | 3, 4, 93, 77 | Explosive Arrow leaves burning ground for 3 s (60 percent a second) that slows enemies 20 percent | Pyre |
