@@ -19,6 +19,39 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void AllTwentyFour_AreInTheTable_WithUniqueNames()
+        {
+            var names = new HashSet<string>();
+            var count = 0;
+            foreach (LegendaryId id in System.Enum.GetValues(typeof(LegendaryId)))
+            {
+                if (id == LegendaryId.None)
+                    continue;
+                var legendary = Legendaries.Get(id);
+                Assert.IsNotNull(legendary, $"{id} has a definition");
+                Assert.AreEqual(id, legendary.Id, "the table is in enum order");
+                Assert.IsTrue(names.Add(legendary.Name), $"{legendary.Name} is unique");
+                Assert.IsFalse(string.IsNullOrEmpty(legendary.Power));
+                Assert.IsFalse(string.IsNullOrEmpty(legendary.HomeText));
+                Assert.AreNotEqual(ItemSlot.OffHand, legendary.Slot, "an item's kind, never a place to wear it");
+                Assert.AreNotEqual(ItemSlot.Ring2, legendary.Slot);
+                count++;
+            }
+            Assert.AreEqual(24, count, "Docs/03's table");
+        }
+
+        [Test]
+        public void EveryLegendary_CanDrop()
+        {
+            var seen = new HashSet<LegendaryId>();
+            var random = new System.Random(11);
+            for (var i = 0; i < 20000; i++)
+                seen.Add(Legendaries.Pick(LootSource.NormalEnemy, 10, random));
+            foreach (var legendary in Legendaries.All)
+                Assert.IsTrue(seen.Contains(legendary.Id), legendary.Name);
+        }
+
+        [Test]
         public void Picking_IsNoneBelowTheMinimum_AndFavoursTheHome()
         {
             var random = new System.Random(7);

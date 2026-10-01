@@ -258,6 +258,7 @@ namespace ARPG
             chill.Clear();
             burnPending = 0f;
             burnPulse = 0f;
+            markTimer = 0f;
             life = MaxLife;
             punchTimer = 0f;
             deathTimer = 0f;
@@ -362,6 +363,7 @@ namespace ARPG
             TickBleed(deltaTime);
             TickBurn(deltaTime);
             chill.Tick(deltaTime);
+            markTimer = Mathf.Max(0f, markTimer - deltaTime);
             if (!IsAlive || Scripted || chill.IsFrozen)
                 return;
 
@@ -505,6 +507,27 @@ namespace ARPG
         }
 
         public bool IsBleeding => bleedTimer > 0f;
+
+        /// <summary>The bleed's damage a second while it lasts, 0 when not bleeding (for a bleed passed on).</summary>
+        public float BleedPerSecond => bleedTimer > 0f ? bleedPerSecond : 0f;
+
+        /// <summary>Lengthens a bleed in progress (Bloodletter's Grips); nothing when not bleeding.</summary>
+        public void ExtendBleed(float seconds)
+        {
+            if (IsAlive && bleedTimer > 0f && seconds > 0f)
+                bleedTimer += seconds;
+        }
+
+        float markTimer;
+
+        /// <summary>Marked by the pet's bite (Quiver of the Hollow Hound): arrows hit it harder and Homing Arrow seeks it first.</summary>
+        public bool IsMarked => markTimer > 0f;
+
+        public void Mark(float seconds)
+        {
+            if (IsAlive)
+                markTimer = Mathf.Max(markTimer, seconds);
+        }
 
         public bool IsBurning => burn.IsBurning;
 

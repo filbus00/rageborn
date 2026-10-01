@@ -96,7 +96,9 @@ namespace ARPG
             var tree = GameSession.Current.PassiveTree.Bonuses;
             stance.MomentumStep = tree.MomentumStepSeconds > 0f ? tree.MomentumStepSeconds : StanceStacks.MomentumStepSeconds;
             stance.MomentumGrace = tree.MomentumGraceSeconds > 0f ? tree.MomentumGraceSeconds : StanceStacks.MomentumGraceSeconds;
-            stance.MomentumCap = StanceStacks.MaxStacks + (int)tree.MomentumCap;
+            // Hide of the Running Stag (Docs/03) raises the cap too.
+            stance.MomentumCap = StanceStacks.MaxStacks + (int)tree.MomentumCap +
+                                 (GameSession.Current.Equipment.Wears(LegendaryId.HideOfTheRunningStag) ? Legendaries.StagMomentumCap : 0);
             stance.StillnessCap = StanceStacks.MaxStacks + (int)tree.StillnessCap;
             stance.KeepHalfOnStop = tree.Juggernaut;
 

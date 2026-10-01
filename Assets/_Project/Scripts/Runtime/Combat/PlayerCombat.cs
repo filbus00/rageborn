@@ -150,6 +150,8 @@ namespace ARPG
             public float TurnRadians;
             // Explosive Arrow: the burst's radius.
             public float BurstRadius;
+            // Crown of the Unblinking Eye: a Pierce Arrow's crit resets its cooldown, once per cast.
+            public bool ResetOnCrit;
         }
 
         // A patch of floor that hurts what stands in it (Docs/03, ground marks): for now Gallowsreach's blood, which
@@ -160,11 +162,17 @@ namespace ARPG
             public float Radius;
             public float Left;
             public float Pulse;
+            // Cinder-Stitched Jerkin's burning ground instead of blood: it burns and slows.
+            public bool Burning;
         }
 
         readonly List<GroundMark> marks = new List<GroundMark>(32);
         int basicShotCount;
         bool stillwaterSpent;
+        // Windrunner Treads: how long the character has moved without stopping.
+        float movingSeconds;
+        // Whether the last Strike was a critical hit (the powers that fire on a crit read it).
+        bool lastCritical;
 
         readonly List<Shot> shots = new List<Shot>(24);
         readonly Stack<Transform> spareArrows = new Stack<Transform>(24);
@@ -223,7 +231,8 @@ namespace ARPG
 
         /// <summary>The basic arrow's reach (Docs/03: 7.5 with a short bow, 9 with a longbow). Unarmed shoots as far as a
         /// short bow, so a character never has to walk into melee.</summary>
-        public float BasicRange => GripRules.ShortBowReach + GameSession.Current.Equipment.GripReach;
+        public float BasicRange => GripRules.ShortBowReach + GameSession.Current.Equipment.GripReach +
+                                   (GameSession.Current.Equipment.Wears(LegendaryId.TheLongSilence) ? Legendaries.LongSilenceReach : 0f);
 
         /// <summary>How many times the skill in a slot has fired since the scene started, for tests and tuning.</summary>
         public int CastCount(int slot) => castCounts != null && slot >= 0 && slot < castCounts.Length ? castCounts[slot] : 0;
@@ -361,10 +370,14 @@ namespace ARPG
             // The Focus attribute (Docs/02): faster regeneration and a larger pool.
             var attributes = session.AttributeBonuses;
             focus.RegenMultiplier = 1f + attributes.FocusRegen;
+            // Eye of the Storm: faster with enemies close (counted from last frame's query).
+            if (session.Equipment.Wears(LegendaryId.EyeOfTheStorm) && CountAround(origin, Legendaries.StormRadius) >= Legendaries.StormEnemies)
+                focus.RegenMultiplier *= 1f + Legendaries.StormRegenBonus;
             focus.BonusMax = attributes.MaxFocus;
             focus.GainMultiplier = tree.Berserker && health != null && health.Fraction < 0.5f ? 2f : 1f;
             focus.Tick(deltaTime);
             stillSeconds = player.GroundVelocity.magnitude < FacingSpeedThreshold ? stillSeconds + deltaTime : 0f;
+            movingSeconds = stillSeconds > 0f ? 0f : movingSeconds + deltaTime;
             damageBuffTimer = Mathf.Max(0f, damageBuffTimer - deltaTime);
             speedBuffTimer = Mathf.Max(0f, speedBuffTimer - deltaTime);
             attackTimer = Mathf.Max(0f, attackTimer - deltaTime);
@@ -452,7 +465,9 @@ namespace ARPG
             var tree = session.PassiveTree.Bonuses;
             attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + AttackSpeedBuff +
                                                     tree.AttackSpeed + tree.AttackSpeedPerMomentum * player.Stance.Momentum +
-                                                    session.AttributeBonuses.AttackSpeed + equipment.GripAttackSpeedBonus) *
+                                                    session.AttributeBonuses.AttackSpeed + equipment.GripAttackSpeedBonus +
+                                                    (equipment.Wears(LegendaryId.HideOfTheRunningStag)
+                                                        ? Legendaries.StagAttackSpeedPerMomentum * player.Stance.Momentum : 0f)) *
                                 equipment.GripAttackSpeedFactor);
             BasicAttackCount++;
             BasicAttackStarted?.Invoke(aim, attackTimer);
@@ -487,7 +502,9 @@ namespace ARPG
                 shots.Add(AshfallArrow(origin, aim));
 
             // The quiver's extra arrow (Docs/03): now and then a second one, at another enemy in reach when there is one.
-            if (Random.value < equipment.ExtraArrowPercent / 100f)
+            var extraArrow = equipment.ExtraArrowPercent / 100f *
+                             (equipment.Wears(LegendaryId.BandolierOfManyHeads) ? Legendaries.BandolierExtraArrowFactor : 1f);
+            if (Random.value < extraArrow)
             {
                 var second = aim;
                 for (var i = 0; i < inReach.Count; i++)
@@ -516,7 +533,7 @@ namespace ARPG
                 if (i < 0 || !IsUnlocked(i) || cooldowns[i] > 0f)
                     continue;
                 var skill = skills[i];
-                if (skill.RageCost > focus.Current)
+                if (CostOf(skill) > focus.Current)
                     continue;
                 if (!Ready(skill, session.Loadout.TriggerAt(s), origin, aim, target, out var skillTarget))
                     continue;
@@ -635,13 +652,36 @@ namespace ARPG
 
         bool Moving => player.GroundVelocity.magnitude >= ChargeMinSpeed;
 
+        // A skill's Focus cost after the gear (Docs/03): Fletcher's Fingers cuts Split Arrow's, Eye of the Storm cuts every
+        // cost below 30 Focus, and Windrunner Treads makes the next one free after 3 s on the move.
+        float CostOf(SkillDefinition skill)
+        {
+            var equipment = session.Equipment;
+            if (equipment.Wears(LegendaryId.WindrunnerTreads) && movingSeconds >= Legendaries.WindrunnerSeconds)
+                return 0f;
+            var cost = skill.RageCost;
+            if (skill.Kind == SkillKind.Volley && equipment.Wears(LegendaryId.FletchersFingers))
+                cost -= Legendaries.FletcherFocusCut;
+            if (equipment.Wears(LegendaryId.EyeOfTheStorm) && focus.Current < Legendaries.StormLowFocus)
+                cost *= 1f - Legendaries.StormCostCut;
+            return Mathf.Max(0f, cost);
+        }
+
         void Cast(int i, int slot, SkillDefinition skill, Vector2 origin, Vector2 aim, EnemyController skillTarget)
         {
-            focus.TrySpend(skill.RageCost);
+            var cost = CostOf(skill);
+            // Windrunner Treads' free skill is spent: the next needs another 3 s on the move.
+            if (cost <= 0f && skill.RageCost > 0f && session.Equipment.Wears(LegendaryId.WindrunnerTreads))
+                movingSeconds = 0f;
+            focus.TrySpend(cost);
             if (skill.RageGain > 0f)
                 focus.Gain(skill.RageGain);
             var cdr = GameSession.Current.Equipment.CooldownReductionPercent / 100f + session.AttributeBonuses.CooldownReduction;
-            cooldowns[i] = skill.CooldownSeconds * Mathf.Max(0.1f, 1f - cdr);
+            var cooldown = skill.CooldownSeconds;
+            // Falconer's Hood: Homing Arrow comes back 2 s sooner.
+            if (skill.Kind == SkillKind.HomingShot && session.Equipment.Wears(LegendaryId.FalconersHood))
+                cooldown = Mathf.Max(0.5f, cooldown - Legendaries.FalconerCooldownCut);
+            cooldowns[i] = cooldown * Mathf.Max(0.1f, 1f - cdr);
             castTimer = GlobalCastSeconds;
             SkillCastCount++;
             castCounts[i]++;
@@ -1003,7 +1043,10 @@ namespace ARPG
         // Split Arrow (Docs/02): the arrows spread evenly over the fan, centered on the target.
         void LooseVolley(Vector2 origin, Vector2 direction, SkillDefinition skill)
         {
-            var count = skill.ProjectileCount;
+            var equipment = session.Equipment;
+            var count = skill.ProjectileCount +
+                        (equipment.Wears(LegendaryId.FletchersFingers) ? Legendaries.FletcherArrows : 0) +
+                        (equipment.Wears(LegendaryId.BandolierOfManyHeads) ? Legendaries.BandolierArrows : 0);
             var multiplier = DamageOf(skill, skill.DamageMultiplier);
             var glow = Glow(skill);
             for (var k = 0; k < count; k++)
@@ -1016,7 +1059,18 @@ namespace ARPG
         // Pierce Arrow (Docs/02): one arrow through every enemy on its line, until a wall or its range.
         void LoosePierce(Vector2 origin, Vector2 direction, SkillDefinition skill)
         {
-            shots.Add(NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot, DamageOf(skill, skill.DamageMultiplier), ShotStyle.Pierce, Glow(skill)));
+            var shot = NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot,
+                DamageOf(skill, skill.DamageMultiplier) * StalkerFactor(), ShotStyle.Pierce, Glow(skill));
+            shot.ResetOnCrit = session.Equipment.Wears(LegendaryId.CrownOfTheUnblinkingEye);
+            shots.Add(shot);
+        }
+
+        // Stalker's Treads: Pierce and Explosive Arrow hit 40 percent harder at full Stillness.
+        float StalkerFactor()
+        {
+            var stance = player.Stance;
+            return session.Equipment.Wears(LegendaryId.StalkersTreads) && stance.Stillness >= stance.StillnessCap
+                ? 1f + Legendaries.StalkerBonus : 1f;
         }
 
         // Homing Arrow (Docs/02): each arrow chases a different enemy in reach and in sight when there are enough,
@@ -1024,7 +1078,11 @@ namespace ARPG
         void LooseHoming(Vector2 origin, Vector2 direction, SkillDefinition skill)
         {
             homingTargets.Clear();
-            var count = skill.ProjectileCount + (session.Equipment.Wears(LegendaryId.HuntersPromise) ? Legendaries.HuntersPromiseArrows : 0);
+            var equipment = session.Equipment;
+            var count = skill.ProjectileCount + (equipment.Wears(LegendaryId.HuntersPromise) ? Legendaries.HuntersPromiseArrows : 0) +
+                        (equipment.Wears(LegendaryId.BandolierOfManyHeads) ? Legendaries.BandolierArrows : 0);
+            // Quiver of the Hollow Hound: enemies the pet marked are sought first.
+            var hound = equipment.Wears(LegendaryId.QuiverOfTheHollowHound);
             // The nearest few in sight, picked without sorting the whole list (no allocation).
             for (var pick = 0; pick < count; pick++)
             {
@@ -1036,6 +1094,8 @@ namespace ARPG
                     if (!enemy.IsAlive || homingTargets.Contains(enemy) || !InReach(origin, enemy, skill.Range))
                         continue;
                     var distance = Vector2.Distance(origin, enemy.GroundPosition);
+                    if (hound && enemy.IsMarked)
+                        distance -= 1000f;
                     if (distance >= bestDistance || !enemies.Nav.HasLineOfSight(origin, enemy.GroundPosition))
                         continue;
                     best = enemy;
@@ -1068,7 +1128,8 @@ namespace ARPG
         // Explosive Arrow (Docs/02): bursts on the first enemy or wall it meets.
         Shot Explosive(Vector2 origin, Vector2 direction, SkillDefinition skill)
         {
-            var shot = NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot, DamageOf(skill, skill.DamageMultiplier), ShotStyle.Explosive, Glow(skill));
+            var shot = NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot,
+                DamageOf(skill, skill.DamageMultiplier) * StalkerFactor(), ShotStyle.Explosive, Glow(skill));
             shot.BurstRadius = skill.BurstRadius;
             return shot;
         }
@@ -1341,13 +1402,26 @@ namespace ARPG
                 if (mark.Pulse <= 0f)
                 {
                     mark.Pulse += MarkPulseSeconds;
+                    if (mark.Burning)
+                        fx.Embers(IsoMath.GroundToWorld(mark.Center), mark.Radius * 2f, 2);
                     enemies.QueryEnemies(mark.Center, mark.Radius + QueryMargin, nearby);
                     for (var n = 0; n < nearby.Count; n++)
                     {
                         var enemy = nearby[n];
                         if (!enemy.IsAlive || Vector2.Distance(enemy.GroundPosition, mark.Center) > mark.Radius + enemy.Definition.BodyRadius)
                             continue;
-                        enemy.ApplyBleed(Damage(enemy, Legendaries.GallowsBleedPerSecond, false), MarkPulseSeconds * 2f);
+                        if (!mark.Burning)
+                        {
+                            enemy.ApplyBleed(Damage(enemy, Legendaries.GallowsBleedPerSecond, false), MarkPulseSeconds * 2f);
+                            continue;
+                        }
+                        // Burning ground: 60 percent weapon damage a second, dealt each pulse, and a slow.
+                        enemy.ApplySlow(1f - Legendaries.CinderGroundSlow, MarkPulseSeconds * 2f);
+                        var damage = Damage(enemy, Legendaries.CinderGroundPerSecond * MarkPulseSeconds, false);
+                        var world = IsoMath.GroundToWorld(enemy.GroundPosition);
+                        DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, false, isDamageToPlayer: false);
+                        if (enemy.TakeDamage(damage))
+                            Kills++;
                     }
                 }
                 marks[i] = mark;
@@ -1366,9 +1440,12 @@ namespace ARPG
             }
 
             var multiplier = shot.Multiplier * (1f + shot.PierceBonus * shot.PierceHits);
+            var wasBleeding = enemy.IsBleeding;
+            var bleed = enemy.BleedPerSecond;
             var killed = Strike(enemy, multiplier, projectile: true, forceCrit: shot.CertainCrit);
             HealOnHit(1);
             Afflict(enemy, shot);
+            OnArrowHit(ref shot, enemy, wasBleeding, bleed);
             if (shot.Style == ShotStyle.Basic)
                 focus.Gain(FocusPool.PerBasicHit + session.PassiveTree.Bonuses.RagePerBasicHit);
             else
@@ -1394,6 +1471,62 @@ namespace ARPG
             }
             fx.Blood(world, screenDirection, ArrowHeight, killed ? 1.8f : 0.8f);
             return true;
+        }
+
+        // The powers that fire when an arrow strikes (Docs/03): The Widow's Draw, Bloodletter's Grips, Falconer's Hood and
+        // the Crown of the Unblinking Eye. Reads lastCritical, set by the Strike just made.
+        void OnArrowHit(ref Shot shot, EnemyController enemy, bool wasBleeding, float bleedPerSecond)
+        {
+            var equipment = session.Equipment;
+            if (shot.Style == ShotStyle.Basic && equipment.Wears(LegendaryId.WidowsDraw))
+            {
+                // A bleed already running jumps to the nearest other enemy within 3; a crit opens a fresh one.
+                if (wasBleeding)
+                {
+                    var next = NearestOther(enemy, Legendaries.WidowSpreadRadius);
+                    if (next != null)
+                    {
+                        next.ApplyBleed(bleedPerSecond, Legendaries.WidowBleedSeconds);
+                        fx.Blood(IsoMath.GroundToWorld(next.GroundPosition), Vector2.up, ArrowHeight, 0.8f);
+                    }
+                }
+                if (lastCritical && enemy.IsAlive)
+                    enemy.ApplyBleed(Damage(enemy, Legendaries.WidowBleedPerSecond, false), Legendaries.WidowBleedSeconds);
+            }
+            if (lastCritical && enemy.IsBleeding && equipment.Wears(LegendaryId.BloodlettersGrips))
+                enemy.ExtendBleed(Legendaries.BloodletterExtendSeconds);
+            if (shot.Style == ShotStyle.Homing && equipment.Wears(LegendaryId.FalconersHood))
+                focus.Gain(Legendaries.FalconerFocusPerHit);
+            if (shot.ResetOnCrit && lastCritical)
+            {
+                shot.ResetOnCrit = false;
+                for (var c = 0; c < skills.Length; c++)
+                    if (skills[c] != null && skills[c].Kind == SkillKind.PierceShot)
+                        cooldowns[c] = 0f;
+            }
+        }
+
+        // The nearest living enemy to another, within a radius, not that one. Its own list: it runs while UpdateShots
+        // walks the nearby list.
+        readonly List<EnemyController> spreadNearby = new List<EnemyController>(16);
+
+        EnemyController NearestOther(EnemyController from, float radius)
+        {
+            enemies.QueryEnemies(from.GroundPosition, radius + QueryMargin, spreadNearby);
+            EnemyController best = null;
+            var bestDistance = radius;
+            for (var n = 0; n < spreadNearby.Count; n++)
+            {
+                var enemy = spreadNearby[n];
+                if (enemy == from || !enemy.IsAlive)
+                    continue;
+                var distance = Vector2.Distance(from.GroundPosition, enemy.GroundPosition);
+                if (distance > bestDistance)
+                    continue;
+                best = enemy;
+                bestDistance = distance;
+            }
+            return best;
         }
 
         // A fork: two arrows from the struck enemy at 45 degrees either side, each at half the damage, which keep every
@@ -1508,6 +1641,13 @@ namespace ARPG
             }
             Sfx.Play(SoundId.GroundBreaker, 0.8f);
             fx.Burst(IsoMath.GroundToWorld(at), shot.BurstRadius, shot.Glow);
+            // Cinder-Stitched Jerkin: the burst leaves burning ground that burns and slows.
+            if (session.Equipment.Wears(LegendaryId.CinderStitchedJerkin))
+            {
+                var radius = shot.BurstRadius * 0.8f;
+                marks.Add(new GroundMark { Center = at, Radius = radius, Left = Legendaries.CinderGroundSeconds, Burning = true });
+                fx.Fire(IsoMath.GroundToWorld(at), radius * 2f, Legendaries.CinderGroundSeconds);
+            }
         }
 
         void Retire(Shot shot)
@@ -1594,6 +1734,7 @@ namespace ARPG
             var tree = session.PassiveTree.Bonuses;
             var attributes = session.AttributeBonuses;
             var critical = forceCrit || Random.value < (GameSession.Current.Equipment.CriticalChancePercent + tree.CriticalChance + attributes.CriticalChance) / 100f;
+            lastCritical = critical;
             var damage = Damage(enemy, multiplier, critical, movementSkill, projectile);
 
             var world = IsoMath.GroundToWorld(enemy.GroundPosition);
@@ -1639,8 +1780,24 @@ namespace ARPG
             var criticalDamage = equipment.CriticalDamagePercent / 100f + tree.CriticalDamage / 100f + attributes.CriticalDamage / 100f +
                                  (critical && enemy.IsBleeding ? tree.CritDamageVsBleeding : 0f);
             return CombatFormulas.HitDamage(
-                WeaponDamage, multiplier, equipment.FlatWeaponDamageBonus, increased, 1f,
+                WeaponDamage, multiplier, equipment.FlatWeaponDamageBonus, increased, projectile ? ArrowMore(enemy) : 1f,
                 critical, criticalDamage, enemy.Definition.Armor, enemy.Level);
+        }
+
+        // The legendaries' "more" damage from arrows on some enemies (Docs/03): The Long Silence past 7 units, the Hollow
+        // Hound's marked enemies, Bloodletter's Grips on the bleeding. They multiply.
+        float ArrowMore(EnemyController enemy)
+        {
+            var equipment = session.Equipment;
+            var more = 1f;
+            if (equipment.Wears(LegendaryId.TheLongSilence) && player != null &&
+                Vector2.Distance(IsoMath.WorldToGround(player.transform.position), enemy.GroundPosition) > Legendaries.LongSilenceFar)
+                more *= 1f + Legendaries.LongSilenceBonus;
+            if (enemy.IsMarked && equipment.Wears(LegendaryId.QuiverOfTheHollowHound))
+                more *= 1f + Legendaries.HoundMarkBonus;
+            if (enemy.IsBleeding && equipment.Wears(LegendaryId.BloodlettersGrips))
+                more *= 1f + Legendaries.BloodletterBonus;
+            return more;
         }
 
         void HealOnHit(int hits)

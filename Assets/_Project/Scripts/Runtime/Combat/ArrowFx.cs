@@ -120,6 +120,26 @@ namespace ARPG
                 new Color(0.08f, 0.04f, 0.03f, 0.55f), new Color(0.08f, 0.04f, 0.03f, 0f), false, true);
         }
 
+        /// <summary>Burning ground (Cinder-Stitched Jerkin): a glowing patch of embers on the floor that lasts a while.</summary>
+        public void Fire(Vector2 ground, float size, float seconds)
+        {
+            Emit(ground, Vector2.zero, 0f, 0f, seconds, size * 0.8f, size, 1f,
+                new Color(1f, 0.45f, 0.1f, 0.5f), new Color(0.5f, 0.1f, 0f, 0f), false, true);
+            Embers(ground, size, 4);
+        }
+
+        /// <summary>A few embers rising from a patch of floor.</summary>
+        public void Embers(Vector2 ground, float size, int count)
+        {
+            for (var i = 0; i < count; i++)
+            {
+                var offset = Rotate(Vector2.right, Random.Range(0f, 360f)) * Random.Range(0f, size * 0.45f);
+                offset.y *= IsoMath.GroundSquash;
+                Emit(ground + offset, new Vector2(Random.Range(-0.2f, 0.2f), 0f), 0.05f, Random.Range(0.8f, 1.6f), Random.Range(0.4f, 0.8f),
+                    Random.Range(0.05f, 0.09f), 0.02f, 1f, new Color(1f, 0.7f, 0.25f, 1f), new Color(0.6f, 0.1f, 0f, 0f), false, false);
+            }
+        }
+
         /// <summary>A dark pool of blood on the floor that lasts a while (Gallowsreach's trail: enemies who walk through
         /// it bleed).</summary>
         public void Pool(Vector2 ground, float size, float seconds)

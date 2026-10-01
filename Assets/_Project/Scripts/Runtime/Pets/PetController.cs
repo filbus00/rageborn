@@ -230,6 +230,9 @@ namespace ARPG
                 critical, criticalDamage, target.Definition.Armor, target.Level);
             var world = IsoMath.GroundToWorld(target.GroundPosition);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);
+            // Quiver of the Hollow Hound (Docs/03): what the pet bites is marked for the arrows.
+            if (equipment.Wears(LegendaryId.QuiverOfTheHollowHound))
+                target.Mark(Legendaries.HoundMarkSeconds);
             var killed = target.TakeDamage(damage);
             Sfx.Play(killed ? SoundId.Kill : SoundId.Hit, 0.5f);
             if (killed && signet && combat != null)

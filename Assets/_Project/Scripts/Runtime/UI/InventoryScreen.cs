@@ -8,7 +8,8 @@ namespace ARPG
     /// The Bag: the one screen the inventory button opens (Docs/03, Docs/06; no separate pause menu). Built in code after
     /// the owner's reference of 2026-09-28: a header with the portrait, name, level and gold; the paper doll, the
     /// character in its gear with the nine slots around it; the main stats; the Forge materials; the backpack as a grid,
-    /// each item's tile in its rarity's color with an upgrade arrow; and tabs for Skills, Stats (the attributes) and Settings.
+    /// each item's tile in its rarity's color with an upgrade arrow; and tabs for Skills, Stats (the attributes), the Codex
+    /// (the legendaries found) and Settings.
     /// A tap on a slot or an item opens the item sheet (<see cref="ItemSheet"/>) with the comparison, Equip and Discard.
     /// A green arrow on the Bag button says the backpack holds an upgrade (Docs/06, upgrade badge). Opening it sets
     /// <see cref="Time.timeScale"/> to 0, the game's only pause. Icons, frames and the painted portrait wait for the UI
@@ -115,6 +116,7 @@ namespace ARPG
             LoadoutScreen.CloseIfOpen();
             PassiveTreeScreen.CloseIfOpen();
             StatsScreen.CloseIfOpen();
+            CodexScreen.CloseIfOpen();
             SettingsScreen.CloseIfOpen();
             panelRoot.SetActive(false);
             Time.timeScale = 1f;
@@ -407,6 +409,7 @@ namespace ARPG
                 (skillPoints > 0 ? $"Skills +{skillPoints}" : "Skills", LoadoutScreen.Open,
                     current.Level >= LoadoutScreen.OpensAtLevel || skillPoints > 0, false),
                 (statPoints > 0 ? $"Stats +{statPoints}" : "Stats", StatsScreen.Open, true, false),
+                ("Codex", CodexScreen.Open, true, false),
                 ("Settings", SettingsScreen.Open, true, false),
             };
             for (var i = 0; i < tabs.Count; i++)
