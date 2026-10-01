@@ -216,7 +216,7 @@ Proposed 2026-09-30 with the bows-only decision. Numbers are tuning.
 | Off-hand: quiver | none | Plus 5 percent attack speed, rising to 9 with the tier | Yes |
 | The other eight | As in the Wrathborn's table below | | |
 
-A longbow's damage per second is 1.04 times a short bow's before affixes; it pays in speed for reach. Both bows take two hands, so the off-hand holds only a quiver. A quiver rolls Flat weapon damage and Life (prefixes) and Attack speed, Critical chance and Critical damage (suffixes), and two quiver-only affixes are proposed: **Extra arrow** (S, 8 to 15 percent chance that a basic shot looses a second arrow at another enemy in reach) and **Pierce** (S, fixed: basic arrows pass through 1 more enemy, from item level 20). Block, the shield affixes (28, 85 below) and dual wield are gone.
+**Starting kit (decided 2026-10-01):** a Common item level 1 short bow (hunting bow look) and a Common item level 1 quiver (hide quiver look, +5 percent attack speed). A longbow's damage per second is 1.04 times a short bow's before affixes; it pays in speed for reach. Both bows take two hands, so the off-hand holds only a quiver. A quiver rolls Flat weapon damage and Life (prefixes) and Attack speed, Critical chance and Critical damage (suffixes), and two quiver-only affixes are proposed: **Extra arrow** (S, 8 to 15 percent chance that a basic shot looses a second arrow at another enemy in reach) and **Pierce** (S, fixed: basic arrows pass through 1 more enemy, from item level 20). Block, the shield affixes (28, 85 below) and dual wield are gone.
 
 ### The ten slots for the Wrathborn (retired 2026-09-30)
 

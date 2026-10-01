@@ -25,6 +25,8 @@ namespace ARPG.Tests
             Assert.IsFalse(session.Equipment.IsEmpty);
             Assert.AreEqual(1, session.Equipment.Weapon.ItemLevel);
             Assert.AreEqual(ItemRarity.Common, session.Equipment.Weapon.Rarity);
+            Assert.AreEqual(ItemSlot.Shield, session.Equipment.OffHand.Slot, "a quiver in the off-hand (the owner, 2026-10-01)");
+            Assert.AreEqual(ItemRarity.Common, session.Equipment.OffHand.Rarity);
             Assert.IsNull(session.Equipment.Chest);
             Assert.IsNull(session.Equipment.Helm);
             Assert.IsEmpty(session.Corpses);

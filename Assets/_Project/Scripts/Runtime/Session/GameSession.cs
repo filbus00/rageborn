@@ -183,8 +183,11 @@ namespace ARPG
 
         public static EquipmentState Empty => new EquipmentState((Item[])null);
 
-        /// <summary>The gear a new character starts with: a common level 1 weapon. A tuning value.</summary>
-        public static EquipmentState Starting => new EquipmentState(new Item(ItemSlot.Weapon, ItemRarity.Common, 1));
+        /// <summary>The gear a new character starts with (the owner, 2026-10-01): a Common level 1 short bow (the hunting
+        /// bow's look) and a Common level 1 quiver (the hide quiver's, +5 percent attack speed), so the first Magic drop is
+        /// already an upgrade and the off-hand is seen to hold a quiver from the start.</summary>
+        public static EquipmentState Starting => new EquipmentState(new Item(ItemSlot.Weapon, ItemRarity.Common, 1))
+            .With(ItemSlot.OffHand, new Item(ItemSlot.Shield, ItemRarity.Common, 1));
     }
 
     /// <summary>The equipment a dead character left behind, waiting where it died.</summary>

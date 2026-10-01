@@ -51,6 +51,66 @@ namespace ARPG.Editor
         const float ShotSeconds = 1f / 1.4f;
         const float MovingFramesPerSecond = 20f;
 
+        // The bow and quiver models (Docs/09 4.6; the owner's starting kit of 2026-10-01), when their files exist in the
+        // Wild Arrow's folder: wild_arrow_weapon_<look>.fbx, a bow prepared by ArtSource/tools/prepare_weapon.py with its
+        // grip (the middle) at the origin and standing up, held in the left fist; wild_arrow_offhand_<look>.fbx, a quiver,
+        // on the upper back. Each textured from <file>_albedo.png beside it. Without the files, no piece: the hand draws
+        // empty and the back is bare.
+        static SpriteBakeJob.Piece[] Pieces()
+        {
+            var pieces = new System.Collections.Generic.List<SpriteBakeJob.Piece>();
+            foreach (var look in AppearanceRules.OneHandWeaponLooks.Concat(AppearanceRules.TwoHandWeaponLooks))
+            {
+                var held = Held($"{Folder}/{Character}_weapon_{look}.fbx");
+                if (held == null)
+                    continue;
+                var piece = new SpriteBakeJob.Piece
+                {
+                    layer = AppearanceLayer.Weapon, look = look, prefab = held, bone = HumanBodyBones.LeftHand, autoGrip = true,
+                };
+                piece.grips.Add(Grip);
+                pieces.Add(piece);
+            }
+            foreach (var look in AppearanceRules.ShieldLooks)
+            {
+                var held = Held($"{Folder}/{Character}_offhand_{look}.fbx");
+                if (held == null)
+                    continue;
+                // Across the upper back, fletchings up over the right shoulder. A first guess in the chest bone's frame,
+                // to be checked on the first bake's sheets (a piece's place is easiest judged on a rendered frame).
+                var piece = new SpriteBakeJob.Piece
+                {
+                    layer = AppearanceLayer.OffHand, look = look, prefab = held, bone = HumanBodyBones.UpperChest,
+                    localPosition = new Vector3(0.05f, 0.05f, -0.16f), localEuler = new Vector3(0f, 0f, -25f),
+                };
+                piece.grips.Add(Grip);
+                pieces.Add(piece);
+            }
+            return pieces.ToArray();
+        }
+
+        // A rigid model with no rig, textured, wrapped in a prefab to hold.
+        static GameObject Held(string path)
+        {
+            if (!File.Exists(path))
+                return null;
+            var importer = (ModelImporter)AssetImporter.GetAtPath(path);
+            importer.animationType = ModelImporterAnimationType.None;
+            importer.importAnimation = false;
+            importer.materialImportMode = ModelImporterMaterialImportMode.ImportViaMaterialDescription;
+            importer.SaveAndReimport();
+            MixamoImport.ApplyTexture(path, importer);
+
+            var model = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            var name = Path.GetFileNameWithoutExtension(path) + "_held";
+            var root = new GameObject(name);
+            var instance = (GameObject)PrefabUtility.InstantiatePrefab(model);
+            instance.transform.SetParent(root.transform, false);
+            var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{Folder}/{name}.prefab");
+            Object.DestroyImmediate(root);
+            return prefab;
+        }
+
         [MenuItem("Tools/ARPG/Sprite Bake/Set Up Wild Arrow")]
         public static SpriteBakeJob SetUp()
         {
@@ -83,6 +143,7 @@ namespace ARPG.Editor
             job.bodies.Clear();
             job.bodies.Add(new SpriteBakeJob.Body { look = "leather", model = AssetDatabase.LoadAssetAtPath<GameObject>(BodyPath) });
             job.pieces.Clear();
+            job.pieces.AddRange(Pieces());
 
             var set = new SpriteBakeJob.GripSet { grip = Grip };
             SpriteBakeJob.Clip shot = null;
