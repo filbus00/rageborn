@@ -257,6 +257,7 @@ namespace ARPG
             burn.Clear();
             chill.Clear();
             burnPending = 0f;
+            burnPulse = 0f;
             life = MaxLife;
             punchTimer = 0f;
             deathTimer = 0f;
