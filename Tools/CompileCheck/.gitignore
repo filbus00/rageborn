@@ -1,2 +1,4 @@
 bin/
 obj/
+# The root .gitignore drops Unity-generated project files; these are hand-written.
+!*.csproj

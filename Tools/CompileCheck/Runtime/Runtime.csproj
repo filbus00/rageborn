@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework Condition="'$(TF)' == ''">netstandard2.1</TargetFramework><TargetFramework Condition="'$(TF)' != ''">$(TF)</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>ARPG.Runtime</AssemblyName>
+    <DefineConstants>UNITY_EDITOR;UNITY_IOS;DEVELOPMENT_BUILD;UNITY_2023_1_OR_NEWER;UNITY_6000_0_OR_NEWER</DefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>CS0067;CS0649;CS0169;CS0414;CS0618;CS0108;CS0114</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../../Assets/_Project/Scripts/Runtime/**/*.cs" />
+    <ProjectReference Include="../Stubs/Stubs.csproj" />
+  </ItemGroup>
+</Project>

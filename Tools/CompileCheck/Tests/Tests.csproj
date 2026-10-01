@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework><LangVersion>9.0</LangVersion><Nullable>disable</Nullable><ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>ARPG.Tests.EditMode</AssemblyName>
+    <DefineConstants>UNITY_EDITOR;UNITY_INCLUDE_TESTS;UNITY_IOS;DEVELOPMENT_BUILD</DefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <NoWarn>CS0067;CS0649;CS0169;CS0414;CS0618;CS0108;CS0114</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../../Assets/_Project/Tests/EditMode/**/*.cs" />
+    <ProjectReference Include="../Runtime/Runtime.csproj" /><ProjectReference Include="../Editor/Editor.csproj" /><ProjectReference Include="../Stubs/Stubs.csproj" /><ProjectReference Include="../NUnit/NUnit.csproj" />
+  </ItemGroup>
+</Project>
