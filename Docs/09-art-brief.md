@@ -4,7 +4,7 @@ This brief is written to be handed, section by section, to an AI image, 3D or an
 
 The user's direction (2026-09-27): **in the style of the original Diablo 2, but not a copy.**
 
-Sources this brief follows: `05-world-and-content.md` (setting, palette, enemy roster, art direction), `06-ui-ux.md` (HUD, screens, UI style, rarity colors), `02-classes-and-skills.md` (the Wrathborn and his skills), `03-itemization.md` (slots, materials), and the engine's fixed numbers in `CLAUDE.md` (tile size, pixels per unit, pivots).
+Sources this brief follows: `05-world-and-content.md` (setting, palette, enemy roster, art direction), `06-ui-ux.md` (HUD, screens, UI style, rarity colors), `02-classes-and-skills.md` (the Wrathborn and his skills), `03-itemization.md` (slots, materials), and the engine's fixed numbers in `CLAUDE.md` and `11-engineering-log.md` (tile size, pixels per unit, pivots).
 
 Contents:
 
@@ -112,7 +112,7 @@ AI tools drift. Hold everything together this way:
 | Tiles, walls, props, icons, UI, key art | **Route B, direct 2D image generation** | Single images, no animation |
 | Effects | Route B for single images; frame sequences as described in Step 8 | |
 
-**Route A in this project: the sprite bake tool.** The Unity editor bakes a rigged model and its animations into finished sheets with every rule below (camera, scale, directions, pivot, transparency, layout, splitting, import): make a Sprite Bake Job asset and run Tools > ARPG > Sprite Bake > Bake Selected Jobs (details in `CLAUDE.md`, Sprite bake). Hand over the model as FBX (humanoid rig) and the animations as FBX clips, in place (no root motion), rather than rendered frames. The settings below are for rendering in another 3D tool instead.
+**Route A in this project: the sprite bake tool.** The Unity editor bakes a rigged model and its animations into finished sheets with every rule below (camera, scale, directions, pivot, transparency, layout, splitting, import): make a Sprite Bake Job asset and run Tools > ARPG > Sprite Bake > Bake Selected Jobs (details in `11-engineering-log.md`, Sprite bake). Hand over the model as FBX (humanoid rig) and the animations as FBX clips, in place (no root motion), rather than rendered frames. The settings below are for rendering in another 3D tool instead.
 
 **Route A render settings (Blender or any 3D tool):**
 

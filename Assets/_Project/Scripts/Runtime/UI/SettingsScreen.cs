@@ -239,7 +239,7 @@ namespace ARPG
             row.transform.SetParent(list, false);
             var layout = row.GetComponent<HorizontalLayoutGroup>();
             layout.spacing = 12f;
-            // Children's widths are controlled, or a label's flexible width is ignored (CLAUDE.md, Loot).
+            // Children's widths are controlled, or a label's flexible width is ignored (Docs/11-engineering-log.md, Loot).
             layout.childControlWidth = true;
             layout.childControlHeight = true;
             layout.childForceExpandWidth = false;

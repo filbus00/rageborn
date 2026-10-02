@@ -187,7 +187,7 @@ Against the budget above (700 MB peak memory on target, under 400 MB installed):
 Proposed ways to fit, all compatible with the decisions (Q3 lists them as options):
 
 1. Trim and pack every sheet into atlases (the bake writes full cells today). Expected saving 40 to 60 percent for bodies, more for pieces.
-2. Rank variants by shader instead of separate sheets: the built tint cannot reach gold or crimson (`CLAUDE.md`, Rank), but a gradient-map shader that replaces the sprite's colours by brightness can. One sheet set per enemy instead of three: act enemies drop from about 580 to about 190 MB before trimming.
+2. Rank variants by shader instead of separate sheets: the built tint cannot reach gold or crimson (`11-engineering-log.md`, Enemies, Rank), but a gradient-map shader that replaces the sprite's colours by brightness can. One sheet set per enemy instead of three: act enemies drop from about 580 to about 190 MB before trimming.
 3. 16 directions only where the eye needs them (idle, run, the turns, the backward run), 8 for attacks, skills, hit and death, whose rows the game already picks by angle.
 4. Stream looks by act: Unity Addressables in per-act groups, with acts 2 to 5 and their looks as Apple on-demand resources or background assets, so the installed app holds act 1 and the town only.
 5. Fewer frames for short actions (skills at 8 frames instead of 10 to 14).
@@ -211,7 +211,7 @@ The balance report and the autopilot cover act 1. Proposed: both take an act and
 
 ## Audio and haptics plan (proposed, with the owner's decision of 2026-09-27)
 
-Built: synthesized placeholder effects with 16 voices and priorities, and a placeholder synth music loop (`CLAUDE.md`, Sound). The plan below is for the real audio. **Decided (Q21, 2026-09-27):** the music and sounds are generated with AI tools, like the art, not commissioned or licensed. The structure below is a proposal.
+Built: synthesized placeholder effects with 16 voices and priorities, and a placeholder synth music loop (`11-engineering-log.md`, Sound). The plan below is for the real audio. **Decided (Q21, 2026-09-27):** the music and sounds are generated with AI tools, like the art, not commissioned or licensed. The structure below is a proposal.
 
 ### Music
 

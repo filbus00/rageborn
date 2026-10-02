@@ -303,9 +303,9 @@ Left out on purpose: anything that pulls, stuns or roots the player (the stick i
 
 ### Bosses (proposed)
 
-Every boss follows the built Cinder Warden pattern (05, Act boss in `CLAUDE.md`): 30 times a normal enemy's life at its level, phases below 2/3 and 1/3 with a screen flash and the current attack cancelled, the stagger meter (3.5 per hit, 3 s stagger), attacks as ground telegraphs that fill before they land, damage as the enemy hit curve times a multiplier, an arena of radius 18 cells (12.7 units) replacing the last level's exit room, reset (not heal) when the player leaves by 3 units or dies, and Stairs To Town after the kill (acts 1 to 4 also open the stairs to the next act's town, see Story). Vigil III adds the one extra attack listed per phase (04, tier table).
+Every boss follows the built Cinder Warden pattern (05, Act boss in `11-engineering-log.md`): 30 times a normal enemy's life at its level, phases below 2/3 and 1/3 with a screen flash and the current attack cancelled, the stagger meter (3.5 per hit, 3 s stagger), attacks as ground telegraphs that fill before they land, damage as the enemy hit curve times a multiplier, an arena of radius 18 cells (12.7 units) replacing the last level's exit room, reset (not heal) when the player leaves by 3 units or dies, and Stairs To Town after the kill (acts 1 to 4 also open the stairs to the next act's town, see Story). Vigil III adds the one extra attack listed per phase (04, tier table).
 
-The Cinder Warden (act 1) is built as written above in this file and in `CLAUDE.md`; its Vigil III additions: phase 1 a second slam right after the first (offset 3 units toward the player), phase 2 fire ring 1 unit wider, phase 3 a fourth charge.
+The Cinder Warden (act 1) is built as written above in this file and in `11-engineering-log.md`; its Vigil III additions: phase 1 a second slam right after the first (offset 3 units toward the player), phase 2 fire ring 1 unit wider, phase 3 a fourth charge.
 
 The Tidewife (act 2, cold):
 
