@@ -72,7 +72,8 @@ namespace ARPG
             switch (session.Onboarding.OnItemFound(item))
             {
                 case OnboardingHint.Forge:
-                    banner.Show(ForgeHint);
+                    if (Features.Forge)
+                        banner.Show(ForgeHint);
                     break;
                 case OnboardingHint.Legendary:
                     banner.Show(LegendaryHint);

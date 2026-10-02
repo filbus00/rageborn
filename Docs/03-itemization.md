@@ -180,6 +180,8 @@ Power score is a single number computed from an item's contribution to damage pe
 
 ## Forge (crafting)
 
+**On hold (the owner, 2026-10-02):** "lets drop the Smith and all the special crafting for now. Lets focus on the core. Just killing mobs, looting gear." The built Forge (Salvage, Reforge, Reroll, Temper) is switched off in the game (`Features.Forge`), not deleted; the Fletcher and elite essences proposed the same day are not built. Everything below describes the Forge as designed, for when it returns.
+
 The Forge is a bottom sheet opened by walking up to the smith in town (05-world-and-content.md), with one action per tab and Salvage as the first tab. Every action has a gold cost and a material cost. The first version builds Salvage, Reforge affix, Reroll values and Temper (decision of 2026-09-26). Reforge turns the chosen affix into a new random affix of the same kind at the same tier, and can land on the same stat.
 
 | Action | Effect | Cost basis |

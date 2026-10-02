@@ -308,14 +308,16 @@ namespace ARPG
             rect.offsetMax = new Vector2(-16f, MaterialsTop);
             var inside = UiStyle.FillOf(panel).transform;
 
-            var entries = new List<(string name, Color color, string count)>
+            // With the Forge switched off (Features.Forge) the row shows only the backpack count.
+            var entries = new List<(string name, Color color, string count)>();
+            if (Features.Forge)
             {
-                ("Ash", LootColors.Of(ItemRarity.Common), current.Materials(CraftingMaterial.Ash).ToString()),
-                ("Cinders", LootColors.Of(ItemRarity.Magic), current.Materials(CraftingMaterial.Cinders).ToString()),
-                ("Bloodstone", LootColors.Of(ItemRarity.Rare), current.Materials(CraftingMaterial.Bloodstone).ToString()),
-                ("Soulglass", LootColors.Of(ItemRarity.Legendary), current.Materials(CraftingMaterial.Soulglass).ToString()),
-                ("Backpack", UiStyle.TextDim, $"{current.Inventory.Count}/{current.Inventory.Capacity}"),
-            };
+                entries.Add(("Ash", LootColors.Of(ItemRarity.Common), current.Materials(CraftingMaterial.Ash).ToString()));
+                entries.Add(("Cinders", LootColors.Of(ItemRarity.Magic), current.Materials(CraftingMaterial.Cinders).ToString()));
+                entries.Add(("Bloodstone", LootColors.Of(ItemRarity.Rare), current.Materials(CraftingMaterial.Bloodstone).ToString()));
+                entries.Add(("Soulglass", LootColors.Of(ItemRarity.Legendary), current.Materials(CraftingMaterial.Soulglass).ToString()));
+            }
+            entries.Add(("Backpack", UiStyle.TextDim, $"{current.Inventory.Count}/{current.Inventory.Capacity}"));
             for (var i = 0; i < entries.Count; i++)
             {
                 var (name, color, count) = entries[i];

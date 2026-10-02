@@ -12,6 +12,13 @@ namespace ARPG
     {
         ForgeScreen screen;
 
+        // The Forge is switched off for now (Features.Forge): the smith is not in town.
+        void Awake()
+        {
+            if (!Features.Forge)
+                gameObject.SetActive(false);
+        }
+
         void OnTriggerEnter2D(Collider2D other)
         {
             if (other.GetComponentInParent<PlayerController>() == null)

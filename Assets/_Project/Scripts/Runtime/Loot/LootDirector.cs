@@ -87,7 +87,8 @@ namespace ARPG
             for (var i = 0; i < items.Count; i++)
                 DropItem(items[i], at + Scatter());
 
-            GrantMaterials(source, at);
+            if (Features.Forge)
+                GrantMaterials(source, at);
 
             // Docs/06: the first Legendary is guaranteed at minute 20 of play, from an elite.
             var onboarding = GameSession.Current.Onboarding;
