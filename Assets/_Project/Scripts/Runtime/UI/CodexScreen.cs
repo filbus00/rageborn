@@ -196,7 +196,7 @@ namespace ARPG
                 var item = Legendaries.Create(legendary.Id, Mathf.Max(Legendaries.MinItemLevel, session.Level), DevRandom);
                 if (!session.PickUp(item))
                 {
-                    count.text = "<color=#FF6060>The backpack is full</color>";
+                    count.text = "<color=#FF6060>No room in the backpack</color>";
                     return;
                 }
                 Render();

@@ -23,8 +23,8 @@ namespace ARPG
         [Tooltip("Left empty, the first PlayerHealth in the scene is used.")]
         [SerializeField] PlayerHealth health;
 
-        const int GridColumns = 7;
-        const float Cell = 146f, CellGap = 6f;
+        // The backpack grid (Inventory, 10 x 6): cells this size, so ten fit the Bag's width.
+        const float Cell = 104f, CellGap = 4f, GridPadding = 10f;
 
         RectTransform content;
         ItemSheet sheet;
@@ -317,7 +317,7 @@ namespace ARPG
                 entries.Add(("Bloodstone", LootColors.Of(ItemRarity.Rare), current.Materials(CraftingMaterial.Bloodstone).ToString()));
                 entries.Add(("Soulglass", LootColors.Of(ItemRarity.Legendary), current.Materials(CraftingMaterial.Soulglass).ToString()));
             }
-            entries.Add(("Backpack", UiStyle.TextDim, $"{current.Inventory.Count}/{current.Inventory.Capacity}"));
+            entries.Add(("Backpack", UiStyle.TextDim, $"{current.Inventory.CellsUsed}/{current.Inventory.CellCount} space"));
             for (var i = 0; i < entries.Count; i++)
             {
                 var (name, color, count) = entries[i];
@@ -358,28 +358,33 @@ namespace ARPG
             inside.gameObject.AddComponent<RectMask2D>();
             UiStyle.FillOf(frame).raycastTarget = true;
 
+            // The grid of cells (Inventory, 10 x 6), with each item laid over the cells it takes (ItemSize): a bow is a
+            // tall 2 x 4 block, a ring one cell.
+            var inventory = current.Inventory;
             var grid = UiStyle.Rect(inside, "Grid");
             grid.anchorMin = new Vector2(0.5f, 1f);
             grid.anchorMax = new Vector2(0.5f, 1f);
             grid.pivot = new Vector2(0.5f, 1f);
-            var layout = grid.gameObject.AddComponent<GridLayoutGroup>();
-            layout.cellSize = new Vector2(Cell, Cell);
-            layout.spacing = new Vector2(CellGap, CellGap);
-            layout.padding = new RectOffset(0, 0, 10, 10);
-            layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-            layout.constraintCount = GridColumns;
-            var rows = Mathf.CeilToInt(current.Inventory.Capacity / (float)GridColumns);
-            grid.sizeDelta = new Vector2(GridColumns * Cell + (GridColumns - 1) * CellGap, rows * Cell + (rows - 1) * CellGap + 20f);
+            grid.sizeDelta = new Vector2(inventory.Columns * Cell + (inventory.Columns - 1) * CellGap,
+                inventory.Rows * Cell + (inventory.Rows - 1) * CellGap + 2f * GridPadding);
             scroll.content = grid;
             scroll.viewport = inside;
 
-            var items = current.Inventory.Items;
-            for (var i = 0; i < current.Inventory.Capacity; i++)
+            for (var y = 0; y < inventory.Rows; y++)
+                for (var x = 0; x < inventory.Columns; x++)
+                {
+                    var cell = UiStyle.Image(grid, "Cell", UiStyle.EmptySlotFill);
+                    PlaceOnGrid(cell.rectTransform, new RectInt(x, y, 1, 1));
+                }
+
+            var items = inventory.Items;
+            for (var i = 0; i < items.Count; i++)
             {
-                var item = i < items.Count ? items[i] : null;
-                var tile = ItemTile(grid, item, "", 24);
-                if (item == null)
+                var item = items[i];
+                if (!inventory.PlacementOf(item, out var cells))
                     continue;
+                var tile = ItemTile(grid, item, "", cells.width * cells.height == 1 ? 18 : 24);
+                PlaceOnGrid(tile.rectTransform, cells);
                 var index = i;
                 tile.gameObject.AddComponent<Button>().onClick.AddListener(() => sheet.ShowBackpack(items, index));
                 if (PowerScore.IsUpgrade(current.Equipment, item, current.Level, current.PassiveTree.Bonuses))
@@ -388,6 +393,15 @@ namespace ARPG
                     UiStyle.Place(arrow.rectTransform, new Vector2(1f, 1f), new Vector2(-6f, -4f), new Vector2(40f, 40f));
                 }
             }
+        }
+
+        /// <summary>Puts a rect over a block of grid cells, counted from the grid's top left.</summary>
+        static void PlaceOnGrid(RectTransform rect, RectInt cells)
+        {
+            rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
+            rect.pivot = new Vector2(0f, 1f);
+            rect.anchoredPosition = new Vector2(cells.x * (Cell + CellGap), -(GridPadding + cells.y * (Cell + CellGap)));
+            rect.sizeDelta = new Vector2(cells.width * Cell + (cells.width - 1) * CellGap, cells.height * Cell + (cells.height - 1) * CellGap);
         }
 
         // --- Tabs ---------------------------------------------------------------------------------------------------

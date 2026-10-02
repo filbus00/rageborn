@@ -11,10 +11,16 @@ namespace ARPG.Tests
 
         static Item Chest(int itemLevel, ItemRarity rarity = ItemRarity.Common) => new Item(ItemSlot.Chest, rarity, itemLevel);
 
+        // Fills the grid to the last cell: bows while they fit, then rings in every cell left.
         static void FillBackpack(GameSession session)
         {
-            while (!session.Inventory.IsFull)
-                session.Inventory.TryAdd(Weapon(1));
+            while (session.Inventory.TryAdd(Weapon(1)))
+            {
+            }
+            while (session.Inventory.TryAdd(new Item(ItemSlot.Ring, ItemRarity.Common, 1)))
+            {
+            }
+            Assert.AreEqual(session.Inventory.CellCount, session.Inventory.CellsUsed, "the grid is full");
         }
 
         [Test]
@@ -215,13 +221,14 @@ namespace ARPG.Tests
             session.PickUp(better);
             session.EquipFromInventory(better);
             FillBackpack(session);
+            var count = session.Inventory.Count;
 
             var retrieved = session.Retrieve(corpse);
 
             Assert.IsFalse(retrieved);
             Assert.AreEqual(1, session.Corpses.Count, "the corpse stays where it is");
             Assert.AreEqual(5, session.Equipment.Weapon.ItemLevel);
-            Assert.AreEqual(Inventory.DefaultCapacity, session.Inventory.Count);
+            Assert.AreEqual(count, session.Inventory.Count);
         }
 
         [Test]
@@ -286,9 +293,11 @@ namespace ARPG.Tests
         {
             var session = new GameSession();
             FillBackpack(session);
+            var count = session.Inventory.Count;
 
             Assert.IsFalse(session.PickUp(Weapon(9)));
-            Assert.AreEqual(Inventory.DefaultCapacity, session.Inventory.Count);
+            Assert.IsFalse(session.PickUp(new Item(ItemSlot.Ring, ItemRarity.Magic, 9)), "not even one cell is left");
+            Assert.AreEqual(count, session.Inventory.Count);
         }
 
         [Test]
@@ -329,18 +338,19 @@ namespace ARPG.Tests
         [Test]
         public void EquipFromInventory_StillWorks_WithAFullBackpack()
         {
-            // Equipping an item already in the backpack is a net-zero slot change (it swaps places with what was
-            // worn), so a full backpack never blocks it.
+            // Equipping a bow from the backpack frees a bow's space for the worn bow that comes off, so a full grid never
+            // blocks swapping items of the same size.
             var session = new GameSession();
             var better = Weapon(4, ItemRarity.Rare);
             session.PickUp(better);
             FillBackpack(session);
+            var count = session.Inventory.Count;
 
             var ok = session.EquipFromInventory(better);
 
             Assert.IsTrue(ok);
             Assert.AreSame(better, session.Equipment.Weapon);
-            Assert.AreEqual(Inventory.DefaultCapacity, session.Inventory.Count, "the old weapon took the freed slot");
+            Assert.AreEqual(count, session.Inventory.Count, "the old weapon took the freed space");
         }
 
         [Test]

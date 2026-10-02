@@ -504,7 +504,8 @@ namespace ARPG
         }
 
         /// <summary>
-        /// Puts a found item in the backpack. Returns false, leaving the item where it is, when the backpack is full.
+        /// Puts a found item in the backpack. Returns false, leaving the item where it is, when there is no room for its
+        /// size (<see cref="ItemSize"/>).
         /// Nothing is auto-equipped any more: the player chooses from the inventory screen with
         /// <see cref="EquipFromInventory"/>.
         /// </summary>
@@ -534,19 +535,17 @@ namespace ARPG
             var place = PowerScore.PlaceFor(Equipment, item, Level, PassiveTree.Bonuses);
             var displaced = new List<Item>();
             var equipped = Equipment.Equip(place, item, displaced);
-            if (Inventory.Count - 1 + displaced.Count > Inventory.Capacity)
+            // The backpack is a grid (Inventory): the item leaves and whatever comes off must fit in its place, all or nothing.
+            if (!Inventory.TrySwap(item, displaced))
                 return false;
 
-            Inventory.Remove(item);
-            foreach (var worn in displaced)
-                Inventory.TryAdd(worn);
             Equipment = equipped;
             NotifyChanged();
             return true;
         }
 
         /// <summary>Unequips a slot back to the backpack. Returns false, changing nothing, when the slot is already
-        /// empty or the backpack is full.</summary>
+        /// empty or the backpack has no room for it.</summary>
         public bool Unequip(ItemSlot slot)
         {
             var current = Equipment.Get(slot);
@@ -768,11 +767,9 @@ namespace ARPG
                 }
             }
 
-            if (Inventory.Count + toBag.Count > Inventory.Capacity)
+            if (!Inventory.TrySwap(null, toBag))
                 return false;
 
-            foreach (var item in toBag)
-                Inventory.TryAdd(item);
             Equipment = newEquipment;
             corpses.Remove(corpse);
             NotifyChanged();

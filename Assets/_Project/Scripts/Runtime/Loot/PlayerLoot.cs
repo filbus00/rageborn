@@ -5,7 +5,7 @@ namespace ARPG
     /// <summary>
     /// Auto-loot from Docs/01-core-gameplay.md: there is nothing to tap. Gold is always picked up within 2.5 units.
     /// Items are picked up within 2.5 units when the character has not been hit for 1.5 seconds, or when nobody is
-    /// engaged with it any more (the room is clear). An item stays on the ground when the backpack is full.
+    /// engaged with it any more (the room is clear). An item stays on the ground when the backpack grid has no room for its size, with a NO ROOM callout now and then.
     /// </summary>
     public class PlayerLoot : MonoBehaviour
     {
@@ -32,6 +32,10 @@ namespace ARPG
             player = FindAnyObjectByType<PlayerController>();
             health = FindAnyObjectByType<PlayerHealth>();
         }
+
+        const float NoRoomCalloutSeconds = 4f;
+        static readonly Color NoRoomColor = new Color(1f, 0.45f, 0.35f);
+        float nextNoRoomCallout;
 
         void Update()
         {
@@ -67,6 +71,12 @@ namespace ARPG
                     Sfx.Play(SoundId.Pickup);
                     ItemsPickedUp++;
                     loot.Release(drop);
+                }
+                else if (quiet && Time.unscaledTime >= nextNoRoomCallout)
+                {
+                    // The grid has no room for this item's size: say so, at most every few seconds.
+                    nextNoRoomCallout = Time.unscaledTime + NoRoomCalloutSeconds;
+                    DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 2f, 0f), "NO ROOM", NoRoomColor, 40);
                 }
             }
         }

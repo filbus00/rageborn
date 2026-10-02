@@ -52,7 +52,7 @@ Open `Scenes/Town.unity` and press Play.
 | Check | Expect |
 |---|---|
 | The character | The baked Wild Arrow (or the Wrathborn as a fallback), idling and running in 8 directions |
-| The Bag | Tabs: Inventory, Skills, Stats, Codex, Settings. A Common Bow and a Common Quiver are worn |
+| The Bag | Tabs: Inventory, Skills, Stats, Codex, Settings. A Common Bow and a Common Quiver are worn. The backpack is a 10 x 6 grid; picked-up items show as blocks of their size (a bow a tall 2 x 4, a ring one cell), and the row above it reads "used/60 space" |
 | Stats tab | Strength, Agility, Vitality, Speed, Focus; 0 points at level 1 |
 | Codex tab | "0 of 24 legendaries found", every row "Not yet found" with its kind and build, each with an orange **DEV: give** button |
 | Pet vendor | A figure at town cell (5, 1); walking into it opens the vendor sheet (Wolf 500, Raven 1500, Boar 3000 gold) |

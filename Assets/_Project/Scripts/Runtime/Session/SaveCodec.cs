@@ -285,7 +285,7 @@ namespace ARPG
             {
                 var item = RestoreItem(saved, warnings);
                 if (item != null && !session.Inventory.TryAdd(item))
-                    warnings?.Add($"The backpack is full, dropped {item}.");
+                    warnings?.Add($"No room in the backpack grid, dropped {item}.");
             }
 
             session.AddGold(data.gold);
