@@ -27,8 +27,10 @@ namespace ARPG
         // The scene's own Magic Find and the raven's (Docs/02, Pets).
         float MagicFind => magicFind + PetRules.MagicFindBonus(GameSession.Current.Pets.Active);
 
-        // Drops from one kill are spread out a little so a coin and an item do not sit on the same spot.
+        // Drops from one kill are spread out a little so a coin and an item do not sit on the same spot. Items hop
+        // farther out, so a pack's loot does not land in one heap.
         const float ScatterRadius = 0.35f;
+        const float ItemScatterRadius = 0.6f;
         const float GoldenAngle = 2.3999632f;
 
         readonly Stack<LootDrop> pool = new Stack<LootDrop>();
@@ -85,7 +87,7 @@ namespace ARPG
 
             var items = loot.RollDrops(source, level, MagicFind);
             for (var i = 0; i < items.Count; i++)
-                DropItem(items[i], at + Scatter());
+                DropItem(items[i], at + Scatter(ItemScatterRadius), at);
 
             if (Features.Forge)
                 GrantMaterials(source, at);
@@ -95,7 +97,7 @@ namespace ARPG
             if (source == LootSource.Elite && onboarding.LegendaryDue)
             {
                 onboarding.MarkGuaranteeDropped();
-                DropItem(loot.RollItem(ItemRarity.Legendary, level), at + Scatter());
+                DropItem(loot.RollItem(ItemRarity.Legendary, level), at + Scatter(ItemScatterRadius), at);
             }
         }
 
@@ -135,11 +137,11 @@ namespace ARPG
         public void DropChest(int itemLevel, Vector2 ground)
         {
             var loot = GameSession.Current.Loot;
-            DropGold(loot.RollGold(LootSource.ZoneChest, itemLevel), ground + Scatter());
+            DropGold(loot.RollGold(LootSource.ZoneChest, itemLevel), ground + Scatter(ScatterRadius));
 
             var items = loot.RollDrops(LootSource.ZoneChest, itemLevel, MagicFind);
             for (var i = 0; i < items.Count; i++)
-                DropItem(items[i], ground + Scatter());
+                DropItem(items[i], ground + Scatter(ItemScatterRadius), ground);
         }
 
         /// <summary>Puts gold on the ground at a ground position. Chests, elites and bosses will use this too.</summary>
@@ -151,11 +153,16 @@ namespace ARPG
             GoldDropCount++;
         }
 
-        /// <summary>Puts an item on the ground at a ground position, with its rarity beam.</summary>
-        public void DropItem(Item item, Vector2 ground)
+        /// <summary>Puts an item on the ground at a ground position, with its rarity beam, hopping there from
+        /// <paramref name="from"/> (the same place when null).</summary>
+        public void DropItem(Item item, Vector2 ground, Vector2? from = null)
         {
+            // An item never lands in or behind a wall: then it stays where it came from.
+            var nav = enemies != null ? enemies.Nav : null;
+            if (from.HasValue && nav != null && !nav.HasLineOfSight(from.Value, ground))
+                ground = from.Value;
             var drop = TakeDrop();
-            drop.ShowItem(item, ground);
+            drop.ShowItem(item, ground, from ?? ground);
             active.Add(drop);
             ItemDropCount++;
             // Docs/01 and Docs/05: a distinct sound per rarity.
@@ -182,10 +189,42 @@ namespace ARPG
             return drop;
         }
 
-        Vector2 Scatter()
+        Vector2 Scatter(float radius)
         {
             var angle = scatterIndex++ * GoldenAngle;
-            return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * ScatterRadius;
+            return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
         }
+
+        // Names on the ground are laid out again a few times a second, and at once when drops come or go.
+        void LateUpdate()
+        {
+            if (active.Count == laidOutCount && Time.unscaledTime < nextLayout)
+                return;
+            laidOutCount = active.Count;
+            nextLayout = Time.unscaledTime + LayoutSeconds;
+
+            labels.Clear();
+            labelled.Clear();
+            foreach (var drop in active)
+            {
+                if (drop.IsGold)
+                    continue;
+                // Wanted drops and better rarities keep their spot; the rest are lifted out of their way.
+                var priority = (int)drop.Item.Rarity + (drop.WantedCached ? 10 : 0);
+                labels.Add(drop.LabelAnchor, drop.LabelSize, priority);
+                labelled.Add(drop);
+            }
+            labels.Solve(lifts);
+            for (var i = 0; i < labelled.Count; i++)
+                labelled[i].SetLabelLift(lifts[i]);
+        }
+
+        const float LayoutSeconds = 0.25f;
+
+        readonly LabelLayout labels = new LabelLayout();
+        readonly List<LootDrop> labelled = new List<LootDrop>();
+        readonly List<float> lifts = new List<float>();
+        int laidOutCount = -1;
+        float nextLayout;
     }
 }

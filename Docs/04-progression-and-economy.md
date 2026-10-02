@@ -62,7 +62,7 @@ Enemy levels are fixed per depth and tier, never set from the player's level (de
 
 | Currency | Source | Use | Sink |
 |---|---|---|---|
-| Gold | Enemy drops, chests, a little from salvage (there is no vendor, decided 2026-09-27, Q26) | Forge actions, respec, stash tabs and loadout presets (Q16) | Forge costs, respec, stash, presets |
+| Gold | Enemy drops, chests, selling gear to the merchant in town (2026-10-02, replacing Q26's "no vendor"), a little from salvage | Forge actions, respec, stash tabs and loadout presets (Q16) | Forge costs, respec, stash, presets |
 | Ash | Salvage common | Low-tier gem fuse | Gem fuse |
 | Cinders | Salvage magic | Add a socket to a Rare (see the material economy below) | Socket |
 | Bloodstone | Salvage rare, elites | Reforge, a socket on a Legendary | Forge |
@@ -231,7 +231,7 @@ Sinks (proposed, tuning):
 | Socket (Forge) | 20 times the curve plus materials | 03 |
 | Gem fusion | 5, 15, 40, 100 times the curve for each step up | 03 |
 | Transmog | After launch (decided, Q24) | |
-| Vendor | None in 1.0 (decided, Q26); salvage gives a little gold instead | |
+| Vendor | A merchant buys gear, sells nothing (2026-10-02; Q26 was "none"). Price: 2, 6, 15, 40 gold by rarity, times 1 + 0.15 x item level; a named legendary x 1.5 | `SellRules` |
 
 Rule kept from above: no sink punishes a normal session, and a character never needs to farm gold to keep playing.
 

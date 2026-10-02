@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 namespace ARPG
 {
     /// <summary>
-    /// Pets across scenes (Docs/02, Pets): places the Pet Vendor in town, and keeps the active pet at the character's
+    /// Pets across scenes (Docs/02, Pets): places the Pet Vendor (and the merchant) in town, and keeps the active pet at the character's
     /// side in every scene that has one, swapping it the moment a different pet is made active. Created from code before
     /// the first scene and kept across scenes, like the travel director, so no scene needs rebuilding.
     /// </summary>
@@ -14,6 +14,9 @@ namespace ARPG
 
         // Beside the Waystone (3, -3), away from the Forge (-4, 4), the portal back (-2, -4) and the DEV stairs (9, 1), (9, 5).
         static readonly Vector2Int VendorCell = new Vector2Int(5, 1);
+
+        // The merchant (2026-10-02) mirrors the vendor on the other side of the start.
+        static readonly Vector2Int MerchantCell = new Vector2Int(-4, 1);
 
         GameSession session;
         PetController pet;
@@ -48,7 +51,10 @@ namespace ARPG
             // The old scene's pet went with it.
             pet = null;
             if (scene.name == TownScene)
+            {
                 PetVendor.Create(IsoMath.CellToGround(VendorCell), null);
+                Merchant.Create(IsoMath.CellToGround(MerchantCell), null);
+            }
             Refresh();
         }
 

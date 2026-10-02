@@ -10,8 +10,8 @@ namespace ARPG
     /// The item tooltip as a bottom sheet (Docs/03-itemization.md, item tooltips; Docs/06-ui-ux.md: menus open as
     /// bottom sheets, comparison before reading). Top to bottom: name in its rarity color, item level, the power score
     /// change with an arrow, the affixes with tier dots, the comparison strip against the equipped item with gains in
-    /// green and losses in red, and one row of large buttons. A backpack item offers Equip and Discard, an equipped one
-    /// Unequip. Swiping sideways moves through the backpack. Built in code by <see cref="InventoryScreen"/>; sockets,
+    /// green and losses in red, and one row of large buttons. A backpack item offers Equip and Discard (Sell at the
+    /// merchant), an equipped one Unequip. Swiping sideways moves through the backpack. Built in code by <see cref="InventoryScreen"/>; sockets,
     /// unique powers and Lock come with the systems behind them. Salvage is at the Forge in town, not here (the user's
     /// decision, 2026-09-26).
     /// </summary>
@@ -46,6 +46,10 @@ namespace ARPG
         public event Action Changed;
 
         public bool IsOpen => gameObject.activeSelf;
+
+        /// <summary>At the merchant in town (<see cref="InventoryScreen.OpenAtMerchant"/>): a backpack item offers Sell for
+        /// its price (<see cref="SellRules.Price"/>) in place of Discard.</summary>
+        public bool Selling { get; set; }
 
         /// <summary>Builds the sheet under <paramref name="parent"/>, hidden.</summary>
         public static ItemSheet Create(Transform parent)
@@ -179,7 +183,8 @@ namespace ARPG
             title.color = LootColors.Of(item.Rarity);
 
             var position = showingEquipped ? "equipped" : $"{index + 1} of {list.Count}, swipe for more";
-            subtitle.text = $"Item level {item.ItemLevel}   ·   {position}";
+            subtitle.text = $"Item level {item.ItemLevel}   ·   {position}" +
+                            (Selling && !showingEquipped ? $"   ·   <color=#F0C840>sells for {SellRules.Price(item)} gold</color>" : "");
 
             var worn = showingEquipped ? item : equipment.Get(PowerScore.PlaceFor(equipment, item, session.Level, session.PassiveTree.Bonuses));
             if (showingEquipped)
@@ -297,10 +302,12 @@ namespace ARPG
                         Changed?.Invoke();
                     }
                 });
-                NewButton("Discard", () =>
+                NewButton(Selling ? $"Sell +{SellRules.Price(item)}" : "Discard", () =>
                 {
-                    if (!session.Discard(item))
+                    if (Selling ? session.Sell(item) == 0 : !session.Discard(item))
                         return;
+                    if (Selling)
+                        Sfx.Play(SoundId.Gold);
                     Changed?.Invoke();
                     // Stay open on the next item, so a run of junk can be cleared quickly.
                     if (list.Count == 0)

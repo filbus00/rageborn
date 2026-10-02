@@ -28,6 +28,12 @@ namespace ARPG
 
         RectTransform content;
         ItemSheet sheet;
+        // Opened by walking up to the merchant in town: the sheet sells instead of discarding, and the materials row
+        // becomes the sale of all of a rarity. Ends when the Bag closes.
+        bool atMerchant;
+        // A sale of all of a rarity asks for a second tap; this is the rarity waiting for it.
+        ItemRarity? pendingBulk;
+        readonly List<Item> bulkScratch = new List<Item>();
         Text upgradeBadge;
         GameSession session;
 
@@ -106,11 +112,25 @@ namespace ARPG
             Refresh();
         }
 
+        /// <summary>Opens the Bag at the merchant (<see cref="Merchant"/>): items are sold rather than discarded.</summary>
+        public void OpenAtMerchant()
+        {
+            atMerchant = true;
+            pendingBulk = null;
+            if (sheet != null)
+                sheet.Selling = true;
+            Open();
+        }
+
         public void Close()
         {
             if (panelRoot == null)
                 return;
 
+            atMerchant = false;
+            pendingBulk = null;
+            if (sheet != null)
+                sheet.Selling = false;
             if (sheet != null)
                 sheet.Hide();
             LoadoutScreen.CloseIfOpen();
@@ -140,7 +160,10 @@ namespace ARPG
             BuildHeader(current);
             BuildDoll(current);
             BuildStats(current);
-            BuildMaterials(current);
+            if (atMerchant)
+                BuildSaleRow(current);
+            else
+                BuildMaterials(current);
             BuildGrid(current);
             BuildTabs(current);
             RefreshBadge();
@@ -158,10 +181,10 @@ namespace ARPG
 
             HudLayout.Portrait(header, new Vector2(24f, -12f), 176f, current.Equipment);
 
-            var name = UiStyle.Text(header, "Wrathborn", 52, UiStyle.Gold, TextAnchor.MiddleLeft, true);
+            var name = UiStyle.Text(header, "Wild Arrow", 52, UiStyle.Gold, TextAnchor.MiddleLeft, true);
             UiStyle.Place(name.rectTransform, new Vector2(0f, 1f), new Vector2(222f, -24f), new Vector2(480f, 66f));
-            var level = UiStyle.Text(header, $"Level {current.Level}", 32, UiStyle.TextDim, TextAnchor.MiddleLeft, true);
-            UiStyle.Place(level.rectTransform, new Vector2(0f, 1f), new Vector2(224f, -92f), new Vector2(360f, 44f));
+            var level = UiStyle.Text(header, atMerchant ? $"Level {current.Level}   ·   <color=#E0C040>At the merchant</color>" : $"Level {current.Level}", 32, UiStyle.TextDim, TextAnchor.MiddleLeft, true);
+            UiStyle.Place(level.rectTransform, new Vector2(0f, 1f), new Vector2(224f, -92f), new Vector2(560f, 44f));
 
             // A thin life bar under the name, as the reference has it.
             var fraction = health != null ? Mathf.Clamp01(health.Fraction) : 1f;
@@ -225,21 +248,31 @@ namespace ARPG
                 tile.gameObject.AddComponent<Button>().onClick.AddListener(() => sheet.ShowEquipped(place));
         }
 
-        /// <summary>An item's tile: framed in its rarity's color on a blood-dark fill, its kind and item level; or an
-        /// empty place with the kind dimmed.</summary>
+        /// <summary>An item's tile: framed in its rarity's color on a blood-dark fill, its icon (<see cref="ItemIcons"/>)
+        /// and item level; or an empty place with the kind dimmed.</summary>
         static Image ItemTile(Transform parent, Item item, string emptyLabel, int size)
         {
             var tile = UiStyle.Framed(parent, item != null ? item.Slot + " Tile" : "Empty Tile", item != null ? UiStyle.SlotFill : UiStyle.EmptySlotFill, 4f);
             tile.raycastTarget = true;
             var rim = tile.transform.GetChild(0).GetComponent<Image>();
-            if (item != null)
-                rim.color = Color.Lerp(LootColors.Of(item.Rarity), UiStyle.Frame, item.Rarity == ItemRarity.Common ? 0.5f : 0.15f);
-            var text = item != null
-                ? $"{ItemComparison.KindName(item.Slot)}\n<size={size - 8}><color=#9E948A>iLvl {item.ItemLevel}</color></size>"
-                : emptyLabel;
-            var label = UiStyle.Text(tile.transform, text, size, item != null ? LootColors.Of(item.Rarity) : new Color(0.4f, 0.36f, 0.33f),
-                TextAnchor.MiddleCenter, true);
-            UiStyle.Stretch(label.rectTransform, 8f);
+            if (item == null)
+            {
+                var empty = UiStyle.Text(tile.transform, emptyLabel, size, new Color(0.4f, 0.36f, 0.33f), TextAnchor.MiddleCenter, true);
+                UiStyle.Stretch(empty.rectTransform, 8f);
+                return tile;
+            }
+
+            rim.color = Color.Lerp(LootColors.Of(item.Rarity), UiStyle.Frame, item.Rarity == ItemRarity.Common ? 0.5f : 0.15f);
+            var icon = UiStyle.Image(tile.transform, "Icon", Color.white);
+            icon.sprite = ItemIcons.For(item.Slot, item.Rarity);
+            icon.preserveAspect = true;
+            UiStyle.Stretch(icon.rectTransform, 8f);
+            // The item level in a corner; a one-cell tile has no room for it.
+            if (size >= 20)
+            {
+                var level = UiStyle.Text(tile.transform, item.ItemLevel.ToString(), size - 4, new Color(0.62f, 0.58f, 0.54f), TextAnchor.LowerRight, true);
+                UiStyle.Stretch(level.rectTransform, 8f);
+            }
             return tile;
         }
 
@@ -337,6 +370,60 @@ namespace ARPG
                 text.rectTransform.offsetMax = Vector2.zero;
             }
         }
+
+        // At the merchant, the row under the stats sells all of a rarity at once (upgrades and named legendaries are
+        // kept, SellRules.InBulkSale). The first tap names what would go and for how much; the second sells.
+        void BuildSaleRow(GameSession current)
+        {
+            var row = UiStyle.Rect(content, "Sale");
+            row.anchorMin = new Vector2(0f, 1f);
+            row.anchorMax = new Vector2(1f, 1f);
+            row.pivot = new Vector2(0.5f, 1f);
+            row.offsetMin = new Vector2(16f, MaterialsTop - MaterialsHeight);
+            row.offsetMax = new Vector2(-16f, MaterialsTop);
+
+            var rarities = SellRules.BulkRarities;
+            var columns = rarities.Length + 1;
+            for (var i = 0; i < rarities.Length; i++)
+            {
+                var rarity = rarities[i];
+                var gold = current.BulkSale(rarity, bulkScratch);
+                var count = bulkScratch.Count;
+                var confirming = pendingBulk == rarity && count > 0;
+                var label = confirming ? $"Sell {count}? +{gold}" : count > 0 ? $"All {RarityName(rarity)} ({count})" : $"No {RarityName(rarity)}";
+                var button = UiStyle.Button(row, label, () => OnBulkSale(rarity), 26, confirming ? UiStyle.Blood : UiStyle.Panel);
+                var rect = (RectTransform)button.transform;
+                rect.anchorMin = new Vector2(i / (float)columns, 0f);
+                rect.anchorMax = new Vector2((i + 1) / (float)columns, 1f);
+                rect.offsetMin = new Vector2(4f, 0f);
+                rect.offsetMax = new Vector2(-4f, 0f);
+                button.interactable = count > 0;
+                var text = button.GetComponentInChildren<Text>();
+                text.color = count > 0 ? (confirming ? UiStyle.Gold : LootColors.Of(rarity)) : new Color(0.4f, 0.36f, 0.33f);
+            }
+
+            var space = UiStyle.Text(row, $"{current.Inventory.CellsUsed}/{current.Inventory.CellCount}\n<size=22><color=#9E948A>space</color></size>",
+                28, UiStyle.TextMain, TextAnchor.MiddleCenter, true);
+            space.rectTransform.anchorMin = new Vector2(rarities.Length / (float)columns, 0f);
+            space.rectTransform.anchorMax = Vector2.one;
+            space.rectTransform.offsetMin = space.rectTransform.offsetMax = Vector2.zero;
+        }
+
+        void OnBulkSale(ItemRarity rarity)
+        {
+            if (pendingBulk != rarity)
+            {
+                pendingBulk = rarity;
+                Refresh();
+                return;
+            }
+            pendingBulk = null;
+            if (GameSession.Current.SellAll(rarity) > 0)
+                Sfx.Play(SoundId.Gold);
+            Refresh();
+        }
+
+        static string RarityName(ItemRarity rarity) => rarity == ItemRarity.Magic ? "Magic" : rarity + "s";
 
         // --- Backpack grid ------------------------------------------------------------------------------------------
 

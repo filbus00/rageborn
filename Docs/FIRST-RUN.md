@@ -3,7 +3,7 @@
 Everything from the switch to bows onward (the Wild Arrow, Focus, the four arrow skills, stat points, pets, the 24
 legendaries, the Codex, the new affixes, smart drops and the pixel art import) was written in a cloud session
 **without Unity**. On 2026-10-01 it was compiled there against stand-ins of the Unity API (`Tools/CompileCheck`) and
-524 of the 529 EditMode tests passed (the other five build real tilemaps and need Unity), so step 1 should go
+524 of the 529 EditMode tests passed (531 of 536 on 2026-10-02, after the grid backpack, pick-up rules, merchant and item icons) (the other five build real tilemaps and need Unity), so step 1 should go
 cleanly; it has still never been run in Unity or played. This page is the order to bring it up in,
 what you should see at each step, and what to send back when something is off.
 
@@ -28,7 +28,7 @@ Open the project and let it import.
 `Tools > ARPG > Run EditMode Tests`. It writes `Logs/EditModeTests.txt`.
 
 - **Expect:** all pass. The new test files are `FocusPoolTests`, `GripTests`, `AttributeTests`, `PetTests`,
-  `LegendaryTests`, `WildArrowAffixTests` and `PixelArtImportTests`; `AffixRollerTests`, `SaveStoreTests` and
+  `LegendaryTests`, `WildArrowAffixTests`, `PixelArtImportTests`, `AutoLootRulesTests` and `SellAndIconTests`; `InventoryTests` was rewritten; `AffixRollerTests`, `SaveStoreTests` and
   `GameSessionTests` were changed.
 - **If it fails:** send `Logs/EditModeTests.txt`.
 
@@ -52,10 +52,11 @@ Open `Scenes/Town.unity` and press Play.
 | Check | Expect |
 |---|---|
 | The character | The baked Wild Arrow (or the Wrathborn as a fallback), idling and running in 8 directions |
-| The Bag | Tabs: Inventory, Skills, Stats, Codex, Settings. A Common Bow and a Common Quiver are worn. The backpack is a 10 x 6 grid; picked-up items show as blocks of their size (a bow a tall 2 x 4, a ring one cell), and the row above it reads "used/60 space" |
+| The Bag | Header reads "Wild Arrow". Tabs: Inventory, Skills, Stats, Codex, Settings. A Common Bow and a Common Quiver are worn, shown as small pixel pictures of a bow and a quiver. The backpack is a 10 x 6 grid; picked-up items show as blocks of their size (a bow a tall 2 x 4, a ring one cell) with a picture of the kind, a gem in the rarity's colour from Magic up, and the row above it reads "used/60 space" |
 | Stats tab | Strength, Agility, Vitality, Speed, Focus; 0 points at level 1 |
 | Codex tab | "0 of 24 legendaries found", every row "Not yet found" with its kind and build, each with an orange **DEV: give** button |
 | Pet vendor | A figure at town cell (5, 1); walking into it opens the vendor sheet (Wolf 500, Raven 1500, Boar 3000 gold) |
+| Merchant | A gold figure labelled "Merchant" at town cell (-4, 1), left of the start. Walking into it opens the Bag with "At the merchant" under the level. Tapping a backpack item shows "sells for N gold" and a **Sell +N** button in place of Discard. The row under the stats has "All Commons", "All Magic", "All Rares": the first tap shows "Sell 3? +40", the second sells. Upgrades (green arrow) and named legendaries are never sold by those buttons. Gold in the header goes up |
 | The blue arc | Under the feet, full (Focus) |
 
 ## 5. Fight
@@ -66,7 +67,7 @@ Take the orange **DEV: depth 3** stairs in town (they hold husks, ghouls and arc
 |---|---|
 | Basic attack | An arrow flies at the nearest enemy in sight (never through a wall), with a glow trail; it sticks in walls |
 | Hits | Blood sprays on hits, white numbers, orange bigger crits |
-| Loot | Each item on the ground shows its name in its rarity colour; about 1.5 s after it lands, walking near picks it up and the name pops over the character. Commons stay on the ground (dimmed name) unless they are upgrades: Settings > Loot > Pick up changes that |
+| Loot | Items hop out of the dead enemy and land a little apart, never inside a wall; the beam rises as they land and a Rare or Legendary marker flares. Each shows its name in its rarity colour; when names would overlap after a big pack, they stack upward instead. About 1.5 s after it lands, walking near picks it up and the name pops over the character. Commons stay on the ground (dimmed name) unless they are upgrades: Settings > Loot > Pick up changes that |
 | Focus | The arc refills over time and by 4 per arrow that hits |
 | Skills | Split Arrow fires from level 1 when 2 or more enemies are ahead. Pierce Arrow (level 2), Homing Arrow (4) and Explosive Arrow (6) unlock as you level; a "NEW SKILL" callout shows |
 | Pierce Arrow | Goes through every enemy on its line and drips a blood trail that splashes and dries on the floor |

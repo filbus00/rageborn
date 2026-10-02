@@ -279,7 +279,7 @@ Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). All 26 were 
 - B. A vendor who buys items for gold.
 - C. A vendor who also sells Common and Magic items and gems, as in Diablo 2.
 
-*Answered 2026-09-27 (A):* No vendor; salvage gives a little gold.
+*Answered 2026-09-27 (A):* No vendor; salvage gives a little gold. *Changed 2026-10-02 (B):* the owner asked for a merchant who buys gear (decision log).
 
 ## Decision log
 
@@ -397,6 +397,8 @@ Written 2026-09-27 for the full-game plan (`10-full-game-plan.md`). All 26 were 
 | 2026-10-02 | The smith and all special crafting are on hold: "Lets focus on the core. Just killing mobs, looting gear for now." The Forge is switched off in the game (`Features.Forge`: no smith in town, no materials from elites or the boss, no Forge hint, no materials row in the Bag), its code and saved materials kept. A Fletcher (arrows built from heads, shafts and fletchings) and elite essences were proposed first and are not built | User |
 | 2026-10-02 | Gear takes realistic space: the backpack is a 10 x 6 grid, auto-packed (no dragging), replacing "40 slots, no grid tetris" (03). Sizes (Claude's, from Diablo 2): bow and longbow 2 x 4, quiver and chest 2 x 3, helm, gloves, boots 2 x 2, belt 2 x 1, amulet and ring 1 x 1. Claude's choices: first fit row by row from the top left; a full repack, tallest first, only when a new item fits nowhere; an item with no room stays on the ground with a NO ROOM callout at most every 4 s; positions are not saved | User (grid, packing), Claude (details) |
 | 2026-10-02 | Pick-up rules (a simple loot filter, before the full one of 03): a Settings row picks what auto-loot takes, Everything, Magic and better (default), Rare and better or Upgrades only; Legendaries and upgrades by the power score are always taken; an item lies on the ground 1.5 s before it is picked up ("a slight delay, maybe a second or two"); every drop shows its name in its rarity colour, and the name pops over the character on pickup. Claude's choices: the default, the 1.5 s, the dimmed name of a drop the rule leaves, the pet fetching only wanted drops | User (rules, delay, names), Claude (details) |
+| 2026-10-02 | A merchant in town buys gear for gold ("A use for gold: a merchant to sell gear"), which reverses Q26 (no vendor). It buys only. Claude's choices, to review: it stands at town cell (-4, 1), across the start from the Pet Vendor; walking up opens the Bag at the merchant, where an item's sheet offers Sell for its price in place of Discard, and a row sells all Commons, all Magic or all Rares at once after a second tap, keeping upgrades and named legendaries; prices are 2, 6, 15 and 40 gold by rarity, plus 15 percent of that for each item level, a named legendary half as much again (a Magic item at level 5 sells for about two to three kills' gold) | User (merchant), Claude, to review (details, prices) |
+| 2026-10-02 | Item icons: until the UI art (09), each kind of item is drawn in code as a small pixel picture the size of its backpack block (12 art pixels a cell, the palette and outline), with a gem or band in the rarity's colour from Magic up and an ember outline on a Legendary; the item level sits in the tile's corner. Loot on the ground: an item hops out of the kill to about 0.6 units away (never through a wall), its beam rises as it lands, a Rare or Legendary marker flares; names that would overlap are lifted line by line, wanted and better items keeping their spot | Claude, to review |
 
 ## Post-launch plan (draft)
 

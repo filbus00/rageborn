@@ -168,7 +168,7 @@ Each act uses two tilesets (depths 1 to 3 and 4 to 6) plus its boss arena. Act 1
 
 ### Towns (proposed)
 
-Every town has the same six services (the Pet Vendor added 2026-09-30), placed so every NPC is within 12 units of the arrival point and the stairs down are the farthest thing from it, so a player coming back from the dungeon passes the smith and the stash on the way. NPCs are walked up to, never tapped (decided).
+Every town has the same seven services (the Pet Vendor added 2026-09-30, the Merchant 2026-10-02), placed so every NPC is within 12 units of the arrival point and the stairs down are the farthest thing from it, so a player coming back from the dungeon passes the smith and the stash on the way. NPCs are walked up to, never tapped (decided).
 
 | NPC | Every town | Opens |
 |---|---|---|
@@ -176,6 +176,7 @@ Every town has the same six services (the Pet Vendor added 2026-09-30), placed s
 | Stash keeper | yes | The Stash (03, 06) |
 | Trainer | yes | Respec of skill points (02, 04; the Wild Arrow has no passive tree, and stat points have no respec for now); a short reminder of the loadout rules |
 | Pet Vendor | yes (decided 2026-09-30) | Pets (02): buy a kind, switch the active pet, set its rules |
+| Merchant | yes (decided 2026-10-02) | The Bag at the merchant: sell one item, or all of a rarity (upgrades and named legendaries kept); buys only |
 | Waystone | yes (act 1 built) | The Waystone map (06): waypoints, tiers, boss rotation |
 | The Watcher | yes, from the first act 5 boss kill | Rifts and the Abyss (Endgame, below), the "NPC in town" of 05 above; 06's Waystone map now points here (Q22) |
 | Story NPC | one per town | Plays the act's town scenes; otherwise one line of idle talk |

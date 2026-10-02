@@ -173,7 +173,7 @@ Power score is a single number computed from an item's contribution to damage pe
 
 ## Inventory and stash
 
-- Inventory (**decided 2026-10-02**, the owner: "Make gear take up realistic space", replacing "40 slots, no grid tetris"): a 10 x 6 grid of cells, **auto-packed** (the game places items; no dragging). Sizes: bow and longbow 2 x 4, quiver and chest 2 x 3, helm, gloves and boots 2 x 2, belt 2 x 1, amulet and ring 1 x 1. A new item goes in the first space it fits; when it fits nowhere, the backpack repacks; when it still does not fit, it stays on the ground ("NO ROOM").
+- Inventory (**decided 2026-10-02**, the owner: "Make gear take up realistic space", replacing "40 slots, no grid tetris"): a 10 x 6 grid of cells, **auto-packed** (the game places items; no dragging). Sizes: bow and longbow 2 x 4, quiver and chest 2 x 3, helm, gloves and boots 2 x 2, belt 2 x 1, amulet and ring 1 x 1. A new item goes in the first space it fits; when it fits nowhere, the backpack repacks; when it still does not fit, it stays on the ground ("NO ROOM"). Each tile shows a code-drawn pixel icon of its kind until the UI art exists. Unwanted gear is sold to the merchant in town (2026-10-02, Docs/04), one item at a time or all of a rarity at once.
 - Stash: 120 slots at start, expandable to 300 with gold.
 - Shared stash across characters on the same device.
 - Salvage: only at the Forge in town (decision of 2026-09-26). Salvage one item, or bulk salvage by rarity and below a chosen level. Salvage returns materials by rarity: Ash (common), Cinders (magic), Bloodstone (rare), Soulglass (legendary).

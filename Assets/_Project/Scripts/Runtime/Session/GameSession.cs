@@ -571,6 +571,51 @@ namespace ARPG
             return true;
         }
 
+        /// <summary>Sells a backpack item to the merchant in town for <see cref="SellRules.Price"/>. Returns the gold
+        /// paid, or 0 when the item was not in the backpack.</summary>
+        public int Sell(Item item)
+        {
+            if (item == null || !Inventory.Remove(item))
+                return 0;
+
+            var price = SellRules.Price(item);
+            Gold += price;
+            NotifyChanged();
+            return price;
+        }
+
+        /// <summary>The backpack items a sale of all of one rarity would take (<see cref="SellRules.InBulkSale"/>), into
+        /// <paramref name="into"/>, which is cleared first. Returns the gold they would bring.</summary>
+        public int BulkSale(ItemRarity rarity, List<Item> into)
+        {
+            into.Clear();
+            var gold = 0;
+            foreach (var item in Inventory.Items)
+                if (SellRules.InBulkSale(item, rarity, PowerScore.IsUpgrade(Equipment, item, Level, PassiveTree.Bonuses)))
+                {
+                    into.Add(item);
+                    gold += SellRules.Price(item);
+                }
+            return gold;
+        }
+
+        /// <summary>Sells every backpack item of a rarity except upgrades and named legendaries, with one change event.
+        /// Returns the gold paid.</summary>
+        public int SellAll(ItemRarity rarity)
+        {
+            var sold = new List<Item>();
+            BulkSale(rarity, sold);
+            var gold = 0;
+            foreach (var item in sold)
+                if (Inventory.Remove(item))
+                    gold += SellRules.Price(item);
+            if (gold == 0)
+                return 0;
+            Gold += gold;
+            NotifyChanged();
+            return gold;
+        }
+
         /// <summary>
         /// Salvages a backpack item at the Forge: it is gone and its materials are added
         /// (<see cref="ForgeRules.SalvageYield"/>). Equipped items are not salvaged. Returns false when the item was not
