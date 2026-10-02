@@ -285,6 +285,9 @@ namespace ARPG
                 var fromPlayer = Vector2.Distance(drop.GroundPosition, playerGround);
                 if (fromPlayer > definition.FetchRadius || AutoLootRules.InRange(playerGround, drop.GroundPosition))
                     continue;
+                // Only what the player's pick-up rule would take.
+                if (!drop.IsWanted())
+                    continue;
                 var distance = Vector2.Distance(ground, drop.GroundPosition);
                 if (distance < bestDistance)
                 {

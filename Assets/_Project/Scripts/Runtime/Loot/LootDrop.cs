@@ -21,6 +21,10 @@ namespace ARPG
 
         SpriteRenderer marker;
         SpriteRenderer beam;
+        TextMesh label;
+        float shownAt;
+        float wantedCheckedAt = float.NegativeInfinity;
+        bool wanted;
         Sprite diamondSprite;
         Sprite coinSprite;
 
@@ -42,6 +46,18 @@ namespace ARPG
             var material = DefaultMaterial();
             marker = NewRenderer("Marker", null, GameSortingLayers.Decals, material);
             beam = NewRenderer("Beam", beamSprite, GameSortingLayers.Effects, material);
+
+            // The item's name over it in its rarity's color (the owner, 2026-10-02), so a drop is read before it is
+            // picked up. A world label: it is pixelated with the world, like the NPC names.
+            var labelObject = new GameObject("Name", typeof(TextMesh));
+            labelObject.transform.SetParent(transform, false);
+            labelObject.transform.localPosition = new Vector3(0f, LabelHeight, 0f);
+            label = labelObject.GetComponent<TextMesh>();
+            label.anchor = TextAnchor.LowerCenter;
+            label.alignment = TextAlignment.Center;
+            label.characterSize = 0.055f;
+            label.fontSize = 48;
+            labelObject.GetComponent<MeshRenderer>().sortingLayerName = GameSortingLayers.WorldUI;
             gameObject.SetActive(false);
         }
 
@@ -60,6 +76,11 @@ namespace ARPG
             beam.enabled = true;
             beam.color = color;
             beam.transform.localScale = new Vector3(BeamWidth / BeamSpriteWidth, LootColors.BeamHeight(item.Rarity) / BeamSpriteHeight, 1f);
+            label.gameObject.SetActive(true);
+            label.text = ItemComparison.Name(item);
+            label.color = color;
+            shownAt = Time.time;
+            wantedCheckedAt = float.NegativeInfinity;
             gameObject.SetActive(true);
         }
 
@@ -73,6 +94,8 @@ namespace ARPG
             marker.color = LootColors.Gold;
             marker.transform.localScale = new Vector3(GoldScale, GoldScale, 1f);
             beam.enabled = false;
+            label.gameObject.SetActive(false);
+            shownAt = Time.time;
             gameObject.SetActive(true);
         }
 
@@ -82,6 +105,32 @@ namespace ARPG
             GoldAmount = 0;
             gameObject.SetActive(false);
         }
+
+        /// <summary>Seconds this drop has lain on the ground (scaled time, so the Bag's pause does not count).</summary>
+        public float SecondsOnGround => Time.time - shownAt;
+
+        /// <summary>
+        /// Whether auto-loot and the pet take this item under the player's pick-up rule (<see cref="AutoLootRules.Wants"/>);
+        /// always true for gold. Checked at most once a second, since the upgrade test runs the power score.
+        /// </summary>
+        public bool IsWanted()
+        {
+            if (IsGold)
+                return true;
+            if (Time.unscaledTime - wantedCheckedAt < WantedRecheckSeconds)
+                return wanted;
+            wantedCheckedAt = Time.unscaledTime;
+            var session = GameSession.Current;
+            var upgrade = PowerScore.IsUpgrade(session.Equipment, Item, session.Level, session.PassiveTree.Bonuses);
+            wanted = AutoLootRules.Wants(SettingsDirector.Current.PickupRule, Item.Rarity, upgrade);
+            // A drop the rule leaves behind shows its name dimmed.
+            var color = LootColors.Of(Item.Rarity);
+            label.color = wanted ? color : new Color(color.r, color.g, color.b, 0.45f);
+            return wanted;
+        }
+
+        const float WantedRecheckSeconds = 1f;
+        const float LabelHeight = 0.35f;
 
         /// <summary>Moves the drop on the ground: a pet carrying it to the character (Docs/02, Pets).</summary>
         internal void MoveTo(Vector2 ground) => Place(ground);

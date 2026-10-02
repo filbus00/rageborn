@@ -66,13 +66,21 @@ namespace ARPG
                     GoldPickedUp += drop.GoldAmount;
                     loot.Release(drop);
                 }
-                else if (quiet && session.PickUp(drop.Item))
+                else if (!quiet || !AutoLootRules.ItemReady(drop.SecondsOnGround) || !drop.IsWanted())
+                {
+                    // Not yet (still in a fight, or it has not lain long enough to be read), or the pick-up rule
+                    // leaves it on the ground.
+                }
+                else if (session.PickUp(drop.Item))
                 {
                     Sfx.Play(SoundId.Pickup);
                     ItemsPickedUp++;
+                    // Its name over the character in its rarity's color.
+                    DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 2f, 0f),
+                        ItemComparison.Name(drop.Item), LootColors.Of(drop.Item.Rarity), 38);
                     loot.Release(drop);
                 }
-                else if (quiet && Time.unscaledTime >= nextNoRoomCallout)
+                else if (Time.unscaledTime >= nextNoRoomCallout)
                 {
                     // The grid has no room for this item's size: say so, at most every few seconds.
                     nextNoRoomCallout = Time.unscaledTime + NoRoomCalloutSeconds;

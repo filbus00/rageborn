@@ -62,5 +62,35 @@ namespace ARPG.Tests
         {
             Assert.IsTrue(AutoLootRules.CanPickUpItems(float.MaxValue, 12));
         }
+
+        [Test]
+        public void AnItem_LiesOnTheGround_ForASecondAndAHalf_First()
+        {
+            Assert.IsFalse(AutoLootRules.ItemReady(0f));
+            Assert.IsFalse(AutoLootRules.ItemReady(1.4f));
+            Assert.IsTrue(AutoLootRules.ItemReady(1.5f));
+        }
+
+        [Test]
+        public void ThePickupRule_SetsARarityFloor()
+        {
+            Assert.IsTrue(AutoLootRules.Wants(PickupRule.Everything, ItemRarity.Common, false));
+            Assert.IsFalse(AutoLootRules.Wants(PickupRule.MagicAndBetter, ItemRarity.Common, false));
+            Assert.IsTrue(AutoLootRules.Wants(PickupRule.MagicAndBetter, ItemRarity.Magic, false));
+            Assert.IsFalse(AutoLootRules.Wants(PickupRule.RareAndBetter, ItemRarity.Magic, false));
+            Assert.IsTrue(AutoLootRules.Wants(PickupRule.RareAndBetter, ItemRarity.Rare, false));
+            Assert.IsFalse(AutoLootRules.Wants(PickupRule.UpgradesOnly, ItemRarity.Rare, false));
+        }
+
+        [Test]
+        public void Legendaries_AndUpgrades_AreAlwaysTaken()
+        {
+            foreach (PickupRule rule in System.Enum.GetValues(typeof(PickupRule)))
+            {
+                Assert.IsTrue(AutoLootRules.Wants(rule, ItemRarity.Legendary, false), rule.ToString());
+                Assert.IsTrue(AutoLootRules.Wants(rule, ItemRarity.Common, true), rule + ": an upgrade");
+                Assert.IsFalse(string.IsNullOrEmpty(AutoLootRules.Describe(rule)), rule + " has a name");
+            }
+        }
     }
 }

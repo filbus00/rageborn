@@ -66,6 +66,7 @@ Take the orange **DEV: depth 3** stairs in town (they hold husks, ghouls and arc
 |---|---|
 | Basic attack | An arrow flies at the nearest enemy in sight (never through a wall), with a glow trail; it sticks in walls |
 | Hits | Blood sprays on hits, white numbers, orange bigger crits |
+| Loot | Each item on the ground shows its name in its rarity colour; about 1.5 s after it lands, walking near picks it up and the name pops over the character. Commons stay on the ground (dimmed name) unless they are upgrades: Settings > Loot > Pick up changes that |
 | Focus | The arc refills over time and by 4 per arrow that hits |
 | Skills | Split Arrow fires from level 1 when 2 or more enemies are ahead. Pierce Arrow (level 2), Homing Arrow (4) and Explosive Arrow (6) unlock as you level; a "NEW SKILL" callout shows |
 | Pierce Arrow | Goes through every enemy on its line and drips a blood trail that splashes and dries on the floor |

@@ -47,6 +47,12 @@ namespace ARPG
         /// <summary>No camera lead and no hit stop (Docs/06; there is no screen shake yet).</summary>
         public bool reduceMotion;
 
+        /// <summary>What auto-loot picks up (<see cref="ARPG.PickupRule"/>, by number). Magic and better by default:
+        /// Commons are mostly filler once the backpack is a grid, and an upgrade is taken whatever its rarity.</summary>
+        public int pickupRule = (int)ARPG.PickupRule.MagicAndBetter;
+
+        public PickupRule PickupRule => (PickupRule)pickupRule;
+
         public float PotionTriggerFraction => potionThreshold / 100f;
 
         /// <summary>Dead zone as a fraction of the stick radius.</summary>
@@ -65,6 +71,7 @@ namespace ARPG
             potionThreshold = Snap(potionThreshold, AutoPotion.MinTriggerFraction * 100f, AutoPotion.MaxTriggerFraction * 100f, PotionStep);
             musicVolume = Snap(musicVolume, 0f, 100f, VolumeStep);
             effectsVolume = Snap(effectsVolume, 0f, 100f, VolumeStep);
+            pickupRule = Math.Max(0, Math.Min((int)ARPG.PickupRule.UpgradesOnly, pickupRule));
         }
 
         /// <summary>The next or previous step of a value within its range, stopping at the ends.</summary>

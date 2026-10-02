@@ -37,6 +37,14 @@ namespace ARPG.Tests
             Assert.AreEqual(60f, s.potionThreshold);
             Assert.AreEqual(40f, s.musicVolume);
             Assert.AreEqual(0f, s.effectsVolume);
+
+            s.pickupRule = 99;
+            s.Clamp();
+            Assert.AreEqual(PickupRule.UpgradesOnly, s.PickupRule);
+            s.pickupRule = -2;
+            s.Clamp();
+            Assert.AreEqual(PickupRule.Everything, s.PickupRule);
+            Assert.AreEqual(PickupRule.MagicAndBetter, new GameSettings().PickupRule, "Magic and better by default");
         }
 
         [Test]

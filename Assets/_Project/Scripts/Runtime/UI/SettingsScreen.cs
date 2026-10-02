@@ -186,6 +186,10 @@ namespace ARPG
                 AutoPotion.MinTriggerFraction * 100f, AutoPotion.MaxTriggerFraction * 100f, GameSettings.PotionStep,
                 (c, v) => c.potionThreshold = v);
 
+            Group("Loot");
+            Choice("Pick up", AutoLootRules.Describe(s.PickupRule), false,
+                c => c.pickupRule = (c.pickupRule + 1) % ((int)PickupRule.UpgradesOnly + 1));
+
             Group("Audio");
             Stepper("Music", $"{s.musicVolume:0}", s.musicVolume, 0f, 100f, GameSettings.VolumeStep, (c, v) => c.musicVolume = v);
             Stepper("Effects", $"{s.effectsVolume:0}", s.effectsVolume, 0f, 100f, GameSettings.VolumeStep, (c, v) => c.effectsVolume = v);
