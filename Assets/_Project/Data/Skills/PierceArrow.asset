@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b800c5fde4a6841a2a27c7fd419314d4, type: 3}
+  m_Name: PierceArrow
+  m_EditorClassIdentifier: ARPG.Runtime::ARPG.SkillDefinition
+  displayName: Pierce Arrow
+  kind: 8
+  unlockLevel: 2
+  rageCost: 15
+  rageGain: 0
+  cooldownSeconds: 4
+  damageMultiplier: 2
+  arcDegrees: 180
+  range: 9
+  minRange: 4
+  minEnemies: 1
+  speed: 20
+  effectStrength: 0
+  effectSeconds: 0
+  maxRage: 0
+  minMomentum: 0
+  durationSeconds: 0
+  buffDamage: 0
+  buffAttackSpeed: 0
+  buffAttackSpeedPerMomentum: 0
+  tickSeconds: 0.3
+  bleedMultiplier: 0
+  bleedSeconds: 0
+  executeThreshold: 0
+  executeMultiplier: 0
+  windupSeconds: 0
+  projectileCount: 1
+  spreadDegrees: 0
+  burstRadius: 0
+  turnDegreesPerSecond: 360
+  triggerText: An enemy 4 to 9 away
+  animationName: attack
+  alternativeTriggers: 0300000006000000i
+  effectSprite: {fileID: 0}
+  effectColor: {r: 1, g: 0.22, b: 0.18, a: 0.95}

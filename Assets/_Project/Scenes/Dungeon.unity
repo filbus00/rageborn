@@ -3440,19 +3440,11 @@ MonoBehaviour:
   enemies: {fileID: 0}
   health: {fileID: 0}
   attacksPerSecond: 1.4
-  basicRange: 2
-  basicArcDegrees: 120
-  basicEffectSprite: {fileID: 21300000, guid: a3c230888576e43c9a8b965ee69501d9, type: 3}
-  basicEffectColor: {r: 1, g: 1, b: 1, a: 0.55}
   skills:
-  - {fileID: 11400000, guid: 1c9cd29b2abf245dcb2085800e152b4d, type: 2}
-  - {fileID: 11400000, guid: 966f5dfe4059d457c99a39e6cd58be53, type: 2}
-  - {fileID: 11400000, guid: 048a90ad27c3046f2acc4bf148358753, type: 2}
-  - {fileID: 11400000, guid: e48260332c6e24fe88f0a4ef36092902, type: 2}
-  - {fileID: 11400000, guid: 3fa45a9dd37754d9e8419a7c05b2c3be, type: 2}
-  - {fileID: 11400000, guid: 2d33e541d883243da874227ee43fe373, type: 2}
-  - {fileID: 11400000, guid: b57d8dc0750fc422a8cc3129d3726e7c, type: 2}
-  - {fileID: 11400000, guid: 38f681e64fb574712b06b09c8e712a01, type: 2}
+  - {fileID: 11400000, guid: f4ebfd3f54e404710afc5311da766176, type: 2}
+  - {fileID: 11400000, guid: a7c58f235f15f443b9552a47f492d6f4, type: 2}
+  - {fileID: 11400000, guid: 4b6ed23759cdf498d9eba6b9f28e8478, type: 2}
+  - {fileID: 11400000, guid: 52a63db2ddafc42bda0f5b50fa03c8e0, type: 2}
 --- !u!4 &1566252973
 Transform:
   m_ObjectHideFlags: 0
@@ -3907,18 +3899,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: ARPG.Runtime::ARPG.InventoryScreen
   panelRoot: {fileID: 461857600}
   openButton: {fileID: 406245494}
-  closeButton: {fileID: 646441429}
-  statsText: {fileID: 922839608}
-  listContent: {fileID: 23488746}
-  weaponSwatch: {fileID: 1989992413}
-  weaponLabel: {fileID: 1257264243}
-  weaponButton: {fileID: 1989992412}
-  chestSwatch: {fileID: 638095702}
-  chestLabel: {fileID: 1713019521}
-  chestButton: {fileID: 638095701}
-  helmSwatch: {fileID: 544611291}
-  helmLabel: {fileID: 2129531579}
-  helmButton: {fileID: 544611288}
   health: {fileID: 0}
 --- !u!114 &1950967439
 MonoBehaviour:

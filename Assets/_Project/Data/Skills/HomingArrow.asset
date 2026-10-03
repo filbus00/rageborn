@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b800c5fde4a6841a2a27c7fd419314d4, type: 3}
+  m_Name: HomingArrow
+  m_EditorClassIdentifier: ARPG.Runtime::ARPG.SkillDefinition
+  displayName: Homing Arrow
+  kind: 9
+  unlockLevel: 4
+  rageCost: 15
+  rageGain: 0
+  cooldownSeconds: 5
+  damageMultiplier: 1.2
+  arcDegrees: 180
+  range: 7.5
+  minRange: 0
+  minEnemies: 1
+  speed: 12
+  effectStrength: 0
+  effectSeconds: 0
+  maxRage: 0
+  minMomentum: 0
+  durationSeconds: 0
+  buffDamage: 0
+  buffAttackSpeed: 0
+  buffAttackSpeedPerMomentum: 0
+  tickSeconds: 0.3
+  bleedMultiplier: 0
+  bleedSeconds: 0
+  executeThreshold: 0
+  executeMultiplier: 0
+  windupSeconds: 0
+  projectileCount: 3
+  spreadDegrees: 70
+  burstRadius: 0
+  turnDegreesPerSecond: 420
+  triggerText: An enemy in reach, in sight
+  animationName: attack
+  alternativeTriggers: 0300000002000000i
+  effectSprite: {fileID: 0}
+  effectColor: {r: 0.72, g: 0.45, b: 1, a: 0.9}

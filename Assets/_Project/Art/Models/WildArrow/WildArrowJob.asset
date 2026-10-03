@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b7ef2a89c554486bb05c81650498d7, type: 3}
+  m_Name: WildArrowJob
+  m_EditorClassIdentifier: ARPG.Editor::ARPG.Editor.SpriteBakeJob
+  characterName: wild_arrow
+  bodies:
+  - look: leather
+    model: {fileID: 919132149155446097, guid: c46a16e74c0f443f6b409fb5a5dad276, type: 3}
+  pieces: []
+  grips:
+  - grip: 1h
+    clips:
+    - name: idle
+      clip: {fileID: -203655887218126122, guid: 7aa9268e641ff49d19a14b2741e60821, type: 3}
+      frames: 24
+      loop: 1
+      playbackSeconds: 5.1000004
+      start: 0
+      end: 5.1000004
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: run
+      clip: {fileID: -203655887218126122, guid: 2626a06e786a64ff18b04e8e36795cad, type: 3}
+      frames: 10
+      loop: 1
+      playbackSeconds: 0.86666673
+      start: 0
+      end: 0.86666673
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: run_back
+      clip: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      frames: 10
+      loop: 1
+      playbackSeconds: 0.6333334
+      start: 0
+      end: 0.6333334
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack
+      clip: {fileID: -203655887218126122, guid: 6ca2096aee7364100934fa05d2c1b2c4, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 1
+      start: 0
+      end: 1
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hit
+      clip: {fileID: -203655887218126122, guid: 3be83ff7be7934e14bc33baef6f03aea, type: 3}
+      frames: 4
+      loop: 0
+      playbackSeconds: 0.4
+      start: 0
+      end: 0.4
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: death
+      clip: {fileID: -203655887218126122, guid: 765cb10aad6cf4914934357de585b4fb, type: 3}
+      frames: 16
+      loop: 0
+      playbackSeconds: 3.1666667
+      start: 0
+      end: 3.1666667
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack_move
+      clip: {fileID: -203655887218126122, guid: 6ca2096aee7364100934fa05d2c1b2c4, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0
+      end: 1
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 2626a06e786a64ff18b04e8e36795cad, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack_move_back
+      clip: {fileID: -203655887218126122, guid: 6ca2096aee7364100934fa05d2c1b2c4, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0
+      end: 1
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack_move_right
+      clip: {fileID: -203655887218126122, guid: 6ca2096aee7364100934fa05d2c1b2c4, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0
+      end: 1
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack_move_left
+      clip: {fileID: -203655887218126122, guid: 6ca2096aee7364100934fa05d2c1b2c4, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0
+      end: 1
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+  pixelsPerUnit: 40
+  cellSize: 80
+  pivot: {x: 40, y: 12}
+  targetHeightPixels: 57.8125
+  pixelArt: 1
+  supersample: 4
+  framesPerSecond: 12
+  directions: 16
+  outputFolder: Assets/_Project/Resources/Characters/wild_arrow

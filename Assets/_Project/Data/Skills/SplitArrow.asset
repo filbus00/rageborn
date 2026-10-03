@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b800c5fde4a6841a2a27c7fd419314d4, type: 3}
+  m_Name: SplitArrow
+  m_EditorClassIdentifier: ARPG.Runtime::ARPG.SkillDefinition
+  displayName: Split Arrow
+  kind: 7
+  unlockLevel: 1
+  rageCost: 20
+  rageGain: 0
+  cooldownSeconds: 3
+  damageMultiplier: 0.8
+  arcDegrees: 180
+  range: 7.5
+  minRange: 0
+  minEnemies: 2
+  speed: 16
+  effectStrength: 0
+  effectSeconds: 0
+  maxRage: 0
+  minMomentum: 0
+  durationSeconds: 0
+  buffDamage: 0
+  buffAttackSpeed: 0
+  buffAttackSpeedPerMomentum: 0
+  tickSeconds: 0.3
+  bleedMultiplier: 0
+  bleedSeconds: 0
+  executeThreshold: 0
+  executeMultiplier: 0
+  windupSeconds: 0
+  projectileCount: 5
+  spreadDegrees: 40
+  burstRadius: 0
+  turnDegreesPerSecond: 360
+  triggerText: 2+ enemies ahead
+  animationName: attack
+  alternativeTriggers: 0100000003000000i
+  effectSprite: {fileID: 0}
+  effectColor: {r: 0.7, g: 0.88, b: 1, a: 0.9}
