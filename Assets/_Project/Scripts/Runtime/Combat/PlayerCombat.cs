@@ -29,6 +29,7 @@ namespace ARPG
 
         // Tuning values; Docs give no numbers for hit feedback.
         const float HitStopOnKillSeconds = 0.05f;
+        float lastHitStop = float.NegativeInfinity;
 
         // Below this speed, in ground units per second, the character keeps its last facing, and does not count as
         // moving for Bull Rush's trigger.
@@ -1769,7 +1770,11 @@ namespace ARPG
                 Kills++;
                 if (tree.RageOnKill > 0f)
                     focus.Gain(tree.RageOnKill);
-                HitStop.Instance?.Trigger(HitStopOnKillSeconds);
+                if (HitStopRules.OnKill(enemy.Definition.Rank, Time.unscaledTime - lastHitStop))
+                {
+                    lastHitStop = Time.unscaledTime;
+                    HitStop.Instance?.Trigger(HitStopOnKillSeconds);
+                }
                 Sfx.Play(SoundId.Kill);
                 return true;
             }

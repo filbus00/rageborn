@@ -32,4 +32,18 @@ namespace ARPG
             return true;
         }
     }
+
+    /// <summary>
+    /// When a kill earns a hit stop (the owner, 2026-10-03: "stuttering when enemies are hit ... feels very heavy"). A
+    /// stop on every kill suited the axe, one kill a swing; with a bow killing a pack one arrow at a time, a dozen 50 ms
+    /// near-freezes in a few seconds read as stutter while the frame rate stayed at 60. Now only a champion, elite or boss
+    /// kill stops the game, at most once every <see cref="MinGapSeconds"/>.
+    /// </summary>
+    public static class HitStopRules
+    {
+        public const float MinGapSeconds = 1f;
+
+        public static bool OnKill(EnemyRank rank, float secondsSinceLastStop) =>
+            rank != EnemyRank.Normal && secondsSinceLastStop >= MinGapSeconds;
+    }
 }
