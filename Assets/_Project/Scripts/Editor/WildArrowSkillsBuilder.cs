@@ -119,12 +119,13 @@ namespace ARPG.Editor
                 so.FindProperty("effectColor").colorValue = new Color(1f, 0.55f, 0.15f, 0.95f);
             });
 
-            // Every run: the trigger words, the animation (the stand-in bakes one draw-and-loose for all four, Docs/09
-            // 4.6) and the two alternative triggers (Docs/02, proposed).
-            Describe(split, "2+ enemies ahead", SkillTrigger.Always, SkillTrigger.ElitePresent);
-            Describe(pierce, "An enemy 4 to 9 away", SkillTrigger.ElitePresent, SkillTrigger.Standing);
-            Describe(homing, "An enemy in reach, in sight", SkillTrigger.ElitePresent, SkillTrigger.EnemiesThreePlus);
-            Describe(explosive, "3+ enemies around a target", SkillTrigger.Always, SkillTrigger.ElitePresent);
+            // Every run: the trigger words, the animation and the two alternative triggers (Docs/02, proposed). Her own
+            // bake (2026-10-03) has the longbow pack's overdraw for Pierce Arrow and its recoil for Explosive Arrow; the
+            // rest use the draw. A sheet the bake lacks (the stand-in's) falls back to the draw (PlayerSpriteAnimator).
+            Describe(split, "2+ enemies ahead", "attack", SkillTrigger.Always, SkillTrigger.ElitePresent);
+            Describe(pierce, "An enemy 4 to 9 away", "overdraw", SkillTrigger.ElitePresent, SkillTrigger.Standing);
+            Describe(homing, "An enemy in reach, in sight", "attack", SkillTrigger.ElitePresent, SkillTrigger.EnemiesThreePlus);
+            Describe(explosive, "3+ enemies around a target", "recoil", SkillTrigger.Always, SkillTrigger.ElitePresent);
 
             AssetDatabase.SaveAssets();
             return new[] { Reload(explosive), Reload(homing), Reload(pierce), Reload(split) };
@@ -142,12 +143,12 @@ namespace ARPG.Editor
             so.FindProperty("speed").floatValue = speed;
         }
 
-        static void Describe(string path, string trigger, SkillTrigger first, SkillTrigger second)
+        static void Describe(string path, string trigger, string animation, SkillTrigger first, SkillTrigger second)
         {
             var skill = AssetDatabase.LoadAssetAtPath<SkillDefinition>(path);
             var so = new SerializedObject(skill);
             so.FindProperty("triggerText").stringValue = trigger;
-            so.FindProperty("animationName").stringValue = "attack";
+            so.FindProperty("animationName").stringValue = animation;
             var alternatives = so.FindProperty("alternativeTriggers");
             alternatives.arraySize = 2;
             alternatives.GetArrayElementAtIndex(0).enumValueIndex = (int)first;

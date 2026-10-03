@@ -6,7 +6,11 @@ using UnityEngine;
 namespace ARPG.Editor
 {
     /// <summary>
-    /// The Wild Arrow's stand-in bake (Docs/09-art-brief.md 4.6; the owner's choice of 2026-09-30: "wrathborn with the
+    /// The Wild Arrow's bake. Her own model (the owner's Meshy model rigged on Mixamo, 2026-10-03) when
+    /// <c>Art/Models/WildArrow/wild_arrow.fbx</c> exists: the body with its skin (Unarmed Idle 01), textured from
+    /// wild_arrow_albedo.png, and the Pro Longbow Pack's clips as wild_arrow_&lt;name&gt;.fbx (<see cref="OwnAnimations"/>);
+    /// her shots while moving play over the pack's aiming walk, since she walks while she fires (FiringPace).
+    /// Otherwise the stand-in bake (Docs/09-art-brief.md 4.6; the owner's choice of 2026-09-30: "wrathborn with the
     /// moveset of the bandit archer for now"): the Wrathborn's leather body posed with the bandit archer's Mixamo clips
     /// (Standing Idle from its skinned file, Run Forward, Draw Arrow, the hit and the death), and the Wrathborn's
     /// backward run and strafes as the legs under the moving shot. Both rigs are Mixamo humanoids, so the archer's clips
@@ -26,6 +30,33 @@ namespace ARPG.Editor
         const string ArcherFolder = "Assets/_Project/Art/Models/Enemies/bandit_archer";
         const string WrathbornFolder = "Assets/_Project/Art/Models/Wrathborn";
         const string Grip = "1h";
+        const string OwnBodyPath = Folder + "/" + Character + ".fbx";
+
+        // Her own clips: the file suffix in her folder, the brief's frame counts (4.4).
+        static readonly (string name, int frames, bool loop)[] OwnAnimations =
+        {
+            ("idle", 24, true),
+            ("run", 10, true),
+            ("run_back", 10, true),
+            ("attack", 10, false),
+            ("overdraw", 12, false),
+            ("recoil", 10, false),
+            ("hit", 4, false),
+            ("death", 16, false),
+        };
+
+        // The actions that get moving variants, over her aiming walk (forward, back and the two sides).
+        static readonly string[] OwnMovingActions = { "attack", "overdraw", "recoil" };
+        static readonly (string file, string suffix)[] OwnLegs =
+        {
+            ("walk_aim_forward", LocomotionRules.MovingSuffix),
+            ("walk_aim_back", LocomotionRules.MovingBackSuffix),
+            ("walk_aim_right", LocomotionRules.MovingRightSuffix),
+            ("walk_aim_left", LocomotionRules.MovingLeftSuffix),
+        };
+
+        // Her walking pace while she fires (PlayerController's base speed of 4 at FiringPace.MoveMultiplier).
+        const float WalkGroundSpeed = 4f * FiringPace.MoveMultiplier;
 
         // The brief's frame counts (4.4), and where each clip comes from: the archer's file, or the Wrathborn's (legs only).
         static readonly (string name, int frames, bool loop, string path)[] Animations =
@@ -114,12 +145,14 @@ namespace ARPG.Editor
         [MenuItem("Tools/ARPG/Sprite Bake/Set Up Wild Arrow")]
         public static SpriteBakeJob SetUp()
         {
-            if (!File.Exists(BodyPath))
+            var own = File.Exists(OwnBodyPath);
+            var bodyPath = own ? OwnBodyPath : BodyPath;
+            if (!File.Exists(bodyPath))
             {
-                Debug.LogError($"[ARPG] The stand-in body is missing: {BodyPath}.");
+                Debug.LogError($"[ARPG] The Wild Arrow's body is missing: {bodyPath}.");
                 return null;
             }
-            MixamoImport.ConfigureBody(BodyPath);
+            MixamoImport.ConfigureBody(bodyPath);
             if (!AssetDatabase.IsValidFolder(Folder))
                 AssetDatabase.CreateFolder("Assets/_Project/Art/Models", "WildArrow");
 
@@ -140,11 +173,66 @@ namespace ARPG.Editor
             job.targetHeightPixels = 92.5f * scale;
             job.supersample = 4;
             job.directions = 16;
+            // The look stays "leather", the name the game's sheets are found by, for either body.
             job.bodies.Clear();
-            job.bodies.Add(new SpriteBakeJob.Body { look = "leather", model = AssetDatabase.LoadAssetAtPath<GameObject>(BodyPath) });
+            job.bodies.Add(new SpriteBakeJob.Body { look = "leather", model = AssetDatabase.LoadAssetAtPath<GameObject>(bodyPath) });
             job.pieces.Clear();
             job.pieces.AddRange(Pieces());
 
+            var set = own ? OwnClips(bodyPath) : StandInClips();
+            job.grips.Clear();
+            if (set.clips.Count > 0)
+                job.grips.Add(set);
+            EditorUtility.SetDirty(job);
+            AssetDatabase.SaveAssets();
+            Debug.Log($"[ARPG] Wild Arrow bake job ({(own ? "her own model" : "the stand-in")}): {string.Join(", ", set.clips.Select(c => c.name))}.");
+            return job;
+        }
+
+        // Her own model and the longbow pack's clips, configured as humanoid clips on her avatar.
+        static SpriteBakeJob.GripSet OwnClips(string bodyPath)
+        {
+            var avatar = AssetDatabase.LoadAllAssetsAtPath(bodyPath).OfType<Avatar>().FirstOrDefault();
+            var set = new SpriteBakeJob.GripSet { grip = Grip };
+            var actions = new System.Collections.Generic.Dictionary<string, SpriteBakeJob.Clip>();
+            foreach (var (name, frames, loop) in OwnAnimations)
+            {
+                var path = $"{Folder}/{Character}_{name}.fbx";
+                var clip = File.Exists(path) ? MixamoImport.ConfigureAnimation(path, loop, avatar, name, false) : null;
+                if (clip == null)
+                {
+                    Debug.LogWarning($"[ARPG] No clip for the Wild Arrow's {name} in {path}; left out.");
+                    continue;
+                }
+                var window = loop ? new Vector2(0f, clip.length) : MixamoImport.ActionWindow(bodyPath, clip, name == "death");
+                var entry = new SpriteBakeJob.Clip
+                {
+                    name = name, clip = clip, frames = frames, loop = loop,
+                    start = window.x, end = window.y, playbackSeconds = window.y - window.x,
+                };
+                set.clips.Add(entry);
+                actions[name] = entry;
+            }
+
+            foreach (var (file, suffix) in OwnLegs)
+            {
+                var path = $"{Folder}/{Character}_{file}.fbx";
+                var legs = File.Exists(path) ? MixamoImport.ConfigureAnimation(path, true, avatar, file, false) : null;
+                if (legs == null)
+                {
+                    Debug.LogWarning($"[ARPG] No legs for the Wild Arrow's moving shots in {path}; left out.");
+                    continue;
+                }
+                foreach (var action in OwnMovingActions)
+                    if (actions.TryGetValue(action, out var shot))
+                        set.clips.Add(MovingVariant(shot, action + suffix, legs, WalkGroundSpeed));
+            }
+            return set;
+        }
+
+        // The stand-in: the Wrathborn's leather body with the bandit archer's clips and running legs.
+        static SpriteBakeJob.GripSet StandInClips()
+        {
             var set = new SpriteBakeJob.GripSet { grip = Grip };
             SpriteBakeJob.Clip shot = null;
             foreach (var (name, frames, loop, path) in Animations)
@@ -172,25 +260,23 @@ namespace ARPG.Editor
                 foreach (var (path, suffix) in Legs)
                 {
                     var legs = File.Exists(path) ? MixamoImport.FirstClip(path) : null;
-                    if (legs == null)
-                        continue;
-                    var play = Mathf.Min(ShotSeconds, shot.playbackSeconds);
-                    set.clips.Add(new SpriteBakeJob.Clip
-                    {
-                        name = "attack" + suffix, clip = shot.clip, loop = false,
-                        frames = Mathf.Max(shot.frames, Mathf.RoundToInt(play * MovingFramesPerSecond) + 1),
-                        start = shot.start, end = shot.end, playbackSeconds = play,
-                        legs = legs, legsGroundSpeed = 4.4f,
-                    });
+                    if (legs != null)
+                        set.clips.Add(MovingVariant(shot, "attack" + suffix, legs, 4.4f));
                 }
+            return set;
+        }
 
-            job.grips.Clear();
-            if (set.clips.Count > 0)
-                job.grips.Add(set);
-            EditorUtility.SetDirty(job);
-            AssetDatabase.SaveAssets();
-            Debug.Log($"[ARPG] Wild Arrow bake job: the leather body with {string.Join(", ", set.clips.Select(c => c.name))}.");
-            return job;
+        // An action's torso over a walk or run's hips and legs, played over at most the basic shot's interval.
+        static SpriteBakeJob.Clip MovingVariant(SpriteBakeJob.Clip shot, string name, AnimationClip legs, float groundSpeed)
+        {
+            var play = Mathf.Min(ShotSeconds, shot.playbackSeconds);
+            return new SpriteBakeJob.Clip
+            {
+                name = name, clip = shot.clip, loop = false,
+                frames = Mathf.Max(shot.frames, Mathf.RoundToInt(play * MovingFramesPerSecond) + 1),
+                start = shot.start, end = shot.end, playbackSeconds = play,
+                legs = legs, legsGroundSpeed = groundSpeed,
+            };
         }
 
         [MenuItem("Tools/ARPG/Sprite Bake/Bake Wild Arrow")]

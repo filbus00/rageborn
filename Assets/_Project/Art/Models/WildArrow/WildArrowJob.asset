@@ -15,24 +15,24 @@ MonoBehaviour:
   characterName: wild_arrow
   bodies:
   - look: leather
-    model: {fileID: 919132149155446097, guid: c46a16e74c0f443f6b409fb5a5dad276, type: 3}
+    model: {fileID: 919132149155446097, guid: bd2653b459f8a4949b5ab3cea9e8a9cd, type: 3}
   pieces: []
   grips:
   - grip: 1h
     clips:
     - name: idle
-      clip: {fileID: -203655887218126122, guid: 7aa9268e641ff49d19a14b2741e60821, type: 3}
+      clip: {fileID: -203655887218126122, guid: 2db7975f8b5c54b40a9d327d877809a0, type: 3}
       frames: 24
       loop: 1
-      playbackSeconds: 5.1000004
+      playbackSeconds: 4.9666667
       start: 0
-      end: 5.1000004
+      end: 4.9666667
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: run
-      clip: {fileID: -203655887218126122, guid: 2626a06e786a64ff18b04e8e36795cad, type: 3}
+      clip: {fileID: -203655887218126122, guid: 6bae7cfde61dc4383baabf21baf60fe9, type: 3}
       frames: 10
       loop: 1
       playbackSeconds: 0.86666673
@@ -43,18 +43,18 @@ MonoBehaviour:
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: run_back
-      clip: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
+      clip: {fileID: -203655887218126122, guid: 442a2fbbf21a94314907c657ab7b8738, type: 3}
       frames: 10
       loop: 1
-      playbackSeconds: 0.6333334
+      playbackSeconds: 0.6666667
       start: 0
-      end: 0.6333334
+      end: 0.6666667
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: attack
-      clip: {fileID: -203655887218126122, guid: 6ca2096aee7364100934fa05d2c1b2c4, type: 3}
+      clip: {fileID: -203655887218126122, guid: 13b6a6897f814461dab5ea1b31d0bc18, type: 3}
       frames: 10
       loop: 0
       playbackSeconds: 1
@@ -64,71 +64,181 @@ MonoBehaviour:
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
       offHandOnly: 0
+    - name: overdraw
+      clip: {fileID: -203655887218126122, guid: 5953b4e5b633644feb54b34683d22a0b, type: 3}
+      frames: 12
+      loop: 0
+      playbackSeconds: 2.8
+      start: 0
+      end: 2.8
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: recoil
+      clip: {fileID: -203655887218126122, guid: 9c88c1b9377f045b5aa795e250651a00, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 0.70000005
+      start: 0
+      end: 0.70000005
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: hit
-      clip: {fileID: -203655887218126122, guid: 3be83ff7be7934e14bc33baef6f03aea, type: 3}
+      clip: {fileID: -203655887218126122, guid: 5913dff8a627f4cbba10ded26d1e260a, type: 3}
       frames: 4
       loop: 0
-      playbackSeconds: 0.4
+      playbackSeconds: 1.2
       start: 0
-      end: 0.4
+      end: 1.2
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: death
-      clip: {fileID: -203655887218126122, guid: 765cb10aad6cf4914934357de585b4fb, type: 3}
+      clip: {fileID: -203655887218126122, guid: 745e3284560d344998912746faf9187e, type: 3}
       frames: 16
       loop: 0
-      playbackSeconds: 3.1666667
-      start: 0
-      end: 3.1666667
+      playbackSeconds: 1.8000002
+      start: 1.2
+      end: 3.0000002
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: attack_move
-      clip: {fileID: -203655887218126122, guid: 6ca2096aee7364100934fa05d2c1b2c4, type: 3}
+      clip: {fileID: -203655887218126122, guid: 13b6a6897f814461dab5ea1b31d0bc18, type: 3}
       frames: 15
       loop: 0
       playbackSeconds: 0.71428573
       start: 0
       end: 1
       riseScale: 1
-      legs: {fileID: -203655887218126122, guid: 2626a06e786a64ff18b04e8e36795cad, type: 3}
-      legsGroundSpeed: 4.4
+      legs: {fileID: -203655887218126122, guid: 49a60cd8701b84721ac25ab479fcfc6d, type: 3}
+      legsGroundSpeed: 2
+      offHandOnly: 0
+    - name: overdraw_move
+      clip: {fileID: -203655887218126122, guid: 5953b4e5b633644feb54b34683d22a0b, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0
+      end: 2.8
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 49a60cd8701b84721ac25ab479fcfc6d, type: 3}
+      legsGroundSpeed: 2
+      offHandOnly: 0
+    - name: recoil_move
+      clip: {fileID: -203655887218126122, guid: 9c88c1b9377f045b5aa795e250651a00, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.70000005
+      start: 0
+      end: 0.70000005
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 49a60cd8701b84721ac25ab479fcfc6d, type: 3}
+      legsGroundSpeed: 2
       offHandOnly: 0
     - name: attack_move_back
-      clip: {fileID: -203655887218126122, guid: 6ca2096aee7364100934fa05d2c1b2c4, type: 3}
+      clip: {fileID: -203655887218126122, guid: 13b6a6897f814461dab5ea1b31d0bc18, type: 3}
       frames: 15
       loop: 0
       playbackSeconds: 0.71428573
       start: 0
       end: 1
       riseScale: 1
-      legs: {fileID: -203655887218126122, guid: e0378006706944a808d781d56e3aefa7, type: 3}
-      legsGroundSpeed: 4.4
+      legs: {fileID: -203655887218126122, guid: 12934de583af840c0a7d72730cbe3cf5, type: 3}
+      legsGroundSpeed: 2
+      offHandOnly: 0
+    - name: overdraw_move_back
+      clip: {fileID: -203655887218126122, guid: 5953b4e5b633644feb54b34683d22a0b, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0
+      end: 2.8
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 12934de583af840c0a7d72730cbe3cf5, type: 3}
+      legsGroundSpeed: 2
+      offHandOnly: 0
+    - name: recoil_move_back
+      clip: {fileID: -203655887218126122, guid: 9c88c1b9377f045b5aa795e250651a00, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.70000005
+      start: 0
+      end: 0.70000005
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 12934de583af840c0a7d72730cbe3cf5, type: 3}
+      legsGroundSpeed: 2
       offHandOnly: 0
     - name: attack_move_right
-      clip: {fileID: -203655887218126122, guid: 6ca2096aee7364100934fa05d2c1b2c4, type: 3}
+      clip: {fileID: -203655887218126122, guid: 13b6a6897f814461dab5ea1b31d0bc18, type: 3}
       frames: 15
       loop: 0
       playbackSeconds: 0.71428573
       start: 0
       end: 1
       riseScale: 1
-      legs: {fileID: -203655887218126122, guid: d01d0e2ac98634bd49c1e20a9589dd05, type: 3}
-      legsGroundSpeed: 4.4
+      legs: {fileID: -203655887218126122, guid: 9197dadeab2764ac2bfe8ca4d8a5963b, type: 3}
+      legsGroundSpeed: 2
+      offHandOnly: 0
+    - name: overdraw_move_right
+      clip: {fileID: -203655887218126122, guid: 5953b4e5b633644feb54b34683d22a0b, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0
+      end: 2.8
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 9197dadeab2764ac2bfe8ca4d8a5963b, type: 3}
+      legsGroundSpeed: 2
+      offHandOnly: 0
+    - name: recoil_move_right
+      clip: {fileID: -203655887218126122, guid: 9c88c1b9377f045b5aa795e250651a00, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.70000005
+      start: 0
+      end: 0.70000005
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: 9197dadeab2764ac2bfe8ca4d8a5963b, type: 3}
+      legsGroundSpeed: 2
       offHandOnly: 0
     - name: attack_move_left
-      clip: {fileID: -203655887218126122, guid: 6ca2096aee7364100934fa05d2c1b2c4, type: 3}
+      clip: {fileID: -203655887218126122, guid: 13b6a6897f814461dab5ea1b31d0bc18, type: 3}
       frames: 15
       loop: 0
       playbackSeconds: 0.71428573
       start: 0
       end: 1
       riseScale: 1
-      legs: {fileID: -203655887218126122, guid: 432ab30fd6f3648338e32641ca0a2d78, type: 3}
-      legsGroundSpeed: 4.4
+      legs: {fileID: -203655887218126122, guid: f6e9f6644a72b42218406fb3803971c7, type: 3}
+      legsGroundSpeed: 2
+      offHandOnly: 0
+    - name: overdraw_move_left
+      clip: {fileID: -203655887218126122, guid: 5953b4e5b633644feb54b34683d22a0b, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.71428573
+      start: 0
+      end: 2.8
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: f6e9f6644a72b42218406fb3803971c7, type: 3}
+      legsGroundSpeed: 2
+      offHandOnly: 0
+    - name: recoil_move_left
+      clip: {fileID: -203655887218126122, guid: 9c88c1b9377f045b5aa795e250651a00, type: 3}
+      frames: 15
+      loop: 0
+      playbackSeconds: 0.70000005
+      start: 0
+      end: 0.70000005
+      riseScale: 1
+      legs: {fileID: -203655887218126122, guid: f6e9f6644a72b42218406fb3803971c7, type: 3}
+      legsGroundSpeed: 2
       offHandOnly: 0
   pixelsPerUnit: 40
   cellSize: 80
