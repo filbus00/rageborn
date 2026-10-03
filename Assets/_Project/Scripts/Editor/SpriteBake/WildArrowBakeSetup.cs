@@ -107,12 +107,12 @@ namespace ARPG.Editor
                 var held = Held($"{Folder}/{Character}_offhand_{look}.fbx");
                 if (held == null)
                     continue;
-                // Across the upper back, fletchings up over the right shoulder. A first guess in the chest bone's frame,
-                // to be checked on the first bake's sheets (a piece's place is easiest judged on a rendered frame).
+                // Across the upper back, fletchings up over the right shoulder, in the chest bone's frame (metres, +Z
+                // forward). The quiver's centre at 0.21 behind the bone clears her back (its own radius is about 0.1).
                 var piece = new SpriteBakeJob.Piece
                 {
                     layer = AppearanceLayer.OffHand, look = look, prefab = held, bone = HumanBodyBones.UpperChest,
-                    localPosition = new Vector3(0.05f, 0.05f, -0.16f), localEuler = new Vector3(0f, 0f, -25f),
+                    localPosition = new Vector3(0.05f, 0.05f, -0.21f), localEuler = new Vector3(0f, 0f, -25f),
                 };
                 piece.grips.Add(Grip);
                 pieces.Add(piece);

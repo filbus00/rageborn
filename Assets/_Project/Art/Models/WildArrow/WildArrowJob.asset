@@ -28,6 +28,17 @@ MonoBehaviour:
     scale: 1
     grips:
     - 1h
+  - layer: 2
+    look: hide_quiver
+    prefab: {fileID: 6127314655579716071, guid: 75b90855a19824e409ef35980a40f087, type: 3}
+    bone: 54
+    transformPath: 
+    autoGrip: 0
+    localPosition: {x: 0.05, y: 0.05, z: -0.21}
+    localEuler: {x: 0, y: 0, z: -25}
+    scale: 1
+    grips:
+    - 1h
   grips:
   - grip: 1h
     clips:
