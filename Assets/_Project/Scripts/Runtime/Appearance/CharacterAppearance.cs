@@ -96,13 +96,14 @@ namespace ARPG
             CharacterGrip.OneHand);
 
         /// <summary>
-        /// The look shown when a layer's own look has no sheets yet, from the models that exist: the leather body. No bow
-        /// or quiver is modelled yet (Docs/09 4.6), so those layers stay off rather than showing the retired axe or
-        /// shield; null for the helm too.
+        /// The look shown when a layer's own look has no sheets yet, from the models that exist: the leather body, and
+        /// the hunting bow for every bow (the first bow model, 2026-10-03; the others are not modelled yet). No quiver
+        /// is modelled yet (Docs/09 4.6), so that layer stays off; null for the helm too.
         /// </summary>
         public static string FallbackLook(AppearanceLayer layer, CharacterGrip grip = CharacterGrip.OneHand) => layer switch
         {
             AppearanceLayer.Body => "leather",
+            AppearanceLayer.Weapon => OneHandWeaponLooks[0],
             _ => null,
         };
 

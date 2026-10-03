@@ -499,7 +499,10 @@ namespace ARPG.Editor
             var animator = body.Animator;
             var left = piece.bone == HumanBodyBones.LeftHand;
             var index = animator.GetBoneTransform(left ? HumanBodyBones.LeftIndexProximal : HumanBodyBones.RightIndexProximal);
-            var little = animator.GetBoneTransform(left ? HumanBodyBones.LeftLittleProximal : HumanBodyBones.RightLittleProximal);
+            // Some rigs have no little finger (the Wild Arrow's Mixamo rig has index, middle, ring and thumb): the ring
+            // finger gives the knuckle line as well.
+            var little = animator.GetBoneTransform(left ? HumanBodyBones.LeftLittleProximal : HumanBodyBones.RightLittleProximal) ??
+                         animator.GetBoneTransform(left ? HumanBodyBones.LeftRingProximal : HumanBodyBones.RightRingProximal);
             var middle = animator.GetBoneTransform(left ? HumanBodyBones.LeftMiddleProximal : HumanBodyBones.RightMiddleProximal);
             if (index == null || little == null || middle == null)
             {

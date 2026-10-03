@@ -16,7 +16,18 @@ MonoBehaviour:
   bodies:
   - look: leather
     model: {fileID: 919132149155446097, guid: bd2653b459f8a4949b5ab3cea9e8a9cd, type: 3}
-  pieces: []
+  pieces:
+  - layer: 3
+    look: hunting_bow
+    prefab: {fileID: 8488112292804776801, guid: e86d476f94e73404c8c857c1ad1cee40, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
   grips:
   - grip: 1h
     clips:
