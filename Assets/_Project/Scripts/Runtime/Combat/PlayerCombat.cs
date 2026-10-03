@@ -397,11 +397,12 @@ namespace ARPG
                 UpdateExecute(origin, deltaTime);
 
             enemies.QueryEnemies(origin, LongestReach() + QueryMargin, candidates);
+            var previousTarget = Target;
             Target = null;
             if (candidates.Count == 0)
                 return;
 
-            var target = PickTarget(origin);
+            var target = PickTarget(origin, previousTarget);
             Target = target;
             var aim = target != null ? (target.GroundPosition - origin).normalized : facing;
             if (aim.sqrMagnitude < 1e-6f)
@@ -435,11 +436,13 @@ namespace ARPG
                 facing = velocity.normalized;
         }
 
-        // Docs: the target is the nearest enemy in attack range inside the forward cone, else the nearest in range. With a
-        // bow the range is its reach and the target must be in sight (Docs/01, 2026-09-30): an enemy behind a wall is never
-        // picked. The skills pick their own targets.
-        EnemyController PickTarget(Vector2 origin)
+        // Docs/01: the target is the nearest enemy in sight within the bow's reach, whichever way she moves (the forward
+        // cone of the axe days picked a far enemy ahead while one stood behind her as she backed away, the owner,
+        // 2026-10-03), and she keeps her target unless another is clearly closer. An enemy behind a wall is never picked.
+        // The skills pick their own targets.
+        EnemyController PickTarget(Vector2 origin, EnemyController previous)
         {
+            var current = -1;
             inReach.Clear();
             inReachPositions.Clear();
             inReachWeights.Clear();
@@ -449,6 +452,8 @@ namespace ARPG
                     !enemies.Nav.HasLineOfSight(origin, candidates[i].GroundPosition))
                     continue;
 
+                if (candidates[i] == previous)
+                    current = inReach.Count;
                 inReach.Add(candidates[i]);
                 inReachPositions.Add(candidates[i].GroundPosition);
                 // Docs: elites and bosses get a range weight bonus so they are preferred.
@@ -456,7 +461,7 @@ namespace ARPG
                 inReachWeights.Add(rank == EnemyRank.Elite || rank == EnemyRank.Boss ? SweepGeometry.PreferredTargetWeight : 1f);
             }
 
-            var index = SweepGeometry.PickTarget(origin, facing, inReachPositions, inReachWeights);
+            var index = SweepGeometry.PickNearest(origin, inReachPositions, inReachWeights, current);
             return index >= 0 ? inReach[index] : null;
         }
 

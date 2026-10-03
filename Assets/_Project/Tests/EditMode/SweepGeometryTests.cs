@@ -134,5 +134,30 @@ namespace ARPG.Tests
 
             Assert.AreEqual(0, SweepGeometry.PickTarget(Origin, Vector2.right, positions, weights));
         }
+
+        [Test]
+        public void PickNearest_TakesTheCloseEnemyBehind_OverAFarOneAhead()
+        {
+            // She backs away to the right: the close enemy is behind her, the far one ahead.
+            var positions = new List<Vector2> { Origin + new Vector2(-1f, 0f), Origin + new Vector2(6f, 0f) };
+            Assert.AreEqual(0, SweepGeometry.PickNearest(Origin, positions));
+        }
+
+        [Test]
+        public void PickNearest_KeepsTheTarget_UnlessAnotherIsClearlyCloser()
+        {
+            var positions = new List<Vector2> { Origin + new Vector2(2f, 0f), Origin + new Vector2(0f, 2.5f) };
+            Assert.AreEqual(1, SweepGeometry.PickNearest(Origin, positions, null, 1), "within the margin: kept");
+            positions[1] = Origin + new Vector2(0f, 5f);
+            Assert.AreEqual(0, SweepGeometry.PickNearest(Origin, positions, null, 1), "clearly farther: switched");
+        }
+
+        [Test]
+        public void PickNearest_StillPrefersANearbyElite()
+        {
+            var positions = new List<Vector2> { Origin + new Vector2(3f, 0f), Origin + new Vector2(3.8f, 0f) };
+            var weights = new List<float> { 1f, SweepGeometry.PreferredTargetWeight };
+            Assert.AreEqual(1, SweepGeometry.PickNearest(Origin, positions, weights));
+        }
     }
 }
