@@ -95,7 +95,7 @@ namespace ARPG
             if (layer >= 0)
                 go.layer = layer;
 
-            TravelArt.Figure(go.transform, new Color(0.45f, 0.55f, 0.35f));
+            NpcFigure.Create(go.transform, "pet_vendor", new Color(0.45f, 0.55f, 0.35f));
             TravelArt.Label(go.transform, "Pet Vendor", new Color(0.8f, 0.95f, 0.7f), 1.5f);
             return go.AddComponent<PetVendor>();
         }

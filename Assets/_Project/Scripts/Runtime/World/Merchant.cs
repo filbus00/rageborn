@@ -7,7 +7,7 @@ namespace ARPG
     /// vendor"). Walked up to like every NPC, it opens the Bag at the merchant (<see cref="InventoryScreen.OpenAtMerchant"/>):
     /// a backpack item's sheet offers Sell for its price (<see cref="SellRules"/>), and a row sells all of a rarity at
     /// once. It buys only; it sells nothing. Placed by <see cref="PetDirector"/> with the other town NPCs made in code.
-    /// Placeholder figure until NPC art exists.
+    /// Its body is the baked merchant (NpcFigure), or a placeholder figure until it is baked.
     /// </summary>
     public class Merchant : WalkOnTrigger
     {
@@ -23,7 +23,7 @@ namespace ARPG
             if (layer >= 0)
                 go.layer = layer;
 
-            TravelArt.Figure(go.transform, new Color(0.62f, 0.5f, 0.25f));
+            NpcFigure.Create(go.transform, "merchant", new Color(0.62f, 0.5f, 0.25f));
             TravelArt.Label(go.transform, "Merchant", LootColors.Gold, 1.5f);
             return go.AddComponent<Merchant>();
         }
