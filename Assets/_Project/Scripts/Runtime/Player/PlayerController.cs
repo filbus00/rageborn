@@ -24,6 +24,10 @@ namespace ARPG
         Rigidbody2D body;
         Vector2 groundVelocity;
         readonly SlowDebuff slow = new SlowDebuff();
+        // The Wild Arrow walks while she draws and looses (the owner, 2026-10-03): each shot or skill slows her to
+        // FiringPace.MoveMultiplier for FiringPace.HoldSeconds, so steady shooting is a walk and she runs between fights.
+        readonly SlowDebuff firing = new SlowDebuff();
+        PlayerCombat combat;
         readonly StanceStacks stance = new StanceStacks();
         Vector2 dashVelocity;
         float dashSeconds;
@@ -60,7 +64,33 @@ namespace ARPG
         }
 
         // A scene with no combat (the town) still shows the Focus arc under the feet.
-        void Start() => RageArc.EnsureWithoutCombat(this);
+        void Start()
+        {
+            RageArc.EnsureWithoutCombat(this);
+            combat = FindAnyObjectByType<PlayerCombat>();
+            if (combat != null)
+            {
+                combat.BasicAttackStarted += OnBasicAttack;
+                combat.SkillCast += OnSkillCast;
+            }
+        }
+
+        void OnDestroy()
+        {
+            if (combat == null)
+                return;
+            combat.BasicAttackStarted -= OnBasicAttack;
+            combat.SkillCast -= OnSkillCast;
+        }
+
+        void OnBasicAttack(Vector2 aim, float interval) => firing.Apply(FiringPace.MoveMultiplier, FiringPace.HoldFor(interval));
+
+        void OnSkillCast(SkillDefinition skill, Vector2 direction)
+        {
+            // A dash is the opposite of a walk.
+            if (skill.Kind != SkillKind.Charge)
+                firing.Apply(FiringPace.MoveMultiplier, FiringPace.HoldSeconds);
+        }
 
         /// <summary>Which renderers the hit flash covers: the placeholder body, or the layered sprites once they show.</summary>
         public void SetFlashRenderers(SpriteRenderer[] renderers)
@@ -95,6 +125,7 @@ namespace ARPG
         {
             var deltaTime = Time.fixedDeltaTime;
             slow.Tick(deltaTime);
+            firing.Tick(deltaTime);
             // The passive tree's Momentum and Stillness changes (Docs/02), read live like the gear.
             var tree = GameSession.Current.PassiveTree.Bonuses;
             stance.MomentumStep = tree.MomentumStepSeconds > 0f ? tree.MomentumStepSeconds : StanceStacks.MomentumStepSeconds;
@@ -117,7 +148,7 @@ namespace ARPG
             }
 
             // Momentum is worth its speed: Docs/01, 5 percent movement speed per stack.
-            var effectiveMoveSpeed = moveSpeed * slow.Multiplier * stance.MoveSpeedMultiplier *
+            var effectiveMoveSpeed = moveSpeed * slow.Multiplier * firing.Multiplier * stance.MoveSpeedMultiplier *
                                      (1f + tree.MoveSpeed + GameSession.Current.AttributeBonuses.MoveSpeed +
                                       GameSession.Current.Equipment.MovementSpeedPercent / 100f);
 
