@@ -10,6 +10,7 @@ The only combat input is the floating thumb stick.
 - Release: the character stops with 80 ms of deceleration. Releasing counts as standing still for Stillness.
 - Left-hand and right-hand mode: the touch zone is symmetric. A setting moves the Portal button to the matching corner (the inventory button sits under the portrait since 2026-09-28).
 - Stick drift: if the thumb slides more than 1.6 times the radius from the base, the base follows the thumb so the player never runs out of pad.
+- Disengage (the owner, 2026-10-03): while the thumb stays inside the stick's ring, the character fights: she keeps shooting and backs away from what she fights. When the thumb leaves the ring, she holds her fire, turns and runs at full speed the way the thumb points; back inside the ring, she fights again. Claude's numbers, to review: she leaves the fight at 1.2 radii from the base and returns inside 1.05, so a thumb on the edge does not flip between the two; the knob follows the thumb out of the ring so leaving is seen.
 - Interruptions: a system gesture, call or notification pauses the game. Returning shows a 3 second resume countdown.
 
 No tap, swipe, long press or double tap has a combat function. The top of the screen holds read-only status. The bottom 38 percent outside the touch zone holds nothing interactive during combat except the inventory button, positioned inside the thumb arc.

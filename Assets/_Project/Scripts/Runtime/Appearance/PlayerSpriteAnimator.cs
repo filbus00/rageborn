@@ -310,6 +310,13 @@ namespace ARPG
                 inAction = false;
             }
 
+            // Disengaging cuts a draw or a hit reaction short: she turns and runs at once.
+            if (inAction && player.Disengaged)
+            {
+                inAction = false;
+                action = null;
+            }
+
             if (inAction)
             {
                 if (!sprite.Finished)
@@ -347,7 +354,7 @@ namespace ARPG
             stillFor = 0f;
 
             // Retreating from what it fights, the character faces it and runs backward.
-            var fighting = Time.time - lastCombatTime < CombatMemorySeconds;
+            var fighting = Time.time - lastCombatTime < CombatMemorySeconds && !player.Disengaged;
             if (fighting && LocomotionRules.IsBackpedal(aim, velocity, sprite.Animation == "run_back") && sprite.Has("run_back"))
             {
                 sprite.FaceRow(LocomotionRules.ChooseRow(sprite.Row, aim, sprite.DirectionCount));

@@ -39,7 +39,9 @@ namespace ARPG
             baseImage.sizeDelta = Vector2.one * (radius * 2f * toCanvas);
             baseImage.anchoredPosition = input.BaseScreenPosition * toCanvas;
 
-            var knobOffset = Vector2.ClampMagnitude(input.ThumbScreenPosition - input.BaseScreenPosition, radius);
+            // The knob follows the thumb out of the ring (as far as the base lets it drift), so leaving the ring to
+            // disengage is seen.
+            var knobOffset = Vector2.ClampMagnitude(input.ThumbScreenPosition - input.BaseScreenPosition, radius * StickMath.DriftFactor);
             knobImage.sizeDelta = Vector2.one * (radius * KnobDiameterFactor * toCanvas);
             knobImage.anchoredPosition = (input.BaseScreenPosition + knobOffset) * toCanvas;
         }

@@ -86,5 +86,21 @@ namespace ARPG.Tests
 
             Assert.Less(value.magnitude, 1f);
         }
+
+        [Test]
+        public void AFullPushToTheRingStillFights() => Assert.IsFalse(StickMath.Disengaged(100f, 100f, false));
+
+        [Test]
+        public void LeavingTheRingDisengages() => Assert.IsTrue(StickMath.Disengaged(125f, 100f, false));
+
+        [Test]
+        public void Resting_OnTheEdge_KeepsWhicheverItWas()
+        {
+            Assert.IsTrue(StickMath.Disengaged(110f, 100f, true));
+            Assert.IsFalse(StickMath.Disengaged(110f, 100f, false));
+        }
+
+        [Test]
+        public void BackInsideTheRingFightsAgain() => Assert.IsFalse(StickMath.Disengaged(100f, 100f, true));
     }
 }

@@ -31,6 +31,10 @@ namespace ARPG
 
         public bool IsActive => activeFinger >= 0;
 
+        /// <summary>The thumb has left the ring (<see cref="StickMath.Disengaged"/>): the character stops fighting, turns
+        /// and runs. A test override longer than 1 counts as outside.</summary>
+        public bool Disengaged { get; private set; }
+
         /// <summary>Editor and development builds only: a stick value a script sets to drive the character in a play-mode
         /// test (no touches can be injected there). Null hands control back to the touch.</summary>
         public Vector2? TestOverride { get; set; }
@@ -76,10 +80,13 @@ namespace ARPG
             if (TestOverride.HasValue && Debug.isDebugBuild)
             {
                 Value = Vector2.ClampMagnitude(TestOverride.Value, 1f);
+                Disengaged = TestOverride.Value.sqrMagnitude > 1.0001f;
                 return;
             }
 
             var touches = Touch.activeTouches;
+            if (!IsActive)
+                Disengaged = false;
 
             if (IsActive)
             {
@@ -96,6 +103,7 @@ namespace ARPG
                     }
 
                     thumb = touch.screenPosition;
+                    Disengaged = StickMath.Disengaged((thumb - origin).magnitude, RadiusPixels, Disengaged);
                     Value = StickMath.Evaluate(ref origin, thumb, RadiusPixels, SettingsDirector.Current.DeadZoneFraction);
                     return;
                 }
@@ -149,6 +157,7 @@ namespace ARPG
         {
             activeFinger = -1;
             Value = Vector2.zero;
+            Disengaged = false;
         }
     }
 }

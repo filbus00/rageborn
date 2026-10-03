@@ -33,6 +33,9 @@ namespace ARPG
         float dashSeconds;
         SpriteEffects effects;
 
+        /// <summary>The thumb has left the stick's ring: she stops shooting, turns and runs (the owner, 2026-10-03).</summary>
+        public bool Disengaged => input != null && input.Disengaged;
+
         /// <summary>Current velocity on the ground plane, in ground units per second.</summary>
         public Vector2 GroundVelocity => groundVelocity;
 
@@ -126,6 +129,8 @@ namespace ARPG
             var deltaTime = Time.fixedDeltaTime;
             slow.Tick(deltaTime);
             firing.Tick(deltaTime);
+            if (Disengaged)
+                firing.Clear();
             // The passive tree's Momentum and Stillness changes (Docs/02), read live like the gear.
             var tree = GameSession.Current.PassiveTree.Bonuses;
             stance.MomentumStep = tree.MomentumStepSeconds > 0f ? tree.MomentumStepSeconds : StanceStacks.MomentumStepSeconds;

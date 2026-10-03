@@ -407,6 +407,10 @@ namespace ARPG
             if (aim.sqrMagnitude < 1e-6f)
                 aim = facing;
 
+            // Disengaged (the thumb outside the stick's ring), she holds her fire and runs.
+            if (player.Disengaged)
+                return;
+
             if (castTimer <= 0f && !charging)
                 TryCastSkill(origin, aim, target);
 

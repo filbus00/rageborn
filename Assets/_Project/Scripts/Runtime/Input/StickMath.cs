@@ -11,6 +11,19 @@ namespace ARPG
         /// <summary>The base follows the thumb once it is further than this many radii from the base.</summary>
         public const float DriftFactor = 1.6f;
 
+        /// <summary>The thumb this many radii from the base has left the ring: the character disengages, turns and runs
+        /// (the owner, 2026-10-03). A little past the edge, so a full push to the edge still fights.</summary>
+        public const float DisengageFactor = 1.2f;
+
+        /// <summary>Back inside this many radii the character fights again. Below <see cref="DisengageFactor"/>, so a
+        /// thumb resting on the edge does not flip between the two.</summary>
+        public const float ReengageFactor = 1.05f;
+
+        /// <summary>Whether the thumb, <paramref name="distance"/> pixels from the base, is outside the ring: past
+        /// <see cref="DisengageFactor"/> radii to leave, back inside <see cref="ReengageFactor"/> to return.</summary>
+        public static bool Disengaged(float distance, float radius, bool wasDisengaged) =>
+            distance > radius * (wasDisengaged ? ReengageFactor : DisengageFactor);
+
         /// <summary>
         /// Evaluates the stick for one thumb position. Returns the analog value: direction is continuous,
         /// magnitude is 0 inside the dead zone and rises to 1 at full radius. When the thumb has slid past
