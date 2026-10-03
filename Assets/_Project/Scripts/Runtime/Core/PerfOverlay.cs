@@ -79,6 +79,11 @@ namespace ARPG
             // Unscaled: hit stop and the inventory screen change Time.timeScale, but frames still cost real time.
             stats.Record(Time.unscaledDeltaTime);
 
+            // Hidden while the Bag is open: under the Bag button it would sit on the paper doll's Helm slot.
+            var bagOpen = InventoryScreen.Current != null && InventoryScreen.Current.IsOpen;
+            if (panel.gameObject.activeSelf == bagOpen)
+                panel.gameObject.SetActive(!bagOpen);
+
             untilRefresh -= Time.unscaledDeltaTime;
             if (untilRefresh > 0f)
                 return;

@@ -66,7 +66,7 @@ namespace ARPG
                     GoldPickedUp += drop.GoldAmount;
                     loot.Release(drop);
                 }
-                else if (!quiet || !AutoLootRules.ItemReady(drop.SecondsOnGround) || !drop.IsWanted())
+                else if (!quiet || !AutoLootRules.ItemReady(drop.SecondsSinceLanding) || !drop.IsWanted())
                 {
                     // Not yet (still in a fight, or it has not lain long enough to be read), or the pick-up rule
                     // leaves it on the ground.

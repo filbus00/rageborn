@@ -32,6 +32,13 @@ namespace ARPG
         PlayerCombat combat;
         PlayerController player;
 
+        /// <summary>The town has no combat object, so its arc is made here, full (FIRST-RUN expects it there too).</summary>
+        public static void EnsureWithoutCombat(PlayerController player)
+        {
+            if (player != null && FindAnyObjectByType<PlayerCombat>() == null && FindAnyObjectByType<RageArc>() == null)
+                Create(null, player);
+        }
+
         public static RageArc Create(PlayerCombat combat, PlayerController player)
         {
             var canvasObject = new GameObject("Rage Arc Canvas", typeof(Canvas));
@@ -97,7 +104,7 @@ namespace ARPG
         void LateUpdate()
         {
             var cam = Camera.main;
-            if (cam == null || combat == null || player == null)
+            if (cam == null || player == null)
                 return;
 
             // Sized from the camera each frame, so the arc keeps its world size whatever the zoom.
@@ -110,7 +117,8 @@ namespace ARPG
             var size = new Vector2(radius * 2f, radius * 2f);
             track.rectTransform.sizeDelta = size;
             fill.rectTransform.sizeDelta = size;
-            fill.fillAmount = ArcShare * combat.Focus.Fraction;
+            // Without combat (the town) Focus is full: it refills outside fights and nothing spends it there.
+            fill.fillAmount = ArcShare * (combat != null ? combat.Focus.Fraction : 1f);
 
             var stance = player.Stance;
             var momentum = stance.Momentum > 0;

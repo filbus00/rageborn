@@ -131,6 +131,11 @@ namespace ARPG
         /// <summary>Seconds this drop has lain on the ground (scaled time, so the Bag's pause does not count).</summary>
         public float SecondsOnGround => Time.time - shownAt;
 
+        /// <summary>Seconds since the drop finished its hop and landed (0 while it is still in the air). Auto-loot waits on
+        /// this (AutoLootRules.ItemDelaySeconds after landing, as Docs/FIRST-RUN says): counting from the spawn picked items
+        /// up 1.15 s after they landed (found in Unity on 2026-10-03).</summary>
+        public float SecondsSinceLanding => popTime >= PopSeconds ? SecondsOnGround - PopSeconds : 0f;
+
         /// <summary>
         /// Whether auto-loot and the pet take this item under the player's pick-up rule (<see cref="AutoLootRules.Wants"/>);
         /// always true for gold. Checked at most once a second, since the upgrade test runs the power score.
@@ -204,7 +209,7 @@ namespace ARPG
             }
 
             // A Rare or better marker flares as it lands, then settles.
-            var sinceLanding = popTime >= PopSeconds ? SecondsOnGround - PopSeconds : 0f;
+            var sinceLanding = SecondsSinceLanding;
             if (Item.Rarity >= ItemRarity.Rare && sinceLanding > 0f && sinceLanding < FlareSeconds)
             {
                 var scale = Mathf.Lerp(FlareScale, 1f, sinceLanding / FlareSeconds);

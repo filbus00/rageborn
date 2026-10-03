@@ -59,6 +59,9 @@ namespace ARPG
                 gameObject.AddComponent<PlayerSpriteAnimator>();
         }
 
+        // A scene with no combat (the town) still shows the Focus arc under the feet.
+        void Start() => RageArc.EnsureWithoutCombat(this);
+
         /// <summary>Which renderers the hit flash covers: the placeholder body, or the layered sprites once they show.</summary>
         public void SetFlashRenderers(SpriteRenderer[] renderers)
         {
