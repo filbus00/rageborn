@@ -530,9 +530,18 @@ namespace ARPG
         {
             if (item == null || !Inventory.Contains(item))
                 return false;
+            return EquipFromInventory(item, PowerScore.PlaceFor(Equipment, item, Level, PassiveTree.Bonuses));
+        }
+
+        /// <summary>Wears a backpack item in a chosen place, as when it is dragged onto a slot (the owner, 2026-10-03): a
+        /// ring on either hand. False, changing nothing, when the item cannot be worn there
+        /// (<see cref="EquipmentState.PlacesFor"/>), is not in the backpack, or what comes off has no room.</summary>
+        public bool EquipFromInventory(Item item, ItemSlot place)
+        {
+            if (item == null || !Inventory.Contains(item) || System.Array.IndexOf(EquipmentState.PlacesFor(item.Slot), place) < 0)
+                return false;
 
             // Under the grip rules a two-hander can push out both hands' items (Docs/03), so check room for all of them.
-            var place = PowerScore.PlaceFor(Equipment, item, Level, PassiveTree.Bonuses);
             var displaced = new List<Item>();
             var equipped = Equipment.Equip(place, item, displaced);
             // The backpack is a grid (Inventory): the item leaves and whatever comes off must fit in its place, all or nothing.

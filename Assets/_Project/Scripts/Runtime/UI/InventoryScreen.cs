@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ARPG
@@ -11,6 +12,8 @@ namespace ARPG
     /// each item's tile in its rarity's color with an upgrade arrow; and tabs for Skills, Stats (the attributes), the Codex
     /// (the legendaries found) and Settings.
     /// A tap on a slot or an item opens the item sheet (<see cref="ItemSheet"/>) with the comparison, Equip and Discard.
+    /// An item dragged from the backpack onto a slot it fits is worn there, and worn gear dragged onto the backpack comes
+    /// off (the owner, 2026-10-03); while dragging, the places it fits light up.
     /// A green arrow on the Bag button says the backpack holds an upgrade (Docs/06, upgrade badge). Opening it sets
     /// <see cref="Time.timeScale"/> to 0, the game's only pause. Icons, frames and the painted portrait wait for the UI
     /// art (Docs/09); slot names and the baked character stand in.
@@ -36,6 +39,19 @@ namespace ARPG
         readonly List<Item> bulkScratch = new List<Item>();
         Text upgradeBadge;
         GameSession session;
+
+        // Dragging (ItemDrag): the item, where it was worn (null from the backpack), the picture following the finger,
+        // and every doll slot's rim to light up the places the item fits.
+        Item dragItem;
+        ItemSlot? dragFrom;
+        RectTransform dragGhost;
+        readonly Dictionary<ItemSlot, (Image rim, Color color)> slotRims = new Dictionary<ItemSlot, (Image rim, Color color)>();
+        Image backpackRim;
+        Color backpackRimColor;
+        ItemDropTarget lastOver;
+        readonly List<RaycastResult> dropHits = new List<RaycastResult>();
+        static readonly Color DropColor = new Color(0.45f, 0.85f, 0.4f, 1f);
+        static readonly Color NoDropColor = new Color(0.25f, 0.22f, 0.2f, 1f);
 
         /// <summary>The screen in the current scene, or null when it has none. Lets <see cref="HitStop"/> tell
         /// this pause apart from its own, much shorter one when they happen to overlap.</summary>
@@ -156,6 +172,8 @@ namespace ARPG
                 Destroy(child.gameObject);
             }
 
+            EndDrag();
+            slotRims.Clear();
             var current = GameSession.Current;
             BuildHeader(current);
             BuildDoll(current);
@@ -244,8 +262,120 @@ namespace ARPG
             var item = equipment.Get(place);
             var tile = ItemTile(parent, item, UiStyle.SlotLabel(place), size.y >= 160f ? 30 : 26);
             UiStyle.Place(tile.rectTransform, anchor, position, size);
+            tile.gameObject.AddComponent<ItemDropTarget>().Place = place;
+            var rim = tile.transform.GetChild(0).GetComponent<Image>();
+            slotRims[place] = (rim, rim.color);
             if (item != null)
+            {
                 tile.gameObject.AddComponent<Button>().onClick.AddListener(() => sheet.ShowEquipped(place));
+                Draggable(tile, item, place);
+            }
+        }
+
+        // --- Dragging -----------------------------------------------------------------------------------------------
+
+        void Draggable(Image tile, Item item, ItemSlot? wornIn)
+        {
+            var drag = tile.gameObject.AddComponent<ItemDrag>();
+            drag.Began = (d, e) => BeginDrag(d, e, item, wornIn);
+            drag.Moved = (d, e) =>
+            {
+                MoveGhost(e);
+                lastOver = TargetAt(e.position);
+            };
+            drag.Ended = (d, e) => Drop(e);
+        }
+
+        void BeginDrag(ItemDrag tile, PointerEventData eventData, Item item, ItemSlot? wornIn)
+        {
+            EndDrag();
+            dragItem = item;
+            dragFrom = wornIn;
+            // A copy of the tile's picture follows the finger, over everything and blind to raycasts so the drop sees
+            // what is under it.
+            var canvas = panelRoot.GetComponentInParent<Canvas>().rootCanvas;
+            var source = (RectTransform)tile.transform;
+            var ghost = UiStyle.Image(canvas.transform, "Dragged Item", new Color(1f, 1f, 1f, 0.85f));
+            ghost.sprite = ItemIcons.For(item.Slot, item.Rarity);
+            ghost.preserveAspect = true;
+            ghost.raycastTarget = false;
+            dragGhost = ghost.rectTransform;
+            dragGhost.SetAsLastSibling();
+            dragGhost.sizeDelta = source.rect.size * 1.1f;
+            MoveGhost(eventData);
+
+            // Light the places it fits; dim the rest. Worn gear lights the backpack instead.
+            var places = EquipmentState.PlacesFor(item.Slot);
+            foreach (var pair in slotRims)
+                pair.Value.rim.color = wornIn == null && System.Array.IndexOf(places, pair.Key) >= 0 ? DropColor : NoDropColor;
+            if (wornIn != null && backpackRim != null)
+                backpackRim.color = DropColor;
+        }
+
+        void MoveGhost(PointerEventData eventData)
+        {
+            if (dragGhost == null)
+                return;
+            var canvasRect = (RectTransform)dragGhost.parent;
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, eventData.position, eventData.pressEventCamera, out var local))
+                dragGhost.localPosition = local;
+        }
+
+        void Drop(PointerEventData eventData)
+        {
+            var item = dragItem;
+            var from = dragFrom;
+            // Raycast at the release point: on iOS the touch's own raycast result is already cleared when the finger lifts
+            // (found on the simulator, 2026-10-03), so it is asked here, falling back to what was under the finger at its last move.
+            var target = TargetAt(eventData.position) ?? lastOver;
+            EndDrag();
+            if (item == null || target == null)
+                return;
+
+            var current = GameSession.Current;
+            var done = false;
+            if (from == null && !target.Backpack)
+                done = current.EquipFromInventory(item, target.Place);
+            else if (from != null && target.Backpack)
+                done = current.Unequip(from.Value);
+            // The Bag redraws itself only for the item sheet's buttons, so a drop does it here; a refused drop just
+            // restores the colors (EndDrag).
+            if (!done)
+                return;
+            Sfx.Play(SoundId.Pickup);
+            Refresh();
+        }
+
+        ItemDropTarget TargetAt(Vector2 screenPosition)
+        {
+            var eventSystem = EventSystem.current;
+            if (eventSystem == null)
+                return null;
+            var pointer = new PointerEventData(eventSystem) { position = screenPosition };
+            dropHits.Clear();
+            eventSystem.RaycastAll(pointer, dropHits);
+            foreach (var hit in dropHits)
+            {
+                var target = hit.gameObject.GetComponentInParent<ItemDropTarget>();
+                if (target != null)
+                    return target;
+            }
+            return null;
+        }
+
+        void EndDrag()
+        {
+            lastOver = null;
+            dragItem = null;
+            dragFrom = null;
+            if (dragGhost != null)
+                Destroy(dragGhost.gameObject);
+            dragGhost = null;
+            foreach (var pair in slotRims)
+                if (pair.Value.rim != null)
+                    pair.Value.rim.color = pair.Value.color;
+            if (backpackRim != null)
+                backpackRim.color = backpackRimColor;
         }
 
         /// <summary>An item's tile: framed in its rarity's color on a blood-dark fill, its icon (<see cref="ItemIcons"/>)
@@ -432,6 +562,9 @@ namespace ARPG
         void BuildGrid(GameSession current)
         {
             var frame = UiStyle.Framed(content, "Backpack", new Color(0.06f, 0.045f, 0.045f, 1f), 4f);
+            frame.gameObject.AddComponent<ItemDropTarget>().Backpack = true;
+            backpackRim = frame.transform.GetChild(0).GetComponent<Image>();
+            backpackRimColor = backpackRim.color;
             var rect = frame.rectTransform;
             rect.anchorMin = new Vector2(0f, 0f);
             rect.anchorMax = new Vector2(1f, 1f);
@@ -474,6 +607,7 @@ namespace ARPG
                 PlaceOnGrid(tile.rectTransform, cells);
                 var index = i;
                 tile.gameObject.AddComponent<Button>().onClick.AddListener(() => sheet.ShowBackpack(items, index));
+                Draggable(tile, item, null);
                 if (PowerScore.IsUpgrade(current.Equipment, item, current.Level, current.PassiveTree.Bonuses))
                 {
                     var arrow = UiStyle.Text(tile.transform, "▲", 30, ItemSheet.GainColor, TextAnchor.MiddleCenter);
