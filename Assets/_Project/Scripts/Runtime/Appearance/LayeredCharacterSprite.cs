@@ -119,20 +119,50 @@ namespace ARPG
             if (next.Equals(appearance) && sheets.Count > 0)
                 return;
             appearance = next;
-            // Let go of every sheet of a look no longer worn; the next frames load what is needed.
-            if (sheets.Count > 0)
-            {
-                sheets.Clear();
-                Resources.UnloadUnusedAssets();
-            }
+            // Only the sheets of looks no longer worn are let go; the body's and every unchanged layer's stay loaded, so
+            // equipping a bow loads the bow's sheets and nothing else. Equipping used to drop every sheet, call
+            // Resources.UnloadUnusedAssets and reload all of them, which froze the game 1.2 to 2.2 s in the editor on
+            // every visible item (the owner, 2026-10-03). The dropped sheets' textures are freed by the next scene change.
+            PruneSheets();
             Resolve();
             Apply();
             Preload();
         }
 
+        readonly List<string> pruned = new List<string>();
+
+        void PruneSheets()
+        {
+            pruned.Clear();
+            foreach (var name in sheets.Keys)
+                if (!IsWorn(name))
+                    pruned.Add(name);
+            foreach (var name in pruned)
+                sheets.Remove(name);
+        }
+
+        // Whether a cached sheet belongs to a look now worn on its layer, or to that layer's fallback look.
+        bool IsWorn(string sheetName)
+        {
+            for (var i = 0; i < LayerCount; i++)
+            {
+                var layer = (AppearanceLayer)i;
+                var code = $"{character}_{AppearanceRules.LayerCode(layer)}_";
+                if (!sheetName.StartsWith(code))
+                    continue;
+                var look = appearance.LookOf(layer);
+                var fallback = AppearanceRules.FallbackLook(layer, appearance.Grip);
+                return (look != null && sheetName.StartsWith(code + look + "_")) ||
+                       (look != null && fallback != null && sheetName.StartsWith(code + fallback + "_"));
+            }
+            return false;
+        }
+
         // Every animation the player can play, so all their sheets load with the look (on arriving and on equipping,
         // behind a fade or the paused Bag) rather than the first time each plays: a sheet loading mid-fight took about
-        // 50 ms in the editor and froze the game on the phone when a big pack was engaged (the owner, 2026-09-29).
+        // 50 ms in the editor and froze the game on the phone when a big pack was engaged (the owner, 2026-09-29). The
+        // list is the character's timing file, which the bake writes with every clip it baked; the retired Wrathborn's
+        // names are the fallback when there is none.
         static readonly string[] Actions = { "attack", "hew", "hurl_axe", "ground_breaker" };
         static readonly string[] Others = { "idle", "run", "run_back", "bull_rush", "hit", "death" };
         static readonly string[] Legs =
@@ -141,17 +171,42 @@ namespace ARPG
             LocomotionRules.MovingLeftSuffix,
         };
 
+        readonly List<string> baked = new List<string>();
+
         void Preload()
         {
-            for (var layer = 0; layer < LayerCount; layer++)
+            EnsureTiming();
+            if (baked.Count == 0)
             {
                 foreach (var name in Others)
-                    SheetFor((AppearanceLayer)layer, name);
+                    baked.Add(name);
                 foreach (var action in Actions)
                     foreach (var legs in Legs)
-                        SheetFor((AppearanceLayer)layer, action + legs);
+                        baked.Add(action + legs);
+            }
+            for (var layer = 0; layer < LayerCount; layer++)
+                foreach (var name in baked)
+                    SheetFor((AppearanceLayer)layer, name);
+        }
+
+        void EnsureTiming()
+        {
+            if (timingLoaded)
+                return;
+            timingLoaded = true;
+            CharacterSheets.LoadTiming(character, timing, speeds);
+            // Keys are "<grip>_<clip>" (or a bare clip): the clips baked, once each.
+            foreach (var key in timing.Keys)
+            {
+                var underscore = key.IndexOf('_');
+                var clip = underscore > 0 && key.Substring(0, underscore).Length <= 6 && IsGripCode(key.Substring(0, underscore))
+                    ? key.Substring(underscore + 1) : key;
+                if (!baked.Contains(clip))
+                    baked.Add(clip);
             }
         }
+
+        static bool IsGripCode(string code) => code == "1h" || code == "2h" || code == "dual" || code == "shield";
 
         /// <summary>Plays an animation from its start. A one-shot with a duration is stretched or squeezed to fit it (an
         /// attack fitted to the attack rate); 0 plays it at 12 frames per second.</summary>
@@ -228,11 +283,7 @@ namespace ARPG
         /// <summary>How long the animation plays: its real length from the timing file, else its frames at 12 a second.</summary>
         float PlaybackSeconds(string animationName, CharacterSheet sheet)
         {
-            if (!timingLoaded)
-            {
-                timingLoaded = true;
-                CharacterSheets.LoadTiming(character, timing, speeds);
-            }
+            EnsureTiming();
             if (timing.TryGetValue(AppearanceRules.GripCode(appearance.Grip) + "_" + animationName, out var found) ||
                 timing.TryGetValue(AppearanceRules.GripCode(CharacterGrip.OneHand) + "_" + animationName, out found) ||
                 timing.TryGetValue(animationName, out found))
@@ -286,18 +337,43 @@ namespace ARPG
 
         CharacterSheet LoadLook(AppearanceLayer layer, string look, CharacterGrip grip, string animationName)
         {
-            var sheet = LoadCached(AppearanceRules.SheetName(character, layer, look, grip, animationName));
+            var sheet = Baked(layer, look, grip) ? LoadCached(AppearanceRules.SheetName(character, layer, look, grip, animationName)) : null;
             var fallback = AppearanceRules.FallbackLook(layer, grip);
-            if (sheet == null && fallback != null && fallback != look)
+            if (sheet == null && fallback != null && fallback != look && Baked(layer, fallback, grip))
                 sheet = LoadCached(AppearanceRules.SheetName(character, layer, fallback, grip, animationName));
             return sheet;
         }
+
+        // Whether any sheet of a look exists (its idle or its attack), asked once per look: a look not modelled yet (a
+        // recurve bow while only the hunting bow is) skips straight to the fallback instead of searching for each of its
+        // animations, 17 file names apiece, on every equip.
+        readonly Dictionary<string, bool> lookBaked = new Dictionary<string, bool>();
+
+        bool Baked(AppearanceLayer layer, string look, CharacterGrip grip)
+        {
+            var key = AppearanceRules.SheetName(character, layer, look, grip, "");
+            if (lookBaked.TryGetValue(key, out var known))
+                return known;
+            var found = LoadCached(key + "idle") != null || LoadCached(key + "attack") != null;
+            lookBaked[key] = found;
+            return found;
+        }
+
+        // Sheets that do not exist, remembered for good (nothing to free), so a missing one is searched for once.
+        readonly HashSet<string> absent = new HashSet<string>();
 
         CharacterSheet LoadCached(string name)
         {
             if (sheets.TryGetValue(name, out var cached))
                 return cached;
+            if (absent.Contains(name))
+                return null;
             var sheet = CharacterSheets.Load($"Characters/{character}/{name}");
+            if (sheet == null)
+            {
+                absent.Add(name);
+                return null;
+            }
             sheets[name] = sheet;
             if (sheet != null && sheet.Rows.Length != directionCount)
             {
