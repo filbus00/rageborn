@@ -12,7 +12,7 @@ Rageborn: isometric Diablo-style action RPG for iOS. Unity 6000.6.2f1, URP 2D re
 # State of the game (2026-10-02)
 
 - **The class is the Wild Arrow** (bows only, the owner's decision of 2026-09-30; Docs/02). The Wrathborn (axes, Rage, passive tree) is retired: his code and assets are kept but unused. Notes in the log describe him where they were not rewritten.
-- **The bows branch has run in Unity** (2026-10-03): it compiled clean, 536 of 536 tests pass, Apply Bows Change and the stand-in bake ran, and it plays at 60 fps in the editor, on the simulator and on the owner's iPhone 11 ("It feels really good on the phone"). `Docs/FIRST-RUN.md` steps 6 (legendaries) and 7 (pets) are not checked yet. Details in the log.
+- **The bows branch has run in Unity** (2026-10-03): it compiled clean, 536 of 536 tests pass, Apply Bows Change and the stand-in bake ran, and it plays at 60 fps in the editor, on the simulator and on the owner's iPhone 11 ("It feels really good on the phone"). Steps 6 (legendaries) and 7 (pets) of `Docs/FIRST-RUN.md` were checked in the editor on 2026-10-03: all 24 powers and the pets work. Details in the log.
 
 # Layout
 

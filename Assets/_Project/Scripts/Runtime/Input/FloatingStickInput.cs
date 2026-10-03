@@ -86,7 +86,12 @@ namespace ARPG
 
             var touches = Touch.activeTouches;
             if (!IsActive)
+            {
+                // No finger down: no input (a cleared test override left its last value behind, so a scripted test kept
+                // creeping and never built Stillness, found 2026-10-03).
+                Value = Vector2.zero;
                 Disengaged = false;
+            }
 
             if (IsActive)
             {
