@@ -342,5 +342,9 @@ without Unity). A whole run takes about 20 seconds.
   Waypoints stand on a modelled stone dais, the Waystone has an obelisk.
 - Large sprites sort by their footprint's middle, so she can be drawn behind a house's corner when she stands beside
   its far end; not seen in play yet, to watch.
-- Checked in the editor: 555 of 555 tests pass, no console errors in the town or a dungeon level.
+- A `PolygonCollider2D` added beside a `SpriteRenderer` first traces the sprite's outline; with the world art not
+  readable that logged "Sprite outline generation failed" on iOS for every piece. The footprints sit on a child
+  object with no sprite.
+- Checked in the editor: 555 of 555 tests pass, no console errors in the town or a dungeon level. On the simulator the
+  town holds 60 fps with no errors.
 

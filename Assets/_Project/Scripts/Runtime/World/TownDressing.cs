@@ -40,11 +40,14 @@ namespace ARPG
                 var go = renderer.gameObject;
                 if (piece.Half.x > 0f && piece.Half.y > 0f)
                 {
+                    // On a child with no sprite: a polygon collider added beside a sprite traces the sprite's outline
+                    // first, which logs "Sprite outline generation failed" on iOS (the textures are not readable).
+                    var footprint = new GameObject("Footprint", typeof(Rigidbody2D));
+                    footprint.transform.SetParent(go.transform, false);
                     if (obstacle >= 0)
-                        go.layer = obstacle;
-                    var body = go.AddComponent<Rigidbody2D>();
-                    body.bodyType = RigidbodyType2D.Static;
-                    go.AddComponent<PolygonCollider2D>().points = TownLayout.Footprint(piece.Half);
+                        footprint.layer = obstacle;
+                    footprint.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                    footprint.AddComponent<PolygonCollider2D>().points = TownLayout.Footprint(piece.Half);
                 }
                 switch (piece.Light)
                 {
