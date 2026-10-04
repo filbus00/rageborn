@@ -1,5 +1,8 @@
 # Dungeon pixel art: drop PNGs here
 
+The current files are rendered in Blender by `ArtSource/tools/props/render_props.py`; rerun it after changing
+`models.py`, or replace a file by hand.
+
 Put the dungeon's floor tiles, decals, walls and props here as PNGs, then run **Tools > ARPG > Import Pixel Art** in
 Unity. Each file replaces the code-drawn piece it names; anything you have not made yet keeps the placeholder, so the
 art can be swapped one piece at a time. The import report is `Logs/PixelArtImport.txt`.
@@ -9,10 +12,10 @@ art can be swapped one piece at a time. The import report is `Logs/PixelArtImpor
 | File | What it replaces | Size at 1x |
 |---|---|---|
 | `floor_flagstone_1.png` ... `_16` | Floor variants of a room style. Styles: `flagstone`, `brick`, `earth`, `moss` (the town uses flagstone and earth). Once one variant of a style exists, only the imported ones are used for that style | 40 x 20, the 2:1 diamond touching the edge midpoints |
-| `decal_<kind>_1.png` ... | A mark laid on a floor tile: `cracks`, `bones`, `blood`, `rubble`, `moss`, `skull`, `puddle`. Clear around the mark | 40 x 20 |
+| `decal_<kind>_1.png` ... | A mark laid on a floor tile: `cracks`, `bones`, `blood`, `rubble`, `moss`, `skull`, `puddle`, `ritual`. Clear around the mark | 40 x 20 |
 | `wall.png` | Every full-height wall block (pillars too) | 40 wide, any height; the footprint diamond is the bottom 20 px |
 | `wall_low.png` | The walls between the camera and the player, cut low | 40 wide, about 25 tall |
-| `prop_<kind>.png` | `barrel`, `crate`, `urn`, `bone_pile`, `rubble`, `broken_column`, `sarcophagus`, `brazier`, `candles` | 40 wide, any height; standing on the bottom 20 px |
+| `prop_<kind>.png` | `barrel`, `crate`, `urn`, `bone_pile`, `rubble`, `broken_column`, `sarcophagus`, `brazier`, `candles`, `bucket`, `torch` | 40 wide, any height; standing on the bottom 20 px |
 
 Every piece stands on the cell's middle, 10 px up from its bottom edge.
 

@@ -128,8 +128,9 @@ namespace ARPG
         /// library, sizes, pack rules): a save from another version forgets its dungeon kills and chests, which would
         /// otherwise land on the wrong packs. 1: the first, small rooms. 2: bigger, open rooms, 5 cell doorways.
         /// 3: the last level's exit room is the boss arena. 4: connected halls, props and floor styles (2026-09-30).
+        /// 5: buckets, standing torches, ritual sigils and summoning circles (2026-10-04).
         /// </summary>
-        public const int Version = 4;
+        public const int Version = 5;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>

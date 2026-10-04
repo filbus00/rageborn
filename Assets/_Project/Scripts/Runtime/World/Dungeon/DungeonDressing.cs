@@ -25,16 +25,17 @@ namespace ARPG
         {
             (PropKind.Barrel, 20), (PropKind.Crate, 16), (PropKind.Urn, 12), (PropKind.BonePile, 12), (PropKind.Rubble, 14),
             (PropKind.BrokenColumn, 8), (PropKind.Sarcophagus, 6), (PropKind.Brazier, 7), (PropKind.Candles, 5),
+            (PropKind.Bucket, 8), (PropKind.Torch, 7),
         };
 
         static readonly (DecalKind kind, int weight)[] DecalWeights =
         {
             (DecalKind.Cracks, 30), (DecalKind.Bones, 12), (DecalKind.Blood, 12), (DecalKind.Rubble, 18), (DecalKind.Moss, 14),
-            (DecalKind.Skull, 6), (DecalKind.Puddle, 8),
+            (DecalKind.Skull, 6), (DecalKind.Puddle, 8), (DecalKind.Ritual, 4),
         };
 
         /// <summary>Whether a prop gives off light (placed at most once a room, so a level has few lights).</summary>
-        public static bool IsLit(PropKind kind) => kind == PropKind.Brazier || kind == PropKind.Candles;
+        public static bool IsLit(PropKind kind) => kind == PropKind.Brazier || kind == PropKind.Candles || kind == PropKind.Torch;
 
         public static void Place(DungeonLayout layout, List<Vector2Int>[] doors, System.Random random)
         {
@@ -65,7 +66,23 @@ namespace ARPG
                 if (room.Kind != RoomKind.Boss)
                     PlaceProps(layout, floor, spots, allDoors, random);
                 PlaceDecals(layout, floor, room.Style, random);
+                if ((room.Kind == RoomKind.Combat || room.Kind == RoomKind.Elite) && random.Next(RitualOneIn) == 0)
+                    PlaceRitual(layout, room.Interior);
             }
+        }
+
+        /// <summary>One combat or elite room in this many gets a summoning circle on its floor.</summary>
+        const int RitualOneIn = 4;
+
+        // A summoning circle in the room's middle, where the 3 x 3 cells under it are all open floor.
+        static void PlaceRitual(DungeonLayout layout, RectInt interior)
+        {
+            var middle = new Vector2Int(interior.xMin + interior.width / 2, interior.yMin + interior.height / 2);
+            for (var x = -1; x <= 1; x++)
+                for (var y = -1; y <= 1; y++)
+                    if (!layout.IsFloor(middle + new Vector2Int(x, y)))
+                        return;
+            layout.Rituals.Add(middle);
         }
 
         static void PlaceProps(DungeonLayout layout, List<Vector2Int> floor, List<Vector2Int> spots, List<Vector2Int> doors, System.Random random)

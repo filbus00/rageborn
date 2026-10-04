@@ -30,8 +30,10 @@ namespace ARPG
 
             var waypoint = go.AddComponent<Waypoint>();
             waypoint.depth = depth;
+            // The modelled stone dais (and the Waystone's obelisk in town) under the glowing ring.
+            var dais = WorldArt.Place(depth > 0 ? "waypoint" : "waystone", go.transform, go.transform.position, depth > 0);
             waypoint.glow = TravelArt.GroundRing(go.transform, 1.4f, DormantColor);
-            TravelArt.Label(go.transform, depth > 0 ? "Waypoint" : "Waystone", new Color(0.6f, 0.85f, 1f));
+            TravelArt.Label(go.transform, depth > 0 ? "Waypoint" : "Waystone", new Color(0.6f, 0.85f, 1f), dais != null && depth == 0 ? 1.9f : 1.1f);
             waypoint.Refresh();
             WorldLights.AddTravel(go.transform);
             return waypoint;

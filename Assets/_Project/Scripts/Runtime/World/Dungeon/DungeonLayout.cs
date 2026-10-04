@@ -25,6 +25,8 @@ namespace ARPG
         Sarcophagus,
         Brazier,
         Candles,
+        Bucket,
+        Torch,
     }
 
     /// <summary>Marks on a dungeon floor, walked over.</summary>
@@ -37,6 +39,7 @@ namespace ARPG
         Moss,
         Skull,
         Puddle,
+        Ritual,
     }
 
     /// <summary>Room types from Docs/05-world-and-content.md. Shrine and ambush rooms are not built; until they are,
@@ -138,6 +141,9 @@ namespace ARPG
         public List<Vector2Int> Chests { get; } = new List<Vector2Int>();
         public Dictionary<Vector2Int, PropKind> Props { get; } = new Dictionary<Vector2Int, PropKind>();
         public Dictionary<Vector2Int, DecalKind> Decals { get; } = new Dictionary<Vector2Int, DecalKind>();
+
+        /// <summary>The middles of the summoning circles painted on some rooms' floors (3 x 3 cells, walked over).</summary>
+        public List<Vector2Int> Rituals { get; } = new List<Vector2Int>();
 
         /// <summary>The floor style of the room a cell lies in (an opening takes one of its rooms'), 0 outside rooms.</summary>
         public int StyleAt(Vector2Int cell)

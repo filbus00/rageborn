@@ -564,6 +564,15 @@ namespace ARPG
                         Flame(p, x, y0 + h + 1, 2, 6, random);
                     }
                     break;
+                case PropKind.Bucket:
+                    Cylinder(p, cx, gy, 11, 18, new Color(0.45f, 0.32f, 0.18f), y => 0.8f + 0.2f * y);
+                    Ellipse(p, cx, gy + 18, 10, 4, new Color(0.2f, 0.25f, 0.3f));
+                    break;
+                case PropKind.Torch:
+                    for (var y = 0; y < 60; y++)
+                        Set(p, PropSize, PropSize, cx, gy + y, new Color(0.15f, 0.14f, 0.14f));
+                    Flame(p, cx, gy + 62, 5, 12, random);
+                    break;
             }
         }
 

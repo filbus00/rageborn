@@ -311,3 +311,36 @@ The design docs in `Docs/` are the source of truth for design decisions. Start a
 - Every one of the 24 does what its text says in a setup that meets its condition, and no fight logged an error: damage up for Splinterbough, Quiver of Endless Splinters (and Focus), Gallowsreach, Ember-Tongue, Ashfall Quiver, Hunter's Promise, Magpie's Nest, Falconer's Hood, Cinder-Stitched Jerkin, Fletcher's Fingers (and Focus), Bandolier of Many Heads, Stalker's Treads (+15 percent at full Stillness), Stillwater Yew (+1 percent: one arrow per fill); with movement, Galeheart +46, The Long Silence +27 (dummies at 8.5), Wind-Sworn Quiver +4, Hide of the Running Stag (Momentum cap 8, more arrows), Windrunner Treads and Eye of the Storm (Focus); with 23 percent crit from Agility, Widow's Draw (bleeds), Bloodletter's Grips (+3.5 with the Widow's bleed), Crown of the Unblinking Eye (Pierce Arrow 9 casts in 10 s against 3). Pack Leader's Signet and Quiver of the Hollow Hound need the pet (the Hound's mark seen on bitten enemies).
 - Pets: buying takes the price (500, 1500, 3000); the Wolf follows (5.2 at most while she runs, 3.5 when she stops) and carries over scene changes; bites in 0.4 s; only an ordinary melee blow (a husk's) can land on the pet, never a brute's slam or an archer's arrow (by design, `EnemyController` attack switch), so it was knocked out by husks after 4 hits and came back at full life; it fetched a rare 4.5 away in 1.5 s while she stood still.
 
+## 2026-10-04: props, buildings and dressing modelled in Blender
+
+The owner asked for town and dungeon assets made in Blender, without plugins. `ArtSource/tools/props/` builds them
+from code: `kit.py` (shapes on plain mottled materials in the palette's colours, an orthographic camera at the game's
+30 degrees turned so the tilemap's x runs right and up, one scene unit is a ground unit, `METRE` 1.3 so a person
+1.77 m tall is as tall as the Wild Arrow; renders at 160 pixels a unit, 4 times the game's), `models.py` (one function
+a piece), `render_props.py` (renders them: `Blender -b -P ArtSource/tools/props/render_props.py -- [names or prefix*]`)
+and `preview.py` (a contact sheet as the game will show them, shrunk, snapped, outlined and enlarged 3x, for checking
+without Unity). A whole run takes about 20 seconds.
+
+- One-cell dungeon pieces (props, decals, `wall`, `wall_low`) render to fixed frames in `ArtSource/pixel/dungeon` for
+  the existing Import Pixel Art. That importer had never run before: its report line threw a FormatException on
+  `{kind,-8}`, now padded by hand.
+- Larger pieces render to a big frame, cropped to what was drawn on whole 4 pixel steps from the footprint's middle,
+  to `ArtSource/pixel/world` with `manifest.json` (size and pivot). `Tools > ARPG > Import World Art`
+  (`WorldArtImporter`) shrinks them by 4, snaps and outlines them (not the flat ritual circle) and writes
+  Resources/Art/World with the pivot at the footprint's middle; `WorldArt.Get` and `WorldArt.Place` load them, lit by
+  the 2D lights. Anything not imported keeps its placeholder.
+- The stairs down are a shaft with steps; a holdout plane with a hole hides the shaft's outside below the ground.
+- Dungeon: `PropKind` gains Bucket and Torch (lit like a brazier, smaller, its light 1.2 up), `DecalKind` gains Ritual;
+  `DungeonDressing` puts a summoning circle (`DungeonLayout.Rituals`) in the middle of one combat or elite room in four
+  when its 3 x 3 cells are floor; `DungeonLevel` draws it on the Decals layer with a dim red flickering light, and uses
+  the modelled stairs and chests. `DungeonGenerator.Version` is 5. A level on depth 1 had 124 props, 4 torches,
+  9 buckets and one circle, with a pack standing on it.
+- Town: `TownLayout` (pure, tested: nothing within 1.5 cells of the start, stairs, Waystone, portal, NPCs and DEV
+  stairs, and no two pieces overlapping, the pen's fences excepted) lists 33 pieces; `TownDressing` places them when
+  the town loads, each with a static polygon collider of its footprint on the Obstacle layer (she stops at a house's
+  wall and slides along it), the campfire and lamp posts lit and flickering, and swaps the town stairway's sprite.
+  Waypoints stand on a modelled stone dais, the Waystone has an obelisk.
+- Large sprites sort by their footprint's middle, so she can be drawn behind a house's corner when she stands beside
+  its far end; not seen in play yet, to watch.
+- Checked in the editor: 555 of 555 tests pass, no console errors in the town or a dungeon level.
+

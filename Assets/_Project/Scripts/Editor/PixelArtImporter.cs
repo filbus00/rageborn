@@ -69,7 +69,7 @@ namespace ARPG.Editor
                 written.Add(output);
                 counts[(int)kind]++;
 
-                report.Append($"{kind,-8} {name}: {width} x {height}");
+                report.Append($"{kind.ToString().PadRight(8)} {name}: {width} x {height}");
                 if (notes.Count > 0)
                     report.Append("  (").Append(string.Join("; ", notes)).Append(')');
                 if (notes.Exists(n => n.StartsWith("WARNING")))

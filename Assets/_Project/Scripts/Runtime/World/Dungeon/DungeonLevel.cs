@@ -239,9 +239,22 @@ namespace ARPG
                 go.transform.SetParent(lights, false);
                 go.transform.position = CellWorld(pair.Key);
                 var brazier = pair.Value == PropKind.Brazier;
-                var light = WorldLights.Add(go.transform, new Color(1f, 0.55f, 0.25f), brazier ? 1.3f : 0.9f, 0.3f, brazier ? 4.5f : 3f, 0.3f);
+                var torch = pair.Value == PropKind.Torch;
+                var light = WorldLights.Add(go.transform, new Color(1f, 0.55f, 0.25f), brazier ? 1.3f : torch ? 1.1f : 0.9f, 0.3f,
+                    brazier ? 4.5f : torch ? 4f : 3f, torch ? 1.2f : 0.3f);
                 if (light != null)
                     go.AddComponent<FlickerLight>().Init(light, pair.Key.x * 1.7f + pair.Key.y);
+            }
+
+            // Summoning circles on some rooms' floors, their candles lighting them a dim red.
+            foreach (var cell in Layout.Rituals)
+            {
+                var circle = WorldArt.Place("ritual_circle", lights, CellWorld(cell), true);
+                if (circle == null)
+                    break;
+                var glow = WorldLights.Add(circle.transform, new Color(1f, 0.35f, 0.25f), 0.9f, 0.4f, 3.5f, 0.3f);
+                if (glow != null)
+                    circle.gameObject.AddComponent<FlickerLight>().Init(glow, cell.x * 0.9f + cell.y);
             }
         }
 
@@ -318,8 +331,12 @@ namespace ARPG
             SetLayer(go, GameLayers.Interactable);
 
             var spriteRenderer = go.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = stairsSprite;
+            // The modelled stairs (WorldArt) when imported: a shaft down, or a flight of steps up.
+            var modelled = WorldArt.Get(objectName == "Stairs Down" ? "stairs_down" : "stairs_up");
+            spriteRenderer.sprite = modelled != null ? modelled : stairsSprite;
             spriteRenderer.sortingLayerName = GameSortingLayers.Decals;
+            if (modelled != null)
+                WorldArt.Lit(spriteRenderer);
 
             var collider = go.GetComponent<CircleCollider2D>();
             collider.isTrigger = true;
@@ -343,7 +360,16 @@ namespace ARPG
             collider.isTrigger = true;
             collider.radius = 0.5f;
 
-            go.AddComponent<Chest>().Configure(levelId + "/Chest " + index, Layout.EnemyLevel, spriteRenderer, chestClosedSprite, chestOpenSprite);
+            var closed = WorldArt.Get("chest_closed");
+            var opened = WorldArt.Get("chest_open");
+            if (closed != null && opened != null)
+                WorldArt.Lit(spriteRenderer);
+            else
+            {
+                closed = chestClosedSprite;
+                opened = chestOpenSprite;
+            }
+            go.AddComponent<Chest>().Configure(levelId + "/Chest " + index, Layout.EnemyLevel, spriteRenderer, closed, opened);
         }
 
         void AddPack(Transform parent, int index, PackPlacement placement)
