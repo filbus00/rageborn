@@ -15,7 +15,8 @@ namespace ARPG
     public class LoadoutScreen : MonoBehaviour
     {
         /// <summary>The level the loadout opens at (Q4).</summary>
-        public const int OpensAtLevel = 9;
+        // Q4 had it open at level 9; with every skill unlocked from level 1 (the owner, 2026-10-04) it opens at once.
+        public const int OpensAtLevel = 1;
 
         static readonly Color SheetColor = UiStyle.Sheet;
         static readonly Color StrokeColor = UiStyle.Blood;

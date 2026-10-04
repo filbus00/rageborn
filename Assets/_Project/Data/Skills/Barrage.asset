@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b800c5fde4a6841a2a27c7fd419314d4, type: 3}
-  m_Name: ExplosiveArrow
+  m_Name: Barrage
   m_EditorClassIdentifier: ARPG.Runtime::ARPG.SkillDefinition
-  displayName: Explosive Arrow
-  kind: 10
+  displayName: Barrage
+  kind: 12
   unlockLevel: 1
-  rageCost: 30
+  rageCost: 25
   rageGain: 0
-  cooldownSeconds: 7
-  damageMultiplier: 2.5
+  cooldownSeconds: 9
+  damageMultiplier: 0.6
   arcDegrees: 180
-  range: 7.5
+  range: 7
   minRange: 0
-  minEnemies: 3
-  speed: 15
+  minEnemies: 2
+  speed: 17
   effectStrength: 0
   effectSeconds: 0
   maxRage: 0
   minMomentum: 0
-  durationSeconds: 0
+  durationSeconds: 1.2
   buffDamage: 0
   buffAttackSpeed: 0
   buffAttackSpeedPerMomentum: 0
@@ -38,12 +38,12 @@ MonoBehaviour:
   executeThreshold: 0
   executeMultiplier: 0
   windupSeconds: 0
-  projectileCount: 1
-  spreadDegrees: 0
-  burstRadius: 2.5
+  projectileCount: 8
+  spreadDegrees: 12
+  burstRadius: 0
   turnDegreesPerSecond: 360
-  triggerText: 3+ enemies around a target
-  animationName: recoil
-  alternativeTriggers: 0100000003000000i
+  triggerText: 2+ enemies in reach, moving
+  animationName: attack
+  alternativeTriggers: 0100000002000000i
   effectSprite: {fileID: 0}
-  effectColor: {r: 1, g: 0.55, b: 0.15, a: 0.95}
+  effectColor: {r: 0.55, g: 1, b: 0.6, a: 0.9}

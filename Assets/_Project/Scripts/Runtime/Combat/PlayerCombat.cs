@@ -109,7 +109,7 @@ namespace ARPG
 
         // What a projectile in flight is: the basic arrow (it gives Focus when it hits), one of the Wild Arrow's skill
         // arrows, or the retired Wrathborn's thrown axe (it spins).
-        enum ShotStyle { Basic, Volley, Pierce, Homing, Explosive, Axe }
+        enum ShotStyle { Basic, Volley, Pierce, Homing, Explosive, Axe, Knockback, Barrage, KillShot }
 
         // An arrow's traits (Docs/03, "arrow traits", 2026-10-01) are set when it is loosed, from its skill and the gear
         // (ApplyGear), so every source of a trait (a skill, a legendary, an affix) lands in this one place.
@@ -153,7 +153,18 @@ namespace ARPG
             public float BurstRadius;
             // Crown of the Unblinking Eye: a Pierce Arrow's crit resets its cooldown, once per cast.
             public bool ResetOnCrit;
+            // Knockback Shot: how far it throws back the enemy it hits and those within the radius around it.
+            public float KnockDistance;
+            public float KnockRadius;
+            // Kill Shot: below this share of its life a target takes ExecuteMultiplier instead, as a certain crit.
+            public float ExecuteBelow;
+            public float ExecuteMultiplier;
         }
+
+        // Barrage (2026-10-04): the arrows still to loose, the time to the next and the skill they come from.
+        SkillDefinition barrageSkill;
+        int barrageLeft;
+        float barrageTimer;
 
         // A patch of floor that hurts what stands in it (Docs/03, ground marks): for now Gallowsreach's blood, which
         // makes enemies bleed. Pulsed twice a second.
@@ -396,6 +407,8 @@ namespace ARPG
                 UpdateChannel(origin, deltaTime);
             if (executeSkill != null)
                 UpdateExecute(origin, deltaTime);
+            if (barrageLeft > 0)
+                UpdateBarrage(origin, deltaTime);
 
             enemies.QueryEnemies(origin, LongestReach() + QueryMargin, candidates);
             var previousTarget = Target;
@@ -639,6 +652,36 @@ namespace ARPG
                     if (own)
                         return true;
                     break;
+                case SkillKind.KnockbackShot:
+                    // Knockback Shot: the nearest enemy in sight within its short reach (2.5): one that has come close.
+                    skillTarget = FindRangedTarget(origin, skill);
+                    if (skillTarget == null)
+                        return false;
+                    if (own)
+                        return true;
+                    break;
+                case SkillKind.Barrage:
+                {
+                    // Barrage: enough enemies in reach, and she is on the move.
+                    if (target == null || barrageLeft > 0)
+                        return false;
+                    skillTarget = target;
+                    var near = CountAround(origin, skill.Range);
+                    if (own)
+                        return near >= skill.MinEnemies && Moving;
+                    break;
+                }
+                case SkillKind.KillShot:
+                    // Kill Shot: the most wounded enemy in reach and in sight below the threshold, or an elite or boss.
+                    skillTarget = FindExecuteTarget(origin, skill, own);
+                    if (skillTarget == null || !enemies.Nav.HasLineOfSight(origin, skillTarget.GroundPosition))
+                    {
+                        skillTarget = null;
+                        return false;
+                    }
+                    if (own)
+                        return true;
+                    break;
                 case SkillKind.ExplosiveShot:
                 {
                     // Explosive Arrow: the enemy in sight with the most others within the burst around it.
@@ -748,6 +791,31 @@ namespace ARPG
                     Sfx.Play(SoundId.ArrowShot, 1f);
                     shots.Add(Explosive(origin, direction, skill));
                     break;
+                case SkillKind.KnockbackShot:
+                {
+                    Sfx.Play(SoundId.AxeThrow, 0.9f);
+                    var shot = NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot,
+                        DamageOf(skill, skill.DamageMultiplier), ShotStyle.Knockback, Glow(skill));
+                    shot.KnockDistance = skill.EffectStrength;
+                    shot.KnockRadius = skill.BurstRadius;
+                    shots.Add(shot);
+                    break;
+                }
+                case SkillKind.Barrage:
+                    barrageSkill = skill;
+                    barrageLeft = skill.ProjectileCount + Mathf.RoundToInt(session.Equipment.AffixTotal(AffixId.ExtraSkillArrow));
+                    barrageTimer = 0f;
+                    break;
+                case SkillKind.KillShot:
+                {
+                    Sfx.Play(SoundId.Crit, 0.7f);
+                    var shot = NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot,
+                        DamageOf(skill, skill.DamageMultiplier), ShotStyle.KillShot, Glow(skill));
+                    shot.ExecuteBelow = skill.ExecuteThreshold;
+                    shot.ExecuteMultiplier = DamageOf(skill, skill.ExecuteMultiplier);
+                    shots.Add(shot);
+                    break;
+                }
             }
         }
 
@@ -1462,9 +1530,19 @@ namespace ARPG
             }
 
             var multiplier = shot.Multiplier * (1f + shot.PierceBonus * shot.PierceHits);
+            // Kill Shot: the heavier arrow, certain to crit, on a target below its threshold when it lands.
+            var forceCrit = shot.CertainCrit;
+            if (shot.ExecuteBelow > 0f && enemy.MaxLife > 0f && enemy.Life / enemy.MaxLife < shot.ExecuteBelow)
+            {
+                multiplier = shot.ExecuteMultiplier;
+                forceCrit = true;
+                DamageNumbers.Current?.ShowText(world + new Vector2(0f, 1.4f), "KILL SHOT", new Color(1f, 0.85f, 0.3f), 40);
+            }
             var wasBleeding = enemy.IsBleeding;
             var bleed = enemy.BleedPerSecond;
-            var killed = Strike(enemy, multiplier, projectile: true, forceCrit: shot.CertainCrit);
+            var killed = Strike(enemy, multiplier, projectile: true, forceCrit: forceCrit);
+            if (shot.KnockDistance > 0f)
+                KnockBack(enemy, direction, shot);
             HealOnHit(1);
             Afflict(enemy, shot);
             OnArrowHit(ref shot, enemy, wasBleeding, bleed);
@@ -1673,6 +1751,55 @@ namespace ARPG
                 marks.Add(new GroundMark { Center = at, Radius = radius, Left = Legendaries.CinderGroundSeconds, Burning = true });
                 fx.Fire(IsoMath.GroundToWorld(at), radius * 2f, Legendaries.CinderGroundSeconds);
             }
+        }
+
+        // Knockback Shot: the enemy struck and every enemy within the radius around it are thrown back along the arrow's
+        // flight (each from where it stands, away from the impact for those beside it), walls respected.
+        readonly List<EnemyController> knocked = new List<EnemyController>(16);
+
+        void KnockBack(EnemyController struck, Vector2 direction, Shot shot)
+        {
+            var impact = struck.GroundPosition;
+            enemies.QueryEnemies(impact, shot.KnockRadius + 1f, knocked);
+            for (var i = 0; i < knocked.Count; i++)
+            {
+                var enemy = knocked[i];
+                if (!enemy.IsAlive || (enemy != struck && Vector2.Distance(enemy.GroundPosition, impact) > shot.KnockRadius + enemy.Definition.BodyRadius))
+                    continue;
+                var away = enemy == struck ? direction : (enemy.GroundPosition - impact + direction * 0.5f).normalized;
+                enemy.Push(away * shot.KnockDistance);
+            }
+            fx.Burst(IsoMath.GroundToWorld(impact), shot.KnockRadius, shot.Glow);
+            Sfx.Play(SoundId.GroundBreaker, 0.6f);
+        }
+
+        // Barrage: one arrow every interval at an enemy in reach and in sight (the basic target first, then the others in
+        // turn), while she keeps moving and shooting her basic arrows.
+        void UpdateBarrage(Vector2 origin, float deltaTime)
+        {
+            barrageTimer -= deltaTime;
+            if (barrageTimer > 0f)
+                return;
+            var skill = barrageSkill;
+            barrageTimer = skill.DurationSeconds / Mathf.Max(1, skill.ProjectileCount);
+            barrageLeft--;
+            EnemyController target = null;
+            var pick = barrageLeft;
+            for (var tries = 0; tries < inReach.Count && target == null; tries++)
+            {
+                var enemy = inReach[(pick + tries) % inReach.Count];
+                if (enemy.IsAlive && Vector2.Distance(origin, enemy.GroundPosition) <= skill.Range &&
+                    enemies.Nav.HasLineOfSight(origin, enemy.GroundPosition))
+                    target = enemy;
+            }
+            if (target == null)
+                target = Target;
+            if (target == null)
+                return;
+            var direction = Rotate((target.GroundPosition - origin).normalized, Random.Range(-skill.SpreadDegrees, skill.SpreadDegrees) * 0.5f);
+            Sfx.Play(SoundId.ArrowShot, 0.4f);
+            shots.Add(NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot, DamageOf(skill, skill.DamageMultiplier),
+                ShotStyle.Barrage, Glow(skill)));
         }
 
         void Retire(Shot shot)

@@ -42,6 +42,17 @@ namespace ARPG
 
         /// <summary>An arrow that bursts on the first enemy or wall it hits, hurting everything around (Explosive Arrow).</summary>
         ExplosiveShot,
+
+        /// <summary>A heavy arrow at the nearest enemy that knocks it and everything around it back (Knockback Shot,
+        /// 2026-10-04).</summary>
+        KnockbackShot,
+
+        /// <summary>A burst of arrows loosed one after another at the enemies in reach while she keeps moving (Barrage).</summary>
+        Barrage,
+
+        /// <summary>One fast arrow at the most wounded enemy in reach, far heavier and certain to crit on one below its
+        /// threshold (Kill Shot).</summary>
+        KillShot,
     }
 
     /// <summary>

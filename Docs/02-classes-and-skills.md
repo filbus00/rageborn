@@ -54,6 +54,18 @@ Held for later (the owner, 2026-09-30: "hold it with the skills"): the other fou
 
 Alternative triggers (Q15, proposed): Split Arrow Always and Elite present; Pierce Arrow Elite present and Standing; Homing Arrow Elite present and 3+ enemies; Explosive Arrow Always and Elite present.
 
+**Decided (the owner, 2026-10-04):** the held slots are filled with all five candidates, **Knockback Shot, Barrage, Kill Shot, Hunter's Breath and Wild Frenzy**, so the class has nine skills and equips four; **every skill unlocks at level 1** ("All at once"), so the loadout opens at level 1 too (replacing Q4's level 9). Built the same day; the numbers are Claude's, to review:
+
+| Skill | Kind | Cost | Cooldown | Trigger | Description |
+|---|---|---|---|---|---|
+| Knockback Shot | KnockbackShot | free, gains 15 Focus | 6 s | An enemy within 2.5 | A heavy arrow at the nearest enemy, 150 percent; it and every enemy within 1.5 are thrown back 3 units |
+| Barrage | Barrage | 25 | 9 s | 2 or more enemies in 7, while moving | 8 arrows over 1.2 s at the enemies in reach, 60 percent each, while she keeps moving and shooting |
+| Kill Shot | KillShot | 20 | 6 s | An enemy below 30 percent life in reach and sight (or an elite or boss) | One fast arrow, 200 percent; 600 percent and a certain crit on a target below 30 percent when it lands |
+| Hunter's Breath | Buff | free | 15 s | Focus below 30 with an enemy within 6 | Gains 60 Focus at once |
+| Wild Frenzy | Buff | 15 | 12 s | 3 or more Momentum stacks in a fight | 6 s of 15 percent attack speed, plus 5 percent per live Momentum stack |
+
+An unchosen loadout keeps the first four (Explosive, Homing, Pierce, Split); the new five follow them in the class order, so they are equipped from the loadout screen.
+
 Skill levels: the Wrathborn's rules stand (below, "Skill levels 1 to 20"): a skill starts at 1 when it unlocks, a skill point raises it one level, capped at character level minus unlock level plus 1 and at 20; each level adds 7 percent of the level 1 damage multiplier; costs and cooldowns stay. Modifiers are not proposed yet.
 
 Skill tags (proposed): Split Arrow Projectile, Cone; Pierce Arrow Projectile, Pierce; Homing Arrow Projectile, Homing; Explosive Arrow Projectile, Area. 03's skill level affixes follow them.

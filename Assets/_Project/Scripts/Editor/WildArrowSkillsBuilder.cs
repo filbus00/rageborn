@@ -119,6 +119,48 @@ namespace ARPG.Editor
                 so.FindProperty("effectColor").colorValue = new Color(1f, 0.55f, 0.15f, 0.95f);
             });
 
+            // The held skills (the owner, 2026-10-04: Knockback Shot, Barrage, Kill Shot, Hunter's Breath and Wild Frenzy).
+            var knockback = LoadOrCreate("KnockbackShot", so =>
+            {
+                Set(so, SkillKind.KnockbackShot, "Knockback Shot", unlock: 1, cost: 0f, cooldown: 6f, multiplier: 1.5f, range: 2.5f, speed: 22f);
+                so.FindProperty("rageGain").floatValue = 15f;
+                so.FindProperty("effectStrength").floatValue = 3f;
+                so.FindProperty("burstRadius").floatValue = 1.5f;
+                so.FindProperty("effectColor").colorValue = new Color(0.85f, 0.85f, 0.75f, 0.95f);
+            });
+            var barrage = LoadOrCreate("Barrage", so =>
+            {
+                Set(so, SkillKind.Barrage, "Barrage", unlock: 1, cost: 25f, cooldown: 9f, multiplier: 0.6f, range: 7f, speed: 17f);
+                so.FindProperty("minEnemies").intValue = 2;
+                so.FindProperty("projectileCount").intValue = 8;
+                so.FindProperty("durationSeconds").floatValue = 1.2f;
+                so.FindProperty("spreadDegrees").floatValue = 12f;
+                so.FindProperty("effectColor").colorValue = new Color(0.55f, 1f, 0.6f, 0.9f);
+            });
+            var killShot = LoadOrCreate("KillShot", so =>
+            {
+                Set(so, SkillKind.KillShot, "Kill Shot", unlock: 1, cost: 20f, cooldown: 6f, multiplier: 2f, range: 8f, speed: 26f);
+                so.FindProperty("executeThreshold").floatValue = 0.3f;
+                so.FindProperty("executeMultiplier").floatValue = 6f;
+                so.FindProperty("effectColor").colorValue = new Color(1f, 0.85f, 0.3f, 0.95f);
+            });
+            var breath = LoadOrCreate("HuntersBreath", so =>
+            {
+                Set(so, SkillKind.Buff, "Hunter's Breath", unlock: 1, cost: 0f, cooldown: 15f, multiplier: 0f, range: 6f, speed: 0f);
+                so.FindProperty("rageGain").floatValue = 60f;
+                so.FindProperty("maxRage").floatValue = 30f;
+                so.FindProperty("effectColor").colorValue = new Color(0.45f, 0.75f, 1f, 0.9f);
+            });
+            var frenzy = LoadOrCreate("WildFrenzy", so =>
+            {
+                Set(so, SkillKind.Buff, "Wild Frenzy", unlock: 1, cost: 15f, cooldown: 12f, multiplier: 0f, range: 6f, speed: 0f);
+                so.FindProperty("minMomentum").intValue = 3;
+                so.FindProperty("durationSeconds").floatValue = 6f;
+                so.FindProperty("buffAttackSpeed").floatValue = 0.15f;
+                so.FindProperty("buffAttackSpeedPerMomentum").floatValue = 0.05f;
+                so.FindProperty("effectColor").colorValue = new Color(1f, 0.6f, 0.25f, 0.9f);
+            });
+
             // Every run: the trigger words, the animation and the two alternative triggers (Docs/02, proposed). Her own
             // bake (2026-10-03) has the longbow pack's overdraw for Pierce Arrow and its recoil for Explosive Arrow; the
             // rest use the draw. A sheet the bake lacks (the stand-in's) falls back to the draw (PlayerSpriteAnimator).
@@ -126,9 +168,27 @@ namespace ARPG.Editor
             Describe(pierce, "An enemy 4 to 9 away", "overdraw", SkillTrigger.ElitePresent, SkillTrigger.Standing);
             Describe(homing, "An enemy in reach, in sight", "attack", SkillTrigger.ElitePresent, SkillTrigger.EnemiesThreePlus);
             Describe(explosive, "3+ enemies around a target", "recoil", SkillTrigger.Always, SkillTrigger.ElitePresent);
+            Describe(knockback, "An enemy within 2.5", "recoil", SkillTrigger.LifeBelowHalf, SkillTrigger.EnemiesThreePlus);
+            Describe(barrage, "2+ enemies in reach, moving", "attack", SkillTrigger.Always, SkillTrigger.EnemiesThreePlus);
+            Describe(killShot, "An enemy below 30% life", "overdraw", SkillTrigger.ElitePresent, SkillTrigger.Always);
+            Describe(breath, "Focus below 30 in a fight", "", SkillTrigger.LifeBelowHalf, SkillTrigger.ElitePresent);
+            Describe(frenzy, "3+ Momentum in a fight", "", SkillTrigger.Moving, SkillTrigger.ElitePresent);
+
+            // Every skill unlocks at level 1 (the owner, 2026-10-04: "All at once"), the first four too.
+            foreach (var path in new[] { split, pierce, homing, explosive, knockback, barrage, killShot, breath, frenzy })
+            {
+                var so = new SerializedObject(AssetDatabase.LoadAssetAtPath<SkillDefinition>(path));
+                so.FindProperty("unlockLevel").intValue = 1;
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
 
             AssetDatabase.SaveAssets();
-            return new[] { Reload(explosive), Reload(homing), Reload(pierce), Reload(split) };
+            // The first four keep the loadout an unchosen character starts with; the new five follow.
+            return new[]
+            {
+                Reload(explosive), Reload(homing), Reload(pierce), Reload(split),
+                Reload(killShot), Reload(knockback), Reload(barrage), Reload(frenzy), Reload(breath),
+            };
         }
 
         static void Set(SerializedObject so, SkillKind kind, string displayName, int unlock, float cost, float cooldown, float multiplier, float range, float speed)

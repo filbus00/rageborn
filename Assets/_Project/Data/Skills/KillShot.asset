@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b800c5fde4a6841a2a27c7fd419314d4, type: 3}
-  m_Name: ExplosiveArrow
+  m_Name: KillShot
   m_EditorClassIdentifier: ARPG.Runtime::ARPG.SkillDefinition
-  displayName: Explosive Arrow
-  kind: 10
+  displayName: Kill Shot
+  kind: 13
   unlockLevel: 1
-  rageCost: 30
+  rageCost: 20
   rageGain: 0
-  cooldownSeconds: 7
-  damageMultiplier: 2.5
+  cooldownSeconds: 6
+  damageMultiplier: 2
   arcDegrees: 180
-  range: 7.5
+  range: 8
   minRange: 0
-  minEnemies: 3
-  speed: 15
+  minEnemies: 1
+  speed: 26
   effectStrength: 0
   effectSeconds: 0
   maxRage: 0
@@ -35,15 +35,15 @@ MonoBehaviour:
   tickSeconds: 0.3
   bleedMultiplier: 0
   bleedSeconds: 0
-  executeThreshold: 0
-  executeMultiplier: 0
+  executeThreshold: 0.3
+  executeMultiplier: 6
   windupSeconds: 0
   projectileCount: 1
   spreadDegrees: 0
-  burstRadius: 2.5
+  burstRadius: 0
   turnDegreesPerSecond: 360
-  triggerText: 3+ enemies around a target
-  animationName: recoil
-  alternativeTriggers: 0100000003000000i
+  triggerText: An enemy below 30% life
+  animationName: overdraw
+  alternativeTriggers: 0300000001000000i
   effectSprite: {fileID: 0}
-  effectColor: {r: 1, g: 0.55, b: 0.15, a: 0.95}
+  effectColor: {r: 1, g: 0.85, b: 0.3, a: 0.95}
