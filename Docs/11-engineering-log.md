@@ -474,4 +474,9 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   units tall, taller than the iPhone 11's safe area, so its bottom row ran off the screen. It now fills the safe area
   less a strip at the top (tap to close), and its rows sit in a `ScrollRect` (masked by `RectMask2D`, the list sized by
   a `ContentSizeFitter`) between the title and the Close / Reset row, which stays on screen.
+- Zoom (the owner: enemies beside her within her bow's reach were shot while off screen; answered "zoom one step +
+  on-screen only"): `RenderResolution.TargetLongSide` 600 to 850, so the iPhone 11 renders at 414 x 896 shown 2 x 2
+  (10.4 by 22.4 units; it was 6.9 by 14.9) and a 3x phone at about 402 x 874 shown 3 x 3, pixels still whole. Her reach
+  (7.5 units) is still wider than half the screen, so `PlayerCombat.KeepOnScreen` drops from the candidates every
+  enemy whose feet are outside the camera's view (3 percent margin) before she picks a target or a skill does.
 

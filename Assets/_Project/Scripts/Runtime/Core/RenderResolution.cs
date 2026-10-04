@@ -20,11 +20,12 @@ namespace ARPG
     public static class RenderResolution
     {
         /// <summary>
-        /// About 600 pixels on the long side (the owner, 2026-09-30, "I want it pixelated": bigger pixels than Diablo 2's
-        /// 800 of 2026-09-28): 3 x 3 screen pixels a rendered pixel on a 2x iPhone like the owner's iPhone 11 (276 x 597),
-        /// 4 x 4 on a 3x one (301 x 655 on an iPhone 17).
+        /// About 850 pixels on the long side: one zoom step out from the 600 of 2026-09-30 (the owner, 2026-10-04: enemies
+        /// beside her within her bow's reach were shot off screen; "zoom one step"), so the view is half again as wide:
+        /// 2 x 2 screen pixels a rendered pixel on the owner's iPhone 11 (414 x 896, 10.4 units wide), 3 x 3 on a 3x one
+        /// (402 x 874 on an iPhone 17). She also targets only enemies on screen (PlayerCombat).
         /// </summary>
-        public const int TargetLongSide = 600;
+        public const int TargetLongSide = 850;
 
         /// <summary>
         /// How many screen pixels each rendered pixel covers along a side: the whole number that brings the long side

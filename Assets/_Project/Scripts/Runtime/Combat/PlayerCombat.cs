@@ -411,6 +411,9 @@ namespace ARPG
                 UpdateBarrage(origin, deltaTime);
 
             enemies.QueryEnemies(origin, LongestReach() + QueryMargin, candidates);
+            // Only what she can see on screen (the owner, 2026-10-04): an enemy beside her, in reach but past the
+            // screen's edge, is left alone.
+            KeepOnScreen(candidates);
             var previousTarget = Target;
             Target = null;
             if (candidates.Count == 0)
@@ -545,6 +548,25 @@ namespace ARPG
         /// <summary>Increased attack speed from Blood Frenzy while it lasts: its own, and more for each live Momentum
         /// stack (Docs/02).</summary>
         float AttackSpeedBuff => speedBuffTimer > 0f ? speedBuff + speedBuffPerMomentum * player.Stance.Momentum : 0f;
+
+        Camera view;
+
+        /// <summary>A margin inside the screen's edges, as a share of its size, so a target is seen whole enough.</summary>
+        const float ScreenMargin = 0.03f;
+
+        void KeepOnScreen(List<EnemyController> list)
+        {
+            if (view == null)
+                view = Camera.main;
+            if (view == null)
+                return;
+            for (var i = list.Count - 1; i >= 0; i--)
+            {
+                var p = view.WorldToViewportPoint(list[i].transform.position);
+                if (p.x < ScreenMargin || p.x > 1f - ScreenMargin || p.y < ScreenMargin || p.y > 1f - ScreenMargin)
+                    list.RemoveAt(i);
+            }
+        }
 
         void TryCastSkill(Vector2 origin, Vector2 aim, EnemyController target)
         {
