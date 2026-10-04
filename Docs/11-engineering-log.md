@@ -560,3 +560,9 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   ghouls in 1.0 to 4.1 s, 5 husks in 3.3 s at depth 6; the damage skills give 16 to 26 crowd damage per Focus point;
   the Warden dies in 59 s (the boss loadout: Kill Shot, Pierce, Homing, Hunter's Breath) to 113 s (the crowd loadout),
   82 s with the default four. Enemy damage and XP are unchanged.
+
+## 2026-10-05: the gold pickup sound
+
+- The owner: the coin pickup was "horrible"; "make the sound of jiggling a coin purse and make it somewhat muted".
+  `make_sfx.py` `gold()` is now two quick shakes, each a cluster of small, dull coin knocks (1.7 to 2.6 kHz, short
+  decays) under a soft leather rustle, low-passed at 2.8 kHz, peak 0.32 (was four bright 3 kHz clinks at 0.45).

@@ -257,12 +257,21 @@ def drop_legendary():
 
 
 def gold():
-    y = np.zeros(n(0.4))
-    for k in range(4):
-        f = rng.uniform(3000, 3600)
-        clink = modes(0.18, [(f, 1.0, 0.05), (f * 1.58, 0.6, 0.035), (f * 2.31, 0.3, 0.02)])
-        y = mix(y, at(clink * rng.uniform(0.5, 1.0), k * rng.uniform(0.03, 0.06)))
-    return finish(y, 0.45)
+    """A coin purse jiggled (the owner, 2026-10-05: the old bright clinks were "horrible"; "the sound of jiggling a coin
+    purse and make it somewhat muted"): two quick shakes, each a cluster of small dull coin knocks inside leather, under
+    a soft leather rustle, all low-passed so it sits behind the fight."""
+    length = 0.42
+    y = np.zeros(n(length))
+    for shake, start in enumerate((0.0, 0.15)):
+        for k in range(rng.integers(7, 11)):
+            f = rng.uniform(1700, 2600)
+            knock = modes(0.07, [(f, 1.0, 0.018), (f * 1.47, 0.45, 0.012), (f * 2.13, 0.2, 0.008)])
+            when = start + abs(rng.normal(0.03, 0.025))
+            y = mix(y, at(knock * rng.uniform(0.25, 0.8) * (1.0 if shake == 0 else 0.75), when, len(y)))
+        rustle = bandpass(noise(0.12), 900, 0.8) * np.sin(np.linspace(0, np.pi, n(0.12))) ** 2
+        y = mix(y, at(rustle * 0.35 * (1.0 if shake == 0 else 0.7), start, len(y)))
+    y = onepole(y, 2800)
+    return finish(y, 0.32)
 
 
 def pickup():
