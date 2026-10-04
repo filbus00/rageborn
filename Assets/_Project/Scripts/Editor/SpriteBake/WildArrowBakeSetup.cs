@@ -181,6 +181,10 @@ namespace ARPG.Editor
                 job.bodies.Add(new SpriteBakeJob.Body { look = "leather", model = AssetDatabase.LoadAssetAtPath<GameObject>(bodyPath) });
             job.pieces.Clear();
             job.pieces.AddRange(Pieces());
+            // The pieces' offsets are in the bones of her original rig; the gear bodies are a re-export whose bones are
+            // scaled and turned differently (on them the quiver came out huge, a square of texture over her).
+            if (job.bodies.Count > 0 && job.bodies[0].model != null && File.Exists(OwnBodyPath) && job.bodies[0].model.name != Character)
+                RemapPieces(job, AssetDatabase.LoadAssetAtPath<GameObject>(OwnBodyPath), job.bodies[0].model);
 
             var set = own ? OwnClips(bodyPath) : StandInClips();
             job.grips.Clear();
@@ -222,6 +226,66 @@ namespace ARPG.Editor
                     look = look, model = AssetDatabase.LoadAssetAtPath<GameObject>(path), layer = AppearanceLayer.Helm,
                 });
             }
+        }
+
+        /// <summary>
+        /// Moves each piece placed by offsets (not gripped) from its bone on one rig to the same bone of another: placed on
+        /// the first rig's bone in its rest pose, the piece's pose relative to the model is read and written back as offsets
+        /// in the second rig's bone. Both rigs are her, at rest, so the piece lands in the same place on her.
+        /// </summary>
+        static void RemapPieces(SpriteBakeJob job, GameObject from, GameObject to)
+        {
+            var a = (GameObject)Object.Instantiate(from);
+            var b = (GameObject)Object.Instantiate(to);
+            try
+            {
+                var animA = a.GetComponent<Animator>();
+                var animB = b.GetComponent<Animator>();
+                if (animA == null || animB == null || !animA.isHuman || !animB.isHuman)
+                    return;
+                // Both models the same height, at the origin.
+                var heightA = Measure(a);
+                var heightB = Measure(b);
+                if (heightA > 0f && heightB > 0f)
+                    b.transform.localScale *= heightA / heightB;
+                foreach (var piece in job.pieces)
+                {
+                    if (piece.autoGrip)
+                        continue;
+                    var boneA = animA.GetBoneTransform(piece.bone);
+                    var boneB = animB.GetBoneTransform(piece.bone);
+                    if (boneA == null || boneB == null)
+                        continue;
+                    var position = boneA.TransformPoint(piece.localPosition);
+                    var rotation = boneA.rotation * Quaternion.Euler(piece.localEuler);
+                    var size = boneA.lossyScale.x * piece.scale;
+                    piece.localPosition = boneB.InverseTransformPoint(position);
+                    piece.localEuler = (Quaternion.Inverse(boneB.rotation) * rotation).eulerAngles;
+                    // Both models at one height, so the bone-local offsets and scale carry over whatever the bake's scale.
+                    piece.scale = size / Mathf.Max(1e-6f, boneB.lossyScale.x);
+                    Debug.Log($"[ARPG] {piece.look}: on the gear rig at {piece.localPosition}, {piece.localEuler}, scale {piece.scale:0.###}");
+                }
+            }
+            finally
+            {
+                Object.DestroyImmediate(a);
+                Object.DestroyImmediate(b);
+            }
+        }
+
+        static float Measure(GameObject model)
+        {
+            var bounds = new Bounds();
+            var any = false;
+            foreach (var renderer in model.GetComponentsInChildren<Renderer>())
+            {
+                if (!any)
+                    bounds = renderer.bounds;
+                else
+                    bounds.Encapsulate(renderer.bounds);
+                any = true;
+            }
+            return any ? bounds.size.y : 0f;
         }
 
         // Her own model and the longbow pack's clips, configured as humanoid clips on her avatar.

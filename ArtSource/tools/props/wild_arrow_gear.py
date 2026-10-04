@@ -157,74 +157,137 @@ def extents(body, y0, y1, xlimit=0.19):
     return np.abs(sel[:, 0]).max(), sel[:, 2].max(), sel[:, 2].min()
 
 
-def torso(b, body, color, flare=1.0, margin=0.025):
-    """A shell over her torso from the hips to the shoulders, in three bands (hips, belly, chest)."""
-    bands = [("Hips", "Spine"), ("Spine", "Spine2"), ("Spine2", "Neck")]
-    for lower, upper in bands:
-        y0, y1 = b.h(lower).y, b.h(upper).y
-        if lower == "Hips":
-            y0 -= 0.06
-        half, front, back = extents(body, y0, y1)
-        cz = (front + back) / 2
-        rx, rz = half + margin, (front - back) / 2 + margin
-        b.ring(V((0, y0, cz)), rx * flare, rz, y1 - y0, lower if lower != "Hips" else "Hips", color, 12)
-    # A top plate over the shoulders.
-    y = b.h("Neck").y
-    half, front, back = extents(body, y - 0.08, y)
-    b.box(V((0, y - 0.01, (front + back) / 2)), (half * 2 + 0.06, 0.03, front - back + 0.05), "Spine2", color)
+# ---------------------------------------------------------------- shells: armour wrapped on her own surface
+
+def dominant_bones(body):
+    """Each vertex's bone of greatest weight (without the mixamorig: prefix)."""
+    names = {g.index: g.name.split(":")[-1] for g in body.vertex_groups}
+    out = []
+    for v in body.data.vertices:
+        best, weight = None, 0.0
+        for g in v.groups:
+            if g.weight > weight:
+                best, weight = names.get(g.group), g.weight
+        out.append(best)
+    return out
+
+
+def arm_space(body):
+    to_arm = body.parent.matrix_world.inverted() @ body.matrix_world
+    return [to_arm @ v.co for v in body.data.vertices], to_arm
+
+
+def shell(arm, body, keep, offset, color_of, smooth=2, name="Shell"):
+    """A copy of her surface where keep(position, bone) holds for every corner of a face, pushed out along its normals by
+    offset (metres), smoothed, its faces coloured by color_of(centre, normal) in the armature's space. It keeps her
+    weights, so it bends with her."""
+    positions, to_arm = arm_space(body)
+    bones = dominant_bones(body)
+    obj = body.copy()
+    obj.data = body.data.copy()
+    obj.name = name
+    bpy.context.scene.collection.objects.link(obj)
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    bm.verts.ensure_lookup_table()
+    wanted = [keep(positions[i], bones[i]) for i in range(len(bm.verts))]
+    drop = [f for f in bm.faces if not all(wanted[v.index] for v in f.verts)]
+    bmesh.ops.delete(bm, geom=drop, context="FACES_ONLY")
+    loose = [v for v in bm.verts if not v.link_faces]
+    bmesh.ops.delete(bm, geom=loose, context="VERTS")
+    bm.normal_update()
+    for v in bm.verts:
+        v.co += v.normal * (offset / max(1e-6, to_arm.to_scale()[0]))
+    for k in range(smooth):
+        bmesh.ops.smooth_vert(bm, verts=bm.verts[:], factor=0.5, use_axis_x=True, use_axis_y=True, use_axis_z=True)
+    bm.normal_update()
+    uv = bm.loops.layers.uv.active or bm.loops.layers.uv.new()
+    for f in bm.faces:
+        centre = to_arm @ f.calc_center_median()
+        normal = (to_arm.to_3x3() @ f.normal).normalized()
+        c = NAMES.index(color_of(centre, normal))
+        for loop in f.loops:
+            loop[uv].uv = ((c + 0.5) / len(COLORS), 0.5 / STRIP)
+    bm.to_mesh(obj.data)
+    bm.free()
+    return obj
+
+
+TORSO = {"Hips", "Spine", "Spine1", "Spine2", "LeftShoulder", "RightShoulder"}
+
+
+def torso_keep(b, extra=(), hip_drop=0.06):
+    hips_y, neck_y = b.h("Hips").y, b.h("Neck").y
+
+    def keep(p, bone):
+        if bone in TORSO:
+            return hips_y - hip_drop < p.y < neck_y - 0.01
+        return bone in extra
+    return keep
+
+
+def thigh_keep(b, length):
+    def keep(p, bone):
+        if bone not in ("LeftUpLeg", "RightUpLeg"):
+            return False
+        side = "Left" if bone.startswith("Left") else "Right"
+        hip, knee = b.h(side + "UpLeg"), b.h(side + "Leg")
+        return p.y > hip.y + (knee.y - hip.y) * length
+    return keep
+
+
+def any_of(*keeps):
+    return lambda p, bone: any(k(p, bone) for k in keeps)
 
 
 def padded(b, body):
-    torso(b, body, "linen", 1.05, 0.03)
-    # Quilting: darker bands around the torso.
-    for bone in ("Spine", "Spine1", "Spine2"):
-        y = b.h(bone).y
-        half, front, back = extents(body, y - 0.02, y + 0.02)
-        b.ring(V((0, y, (front + back) / 2)), half + 0.035, (front - back) / 2 + 0.035, 0.012, bone, "quilt", 12)
-    for side in ("Left", "Right"):
-        b.limb(b.h(side + "Arm"), b.h(side + "Arm") + (b.h(side + "ForeArm") - b.h(side + "Arm")) * 0.8, 0.085, 0.075, side + "Arm", "linen")
-        knee = b.h(side + "Leg")
-        hip = b.h(side + "UpLeg")
-        b.limb(hip + V((0, -0.02, 0)), hip + (knee - hip) * 0.55, 0.135, 0.125, side + "UpLeg", "linen_dark")
-    b.ring(V((0, b.h("Hips").y + 0.02, 0.0)), 0.17, 0.12, 0.05, "Hips", "strap", 12)
+    hips_y = b.h("Hips").y
+
+    def color(c, n):
+        if (c.y * 16) % 1 < 0.14:
+            return "linen_dark"
+        if abs(c.y - hips_y - 0.02) < 0.025:
+            return "strap"
+        return "linen"
+    keep = any_of(torso_keep(b, ("LeftArm", "RightArm")), thigh_keep(b, 0.5))
+    return [shell(b.arm, body, keep, 0.022, color, 3, "Gambeson")]
 
 
 def leather(b, body):
-    torso(b, body, "leather", 1.0, 0.025)
-    for side, sx in (("Left", 1), ("Right", -1)):
+    hips_y, neck_y = b.h("Hips").y, b.h("Neck").y
+    mid = (hips_y + neck_y) / 2
+
+    def color(c, n):
+        if abs(c.y - hips_y - 0.03) < 0.025:
+            return "buckle" if c.z > 0.08 and abs(c.x) < 0.03 else "strap"
+        if c.z > 0 and abs(c.x - (c.y - mid) * 0.9) < 0.022:
+            return "strap"
+        if c.z < 0 and abs(c.x + (c.y - mid) * 0.9) < 0.022:
+            return "strap"
+        return "leather_dark" if (c.y * 9) % 1 < 0.12 else "leather"
+    parts = [shell(b.arm, body, torso_keep(b, (), 0.08), 0.014, color, 2, "Jerkin")]
+    for side in ("Left", "Right"):
         arm = b.h(side + "Arm")
-        b.dome(arm + V((0, 0.02, 0)), 0.11, 0.08, 0.11, side + "Arm", "leather_dark", 8)
+        b.dome(arm + V((0, 0.02, 0)), 0.1, 0.07, 0.1, side + "Arm", "leather_dark", 10)
         fa, hand = b.h(side + "ForeArm"), b.h(side + "Hand")
-        b.limb(fa + (hand - fa) * 0.3, fa + (hand - fa) * 0.92, 0.06, 0.055, side + "ForeArm", "leather_dark")
-        knee, hip = b.h(side + "Leg"), b.h(side + "UpLeg")
-        b.box(hip + (knee - hip) * 0.35 + V((sx * 0.02, 0, 0.12)), (0.16, 0.22, 0.03), side + "UpLeg", "leather_dark")
-    # Cross straps and a belt with a buckle.
-    y0, y1 = b.h("Spine").y, b.h("Neck").y
-    half, front, back = extents(body, y0, y1)
-    for sgn in (1, -1):
-        rot = mathutils.Matrix.Rotation(math.radians(35 * sgn), 3, "Z")
-        b.box(V((0, (y0 + y1) / 2, front + 0.03)), (0.035, (y1 - y0) * 1.15, 0.01), "Spine1", "strap", rot)
-    hips = b.h("Hips")
-    b.ring(V((0, hips.y + 0.02, 0.0)), 0.17, 0.125, 0.045, "Hips", "strap", 12)
-    b.box(V((0, hips.y + 0.045, 0.13)), (0.06, 0.05, 0.015), "Hips", "buckle")
+        b.limb(fa + (hand - fa) * 0.35, fa + (hand - fa) * 0.92, 0.05, 0.045, side + "ForeArm", "leather_dark")
+    return parts
 
 
 def mail(b, body):
-    torso(b, body, "mail", 1.05, 0.03)
-    # Mail skirt plates, one per thigh, and a tabard over the front and back.
-    for side, sx in (("Left", 1), ("Right", -1)):
-        knee, hip = b.h(side + "Leg"), b.h(side + "UpLeg")
-        b.limb(hip + V((0, -0.01, 0)), hip + (knee - hip) * 0.6, 0.14, 0.135, side + "UpLeg", "mail_dark")
-        arm = b.h(side + "Arm")
-        b.dome(arm + V((0, 0.03, 0)), 0.125, 0.09, 0.12, side + "Arm", "plate", 10)
-        b.limb(arm, arm + (b.h(side + "ForeArm") - arm) * 0.9, 0.08, 0.072, side + "Arm", "mail_dark")
-    y0, y1 = b.h("Hips").y - 0.25, b.h("Neck").y - 0.03
-    half, front, back = extents(body, b.h("Spine1").y - 0.05, b.h("Spine1").y + 0.05)
-    b.box(V((0, (y0 + y1) / 2, front + 0.045)), (0.2, y1 - y0, 0.01), "Spine1", "tabard")
-    b.box(V((0, (y0 + y1) / 2, back - 0.045)), (0.2, y1 - y0, 0.01), "Spine1", "tabard")
-    b.box(V((0, y1 - 0.12, front + 0.052)), (0.08, 0.1, 0.006), "Spine2", "tabard_trim")
-    hips = b.h("Hips")
-    b.ring(V((0, hips.y + 0.03, 0.0)), 0.18, 0.135, 0.045, "Hips", "strap", 12)
+    hips_y, neck_y = b.h("Hips").y, b.h("Neck").y
+
+    def color(c, n):
+        if abs(c.x) < 0.085 and c.y < neck_y - 0.08 and abs(c.z) > 0.02:
+            return "tabard_trim" if abs(abs(c.x) - 0.08) < 0.008 else "tabard"
+        if abs(c.y - hips_y - 0.02) < 0.022:
+            return "strap"
+        return "mail_dark" if (int(c.x * 60) + int(c.y * 60)) % 2 else "mail"
+    keep = any_of(torso_keep(b, ("LeftArm", "RightArm"), 0.1), thigh_keep(b, 0.6))
+    parts = [shell(b.arm, body, keep, 0.016, color, 2, "Hauberk")]
+    for side in ("Left", "Right"):
+        b.dome(b.h(side + "Arm") + V((0, 0.03, 0)), 0.12, 0.085, 0.115, side + "Arm", "plate", 12)
+    return parts
 
 
 def helm_size(b, body):
@@ -234,40 +297,38 @@ def helm_size(b, body):
     return base, top, half, front, back
 
 
+HEAD = {"Head", "HeadTop_End", "Neck"}
+
+
 def cap(b, body):
-    # A close leather cap on the crown, above the brow.
     base, top, half, front, back = helm_size(b, body)
-    cz = (front + back) / 2 - 0.01
-    rx, rz = half * 0.85 + 0.012, (front - back) / 2 * 0.85 + 0.012
-    y = base + (top - base) * 0.62
-    b.dome(V((0, y, cz)), rx, (top - y) + 0.02, rz, "Head", "cap", 12)
-    b.ring(V((0, y - 0.012, cz)), rx + 0.006, rz + 0.006, 0.024, "Head", "strap", 12)
+    brow = base + (top - base) * 0.55
+    keep = lambda p, bone: bone in HEAD and p.y > brow
+    color = lambda c, n: "strap" if c.y < brow + 0.022 else "cap"
+    return [shell(b.arm, body, keep, 0.016, color, 40, "Cap")]
 
 
 def nasal(b, body):
-    # A conical iron helm down to the brow, a band round its rim and a bar down over the nose.
     base, top, half, front, back = helm_size(b, body)
-    cz = (front + back) / 2 - 0.01
-    rx, rz = half * 0.88 + 0.02, (front - back) / 2 * 0.88 + 0.02
-    y = base + (top - base) * 0.55
-    b.dome(V((0, y, cz)), rx, (top - y) + 0.06, rz, "Head", "iron", 12)
-    b.ring(V((0, y - 0.015, cz)), rx + 0.005, rz + 0.005, 0.03, "Head", "iron_dark", 12)
-    b.box(V((0, y - 0.05, cz + rz + 0.004)), (0.022, 0.08, 0.012), "Head", "iron_dark")
+    brow = base + (top - base) * 0.45
+    keep = lambda p, bone: bone in HEAD and p.y > brow
+    color = lambda c, n: "iron_dark" if c.y < brow + 0.025 else "iron"
+    parts = [shell(b.arm, body, keep, 0.024, color, 40, "Nasal")]
+    b.box(V((0, brow - 0.035, front + 0.025)), (0.022, 0.08, 0.014), "Head", "iron_dark")
+    return parts
 
 
 def great(b, body):
     base, top, half, front, back = helm_size(b, body)
-    cz = (front + back) / 2
-    y0 = base - 0.04
-    rx, rz = half + 0.04, (front - back) / 2 + 0.04
-    b.ring(V((0, y0, cz)), rx, rz, top - y0 + 0.02, "Head", "plate", 12, 0.92)
-    b.dome(V((0, top + 0.02, cz)), rx * 0.92, 0.035, rz * 0.92, "Head", "plate", 12)
-    eye = base + (top - base) * 0.5
-    b.box(V((0, eye, cz + rz - 0.004)), (rx * 1.3, 0.022, 0.02), "Head", "slit")
-    b.box(V((0, (y0 + top) / 2, cz + rz + 0.002)), (0.02, top - y0, 0.012), "Head", "iron_dark")
-    for k in range(3):
-        b.box(V((0.035, eye - 0.05 - k * 0.025, cz + rz)), (0.012, 0.012, 0.015), "Head", "slit")
-        b.box(V((-0.035, eye - 0.05 - k * 0.025, cz + rz)), (0.012, 0.012, 0.015), "Head", "slit")
+    eye = base + (top - base) * 0.48
+    keep = lambda p, bone: bone in HEAD and p.y > base - 0.04
+    def color(c, n):
+        if c.z > (front + back) / 2 + 0.03 and abs(c.y - eye) < 0.014:
+            return "slit"
+        if c.z > (front + back) / 2 + 0.03 and abs(c.x) < 0.012 and c.y < eye:
+            return "iron_dark"
+        return "plate"
+    return [shell(b.arm, body, keep, 0.034, color, 40, "GreatHelm")]
 
 
 def texture(path):
@@ -319,18 +380,21 @@ for look, build in BODIES.items():
     parts = [body]
     if build is not None:
         b = Builder(arm)
-        build(b, body)
-        armour = b.mesh("Armour")
-        # One mesh with one material slot each: hers.
-        armour.data.materials.append(body.data.materials[0])
-        parts.append(armour)
+        parts += build(b, body)
+        if b.colors:
+            armour = b.mesh("Armour")
+            # One mesh with one material slot each: hers.
+            armour.data.materials.append(body.data.materials[0])
+            parts.append(armour)
     export(arm, parts, os.path.join(FOLDER, "wild_arrow_body_%s.fbx" % look))
 
 for look, build in HELMS.items():
     arm, body = load()
     b = Builder(arm)
-    build(b, body)
-    helm = b.mesh("Helm")
-    helm.data.materials.append(body.data.materials[0])
+    parts = build(b, body)
+    if b.colors:
+        helm = b.mesh("Helm")
+        helm.data.materials.append(body.data.materials[0])
+        parts.append(helm)
     bpy.data.objects.remove(body, do_unlink=True)
-    export(arm, [helm], os.path.join(FOLDER, "wild_arrow_helm_%s.fbx" % look))
+    export(arm, parts, os.path.join(FOLDER, "wild_arrow_helm_%s.fbx" % look))

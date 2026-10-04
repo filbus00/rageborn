@@ -409,6 +409,7 @@ namespace ARPG
             if (label != null)
             {
                 label.alignment = TextAnchor.LowerCenter;
+                label.rectTransform.offsetMin = new Vector2(label.rectTransform.offsetMin.x, 26f);
                 label.fontSize = Mathf.RoundToInt(label.fontSize * 0.8f);
                 label.color = new Color(0.55f, 0.5f, 0.45f);
                 label.transform.SetAsLastSibling();

@@ -67,7 +67,8 @@ namespace ARPG
                     return title;
                 try
                 {
-                    title = Font.CreateDynamicFontFromOSFont(new[] { "Georgia", "Baskerville", "Times New Roman" }, 40);
+                    // Copperplate's engraved small capitals (on iOS and the Mac), else a serif (2026-10-04).
+                    title = Font.CreateDynamicFontFromOSFont(new[] { "Copperplate", "Georgia", "Baskerville", "Times New Roman" }, 40);
                 }
                 catch (Exception)
                 {
@@ -178,7 +179,10 @@ namespace ARPG
                 // The rendered metal rim (ArtSource/tools/ui/make_ui.py), rim * 4 units wide, around a recessed fill.
                 outer.color = Color.clear;
                 Stretch(edge.rectTransform, 0f);
-                var width = rim * 3.4f;
+                // Its colours are its own (iron and gold): white shows them as made; a rarity tints them.
+                edge.color = Color.white;
+                // Small frames (buttons, slim panels) stay slim; the big panels show the ornate corners.
+                var width = rim >= 4f ? rim * 5.5f : rim * 3.4f;
                 edge.sprite = UiTextures.Frame;
                 edge.type = UnityEngine.UI.Image.Type.Sliced;
                 edge.pixelsPerUnitMultiplier = UiTextures.FrameBorder / width;
@@ -375,7 +379,8 @@ namespace ARPG
     /// </summary>
     public static class UiTextures
     {
-        public const float FrameBorder = 22f;
+        // The rendered ornate frame (ArtSource/tools/ui/render_frame.py): 256 px, the ornaments in 40 px corners.
+        public const float FrameBorder = 40f;
         public const float InsetBorder = 24f;
         const float ButtonBorder = 20f;
 

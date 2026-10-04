@@ -449,3 +449,25 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   editor by ScreenCapture after the scene's fade (earlier captures were dimmed by it); editing a script during play
   mode recompiled the game mid-run and flooded the console with null references, as CLAUDE.md warns.
 
+## 2026-10-04: the square over the character, armour and menus reworked
+
+- The bug (the owner: "a square that appears over the character intermittently with various textures"): about a
+  quarter of every quiver sheet's frames were solid squares. The quiver hangs on the upper chest bone by offsets
+  measured on her original Mixamo rig; the gear bodies are a Blender re-export whose bones are in centimetres (100
+  times the scale) and the first of them is the bake's rig, so the quiver came out a hundred times its size and filled
+  the cell with its texture. `WildArrowBakeSetup.RemapPieces` places each offset piece on the original rig's bone at
+  rest, reads where it lands on her, and writes the offsets back in the gear rig's bone (scale 0.01 there). A scan of
+  all 70,656 frames for any cell more than 40 percent opaque now finds none.
+- Armour (the owner: it "still looks very bad"): the boxes and tubes are gone. `wild_arrow_gear.py` now wraps the armour
+  on her own surface: her mesh is copied, kept where every corner of a face lies in the chosen region (by each
+  vertex's strongest bone and height: the torso for every chest, the upper arms and upper thighs for padded and mail,
+  the head for the helms), pushed out along its normals (1.4 to 3.4 cm), smoothed, and coloured face by face by a
+  pattern (padded's quilt lines and belt; leather's cross straps, belt and buckle; mail's rings, belt and a tabard
+  front and back; the helms' rims, slit and nasal line). The shells keep her weights, so they bend with her. Pauldrons,
+  bracers and the nasal bar stay solids. The helms are smoothed 40 times so her hair does not show through as lumps.
+- Menus: the frame is now modelled and rendered in Blender (`ArtSource/tools/ui/render_frame.py`: a dark forged-iron
+  band, a gold bead along its inside and outside, a gold boss with a garnet in each corner; 256 px, border 40), drawn
+  in its own colours (rim white; a rarity still tints it); the big panels show it wider (rim x 5.5). Titles, buttons and
+  names use Copperplate's engraved small capitals (from the device, Georgia otherwise). The empty slots' names sit
+  clear of the frame.
+
