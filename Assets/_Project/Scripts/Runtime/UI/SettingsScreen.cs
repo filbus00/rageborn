@@ -82,6 +82,7 @@ namespace ARPG
             sheetRect.pivot = new Vector2(0.5f, 0f);
             sheetRect.sizeDelta = new Vector2(0f, 2080f);
             sheet.GetComponent<Image>().color = SheetColor;
+            UiStyle.Leather(sheet.GetComponent<Image>());
             var layout = sheet.GetComponent<VerticalLayoutGroup>();
             layout.padding = new RectOffset(40, 40, 32, 32);
             layout.spacing = 10f;

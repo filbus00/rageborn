@@ -76,6 +76,7 @@ namespace ARPG
             rect.pivot = new Vector2(0.5f, 0f);
             rect.sizeDelta = new Vector2(0f, SheetHeight);
             panel.GetComponent<Image>().color = SheetColor;
+            UiStyle.Leather(panel.GetComponent<Image>());
             panel.GetComponent<SwipeArea>().Swiped += OnSwiped;
 
             var layout = panel.GetComponent<VerticalLayoutGroup>();

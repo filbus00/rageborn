@@ -96,6 +96,7 @@ namespace ARPG
             sheetRect.pivot = new Vector2(0.5f, 0f);
             sheetRect.sizeDelta = new Vector2(0f, 1900f);
             sheet.GetComponent<Image>().color = SheetColor;
+            UiStyle.Leather(sheet.GetComponent<Image>());
             var layout = sheet.GetComponent<VerticalLayoutGroup>();
             layout.padding = new RectOffset(40, 40, 40, 48);
             layout.spacing = 16f;
@@ -165,11 +166,11 @@ namespace ARPG
                 var index = slot;
                 var skill = combat.Find(loadout.SkillAt(slot));
                 var row = NewRow(list);
-                var up = NewButton(row.transform, "Up", () => Move(index, -1));
+                var up = NewButton(row.transform, "\u2191", () => Move(index, -1));
                 Width(up.gameObject, 110f, 0f);
                 up.GetComponentInChildren<Text>().fontSize = 30;
                 up.interactable = editable && slot > 0;
-                var down = NewButton(row.transform, "Down", () => Move(index, 1));
+                var down = NewButton(row.transform, "\u2193", () => Move(index, 1));
                 Width(down.gameObject, 110f, 0f);
                 down.GetComponentInChildren<Text>().fontSize = 30;
                 down.interactable = editable && slot < SkillLoadout.SlotCount - 1;

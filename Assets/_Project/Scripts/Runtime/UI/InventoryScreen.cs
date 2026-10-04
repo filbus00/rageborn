@@ -80,7 +80,10 @@ namespace ARPG
                     Destroy(panelRoot.transform.GetChild(i).gameObject);
                 var background = panelRoot.GetComponent<Image>();
                 if (background != null)
+                {
                     background.color = UiStyle.Backdrop;
+                    UiStyle.Leather(background);
+                }
                 var safe = UiStyle.Rect(panelRoot.transform, "Safe Area");
                 SafeArea.Fit(safe);
                 content = UiStyle.Rect(safe, "Content");
@@ -240,6 +243,13 @@ namespace ARPG
             // A dark red glow behind the character.
             var glow = UiStyle.Disc(inside, "Glow", new Color(0.35f, 0.05f, 0.04f, 0.35f));
             UiStyle.Place(glow.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0f, 40f), new Vector2(560f, 560f));
+            // A soft ember glow rather than a flat disc (2026-10-04).
+            if (UiTextures.Glow != null)
+            {
+                glow.sprite = UiTextures.Glow;
+                glow.color = new Color(0.75f, 0.22f, 0.1f, 0.55f);
+                glow.rectTransform.sizeDelta = new Vector2(700f, 700f);
+            }
             var figure = UiStyle.Place(UiStyle.Rect(inside, "Character"), new Vector2(0.5f, 0f), new Vector2(0f, 120f), new Vector2(660f, 660f));
             new CharacterPortrait(figure).Refresh(current.Equipment);
 
@@ -261,6 +271,8 @@ namespace ARPG
         {
             var item = equipment.Get(place);
             var tile = ItemTile(parent, item, UiStyle.SlotLabel(place), size.y >= 160f ? 30 : 26);
+            if (item == null)
+                Ghost(tile, place);
             UiStyle.Place(tile.rectTransform, anchor, position, size);
             tile.gameObject.AddComponent<ItemDropTarget>().Place = place;
             var rim = tile.transform.GetChild(0).GetComponent<Image>();
@@ -380,6 +392,29 @@ namespace ARPG
 
         /// <summary>An item's tile: framed in its rarity's color on a blood-dark fill, its icon (<see cref="ItemIcons"/>)
         /// and item level; or an empty place with the kind dimmed.</summary>
+        // An empty slot shows a faint picture of what goes there, its name small along the bottom (2026-10-04).
+        static void Ghost(Image tile, ItemSlot place)
+        {
+            var kind = place == ItemSlot.Ring2 ? ItemSlot.Ring : place == ItemSlot.OffHand ? ItemSlot.Shield : place;
+            var sprite = ItemIcons.For(kind, ItemRarity.Common);
+            if (sprite == null)
+                return;
+            var ghost = UiStyle.Image(tile.transform, "Ghost", new Color(0.75f, 0.68f, 0.6f, 0.16f));
+            ghost.sprite = sprite;
+            ghost.preserveAspect = true;
+            UiStyle.Stretch(ghost.rectTransform, 22f);
+            ghost.transform.SetAsFirstSibling();
+            ghost.transform.SetSiblingIndex(1);
+            var label = tile.GetComponentInChildren<Text>();
+            if (label != null)
+            {
+                label.alignment = TextAnchor.LowerCenter;
+                label.fontSize = Mathf.RoundToInt(label.fontSize * 0.8f);
+                label.color = new Color(0.55f, 0.5f, 0.45f);
+                label.transform.SetAsLastSibling();
+            }
+        }
+
         static Image ItemTile(Transform parent, Item item, string emptyLabel, int size)
         {
             var tile = UiStyle.Framed(parent, item != null ? item.Slot + " Tile" : "Empty Tile", item != null ? UiStyle.SlotFill : UiStyle.EmptySlotFill, 4f);
@@ -593,7 +628,8 @@ namespace ARPG
             for (var y = 0; y < inventory.Rows; y++)
                 for (var x = 0; x < inventory.Columns; x++)
                 {
-                    var cell = UiStyle.Image(grid, "Cell", UiStyle.EmptySlotFill);
+                    var cell = UiStyle.Image(grid, "Cell", UiStyle.EmptySlotFill * 1.6f);
+                    UiStyle.Recessed(cell);
                     PlaceOnGrid(cell.rectTransform, new RectInt(x, y, 1, 1));
                 }
 

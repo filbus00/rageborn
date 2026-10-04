@@ -16,7 +16,7 @@ namespace ARPG
         public static readonly Color SlotFill = new Color(0.17f, 0.055f, 0.05f, 1f);
         public static readonly Color EmptySlotFill = new Color(0.1f, 0.08f, 0.075f, 1f);
         // Brighter than the flat rim it replaced: the frame's art (UiArt) shades it down, highlights at full.
-        public static readonly Color Frame = new Color(0.44f, 0.38f, 0.33f, 1f);
+        public static readonly Color Frame = new Color(0.62f, 0.52f, 0.4f, 1f);
         public static readonly Color FrameDark = new Color(0.02f, 0.015f, 0.015f, 1f);
         public static readonly Color Blood = new Color(0.55f, 0.06f, 0.05f, 1f);
         public static readonly Color BloodBright = new Color(0.8f, 0.12f, 0.09f, 1f);
@@ -38,6 +38,14 @@ namespace ARPG
         {
             if (go.GetComponent<Outline>() != null)
                 return;
+            // A raised plate under the row's or button's own colour (UiTextures, 2026-10-04).
+            var image = go.GetComponent<Image>();
+            if (image != null && image.sprite == null && UiTextures.ButtonPlate != null)
+            {
+                image.sprite = UiTextures.ButtonPlate;
+                image.type = UnityEngine.UI.Image.Type.Sliced;
+                image.pixelsPerUnitMultiplier = 1.5f;
+            }
             var outline = go.AddComponent<Outline>();
             outline.effectColor = Frame;
             outline.effectDistance = new Vector2(width, -width);
@@ -125,7 +133,33 @@ namespace ARPG
             var image = go.GetComponent<Image>();
             image.color = color;
             image.raycastTarget = raycast;
+            // The screens' and sheets' backgrounds get the leather (UiTextures, 2026-10-04).
+            if (color == Sheet || color == Backdrop)
+                Leather(image);
             return image;
+        }
+
+        /// <summary>A recessed square (the backpack's cells, empty slots): the inset texture under the image's colour.</summary>
+        public static void Recessed(Image image)
+        {
+            if (image == null || UiTextures.Inset == null)
+                return;
+            image.sprite = UiTextures.Inset;
+            image.type = UnityEngine.UI.Image.Type.Sliced;
+            image.pixelsPerUnitMultiplier = 1.6f;
+        }
+
+        /// <summary>Tiles the dark tooled leather (<see cref="UiTextures.Backdrop"/>) under an image's colour.</summary>
+        public static void Leather(Image image)
+        {
+            var leather = UiTextures.Backdrop;
+            if (image == null || leather == null)
+                return;
+            image.sprite = leather;
+            image.type = UnityEngine.UI.Image.Type.Tiled;
+            image.pixelsPerUnitMultiplier = 0.5f;
+            // Light enough for the leather's grain to show under the dark tint.
+            image.color = new Color(0.2f, 0.16f, 0.14f, image.color.a);
         }
 
         /// <summary>
@@ -135,14 +169,31 @@ namespace ARPG
         /// </summary>
         public static Image Framed(Transform parent, string name, Color fill, float rim = 4f)
         {
-            var scale = Mathf.Max(2f, rim * 0.75f);
             var outer = Image(parent, name, FrameDark);
             var edge = Image(outer.transform, "Rim", Frame);
             Stretch(edge.rectTransform, 2f);
+            Image inner;
+            if (UiTextures.Frame != null && UiTextures.Inset != null)
+            {
+                // The rendered metal rim (ArtSource/tools/ui/make_ui.py), rim * 4 units wide, around a recessed fill.
+                outer.color = Color.clear;
+                Stretch(edge.rectTransform, 0f);
+                var width = rim * 3.4f;
+                edge.sprite = UiTextures.Frame;
+                edge.type = UnityEngine.UI.Image.Type.Sliced;
+                edge.pixelsPerUnitMultiplier = UiTextures.FrameBorder / width;
+                inner = Image(edge.transform, "Fill", fill);
+                Stretch(inner.rectTransform, width - 1f);
+                inner.sprite = UiTextures.Inset;
+                inner.type = UnityEngine.UI.Image.Type.Sliced;
+                inner.pixelsPerUnitMultiplier = UiTextures.InsetBorder / (width * 1.2f);
+                return outer;
+            }
+            var scale = Mathf.Max(2f, rim * 0.75f);
             edge.sprite = UiArt.Frame;
             edge.type = UnityEngine.UI.Image.Type.Sliced;
             edge.pixelsPerUnitMultiplier = 1f / scale;
-            var inner = Image(edge.transform, "Fill", fill);
+            inner = Image(edge.transform, "Fill", fill);
             Stretch(inner.rectTransform, UiArt.FrameBorder * scale);
             inner.sprite = UiArt.Fill;
             inner.type = UnityEngine.UI.Image.Type.Tiled;
@@ -169,6 +220,13 @@ namespace ARPG
             text.horizontalOverflow = HorizontalWrapMode.Wrap;
             text.verticalOverflow = VerticalWrapMode.Overflow;
             text.text = content;
+            // Titles and names stand off the leather with a soft drop shadow.
+            if (serif)
+            {
+                var shadow = go.AddComponent<Shadow>();
+                shadow.effectColor = new Color(0f, 0f, 0f, 0.85f);
+                shadow.effectDistance = new Vector2(2f, -2f);
+            }
             return text;
         }
 
@@ -177,6 +235,14 @@ namespace ARPG
         {
             var frame = Framed(parent, label + " Button", fill ?? Panel, 3f);
             frame.raycastTarget = true;
+            // A raised plate rather than the recessed fill of a panel.
+            var plate = FillOf(frame);
+            if (UiTextures.ButtonPlate != null)
+            {
+                plate.sprite = UiTextures.ButtonPlate;
+                plate.type = UnityEngine.UI.Image.Type.Sliced;
+                plate.color = Color.Lerp(fill ?? Panel, Color.white, 0.12f);
+            }
             var button = frame.gameObject.AddComponent<Button>();
             button.targetGraphic = FillOf(frame);
             button.onClick.AddListener(() => onClick());
@@ -298,6 +364,52 @@ namespace ARPG
             texture.SetPixels32(pixels);
             texture.Apply(false, true);
             return Sprite.Create(texture, new Rect(0, 0, n, n), new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect);
+        }
+    }
+
+    /// <summary>
+    /// The menus' rendered textures (the owner, 2026-10-04: "The menus look bad, revamp them"; made by
+    /// ArtSource/tools/ui/make_ui.py into Resources/UI): a 9-sliced metal rim, a recessed fill, a raised button plate and
+    /// tiling leather, all in grey for the screens to tint. Null when missing, and the code-drawn <see cref="UiArt"/>
+    /// stands in.
+    /// </summary>
+    public static class UiTextures
+    {
+        public const float FrameBorder = 22f;
+        public const float InsetBorder = 24f;
+        const float ButtonBorder = 20f;
+
+        static Sprite frame, inset, button, backdrop, glow;
+        static bool loaded;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => loaded = false;
+
+        public static Sprite Frame { get { Load(); return frame; } }
+        public static Sprite Inset { get { Load(); return inset; } }
+        public static Sprite ButtonPlate { get { Load(); return button; } }
+        public static Sprite Backdrop { get { Load(); return backdrop; } }
+        public static Sprite Glow { get { Load(); return glow; } }
+
+        static void Load()
+        {
+            if (loaded)
+                return;
+            loaded = true;
+            frame = Make("frame", FrameBorder);
+            inset = Make("inset", InsetBorder);
+            button = Make("button", ButtonBorder);
+            backdrop = Make("backdrop", 0f);
+            glow = Make("glow", 0f);
+        }
+
+        static Sprite Make(string name, float border)
+        {
+            var texture = Resources.Load<Texture2D>("UI/" + name);
+            if (texture == null)
+                return null;
+            return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100f, 0,
+                SpriteMeshType.FullRect, new Vector4(border, border, border, border));
         }
     }
 }

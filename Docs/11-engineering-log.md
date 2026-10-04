@@ -437,4 +437,15 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   takes a shared albedo. Two traps: her rig's rest pose is a T-pose, so torso widths are measured within 0.19 of the
   middle (wider took in her arms); and tubes built facing inward were culled, so the builder recalculates normals.
   Her sheets went from 300 to 580 files, 85 MB in Resources; the bake takes 12 minutes.
+- Menus (the owner: "The menus look bad, revamp them"): `ArtSource/tools/ui/make_ui.py` renders, as numpy height
+  fields lit from the upper left, a 9-sliced worn metal rim with corner rivets, a recessed inset, a raised button plate,
+  tiling tooled leather and a soft glow into Resources/UI, in grey for the screens to tint. `UiTextures` loads them
+  (code-made sprites with their borders, so the import needs no setup) and `UiStyle` uses them: `Framed` draws the
+  rim (rim x 3.4 units wide; 5 cut off the stats panel's last line) round a recessed fill, `Button` a raised plate,
+  `Rim` (the sheets' rows and buttons) a raised plate under its outline, and every screen and sheet background is
+  leather (`UiStyle.Leather`), light enough for its grain to show. Serif text has a drop shadow. The Bag's empty slots
+  show a faint picture of what goes there with the name small along the bottom, the backpack's cells are recessed and
+  the paper doll stands in an ember glow. The skills sheet's Up and Down are arrows (Down wrapped). Checked in the
+  editor by ScreenCapture after the scene's fade (earlier captures were dimmed by it); editing a script during play
+  mode recompiled the game mid-run and flooded the console with null references, as CLAUDE.md warns.
 
