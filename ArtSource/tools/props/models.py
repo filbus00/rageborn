@@ -4,6 +4,7 @@
 # the middle of the piece's footprint, which is where the game stands it.
 # Faces toward the camera are those facing -x (the left front on screen) and -y (the right front).
 import math, random
+import bpy
 from kit import *
 
 M = METRE
@@ -875,6 +876,220 @@ def ritual_circle():
     blob(0.05, -0.1, 0.22, _blood_pool, 12, 0.5, rng)
 
 
+# ---------------------------------------------------------------- floors (one cell, seen flat; the importer cuts the diamond)
+
+def _flat_light():
+    # Floors are lit by the game; here only an even light with a touch of sun for the stones' relief.
+    for o in bpy.data.objects:
+        if o.type == "LIGHT":
+            o.data.energy = 1.0 if o.name == "Key" else 0.0
+    bpy.context.scene.world.node_tree.nodes["Background"].inputs["Strength"].default_value = 2.6
+
+
+def _slab(x0, y0, x1, y1, material, rng, grout=0.026, height=0.02):
+    gx, gy = x1 - x0 - grout, y1 - y0 - grout
+    box((gx, gy, height + rng.random() * 0.006), ((x0 + x1) / 2, (y0 + y1) / 2, 0), material, bevel=0.004)
+
+
+def _crack(rng, material, n=1):
+    h = CELL / 2
+    for k in range(n):
+        x, y = (rng.random() - 0.5) * CELL * 0.7, (rng.random() - 0.5) * CELL * 0.7
+        a = rng.random() * 6.28
+        for s in range(5):
+            a += (rng.random() - 0.5) * 1.2
+            l = 0.04 + rng.random() * 0.03
+            box((l, 0.008, 0.002), (x + math.cos(a) * l / 2, y + math.sin(a) * l / 2, 0.026), material, rot=(0, 0, math.degrees(a)))
+            x, y = x + math.cos(a) * l, y + math.sin(a) * l
+
+
+def _ground(material):
+    # Larger than the cell, so the diamond's edge pixels are fully covered (a part-covered edge reads as a dark seam).
+    box((CELL * 1.3, CELL * 1.3, 0.01), (0, 0, -0.005), material)
+
+
+def _flagstone(n, mossy=False):
+    _flat_light()
+    rng = seed(600 + n + (50 if mossy else 0))
+    h = CELL / 2
+    _ground(mat(STONE[2], 0.0))
+    base = STONE[4] if not mossy else STONE[3]
+    dark = STONE[3] if not mossy else STONE[2]
+
+    def pick():
+        # One shade per style, mottled only a step darker: two shades side by side read as a checkerboard.
+        return mat(base, 0.44 + rng.random() * 0.06, dark, scale=9 + rng.random() * 5)
+
+    split = n % 3
+    if split == 0:
+        _slab(-h, -h, h, h, pick(), rng)
+    elif split == 1:
+        cut = -h + CELL * (0.35 + rng.random() * 0.3)
+        if n % 2:
+            _slab(-h, -h, cut, h, pick(), rng)
+            _slab(cut, -h, h, h, pick(), rng)
+        else:
+            _slab(-h, -h, h, cut, pick(), rng)
+            _slab(-h, cut, h, h, pick(), rng)
+    else:
+        cx = -h + CELL * (0.4 + rng.random() * 0.2)
+        cy = -h + CELL * (0.4 + rng.random() * 0.2)
+        _slab(-h, -h, cx, cy, pick(), rng)
+        _slab(cx, -h, h, cy, pick(), rng)
+        _slab(-h, cy, h, h, pick(), rng)
+    if n in (2, 5):
+        _crack(rng, mat(STONE[1], 0.0), 1)
+    if mossy:
+        green = [mat(MOSS[2], 0.2, MOSS[1], scale=30), mat(MOSS[3], 0.2, MOSS[2], scale=30)]
+        for k in range(2 + n % 3):
+            blob((rng.random() - 0.5) * CELL * 0.8, (rng.random() - 0.5) * CELL * 0.8, 0.05 + rng.random() * 0.07, rng.choice(green), 8, 0.6, rng, z=0.03)
+
+
+def _brick(n):
+    _flat_light()
+    rng = seed(700 + n)
+    h = CELL / 2
+    _ground(mat(STONE[1], 0.0))
+    colors = [SKIN[1]]
+    rows = 3
+    rh = CELL / rows
+    for r in range(rows):
+        y0 = -h + r * rh
+        offset = (r % 2) * 0.5
+        for k in range(-1, 3):
+            x0 = -h + (k + offset) * h
+            x1 = x0 + h
+            x0c, x1c = max(x0, -h), min(x1, h)
+            if x1c - x0c < 0.02:
+                continue
+            _slab(x0c, y0, x1c, y0 + rh, mat(rng.choice(colors), 0.44 + rng.random() * 0.06, SKIN[0], scale=14), rng, grout=0.03, height=0.018)
+    if n in (2, 5):
+        _crack(rng, mat(STONE[0], 0.0), 1)
+
+
+def _earth(n):
+    _flat_light()
+    rng = seed(800 + n)
+    dirt = mat(WOOD[3], 0.47, WOOD[2], scale=6 + n)
+    _ground(dirt)
+    stones = [mat(STONE[4], 0.3, STONE[3]), mat(STONE[3], 0.2, STONE[2]), mat(WOOD[4], 0.3, WOOD[3])]
+    for k in range(1 + n % 3):
+        rock(((rng.random() - 0.5) * CELL * 0.8, (rng.random() - 0.5) * CELL * 0.8, 0.0), (0.015 + rng.random() * 0.02) * M, rng.choice(stones), rng, 0.4)
+    if n % 2 == 0:
+        blob((rng.random() - 0.5) * CELL * 0.5, (rng.random() - 0.5) * CELL * 0.5, 0.07 + rng.random() * 0.05, mat(WOOD[2], 0.3, WOOD[1], scale=20), 10, 0.6, rng, z=0.003)
+
+
+# ---------------------------------------------------------------- wall details (on a wall block, seen from the room)
+
+WALL_H = 0.5 / 0.866
+
+
+def _wall_mask():
+    """The wall block itself as a holdout: hides whatever lies inside or behind it."""
+    m = bpy.data.materials.new("HoldoutWall")
+    m.use_nodes = True
+    nodes = m.node_tree.nodes
+    for node in list(nodes):
+        nodes.remove(node)
+    out = nodes.new("ShaderNodeOutputMaterial")
+    hold = nodes.new("ShaderNodeHoldout")
+    m.node_tree.links.new(hold.outputs["Holdout"], out.inputs["Surface"])
+    box((CELL, CELL, WALL_H), (0, 0, 0), m)
+
+
+def _on_face(face, along, out, z):
+    """A point on a wall face: face "x" is the face toward -x (the left front), "y" toward -y (the right front)."""
+    h = CELL / 2
+    return (-h - out, along, z) if face == "x" else (along, -h - out, z)
+
+
+def _wall_torch(face):
+    _wall_mask()
+    iron = mat(STONE[1], 0.2, STONE[0], metal=0.6, rough=0.5)
+    wood = mat(WOOD[2], 0.3, WOOD[1])
+    x, y, z = _on_face(face, 0.0, 0.02, WALL_H * 0.55)
+    box((0.08, 0.08, 0.12) if face == "x" else (0.08, 0.08, 0.12), (x, y, z - 0.06), iron)
+    tilt = (0, -25, 0) if face == "x" else (25, 0, 0)
+    tx, ty = _on_face(face, 0.0, 0.1, 0)[:2]
+    cyl(0.035, 0.28, (tx, ty, z - 0.02), wood, 8, rot=tilt)
+    lathe([(0.03, 0), (0.07, 0.08), (0.075, 0.1)], (tx, ty, z + 0.2), iron, 8, smooth=False, cap=False)
+    fx, fy = _on_face(face, 0.0, 0.14, 0)[:2]
+    flame((fx, fy, z + 0.24), 0.09, 8)
+
+
+def _wall_chains(face):
+    _wall_mask()
+    iron = mat(STONE[4], 0.2, STONE[3], metal=0.4, rough=0.5)
+    for along in (-0.12, 0.12):
+        for k in range(7):
+            z = WALL_H - 0.04 - k * 0.055
+            x, y, _ = _on_face(face, along + (0.01 if k % 2 else -0.01), 0.015, 0)
+            size = (0.035, 0.07, 0.06) if (face == "x") == (k % 2 == 0) else (0.07, 0.035, 0.06)
+            box(size, (x, y, z - 0.05), iron)
+    x, y, _ = _on_face(face, 0.0, 0.02, 0)
+    box((0.04, 0.04, 0.03) if face == "x" else (0.04, 0.04, 0.03), (x, y, WALL_H - 0.43), iron)
+    bonec = mat(BONE[1], 0.3, BONE[0], scale=15)
+    sx, sy, _ = _on_face(face, 0.0, 0.07, 0)
+    skull((sx, sy, 0.0), 0.06 * M, bonec, turn=0 if face == "x" else -90)
+
+
+def _wall_banner(face, colors):
+    _wall_mask()
+    cloth = mat(colors[0], 0.15, colors[1], scale=6)
+    trim = mat(EMBER[3], 0.0)
+    rod = mat(WOOD[1], 0.0)
+    z0, z1 = WALL_H - 0.02, WALL_H - 0.5
+    pts = [(-0.14, z0), (0.14, z0), (0.14, z1 + 0.06), (0.0, z1), (-0.14, z1 + 0.06)]
+    if face == "x":
+        poly([(-CELL / 2 - 0.012, a, z) for a, z in pts], [list(range(5))], cloth)
+        box((0.02, 0.36, 0.03), (-CELL / 2 - 0.02, 0, z0 - 0.01), rod)
+        box((0.01, 0.2, 0.025), (-CELL / 2 - 0.018, 0, z0 - 0.12), trim)
+    else:
+        poly([(a, -CELL / 2 - 0.012, z) for a, z in pts], [list(range(5))], cloth)
+        box((0.36, 0.02, 0.03), (0, -CELL / 2 - 0.02, z0 - 0.01), rod)
+        box((0.2, 0.01, 0.025), (0, -CELL / 2 - 0.018, z0 - 0.12), trim)
+
+
+def _wall_top_candles():
+    _wall_mask()
+    candles((0.0, 0.0, WALL_H), 5, 91, 0.15)
+
+
+def _wall_top_skulls():
+    _wall_mask()
+    bonec = mat(BONE[1], 0.3, BONE[0], scale=15)
+    skull((-0.08, 0.06, WALL_H), 0.065 * M, bonec, turn=0)
+    skull((0.1, -0.06, WALL_H), 0.06 * M, bonec, turn=-40)
+    skull((0.0, 0.12, WALL_H + 0.02), 0.055 * M, bonec, turn=20)
+    candles((-0.12, -0.12, WALL_H), 1, 92, 0.02)
+
+
+def _wall_web():
+    # A cobweb strung over the wall's front corner: threads fanning from the corner and rings across them.
+    _wall_mask()
+    silk = mat(BONE[2], 0.0, emit=0.4)
+    h = CELL / 2
+    corner = (-h - 0.01, -h - 0.01, WALL_H)
+    ends = [(-h - 0.01, -h + 0.32, WALL_H), (-h - 0.01, -h - 0.01, WALL_H - 0.4), (-h + 0.32, -h - 0.01, WALL_H),
+            (-h - 0.01, -h + 0.22, WALL_H - 0.25), (-h + 0.22, -h - 0.01, WALL_H - 0.25)]
+
+    def thread(a, b, w=0.014):
+        ax, ay, az = a
+        bx, by, bz = b
+        dx, dy, dz = bx - ax, by - ay, bz - az
+        n = math.sqrt(dx * dx + dy * dy + dz * dz)
+        pitch = math.degrees(math.acos(max(-1, min(1, dz / n))))
+        yaw = math.degrees(math.atan2(dy, dx))
+        cyl(w, n, a, silk, 4, rot=(0, pitch, yaw), smooth=False)
+
+    for e in ends:
+        thread(corner, e)
+    for f in (0.35, 0.65, 0.9):
+        pts = [tuple(corner[i] + (e[i] - corner[i]) * f for i in range(3)) for e in (ends[0], ends[3], ends[1], ends[4], ends[2])]
+        for a, b in zip(pts, pts[1:]):
+            thread(a, b, 0.011)
+
+
 ALL = {
     "ritual_circle": ("world", ritual_circle, WORLD),
     "prop_barrel": ("dungeon", barrel, PROP),
@@ -927,3 +1142,23 @@ for n in range(1, 3):
     ALL["decal_rubble_%d" % n] = ("dungeon", (lambda n=n: _rubble(n)), DECAL)
     ALL["decal_puddle_%d" % n] = ("dungeon", (lambda n=n: _puddle(n)), DECAL)
     ALL["decal_ritual_%d" % n] = ("dungeon", (lambda n=n: _ritual(n)), DECAL)
+
+for n in range(1, 7):
+    ALL["floor_flagstone_%d" % n] = ("dungeon", (lambda n=n: _flagstone(n)), DECAL)
+    ALL["floor_brick_%d" % n] = ("dungeon", (lambda n=n: _brick(n)), DECAL)
+    ALL["floor_earth_%d" % n] = ("dungeon", (lambda n=n: _earth(n)), DECAL)
+    ALL["floor_moss_%d" % n] = ("dungeon", (lambda n=n: _flagstone(n, True)), DECAL)
+
+WALL_DECOR = {
+    "wall_torch_x": lambda: _wall_torch("x"),
+    "wall_torch_y": lambda: _wall_torch("y"),
+    "wall_chains_x": lambda: _wall_chains("x"),
+    "wall_chains_y": lambda: _wall_chains("y"),
+    "wall_banner_x": lambda: _wall_banner("x", (BLOOD[3], BLOOD[2])),
+    "wall_banner_y": lambda: _wall_banner("y", (BLOOD[3], BLOOD[2])),
+    "wall_candles": _wall_top_candles,
+    "wall_skulls": _wall_top_skulls,
+    "wall_web": _wall_web,
+}
+for name, build in WALL_DECOR.items():
+    ALL[name] = ("world", build, WORLD)

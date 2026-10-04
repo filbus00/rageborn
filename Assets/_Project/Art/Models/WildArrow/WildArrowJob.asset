@@ -28,9 +28,86 @@ MonoBehaviour:
     scale: 1
     grips:
     - 1h
+  - layer: 3
+    look: recurve_bow
+    prefab: {fileID: 1861746402706997278, guid: 6a2dc8ca31edc42fda54760fee1c8254, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 3
+    look: horn_bow
+    prefab: {fileID: 3325621506897618878, guid: 7eb5c511f2dbf4d5794cef644d8dbe79, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 3
+    look: yew_longbow
+    prefab: {fileID: 2944586210927459375, guid: 5ebd94659781e4afea029504736d036d, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 3
+    look: war_bow
+    prefab: {fileID: 2230779156059435975, guid: 69962671abfe540448bf1c12ee92c644, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 3
+    look: great_bow
+    prefab: {fileID: 2389835127073021195, guid: 23835cc987549477585ad12a0faf52a8, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
   - layer: 2
     look: hide_quiver
     prefab: {fileID: 6127314655579716071, guid: 75b90855a19824e409ef35980a40f087, type: 3}
+    bone: 54
+    transformPath: 
+    autoGrip: 0
+    localPosition: {x: 0.05, y: 0.05, z: -0.21}
+    localEuler: {x: 0, y: 0, z: -25}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 2
+    look: studded_quiver
+    prefab: {fileID: 595207617274105926, guid: 98ac3344045e547b98c72a21447203c7, type: 3}
+    bone: 54
+    transformPath: 
+    autoGrip: 0
+    localPosition: {x: 0.05, y: 0.05, z: -0.21}
+    localEuler: {x: 0, y: 0, z: -25}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 2
+    look: bone_quiver
+    prefab: {fileID: 1117077421198043500, guid: 9d8c198a7356740d9bec27d686e3e970, type: 3}
     bone: 54
     transformPath: 
     autoGrip: 0

@@ -29,12 +29,15 @@ namespace ARPG.Editor
         /// <summary>Heights in final pixels at 64 per unit (the brief, 5.2 and 15.3, halved on 2026-09-28); others 80.</summary>
         static readonly Dictionary<string, float> Heights = new Dictionary<string, float>
         {
-            { "husk", 70f }, { "ghoul", 88f }, { "bandit_archer", 80f }, { "ash_wolf", 45f },
+            { "husk", 70f }, { "ghoul", 88f }, { "bandit_archer", 80f }, { "ash_wolf", 45f }, { "cinder_warden", 92f },
         };
 
         /// <summary>Cells wider than the default 128 px: the ghoul's slam swings its big arm past a 128 px cell (clipped on
         /// the first bake, 2026-09-29).</summary>
-        static readonly Dictionary<string, int> CellSizes = new Dictionary<string, int> { { "ghoul", 192 } };
+        static readonly Dictionary<string, int> CellSizes = new Dictionary<string, int> { { "ghoul", 192 }, { "cinder_warden", 192 } };
+
+        /// <summary>Bodies whose clips are copies of another enemy's (the Cinder Warden moves as the ghoul).</summary>
+        static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string> { { "cinder_warden", "ghoul" } };
 
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
         /// until the rank has its own.</summary>
@@ -42,6 +45,8 @@ namespace ARPG.Editor
         {
             ("Swarmer", "husk", null), ("SwarmerChampion", "husk_champion", "husk"), ("SwarmerElite", "husk_elite", "husk"),
             ("Ghoul", "ghoul", null), ("BanditArcher", "bandit_archer", null),
+            // The act boss (2026-10-04): built in Blender on the ghoul's rig, ArtSource/tools/props/boss.py.
+            ("CinderWarden", "cinder_warden", null),
         };
 
         [MenuItem("Tools/ARPG/Sprite Bake/Bake Enemies")]
@@ -79,6 +84,12 @@ namespace ARPG.Editor
             }
             MixamoImport.ConfigureBody(bodyPath);
             var avatar = AssetDatabase.LoadAllAssetsAtPath(bodyPath).OfType<Avatar>().FirstOrDefault();
+            // A body built in Blender on another enemy's rig plays that enemy's clips: they keep that enemy's avatar
+            // (their hierarchy is its), and the humanoid retargets them onto this body.
+            if (!ClipAvatarFrom.TryGetValue(name, out var donor))
+                donor = null;
+            else
+                avatar = AssetDatabase.LoadAllAssetsAtPath($"{Root}/{donor}/{donor}.fbx").OfType<Avatar>().FirstOrDefault() ?? avatar;
 
             var jobPath = $"{folder}/{name}_job.asset";
             var job = AssetDatabase.LoadAssetAtPath<SpriteBakeJob>(jobPath);
@@ -112,9 +123,10 @@ namespace ARPG.Editor
             foreach (var (animation, frames, loop) in Animations)
             {
                 var path = $"{folder}/{name}_{animation}.fbx";
+                var idleFrom = donor != null ? $"{Root}/{donor}/{donor}.fbx" : bodyPath;
                 var clip = File.Exists(path)
                     ? MixamoImport.ConfigureAnimation(path, loop, avatar, animation, false)
-                    : animation == "idle" ? MixamoImport.FirstClip(bodyPath) : null;
+                    : animation == "idle" ? MixamoImport.FirstClip(idleFrom) : null;
                 if (clip == null)
                     continue;
                 var window = loop ? new Vector2(0f, clip.length) : MixamoImport.ActionWindow(bodyPath, clip, animation == "death");

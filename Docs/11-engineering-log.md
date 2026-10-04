@@ -348,3 +348,31 @@ without Unity). A whole run takes about 20 seconds.
 - Checked in the editor: 555 of 555 tests pass, no console errors in the town or a dungeon level. On the simulator the
   town holds 60 fps with no errors.
 
+## 2026-10-04: floors, wall details, bows and quivers, the boss
+
+The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and details). All in `ArtSource/tools/props/`.
+
+- Floors (`models.py`, `floor_preview.py` lays them out on the grid to check the joins): six variants each of
+  `floor_flagstone`, `brick`, `earth`, `moss` through Import Pixel Art, which then replaces the code-drawn floors of
+  those styles. Lit evenly in the render. Two shades side by side snapped to a checkerboard and fine noise vanished
+  after the snap, so each style is one palette colour mottled a step darker with the noise's threshold near its middle
+  (0.45); the ground plane is larger than the cell, since a part-covered edge pixel read as a dark seam.
+- Wall details (world art `wall_torch_x/_y`, `wall_chains_x/_y`, `wall_banner_x/_y`, `wall_candles`, `wall_skulls`,
+  `wall_web`): rendered against a holdout block the size of a wall (half a world unit tall), so only what stands
+  outside the wall shows. `DungeonLevel.DressWalls` puts one on about one full-height wall in nine that has open floor
+  on its -x or -y side (the faces the camera sees), chosen by a hash of the cell so the generator is untouched; torches
+  get a flickering light, at most 14 a level. Each sits 0.01 in front of its block so it draws over the wall.
+- Bows and quivers (`gear.py`): the five bow looks and two quiver looks `AppearanceRules` already named are modelled
+  (swept limbs, grip, tips, string; quivers with studs or bone plates) and exported to the Wild Arrow's folder with an
+  atlas texture (each part's colour in an 8 px square, every face mapped to its square's middle). Bake Wild Arrow
+  picked them all up: 220 more sheets, every bow still on the "1h" grip.
+- The Cinder Warden (`boss.py`): rigid armour parts (each weighted wholly to one bone) built on the ghoul's imported
+  armature and exported with it. Unity refused the ghoul's clips against the Warden's own avatar (Blender writes the
+  armature as a node, so Hips' parent differed), so `EnemyBakeSetup.ClipAvatarFrom` gives the Warden's copied clips
+  the ghoul's avatar and takes his idle from `ghoul.fbx`; the humanoid retargets them. Baked in 192 px cells at the
+  ghoul's height and wired to `CinderWarden` (scaled 1.6 in play). The ghoul's idle has an arms-out flex mid-loop; it
+  is in the ghoul's own sheet too.
+- Husk ranks: `husk_champion` and `husk_elite` are the husk's files with a recoloured texture (frost-blue; ash-black
+  and ember-red), baked by Bake Enemies and wired to `SwarmerChampion` and `SwarmerElite`.
+- 555 of 555 EditMode tests pass.
+

@@ -96,9 +96,9 @@ namespace ARPG
             CharacterGrip.OneHand);
 
         /// <summary>
-        /// The look shown when a layer's own look has no sheets yet, from the models that exist: the leather body, the
-        /// hunting bow for every bow and the hide quiver for every quiver (the first models, 2026-10-03; the others are
-        /// not modelled yet); null for the helm.
+        /// The look shown when a layer's own look has no sheets yet: the leather body, the hunting bow and the hide quiver
+        /// (the first models, 2026-10-03; every bow and quiver look is modelled since 2026-10-04, ArtSource/tools/props/
+        /// gear.py, so this only covers a missing bake); null for the helm.
         /// </summary>
         public static string FallbackLook(AppearanceLayer layer, CharacterGrip grip = CharacterGrip.OneHand) => layer switch
         {

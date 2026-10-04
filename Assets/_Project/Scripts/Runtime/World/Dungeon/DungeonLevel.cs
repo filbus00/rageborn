@@ -246,6 +246,8 @@ namespace ARPG
                     go.AddComponent<FlickerLight>().Init(light, pair.Key.x * 1.7f + pair.Key.y);
             }
 
+            DressWalls(lights);
+
             // Summoning circles on some rooms' floors, their candles lighting them a dim red.
             foreach (var cell in Layout.Rituals)
             {
@@ -255,6 +257,63 @@ namespace ARPG
                 var glow = WorldLights.Add(circle.transform, new Color(1f, 0.35f, 0.25f), 0.9f, 0.4f, 3.5f, 0.3f);
                 if (glow != null)
                     circle.gameObject.AddComponent<FlickerLight>().Init(glow, cell.x * 0.9f + cell.y);
+            }
+        }
+
+        // Wall details (WorldArt, the owner's "torches"; 2026-10-04): about one full-height wall block in nine that
+        // faces into the room carries a torch, chains or a banner on its face, or candles, skulls or a cobweb on its top.
+        // Picked by a hash of the cell, so a level dresses the same every time without touching the generator. Torches
+        // light their stretch of wall, at most MaxWallTorches a level.
+        const float WallDetailChance = 0.11f;
+        const int MaxWallTorches = 14;
+        static readonly string[] FaceDetails = { "wall_torch", "wall_torch", "wall_torch", "wall_chains", "wall_banner" };
+        static readonly string[] TopDetails = { "wall_candles", "wall_skulls", "wall_web" };
+
+        void DressWalls(Transform parent)
+        {
+            var bounds = Layout.Bounds;
+            var torches = 0;
+            for (var x = bounds.xMin; x < bounds.xMax; x++)
+                for (var y = bounds.yMin; y < bounds.yMax; y++)
+                {
+                    var at = new Vector2Int(x, y);
+                    if (Layout.Get(at) != DungeonCell.Wall || WallHash(x, y, 1) > WallDetailChance)
+                        continue;
+                    if (!InsideRoom(at) && WallRules.IsCameraSide(IsOpenCell, x, y))
+                        continue;
+                    // The faces the camera sees: toward -x (left front) and -y (right front).
+                    bool faceX = IsOpenCell(x - 1, y), faceY = IsOpenCell(x, y - 1);
+                    if (!faceX && !faceY)
+                        continue;
+                    var onFace = WallHash(x, y, 2) < 0.7f;
+                    var name = onFace
+                        ? FaceDetails[(int)(WallHash(x, y, 3) * FaceDetails.Length) % FaceDetails.Length]
+                        : TopDetails[(int)(WallHash(x, y, 3) * TopDetails.Length) % TopDetails.Length];
+                    var torch = name == "wall_torch";
+                    if (torch && torches >= MaxWallTorches)
+                        name = "wall_chains";
+                    if (onFace)
+                        name += faceX && (!faceY || WallHash(x, y, 4) < 0.5f) ? "_x" : "_y";
+                    // A hair in front of its own block, so it draws over the wall and under anyone standing before it.
+                    var detail = WorldArt.Place(name, parent, CellWorld(at) + new Vector3(0f, -0.01f, 0f));
+                    if (detail == null || !torch || name == "wall_chains_x" || name == "wall_chains_y")
+                        continue;
+                    torches++;
+                    var glow = WorldLights.Add(detail.transform, new Color(1f, 0.55f, 0.25f), 1.0f, 0.3f, 3.5f, 0.5f);
+                    if (glow != null)
+                        detail.gameObject.AddComponent<FlickerLight>().Init(glow, x * 1.3f + y * 0.7f);
+                }
+        }
+
+        static float WallHash(int x, int y, int salt)
+        {
+            unchecked
+            {
+                var h = (uint)(x * 73856093) ^ (uint)(y * 19349663) ^ (uint)(salt * 83492791);
+                h ^= h >> 13;
+                h *= 0x5bd1e995;
+                h ^= h >> 15;
+                return (h & 0xFFFFFF) / (float)0x1000000;
             }
         }
 
