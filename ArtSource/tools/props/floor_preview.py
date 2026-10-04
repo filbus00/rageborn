@@ -24,13 +24,15 @@ def tile(path):
     d = (((rgb[:, :, None, :] - PALETTE[None, None]) ** 2) * np.array([0.3, 0.59, 0.11])).sum(axis=3)
     rgb = PALETTE[d.argmin(axis=2)] / 255
     ys, xs = np.mgrid[0:H, 0:W]
-    inside = np.abs((xs + 0.5) - W / 2) / (W / 2) + np.abs((ys + 0.5) - H / 2) / (H / 2) <= 1.0
+    inside = np.abs((xs + 0.5) - W / 2) / (W / 2) + np.abs((ys + 0.5) - H / 2) / (H / 2) <= 1.0 + 1e-6
     return rgb, inside
 
 
 panels = []
 for style in ("flagstone", "brick", "earth", "moss"):
-    tiles = [tile(p) for p in sorted(glob.glob(os.path.join(folder, "floor_%s_*.png" % style)))]
+    paths = glob.glob(os.path.join(folder, "floor_%s_*.png" % style))
+    paths.sort(key=lambda p: int(p.rsplit("_", 1)[1][:-4]))
+    tiles = [tile(p) for p in paths]
     if not tiles:
         continue
     pw, ph = W * N, H * N
@@ -40,7 +42,8 @@ for style in ("flagstone", "brick", "earth", "moss"):
         for cy in range(-N, 2 * N):
             ox = (cx - cy) * W // 2 + pw // 2 - W // 2
             oy = (cx + cy) * H // 2 - ph // 2
-            rgb, inside = rng.choice(tiles)
+            # A continuous style (16 pieces) by the cell's place in the 4 x 4 repeat, as DungeonArt.VariantAt.
+            rgb, inside = tiles[(cx % 4) + 4 * (cy % 4)] if len(tiles) == 16 else rng.choice(tiles)
             for y in range(H):
                 for x in range(W):
                     if inside[y, x]:

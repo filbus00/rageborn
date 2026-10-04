@@ -75,6 +75,32 @@ namespace ARPG
                 1f);
         }
 
+        /// <summary>
+        /// The ground's tint at a cell for the continuous floors (2026-10-04): a slow, smooth swell of light and warmth
+        /// across about six cells, so neighbouring tiles differ by a hair and no grid shows (<see cref="FloorShade"/>'s
+        /// tile-by-tile jumps drew one). Brightness stays within 0.86 and 1.
+        /// </summary>
+        public static Color GroundShade(Vector2Int cell)
+        {
+            var light = Smooth(cell.x / 6f, cell.y / 6f, 0);
+            var warm = Smooth(cell.x / 9f + 31f, cell.y / 9f - 17f, 1);
+            var brightness = 0.86f + light * 0.14f;
+            var warmth = (warm - 0.5f) * 0.05f;
+            return new Color(Mathf.Clamp01(brightness + warmth), Mathf.Clamp01(brightness), Mathf.Clamp01(brightness - warmth), 1f);
+        }
+
+        // Value noise: the lattice's hashed corners blended with a smoothstep.
+        static float Smooth(float x, float y, int salt)
+        {
+            int x0 = Mathf.FloorToInt(x), y0 = Mathf.FloorToInt(y);
+            float fx = x - x0, fy = y - y0;
+            fx = fx * fx * (3f - 2f * fx);
+            fy = fy * fy * (3f - 2f * fy);
+            float a = Hash(x0 + salt * 1013, y0), b = Hash(x0 + 1 + salt * 1013, y0);
+            float c = Hash(x0 + salt * 1013, y0 + 1), d = Hash(x0 + 1 + salt * 1013, y0 + 1);
+            return Mathf.Lerp(Mathf.Lerp(a, b, fx), Mathf.Lerp(c, d, fx), fy);
+        }
+
         // An integer hash to 0..1, stable across platforms (no floating point sine).
         static float Hash(int x, int y)
         {

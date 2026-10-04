@@ -214,7 +214,7 @@ namespace ARPG
                     // The room's floor style in one of its variants, with any decal drawn on; under walls too, so a wall
                     // never shows the void behind it.
                     var style = Layout.StyleAt(at);
-                    var variant = (int)(LightingRules.FloorShade(at * 7).r * 1000f) % DungeonArt.VariantCount(style);
+                    var variant = DungeonArt.VariantAt(style, at, (int)(LightingRules.FloorShade(at * 7).r * 1000f));
                     var decal = Layout.Decals.TryGetValue(at, out var kind) ? (int)kind : -1;
                     groundTiles[index] = DungeonArt.Floor(style, variant, decal);
                     // Only the level's outer and dividing walls are cut low on the camera side: a pillar or stub standing

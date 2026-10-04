@@ -409,3 +409,19 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   sines, and a convolution reverb on the loot, level and boss cues. `SoundId.Explosion` is new, for Explosive Arrow's
   burst. Not listened to by Claude: checked only by level, length and spectrum.
 
+## 2026-10-04: continuous ground, a wider town, the bow's sound
+
+- Ground (`ArtSource/tools/props/ground.py`; the owner: "it does not look good that it is all tiles. Make real ground
+  textures"): each floor style is one seamless texture over a 4 x 4 cell repeat, drawn in numpy in the cells' own
+  lattice (periodic noise by filtering in the frequency domain, periodic Voronoi stones, running-bond bricks,
+  periodic cracks), shaded from its height map, and cut into 16 pieces, floor_<style>_<1 + i + 4 j>.
+  `DungeonArt.VariantAt` gives a cell the piece of its place in the repeat when all 16 are imported (else a hashed
+  variant as before), in the dungeon and the town. The pieces fill their whole frame and the importer cuts the
+  diamond after shrinking; cut before, the edge pixels averaged with clear ones into dark seams. The ground's tint per
+  cell is now `LightingRules.GroundShade`, a smooth swell over about six cells: `FloorShade`'s tile-by-tile jumps of
+  up to 18 percent drew a grid of their own.
+- The town (the owner: "spread the town out more"): positions about 1.6 times further out, three more houses, more
+  lamps and pines, 42 pieces.
+- The bow's sound (the owner: "like a broken electrical guitar"): the plucked string is gone; a release is a dull
+  thump and string slap with a touch of wood, then the arrow's hiss, 0.17 s. The heavy shot the same, deeper.
+

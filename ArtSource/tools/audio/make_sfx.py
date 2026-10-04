@@ -157,17 +157,23 @@ def bell(freq, seconds, decay):
 # ---------------------------------------------------------------- the sounds
 
 def arrow_shot():
-    twang = pluck(0.32, 98, 0.993, 0.6) * env(0.32, 0.12)
-    whoosh = bandpass(noise(0.2), 3200, 0.8) * np.sin(np.linspace(0, np.pi, n(0.2))) ** 2
-    click = highpass(noise(0.01), 3000) * env(0.01, 0.003)
-    return finish(mix(twang * 0.9, at(whoosh * 0.7, 0.01), click * 0.5), 0.75)
+    # A bow's release is not a note: the string slaps the limbs and stops dead (a dull, very short thump with a hint
+    # of wood), and the arrow hisses away. No sustained pitch (a plucked string read as an electric guitar).
+    thump = sweep(0.06, 210, 90, 0.018)
+    slap = bandpass(noise(0.04), 420, 1.5) * env(0.04, 0.01)
+    wood = modes(0.05, [(720, 0.6, 0.012), (1340, 0.3, 0.008)])
+    hiss = highpass(noise(0.16), 2500)
+    hiss = onepole(hiss, np.linspace(9000, 3000, len(hiss))) * env(0.16, 0.05, 0.004)
+    return finish(mix(thump, slap * 0.8, wood * 0.35, at(hiss * 0.55, 0.008)), 0.7)
 
 
 def heavy_shot():
-    twang = pluck(0.45, 73, 0.995, 0.5) * env(0.45, 0.2)
-    thrum = sweep(0.3, 140, 70, 0.12) * 0.5
-    whoosh = bandpass(noise(0.3), 1800, 0.7) * np.sin(np.linspace(0, np.pi, n(0.3))) ** 2
-    return finish(mix(twang, thrum, at(whoosh * 0.9, 0.02)), 0.85)
+    # A heavier draw: a deeper thump, a longer string slap and a broader whoosh.
+    thump = sweep(0.09, 160, 60, 0.03)
+    slap = bandpass(noise(0.06), 330, 1.3) * env(0.06, 0.015)
+    wood = modes(0.07, [(560, 0.6, 0.016), (1080, 0.3, 0.01)])
+    whoosh = bandpass(noise(0.26), 1600, 0.7) * np.sin(np.linspace(0, np.pi, n(0.26))) ** 2
+    return finish(mix(thump, slap * 0.9, wood * 0.35, at(whoosh * 0.6, 0.01)), 0.8)
 
 
 def hit():

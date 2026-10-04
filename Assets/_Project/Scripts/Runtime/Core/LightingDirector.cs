@@ -150,7 +150,7 @@ namespace ARPG
                 if (!ground.HasTile(cell))
                     continue;
                 ground.SetTileFlags(cell, TileFlags.None);
-                ground.SetColor(cell, LightingRules.FloorShade(new Vector2Int(cell.x, cell.y)));
+                ground.SetColor(cell, LightingRules.GroundShade(new Vector2Int(cell.x, cell.y)));
             }
         }
 

@@ -101,6 +101,27 @@ namespace ARPG
                 importedDecals[pair.Key] = new List<Sprite>(pair.Value.Values);
         }
 
+        /// <summary>How many cells a side the continuous floors repeat over (2026-10-04): a style imported with
+        /// <see cref="LatticeSize"/> squared variants is one seamless ground cut into cells, variant 1 + x + size * y.</summary>
+        public const int LatticeSize = 4;
+
+        /// <summary>
+        /// The floor variant for a cell: for a continuous style (all <see cref="LatticeSize"/> squared pieces imported), the
+        /// piece its place in the repeat calls for, so stones and cracks run across the cells' edges; else one picked by
+        /// the given hash.
+        /// </summary>
+        public static int VariantAt(int style, Vector2Int cell, int hash)
+        {
+            var count = VariantCount(style);
+            if (count == LatticeSize * LatticeSize)
+            {
+                var x = ((cell.x % LatticeSize) + LatticeSize) % LatticeSize;
+                var y = ((cell.y % LatticeSize) + LatticeSize) % LatticeSize;
+                return x + LatticeSize * y;
+            }
+            return ((hash % count) + count) % count;
+        }
+
         /// <summary>How many variants a floor style has: its imported ones, else the code-drawn <see cref="Variants"/>.</summary>
         public static int VariantCount(int style)
         {
@@ -123,8 +144,7 @@ namespace ARPG
                 if (ground.HasTile(cell))
                 {
                     var paved = Fractal(cell.x * 0.09f, cell.y * 0.09f, 404) > 0.55f;
-                    var count = VariantCount(paved ? 0 : 2);
-                    var variant = (int)(Hash(cell.x, cell.y, 9) * count) % count;
+                    var variant = VariantAt(paved ? 0 : 2, new Vector2Int(cell.x, cell.y), (int)(Hash(cell.x, cell.y, 9) * 1000f));
                     var decal = Hash(cell.x, cell.y, 21) < 0.05f ? (int)DecalKind.Cracks : Hash(cell.x, cell.y, 22) < 0.02f ? (int)DecalKind.Rubble : -1;
                     tiles[i] = Floor(paved ? 0 : 2, variant, decal);
                 }
