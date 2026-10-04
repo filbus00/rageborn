@@ -227,7 +227,15 @@ namespace ARPG
 
             ground.ClearAllTiles();
             walls.ClearAllTiles();
-            ground.SetTilesBlock(area, groundTiles);
+            // One ground through every room, painted from the ground textures (GroundPainter); the old per-room floors
+            // only when those are missing.
+            var floorCells = new List<Vector2Int>();
+            for (var y = 0; y < bounds.height; y++)
+                for (var x = 0; x < bounds.width; x++)
+                    if (groundTiles[x + y * bounds.width] != null)
+                        floorCells.Add(new Vector2Int(bounds.xMin + x, bounds.yMin + y));
+            if (!GroundPainter.PaintDungeon(ground, floorCells, Layout.Decals))
+                ground.SetTilesBlock(area, groundTiles);
             walls.SetTilesBlock(area, wallTiles);
             WorldLights.ShadeGround(ground);
             ShadeWalls();

@@ -298,6 +298,13 @@ namespace ARPG
 
         /// <summary>Lays an imported decal of the kind (a variant picked by the seed) over a floor's opaque pixels;
         /// false when none of that kind was imported.</summary>
+        /// <summary>Stamps an imported decal of a kind onto a 40 x 20 floor tile's pixels, if one was imported.</summary>
+        public static bool StampDecal(Color32[] floor, int decal, int seed)
+        {
+            LoadImported();
+            return StampImportedDecal(floor, decal, seed);
+        }
+
         static bool StampImportedDecal(Color32[] floor, int decal, int seed)
         {
             if (!importedDecals.TryGetValue(decal, out var list) || list.Count == 0)

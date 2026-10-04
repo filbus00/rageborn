@@ -497,3 +497,21 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   The gloves were rebaked alone (the bare body as the occluder, 3 minutes). Checked: no square in any frame, and in play
   a worn set showed mail, leather boots, sash and gauntlets on their layers in order.
 
+
+## 2026-10-04: one ground, after Diablo 2's first act
+
+- The owner: "Make the town just dirt with some grassy spots and some paths. Make the dungeon mostly dirt and some cobble
+  stones showing through. Do not make each room in the dungeon have its own floor texture ... Take inspiration from the
+  first act in Diablo 2".
+- `ground_sources.py` (Blender's numpy) draws four seamless 512 px textures in ground space (40 px a ground unit, so a
+  repeat is 12.8 units and stones show iso-flattened on screen), already in the palette, each with a strength in alpha:
+  dirt (grey-olive earth, pebbles, hairline cracks), cobble (alpha: a stone's height, low in the grout), grass (alpha:
+  tuft density) and path (alpha: wear). A muted `EARTH` ramp (seven colours) joined the palette (`kit.py`,
+  `PixelArt.Palette`); the old browns were too red for the look.
+- `GroundPainter` gives each floor cell its own 40 x 20 tile: each pixel's ground position samples the textures and
+  `GroundRules` picks the layer. Broad value noise says how much of a layer belongs there and the layer's alpha decides,
+  so stone tops show through the dirt first and grass frays into tufts. Town paths are segments between the town's
+  points, bent by noise and frayed by wear. Tiles live in 2048-wide atlases with a clear pixel round each slot, freed on
+  the next scene's paint. The dungeon ignores `StyleAt` for the floor (walls keep their room tint); decals are stamped
+  on as before. The old floors stay as the fallback when a texture is missing or not readable.
+- Measured in the editor: 4868 cells painted in 430 ms (Mono), at load behind the fade. 564 of 564 tests pass.

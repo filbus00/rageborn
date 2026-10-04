@@ -66,7 +66,8 @@ namespace ARPG
                 foreach (var tilemap in FindObjectsByType<Tilemap>(FindObjectsSortMode.None))
                     if (tilemap.name == "Ground")
                     {
-                        DungeonArt.PaveTown(tilemap);
+                        if (!GroundPainter.PaintTown(tilemap))
+                            DungeonArt.PaveTown(tilemap);
                         WorldLights.ShadeGround(tilemap);
                     }
 

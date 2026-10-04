@@ -7,11 +7,11 @@ import numpy as np
 import bpy
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from kit import STONE, WOOD, BLOOD, SKIN, MOSS, COLD, EMBER, BONE, VIOLET
+from kit import STONE, WOOD, BLOOD, SKIN, MOSS, COLD, EMBER, BONE, VIOLET, EARTH
 
 argv = sys.argv[sys.argv.index("--") + 1:]
 out_path, files = argv[0], argv[1:]
-PALETTE = np.array(STONE + WOOD + BLOOD + SKIN + MOSS + COLD + EMBER + BONE + VIOLET + [(14, 10, 10)], dtype=np.float32)
+PALETTE = np.array(STONE + WOOD + BLOOD + SKIN + MOSS + COLD + EMBER + BONE + VIOLET + EARTH + [(14, 10, 10)], dtype=np.float32)
 OUTLINE = np.array([14, 10, 10], dtype=np.float32)
 ZOOM = 3
 

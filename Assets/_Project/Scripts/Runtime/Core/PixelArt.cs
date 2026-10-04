@@ -37,6 +37,9 @@ namespace ARPG
             new Color32(252, 214, 120, 255),
             new Color32(150, 142, 118, 255), new Color32(196, 188, 162, 255), new Color32(232, 224, 198, 255),
             new Color32(60, 30, 70, 255), new Color32(110, 60, 130, 255),
+            // Earth, muted grey-olive, for the ground (2026-10-04).
+            new Color32(36, 31, 25, 255), new Color32(52, 46, 36, 255), new Color32(68, 61, 47, 255), new Color32(86, 77, 59, 255),
+            new Color32(106, 96, 74, 255), new Color32(130, 118, 92, 255), new Color32(156, 144, 114, 255),
         };
 
         static byte[] nearest;
