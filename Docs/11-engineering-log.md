@@ -398,4 +398,14 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   Models by `ArtSource/tools/props/undead.py` on the husk's and the archer's rigs, baked with the donors' clips and
   avatars (`EnemyBakeSetup.ClipAvatarFrom`).
 - 557 of 557 EditMode tests pass.
+- UI art: `UiStyle.Framed`, which every screen's panels, buttons and tiles go through, draws its rim as a 9-sliced
+  pixel-art iron frame (`UiArt.Frame`: a bevel light at the top left and dark at the bottom right, a rivet in each
+  corner, a dark line inside; grey, so a rim's colour still tints it for rarity and drop highlights) and its fill
+  tiled with faint two-pixel mottling (`UiArt.Fill`), each art pixel three quarters of the rim width in UI units.
+  `UiStyle.Frame` is lighter, since the art shades it down.
+- Sound: `ArtSource/tools/audio/make_sfx.py` (run with Blender's Python for numpy) designs every `SoundId` as a WAV in
+  Resources/Audio/Sfx, which `Sfx` loads before falling back to `SoundSynth`: a Karplus-Strong bow string with a
+  whoosh, wet thuds and crunches from filtered noise, coins, bells and the anvil as struck modes, booms from swept
+  sines, and a convolution reverb on the loot, level and boss cues. `SoundId.Explosion` is new, for Explosive Arrow's
+  burst. Not listened to by Claude: checked only by level, length and spectrum.
 

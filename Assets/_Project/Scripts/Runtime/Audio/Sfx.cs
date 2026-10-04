@@ -35,6 +35,9 @@ namespace ARPG
     {
         const int Voices = 16;
 
+        /// <summary>Where the designed sound files lie, under Resources: one per <see cref="SoundId"/>, named after it.</summary>
+        public const string DesignedFolder = "Audio/Sfx/";
+
         static Sfx instance;
 
         AudioClip[] clips;
@@ -59,6 +62,14 @@ namespace ARPG
             lastPlayed = new float[ids.Length];
             foreach (var id in ids)
             {
+                // The designed sounds (ArtSource/tools/audio/make_sfx.py, 2026-10-04) where they exist, else the synth.
+                var designed = Resources.Load<AudioClip>(DesignedFolder + id);
+                if (designed != null)
+                {
+                    clips[(int)id] = designed;
+                    lastPlayed[(int)id] = -10f;
+                    continue;
+                }
                 var samples = SoundSynth.Make(id);
                 var clip = AudioClip.Create(id.ToString(), samples.Length, 1, SoundSynth.SampleRate, false);
                 clip.SetData(samples, 0);
@@ -133,6 +144,7 @@ namespace ARPG
                 case SoundId.Potion:
                     return 3;
                 case SoundId.GroundBreaker:
+                case SoundId.Explosion:
                 case SoundId.BullRush:
                 case SoundId.Hew:
                 case SoundId.AxeThrow:

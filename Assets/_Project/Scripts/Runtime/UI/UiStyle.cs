@@ -15,7 +15,8 @@ namespace ARPG
         public static readonly Color Panel = new Color(0.09f, 0.075f, 0.07f, 1f);
         public static readonly Color SlotFill = new Color(0.17f, 0.055f, 0.05f, 1f);
         public static readonly Color EmptySlotFill = new Color(0.1f, 0.08f, 0.075f, 1f);
-        public static readonly Color Frame = new Color(0.32f, 0.27f, 0.24f, 1f);
+        // Brighter than the flat rim it replaced: the frame's art (UiArt) shades it down, highlights at full.
+        public static readonly Color Frame = new Color(0.44f, 0.38f, 0.33f, 1f);
         public static readonly Color FrameDark = new Color(0.02f, 0.015f, 0.015f, 1f);
         public static readonly Color Blood = new Color(0.55f, 0.06f, 0.05f, 1f);
         public static readonly Color BloodBright = new Color(0.8f, 0.12f, 0.09f, 1f);
@@ -127,14 +128,25 @@ namespace ARPG
             return image;
         }
 
-        /// <summary>A framed panel: a dark outer edge, a lighter iron rim and the fill inside it.</summary>
+        /// <summary>
+        /// A framed panel: a dark outer edge, a pixel-art iron rim (bevelled, riveted at the corners; tinted by its
+        /// colour, which screens change for rarity and drop highlights) and a faintly textured fill inside it. The art is
+        /// drawn in code (<see cref="UiArt"/>), each art pixel <paramref name="rim"/> times 0.75 UI units.
+        /// </summary>
         public static Image Framed(Transform parent, string name, Color fill, float rim = 4f)
         {
+            var scale = Mathf.Max(2f, rim * 0.75f);
             var outer = Image(parent, name, FrameDark);
             var edge = Image(outer.transform, "Rim", Frame);
             Stretch(edge.rectTransform, 2f);
+            edge.sprite = UiArt.Frame;
+            edge.type = UnityEngine.UI.Image.Type.Sliced;
+            edge.pixelsPerUnitMultiplier = 1f / scale;
             var inner = Image(edge.transform, "Fill", fill);
-            Stretch(inner.rectTransform, rim);
+            Stretch(inner.rectTransform, UiArt.FrameBorder * scale);
+            inner.sprite = UiArt.Fill;
+            inner.type = UnityEngine.UI.Image.Type.Tiled;
+            inner.pixelsPerUnitMultiplier = 1f / scale;
             return outer;
         }
 
@@ -193,5 +205,99 @@ namespace ARPG
             ItemSlot.OffHand => "Off-hand",
             _ => slot.ToString(),
         };
+    }
+
+    /// <summary>
+    /// The UI's pixel art, drawn in code (Docs/09, section 11, until hand-made art exists; 2026-10-04): a 9-sliced iron
+    /// frame, bevelled light at the top left and dark at the bottom right, a rivet in each corner and a dark line inside,
+    /// in grey so a rim's colour tints it; and a tiling fill of faint blocky mottling. Point filtered.
+    /// </summary>
+    public static class UiArt
+    {
+        /// <summary>The frame's border, in art pixels.</summary>
+        public const int FrameBorder = 4;
+
+        const int FrameSize = 12;
+        const int FillSize = 16;
+
+        static Sprite frame;
+        static Sprite fill;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics()
+        {
+            frame = null;
+            fill = null;
+        }
+
+        public static Sprite Frame => frame != null ? frame : frame = MakeFrame();
+
+        public static Sprite Fill => fill != null ? fill : fill = MakeFill();
+
+        /// <summary>The frame's grey value at an art pixel, or a negative number for clear (the middle). Pure.</summary>
+        public static float FrameValue(int x, int y)
+        {
+            const int n = FrameSize;
+            var edge = Mathf.Min(Mathf.Min(x, y), Mathf.Min(n - 1 - x, n - 1 - y));
+            if (edge >= FrameBorder)
+                return -1f;
+            // Rivets two pixels in from each corner.
+            var cx = x < n / 2 ? 1 : n - 2;
+            var cy = y < n / 2 ? 1 : n - 2;
+            if (x == cx && y == cy)
+                return 1f;
+            if (Mathf.Abs(x - cx) + Mathf.Abs(y - cy) == 1 && (x < cx || y > cy))
+                return 0.55f;
+            switch (edge)
+            {
+                case 0:
+                    // The bevel: light on the top and left (y up), dark on the bottom and right.
+                    return x == 0 || y == n - 1 ? 0.95f : 0.5f;
+                case 3:
+                    return 0.3f;
+                default:
+                    return (x + y) % 5 == 0 ? 0.7f : 0.78f;
+            }
+        }
+
+        static Sprite MakeFrame()
+        {
+            const int n = FrameSize;
+            var pixels = new Color32[n * n];
+            for (var y = 0; y < n; y++)
+                for (var x = 0; x < n; x++)
+                {
+                    var v = FrameValue(x, y);
+                    var b = (byte)Mathf.RoundToInt(Mathf.Clamp01(v) * 255f);
+                    pixels[y * n + x] = v < 0f ? new Color32(0, 0, 0, 0) : new Color32(b, b, b, 255);
+                }
+            var texture = new Texture2D(n, n, TextureFormat.RGBA32, false) { name = "UI Frame", filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp };
+            texture.SetPixels32(pixels);
+            texture.Apply(false, true);
+            return Sprite.Create(texture, new Rect(0, 0, n, n), new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect,
+                new Vector4(FrameBorder, FrameBorder, FrameBorder, FrameBorder));
+        }
+
+        static Sprite MakeFill()
+        {
+            const int n = FillSize;
+            var pixels = new Color32[n * n];
+            var random = new System.Random(17);
+            // Two-pixel blocks, so the mottling reads as pixel art at the frame's scale.
+            var blocks = new float[n / 2, n / 2];
+            for (var by = 0; by < n / 2; by++)
+                for (var bx = 0; bx < n / 2; bx++)
+                    blocks[bx, by] = random.NextDouble() < 0.18 ? 0.9f : random.NextDouble() < 0.1 ? 1.08f : 1f;
+            for (var y = 0; y < n; y++)
+                for (var x = 0; x < n; x++)
+                {
+                    var b = (byte)Mathf.RoundToInt(Mathf.Clamp01(blocks[x / 2, y / 2] * 0.92f) * 255f);
+                    pixels[y * n + x] = new Color32(b, b, b, 255);
+                }
+            var texture = new Texture2D(n, n, TextureFormat.RGBA32, false) { name = "UI Fill", filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Repeat };
+            texture.SetPixels32(pixels);
+            texture.Apply(false, true);
+            return Sprite.Create(texture, new Rect(0, 0, n, n), new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect);
+        }
     }
 }

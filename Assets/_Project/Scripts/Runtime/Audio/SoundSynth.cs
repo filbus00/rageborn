@@ -207,6 +207,11 @@ namespace ARPG
                     AddBell(s, 784f, 1f, 0.15f, 0f);
                     AddBell(s, 1047f, 1f, 0.2f, 0.12f);
                     return Finish(s, 0.4f);
+                case SoundId.Explosion:
+                    s = new float[Samples(0.6f)];
+                    AddSweep(s, 90f, 30f, 1f, 0.2f);
+                    AddNoise(s, 1200f, 200f, 0.9f, 0.18f, false, 11);
+                    return Finish(s, 0.9f);
                 default:
                     return new float[1];
             }
@@ -240,5 +245,8 @@ namespace ARPG
         BossPhase,
         Death,
         Hint,
+
+        /// <summary>Explosive Arrow's burst (2026-10-04; a file only, the synth makes it a short boom).</summary>
+        Explosion,
     }
 }

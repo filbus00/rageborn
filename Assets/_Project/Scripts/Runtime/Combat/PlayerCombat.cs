@@ -1742,7 +1742,7 @@ namespace ARPG
                 HealOnHit(hits);
                 focus.MarkCombat();
             }
-            Sfx.Play(SoundId.GroundBreaker, 0.8f);
+            Sfx.Play(SoundId.Explosion, 0.9f);
             fx.Burst(IsoMath.GroundToWorld(at), shot.BurstRadius, shot.Glow);
             // Cinder-Stitched Jerkin: the burst leaves burning ground that burns and slows.
             if (session.Equipment.Wears(LegendaryId.CinderStitchedJerkin))
