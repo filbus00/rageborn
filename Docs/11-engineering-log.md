@@ -470,4 +470,8 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   in its own colours (rim white; a rarity still tints it); the big panels show it wider (rim x 5.5). Titles, buttons and
   names use Copperplate's engraved small capitals (from the device, Georgia otherwise). The empty slots' names sit
   clear of the frame.
+- Settings (the owner: "not scrollable but the reset button spills over at the bottom"): the sheet was a fixed 2080
+  units tall, taller than the iPhone 11's safe area, so its bottom row ran off the screen. It now fills the safe area
+  less a strip at the top (tap to close), and its rows sit in a `ScrollRect` (masked by `RectMask2D`, the list sized by
+  a `ContentSizeFitter`) between the title and the Close / Reset row, which stays on screen.
 

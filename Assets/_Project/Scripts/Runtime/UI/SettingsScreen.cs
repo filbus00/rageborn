@@ -77,10 +77,13 @@ namespace ARPG
             // The sheet swallows taps so only the dimmed area above it closes.
             sheet.GetComponent<Button>().transition = Selectable.Transition.None;
             var sheetRect = (RectTransform)sheet.transform;
+            // As tall as the screen allows, a strip of the dimmed game left above it to tap closed; the rows scroll
+            // inside it (a fixed 2080 tall sheet ran its bottom row off a shorter screen, 2026-10-04).
             sheetRect.anchorMin = new Vector2(0f, 0f);
-            sheetRect.anchorMax = new Vector2(1f, 0f);
+            sheetRect.anchorMax = new Vector2(1f, 1f);
             sheetRect.pivot = new Vector2(0.5f, 0f);
-            sheetRect.sizeDelta = new Vector2(0f, 2080f);
+            sheetRect.offsetMin = Vector2.zero;
+            sheetRect.offsetMax = new Vector2(0f, -140f);
             sheet.GetComponent<Image>().color = SheetColor;
             UiStyle.Leather(sheet.GetComponent<Image>());
             var layout = sheet.GetComponent<VerticalLayoutGroup>();
@@ -106,8 +109,28 @@ namespace ARPG
             title.color = UiStyle.Gold;
             Height(title.gameObject, 84f);
 
-            var listObject = new GameObject("List", typeof(RectTransform), typeof(VerticalLayoutGroup));
-            listObject.transform.SetParent(sheet.transform, false);
+            // The rows scroll between the title and the bottom row.
+            var scrollObject = new GameObject("Scroll", typeof(RectTransform), typeof(Image), typeof(RectMask2D), typeof(ScrollRect), typeof(LayoutElement));
+            scrollObject.transform.SetParent(sheet.transform, false);
+            scrollObject.GetComponent<Image>().color = Color.clear;
+            var scrollLayout = scrollObject.GetComponent<LayoutElement>();
+            scrollLayout.flexibleHeight = 1f;
+            scrollLayout.minHeight = 200f;
+            var listObject = new GameObject("List", typeof(RectTransform), typeof(VerticalLayoutGroup), typeof(ContentSizeFitter));
+            listObject.transform.SetParent(scrollObject.transform, false);
+            var listRect = (RectTransform)listObject.transform;
+            listRect.anchorMin = new Vector2(0f, 1f);
+            listRect.anchorMax = new Vector2(1f, 1f);
+            listRect.pivot = new Vector2(0.5f, 1f);
+            listRect.offsetMin = listRect.offsetMax = Vector2.zero;
+            listObject.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            var scroll = scrollObject.GetComponent<ScrollRect>();
+            scroll.content = listRect;
+            scroll.viewport = (RectTransform)scrollObject.transform;
+            scroll.horizontal = false;
+            scroll.vertical = true;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+            scroll.scrollSensitivity = 30f;
             var listLayout = listObject.GetComponent<VerticalLayoutGroup>();
             listLayout.spacing = 10f;
             listLayout.childControlHeight = true;
