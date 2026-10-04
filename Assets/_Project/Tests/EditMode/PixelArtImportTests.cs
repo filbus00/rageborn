@@ -23,12 +23,16 @@ namespace ARPG.Tests
 
             Assert.AreEqual(ArtKind.Wall, ArtNames.Parse("Wall", out _, out _), "case does not matter");
             Assert.AreEqual(ArtKind.LowWall, ArtNames.Parse("wall_low", out _, out _));
+            Assert.AreEqual(ArtKind.Wall, ArtNames.Parse("wall_3", out _, out variant));
+            Assert.AreEqual(2, variant);
+            Assert.AreEqual(ArtKind.LowWall, ArtNames.Parse("wall_low_2", out _, out variant));
+            Assert.AreEqual(1, variant);
         }
 
         [Test]
         public void Names_RefuseWhatTheGameCannotPlace()
         {
-            foreach (var name in new[] { "", "floor_brick", "floor_brick_0", "floor_brick_17", "floor_marble_1", "prop_table", "decal_bones_x", "walls" })
+            foreach (var name in new[] { "", "floor_brick", "floor_brick_0", "floor_brick_17", "floor_marble_1", "prop_table", "decal_bones_x", "walls", "wall_0", "wall_low_x", "wall_torch_x" })
                 Assert.AreEqual(ArtKind.Unknown, ArtNames.Parse(name, out _, out _), name);
         }
 

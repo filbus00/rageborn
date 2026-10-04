@@ -515,3 +515,24 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   the next scene's paint. The dungeon ignores `StyleAt` for the floor (walls keep their room tint); decals are stamped
   on as before. The old floors stay as the fallback when a texture is missing or not readable.
 - Measured in the editor: 4868 cells painted in 430 ms (Mono), at load behind the fade. 564 of 564 tests pass.
+
+## 2026-10-04: walls to match the ground, and real music
+
+- Walls (the owner chose "do 1 through 4" of: walls, music, bows and quivers, a balance pass): `models.py`
+  `_rubble_block` replaces the even brick block. Rough fieldstones of mixed grey and earth tones in uneven courses,
+  standing proud by random amounts over a dark earth core, with a dark top of packed earth and a few loose stones, so a
+  run of wall reads as one dark mass from above, as in Diablo 2's first act. Four variants each, full and cut low:
+  `wall_<1..4>`, `wall_low_<1..4>` (1 plain, 2 a timber post and beams, 3 stones fallen out with rubble at its foot, 4
+  moss hanging from the top). `ArtNames` reads the numbered names (plain `wall` and `wall_low` still work), `DungeonArt.Wall(low, hash)`
+  picks one, and `DungeonLevel.WallVariant` shows the plain one about half the time. Walls lost their room tints; each
+  block keeps a slight shade of its own.
+- The dungeon's cobbles were cut back a little (`GroundRules.CobbleCover`): a start room had come out nearly all cobble.
+- Music: `ArtSource/tools/audio/make_music.py` composes and plays three looping tracks in numpy, written to
+  Resources/Audio/Music (imported streaming, Vorbis 0.5): town (fingerpicked guitar in D minor, 6/8, a drone, soft
+  strings and a flute tune the second time through, 69 s), dungeon (drones that open and close, a distant choir, wind,
+  sparse bells, far booms, 96 s) and boss (taiko, a low string ostinato, choir, brass stabs, 132 a minute, 58 s). Each
+  loop is seamless: notes past the end wrap round, and filters and the reverb are circular. All three are set to the
+  same loudness (RMS 0.2) with peaks under -1 dB; balance checked by numbers only (bands, seams), not by ear.
+- `MusicDirector` plays the track `MusicRules.For(scene, bossFighting)` picks (town in town, boss while the Cinder Warden
+  fights and lives, dungeon elsewhere), checked twice a second and crossfaded on two sources (1 s into the fight, 3 s
+  otherwise). `MusicSynth` is the fallback when the files are missing. Checked in play: the town track starts and loops.

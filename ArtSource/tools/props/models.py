@@ -319,52 +319,95 @@ def _ritual(n):
 
 # ---------------------------------------------------------------- walls
 
-def _brick_block(height):
-    """A wall block on one cell: a dark core with rough stone courses on its faces, height in scene units."""
-    rng = seed(int(height * 1000))
-    core = mat(STONE[1], 0.0)
-    stones = [mat(STONE[3], 0.3, STONE[2], scale=9), mat(STONE[4], 0.3, STONE[3], scale=9), mat(STONE[3], 0.2, STONE[2], scale=12)]
+def _rubble_block(height, variant):
+    """A wall block on one cell after Diablo 2's first act (2026-10-04): rough fieldstones of mixed grey and earth tones
+    in uneven courses over a dark earth core, a top of packed earth and loose stones. Only the faces toward the camera
+    (-x, -y) are built stone by stone. Variants: 1 plain, 2 a timber post and beam, 3 broken (stones fallen out, rubble
+    at its foot), 4 moss and roots hanging from the top."""
+    rng = seed(int(height * 1000) + variant * 7919)
     half = CELL / 2
-    box((CELL - 0.02, CELL - 0.02, height - 0.01), (0, 0, 0), core)
-    courses = max(1, round(height / 0.13))
-    ch = height / courses
-    for c in range(courses):
-        z = c * ch
-        offset = (c % 2) * 0.5
-        for face in range(4):
-            n = 3
-            for k in range(-1, n + 1):
-                t0 = (k + offset) / n
-                t1 = (k + 1 + offset) / n
-                t0, t1 = max(t0, 0), min(t1, 1)
-                if t1 - t0 < 0.05:
+    core = mat(EARTH[0], 0.0)
+    stones = [mat(STONE[4], 0.35, STONE[3], scale=16), mat(STONE[5], 0.3, STONE[4], scale=16),
+              mat(EARTH[5], 0.35, EARTH[4], scale=16), mat(EARTH[4], 0.3, EARTH[3], scale=16),
+              mat(STONE[3], 0.3, EARTH[2], scale=16), mat(EARTH[6], 0.3, EARTH[5], scale=16)]
+    loose = [mat(STONE[2], 0.3, STONE[1], scale=16), mat(EARTH[2], 0.3, EARTH[1], scale=16)]
+    box((CELL - 0.01, CELL - 0.01, height - 0.02), (0, 0, 0), core)
+    # Courses of uneven height, filling the face; stones of random length, standing a little proud by random amounts.
+    z = 0.0
+    course = 0
+    while z < height - 0.03:
+        ch = min(rng.uniform(0.085, 0.14), height - 0.02 - z)
+        for face in ("x", "y"):
+            t = -half + (rng.uniform(0.0, 0.12) if course % 2 else 0.0)
+            if t > -half:
+                # A short stone fills the start of an offset course.
+                pieces = [(-half, t)]
+            else:
+                pieces = []
+            while t < half - 0.03:
+                length = min(rng.uniform(0.12, 0.26), half - t)
+                pieces.append((t, t + length))
+                t += length
+            for t0, t1 in pieces:
+                if variant == 3 and z > height * 0.45 and rng.random() < 0.3:
+                    continue  # fallen out: the dark core shows
+                gap = 0.012
+                length = t1 - t0 - gap
+                if length < 0.03:
                     continue
-                length = (t1 - t0) * CELL - 0.012
-                mid = ((t0 + t1) / 2 - 0.5) * CELL
-                inset = rng.random() * 0.008
-                depth = 0.05
-                if face == 0:
-                    loc, size = (mid, -half + depth / 2 - inset, z + 0.006), (length, depth, ch - 0.012)
-                elif face == 1:
-                    loc, size = (-half + depth / 2 - inset, mid, z + 0.006), (depth, length, ch - 0.012)
-                elif face == 2:
-                    loc, size = (mid, half - depth / 2 + inset, z + 0.006), (length, depth, ch - 0.012)
+                mid = (t0 + t1) / 2
+                proud = rng.uniform(0.012, 0.035)
+                sh = ch - gap - rng.uniform(0, 0.012)
+                lift = z + gap / 2 + rng.uniform(0, 0.006)
+                if face == "x":
+                    box((proud * 2, length, sh), (-half, mid, lift), rng.choice(stones), bevel=0.01)
                 else:
-                    loc, size = (half - depth / 2 + inset, mid, z + 0.006), (depth, length, ch - 0.012)
-                box(size, loc, rng.choice(stones))
-    # The top: a few flat capstones.
-    cap = [mat(STONE[4], 0.3, STONE[3], scale=9), mat(STONE[5], 0.3, STONE[4], scale=9)]
-    for i in range(2):
-        for j in range(2):
-            box((half - 0.012, half - 0.012, 0.03), ((i - 0.5) * half, (j - 0.5) * half, height - 0.03 + rng.random() * 0.01), rng.choice(cap))
+                    box((length, proud * 2, sh), (mid, -half, lift), rng.choice(stones), bevel=0.01)
+        z += ch
+        course += 1
+    # The top: dark packed earth with a few loose stones, so a run of wall reads as one dark mass from above.
+    earth = mat(STONE[1], 0.45, STONE[0], scale=10)
+    box((CELL + 0.02, CELL + 0.02, 0.03), (0, 0, height - 0.03), earth)
+    for k in range(rng.randint(2, 4)):
+        size = rng.uniform(0.04, 0.08)
+        box((size, size * rng.uniform(0.7, 1.2), size * 0.5), (rng.uniform(-half + 0.08, half - 0.08), rng.uniform(-half + 0.08, half - 0.08), height),
+            rng.choice(loose), rot=(0, 0, rng.uniform(0, 90)), bevel=0.008)
+    if variant == 2 and height > 0.3:
+        wood = mat(WOOD[2], 0.4, WOOD[1], scale=20)
+        post = 0.075
+        box((post, post, height + 0.02), (-half - 0.01, -half - 0.01, 0), wood, bevel=0.006)
+        box((CELL, post * 0.9, post * 0.9), (0, -half - 0.02, height - 0.12), wood, bevel=0.006)
+        box((post * 0.9, CELL, post * 0.9), (-half - 0.02, 0, height - 0.12), wood, bevel=0.006)
+    if variant == 3:
+        for k in range(rng.randint(3, 5)):
+            size = rng.uniform(0.04, 0.09)
+            side = rng.random() < 0.5
+            along = rng.uniform(-half + 0.05, half - 0.05)
+            out = rng.uniform(0.03, 0.12)
+            loc = (-half - out, along, 0) if side else (along, -half - out, 0)
+            box((size, size * 0.9, size * 0.6), loc, rng.choice(stones), rot=(0, 0, rng.uniform(0, 90)), bevel=0.01)
+    if variant == 4:
+        moss = [mat(MOSS[2], 0.4, MOSS[1], scale=20), mat(MOSS[3], 0.4, MOSS[2], scale=20)]
+        for k in range(3):
+            size = rng.uniform(0.18, 0.3)
+            box((size, size * 0.8, 0.02), (rng.uniform(-half + 0.1, half - 0.1), rng.uniform(-half + 0.1, half - 0.1), height - 0.005), moss[k % 2])
+        for face in ("x", "y"):
+            for k in range(rng.randint(3, 6)):
+                along = rng.uniform(-half + 0.04, half - 0.04)
+                drop = rng.uniform(0.06, height * 0.6)
+                w = rng.uniform(0.03, 0.07)
+                if face == "x":
+                    box((0.012, w, drop), (-half - 0.035, along, height - drop), rng.choice(moss))
+                else:
+                    box((w, 0.012, drop), (along, -half - 0.035, height - drop), rng.choice(moss))
 
 
-def wall():
-    _brick_block(0.5 / 0.866)
+def wall(variant=1):
+    _rubble_block(0.5 / 0.866, variant)
 
 
-def wall_low():
-    _brick_block(0.125 / 0.866)
+def wall_low(variant=1):
+    _rubble_block(0.125 / 0.866, variant)
 
 
 # ---------------------------------------------------------------- world pieces: travel and loot
@@ -1103,8 +1146,6 @@ ALL = {
     "prop_candles": ("dungeon", candle_cluster, PROP),
     "prop_bucket": ("dungeon", bucket, PROP),
     "prop_torch": ("dungeon", torch_stand, TALL),
-    "wall": ("dungeon", wall, (160, 200, 80, 40)),
-    "wall_low": ("dungeon", wall_low, (160, 120, 80, 40)),
     "stairs_down": ("world", stairs_down, WORLD),
     "stairs_up": ("world", stairs_up, WORLD),
     "chest_closed": ("world", chest_closed, WORLD),
@@ -1148,6 +1189,10 @@ for n in range(1, 7):
     ALL["floor_brick_%d" % n] = ("dungeon", (lambda n=n: _brick(n)), DECAL)
     ALL["floor_earth_%d" % n] = ("dungeon", (lambda n=n: _earth(n)), DECAL)
     ALL["floor_moss_%d" % n] = ("dungeon", (lambda n=n: _flagstone(n, True)), DECAL)
+
+for n in range(1, 5):
+    ALL["wall_%d" % n] = ("dungeon", (lambda n=n: wall(n)), (160, 200, 80, 40))
+    ALL["wall_low_%d" % n] = ("dungeon", (lambda n=n: wall_low(n)), (160, 120, 80, 40))
 
 WALL_DECOR = {
     "wall_torch_x": lambda: _wall_torch("x"),

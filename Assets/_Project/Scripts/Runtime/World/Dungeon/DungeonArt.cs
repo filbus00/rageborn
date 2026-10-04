@@ -41,8 +41,9 @@ namespace ARPG
         static readonly List<Sprite>[] importedFloors = new List<Sprite>[ArtNames.FloorStyles.Length];
         static readonly Dictionary<int, List<Sprite>> importedDecals = new Dictionary<int, List<Sprite>>();
         static readonly Dictionary<int, Sprite> importedProps = new Dictionary<int, Sprite>();
-        static Sprite importedWall;
-        static Sprite importedLowWall;
+        static readonly List<Sprite> importedWalls = new List<Sprite>();
+        static readonly List<Sprite> importedLowWalls = new List<Sprite>();
+        static readonly Dictionary<int, Tile> wallVariants = new Dictionary<int, Tile>();
 
         // Domain reload is off: a new play forgets the last one's tiles, so art imported in between shows.
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -64,8 +65,9 @@ namespace ARPG
                 importedFloors[i] = new List<Sprite>();
             importedDecals.Clear();
             importedProps.Clear();
-            importedWall = null;
-            importedLowWall = null;
+            importedWalls.Clear();
+            importedLowWalls.Clear();
+            wallVariants.Clear();
             var all = Resources.LoadAll<Sprite>(ImportedFolder);
             // By name, so variant 1 comes before 2 whatever order the folder lists them in.
             System.Array.Sort(all, (x, y) => string.CompareOrdinal(x.name, y.name));
@@ -84,10 +86,10 @@ namespace ARPG
                         list[variant] = sprite;
                         break;
                     case ArtKind.Wall:
-                        importedWall = sprite;
+                        importedWalls.Add(sprite);
                         break;
                     case ArtKind.LowWall:
-                        importedLowWall = sprite;
+                        importedLowWalls.Add(sprite);
                         break;
                     case ArtKind.Prop:
                         importedProps[index] = sprite;
@@ -153,23 +155,25 @@ namespace ARPG
             ground.SetTilesBlock(bounds, tiles);
         }
 
-        /// <summary>A wall block, full height or cut low (the camera-side walls, WallRules).</summary>
-        public static Tile Wall(bool low)
+        /// <summary>A wall block, full height or cut low (the camera-side walls, WallRules), in one of its imported
+        /// variants (wall_1.., wall_low_1..; picked by the caller's hash), or the code-drawn block.</summary>
+        public static Tile Wall(bool low, int hash = 0)
         {
+            LoadImported();
+            var list = low ? importedLowWalls : importedWalls;
+            if (list.Count > 0)
+            {
+                var variant = ((hash % list.Count) + list.Count) % list.Count;
+                var key = (low ? 1000 : 0) + variant;
+                if (wallVariants.TryGetValue(key, out var known) && known != null && known.sprite != null)
+                    return known;
+                var importedTile = SpriteTile(list[variant], Tile.ColliderType.Grid);
+                wallVariants[key] = importedTile;
+                return importedTile;
+            }
             var cached = low ? lowWall : wall;
             if (cached != null && cached.sprite != null)
                 return cached;
-            LoadImported();
-            var imported = low ? importedLowWall : importedWall;
-            if (imported != null)
-            {
-                var importedTile = SpriteTile(imported, Tile.ColliderType.Grid);
-                if (low)
-                    lowWall = importedTile;
-                else
-                    wall = importedTile;
-                return importedTile;
-            }
             // Half a unit tall, or an eighth cut low, standing on a diamond whose middle is a quarter up the full frame.
             var height = low ? 16 : 64;
             var hiH = 64 + height;

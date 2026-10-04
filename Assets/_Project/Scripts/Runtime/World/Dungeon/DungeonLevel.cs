@@ -220,7 +220,7 @@ namespace ARPG
                     // Only the level's outer and dividing walls are cut low on the camera side: a pillar or stub standing
                     // inside a room keeps its height (cut low, a 2 x 2 pillar read as a cross of stubs).
                     if (cell == DungeonCell.Wall)
-                        wallTiles[index] = DungeonArt.Wall(!InsideRoom(at) && WallRules.IsCameraSide(IsOpenCell, at.x, at.y));
+                        wallTiles[index] = DungeonArt.Wall(!InsideRoom(at) && WallRules.IsCameraSide(IsOpenCell, at.x, at.y), WallVariant(at.x, at.y));
                     else if (cell == DungeonCell.Prop && Layout.Props.TryGetValue(at, out var prop))
                         wallTiles[index] = DungeonArt.Prop(prop);
                 }
@@ -329,13 +329,16 @@ namespace ARPG
             }
         }
 
-        // Walls take a touch of their room's floor colour and each block its own shade, so a run of wall does not read
-        // as one repeated box. Props keep their own colours.
-        static readonly Color[] WallTints =
+        /// <summary>Which wall variant a block shows: the plain one (wall_1) about half the time, else the timber,
+        /// broken or mossy one, by a hash of the cell.</summary>
+        static int WallVariant(int x, int y)
         {
-            new Color(1f, 0.97f, 0.92f), new Color(1f, 0.86f, 0.8f), new Color(0.98f, 0.9f, 0.8f), new Color(0.88f, 0.96f, 0.88f),
-        };
+            var h = WallHash(x, y, 5);
+            return h < 0.55f ? 0 : 1 + Mathf.Min(2, (int)((h - 0.55f) / 0.45f * 3f));
+        }
 
+        // Each wall block takes its own shade, so a run of wall does not read as one repeated box; one stone through every
+        // room (the owner, 2026-10-04: no per-room looks). Props keep their own colours.
         void ShadeWalls()
         {
             var bounds = Layout.Bounds;
@@ -346,10 +349,9 @@ namespace ARPG
                     if (Layout.Get(at) != DungeonCell.Wall)
                         continue;
                     var cell = new Vector3Int(x, y, 0);
-                    var shade = LightingRules.FloorShade(at * 3);
-                    var tint = WallTints[Layout.StyleAt(at) % WallTints.Length];
+                    var shade = 0.9f + 0.1f * LightingRules.FloorShade(at * 3).g;
                     walls.SetTileFlags(cell, TileFlags.None);
-                    walls.SetColor(cell, new Color(tint.r * shade.g, tint.g * shade.g, tint.b * shade.g, 1f));
+                    walls.SetColor(cell, new Color(shade, shade, shade, 1f));
                 }
         }
 

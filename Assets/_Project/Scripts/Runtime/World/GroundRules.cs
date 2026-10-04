@@ -48,7 +48,7 @@ namespace ARPG
         public static float CobbleCover(Vector2 ground)
         {
             var n = Smooth(ground.x / 5f, ground.y / 5f, 3) * 0.7f + Smooth(ground.x / 1.7f, ground.y / 1.7f, 4) * 0.3f;
-            return Mathf.Clamp01((n - 0.45f) * 2.4f);
+            return Mathf.Clamp01((n - 0.52f) * 2.6f);
         }
 
         /// <summary>How much grass belongs at a point of the town, 0 to 1, before the paths wear it away.</summary>

@@ -55,6 +55,17 @@ namespace ARPG
                 return ArtKind.Wall;
             if (name == "wall_low")
                 return ArtKind.LowWall;
+            // Wall variants (2026-10-04): wall_<n> and wall_low_<n>.
+            if (name.StartsWith("wall_"))
+            {
+                var low = name.StartsWith("wall_low_");
+                if (int.TryParse(name.Substring(low ? 9 : 5), out var wallNumber) && wallNumber >= 1 && wallNumber <= MaxVariants)
+                {
+                    variant = wallNumber - 1;
+                    return low ? ArtKind.LowWall : ArtKind.Wall;
+                }
+                return ArtKind.Unknown;
+            }
             if (name.StartsWith("prop_"))
             {
                 var kind = name.Substring(5);
@@ -107,7 +118,7 @@ namespace ARPG
             var decals = new StringBuilder();
             for (var i = 0; i < DecalCount; i++)
                 decals.Append(i == 0 ? "" : ", ").Append(Snake(((DecalKind)i).ToString()));
-            return $"floor_<{string.Join("|", FloorStyles)}>_<1..{MaxVariants}>, decal_<{decals}>_<1..{MaxVariants}>, wall, wall_low, prop_<{props}>";
+            return $"floor_<{string.Join("|", FloorStyles)}>_<1..{MaxVariants}>, decal_<{decals}>_<1..{MaxVariants}>, wall[_<1..{MaxVariants}>], wall_low[_<1..{MaxVariants}>], prop_<{props}>";
         }
 
         static readonly int PropCount = System.Enum.GetValues(typeof(PropKind)).Length;
