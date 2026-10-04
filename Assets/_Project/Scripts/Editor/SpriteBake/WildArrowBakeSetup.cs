@@ -173,9 +173,12 @@ namespace ARPG.Editor
             job.targetHeightPixels = 92.5f * scale;
             job.supersample = 4;
             job.directions = 16;
-            // The look stays "leather", the name the game's sheets are found by, for either body.
             job.bodies.Clear();
-            job.bodies.Add(new SpriteBakeJob.Body { look = "leather", model = AssetDatabase.LoadAssetAtPath<GameObject>(bodyPath) });
+            if (own && File.Exists(GearBodyPath("bare")))
+                AddGearBodies(job);
+            else
+                // The look stays "leather", the name the game's sheets are found by, for either body.
+                job.bodies.Add(new SpriteBakeJob.Body { look = "leather", model = AssetDatabase.LoadAssetAtPath<GameObject>(bodyPath) });
             job.pieces.Clear();
             job.pieces.AddRange(Pieces());
 
@@ -187,6 +190,38 @@ namespace ARPG.Editor
             AssetDatabase.SaveAssets();
             Debug.Log($"[ARPG] Wild Arrow bake job ({(own ? "her own model" : "the stand-in")}): {string.Join(", ", set.clips.Select(c => c.name))}.");
             return job;
+        }
+
+        // Her worn gear (2026-10-04, ArtSource/tools/props/wild_arrow_gear.py): her body bare and in each chest look, and
+        // each helm on her rig alone, all exported through one path so they share scale and placement, and one texture.
+        // Bare comes first: the bake measures and places every body as the first, and cuts pieces and helms with it.
+        const string GearAlbedoPath = Folder + "/" + Character + "_gear_albedo.png";
+
+        static string GearBodyPath(string look) => $"{Folder}/{Character}_body_{look}.fbx";
+
+        static string GearHelmPath(string look) => $"{Folder}/{Character}_helm_{look}.fbx";
+
+        static void AddGearBodies(SpriteBakeJob job)
+        {
+            foreach (var look in new[] { AppearanceRules.BareBody }.Concat(AppearanceRules.ChestLooks))
+            {
+                var path = GearBodyPath(look);
+                if (!File.Exists(path))
+                    continue;
+                MixamoImport.ConfigureBody(path, GearAlbedoPath);
+                job.bodies.Add(new SpriteBakeJob.Body { look = look, model = AssetDatabase.LoadAssetAtPath<GameObject>(path) });
+            }
+            foreach (var look in AppearanceRules.HelmLooks)
+            {
+                var path = GearHelmPath(look);
+                if (!File.Exists(path))
+                    continue;
+                MixamoImport.ConfigureBody(path, GearAlbedoPath);
+                job.bodies.Add(new SpriteBakeJob.Body
+                {
+                    look = look, model = AssetDatabase.LoadAssetAtPath<GameObject>(path), layer = AppearanceLayer.Helm,
+                });
+            }
         }
 
         // Her own model and the longbow pack's clips, configured as humanoid clips on her avatar.

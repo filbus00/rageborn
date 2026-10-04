@@ -222,6 +222,7 @@ namespace ARPG.Editor
             public Renderer[] Renderers;
             public Material[][] Materials;
             public SkinProxy[] Skins;
+            public AppearanceLayer Layer;
             // The hips and legs, for a moving action's blend; null without a humanoid rig.
             public Transform[] LowerBody;
             Vector3[] lowerPositions;
@@ -310,7 +311,8 @@ namespace ARPG.Editor
                 {
                     var body = Bodies[b];
                     var drawn = layer.Piece == null && b == layer.BodyIndex;
-                    var occluder = layer.Piece != null && b == 0;
+                    // A piece, or a body drawn into another layer (a helm on the same rig), is cut by the first body.
+                    var occluder = !drawn && b == 0 && (layer.Piece != null || layer.Layer != AppearanceLayer.Body);
                     for (var r = 0; r < body.Renderers.Length; r++)
                     {
                         var renderer = body.Renderers[r];
@@ -329,7 +331,7 @@ namespace ARPG.Editor
         static IEnumerable<LayerTarget> LayersFor(Stage stage, string grip)
         {
             for (var b = 0; b < stage.Bodies.Count; b++)
-                yield return new LayerTarget { Layer = AppearanceLayer.Body, Look = BodyLook(stage, b), BodyIndex = b };
+                yield return new LayerTarget { Layer = stage.Bodies[b].Layer, Look = BodyLook(stage, b), BodyIndex = b };
             foreach (var piece in stage.Pieces)
             {
                 var grips = piece.Definition.grips;
@@ -435,6 +437,7 @@ namespace ARPG.Editor
                     Renderers = renderers,
                     Materials = renderers.Select(r => r.sharedMaterials).ToArray(),
                     Skins = skins,
+                    Layer = definition.layer,
                 });
             }
 

@@ -424,4 +424,17 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   lamps and pines, 42 pieces.
 - The bow's sound (the owner: "like a broken electrical guitar"): the plucked string is gone; a release is a dull
   thump and string slap with a touch of wood, then the arrow's hiss, 0.17 s. The heavy shot the same, deeper.
+- Worn gear (the owner: "start making models for other gear that show up on the character when equipped. Like chest
+  armor and helmets"): `ArtSource/tools/props/wild_arrow_gear.py` builds on her own rig, in Blender, the chest looks
+  `AppearanceRules` names (padded: a quilted gambeson, sleeves and thigh skirts; leather: a jerkin with cross straps,
+  pauldrons, bracers and a buckled belt; mail: a mail shirt and skirt, plate pauldrons and a red tabard) as copies of
+  her body with the armour bound wholly to bones, plus `bare` (her alone, for no chest), and the helms (cap, nasal,
+  great) as her rig with only the helm. Every export goes through the same path (her mesh re-exported too) so all
+  share scale and placement, and one texture, `wild_arrow_gear_albedo.png`: hers squeezed into the top fifteen
+  sixteenths with the armour's colours in a strip along the bottom. `SpriteBakeJob.Body.layer` lets a body bake into
+  another layer: a helm body draws into the helm layer with the first body (bare) as its depth-only occluder, as
+  pieces are. `WildArrowBakeSetup` takes the gear bodies when `wild_arrow_body_bare.fbx` exists; `MixamoImport`
+  takes a shared albedo. Two traps: her rig's rest pose is a T-pose, so torso widths are measured within 0.19 of the
+  middle (wider took in her arms); and tubes built facing inward were culled, so the builder recalculates normals.
+  Her sheets went from 300 to 580 files, 85 MB in Resources; the bake takes 12 minutes.
 

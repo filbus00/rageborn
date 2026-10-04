@@ -14,8 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: ARPG.Editor::ARPG.Editor.SpriteBakeJob
   characterName: wild_arrow
   bodies:
+  - look: bare
+    model: {fileID: 919132149155446097, guid: 70097fc0b27004c50a09eddc61035895, type: 3}
+    layer: 0
+  - look: padded
+    model: {fileID: 919132149155446097, guid: ad46918ddaa9b4449af874f7f1e1db94, type: 3}
+    layer: 0
   - look: leather
-    model: {fileID: 919132149155446097, guid: bd2653b459f8a4949b5ab3cea9e8a9cd, type: 3}
+    model: {fileID: 919132149155446097, guid: 6a7448b2c25ef4b62b5c5b0b413bf6c1, type: 3}
+    layer: 0
+  - look: mail
+    model: {fileID: 919132149155446097, guid: 56ce6c06f73ec471ca7829c94058c987, type: 3}
+    layer: 0
+  - look: cap
+    model: {fileID: 919132149155446097, guid: ee35ee846363f4245ac8b67b9397b421, type: 3}
+    layer: 1
+  - look: nasal
+    model: {fileID: 919132149155446097, guid: 3c0033f59db624595b4d4bedf6d8fc5d, type: 3}
+    layer: 1
+  - look: great
+    model: {fileID: 919132149155446097, guid: e5d2aeb4b6bb94cafbedbb306b178dfd, type: 3}
+    layer: 1
   pieces:
   - layer: 3
     look: hunting_bow
@@ -343,6 +362,7 @@ MonoBehaviour:
   cellSize: 80
   pivot: {x: 40, y: 12}
   targetHeightPixels: 57.8125
+  bakedScale: 1
   pixelArt: 1
   supersample: 4
   framesPerSecond: 12

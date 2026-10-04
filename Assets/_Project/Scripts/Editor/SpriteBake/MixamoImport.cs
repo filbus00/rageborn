@@ -48,7 +48,7 @@ namespace ARPG.Editor
             }
         }
 
-        internal static void ConfigureBody(string path)
+        internal static void ConfigureBody(string path, string albedoPath = null)
         {
             var importer = (ModelImporter)AssetImporter.GetAtPath(path);
             importer.animationType = ModelImporterAnimationType.Human;
@@ -58,15 +58,16 @@ namespace ARPG.Editor
             KeepClipsInPlace(importer, true);
             importer.SaveAndReimport();
 
-            ApplyTexture(path, importer);
+            ApplyTexture(path, importer, albedoPath);
         }
 
         // Mixamo's re-export does not carry the texture into Unity (the first bake came out white), so the texture taken
         // from the image-to-3D GLB (<model>_albedo.png, ArtSource/tools/extract_textures.py) goes on a material of our
         // own that replaces the model's. Mixamo keeps the mesh and its UVs, so the texture fits.
-        internal static void ApplyTexture(string path, ModelImporter importer)
+        internal static void ApplyTexture(string path, ModelImporter importer, string albedoPath = null)
         {
-            var albedoPath = path.Replace(".fbx", "_albedo.png");
+            // A texture shared by several models (the Wild Arrow's gear) when given, else the model's own.
+            albedoPath ??= path.Replace(".fbx", "_albedo.png");
             var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(albedoPath);
             if (albedo == null)
             {

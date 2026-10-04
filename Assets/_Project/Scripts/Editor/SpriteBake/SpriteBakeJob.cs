@@ -58,6 +58,10 @@ namespace ARPG.Editor
 
             [Tooltip("The rigged model (FBX or prefab). A humanoid clip needs its Animator avatar; a generic clip binds by transform paths.")]
             public GameObject model;
+
+            [Tooltip("The layer its sheets belong to: Body for a body; another (a helm modelled on the same rig, 2026-10-04) draws " +
+                     "with the first body as a depth-only occluder, like a piece, and is measured and placed as the first body.")]
+            public AppearanceLayer layer = AppearanceLayer.Body;
         }
 
         [Serializable]
