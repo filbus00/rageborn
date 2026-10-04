@@ -76,6 +76,9 @@ namespace ARPG.Editor
             var ghoul = Load("Ghoul");
             var archer = Load("BanditArcher");
             var boss = Load("CinderWarden");
+            // From depth 4; an older project without them counts husks and archers in their place.
+            var skeleton = AssetDatabase.LoadAssetAtPath<EnemyDefinition>("Assets/_Project/Data/Enemies/Skeleton.asset") ?? husk;
+            var cultist = AssetDatabase.LoadAssetAtPath<EnemyDefinition>("Assets/_Project/Data/Enemies/Cultist.asset") ?? archer;
             // The class's own skills (the Wild Arrow's, from Resources), not every asset in Data/Skills, which still holds
             // the retired Wrathborn's.
             var skills = new List<SkillDefinition>();
@@ -124,6 +127,10 @@ namespace ARPG.Editor
                                 kills.Add(archer);
                             else if (members[k] == PackMember.Husk)
                                 kills.Add(husk);
+                            else if (members[k] == PackMember.Skeleton)
+                                kills.Add(skeleton);
+                            else if (members[k] == PackMember.Cultist)
+                                kills.Add(cultist);
                         }
                     }
                     if (layout.HasBossArena)

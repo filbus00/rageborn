@@ -376,3 +376,26 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   and ember-red), baked by Bake Enemies and wired to `SwarmerChampion` and `SwarmerElite`.
 - 555 of 555 EditMode tests pass.
 
+## 2026-10-04: five new skills, sharper ranks, undead enemies
+
+- Skills: the owner chose all five held candidates and every skill from level 1. `SkillKind` gains KnockbackShot,
+  Barrage and KillShot (appended: assets store the number); `ShotStyle` gains Knockback, Barrage and KillShot, and
+  `Shot` carries the knock (distance, radius) and the execute (threshold, multiplier, read when the arrow lands).
+  Barrage looses its arrows from `UpdateBarrage` one interval apart at the enemies in reach in turn. Hunter's Breath
+  and Wild Frenzy are Buff assets (the Focus gain and the Momentum attack speed the Buff kind already had). In a
+  dungeon level, in 15 s against a pack with the four new attack skills equipped: Kill Shot 1, Knockback 2, Barrage 2,
+  Wild Frenzy 1, 24 kills; Hunter's Breath fired once with Focus held near 5. `LoadoutScreen.OpensAtLevel` is 1.
+- Sharper ranks: a champion (1.4), an elite (1.6), the ghoul (1.2) and the boss (1.6) were their base sheets stretched
+  by `VisualScale`, with uneven pixels. The enemy bake now bakes each wired look at its definition's `VisualScale`
+  (`SpriteBakeJob.bakedScale`, cell and height scaled), writes "scale <x>" into the timing file, and
+  `EnemyAnimationSet.BakedScale` draws the body that much smaller under the scaled enemy, so the size is the same and
+  the pixels are whole. The run's recorded speed scales with the bake, so bigger legs step slower, as they should.
+- Undead: `PackMember` gains Skeleton and Cultist; from depth 4 a second hash of the pack turns its husks into
+  skeletons (35 percent of packs) and, on its own, its archers into cultists (half); a champion's slot and elite packs
+  stay husks, and depths 1 to 3 roll exactly as before. Definitions by `UndeadEnemiesBuilder` (Tools > ARPG > Add
+  Undead Enemies), copied from the husk (life 1.6, armour 15, speed 2.9, damage 1.25) and the archer (life 0.85,
+  damage 1.6, a slower orange fire bolt: `EnemyDefinition.projectileColor`, drawn larger by `EnemyProjectiles`).
+  Models by `ArtSource/tools/props/undead.py` on the husk's and the archer's rigs, baked with the donors' clips and
+  avatars (`EnemyBakeSetup.ClipAvatarFrom`).
+- 557 of 557 EditMode tests pass.
+

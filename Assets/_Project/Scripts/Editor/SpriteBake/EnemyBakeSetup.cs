@@ -29,7 +29,7 @@ namespace ARPG.Editor
         /// <summary>Heights in final pixels at 64 per unit (the brief, 5.2 and 15.3, halved on 2026-09-28); others 80.</summary>
         static readonly Dictionary<string, float> Heights = new Dictionary<string, float>
         {
-            { "husk", 70f }, { "ghoul", 88f }, { "bandit_archer", 80f }, { "ash_wolf", 45f }, { "cinder_warden", 92f },
+            { "husk", 70f }, { "ghoul", 88f }, { "bandit_archer", 80f }, { "ash_wolf", 45f }, { "cinder_warden", 92f }, { "skeleton", 72f }, { "cultist", 82f },
         };
 
         /// <summary>Cells wider than the default 128 px: the ghoul's slam swings its big arm past a 128 px cell (clipped on
@@ -37,7 +37,10 @@ namespace ARPG.Editor
         static readonly Dictionary<string, int> CellSizes = new Dictionary<string, int> { { "ghoul", 192 }, { "cinder_warden", 192 } };
 
         /// <summary>Bodies whose clips are copies of another enemy's (the Cinder Warden moves as the ghoul).</summary>
-        static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string> { { "cinder_warden", "ghoul" } };
+        static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string>
+        {
+            { "cinder_warden", "ghoul" }, { "skeleton", "husk" }, { "cultist", "bandit_archer" },
+        };
 
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
         /// until the rank has its own.</summary>
@@ -47,6 +50,9 @@ namespace ARPG.Editor
             ("Ghoul", "ghoul", null), ("BanditArcher", "bandit_archer", null),
             // The act boss (2026-10-04): built in Blender on the ghoul's rig, ArtSource/tools/props/boss.py.
             ("CinderWarden", "cinder_warden", null),
+            // Act 1's undead (2026-10-04, ArtSource/tools/props/undead.py): the skeleton on the husk's rig, the cultist on
+            // the archer's.
+            ("Skeleton", "skeleton", null), ("Cultist", "cultist", null),
         };
 
         [MenuItem("Tools/ARPG/Sprite Bake/Bake Enemies")]
@@ -108,11 +114,15 @@ namespace ARPG.Editor
             job.pixelArt = true;
             // A rank look is measured like its base type (husk_champion as husk); the engine scales ranks up itself.
             var baseName = Heights.Keys.FirstOrDefault(k => name == k || name.StartsWith(k + "_")) ?? name;
-            job.cellSize = Mathf.RoundToInt((CellSizes.TryGetValue(baseName, out var cell) ? cell : 128) * scale);
+            // Drawn at its in-game size (the rank's or boss's VisualScale, 2026-10-04): stretched in the game, a 1.6 times
+            // larger sprite had uneven pixels. EnemyAnimationSet reads the scale back from the timing file.
+            var bakedScale = BakedScaleOf(name);
+            job.bakedScale = bakedScale;
+            job.cellSize = Mathf.RoundToInt((CellSizes.TryGetValue(baseName, out var cell) ? cell : 128) * scale * bakedScale);
             job.pivot = new Vector2(job.cellSize / 2f, Mathf.Round(20f * scale));
             // Measured on the rest pose's whole box, which the Wrathborn showed runs about 9 percent over the standing
             // height (185 asked, 170 stood), so ask that much more.
-            job.targetHeightPixels = (Heights.TryGetValue(baseName, out var height) ? height : 80f) * 1.09f * scale;
+            job.targetHeightPixels = (Heights.TryGetValue(baseName, out var height) ? height : 80f) * 1.09f * scale * bakedScale;
             job.supersample = 4;
             job.directions = 8;
             job.bodies.Clear();
@@ -162,6 +172,20 @@ namespace ARPG.Editor
                 Debug.Log($"{definitionName}: look '{chosen}'");
             }
             AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>The VisualScale of the definition this look is wired to (1 when none): the size it is drawn at.</summary>
+        static float BakedScaleOf(string character)
+        {
+            foreach (var (definitionName, wired, _) in Wiring)
+            {
+                if (wired != character)
+                    continue;
+                var definition = AssetDatabase.LoadAssetAtPath<EnemyDefinition>($"Assets/_Project/Data/Enemies/{definitionName}.asset");
+                if (definition != null)
+                    return Mathf.Max(1f, definition.VisualScale);
+            }
+            return 1f;
         }
 
         static bool Baked(string character) =>

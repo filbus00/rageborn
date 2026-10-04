@@ -37,10 +37,15 @@ namespace ARPG
 
         public int Count => flying.Count;
 
-        public void Fire(EnemyController shooter, Vector2 origin, Vector2 velocity, float maxDistance, float damage, int level, float armorIgnore)
+        public void Fire(EnemyController shooter, Vector2 origin, Vector2 velocity, float maxDistance, float damage, int level, float armorIgnore,
+            Color color = default)
         {
             var transform = spare.Count > 0 ? spare.Pop() : Create();
             transform.gameObject.SetActive(true);
+            // A shooter's own colour (a cultist's fire bolt, drawn larger), else the arrow streak.
+            var bolt = color.a > 0f;
+            transform.GetComponent<SpriteRenderer>().color = bolt ? color : ArrowColor;
+            transform.localScale = bolt ? new Vector3(0.6f, 0.35f, 1f) : new Vector3(0.7f, 0.16f, 1f);
             transform.position = IsoMath.GroundToWorld(origin);
             var world = IsoMath.GroundToWorld(velocity);
             transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(world.y, world.x) * Mathf.Rad2Deg);

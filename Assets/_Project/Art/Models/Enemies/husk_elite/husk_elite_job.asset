@@ -76,9 +76,10 @@ MonoBehaviour:
       legsGroundSpeed: 4.4
       offHandOnly: 0
   pixelsPerUnit: 40
-  cellSize: 80
-  pivot: {x: 40, y: 12}
-  targetHeightPixels: 47.6875
+  cellSize: 128
+  pivot: {x: 64, y: 12}
+  targetHeightPixels: 76.3
+  bakedScale: 1.6
   pixelArt: 1
   supersample: 4
   framesPerSecond: 12

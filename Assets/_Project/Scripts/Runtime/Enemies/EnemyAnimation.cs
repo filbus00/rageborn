@@ -16,6 +16,11 @@ namespace ARPG
         /// <summary>The ground speed the run looks right at (from the bake), or 0 when unknown.</summary>
         public float RunRecordedSpeed;
 
+        /// <summary>How much larger than the base look the sheets were baked (the timing file's "scale" line): a rank or
+        /// boss drawn at its in-game size, so the body is drawn this much smaller to cancel the enemy's VisualScale and
+        /// its pixels stay whole. 1 for a look baked at the base size.</summary>
+        public float BakedScale = 1f;
+
         public int DirectionCount => Idle.Rows.Length;
 
         static readonly Dictionary<string, EnemyAnimationSet> Cache = new Dictionary<string, EnemyAnimationSet>();
@@ -49,6 +54,8 @@ namespace ARPG
                 set.RunSeconds = Seconds("run", set.Run);
                 set.AttackSeconds = Seconds("attack", set.Attack);
                 speeds.TryGetValue("run", out set.RunRecordedSpeed);
+                if (seconds.TryGetValue("scale", out var baked))
+                    set.BakedScale = baked;
             }
             Cache[character] = set;
             return set;

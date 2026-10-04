@@ -272,7 +272,8 @@ namespace ARPG
             if (bodyRenderer != null)
             {
                 bodyRenderer.transform.localPosition = animationSet != null ? Vector3.zero : bodyDefaultPosition;
-                bodyRenderer.transform.localScale = animationSet != null ? Vector3.one : bodyDefaultScale;
+                // A look baked at its in-game size cancels the VisualScale the whole enemy is drawn at (pixels stay whole).
+                bodyRenderer.transform.localScale = animationSet != null ? Vector3.one / animationSet.BakedScale : bodyDefaultScale;
             }
             animationTime = 0f;
             animationRow = 0;
@@ -743,7 +744,7 @@ namespace ARPG
                     // The arrow does the hitting, or a wall stops it.
                     Sfx.Play(SoundId.ArrowShot, 0.7f);
                     world.Projectiles.Fire(this, ground + attackAim * definition.BodyRadius, attackAim * definition.ProjectileSpeed,
-                        definition.AttackRange + ArrowOvershoot, damage, Level, armorIgnorePercent);
+                        definition.AttackRange + ArrowOvershoot, damage, Level, armorIgnorePercent, definition.ProjectileColor);
                     return;
 
                 default:

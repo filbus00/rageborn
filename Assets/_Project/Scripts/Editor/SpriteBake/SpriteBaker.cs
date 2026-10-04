@@ -192,6 +192,9 @@ namespace ARPG.Editor
                     // A third number is the ground speed (units a second) the clip looks right at, for locomotion clips.
                     lines.Add($"{key} {seconds.ToString("0.###", culture)}" + (speed > 0.01f ? " " + speed.ToString("0.###", culture) : ""));
                 }
+            // A look baked larger than its base (an enemy drawn at its in-game scale): "scale <x>".
+            if (Mathf.Abs(job.bakedScale - 1f) > 0.001f)
+                lines.Add($"scale {job.bakedScale.ToString("0.###", culture)}");
             var folder = job.outputFolder.TrimEnd('/');
             Directory.CreateDirectory(folder);
             var path = $"{folder}/{job.characterName}_timing.txt";

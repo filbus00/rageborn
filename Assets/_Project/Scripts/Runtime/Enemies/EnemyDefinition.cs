@@ -56,6 +56,9 @@ namespace ARPG
         [Tooltip("Archer only: projectile speed in ground units per second. Tuning value.")]
         [SerializeField, Min(1f)] float projectileSpeed = 9f;
 
+        [Tooltip("Archer: the projectile's colour; clear for the default arrow streak (the cultist's fire bolt, 2026-10-04).")]
+        [SerializeField] Color projectileColor = Color.clear;
+
         [Tooltip("Archetype adjustment on the level's base life. The docs call the Husk swarmer low health but give no number, so this is 1 until tuned.")]
         [SerializeField, Min(0.1f)] float lifeMultiplier = 1f;
 
@@ -137,6 +140,7 @@ namespace ARPG
         public float StopDistance => stopDistance;
         public float SeparationRadius => separationRadius;
         public float VisualScale => visualScale;
+        public Color ProjectileColor => projectileColor;
 
         /// <summary>Null for a Normal enemy, which keeps the prefab's own body sprite.</summary>
         public Sprite BodySprite => bodySprite;

@@ -35,6 +35,10 @@ namespace ARPG
         [Tooltip("Act 1's archer (Docs/05): mixed into packs from depth 2 (PackComposition).")]
         [SerializeField] EnemyDefinition archerEnemy;
 
+        [Tooltip("From depth 4 (PackComposition): the skeleton in a husk's place, the cultist in an archer's.")]
+        [SerializeField] EnemyDefinition skeletonEnemy;
+        [SerializeField] EnemyDefinition cultistEnemy;
+
         [Tooltip("The act boss, fought in the arena on the act's last level.")]
         [SerializeField] EnemyDefinition bossEnemy;
 
@@ -462,6 +466,8 @@ namespace ARPG
                 case PackMember.None: return null;
                 case PackMember.Ghoul: return ghoulEnemy != null ? ghoulEnemy : normalEnemy;
                 case PackMember.Archer: return archerEnemy != null ? archerEnemy : normalEnemy;
+                case PackMember.Skeleton: return skeletonEnemy != null ? skeletonEnemy : normalEnemy;
+                case PackMember.Cultist: return cultistEnemy != null ? cultistEnemy : archerEnemy != null ? archerEnemy : normalEnemy;
                 default: return normalEnemy;
             }
         }

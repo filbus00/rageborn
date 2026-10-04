@@ -8,6 +8,12 @@ namespace ARPG
         Husk,
         Ghoul,
         Archer,
+
+        /// <summary>From depth 4 (2026-10-04): a slower, armoured melee fighter in the husk's place.</summary>
+        Skeleton,
+
+        /// <summary>From depth 4: a robed fire caster in the archer's place.</summary>
+        Cultist,
     }
 
     /// <summary>
@@ -20,12 +26,41 @@ namespace ARPG
     /// with 2 or 3 ghouls (25), husks with 2 or 3 archers (20), or a small band of 3 ghouls and 2 archers (15). Ghouls
     /// and archers take the last slots, which the pack's spiral puts on its outside, so archers start at the back. Elite
     /// packs stay husks, and a Champion keeps slot 0.
+    ///
+    /// From depth 4 (<see cref="FirstUndeadDepth"/>, 2026-10-04) a second hash of the pack turns some of them undead: in
+    /// 35 percent of packs the husks become skeletons, and in half of them the archers become cultists (each decided on
+    /// its own). A Champion's slot 0 and elite packs stay husks.
     /// </summary>
     public static class PackComposition
     {
         public const int FirstMixedDepth = 2;
 
+        /// <summary>The first depth with skeletons and cultists.</summary>
+        public const int FirstUndeadDepth = 4;
+
+        public const int SkeletonPercent = 35;
+        public const int CultistPercent = 50;
+
         public static PackMember[] Roll(int depth, PackKind kind, int count, int levelSeed, int packIndex)
+        {
+            var members = RollAct1(depth, kind, count, levelSeed, packIndex);
+            if (depth < FirstUndeadDepth || kind == PackKind.Elite)
+                return members;
+            var hash = (uint)DungeonRules.LevelSeed(levelSeed, 2000 + packIndex);
+            var skeletons = hash % 100 < SkeletonPercent;
+            var cultists = hash / 100 % 100 < CultistPercent;
+            var first = kind == PackKind.WithChampion ? 1 : 0;
+            for (var i = first; i < members.Length; i++)
+            {
+                if (skeletons && members[i] == PackMember.Husk)
+                    members[i] = PackMember.Skeleton;
+                else if (cultists && members[i] == PackMember.Archer)
+                    members[i] = PackMember.Cultist;
+            }
+            return members;
+        }
+
+        static PackMember[] RollAct1(int depth, PackKind kind, int count, int levelSeed, int packIndex)
         {
             var members = new PackMember[count];
             for (var i = 0; i < count; i++)

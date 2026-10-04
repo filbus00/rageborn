@@ -150,6 +150,42 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void Depth4_TurnsSomePacksUndead_AtRoughlyTheDesignedShares()
+        {
+            int withSkeletons = 0, withArchery = 0, withCultists = 0;
+            const int packs = 4000;
+            for (var pack = 0; pack < packs; pack++)
+            {
+                var members = PackComposition.Roll(5, PackKind.Normal, 10, 2024, pack);
+                // Skeletons replace all the husks of a pack or none; cultists all the archers or none.
+                var skeletons = members.Count(m => m == PackMember.Skeleton);
+                Assert.IsTrue(skeletons == 0 || members.All(m => m != PackMember.Husk));
+                if (skeletons > 0)
+                    withSkeletons++;
+                var archers = members.Count(m => m == PackMember.Archer);
+                var cultists = members.Count(m => m == PackMember.Cultist);
+                Assert.IsTrue(archers == 0 || cultists == 0);
+                if (archers + cultists > 0)
+                    withArchery++;
+                if (cultists > 0)
+                    withCultists++;
+            }
+            // Skeletons need husks (85 percent of packs have some), so about 35 percent of those.
+            Assert.AreEqual(0.35f * 0.85f, withSkeletons / (float)packs, 0.04f);
+            Assert.AreEqual(0.5f, withCultists / (float)withArchery, 0.06f);
+        }
+
+        [Test]
+        public void Depth3_HasNoUndead_AndElitePacksNeverDo()
+        {
+            for (var pack = 0; pack < 500; pack++)
+            {
+                Assert.IsFalse(PackComposition.Roll(3, PackKind.Normal, 10, 7, pack).Any(m => m == PackMember.Skeleton || m == PackMember.Cultist));
+                Assert.IsTrue(PackComposition.Roll(6, PackKind.Elite, 6, 7, pack).All(m => m == PackMember.Husk));
+            }
+        }
+
+        [Test]
         public void AChampionPack_KeepsAHuskInSlotZero_ForTheLeader()
         {
             for (var pack = 0; pack < 500; pack++)
