@@ -11,7 +11,11 @@ namespace ARPG
     /// </summary>
     public sealed class CharacterPortrait
     {
-        static readonly AppearanceLayer[] Layers = { AppearanceLayer.Body, AppearanceLayer.Helm, AppearanceLayer.OffHand, AppearanceLayer.Weapon };
+        static readonly AppearanceLayer[] Layers =
+        {
+            AppearanceLayer.Body, AppearanceLayer.Boots, AppearanceLayer.Belt, AppearanceLayer.Gloves, AppearanceLayer.Helm,
+            AppearanceLayer.OffHand, AppearanceLayer.Weapon,
+        };
 
         readonly Image[] images = new Image[Layers.Length];
         CharacterAppearance shown;

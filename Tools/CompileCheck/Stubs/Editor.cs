@@ -71,7 +71,7 @@ namespace UnityEditor
     }
     public sealed class TakeInfo { public string name; public string defaultClipName; public float startTime; public float stopTime; }
     public sealed class ModelImporter : AssetImporter
-    {
+    { public bool optimizeBones { get; set; }
         public ModelImporterAnimationType animationType { get; set; } public ModelImporterAvatarSetup avatarSetup { get; set; } public Avatar sourceAvatar { get; set; } public bool importAnimation { get; set; } public ModelImporterMaterialImportMode materialImportMode { get; set; } public ModelImporterMaterialLocation materialLocation { get; set; } public ModelImporterClipAnimation[] clipAnimations { get; set; } public ModelImporterClipAnimation[] defaultClipAnimations => new ModelImporterClipAnimation[0]; public TakeInfo[] importedTakeInfos => new TakeInfo[0]; public float globalScale { get; set; } public bool useFileScale { get; set; } public bool isReadable { get; set; } public bool importBlendShapes { get; set; } public bool importCameras { get; set; } public bool importLights { get; set; } public ModelImporterAnimationCompression animationCompression { get; set; } public bool optimizeGameObjects { get; set; } public HumanDescription humanDescription { get; set; } public bool bakeAxisConversion { get; set; } public string motionNodeName { get; set; }
         public bool ExtractTextures(string folder) => true; public void SearchAndRemapMaterials(ModelImporterMaterialName a, ModelImporterMaterialSearch b) { }
     }

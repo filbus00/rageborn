@@ -16,6 +16,10 @@ namespace ARPG
     public enum AppearanceLayer
     {
         Body,
+        // Worn over the body and under the helm (2026-10-04): boots, the belt, the gloves.
+        Boots,
+        Belt,
+        Gloves,
         Helm,
         OffHand,
         Weapon,
@@ -29,26 +33,37 @@ namespace ARPG
         public readonly string OffHand;
         public readonly string Weapon;
         public readonly CharacterGrip Grip;
+        public readonly string Boots;
+        public readonly string Belt;
+        public readonly string Gloves;
 
-        public CharacterAppearance(string body, string helm, string offHand, string weapon, CharacterGrip grip)
+        public CharacterAppearance(string body, string helm, string offHand, string weapon, CharacterGrip grip,
+            string boots = null, string belt = null, string gloves = null)
         {
             Body = body;
             Helm = helm;
             OffHand = offHand;
             Weapon = weapon;
             Grip = grip;
+            Boots = boots;
+            Belt = belt;
+            Gloves = gloves;
         }
 
         public string LookOf(AppearanceLayer layer) => layer switch
         {
             AppearanceLayer.Body => Body,
+            AppearanceLayer.Boots => Boots,
+            AppearanceLayer.Belt => Belt,
+            AppearanceLayer.Gloves => Gloves,
             AppearanceLayer.Helm => Helm,
             AppearanceLayer.OffHand => OffHand,
             _ => Weapon,
         };
 
         public bool Equals(CharacterAppearance other) =>
-            Body == other.Body && Helm == other.Helm && OffHand == other.OffHand && Weapon == other.Weapon && Grip == other.Grip;
+            Body == other.Body && Helm == other.Helm && OffHand == other.OffHand && Weapon == other.Weapon && Grip == other.Grip &&
+            Boots == other.Boots && Belt == other.Belt && Gloves == other.Gloves;
     }
 
     /// <summary>
@@ -64,6 +79,10 @@ namespace ARPG
 
         public static readonly string[] ChestLooks = { "padded", "leather", "mail" };
         public static readonly string[] HelmLooks = { "cap", "nasal", "great" };
+        // Worn looks of 2026-10-04, by tier like the rest.
+        public static readonly string[] BootLooks = { "shoes", "leather_boots", "greaves" };
+        public static readonly string[] BeltLooks = { "sash", "leather_belt", "plated_belt" };
+        public static readonly string[] GloveLooks = { "wraps", "leather_gloves", "gauntlets" };
         // Bows only since 2026-09-30 (Docs/03, act 1's looks): short bows, longbows and quivers.
         public static readonly string[] OneHandWeaponLooks = { "hunting_bow", "recurve_bow", "horn_bow" };
         public static readonly string[] TwoHandWeaponLooks = { "yew_longbow", "war_bow", "great_bow" };
@@ -93,7 +112,10 @@ namespace ARPG
             LookOf(HelmLooks, equipment.Helm),
             equipment.HasQuiver ? LookOf(ShieldLooks, equipment.OffHand) : null,
             LookOf(equipment.IsLongbow ? TwoHandWeaponLooks : OneHandWeaponLooks, equipment.Weapon),
-            CharacterGrip.OneHand);
+            CharacterGrip.OneHand,
+            LookOf(BootLooks, equipment.Get(ItemSlot.Boots)),
+            LookOf(BeltLooks, equipment.Get(ItemSlot.Belt)),
+            LookOf(GloveLooks, equipment.Get(ItemSlot.Gloves)));
 
         /// <summary>
         /// The look shown when a layer's own look has no sheets yet: the leather body, the hunting bow and the hide quiver
@@ -119,6 +141,9 @@ namespace ARPG
 
         public static string LayerCode(AppearanceLayer layer) => layer switch
         {
+            AppearanceLayer.Boots => "boots",
+            AppearanceLayer.Belt => "belt",
+            AppearanceLayer.Gloves => "gloves",
             AppearanceLayer.Helm => "helm",
             AppearanceLayer.OffHand => "offhand",
             AppearanceLayer.Weapon => "weapon",

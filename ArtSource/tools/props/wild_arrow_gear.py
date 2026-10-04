@@ -331,6 +331,110 @@ def great(b, body):
     return [shell(b.arm, body, keep, 0.034, color, 40, "GreatHelm")]
 
 
+# ---------------------------------------------------------------- boots, belts, gloves (their own layers, 2026-10-04)
+
+def feet_keep(b, up):
+    """Her feet, and her shins from the ankle up a share of the way to the knee."""
+    def keep(p, bone):
+        if bone is None:
+            return False
+        side = "Left" if bone.startswith("Left") else "Right" if bone.startswith("Right") else None
+        if side is None:
+            return False
+        if bone in (side + "Foot", side + "ToeBase", side + "Toe_End"):
+            return True
+        if bone == side + "Leg" and up > 0:
+            ankle, knee = b.h(side + "Foot"), b.h(side + "Leg")
+            return p.y < ankle.y + (knee.y - ankle.y) * up
+        return False
+    return keep
+
+
+def hands_keep(b, up):
+    """Her hands and fingers, and her forearms from the wrist up a share of the way to the elbow."""
+    def keep(p, bone):
+        if bone is None:
+            return False
+        for side in ("Left", "Right"):
+            if bone.startswith(side + "Hand"):
+                return True
+            if bone == side + "ForeArm" and up > 0:
+                wrist, elbow = b.h(side + "Hand"), b.h(side + "ForeArm")
+                return (p - wrist).length < (elbow - wrist).length * up
+        return False
+    return keep
+
+
+def shoes(b, body):
+    return [shell(b.arm, body, feet_keep(b, 0.0), 0.009, lambda c, n: "leather_dark", 2, "Shoes")]
+
+
+def leather_boots(b, body):
+    def color(c, n):
+        return "strap" if (c.y * 30) % 1 < 0.18 else "leather"
+    return [shell(b.arm, body, feet_keep(b, 0.6), 0.012, color, 2, "Boots")]
+
+
+def greaves(b, body):
+    def color(c, n):
+        return "iron_dark" if (c.y * 22) % 1 < 0.12 else "plate"
+    parts = [shell(b.arm, body, feet_keep(b, 0.95), 0.016, color, 3, "Greaves")]
+    for side in ("Left", "Right"):
+        b.dome(b.h(side + "Leg") + V((0, -0.02, 0.05)), 0.055, 0.045, 0.045, side + "Leg", "plate", 10)
+    return parts
+
+
+def belt_band(b, low, high):
+    hips_y = b.h("Hips").y
+
+    def keep(p, bone):
+        return bone in TORSO | {"LeftUpLeg", "RightUpLeg"} and hips_y + low < p.y < hips_y + high
+    return keep
+
+
+def sash(b, body):
+    parts = [shell(b.arm, body, belt_band(b, -0.01, 0.06), 0.03, lambda c, n: "tabard", 2, "Sash")]
+    hips = b.h("Hips")
+    b.box(V((0.09, hips.y - 0.08, 0.1)), (0.05, 0.16, 0.012), "Hips", "tabard")
+    return parts
+
+
+def leather_belt(b, body):
+    parts = [shell(b.arm, body, belt_band(b, 0.0, 0.045), 0.032, lambda c, n: "strap", 2, "Belt")]
+    hips = b.h("Hips")
+    b.box(V((0, hips.y + 0.022, 0.14)), (0.05, 0.045, 0.015), "Hips", "buckle")
+    b.box(V((-0.13, hips.y - 0.03, 0.07)), (0.07, 0.08, 0.05), "Hips", "leather_dark")
+    return parts
+
+
+def plated_belt(b, body):
+    def color(c, n):
+        return "buckle" if (int(c.x * 40) % 4 == 0 and abs(c.y - b.h("Hips").y - 0.03) < 0.01) else "iron"
+    parts = [shell(b.arm, body, belt_band(b, -0.01, 0.07), 0.034, color, 2, "PlatedBelt")]
+    hips = b.h("Hips")
+    for side, sx in (("Left", 1), ("Right", -1)):
+        b.box(V((sx * 0.1, hips.y - 0.07, 0.1)), (0.11, 0.12, 0.015), side + "UpLeg", "plate")
+    return parts
+
+
+def wraps(b, body):
+    def color(c, n):
+        return "linen_dark" if (c.y * 40 + c.x * 20) % 1 < 0.25 else "linen"
+    return [shell(b.arm, body, hands_keep(b, 0.3), 0.007, color, 1, "Wraps")]
+
+
+def leather_gloves(b, body):
+    def color(c, n):
+        return "leather_dark"
+    return [shell(b.arm, body, hands_keep(b, 0.4), 0.008, color, 1, "Gloves")]
+
+
+def gauntlets(b, body):
+    def color(c, n):
+        return "iron_dark" if (c.x * 30) % 1 < 0.15 else "plate"
+    return [shell(b.arm, body, hands_keep(b, 0.55), 0.012, color, 1, "Gauntlets")]
+
+
 def texture(path):
     """Her albedo squeezed into the top, the colours' squares along the bottom; written beside the FBX."""
     image = bpy.data.images.load(ALBEDO)
@@ -373,6 +477,13 @@ texture(os.path.join(FOLDER, "wild_arrow_gear_albedo.png"))
 
 BODIES = {"bare": None, "padded": padded, "leather": leather, "mail": mail}
 HELMS = {"cap": cap, "nasal": nasal, "great": great}
+# Every worn layer but the body: its sheets' layer code, then its looks (her rig with only that gear on it).
+WORN = {
+    "helm": HELMS,
+    "boots": {"shoes": shoes, "leather_boots": leather_boots, "greaves": greaves},
+    "belt": {"sash": sash, "leather_belt": leather_belt, "plated_belt": plated_belt},
+    "gloves": {"wraps": wraps, "leather_gloves": leather_gloves, "gauntlets": gauntlets},
+}
 
 for look, build in BODIES.items():
     arm, body = load()
@@ -388,7 +499,8 @@ for look, build in BODIES.items():
             parts.append(armour)
     export(arm, parts, os.path.join(FOLDER, "wild_arrow_body_%s.fbx" % look))
 
-for look, build in HELMS.items():
+for code, looks in WORN.items():
+  for look, build in looks.items():
     arm, body = load()
     b = Builder(arm)
     parts = build(b, body)
@@ -397,4 +509,4 @@ for look, build in HELMS.items():
         helm.data.materials.append(body.data.materials[0])
         parts.append(helm)
     bpy.data.objects.remove(body, do_unlink=True)
-    export(arm, parts, os.path.join(FOLDER, "wild_arrow_helm_%s.fbx" % look))
+    export(arm, parts, os.path.join(FOLDER, "wild_arrow_%s_%s.fbx" % (code, look)))

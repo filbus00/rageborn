@@ -203,7 +203,34 @@ namespace ARPG.Editor
 
         static string GearBodyPath(string look) => $"{Folder}/{Character}_body_{look}.fbx";
 
-        static string GearHelmPath(string look) => $"{Folder}/{Character}_helm_{look}.fbx";
+        // Unity's import strips bones no vertex uses ("optimize bones"), and a model whose mesh is only on her hands (the
+        // gloves) lost her legs with it, so no humanoid could be made and the first bake came out unanimated (2026-10-04).
+        // Every gear model keeps all her bones.
+        static void KeepAllBones(string path)
+        {
+            var importer = (ModelImporter)AssetImporter.GetAtPath(path);
+            if (importer == null || !importer.optimizeBones)
+                return;
+            importer.optimizeBones = false;
+            importer.SaveAndReimport();
+        }
+
+        // The bone map Unity worked out while the legs were stripped stays stale (36 of 46 bones, no upper legs): a gear
+        // model that is still no humanoid takes the bare body's map, the same rig's names.
+        static void TakeBareBodyMap(string path)
+        {
+            var avatar = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Avatar>().FirstOrDefault();
+            if (avatar != null && avatar.isValid && avatar.isHuman)
+                return;
+            var bare = (ModelImporter)AssetImporter.GetAtPath(GearBodyPath(AppearanceRules.BareBody));
+            var importer = (ModelImporter)AssetImporter.GetAtPath(path);
+            if (bare == null || importer == null)
+                return;
+            importer.humanDescription = bare.humanDescription;
+            importer.avatarSetup = ModelImporterAvatarSetup.CreateFromThisModel;
+            importer.SaveAndReimport();
+            Debug.Log($"[ARPG] {Path.GetFileName(path)}: the bare body's bone map.");
+        }
 
         static void AddGearBodies(SpriteBakeJob job)
         {
@@ -212,20 +239,26 @@ namespace ARPG.Editor
                 var path = GearBodyPath(look);
                 if (!File.Exists(path))
                     continue;
+                KeepAllBones(path);
                 MixamoImport.ConfigureBody(path, GearAlbedoPath);
                 job.bodies.Add(new SpriteBakeJob.Body { look = look, model = AssetDatabase.LoadAssetAtPath<GameObject>(path) });
             }
-            foreach (var look in AppearanceRules.HelmLooks)
-            {
-                var path = GearHelmPath(look);
-                if (!File.Exists(path))
-                    continue;
-                MixamoImport.ConfigureBody(path, GearAlbedoPath);
-                job.bodies.Add(new SpriteBakeJob.Body
+            // Each worn layer: wild_arrow_<layer code>_<look>.fbx, her rig with only that gear on it.
+            foreach (var (layer, looks) in new[]
+                     {
+                         (AppearanceLayer.Boots, AppearanceRules.BootLooks), (AppearanceLayer.Belt, AppearanceRules.BeltLooks),
+                         (AppearanceLayer.Gloves, AppearanceRules.GloveLooks), (AppearanceLayer.Helm, AppearanceRules.HelmLooks),
+                     })
+                foreach (var look in looks)
                 {
-                    look = look, model = AssetDatabase.LoadAssetAtPath<GameObject>(path), layer = AppearanceLayer.Helm,
-                });
-            }
+                    var path = $"{Folder}/{Character}_{AppearanceRules.LayerCode(layer)}_{look}.fbx";
+                    if (!File.Exists(path))
+                        continue;
+                    KeepAllBones(path);
+                    MixamoImport.ConfigureBody(path, GearAlbedoPath);
+                    TakeBareBodyMap(path);
+                    job.bodies.Add(new SpriteBakeJob.Body { look = look, model = AssetDatabase.LoadAssetAtPath<GameObject>(path), layer = layer });
+                }
         }
 
         /// <summary>

@@ -18,7 +18,8 @@ namespace ARPG
     public class LayeredCharacterSprite : MonoBehaviour
     {
         public const float FramesPerSecond = 12f;
-        const int LayerCount = 4;
+        // Every AppearanceLayer: body, boots, belt, gloves, helm, off-hand, weapon.
+        const int LayerCount = 7;
 
         readonly SpriteRenderer[] renderers = new SpriteRenderer[LayerCount];
         // The sheets of the playing animation, looked up when the animation or the look changes, so a frame allocates

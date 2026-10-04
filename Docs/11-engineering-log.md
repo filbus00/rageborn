@@ -480,3 +480,20 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   (7.5 units) is still wider than half the screen, so `PlayerCombat.KeepOnScreen` drops from the candidates every
   enemy whose feet are outside the camera's view (3 percent margin) before she picks a target or a skill does.
 
+## 2026-10-04: boots, belts and gloves on her
+
+- `AppearanceLayer` gains Boots, Belt and Gloves between Body and Helm (stacking order; the bake jobs are rebuilt by
+  every setup and appearance is not saved, so the renumbering is safe), `CharacterAppearance` their looks,
+  `AppearanceRules` `BootLooks` (shoes, leather_boots, greaves), `BeltLooks` (sash, leather_belt, plated_belt) and
+  `GloveLooks` (wraps, leather_gloves, gauntlets), by tier like the rest; `LayeredCharacterSprite` draws seven layers
+  and the paper doll too.
+- `wild_arrow_gear.py` wraps them on her surface like the chests and helms (feet and shins, the hip band over any chest,
+  hands and forearms), plus knee cops on the greaves, a pouch and buckle on the leather belt and tassets on the plated
+  one, exported as wild_arrow_<boots|belt|gloves>_<look>.fbx; `WildArrowBakeSetup` bakes every worn layer the helm's way.
+- Trap: Unity's import strips bones no vertex uses (optimize bones), so the gloves, whose mesh is only on her hands, lost
+  her legs, the humanoid could not be made ("Required human bone 'LeftUpperLeg' not found") and their sheets baked
+  unanimated; and the bone map it worked out then stayed stale (36 of 46 bones) after the bones came back. Every gear
+  model now keeps all bones (`KeepAllBones`), and one still not humanoid takes the bare body's map (`TakeBareBodyMap`).
+  The gloves were rebaked alone (the bare body as the occluder, 3 minutes). Checked: no square in any frame, and in play
+  a worn set showed mail, leather boots, sash and gauntlets on their layers in order.
+
