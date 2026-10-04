@@ -536,3 +536,27 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
 - `MusicDirector` plays the track `MusicRules.For(scene, bossFighting)` picks (town in town, boss while the Cinder Warden
   fights and lives, dungeon elsewhere), checked twice a second and crossfaded on two sources (1 s into the fight, 3 s
   otherwise). `MusicSynth` is the fallback when the files are missing. Checked in play: the town track starts and loops.
+
+## 2026-10-04: balance pass
+
+- Bows and quivers (item 3 of the four): every look was already modelled by `gear.py` and baked; CLAUDE.md's line
+  saying otherwise was stale and is fixed. Nothing remodelled: on screen a bow is a few pixels wide.
+- The balance report modelled every unlocked skill firing at once, so with all nine unlocked at level 1 it counted nine
+  skills where a loadout holds four, and it knew nothing of the five new kinds. `BalanceReport.SkillValue` now models a
+  loadout: its skills at their cooldowns, spenders slowed together when Focus cannot pay (Knockback Shot's and Hunter's
+  Breath's gains count), skill points spread evenly over the loadout, hits a cast lands by kind (Knockback Shot 2 in a
+  crowd, every Barrage arrow 1, Kill Shot only under its threshold with a certain crit and capped by a husk's remaining
+  life in a crowd, Wild Frenzy's attack speed with 3 Momentum). The depth tables use the default loadout; a new section
+  compares each skill alone beside the basic arrow and five loadouts for the typical character at depth 6.
+- What it found (typical gear, depth 6, before): husks died in 2.6 s (target 0.6 to 1.2) and ghouls in 7.9 s, because
+  enemy life grows as level to the 1.9 and weapon damage as item level to the 1.35; and the skills were far apart per
+  Focus point (Explosive Arrow 29, Split Arrow 8, Kill Shot 5 in a crowd, Barrage weak, Wild Frenzy adding 11 a second).
+- Changes (tuning, Claude, to review): enemy life is 8 times level to the 1.6 (`CombatFormulas.EnemyLifeExponent`,
+  Docs/03 updated); the Cinder Warden's life multiplier 30 to 60 to keep its fight in 60 to 120 s; Split Arrow 12 Focus
+  (was 20), 90 percent (80); Explosive Arrow 220 percent (250); Knockback Shot 200 percent (150); Barrage 20 Focus (25),
+  7 s (9), 80 percent (60); Kill Shot 15 Focus (20), 4 s (6); Wild Frenzy 10 Focus (15), 8 s (6) of 25 percent (15)
+  attack speed. Changed in `WildArrowSkillsBuilder` (for new projects), the assets and Docs/02.
+- After (typical gear): husks die in 0.3 to 1.4 s across the act (1.4 at depth 6, a level above the character),
+  ghouls in 1.0 to 4.1 s, 5 husks in 3.3 s at depth 6; the damage skills give 16 to 26 crowd damage per Focus point;
+  the Warden dies in 59 s (the boss loadout: Kill Shot, Pierce, Homing, Hunter's Breath) to 113 s (the crowd loadout),
+  82 s with the default four. Enemy damage and XP are unchanged.

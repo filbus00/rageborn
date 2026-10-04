@@ -111,7 +111,7 @@ The following curves give a starting point. A simulation script in the tooling r
 
 - Weapon average damage: 6 + 2.6 times (item level to the power 1.35). At item level 30 this is about 262, at level 60 about 660.
 - Base armor per piece at item level L: 8 + 3.1 times L.
-- Enemy hit damage at level L: 3 times L to the power 1.45. Enemy life at level L: 8 times L to the power 1.9.
+- Enemy hit damage at level L: 3 times L to the power 1.45. Enemy life at level L: 8 times L to the power 1.6 (1.9 until the balance pass of 2026-10-04, which found act 1's enemies outgrowing the character's damage; Claude, to review).
 - Character base life at level L: 80 plus 20 times L before Vitality and gear.
 
 Damage formula for a hit:

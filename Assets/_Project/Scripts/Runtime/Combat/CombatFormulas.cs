@@ -21,7 +21,11 @@ namespace ARPG
         public static float EnemyHitDamage(int level) => 3f * Mathf.Pow(level, 1.45f);
 
         /// <summary>Life of a normal enemy of the given level.</summary>
-        public static float EnemyLife(int level) => 8f * Mathf.Pow(level, 1.9f);
+        public static float EnemyLife(int level) => 8f * Mathf.Pow(level, EnemyLifeExponent);
+
+        /// <summary>Docs/03 had 1.9; the balance pass of 2026-10-04 softened it to 1.6, since weapon damage grows as item
+        /// level to the 1.35 and act 1's husks took 2.6 s to kill by its last level (tuning, Claude, to review).</summary>
+        public const float EnemyLifeExponent = 1.6f;
 
         /// <summary>
         /// Damage the player takes from one enemy hit: the enemy's level curve times an archetype multiplier, reduced

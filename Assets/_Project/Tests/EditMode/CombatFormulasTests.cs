@@ -29,7 +29,7 @@ namespace ARPG.Tests
         [Test]
         public void EnemyCurves_GrowWithLevel()
         {
-            Assert.AreEqual(8f * Mathf.Pow(10f, 1.9f), CombatFormulas.EnemyLife(10), 0.1f);
+            Assert.AreEqual(8f * Mathf.Pow(10f, CombatFormulas.EnemyLifeExponent), CombatFormulas.EnemyLife(10), 0.1f);
             Assert.Greater(CombatFormulas.EnemyLife(11), CombatFormulas.EnemyLife(10));
             Assert.Greater(CombatFormulas.EnemyHitDamage(11), CombatFormulas.EnemyHitDamage(10));
         }

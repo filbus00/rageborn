@@ -91,7 +91,7 @@ namespace ARPG.Editor
             // Docs/02's numbers; all tuning.
             var split = LoadOrCreate("SplitArrow", so =>
             {
-                Set(so, SkillKind.Volley, "Split Arrow", unlock: 1, cost: 20f, cooldown: 3f, multiplier: 0.8f, range: 7.5f, speed: 16f);
+                Set(so, SkillKind.Volley, "Split Arrow", unlock: 1, cost: 12f, cooldown: 3f, multiplier: 0.9f, range: 7.5f, speed: 16f);
                 so.FindProperty("minEnemies").intValue = 2;
                 so.FindProperty("projectileCount").intValue = 5;
                 so.FindProperty("spreadDegrees").floatValue = 40f;
@@ -113,7 +113,7 @@ namespace ARPG.Editor
             });
             var explosive = LoadOrCreate("ExplosiveArrow", so =>
             {
-                Set(so, SkillKind.ExplosiveShot, "Explosive Arrow", unlock: 6, cost: 30f, cooldown: 7f, multiplier: 2.5f, range: 7.5f, speed: 15f);
+                Set(so, SkillKind.ExplosiveShot, "Explosive Arrow", unlock: 6, cost: 30f, cooldown: 7f, multiplier: 2.2f, range: 7.5f, speed: 15f);
                 so.FindProperty("minEnemies").intValue = 3;
                 so.FindProperty("burstRadius").floatValue = 2.5f;
                 so.FindProperty("effectColor").colorValue = new Color(1f, 0.55f, 0.15f, 0.95f);
@@ -122,7 +122,7 @@ namespace ARPG.Editor
             // The held skills (the owner, 2026-10-04: Knockback Shot, Barrage, Kill Shot, Hunter's Breath and Wild Frenzy).
             var knockback = LoadOrCreate("KnockbackShot", so =>
             {
-                Set(so, SkillKind.KnockbackShot, "Knockback Shot", unlock: 1, cost: 0f, cooldown: 6f, multiplier: 1.5f, range: 2.5f, speed: 22f);
+                Set(so, SkillKind.KnockbackShot, "Knockback Shot", unlock: 1, cost: 0f, cooldown: 6f, multiplier: 2f, range: 2.5f, speed: 22f);
                 so.FindProperty("rageGain").floatValue = 15f;
                 so.FindProperty("effectStrength").floatValue = 3f;
                 so.FindProperty("burstRadius").floatValue = 1.5f;
@@ -130,7 +130,7 @@ namespace ARPG.Editor
             });
             var barrage = LoadOrCreate("Barrage", so =>
             {
-                Set(so, SkillKind.Barrage, "Barrage", unlock: 1, cost: 25f, cooldown: 9f, multiplier: 0.6f, range: 7f, speed: 17f);
+                Set(so, SkillKind.Barrage, "Barrage", unlock: 1, cost: 20f, cooldown: 7f, multiplier: 0.8f, range: 7f, speed: 17f);
                 so.FindProperty("minEnemies").intValue = 2;
                 so.FindProperty("projectileCount").intValue = 8;
                 so.FindProperty("durationSeconds").floatValue = 1.2f;
@@ -139,7 +139,7 @@ namespace ARPG.Editor
             });
             var killShot = LoadOrCreate("KillShot", so =>
             {
-                Set(so, SkillKind.KillShot, "Kill Shot", unlock: 1, cost: 20f, cooldown: 6f, multiplier: 2f, range: 8f, speed: 26f);
+                Set(so, SkillKind.KillShot, "Kill Shot", unlock: 1, cost: 15f, cooldown: 4f, multiplier: 2f, range: 8f, speed: 26f);
                 so.FindProperty("executeThreshold").floatValue = 0.3f;
                 so.FindProperty("executeMultiplier").floatValue = 6f;
                 so.FindProperty("effectColor").colorValue = new Color(1f, 0.85f, 0.3f, 0.95f);
@@ -153,10 +153,10 @@ namespace ARPG.Editor
             });
             var frenzy = LoadOrCreate("WildFrenzy", so =>
             {
-                Set(so, SkillKind.Buff, "Wild Frenzy", unlock: 1, cost: 15f, cooldown: 12f, multiplier: 0f, range: 6f, speed: 0f);
+                Set(so, SkillKind.Buff, "Wild Frenzy", unlock: 1, cost: 10f, cooldown: 12f, multiplier: 0f, range: 6f, speed: 0f);
                 so.FindProperty("minMomentum").intValue = 3;
-                so.FindProperty("durationSeconds").floatValue = 6f;
-                so.FindProperty("buffAttackSpeed").floatValue = 0.15f;
+                so.FindProperty("durationSeconds").floatValue = 8f;
+                so.FindProperty("buffAttackSpeed").floatValue = 0.25f;
                 so.FindProperty("buffAttackSpeedPerMomentum").floatValue = 0.05f;
                 so.FindProperty("effectColor").colorValue = new Color(1f, 0.6f, 0.25f, 0.9f);
             });

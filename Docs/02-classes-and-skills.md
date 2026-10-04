@@ -41,10 +41,10 @@ Enemy aggro range is 7 and the short bow reaches 7.5, so the character can open 
 
 | Skill | Unlock | Type | Cost | Cooldown | Trigger | Description |
 |---|---|---|---|---|---|---|
-| Split Arrow | 1 | Cone | 20 Focus | 3 s | 2 or more enemies in reach inside the forward cone | 5 arrows in a 40 degree fan at the target, 80 percent weapon damage each; each stops at the first enemy it meets |
+| Split Arrow | 1 | Cone | 12 Focus | 3 s | 2 or more enemies in reach inside the forward cone | 5 arrows in a 40 degree fan at the target, 90 percent weapon damage each; each stops at the first enemy it meets |
 | Pierce Arrow | 2 | Projectile | 15 Focus | 4 s | An enemy 4 to 9 units away in sight | One arrow that passes through every enemy on its line for 200 percent; walls stop it |
 | Homing Arrow | 4 | Projectile | 15 Focus | 5 s | An enemy in reach and in sight | 3 arrows that curve after their targets, 120 percent each; each picks a different enemy when it can. The target must be in sight when they are loosed (the owner: no shots around corners); a wall still stops an arrow |
-| Explosive Arrow | 6 | Area | 30 Focus | 7 s | 3 or more enemies within 2.5 units of a target in sight | One arrow that bursts on hitting an enemy or a wall: 250 percent to everything within 2.5 units |
+| Explosive Arrow | 6 | Area | 30 Focus | 7 s | 3 or more enemies within 2.5 units of a target in sight | One arrow that bursts on hitting an enemy or a wall: 220 percent to everything within 2.5 units |
 
 Slot order, which is cast priority (proposed): Explosive, Homing, Pierce, Split, so the area skill fires first on a crowd. Numbers, unlock levels and the order are proposals.
 
@@ -58,11 +58,11 @@ Alternative triggers (Q15, proposed): Split Arrow Always and Elite present; Pier
 
 | Skill | Kind | Cost | Cooldown | Trigger | Description |
 |---|---|---|---|---|---|
-| Knockback Shot | KnockbackShot | free, gains 15 Focus | 6 s | An enemy within 2.5 | A heavy arrow at the nearest enemy, 150 percent; it and every enemy within 1.5 are thrown back 3 units |
-| Barrage | Barrage | 25 | 9 s | 2 or more enemies in 7, while moving | 8 arrows over 1.2 s at the enemies in reach, 60 percent each, while she keeps moving and shooting |
-| Kill Shot | KillShot | 20 | 6 s | An enemy below 30 percent life in reach and sight (or an elite or boss) | One fast arrow, 200 percent; 600 percent and a certain crit on a target below 30 percent when it lands |
+| Knockback Shot | KnockbackShot | free, gains 15 Focus | 6 s | An enemy within 2.5 | A heavy arrow at the nearest enemy, 200 percent; it and every enemy within 1.5 are thrown back 3 units |
+| Barrage | Barrage | 20 | 7 s | 2 or more enemies in 7, while moving | 8 arrows over 1.2 s at the enemies in reach, 80 percent each, while she keeps moving and shooting |
+| Kill Shot | KillShot | 15 | 4 s | An enemy below 30 percent life in reach and sight (or an elite or boss) | One fast arrow, 200 percent; 600 percent and a certain crit on a target below 30 percent when it lands |
 | Hunter's Breath | Buff | free | 15 s | Focus below 30 with an enemy within 6 | Gains 60 Focus at once |
-| Wild Frenzy | Buff | 15 | 12 s | 3 or more Momentum stacks in a fight | 6 s of 15 percent attack speed, plus 5 percent per live Momentum stack |
+| Wild Frenzy | Buff | 10 | 12 s | 3 or more Momentum stacks in a fight | 8 s of 25 percent attack speed, plus 5 percent per live Momentum stack |
 
 An unchosen loadout keeps the first four (Explosive, Homing, Pierce, Split); the new five follow them in the class order, so they are equipped from the loadout screen.
 

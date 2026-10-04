@@ -183,7 +183,7 @@ namespace ARPG.Editor
                 PlaceholderArt.Capsule(120, 170, new Color32(222, 104, 38, 255)),
                 PixelsPerUnit, SpriteAlignment.BottomCenter, FilterMode.Bilinear);
             return EnemySceneBuilder.LoadOrCreateVariant(
-                BossDefinitionPath, EnemyRank.Boss, lifeMultiplier: 30f, damageMultiplier: 1f, bodyRadius: 0.9f,
+                BossDefinitionPath, EnemyRank.Boss, lifeMultiplier: 60f, damageMultiplier: 1f, bodyRadius: 0.9f,
                 aggroRange: 12f, visualScale: 1.6f, bodySprite: sprite);
         }
 

@@ -170,6 +170,9 @@ namespace ARPG.Editor
                 text.AppendLine($"| {d} | {enemyLevel(d)} | {x.Husks / Seeds:0} | {x.Champions / Seeds:0.0} | {x.Elites / Seeds:0.0} | {x.Ghouls / Seeds:0.0} | {x.Archers / Seeds:0.0} | {x.Life / Seeds:0} | {x.Xp / Seeds:0} | {x.EntryLevel / Seeds:0.0} → {x.ExitLevel / Seeds:0.0} | {x.Gold / Seeds:0} |");
             }
 
+            var defaultLoadout = skills.Take(SkillLoadout.SlotCount).ToList();
+            float compareHit = 0f, compareSwings = 0f, compareHuskLife = 0f, compareBossLife = 0f;
+            var compareLevel = 1;
             foreach (var typical in new[] { false, true })
             {
                 text.AppendLine();
@@ -188,44 +191,20 @@ namespace ARPG.Editor
                     // Attributes (by level) are counted; the passive tree is not, since how the points are spent is the player's.
                     var swings = PowerScore.AttacksPerSecond(gear, charLevel);
                     var hit = power.DamagePerSecond / swings;
-                    // Every unlocked skill at its cooldown, unless Focus cannot pay for that: then all spenders slow down
-                    // together. Focus regenerates and comes from basic arrows that hit (4 each); the full pool at the start
-                    // of a level is left out (it only matters for the first fight).
+                    // The default loadout (the class's first four skills, which an unchosen character starts with) at
+                    // its cooldowns, slowed together when Focus cannot pay (SkillValue).
                     var stillness = AssumeStillness ? StanceStacks.MaxStacks * StanceStacks.StillnessDamagePerStack : 0f;
                     hit *= 1f + stillness;
-                    var rageIn = FocusPool.DefaultRegenPerSecond + swings * FocusPool.PerBasicHit;
-                    var rageOut = 0f;
-                    foreach (var skill in skills)
-                        if (SkillRules.IsUnlocked(skill.UnlockLevel, charLevel))
-                        {
-                            rageIn += skill.RageGain / skill.CooldownSeconds;
-                            rageOut += skill.RageCost / skill.CooldownSeconds;
-                        }
-                    var rageShare = rageOut > rageIn ? rageIn / rageOut : 1f;
-                    var single = hit * swings;
-                    var crowd = hit * swings * CrowdTargetsBasic;
-                    foreach (var skill in skills)
+                    var value = SkillValue(defaultLoadout, hit, swings, charLevel, husk.MaxLifeAt(level));
+                    var single = value.Single;
+                    var crowd = value.Crowd;
+                    if (typical && d == DungeonRules.LevelsPerAct)
                     {
-                        if (!SkillRules.IsUnlocked(skill.UnlockLevel, charLevel))
-                            continue;
-                        // A channel hits on every beat of its spin; a buff deals nothing itself (its bonus is left out). A
-                        // volley or homing shot looses several arrows; against one target, one of a fan hits and every
-                        // homing arrow does.
-                        var hitsPerCast = skill.Kind == SkillKind.Channel && skill.TickSeconds > 0f
-                            ? Mathf.Ceil(skill.DurationSeconds / skill.TickSeconds)
-                            : skill.Kind == SkillKind.HomingShot ? skill.ProjectileCount : 1f;
-                        var rate = skill.DamageMultiplier * hitsPerCast / skill.CooldownSeconds * (skill.RageCost > 0f ? rageShare : 1f);
-                        var targets = skill.Kind == SkillKind.Sweep ? CrowdTargetsSweep : skill.Kind == SkillKind.Slam ? CrowdTargetsSlam
-                            : skill.Kind == SkillKind.Charge ? CrowdTargetsCharge : skill.Kind == SkillKind.Channel ? CrowdTargetsBasic
-                            : skill.Kind == SkillKind.Volley ? Mathf.Min(CrowdTargetsVolley, skill.ProjectileCount)
-                            : skill.Kind == SkillKind.PierceShot ? CrowdTargetsPierce
-                            : skill.Kind == SkillKind.ExplosiveShot ? CrowdTargetsSlam : 1f;
-                        crowd += hit * rate * targets;
-                        // Against one target: a sweep needs 2 enemies, a slam 4, a volley 2 and a burst 3, so none of them
-                        // fires on a lone enemy.
-                        if (skill.Kind == SkillKind.Projectile || skill.Kind == SkillKind.Charge || skill.Kind == SkillKind.Execute ||
-                            skill.Kind == SkillKind.PierceShot || skill.Kind == SkillKind.HomingShot)
-                            single += hit * rate;
+                        compareHit = hit;
+                        compareSwings = swings;
+                        compareLevel = charLevel;
+                        compareHuskLife = husk.MaxLifeAt(level);
+                        compareBossLife = boss.MaxLifeAt(level);
                     }
 
                     var armor = gear.TotalArmor;
@@ -250,12 +229,112 @@ namespace ARPG.Editor
                 }
             }
 
+            // Every skill on its own beside the basic arrow, and some loadouts, for the typical character at depth 6.
             text.AppendLine();
-            text.AppendLine($"Assumptions (the Wild Arrow, bows only): every skill unlocked at the character's level fires at its cooldown, slowed together when Focus (6 a second and 4 per basic arrow) cannot pay; in a crowd the basic arrow hits {CrowdTargetsBasic} enemy, Split Arrow up to {CrowdTargetsVolley}, Pierce Arrow {CrowdTargetsPierce}, each homing arrow 1 and Explosive Arrow {CrowdTargetsSlam}; against one target Split and Explosive Arrow do not fire; the character kites (no Stillness), with the typical build's stat points (one in five on each attribute); {HusksInReach} husks can reach the character at once, which a kiter mostly avoids, so 'dies to 5 husks' is the worst case; fight time is the level's total enemy life over crowd DPS, with no walking; the potion, the pet and dodging are left out.");
+            text.AppendLine($"## Skills compared (typical gear, depth {DungeonRules.LevelsPerAct}, level {compareLevel})");
+            text.AppendLine();
+            text.AppendLine("Each skill alone beside the basic arrow: what it adds a second against one target and in a crowd, the Focus it spends a second, and its damage per Focus point (crowd).");
+            text.AppendLine();
+            text.AppendLine("| Skill | Kind | Cost | Cooldown | Adds, single | Adds, crowd | Focus a second | Crowd damage per Focus |");
+            text.AppendLine("|---|---|---|---|---|---|---|---|");
+            var basic = SkillValue(new List<SkillDefinition>(), compareHit, compareSwings, compareLevel, compareHuskLife);
+            foreach (var skill in skills)
+            {
+                var alone = SkillValue(new List<SkillDefinition> { skill }, compareHit, compareSwings, compareLevel, compareHuskLife);
+                var perFocus = skill.RageCost > 0f ? $"{(alone.Crowd - basic.Crowd) * skill.CooldownSeconds / skill.RageCost:0.0}" : "free";
+                text.AppendLine($"| {skill.DisplayName} | {skill.Kind} | {skill.RageCost:0} | {skill.CooldownSeconds:0.#} s | {alone.Single - basic.Single:0} | {alone.Crowd - basic.Crowd:0} | {skill.RageCost / skill.CooldownSeconds:0.0} | {perFocus} |");
+            }
+            text.AppendLine();
+            text.AppendLine("| Loadout | Single DPS | Crowd DPS | Focus share | Boss dies in |");
+            text.AppendLine("|---|---|---|---|---|");
+            foreach (var (name, picks) in Loadouts)
+            {
+                var loadout = new List<SkillDefinition>();
+                foreach (var pick in picks)
+                {
+                    var found = skills.FirstOrDefault(x => x.DisplayName == pick);
+                    if (found != null)
+                        loadout.Add(found);
+                }
+                var v = SkillValue(loadout, compareHit, compareSwings, compareLevel, compareHuskLife);
+                text.AppendLine($"| {name}: {string.Join(", ", picks)} | {v.Single:0} | {v.Crowd:0} | {v.FocusShare:P0} | {compareBossLife / v.Single:0} s |");
+            }
+
+            text.AppendLine();
+            text.AppendLine($"Assumptions (the Wild Arrow, bows only): the depth tables use the default loadout (the class's first four skills); each skill in a loadout fires at its cooldown, slowed together when Focus (6 a second, 4 per basic arrow, Knockback Shot's and Hunter's Breath's gains) cannot pay; skill points are spread evenly over the loadout; in a crowd the basic arrow hits {CrowdTargetsBasic} enemy, Split Arrow up to {CrowdTargetsVolley}, Pierce Arrow {CrowdTargetsPierce}, each homing arrow 1, Explosive Arrow {CrowdTargetsSlam}, Knockback Shot {CrowdTargetsKnockback} and every Barrage arrow 1; against one target Split Arrow, Explosive Arrow and Barrage do not fire; Kill Shot fires only on a target under its threshold (the last part of a long fight, and in a crowd on a husk it overkills); Wild Frenzy runs with 3 Momentum; the character kites (no Stillness), with the typical build's stat points (one in five on each attribute); {HusksInReach} husks can reach the character at once, which a kiter mostly avoids, so 'dies to 5 husks' is the worst case; fight time is the level's total enemy life over crowd DPS, with no walking; the potion, the pet and dodging are left out.");
 
             Directory.CreateDirectory(Path.GetDirectoryName(OutputPath));
             File.WriteAllText(OutputPath, text.ToString());
             return text.ToString();
+        }
+
+        const float CrowdTargetsKnockback = 2f;
+
+        // Loadouts compared in the report (display names).
+        static readonly (string name, string[] picks)[] Loadouts =
+        {
+            ("Default", new[] { "Explosive Arrow", "Homing Arrow", "Pierce Arrow", "Split Arrow" }),
+            ("Boss", new[] { "Kill Shot", "Pierce Arrow", "Homing Arrow", "Hunter's Breath" }),
+            ("Crowd", new[] { "Barrage", "Explosive Arrow", "Split Arrow", "Knockback Shot" }),
+            ("Frenzy", new[] { "Wild Frenzy", "Pierce Arrow", "Homing Arrow", "Split Arrow" }),
+            ("New five", new[] { "Kill Shot", "Barrage", "Knockback Shot", "Wild Frenzy" }),
+        };
+
+        struct Value
+        {
+            public float Single, Crowd, FocusShare;
+        }
+
+        /// <summary>
+        /// What a loadout adds to the basic arrow (hit is one basic arrow's damage, swings its rate): every skill at its
+        /// cooldown, the spenders slowed together when Focus cannot pay, skill points spread evenly over the loadout.
+        /// Hits a cast lands, by kind, against one target and in a crowd (the constants above); buffs add attack speed
+        /// or Focus, not damage.
+        /// </summary>
+        static Value SkillValue(List<SkillDefinition> loadout, float hit, float swings, int charLevel, float huskLife)
+        {
+            var points = SkillLevels.EarnedPoints(charLevel) / (float)Mathf.Max(1, loadout.Count);
+            var levelFactor = 1f + SkillLevels.DamagePerLevel * points;
+            var speed = 0f;
+            var focusIn = FocusPool.DefaultRegenPerSecond;
+            var focusOut = 0f;
+            foreach (var skill in loadout)
+            {
+                focusIn += skill.RageGain / skill.CooldownSeconds;
+                focusOut += skill.RageCost / skill.CooldownSeconds;
+                if (skill.Kind == SkillKind.Buff && skill.BuffAttackSpeed > 0f)
+                    speed += (skill.BuffAttackSpeed + skill.BuffAttackSpeedPerMomentum * Mathf.Max(3, skill.MinMomentum)) *
+                             Mathf.Min(1f, skill.DurationSeconds / skill.CooldownSeconds);
+            }
+            var rate = swings * (1f + speed);
+            focusIn += rate * FocusPool.PerBasicHit;
+            var share = focusOut > focusIn ? focusIn / focusOut : 1f;
+            var value = new Value { Single = hit * rate, Crowd = hit * rate * CrowdTargetsBasic, FocusShare = share };
+            foreach (var skill in loadout)
+            {
+                var casts = (skill.RageCost > 0f ? share : 1f) / skill.CooldownSeconds;
+                var each = hit * levelFactor * skill.DamageMultiplier;
+                float single, crowd;
+                switch (skill.Kind)
+                {
+                    case SkillKind.Volley: single = 0f; crowd = each * Mathf.Min(CrowdTargetsVolley, skill.ProjectileCount); break;
+                    case SkillKind.PierceShot: single = each; crowd = each * CrowdTargetsPierce; break;
+                    case SkillKind.HomingShot: single = each * skill.ProjectileCount; crowd = single; break;
+                    case SkillKind.ExplosiveShot: single = 0f; crowd = each * CrowdTargetsSlam; break;
+                    case SkillKind.KnockbackShot: single = each; crowd = each * CrowdTargetsKnockback; break;
+                    case SkillKind.Barrage: single = 0f; crowd = each * skill.ProjectileCount; break;
+                    case SkillKind.KillShot:
+                        // A certain crit (1.5 times, crit damage bonuses left out).
+                        var execute = hit * levelFactor * skill.ExecuteMultiplier * 1.5f;
+                        single = execute * skill.ExecuteThreshold;
+                        crowd = Mathf.Min(execute, huskLife * skill.ExecuteThreshold);
+                        break;
+                    default: single = 0f; crowd = 0f; break;
+                }
+                value.Single += single * casts;
+                value.Crowd += crowd * casts;
+            }
+            return value;
         }
 
         static EquipmentState Gear(int itemLevel, bool typical)

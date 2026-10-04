@@ -18,7 +18,8 @@ MonoBehaviour:
   slamRadius: 2
   preferredRange: 5
   projectileSpeed: 9
-  lifeMultiplier: 30
+  projectileColor: {r: 0, g: 0, b: 0, a: 0}
+  lifeMultiplier: 60
   armor: 0
   bodyRadius: 0.9
   deathSeconds: 0.45

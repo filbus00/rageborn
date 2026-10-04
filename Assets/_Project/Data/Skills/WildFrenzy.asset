@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: Wild Frenzy
   kind: 4
   unlockLevel: 1
-  rageCost: 15
+  rageCost: 10
   rageGain: 0
   cooldownSeconds: 12
   damageMultiplier: 0
@@ -28,9 +28,9 @@ MonoBehaviour:
   effectSeconds: 0
   maxRage: 0
   minMomentum: 3
-  durationSeconds: 6
+  durationSeconds: 8
   buffDamage: 0
-  buffAttackSpeed: 0.15
+  buffAttackSpeed: 0.25
   buffAttackSpeedPerMomentum: 0.05
   tickSeconds: 0.3
   bleedMultiplier: 0
