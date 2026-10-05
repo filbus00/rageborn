@@ -165,7 +165,6 @@ namespace ARPG
                 case SoundId.Hit:
                 case SoundId.Crit:
                 case SoundId.Swing:
-                case SoundId.Gold:
                 case SoundId.Pickup:
                 case SoundId.DropCommon:
                     return 0.05f;
@@ -173,6 +172,9 @@ namespace ARPG
                 case SoundId.Hurt:
                 case SoundId.ArrowShot:
                     return 0.08f;
+                // Gold piles are picked up in bursts; the owner found every pile's sound annoying (2026-10-05).
+                case SoundId.Gold:
+                    return 0.3f;
                 default:
                     return 0.02f;
             }

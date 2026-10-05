@@ -257,21 +257,26 @@ def drop_legendary():
 
 
 def gold():
-    """A coin purse jiggled (the owner, 2026-10-05: the old bright clinks were "horrible"; "the sound of jiggling a coin
-    purse and make it somewhat muted"): two quick shakes, each a cluster of small dull coin knocks inside leather, under
-    a soft leather rustle, all low-passed so it sits behind the fight."""
-    length = 0.42
+    """Coins settling in a leather purse (the owner, 2026-10-05: the clinks were "really bad and annoying"): no pitched
+    tones at all, since pure partials read as beeps. Three or four coins, each a tiny burst of noise rung through two
+    narrow resonances (a dull coin's knock), close together, over a soft low thump of the purse, all low-passed at
+    2.4 kHz and short (about 0.2 s), so a stream of pickups stays in the background."""
+    length = 0.24
     y = np.zeros(n(length))
-    for shake, start in enumerate((0.0, 0.15)):
-        for k in range(rng.integers(7, 11)):
-            f = rng.uniform(1700, 2600)
-            knock = modes(0.07, [(f, 1.0, 0.018), (f * 1.47, 0.45, 0.012), (f * 2.13, 0.2, 0.008)])
-            when = start + abs(rng.normal(0.03, 0.025))
-            y = mix(y, at(knock * rng.uniform(0.25, 0.8) * (1.0 if shake == 0 else 0.75), when, len(y)))
-        rustle = bandpass(noise(0.12), 900, 0.8) * np.sin(np.linspace(0, np.pi, n(0.12))) ** 2
-        y = mix(y, at(rustle * 0.35 * (1.0 if shake == 0 else 0.7), start, len(y)))
-    y = onepole(y, 2800)
-    return finish(y, 0.32)
+    thump = sweep(0.06, 160, 90, 0.025) * 0.3
+    y = mix(y, thump)
+    when = 0.0
+    for k in range(rng.integers(3, 5)):
+        burst = noise(0.004) * np.linspace(1, 0, n(0.004))
+        burst = np.concatenate([burst, np.zeros(n(0.05))])
+        f = rng.uniform(1900, 2600)
+        ring = bandpass(burst, f, 12) + bandpass(burst, f * 1.53, 10) * 0.6
+        ring *= np.exp(-t(len(ring) / RATE) / rng.uniform(0.012, 0.02))
+        ring /= np.max(np.abs(ring)) + 1e-9
+        y = mix(y, at(ring * rng.uniform(0.5, 1.0) * (0.85 ** k), when, len(y)))
+        when += rng.uniform(0.022, 0.045)
+    y = onepole(onepole(y, 2400), 2400)
+    return finish(y, 0.28)
 
 
 def pickup():

@@ -62,7 +62,8 @@ namespace ARPG
                 if (drop.IsGold)
                 {
                     session.AddGold(drop.GoldAmount);
-                    Sfx.Play(SoundId.Gold);
+                    // Quiet and spaced (Sfx.MinGap): a room of gold piles plays a few soft purse sounds, not a stream.
+                    Sfx.Play(SoundId.Gold, 0.55f);
                     GoldPickedUp += drop.GoldAmount;
                     loot.Release(drop);
                 }

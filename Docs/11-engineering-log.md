@@ -603,3 +603,12 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
 - Checked in play in the editor: each spawned beside her did its thing (the wolf lunged from 4.2 to 2.0 units, the
   acolyte's circle burned under her, the keeper stayed at about 4 with its ring showing and husks in it at 1.2 times,
   the bloat burst), with no errors. 574 of 574 tests pass.
+
+## 2026-10-05: the gold pickup sound, again
+
+- The owner: still "really bad and annoying". Two causes: the sound was pitched (pure sine partials read as beeps), and
+  every gold pile played it at full volume up to 20 times a second while walking over a room of gold.
+- `gold()` in `make_sfx.py` now has no pitched tones: 3 or 4 coins, each a 4 ms burst of noise rung through two narrow
+  resonances (1.9 to 2.6 kHz and half again), 22 to 45 ms apart, over a soft low thump of the purse, low-passed twice
+  at 2.4 kHz; 0.17 s, peak 0.28. Gold pickups play it at 0.55 volume (`PlayerLoot`) and at most once every 0.3 s
+  (`Sfx.MinGap`). Selling at the merchant still plays it at full volume, once.
