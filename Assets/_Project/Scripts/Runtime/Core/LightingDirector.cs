@@ -106,8 +106,9 @@ namespace ARPG
         /// <summary>The scene's mood, or none for a scene that stays fully lit.</summary>
         public static LightingRules.Mood? MoodOf(Scene scene)
         {
-            if (Object.FindAnyObjectByType<DungeonLevel>() != null)
-                return LightingRules.Dungeon;
+            var level = Object.FindAnyObjectByType<DungeonLevel>();
+            if (level != null)
+                return LightingRules.DungeonAt(level.Depth);
             if (scene.name == SceneTravel.TownScene)
                 return LightingRules.Town;
             return null;

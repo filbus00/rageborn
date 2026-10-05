@@ -28,7 +28,18 @@ namespace ARPG
             MigrateFrom10, // 10 to 11: the passive tree did not exist; nothing is bought and every point is unspent.
             MigrateFrom11, // 11 to 12: stat points and pets did not exist. The save director sets such a save aside anyway.
             MigrateFrom12, // 12 to 13: no named legendaries existed; no item is one and nothing is in the Codex.
+            MigrateFrom13, // 13 to 14: no deepest depth or stash existed; the deepest is the deepest waypoint, the stash empty.
         };
+
+        static SaveData MigrateFrom13(SaveData data)
+        {
+            var deepest = 0;
+            foreach (var depth in data.waypoints ?? new List<int>())
+                deepest = Math.Max(deepest, depth);
+            data.deepestDepth = deepest;
+            data.stash = new List<ItemData>();
+            return data;
+        }
 
         static SaveData MigrateFrom12(SaveData data)
         {
@@ -178,6 +189,8 @@ namespace ARPG
             foreach (var corpse in data.corpses ?? new List<CorpseData>())
                 foreach (var item in corpse.gear ?? new List<ItemData>())
                     yield return item;
+            foreach (var item in data.stash ?? new List<ItemData>())
+                yield return item;
         }
 
         public static SaveData Capture(GameSession session, long savedAtUnixMs)
@@ -217,7 +230,11 @@ namespace ARPG
                 petRules = session.Pets.RuleNames(),
                 codex = session.CodexNames(),
                 equipped = CaptureEquipment(session.Equipment),
+                deepestDepth = session.DeepestDepth,
             };
+
+            foreach (var item in session.Stash)
+                data.stash.Add(CaptureItem(item));
 
             foreach (var item in session.Inventory.Items)
                 data.backpack.Add(CaptureItem(item));
@@ -260,6 +277,13 @@ namespace ARPG
             session.RestoreProgress(data.level, data.experience);
             session.RestorePotion(data.potionCharges, data.potionKillProgress);
             session.DungeonSeed = data.dungeonSeed;
+            session.ReachDepth(data.deepestDepth);
+            foreach (var saved in data.stash ?? new List<ItemData>())
+            {
+                var stored = RestoreItem(saved, warnings);
+                if (stored != null)
+                    session.RestoreStash(stored);
+            }
             foreach (var depth in data.waypoints)
                 session.ActivateWaypoint(depth);
             if (data.hasPortalTome)
@@ -378,6 +402,7 @@ namespace ARPG
             parsed.activePet ??= "";
             parsed.petRules ??= new List<string>();
             parsed.codex ??= new List<string>();
+            parsed.stash ??= new List<ItemData>();
 
             data = parsed;
             error = null;

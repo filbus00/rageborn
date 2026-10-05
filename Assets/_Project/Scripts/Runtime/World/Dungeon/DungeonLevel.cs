@@ -69,6 +69,15 @@ namespace ARPG
         /// <summary>This level's depth, 1 for the first.</summary>
         public int Depth => depth;
 
+        // Shown once the level is up (Start), when reaching this depth brought a newcomer to town.
+        string arrivalNotice;
+
+        void Start()
+        {
+            if (arrivalNotice != null)
+                HintBanner.Current?.Show(arrivalNotice);
+        }
+
         void Awake()
         {
             var session = GameSession.Current;
@@ -79,6 +88,9 @@ namespace ARPG
 
             levelId = DungeonRules.LevelId(depth);
             LevelContext.Set(levelId);
+            // The deepest depth reached brings newcomers to town (2026-10-05); the first time, a banner says who.
+            if (session.ReachDepth(depth) && Newcomers.TryArrivingAt(depth, out var newcomer))
+                arrivalNotice = $"Word from town: a {Newcomers.Name(newcomer).ToLowerInvariant()} has arrived.";
 
             var shapes = new List<RoomShape>();
             foreach (var template in rooms)
@@ -146,7 +158,7 @@ namespace ARPG
 
         Vector2Int ArrivalCell(Arrival arrival)
         {
-            if (arrival == Arrival.FromBelow && Layout.HasStairsDown)
+            if (arrival == Arrival.FromBelow && (Layout.HasStairsDown || Layout.HasBossArena))
                 return Layout.ArrivalFromBelow;
             if (arrival == Arrival.AtBoss && Layout.HasBossArena)
                 return Layout.BossArenaEntry;
@@ -156,17 +168,25 @@ namespace ARPG
         }
 
         /// <summary>
-        /// The act boss waits in the arena until it is killed; after that, and for good in this game session, the arena
-        /// holds stairs back to the town instead (there is no act 2 yet to go down to). The stairs stand near the arena's
-        /// far edge, not in its middle, so walking over to the boss's loot does not end the level.
+        /// The boss waits in the arena until it is killed; after that, and for good in this game session, the arena
+        /// holds the stairs down to the next depth (2026-10-05: one dungeon of 24 levels), or back to town from the last.
+        /// The stairs stand near the arena's far edge, not in its middle, so walking over to the boss's loot does not end
+        /// the level.
         /// </summary>
         void SetUpBoss(GameSession session, Transform root)
         {
             var key = levelId + "/Boss";
-            var stairsCell = Layout.BossArenaCenter + new Vector2Int(0, Layout.BossArenaRadius - 4);
+            var stairsCell = Layout.StairsDown;
+            void AddWayOn()
+            {
+                if (depth < DungeonRules.Depths)
+                    AddStairs(root, "Stairs Down", stairsCell, dungeonScene, depth + 1, Arrival.FromAbove);
+                else
+                    AddStairs(root, "Stairs To Town", stairsCell, townScene, 0, Arrival.FromAbove);
+            }
             if (session.IsKilled(key, 0))
             {
-                AddStairs(root, "Stairs To Town", stairsCell, townScene, 0, Arrival.FromAbove);
+                AddWayOn();
                 return;
             }
             if (bossEnemy == null)
@@ -178,7 +198,7 @@ namespace ARPG
             var fight = new GameObject("Cinder Warden Fight").AddComponent<CinderWardenFight>();
             fight.Configure(bossEnemy, normalEnemy, Layout.EnemyLevel, IsoMath.CellToGround(Layout.BossArenaCenter),
                 Layout.BossArenaRadius * 0.7071f, key,
-                () => AddStairs(root, "Stairs To Town", stairsCell, townScene, 0, Arrival.FromAbove));
+                AddWayOn);
         }
 
         /// <summary>A corpse on this level whose spot is no longer floor (the generator changed since it fell) moves to

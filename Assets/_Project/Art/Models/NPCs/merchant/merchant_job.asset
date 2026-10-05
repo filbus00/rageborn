@@ -16,6 +16,7 @@ MonoBehaviour:
   bodies:
   - look: 
     model: {fileID: 919132149155446097, guid: 27cc8dd71e170477080f0a5c348c6eb6, type: 3}
+    layer: 0
   pieces: []
   grips:
   - grip: 
@@ -35,6 +36,7 @@ MonoBehaviour:
   cellSize: 80
   pivot: {x: 40, y: 12}
   targetHeightPixels: 57.8125
+  bakedScale: 1
   pixelArt: 1
   supersample: 4
   framesPerSecond: 12

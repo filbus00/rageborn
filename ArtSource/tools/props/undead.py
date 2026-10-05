@@ -14,9 +14,12 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 ENEMIES = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "Enemies")
 NAME = sys.argv[sys.argv.index("--") + 1]
 DONORS = {"skeleton": "husk", "cultist": "bandit_archer", "cutthroat": "husk", "ember_acolyte": "bandit_archer",
-          "pyre_keeper": "bandit_archer", "carrion_bloat": "ghoul"}
+          "pyre_keeper": "bandit_archer", "carrion_bloat": "ghoul",
+          # The town's newcomers (2026-10-05): built here too, written to Art/Models/NPCs, idling as the merchant does.
+          "stash_keeper": "bandit_archer", "healer": "bandit_archer", "gambler": "bandit_archer", "trainer": "bandit_archer"}
+NPCS = {"stash_keeper", "healer", "gambler", "trainer"}
 DONOR = DONORS[NAME]
-OUT = os.path.join(ENEMIES, NAME)
+OUT = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "NPCs", NAME) if NAME in NPCS else os.path.join(ENEMIES, NAME)
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.fbx(filepath=os.path.join(ENEMIES, DONOR, DONOR + ".fbx"))
@@ -33,6 +36,9 @@ COLORS = {
     "leather": WOOD[2], "leather_dark": WOOD[1], "scarf": BLOOD[2], "steel": STONE[4], "ash": STONE[3],
     "ash_dark": STONE[2], "ember": EMBER[2], "flesh": (118, 112, 84), "flesh_dark": (78, 74, 54), "rot": MOSS[2],
     "pus": (150, 142, 88),
+    # The newcomers.
+    "beard": BONE[0], "apron": WOOD[3], "tunic": WOOD[1], "brass": EMBER[3], "linen": BONE[1], "sash": MOSS[2],
+    "plum": VIOLET[1], "plum_dark": VIOLET[0], "gold": EMBER[3], "mail": STONE[3], "tabard": BLOOD[2], "hair": WOOD[0],
 }
 color_list = list(COLORS)
 bm = bmesh.new()
@@ -298,8 +304,72 @@ def carrion_bloat():
         block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.1 * U, 0.06 * U, 0.17 * U), side + "Foot", "flesh_dark")
 
 
+def _townsfolk_body(top, top_dark, legs, boots, skin="skin", wide=1.0):
+    """The shared figure for the townsfolk: torso, arms, legs and boots in the given colours."""
+    s2 = head("Spine2")
+    block(V((0, s2.y, 0)), (0.3 * U * wide, 0.2 * U, 0.19 * U * wide), "Spine2", top)
+    block(V((0, head("Spine1").y, 0)), (0.27 * U * wide, 0.12 * U, 0.18 * U * wide), "Spine1", top)
+    block(V((0, head("Spine").y - 0.02 * U, 0)), (0.27 * U * wide, 0.07 * U, 0.19 * U * wide), "Spine", top_dark)
+    block(V((0, head("Hips").y, 0)), (0.26 * U * wide, 0.1 * U, 0.17 * U * wide), "Hips", legs)
+    for side in ("Left", "Right"):
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.055 * U, 0.05 * U, side + "Arm", top)
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.05 * U, 0.045 * U, side + "ForeArm", top_dark)
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.04 * U, 0.04 * U, 0.04 * U), side + "Hand", skin)
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.065 * U, 0.055 * U, side + "UpLeg", legs)
+        limb(head(side + "Leg"), head(side + "Foot"), 0.055 * U, 0.045 * U, side + "Leg", legs)
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.08 * U, 0.06 * U, 0.16 * U), side + "Foot", boots)
+    limb(head("Neck"), head("Head"), 0.04 * U, 0.04 * U, "Neck", skin)
+
+
+def stash_keeper():
+    # A stout old man: bald, a grey beard, a brown tunic under a leather apron, a ring of brass keys at his belt.
+    h = head("Head")
+    _townsfolk_body("tunic", "leather_dark", "leather_dark", "robe_dark", wide=1.15)
+    blob(h + V((0, 0.1 * U, 0)), (0.09 * U, 0.105 * U, 0.095 * U), "Head", "skin")
+    blob(h + V((0, 0.02 * U, 0.06 * U)), (0.07 * U, 0.08 * U, 0.05 * U), "Head", "beard")
+    block(V((0, head("Spine1").y, 0.1 * U)), (0.24 * U, 0.34 * U, 0.03 * U), "Spine1", "apron")
+    blob(V((0.1 * U, head("Spine").y - 0.04 * U, 0.08 * U)), (0.04 * U, 0.05 * U, 0.02 * U), "Spine", "brass")
+
+
+def healer():
+    # A woman in a pale linen robe with a green sash, dark hair tied back, a satchel at her hip.
+    h = head("Head")
+    _townsfolk_body("linen", "sash", "linen", "leather_dark")
+    blob(h + V((0, 0.1 * U, 0)), (0.085 * U, 0.1 * U, 0.09 * U), "Head", "skin")
+    blob(h + V((0, 0.13 * U, -0.03 * U)), (0.095 * U, 0.09 * U, 0.08 * U), "Head", "hair")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.1 * U, 0.12 * U, side + "UpLeg", "linen")
+        limb(head(side + "Leg"), head(side + "Foot") + V((0, 0.03 * U, 0)), 0.12 * U, 0.13 * U, side + "Leg", "linen")
+    block(V((0.13 * U, head("Hips").y, 0.02 * U)), (0.06 * U, 0.1 * U, 0.12 * U), "Hips", "leather")
+
+
+def gambler():
+    # A thin man in a plum coat with gold trim and a wide-brimmed hat.
+    h = head("Head")
+    _townsfolk_body("plum", "gold", "plum_dark", "robe_dark", wide=0.95)
+    blob(h + V((0, 0.1 * U, 0)), (0.085 * U, 0.1 * U, 0.09 * U), "Head", "skin")
+    block(h + V((0, 0.19 * U, 0)), (0.3 * U, 0.02 * U, 0.3 * U), "Head", "plum_dark")
+    blob(h + V((0, 0.23 * U, 0)), (0.1 * U, 0.06 * U, 0.1 * U), "Head", "plum_dark")
+    block(h + V((0, 0.205 * U, 0)), (0.2 * U, 0.02 * U, 0.2 * U), "Head", "gold")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.09 * U, 0.1 * U, side + "UpLeg", "plum")
+
+
+def trainer():
+    # A veteran soldier: a mail shirt under a red tabard, short dark hair, a sword at his hip.
+    h = head("Head")
+    _townsfolk_body("mail", "tabard", "leather_dark", "robe_dark", wide=1.1)
+    blob(h + V((0, 0.1 * U, 0)), (0.09 * U, 0.105 * U, 0.095 * U), "Head", "skin")
+    blob(h + V((0, 0.15 * U, -0.01 * U)), (0.092 * U, 0.06 * U, 0.09 * U), "Head", "hair")
+    block(V((0, head("Spine1").y, 0.1 * U)), (0.2 * U, 0.4 * U, 0.03 * U), "Spine1", "tabard")
+    hip = V((-0.16 * U, head("Hips").y, 0.0))
+    limb(hip + V((0, 0.05 * U, 0)), hip - V((0, 0.6 * U, 0)), 0.02 * U, 0.01 * U, "Hips", "steel", 4)
+    block(hip + V((0, 0.06 * U, 0)), (0.12 * U, 0.025 * U, 0.03 * U), "Hips", "iron")
+
+
 {"skeleton": skeleton, "cultist": cultist, "cutthroat": cutthroat, "ember_acolyte": ember_acolyte,
- "pyre_keeper": pyre_keeper, "carrion_bloat": carrion_bloat}[NAME]()
+ "pyre_keeper": pyre_keeper, "carrion_bloat": carrion_bloat, "stash_keeper": stash_keeper, "healer": healer,
+ "gambler": gambler, "trainer": trainer}[NAME]()
 
 mesh = bpy.data.meshes.new(NAME)
 bm.normal_update()
@@ -349,7 +419,7 @@ bpy.ops.export_scene.fbx(filepath=os.path.join(OUT, NAME + ".fbx"), use_selectio
                          bake_anim=True, bake_anim_use_all_actions=False, path_mode="STRIP", embed_textures=False)
 # The idle is the ghoul's own (EnemyBakeSetup takes it from ghoul.fbx): the body's exported animation does not come
 # through as a clip the bake finds, and a copy of ghoul.fbx as a clip file drew T-pose frames.
-for clip in ("run", "attack", "hit", "death"):
+for clip in (() if NAME in NPCS else ("run", "attack", "hit", "death")):
     source = os.path.join(ENEMIES, DONOR, "%s_%s.fbx" % (DONOR, clip))
     shutil.copyfile(source, os.path.join(OUT, "%s_%s.fbx" % (NAME, clip)))
 print("REPORT wrote", OUT, len(mesh.polygons), "faces,", len(groups), "bones")

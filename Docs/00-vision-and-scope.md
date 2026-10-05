@@ -50,7 +50,7 @@ Players aged 18 to 45 who know Diablo, Path of Exile or Vampire Survivors style 
 | Gear on the character | Gear oriented like Diablo 2: equipped gear is displayed on the character (2026-09-27). Weapon, off-hand, helm and chest armour show; looks come in tiers by item level, and every legendary has its own. See 03-itemization.md, Appearance | User |
 | Game structure | Diablo 1 style: a safe town, then a dungeon descended level by level. Not a survivor or horde game: enemies are packs placed in rooms, idle until aggro, and killed enemies stay dead | User |
 | Town | A walkable scene with no enemies. NPCs open their panels when the player walks up to them. The way into the dungeon is a stairway the player walks into | User |
-| Dungeon | Diablo 1 style descent by stairs. Each act is a dungeon of about 6 seeded levels below its own town | User |
+| Dungeon | Diablo 1 style descent by stairs. **One town above one dungeon of 24 seeded levels** (the owner, 2026-10-05: "Skip the acts, lets just progress deeper into the dungeon and then have things happen in town depending on how deep you go"). It changes gradually with depth, no hard sections; a boss every 6 levels (the Cinder Warden at 6). Newcomers arrive in town as the player goes deeper: a stash keeper at depth 2, a healer at 4, a gambler at 8, a trainer at 12. Replaces five acts of 6 levels, each with its own town | User |
 | Players | Single player, offline first | Recommendation |
 | Platform | iPhone only for 1.0. No iPad support, no Android | User |
 | Classes | 1.0 launches with one class, the Wild Arrow, a bow-only ranged hunter (2026-09-30, replacing the Wrathborn, a barbarian-style warrior), see 02-classes-and-skills.md. More classes come later as new content. How they are sold is decided after launch | User |
@@ -65,7 +65,7 @@ Players aged 18 to 45 who know Diablo, Path of Exile or Vampire Survivors style 
 In scope:
 
 - One class (the Wild Arrow, bows only) with eight active skills and one passive tree
-- Five acts, each a town above a dungeon of about 6 levels, seeded procedural layouts
+- One town above a dungeon of 24 seeded procedural levels, a boss every 6 (decided 2026-10-05; was five acts of 6 levels, each with its own town)
 - Character level cap 60, then a Paragon track to 200 for endgame
 - Ten equipment slots, four rarities, about 90 affixes, 40 legendary items (decided 2026-09-27, Q7), no item sets
 - Abyss endless dungeon and five bosses in a repeatable boss rotation

@@ -10,11 +10,17 @@ namespace ARPG.Editor
     /// Bakes the town NPCs (the owner, 2026-10-03) from Mixamo files, one folder each in Assets/_Project/Art/Models/NPCs/
     /// &lt;name&gt;: <c>&lt;name&gt;.fbx</c>, downloaded with skin in its idle, and <c>&lt;name&gt;_albedo.png</c>, its texture.
     /// Each becomes an 8-direction idle in Resources/Characters/&lt;name&gt; at the Wild Arrow's size, which
-    /// <see cref="NpcFigure"/> plays (merchant, pet_vendor). Tools > ARPG > Sprite Bake > Bake NPCs.
+    /// <see cref="NpcFigure"/> plays (merchant, pet_vendor, and the newcomers: stash_keeper, healer, gambler, trainer). Tools > ARPG > Sprite Bake > Bake NPCs.
     /// </summary>
     public static class NpcBakeSetup
     {
         const string Root = "Assets/_Project/Art/Models/NPCs";
+
+        /// <summary>The newcomers in town (2026-10-05) idle in another NPC's clip.</summary>
+        static readonly Dictionary<string, string> IdleFrom = new Dictionary<string, string>
+        {
+            { "stash_keeper", "merchant" }, { "healer", "merchant" }, { "gambler", "merchant" }, { "trainer", "merchant" },
+        };
 
         [MenuItem("Tools/ARPG/Sprite Bake/Bake NPCs")]
         public static void BakeAll()
@@ -46,7 +52,11 @@ namespace ARPG.Editor
                 return null;
             }
             MixamoImport.ConfigureBody(bodyPath);
-            var clip = MixamoImport.FirstClip(bodyPath);
+            // A body built in Blender on a borrowed rig (the newcomers, ArtSource/tools/props/undead.py) has no idle of
+            // its own: it stands in the merchant's, retargeted by the humanoid.
+            var clip = IdleFrom.TryGetValue(name, out var donor)
+                ? MixamoImport.FirstClip($"{Root}/{donor}/{donor}.fbx")
+                : MixamoImport.FirstClip(bodyPath);
             if (clip == null)
             {
                 Debug.LogWarning($"{bodyPath}: no animation in it; download it from Mixamo in an idle.");

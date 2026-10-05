@@ -94,8 +94,8 @@ namespace ARPG.Editor
                     if (skill != null)
                         skills.Add(skill);
 
-            var depths = new DepthStats[DungeonRules.LevelsPerAct + 1];
-            for (var d = 1; d <= DungeonRules.LevelsPerAct; d++)
+            var depths = new DepthStats[DungeonRules.Depths + 1];
+            for (var d = 1; d <= DungeonRules.Depths; d++)
                 depths[d] = new DepthStats();
 
             var settings = new DungeonSettings { NormalAggroRange = husk.AggroRange, EliteAggroRange = elite.AggroRange };
@@ -104,7 +104,7 @@ namespace ARPG.Editor
             {
                 var dungeonSeed = DungeonRules.LevelSeed(9000 + s, 0);
                 var progress = new CharacterProgress();
-                for (var depth = 1; depth <= DungeonRules.LevelsPerAct; depth++)
+                for (var depth = 1; depth <= DungeonRules.Depths; depth++)
                 {
                     var stats = depths[depth];
                     var levelSeed = DungeonRules.LevelSeed(dungeonSeed, depth);
@@ -170,7 +170,7 @@ namespace ARPG.Editor
             }
 
             var text = new StringBuilder();
-            text.AppendLine("# Balance report (act 1)");
+            text.AppendLine($"# Balance report ({DungeonRules.Depths} levels)");
             text.AppendLine();
             text.AppendLine($"{Seeds} generated dungeons, every enemy killed, depth by depth. Averages. Made by Tools > ARPG > Balance Report ({nameof(BalanceReport)}.cs); see its summary for what the model assumes.");
             text.AppendLine();
@@ -180,7 +180,7 @@ namespace ARPG.Editor
             text.AppendLine();
             text.AppendLine("| Depth | Enemy level | Husks | Champions | Elites | Ghouls | Archers | Enemy life total | XP | Character level in → out | Gold |");
             text.AppendLine("|---|---|---|---|---|---|---|---|---|---|---|");
-            for (var d = 1; d <= DungeonRules.LevelsPerAct; d++)
+            for (var d = 1; d <= DungeonRules.Depths; d++)
             {
                 var x = depths[d];
                 text.AppendLine($"| {d} | {enemyLevel(d)} | {x.Husks / Seeds:0} | {x.Champions / Seeds:0.0} | {x.Elites / Seeds:0.0} | {x.Ghouls / Seeds:0.0} | {x.Archers / Seeds:0.0} | {x.Life / Seeds:0} | {x.Xp / Seeds:0} | {x.EntryLevel / Seeds:0.0} → {x.ExitLevel / Seeds:0.0} | {x.Gold / Seeds:0} |");
@@ -196,7 +196,7 @@ namespace ARPG.Editor
                 text.AppendLine();
                 text.AppendLine("| Depth | Char level | Hit | Single-target DPS | Crowd DPS | Husk dies in | Ghoul dies in | Life (effective) | Husk hit | Ghoul slam | Arrow | Dies to 5 husks in | Kills 5 husks in | Fight time for the level | Boss dies in |");
                 text.AppendLine("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|");
-                for (var d = 1; d <= DungeonRules.LevelsPerAct; d++)
+                for (var d = 1; d <= DungeonRules.Depths; d++)
                 {
                     var x = depths[d];
                     var charLevel = Mathf.RoundToInt(x.EntryLevel / Seeds);
@@ -214,7 +214,7 @@ namespace ARPG.Editor
                     var value = SkillValue(defaultLoadout, hit, swings, charLevel, husk.MaxLifeAt(level));
                     var single = value.Single;
                     var crowd = value.Crowd;
-                    if (typical && d == DungeonRules.LevelsPerAct)
+                    if (typical && d == DungeonRules.BossEvery)
                     {
                         compareHit = hit;
                         compareSwings = swings;
@@ -239,7 +239,7 @@ namespace ARPG.Editor
                     var diesTo5 = maxLife / (HusksInReach * huskHit / huskCycle);
                     var kills5 = HusksInReach * husk.MaxLifeAt(level) / crowd;
                     var fight = x.Life / Seeds / crowd;
-                    var bossTime = d == DungeonRules.LevelsPerAct ? $"{boss.MaxLifeAt(level) / single:0} s" : "";
+                    var bossTime = DungeonRules.IsBossDepth(d) ? $"{boss.MaxLifeAt(level) / single:0} s" : "";
 
                     text.AppendLine($"| {d} | {charLevel} | {hit:0} | {single:0} | {crowd:0} | {husk.MaxLifeAt(level) / single:0.0} s | {ghoul.MaxLifeAt(level) / single:0.0} s | {maxLife:0} ({effectiveLife:0}) | {huskHit:0} | {ghoulHit:0} | {arrowHit:0} | {diesTo5:0.0} s | {kills5:0.0} s | {fight:0} s | {bossTime} |");
                 }
@@ -247,7 +247,7 @@ namespace ARPG.Editor
 
             // Every skill on its own beside the basic arrow, and some loadouts, for the typical character at depth 6.
             text.AppendLine();
-            text.AppendLine($"## Skills compared (typical gear, depth {DungeonRules.LevelsPerAct}, level {compareLevel})");
+            text.AppendLine($"## Skills compared (typical gear, depth {DungeonRules.BossEvery}, level {compareLevel})");
             text.AppendLine();
             text.AppendLine("Each skill alone beside the basic arrow: what it adds a second against one target and in a crowd, the Focus it spends a second, and its damage per Focus point (crowd).");
             text.AppendLine();

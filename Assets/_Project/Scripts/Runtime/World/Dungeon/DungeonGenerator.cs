@@ -5,13 +5,26 @@ using UnityEngine;
 namespace ARPG
 {
     /// <summary>
-    /// Act-wide dungeon rules: how many levels, what enemy level each depth holds, and how a level's seed and id come
-    /// from the session. Pure.
+    /// Dungeon-wide rules: how many levels, where the bosses are, what enemy level each depth holds, and how a level's
+    /// seed and id come from the session. Pure.
     /// </summary>
     public static class DungeonRules
     {
-        /// <summary>Docs/05-world-and-content.md: about 6 levels per act.</summary>
-        public const int LevelsPerAct = 6;
+        /// <summary>The owner, 2026-10-05: no acts; one town above one dungeon of about 24 levels ("Fixed, about 24
+        /// levels"), changing gradually with depth.</summary>
+        public const int Depths = 24;
+
+        /// <summary>A boss every 6 levels (the Cinder Warden at 6). The first 6 are what was act 1.</summary>
+        public const int BossEvery = 6;
+
+        /// <summary>The first 6 levels (was act 1): the autopilot plays them, the DEV shortcuts reach their boss.</summary>
+        public const int LevelsPerAct = BossEvery;
+
+        /// <summary>Depths whose exit room is a boss arena: the depths with a boss built so far (the Cinder Warden at 6).
+        /// 12, 18 and 24 join when their bosses exist; until then they are ordinary levels.</summary>
+        static readonly int[] BuiltBossDepths = { 6 };
+
+        public static bool IsBossDepth(int depth) => System.Array.IndexOf(BuiltBossDepths, depth) >= 0;
 
         /// <summary>Docs/05: the Portal Tome is found around level 3; the Wanderer gives it on this depth (the user's
         /// choice, 2026-09-26).</summary>
@@ -26,7 +39,24 @@ namespace ARPG
         /// </summary>
         static readonly int[] ActOneEnemyLevels = { 0, 1, 2, 3, 4, 5, 7 };
 
-        public static int EnemyLevel(int depth) => ActOneEnemyLevels[Mathf.Clamp(depth, 1, LevelsPerAct)];
+        /// <summary>
+        /// The enemy level of a depth: the first 6 as tuned for act 1, then 0.6 a level, rounded up (depth 7 is 8, 12 is
+        /// 11, 18 is 15, 24 is 18). Tuning (2026-10-05), chosen with the balance report: at one a level the character
+        /// fell eight levels behind by depth 24; at 0.6 it stays about two behind all the way down, as at the Warden.
+        /// </summary>
+        public static int EnemyLevel(int depth)
+        {
+            depth = Mathf.Clamp(depth, 1, Depths);
+            if (depth <= BossEvery)
+                return ActOneEnemyLevels[depth];
+            return ActOneEnemyLevels[BossEvery] + Mathf.CeilToInt((depth - BossEvery) * EnemyLevelsPerDepth - 1e-4f);
+        }
+
+        /// <summary>Extra Champion chance below the first boss: a point a level, at most 20 points.</summary>
+        public static float ExtraChampionChance(int depth) => Mathf.Clamp(depth - BossEvery, 0, 20) * 0.01f;
+
+        /// <summary>How fast enemy levels climb below the first boss.</summary>
+        public const float EnemyLevelsPerDepth = 0.6f;
 
         /// <summary>A level's seed, mixed from the session's dungeon seed and the depth, so the whole dungeon of a game
         /// session is one saved number and each level still differs.</summary>
@@ -221,7 +251,7 @@ namespace ARPG
                 if (i == 0)
                     kinds[i] = RoomKind.Start;
                 else if (i == exit)
-                    kinds[i] = depth >= DungeonRules.LevelsPerAct ? RoomKind.Boss : RoomKind.Exit;
+                    kinds[i] = DungeonRules.IsBossDepth(depth) ? RoomKind.Boss : RoomKind.Exit;
                 else
                 {
                     kinds[i] = RollKind(random, settings);
@@ -341,12 +371,16 @@ namespace ARPG
             layout.Waypoint = NearestFloor(layout, startRoom.Interior, Vector2Int.RoundToInt(Vector2.Lerp(layout.StairsUp, Center(startRoom.Interior), 0.75f)), layout.ArrivalFromAbove, 3);
 
             var exitRoom = layout.Rooms[exit];
-            layout.HasStairsDown = depth < DungeonRules.LevelsPerAct;
+            layout.HasStairsDown = depth < DungeonRules.Depths && exitRoom.Kind != RoomKind.Boss;
             if (exitRoom.Kind == RoomKind.Boss)
             {
                 layout.HasBossArena = true;
                 layout.BossArenaCenter = new Vector2Int(exitRoom.Interior.xMin + BossArenaRadiusCells, exitRoom.Interior.yMin + BossArenaRadiusCells);
                 layout.BossArenaRadius = BossArenaRadiusCells;
+                // The stairs down appear in the arena once the boss is dead (DungeonLevel.SetUpBoss), near its far edge;
+                // coming back up from below lands beside them. No random numbers are drawn, so layouts are unchanged.
+                layout.StairsDown = layout.BossArenaCenter + new Vector2Int(0, BossArenaRadiusCells - 4);
+                layout.ArrivalFromBelow = layout.BossArenaCenter + new Vector2Int(0, BossArenaRadiusCells - 6);
             }
             if (layout.HasStairsDown)
             {
@@ -688,26 +722,28 @@ namespace ARPG
                     // Bigger rooms hold more packs, so an open hall is a fight, not a walk.
                     var packs = size <= SmallMax ? random.Next(1, 3) : size <= MediumMax ? random.Next(2, 4) : random.Next(3, 5);
                     for (var i = 0; i < packs; i++)
-                        TryPlacePack(layout, roomIndex, NormalKind(random, settings), random.Next(settings.MinPackSize, settings.MaxPackSize + 1), random, settings);
+                        TryPlacePack(layout, roomIndex, NormalKind(random, settings, layout.Depth), random.Next(settings.MinPackSize, settings.MaxPackSize + 1), random, settings);
                     break;
                 }
                 case RoomKind.Elite:
                     TryPlacePack(layout, roomIndex, PackKind.Elite, random.Next(settings.MinElitePackSize, settings.MaxElitePackSize + 1), random, settings);
                     // A large elite room also holds a normal pack, so the elites are not alone in a big empty hall.
                     if (size > MediumMax)
-                        TryPlacePack(layout, roomIndex, NormalKind(random, settings), random.Next(settings.MinPackSize, settings.MaxPackSize + 1), random, settings);
+                        TryPlacePack(layout, roomIndex, NormalKind(random, settings, layout.Depth), random.Next(settings.MinPackSize, settings.MaxPackSize + 1), random, settings);
                     break;
                 case RoomKind.Treasure:
                     TryPlacePack(layout, roomIndex, PackKind.Normal, random.Next(settings.MinGuardPackSize, settings.MaxGuardPackSize + 1), random, settings);
                     break;
                 case RoomKind.Exit:
-                    TryPlacePack(layout, roomIndex, NormalKind(random, settings), random.Next(settings.MinPackSize, settings.MaxPackSize + 1), random, settings);
+                    TryPlacePack(layout, roomIndex, NormalKind(random, settings, layout.Depth), random.Next(settings.MinPackSize, settings.MaxPackSize + 1), random, settings);
                     break;
             }
         }
 
-        static PackKind NormalKind(System.Random random, DungeonSettings settings) =>
-            random.NextDouble() < settings.ChampionChance ? PackKind.WithChampion : PackKind.Normal;
+        // Below the first boss more packs have a Champion, a point a level up to 45 percent (2026-10-05: the dungeon changes
+        // gradually). The same random draw either way, so the first six levels are as they were.
+        static PackKind NormalKind(System.Random random, DungeonSettings settings, int depth) =>
+            random.NextDouble() < settings.ChampionChance + DungeonRules.ExtraChampionChance(depth) ? PackKind.WithChampion : PackKind.Normal;
 
         // A pack's disc may overlap a pillar: members whose spot is not walkable are left out by EnemyPack. Most of it
         // must be floor so the pack keeps its size.

@@ -612,3 +612,29 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   resonances (1.9 to 2.6 kHz and half again), 22 to 45 ms apart, over a soft low thump of the purse, low-passed twice
   at 2.4 kHz; 0.17 s, peak 0.28. Gold pickups play it at 0.55 volume (`PlayerLoot`) and at most once every 0.3 s
   (`Sfx.MinGap`). Selling at the merchant still plays it at full volume, once.
+
+## 2026-10-05: no acts; one town above 24 levels; newcomers in town
+
+- The owner: "I think everything will be taking place from the same town. Skip the acts, lets just progress deeper into
+  the dungeon and then have things happen in town depending on how deep you go." Answered one at a time: about 24
+  levels, a boss every 6; gradual, no hard sections; new NPCs arrive; all four proposed (stash keeper 2, healer 4,
+  gambler 8, trainer 12). Docs/00, 05 and 08 updated; Docs/05's act tables stay as a source for the deeper levels.
+- Depth: `DungeonRules.Depths` 24, `BossEvery` 6, `IsBossDepth` (6 only: the bosses at 12, 18 and 24 are not built,
+  so those are ordinary levels for now). A boss level's arena has `StairsDown` and `ArrivalFromBelow` near its far edge
+  (no random numbers drawn, layouts unchanged); after the kill the arena gets the stairs down (`SetUpBoss.AddWayOn`),
+  or to town from the last level. Enemy levels after 6: 0.6 a level, rounded up (8 at 7, 11 at 12, 15 at 18, 18 at 24),
+  chosen with the balance report (now 24 levels): at one a level the character fell to 19 against 27 by the bottom; at
+  0.6 it ends near 16 against 18, two behind, as at the Warden. Husks die in 1.4 to 1.8 s on typical gear all the way.
+- Gradual change below 6: Champion chance +1 point a level (up to +20; the same random draw, so the first six are
+  unchanged), skeletons and cultists 3 points a level more likely (up to 85 percent), and the dungeon's light darker and
+  redder by depth (`LightingRules.DungeonAt`, 0.2 to 0.14, blue to red-violet).
+- Save format 14: `deepestDepth` and `stash` (migration: the deepest waypoint, an empty stash; test loads a format 13
+  save). `GameSession.ReachDepth` on entering a level; reaching a newcomer's depth shows a banner.
+- Newcomers (`Town/`): `Newcomers`, `GambleRules`, `RespecRules` (pure, tested); `NewcomerNpc` (walk up); `TownSheets`
+  (the Pet Vendor's sheet with a scrolling list) with `StashScreen`, `GamblerScreen`, `TrainerScreen`; the Healer needs
+  no sheet. `LootRoller.RollItemOf(slot, rarity, level)`, `SkillLevels.ResetAll`, `AttributePoints.ResetAll`. Bodies by
+  `undead.py` (stash_keeper: bald, grey beard, apron, brass keys; healer: pale linen robe, green sash; gambler: plum coat,
+  gold trim, wide hat; trainer: mail, red tabard, sword), baked by Bake NPCs idling in the merchant's clip.
+- Checked in play in the editor with the deepest depth set to 12: all four stand in town idling; the Gambler's sheet
+  lists ten kinds at item level 11 and a buy took the price and put a Magic Bow in the backpack; the stash sheet lists
+  stash and backpack. Not yet run through on the phone. 584 of 584 tests pass.

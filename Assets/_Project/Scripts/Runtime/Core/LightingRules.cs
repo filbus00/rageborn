@@ -30,6 +30,18 @@ namespace ARPG
         // The dungeon is near black and cool, so the ember's warmth reads; enough stays to see a room's walls.
         public static readonly Mood Dungeon = new Mood(new Color(0.55f, 0.62f, 0.9f), 0.2f, 0.8f);
 
+        /// <summary>
+        /// The dungeon at a depth (2026-10-05: it changes gradually, no hard sections): the first level as above, getting
+        /// darker and turning from cold blue toward a bruised red-violet by the bottom, so the deep feels like a
+        /// different place without a seam between levels.
+        /// </summary>
+        public static Mood DungeonAt(int depth)
+        {
+            var t = Mathf.Clamp01((depth - 1) / (float)(DungeonRules.Depths - 1));
+            var color = Color.Lerp(Dungeon.Ambient, new Color(0.72f, 0.46f, 0.58f), t);
+            return new Mood(color, Mathf.Lerp(Dungeon.AmbientIntensity, 0.14f, t), Mathf.Lerp(Dungeon.CharacterShade, 0.74f, t));
+        }
+
         // Town at dusk: dimmer than day but everything visible, since nothing there attacks.
         public static readonly Mood Town = new Mood(new Color(0.8f, 0.74f, 0.92f), 0.62f, 0.9f);
 

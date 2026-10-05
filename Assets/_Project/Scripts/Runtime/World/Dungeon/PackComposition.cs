@@ -119,14 +119,19 @@ namespace ARPG
             return members;
         }
 
+        /// <summary>Below the first boss the undead spread: 3 points more of packs a level, up to 85 percent (2026-10-05:
+        /// the dungeon changes gradually, no hard sections).</summary>
+        public static int UndeadPercent(int basePercent, int depth) =>
+            System.Math.Min(85, basePercent + 3 * System.Math.Max(0, depth - DungeonRules.BossEvery));
+
         static PackMember[] RollUndead(int depth, PackKind kind, int count, int levelSeed, int packIndex)
         {
             var members = RollAct1(depth, kind, count, levelSeed, packIndex);
             if (depth < FirstUndeadDepth || kind == PackKind.Elite)
                 return members;
             var hash = (uint)DungeonRules.LevelSeed(levelSeed, 2000 + packIndex);
-            var skeletons = hash % 100 < SkeletonPercent;
-            var cultists = hash / 100 % 100 < CultistPercent;
+            var skeletons = hash % 100 < UndeadPercent(SkeletonPercent, depth);
+            var cultists = hash / 100 % 100 < UndeadPercent(CultistPercent, depth);
             var first = kind == PackKind.WithChampion ? 1 : 0;
             for (var i = first; i < members.Length; i++)
             {

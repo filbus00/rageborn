@@ -6,6 +6,8 @@ The Vigil was a chain of watch fires that kept the Hollow at bay for four hundre
 
 Tone: grim, weathered, quiet. Color palette is desaturated stone, ash and rust, with warm ember orange for loot, player effects and the Vigil fires, cold blue and sickly green for enemies. Text is short and low on exposition. Lore comes from item descriptions, zone landmarks and short cutscenes.
 
+**Decided (the owner, 2026-10-05): no acts.** The game is one town (Emberwatch) above one dungeon of 24 levels that changes gradually with depth (no hard sections), with a boss every 6 levels, the Cinder Warden at 6. Things happen in town by depth reached: newcomers arrive (a stash keeper at depth 2, a healer at 4, a gambler at 8, a trainer at 12). The act structure, towns and per-act tables below are kept as a source of enemies, bosses and looks for the deeper levels, not as structure. Where they disagree with this paragraph, this paragraph wins.
+
 ## Story outline
 
 1. Act 1, Ashfields: the first fire dies. The player gathers survivors at a ruined chapel.

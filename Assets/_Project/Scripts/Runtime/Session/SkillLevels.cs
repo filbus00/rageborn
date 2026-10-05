@@ -77,6 +77,13 @@ namespace ARPG
         public IEnumerable<KeyValuePair<string, int>> All => levels;
 
         /// <summary>Sets a level from a save.</summary>
+        /// <summary>Every skill back to level 1, all points unspent (the Trainer).</summary>
+        public void ResetAll()
+        {
+            levels.Clear();
+            Changed?.Invoke();
+        }
+
         public void Restore(string skill, int level)
         {
             if (!string.IsNullOrEmpty(skill) && level > 1)

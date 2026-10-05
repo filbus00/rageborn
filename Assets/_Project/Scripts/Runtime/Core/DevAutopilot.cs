@@ -338,8 +338,8 @@ namespace ARPG
             if (far != null)
                 return Go(me, far, far.GroundPosition, ShootDistance - 1f);
 
-            // 6. The level is clear: down, or home after the boss.
-            var exit = GameObject.Find(bossKilled ? "Stairs To Town" : "Stairs Down");
+            // 6. The level is clear: down (past a dead boss too, since 2026-10-05), or home from the bottom.
+            var exit = GameObject.Find("Stairs Down") ?? (bossKilled ? GameObject.Find("Stairs To Town") : null);
             if (exit != null)
                 return Go(me, exit, IsoMath.WorldToGround(exit.transform.position), 0f);
             return Vector2.zero;

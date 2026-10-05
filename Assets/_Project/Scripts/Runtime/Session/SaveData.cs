@@ -20,7 +20,7 @@ namespace ARPG
         /// 12: bows only, the Wild Arrow (2026-09-30): adds spent stat points and pets. A save older than 12 is the retired
         /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses. 13: adds each
         /// item's named legendary and the legendaries seen (the Codex).</summary>
-        public const int CurrentVersion = 13;
+        public const int CurrentVersion = 14;
 
         public int version;
 
@@ -98,6 +98,11 @@ namespace ARPG
 
         /// <summary>The named legendaries the character has found, by name (the Codex, Docs/03).</summary>
         public List<string> codex = new List<string>();
+
+        // Version 14 (2026-10-05, one town above 24 levels): the deepest depth reached, by which newcomers arrive in
+        // town, and the Stash Keeper's chest.
+        public int deepestDepth;
+        public List<ItemData> stash = new List<ItemData>();
     }
 
     [Serializable]

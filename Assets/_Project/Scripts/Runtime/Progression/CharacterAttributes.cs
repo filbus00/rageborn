@@ -58,6 +58,13 @@ namespace ARPG
             return true;
         }
 
+        /// <summary>Every point back, unspent (the Trainer).</summary>
+        public void ResetAll()
+        {
+            System.Array.Clear(spent, 0, spent.Length);
+            Changed?.Invoke();
+        }
+
         /// <summary>Spent points by attribute, in <see cref="Attribute"/> order, for the save.</summary>
         public int[] ToArray() => (int[])spent.Clone();
 

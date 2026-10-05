@@ -186,6 +186,16 @@ namespace ARPG
             return rarity == ItemRarity.Legendary ? Named(slot, itemLevel, affixes, LootSource.Elite) : new Item(slot, rarity, itemLevel, affixes);
         }
 
+        /// <summary>One item of a chosen kind and rarity (the Gambler, 2026-10-05). A Legendary resets the bad luck
+        /// counter, as a rolled one does.</summary>
+        public Item RollItemOf(ItemSlot slot, ItemRarity rarity, int itemLevel)
+        {
+            if (rarity == ItemRarity.Legendary)
+                KillsSinceLegendary = 0;
+            var affixes = AffixRoller.Roll(slot, rarity, itemLevel, random);
+            return rarity == ItemRarity.Legendary ? Named(slot, itemLevel, affixes, LootSource.Elite) : new Item(slot, rarity, itemLevel, affixes);
+        }
+
         /// <summary>
         /// Gold from a kill. Docs/04-progression-and-economy.md: a normal enemy drops 0.6 times its level to the power
         /// 1.3, a Champion 3 times that and an elite 8 times. It is rounded, with a floor of 1 so a drop is never empty.

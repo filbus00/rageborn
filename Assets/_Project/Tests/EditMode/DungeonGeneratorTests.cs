@@ -14,8 +14,10 @@ namespace ARPG.Tests
 
         static IEnumerable<(int seed, int depth)> Cases()
         {
+            // The first six levels, and samples of the deeper ones (2026-10-05: one dungeon of 24).
+            var depths = new[] { 1, 2, 3, 4, 5, 6, 7, 12, 18, 24 };
             for (var seed = 1; seed <= 40; seed++)
-                for (var depth = 1; depth <= DungeonRules.LevelsPerAct; depth++)
+                foreach (var depth in depths)
                     yield return (seed * 7919, depth);
         }
 
@@ -85,7 +87,7 @@ namespace ARPG.Tests
 
                 Assert.That(layout.Rooms.Count, Is.InRange(7, 10), label + ": 5 to 8 rooms between start and exit");
                 Assert.AreEqual(1, layout.Rooms.Count(r => r.Kind == RoomKind.Start), label);
-                var lastLevel = depth == DungeonRules.LevelsPerAct;
+                var lastLevel = DungeonRules.IsBossDepth(depth);
                 Assert.AreEqual(lastLevel ? 0 : 1, layout.Rooms.Count(r => r.Kind == RoomKind.Exit), label);
                 Assert.AreEqual(lastLevel ? 1 : 0, layout.Rooms.Count(r => r.Kind == RoomKind.Boss), label + ": the act boss waits on the last level");
                 Assert.AreEqual(lastLevel, layout.HasBossArena, label);
@@ -94,7 +96,13 @@ namespace ARPG.Tests
                 Assert.GreaterOrEqual(layout.Chests.Count, 1, label + ": one guaranteed chest");
                 Assert.GreaterOrEqual(layout.Packs.Count(p => p.Kind == PackKind.Elite), 1, label + ": one guaranteed elite pack");
                 Assert.AreEqual(DungeonRules.EnemyLevel(depth), layout.EnemyLevel, label);
-                Assert.AreEqual(depth < DungeonRules.LevelsPerAct, layout.HasStairsDown, label + ": the last level has no stairs down yet");
+                Assert.AreEqual(depth < DungeonRules.Depths && !lastLevel, layout.HasStairsDown,
+                    label + ": stairs down on every level but a boss's (they appear after the kill) and the last");
+                if (lastLevel)
+                {
+                    Assert.IsTrue(layout.IsFloor(layout.StairsDown), label + ": the arena's stairs down stand on floor");
+                    Assert.IsTrue(layout.IsFloor(layout.ArrivalFromBelow), label + ": coming back up lands on floor");
+                }
                 Assert.IsFalse(layout.Packs.Any(p => layout.Rooms[p.Room].Kind == RoomKind.Start), label + ": the start room is empty");
             }
         }
@@ -196,12 +204,25 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void EnemyLevel_RisesThroughTheAct_FollowingTheCharacter()
+        public void EnemyLevel_RisesWithDepth_FollowingTheCharacter()
         {
             Assert.AreEqual(1, DungeonRules.EnemyLevel(1));
-            Assert.AreEqual(7, DungeonRules.EnemyLevel(DungeonRules.LevelsPerAct));
-            for (var depth = 2; depth <= DungeonRules.LevelsPerAct; depth++)
-                Assert.Greater(DungeonRules.EnemyLevel(depth), DungeonRules.EnemyLevel(depth - 1));
+            Assert.AreEqual(7, DungeonRules.EnemyLevel(6));
+            Assert.AreEqual(8, DungeonRules.EnemyLevel(7));
+            Assert.AreEqual(11, DungeonRules.EnemyLevel(12));
+            Assert.AreEqual(15, DungeonRules.EnemyLevel(18));
+            Assert.AreEqual(18, DungeonRules.EnemyLevel(DungeonRules.Depths));
+            for (var depth = 2; depth <= DungeonRules.Depths; depth++)
+                Assert.GreaterOrEqual(DungeonRules.EnemyLevel(depth), DungeonRules.EnemyLevel(depth - 1));
+        }
+
+        [Test]
+        public void TheDungeonIs24Deep_WithTheWardenAt6()
+        {
+            Assert.AreEqual(24, DungeonRules.Depths);
+            Assert.IsTrue(DungeonRules.IsBossDepth(6));
+            Assert.IsFalse(DungeonRules.IsBossDepth(5));
+            Assert.IsFalse(DungeonRules.IsBossDepth(7));
         }
 
         [Test]

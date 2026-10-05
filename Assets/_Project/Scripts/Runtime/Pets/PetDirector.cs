@@ -54,6 +54,10 @@ namespace ARPG
             {
                 PetVendor.Create(IsoMath.CellToGround(VendorCell), null);
                 Merchant.Create(IsoMath.CellToGround(MerchantCell), null);
+                // The newcomers who have arrived by the deepest depth reached (2026-10-05).
+                foreach (var who in Newcomers.All)
+                    if (GameSession.Current.HasArrived(who))
+                        NewcomerNpc.Create(who, null);
             }
             Refresh();
         }

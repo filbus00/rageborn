@@ -503,6 +503,99 @@ namespace ARPG
             NotifyChanged();
         }
 
+        // --- The town's newcomers (2026-10-05) ----------------------------------------------------------------------
+
+        /// <summary>The deepest dungeon level the character has stood on, 0 before the first. Newcomers arrive in town by
+        /// it (<see cref="Newcomers"/>). Saved.</summary>
+        public int DeepestDepth { get; private set; }
+
+        /// <summary>Records standing on a depth. True when it is deeper than any before.</summary>
+        public bool ReachDepth(int depth)
+        {
+            if (depth <= DeepestDepth)
+                return false;
+            DeepestDepth = depth;
+            NotifyChanged();
+            return true;
+        }
+
+        public bool HasArrived(Newcomer who) => Newcomers.HasArrived(who, DeepestDepth);
+
+        /// <summary>How many items the stash holds (a list, not a grid). Tuning.</summary>
+        public const int StashCapacity = 60;
+
+        readonly List<Item> stash = new List<Item>();
+
+        /// <summary>The Stash Keeper's chest: gear kept in town, out of the backpack. Saved.</summary>
+        public IReadOnlyList<Item> Stash => stash;
+
+        /// <summary>Moves an item from the backpack into the stash. False when the stash is full or the item is not in the
+        /// backpack.</summary>
+        public bool StoreInStash(Item item)
+        {
+            if (stash.Count >= StashCapacity || !Inventory.Remove(item))
+                return false;
+            stash.Add(item);
+            NotifyChanged();
+            return true;
+        }
+
+        /// <summary>Moves an item from the stash into the backpack. False when there is no room for it.</summary>
+        public bool TakeFromStash(Item item)
+        {
+            if (!stash.Contains(item) || !Inventory.TryAdd(item))
+                return false;
+            stash.Remove(item);
+            NotifyChanged();
+            return true;
+        }
+
+        internal void RestoreStash(Item item) => stash.Add(item);
+
+        /// <summary>The Gambler: pays the price and puts the rolled item of that kind in the backpack. False, with nothing
+        /// paid, when the gold or the backpack's room is short.</summary>
+        public bool Gamble(ItemSlot kind, System.Random random, out Item bought)
+        {
+            bought = null;
+            var itemLevel = GambleRules.ItemLevel(DeepestDepth);
+            var price = GambleRules.Price(kind, itemLevel);
+            if (Gold < price)
+                return false;
+            var item = Loot.RollItemOf(kind, GambleRules.Rarity(random.NextDouble()), itemLevel);
+            if (!Inventory.TryAdd(item))
+                return false;
+            Gold -= price;
+            RecordLegendary(item.Legendary);
+            bought = item;
+            NotifyChanged();
+            PickedUp?.Invoke(item);
+            return true;
+        }
+
+        /// <summary>The Trainer: every skill point back for the fee. False when there is nothing to reset or not the gold.</summary>
+        public bool RespecSkills()
+        {
+            var price = RespecRules.SkillsPrice(Level);
+            if (Gold < price || SkillLevels.Spent == 0)
+                return false;
+            Gold -= price;
+            SkillLevels.ResetAll();
+            NotifyChanged();
+            return true;
+        }
+
+        /// <summary>The Trainer: every stat point back for the fee. False when there is nothing to reset or not the gold.</summary>
+        public bool RespecStats()
+        {
+            var price = RespecRules.StatsPrice(Level);
+            if (Gold < price || Attributes.TotalSpent == 0)
+                return false;
+            Gold -= price;
+            Attributes.ResetAll();
+            NotifyChanged();
+            return true;
+        }
+
         /// <summary>
         /// Puts a found item in the backpack. Returns false, leaving the item where it is, when there is no room for its
         /// size (<see cref="ItemSize"/>).
