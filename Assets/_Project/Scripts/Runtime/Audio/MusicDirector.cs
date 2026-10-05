@@ -48,7 +48,7 @@ namespace ARPG
         MusicTrack playing;
         bool useSynth;
         Task<float[]> rendering;
-        CinderWardenFight fight;
+        BossFight fight;
         Scene fightScene;
 
         public static MusicDirector Instance { get; private set; }
@@ -125,7 +125,7 @@ namespace ARPG
             var scene = SceneManager.GetActiveScene();
             if (fight == null || fightScene != scene)
             {
-                fight = FindAnyObjectByType<CinderWardenFight>();
+                fight = FindAnyObjectByType<BossFight>();
                 fightScene = scene;
             }
             return fight != null && fight.Engaged && fight.Boss != null && fight.Boss.IsAlive;

@@ -152,6 +152,9 @@ namespace ARPG
         int strikesLeft;
         float recoverElapsed;
         bool burstDone;
+        float healTimer;
+        readonly System.Collections.Generic.List<EnemyController> healBuffer = new System.Collections.Generic.List<EnemyController>(16);
+        static readonly Color HealColor = new Color(0.45f, 1f, 0.5f, 1f);
 
         public EnemyState State { get; private set; }
 
@@ -279,6 +282,7 @@ namespace ARPG
             strikesLeft = 0;
             recoverElapsed = 0f;
             burstDone = false;
+            healTimer = data.HealEverySeconds;
             life = MaxLife;
             punchTimer = 0f;
             deathTimer = 0f;
@@ -392,8 +396,10 @@ namespace ARPG
             var playerGround = world.PlayerGround;
             var distance = Vector2.Distance(ground, playerGround);
             lungeCooldown = Mathf.Max(0f, lungeCooldown - deltaTime);
-            if (definition.Archetype == EnemyArchetype.Support)
+            if (definition.Archetype == EnemyArchetype.Support && definition.AuraDamageBonus > 0f)
                 ShowAura(world);
+            if (definition.HealPercent > 0f && State != EnemyState.Idle)
+                TickHealing(deltaTime, world);
             if (dashLeft > 0f)
             {
                 Dash(deltaTime, world, playerGround);
@@ -800,10 +806,16 @@ namespace ARPG
                     break;
 
                 case EnemyArchetype.Brute:
+                    // A slam that lands ahead of the brute, toward the player (the Drowned Watchman's forward slam).
+                    if (definition.SlamForward > 0f)
+                    {
+                        var toward = playerGround - ground;
+                        attackCenter = ground + (toward.sqrMagnitude > 1e-4f ? toward.normalized : Vector2.down) * definition.SlamForward;
+                    }
                     if (slamMarker == null)
-                        slamMarker = GroundMarker.Circle(ground, definition.SlamRadius, stateTimer, TelegraphColor, world.transform);
+                        slamMarker = GroundMarker.Circle(attackCenter, definition.SlamRadius, stateTimer, TelegraphColor, world.transform);
                     else
-                        slamMarker.RestartCircle(ground, definition.SlamRadius, stateTimer);
+                        slamMarker.RestartCircle(attackCenter, definition.SlamRadius, stateTimer);
                     break;
 
                 case EnemyArchetype.Archer:
@@ -831,7 +843,16 @@ namespace ARPG
                 case EnemyArchetype.Caster:
                     // The circle has filled: it burns on for a while (Docs/05: 3 s, 0.5 hit a second).
                     Sfx.Play(SoundId.Explosion, 0.4f);
-                    world.Hazards.Fire(attackCenter, definition.SlamRadius, definition.BurnSeconds, damage * definition.BurnHitsPerSecond, Level);
+                    // The Rift Caller's circle pulses again a few times, each filling before it hits; others burn on.
+                    if (definition.CastPulses > 0)
+                    {
+                        if (PlayerWithinCircle(world, attackCenter, definition.SlamRadius))
+                            world.Player.TakeHit(damage, Level, armorIgnorePercent, dodgeable: false);
+                        for (var pulse = 1; pulse < definition.CastPulses; pulse++)
+                            world.Hazards.Blast(attackCenter, definition.SlamRadius, definition.CastPulseGap * pulse, damage, Level, EnemyHazards.VoidColor);
+                    }
+                    else
+                        world.Hazards.Fire(attackCenter, definition.SlamRadius, definition.BurnSeconds, damage * definition.BurnHitsPerSecond, Level);
                     return;
 
                 case EnemyArchetype.Brute:
@@ -867,6 +888,8 @@ namespace ARPG
         /// <summary>An elite's Vampiric and Frozen modifiers, after one of its hits landed (an arrow's too).</summary>
         internal void ApplyOnHitEffects(EnemyManager world, float damage)
         {
+            if (definition.HitSlowFraction > 0f)
+                world.PlayerController?.ApplySlow(1f - definition.HitSlowFraction, definition.HitSlowSeconds);
             if (HasModifier(EliteModifiers.Vampiric))
                 life = Mathf.Min(MaxLife, life + damage * VampiricHealFraction);
             if (HasModifier(EliteModifiers.Frozen))
@@ -897,6 +920,42 @@ namespace ARPG
                 desired.Normalize();
 
             Move(desired * (EffectiveMoveSpeed * deltaTime), world);
+        }
+
+        static bool PlayerWithinCircle(EnemyManager world, Vector2 at, float radius) =>
+            world.Player != null && world.Player.IsAlive && Vector2.Distance(world.PlayerGround, at) <= radius;
+
+        /// <summary>Heals by an amount, up to full life (a Grave Priest's).</summary>
+        public void Heal(float amount)
+        {
+            if (!IsAlive || amount <= 0f)
+                return;
+            life = Mathf.Min(MaxLife, life + amount);
+            effects.Flash(HealColor, 0.3f);
+        }
+
+        // Docs/05, the Grave Priest: every few seconds it heals the most hurt ally near it by a share of that ally's life.
+        void TickHealing(float deltaTime, EnemyManager world)
+        {
+            healTimer -= deltaTime;
+            if (healTimer > 0f)
+                return;
+            healTimer = definition.HealEverySeconds;
+            world.QueryEnemies(ground, definition.HealRadius, healBuffer);
+            EnemyController hurt = null;
+            var lowest = 0.999f;
+            foreach (var ally in healBuffer)
+            {
+                if (ally == this || ally.Scripted || ally.MaxLife <= 0f)
+                    continue;
+                var fraction = ally.Life / ally.MaxLife;
+                if (fraction < lowest)
+                {
+                    lowest = fraction;
+                    hurt = ally;
+                }
+            }
+            hurt?.Heal(hurt.MaxLife * definition.HealPercent);
         }
 
         /// <summary>A charger's wind-up: a line along the lunge, filling, aimed where the player stood.</summary>

@@ -30,6 +30,16 @@ namespace ARPG
 
         /// <summary>From depth 5: a slow brute that bursts, in a ghoul's place.</summary>
         CarrionBloat,
+
+        // The deep levels (2026-10-05), each fading in over the levels from its first (PackComposition.Deep).
+        Drowned,
+        Harpooner,
+        DrownedWatchman,
+        SkeletonKnight,
+        GravePriest,
+        Hollowed,
+        VoidWraith,
+        RiftCaller,
     }
 
     /// <summary>
@@ -74,7 +84,71 @@ namespace ARPG
         public const int MaxWolves = 6;
 
         public static PackMember[] Roll(int depth, PackKind kind, int count, int levelSeed, int packIndex) =>
-            Roster(depth, kind, RollUndead(depth, kind, count, levelSeed, packIndex), levelSeed, packIndex);
+            Deep(depth, kind, Roster(depth, kind, RollUndead(depth, kind, count, levelSeed, packIndex), levelSeed, packIndex), levelSeed, packIndex);
+
+        /// <summary>
+        /// How likely a pack is to have a deep type in place of an older one: none before its first depth, then
+        /// <paramref name="perLevel"/> percent more a level, up to <paramref name="max"/> (2026-10-05: the dungeon changes
+        /// gradually, no hard sections).
+        /// </summary>
+        public static int DeepShare(int depth, int first, int perLevel, int max) =>
+            depth < first ? 0 : System.Math.Min(max, (depth - first + 1) * perLevel);
+
+        // Each deep type: the first depth it appears, how fast it spreads, and its cap. Tuning.
+        public const int FirstDrownedDepth = 7, FirstHarpoonerDepth = 8, FirstWatchmanDepth = 9;
+        public const int FirstKnightDepth = 13, FirstPriestDepth = 14;
+        public const int FirstHollowedDepth = 19, FirstRiftCallerDepth = 19, FirstWraithDepth = 20;
+
+        /// <summary>
+        /// The deep levels' roster, from a fourth hash of the pack. From 7 the drowned take the husks' places, from 8
+        /// harpooners the archers', from 9 drowned watchmen the ghouls'; from 13 skeleton knights the brutes', from 14 a
+        /// grave priest stands at the back of some packs of 4 or more; from 19 the hollowed take the swarmers' places
+        /// and rift callers the ranged ones', from 20 the wolf packs turn to void wraiths. Each spreads by its share
+        /// (<see cref="DeepShare"/>), so a level has some old and some new. Elite packs and a Champion's slot 0 stay.
+        /// </summary>
+        static PackMember[] Deep(int depth, PackKind kind, PackMember[] members, int levelSeed, int packIndex)
+        {
+            if (kind == PackKind.Elite || depth < FirstDrownedDepth)
+                return members;
+            var a = (uint)DungeonRules.LevelSeed(levelSeed, 5000 + packIndex);
+            var b = (uint)DungeonRules.LevelSeed(levelSeed, 6000 + packIndex);
+            var first = kind == PackKind.WithChampion ? 1 : 0;
+            bool Rolls(uint hash, int share) => hash % 100 < share;
+
+            var drowned = Rolls(a, DeepShare(depth, FirstDrownedDepth, 15, 75));
+            var harpoon = Rolls(a / 100, DeepShare(depth, FirstHarpoonerDepth, 15, 70));
+            var watchman = Rolls(a / 10000, DeepShare(depth, FirstWatchmanDepth, 15, 70));
+            var knight = Rolls(a / 1000000, DeepShare(depth, FirstKnightDepth, 15, 75));
+            var priest = Rolls(b, DeepShare(depth, FirstPriestDepth, 10, 40));
+            var hollowed = Rolls(b / 100, DeepShare(depth, FirstHollowedDepth, 15, 80));
+            var rift = Rolls(b / 10000, DeepShare(depth, FirstRiftCallerDepth, 12, 60));
+            var wraith = Rolls(b / 1000000, DeepShare(depth, FirstWraithDepth, 20, 100));
+
+            for (var i = first; i < members.Length; i++)
+            {
+                var m = members[i];
+                if (m == PackMember.Husk || m == PackMember.Skeleton || m == PackMember.Cutthroat)
+                    m = hollowed ? PackMember.Hollowed : drowned ? PackMember.Drowned : m;
+                else if (m == PackMember.Archer || m == PackMember.Cultist || m == PackMember.EmberAcolyte)
+                    m = rift ? PackMember.RiftCaller : harpoon && m == PackMember.Archer ? PackMember.Harpooner : m;
+                else if (m == PackMember.Ghoul || m == PackMember.CarrionBloat)
+                    m = knight ? PackMember.SkeletonKnight : watchman ? PackMember.DrownedWatchman : m;
+                else if (m == PackMember.AshWolf && wraith)
+                    m = PackMember.VoidWraith;
+                members[i] = m;
+            }
+            if (priest && members.Length >= 4 && System.Array.IndexOf(members, PackMember.PyreKeeper) < 0 &&
+                System.Array.IndexOf(members, PackMember.AshWolf) < 0 && System.Array.IndexOf(members, PackMember.VoidWraith) < 0)
+            {
+                for (var i = members.Length - 1; i >= first; i--)
+                    if (members[i] != PackMember.None)
+                    {
+                        members[i] = PackMember.GravePriest;
+                        break;
+                    }
+            }
+            return members;
+        }
 
         /// <summary>
         /// The rest of act 1's roster, from a third hash of the pack so every earlier roll stays as it was. Normal packs

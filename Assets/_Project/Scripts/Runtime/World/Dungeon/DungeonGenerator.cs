@@ -20,9 +20,9 @@ namespace ARPG
         /// <summary>The first 6 levels (was act 1): the autopilot plays them, the DEV shortcuts reach their boss.</summary>
         public const int LevelsPerAct = BossEvery;
 
-        /// <summary>Depths whose exit room is a boss arena: the depths with a boss built so far (the Cinder Warden at 6).
-        /// 12, 18 and 24 join when their bosses exist; until then they are ordinary levels.</summary>
-        static readonly int[] BuiltBossDepths = { 6 };
+        /// <summary>Depths whose exit room is a boss arena: the Cinder Warden at 6, the Tidewife at 12, Saint Marrow at 18
+        /// and the First Watchman at 24 (2026-10-05).</summary>
+        static readonly int[] BuiltBossDepths = { 6, 12, 18, 24 };
 
         public static bool IsBossDepth(int depth) => System.Array.IndexOf(BuiltBossDepths, depth) >= 0;
 

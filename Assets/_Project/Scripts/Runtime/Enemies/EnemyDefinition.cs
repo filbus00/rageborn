@@ -143,6 +143,23 @@ namespace ARPG
         [SerializeField, Min(0f)] float auraRadius = 5f;
         [SerializeField, Min(0f)] float auraDamageBonus = 0.2f;
 
+        // The deep levels' roster (2026-10-05, from Docs/05's later acts).
+        [Header("A hit that slows the player (the Drowned, the Harpooner)")]
+        [SerializeField, Range(0f, 0.9f)] float hitSlowFraction;
+        [SerializeField, Min(0f)] float hitSlowSeconds = 1f;
+
+        [Header("A brute's slam lands this far ahead of it, toward the player (0: around itself)")]
+        [SerializeField, Min(0f)] float slamForward;
+
+        [Header("Support: healing (the Grave Priest)")]
+        [SerializeField, Range(0f, 1f)] float healPercent;
+        [SerializeField, Min(0.5f)] float healEverySeconds = 6f;
+        [SerializeField, Min(0f)] float healRadius = 6f;
+
+        [Header("Caster: a circle that pulses instead of burning (the Rift Caller)")]
+        [SerializeField, Min(0)] int castPulses;
+        [SerializeField, Min(0.1f)] float castPulseGap = 1f;
+
         [Header("Burst (the Carrion Bloat)")]
         [SerializeField] bool burstOnDeath;
         [SerializeField] bool diesOnAttack;
@@ -195,6 +212,14 @@ namespace ARPG
         public bool BurstOnDeath => burstOnDeath;
         public bool DiesOnAttack => diesOnAttack;
         public float BurstFillSeconds => burstFillSeconds;
+        public float HitSlowFraction => hitSlowFraction;
+        public float HitSlowSeconds => hitSlowSeconds;
+        public float SlamForward => slamForward;
+        public float HealPercent => healPercent;
+        public float HealEverySeconds => healEverySeconds;
+        public float HealRadius => healRadius;
+        public int CastPulses => castPulses;
+        public float CastPulseGap => castPulseGap;
 
         /// <summary>Null for a Normal enemy, which keeps the prefab's own body sprite.</summary>
         public Sprite BodySprite => bodySprite;

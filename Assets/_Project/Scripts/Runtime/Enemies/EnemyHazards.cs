@@ -14,6 +14,7 @@ namespace ARPG
         // The burning ground's look: ember orange, fainter than a telegraph.
         static readonly Color FireColor = new Color(1f, 0.45f, 0.1f, 0.6f);
         static readonly Color BlastColor = new Color(1f, 0.22f, 0.12f, 0.95f);
+        public static readonly Color VoidColor = new Color(0.6f, 0.3f, 0.85f, 0.9f);
         const float BurnPulseSeconds = 0.5f;
 
         sealed class Hazard
@@ -39,6 +40,10 @@ namespace ARPG
         /// times the enemy's multipliers) to the player if she is inside. Not dodgeable: it is a ground shape.</summary>
         public void Blast(Vector2 center, float radius, float fillSeconds, float damage, int level) =>
             Add(center, radius, fillSeconds, 0f, damage, 0f, level, BlastColor);
+
+        /// <summary>A blast in another colour (the Rift Caller's void pulses).</summary>
+        public void Blast(Vector2 center, float radius, float fillSeconds, float damage, int level, Color color) =>
+            Add(center, radius, fillSeconds, 0f, damage, 0f, level, color);
 
         /// <summary>Burning ground for <paramref name="seconds"/>, dealing this much a second in pulses while the player
         /// stands in it.</summary>

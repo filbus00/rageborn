@@ -121,6 +121,8 @@ namespace ARPG.Editor
             serialized.FindProperty("cultistEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(UndeadEnemiesBuilder.CultistPath);
             Act1RosterBuilder.CreateDefinitions();
             Act1RosterBuilder.Assign(serialized);
+            DeepRosterBuilder.CreateDefinitions();
+            DeepRosterBuilder.Assign(serialized);
             serialized.FindProperty("stairsSprite").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Sprite>($"{EnvironmentArtFolder}/PlaceholderStairs.png");
             serialized.FindProperty("chestClosedSprite").objectReferenceValue = chestClosed;
             serialized.FindProperty("chestOpenSprite").objectReferenceValue = chestOpen;

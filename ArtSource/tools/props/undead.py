@@ -16,7 +16,11 @@ NAME = sys.argv[sys.argv.index("--") + 1]
 DONORS = {"skeleton": "husk", "cultist": "bandit_archer", "cutthroat": "husk", "ember_acolyte": "bandit_archer",
           "pyre_keeper": "bandit_archer", "carrion_bloat": "ghoul",
           # The town's newcomers (2026-10-05): built here too, written to Art/Models/NPCs, idling as the merchant does.
-          "stash_keeper": "bandit_archer", "healer": "bandit_archer", "gambler": "bandit_archer", "trainer": "bandit_archer"}
+          "stash_keeper": "bandit_archer", "healer": "bandit_archer", "gambler": "bandit_archer", "trainer": "bandit_archer",
+          # The deep levels (2026-10-05) and their bosses (on the ghoul's rig, as the Warden).
+          "drowned": "husk", "harpooner": "bandit_archer", "drowned_watchman": "ghoul", "skeleton_knight": "ghoul",
+          "grave_priest": "bandit_archer", "hollowed": "husk", "void_wraith": "husk", "rift_caller": "bandit_archer",
+          "tidewife": "ghoul", "saint_marrow": "ghoul", "first_watchman": "ghoul"}
 NPCS = {"stash_keeper", "healer", "gambler", "trainer"}
 DONOR = DONORS[NAME]
 OUT = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "NPCs", NAME) if NAME in NPCS else os.path.join(ENEMIES, NAME)
@@ -39,6 +43,11 @@ COLORS = {
     # The newcomers.
     "beard": BONE[0], "apron": WOOD[3], "tunic": WOOD[1], "brass": EMBER[3], "linen": BONE[1], "sash": MOSS[2],
     "plum": VIOLET[1], "plum_dark": VIOLET[0], "gold": EMBER[3], "mail": STONE[3], "tabard": BLOOD[2], "hair": WOOD[0],
+    # The deep levels.
+    "drowned_skin": (120, 140, 128), "drowned_dark": (70, 88, 84), "kelp": MOSS[1], "oilskin": (44, 62, 66),
+    "rust_plate": (112, 72, 46), "bone_white": BONE[2], "priest_green": MOSS[3], "ghost_green": (150, 220, 140),
+    "ash_black": (34, 30, 36), "void": VIOLET[1], "void_dark": VIOLET[0], "void_glow": (190, 120, 240), "coral": (190, 96, 86),
+    "black_iron": (40, 40, 46),
 }
 color_list = list(COLORS)
 bm = bmesh.new()
@@ -367,9 +376,223 @@ def trainer():
     block(hip + V((0, 0.06 * U, 0)), (0.12 * U, 0.025 * U, 0.03 * U), "Hips", "iron")
 
 
+def drowned():
+    # A drowned man: swollen pale blue-green skin, rags, kelp hanging from the shoulders.
+    h = head("Head")
+    _townsfolk_body("drowned_skin", "drowned_dark", "drowned_dark", "drowned_dark", skin="drowned_skin", wide=1.1)
+    blob(h + V((0, 0.1 * U, 0)), (0.1 * U, 0.11 * U, 0.1 * U), "Head", "drowned_skin")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.035 * U, 0.1 * U, 0.09 * U)), (0.025 * U, 0.02 * U, 0.02 * U), "Head", "eye")
+        limb(head("Spine2") + V((sx * 0.13 * U, 0.08 * U, 0.05 * U)), head("Spine") + V((sx * 0.15 * U, -0.1 * U, 0.08 * U)), 0.025 * U, 0.015 * U, "Spine2", "kelp", 4)
+    block(V((0, head("Hips").y - 0.05 * U, 0)), (0.3 * U, 0.16 * U, 0.2 * U), "Hips", "kelp")
+
+
+def harpooner():
+    # A whaler in a dark oilskin coat and hood, a long barbed harpoon in the left hand.
+    h = head("Head")
+    _townsfolk_body("oilskin", "leather_dark", "oilskin", "robe_dark")
+    blob(h + V((0, 0.1 * U, -0.01 * U)), (0.11 * U, 0.125 * U, 0.11 * U), "Head", "oilskin")
+    blob(h + V((0, 0.08 * U, 0.05 * U)), (0.07 * U, 0.08 * U, 0.05 * U), "Head", "drowned_skin")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.1 * U, 0.11 * U, side + "UpLeg", "oilskin")
+    hand = head("LeftHand") + (tail("LeftHand") - head("LeftHand")) * 0.4
+    limb(hand - V((0, 0.7 * U, 0)), hand + V((0, 0.8 * U, 0)), 0.018 * U, 0.018 * U, "LeftHand", "rust", 5)
+    limb(hand + V((0, 0.8 * U, 0)), hand + V((0, 1.0 * U, 0)), 0.04 * U, 0.002 * U, "LeftHand", "steel", 4)
+    block(hand + V((0, 0.85 * U, 0)), (0.1 * U, 0.02 * U, 0.02 * U), "LeftHand", "steel")
+
+
+def drowned_watchman():
+    # A drowned guard of the old watch: rusted plates over a swollen body, kelp, a heavy halberd.
+    h = head("Head")
+    _townsfolk_body("drowned_skin", "rust_plate", "drowned_dark", "rust_plate", skin="drowned_skin", wide=1.3)
+    blob(h + V((0, 0.08 * U, 0.02 * U)), (0.11 * U, 0.12 * U, 0.11 * U), "Head", "rust_plate")
+    block(h + V((0, 0.07 * U, 0.11 * U)), (0.12 * U, 0.025 * U, 0.02 * U), "Head", "ash_black")
+    block(V((0, head("Spine2").y, 0.04 * U)), (0.42 * U, 0.26 * U, 0.26 * U), "Spine2", "rust_plate")
+    for sx in (-1, 1):
+        blob(head("LeftArm" if sx < 0 else "RightArm") + V((0, 0.04 * U, 0)), (0.11 * U, 0.07 * U, 0.1 * U), "LeftArm" if sx < 0 else "RightArm", "rust_plate")
+    hand = head("RightHand") + (tail("RightHand") - head("RightHand")) * 0.4
+    d = (tail("RightHand") - head("RightHand")).normalized()
+    limb(hand - d * 0.5 * U, hand + d * 0.9 * U, 0.025 * U, 0.025 * U, "RightHand", "wood_dark" if "wood_dark" in COLORS else "rust", 5)
+    block(hand + d * 0.85 * U, (0.24 * U, 0.04 * U, 0.12 * U), "RightHand", "steel")
+
+
+def skeleton_knight():
+    # An armoured skeleton: bones under an iron breastplate and helm, a round shield on the left arm, a sword in the right.
+    h = head("Head")
+    b = 0.04 * U
+    blob(h + V((0, 0.1 * U, 0.01 * U)), (0.11 * U, 0.12 * U, 0.11 * U), "Head", "black_iron")
+    block(h + V((0, 0.09 * U, 0.11 * U)), (0.12 * U, 0.025 * U, 0.02 * U), "Head", "eye")
+    block(V((0, head("Spine2").y, 0.02 * U)), (0.38 * U, 0.28 * U, 0.24 * U), "Spine2", "black_iron")
+    block(V((0, head("Spine1").y, 0)), (0.2 * U, 0.12 * U, 0.12 * U), "Spine1", "bone")
+    block(V((0, head("Hips").y, 0)), (0.3 * U, 0.12 * U, 0.18 * U), "Hips", "black_iron")
+    for side in ("Left", "Right"):
+        limb(head(side + "Arm"), head(side + "ForeArm"), b, b * 0.8, side + "Arm", "bone")
+        limb(head(side + "ForeArm"), head(side + "Hand"), b * 0.8, b * 0.7, side + "ForeArm", "bone")
+        blob(head(side + "Arm") + V((0, 0.04 * U, 0)), (0.1 * U, 0.06 * U, 0.09 * U), side + "Arm", "black_iron")
+        limb(head(side + "UpLeg"), head(side + "Leg"), b * 1.1, b * 0.9, side + "UpLeg", "bone")
+        limb(head(side + "Leg"), head(side + "Foot"), b * 0.9, b * 0.7, side + "Leg", "black_iron")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.08 * U, 0.05 * U, 0.17 * U), side + "Foot", "black_iron")
+    fore = head("LeftForeArm") + (head("LeftHand") - head("LeftForeArm")) * 0.5
+    blob(fore + V((0.06 * U, 0, 0)), (0.03 * U, 0.2 * U, 0.2 * U), "LeftForeArm", "rust_plate")
+    hand = head("RightHand")
+    d = (tail("RightHand") - hand).normalized()
+    limb(hand, hand + d * 0.8 * U, 0.035 * U, 0.008 * U, "RightHand", "steel", 4)
+    block(hand + d * 0.04 * U, (0.18 * U, 0.03 * U, 0.03 * U), "RightHand", "iron")
+
+
+def grave_priest():
+    # A priest of the ossuary: a bone-white robe with green trim, a skull mask, a censer of green fire on a staff.
+    h = head("Head")
+    blob(h + V((0, 0.1 * U, -0.01 * U)), (0.12 * U, 0.14 * U, 0.12 * U), "Head", "bone_white")
+    block(h + V((0, 0.08 * U, 0.1 * U)), (0.08 * U, 0.09 * U, 0.03 * U), "Head", "bone")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.025 * U, 0.1 * U, 0.115 * U)), (0.02 * U, 0.015 * U, 0.01 * U), "Head", "ghost_green")
+    s2 = head("Spine2")
+    block(V((0, s2.y, 0)), (0.32 * U, 0.2 * U, 0.2 * U), "Spine2", "bone_white")
+    block(V((0, head("Spine1").y, 0)), (0.28 * U, 0.12 * U, 0.19 * U), "Spine1", "bone_white")
+    block(V((0, head("Spine").y - 0.02 * U, 0)), (0.27 * U, 0.06 * U, 0.19 * U), "Spine", "priest_green")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.11 * U, 0.12 * U, side + "UpLeg", "bone_white")
+        limb(head(side + "Leg"), head(side + "Foot") + V((0, 0.03 * U, 0)), 0.12 * U, 0.14 * U, side + "Leg", "bone_white")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.08 * U, 0.05 * U, 0.15 * U), side + "Foot", "robe_dark")
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.06 * U, 0.06 * U, side + "Arm", "bone_white")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.06 * U, 0.08 * U, side + "ForeArm", "priest_green")
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.04 * U, 0.04 * U, 0.04 * U), side + "Hand", "bone")
+    hand = head("LeftHand") + (tail("LeftHand") - head("LeftHand")) * 0.4
+    limb(hand - V((0, 0.7 * U, 0)), hand + V((0, 0.65 * U, 0)), 0.018 * U, 0.018 * U, "LeftHand", "bone", 5)
+    blob(hand + V((0, 0.72 * U, 0)), (0.06 * U, 0.06 * U, 0.06 * U), "LeftHand", "iron")
+    blob(hand + V((0, 0.76 * U, 0)), (0.04 * U, 0.05 * U, 0.04 * U), "LeftHand", "ghost_green")
+
+
+def hollowed():
+    # The Hollow's husk: ashen-black skin split by violet cracks, violet eyes.
+    h = head("Head")
+    _townsfolk_body("ash_black", "void_dark", "ash_black", "ash_black", skin="ash_black", wide=0.95)
+    blob(h + V((0, 0.1 * U, 0)), (0.09 * U, 0.11 * U, 0.095 * U), "Head", "ash_black")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.035 * U, 0.1 * U, 0.09 * U)), (0.03 * U, 0.02 * U, 0.02 * U), "Head", "void_glow")
+        block(V((sx * 0.06 * U, head("Spine2").y, 0.1 * U)), (0.02 * U, 0.16 * U, 0.01 * U), "Spine2", "void_glow")
+
+
+def void_wraith():
+    # A wraith of the Hollow: a tattered violet-black cloak, a hood with a glowing face, long claws.
+    h = head("Head")
+    _townsfolk_body("void_dark", "void", "void_dark", "ash_black", skin="ash_black", wide=1.0)
+    blob(h + V((0, 0.12 * U, -0.02 * U)), (0.12 * U, 0.15 * U, 0.12 * U), "Head", "void_dark")
+    blob(h + V((0, 0.09 * U, 0.05 * U)), (0.06 * U, 0.07 * U, 0.04 * U), "Head", "void_glow")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.12 * U, 0.14 * U, side + "UpLeg", "void_dark")
+        limb(head(side + "Leg"), head(side + "Foot") + V((0, 0.05 * U, 0)), 0.14 * U, 0.06 * U, side + "Leg", "void")
+        hand = head(side + "Hand")
+        d = (tail(side + "Hand") - hand).normalized()
+        for k in (-1, 0, 1):
+            limb(hand, hand + d * 0.22 * U + V((k * 0.03 * U, 0, 0)), 0.01 * U, 0.002 * U, side + "Hand", "void_glow", 3)
+
+
+def rift_caller():
+    # A caster of the Hollow: a violet robe with black, a deep hood, a staff with a violet orb.
+    h = head("Head")
+    blob(h + V((0, 0.1 * U, -0.01 * U)), (0.12 * U, 0.14 * U, 0.12 * U), "Head", "ash_black")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.03 * U, 0.1 * U, 0.11 * U)), (0.025 * U, 0.02 * U, 0.02 * U), "Head", "void_glow")
+    s2 = head("Spine2")
+    block(V((0, s2.y, 0)), (0.32 * U, 0.2 * U, 0.2 * U), "Spine2", "void")
+    block(V((0, head("Spine1").y, 0)), (0.28 * U, 0.12 * U, 0.19 * U), "Spine1", "void")
+    block(V((0, head("Spine").y - 0.02 * U, 0)), (0.27 * U, 0.06 * U, 0.19 * U), "Spine", "ash_black")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.11 * U, 0.12 * U, side + "UpLeg", "void")
+        limb(head(side + "Leg"), head(side + "Foot") + V((0, 0.03 * U, 0)), 0.12 * U, 0.14 * U, side + "Leg", "void_dark")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.08 * U, 0.05 * U, 0.15 * U), side + "Foot", "ash_black")
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.06 * U, 0.06 * U, side + "Arm", "void")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.06 * U, 0.08 * U, side + "ForeArm", "void_dark")
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.04 * U, 0.04 * U, 0.04 * U), side + "Hand", "ash_black")
+    hand = head("LeftHand") + (tail("LeftHand") - head("LeftHand")) * 0.4
+    limb(hand - V((0, 0.75 * U, 0)), hand + V((0, 0.7 * U, 0)), 0.02 * U, 0.02 * U, "LeftHand", "black_iron", 5)
+    blob(hand + V((0, 0.8 * U, 0)), (0.07 * U, 0.07 * U, 0.07 * U), "LeftHand", "void_glow")
+
+
+def tidewife():
+    # The Tidewife: a tall drowned queen in a long kelp-green gown, wet black hair to the waist, a coral crown, and
+    # tentacles hanging from her arms and back.
+    h = head("Head")
+    _townsfolk_body("kelp", "drowned_dark", "kelp", "drowned_dark", skin="drowned_skin", wide=1.1)
+    blob(h + V((0, 0.1 * U, 0)), (0.1 * U, 0.12 * U, 0.1 * U), "Head", "drowned_skin")
+    blob(h + V((0, 0.05 * U, -0.07 * U)), (0.12 * U, 0.28 * U, 0.07 * U), "Head", "ash_black")
+    for k in range(5):
+        a = (k - 2) * 0.35
+        limb(h + V((math.sin(a) * 0.08 * U, 0.2 * U, math.cos(a) * 0.04 * U)), h + V((math.sin(a) * 0.12 * U, 0.34 * U, math.cos(a) * 0.05 * U)), 0.02 * U, 0.005 * U, "Head", "coral", 4)
+    for sx in (-1, 1):
+        block(h + V((sx * 0.035 * U, 0.1 * U, 0.09 * U)), (0.03 * U, 0.02 * U, 0.02 * U), "Head", "eye")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.14 * U, 0.17 * U, side + "UpLeg", "kelp")
+        limb(head(side + "Leg"), head(side + "Foot") + V((0, 0.03 * U, 0)), 0.17 * U, 0.2 * U, side + "Leg", "drowned_dark")
+        for k in range(3):
+            start = head(side + "ForeArm") + (head(side + "Hand") - head(side + "ForeArm")) * (0.2 + 0.3 * k)
+            limb(start, start + V((0, -0.35 * U, 0.05 * U * (k - 1))), 0.035 * U, 0.008 * U, side + "ForeArm", "drowned_skin", 5)
+    for k in range(4):
+        x = (k - 1.5) * 0.09 * U
+        limb(head("Spine2") + V((x, 0.05 * U, -0.12 * U)), head("Spine2") + V((x * 1.6, -0.5 * U, -0.32 * U)), 0.05 * U, 0.01 * U, "Spine2", "drowned_skin", 5)
+
+
+def saint_marrow():
+    # Saint Marrow: a tall saint in a white and gold robe, a skull for a face under a hood, a halo of bones behind the
+    # head, a crozier of bone in the left hand.
+    h = head("Head")
+    blob(h + V((0, 0.11 * U, -0.01 * U)), (0.13 * U, 0.15 * U, 0.13 * U), "Head", "bone_white")
+    blob(h + V((0, 0.08 * U, 0.05 * U)), (0.075 * U, 0.09 * U, 0.06 * U), "Head", "bone")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.03 * U, 0.1 * U, 0.105 * U)), (0.025 * U, 0.02 * U, 0.015 * U), "Head", "ghost_green")
+    for k in range(9):
+        a = math.pi * (0.1 + 0.8 * k / 8)
+        p = h + V((math.cos(a) * 0.24 * U, 0.12 * U + math.sin(a) * 0.24 * U, -0.12 * U))
+        blob(p, (0.03 * U, 0.03 * U, 0.03 * U), "Head", "bone")
+    s2 = head("Spine2")
+    block(V((0, s2.y, 0)), (0.4 * U, 0.24 * U, 0.26 * U), "Spine2", "bone_white")
+    block(V((0, s2.y + 0.02 * U, 0.12 * U)), (0.08 * U, 0.24 * U, 0.02 * U), "Spine2", "gold")
+    block(V((0, head("Spine1").y, 0)), (0.36 * U, 0.14 * U, 0.24 * U), "Spine1", "bone_white")
+    block(V((0, head("Spine").y - 0.02 * U, 0)), (0.36 * U, 0.07 * U, 0.25 * U), "Spine", "gold")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.15 * U, 0.17 * U, side + "UpLeg", "bone_white")
+        limb(head(side + "Leg"), head(side + "Foot") + V((0, 0.03 * U, 0)), 0.17 * U, 0.2 * U, side + "Leg", "bone_white")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.09 * U, 0.05 * U, 0.16 * U), side + "Foot", "gold")
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.08 * U, 0.08 * U, side + "Arm", "bone_white")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.08 * U, 0.1 * U, side + "ForeArm", "gold")
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.045 * U, 0.045 * U, 0.045 * U), side + "Hand", "bone")
+    hand = head("LeftHand") + (tail("LeftHand") - head("LeftHand")) * 0.4
+    limb(hand - V((0, 0.9 * U, 0)), hand + V((0, 0.9 * U, 0)), 0.025 * U, 0.025 * U, "LeftHand", "bone", 5)
+    blob(hand + V((0, 0.98 * U, 0.05 * U)), (0.07 * U, 0.08 * U, 0.05 * U), "LeftHand", "bone")
+
+
+def first_watchman():
+    # The First Watchman: the knight whose failure began the fall, in blackened plate with a violet ember burning in his
+    # chest, a tattered cloak and a great sword.
+    h = head("Head")
+    _townsfolk_body("black_iron", "black_iron", "black_iron", "black_iron", skin="black_iron", wide=1.3)
+    blob(h + V((0, 0.09 * U, 0.01 * U)), (0.12 * U, 0.14 * U, 0.12 * U), "Head", "black_iron")
+    block(h + V((0, 0.09 * U, 0.12 * U)), (0.13 * U, 0.025 * U, 0.02 * U), "Head", "void_glow")
+    block(V((0, head("Spine2").y + 0.02 * U, 0.04 * U)), (0.46 * U, 0.3 * U, 0.3 * U), "Spine2", "black_iron")
+    blob(V((0, head("Spine2").y + 0.02 * U, 0.2 * U)), (0.06 * U, 0.06 * U, 0.03 * U), "Spine2", "void_glow")
+    for side in ("LeftArm", "RightArm"):
+        blob(head(side) + V((0, 0.05 * U, 0)), (0.14 * U, 0.09 * U, 0.13 * U), side, "black_iron")
+    block(V((0, head("Spine1").y - 0.2 * U, -0.18 * U)), (0.5 * U, 0.9 * U, 0.03 * U), "Spine2", "void_dark")
+    hand = head("RightHand")
+    d = (tail("RightHand") - hand).normalized()
+    limb(hand - d * 0.15 * U, hand + d * 1.3 * U, 0.06 * U, 0.015 * U, "RightHand", "steel", 4)
+    block(hand + d * 0.02 * U, (0.3 * U, 0.04 * U, 0.04 * U), "RightHand", "gold")
+
+
 {"skeleton": skeleton, "cultist": cultist, "cutthroat": cutthroat, "ember_acolyte": ember_acolyte,
  "pyre_keeper": pyre_keeper, "carrion_bloat": carrion_bloat, "stash_keeper": stash_keeper, "healer": healer,
- "gambler": gambler, "trainer": trainer}[NAME]()
+ "gambler": gambler, "trainer": trainer, "drowned": drowned, "harpooner": harpooner, "drowned_watchman": drowned_watchman,
+ "skeleton_knight": skeleton_knight, "grave_priest": grave_priest, "hollowed": hollowed, "void_wraith": void_wraith,
+ "rift_caller": rift_caller, "tidewife": tidewife, "saint_marrow": saint_marrow, "first_watchman": first_watchman}[NAME]()
+
+# Every bone a humanoid needs keeps a vertex weighted to it: Unity strips bones nothing is weighted to, and the avatar
+# then cannot be made ("Required human bone 'LeftHand' not found", the skeleton knight's shield hand, 2026-10-05).
+for bone in ("Hips", "Spine", "Spine1", "Spine2", "Neck", "Head", "LeftArm", "LeftForeArm", "LeftHand", "RightArm",
+             "RightForeArm", "RightHand", "LeftUpLeg", "LeftLeg", "LeftFoot", "RightUpLeg", "RightLeg", "RightFoot"):
+    if ("mixamorig:" + bone) not in groups and ("mixamorig:" + bone) in bones:
+        block(head(bone), (0.004 * U, 0.004 * U, 0.004 * U), bone, color_list[0])
 
 mesh = bpy.data.meshes.new(NAME)
 bm.normal_update()

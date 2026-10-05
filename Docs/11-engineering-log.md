@@ -638,3 +638,36 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
 - Checked in play in the editor with the deepest depth set to 12: all four stand in town idling; the Gambler's sheet
   lists ten kinds at item level 11 and a buy took the price and put a Magic Bow in the backpack; the stash sheet lists
   stash and backpack. Not yet run through on the phone. 584 of 584 tests pass.
+
+## 2026-10-05: the bosses at 12, 18 and 24, and the deep levels' enemies
+
+- The owner: "do it" (the bosses at 12, 18 and 24 and new enemies for the deep levels). From Docs/05's later acts,
+  Claude's choices to review: the Tidewife at 12, Saint Marrow at 18, the First Watchman at 24 (the final boss), and
+  eight enemies.
+- `BossFight`: the Cinder Warden's machinery made shared. Attacks are iterators stepped by hand on the game clock; a
+  yielded iterator now runs to its end first (a stack), so attacks are built from helpers (`CircleStrike`, `LineStrike`,
+  `Charge`, `Fan`, `Wait`). `LastingZone` (fills, then hurts and slows while she stands in it), `SpawnAdds`, `Teleport`.
+  The Warden keeps his attacks and numbers on it.
+- The Tidewife (`TidewifeFight`): pools that leave slowing water, the tentacle lash, the flood on alternating sides
+  (a large circle, not Docs/05's half disc), drowned adds, the sweeping wave with a gap. Saint Marrow
+  (`SaintMarrowFight`): spike lines, grave bolts, skeleton adds, teleports, the closing ring of bones (no turning gaps,
+  a simplification). The First Watchman (`FirstWatchmanFight`): the echoes of the earlier bosses, void fields, hollowed
+  adds, the closing edge and void rain. Boss definitions copy the Warden's (60 times life; the Watchman 70).
+- `DungeonRules.IsBossDepth` 6, 12, 18, 24. `DungeonLevel.SetUpBoss` picks fight, boss and adds by depth (a missing deep
+  definition falls back to the Warden). `MusicDirector` listens to any `BossFight`.
+- The deep roster (`PackComposition.Deep`, a fourth and fifth hash so earlier rolls keep): Drowned (from 7, husks'
+  places, hits slow 10 percent for 1 s), Harpooner (8, archers', slows 50 percent for 1.5 s), Drowned Watchman (9,
+  ghouls', a slam 1.6 ahead of it), Skeleton Knight (13, brutes'), Grave Priest (14, the back slot of some packs, heals
+  the most hurt ally within 6 by 25 percent every 6 s), Hollowed (19, swarmers'), Rift Caller (19, ranged ones', a
+  circle that pulses three times a second apart), Void Wraith (20, wolf packs'). Each spreads from its first depth by
+  `DeepShare` (15 points a level for most, capped). New definition fields: `hitSlowFraction`/`Seconds` (in
+  `ApplyOnHitEffects`, so melee and arrows), `slamForward`, `healPercent`/`EverySeconds`/`Radius`, `castPulses`/`Gap`.
+  `Tools > ARPG > Add Deep Roster` makes the eleven definitions and lists them on the level (`deepRoster`, by name).
+- Art: `undead.py` builds all eleven on the husk's, archer's or ghoul's rig. Trap: a model with nothing weighted to a
+  bone the humanoid needs (the skeleton knight's shield hand) fails the avatar, and the failed bone map stays in the
+  FBX's .meta; the builder now weights a speck to every required bone, enemy bodies keep all bones
+  (`EnemyBakeSetup.KeepAllBones`), and the stale .meta was deleted.
+- Checked in play in the editor, with the character raised to level 27 and healed every frame: each new boss engages,
+  goes through its three phases (pushed by damage), hits, calls its adds; Marrow's kill opens the stairs down, the
+  Watchman's the stairs to town; music switches to the boss track; no errors. Depths 15 and 21 hold the new mix.
+  587 of 587 tests pass. Not played through by hand; the bosses' numbers are untested against a real character.

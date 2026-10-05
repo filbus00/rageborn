@@ -33,17 +33,25 @@ namespace ARPG.Editor
             // The rest of act 1 (2026-10-05). The pyre keeper is measured with its brazier pole, which stands well over
             // its head, so it asks more to stand as tall as a cultist.
             { "cutthroat", 74f }, { "ember_acolyte", 80f }, { "pyre_keeper", 104f }, { "carrion_bloat", 84f },
+            // The deep levels and their bosses (2026-10-05); staffs and halos count in the measured box.
+            { "drowned", 72f }, { "harpooner", 96f }, { "drowned_watchman", 92f }, { "skeleton_knight", 88f },
+            { "grave_priest", 96f }, { "hollowed", 72f }, { "void_wraith", 76f }, { "rift_caller", 98f },
+            { "tidewife", 100f }, { "saint_marrow", 112f }, { "first_watchman", 100f },
         };
 
         /// <summary>Cells wider than the default 128 px: the ghoul's slam swings its big arm past a 128 px cell (clipped on
         /// the first bake, 2026-09-29).</summary>
-        static readonly Dictionary<string, int> CellSizes = new Dictionary<string, int> { { "ghoul", 192 }, { "cinder_warden", 192 }, { "carrion_bloat", 192 } };
+        static readonly Dictionary<string, int> CellSizes = new Dictionary<string, int> { { "ghoul", 192 }, { "cinder_warden", 192 }, { "carrion_bloat", 192 },
+            { "drowned_watchman", 192 }, { "skeleton_knight", 192 }, { "tidewife", 192 }, { "saint_marrow", 192 }, { "first_watchman", 192 } };
 
         /// <summary>Bodies whose clips are copies of another enemy's (the Cinder Warden moves as the ghoul).</summary>
         static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string>
         {
             { "cinder_warden", "ghoul" }, { "skeleton", "husk" }, { "cultist", "bandit_archer" },
             { "cutthroat", "husk" }, { "ember_acolyte", "bandit_archer" }, { "pyre_keeper", "bandit_archer" }, { "carrion_bloat", "ghoul" },
+            { "drowned", "husk" }, { "harpooner", "bandit_archer" }, { "drowned_watchman", "ghoul" }, { "skeleton_knight", "ghoul" },
+            { "grave_priest", "bandit_archer" }, { "hollowed", "husk" }, { "void_wraith", "husk" }, { "rift_caller", "bandit_archer" },
+            { "tidewife", "ghoul" }, { "saint_marrow", "ghoul" }, { "first_watchman", "ghoul" },
         };
 
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
@@ -60,6 +68,11 @@ namespace ARPG.Editor
             // The rest of act 1 (2026-10-05): undead.py builds four on existing rigs, wolf.py the wolf on a rig of its own.
             ("AshWolf", "ash_wolf", null), ("Cutthroat", "cutthroat", null), ("EmberAcolyte", "ember_acolyte", null),
             ("PyreKeeper", "pyre_keeper", null), ("CarrionBloat", "carrion_bloat", null),
+            // The deep levels and their bosses (2026-10-05, undead.py).
+            ("Drowned", "drowned", null), ("Harpooner", "harpooner", null), ("DrownedWatchman", "drowned_watchman", null),
+            ("SkeletonKnight", "skeleton_knight", null), ("GravePriest", "grave_priest", null), ("Hollowed", "hollowed", null),
+            ("VoidWraith", "void_wraith", null), ("RiftCaller", "rift_caller", null),
+            ("Tidewife", "tidewife", null), ("SaintMarrow", "saint_marrow", null), ("FirstWatchman", "first_watchman", null),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the
@@ -101,6 +114,11 @@ namespace ARPG.Editor
             }
             if (GenericBodies.Contains(name))
                 return SetUpGeneric(folder, name, bodyPath);
+            // A body built on another enemy's rig keeps all its bones (Unity strips unweighted ones and the avatar then
+            // fails; the skeleton knight, 2026-10-05). A bone map saved by a failed import stays stale: delete the FBX's
+            // .meta to start it over.
+            if (ClipAvatarFrom.ContainsKey(name))
+                KeepAllBones(bodyPath);
             MixamoImport.ConfigureBody(bodyPath);
             var avatar = AssetDatabase.LoadAllAssetsAtPath(bodyPath).OfType<Avatar>().FirstOrDefault();
             // A body built in Blender on another enemy's rig plays that enemy's clips: they keep that enemy's avatar
@@ -136,6 +154,15 @@ namespace ARPG.Editor
             Debug.Log($"{name}: {string.Join(", ", set.clips.Select(c => c.name))}; missing: " +
                       string.Join(", ", Animations.Select(a => a.name).Where(a => set.clips.All(c => c.name != a))));
             return job;
+        }
+
+        static void KeepAllBones(string path)
+        {
+            var importer = (ModelImporter)AssetImporter.GetAtPath(path);
+            if (importer == null || !importer.optimizeBones)
+                return;
+            importer.optimizeBones = false;
+            importer.SaveAndReimport();
         }
 
         /// <summary>The bake job for an enemy folder, its size and cell set from the tables above, its body loaded.</summary>

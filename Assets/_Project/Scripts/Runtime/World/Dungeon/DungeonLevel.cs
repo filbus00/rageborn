@@ -44,6 +44,9 @@ namespace ARPG
         [SerializeField] EnemyDefinition emberAcolyteEnemy;
         [SerializeField] EnemyDefinition pyreKeeperEnemy;
         [SerializeField] EnemyDefinition carrionBloatEnemy;
+        [Tooltip("The deep levels' enemies and bosses (2026-10-05), found by name: a pack member's (Drowned, Harpooner...) " +
+                 "or a boss's (Tidewife, SaintMarrow, FirstWatchman).")]
+        [SerializeField] EnemyDefinition[] deepRoster;
 
         [Tooltip("The act boss, fought in the arena on the act's last level.")]
         [SerializeField] EnemyDefinition bossEnemy;
@@ -195,8 +198,32 @@ namespace ARPG
                 return;
             }
 
-            var fight = new GameObject("Cinder Warden Fight").AddComponent<CinderWardenFight>();
-            fight.Configure(bossEnemy, normalEnemy, Layout.EnemyLevel, IsoMath.CellToGround(Layout.BossArenaCenter),
+            // The boss of this depth (2026-10-05: one every 6 levels) and the adds it calls; a missing deep boss falls
+            // back to the Warden so the arena is never empty.
+            BossFight fight;
+            EnemyDefinition definition = bossEnemy, adds = normalEnemy;
+            switch (depth)
+            {
+                case 12 when Deep("Tidewife") != null:
+                    fight = new GameObject("Tidewife Fight").AddComponent<TidewifeFight>();
+                    definition = Deep("Tidewife");
+                    adds = Deep("Drowned") ?? normalEnemy;
+                    break;
+                case 18 when Deep("SaintMarrow") != null:
+                    fight = new GameObject("Saint Marrow Fight").AddComponent<SaintMarrowFight>();
+                    definition = Deep("SaintMarrow");
+                    adds = skeletonEnemy != null ? skeletonEnemy : normalEnemy;
+                    break;
+                case 24 when Deep("FirstWatchman") != null:
+                    fight = new GameObject("First Watchman Fight").AddComponent<FirstWatchmanFight>();
+                    definition = Deep("FirstWatchman");
+                    adds = Deep("Hollowed") ?? normalEnemy;
+                    break;
+                default:
+                    fight = new GameObject("Cinder Warden Fight").AddComponent<CinderWardenFight>();
+                    break;
+            }
+            fight.Configure(definition, adds, Layout.EnemyLevel, IsoMath.CellToGround(Layout.BossArenaCenter),
                 Layout.BossArenaRadius * 0.7071f, key,
                 AddWayOn);
         }
@@ -509,8 +536,20 @@ namespace ARPG
                 case PackMember.EmberAcolyte: return emberAcolyteEnemy != null ? emberAcolyteEnemy : archerEnemy != null ? archerEnemy : normalEnemy;
                 case PackMember.PyreKeeper: return pyreKeeperEnemy != null ? pyreKeeperEnemy : normalEnemy;
                 case PackMember.CarrionBloat: return carrionBloatEnemy != null ? carrionBloatEnemy : ghoulEnemy != null ? ghoulEnemy : normalEnemy;
-                default: return normalEnemy;
+                case PackMember.Husk: return normalEnemy;
+                default: return Deep(member.ToString()) ?? normalEnemy;
             }
+        }
+
+        /// <summary>A deep enemy or boss definition by its asset's name, or null.</summary>
+        EnemyDefinition Deep(string name)
+        {
+            if (deepRoster == null)
+                return null;
+            foreach (var definition in deepRoster)
+                if (definition != null && definition.name == name)
+                    return definition;
+            return null;
         }
 
         static void SetLayer(GameObject go, string layerName)

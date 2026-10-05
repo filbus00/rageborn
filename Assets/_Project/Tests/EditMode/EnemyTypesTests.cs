@@ -267,5 +267,50 @@ namespace ARPG.Tests
                     Assert.AreEqual(PackMember.None, members[i]);
             }
         }
+
+        [Test]
+        public void TheDeepRoster_JoinsFromItsDepths_AndSpreads()
+        {
+            float Share(int depth, PackMember member)
+            {
+                var with = 0;
+                for (var pack = 0; pack < 2000; pack++)
+                    if (PackComposition.Roll(depth, PackKind.Normal, 8, 2468, pack).Contains(member))
+                        with++;
+                return with / 2000f;
+            }
+            Assert.AreEqual(0f, Share(6, PackMember.Drowned), "nothing deep above the first boss");
+            Assert.Greater(Share(7, PackMember.Drowned), 0f);
+            Assert.Greater(Share(11, PackMember.Drowned), Share(7, PackMember.Drowned), "the drowned spread with depth");
+            Assert.AreEqual(0f, Share(12, PackMember.SkeletonKnight));
+            Assert.Greater(Share(13, PackMember.SkeletonKnight), 0f);
+            Assert.AreEqual(0f, Share(13, PackMember.GravePriest));
+            Assert.Greater(Share(14, PackMember.GravePriest), 0f);
+            Assert.AreEqual(0f, Share(18, PackMember.Hollowed));
+            Assert.Greater(Share(19, PackMember.Hollowed), 0f);
+            Assert.Greater(Share(19, PackMember.RiftCaller), 0f);
+            Assert.AreEqual(0f, Share(19, PackMember.VoidWraith));
+            Assert.Greater(Share(20, PackMember.VoidWraith), 0f);
+            // Older types thin out but are still met.
+            Assert.Greater(Share(16, PackMember.Husk) + Share(16, PackMember.Skeleton), 0f);
+        }
+
+        [Test]
+        public void DeepShare_RisesPerLevel_UpToItsCap()
+        {
+            Assert.AreEqual(0, PackComposition.DeepShare(6, 7, 15, 75));
+            Assert.AreEqual(15, PackComposition.DeepShare(7, 7, 15, 75));
+            Assert.AreEqual(45, PackComposition.DeepShare(9, 7, 15, 75));
+            Assert.AreEqual(75, PackComposition.DeepShare(24, 7, 15, 75));
+        }
+
+        [Test]
+        public void ABossWaitsEverySixLevels()
+        {
+            foreach (var depth in new[] { 6, 12, 18, 24 })
+                Assert.IsTrue(DungeonRules.IsBossDepth(depth), depth.ToString());
+            foreach (var depth in new[] { 1, 5, 7, 11, 13, 23 })
+                Assert.IsFalse(DungeonRules.IsBossDepth(depth), depth.ToString());
+        }
     }
 }
