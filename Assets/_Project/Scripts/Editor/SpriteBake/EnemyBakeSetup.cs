@@ -29,17 +29,21 @@ namespace ARPG.Editor
         /// <summary>Heights in final pixels at 64 per unit (the brief, 5.2 and 15.3, halved on 2026-09-28); others 80.</summary>
         static readonly Dictionary<string, float> Heights = new Dictionary<string, float>
         {
-            { "husk", 70f }, { "ghoul", 88f }, { "bandit_archer", 80f }, { "ash_wolf", 45f }, { "cinder_warden", 92f }, { "skeleton", 72f }, { "cultist", 82f },
+            { "husk", 70f }, { "ghoul", 88f }, { "bandit_archer", 80f }, { "ash_wolf", 60f }, { "cinder_warden", 92f }, { "skeleton", 72f }, { "cultist", 82f },
+            // The rest of act 1 (2026-10-05). The pyre keeper is measured with its brazier pole, which stands well over
+            // its head, so it asks more to stand as tall as a cultist.
+            { "cutthroat", 74f }, { "ember_acolyte", 80f }, { "pyre_keeper", 104f }, { "carrion_bloat", 84f },
         };
 
         /// <summary>Cells wider than the default 128 px: the ghoul's slam swings its big arm past a 128 px cell (clipped on
         /// the first bake, 2026-09-29).</summary>
-        static readonly Dictionary<string, int> CellSizes = new Dictionary<string, int> { { "ghoul", 192 }, { "cinder_warden", 192 } };
+        static readonly Dictionary<string, int> CellSizes = new Dictionary<string, int> { { "ghoul", 192 }, { "cinder_warden", 192 }, { "carrion_bloat", 192 } };
 
         /// <summary>Bodies whose clips are copies of another enemy's (the Cinder Warden moves as the ghoul).</summary>
         static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string>
         {
             { "cinder_warden", "ghoul" }, { "skeleton", "husk" }, { "cultist", "bandit_archer" },
+            { "cutthroat", "husk" }, { "ember_acolyte", "bandit_archer" }, { "pyre_keeper", "bandit_archer" }, { "carrion_bloat", "ghoul" },
         };
 
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
@@ -53,7 +57,14 @@ namespace ARPG.Editor
             // Act 1's undead (2026-10-04, ArtSource/tools/props/undead.py): the skeleton on the husk's rig, the cultist on
             // the archer's.
             ("Skeleton", "skeleton", null), ("Cultist", "cultist", null),
+            // The rest of act 1 (2026-10-05): undead.py builds four on existing rigs, wolf.py the wolf on a rig of its own.
+            ("AshWolf", "ash_wolf", null), ("Cutthroat", "cutthroat", null), ("EmberAcolyte", "ember_acolyte", null),
+            ("PyreKeeper", "pyre_keeper", null), ("CarrionBloat", "carrion_bloat", null),
         };
+
+        /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the
+        /// animation (wolf.py exports idle, run, attack, hit and death as takes).</summary>
+        static readonly HashSet<string> GenericBodies = new HashSet<string> { "ash_wolf" };
 
         [MenuItem("Tools/ARPG/Sprite Bake/Bake Enemies")]
         public static void BakeAll()
@@ -88,6 +99,8 @@ namespace ARPG.Editor
                 Debug.LogWarning($"{folder}: no {name}.fbx (the model with skin); skipped.");
                 return null;
             }
+            if (GenericBodies.Contains(name))
+                return SetUpGeneric(folder, name, bodyPath);
             MixamoImport.ConfigureBody(bodyPath);
             var avatar = AssetDatabase.LoadAllAssetsAtPath(bodyPath).OfType<Avatar>().FirstOrDefault();
             // A body built in Blender on another enemy's rig plays that enemy's clips: they keep that enemy's avatar
@@ -97,6 +110,37 @@ namespace ARPG.Editor
             else
                 avatar = AssetDatabase.LoadAllAssetsAtPath($"{Root}/{donor}/{donor}.fbx").OfType<Avatar>().FirstOrDefault() ?? avatar;
 
+            var job = JobFor(folder, name, bodyPath);
+
+            var set = new SpriteBakeJob.GripSet { grip = "" };
+            foreach (var (animation, frames, loop) in Animations)
+            {
+                var path = $"{folder}/{name}_{animation}.fbx";
+                var idleFrom = donor != null ? $"{Root}/{donor}/{donor}.fbx" : bodyPath;
+                var clip = File.Exists(path)
+                    ? MixamoImport.ConfigureAnimation(path, loop, avatar, animation, false)
+                    : animation == "idle" ? MixamoImport.FirstClip(idleFrom) : null;
+                if (clip == null)
+                    continue;
+                var window = loop ? new Vector2(0f, clip.length) : MixamoImport.ActionWindow(bodyPath, clip, animation == "death");
+                set.clips.Add(new SpriteBakeJob.Clip
+                {
+                    name = animation, clip = clip, frames = frames, loop = loop,
+                    start = window.x, end = window.y, playbackSeconds = window.y - window.x,
+                });
+            }
+            job.grips.Clear();
+            job.grips.Add(set);
+            EditorUtility.SetDirty(job);
+            AssetDatabase.SaveAssets();
+            Debug.Log($"{name}: {string.Join(", ", set.clips.Select(c => c.name))}; missing: " +
+                      string.Join(", ", Animations.Select(a => a.name).Where(a => set.clips.All(c => c.name != a))));
+            return job;
+        }
+
+        /// <summary>The bake job for an enemy folder, its size and cell set from the tables above, its body loaded.</summary>
+        static SpriteBakeJob JobFor(string folder, string name, string bodyPath)
+        {
             var jobPath = $"{folder}/{name}_job.asset";
             var job = AssetDatabase.LoadAssetAtPath<SpriteBakeJob>(jobPath);
             if (job == null)
@@ -128,32 +172,51 @@ namespace ARPG.Editor
             job.bodies.Clear();
             job.bodies.Add(new SpriteBakeJob.Body { look = "", model = AssetDatabase.LoadAssetAtPath<GameObject>(bodyPath) });
             job.pieces.Clear();
+            return job;
+        }
 
+        /// <summary>A body on its own generic rig, its clips in its own file (the Ash Wolf, ArtSource/tools/props/wolf.py).</summary>
+        static SpriteBakeJob SetUpGeneric(string folder, string name, string bodyPath)
+        {
+            var importer = (ModelImporter)AssetImporter.GetAtPath(bodyPath);
+            importer.animationType = ModelImporterAnimationType.Generic;
+            importer.avatarSetup = ModelImporterAvatarSetup.CreateFromThisModel;
+            importer.materialImportMode = ModelImporterMaterialImportMode.ImportViaMaterialDescription;
+            var takes = importer.defaultClipAnimations;
+            foreach (var take in takes)
+            {
+                var loop = Animations.Any(a => a.loop && TakeIs(take.name, a.name));
+                take.loopTime = loop;
+                take.name = Animations.Select(a => a.name).FirstOrDefault(a => TakeIs(take.name, a)) ?? take.name;
+            }
+            importer.clipAnimations = takes;
+            importer.SaveAndReimport();
+            MixamoImport.ApplyTexture(bodyPath, importer);
+
+            var job = JobFor(folder, name, bodyPath);
+            var clips = AssetDatabase.LoadAllAssetsAtPath(bodyPath).OfType<AnimationClip>().Where(c => !c.name.StartsWith("__preview")).ToList();
             var set = new SpriteBakeJob.GripSet { grip = "" };
             foreach (var (animation, frames, loop) in Animations)
             {
-                var path = $"{folder}/{name}_{animation}.fbx";
-                var idleFrom = donor != null ? $"{Root}/{donor}/{donor}.fbx" : bodyPath;
-                var clip = File.Exists(path)
-                    ? MixamoImport.ConfigureAnimation(path, loop, avatar, animation, false)
-                    : animation == "idle" ? MixamoImport.FirstClip(idleFrom) : null;
+                var clip = clips.FirstOrDefault(c => c.name == animation);
                 if (clip == null)
                     continue;
-                var window = loop ? new Vector2(0f, clip.length) : MixamoImport.ActionWindow(bodyPath, clip, animation == "death");
                 set.clips.Add(new SpriteBakeJob.Clip
                 {
                     name = animation, clip = clip, frames = frames, loop = loop,
-                    start = window.x, end = window.y, playbackSeconds = window.y - window.x,
+                    start = 0f, end = clip.length, playbackSeconds = clip.length,
                 });
             }
             job.grips.Clear();
             job.grips.Add(set);
             EditorUtility.SetDirty(job);
             AssetDatabase.SaveAssets();
-            Debug.Log($"{name}: {string.Join(", ", set.clips.Select(c => c.name))}; missing: " +
-                      string.Join(", ", Animations.Select(a => a.name).Where(a => set.clips.All(c => c.name != a))));
+            Debug.Log($"{name} (generic): {string.Join(", ", set.clips.Select(c => c.name))}");
             return job;
         }
+
+        // A take is named as its action ("idle") or with the armature in front ("Armature|idle").
+        static bool TakeIs(string take, string animation) => take == animation || take.EndsWith("|" + animation);
 
         /// <summary>Points each enemy definition at its baked look, or the base type's until the rank has its own.</summary>
         [MenuItem("Tools/ARPG/Sprite Bake/Wire Enemy Looks")]

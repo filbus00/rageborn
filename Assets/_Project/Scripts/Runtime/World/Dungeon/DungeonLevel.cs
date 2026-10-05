@@ -38,6 +38,12 @@ namespace ARPG
         [Tooltip("From depth 4 (PackComposition): the skeleton in a husk's place, the cultist in an archer's.")]
         [SerializeField] EnemyDefinition skeletonEnemy;
         [SerializeField] EnemyDefinition cultistEnemy;
+        [Tooltip("The rest of act 1's roster (PackComposition, 2026-10-05).")]
+        [SerializeField] EnemyDefinition ashWolfEnemy;
+        [SerializeField] EnemyDefinition cutthroatEnemy;
+        [SerializeField] EnemyDefinition emberAcolyteEnemy;
+        [SerializeField] EnemyDefinition pyreKeeperEnemy;
+        [SerializeField] EnemyDefinition carrionBloatEnemy;
 
         [Tooltip("The act boss, fought in the arena on the act's last level.")]
         [SerializeField] EnemyDefinition bossEnemy;
@@ -478,6 +484,11 @@ namespace ARPG
                 case PackMember.Archer: return archerEnemy != null ? archerEnemy : normalEnemy;
                 case PackMember.Skeleton: return skeletonEnemy != null ? skeletonEnemy : normalEnemy;
                 case PackMember.Cultist: return cultistEnemy != null ? cultistEnemy : archerEnemy != null ? archerEnemy : normalEnemy;
+                case PackMember.AshWolf: return ashWolfEnemy != null ? ashWolfEnemy : normalEnemy;
+                case PackMember.Cutthroat: return cutthroatEnemy != null ? cutthroatEnemy : normalEnemy;
+                case PackMember.EmberAcolyte: return emberAcolyteEnemy != null ? emberAcolyteEnemy : archerEnemy != null ? archerEnemy : normalEnemy;
+                case PackMember.PyreKeeper: return pyreKeeperEnemy != null ? pyreKeeperEnemy : normalEnemy;
+                case PackMember.CarrionBloat: return carrionBloatEnemy != null ? carrionBloatEnemy : ghoulEnemy != null ? ghoulEnemy : normalEnemy;
                 default: return normalEnemy;
             }
         }

@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b7ef2a89c554486bb05c81650498d7, type: 3}
+  m_Name: cutthroat_job
+  m_EditorClassIdentifier: ARPG.Editor::ARPG.Editor.SpriteBakeJob
+  characterName: cutthroat
+  bodies:
+  - look: 
+    model: {fileID: 919132149155446097, guid: 6e5af0a896ba94f59b62106e5a2e1156, type: 3}
+    layer: 0
+  pieces: []
+  grips:
+  - grip: 
+    clips:
+    - name: idle
+      clip: {fileID: -203655887218126122, guid: f87487dda195c49c3923b7c35f03cdf4, type: 3}
+      frames: 12
+      loop: 1
+      playbackSeconds: 4
+      start: 0
+      end: 4
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: run
+      clip: {fileID: -203655887218126122, guid: 544969c58c5c0470299f4d0586fc83b7, type: 3}
+      frames: 10
+      loop: 1
+      playbackSeconds: 0.8000001
+      start: 0
+      end: 0.8000001
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack
+      clip: {fileID: -203655887218126122, guid: 654f9043379ec403e8f44c40512ca4d5, type: 3}
+      frames: 12
+      loop: 0
+      playbackSeconds: 1.8000001
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hit
+      clip: {fileID: -203655887218126122, guid: 9398e506788204cd0b038d3390387e85, type: 3}
+      frames: 4
+      loop: 0
+      playbackSeconds: 1.8000001
+      start: 0
+      end: 1.8000001
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: death
+      clip: {fileID: -203655887218126122, guid: fd2873047123e4d3c8c394b1b4f24e75, type: 3}
+      frames: 12
+      loop: 0
+      playbackSeconds: 2.966667
+      start: 0
+      end: 2.966667
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+  pixelsPerUnit: 40
+  cellSize: 80
+  pivot: {x: 40, y: 12}
+  targetHeightPixels: 50.412502
+  bakedScale: 1
+  pixelArt: 1
+  supersample: 4
+  framesPerSecond: 12
+  directions: 8
+  outputFolder: Assets/_Project/Resources/Characters/cutthroat

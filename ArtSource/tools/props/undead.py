@@ -13,7 +13,8 @@ from kit import STONE, WOOD, BLOOD, EMBER, BONE, COLD, MOSS, VIOLET, linear
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
 ENEMIES = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "Enemies")
 NAME = sys.argv[sys.argv.index("--") + 1]
-DONORS = {"skeleton": "husk", "cultist": "bandit_archer"}
+DONORS = {"skeleton": "husk", "cultist": "bandit_archer", "cutthroat": "husk", "ember_acolyte": "bandit_archer",
+          "pyre_keeper": "bandit_archer", "carrion_bloat": "ghoul"}
 DONOR = DONORS[NAME]
 OUT = os.path.join(ENEMIES, NAME)
 
@@ -28,6 +29,10 @@ COLORS = {
     "bone": BONE[1], "bone_dark": BONE[0], "rust": WOOD[2], "iron": STONE[2], "eye": COLD[4],
     "robe": BLOOD[1], "robe_dark": STONE[0], "trim": EMBER[3], "skin": (102, 68, 52), "fire": EMBER[4],
     "hood": STONE[1],
+    # The rest of act 1's roster (2026-10-05).
+    "leather": WOOD[2], "leather_dark": WOOD[1], "scarf": BLOOD[2], "steel": STONE[4], "ash": STONE[3],
+    "ash_dark": STONE[2], "ember": EMBER[2], "flesh": (118, 112, 84), "flesh_dark": (78, 74, 54), "rot": MOSS[2],
+    "pus": (150, 142, 88),
 }
 color_list = list(COLORS)
 bm = bmesh.new()
@@ -188,7 +193,113 @@ def cultist():
     block(hand + V((0, 0.68 * U, 0)), (0.1 * U, 0.03 * U, 0.03 * U), "LeftHand", "bone_dark")
 
 
-{"skeleton": skeleton, "cultist": cultist}[NAME]()
+def cutthroat():
+    # A lean bandit in dark leather, a red scarf over the face, a hood, and a long knife in each hand.
+    h = head("Head")
+    blob(h + V((0, 0.1 * U, -0.01 * U)), (0.105 * U, 0.12 * U, 0.105 * U), "Head", "leather_dark")
+    block(h + V((0, 0.06 * U, 0.075 * U)), (0.13 * U, 0.06 * U, 0.05 * U), "Head", "scarf")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.03 * U, 0.11 * U, 0.09 * U)), (0.025 * U, 0.015 * U, 0.02 * U), "Head", "skin")
+    s2 = head("Spine2")
+    block(V((0, s2.y, 0)), (0.28 * U, 0.18 * U, 0.17 * U), "Spine2", "leather")
+    block(V((0, head("Spine1").y, 0)), (0.25 * U, 0.12 * U, 0.16 * U), "Spine1", "leather_dark")
+    block(V((0, head("Spine").y - 0.02 * U, 0)), (0.26 * U, 0.06 * U, 0.17 * U), "Spine", "scarf")
+    block(V((0, head("Hips").y, 0)), (0.26 * U, 0.1 * U, 0.16 * U), "Hips", "leather_dark")
+    for side in ("Left", "Right"):
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.045 * U, 0.04 * U, side + "Arm", "leather")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.04 * U, 0.035 * U, side + "ForeArm", "leather_dark")
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.035 * U, 0.035 * U, 0.035 * U), side + "Hand", "skin")
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.06 * U, 0.05 * U, side + "UpLeg", "leather_dark")
+        limb(head(side + "Leg"), head(side + "Foot"), 0.05 * U, 0.04 * U, side + "Leg", "leather")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.07 * U, 0.05 * U, 0.15 * U), side + "Foot", "leather_dark")
+        hand = head(side + "Hand")
+        d = (tail(side + "Hand") - hand).normalized()
+        limb(hand, hand + d * 0.38 * U, 0.022 * U, 0.004 * U, side + "Hand", "steel", 4)
+        block(hand + d * 0.02 * U, (0.08 * U, 0.025 * U, 0.025 * U), side + "Hand", "rust")
+
+
+def ember_acolyte():
+    # An ash-grey robe with ember-orange trim, a bare head with a shaved scalp and glowing eyes, a smoking censer staff.
+    h = head("Head")
+    blob(h + V((0, 0.1 * U, 0)), (0.09 * U, 0.11 * U, 0.095 * U), "Head", "skin")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.03 * U, 0.1 * U, 0.085 * U)), (0.025 * U, 0.018 * U, 0.02 * U), "Head", "fire")
+    blob(h + V((0, 0.0, -0.02 * U)), (0.14 * U, 0.05 * U, 0.12 * U), "Neck", "ember")
+    s2 = head("Spine2")
+    block(V((0, s2.y, 0)), (0.3 * U, 0.2 * U, 0.19 * U), "Spine2", "ash")
+    block(V((0, head("Spine1").y, 0)), (0.27 * U, 0.12 * U, 0.18 * U), "Spine1", "ash")
+    block(V((0, head("Spine").y - 0.02 * U, 0)), (0.27 * U, 0.06 * U, 0.19 * U), "Spine", "ember")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.11 * U, 0.12 * U, side + "UpLeg", "ash")
+        limb(head(side + "Leg"), head(side + "Foot") + V((0, 0.03 * U, 0)), 0.12 * U, 0.14 * U, side + "Leg", "ash_dark")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.08 * U, 0.05 * U, 0.15 * U), side + "Foot", "robe_dark")
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.06 * U, 0.06 * U, side + "Arm", "ash")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.06 * U, 0.085 * U, side + "ForeArm", "ember")
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.04 * U, 0.04 * U, 0.04 * U), side + "Hand", "skin")
+    hand = head("LeftHand") + (tail("LeftHand") - head("LeftHand")) * 0.4
+    limb(hand - V((0, 0.7 * U, 0)), hand + V((0, 0.6 * U, 0)), 0.018 * U, 0.018 * U, "LeftHand", "iron", 5)
+    blob(hand + V((0, 0.66 * U, 0)), (0.06 * U, 0.06 * U, 0.06 * U), "LeftHand", "iron")
+    blob(hand + V((0, 0.7 * U, 0)), (0.04 * U, 0.05 * U, 0.04 * U), "LeftHand", "fire")
+
+
+def pyre_keeper():
+    # A tall, broad keeper in a heavy dark robe and a cowl, a tall pole topped with a burning iron brazier.
+    h = head("Head")
+    blob(h + V((0, 0.11 * U, -0.01 * U)), (0.13 * U, 0.15 * U, 0.13 * U), "Head", "robe_dark")
+    blob(h + V((0, 0.08 * U, 0.05 * U)), (0.07 * U, 0.08 * U, 0.06 * U), "Head", "hood")
+    block(h + V((0, 0.08 * U, 0.115 * U)), (0.08 * U, 0.06 * U, 0.02 * U), "Head", "iron")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.025 * U, 0.09 * U, 0.127 * U)), (0.02 * U, 0.012 * U, 0.01 * U), "Head", "fire")
+    s2 = head("Spine2")
+    block(V((0, s2.y, 0)), (0.38 * U, 0.22 * U, 0.24 * U), "Spine2", "robe")
+    blob(V((0, s2.y + 0.1 * U, 0)), (0.24 * U, 0.06 * U, 0.15 * U), "Spine2", "robe_dark")
+    block(V((0, head("Spine1").y, 0)), (0.33 * U, 0.12 * U, 0.22 * U), "Spine1", "robe")
+    block(V((0, head("Spine").y - 0.02 * U, 0)), (0.33 * U, 0.06 * U, 0.23 * U), "Spine", "iron")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.13 * U, 0.14 * U, side + "UpLeg", "robe")
+        limb(head(side + "Leg"), head(side + "Foot") + V((0, 0.03 * U, 0)), 0.14 * U, 0.16 * U, side + "Leg", "robe_dark")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.09 * U, 0.05 * U, 0.16 * U), side + "Foot", "robe_dark")
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.075 * U, 0.075 * U, side + "Arm", "robe")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.075 * U, 0.09 * U, side + "ForeArm", "robe_dark")
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.045 * U, 0.045 * U, 0.045 * U), side + "Hand", "skin")
+    hand = head("LeftHand") + (tail("LeftHand") - head("LeftHand")) * 0.4
+    limb(hand - V((0, 0.85 * U, 0)), hand + V((0, 0.9 * U, 0)), 0.025 * U, 0.025 * U, "LeftHand", "rust", 5)
+    top = hand + V((0, 0.9 * U, 0))
+    for k in range(4):
+        a = k * math.pi / 2
+        limb(top, top + V((math.cos(a) * 0.1 * U, 0.12 * U, math.sin(a) * 0.1 * U)), 0.012 * U, 0.012 * U, "LeftHand", "iron", 4)
+    blob(top + V((0, 0.1 * U, 0)), (0.1 * U, 0.04 * U, 0.1 * U), "LeftHand", "iron")
+    blob(top + V((0, 0.17 * U, 0)), (0.08 * U, 0.1 * U, 0.08 * U), "LeftHand", "fire")
+    blob(top + V((0, 0.13 * U, 0)), (0.09 * U, 0.05 * U, 0.09 * U), "LeftHand", "ember")
+
+
+def carrion_bloat():
+    # A swollen corpse: a huge belly sagging over short legs, small arms, a lolling head, pale rotting skin with dark
+    # patches and pus boils.
+    h = head("Head")
+    blob(h + V((0, 0.06 * U, 0.04 * U)), (0.1 * U, 0.1 * U, 0.1 * U), "Head", "flesh")
+    block(h + V((0, 0.02 * U, 0.12 * U)), (0.07 * U, 0.03 * U, 0.02 * U), "Head", "robe_dark")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.035 * U, 0.08 * U, 0.12 * U)), (0.02 * U, 0.02 * U, 0.02 * U), "Head", "pus")
+    s1 = head("Spine1")
+    blob(V((0, s1.y, 0.06 * U)), (0.34 * U, 0.36 * U, 0.34 * U), "Spine1", "flesh", 12)
+    blob(V((0.12 * U, s1.y + 0.1 * U, 0.3 * U)), (0.12 * U, 0.1 * U, 0.08 * U), "Spine1", "flesh_dark")
+    blob(V((-0.16 * U, s1.y - 0.12 * U, 0.26 * U)), (0.1 * U, 0.09 * U, 0.08 * U), "Spine1", "rot")
+    blob(head("Spine2") + V((0, 0.05 * U, 0)), (0.3 * U, 0.16 * U, 0.26 * U), "Spine2", "flesh_dark")
+    for (x, y, z, r) in ((0.2, 0.05, 0.28, 0.05), (-0.05, -0.15, 0.36, 0.045), (-0.25, 0.12, 0.18, 0.04), (0.28, -0.1, 0.1, 0.04)):
+        blob(V((x * U, s1.y + y * U, z * U)), (r * U, r * U, r * U), "Spine1", "pus")
+    block(V((0, head("Hips").y, 0)), (0.36 * U, 0.14 * U, 0.26 * U), "Hips", "flesh_dark")
+    for side in ("Left", "Right"):
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.07 * U, 0.06 * U, side + "Arm", "flesh")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.06 * U, 0.05 * U, side + "ForeArm", "flesh_dark")
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.06 * U, 0.05 * U, 0.06 * U), side + "Hand", "flesh")
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.12 * U, 0.1 * U, side + "UpLeg", "flesh")
+        limb(head(side + "Leg"), head(side + "Foot"), 0.1 * U, 0.08 * U, side + "Leg", "flesh_dark")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.1 * U, 0.06 * U, 0.17 * U), side + "Foot", "flesh_dark")
+
+
+{"skeleton": skeleton, "cultist": cultist, "cutthroat": cutthroat, "ember_acolyte": ember_acolyte,
+ "pyre_keeper": pyre_keeper, "carrion_bloat": carrion_bloat}[NAME]()
 
 mesh = bpy.data.meshes.new(NAME)
 bm.normal_update()
@@ -204,7 +315,7 @@ mod = obj.modifiers.new("Armature", "ARMATURE")
 mod.object = arm
 
 # The atlas: one 8 px square a colour, every face mapped to its colour's middle.
-cells = 4
+cells = int(math.ceil(math.sqrt(len(color_list))))
 size = cells * 8
 pixels = np.zeros((size, size, 4), dtype=np.float32)
 pixels[:, :, 3] = 1

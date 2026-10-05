@@ -29,6 +29,17 @@ namespace ARPG
         /// <summary>Keeps its distance and shoots when it can see the player: a line telegraph, then a projectile
         /// that walls stop.</summary>
         Archer,
+
+        /// <summary>Lunges along a telegraphed line at a player a few units away, then bites at reach (the Ash Wolf).</summary>
+        Charger,
+
+        /// <summary>Keeps its distance like an archer and places a filling circle on the player's spot that burns on
+        /// after it lands (the Ember Acolyte).</summary>
+        Caster,
+
+        /// <summary>Stays behind its pack and makes allies near it hit harder, shown by a ring on the ground; backs off
+        /// when the player comes close (the Pyre Keeper).</summary>
+        Support,
     }
 
     /// <summary>
@@ -110,6 +121,33 @@ namespace ARPG
                  "of the same hue. A separate sprite is the only way to get a real color difference.")]
         [SerializeField] Sprite bodySprite;
 
+        // The rest of act 1's roster (2026-10-05, Docs/05). Tuning values; zero or false leaves the behaviour out.
+        [Header("Charger: the lunge")]
+        [SerializeField, Min(0f)] float lungeDistance = 4f;
+        [SerializeField, Min(0f)] float lungeMinRange = 3f;
+        [SerializeField, Min(0.1f)] float lungeSpeed = 12f;
+        [SerializeField, Min(0f)] float lungeWindupSeconds = 0.5f;
+        [SerializeField, Min(0f)] float lungeCooldownSeconds = 4f;
+
+        [Header("Strikes and backing off (the Cutthroat)")]
+        [SerializeField, Min(1)] int strikes = 1;
+        [SerializeField, Min(0f)] float strikeGapSeconds = 0.25f;
+        [SerializeField, Min(0f)] float retreatDistance;
+        [SerializeField, Min(0f)] float retreatSeconds;
+
+        [Header("Caster: burning ground")]
+        [SerializeField, Min(0f)] float burnSeconds = 3f;
+        [SerializeField, Min(0f)] float burnHitsPerSecond = 0.5f;
+
+        [Header("Support: the aura")]
+        [SerializeField, Min(0f)] float auraRadius = 5f;
+        [SerializeField, Min(0f)] float auraDamageBonus = 0.2f;
+
+        [Header("Burst (the Carrion Bloat)")]
+        [SerializeField] bool burstOnDeath;
+        [SerializeField] bool diesOnAttack;
+        [SerializeField, Min(0f)] float burstFillSeconds = 0.8f;
+
         [Tooltip("The baked character whose sheets animate this enemy (Resources/Characters/<name>: <name>_idle, _run, " +
                  "_attack, _hit, _death, from the sprite bake). While they do not exist the placeholder body shows. A " +
                  "Champion or Elite may name its own rank look (husk_champion) or share the base one.")]
@@ -141,6 +179,22 @@ namespace ARPG
         public float SeparationRadius => separationRadius;
         public float VisualScale => visualScale;
         public Color ProjectileColor => projectileColor;
+        public float LungeDistance => lungeDistance;
+        public float LungeMinRange => lungeMinRange;
+        public float LungeSpeed => lungeSpeed;
+        public float LungeWindupSeconds => lungeWindupSeconds;
+        public float LungeCooldownSeconds => lungeCooldownSeconds;
+        public int Strikes => Mathf.Max(1, strikes);
+        public float StrikeGapSeconds => strikeGapSeconds;
+        public float RetreatDistance => retreatDistance;
+        public float RetreatSeconds => retreatSeconds;
+        public float BurnSeconds => burnSeconds;
+        public float BurnHitsPerSecond => burnHitsPerSecond;
+        public float AuraRadius => auraRadius;
+        public float AuraDamageBonus => auraDamageBonus;
+        public bool BurstOnDeath => burstOnDeath;
+        public bool DiesOnAttack => diesOnAttack;
+        public float BurstFillSeconds => burstFillSeconds;
 
         /// <summary>Null for a Normal enemy, which keeps the prefab's own body sprite.</summary>
         public Sprite BodySprite => bodySprite;

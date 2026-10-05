@@ -69,8 +69,11 @@ namespace ARPG
             Target = target;
             HasTarget = false;
 
-            if (!grid.IsWalkable(target))
+            // The player's centre can sit in a blocked cell (pressed into a wall corner): lead to the nearest open cell
+            // beside it instead, or every enemy loses its route at once (2026-10-05: they walked into walls).
+            if (!grid.IsWalkable(target) && !TryOpenNeighbour(target, out target))
                 return;
+            Target = target;
 
             var start = grid.IndexOf(target);
             cost[start] = 0f;
@@ -110,6 +113,23 @@ namespace ARPG
                     Push(newCost, neighbourIndex);
                 }
             }
+        }
+
+        /// <summary>An open cell next to a blocked one: edge neighbours first, then corners, then the ring beyond.</summary>
+        bool TryOpenNeighbour(Vector2Int cell, out Vector2Int open)
+        {
+            for (var ring = 1; ring <= 2; ring++)
+                for (var i = 0; i < Offsets.Length; i++)
+                {
+                    var candidate = cell + Offsets[i] * ring;
+                    if (grid.IsWalkable(candidate))
+                    {
+                        open = candidate;
+                        return true;
+                    }
+                }
+            open = cell;
+            return false;
         }
 
         /// <summary>Ground distance along the lattice from the cell to the target, or infinity when unreached.</summary>

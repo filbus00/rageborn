@@ -211,7 +211,7 @@ Rooms needed for the room types (below): each act's 30 rooms must include 3 shri
 
 All use the built rules: level-driven life and damage from 03's curves, a life and hit multiplier against the husk, packs from 3 to 12, champion and elite variants (09: a champion and an elite sheet set each). Archetypes and counterplay are 01's. Telegraph times follow 01 (ground 0.6 to 1.2 s, projectile line 0.4 s, charge line 0.5 s).
 
-Act 1 (fire): the first three are built.
+Act 1 (fire): all eight are built (the last five on 2026-10-05, with the numbers below).
 
 | Enemy | Archetype | Life, hit (times a husk's) | Behavior | Telegraph | From depth |
 |---|---|---|---|---|---|

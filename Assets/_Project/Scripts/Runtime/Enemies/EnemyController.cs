@@ -139,6 +139,19 @@ namespace ARPG
         // Made on first use and reused, one of each since a pooled instance can be any archetype.
         GroundMarker slamMarker;
         GroundMarker aimMarker;
+        GroundMarker auraMarker;
+
+        // The rest of act 1's roster (2026-10-05): a charger's lunge (the line's wind-up, then the dash along it), a
+        // cutthroat's second strike and its backing off, a bloat's burst.
+        static readonly Color AuraColor = new Color(1f, 0.55f, 0.15f, 0.45f);
+        const float LungeLineWidth = 0.3f;
+        float lungeCooldown;
+        bool lungeAttack;
+        float dashLeft;
+        bool dashHit;
+        int strikesLeft;
+        float recoverElapsed;
+        bool burstDone;
 
         public EnemyState State { get; private set; }
 
@@ -259,6 +272,13 @@ namespace ARPG
             burnPending = 0f;
             burnPulse = 0f;
             markTimer = 0f;
+            lungeCooldown = 0f;
+            lungeAttack = false;
+            dashLeft = 0f;
+            dashHit = false;
+            strikesLeft = 0;
+            recoverElapsed = 0f;
+            burstDone = false;
             life = MaxLife;
             punchTimer = 0f;
             deathTimer = 0f;
@@ -290,6 +310,7 @@ namespace ARPG
         internal void Deactivate()
         {
             HideTelegraphs();
+            auraMarker?.Hide();
             gameObject.SetActive(false);
         }
 
@@ -370,11 +391,21 @@ namespace ARPG
 
             var playerGround = world.PlayerGround;
             var distance = Vector2.Distance(ground, playerGround);
+            lungeCooldown = Mathf.Max(0f, lungeCooldown - deltaTime);
+            if (definition.Archetype == EnemyArchetype.Support)
+                ShowAura(world);
+            if (dashLeft > 0f)
+            {
+                Dash(deltaTime, world, playerGround);
+                return;
+            }
 
             switch (State)
             {
                 case EnemyState.Idle:
-                    if (distance > definition.AggroRange)
+                    // Seen, or close by a walkable route: an enemy in the next room no longer wakes through the wall.
+                    if (distance > definition.AggroRange ||
+                        !EnemyRules.Wakes(distance, world.RouteLength(ground, playerGround), definition.AggroRange))
                         return;
                     State = EnemyState.Approach;
                     leashTimer = 0f;
@@ -382,7 +413,9 @@ namespace ARPG
                     break;
 
                 case EnemyState.Approach:
-                    if (distance > definition.LeashRange)
+                    // Too far, or with no route to her (cut off by walls): after the leash time it walks home instead of
+                    // pressing into the wall.
+                    if (distance > definition.LeashRange || !world.TryChaseDirection(ground, playerGround, out _))
                     {
                         leashTimer += deltaTime;
                         if (leashTimer >= definition.LeashSeconds)
@@ -396,14 +429,22 @@ namespace ARPG
                         leashTimer = 0f;
                     }
 
-                    // Archers only shoot what they can see; the check is skipped for everyone else.
-                    var lineOfSight = definition.Archetype != EnemyArchetype.Archer || world.Nav.HasLineOfSight(ground, playerGround);
+                    // Archers and casters only shoot what they can see; the check is skipped for everyone else.
+                    var ranged = definition.Archetype == EnemyArchetype.Archer || definition.Archetype == EnemyArchetype.Caster;
+                    var lineOfSight = !ranged || world.Nav.HasLineOfSight(ground, playerGround);
+                    if (definition.Archetype == EnemyArchetype.Charger && world.Player != null && world.Player.IsAlive &&
+                        EnemyRules.ShouldLunge(distance, definition.LungeMinRange, definition.LungeDistance,
+                            world.Nav.HasLineOfSight(ground, playerGround), lungeCooldown))
+                    {
+                        BeginLunge(world, playerGround);
+                        return;
+                    }
                     if (CanAttack(world, distance) && lineOfSight)
                     {
                         BeginAttack(world, playerGround);
                         return;
                     }
-                    if (definition.Archetype == EnemyArchetype.Archer)
+                    if (ranged || definition.Archetype == EnemyArchetype.Support)
                     {
                         Reposition(world, playerGround, distance, lineOfSight, deltaTime);
                         return;
@@ -417,10 +458,39 @@ namespace ARPG
                     aimMarker?.Advance(deltaTime);
                     if (stateTimer <= 0f)
                     {
+                        if (lungeAttack)
+                        {
+                            // The line has filled: the dash runs from here (Dash), then the recovery.
+                            lungeAttack = false;
+                            HideTelegraphs();
+                            dashLeft = definition.LungeDistance;
+                            dashHit = false;
+                            lungeCooldown = definition.LungeCooldownSeconds;
+                            State = EnemyState.Recover;
+                            stateTimer = EffectiveAttackRecoverSeconds;
+                            recoverElapsed = 0f;
+                            SetVisuals(1f, 1f);
+                            return;
+                        }
                         LandAttack(world, distance);
                         HideTelegraphs();
+                        // A bloat bursts with its own slam (Docs/05: when it reaches the player), so it does not burst again.
+                        if (definition.DiesOnAttack && IsAlive)
+                        {
+                            burstDone = true;
+                            TakeDamage(life);
+                            return;
+                        }
+                        // A cutthroat strikes again straight away (Docs/05: twice quickly).
+                        if (strikesLeft > 1)
+                        {
+                            strikesLeft--;
+                            stateTimer = definition.StrikeGapSeconds;
+                            return;
+                        }
                         State = EnemyState.Recover;
                         stateTimer = EffectiveAttackRecoverSeconds;
+                        recoverElapsed = 0f;
                         SetVisuals(1f, 1f);
                     }
                     Hold(world, playerGround, deltaTime);
@@ -428,11 +498,16 @@ namespace ARPG
 
                 case EnemyState.Recover:
                     stateTimer -= deltaTime;
+                    recoverElapsed += deltaTime;
                     if (stateTimer <= 0f)
                         State = EnemyState.Approach;
-                    // An archer uses the time between shots to get back to its range.
-                    if (definition.Archetype == EnemyArchetype.Archer)
+                    // An archer or caster uses the time between shots to get back to its range; a cutthroat backs off
+                    // after its strikes (Docs/05: 2 units for 1 s).
+                    if (definition.Archetype == EnemyArchetype.Archer || definition.Archetype == EnemyArchetype.Caster ||
+                        definition.Archetype == EnemyArchetype.Support)
                         Reposition(world, playerGround, distance, world.Nav.HasLineOfSight(ground, playerGround), deltaTime);
+                    else if (definition.RetreatSeconds > 0f && recoverElapsed <= definition.RetreatSeconds)
+                        Retreat(world, playerGround, distance, deltaTime);
                     else
                         Hold(world, playerGround, deltaTime);
                     return;
@@ -448,7 +523,7 @@ namespace ARPG
             }
 
             // Close enough to stop closing in; the pushes below still run so a crowd spreads around the player.
-            var desired = distance > definition.StopDistance ? world.ChaseDirection(ground, playerGround) : Vector2.zero;
+            var desired = distance > definition.StopDistance && world.TryChaseDirection(ground, playerGround, out var chase) ? chase : Vector2.zero;
             desired += Separation(world);
 
             // The player is solid to enemies. Without this the crowd behind squeezes the front row through the player.
@@ -479,6 +554,15 @@ namespace ARPG
                 deathTimer = definition.DeathSeconds;
                 HideModifierIcons();
                 HideTelegraphs();
+                auraMarker?.Hide();
+                dashLeft = 0f;
+                // Docs/05: the Carrion Bloat bursts when killed: a filling circle where it fell.
+                if (definition.BurstOnDeath && !burstDone && manager != null)
+                {
+                    burstDone = true;
+                    manager.Hazards.Blast(ground, definition.SlamRadius, definition.BurstFillSeconds,
+                        CombatFormulas.EnemyHitDamage(Level) * definition.DamageMultiplier, Level);
+                }
                 pack?.NotifyDeath(this);
                 manager?.NotifyKilled(this);
                 return true;
@@ -658,7 +742,8 @@ namespace ARPG
 
             if ((State == EnemyState.Attack || State == EnemyState.Recover) && animationSet.Attack != null)
             {
-                Face(State == EnemyState.Attack && definition.Archetype == EnemyArchetype.Archer ? attackAim : world.PlayerGround - ground, count);
+                Face((State == EnemyState.Attack && definition.Archetype == EnemyArchetype.Archer) || lungeAttack || dashLeft > 0f
+                    ? attackAim : world.PlayerGround - ground, count);
                 var recovering = State == EnemyState.Recover;
                 var duration = recovering ? EffectiveAttackRecoverSeconds : EffectiveAttackWindupSeconds;
                 var progress = EnemyAnimationRules.AttackProgress(recovering, duration - stateTimer, duration);
@@ -701,9 +786,19 @@ namespace ARPG
             State = EnemyState.Attack;
             stateTimer = EffectiveAttackWindupSeconds;
             attackCenter = ground;
+            strikesLeft = definition.Strikes;
 
             switch (definition.Archetype)
             {
+                case EnemyArchetype.Caster:
+                    // Docs/05: a fire circle on the player's spot, filling for the wind-up.
+                    attackCenter = playerGround;
+                    if (slamMarker == null)
+                        slamMarker = GroundMarker.Circle(attackCenter, definition.SlamRadius, stateTimer, TelegraphColor, world.transform);
+                    else
+                        slamMarker.RestartCircle(attackCenter, definition.SlamRadius, stateTimer);
+                    break;
+
                 case EnemyArchetype.Brute:
                     if (slamMarker == null)
                         slamMarker = GroundMarker.Circle(ground, definition.SlamRadius, stateTimer, TelegraphColor, world.transform);
@@ -728,11 +823,17 @@ namespace ARPG
             if (world.Player == null || !world.Player.IsAlive)
                 return;
 
-            var damage = CombatFormulas.EnemyHitDamage(Level) * definition.DamageMultiplier;
+            var damage = CombatFormulas.EnemyHitDamage(Level) * definition.DamageMultiplier * world.AuraMultiplierAt(ground, this);
             var armorIgnorePercent = definition.Rank == EnemyRank.Elite || definition.Rank == EnemyRank.Boss ? EliteArmorIgnorePercent : 0f;
 
             switch (definition.Archetype)
             {
+                case EnemyArchetype.Caster:
+                    // The circle has filled: it burns on for a while (Docs/05: 3 s, 0.5 hit a second).
+                    Sfx.Play(SoundId.Explosion, 0.4f);
+                    world.Hazards.Fire(attackCenter, definition.SlamRadius, definition.BurnSeconds, damage * definition.BurnHitsPerSecond, Level);
+                    return;
+
                 case EnemyArchetype.Brute:
                     Sfx.Play(SoundId.EnemySlam, 0.8f);
                     // Only the circle counts: stepping out of it is the counterplay, however close the brute is.
@@ -777,10 +878,15 @@ namespace ARPG
         void Reposition(EnemyManager world, Vector2 playerGround, float distance, bool lineOfSight, float deltaTime)
         {
             var desired = Vector2.zero;
-            switch (ArcherSteering.Intent(distance, lineOfSight, definition.PreferredRange, definition.AttackRange))
+            // A support keeps behind its pack: within a couple of units of its preferred range, whether it can see her
+            // or not; it backs off when she comes closer (Docs/05: the Pyre Keeper flees inside 3).
+            var intent = definition.Archetype == EnemyArchetype.Support
+                ? ArcherSteering.Intent(distance, true, definition.PreferredRange, definition.PreferredRange + 2f)
+                : ArcherSteering.Intent(distance, lineOfSight, definition.PreferredRange, definition.AttackRange);
+            switch (intent)
             {
                 case 1:
-                    desired = world.ChaseDirection(ground, playerGround);
+                    world.TryChaseDirection(ground, playerGround, out desired);
                     break;
                 case -1:
                     desired = distance > 1e-4f ? (ground - playerGround) / distance : Vector2.zero;
@@ -791,6 +897,69 @@ namespace ARPG
                 desired.Normalize();
 
             Move(desired * (EffectiveMoveSpeed * deltaTime), world);
+        }
+
+        /// <summary>A charger's wind-up: a line along the lunge, filling, aimed where the player stood.</summary>
+        void BeginLunge(EnemyManager world, Vector2 playerGround)
+        {
+            State = EnemyState.Attack;
+            lungeAttack = true;
+            stateTimer = definition.LungeWindupSeconds;
+            var aim = playerGround - ground;
+            attackAim = aim.sqrMagnitude > 1e-4f ? aim.normalized : Vector2.down;
+            var end = ground + attackAim * definition.LungeDistance;
+            if (aimMarker == null)
+                aimMarker = GroundMarker.Line(ground, end, LungeLineWidth, stateTimer, TelegraphColor, world.transform);
+            else
+                aimMarker.RestartLine(ground, end, LungeLineWidth, stateTimer);
+        }
+
+        /// <summary>The lunge itself: fast along the aimed line, walls respected; it bites the player once if it passes
+        /// her, and stops there or at a wall.</summary>
+        void Dash(float deltaTime, EnemyManager world, Vector2 playerGround)
+        {
+            var step = Mathf.Min(dashLeft, definition.LungeSpeed * deltaTime);
+            var before = ground;
+            Move(attackAim * step, world);
+            dashLeft -= step;
+            if ((ground - before).sqrMagnitude < step * step * 0.25f)
+                dashLeft = 0f;
+            if (dashHit || world.Player == null || !world.Player.IsAlive)
+                return;
+            if (Vector2.Distance(ground, playerGround) > definition.BodyRadius + definition.StopDistance + EnemyRules.LungeHitSlack)
+                return;
+            dashHit = true;
+            dashLeft = 0f;
+            var damage = CombatFormulas.EnemyHitDamage(Level) * definition.DamageMultiplier * world.AuraMultiplierAt(ground, this);
+            if (PetController.Current != null && PetController.Current.TryTakeHit(this, damage))
+                return;
+            var armorIgnorePercent = definition.Rank == EnemyRank.Elite ? EliteArmorIgnorePercent : 0f;
+            var before2 = world.Player.Life;
+            world.Player.TakeHit(damage, Level, armorIgnorePercent, dodgeable: true);
+            if (world.Player.Life < before2)
+                ApplyOnHitEffects(world, damage);
+        }
+
+        /// <summary>A cutthroat's backing off after its strikes, at the pace that covers its retreat distance in time.</summary>
+        void Retreat(EnemyManager world, Vector2 playerGround, float distance, float deltaTime)
+        {
+            var away = distance > 1e-4f ? (ground - playerGround) / distance : Vector2.zero;
+            var speed = definition.RetreatDistance / Mathf.Max(definition.RetreatSeconds, 0.01f);
+            Move((away + Separation(world)) * (speed * deltaTime), world);
+        }
+
+        /// <summary>A support's aura ring, following it (Docs/05: always shown).</summary>
+        void ShowAura(EnemyManager world)
+        {
+            if (auraMarker == null)
+            {
+                auraMarker = GroundMarker.Ring(ground, definition.AuraRadius, 0.01f, AuraColor, world.transform);
+                return;
+            }
+            if (!auraMarker.IsVisible)
+                auraMarker.RestartCircle(ground, definition.AuraRadius, 0.01f);
+            else
+                auraMarker.MoveTo(ground);
         }
 
         // Stands its ground while attacking or recovering, but is still pushed apart from the crowd and the player.

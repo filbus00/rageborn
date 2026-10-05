@@ -566,3 +566,40 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
 - The owner: the coin pickup was "horrible"; "make the sound of jiggling a coin purse and make it somewhat muted".
   `make_sfx.py` `gold()` is now two quick shakes, each a cluster of small, dull coin knocks (1.7 to 2.6 kHz, short
   decays) under a soft leather rustle, low-passed at 2.8 kHz, peak 0.32 (was four bright 3 kHz clinks at 0.45).
+
+## 2026-10-05: enemies that walked into walls; the rest of act 1's roster
+
+- Walls (the owner, watching the autopilot: "enemies try and track through walls, character not attacking through
+  walls"): an enemy chased in a straight line whenever the flow field gave it no direction, so one close by in a straight
+  line but far by route (the next room) pressed into the wall, and she could not shoot it without line of sight. The
+  field also gave up entirely when her centre sat in a blocked cell. Now: `FlowField.Compute` leads to the nearest open
+  cell beside a blocked target; `EnemyManager.TryChaseDirection` is false without a route, and the enemy then stands
+  instead of walking into the wall and counts the time toward its leash, so it goes home after `LeashSeconds`; the
+  field reaches 40 (scenes had saved 24; `MinFlowRange`); and an idle enemy wakes only if she is in sight or within 1.75
+  times its aggro range by a walkable route (`EnemyRules.Wakes`, `EnemyManager.RouteLength`). The autopilot then
+  cleared depths 1 to 4 without sticking; it stalled at the end of depth 4 with a full backpack, walking to loot it could
+  not pick up (an autopilot limit, not the game's).
+- The rest of act 1's roster from Docs/05, with its numbers:
+  - Ash Wolf (`Charger`): from depth 3, one normal pack in five is 4 to 6 wolves and nothing else. It lunges 4 units at
+    a player 3 to 5 away whom it can see (a 0.5 s line, then a dash at 12 a second that bites once if it passes her and
+    stops at walls; 4 s cooldown), and bites at reach otherwise.
+  - Bandit Cutthroat (a `Swarmer` with `strikes` 2 and a retreat): from depth 3, every second husk in 30 percent of
+    packs. It is fast (4.2), strikes twice 0.25 s apart, then backs off 2 units over 1 s.
+  - Ember Acolyte (`Caster`): from depth 4, the archers left in 35 percent of packs. It keeps 6 away and, with sight,
+    places a 1.5-radius circle on her spot that fills for 1 s, then burns 3 s at 0.5 hit a second (`EnemyHazards.Fire`).
+  - Pyre Keeper (`Support`): from depth 4, the last slot (the back) of 30 percent of packs of 4 or more. Awake allies
+    within 5 hit 20 percent harder (`EnemyManager.AuraMultiplierAt`, auras do not stack, not itself), shown by an ember
+    ring that follows it; it keeps about 5 away and backs off inside about 4; it bites at reach if cornered.
+  - Carrion Bloat (a `Brute` with `burstOnDeath` and `diesOnAttack`): from depth 5, the ghouls of 40 percent of packs.
+    Slow (1.6); its slam is its burst (radius 2, 0.8 s), after which it dies; killed first, it leaves the same burst
+    where it fell (`EnemyHazards.Blast`).
+  The rolls come from a third hash of the pack (`PackComposition.Roster`), so earlier rolls and saved kills keep their
+  slots. `Tools > ARPG > Add Act 1 Roster` (`Act1RosterBuilder`) makes the definitions and puts them on the dungeon
+  level; Create Dungeon Scene does too.
+- Art: `undead.py` builds the cutthroat (husk's rig), ember acolyte and pyre keeper (the archer's) and carrion bloat
+  (the ghoul's) like the skeleton and cultist. The wolf has no humanoid rig to borrow: `wolf.py` builds it on a rig of
+  its own (19 bones) with its five clips keyed in code, exported in one FBX; `EnemyBakeSetup.GenericBodies` imports it
+  as a generic rig and takes the clips from its own file. Baked at 60 (the brief's 45 looked too small beside a husk).
+- Checked in play in the editor: each spawned beside her did its thing (the wolf lunged from 4.2 to 2.0 units, the
+  acolyte's circle burned under her, the keeper stayed at about 4 with its ring showing and husks in it at 1.2 times,
+  the bloat burst), with no errors. 574 of 574 tests pass.

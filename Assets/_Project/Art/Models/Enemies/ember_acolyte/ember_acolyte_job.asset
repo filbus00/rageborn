@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b7ef2a89c554486bb05c81650498d7, type: 3}
+  m_Name: ember_acolyte_job
+  m_EditorClassIdentifier: ARPG.Editor::ARPG.Editor.SpriteBakeJob
+  characterName: ember_acolyte
+  bodies:
+  - look: 
+    model: {fileID: 919132149155446097, guid: ba724052c85f44e8c848dde3bfdc9a4c, type: 3}
+    layer: 0
+  pieces: []
+  grips:
+  - grip: 
+    clips:
+    - name: idle
+      clip: {fileID: -203655887218126122, guid: 7aa9268e641ff49d19a14b2741e60821, type: 3}
+      frames: 12
+      loop: 1
+      playbackSeconds: 5.1000004
+      start: 0
+      end: 5.1000004
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: run
+      clip: {fileID: -203655887218126122, guid: 82748c78e43ae44a398269138deaa925, type: 3}
+      frames: 10
+      loop: 1
+      playbackSeconds: 0.86666673
+      start: 0
+      end: 0.86666673
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack
+      clip: {fileID: -203655887218126122, guid: 50e03663ceb334ebbab90c5a167bd8b5, type: 3}
+      frames: 12
+      loop: 0
+      playbackSeconds: 1
+      start: 0
+      end: 1
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hit
+      clip: {fileID: -203655887218126122, guid: c9f3667e037ce4aebb4a5f989ffcaba3, type: 3}
+      frames: 4
+      loop: 0
+      playbackSeconds: 0.4
+      start: 0
+      end: 0.4
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: death
+      clip: {fileID: -203655887218126122, guid: 91ecf51d0a3574caca404e8fed365039, type: 3}
+      frames: 12
+      loop: 0
+      playbackSeconds: 3.1666667
+      start: 0
+      end: 3.1666667
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+  pixelsPerUnit: 40
+  cellSize: 80
+  pivot: {x: 40, y: 12}
+  targetHeightPixels: 54.5
+  bakedScale: 1
+  pixelArt: 1
+  supersample: 4
+  framesPerSecond: 12
+  directions: 8
+  outputFolder: Assets/_Project/Resources/Characters/ember_acolyte

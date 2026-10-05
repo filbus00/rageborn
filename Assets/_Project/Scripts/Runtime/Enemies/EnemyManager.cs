@@ -33,7 +33,11 @@ namespace ARPG
         [SerializeField, Min(0.02f)] float flowRefreshSeconds = 0.15f;
 
         [Tooltip("Cells farther than this from the player along the lattice get no flow direction. Above the leash range of 20.")]
-        [SerializeField, Min(1f)] float flowRange = 24f;
+        [SerializeField, Min(1f)] float flowRange = 40f;
+
+        /// <summary>The flow field's reach in ground units at least (scenes saved 24, which left enemies a room away with
+        /// no route; 2026-10-05).</summary>
+        public const float MinFlowRange = 40f;
 
         readonly List<EnemyController> active = new List<EnemyController>();
         readonly Stack<EnemyController> pool = new Stack<EnemyController>();
@@ -80,6 +84,12 @@ namespace ARPG
         /// <summary>Archer arrows in flight, ticked after the enemies each frame.</summary>
         public EnemyProjectiles Projectiles { get; private set; }
 
+        /// <summary>Burning ground and bursts left by enemies (EnemyHazards).</summary>
+        public EnemyHazards Hazards { get; private set; }
+
+        // The living supports this frame (the Pyre Keeper's aura), rebuilt with the hash.
+        readonly List<EnemyController> supports = new List<EnemyController>(8);
+
         /// <summary>Scratch list for spatial hash queries. Single threaded, so one shared list is enough.</summary>
         internal List<int> NeighbourBuffer => neighbourBuffer;
 
@@ -109,6 +119,7 @@ namespace ARPG
             flow = new FlowField(Nav);
             Hash = CreateHash(Nav);
             Projectiles = new EnemyProjectiles(transform);
+            Hazards = new EnemyHazards(transform);
 
             for (var i = 0; i < poolSize; i++)
                 pool.Push(CreateInstance());
@@ -128,6 +139,7 @@ namespace ARPG
             // Dead enemies are left out of the hash so they are neither targeted nor pushed against.
             Hash.Clear();
             hashed.Clear();
+            supports.Clear();
             for (var i = 0; i < active.Count; i++)
             {
                 var enemy = active[i];
@@ -136,6 +148,8 @@ namespace ARPG
 
                 enemy.HashId = Hash.Insert(enemy.GroundPosition);
                 hashed.Add(enemy);
+                if (enemy.Definition.Archetype == EnemyArchetype.Support && enemy.State != EnemyState.Idle)
+                    supports.Add(enemy);
             }
 
             // Backwards so a finished enemy can be swap-removed while looping.
@@ -159,9 +173,27 @@ namespace ARPG
             EngagedCount = engaged;
 
             Projectiles.Tick(deltaTime, this);
+            Hazards.Tick(deltaTime, this);
         }
 
         internal void NotifyKilled(EnemyController enemy) => Killed?.Invoke(enemy);
+
+        /// <summary>How much harder an enemy standing here hits: the best awake support aura that reaches it, else 1
+        /// (EnemyRules.AuraMultiplier; a support does not empower itself).</summary>
+        public float AuraMultiplierAt(Vector2 ground, EnemyController self)
+        {
+            var best = 0f;
+            for (var i = 0; i < supports.Count; i++)
+            {
+                var support = supports[i];
+                if (support == self || !support.IsAlive)
+                    continue;
+                var radius = support.Definition.AuraRadius;
+                if ((support.GroundPosition - ground).sqrMagnitude <= radius * radius)
+                    best = Mathf.Max(best, support.Definition.AuraDamageBonus);
+            }
+            return EnemyRules.AuraMultiplier(best);
+        }
 
         /// <summary>
         /// Fills <paramref name="results"/> with the living enemies whose centers are within radius of a ground
@@ -216,14 +248,29 @@ namespace ARPG
             pool.Push(enemy);
         }
 
-        /// <summary>The unit ground direction an enemy at <paramref name="from"/> should walk to reach the target.</summary>
-        internal Vector2 ChaseDirection(Vector2 from, Vector2 target)
+        /// <summary>
+        /// The unit ground direction an enemy at <paramref name="from"/> should walk to reach the player at
+        /// <paramref name="target"/>: straight with a clear line, else along the flow field. False when there is no
+        /// route within the field's reach: the enemy must not walk straight into the wall between them (2026-10-05).
+        /// </summary>
+        internal bool TryChaseDirection(Vector2 from, Vector2 target, out Vector2 direction)
         {
             // With a clear line the straight route is best; the lattice route would zig-zag across open ground.
-            if (!Nav.HasLineOfSight(from, target) && flow.TryGetDirection(from, out var direction))
-                return direction;
+            if (Nav.HasLineOfSight(from, target))
+            {
+                direction = (target - from).normalized;
+                return true;
+            }
+            return flow.TryGetDirection(from, out direction);
+        }
 
-            return (target - from).normalized;
+        /// <summary>The ground distance an enemy would walk to the player: straight with a clear line, else along the
+        /// flow field; infinity without a route.</summary>
+        internal float RouteLength(Vector2 from, Vector2 target)
+        {
+            if (Nav.HasLineOfSight(from, target))
+                return Vector2.Distance(from, target);
+            return flow.CostAt(IsoMath.GroundToCell(from));
         }
 
         void FindTilemaps()
@@ -253,7 +300,7 @@ namespace ARPG
             if (flowValid && (cell == flowCell || flowCooldown > 0f))
                 return;
 
-            flow.Compute(cell, flowRange);
+            flow.Compute(cell, Mathf.Max(flowRange, MinFlowRange));
             flowCell = cell;
             flowCooldown = flowRefreshSeconds;
             flowValid = true;

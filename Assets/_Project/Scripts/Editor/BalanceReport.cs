@@ -79,6 +79,12 @@ namespace ARPG.Editor
             // From depth 4; an older project without them counts husks and archers in their place.
             var skeleton = AssetDatabase.LoadAssetAtPath<EnemyDefinition>("Assets/_Project/Data/Enemies/Skeleton.asset") ?? husk;
             var cultist = AssetDatabase.LoadAssetAtPath<EnemyDefinition>("Assets/_Project/Data/Enemies/Cultist.asset") ?? archer;
+            // The rest of act 1 (2026-10-05); an older project counts its stand-ins.
+            var ashWolf = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(Act1RosterBuilder.AshWolfPath) ?? husk;
+            var cutthroat = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(Act1RosterBuilder.CutthroatPath) ?? husk;
+            var acolyte = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(Act1RosterBuilder.EmberAcolytePath) ?? archer;
+            var keeper = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(Act1RosterBuilder.PyreKeeperPath) ?? husk;
+            var bloat = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(Act1RosterBuilder.CarrionBloatPath) ?? ghoul;
             // The class's own skills (the Wild Arrow's, from Resources), not every asset in Data/Skills, which still holds
             // the retired Wrathborn's.
             var skills = new List<SkillDefinition>();
@@ -131,6 +137,16 @@ namespace ARPG.Editor
                                 kills.Add(skeleton);
                             else if (members[k] == PackMember.Cultist)
                                 kills.Add(cultist);
+                            else if (members[k] == PackMember.AshWolf)
+                                kills.Add(ashWolf);
+                            else if (members[k] == PackMember.Cutthroat)
+                                kills.Add(cutthroat);
+                            else if (members[k] == PackMember.EmberAcolyte)
+                                kills.Add(acolyte);
+                            else if (members[k] == PackMember.PyreKeeper)
+                                kills.Add(keeper);
+                            else if (members[k] == PackMember.CarrionBloat)
+                                kills.Add(bloat);
                         }
                     }
                     if (layout.HasBossArena)

@@ -144,6 +144,23 @@ namespace ARPG
             Restart(duration);
         }
 
+        /// <summary>Recolours the marker (a pooled marker used for another kind of hazard).</summary>
+        public void SetColor(Color color)
+        {
+            if (root == null)
+                return;
+            root.GetComponent<SpriteRenderer>().color = color;
+            if (fill != null)
+                fill.GetComponent<SpriteRenderer>().color = color;
+        }
+
+        /// <summary>Moves a shown marker without restarting it (an aura that follows its enemy).</summary>
+        public void MoveTo(Vector2 ground)
+        {
+            Center = ground;
+            Place(root.transform, ground, Radius);
+        }
+
         public void Hide()
         {
             if (root != null)

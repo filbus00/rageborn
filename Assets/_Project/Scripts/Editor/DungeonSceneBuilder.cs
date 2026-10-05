@@ -119,6 +119,8 @@ namespace ARPG.Editor
             UndeadEnemiesBuilder.CreateDefinitions();
             serialized.FindProperty("skeletonEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(UndeadEnemiesBuilder.SkeletonPath);
             serialized.FindProperty("cultistEnemy").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(UndeadEnemiesBuilder.CultistPath);
+            Act1RosterBuilder.CreateDefinitions();
+            Act1RosterBuilder.Assign(serialized);
             serialized.FindProperty("stairsSprite").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Sprite>($"{EnvironmentArtFolder}/PlaceholderStairs.png");
             serialized.FindProperty("chestClosedSprite").objectReferenceValue = chestClosed;
             serialized.FindProperty("chestOpenSprite").objectReferenceValue = chestOpen;

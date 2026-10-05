@@ -14,6 +14,22 @@ namespace ARPG
 
         /// <summary>From depth 4: a robed fire caster in the archer's place.</summary>
         Cultist,
+
+        // The rest of act 1's roster (2026-10-05, Docs/05).
+        /// <summary>From depth 3: a charger, in packs of its own.</summary>
+        AshWolf,
+
+        /// <summary>From depth 3: a fast double striker among husks.</summary>
+        Cutthroat,
+
+        /// <summary>From depth 4: a caster of burning circles in an archer's place.</summary>
+        EmberAcolyte,
+
+        /// <summary>From depth 4: a support at the back of a pack, its aura making the others hit harder.</summary>
+        PyreKeeper,
+
+        /// <summary>From depth 5: a slow brute that bursts, in a ghoul's place.</summary>
+        CarrionBloat,
     }
 
     /// <summary>
@@ -41,7 +57,69 @@ namespace ARPG
         public const int SkeletonPercent = 35;
         public const int CultistPercent = 50;
 
-        public static PackMember[] Roll(int depth, PackKind kind, int count, int levelSeed, int packIndex)
+        // The rest of act 1's roster (2026-10-05, Docs/05; depths from its "From depth" column, shares are tuning).
+        public const int FirstWolfDepth = 3;
+        public const int FirstCutthroatDepth = 3;
+        public const int FirstAcolyteDepth = 4;
+        public const int FirstKeeperDepth = 4;
+        public const int FirstBloatDepth = 5;
+        public const int WolfPackPercent = 20;
+        public const int CutthroatPercent = 30;
+        public const int AcolytePercent = 35;
+        public const int KeeperPercent = 30;
+        public const int BloatPercent = 40;
+
+        /// <summary>Docs/05: wolves run in packs of 4 to 6.</summary>
+        public const int MinWolves = 4;
+        public const int MaxWolves = 6;
+
+        public static PackMember[] Roll(int depth, PackKind kind, int count, int levelSeed, int packIndex) =>
+            Roster(depth, kind, RollUndead(depth, kind, count, levelSeed, packIndex), levelSeed, packIndex);
+
+        /// <summary>
+        /// The rest of act 1's roster, from a third hash of the pack so every earlier roll stays as it was. Normal packs
+        /// from depth 3: one in five is a wolf pack (4 to 6 wolves and nobody else; a placement for fewer keeps its
+        /// husks); in 30 percent every second husk is a cutthroat. From depth 4: in 35 percent the archers left are
+        /// ember acolytes, and in 30 percent of packs of 4 or more the last slot (the back) is a pyre keeper. From depth 5,
+        /// in 40 percent of packs the ghouls are carrion bloats. Elite packs and a Champion's slot 0 stay as they were.
+        /// </summary>
+        static PackMember[] Roster(int depth, PackKind kind, PackMember[] members, int levelSeed, int packIndex)
+        {
+            if (kind == PackKind.Elite || depth < FirstWolfDepth)
+                return members;
+            var hash = (uint)DungeonRules.LevelSeed(levelSeed, 3000 + packIndex);
+            var first = kind == PackKind.WithChampion ? 1 : 0;
+            if (kind == PackKind.Normal && hash % 100 < WolfPackPercent && members.Length >= MinWolves)
+            {
+                for (var i = 0; i < members.Length; i++)
+                    members[i] = i < MaxWolves ? PackMember.AshWolf : PackMember.None;
+                return members;
+            }
+            if (depth >= FirstCutthroatDepth && hash / 100 % 100 < CutthroatPercent)
+                for (var i = first; i < members.Length; i++)
+                    if (members[i] == PackMember.Husk && i % 2 == 1)
+                        members[i] = PackMember.Cutthroat;
+            if (depth >= FirstAcolyteDepth && hash / 10000 % 100 < AcolytePercent)
+                for (var i = first; i < members.Length; i++)
+                    if (members[i] == PackMember.Archer)
+                        members[i] = PackMember.EmberAcolyte;
+            if (depth >= FirstKeeperDepth && members.Length >= 4 && hash / 1000000 % 100 < KeeperPercent)
+            {
+                for (var i = members.Length - 1; i >= first; i--)
+                    if (members[i] != PackMember.None)
+                    {
+                        members[i] = PackMember.PyreKeeper;
+                        break;
+                    }
+            }
+            if (depth >= FirstBloatDepth && (uint)DungeonRules.LevelSeed(levelSeed, 4000 + packIndex) % 100 < BloatPercent)
+                for (var i = first; i < members.Length; i++)
+                    if (members[i] == PackMember.Ghoul)
+                        members[i] = PackMember.CarrionBloat;
+            return members;
+        }
+
+        static PackMember[] RollUndead(int depth, PackKind kind, int count, int levelSeed, int packIndex)
         {
             var members = RollAct1(depth, kind, count, levelSeed, packIndex);
             if (depth < FirstUndeadDepth || kind == PackKind.Elite)

@@ -167,14 +167,31 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void BlockedTarget_ProducesNoField()
+        public void BlockedTarget_LeadsToAnOpenCellBesideIt()
         {
+            // The player pressed into a wall corner: enemies still get a route (2026-10-05: they walked into walls).
             var field = new FlowField(OpenGrid(3, new Vector2Int(0, 0)));
 
             field.Compute(Vector2Int.zero, 100f);
 
+            Assert.IsTrue(field.HasTarget);
+            Assert.AreNotEqual(Vector2Int.zero, field.Target);
+            Assert.IsTrue(field.TryGetDirection(IsoMath.CellToGround(new Vector2Int(2, 2)), out _));
+        }
+
+        [Test]
+        public void BlockedTarget_WithNothingOpenNear_ProducesNoField()
+        {
+            var blocked = new System.Collections.Generic.List<Vector2Int>();
+            for (var y = -2; y <= 2; y++)
+                for (var x = -2; x <= 2; x++)
+                    blocked.Add(new Vector2Int(x, y));
+            var field = new FlowField(OpenGrid(4, blocked.ToArray()));
+
+            field.Compute(Vector2Int.zero, 100f);
+
             Assert.IsFalse(field.HasTarget);
-            Assert.IsFalse(field.TryGetDirection(IsoMath.CellToGround(new Vector2Int(2, 2)), out _));
+            Assert.IsFalse(field.TryGetDirection(IsoMath.CellToGround(new Vector2Int(4, 4)), out _));
         }
 
         [Test]
