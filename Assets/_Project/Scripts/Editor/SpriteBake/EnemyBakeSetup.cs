@@ -37,6 +37,9 @@ namespace ARPG.Editor
             { "drowned", 72f }, { "harpooner", 96f }, { "drowned_watchman", 92f }, { "skeleton_knight", 88f },
             { "grave_priest", 96f }, { "hollowed", 72f }, { "void_wraith", 76f }, { "rift_caller", 98f },
             { "tidewife", 100f }, { "saint_marrow", 112f }, { "first_watchman", 100f },
+            // The pets (2026-10-06, ArtSource/tools/props/pets.py): the wolf a little over the Ash Wolf (seen from behind it is narrow), the raven measured with
+            // its wings spread.
+            { "pet_wolf", 68f }, { "pet_boar", 58f }, { "pet_raven", 34f },
         };
 
         /// <summary>Cells wider than the default 128 px: the ghoul's slam swings its big arm past a 128 px cell (clipped on
@@ -77,7 +80,26 @@ namespace ARPG.Editor
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the
         /// animation (wolf.py exports idle, run, attack, hit and death as takes).</summary>
-        static readonly HashSet<string> GenericBodies = new HashSet<string> { "ash_wolf" };
+        static readonly HashSet<string> GenericBodies = new HashSet<string> { "ash_wolf", "pet_wolf", "pet_boar", "pet_raven" };
+
+        const string PetsRoot = "Assets/_Project/Art/Models/Pets";
+
+        /// <summary>The pets (ArtSource/tools/props/pets.py), baked like the enemies on their own rigs, to
+        /// Resources/Characters/pet_&lt;kind&gt;, which <see cref="PetController"/> plays.</summary>
+        [MenuItem("Tools/ARPG/Sprite Bake/Bake Pets")]
+        public static void BakePets()
+        {
+            var baked = new List<string>();
+            foreach (var folder in Directory.GetDirectories(PetsRoot).Select(d => d.Replace('\\', '/')).OrderBy(d => d))
+            {
+                var job = SetUp(folder);
+                if (job == null)
+                    continue;
+                SpriteBaker.Bake(job);
+                baked.Add(job.characterName);
+            }
+            Debug.Log("Baked pets: " + string.Join(", ", baked));
+        }
 
         [MenuItem("Tools/ARPG/Sprite Bake/Bake Enemies")]
         public static void BakeAll()

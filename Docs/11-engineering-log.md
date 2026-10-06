@@ -720,3 +720,34 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
 - Result: app 741 MB, textures 287 MB, sprite data 166 MB. 590 of 590 tests pass. Installed on the phone.
 - Left: the sprite data is still 166 MB, about 380 bytes for each of the 437,000 sprites. Fewer directions or frames
   would cut both it and the textures, but that changes how she looks, so it is the owner's choice.
+
+## 2026-10-06: models for the pets
+
+- The owner: "make models for the pets". Until now each pet was the NPC placeholder figure in its colour, with its
+  name over it.
+- `ArtSource/tools/props/pets.py` builds the three in Blender from code, the way `wolf.py` builds the Ash Wolf. Each is
+  on a rig of its own, with idle, run, attack, hit and death keyed in code. It writes
+  `Art/Models/Pets/<name>/<name>.fbx` and previews in `ArtSource/pixel/gear_preview`. Usage:
+  `Blender -b -P ArtSource/tools/props/pets.py -- pet_wolf`.
+  - Wolf: tawny, with a cream muzzle, belly and tail tip and a red leather collar with a brass tag. In idle it pants and
+    wags. It is warmer than the Ash Wolf.
+  - Boar: dark brown, with a bristled ridge, tusks curling up, the snout's disc and a leather harness with an iron ring.
+    In idle it roots at the ground; its attack is head down, a lunge and a toss of the tusks.
+  - Raven: blue-black, with fingered primaries and a silver ring on its leg. It always flaps; its attack is a dive and a
+    stab of the beak.
+- Baking: `Tools > ARPG > Sprite Bake > Bake Pets` (`EnemyBakeSetup.BakePets`) bakes each pet on the generic-rig path
+  (`GenericBodies`) to `Resources/Characters/pet_<kind>`, in 8 directions. Heights: wolf 68 and boar 58 (the wolf, seen
+  from behind, read too small at 54), raven 34 with its wings spread.
+- `PetController` plays the sheets through `EnemyAnimationSet`:
+  - Idle, run (at the speed it was recorded for), the bite (it starts 35 percent in, so the snap follows the damage
+    soon), a flinch when hit, and the fall when knocked out (hidden after 1.5 s).
+  - Rows turn toward where it walks or what it bites.
+  - The body sits in a sorting group at its feet with a shadow on the ground. The raven flies 0.75 over its shadow with
+    a slow rise and fall, and comes down as it falls (`PetRules.HoverHeight`, `Hover`).
+  - The placeholder and its name label stay only for a missing bake.
+- Bug found by the run frames: with her standing still, the pet ran round her for ever. The follow point was worked out
+  from the pet's own side, so it moved on each time the pet came near. It now keeps the side from her last heading
+  (`followBack`).
+- Checked in play: in town each pet runs to her side and settles into its idle. In the dungeon the wolf ran to a husk,
+  bit with its attack frames and killed it, with no errors. The hit and the fall were not seen in play.
+  591 of 591 tests pass.

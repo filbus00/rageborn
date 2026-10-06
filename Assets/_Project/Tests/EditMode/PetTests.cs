@@ -102,5 +102,17 @@ namespace ARPG.Tests
             Assert.AreEqual(PetState.DefaultTargeting, state.Targeting);
             Assert.AreEqual(1, warnings.Count);
         }
+
+        [Test]
+        public void Pets_ShowTheirOwnSheets_AndOnlyTheRavenFlies()
+        {
+            Assert.AreEqual("pet_wolf", PetRules.SpriteCharacter(PetKind.Wolf));
+            Assert.AreEqual("pet_raven", PetRules.SpriteCharacter(PetKind.Raven));
+            Assert.AreEqual(0f, PetRules.Hover(PetKind.Boar, 1.3f, 0f));
+            var flying = PetRules.Hover(PetKind.Raven, 0f, 0f);
+            Assert.AreEqual(PetRules.HoverHeight(PetKind.Raven), flying, 1e-5f);
+            Assert.AreEqual(flying / 2f, PetRules.Hover(PetKind.Raven, 0f, 0.5f), 1e-5f, "halfway down while it falls");
+            Assert.AreEqual(0f, PetRules.Hover(PetKind.Raven, 0.7f, 1f), "knocked out on the ground");
+        }
     }
 }

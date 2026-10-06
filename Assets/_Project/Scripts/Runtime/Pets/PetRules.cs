@@ -112,6 +112,17 @@ namespace ARPG
 
         public static PetDefinition Get(PetKind kind) => Definitions[(int)kind];
 
+        /// <summary>The pet's baked sheets (Resources/Characters/pet_&lt;kind&gt;, ArtSource/tools/props/pets.py).</summary>
+        public static string SpriteCharacter(PetKind kind) => "pet_" + kind.ToString().ToLowerInvariant();
+
+        /// <summary>How high the raven flies over its shadow, in world units; the others walk.</summary>
+        public static float HoverHeight(PetKind kind) => kind == PetKind.Raven ? 0.75f : 0f;
+
+        /// <summary>The raven's hover with its slow rise and fall at a time, lowered to the ground while it falls
+        /// knocked out (<paramref name="down"/> 0 flying, 1 on the ground).</summary>
+        public static float Hover(PetKind kind, float time, float down) =>
+            HoverHeight(kind) * (1f - Mathf.Clamp01(down)) * (1f + 0.06f * Mathf.Sin(time * 2.6f));
+
         public static IReadOnlyList<PetKind> All { get; } = (PetKind[])Enum.GetValues(typeof(PetKind));
 
         /// <summary>The active pet's bonuses, as fractions (0.05 for 5 percent); zero without one.</summary>
