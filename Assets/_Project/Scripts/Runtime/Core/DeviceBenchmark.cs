@@ -23,8 +23,7 @@ namespace ARPG
         public static bool Active { get; private set; }
 
         const float PhaseSeconds = 8f;
-        const float WalkSeconds = 30f;
-        const int Stretch = 1;
+        const float WalkSeconds = 45f;
 
         readonly FrameTiming[] timing = new FrameTiming[1];
         readonly StringBuilder report = new StringBuilder();
@@ -60,7 +59,16 @@ namespace ARPG
         {
             report.AppendLine($"Benchmark {System.DateTime.Now:yyyy-MM-dd HH:mm}, {SystemInfo.deviceModel}, {Screen.width}x{Screen.height}, target {Application.targetFrameRate} fps");
             yield return new WaitForSeconds(1f);
-            GameSession.Current.Travel = new LevelTravel(Stretch, Arrival.FromAbove);
+            // The player's own character, read from the save and never written back (saving stays off; only the read,
+            // none of the loader's set-asides), on the open rift's stretch, as the owner plays it.
+            var store = new SaveStore(SaveDirector.SaveDirectory);
+            var loaded = store.Load();
+            if (loaded.Loaded && !SaveCodec.IsRetired(loaded.Data))
+                GameSession.Install(SaveCodec.Restore(loaded.Data, 1));
+            var session = GameSession.Current;
+            var stretch = RoadRules.StretchFromTown(session.DeepestDepth);
+            report.AppendLine($"save {(loaded.Loaded ? "loaded" : "none, fresh character")}: level {session.Level}, open rift {stretch}, pet {(session.Pets.Active.HasValue ? session.Pets.Active.Value.ToString() : "none")}");
+            session.Travel = new LevelTravel(stretch, Arrival.FromAbove);
             SceneManager.LoadScene(SceneTravel.DungeonScene);
             yield return null;
             yield return new WaitForSeconds(1f);
@@ -172,7 +180,8 @@ namespace ARPG
             if (!record)
                 yield break;
             var enemies = FindAnyObjectByType<EnemyManager>();
-            report.AppendLine($"\n{label} ({delta.Count} frames, {delta.Count / seconds:0.0} fps, enemies {(enemies != null ? enemies.ActiveCount : 0)})");
+            var loot = FindAnyObjectByType<LootDirector>();
+            report.AppendLine($"\n{label} ({delta.Count} frames, {delta.Count / seconds:0.0} fps, enemies {(enemies != null ? enemies.ActiveCount : 0)}, drops on the ground {(loot != null ? loot.Active.Count : 0)})");
             report.AppendLine("  frame  " + Stats(delta));
             report.AppendLine("  main   " + Stats(main));
             report.AppendLine("  render " + Stats(render));

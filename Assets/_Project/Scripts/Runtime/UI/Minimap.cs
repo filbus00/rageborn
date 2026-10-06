@@ -92,16 +92,20 @@ namespace ARPG
                 // Only the cells just explored are painted; the whole map only when it is built or opened.
                 var area = layout.Bounds;
                 foreach (var explored in newlyExplored)
-                    pixels[explored.x - area.xMin + (explored.y - area.yMin) * area.width] = layout.Get(explored) == DungeonCell.Wall ? WallColor : FloorColor;
-                MarkAll();
+                {
+                    var x = explored.x - area.xMin;
+                    var y = explored.y - area.yMin;
+                    pixels[x + y * area.width] = layout.Get(explored) == DungeonCell.Wall ? WallColor : FloorColor;
+                    dirtyMin = Vector2Int.Min(dirtyMin, new Vector2Int(x, y));
+                    dirtyMax = Vector2Int.Max(dirtyMax, new Vector2Int(x, y));
+                }
                 dirty = true;
             }
 
             redrawTimer -= Time.unscaledDeltaTime;
             if (dirty && redrawTimer <= 0f)
             {
-                texture.SetPixels32(pixels);
-                texture.Apply(false);
+                UploadDirty();
                 dirty = false;
                 redrawTimer = RedrawSeconds;
             }
@@ -145,6 +149,39 @@ namespace ARPG
         }
 
         readonly System.Collections.Generic.List<Vector2Int> newlyExplored = new System.Collections.Generic.List<Vector2Int>(256);
+
+        // The block of pixels painted since the last upload, in texture pixels. Only it is copied to the texture: the
+        // whole map is 1 MB on the road's stretches, and copying all of it five times a second while she explored made
+        // one frame in twenty take 15 ms on the iPhone 11 (2026-10-07, the device benchmark).
+        Vector2Int dirtyMin = new Vector2Int(int.MaxValue, int.MaxValue);
+        Vector2Int dirtyMax = new Vector2Int(int.MinValue, int.MinValue);
+        Color32[] block = new Color32[0];
+
+        void UploadDirty()
+        {
+            if (dirtyMax.x < dirtyMin.x)
+                return;
+            var area = layout.Bounds;
+            // The markers inside the block keep drawing over it.
+            Mark(layout.StairsUp, StairsUpColor);
+            if (layout.HasStairsDown)
+                Mark(layout.StairsDown, StairsDownColor);
+            for (var i = 0; i < layout.Chests.Count; i++)
+                Mark(layout.Chests[i], GameSession.Current.IsOpened(chestKeys[i]) ? OpenChestColor : ChestColor);
+            var x0 = Mathf.Max(0, dirtyMin.x - 1);
+            var y0 = Mathf.Max(0, dirtyMin.y - 1);
+            var w = Mathf.Min(area.width, dirtyMax.x + 2) - x0;
+            var h = Mathf.Min(area.height, dirtyMax.y + 2) - y0;
+            // Exactly the block's size, as SetPixels32 wants it (small: what she explored in a fifth of a second).
+            if (block.Length != w * h)
+                block = new Color32[w * h];
+            for (var y = 0; y < h; y++)
+                System.Array.Copy(pixels, x0 + (y0 + y) * area.width, block, y * w, w);
+            texture.SetPixels32(x0, y0, w, h, block);
+            texture.Apply(false);
+            dirtyMin = new Vector2Int(int.MaxValue, int.MaxValue);
+            dirtyMax = new Vector2Int(int.MinValue, int.MinValue);
+        }
 
         void MarkAll()
         {
