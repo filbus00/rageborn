@@ -176,7 +176,7 @@ namespace ARPG
     /// run along the tile grid (up-right, then up-left, in turn), so its walls stay straight; pillars, props and
     /// decals in the legs; small side rooms with a chest off the outer side of some legs; the bottom beacon's landing and
     /// the way back down; at the top the rift's chamber (a boss's round arena on every sixth stretch) and a short way on.
-    /// The endless stretch is a much longer hall with its rift at the far end. Pure.
+    /// The endless stretch is as long, with its rift at the far end. Pure.
     /// </summary>
     public static class RoadGenerator
     {
@@ -185,8 +185,10 @@ namespace ARPG
 
         public const int HallWidth = 10;
         const int ChamberSize = 16;
-        const int Legs = 7;
-        const int EndlessLegs = 40;
+        // 90 legs, about 690 units of hall (the owner, 2026-10-06: "the levels are way too short. Make the coridor at
+        // least 10 times longer"; it was 7 legs, 69 units). The endless stretch is as long: its levels keep rising up it.
+        const int Legs = 90;
+        const int EndlessLegs = 90;
 
         static readonly PropKind[] EdgeProps = { PropKind.Barrel, PropKind.Crate, PropKind.Urn, PropKind.BonePile, PropKind.Rubble, PropKind.BrokenColumn };
         static readonly DecalKind[] Decals = { DecalKind.Cracks, DecalKind.Bones, DecalKind.Blood, DecalKind.Rubble, DecalKind.Moss, DecalKind.Skull, DecalKind.Puddle };
@@ -278,7 +280,8 @@ namespace ARPG
             var chests = new List<Vector2Int>();
             for (var i = 1; i < legRects.Count - 1; i++)
             {
-                if (random.NextDouble() > 0.6)
+                // About one turn in eight: roughly ten rooms with a chest a stretch.
+                if (random.NextDouble() > 0.125)
                     continue;
                 var (rect, legAxis) = legRects[i];
                 var size = random.Next(7, 10);
@@ -299,7 +302,8 @@ namespace ARPG
                     for (var d = -1; d <= 1; d++)
                         doors.Add(new Vector2Int(mid - 1 + d, rect.yMax));
                 }
-                if (Overlaps(floor, room, 2))
+                // One cell clear all round: the wall between the room and its own turn, and a wall to any other hall.
+                if (Overlaps(floor, room, 1))
                     continue;
                 Fill(floor, room);
                 foreach (var door in doors)

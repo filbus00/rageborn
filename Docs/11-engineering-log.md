@@ -804,3 +804,21 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   - the guardian, the closing, the lit beacon and its light, the way on and the waystones;
   - death, with gold lost and her waking at the beacon.
 - 597 of 597 tests pass. Not played by hand. The numbers need the owner's play.
+
+## 2026-10-06: stretches ten times longer
+
+- The owner: "the levels are way too short. Make the coridor at least 10 times longer". `RoadGenerator` now builds 90
+  legs, about 690 units of line. The endless stretch is as long. Side rooms come at about one turn in eight, roughly
+  ten a stretch; at the earlier six in ten there were 42.
+- A side room had never fitted: its overlap check's 2-cell margin reached back into the leg it hangs off. The margin
+  is now 1, which still leaves a wall between the room and any other hall.
+- Load cost: a stretch has about 10,500 floor cells in bounds of about 510 x 500. Building it took 1.6 s in the
+  editor: 1.2 s in `GroundPainter` and 0.25 s in `WorldLights.ShadeGround`, which walks the whole bounds and tints
+  tile by tile.
+  - The painter now draws cells on worker threads (`Parallel.For`; each cell has its own atlas slot, and the rules
+    are pure). Decals are stamped afterwards on the main thread, and each cell's shade is painted into its pixels, so
+    the dungeon skips `ShadeGround`.
+  - Now 0.69 s in the editor. Most of what is left is the one sprite and one tile per cell, which must be made on the
+    main thread. About 4 ground atlases (64 MB).
+- Wall torches: the cap is one per hall leg, so torches no longer all go to the cells scanned first.
+- 597 of 597 tests pass. Not timed on the phone.

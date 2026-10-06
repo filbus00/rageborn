@@ -28,16 +28,16 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void TheHall_GoesUpTheScreen_AboutSeventyUnitsAStretch_AndTheEndlessOneFarLonger()
+        public void TheHall_GoesUpTheScreen_AboutSixHundredNinetyUnitsAStretch()
         {
             var road = RoadGenerator.Generate(5, 3);
             var points = road.Path.Points;
             for (var i = 1; i < points.Count; i++)
                 Assert.Greater(points[i].y, points[i - 1].y, "every leg climbs");
-            Assert.That(road.Path.Length, Is.InRange(55f, 100f));
+            Assert.That(road.Path.Length, Is.InRange(600f, 800f), "about 690: ten times the first build");
             Assert.Less(road.Path.Progress(IsoMath.CellToGround(road.Layout.ArrivalFromAbove)), 5f, "she arrives at the bottom");
             Assert.AreEqual(road.Path.Length, road.Path.Progress(IsoMath.CellToGround(road.Rift)), 1f, "the rift is the top");
-            Assert.Greater(RoadGenerator.Generate(5, RoadRules.Rifts + 1).Path.Length, 300f);
+            Assert.Greater(RoadGenerator.Generate(5, RoadRules.Rifts + 1).Path.Length, 600f);
         }
 
         [Test]

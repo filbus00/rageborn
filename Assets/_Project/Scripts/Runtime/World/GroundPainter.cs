@@ -42,9 +42,10 @@ namespace ARPG
         /// <summary>Whether the four source textures are in and readable.</summary>
         public static bool Available => Load();
 
-        /// <summary>The dungeon: dirt with cobbles, every listed cell, decals stamped on.</summary>
+        /// <summary>The dungeon: dirt with cobbles, every listed cell, decals stamped on, each cell's shade
+        /// (<see cref="LightingRules.GroundShade"/>) painted in, so the caller need not tint the tiles one by one.</summary>
         public static bool PaintDungeon(Tilemap ground, List<Vector2Int> cells, IReadOnlyDictionary<Vector2Int, DecalKind> decals) =>
-            Paint(ground, cells, false, decals);
+            Paint(ground, cells, false, decals, true);
 
         /// <summary>The town: every cell the scene's ground has, dirt with grass spots and worn paths.</summary>
         public static bool PaintTown(Tilemap ground)
@@ -53,10 +54,13 @@ namespace ARPG
             foreach (var cell in ground.cellBounds.allPositionsWithin)
                 if (ground.HasTile(cell))
                     cells.Add(new Vector2Int(cell.x, cell.y));
-            return Paint(ground, cells, true, null);
+            return Paint(ground, cells, true, null, false);
         }
 
-        static bool Paint(Tilemap ground, List<Vector2Int> cells, bool town, IReadOnlyDictionary<Vector2Int, DecalKind> decals)
+        // Cells are drawn on worker threads (the road's long halls, 2026-10-06: about 10,000 cells took 1.2 s on one
+        // thread in the editor). Every cell has its own atlas slot, so the threads never write the same pixels; the
+        // rules are pure (GroundRules, LightingRules.GroundShade). Decals are stamped afterwards on the main thread.
+        static bool Paint(Tilemap ground, List<Vector2Int> cells, bool town, IReadOnlyDictionary<Vector2Int, DecalKind> decals, bool shade)
         {
             if (ground == null || !Load())
                 return false;
@@ -66,38 +70,46 @@ namespace ARPG
 
             const int columns = AtlasSize / SlotW;
             const int rows = AtlasSize / SlotH;
-            Color32[] atlas = null;
-            var atlasHeight = 0;
-            var slot = 0;
-            var startOfAtlas = 0;
-            var pending = new List<(Vector2Int cell, int slot)>();
-
-            for (var n = 0; n < cells.Count; n++)
+            const int perAtlas = columns * rows;
+            var atlasCount = (cells.Count + perAtlas - 1) / perAtlas;
+            var atlases = new Color32[atlasCount][];
+            var heights = new int[atlasCount];
+            for (var a = 0; a < atlasCount; a++)
             {
-                if (atlas == null)
-                {
-                    var left = cells.Count - n;
-                    atlasHeight = Mathf.NextPowerOfTwo(Mathf.Min(rows, (left + columns - 1) / columns) * SlotH);
-                    atlas = new Color32[AtlasSize * atlasHeight];
-                    slot = 0;
-                    startOfAtlas = n;
-                }
+                var left = cells.Count - a * perAtlas;
+                heights[a] = Mathf.NextPowerOfTwo(Mathf.Min(rows, (left + columns - 1) / columns) * SlotH);
+                atlases[a] = new Color32[AtlasSize * heights[a]];
+            }
+
+            System.Threading.Tasks.Parallel.For(0, cells.Count, () => new Color32[Unit * TileH], (n, _, buffer) =>
+            {
                 var cell = cells[n];
-                DrawCell(cell, town);
-                if (decals != null && decals.TryGetValue(cell, out var decal))
-                    DungeonArt.StampDecal(cellPixels, (int)decal, cell.x * 31 + cell.y * 7);
-                var ox = (slot % columns) * SlotW + 1;
-                var oy = (slot / columns) * SlotH + 1;
-                for (var y = 0; y < TileH; y++)
-                    System.Array.Copy(cellPixels, y * Unit, atlas, ox + (oy + y) * AtlasSize, Unit);
-                pending.Add((cell, slot));
-                slot++;
-                if (slot == columns * rows || n == cells.Count - 1)
+                DrawCell(cell, town, buffer);
+                if (shade && (decals == null || !decals.ContainsKey(cell)))
+                    Shade(buffer, cell);
+                Put(buffer, atlases[n / perAtlas], n % perAtlas, columns);
+                return buffer;
+            }, _ => { });
+
+            if (decals != null)
+                for (var n = 0; n < cells.Count; n++)
                 {
-                    Flush(atlas, atlasHeight, pending, columns);
-                    atlas = null;
-                    pending.Clear();
+                    if (!decals.TryGetValue(cells[n], out var decal))
+                        continue;
+                    DrawCell(cells[n], town, cellPixels);
+                    DungeonArt.StampDecal(cellPixels, (int)decal, cells[n].x * 31 + cells[n].y * 7);
+                    if (shade)
+                        Shade(cellPixels, cells[n]);
+                    Put(cellPixels, atlases[n / perAtlas], n % perAtlas, columns);
                 }
+
+            var pending = new List<(Vector2Int cell, int slot)>();
+            for (var a = 0; a < atlasCount; a++)
+            {
+                pending.Clear();
+                for (var n = a * perAtlas; n < Mathf.Min(cells.Count, (a + 1) * perAtlas); n++)
+                    pending.Add((cells[n], n % perAtlas));
+                Flush(atlases[a], heights[a], pending, columns);
             }
 
             ground.ClearAllTiles();
@@ -133,8 +145,27 @@ namespace ARPG
             }
         }
 
-        /// <summary>One cell's diamond into <see cref="cellPixels"/>, a touch wide (as PixelArt.CutDiamond), clear outside.</summary>
-        static void DrawCell(Vector2Int cell, bool town)
+        static void Put(Color32[] pixels, Color32[] atlas, int slot, int columns)
+        {
+            var ox = (slot % columns) * SlotW + 1;
+            var oy = (slot / columns) * SlotH + 1;
+            for (var y = 0; y < TileH; y++)
+                System.Array.Copy(pixels, y * Unit, atlas, ox + (oy + y) * AtlasSize, Unit);
+        }
+
+        // The cell's tint painted into its pixels, as the tile's colour would have tinted them.
+        static void Shade(Color32[] pixels, Vector2Int cell)
+        {
+            var tint = LightingRules.GroundShade(cell);
+            for (var i = 0; i < pixels.Length; i++)
+            {
+                var c = pixels[i];
+                pixels[i] = new Color32((byte)(c.r * tint.r), (byte)(c.g * tint.g), (byte)(c.b * tint.b), c.a);
+            }
+        }
+
+        /// <summary>One cell's diamond into a buffer, a touch wide (as PixelArt.CutDiamond), clear outside.</summary>
+        static void DrawCell(Vector2Int cell, bool town, Color32[] cellPixels)
         {
             var centre = IsoMath.CellToGround(cell);
             // A cell far from every path needs no per-pixel distance.

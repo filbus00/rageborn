@@ -361,10 +361,13 @@ namespace ARPG
                 for (var x = 0; x < bounds.width; x++)
                     if (groundTiles[x + y * bounds.width] != null)
                         floorCells.Add(new Vector2Int(bounds.xMin + x, bounds.yMin + y));
+            // The painter shades its cells as it paints them; the fallback floors are tinted tile by tile.
             if (!GroundPainter.PaintDungeon(ground, floorCells, Layout.Decals))
+            {
                 ground.SetTilesBlock(area, groundTiles);
+                WorldLights.ShadeGround(ground);
+            }
             walls.SetTilesBlock(area, wallTiles);
-            WorldLights.ShadeGround(ground);
             ShadeWalls();
 
             // Braziers and candles light their corner of a dark level.
@@ -412,6 +415,9 @@ namespace ARPG
         {
             var bounds = Layout.Bounds;
             var torches = 0;
+            // The cap grew with the road's long halls (2026-10-06): one a hall leg, about as many as the hash places, so
+            // the torches do not all go to the cells scanned first. Lights off screen are culled.
+            var maxTorches = Mathf.Max(MaxWallTorches, Layout.Rooms.Count);
             for (var x = bounds.xMin; x < bounds.xMax; x++)
                 for (var y = bounds.yMin; y < bounds.yMax; y++)
                 {
@@ -429,7 +435,7 @@ namespace ARPG
                         ? FaceDetails[(int)(WallHash(x, y, 3) * FaceDetails.Length) % FaceDetails.Length]
                         : TopDetails[(int)(WallHash(x, y, 3) * TopDetails.Length) % TopDetails.Length];
                     var torch = name == "wall_torch";
-                    if (torch && torches >= MaxWallTorches)
+                    if (torch && torches >= maxTorches)
                         name = "wall_chains";
                     if (onFace)
                         name += faceX && (!faceY || WallHash(x, y, 4) < 0.5f) ? "_x" : "_y";
