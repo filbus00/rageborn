@@ -169,6 +169,8 @@ namespace UnityEngine
         public static RenderTexture active { get; set; } public static RenderTexture GetTemporary(int w, int h, int d) => null; public static RenderTexture GetTemporary(int w, int h, int d, RenderTextureFormat f) => null; public static RenderTexture GetTemporary(int w, int h, int d, RenderTextureFormat f, RenderTextureReadWrite rw) => null; public static void ReleaseTemporary(RenderTexture t) { }
         public bool Create() => true; public void Release() { } public int antiAliasing { get; set; } public int depth { get; set; }
     }
+    public struct FrameTiming { public double cpuFrameTime; public double cpuMainThreadFrameTime; public double cpuRenderThreadFrameTime; public double gpuFrameTime; public float heightScale; public float widthScale; public uint syncInterval; }
+    public static class FrameTimingManager { public static void CaptureFrameTimings() { } public static uint GetLatestTimings(uint numFrames, FrameTiming[] timings) => 0; public static bool IsFeatureEnabled() => false; }
     public static class GL
     {
         public static void PushMatrix() { } public static void PopMatrix() { } public static void LoadPixelMatrix() { } public static void LoadPixelMatrix(float left, float right, float bottom, float top) { }

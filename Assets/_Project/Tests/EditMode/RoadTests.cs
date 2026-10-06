@@ -57,8 +57,8 @@ namespace ARPG.Tests
         {
             Assert.AreEqual(DungeonRules.EnemyLevel(4), RoadRules.PackLevel(4, 0f, 0f));
             Assert.AreEqual(DungeonRules.EnemyLevel(4) + 3, RoadRules.PackLevel(4, 1f, 70f));
-            Assert.AreEqual(3, RoadRules.PackSize(0f));
-            Assert.AreEqual(5, RoadRules.PackSize(1f));
+            Assert.AreEqual(4, RoadRules.PackSize(0f));
+            Assert.AreEqual(8, RoadRules.PackSize(1f));
             Assert.Less(RoadRules.MaxAwake(0f), RoadRules.MaxAwake(1f));
             Assert.Greater(RoadRules.SurgeSeconds(0f), RoadRules.SurgeSeconds(1f));
             Assert.AreEqual(PackKind.Normal, RoadRules.RollKind(1, 0f, 0.99f));

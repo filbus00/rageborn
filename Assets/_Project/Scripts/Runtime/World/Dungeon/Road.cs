@@ -19,9 +19,9 @@ namespace ARPG
         /// <summary>How near the rift she comes (ground units) before its guardian comes through.</summary>
         public const float GuardianReach = 6f;
 
-        /// <summary>The stream stops adding packs while this many of its demons are alive: 8 at the beacon, 18 at the
-        /// rift (tuned 2026-10-06 after a scripted push swamped a starter character at three quarters up rift 1).</summary>
-        public static int MaxAwake(float closeness) => 8 + Mathf.RoundToInt(10f * Mathf.Clamp01(closeness));
+        /// <summary>The stream stops adding packs while this many of its demons are alive: 16 at the beacon, 32 at the
+        /// rift (the owner, 2026-10-06: "the enemy spawn rate is way too low"; it was 8 to 18).</summary>
+        public static int MaxAwake(float closeness) => 16 + Mathf.RoundToInt(16f * Mathf.Clamp01(closeness));
 
         /// <summary>The share of carried gold lost on dying (the owner: "lose gold"; the amount is Claude's).</summary>
         public const float DeathGoldLoss = 0.1f;
@@ -60,11 +60,11 @@ namespace ARPG
         /// <summary>The guardian's level: the rift's own.</summary>
         public static int GuardianLevel(int stretch) => DungeonRules.EnemyLevel(Mathf.Min(stretch, Rifts)) + 3;
 
-        /// <summary>3 demons a pack at the beacon, 5 at the rift.</summary>
-        public static int PackSize(float closeness) => 3 + Mathf.RoundToInt(2f * Mathf.Clamp01(closeness));
+        /// <summary>4 demons a pack at the beacon, 8 at the rift (was 3 to 5).</summary>
+        public static int PackSize(float closeness) => 4 + Mathf.RoundToInt(4f * Mathf.Clamp01(closeness));
 
-        /// <summary>Seconds between packs: 8 at the beacon, 4 at the rift.</summary>
-        public static float SurgeSeconds(float closeness) => Mathf.Lerp(8f, 4f, Mathf.Clamp01(closeness));
+        /// <summary>Seconds between packs: 3 at the beacon, 1.5 at the rift (was 8 to 4).</summary>
+        public static float SurgeSeconds(float closeness) => Mathf.Lerp(3f, 1.5f, Mathf.Clamp01(closeness));
 
         public static float ChampionChance(int stretch, float closeness) =>
             Mathf.Lerp(0.05f, 0.3f, Mathf.Clamp01(closeness)) + DungeonRules.ExtraChampionChance(Mathf.Min(stretch, Rifts));

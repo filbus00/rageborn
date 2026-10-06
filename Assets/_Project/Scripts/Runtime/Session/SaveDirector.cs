@@ -35,7 +35,8 @@ namespace ARPG
 #if UNITY_EDITOR
                 return UnityEditor.EditorPrefs.GetBool(EditorPrefKey, false);
 #else
-                return true;
+                // A device benchmark plays a fresh character and must never touch the save.
+                return !DeviceBenchmark.Active;
 #endif
             }
         }
