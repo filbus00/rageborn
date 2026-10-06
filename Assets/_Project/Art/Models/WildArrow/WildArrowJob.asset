@@ -17,50 +17,107 @@ MonoBehaviour:
   - look: bare
     model: {fileID: 919132149155446097, guid: 70097fc0b27004c50a09eddc61035895, type: 3}
     layer: 0
-  - look: padded
-    model: {fileID: 919132149155446097, guid: ad46918ddaa9b4449af874f7f1e1db94, type: 3}
+  - look: ranger
+    model: {fileID: 919132149155446097, guid: d85d050dea74e458db52c6088d99a9f3, type: 3}
     layer: 0
-  - look: leather
-    model: {fileID: 919132149155446097, guid: 6a7448b2c25ef4b62b5c5b0b413bf6c1, type: 3}
+  - look: brigand
+    model: {fileID: 919132149155446097, guid: 371eec68acc82488abd2899c94b2e858, type: 3}
     layer: 0
-  - look: mail
-    model: {fileID: 919132149155446097, guid: 56ce6c06f73ec471ca7829c94058c987, type: 3}
+  - look: scale
+    model: {fileID: 919132149155446097, guid: d500a545e64934377b0effcdde68fb68, type: 3}
     layer: 0
-  - look: shoes
-    model: {fileID: 919132149155446097, guid: 2ef83864cf44f42339a18da0ae76d7c0, type: 3}
+  - look: plate
+    model: {fileID: 919132149155446097, guid: c8cbc059e5923459cad90ca20983af83, type: 3}
+    layer: 0
+  - look: knight
+    model: {fileID: 919132149155446097, guid: afd0b0a9c10e44f2788833f64a620e1f, type: 3}
+    layer: 0
+  - look: stag_hide
+    model: {fileID: 919132149155446097, guid: 4eb176f4b316146edbcc670af60c5ac5, type: 3}
+    layer: 0
+  - look: cinder_jerkin
+    model: {fileID: 919132149155446097, guid: 1ead1498001984f17828e50a059fd457, type: 3}
+    layer: 0
+  - look: wrapped
+    model: {fileID: 919132149155446097, guid: efe99ae72da8c4e8c8cd076d51f42f67, type: 3}
     layer: 1
   - look: leather_boots
     model: {fileID: 919132149155446097, guid: a72d60a17b8224b49b369c8b84c8fc3c, type: 3}
     layer: 1
-  - look: greaves
-    model: {fileID: 919132149155446097, guid: f7e9a3752d48e46edb66bd9990a671c8, type: 3}
+  - look: strapped
+    model: {fileID: 919132149155446097, guid: b1f52fbf06ebb41e287e030c3c19aafb, type: 3}
     layer: 1
-  - look: sash
-    model: {fileID: 919132149155446097, guid: ac91201bc7e3a490cad5fbdee4f7cbdd, type: 3}
+  - look: sabatons
+    model: {fileID: 919132149155446097, guid: d7d73d300841542c398d5fca872fa38d, type: 3}
+    layer: 1
+  - look: spiked
+    model: {fileID: 919132149155446097, guid: 9100adf0c844a49c990218e05af7fa43, type: 3}
+    layer: 1
+  - look: windrunner
+    model: {fileID: 919132149155446097, guid: d80842175cf614991aa46eafb7f8fb18, type: 3}
+    layer: 1
+  - look: stalker
+    model: {fileID: 919132149155446097, guid: 16950335b7fdc4a589b679b81b733763, type: 3}
+    layer: 1
+  - look: rope
+    model: {fileID: 919132149155446097, guid: 7b9fb771d66e04898b7f935b9dd4d5e9, type: 3}
     layer: 2
-  - look: leather_belt
-    model: {fileID: 919132149155446097, guid: 8f3284b5d4f33472f906fd58ef159762, type: 3}
+  - look: pouch_belt
+    model: {fileID: 919132149155446097, guid: 2d77a5d185f204ad798759c3e3bfc365, type: 3}
     layer: 2
-  - look: plated_belt
-    model: {fileID: 919132149155446097, guid: 6585d555a8dd64cc2963bf8bb68693d7, type: 3}
+  - look: studded
+    model: {fileID: 919132149155446097, guid: c7beb328f59cd4b19ab16bd013db2b0b, type: 3}
+    layer: 2
+  - look: tassets
+    model: {fileID: 919132149155446097, guid: b7e44b4ee117e4f62853526e357c2503, type: 3}
+    layer: 2
+  - look: war_girdle
+    model: {fileID: 919132149155446097, guid: 1b21060c45cdf4a31a5f2ea7ded43c7c, type: 3}
+    layer: 2
+  - look: bandolier
+    model: {fileID: 919132149155446097, guid: 157cdf9aeda9146809ebaad479bd8d67, type: 3}
     layer: 2
   - look: wraps
     model: {fileID: 919132149155446097, guid: 1527ec296938746f49f0b018453705e9, type: 3}
     layer: 3
-  - look: leather_gloves
-    model: {fileID: 919132149155446097, guid: 2a712b77b28b144ea8f3fb07f5248d38, type: 3}
+  - look: gloves
+    model: {fileID: 919132149155446097, guid: e364dc48af4004503ab3d1e1e61deb0e, type: 3}
+    layer: 3
+  - look: bracers
+    model: {fileID: 919132149155446097, guid: 971fda8bdbd13455d99f9bfa12bf8335, type: 3}
     layer: 3
   - look: gauntlets
     model: {fileID: 919132149155446097, guid: d5ae089e8b8ff498394e6ef074f42c9b, type: 3}
     layer: 3
-  - look: cap
-    model: {fileID: 919132149155446097, guid: ee35ee846363f4245ac8b67b9397b421, type: 3}
+  - look: claws
+    model: {fileID: 919132149155446097, guid: 93b25c42889534af4b6c6eb3bfeee32f, type: 3}
+    layer: 3
+  - look: fletcher
+    model: {fileID: 919132149155446097, guid: 22f8f19d4cbf043fc8990082039e8730, type: 3}
+    layer: 3
+  - look: bloodletter
+    model: {fileID: 919132149155446097, guid: a7c65446869bd423a99cc66a0ad84487, type: 3}
+    layer: 3
+  - look: hood
+    model: {fileID: 919132149155446097, guid: bbcb17501dbb1437a8fef8b2723e6fb3, type: 3}
     layer: 4
-  - look: nasal
-    model: {fileID: 919132149155446097, guid: 3c0033f59db624595b4d4bedf6d8fc5d, type: 3}
+  - look: mask
+    model: {fileID: 919132149155446097, guid: 7071d0be95868435086084578725bdc7, type: 3}
     layer: 4
-  - look: great
-    model: {fileID: 919132149155446097, guid: e5d2aeb4b6bb94cafbedbb306b178dfd, type: 3}
+  - look: barbute
+    model: {fileID: 919132149155446097, guid: 3b045c28c3fc64754bc04e3efc2091ac, type: 3}
+    layer: 4
+  - look: visored
+    model: {fileID: 919132149155446097, guid: 5735c077c83db4cd5a96475a5ad1e5c1, type: 3}
+    layer: 4
+  - look: horned
+    model: {fileID: 919132149155446097, guid: d3b5b9c1cfa7e4e4d9779189a7ac21bf, type: 3}
+    layer: 4
+  - look: falconer
+    model: {fileID: 919132149155446097, guid: a1549b9e20fb14c7d9e71355f1e9f6c3, type: 3}
+    layer: 4
+  - look: unblinking_crown
+    model: {fileID: 919132149155446097, guid: e9a81f195ec9344878be092c0fffe954, type: 3}
     layer: 4
   pieces:
   - layer: 6
@@ -129,6 +186,94 @@ MonoBehaviour:
     scale: 1
     grips:
     - 1h
+  - layer: 6
+    look: splinterbough
+    prefab: {fileID: 78924481686521311, guid: d0fe41d2de88b4093991fbed7d1f7e48, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 6
+    look: ember_tongue
+    prefab: {fileID: 2391212388370879610, guid: 62789828d91fa4066b8518a6a1de9cda, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 6
+    look: hunters_promise
+    prefab: {fileID: 28739109664249239, guid: 8aeb9c8cb3de94f45ae2ca1c52132c68, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 6
+    look: galeheart
+    prefab: {fileID: 2610450578681093232, guid: 589178e8a4f834159b068b5fd834491f, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 6
+    look: widows_draw
+    prefab: {fileID: 7368079143837278138, guid: 4249377368797491f83dba91d23bc6e2, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 6
+    look: gallowsreach
+    prefab: {fileID: 6753963689362136510, guid: bda59fd4950dd4dca9a59fc978a92795, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 6
+    look: stillwater_yew
+    prefab: {fileID: 4418557251914108733, guid: a8ef69a0033d74cfb8a2d964fd446a2b, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
+  - layer: 6
+    look: the_long_silence
+    prefab: {fileID: 3008529917436955271, guid: 86c978c560fd54f848651259b27bdbf4, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips:
+    - 1h
   - layer: 5
     look: hide_quiver
     prefab: {fileID: 6127314655579716071, guid: 75b90855a19824e409ef35980a40f087, type: 3}
@@ -154,6 +299,61 @@ MonoBehaviour:
   - layer: 5
     look: bone_quiver
     prefab: {fileID: 1117077421198043500, guid: 9d8c198a7356740d9bec27d686e3e970, type: 3}
+    bone: 54
+    transformPath: 
+    autoGrip: 0
+    localPosition: {x: 0.0005, y: 0.00049999665, z: -0.002099998}
+    localEuler: {x: 0.000007814219, y: -0.0000002767518, z: 335}
+    scale: 0.009999996
+    grips:
+    - 1h
+  - layer: 5
+    look: quiver_of_endless_splinters
+    prefab: {fileID: 846756282062298038, guid: 5a3fc83509d0e469884cd01305dfe360, type: 3}
+    bone: 54
+    transformPath: 
+    autoGrip: 0
+    localPosition: {x: 0.0005, y: 0.00049999665, z: -0.002099998}
+    localEuler: {x: 0.000007814219, y: -0.0000002767518, z: 335}
+    scale: 0.009999996
+    grips:
+    - 1h
+  - layer: 5
+    look: ashfall_quiver
+    prefab: {fileID: 6727701561693314314, guid: f3cda3fc1ad08482b9cafffdeb302504, type: 3}
+    bone: 54
+    transformPath: 
+    autoGrip: 0
+    localPosition: {x: 0.0005, y: 0.00049999665, z: -0.002099998}
+    localEuler: {x: 0.000007814219, y: -0.0000002767518, z: 335}
+    scale: 0.009999996
+    grips:
+    - 1h
+  - layer: 5
+    look: wind_sworn_quiver
+    prefab: {fileID: 7333734511259711909, guid: 02089370b795a4352b58ac2ca1e73aaf, type: 3}
+    bone: 54
+    transformPath: 
+    autoGrip: 0
+    localPosition: {x: 0.0005, y: 0.00049999665, z: -0.002099998}
+    localEuler: {x: 0.000007814219, y: -0.0000002767518, z: 335}
+    scale: 0.009999996
+    grips:
+    - 1h
+  - layer: 5
+    look: magpies_nest
+    prefab: {fileID: 1953934751594869733, guid: a9e86d89dba4d40359eb257e8fb0756f, type: 3}
+    bone: 54
+    transformPath: 
+    autoGrip: 0
+    localPosition: {x: 0.0005, y: 0.00049999665, z: -0.002099998}
+    localEuler: {x: 0.000007814219, y: -0.0000002767518, z: 335}
+    scale: 0.009999996
+    grips:
+    - 1h
+  - layer: 5
+    look: quiver_of_the_hollow_hound
+    prefab: {fileID: 3517071992917545799, guid: 6baf928df82a34a9abf948d3a41eff26, type: 3}
     bone: 54
     transformPath: 
     autoGrip: 0

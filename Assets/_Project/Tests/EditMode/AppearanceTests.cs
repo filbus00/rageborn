@@ -36,9 +36,41 @@ namespace ARPG.Tests
                 .With(ItemSlot.Helm, new Item(ItemSlot.Helm, ItemRarity.Magic, 2))
                 .With(ItemSlot.Weapon, new Item(ItemSlot.Weapon, ItemRarity.Rare, 5));
             var look = AppearanceRules.For(equipment);
-            Assert.AreEqual("mail", look.Body);
-            Assert.AreEqual("cap", look.Helm);
+            Assert.AreEqual("scale", look.Body);
+            Assert.AreEqual("hood", look.Helm);
             Assert.AreEqual("recurve_bow", look.Weapon);
+        }
+
+        [Test]
+        public void Armour_HasFiveTiers_OverTheDungeonsItemLevels()
+        {
+            Assert.AreEqual(0, AppearanceRules.ArmourTier(3));
+            Assert.AreEqual(1, AppearanceRules.ArmourTier(4));
+            Assert.AreEqual(2, AppearanceRules.ArmourTier(8));
+            Assert.AreEqual(3, AppearanceRules.ArmourTier(12));
+            Assert.AreEqual(4, AppearanceRules.ArmourTier(16));
+            Assert.AreEqual(4, AppearanceRules.ArmourTier(60));
+            var helm = new Item(ItemSlot.Helm, ItemRarity.Rare, 14);
+            Assert.AreEqual("visored", AppearanceRules.LookOf(AppearanceRules.HelmLooks, helm));
+        }
+
+        [Test]
+        public void ANamedLegendary_ShowsItsOwnLook()
+        {
+            foreach (var definition in Legendaries.All)
+            {
+                var item = Legendaries.Create(definition.Id, 10, new System.Random(1));
+                var look = AppearanceRules.For(EquipmentState.Empty.With(item.Slot == ItemSlot.Shield ? ItemSlot.Shield : item.Slot, item));
+                var own = AppearanceRules.LegendaryLook(definition.Id);
+                if (item.Slot == ItemSlot.Ring || item.Slot == ItemSlot.Amulet)
+                {
+                    Assert.IsNull(own, definition.Name + " does not show");
+                    continue;
+                }
+                Assert.IsNotNull(own, definition.Name + " has a look");
+            }
+            var crown = Legendaries.Create(LegendaryId.CrownOfTheUnblinkingEye, 10, new System.Random(1));
+            Assert.AreEqual("unblinking_crown", AppearanceRules.For(EquipmentState.Empty.With(ItemSlot.Helm, crown)).Helm);
         }
 
         [Test]

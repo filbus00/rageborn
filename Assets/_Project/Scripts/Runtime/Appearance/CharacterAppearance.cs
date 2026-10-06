@@ -77,22 +77,83 @@ namespace ARPG
     {
         public const string BareBody = "bare";
 
-        public static readonly string[] ChestLooks = { "padded", "leather", "mail" };
-        public static readonly string[] HelmLooks = { "cap", "nasal", "great" };
-        // Worn looks of 2026-10-04, by tier like the rest.
-        public static readonly string[] BootLooks = { "shoes", "leather_boots", "greaves" };
-        public static readonly string[] BeltLooks = { "sash", "leather_belt", "plated_belt" };
-        public static readonly string[] GloveLooks = { "wraps", "leather_gloves", "gauntlets" };
+        // The worn looks, remade on 2026-10-05 (the owner: they "look bad"; "full face cover helms that look cool, armor
+        // that looks cool"): five tiers each, by ArmourTier. ArtSource/tools/props/wild_arrow_gear.py builds them.
+        public static readonly string[] ChestLooks = { "ranger", "brigand", "scale", "plate", "knight" };
+        public static readonly string[] HelmLooks = { "hood", "mask", "barbute", "visored", "horned" };
+        public static readonly string[] BootLooks = { "wrapped", "leather_boots", "strapped", "sabatons", "spiked" };
+        public static readonly string[] BeltLooks = { "rope", "pouch_belt", "studded", "tassets", "war_girdle" };
+        public static readonly string[] GloveLooks = { "wraps", "gloves", "bracers", "gauntlets", "claws" };
         // Bows only since 2026-09-30 (Docs/03, act 1's looks): short bows, longbows and quivers.
         public static readonly string[] OneHandWeaponLooks = { "hunting_bow", "recurve_bow", "horn_bow" };
         public static readonly string[] TwoHandWeaponLooks = { "yew_longbow", "war_bow", "great_bow" };
         public static readonly string[] ShieldLooks = { "hide_quiver", "studded_quiver", "bone_quiver" };
 
-        /// <summary>Act 1's item level bands (the brief, 10.2): 1 to 3 is tier 0, 4 to 6 tier 1, 7 and up tier 2.</summary>
+        /// <summary>
+        /// Every named legendary that shows has its own look (Docs/03; built 2026-10-05): its slot's layer shows it in
+        /// place of the tier's. Rings and amulets do not show. Sheets named as the look (wild_arrow_helm_falconer...).
+        /// </summary>
+        public static readonly (LegendaryId id, AppearanceLayer layer, string look)[] LegendaryLooks =
+        {
+            (LegendaryId.FalconersHood, AppearanceLayer.Helm, "falconer"),
+            (LegendaryId.CrownOfTheUnblinkingEye, AppearanceLayer.Helm, "unblinking_crown"),
+            (LegendaryId.HideOfTheRunningStag, AppearanceLayer.Body, "stag_hide"),
+            (LegendaryId.CinderStitchedJerkin, AppearanceLayer.Body, "cinder_jerkin"),
+            (LegendaryId.FletchersFingers, AppearanceLayer.Gloves, "fletcher"),
+            (LegendaryId.BloodlettersGrips, AppearanceLayer.Gloves, "bloodletter"),
+            (LegendaryId.WindrunnerTreads, AppearanceLayer.Boots, "windrunner"),
+            (LegendaryId.StalkersTreads, AppearanceLayer.Boots, "stalker"),
+            (LegendaryId.BandolierOfManyHeads, AppearanceLayer.Belt, "bandolier"),
+            (LegendaryId.Splinterbough, AppearanceLayer.Weapon, "splinterbough"),
+            (LegendaryId.EmberTongue, AppearanceLayer.Weapon, "ember_tongue"),
+            (LegendaryId.HuntersPromise, AppearanceLayer.Weapon, "hunters_promise"),
+            (LegendaryId.Galeheart, AppearanceLayer.Weapon, "galeheart"),
+            (LegendaryId.WidowsDraw, AppearanceLayer.Weapon, "widows_draw"),
+            (LegendaryId.Gallowsreach, AppearanceLayer.Weapon, "gallowsreach"),
+            (LegendaryId.StillwaterYew, AppearanceLayer.Weapon, "stillwater_yew"),
+            (LegendaryId.TheLongSilence, AppearanceLayer.Weapon, "the_long_silence"),
+            (LegendaryId.QuiverOfEndlessSplinters, AppearanceLayer.OffHand, "quiver_of_endless_splinters"),
+            (LegendaryId.AshfallQuiver, AppearanceLayer.OffHand, "ashfall_quiver"),
+            (LegendaryId.WindSwornQuiver, AppearanceLayer.OffHand, "wind_sworn_quiver"),
+            (LegendaryId.MagpiesNest, AppearanceLayer.OffHand, "magpies_nest"),
+            (LegendaryId.QuiverOfTheHollowHound, AppearanceLayer.OffHand, "quiver_of_the_hollow_hound"),
+        };
+
+        /// <summary>A legendary's own look, or null.</summary>
+        public static string LegendaryLook(LegendaryId id)
+        {
+            foreach (var entry in LegendaryLooks)
+                if (entry.id == id)
+                    return entry.look;
+            return null;
+        }
+
+        /// <summary>The legendary looks a layer can show (for the bake).</summary>
+        public static System.Collections.Generic.IEnumerable<string> LegendaryLooksOf(AppearanceLayer layer)
+        {
+            foreach (var entry in LegendaryLooks)
+                if (entry.layer == layer)
+                    yield return entry.look;
+        }
+
+        /// <summary>Act 1's item level bands for the bows and quivers (the brief, 10.2): 1 to 3, 4 to 6, 7 and up.</summary>
         public static int Tier(int itemLevel) => itemLevel <= 3 ? 0 : itemLevel <= 6 ? 1 : 2;
 
-        public static string LookOf(string[] looks, Item item) =>
-            item == null ? null : looks[System.Math.Min(Tier(item.ItemLevel), looks.Length - 1)];
+        /// <summary>The worn armour's five bands (2026-10-05, over the 24 levels' item levels): 1 to 3, 4 to 7, 8 to
+        /// 11, 12 to 15, 16 and up.</summary>
+        public static int ArmourTier(int itemLevel) =>
+            itemLevel <= 3 ? 0 : itemLevel <= 7 ? 1 : itemLevel <= 11 ? 2 : itemLevel <= 15 ? 3 : 4;
+
+        public static string LookOf(string[] looks, Item item)
+        {
+            if (item == null)
+                return null;
+            var own = LegendaryLook(item.Legendary);
+            if (own != null)
+                return own;
+            var tier = looks.Length == 5 ? ArmourTier(item.ItemLevel) : Tier(item.ItemLevel);
+            return looks[System.Math.Min(tier, looks.Length - 1)];
+        }
 
         /// <summary>The grip from what the hands hold: a two-handed weapon wins, then the off-hand item.</summary>
         public static CharacterGrip GripFor(bool twoHandedWeapon, bool offHandWeapon, bool shield)
@@ -124,7 +185,7 @@ namespace ARPG
         /// </summary>
         public static string FallbackLook(AppearanceLayer layer, CharacterGrip grip = CharacterGrip.OneHand) => layer switch
         {
-            AppearanceLayer.Body => "leather",
+            AppearanceLayer.Body => BareBody,
             AppearanceLayer.Weapon => OneHandWeaponLooks[0],
             AppearanceLayer.OffHand => ShieldLooks[0],
             _ => null,

@@ -671,3 +671,33 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   goes through its three phases (pushed by damage), hits, calls its adds; Marrow's kill opens the stairs down, the
   Watchman's the stairs to town; music switches to the boss track; no errors. Depths 15 and 21 hold the new mix.
   587 of 587 tests pass. Not played through by hand; the bosses' numbers are untested against a real character.
+
+## 2026-10-06: the worn gear remade, legendaries with their own looks
+
+- The owner: the helms, chest armour, belts and gloves "look bad. Remodel them. Add full face cover helms that look cool,
+  armor that looks cool, legendaries what have unique looks. Change the art direction somewhat if it is needed."
+- Art direction: darker and heavier. Blackened iron, dark leather, deep red cloth, gold only on the high tiers and
+  legendaries. Helms now sit close to the skull (they had read as buckets): `HC`, `HRX`/`HRZ` 0.128/0.138 in
+  `wild_arrow_gear.py`.
+- `ArtSource/tools/props/wild_arrow_gear.py` was rewritten with new primitives (`band`, `ball`, `spike`, `horn`,
+  `lames`). There are five looks for each worn slot, by `AppearanceRules.ArmourTier` (item level 3, 7, 11, 15, then 16
+  and up):
+  - Chest: ranger, brigand, scale, plate, knight (cape and spikes).
+  - Helm: hood, mask, barbute, visored, horned. The last three cover the whole face.
+  - Boots: wrapped, leather_boots, strapped, sabatons, spiked.
+  - Belt: rope, pouch_belt, studded, tassets, war_girdle.
+  - Gloves: wraps, gloves, bracers, gauntlets, claws.
+- The old looks were deleted, along with their FBXs and 480 sheets: padded, leather, mail, cap, nasal, great, shoes,
+  greaves, sash, leather_belt, plated_belt and leather_gloves. The body with no chest worn is `bare`.
+- Legendary looks (`AppearanceRules.LegendaryLooks`, 22 entries) win over the tier. The worn ones are built by
+  `wild_arrow_gear.py`: stag_hide, cinder_jerkin, falconer, unblinking_crown, windrunner, stalker, bandolier, fletcher
+  and bloodletter. The bows and quivers are built by `gear.py`, whose `bow()` gained glow, bands, thorns and feathers
+  and whose `quiver()` gained glow trim, twigs and fur: Splinterbough, Ember-Tongue, Hunter's Promise, Galeheart,
+  Widow's Draw, Gallowsreach, Stillwater Yew, The Long Silence, and the Splinters, Ashfall, Wind-Sworn, Magpie's Nest
+  and Hollow Hound quivers. `WildArrowBakeSetup` bakes `LegendaryLooksOf(layer)` with the tiers.
+- The bake took 2534 s, run synchronously in RunCommand (a delayCall bake never started). Resources/Characters/
+  wild_arrow holds 1140 sheets, about 298 MB.
+- Bug found: `PlayerSpriteAnimator.DefaultCharacter` checked for the old `leather` body sheet. With it gone, the player
+  fell back to the Wrathborn and drew the placeholder capsule. It now checks `AppearanceRules.BareBody`.
+- Checked in play in the editor: all five tiers and two legendary sets rendered on her. 589 of 589 tests pass.
+- App size: the app was 881 MB before this. The sheets use the iOS default compression and are worth trimming next.

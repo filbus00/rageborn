@@ -49,7 +49,8 @@ def sweep(points, width, depth, material, segments_round=False):
     return obj
 
 
-def bow(length, bend, recurve, wood, grip_color, tip_color, thick=1.0, bands=None, gem=None, string_color=BONE[2]):
+def bow(length, bend, recurve, wood, grip_color, tip_color, thick=1.0, bands=None, gem=None, string_color=BONE[2],
+        glow=0.0, band_color=None, thorns=None, feathers=None):
     """A bow length long, its limbs bending bend toward +y (toward the archer) and curling recurve back at the tips."""
     half = length / 2
     pts = []
@@ -62,7 +63,7 @@ def bow(length, bend, recurve, wood, grip_color, tip_color, thick=1.0, bands=Non
             y -= recurve * ((abs(t) - 0.8) / 0.2) ** 2
         taper = 1.0 - 0.55 * abs(t)
         pts.append((y, z, taper, taper))
-    sweep(pts, 0.035 * thick, 0.03 * thick, mat(wood, 0.0))
+    sweep(pts, 0.035 * thick, 0.03 * thick, mat(wood, 0.0, emit=glow))
     # The handle: a thicker wrap round the middle, standing out toward the back.
     box((0.045 * thick, 0.05 * thick, 0.16), (0, -0.008, -0.08), mat(grip_color, 0.0))
     # Tips and nocks.
@@ -80,16 +81,28 @@ def bow(length, bend, recurve, wood, grip_color, tip_color, thick=1.0, bands=Non
         for f in bands:
             i = int((f + 1) / 2 * steps)
             y, z = pts[i][:2]
-            box((0.05 * thick, 0.045 * thick, 0.03), (0, y, z - 0.015), mat(STONE[3], 0.0, metal=0.5))
+            box((0.05 * thick, 0.045 * thick, 0.03), (0, y, z - 0.015), mat(band_color or STONE[3], 0.0, metal=0.5))
     if gem:
         sphere(0.022, (0, -0.04 * thick, 0.0), mat(gem, 0.0, emit=0.4), segments=8)
+    # Legendaries' own touches (2026-10-05): thorns along the limbs, feathers hung from the tips.
+    if thorns:
+        for i in range(3, steps - 2, 3):
+            if abs(i - steps / 2) < 3:
+                continue
+            y, z = pts[i][:2]
+            cone(0.012, 0.05, (0, y - 0.02, z), mat(thorns, 0.0), 5, rot=(180, 0, 0))
+    if feathers:
+        for sgn in (-1, 1):
+            y, z = pts[0 if sgn < 0 else -1][:2]
+            for k in range(3):
+                box((0.004, 0.03, 0.09), (0.0, y + 0.01 + k * 0.012, z - sgn * (0.06 + k * 0.025)), mat(feathers[k % len(feathers)], 0.0), rot=(sgn * 20, 0, 0))
 
 
-def quiver(body, trim, fletch, studs=None, bone_plates=False):
+def quiver(body, trim, fletch, studs=None, bone_plates=False, glow_trim=0.0, twigs=None, fur=None):
     h = 0.55
     r = 0.075
     lathe([(r * 0.9, -h / 2 - 0.1), (r, -h / 2 + 0.02), (r * 1.05, h / 2 - 0.12)], (0, 0, 0), mat(body, 0.0), 10, smooth=False)
-    lathe([(r * 1.1, h / 2 - 0.16), (r * 1.1, h / 2 - 0.11)], (0, 0, 0), mat(trim, 0.0), 10, smooth=False)
+    lathe([(r * 1.1, h / 2 - 0.16), (r * 1.1, h / 2 - 0.11)], (0, 0, 0), mat(trim, 0.0, emit=glow_trim), 10, smooth=False)
     lathe([(r * 1.0, -h / 2 - 0.1), (r * 1.0, -h / 2 - 0.06)], (0, 0, 0), mat(trim, 0.0), 10, smooth=False)
     shaft = mat(WOOD[3], 0.0)
     feather = mat(fletch, 0.0)
@@ -107,6 +120,13 @@ def quiver(body, trim, fletch, studs=None, bone_plates=False):
                 a = k * math.pi / 3 + row * 0.5
                 z = -h / 2 + 0.08 + row * 0.1
                 sphere(0.012, (r * 1.04 * math.cos(a), r * 1.04 * math.sin(a), z), stud, segments=6)
+    if twigs:
+        # A magpie's nest round the mouth: twigs every way.
+        for k in range(14):
+            a = k * 0.9
+            cyl(0.006, 0.16, (r * 1.15 * math.cos(a), r * 1.15 * math.sin(a), h / 2 - 0.14), mat(twigs, 0.0), 4, rot=(70, 0, math.degrees(a)))
+    if fur:
+        lathe([(r * 1.25, -0.02), (r * 1.3, 0.06), (r * 1.2, 0.14)], (0, 0, 0), mat(fur, 0.4, scale=40), 10, smooth=False)
     if bone_plates:
         bonec = mat(BONE[1], 0.0)
         for row in range(3):
@@ -125,6 +145,20 @@ LOOKS = {
     "weapon_great_bow": lambda: bow(1.8, 0.1, 0.06, STONE[0], EMBER[3], EMBER[3], thick=1.3, bands=(-0.5, 0.5), gem=BLOOD[4]),
     "offhand_studded_quiver": lambda: quiver(WOOD[1], STONE[3], BLOOD[3], studs=STONE[4]),
     "offhand_bone_quiver": lambda: quiver(STONE[1], BONE[1], STONE[0], bone_plates=True),
+    # The named legendaries' own looks (2026-10-05, the owner: "legendaries that have unique looks").
+    "weapon_splinterbough": lambda: bow(1.12, 0.08, 0.06, BONE[0], WOOD[1], MOSS[3], thorns=WOOD[3], gem=MOSS[3]),
+    "weapon_ember_tongue": lambda: bow(1.1, 0.08, 0.08, EMBER[1], STONE[0], EMBER[4], glow=0.6, gem=EMBER[4], string_color=EMBER[3]),
+    "weapon_hunters_promise": lambda: bow(1.12, 0.07, 0.06, MOSS[2], EMBER[2], EMBER[2], feathers=(BONE[2], BLOOD[2])),
+    "weapon_galeheart": lambda: bow(1.15, 0.09, 0.12, COLD[4], COLD[2], BONE[2], gem=COLD[5], feathers=(BONE[2], COLD[4])),
+    "weapon_widows_draw": lambda: bow(1.1, 0.08, 0.09, STONE[0], VIOLET[0], VIOLET[1], gem=VIOLET[1], string_color=BLOOD[3], thorns=STONE[2]),
+    "weapon_gallowsreach": lambda: bow(1.85, 0.11, 0.02, WOOD[1], WOOD[3], STONE[2], thick=1.25, bands=(-0.7, -0.45, 0.45, 0.7), band_color=WOOD[4]),
+    "weapon_stillwater_yew": lambda: bow(1.75, 0.1, 0.03, BONE[1], COLD[2], COLD[4], bands=(-0.5, 0.5), band_color=COLD[3], gem=COLD[5]),
+    "weapon_the_long_silence": lambda: bow(1.95, 0.1, 0.05, STONE[0], EMBER[2], EMBER[2], thick=1.3, bands=(-0.75, -0.5, 0.5, 0.75), band_color=EMBER[2], gem=BONE[2]),
+    "offhand_quiver_of_endless_splinters": lambda: quiver(BONE[0], WOOD[2], MOSS[3], studs=WOOD[3]),
+    "offhand_ashfall_quiver": lambda: quiver(STONE[0], EMBER[3], EMBER[2], glow_trim=0.6, studs=EMBER[1]),
+    "offhand_wind_sworn_quiver": lambda: quiver(MOSS[1], EMBER[2], BONE[2]),
+    "offhand_magpies_nest": lambda: quiver(STONE[0], BONE[2], STONE[0], twigs=WOOD[2]),
+    "offhand_quiver_of_the_hollow_hound": lambda: quiver(STONE[1], VIOLET[1], VIOLET[0], fur=EARTH[2], bone_plates=True),
 }
 
 

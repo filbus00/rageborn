@@ -90,7 +90,8 @@ namespace ARPG.Editor
         static SpriteBakeJob.Piece[] Pieces()
         {
             var pieces = new System.Collections.Generic.List<SpriteBakeJob.Piece>();
-            foreach (var look in AppearanceRules.OneHandWeaponLooks.Concat(AppearanceRules.TwoHandWeaponLooks))
+            foreach (var look in AppearanceRules.OneHandWeaponLooks.Concat(AppearanceRules.TwoHandWeaponLooks)
+                         .Concat(AppearanceRules.LegendaryLooksOf(AppearanceLayer.Weapon)))
             {
                 var held = Held($"{Folder}/{Character}_weapon_{look}.fbx");
                 if (held == null)
@@ -102,7 +103,7 @@ namespace ARPG.Editor
                 piece.grips.Add(Grip);
                 pieces.Add(piece);
             }
-            foreach (var look in AppearanceRules.ShieldLooks)
+            foreach (var look in AppearanceRules.ShieldLooks.Concat(AppearanceRules.LegendaryLooksOf(AppearanceLayer.OffHand)))
             {
                 var held = Held($"{Folder}/{Character}_offhand_{look}.fbx");
                 if (held == null)
@@ -234,7 +235,8 @@ namespace ARPG.Editor
 
         static void AddGearBodies(SpriteBakeJob job)
         {
-            foreach (var look in new[] { AppearanceRules.BareBody }.Concat(AppearanceRules.ChestLooks))
+            foreach (var look in new[] { AppearanceRules.BareBody }.Concat(AppearanceRules.ChestLooks)
+                         .Concat(AppearanceRules.LegendaryLooksOf(AppearanceLayer.Body)))
             {
                 var path = GearBodyPath(look);
                 if (!File.Exists(path))
@@ -249,7 +251,7 @@ namespace ARPG.Editor
                          (AppearanceLayer.Boots, AppearanceRules.BootLooks), (AppearanceLayer.Belt, AppearanceRules.BeltLooks),
                          (AppearanceLayer.Gloves, AppearanceRules.GloveLooks), (AppearanceLayer.Helm, AppearanceRules.HelmLooks),
                      })
-                foreach (var look in looks)
+                foreach (var look in looks.Concat(AppearanceRules.LegendaryLooksOf(layer)))
                 {
                     var path = $"{Folder}/{Character}_{AppearanceRules.LayerCode(layer)}_{look}.fbx";
                     if (!File.Exists(path))

@@ -31,7 +31,7 @@ namespace ARPG
         /// </summary>
         public static string DefaultCharacter => defaultCharacter ??=
             CharacterSheets.Load($"Characters/{WildArrowCharacter}/" +
-                                 AppearanceRules.SheetName(WildArrowCharacter, AppearanceLayer.Body, "leather", CharacterGrip.OneHand, "idle")) != null
+                                 AppearanceRules.SheetName(WildArrowCharacter, AppearanceLayer.Body, AppearanceRules.BareBody, CharacterGrip.OneHand, "idle")) != null
                 ? WildArrowCharacter
                 : WrathbornCharacter;
 

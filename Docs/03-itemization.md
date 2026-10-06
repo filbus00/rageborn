@@ -250,6 +250,8 @@ Weapon family: axes only for 1.0 (Hurl Axe throws the weapon, and the brief's ac
 
 ### Base types and looks per item level (proposed)
 
+**Built 2026-10-05** (the owner: the gear "look bad"; "full face cover helms that look cool, armor that looks cool, legendaries what have unique looks"): the worn slots (chest, helm, boots, belt, gloves) have 5 looks each over the 24 levels' item levels (1 to 3, 4 to 7, 8 to 11, 12 to 15, 16 and up), and every named legendary that shows (all but the ring and the amulet) has its own look. Chest: ranger, brigand, scale, plate, knight. Helm: hood, mask, barbute, visored great helm, horned helm (the last three cover the face). Boots: wrapped, leather boots, strapped, sabatons, spiked. Belt: rope, pouch belt, studded, tassets, war girdle. Gloves: wraps, gloves, bracers, gauntlets, claws. Bows and quivers keep their 3 tiers. The paragraph below is the earlier plan.
+
 Decided: shown slots have looks in tiers by item level, 3 per slot in act 1, more with each act, and every legendary its own look. Act 1's bands (1 to 3, 4 to 6, 7 and up) are built. Proposed: each act adds 3 looks per shown slot, and the bands spread over the whole item level range of 04's recommended level plan (Q1), so a character keeps finding better-looking gear until level 60 and in the Abyss. With act 2's looks, "7 and up" becomes 7 to 10.
 
 The Wild Arrow's columns (2026-09-30, proposed): **1h weapon** becomes the short bow (act 1: hunting bow, recurve bow, horn bow), **2h weapon** the longbow (yew longbow, war bow, great bow) and **Shield** the quiver (hide quiver, studded quiver, bone quiver). The later bands' axe, maul and shield names below are renamed when those acts get their looks.
