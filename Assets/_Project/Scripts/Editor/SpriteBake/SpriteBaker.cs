@@ -706,6 +706,7 @@ namespace ARPG.Editor
                     Object.DestroyImmediate(textures[i]);
                     AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
                     ConfigureImporter(job, path, rects[i]);
+                    SheetTrimmer.Trim(path);
                     paths.Add(path);
                 }
                 return paths;

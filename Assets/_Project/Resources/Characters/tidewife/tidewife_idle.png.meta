@@ -363,7 +363,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
@@ -447,11 +447,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1344
-        width: 192
-        height: 192
+        y: 777
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -468,12 +468,12 @@ TextureImporter:
       name: tidewife_idle_s_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 1344
-        width: 192
-        height: 192
+        x: 108
+        y: 777
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -490,12 +490,12 @@ TextureImporter:
       name: tidewife_idle_s_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1344
-        width: 192
-        height: 192
+        x: 216
+        y: 777
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -512,12 +512,12 @@ TextureImporter:
       name: tidewife_idle_s_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 1344
-        width: 192
-        height: 192
+        x: 324
+        y: 777
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -534,12 +534,12 @@ TextureImporter:
       name: tidewife_idle_s_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1344
-        width: 192
-        height: 192
+        x: 432
+        y: 777
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -556,12 +556,12 @@ TextureImporter:
       name: tidewife_idle_s_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 1344
-        width: 192
-        height: 192
+        x: 540
+        y: 777
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -578,12 +578,12 @@ TextureImporter:
       name: tidewife_idle_s_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1344
-        width: 192
-        height: 192
+        x: 648
+        y: 777
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -600,12 +600,12 @@ TextureImporter:
       name: tidewife_idle_s_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 1344
-        width: 192
-        height: 192
+        x: 756
+        y: 777
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -622,12 +622,12 @@ TextureImporter:
       name: tidewife_idle_s_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1344
-        width: 192
-        height: 192
+        x: 864
+        y: 777
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -644,12 +644,12 @@ TextureImporter:
       name: tidewife_idle_s_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 1344
-        width: 192
-        height: 192
+        x: 972
+        y: 777
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -666,12 +666,12 @@ TextureImporter:
       name: tidewife_idle_s_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1344
-        width: 192
-        height: 192
+        x: 1080
+        y: 777
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -688,12 +688,12 @@ TextureImporter:
       name: tidewife_idle_s_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 1344
-        width: 192
-        height: 192
+        x: 1188
+        y: 777
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -711,11 +711,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1152
-        width: 192
-        height: 192
+        y: 666
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -732,12 +732,12 @@ TextureImporter:
       name: tidewife_idle_sw_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 1152
-        width: 192
-        height: 192
+        x: 108
+        y: 666
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -754,12 +754,12 @@ TextureImporter:
       name: tidewife_idle_sw_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1152
-        width: 192
-        height: 192
+        x: 216
+        y: 666
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -776,12 +776,12 @@ TextureImporter:
       name: tidewife_idle_sw_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 1152
-        width: 192
-        height: 192
+        x: 324
+        y: 666
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -798,12 +798,12 @@ TextureImporter:
       name: tidewife_idle_sw_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1152
-        width: 192
-        height: 192
+        x: 432
+        y: 666
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -820,12 +820,12 @@ TextureImporter:
       name: tidewife_idle_sw_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 1152
-        width: 192
-        height: 192
+        x: 540
+        y: 666
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -842,12 +842,12 @@ TextureImporter:
       name: tidewife_idle_sw_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1152
-        width: 192
-        height: 192
+        x: 648
+        y: 666
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -864,12 +864,12 @@ TextureImporter:
       name: tidewife_idle_sw_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 1152
-        width: 192
-        height: 192
+        x: 756
+        y: 666
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -886,12 +886,12 @@ TextureImporter:
       name: tidewife_idle_sw_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1152
-        width: 192
-        height: 192
+        x: 864
+        y: 666
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -908,12 +908,12 @@ TextureImporter:
       name: tidewife_idle_sw_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 1152
-        width: 192
-        height: 192
+        x: 972
+        y: 666
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -930,12 +930,12 @@ TextureImporter:
       name: tidewife_idle_sw_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1152
-        width: 192
-        height: 192
+        x: 1080
+        y: 666
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -952,12 +952,12 @@ TextureImporter:
       name: tidewife_idle_sw_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 1152
-        width: 192
-        height: 192
+        x: 1188
+        y: 666
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -975,11 +975,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 960
-        width: 192
-        height: 192
+        y: 555
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -996,12 +996,12 @@ TextureImporter:
       name: tidewife_idle_w_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 960
-        width: 192
-        height: 192
+        x: 108
+        y: 555
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1018,12 +1018,12 @@ TextureImporter:
       name: tidewife_idle_w_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 960
-        width: 192
-        height: 192
+        x: 216
+        y: 555
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1040,12 +1040,12 @@ TextureImporter:
       name: tidewife_idle_w_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 960
-        width: 192
-        height: 192
+        x: 324
+        y: 555
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1062,12 +1062,12 @@ TextureImporter:
       name: tidewife_idle_w_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 960
-        width: 192
-        height: 192
+        x: 432
+        y: 555
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1084,12 +1084,12 @@ TextureImporter:
       name: tidewife_idle_w_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 960
-        width: 192
-        height: 192
+        x: 540
+        y: 555
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1106,12 +1106,12 @@ TextureImporter:
       name: tidewife_idle_w_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 960
-        width: 192
-        height: 192
+        x: 648
+        y: 555
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1128,12 +1128,12 @@ TextureImporter:
       name: tidewife_idle_w_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 960
-        width: 192
-        height: 192
+        x: 756
+        y: 555
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1150,12 +1150,12 @@ TextureImporter:
       name: tidewife_idle_w_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 960
-        width: 192
-        height: 192
+        x: 864
+        y: 555
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1172,12 +1172,12 @@ TextureImporter:
       name: tidewife_idle_w_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 960
-        width: 192
-        height: 192
+        x: 972
+        y: 555
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1194,12 +1194,12 @@ TextureImporter:
       name: tidewife_idle_w_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 960
-        width: 192
-        height: 192
+        x: 1080
+        y: 555
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1216,12 +1216,12 @@ TextureImporter:
       name: tidewife_idle_w_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 960
-        width: 192
-        height: 192
+        x: 1188
+        y: 555
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1239,11 +1239,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 192
-        height: 192
+        y: 444
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1260,12 +1260,12 @@ TextureImporter:
       name: tidewife_idle_nw_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 768
-        width: 192
-        height: 192
+        x: 108
+        y: 444
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1282,12 +1282,12 @@ TextureImporter:
       name: tidewife_idle_nw_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 768
-        width: 192
-        height: 192
+        x: 216
+        y: 444
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1304,12 +1304,12 @@ TextureImporter:
       name: tidewife_idle_nw_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 768
-        width: 192
-        height: 192
+        x: 324
+        y: 444
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1326,12 +1326,12 @@ TextureImporter:
       name: tidewife_idle_nw_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 192
-        height: 192
+        x: 432
+        y: 444
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1348,12 +1348,12 @@ TextureImporter:
       name: tidewife_idle_nw_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 768
-        width: 192
-        height: 192
+        x: 540
+        y: 444
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1370,12 +1370,12 @@ TextureImporter:
       name: tidewife_idle_nw_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 768
-        width: 192
-        height: 192
+        x: 648
+        y: 444
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1392,12 +1392,12 @@ TextureImporter:
       name: tidewife_idle_nw_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 768
-        width: 192
-        height: 192
+        x: 756
+        y: 444
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1414,12 +1414,12 @@ TextureImporter:
       name: tidewife_idle_nw_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 768
-        width: 192
-        height: 192
+        x: 864
+        y: 444
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1436,12 +1436,12 @@ TextureImporter:
       name: tidewife_idle_nw_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 768
-        width: 192
-        height: 192
+        x: 972
+        y: 444
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1458,12 +1458,12 @@ TextureImporter:
       name: tidewife_idle_nw_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 768
-        width: 192
-        height: 192
+        x: 1080
+        y: 444
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1480,12 +1480,12 @@ TextureImporter:
       name: tidewife_idle_nw_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 768
-        width: 192
-        height: 192
+        x: 1188
+        y: 444
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1503,11 +1503,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 576
-        width: 192
-        height: 192
+        y: 333
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1524,12 +1524,12 @@ TextureImporter:
       name: tidewife_idle_n_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 576
-        width: 192
-        height: 192
+        x: 108
+        y: 333
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1546,12 +1546,12 @@ TextureImporter:
       name: tidewife_idle_n_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 576
-        width: 192
-        height: 192
+        x: 216
+        y: 333
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1568,12 +1568,12 @@ TextureImporter:
       name: tidewife_idle_n_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 576
-        width: 192
-        height: 192
+        x: 324
+        y: 333
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1590,12 +1590,12 @@ TextureImporter:
       name: tidewife_idle_n_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 576
-        width: 192
-        height: 192
+        x: 432
+        y: 333
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1612,12 +1612,12 @@ TextureImporter:
       name: tidewife_idle_n_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 576
-        width: 192
-        height: 192
+        x: 540
+        y: 333
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1634,12 +1634,12 @@ TextureImporter:
       name: tidewife_idle_n_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 576
-        width: 192
-        height: 192
+        x: 648
+        y: 333
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1656,12 +1656,12 @@ TextureImporter:
       name: tidewife_idle_n_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 576
-        width: 192
-        height: 192
+        x: 756
+        y: 333
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1678,12 +1678,12 @@ TextureImporter:
       name: tidewife_idle_n_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 576
-        width: 192
-        height: 192
+        x: 864
+        y: 333
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1700,12 +1700,12 @@ TextureImporter:
       name: tidewife_idle_n_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 576
-        width: 192
-        height: 192
+        x: 972
+        y: 333
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1722,12 +1722,12 @@ TextureImporter:
       name: tidewife_idle_n_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 576
-        width: 192
-        height: 192
+        x: 1080
+        y: 333
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1744,12 +1744,12 @@ TextureImporter:
       name: tidewife_idle_n_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 576
-        width: 192
-        height: 192
+        x: 1188
+        y: 333
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1767,11 +1767,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 384
-        width: 192
-        height: 192
+        y: 222
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1788,12 +1788,12 @@ TextureImporter:
       name: tidewife_idle_ne_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 384
-        width: 192
-        height: 192
+        x: 108
+        y: 222
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1810,12 +1810,12 @@ TextureImporter:
       name: tidewife_idle_ne_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 384
-        width: 192
-        height: 192
+        x: 216
+        y: 222
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1832,12 +1832,12 @@ TextureImporter:
       name: tidewife_idle_ne_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 384
-        width: 192
-        height: 192
+        x: 324
+        y: 222
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1854,12 +1854,12 @@ TextureImporter:
       name: tidewife_idle_ne_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 384
-        width: 192
-        height: 192
+        x: 432
+        y: 222
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1876,12 +1876,12 @@ TextureImporter:
       name: tidewife_idle_ne_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 384
-        width: 192
-        height: 192
+        x: 540
+        y: 222
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1898,12 +1898,12 @@ TextureImporter:
       name: tidewife_idle_ne_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 384
-        width: 192
-        height: 192
+        x: 648
+        y: 222
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1920,12 +1920,12 @@ TextureImporter:
       name: tidewife_idle_ne_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 384
-        width: 192
-        height: 192
+        x: 756
+        y: 222
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1942,12 +1942,12 @@ TextureImporter:
       name: tidewife_idle_ne_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 384
-        width: 192
-        height: 192
+        x: 864
+        y: 222
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1964,12 +1964,12 @@ TextureImporter:
       name: tidewife_idle_ne_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 384
-        width: 192
-        height: 192
+        x: 972
+        y: 222
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1986,12 +1986,12 @@ TextureImporter:
       name: tidewife_idle_ne_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 384
-        width: 192
-        height: 192
+        x: 1080
+        y: 222
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2008,12 +2008,12 @@ TextureImporter:
       name: tidewife_idle_ne_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 384
-        width: 192
-        height: 192
+        x: 1188
+        y: 222
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2031,11 +2031,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
-        width: 192
-        height: 192
+        y: 111
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2052,12 +2052,12 @@ TextureImporter:
       name: tidewife_idle_e_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
-        width: 192
-        height: 192
+        x: 108
+        y: 111
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2074,12 +2074,12 @@ TextureImporter:
       name: tidewife_idle_e_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 192
-        width: 192
-        height: 192
+        x: 216
+        y: 111
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2096,12 +2096,12 @@ TextureImporter:
       name: tidewife_idle_e_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 192
-        width: 192
-        height: 192
+        x: 324
+        y: 111
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2118,12 +2118,12 @@ TextureImporter:
       name: tidewife_idle_e_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 192
-        width: 192
-        height: 192
+        x: 432
+        y: 111
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2140,12 +2140,12 @@ TextureImporter:
       name: tidewife_idle_e_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 192
-        width: 192
-        height: 192
+        x: 540
+        y: 111
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2162,12 +2162,12 @@ TextureImporter:
       name: tidewife_idle_e_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 192
-        width: 192
-        height: 192
+        x: 648
+        y: 111
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2184,12 +2184,12 @@ TextureImporter:
       name: tidewife_idle_e_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 192
-        width: 192
-        height: 192
+        x: 756
+        y: 111
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2206,12 +2206,12 @@ TextureImporter:
       name: tidewife_idle_e_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 192
-        width: 192
-        height: 192
+        x: 864
+        y: 111
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2228,12 +2228,12 @@ TextureImporter:
       name: tidewife_idle_e_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 192
-        width: 192
-        height: 192
+        x: 972
+        y: 111
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2250,12 +2250,12 @@ TextureImporter:
       name: tidewife_idle_e_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 192
-        width: 192
-        height: 192
+        x: 1080
+        y: 111
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2272,12 +2272,12 @@ TextureImporter:
       name: tidewife_idle_e_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 192
-        width: 192
-        height: 192
+        x: 1188
+        y: 111
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2296,10 +2296,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 192
-        height: 192
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2316,12 +2316,12 @@ TextureImporter:
       name: tidewife_idle_se_01
       rect:
         serializedVersion: 2
-        x: 192
+        x: 108
         y: 0
-        width: 192
-        height: 192
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2338,12 +2338,12 @@ TextureImporter:
       name: tidewife_idle_se_02
       rect:
         serializedVersion: 2
-        x: 384
+        x: 216
         y: 0
-        width: 192
-        height: 192
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2360,12 +2360,12 @@ TextureImporter:
       name: tidewife_idle_se_03
       rect:
         serializedVersion: 2
-        x: 576
+        x: 324
         y: 0
-        width: 192
-        height: 192
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2382,12 +2382,12 @@ TextureImporter:
       name: tidewife_idle_se_04
       rect:
         serializedVersion: 2
-        x: 768
+        x: 432
         y: 0
-        width: 192
-        height: 192
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2404,12 +2404,12 @@ TextureImporter:
       name: tidewife_idle_se_05
       rect:
         serializedVersion: 2
-        x: 960
+        x: 540
         y: 0
-        width: 192
-        height: 192
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2426,12 +2426,12 @@ TextureImporter:
       name: tidewife_idle_se_06
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 648
         y: 0
-        width: 192
-        height: 192
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2448,12 +2448,12 @@ TextureImporter:
       name: tidewife_idle_se_07
       rect:
         serializedVersion: 2
-        x: 1344
+        x: 756
         y: 0
-        width: 192
-        height: 192
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2470,12 +2470,12 @@ TextureImporter:
       name: tidewife_idle_se_08
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 864
         y: 0
-        width: 192
-        height: 192
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2492,12 +2492,12 @@ TextureImporter:
       name: tidewife_idle_se_09
       rect:
         serializedVersion: 2
-        x: 1728
+        x: 972
         y: 0
-        width: 192
-        height: 192
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2514,12 +2514,12 @@ TextureImporter:
       name: tidewife_idle_se_10
       rect:
         serializedVersion: 2
-        x: 1920
+        x: 1080
         y: 0
-        width: 192
-        height: 192
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2536,12 +2536,12 @@ TextureImporter:
       name: tidewife_idle_se_11
       rect:
         serializedVersion: 2
-        x: 2112
+        x: 1188
         y: 0
-        width: 192
-        height: 192
+        width: 108
+        height: 111
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.10810811}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

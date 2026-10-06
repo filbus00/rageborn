@@ -609,7 +609,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
@@ -693,11 +693,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1200
-        width: 80
-        height: 80
+        y: 930
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -714,12 +714,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_s_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1200
-        width: 80
-        height: 80
+        x: 60
+        y: 930
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -736,12 +736,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_s_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1200
-        width: 80
-        height: 80
+        x: 120
+        y: 930
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -758,12 +758,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_s_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1200
-        width: 80
-        height: 80
+        x: 180
+        y: 930
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -780,12 +780,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_s_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 1200
-        width: 80
-        height: 80
+        x: 240
+        y: 930
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -802,12 +802,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_s_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1200
-        width: 80
-        height: 80
+        x: 300
+        y: 930
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -824,12 +824,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_s_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 1200
-        width: 80
-        height: 80
+        x: 360
+        y: 930
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -846,12 +846,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_s_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1200
-        width: 80
-        height: 80
+        x: 420
+        y: 930
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -868,12 +868,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_s_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1200
-        width: 80
-        height: 80
+        x: 480
+        y: 930
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -890,12 +890,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_s_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 1200
-        width: 80
-        height: 80
+        x: 540
+        y: 930
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -913,11 +913,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1120
-        width: 80
-        height: 80
+        y: 868
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -934,12 +934,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ssw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1120
-        width: 80
-        height: 80
+        x: 60
+        y: 868
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -956,12 +956,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ssw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1120
-        width: 80
-        height: 80
+        x: 120
+        y: 868
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -978,12 +978,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ssw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1120
-        width: 80
-        height: 80
+        x: 180
+        y: 868
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1000,12 +1000,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ssw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 1120
-        width: 80
-        height: 80
+        x: 240
+        y: 868
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1022,12 +1022,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ssw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1120
-        width: 80
-        height: 80
+        x: 300
+        y: 868
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1044,12 +1044,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ssw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 1120
-        width: 80
-        height: 80
+        x: 360
+        y: 868
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1066,12 +1066,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ssw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1120
-        width: 80
-        height: 80
+        x: 420
+        y: 868
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1088,12 +1088,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ssw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1120
-        width: 80
-        height: 80
+        x: 480
+        y: 868
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1110,12 +1110,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ssw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 1120
-        width: 80
-        height: 80
+        x: 540
+        y: 868
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1133,11 +1133,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1040
-        width: 80
-        height: 80
+        y: 806
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1154,12 +1154,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1040
-        width: 80
-        height: 80
+        x: 60
+        y: 806
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1176,12 +1176,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1040
-        width: 80
-        height: 80
+        x: 120
+        y: 806
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1198,12 +1198,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1040
-        width: 80
-        height: 80
+        x: 180
+        y: 806
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1220,12 +1220,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 1040
-        width: 80
-        height: 80
+        x: 240
+        y: 806
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1242,12 +1242,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1040
-        width: 80
-        height: 80
+        x: 300
+        y: 806
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1264,12 +1264,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 1040
-        width: 80
-        height: 80
+        x: 360
+        y: 806
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1286,12 +1286,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1040
-        width: 80
-        height: 80
+        x: 420
+        y: 806
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1308,12 +1308,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1040
-        width: 80
-        height: 80
+        x: 480
+        y: 806
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1330,12 +1330,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 1040
-        width: 80
-        height: 80
+        x: 540
+        y: 806
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1353,11 +1353,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 960
-        width: 80
-        height: 80
+        y: 744
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1374,12 +1374,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wsw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 960
-        width: 80
-        height: 80
+        x: 60
+        y: 744
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1396,12 +1396,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wsw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 960
-        width: 80
-        height: 80
+        x: 120
+        y: 744
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1418,12 +1418,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wsw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 960
-        width: 80
-        height: 80
+        x: 180
+        y: 744
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1440,12 +1440,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wsw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 960
-        width: 80
-        height: 80
+        x: 240
+        y: 744
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1462,12 +1462,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wsw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 960
-        width: 80
-        height: 80
+        x: 300
+        y: 744
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1484,12 +1484,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wsw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 960
-        width: 80
-        height: 80
+        x: 360
+        y: 744
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1506,12 +1506,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wsw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 960
-        width: 80
-        height: 80
+        x: 420
+        y: 744
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1528,12 +1528,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wsw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 960
-        width: 80
-        height: 80
+        x: 480
+        y: 744
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1550,12 +1550,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wsw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 960
-        width: 80
-        height: 80
+        x: 540
+        y: 744
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1573,11 +1573,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 880
-        width: 80
-        height: 80
+        y: 682
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1594,12 +1594,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_w_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 880
-        width: 80
-        height: 80
+        x: 60
+        y: 682
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1616,12 +1616,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_w_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 880
-        width: 80
-        height: 80
+        x: 120
+        y: 682
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1638,12 +1638,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_w_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 880
-        width: 80
-        height: 80
+        x: 180
+        y: 682
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1660,12 +1660,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_w_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 880
-        width: 80
-        height: 80
+        x: 240
+        y: 682
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1682,12 +1682,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_w_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 880
-        width: 80
-        height: 80
+        x: 300
+        y: 682
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1704,12 +1704,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_w_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 880
-        width: 80
-        height: 80
+        x: 360
+        y: 682
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1726,12 +1726,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_w_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 880
-        width: 80
-        height: 80
+        x: 420
+        y: 682
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1748,12 +1748,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_w_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 880
-        width: 80
-        height: 80
+        x: 480
+        y: 682
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1770,12 +1770,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_w_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 880
-        width: 80
-        height: 80
+        x: 540
+        y: 682
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1793,11 +1793,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 800
-        width: 80
-        height: 80
+        y: 620
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1814,12 +1814,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wnw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 800
-        width: 80
-        height: 80
+        x: 60
+        y: 620
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1836,12 +1836,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wnw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 800
-        width: 80
-        height: 80
+        x: 120
+        y: 620
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1858,12 +1858,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wnw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 800
-        width: 80
-        height: 80
+        x: 180
+        y: 620
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1880,12 +1880,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wnw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 800
-        width: 80
-        height: 80
+        x: 240
+        y: 620
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1902,12 +1902,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wnw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 800
-        width: 80
-        height: 80
+        x: 300
+        y: 620
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1924,12 +1924,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wnw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 800
-        width: 80
-        height: 80
+        x: 360
+        y: 620
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1946,12 +1946,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wnw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 800
-        width: 80
-        height: 80
+        x: 420
+        y: 620
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1968,12 +1968,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wnw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 800
-        width: 80
-        height: 80
+        x: 480
+        y: 620
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1990,12 +1990,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_wnw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 800
-        width: 80
-        height: 80
+        x: 540
+        y: 620
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2013,11 +2013,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 720
-        width: 80
-        height: 80
+        y: 558
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2034,12 +2034,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 720
-        width: 80
-        height: 80
+        x: 60
+        y: 558
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2056,12 +2056,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 720
-        width: 80
-        height: 80
+        x: 120
+        y: 558
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2078,12 +2078,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 720
-        width: 80
-        height: 80
+        x: 180
+        y: 558
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2100,12 +2100,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 720
-        width: 80
-        height: 80
+        x: 240
+        y: 558
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2122,12 +2122,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 720
-        width: 80
-        height: 80
+        x: 300
+        y: 558
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2144,12 +2144,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 720
-        width: 80
-        height: 80
+        x: 360
+        y: 558
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2166,12 +2166,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 720
-        width: 80
-        height: 80
+        x: 420
+        y: 558
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2188,12 +2188,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 720
-        width: 80
-        height: 80
+        x: 480
+        y: 558
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2210,12 +2210,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 720
-        width: 80
-        height: 80
+        x: 540
+        y: 558
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2233,11 +2233,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 640
-        width: 80
-        height: 80
+        y: 496
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2254,12 +2254,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nnw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 640
-        width: 80
-        height: 80
+        x: 60
+        y: 496
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2276,12 +2276,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nnw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 640
-        width: 80
-        height: 80
+        x: 120
+        y: 496
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2298,12 +2298,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nnw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 640
-        width: 80
-        height: 80
+        x: 180
+        y: 496
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2320,12 +2320,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nnw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 640
-        width: 80
-        height: 80
+        x: 240
+        y: 496
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2342,12 +2342,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nnw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 640
-        width: 80
-        height: 80
+        x: 300
+        y: 496
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2364,12 +2364,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nnw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 640
-        width: 80
-        height: 80
+        x: 360
+        y: 496
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2386,12 +2386,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nnw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 640
-        width: 80
-        height: 80
+        x: 420
+        y: 496
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2408,12 +2408,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nnw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 640
-        width: 80
-        height: 80
+        x: 480
+        y: 496
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2430,12 +2430,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nnw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 640
-        width: 80
-        height: 80
+        x: 540
+        y: 496
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2453,11 +2453,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 560
-        width: 80
-        height: 80
+        y: 434
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2474,12 +2474,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_n_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 560
-        width: 80
-        height: 80
+        x: 60
+        y: 434
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2496,12 +2496,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_n_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 560
-        width: 80
-        height: 80
+        x: 120
+        y: 434
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2518,12 +2518,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_n_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 560
-        width: 80
-        height: 80
+        x: 180
+        y: 434
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2540,12 +2540,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_n_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 560
-        width: 80
-        height: 80
+        x: 240
+        y: 434
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2562,12 +2562,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_n_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 560
-        width: 80
-        height: 80
+        x: 300
+        y: 434
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2584,12 +2584,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_n_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 560
-        width: 80
-        height: 80
+        x: 360
+        y: 434
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2606,12 +2606,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_n_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 560
-        width: 80
-        height: 80
+        x: 420
+        y: 434
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2628,12 +2628,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_n_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 560
-        width: 80
-        height: 80
+        x: 480
+        y: 434
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2650,12 +2650,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_n_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 560
-        width: 80
-        height: 80
+        x: 540
+        y: 434
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2673,11 +2673,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 80
-        height: 80
+        y: 372
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2694,12 +2694,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nne_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 480
-        width: 80
-        height: 80
+        x: 60
+        y: 372
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2716,12 +2716,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nne_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 480
-        width: 80
-        height: 80
+        x: 120
+        y: 372
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2738,12 +2738,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nne_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 480
-        width: 80
-        height: 80
+        x: 180
+        y: 372
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2760,12 +2760,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nne_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 480
-        width: 80
-        height: 80
+        x: 240
+        y: 372
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2782,12 +2782,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nne_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 480
-        width: 80
-        height: 80
+        x: 300
+        y: 372
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2804,12 +2804,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nne_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 480
-        width: 80
-        height: 80
+        x: 360
+        y: 372
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2826,12 +2826,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nne_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 480
-        width: 80
-        height: 80
+        x: 420
+        y: 372
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2848,12 +2848,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nne_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 480
-        width: 80
-        height: 80
+        x: 480
+        y: 372
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2870,12 +2870,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_nne_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 480
-        width: 80
-        height: 80
+        x: 540
+        y: 372
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2893,11 +2893,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 400
-        width: 80
-        height: 80
+        y: 310
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2914,12 +2914,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ne_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 400
-        width: 80
-        height: 80
+        x: 60
+        y: 310
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2936,12 +2936,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ne_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 400
-        width: 80
-        height: 80
+        x: 120
+        y: 310
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2958,12 +2958,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ne_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 400
-        width: 80
-        height: 80
+        x: 180
+        y: 310
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2980,12 +2980,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ne_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 400
-        width: 80
-        height: 80
+        x: 240
+        y: 310
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3002,12 +3002,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ne_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 400
-        width: 80
-        height: 80
+        x: 300
+        y: 310
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3024,12 +3024,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ne_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 400
-        width: 80
-        height: 80
+        x: 360
+        y: 310
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3046,12 +3046,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ne_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 400
-        width: 80
-        height: 80
+        x: 420
+        y: 310
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3068,12 +3068,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ne_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 400
-        width: 80
-        height: 80
+        x: 480
+        y: 310
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3090,12 +3090,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ne_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 400
-        width: 80
-        height: 80
+        x: 540
+        y: 310
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3113,11 +3113,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 320
-        width: 80
-        height: 80
+        y: 248
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3134,12 +3134,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ene_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 320
-        width: 80
-        height: 80
+        x: 60
+        y: 248
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3156,12 +3156,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ene_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 320
-        width: 80
-        height: 80
+        x: 120
+        y: 248
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3178,12 +3178,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ene_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 320
-        width: 80
-        height: 80
+        x: 180
+        y: 248
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3200,12 +3200,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ene_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 320
-        width: 80
-        height: 80
+        x: 240
+        y: 248
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3222,12 +3222,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ene_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 320
-        width: 80
-        height: 80
+        x: 300
+        y: 248
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3244,12 +3244,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ene_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 320
-        width: 80
-        height: 80
+        x: 360
+        y: 248
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3266,12 +3266,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ene_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 320
-        width: 80
-        height: 80
+        x: 420
+        y: 248
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3288,12 +3288,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ene_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 320
-        width: 80
-        height: 80
+        x: 480
+        y: 248
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3310,12 +3310,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ene_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 320
-        width: 80
-        height: 80
+        x: 540
+        y: 248
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3333,11 +3333,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 80
-        height: 80
+        y: 186
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3354,12 +3354,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_e_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 240
-        width: 80
-        height: 80
+        x: 60
+        y: 186
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3376,12 +3376,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_e_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 240
-        width: 80
-        height: 80
+        x: 120
+        y: 186
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3398,12 +3398,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_e_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 240
-        width: 80
-        height: 80
+        x: 180
+        y: 186
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3420,12 +3420,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_e_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 240
-        width: 80
-        height: 80
+        x: 240
+        y: 186
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3442,12 +3442,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_e_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 240
-        width: 80
-        height: 80
+        x: 300
+        y: 186
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3464,12 +3464,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_e_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 240
-        width: 80
-        height: 80
+        x: 360
+        y: 186
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3486,12 +3486,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_e_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 240
-        width: 80
-        height: 80
+        x: 420
+        y: 186
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3508,12 +3508,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_e_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 240
-        width: 80
-        height: 80
+        x: 480
+        y: 186
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3530,12 +3530,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_e_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 240
-        width: 80
-        height: 80
+        x: 540
+        y: 186
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3553,11 +3553,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 80
-        height: 80
+        y: 124
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3574,12 +3574,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ese_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 160
-        width: 80
-        height: 80
+        x: 60
+        y: 124
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3596,12 +3596,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ese_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 160
-        width: 80
-        height: 80
+        x: 120
+        y: 124
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3618,12 +3618,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ese_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 160
-        width: 80
-        height: 80
+        x: 180
+        y: 124
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3640,12 +3640,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ese_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 160
-        width: 80
-        height: 80
+        x: 240
+        y: 124
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3662,12 +3662,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ese_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 160
-        width: 80
-        height: 80
+        x: 300
+        y: 124
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3684,12 +3684,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ese_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 160
-        width: 80
-        height: 80
+        x: 360
+        y: 124
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3706,12 +3706,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ese_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 160
-        width: 80
-        height: 80
+        x: 420
+        y: 124
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3728,12 +3728,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ese_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 160
-        width: 80
-        height: 80
+        x: 480
+        y: 124
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3750,12 +3750,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_ese_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 160
-        width: 80
-        height: 80
+        x: 540
+        y: 124
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3773,11 +3773,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 80
-        width: 80
-        height: 80
+        y: 62
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3794,12 +3794,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_se_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 80
-        width: 80
-        height: 80
+        x: 60
+        y: 62
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3816,12 +3816,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_se_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 80
-        width: 80
-        height: 80
+        x: 120
+        y: 62
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3838,12 +3838,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_se_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 80
-        width: 80
-        height: 80
+        x: 180
+        y: 62
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3860,12 +3860,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_se_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 80
-        width: 80
-        height: 80
+        x: 240
+        y: 62
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3882,12 +3882,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_se_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 80
-        width: 80
-        height: 80
+        x: 300
+        y: 62
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3904,12 +3904,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_se_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 80
-        width: 80
-        height: 80
+        x: 360
+        y: 62
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3926,12 +3926,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_se_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 80
-        width: 80
-        height: 80
+        x: 420
+        y: 62
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3948,12 +3948,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_se_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 80
-        width: 80
-        height: 80
+        x: 480
+        y: 62
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3970,12 +3970,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_se_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 80
-        width: 80
-        height: 80
+        x: 540
+        y: 62
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3994,10 +3994,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 80
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4014,12 +4014,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sse_01
       rect:
         serializedVersion: 2
-        x: 80
+        x: 60
         y: 0
-        width: 80
-        height: 80
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4036,12 +4036,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sse_02
       rect:
         serializedVersion: 2
-        x: 160
+        x: 120
         y: 0
-        width: 80
-        height: 80
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4058,12 +4058,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sse_03
       rect:
         serializedVersion: 2
-        x: 240
+        x: 180
         y: 0
-        width: 80
-        height: 80
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4080,12 +4080,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sse_04
       rect:
         serializedVersion: 2
-        x: 320
+        x: 240
         y: 0
-        width: 80
-        height: 80
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4102,12 +4102,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sse_05
       rect:
         serializedVersion: 2
-        x: 400
+        x: 300
         y: 0
-        width: 80
-        height: 80
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4124,12 +4124,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sse_06
       rect:
         serializedVersion: 2
-        x: 480
+        x: 360
         y: 0
-        width: 80
-        height: 80
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4146,12 +4146,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sse_07
       rect:
         serializedVersion: 2
-        x: 560
+        x: 420
         y: 0
-        width: 80
-        height: 80
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4168,12 +4168,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sse_08
       rect:
         serializedVersion: 2
-        x: 640
+        x: 480
         y: 0
-        width: 80
-        height: 80
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4190,12 +4190,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_attack_sse_09
       rect:
         serializedVersion: 2
-        x: 720
+        x: 540
         y: 0
-        width: 80
-        height: 80
+        width: 60
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

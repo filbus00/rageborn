@@ -288,7 +288,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
@@ -372,11 +372,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1008
-        width: 144
-        height: 144
+        y: 490
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -393,12 +393,12 @@ TextureImporter:
       name: carrion_bloat_run_s_01
       rect:
         serializedVersion: 2
-        x: 144
-        y: 1008
-        width: 144
-        height: 144
+        x: 86
+        y: 490
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -415,12 +415,12 @@ TextureImporter:
       name: carrion_bloat_run_s_02
       rect:
         serializedVersion: 2
-        x: 288
-        y: 1008
-        width: 144
-        height: 144
+        x: 172
+        y: 490
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -437,12 +437,12 @@ TextureImporter:
       name: carrion_bloat_run_s_03
       rect:
         serializedVersion: 2
-        x: 432
-        y: 1008
-        width: 144
-        height: 144
+        x: 258
+        y: 490
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -459,12 +459,12 @@ TextureImporter:
       name: carrion_bloat_run_s_04
       rect:
         serializedVersion: 2
-        x: 576
-        y: 1008
-        width: 144
-        height: 144
+        x: 344
+        y: 490
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -481,12 +481,12 @@ TextureImporter:
       name: carrion_bloat_run_s_05
       rect:
         serializedVersion: 2
-        x: 720
-        y: 1008
-        width: 144
-        height: 144
+        x: 430
+        y: 490
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -503,12 +503,12 @@ TextureImporter:
       name: carrion_bloat_run_s_06
       rect:
         serializedVersion: 2
-        x: 864
-        y: 1008
-        width: 144
-        height: 144
+        x: 516
+        y: 490
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -525,12 +525,12 @@ TextureImporter:
       name: carrion_bloat_run_s_07
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 1008
-        width: 144
-        height: 144
+        x: 602
+        y: 490
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -547,12 +547,12 @@ TextureImporter:
       name: carrion_bloat_run_s_08
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1008
-        width: 144
-        height: 144
+        x: 688
+        y: 490
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -569,12 +569,12 @@ TextureImporter:
       name: carrion_bloat_run_s_09
       rect:
         serializedVersion: 2
-        x: 1296
-        y: 1008
-        width: 144
-        height: 144
+        x: 774
+        y: 490
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -592,11 +592,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 864
-        width: 144
-        height: 144
+        y: 420
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -613,12 +613,12 @@ TextureImporter:
       name: carrion_bloat_run_sw_01
       rect:
         serializedVersion: 2
-        x: 144
-        y: 864
-        width: 144
-        height: 144
+        x: 86
+        y: 420
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -635,12 +635,12 @@ TextureImporter:
       name: carrion_bloat_run_sw_02
       rect:
         serializedVersion: 2
-        x: 288
-        y: 864
-        width: 144
-        height: 144
+        x: 172
+        y: 420
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -657,12 +657,12 @@ TextureImporter:
       name: carrion_bloat_run_sw_03
       rect:
         serializedVersion: 2
-        x: 432
-        y: 864
-        width: 144
-        height: 144
+        x: 258
+        y: 420
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -679,12 +679,12 @@ TextureImporter:
       name: carrion_bloat_run_sw_04
       rect:
         serializedVersion: 2
-        x: 576
-        y: 864
-        width: 144
-        height: 144
+        x: 344
+        y: 420
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -701,12 +701,12 @@ TextureImporter:
       name: carrion_bloat_run_sw_05
       rect:
         serializedVersion: 2
-        x: 720
-        y: 864
-        width: 144
-        height: 144
+        x: 430
+        y: 420
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -723,12 +723,12 @@ TextureImporter:
       name: carrion_bloat_run_sw_06
       rect:
         serializedVersion: 2
-        x: 864
-        y: 864
-        width: 144
-        height: 144
+        x: 516
+        y: 420
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -745,12 +745,12 @@ TextureImporter:
       name: carrion_bloat_run_sw_07
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 864
-        width: 144
-        height: 144
+        x: 602
+        y: 420
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -767,12 +767,12 @@ TextureImporter:
       name: carrion_bloat_run_sw_08
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 864
-        width: 144
-        height: 144
+        x: 688
+        y: 420
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -789,12 +789,12 @@ TextureImporter:
       name: carrion_bloat_run_sw_09
       rect:
         serializedVersion: 2
-        x: 1296
-        y: 864
-        width: 144
-        height: 144
+        x: 774
+        y: 420
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -812,11 +812,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 720
-        width: 144
-        height: 144
+        y: 350
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -833,12 +833,12 @@ TextureImporter:
       name: carrion_bloat_run_w_01
       rect:
         serializedVersion: 2
-        x: 144
-        y: 720
-        width: 144
-        height: 144
+        x: 86
+        y: 350
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -855,12 +855,12 @@ TextureImporter:
       name: carrion_bloat_run_w_02
       rect:
         serializedVersion: 2
-        x: 288
-        y: 720
-        width: 144
-        height: 144
+        x: 172
+        y: 350
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -877,12 +877,12 @@ TextureImporter:
       name: carrion_bloat_run_w_03
       rect:
         serializedVersion: 2
-        x: 432
-        y: 720
-        width: 144
-        height: 144
+        x: 258
+        y: 350
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -899,12 +899,12 @@ TextureImporter:
       name: carrion_bloat_run_w_04
       rect:
         serializedVersion: 2
-        x: 576
-        y: 720
-        width: 144
-        height: 144
+        x: 344
+        y: 350
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -921,12 +921,12 @@ TextureImporter:
       name: carrion_bloat_run_w_05
       rect:
         serializedVersion: 2
-        x: 720
-        y: 720
-        width: 144
-        height: 144
+        x: 430
+        y: 350
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -943,12 +943,12 @@ TextureImporter:
       name: carrion_bloat_run_w_06
       rect:
         serializedVersion: 2
-        x: 864
-        y: 720
-        width: 144
-        height: 144
+        x: 516
+        y: 350
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -965,12 +965,12 @@ TextureImporter:
       name: carrion_bloat_run_w_07
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 720
-        width: 144
-        height: 144
+        x: 602
+        y: 350
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -987,12 +987,12 @@ TextureImporter:
       name: carrion_bloat_run_w_08
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 720
-        width: 144
-        height: 144
+        x: 688
+        y: 350
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1009,12 +1009,12 @@ TextureImporter:
       name: carrion_bloat_run_w_09
       rect:
         serializedVersion: 2
-        x: 1296
-        y: 720
-        width: 144
-        height: 144
+        x: 774
+        y: 350
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1032,11 +1032,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 576
-        width: 144
-        height: 144
+        y: 280
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1053,12 +1053,12 @@ TextureImporter:
       name: carrion_bloat_run_nw_01
       rect:
         serializedVersion: 2
-        x: 144
-        y: 576
-        width: 144
-        height: 144
+        x: 86
+        y: 280
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1075,12 +1075,12 @@ TextureImporter:
       name: carrion_bloat_run_nw_02
       rect:
         serializedVersion: 2
-        x: 288
-        y: 576
-        width: 144
-        height: 144
+        x: 172
+        y: 280
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1097,12 +1097,12 @@ TextureImporter:
       name: carrion_bloat_run_nw_03
       rect:
         serializedVersion: 2
-        x: 432
-        y: 576
-        width: 144
-        height: 144
+        x: 258
+        y: 280
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1119,12 +1119,12 @@ TextureImporter:
       name: carrion_bloat_run_nw_04
       rect:
         serializedVersion: 2
-        x: 576
-        y: 576
-        width: 144
-        height: 144
+        x: 344
+        y: 280
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1141,12 +1141,12 @@ TextureImporter:
       name: carrion_bloat_run_nw_05
       rect:
         serializedVersion: 2
-        x: 720
-        y: 576
-        width: 144
-        height: 144
+        x: 430
+        y: 280
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1163,12 +1163,12 @@ TextureImporter:
       name: carrion_bloat_run_nw_06
       rect:
         serializedVersion: 2
-        x: 864
-        y: 576
-        width: 144
-        height: 144
+        x: 516
+        y: 280
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1185,12 +1185,12 @@ TextureImporter:
       name: carrion_bloat_run_nw_07
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 576
-        width: 144
-        height: 144
+        x: 602
+        y: 280
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1207,12 +1207,12 @@ TextureImporter:
       name: carrion_bloat_run_nw_08
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 576
-        width: 144
-        height: 144
+        x: 688
+        y: 280
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1229,12 +1229,12 @@ TextureImporter:
       name: carrion_bloat_run_nw_09
       rect:
         serializedVersion: 2
-        x: 1296
-        y: 576
-        width: 144
-        height: 144
+        x: 774
+        y: 280
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1252,11 +1252,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 432
-        width: 144
-        height: 144
+        y: 210
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1273,12 +1273,12 @@ TextureImporter:
       name: carrion_bloat_run_n_01
       rect:
         serializedVersion: 2
-        x: 144
-        y: 432
-        width: 144
-        height: 144
+        x: 86
+        y: 210
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1295,12 +1295,12 @@ TextureImporter:
       name: carrion_bloat_run_n_02
       rect:
         serializedVersion: 2
-        x: 288
-        y: 432
-        width: 144
-        height: 144
+        x: 172
+        y: 210
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1317,12 +1317,12 @@ TextureImporter:
       name: carrion_bloat_run_n_03
       rect:
         serializedVersion: 2
-        x: 432
-        y: 432
-        width: 144
-        height: 144
+        x: 258
+        y: 210
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1339,12 +1339,12 @@ TextureImporter:
       name: carrion_bloat_run_n_04
       rect:
         serializedVersion: 2
-        x: 576
-        y: 432
-        width: 144
-        height: 144
+        x: 344
+        y: 210
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1361,12 +1361,12 @@ TextureImporter:
       name: carrion_bloat_run_n_05
       rect:
         serializedVersion: 2
-        x: 720
-        y: 432
-        width: 144
-        height: 144
+        x: 430
+        y: 210
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1383,12 +1383,12 @@ TextureImporter:
       name: carrion_bloat_run_n_06
       rect:
         serializedVersion: 2
-        x: 864
-        y: 432
-        width: 144
-        height: 144
+        x: 516
+        y: 210
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1405,12 +1405,12 @@ TextureImporter:
       name: carrion_bloat_run_n_07
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 432
-        width: 144
-        height: 144
+        x: 602
+        y: 210
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1427,12 +1427,12 @@ TextureImporter:
       name: carrion_bloat_run_n_08
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 432
-        width: 144
-        height: 144
+        x: 688
+        y: 210
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1449,12 +1449,12 @@ TextureImporter:
       name: carrion_bloat_run_n_09
       rect:
         serializedVersion: 2
-        x: 1296
-        y: 432
-        width: 144
-        height: 144
+        x: 774
+        y: 210
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1472,11 +1472,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 288
-        width: 144
-        height: 144
+        y: 140
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1493,12 +1493,12 @@ TextureImporter:
       name: carrion_bloat_run_ne_01
       rect:
         serializedVersion: 2
-        x: 144
-        y: 288
-        width: 144
-        height: 144
+        x: 86
+        y: 140
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1515,12 +1515,12 @@ TextureImporter:
       name: carrion_bloat_run_ne_02
       rect:
         serializedVersion: 2
-        x: 288
-        y: 288
-        width: 144
-        height: 144
+        x: 172
+        y: 140
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1537,12 +1537,12 @@ TextureImporter:
       name: carrion_bloat_run_ne_03
       rect:
         serializedVersion: 2
-        x: 432
-        y: 288
-        width: 144
-        height: 144
+        x: 258
+        y: 140
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1559,12 +1559,12 @@ TextureImporter:
       name: carrion_bloat_run_ne_04
       rect:
         serializedVersion: 2
-        x: 576
-        y: 288
-        width: 144
-        height: 144
+        x: 344
+        y: 140
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1581,12 +1581,12 @@ TextureImporter:
       name: carrion_bloat_run_ne_05
       rect:
         serializedVersion: 2
-        x: 720
-        y: 288
-        width: 144
-        height: 144
+        x: 430
+        y: 140
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1603,12 +1603,12 @@ TextureImporter:
       name: carrion_bloat_run_ne_06
       rect:
         serializedVersion: 2
-        x: 864
-        y: 288
-        width: 144
-        height: 144
+        x: 516
+        y: 140
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1625,12 +1625,12 @@ TextureImporter:
       name: carrion_bloat_run_ne_07
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 288
-        width: 144
-        height: 144
+        x: 602
+        y: 140
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1647,12 +1647,12 @@ TextureImporter:
       name: carrion_bloat_run_ne_08
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 288
-        width: 144
-        height: 144
+        x: 688
+        y: 140
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1669,12 +1669,12 @@ TextureImporter:
       name: carrion_bloat_run_ne_09
       rect:
         serializedVersion: 2
-        x: 1296
-        y: 288
-        width: 144
-        height: 144
+        x: 774
+        y: 140
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1692,11 +1692,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 144
-        width: 144
-        height: 144
+        y: 70
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1713,12 +1713,12 @@ TextureImporter:
       name: carrion_bloat_run_e_01
       rect:
         serializedVersion: 2
-        x: 144
-        y: 144
-        width: 144
-        height: 144
+        x: 86
+        y: 70
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1735,12 +1735,12 @@ TextureImporter:
       name: carrion_bloat_run_e_02
       rect:
         serializedVersion: 2
-        x: 288
-        y: 144
-        width: 144
-        height: 144
+        x: 172
+        y: 70
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1757,12 +1757,12 @@ TextureImporter:
       name: carrion_bloat_run_e_03
       rect:
         serializedVersion: 2
-        x: 432
-        y: 144
-        width: 144
-        height: 144
+        x: 258
+        y: 70
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1779,12 +1779,12 @@ TextureImporter:
       name: carrion_bloat_run_e_04
       rect:
         serializedVersion: 2
-        x: 576
-        y: 144
-        width: 144
-        height: 144
+        x: 344
+        y: 70
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1801,12 +1801,12 @@ TextureImporter:
       name: carrion_bloat_run_e_05
       rect:
         serializedVersion: 2
-        x: 720
-        y: 144
-        width: 144
-        height: 144
+        x: 430
+        y: 70
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1823,12 +1823,12 @@ TextureImporter:
       name: carrion_bloat_run_e_06
       rect:
         serializedVersion: 2
-        x: 864
-        y: 144
-        width: 144
-        height: 144
+        x: 516
+        y: 70
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1845,12 +1845,12 @@ TextureImporter:
       name: carrion_bloat_run_e_07
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 144
-        width: 144
-        height: 144
+        x: 602
+        y: 70
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1867,12 +1867,12 @@ TextureImporter:
       name: carrion_bloat_run_e_08
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 144
-        width: 144
-        height: 144
+        x: 688
+        y: 70
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1889,12 +1889,12 @@ TextureImporter:
       name: carrion_bloat_run_e_09
       rect:
         serializedVersion: 2
-        x: 1296
-        y: 144
-        width: 144
-        height: 144
+        x: 774
+        y: 70
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1913,10 +1913,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 144
-        height: 144
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1933,12 +1933,12 @@ TextureImporter:
       name: carrion_bloat_run_se_01
       rect:
         serializedVersion: 2
-        x: 144
+        x: 86
         y: 0
-        width: 144
-        height: 144
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1955,12 +1955,12 @@ TextureImporter:
       name: carrion_bloat_run_se_02
       rect:
         serializedVersion: 2
-        x: 288
+        x: 172
         y: 0
-        width: 144
-        height: 144
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1977,12 +1977,12 @@ TextureImporter:
       name: carrion_bloat_run_se_03
       rect:
         serializedVersion: 2
-        x: 432
+        x: 258
         y: 0
-        width: 144
-        height: 144
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1999,12 +1999,12 @@ TextureImporter:
       name: carrion_bloat_run_se_04
       rect:
         serializedVersion: 2
-        x: 576
+        x: 344
         y: 0
-        width: 144
-        height: 144
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2021,12 +2021,12 @@ TextureImporter:
       name: carrion_bloat_run_se_05
       rect:
         serializedVersion: 2
-        x: 720
+        x: 430
         y: 0
-        width: 144
-        height: 144
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2043,12 +2043,12 @@ TextureImporter:
       name: carrion_bloat_run_se_06
       rect:
         serializedVersion: 2
-        x: 864
+        x: 516
         y: 0
-        width: 144
-        height: 144
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2065,12 +2065,12 @@ TextureImporter:
       name: carrion_bloat_run_se_07
       rect:
         serializedVersion: 2
-        x: 1008
+        x: 602
         y: 0
-        width: 144
-        height: 144
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2087,12 +2087,12 @@ TextureImporter:
       name: carrion_bloat_run_se_08
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 688
         y: 0
-        width: 144
-        height: 144
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2109,12 +2109,12 @@ TextureImporter:
       name: carrion_bloat_run_se_09
       rect:
         serializedVersion: 2
-        x: 1296
+        x: 774
         y: 0
-        width: 144
-        height: 144
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.083333336}
+      pivot: {x: 0.5, y: 0.17142858}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

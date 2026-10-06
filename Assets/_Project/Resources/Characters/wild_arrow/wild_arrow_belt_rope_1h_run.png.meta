@@ -573,7 +573,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
@@ -657,11 +657,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1200
-        width: 80
-        height: 80
+        y: 255
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -678,12 +678,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_s_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1200
-        width: 80
-        height: 80
+        x: 26
+        y: 255
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -700,12 +700,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_s_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1200
-        width: 80
-        height: 80
+        x: 52
+        y: 255
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -722,12 +722,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_s_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1200
-        width: 80
-        height: 80
+        x: 78
+        y: 255
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -744,12 +744,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_s_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 1200
-        width: 80
-        height: 80
+        x: 104
+        y: 255
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -766,12 +766,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_s_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1200
-        width: 80
-        height: 80
+        x: 130
+        y: 255
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -788,12 +788,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_s_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 1200
-        width: 80
-        height: 80
+        x: 156
+        y: 255
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -810,12 +810,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_s_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1200
-        width: 80
-        height: 80
+        x: 182
+        y: 255
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -832,12 +832,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_s_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1200
-        width: 80
-        height: 80
+        x: 208
+        y: 255
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -854,12 +854,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_s_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 1200
-        width: 80
-        height: 80
+        x: 234
+        y: 255
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -877,11 +877,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1120
-        width: 80
-        height: 80
+        y: 238
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -898,12 +898,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ssw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1120
-        width: 80
-        height: 80
+        x: 26
+        y: 238
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -920,12 +920,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ssw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1120
-        width: 80
-        height: 80
+        x: 52
+        y: 238
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -942,12 +942,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ssw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1120
-        width: 80
-        height: 80
+        x: 78
+        y: 238
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -964,12 +964,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ssw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 1120
-        width: 80
-        height: 80
+        x: 104
+        y: 238
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -986,12 +986,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ssw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1120
-        width: 80
-        height: 80
+        x: 130
+        y: 238
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1008,12 +1008,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ssw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 1120
-        width: 80
-        height: 80
+        x: 156
+        y: 238
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1030,12 +1030,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ssw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1120
-        width: 80
-        height: 80
+        x: 182
+        y: 238
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1052,12 +1052,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ssw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1120
-        width: 80
-        height: 80
+        x: 208
+        y: 238
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1074,12 +1074,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ssw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 1120
-        width: 80
-        height: 80
+        x: 234
+        y: 238
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1097,11 +1097,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1040
-        width: 80
-        height: 80
+        y: 221
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1118,12 +1118,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1040
-        width: 80
-        height: 80
+        x: 26
+        y: 221
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1140,12 +1140,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1040
-        width: 80
-        height: 80
+        x: 52
+        y: 221
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1162,12 +1162,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1040
-        width: 80
-        height: 80
+        x: 78
+        y: 221
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1184,12 +1184,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 1040
-        width: 80
-        height: 80
+        x: 104
+        y: 221
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1206,12 +1206,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1040
-        width: 80
-        height: 80
+        x: 130
+        y: 221
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1228,12 +1228,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 1040
-        width: 80
-        height: 80
+        x: 156
+        y: 221
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1250,12 +1250,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1040
-        width: 80
-        height: 80
+        x: 182
+        y: 221
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1272,12 +1272,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1040
-        width: 80
-        height: 80
+        x: 208
+        y: 221
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1294,12 +1294,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 1040
-        width: 80
-        height: 80
+        x: 234
+        y: 221
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1317,11 +1317,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 960
-        width: 80
-        height: 80
+        y: 204
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1338,12 +1338,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wsw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 960
-        width: 80
-        height: 80
+        x: 26
+        y: 204
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1360,12 +1360,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wsw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 960
-        width: 80
-        height: 80
+        x: 52
+        y: 204
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1382,12 +1382,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wsw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 960
-        width: 80
-        height: 80
+        x: 78
+        y: 204
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1404,12 +1404,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wsw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 960
-        width: 80
-        height: 80
+        x: 104
+        y: 204
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1426,12 +1426,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wsw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 960
-        width: 80
-        height: 80
+        x: 130
+        y: 204
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1448,12 +1448,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wsw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 960
-        width: 80
-        height: 80
+        x: 156
+        y: 204
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1470,12 +1470,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wsw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 960
-        width: 80
-        height: 80
+        x: 182
+        y: 204
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1492,12 +1492,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wsw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 960
-        width: 80
-        height: 80
+        x: 208
+        y: 204
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1514,12 +1514,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wsw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 960
-        width: 80
-        height: 80
+        x: 234
+        y: 204
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1537,11 +1537,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 880
-        width: 80
-        height: 80
+        y: 187
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1558,12 +1558,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_w_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 880
-        width: 80
-        height: 80
+        x: 26
+        y: 187
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1580,12 +1580,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_w_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 880
-        width: 80
-        height: 80
+        x: 52
+        y: 187
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1602,12 +1602,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_w_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 880
-        width: 80
-        height: 80
+        x: 78
+        y: 187
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1624,12 +1624,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_w_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 880
-        width: 80
-        height: 80
+        x: 104
+        y: 187
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1646,12 +1646,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_w_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 880
-        width: 80
-        height: 80
+        x: 130
+        y: 187
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1668,12 +1668,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_w_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 880
-        width: 80
-        height: 80
+        x: 156
+        y: 187
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1690,12 +1690,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_w_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 880
-        width: 80
-        height: 80
+        x: 182
+        y: 187
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1712,12 +1712,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_w_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 880
-        width: 80
-        height: 80
+        x: 208
+        y: 187
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1734,12 +1734,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_w_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 880
-        width: 80
-        height: 80
+        x: 234
+        y: 187
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1757,11 +1757,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 800
-        width: 80
-        height: 80
+        y: 170
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1778,12 +1778,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wnw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 800
-        width: 80
-        height: 80
+        x: 26
+        y: 170
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1800,12 +1800,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wnw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 800
-        width: 80
-        height: 80
+        x: 52
+        y: 170
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1822,12 +1822,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wnw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 800
-        width: 80
-        height: 80
+        x: 78
+        y: 170
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1844,12 +1844,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wnw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 800
-        width: 80
-        height: 80
+        x: 104
+        y: 170
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1866,12 +1866,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wnw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 800
-        width: 80
-        height: 80
+        x: 130
+        y: 170
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1888,12 +1888,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wnw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 800
-        width: 80
-        height: 80
+        x: 156
+        y: 170
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1910,12 +1910,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wnw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 800
-        width: 80
-        height: 80
+        x: 182
+        y: 170
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1932,12 +1932,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wnw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 800
-        width: 80
-        height: 80
+        x: 208
+        y: 170
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1954,12 +1954,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_wnw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 800
-        width: 80
-        height: 80
+        x: 234
+        y: 170
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1977,11 +1977,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 720
-        width: 80
-        height: 80
+        y: 153
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1998,12 +1998,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 720
-        width: 80
-        height: 80
+        x: 26
+        y: 153
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2020,12 +2020,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 720
-        width: 80
-        height: 80
+        x: 52
+        y: 153
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2042,12 +2042,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 720
-        width: 80
-        height: 80
+        x: 78
+        y: 153
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2064,12 +2064,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 720
-        width: 80
-        height: 80
+        x: 104
+        y: 153
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2086,12 +2086,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 720
-        width: 80
-        height: 80
+        x: 130
+        y: 153
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2108,12 +2108,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 720
-        width: 80
-        height: 80
+        x: 156
+        y: 153
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2130,12 +2130,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 720
-        width: 80
-        height: 80
+        x: 182
+        y: 153
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2152,12 +2152,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 720
-        width: 80
-        height: 80
+        x: 208
+        y: 153
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2174,12 +2174,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 720
-        width: 80
-        height: 80
+        x: 234
+        y: 153
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2197,11 +2197,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 640
-        width: 80
-        height: 80
+        y: 136
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2218,12 +2218,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nnw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 640
-        width: 80
-        height: 80
+        x: 26
+        y: 136
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2240,12 +2240,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nnw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 640
-        width: 80
-        height: 80
+        x: 52
+        y: 136
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2262,12 +2262,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nnw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 640
-        width: 80
-        height: 80
+        x: 78
+        y: 136
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2284,12 +2284,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nnw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 640
-        width: 80
-        height: 80
+        x: 104
+        y: 136
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2306,12 +2306,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nnw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 640
-        width: 80
-        height: 80
+        x: 130
+        y: 136
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2328,12 +2328,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nnw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 640
-        width: 80
-        height: 80
+        x: 156
+        y: 136
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2350,12 +2350,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nnw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 640
-        width: 80
-        height: 80
+        x: 182
+        y: 136
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2372,12 +2372,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nnw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 640
-        width: 80
-        height: 80
+        x: 208
+        y: 136
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2394,12 +2394,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nnw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 640
-        width: 80
-        height: 80
+        x: 234
+        y: 136
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2417,11 +2417,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 560
-        width: 80
-        height: 80
+        y: 119
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2438,12 +2438,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_n_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 560
-        width: 80
-        height: 80
+        x: 26
+        y: 119
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2460,12 +2460,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_n_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 560
-        width: 80
-        height: 80
+        x: 52
+        y: 119
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2482,12 +2482,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_n_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 560
-        width: 80
-        height: 80
+        x: 78
+        y: 119
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2504,12 +2504,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_n_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 560
-        width: 80
-        height: 80
+        x: 104
+        y: 119
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2526,12 +2526,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_n_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 560
-        width: 80
-        height: 80
+        x: 130
+        y: 119
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2548,12 +2548,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_n_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 560
-        width: 80
-        height: 80
+        x: 156
+        y: 119
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2570,12 +2570,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_n_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 560
-        width: 80
-        height: 80
+        x: 182
+        y: 119
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2592,12 +2592,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_n_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 560
-        width: 80
-        height: 80
+        x: 208
+        y: 119
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2614,12 +2614,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_n_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 560
-        width: 80
-        height: 80
+        x: 234
+        y: 119
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2637,11 +2637,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 80
-        height: 80
+        y: 102
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2658,12 +2658,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nne_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 480
-        width: 80
-        height: 80
+        x: 26
+        y: 102
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2680,12 +2680,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nne_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 480
-        width: 80
-        height: 80
+        x: 52
+        y: 102
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2702,12 +2702,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nne_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 480
-        width: 80
-        height: 80
+        x: 78
+        y: 102
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2724,12 +2724,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nne_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 480
-        width: 80
-        height: 80
+        x: 104
+        y: 102
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2746,12 +2746,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nne_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 480
-        width: 80
-        height: 80
+        x: 130
+        y: 102
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2768,12 +2768,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nne_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 480
-        width: 80
-        height: 80
+        x: 156
+        y: 102
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2790,12 +2790,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nne_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 480
-        width: 80
-        height: 80
+        x: 182
+        y: 102
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2812,12 +2812,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nne_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 480
-        width: 80
-        height: 80
+        x: 208
+        y: 102
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2834,12 +2834,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_nne_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 480
-        width: 80
-        height: 80
+        x: 234
+        y: 102
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2857,11 +2857,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 400
-        width: 80
-        height: 80
+        y: 85
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2878,12 +2878,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ne_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 400
-        width: 80
-        height: 80
+        x: 26
+        y: 85
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2900,12 +2900,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ne_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 400
-        width: 80
-        height: 80
+        x: 52
+        y: 85
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2922,12 +2922,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ne_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 400
-        width: 80
-        height: 80
+        x: 78
+        y: 85
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2944,12 +2944,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ne_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 400
-        width: 80
-        height: 80
+        x: 104
+        y: 85
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2966,12 +2966,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ne_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 400
-        width: 80
-        height: 80
+        x: 130
+        y: 85
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2988,12 +2988,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ne_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 400
-        width: 80
-        height: 80
+        x: 156
+        y: 85
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3010,12 +3010,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ne_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 400
-        width: 80
-        height: 80
+        x: 182
+        y: 85
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3032,12 +3032,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ne_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 400
-        width: 80
-        height: 80
+        x: 208
+        y: 85
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3054,12 +3054,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ne_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 400
-        width: 80
-        height: 80
+        x: 234
+        y: 85
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3077,11 +3077,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 320
-        width: 80
-        height: 80
+        y: 68
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3098,12 +3098,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ene_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 320
-        width: 80
-        height: 80
+        x: 26
+        y: 68
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3120,12 +3120,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ene_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 320
-        width: 80
-        height: 80
+        x: 52
+        y: 68
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3142,12 +3142,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ene_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 320
-        width: 80
-        height: 80
+        x: 78
+        y: 68
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3164,12 +3164,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ene_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 320
-        width: 80
-        height: 80
+        x: 104
+        y: 68
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3186,12 +3186,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ene_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 320
-        width: 80
-        height: 80
+        x: 130
+        y: 68
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3208,12 +3208,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ene_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 320
-        width: 80
-        height: 80
+        x: 156
+        y: 68
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3230,12 +3230,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ene_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 320
-        width: 80
-        height: 80
+        x: 182
+        y: 68
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3252,12 +3252,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ene_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 320
-        width: 80
-        height: 80
+        x: 208
+        y: 68
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3274,12 +3274,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ene_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 320
-        width: 80
-        height: 80
+        x: 234
+        y: 68
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3297,11 +3297,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 80
-        height: 80
+        y: 51
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3318,12 +3318,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_e_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 240
-        width: 80
-        height: 80
+        x: 26
+        y: 51
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3340,12 +3340,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_e_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 240
-        width: 80
-        height: 80
+        x: 52
+        y: 51
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3362,12 +3362,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_e_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 240
-        width: 80
-        height: 80
+        x: 78
+        y: 51
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3384,12 +3384,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_e_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 240
-        width: 80
-        height: 80
+        x: 104
+        y: 51
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3406,12 +3406,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_e_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 240
-        width: 80
-        height: 80
+        x: 130
+        y: 51
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3428,12 +3428,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_e_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 240
-        width: 80
-        height: 80
+        x: 156
+        y: 51
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3450,12 +3450,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_e_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 240
-        width: 80
-        height: 80
+        x: 182
+        y: 51
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3472,12 +3472,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_e_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 240
-        width: 80
-        height: 80
+        x: 208
+        y: 51
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3494,12 +3494,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_e_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 240
-        width: 80
-        height: 80
+        x: 234
+        y: 51
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3517,11 +3517,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 80
-        height: 80
+        y: 34
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3538,12 +3538,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ese_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 160
-        width: 80
-        height: 80
+        x: 26
+        y: 34
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3560,12 +3560,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ese_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 160
-        width: 80
-        height: 80
+        x: 52
+        y: 34
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3582,12 +3582,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ese_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 160
-        width: 80
-        height: 80
+        x: 78
+        y: 34
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3604,12 +3604,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ese_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 160
-        width: 80
-        height: 80
+        x: 104
+        y: 34
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3626,12 +3626,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ese_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 160
-        width: 80
-        height: 80
+        x: 130
+        y: 34
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3648,12 +3648,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ese_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 160
-        width: 80
-        height: 80
+        x: 156
+        y: 34
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3670,12 +3670,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ese_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 160
-        width: 80
-        height: 80
+        x: 182
+        y: 34
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3692,12 +3692,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ese_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 160
-        width: 80
-        height: 80
+        x: 208
+        y: 34
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3714,12 +3714,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_ese_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 160
-        width: 80
-        height: 80
+        x: 234
+        y: 34
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3737,11 +3737,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 80
-        width: 80
-        height: 80
+        y: 17
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3758,12 +3758,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_se_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 80
-        width: 80
-        height: 80
+        x: 26
+        y: 17
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3780,12 +3780,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_se_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 80
-        width: 80
-        height: 80
+        x: 52
+        y: 17
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3802,12 +3802,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_se_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 80
-        width: 80
-        height: 80
+        x: 78
+        y: 17
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3824,12 +3824,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_se_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 80
-        width: 80
-        height: 80
+        x: 104
+        y: 17
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3846,12 +3846,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_se_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 80
-        width: 80
-        height: 80
+        x: 130
+        y: 17
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3868,12 +3868,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_se_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 80
-        width: 80
-        height: 80
+        x: 156
+        y: 17
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3890,12 +3890,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_se_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 80
-        width: 80
-        height: 80
+        x: 182
+        y: 17
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3912,12 +3912,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_se_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 80
-        width: 80
-        height: 80
+        x: 208
+        y: 17
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3934,12 +3934,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_se_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 80
-        width: 80
-        height: 80
+        x: 234
+        y: 17
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3958,10 +3958,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 80
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3978,12 +3978,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sse_01
       rect:
         serializedVersion: 2
-        x: 80
+        x: 26
         y: 0
-        width: 80
-        height: 80
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4000,12 +4000,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sse_02
       rect:
         serializedVersion: 2
-        x: 160
+        x: 52
         y: 0
-        width: 80
-        height: 80
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4022,12 +4022,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sse_03
       rect:
         serializedVersion: 2
-        x: 240
+        x: 78
         y: 0
-        width: 80
-        height: 80
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4044,12 +4044,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sse_04
       rect:
         serializedVersion: 2
-        x: 320
+        x: 104
         y: 0
-        width: 80
-        height: 80
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4066,12 +4066,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sse_05
       rect:
         serializedVersion: 2
-        x: 400
+        x: 130
         y: 0
-        width: 80
-        height: 80
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4088,12 +4088,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sse_06
       rect:
         serializedVersion: 2
-        x: 480
+        x: 156
         y: 0
-        width: 80
-        height: 80
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4110,12 +4110,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sse_07
       rect:
         serializedVersion: 2
-        x: 560
+        x: 182
         y: 0
-        width: 80
-        height: 80
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4132,12 +4132,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sse_08
       rect:
         serializedVersion: 2
-        x: 640
+        x: 208
         y: 0
-        width: 80
-        height: 80
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4154,12 +4154,12 @@ TextureImporter:
       name: wild_arrow_belt_rope_1h_run_sse_09
       rect:
         serializedVersion: 2
-        x: 720
+        x: 234
         y: 0
-        width: 80
-        height: 80
+        width: 26
+        height: 17
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: -1.1764705}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

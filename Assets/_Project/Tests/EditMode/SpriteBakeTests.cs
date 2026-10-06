@@ -96,5 +96,23 @@ namespace ARPG.Tests
 
         static void AssertNear(Vector3 expected, Vector3 actual, string message) =>
             Assert.Less((expected - actual).magnitude, 1e-4f, $"{message}: expected {expected}, got {actual}");
+
+        [Test]
+        public void Trimming_KeepsTheAreaAnyFrameDrawsIn_WithAMargin_AndTheFeetInPlace()
+        {
+            // Two 10 x 10 cells side by side: one draws at (2, 6), the other at (7, 8) of its cell.
+            var pixels = new Color32[20 * 10];
+            pixels[6 * 20 + 2] = new Color32(255, 0, 0, 255);
+            pixels[8 * 20 + 10 + 7] = new Color32(0, 255, 0, 255);
+            var area = SpriteBakeMath.UsedArea(pixels, 20, 10, 10, 10, 1);
+            Assert.AreEqual(new RectInt(1, 5, 8, 5), area, "x 2 to 7 and y 6 to 8, one more each side, y kept inside the cell");
+
+            // Feet at (5, 1) of the cell: below the area, so the pivot falls under the cropped sprite.
+            var pivot = SpriteBakeMath.TrimmedPivot(new Vector2(0.5f, 0.1f), 10, 10, area);
+            Assert.AreEqual(4f / 8f, pivot.x, 1e-5f);
+            Assert.AreEqual(-4f / 5f, pivot.y, 1e-5f);
+
+            Assert.AreEqual(new RectInt(0, 0, 1, 1), SpriteBakeMath.UsedArea(new Color32[100], 10, 10, 10, 10, 1), "an empty sheet");
+        }
     }
 }

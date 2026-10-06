@@ -342,7 +342,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
@@ -426,11 +426,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 560
-        width: 80
-        height: 80
+        y: 483
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -447,12 +447,12 @@ TextureImporter:
       name: harpooner_idle_s_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 560
-        width: 80
-        height: 80
+        x: 36
+        y: 483
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -469,12 +469,12 @@ TextureImporter:
       name: harpooner_idle_s_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 560
-        width: 80
-        height: 80
+        x: 72
+        y: 483
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -491,12 +491,12 @@ TextureImporter:
       name: harpooner_idle_s_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 560
-        width: 80
-        height: 80
+        x: 108
+        y: 483
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -513,12 +513,12 @@ TextureImporter:
       name: harpooner_idle_s_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 560
-        width: 80
-        height: 80
+        x: 144
+        y: 483
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -535,12 +535,12 @@ TextureImporter:
       name: harpooner_idle_s_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 560
-        width: 80
-        height: 80
+        x: 180
+        y: 483
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -557,12 +557,12 @@ TextureImporter:
       name: harpooner_idle_s_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 560
-        width: 80
-        height: 80
+        x: 216
+        y: 483
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -579,12 +579,12 @@ TextureImporter:
       name: harpooner_idle_s_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 560
-        width: 80
-        height: 80
+        x: 252
+        y: 483
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -601,12 +601,12 @@ TextureImporter:
       name: harpooner_idle_s_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 560
-        width: 80
-        height: 80
+        x: 288
+        y: 483
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -623,12 +623,12 @@ TextureImporter:
       name: harpooner_idle_s_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 560
-        width: 80
-        height: 80
+        x: 324
+        y: 483
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -645,12 +645,12 @@ TextureImporter:
       name: harpooner_idle_s_10
       rect:
         serializedVersion: 2
-        x: 800
-        y: 560
-        width: 80
-        height: 80
+        x: 360
+        y: 483
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -667,12 +667,12 @@ TextureImporter:
       name: harpooner_idle_s_11
       rect:
         serializedVersion: 2
-        x: 880
-        y: 560
-        width: 80
-        height: 80
+        x: 396
+        y: 483
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -690,11 +690,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 80
-        height: 80
+        y: 414
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -711,12 +711,12 @@ TextureImporter:
       name: harpooner_idle_sw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 480
-        width: 80
-        height: 80
+        x: 36
+        y: 414
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -733,12 +733,12 @@ TextureImporter:
       name: harpooner_idle_sw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 480
-        width: 80
-        height: 80
+        x: 72
+        y: 414
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -755,12 +755,12 @@ TextureImporter:
       name: harpooner_idle_sw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 480
-        width: 80
-        height: 80
+        x: 108
+        y: 414
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -777,12 +777,12 @@ TextureImporter:
       name: harpooner_idle_sw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 480
-        width: 80
-        height: 80
+        x: 144
+        y: 414
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -799,12 +799,12 @@ TextureImporter:
       name: harpooner_idle_sw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 480
-        width: 80
-        height: 80
+        x: 180
+        y: 414
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -821,12 +821,12 @@ TextureImporter:
       name: harpooner_idle_sw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 480
-        width: 80
-        height: 80
+        x: 216
+        y: 414
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -843,12 +843,12 @@ TextureImporter:
       name: harpooner_idle_sw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 480
-        width: 80
-        height: 80
+        x: 252
+        y: 414
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -865,12 +865,12 @@ TextureImporter:
       name: harpooner_idle_sw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 480
-        width: 80
-        height: 80
+        x: 288
+        y: 414
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -887,12 +887,12 @@ TextureImporter:
       name: harpooner_idle_sw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 480
-        width: 80
-        height: 80
+        x: 324
+        y: 414
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -909,12 +909,12 @@ TextureImporter:
       name: harpooner_idle_sw_10
       rect:
         serializedVersion: 2
-        x: 800
-        y: 480
-        width: 80
-        height: 80
+        x: 360
+        y: 414
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -931,12 +931,12 @@ TextureImporter:
       name: harpooner_idle_sw_11
       rect:
         serializedVersion: 2
-        x: 880
-        y: 480
-        width: 80
-        height: 80
+        x: 396
+        y: 414
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -954,11 +954,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 400
-        width: 80
-        height: 80
+        y: 345
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -975,12 +975,12 @@ TextureImporter:
       name: harpooner_idle_w_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 400
-        width: 80
-        height: 80
+        x: 36
+        y: 345
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -997,12 +997,12 @@ TextureImporter:
       name: harpooner_idle_w_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 400
-        width: 80
-        height: 80
+        x: 72
+        y: 345
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1019,12 +1019,12 @@ TextureImporter:
       name: harpooner_idle_w_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 400
-        width: 80
-        height: 80
+        x: 108
+        y: 345
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1041,12 +1041,12 @@ TextureImporter:
       name: harpooner_idle_w_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 400
-        width: 80
-        height: 80
+        x: 144
+        y: 345
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1063,12 +1063,12 @@ TextureImporter:
       name: harpooner_idle_w_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 400
-        width: 80
-        height: 80
+        x: 180
+        y: 345
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1085,12 +1085,12 @@ TextureImporter:
       name: harpooner_idle_w_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 400
-        width: 80
-        height: 80
+        x: 216
+        y: 345
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1107,12 +1107,12 @@ TextureImporter:
       name: harpooner_idle_w_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 400
-        width: 80
-        height: 80
+        x: 252
+        y: 345
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1129,12 +1129,12 @@ TextureImporter:
       name: harpooner_idle_w_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 400
-        width: 80
-        height: 80
+        x: 288
+        y: 345
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1151,12 +1151,12 @@ TextureImporter:
       name: harpooner_idle_w_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 400
-        width: 80
-        height: 80
+        x: 324
+        y: 345
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1173,12 +1173,12 @@ TextureImporter:
       name: harpooner_idle_w_10
       rect:
         serializedVersion: 2
-        x: 800
-        y: 400
-        width: 80
-        height: 80
+        x: 360
+        y: 345
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1195,12 +1195,12 @@ TextureImporter:
       name: harpooner_idle_w_11
       rect:
         serializedVersion: 2
-        x: 880
-        y: 400
-        width: 80
-        height: 80
+        x: 396
+        y: 345
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1218,11 +1218,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 320
-        width: 80
-        height: 80
+        y: 276
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1239,12 +1239,12 @@ TextureImporter:
       name: harpooner_idle_nw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 320
-        width: 80
-        height: 80
+        x: 36
+        y: 276
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1261,12 +1261,12 @@ TextureImporter:
       name: harpooner_idle_nw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 320
-        width: 80
-        height: 80
+        x: 72
+        y: 276
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1283,12 +1283,12 @@ TextureImporter:
       name: harpooner_idle_nw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 320
-        width: 80
-        height: 80
+        x: 108
+        y: 276
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1305,12 +1305,12 @@ TextureImporter:
       name: harpooner_idle_nw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 320
-        width: 80
-        height: 80
+        x: 144
+        y: 276
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1327,12 +1327,12 @@ TextureImporter:
       name: harpooner_idle_nw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 320
-        width: 80
-        height: 80
+        x: 180
+        y: 276
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1349,12 +1349,12 @@ TextureImporter:
       name: harpooner_idle_nw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 320
-        width: 80
-        height: 80
+        x: 216
+        y: 276
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1371,12 +1371,12 @@ TextureImporter:
       name: harpooner_idle_nw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 320
-        width: 80
-        height: 80
+        x: 252
+        y: 276
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1393,12 +1393,12 @@ TextureImporter:
       name: harpooner_idle_nw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 320
-        width: 80
-        height: 80
+        x: 288
+        y: 276
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1415,12 +1415,12 @@ TextureImporter:
       name: harpooner_idle_nw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 320
-        width: 80
-        height: 80
+        x: 324
+        y: 276
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1437,12 +1437,12 @@ TextureImporter:
       name: harpooner_idle_nw_10
       rect:
         serializedVersion: 2
-        x: 800
-        y: 320
-        width: 80
-        height: 80
+        x: 360
+        y: 276
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1459,12 +1459,12 @@ TextureImporter:
       name: harpooner_idle_nw_11
       rect:
         serializedVersion: 2
-        x: 880
-        y: 320
-        width: 80
-        height: 80
+        x: 396
+        y: 276
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1482,11 +1482,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 80
-        height: 80
+        y: 207
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1503,12 +1503,12 @@ TextureImporter:
       name: harpooner_idle_n_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 240
-        width: 80
-        height: 80
+        x: 36
+        y: 207
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1525,12 +1525,12 @@ TextureImporter:
       name: harpooner_idle_n_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 240
-        width: 80
-        height: 80
+        x: 72
+        y: 207
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1547,12 +1547,12 @@ TextureImporter:
       name: harpooner_idle_n_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 240
-        width: 80
-        height: 80
+        x: 108
+        y: 207
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1569,12 +1569,12 @@ TextureImporter:
       name: harpooner_idle_n_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 240
-        width: 80
-        height: 80
+        x: 144
+        y: 207
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1591,12 +1591,12 @@ TextureImporter:
       name: harpooner_idle_n_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 240
-        width: 80
-        height: 80
+        x: 180
+        y: 207
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1613,12 +1613,12 @@ TextureImporter:
       name: harpooner_idle_n_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 240
-        width: 80
-        height: 80
+        x: 216
+        y: 207
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1635,12 +1635,12 @@ TextureImporter:
       name: harpooner_idle_n_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 240
-        width: 80
-        height: 80
+        x: 252
+        y: 207
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1657,12 +1657,12 @@ TextureImporter:
       name: harpooner_idle_n_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 240
-        width: 80
-        height: 80
+        x: 288
+        y: 207
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1679,12 +1679,12 @@ TextureImporter:
       name: harpooner_idle_n_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 240
-        width: 80
-        height: 80
+        x: 324
+        y: 207
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1701,12 +1701,12 @@ TextureImporter:
       name: harpooner_idle_n_10
       rect:
         serializedVersion: 2
-        x: 800
-        y: 240
-        width: 80
-        height: 80
+        x: 360
+        y: 207
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1723,12 +1723,12 @@ TextureImporter:
       name: harpooner_idle_n_11
       rect:
         serializedVersion: 2
-        x: 880
-        y: 240
-        width: 80
-        height: 80
+        x: 396
+        y: 207
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1746,11 +1746,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 80
-        height: 80
+        y: 138
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1767,12 +1767,12 @@ TextureImporter:
       name: harpooner_idle_ne_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 160
-        width: 80
-        height: 80
+        x: 36
+        y: 138
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1789,12 +1789,12 @@ TextureImporter:
       name: harpooner_idle_ne_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 160
-        width: 80
-        height: 80
+        x: 72
+        y: 138
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1811,12 +1811,12 @@ TextureImporter:
       name: harpooner_idle_ne_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 160
-        width: 80
-        height: 80
+        x: 108
+        y: 138
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1833,12 +1833,12 @@ TextureImporter:
       name: harpooner_idle_ne_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 160
-        width: 80
-        height: 80
+        x: 144
+        y: 138
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1855,12 +1855,12 @@ TextureImporter:
       name: harpooner_idle_ne_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 160
-        width: 80
-        height: 80
+        x: 180
+        y: 138
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1877,12 +1877,12 @@ TextureImporter:
       name: harpooner_idle_ne_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 160
-        width: 80
-        height: 80
+        x: 216
+        y: 138
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1899,12 +1899,12 @@ TextureImporter:
       name: harpooner_idle_ne_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 160
-        width: 80
-        height: 80
+        x: 252
+        y: 138
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1921,12 +1921,12 @@ TextureImporter:
       name: harpooner_idle_ne_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 160
-        width: 80
-        height: 80
+        x: 288
+        y: 138
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1943,12 +1943,12 @@ TextureImporter:
       name: harpooner_idle_ne_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 160
-        width: 80
-        height: 80
+        x: 324
+        y: 138
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1965,12 +1965,12 @@ TextureImporter:
       name: harpooner_idle_ne_10
       rect:
         serializedVersion: 2
-        x: 800
-        y: 160
-        width: 80
-        height: 80
+        x: 360
+        y: 138
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1987,12 +1987,12 @@ TextureImporter:
       name: harpooner_idle_ne_11
       rect:
         serializedVersion: 2
-        x: 880
-        y: 160
-        width: 80
-        height: 80
+        x: 396
+        y: 138
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2010,11 +2010,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 80
-        width: 80
-        height: 80
+        y: 69
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2031,12 +2031,12 @@ TextureImporter:
       name: harpooner_idle_e_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 80
-        width: 80
-        height: 80
+        x: 36
+        y: 69
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2053,12 +2053,12 @@ TextureImporter:
       name: harpooner_idle_e_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 80
-        width: 80
-        height: 80
+        x: 72
+        y: 69
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2075,12 +2075,12 @@ TextureImporter:
       name: harpooner_idle_e_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 80
-        width: 80
-        height: 80
+        x: 108
+        y: 69
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2097,12 +2097,12 @@ TextureImporter:
       name: harpooner_idle_e_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 80
-        width: 80
-        height: 80
+        x: 144
+        y: 69
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2119,12 +2119,12 @@ TextureImporter:
       name: harpooner_idle_e_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 80
-        width: 80
-        height: 80
+        x: 180
+        y: 69
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2141,12 +2141,12 @@ TextureImporter:
       name: harpooner_idle_e_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 80
-        width: 80
-        height: 80
+        x: 216
+        y: 69
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2163,12 +2163,12 @@ TextureImporter:
       name: harpooner_idle_e_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 80
-        width: 80
-        height: 80
+        x: 252
+        y: 69
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2185,12 +2185,12 @@ TextureImporter:
       name: harpooner_idle_e_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 80
-        width: 80
-        height: 80
+        x: 288
+        y: 69
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2207,12 +2207,12 @@ TextureImporter:
       name: harpooner_idle_e_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 80
-        width: 80
-        height: 80
+        x: 324
+        y: 69
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2229,12 +2229,12 @@ TextureImporter:
       name: harpooner_idle_e_10
       rect:
         serializedVersion: 2
-        x: 800
-        y: 80
-        width: 80
-        height: 80
+        x: 360
+        y: 69
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2251,12 +2251,12 @@ TextureImporter:
       name: harpooner_idle_e_11
       rect:
         serializedVersion: 2
-        x: 880
-        y: 80
-        width: 80
-        height: 80
+        x: 396
+        y: 69
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2275,10 +2275,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 80
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2295,12 +2295,12 @@ TextureImporter:
       name: harpooner_idle_se_01
       rect:
         serializedVersion: 2
-        x: 80
+        x: 36
         y: 0
-        width: 80
-        height: 80
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2317,12 +2317,12 @@ TextureImporter:
       name: harpooner_idle_se_02
       rect:
         serializedVersion: 2
-        x: 160
+        x: 72
         y: 0
-        width: 80
-        height: 80
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2339,12 +2339,12 @@ TextureImporter:
       name: harpooner_idle_se_03
       rect:
         serializedVersion: 2
-        x: 240
+        x: 108
         y: 0
-        width: 80
-        height: 80
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2361,12 +2361,12 @@ TextureImporter:
       name: harpooner_idle_se_04
       rect:
         serializedVersion: 2
-        x: 320
+        x: 144
         y: 0
-        width: 80
-        height: 80
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2383,12 +2383,12 @@ TextureImporter:
       name: harpooner_idle_se_05
       rect:
         serializedVersion: 2
-        x: 400
+        x: 180
         y: 0
-        width: 80
-        height: 80
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2405,12 +2405,12 @@ TextureImporter:
       name: harpooner_idle_se_06
       rect:
         serializedVersion: 2
-        x: 480
+        x: 216
         y: 0
-        width: 80
-        height: 80
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2427,12 +2427,12 @@ TextureImporter:
       name: harpooner_idle_se_07
       rect:
         serializedVersion: 2
-        x: 560
+        x: 252
         y: 0
-        width: 80
-        height: 80
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2449,12 +2449,12 @@ TextureImporter:
       name: harpooner_idle_se_08
       rect:
         serializedVersion: 2
-        x: 640
+        x: 288
         y: 0
-        width: 80
-        height: 80
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2471,12 +2471,12 @@ TextureImporter:
       name: harpooner_idle_se_09
       rect:
         serializedVersion: 2
-        x: 720
+        x: 324
         y: 0
-        width: 80
-        height: 80
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2493,12 +2493,12 @@ TextureImporter:
       name: harpooner_idle_se_10
       rect:
         serializedVersion: 2
-        x: 800
+        x: 360
         y: 0
-        width: 80
-        height: 80
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2515,12 +2515,12 @@ TextureImporter:
       name: harpooner_idle_se_11
       rect:
         serializedVersion: 2
-        x: 880
+        x: 396
         y: 0
-        width: 80
-        height: 80
+        width: 36
+        height: 69
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.10144928}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

@@ -243,7 +243,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
@@ -327,11 +327,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1200
-        width: 80
-        height: 80
+        y: 465
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -348,12 +348,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_s_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1200
-        width: 80
-        height: 80
+        x: 35
+        y: 465
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -370,12 +370,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_s_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1200
-        width: 80
-        height: 80
+        x: 70
+        y: 465
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -392,12 +392,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_s_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1200
-        width: 80
-        height: 80
+        x: 105
+        y: 465
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -415,11 +415,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1120
-        width: 80
-        height: 80
+        y: 434
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -436,12 +436,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_ssw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1120
-        width: 80
-        height: 80
+        x: 35
+        y: 434
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -458,12 +458,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_ssw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1120
-        width: 80
-        height: 80
+        x: 70
+        y: 434
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -480,12 +480,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_ssw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1120
-        width: 80
-        height: 80
+        x: 105
+        y: 434
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -503,11 +503,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1040
-        width: 80
-        height: 80
+        y: 403
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -524,12 +524,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_sw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1040
-        width: 80
-        height: 80
+        x: 35
+        y: 403
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -546,12 +546,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_sw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1040
-        width: 80
-        height: 80
+        x: 70
+        y: 403
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -568,12 +568,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_sw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1040
-        width: 80
-        height: 80
+        x: 105
+        y: 403
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -591,11 +591,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 960
-        width: 80
-        height: 80
+        y: 372
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -612,12 +612,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_wsw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 960
-        width: 80
-        height: 80
+        x: 35
+        y: 372
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -634,12 +634,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_wsw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 960
-        width: 80
-        height: 80
+        x: 70
+        y: 372
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -656,12 +656,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_wsw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 960
-        width: 80
-        height: 80
+        x: 105
+        y: 372
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -679,11 +679,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 880
-        width: 80
-        height: 80
+        y: 341
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -700,12 +700,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_w_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 880
-        width: 80
-        height: 80
+        x: 35
+        y: 341
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -722,12 +722,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_w_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 880
-        width: 80
-        height: 80
+        x: 70
+        y: 341
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -744,12 +744,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_w_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 880
-        width: 80
-        height: 80
+        x: 105
+        y: 341
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -767,11 +767,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 800
-        width: 80
-        height: 80
+        y: 310
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -788,12 +788,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_wnw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 800
-        width: 80
-        height: 80
+        x: 35
+        y: 310
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -810,12 +810,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_wnw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 800
-        width: 80
-        height: 80
+        x: 70
+        y: 310
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -832,12 +832,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_wnw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 800
-        width: 80
-        height: 80
+        x: 105
+        y: 310
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -855,11 +855,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 720
-        width: 80
-        height: 80
+        y: 279
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -876,12 +876,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_nw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 720
-        width: 80
-        height: 80
+        x: 35
+        y: 279
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -898,12 +898,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_nw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 720
-        width: 80
-        height: 80
+        x: 70
+        y: 279
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -920,12 +920,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_nw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 720
-        width: 80
-        height: 80
+        x: 105
+        y: 279
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -943,11 +943,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 640
-        width: 80
-        height: 80
+        y: 248
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -964,12 +964,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_nnw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 640
-        width: 80
-        height: 80
+        x: 35
+        y: 248
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -986,12 +986,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_nnw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 640
-        width: 80
-        height: 80
+        x: 70
+        y: 248
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1008,12 +1008,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_nnw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 640
-        width: 80
-        height: 80
+        x: 105
+        y: 248
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1031,11 +1031,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 560
-        width: 80
-        height: 80
+        y: 217
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1052,12 +1052,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_n_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 560
-        width: 80
-        height: 80
+        x: 35
+        y: 217
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1074,12 +1074,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_n_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 560
-        width: 80
-        height: 80
+        x: 70
+        y: 217
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1096,12 +1096,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_n_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 560
-        width: 80
-        height: 80
+        x: 105
+        y: 217
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1119,11 +1119,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 80
-        height: 80
+        y: 186
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1140,12 +1140,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_nne_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 480
-        width: 80
-        height: 80
+        x: 35
+        y: 186
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1162,12 +1162,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_nne_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 480
-        width: 80
-        height: 80
+        x: 70
+        y: 186
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1184,12 +1184,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_nne_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 480
-        width: 80
-        height: 80
+        x: 105
+        y: 186
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1207,11 +1207,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 400
-        width: 80
-        height: 80
+        y: 155
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1228,12 +1228,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_ne_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 400
-        width: 80
-        height: 80
+        x: 35
+        y: 155
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1250,12 +1250,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_ne_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 400
-        width: 80
-        height: 80
+        x: 70
+        y: 155
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1272,12 +1272,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_ne_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 400
-        width: 80
-        height: 80
+        x: 105
+        y: 155
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1295,11 +1295,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 320
-        width: 80
-        height: 80
+        y: 124
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1316,12 +1316,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_ene_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 320
-        width: 80
-        height: 80
+        x: 35
+        y: 124
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1338,12 +1338,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_ene_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 320
-        width: 80
-        height: 80
+        x: 70
+        y: 124
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1360,12 +1360,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_ene_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 320
-        width: 80
-        height: 80
+        x: 105
+        y: 124
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1383,11 +1383,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 80
-        height: 80
+        y: 93
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1404,12 +1404,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_e_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 240
-        width: 80
-        height: 80
+        x: 35
+        y: 93
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1426,12 +1426,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_e_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 240
-        width: 80
-        height: 80
+        x: 70
+        y: 93
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1448,12 +1448,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_e_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 240
-        width: 80
-        height: 80
+        x: 105
+        y: 93
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1471,11 +1471,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 80
-        height: 80
+        y: 62
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1492,12 +1492,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_ese_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 160
-        width: 80
-        height: 80
+        x: 35
+        y: 62
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1514,12 +1514,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_ese_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 160
-        width: 80
-        height: 80
+        x: 70
+        y: 62
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1536,12 +1536,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_ese_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 160
-        width: 80
-        height: 80
+        x: 105
+        y: 62
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1559,11 +1559,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 80
-        width: 80
-        height: 80
+        y: 31
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1580,12 +1580,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_se_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 80
-        width: 80
-        height: 80
+        x: 35
+        y: 31
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1602,12 +1602,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_se_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 80
-        width: 80
-        height: 80
+        x: 70
+        y: 31
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1624,12 +1624,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_se_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 80
-        width: 80
-        height: 80
+        x: 105
+        y: 31
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1648,10 +1648,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 80
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1668,12 +1668,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_sse_01
       rect:
         serializedVersion: 2
-        x: 80
+        x: 35
         y: 0
-        width: 80
-        height: 80
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1690,12 +1690,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_sse_02
       rect:
         serializedVersion: 2
-        x: 160
+        x: 70
         y: 0
-        width: 80
-        height: 80
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1712,12 +1712,12 @@ TextureImporter:
       name: wild_arrow_offhand_bone_quiver_1h_hit_sse_03
       rect:
         serializedVersion: 2
-        x: 240
+        x: 105
         y: 0
-        width: 80
-        height: 80
+        width: 35
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.4857143, y: -0.7741935}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

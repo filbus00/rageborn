@@ -74,6 +74,7 @@ Each line names the main types; the log has the details and history.
 - Stepping play mode from a script with the editor in the background: pause, set `Time.captureDeltaTime = 1/60f` and call `EditorApplication.Step()` in a loop; reset it after. Captures rendered by hand bypass the Pixel Perfect Camera (disable it and set the camera rect and size first) and do not show overlay UI: check the look on the simulator.
 - `GC.GetAllocatedBytesForCurrentThread()` returns 0 in the editor; measure allocations with `GC.GetTotalMemory(false)` over thousands of iterations.
 - Opening a scene in single mode unloads assets nothing references yet: editor builders reload assets by path after `OpenScene`.
+- Baked sheets are cropped to the area their frames draw in, with FullRect sprites (`SheetTrimmer`, run by the bake; `Tools > ARPG > Sprite Bake > Trim Character Sheets` for old sheets): the app went from 1.4 GB to 741 MB. The retired Wrathborn's sheets are in `Art/RetiredSheets`, outside Resources.
 - A `Resources` folder ships everything in it, and a rebake does not delete files it no longer writes; remove stale sheets by hand.
 - Do not hand-edit `ProjectSettings/*.asset` while the editor is open; apply settings through editor scripts.
 - Builds: `Tools > ARPG > Build iOS Simulator / Device (Xcode project)`, then xcodebuild (scheme `Unity-iPhone`). The owner's phone install commands, device ids and the simulator's tap quirks are in the log under "Builds and performance".

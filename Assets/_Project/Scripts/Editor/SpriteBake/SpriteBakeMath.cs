@@ -236,5 +236,41 @@ namespace ARPG.Editor
                 }
             return result;
         }
+    
+
+        /// <summary>
+        /// The part of a sheet's cells that any frame draws in, in cell pixels, grown by a margin and kept inside the cell:
+        /// every cell of the sheet is cropped to it (<see cref="SheetTrimmer"/>). A helm or a belt draws in a small part of
+        /// its 80 px cells, and on iOS a transparent pixel costs as much as a drawn one. The margin keeps a transparent edge
+        /// round each frame, so filtering does not pick up the neighbouring frame. An empty sheet keeps one pixel.
+        /// </summary>
+        public static RectInt UsedArea(Color32[] pixels, int width, int height, int cellWidth, int cellHeight, int margin)
+        {
+            int minX = cellWidth, minY = cellHeight, maxX = -1, maxY = -1;
+            for (var y = 0; y < height; y++)
+                for (var x = 0; x < width; x++)
+                {
+                    if (pixels[y * width + x].a == 0)
+                        continue;
+                    var cx = x % cellWidth;
+                    var cy = y % cellHeight;
+                    if (cx < minX) minX = cx;
+                    if (cx > maxX) maxX = cx;
+                    if (cy < minY) minY = cy;
+                    if (cy > maxY) maxY = cy;
+                }
+            if (maxX < 0)
+                return new RectInt(0, 0, 1, 1);
+            minX = Math.Max(0, minX - margin);
+            minY = Math.Max(0, minY - margin);
+            maxX = Math.Min(cellWidth - 1, maxX + margin);
+            maxY = Math.Min(cellHeight - 1, maxY + margin);
+            return new RectInt(minX, minY, maxX - minX + 1, maxY - minY + 1);
+        }
+
+        /// <summary>A sprite's pivot (normalized, as the importer keeps it) after its cell is cropped to an area, so the
+        /// feet stay where they were. It can fall outside 0 to 1 (a helm's area is above the feet).</summary>
+        public static Vector2 TrimmedPivot(Vector2 pivot, int cellWidth, int cellHeight, RectInt area) =>
+            new Vector2((pivot.x * cellWidth - area.x) / area.width, (pivot.y * cellHeight - area.y) / area.height);
     }
 }

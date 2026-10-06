@@ -701,3 +701,22 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   fell back to the Wrathborn and drew the placeholder capsule. It now checks `AppearanceRules.BareBody`.
 - Checked in play in the editor: all five tiers and two legendary sets rendered on her. 589 of 589 tests pass.
 - App size: the app was 881 MB before this. The sheets use the iOS default compression and are worth trimming next.
+
+## 2026-10-06: the app from 1.4 GB to 741 MB
+
+- The owner picked "shrink the app". In the 1.4 GB build, textures took 857 MB (`resources.assets.resS`) and sprite
+  data 236 MB (`resources.assets`). Almost all of it was the Wild Arrow's 1140 sheets: 16 directions, 80 px cells,
+  384 sprites a sheet.
+- iOS stores a sheet at a fixed cost per pixel, so transparent pixels cost as much as drawn ones. Measured over every
+  sheet, the area any frame draws in is 35 percent of the cells: a belt 8 percent, a helm 15, the body 54, the bow 61.
+- `SheetTrimmer` (`Tools > ARPG > Sprite Bake > Trim Character Sheets`, also run by `SpriteBaker` on every sheet it
+  writes) crops every cell of a sheet to that area (`SpriteBakeMath.UsedArea`). The area keeps a 1 px transparent
+  margin so filtering cannot pick up the next frame. Each sprite keeps its name and id, and its pivot moves so the feet
+  stay put (`TrimmedPivot`; it can fall outside 0 to 1, which Unity accepts). Sprites became FullRect, since Tight
+  outlines were most of the sprite data. Running it twice changes nothing. All 1140 sheets took 136 s.
+- Checked: a cropped helm's sprite bounds land on the same pixels as before. The seven gear sets render in the same
+  place with the same outline; captures differ only by the idle frame.
+- The retired Wrathborn's sheets (57 MB) moved out of Resources to `Art/RetiredSheets/wrathborn`: kept, not shipped.
+- Result: app 741 MB, textures 287 MB, sprite data 166 MB. 590 of 590 tests pass. Installed on the phone.
+- Left: the sprite data is still 166 MB, about 380 bytes for each of the 437,000 sprites. Fewer directions or frames
+  would cut both it and the textures, but that changes how she looks, so it is the owner's choice.

@@ -432,7 +432,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
@@ -516,11 +516,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1200
-        width: 80
-        height: 80
+        y: 420
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -537,12 +537,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_s_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1200
-        width: 80
-        height: 80
+        x: 44
+        y: 420
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -559,12 +559,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_s_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1200
-        width: 80
-        height: 80
+        x: 88
+        y: 420
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -581,12 +581,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_s_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1200
-        width: 80
-        height: 80
+        x: 132
+        y: 420
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -604,11 +604,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1120
-        width: 80
-        height: 80
+        y: 392
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -625,12 +625,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_ssw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1120
-        width: 80
-        height: 80
+        x: 44
+        y: 392
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -647,12 +647,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_ssw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1120
-        width: 80
-        height: 80
+        x: 88
+        y: 392
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -669,12 +669,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_ssw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1120
-        width: 80
-        height: 80
+        x: 132
+        y: 392
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -692,11 +692,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1040
-        width: 80
-        height: 80
+        y: 364
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -713,12 +713,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_sw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1040
-        width: 80
-        height: 80
+        x: 44
+        y: 364
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -735,12 +735,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_sw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1040
-        width: 80
-        height: 80
+        x: 88
+        y: 364
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -757,12 +757,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_sw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1040
-        width: 80
-        height: 80
+        x: 132
+        y: 364
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -780,11 +780,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 960
-        width: 80
-        height: 80
+        y: 336
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -801,12 +801,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_wsw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 960
-        width: 80
-        height: 80
+        x: 44
+        y: 336
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -823,12 +823,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_wsw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 960
-        width: 80
-        height: 80
+        x: 88
+        y: 336
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -845,12 +845,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_wsw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 960
-        width: 80
-        height: 80
+        x: 132
+        y: 336
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -868,11 +868,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 880
-        width: 80
-        height: 80
+        y: 308
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -889,12 +889,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_w_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 880
-        width: 80
-        height: 80
+        x: 44
+        y: 308
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -911,12 +911,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_w_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 880
-        width: 80
-        height: 80
+        x: 88
+        y: 308
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -933,12 +933,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_w_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 880
-        width: 80
-        height: 80
+        x: 132
+        y: 308
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -956,11 +956,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 800
-        width: 80
-        height: 80
+        y: 280
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -977,12 +977,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_wnw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 800
-        width: 80
-        height: 80
+        x: 44
+        y: 280
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -999,12 +999,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_wnw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 800
-        width: 80
-        height: 80
+        x: 88
+        y: 280
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1021,12 +1021,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_wnw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 800
-        width: 80
-        height: 80
+        x: 132
+        y: 280
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1044,11 +1044,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 720
-        width: 80
-        height: 80
+        y: 252
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1065,12 +1065,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_nw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 720
-        width: 80
-        height: 80
+        x: 44
+        y: 252
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1087,12 +1087,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_nw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 720
-        width: 80
-        height: 80
+        x: 88
+        y: 252
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1109,12 +1109,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_nw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 720
-        width: 80
-        height: 80
+        x: 132
+        y: 252
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1132,11 +1132,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 640
-        width: 80
-        height: 80
+        y: 224
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1153,12 +1153,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_nnw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 640
-        width: 80
-        height: 80
+        x: 44
+        y: 224
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1175,12 +1175,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_nnw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 640
-        width: 80
-        height: 80
+        x: 88
+        y: 224
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1197,12 +1197,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_nnw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 640
-        width: 80
-        height: 80
+        x: 132
+        y: 224
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1220,11 +1220,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 560
-        width: 80
-        height: 80
+        y: 196
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1241,12 +1241,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_n_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 560
-        width: 80
-        height: 80
+        x: 44
+        y: 196
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1263,12 +1263,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_n_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 560
-        width: 80
-        height: 80
+        x: 88
+        y: 196
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1285,12 +1285,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_n_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 560
-        width: 80
-        height: 80
+        x: 132
+        y: 196
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1308,11 +1308,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 80
-        height: 80
+        y: 168
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1329,12 +1329,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_nne_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 480
-        width: 80
-        height: 80
+        x: 44
+        y: 168
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1351,12 +1351,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_nne_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 480
-        width: 80
-        height: 80
+        x: 88
+        y: 168
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1373,12 +1373,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_nne_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 480
-        width: 80
-        height: 80
+        x: 132
+        y: 168
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1396,11 +1396,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 400
-        width: 80
-        height: 80
+        y: 140
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1417,12 +1417,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_ne_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 400
-        width: 80
-        height: 80
+        x: 44
+        y: 140
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1439,12 +1439,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_ne_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 400
-        width: 80
-        height: 80
+        x: 88
+        y: 140
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1461,12 +1461,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_ne_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 400
-        width: 80
-        height: 80
+        x: 132
+        y: 140
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1484,11 +1484,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 320
-        width: 80
-        height: 80
+        y: 112
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1505,12 +1505,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_ene_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 320
-        width: 80
-        height: 80
+        x: 44
+        y: 112
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1527,12 +1527,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_ene_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 320
-        width: 80
-        height: 80
+        x: 88
+        y: 112
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1549,12 +1549,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_ene_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 320
-        width: 80
-        height: 80
+        x: 132
+        y: 112
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1572,11 +1572,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 80
-        height: 80
+        y: 84
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1593,12 +1593,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_e_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 240
-        width: 80
-        height: 80
+        x: 44
+        y: 84
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1615,12 +1615,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_e_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 240
-        width: 80
-        height: 80
+        x: 88
+        y: 84
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1637,12 +1637,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_e_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 240
-        width: 80
-        height: 80
+        x: 132
+        y: 84
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1660,11 +1660,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 80
-        height: 80
+        y: 56
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1681,12 +1681,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_ese_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 160
-        width: 80
-        height: 80
+        x: 44
+        y: 56
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1703,12 +1703,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_ese_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 160
-        width: 80
-        height: 80
+        x: 88
+        y: 56
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1725,12 +1725,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_ese_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 160
-        width: 80
-        height: 80
+        x: 132
+        y: 56
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1748,11 +1748,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 80
-        width: 80
-        height: 80
+        y: 28
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1769,12 +1769,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_se_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 80
-        width: 80
-        height: 80
+        x: 44
+        y: 28
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1791,12 +1791,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_se_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 80
-        width: 80
-        height: 80
+        x: 88
+        y: 28
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1813,12 +1813,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_se_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 80
-        width: 80
-        height: 80
+        x: 132
+        y: 28
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1837,10 +1837,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 80
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1857,12 +1857,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_sse_01
       rect:
         serializedVersion: 2
-        x: 80
+        x: 44
         y: 0
-        width: 80
-        height: 80
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1879,12 +1879,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_sse_02
       rect:
         serializedVersion: 2
-        x: 160
+        x: 88
         y: 0
-        width: 80
-        height: 80
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1901,12 +1901,12 @@ TextureImporter:
       name: wild_arrow_boots_wrapped_1h_hit_sse_03
       rect:
         serializedVersion: 2
-        x: 240
+        x: 132
         y: 0
-        width: 80
-        height: 80
+        width: 44
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.42857143}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

@@ -381,7 +381,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
@@ -465,11 +465,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1344
-        width: 192
-        height: 192
+        y: 672
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -486,12 +486,12 @@ TextureImporter:
       name: tidewife_death_s_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 1344
-        width: 192
-        height: 192
+        x: 152
+        y: 672
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -508,12 +508,12 @@ TextureImporter:
       name: tidewife_death_s_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1344
-        width: 192
-        height: 192
+        x: 304
+        y: 672
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -530,12 +530,12 @@ TextureImporter:
       name: tidewife_death_s_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 1344
-        width: 192
-        height: 192
+        x: 456
+        y: 672
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -552,12 +552,12 @@ TextureImporter:
       name: tidewife_death_s_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1344
-        width: 192
-        height: 192
+        x: 608
+        y: 672
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -574,12 +574,12 @@ TextureImporter:
       name: tidewife_death_s_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 1344
-        width: 192
-        height: 192
+        x: 760
+        y: 672
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -596,12 +596,12 @@ TextureImporter:
       name: tidewife_death_s_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1344
-        width: 192
-        height: 192
+        x: 912
+        y: 672
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -618,12 +618,12 @@ TextureImporter:
       name: tidewife_death_s_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 1344
-        width: 192
-        height: 192
+        x: 1064
+        y: 672
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -640,12 +640,12 @@ TextureImporter:
       name: tidewife_death_s_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1344
-        width: 192
-        height: 192
+        x: 1216
+        y: 672
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -662,12 +662,12 @@ TextureImporter:
       name: tidewife_death_s_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 1344
-        width: 192
-        height: 192
+        x: 1368
+        y: 672
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -684,12 +684,12 @@ TextureImporter:
       name: tidewife_death_s_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1344
-        width: 192
-        height: 192
+        x: 1520
+        y: 672
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -706,12 +706,12 @@ TextureImporter:
       name: tidewife_death_s_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 1344
-        width: 192
-        height: 192
+        x: 1672
+        y: 672
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -729,11 +729,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1152
-        width: 192
-        height: 192
+        y: 576
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -750,12 +750,12 @@ TextureImporter:
       name: tidewife_death_sw_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 1152
-        width: 192
-        height: 192
+        x: 152
+        y: 576
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -772,12 +772,12 @@ TextureImporter:
       name: tidewife_death_sw_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 1152
-        width: 192
-        height: 192
+        x: 304
+        y: 576
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -794,12 +794,12 @@ TextureImporter:
       name: tidewife_death_sw_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 1152
-        width: 192
-        height: 192
+        x: 456
+        y: 576
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -816,12 +816,12 @@ TextureImporter:
       name: tidewife_death_sw_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1152
-        width: 192
-        height: 192
+        x: 608
+        y: 576
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -838,12 +838,12 @@ TextureImporter:
       name: tidewife_death_sw_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 1152
-        width: 192
-        height: 192
+        x: 760
+        y: 576
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -860,12 +860,12 @@ TextureImporter:
       name: tidewife_death_sw_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1152
-        width: 192
-        height: 192
+        x: 912
+        y: 576
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -882,12 +882,12 @@ TextureImporter:
       name: tidewife_death_sw_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 1152
-        width: 192
-        height: 192
+        x: 1064
+        y: 576
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -904,12 +904,12 @@ TextureImporter:
       name: tidewife_death_sw_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1152
-        width: 192
-        height: 192
+        x: 1216
+        y: 576
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -926,12 +926,12 @@ TextureImporter:
       name: tidewife_death_sw_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 1152
-        width: 192
-        height: 192
+        x: 1368
+        y: 576
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -948,12 +948,12 @@ TextureImporter:
       name: tidewife_death_sw_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1152
-        width: 192
-        height: 192
+        x: 1520
+        y: 576
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -970,12 +970,12 @@ TextureImporter:
       name: tidewife_death_sw_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 1152
-        width: 192
-        height: 192
+        x: 1672
+        y: 576
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -993,11 +993,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 960
-        width: 192
-        height: 192
+        y: 480
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1014,12 +1014,12 @@ TextureImporter:
       name: tidewife_death_w_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 960
-        width: 192
-        height: 192
+        x: 152
+        y: 480
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1036,12 +1036,12 @@ TextureImporter:
       name: tidewife_death_w_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 960
-        width: 192
-        height: 192
+        x: 304
+        y: 480
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1058,12 +1058,12 @@ TextureImporter:
       name: tidewife_death_w_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 960
-        width: 192
-        height: 192
+        x: 456
+        y: 480
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1080,12 +1080,12 @@ TextureImporter:
       name: tidewife_death_w_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 960
-        width: 192
-        height: 192
+        x: 608
+        y: 480
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1102,12 +1102,12 @@ TextureImporter:
       name: tidewife_death_w_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 960
-        width: 192
-        height: 192
+        x: 760
+        y: 480
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1124,12 +1124,12 @@ TextureImporter:
       name: tidewife_death_w_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 960
-        width: 192
-        height: 192
+        x: 912
+        y: 480
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1146,12 +1146,12 @@ TextureImporter:
       name: tidewife_death_w_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 960
-        width: 192
-        height: 192
+        x: 1064
+        y: 480
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1168,12 +1168,12 @@ TextureImporter:
       name: tidewife_death_w_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 960
-        width: 192
-        height: 192
+        x: 1216
+        y: 480
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1190,12 +1190,12 @@ TextureImporter:
       name: tidewife_death_w_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 960
-        width: 192
-        height: 192
+        x: 1368
+        y: 480
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1212,12 +1212,12 @@ TextureImporter:
       name: tidewife_death_w_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 960
-        width: 192
-        height: 192
+        x: 1520
+        y: 480
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1234,12 +1234,12 @@ TextureImporter:
       name: tidewife_death_w_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 960
-        width: 192
-        height: 192
+        x: 1672
+        y: 480
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1257,11 +1257,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 192
-        height: 192
+        y: 384
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1278,12 +1278,12 @@ TextureImporter:
       name: tidewife_death_nw_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 768
-        width: 192
-        height: 192
+        x: 152
+        y: 384
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1300,12 +1300,12 @@ TextureImporter:
       name: tidewife_death_nw_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 768
-        width: 192
-        height: 192
+        x: 304
+        y: 384
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1322,12 +1322,12 @@ TextureImporter:
       name: tidewife_death_nw_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 768
-        width: 192
-        height: 192
+        x: 456
+        y: 384
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1344,12 +1344,12 @@ TextureImporter:
       name: tidewife_death_nw_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 192
-        height: 192
+        x: 608
+        y: 384
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1366,12 +1366,12 @@ TextureImporter:
       name: tidewife_death_nw_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 768
-        width: 192
-        height: 192
+        x: 760
+        y: 384
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1388,12 +1388,12 @@ TextureImporter:
       name: tidewife_death_nw_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 768
-        width: 192
-        height: 192
+        x: 912
+        y: 384
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1410,12 +1410,12 @@ TextureImporter:
       name: tidewife_death_nw_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 768
-        width: 192
-        height: 192
+        x: 1064
+        y: 384
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1432,12 +1432,12 @@ TextureImporter:
       name: tidewife_death_nw_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 768
-        width: 192
-        height: 192
+        x: 1216
+        y: 384
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1454,12 +1454,12 @@ TextureImporter:
       name: tidewife_death_nw_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 768
-        width: 192
-        height: 192
+        x: 1368
+        y: 384
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1476,12 +1476,12 @@ TextureImporter:
       name: tidewife_death_nw_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 768
-        width: 192
-        height: 192
+        x: 1520
+        y: 384
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1498,12 +1498,12 @@ TextureImporter:
       name: tidewife_death_nw_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 768
-        width: 192
-        height: 192
+        x: 1672
+        y: 384
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1521,11 +1521,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 576
-        width: 192
-        height: 192
+        y: 288
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1542,12 +1542,12 @@ TextureImporter:
       name: tidewife_death_n_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 576
-        width: 192
-        height: 192
+        x: 152
+        y: 288
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1564,12 +1564,12 @@ TextureImporter:
       name: tidewife_death_n_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 576
-        width: 192
-        height: 192
+        x: 304
+        y: 288
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1586,12 +1586,12 @@ TextureImporter:
       name: tidewife_death_n_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 576
-        width: 192
-        height: 192
+        x: 456
+        y: 288
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1608,12 +1608,12 @@ TextureImporter:
       name: tidewife_death_n_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 576
-        width: 192
-        height: 192
+        x: 608
+        y: 288
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1630,12 +1630,12 @@ TextureImporter:
       name: tidewife_death_n_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 576
-        width: 192
-        height: 192
+        x: 760
+        y: 288
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1652,12 +1652,12 @@ TextureImporter:
       name: tidewife_death_n_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 576
-        width: 192
-        height: 192
+        x: 912
+        y: 288
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1674,12 +1674,12 @@ TextureImporter:
       name: tidewife_death_n_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 576
-        width: 192
-        height: 192
+        x: 1064
+        y: 288
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1696,12 +1696,12 @@ TextureImporter:
       name: tidewife_death_n_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 576
-        width: 192
-        height: 192
+        x: 1216
+        y: 288
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1718,12 +1718,12 @@ TextureImporter:
       name: tidewife_death_n_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 576
-        width: 192
-        height: 192
+        x: 1368
+        y: 288
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1740,12 +1740,12 @@ TextureImporter:
       name: tidewife_death_n_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 576
-        width: 192
-        height: 192
+        x: 1520
+        y: 288
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1762,12 +1762,12 @@ TextureImporter:
       name: tidewife_death_n_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 576
-        width: 192
-        height: 192
+        x: 1672
+        y: 288
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1785,11 +1785,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 384
-        width: 192
-        height: 192
+        y: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1806,12 +1806,12 @@ TextureImporter:
       name: tidewife_death_ne_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 384
-        width: 192
-        height: 192
+        x: 152
+        y: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1828,12 +1828,12 @@ TextureImporter:
       name: tidewife_death_ne_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 384
-        width: 192
-        height: 192
+        x: 304
+        y: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1850,12 +1850,12 @@ TextureImporter:
       name: tidewife_death_ne_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 384
-        width: 192
-        height: 192
+        x: 456
+        y: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1872,12 +1872,12 @@ TextureImporter:
       name: tidewife_death_ne_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 384
-        width: 192
-        height: 192
+        x: 608
+        y: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1894,12 +1894,12 @@ TextureImporter:
       name: tidewife_death_ne_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 384
-        width: 192
-        height: 192
+        x: 760
+        y: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1916,12 +1916,12 @@ TextureImporter:
       name: tidewife_death_ne_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 384
-        width: 192
-        height: 192
+        x: 912
+        y: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1938,12 +1938,12 @@ TextureImporter:
       name: tidewife_death_ne_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 384
-        width: 192
-        height: 192
+        x: 1064
+        y: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1960,12 +1960,12 @@ TextureImporter:
       name: tidewife_death_ne_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 384
-        width: 192
-        height: 192
+        x: 1216
+        y: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1982,12 +1982,12 @@ TextureImporter:
       name: tidewife_death_ne_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 384
-        width: 192
-        height: 192
+        x: 1368
+        y: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2004,12 +2004,12 @@ TextureImporter:
       name: tidewife_death_ne_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 384
-        width: 192
-        height: 192
+        x: 1520
+        y: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2026,12 +2026,12 @@ TextureImporter:
       name: tidewife_death_ne_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 384
-        width: 192
-        height: 192
+        x: 1672
+        y: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2049,11 +2049,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
-        width: 192
-        height: 192
+        y: 96
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2070,12 +2070,12 @@ TextureImporter:
       name: tidewife_death_e_01
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
-        width: 192
-        height: 192
+        x: 152
+        y: 96
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2092,12 +2092,12 @@ TextureImporter:
       name: tidewife_death_e_02
       rect:
         serializedVersion: 2
-        x: 384
-        y: 192
-        width: 192
-        height: 192
+        x: 304
+        y: 96
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2114,12 +2114,12 @@ TextureImporter:
       name: tidewife_death_e_03
       rect:
         serializedVersion: 2
-        x: 576
-        y: 192
-        width: 192
-        height: 192
+        x: 456
+        y: 96
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2136,12 +2136,12 @@ TextureImporter:
       name: tidewife_death_e_04
       rect:
         serializedVersion: 2
-        x: 768
-        y: 192
-        width: 192
-        height: 192
+        x: 608
+        y: 96
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2158,12 +2158,12 @@ TextureImporter:
       name: tidewife_death_e_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 192
-        width: 192
-        height: 192
+        x: 760
+        y: 96
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2180,12 +2180,12 @@ TextureImporter:
       name: tidewife_death_e_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 192
-        width: 192
-        height: 192
+        x: 912
+        y: 96
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2202,12 +2202,12 @@ TextureImporter:
       name: tidewife_death_e_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 192
-        width: 192
-        height: 192
+        x: 1064
+        y: 96
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2224,12 +2224,12 @@ TextureImporter:
       name: tidewife_death_e_08
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 192
-        width: 192
-        height: 192
+        x: 1216
+        y: 96
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2246,12 +2246,12 @@ TextureImporter:
       name: tidewife_death_e_09
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 192
-        width: 192
-        height: 192
+        x: 1368
+        y: 96
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2268,12 +2268,12 @@ TextureImporter:
       name: tidewife_death_e_10
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 192
-        width: 192
-        height: 192
+        x: 1520
+        y: 96
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2290,12 +2290,12 @@ TextureImporter:
       name: tidewife_death_e_11
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 192
-        width: 192
-        height: 192
+        x: 1672
+        y: 96
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2314,10 +2314,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 192
-        height: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2334,12 +2334,12 @@ TextureImporter:
       name: tidewife_death_se_01
       rect:
         serializedVersion: 2
-        x: 192
+        x: 152
         y: 0
-        width: 192
-        height: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2356,12 +2356,12 @@ TextureImporter:
       name: tidewife_death_se_02
       rect:
         serializedVersion: 2
-        x: 384
+        x: 304
         y: 0
-        width: 192
-        height: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2378,12 +2378,12 @@ TextureImporter:
       name: tidewife_death_se_03
       rect:
         serializedVersion: 2
-        x: 576
+        x: 456
         y: 0
-        width: 192
-        height: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2400,12 +2400,12 @@ TextureImporter:
       name: tidewife_death_se_04
       rect:
         serializedVersion: 2
-        x: 768
+        x: 608
         y: 0
-        width: 192
-        height: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2422,12 +2422,12 @@ TextureImporter:
       name: tidewife_death_se_05
       rect:
         serializedVersion: 2
-        x: 960
+        x: 760
         y: 0
-        width: 192
-        height: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2444,12 +2444,12 @@ TextureImporter:
       name: tidewife_death_se_06
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 912
         y: 0
-        width: 192
-        height: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2466,12 +2466,12 @@ TextureImporter:
       name: tidewife_death_se_07
       rect:
         serializedVersion: 2
-        x: 1344
+        x: 1064
         y: 0
-        width: 192
-        height: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2488,12 +2488,12 @@ TextureImporter:
       name: tidewife_death_se_08
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 1216
         y: 0
-        width: 192
-        height: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2510,12 +2510,12 @@ TextureImporter:
       name: tidewife_death_se_09
       rect:
         serializedVersion: 2
-        x: 1728
+        x: 1368
         y: 0
-        width: 192
-        height: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2532,12 +2532,12 @@ TextureImporter:
       name: tidewife_death_se_10
       rect:
         serializedVersion: 2
-        x: 1920
+        x: 1520
         y: 0
-        width: 192
-        height: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2554,12 +2554,12 @@ TextureImporter:
       name: tidewife_death_se_11
       rect:
         serializedVersion: 2
-        x: 2112
+        x: 1672
         y: 0
-        width: 192
-        height: 192
+        width: 152
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

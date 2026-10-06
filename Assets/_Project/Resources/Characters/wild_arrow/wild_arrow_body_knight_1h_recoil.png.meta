@@ -525,7 +525,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
@@ -609,11 +609,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1200
-        width: 80
-        height: 80
+        y: 1020
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -630,12 +630,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_s_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1200
-        width: 80
-        height: 80
+        x: 54
+        y: 1020
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -652,12 +652,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_s_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1200
-        width: 80
-        height: 80
+        x: 108
+        y: 1020
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -674,12 +674,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_s_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1200
-        width: 80
-        height: 80
+        x: 162
+        y: 1020
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -696,12 +696,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_s_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 1200
-        width: 80
-        height: 80
+        x: 216
+        y: 1020
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -718,12 +718,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_s_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1200
-        width: 80
-        height: 80
+        x: 270
+        y: 1020
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -740,12 +740,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_s_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 1200
-        width: 80
-        height: 80
+        x: 324
+        y: 1020
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -762,12 +762,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_s_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1200
-        width: 80
-        height: 80
+        x: 378
+        y: 1020
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -784,12 +784,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_s_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1200
-        width: 80
-        height: 80
+        x: 432
+        y: 1020
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -806,12 +806,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_s_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 1200
-        width: 80
-        height: 80
+        x: 486
+        y: 1020
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -829,11 +829,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1120
-        width: 80
-        height: 80
+        y: 952
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -850,12 +850,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ssw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1120
-        width: 80
-        height: 80
+        x: 54
+        y: 952
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -872,12 +872,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ssw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1120
-        width: 80
-        height: 80
+        x: 108
+        y: 952
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -894,12 +894,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ssw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1120
-        width: 80
-        height: 80
+        x: 162
+        y: 952
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -916,12 +916,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ssw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 1120
-        width: 80
-        height: 80
+        x: 216
+        y: 952
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -938,12 +938,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ssw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1120
-        width: 80
-        height: 80
+        x: 270
+        y: 952
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -960,12 +960,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ssw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 1120
-        width: 80
-        height: 80
+        x: 324
+        y: 952
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -982,12 +982,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ssw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1120
-        width: 80
-        height: 80
+        x: 378
+        y: 952
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1004,12 +1004,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ssw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1120
-        width: 80
-        height: 80
+        x: 432
+        y: 952
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1026,12 +1026,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ssw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 1120
-        width: 80
-        height: 80
+        x: 486
+        y: 952
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1049,11 +1049,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1040
-        width: 80
-        height: 80
+        y: 884
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1070,12 +1070,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1040
-        width: 80
-        height: 80
+        x: 54
+        y: 884
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1092,12 +1092,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 1040
-        width: 80
-        height: 80
+        x: 108
+        y: 884
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1114,12 +1114,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1040
-        width: 80
-        height: 80
+        x: 162
+        y: 884
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1136,12 +1136,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 1040
-        width: 80
-        height: 80
+        x: 216
+        y: 884
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1158,12 +1158,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1040
-        width: 80
-        height: 80
+        x: 270
+        y: 884
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1180,12 +1180,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 1040
-        width: 80
-        height: 80
+        x: 324
+        y: 884
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1202,12 +1202,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1040
-        width: 80
-        height: 80
+        x: 378
+        y: 884
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1224,12 +1224,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1040
-        width: 80
-        height: 80
+        x: 432
+        y: 884
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1246,12 +1246,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 1040
-        width: 80
-        height: 80
+        x: 486
+        y: 884
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1269,11 +1269,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 960
-        width: 80
-        height: 80
+        y: 816
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1290,12 +1290,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wsw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 960
-        width: 80
-        height: 80
+        x: 54
+        y: 816
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1312,12 +1312,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wsw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 960
-        width: 80
-        height: 80
+        x: 108
+        y: 816
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1334,12 +1334,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wsw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 960
-        width: 80
-        height: 80
+        x: 162
+        y: 816
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1356,12 +1356,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wsw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 960
-        width: 80
-        height: 80
+        x: 216
+        y: 816
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1378,12 +1378,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wsw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 960
-        width: 80
-        height: 80
+        x: 270
+        y: 816
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1400,12 +1400,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wsw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 960
-        width: 80
-        height: 80
+        x: 324
+        y: 816
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1422,12 +1422,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wsw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 960
-        width: 80
-        height: 80
+        x: 378
+        y: 816
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1444,12 +1444,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wsw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 960
-        width: 80
-        height: 80
+        x: 432
+        y: 816
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1466,12 +1466,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wsw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 960
-        width: 80
-        height: 80
+        x: 486
+        y: 816
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1489,11 +1489,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 880
-        width: 80
-        height: 80
+        y: 748
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1510,12 +1510,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_w_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 880
-        width: 80
-        height: 80
+        x: 54
+        y: 748
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1532,12 +1532,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_w_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 880
-        width: 80
-        height: 80
+        x: 108
+        y: 748
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1554,12 +1554,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_w_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 880
-        width: 80
-        height: 80
+        x: 162
+        y: 748
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1576,12 +1576,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_w_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 880
-        width: 80
-        height: 80
+        x: 216
+        y: 748
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1598,12 +1598,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_w_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 880
-        width: 80
-        height: 80
+        x: 270
+        y: 748
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1620,12 +1620,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_w_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 880
-        width: 80
-        height: 80
+        x: 324
+        y: 748
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1642,12 +1642,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_w_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 880
-        width: 80
-        height: 80
+        x: 378
+        y: 748
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1664,12 +1664,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_w_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 880
-        width: 80
-        height: 80
+        x: 432
+        y: 748
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1686,12 +1686,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_w_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 880
-        width: 80
-        height: 80
+        x: 486
+        y: 748
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1709,11 +1709,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 800
-        width: 80
-        height: 80
+        y: 680
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1730,12 +1730,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wnw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 800
-        width: 80
-        height: 80
+        x: 54
+        y: 680
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1752,12 +1752,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wnw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 800
-        width: 80
-        height: 80
+        x: 108
+        y: 680
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1774,12 +1774,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wnw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 800
-        width: 80
-        height: 80
+        x: 162
+        y: 680
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1796,12 +1796,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wnw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 800
-        width: 80
-        height: 80
+        x: 216
+        y: 680
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1818,12 +1818,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wnw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 800
-        width: 80
-        height: 80
+        x: 270
+        y: 680
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1840,12 +1840,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wnw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 800
-        width: 80
-        height: 80
+        x: 324
+        y: 680
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1862,12 +1862,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wnw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 800
-        width: 80
-        height: 80
+        x: 378
+        y: 680
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1884,12 +1884,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wnw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 800
-        width: 80
-        height: 80
+        x: 432
+        y: 680
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1906,12 +1906,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_wnw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 800
-        width: 80
-        height: 80
+        x: 486
+        y: 680
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1929,11 +1929,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 720
-        width: 80
-        height: 80
+        y: 612
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1950,12 +1950,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 720
-        width: 80
-        height: 80
+        x: 54
+        y: 612
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1972,12 +1972,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 720
-        width: 80
-        height: 80
+        x: 108
+        y: 612
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1994,12 +1994,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 720
-        width: 80
-        height: 80
+        x: 162
+        y: 612
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2016,12 +2016,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 720
-        width: 80
-        height: 80
+        x: 216
+        y: 612
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2038,12 +2038,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 720
-        width: 80
-        height: 80
+        x: 270
+        y: 612
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2060,12 +2060,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 720
-        width: 80
-        height: 80
+        x: 324
+        y: 612
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2082,12 +2082,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 720
-        width: 80
-        height: 80
+        x: 378
+        y: 612
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2104,12 +2104,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 720
-        width: 80
-        height: 80
+        x: 432
+        y: 612
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2126,12 +2126,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 720
-        width: 80
-        height: 80
+        x: 486
+        y: 612
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2149,11 +2149,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 640
-        width: 80
-        height: 80
+        y: 544
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2170,12 +2170,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nnw_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 640
-        width: 80
-        height: 80
+        x: 54
+        y: 544
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2192,12 +2192,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nnw_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 640
-        width: 80
-        height: 80
+        x: 108
+        y: 544
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2214,12 +2214,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nnw_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 640
-        width: 80
-        height: 80
+        x: 162
+        y: 544
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2236,12 +2236,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nnw_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 640
-        width: 80
-        height: 80
+        x: 216
+        y: 544
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2258,12 +2258,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nnw_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 640
-        width: 80
-        height: 80
+        x: 270
+        y: 544
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2280,12 +2280,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nnw_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 640
-        width: 80
-        height: 80
+        x: 324
+        y: 544
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2302,12 +2302,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nnw_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 640
-        width: 80
-        height: 80
+        x: 378
+        y: 544
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2324,12 +2324,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nnw_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 640
-        width: 80
-        height: 80
+        x: 432
+        y: 544
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2346,12 +2346,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nnw_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 640
-        width: 80
-        height: 80
+        x: 486
+        y: 544
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2369,11 +2369,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 560
-        width: 80
-        height: 80
+        y: 476
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2390,12 +2390,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_n_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 560
-        width: 80
-        height: 80
+        x: 54
+        y: 476
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2412,12 +2412,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_n_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 560
-        width: 80
-        height: 80
+        x: 108
+        y: 476
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2434,12 +2434,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_n_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 560
-        width: 80
-        height: 80
+        x: 162
+        y: 476
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2456,12 +2456,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_n_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 560
-        width: 80
-        height: 80
+        x: 216
+        y: 476
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2478,12 +2478,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_n_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 560
-        width: 80
-        height: 80
+        x: 270
+        y: 476
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2500,12 +2500,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_n_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 560
-        width: 80
-        height: 80
+        x: 324
+        y: 476
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2522,12 +2522,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_n_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 560
-        width: 80
-        height: 80
+        x: 378
+        y: 476
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2544,12 +2544,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_n_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 560
-        width: 80
-        height: 80
+        x: 432
+        y: 476
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2566,12 +2566,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_n_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 560
-        width: 80
-        height: 80
+        x: 486
+        y: 476
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2589,11 +2589,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 80
-        height: 80
+        y: 408
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2610,12 +2610,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nne_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 480
-        width: 80
-        height: 80
+        x: 54
+        y: 408
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2632,12 +2632,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nne_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 480
-        width: 80
-        height: 80
+        x: 108
+        y: 408
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2654,12 +2654,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nne_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 480
-        width: 80
-        height: 80
+        x: 162
+        y: 408
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2676,12 +2676,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nne_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 480
-        width: 80
-        height: 80
+        x: 216
+        y: 408
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2698,12 +2698,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nne_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 480
-        width: 80
-        height: 80
+        x: 270
+        y: 408
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2720,12 +2720,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nne_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 480
-        width: 80
-        height: 80
+        x: 324
+        y: 408
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2742,12 +2742,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nne_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 480
-        width: 80
-        height: 80
+        x: 378
+        y: 408
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2764,12 +2764,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nne_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 480
-        width: 80
-        height: 80
+        x: 432
+        y: 408
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2786,12 +2786,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_nne_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 480
-        width: 80
-        height: 80
+        x: 486
+        y: 408
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2809,11 +2809,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 400
-        width: 80
-        height: 80
+        y: 340
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2830,12 +2830,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ne_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 400
-        width: 80
-        height: 80
+        x: 54
+        y: 340
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2852,12 +2852,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ne_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 400
-        width: 80
-        height: 80
+        x: 108
+        y: 340
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2874,12 +2874,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ne_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 400
-        width: 80
-        height: 80
+        x: 162
+        y: 340
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2896,12 +2896,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ne_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 400
-        width: 80
-        height: 80
+        x: 216
+        y: 340
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2918,12 +2918,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ne_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 400
-        width: 80
-        height: 80
+        x: 270
+        y: 340
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2940,12 +2940,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ne_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 400
-        width: 80
-        height: 80
+        x: 324
+        y: 340
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2962,12 +2962,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ne_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 400
-        width: 80
-        height: 80
+        x: 378
+        y: 340
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2984,12 +2984,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ne_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 400
-        width: 80
-        height: 80
+        x: 432
+        y: 340
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3006,12 +3006,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ne_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 400
-        width: 80
-        height: 80
+        x: 486
+        y: 340
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3029,11 +3029,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 320
-        width: 80
-        height: 80
+        y: 272
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3050,12 +3050,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ene_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 320
-        width: 80
-        height: 80
+        x: 54
+        y: 272
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3072,12 +3072,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ene_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 320
-        width: 80
-        height: 80
+        x: 108
+        y: 272
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3094,12 +3094,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ene_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 320
-        width: 80
-        height: 80
+        x: 162
+        y: 272
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3116,12 +3116,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ene_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 320
-        width: 80
-        height: 80
+        x: 216
+        y: 272
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3138,12 +3138,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ene_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 320
-        width: 80
-        height: 80
+        x: 270
+        y: 272
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3160,12 +3160,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ene_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 320
-        width: 80
-        height: 80
+        x: 324
+        y: 272
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3182,12 +3182,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ene_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 320
-        width: 80
-        height: 80
+        x: 378
+        y: 272
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3204,12 +3204,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ene_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 320
-        width: 80
-        height: 80
+        x: 432
+        y: 272
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3226,12 +3226,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ene_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 320
-        width: 80
-        height: 80
+        x: 486
+        y: 272
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3249,11 +3249,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 80
-        height: 80
+        y: 204
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3270,12 +3270,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_e_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 240
-        width: 80
-        height: 80
+        x: 54
+        y: 204
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3292,12 +3292,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_e_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 240
-        width: 80
-        height: 80
+        x: 108
+        y: 204
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3314,12 +3314,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_e_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 240
-        width: 80
-        height: 80
+        x: 162
+        y: 204
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3336,12 +3336,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_e_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 240
-        width: 80
-        height: 80
+        x: 216
+        y: 204
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3358,12 +3358,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_e_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 240
-        width: 80
-        height: 80
+        x: 270
+        y: 204
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3380,12 +3380,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_e_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 240
-        width: 80
-        height: 80
+        x: 324
+        y: 204
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3402,12 +3402,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_e_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 240
-        width: 80
-        height: 80
+        x: 378
+        y: 204
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3424,12 +3424,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_e_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 240
-        width: 80
-        height: 80
+        x: 432
+        y: 204
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3446,12 +3446,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_e_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 240
-        width: 80
-        height: 80
+        x: 486
+        y: 204
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3469,11 +3469,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 80
-        height: 80
+        y: 136
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3490,12 +3490,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ese_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 160
-        width: 80
-        height: 80
+        x: 54
+        y: 136
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3512,12 +3512,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ese_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 160
-        width: 80
-        height: 80
+        x: 108
+        y: 136
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3534,12 +3534,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ese_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 160
-        width: 80
-        height: 80
+        x: 162
+        y: 136
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3556,12 +3556,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ese_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 160
-        width: 80
-        height: 80
+        x: 216
+        y: 136
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3578,12 +3578,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ese_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 160
-        width: 80
-        height: 80
+        x: 270
+        y: 136
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3600,12 +3600,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ese_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 160
-        width: 80
-        height: 80
+        x: 324
+        y: 136
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3622,12 +3622,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ese_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 160
-        width: 80
-        height: 80
+        x: 378
+        y: 136
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3644,12 +3644,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ese_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 160
-        width: 80
-        height: 80
+        x: 432
+        y: 136
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3666,12 +3666,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_ese_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 160
-        width: 80
-        height: 80
+        x: 486
+        y: 136
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3689,11 +3689,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 80
-        width: 80
-        height: 80
+        y: 68
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3710,12 +3710,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_se_01
       rect:
         serializedVersion: 2
-        x: 80
-        y: 80
-        width: 80
-        height: 80
+        x: 54
+        y: 68
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3732,12 +3732,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_se_02
       rect:
         serializedVersion: 2
-        x: 160
-        y: 80
-        width: 80
-        height: 80
+        x: 108
+        y: 68
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3754,12 +3754,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_se_03
       rect:
         serializedVersion: 2
-        x: 240
-        y: 80
-        width: 80
-        height: 80
+        x: 162
+        y: 68
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3776,12 +3776,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_se_04
       rect:
         serializedVersion: 2
-        x: 320
-        y: 80
-        width: 80
-        height: 80
+        x: 216
+        y: 68
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3798,12 +3798,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_se_05
       rect:
         serializedVersion: 2
-        x: 400
-        y: 80
-        width: 80
-        height: 80
+        x: 270
+        y: 68
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3820,12 +3820,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_se_06
       rect:
         serializedVersion: 2
-        x: 480
-        y: 80
-        width: 80
-        height: 80
+        x: 324
+        y: 68
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3842,12 +3842,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_se_07
       rect:
         serializedVersion: 2
-        x: 560
-        y: 80
-        width: 80
-        height: 80
+        x: 378
+        y: 68
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3864,12 +3864,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_se_08
       rect:
         serializedVersion: 2
-        x: 640
-        y: 80
-        width: 80
-        height: 80
+        x: 432
+        y: 68
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3886,12 +3886,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_se_09
       rect:
         serializedVersion: 2
-        x: 720
-        y: 80
-        width: 80
-        height: 80
+        x: 486
+        y: 68
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3910,10 +3910,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 80
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3930,12 +3930,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sse_01
       rect:
         serializedVersion: 2
-        x: 80
+        x: 54
         y: 0
-        width: 80
-        height: 80
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3952,12 +3952,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sse_02
       rect:
         serializedVersion: 2
-        x: 160
+        x: 108
         y: 0
-        width: 80
-        height: 80
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3974,12 +3974,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sse_03
       rect:
         serializedVersion: 2
-        x: 240
+        x: 162
         y: 0
-        width: 80
-        height: 80
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3996,12 +3996,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sse_04
       rect:
         serializedVersion: 2
-        x: 320
+        x: 216
         y: 0
-        width: 80
-        height: 80
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4018,12 +4018,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sse_05
       rect:
         serializedVersion: 2
-        x: 400
+        x: 270
         y: 0
-        width: 80
-        height: 80
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4040,12 +4040,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sse_06
       rect:
         serializedVersion: 2
-        x: 480
+        x: 324
         y: 0
-        width: 80
-        height: 80
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4062,12 +4062,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sse_07
       rect:
         serializedVersion: 2
-        x: 560
+        x: 378
         y: 0
-        width: 80
-        height: 80
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4084,12 +4084,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sse_08
       rect:
         serializedVersion: 2
-        x: 640
+        x: 432
         y: 0
-        width: 80
-        height: 80
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4106,12 +4106,12 @@ TextureImporter:
       name: wild_arrow_body_knight_1h_recoil_sse_09
       rect:
         serializedVersion: 2
-        x: 720
+        x: 486
         y: 0
-        width: 80
-        height: 80
+        width: 54
+        height: 68
       alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      pivot: {x: 0.5, y: 0.16176471}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
