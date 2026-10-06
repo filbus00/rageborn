@@ -170,12 +170,31 @@ namespace ARPG
                 : item.Rarity == ItemRarity.Magic ? SoundId.DropMagic : SoundId.DropCommon);
         }
 
+        /// <summary>At most this many drops lie on the ground: a rift's stream drops without end (the Vigil's road,
+        /// 2026-10-06), and every name on the ground is laid out four times a second.</summary>
+        public const int MaxOnGround = 48;
+
+        bool warnedPool;
+
         LootDrop TakeDrop()
         {
             if (pool.Count > 0)
                 return pool.Pop();
 
-            Debug.LogWarning("[ARPG] Loot pool exhausted; creating a drop. Raise the pool size.", this);
+            // Over the cap, the oldest item her pick-up rule leaves lying makes room.
+            if (active.Count >= MaxOnGround)
+                for (var i = 0; i < active.Count; i++)
+                    if (!active[i].IsGold && !active[i].IsWanted())
+                    {
+                        Release(active[i]);
+                        return pool.Pop();
+                    }
+
+            if (!warnedPool)
+            {
+                warnedPool = true;
+                Debug.LogWarning("[ARPG] Loot pool exhausted; creating drops. Raise the pool size.", this);
+            }
             return CreateDrop();
         }
 

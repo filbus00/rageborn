@@ -751,3 +751,56 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
 - Checked in play: in town each pet runs to her side and settles into its idle. In the dungeon the wolf ran to a husk,
   bit with its attack frames and killed it, with no errors. The hit and the fall were not seen in play.
   591 of 591 tests pass.
+
+## 2026-10-06: the Vigil's road, first build
+
+- The owner's design (Docs/05, "The Vigil's road"): one long hall up the screen; rifts stream demons without end until
+  she kills a rift's guardian; closed rifts stay closed and their beacons' light keeps demons out; no timers. "do it"
+  covered the docs and the first build.
+- `Road.cs`:
+  - `RoadRules` (pure) holds the numbers.
+  - `RoadPath` is the hall's middle line in ground space (`Progress`, `PointAt`, `DirectionAt`).
+  - `RoadGenerator` (pure, seeded, `Version` 1) builds a stretch into the old `DungeonLayout`, so painting, the nav
+    grid, the minimap, lights and wall dressing all carry over:
+    - 7 legs of 18 to 24 cells along the tile grid (up-right, then up-left), 10 cells wide, about 69 units of line.
+    - Pillar pairs and props in the legs; side rooms with a chest beyond the outer wall of some turns (the legs are too
+      short for one off their middle).
+    - At the bottom: the beacon, its waystone, the Wanderer's spot and the way back down.
+    - At the top: the rift's 16-cell chamber (the boss's round arena on every sixth stretch) and a short way on.
+    - The endless stretch (25) has 40 legs.
+- `RiftStream` keeps the rift's stream going:
+  - Packs join awake a screen ahead of her up the hall (34 units along the line, never within 24 in a straight line),
+    rolled by `PackComposition` for the stretch, levelled by closeness.
+  - Its demons are `Relentless` (no leash home).
+  - Within 6 of the rift the guardian comes through, an elite at the rift's level. On a boss stretch the boss is the
+    guardian, and the stream stops once the fight starts.
+  - It hears the kill through `EnemyManager.Killed`, since a pooled guardian's own life could belong to another demon
+    by the next look.
+- `DungeonLevel` builds the road instead of the old levels (`DungeonGenerator` is kept for its tests). It places the
+  beacons and the rift, sets up the stream, and on closing:
+  - raises `GameSession.DeepestDepth`, which now means the open rift's stretch (newcomers still come by it, and old
+    saves read their depth as rifts closed);
+  - lights the top beacon and opens the way on;
+  - activates the next waystone and saves.
+- Beacons: `EnemyManager.AddSafeLight`. A demon will not step deeper into a lit beacon's light (8 units), and no demon
+  strikes her while she stands in one (`PlayerInLight`).
+- Death: `GameSession.FallOnRoad` takes 10 percent of carried gold and leaves her gear on her; `DeathFlow` reloads the
+  stretch at its bottom beacon. The corpse code stays for corpses in old saves.
+- Town: the stairs lead to the open rift's stretch (`TownDressing`, `RoadRules.StretchFromTown`). The Portal Tome's
+  Wanderer stands on stretch 1 (`PortalTomeDepth` 1).
+- The loot pool now caps drops on the ground at 48 (the oldest unwanted item makes room), since the stream never stops.
+- Tuning after a scripted push:
+  - The first numbers (packs of 3 to 6 every 6 to 3 s, 18 alive, elites from the start) swamped a level 4 to 5
+    starter at three quarters up rift 1, at about 90 damage a second.
+  - Now: packs of 3 to 5 every 8 to 4 s, at most 8 alive at the beacon rising to 18 at the rift, no elites on stretch
+    1 (they grow in over the next four), fewer champions.
+  - A level 1 character walking up without stopping got about 70 percent up rift 1 before the stream took her.
+- Test harness trap: stepping play mode with the editor in the background never renders, so the camera's view matrix
+  stays where it was. `PlayerCombat.KeepOnScreen` then thinks every enemy up the hall is off screen and she stops
+  shooting. Call `Camera.ResetWorldToCameraMatrix` (and `ResetProjectionMatrix`) every stepped frame.
+- Checked in the editor:
+  - a stretch's look, from an overview render;
+  - a long push with healing (the stream, about 360 kills, levels rising toward the rift);
+  - the guardian, the closing, the lit beacon and its light, the way on and the waystones;
+  - death, with gold lost and her waking at the beacon.
+- 597 of 597 tests pass. Not played by hand. The numbers need the owner's play.

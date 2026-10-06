@@ -177,6 +177,12 @@ namespace ARPG
         /// </summary>
         public bool Scripted { get; set; }
 
+        /// <summary>
+        /// A demon of a rift's stream (the Vigil's road, 2026-10-06): it never leashes home, however far it came. Cleared
+        /// on every spawn, since instances are pooled.
+        /// </summary>
+        public bool Relentless { get; set; }
+
         /// <summary>Raised with the damage of every hit this enemy takes, the killing one included. Cleared on spawn.</summary>
         public event System.Action<float> Damaged;
 
@@ -260,6 +266,7 @@ namespace ARPG
             definition = data;
             Level = level > 0 ? level : data.Level;
             Scripted = false;
+            Relentless = false;
             Damaged = null;
             modifiers = rolledModifiers;
             pack = owner;
@@ -421,7 +428,7 @@ namespace ARPG
                 case EnemyState.Approach:
                     // Too far, or with no route to her (cut off by walls): after the leash time it walks home instead of
                     // pressing into the wall.
-                    if (distance > definition.LeashRange || !world.TryChaseDirection(ground, playerGround, out _))
+                    if (!Relentless && (distance > definition.LeashRange || !world.TryChaseDirection(ground, playerGround, out _)))
                     {
                         leashTimer += deltaTime;
                         if (leashTimer >= definition.LeashSeconds)
@@ -782,7 +789,7 @@ namespace ARPG
         }
 
         bool CanAttack(EnemyManager world, float distance) =>
-            world.Player != null && world.Player.IsAlive && distance <= definition.AttackRange;
+            world.Player != null && world.Player.IsAlive && distance <= definition.AttackRange && !world.PlayerInLight;
 
         /// <summary>Starts the wind-up. A brute paints its slam circle where it stands and an archer its aim line toward
         /// the player; both fill for the length of the wind-up (Docs/01: 0.6 to 1.2 s for a ground shape, 0.4 s for a
@@ -1111,6 +1118,9 @@ namespace ARPG
         {
             var next = ground + step;
             if (!world.Nav.IsWalkable(IsoMath.GroundToCell(next)))
+                return false;
+            // A lit beacon's light turns demons back (the Vigil's road); a scripted boss keeps to its arena anyway.
+            if (!Scripted && world.StepsIntoLight(ground, next))
                 return false;
 
             ground = next;

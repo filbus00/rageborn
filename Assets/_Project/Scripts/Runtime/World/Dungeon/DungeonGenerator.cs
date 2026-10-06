@@ -28,7 +28,7 @@ namespace ARPG
 
         /// <summary>Docs/05: the Portal Tome is found around level 3; the Wanderer gives it on this depth (the user's
         /// choice, 2026-09-26).</summary>
-        public const int PortalTomeDepth = 3;
+        public const int PortalTomeDepth = 1; // The road's first stretch, beside the first beacon (2026-10-06; was 3)
 
         /// <summary>
         /// The enemy level of each depth, 1 to 6 (index 0 unused). Tuning: they follow the level a character reaches by

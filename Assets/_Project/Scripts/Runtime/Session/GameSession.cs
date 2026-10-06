@@ -865,6 +865,21 @@ namespace ARPG
         internal void RestoreCorpse(Corpse corpse) => corpses.Add(corpse);
 
         /// <summary>
+        /// The character falls on the Vigil's road (Docs/01, 2026-10-06): she will wake at the last lit beacon with full
+        /// life, her gear on her, and a share of her carried gold lost (<see cref="RoadRules.GoldLostOnDeath"/>).
+        /// Returns the gold lost.
+        /// </summary>
+        public int FallOnRoad()
+        {
+            LifeFraction = 1f;
+            var lost = RoadRules.GoldLostOnDeath(Gold);
+            Gold -= lost;
+            NotifyChanged();
+            return lost;
+        }
+
+        /// <summary>
+        /// The corpse run (before the Vigil's road; kept for corpses already lying in old saves).
         /// The character dies: its equipped gear stays behind as a corpse where it fell (Docs/01-core-gameplay.md).
         /// Returns the new corpse, or null when nothing was equipped, since a corpse would hold nothing.
         /// The backpack and gold are kept. An earlier corpse is never touched, and corpses never expire.

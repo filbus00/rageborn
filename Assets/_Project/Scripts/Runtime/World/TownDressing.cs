@@ -60,8 +60,11 @@ namespace ARPG
                 }
             }
 
-            // The modelled stairway down, lying flat where the placeholder was.
+            // The modelled stairway down, lying flat where the placeholder was. It leads onto the Vigil's road at the last
+            // lit beacon (2026-10-06), not its first stretch.
             var stairs = GameObject.Find("Stairs Down");
+            if (stairs != null && stairs.TryGetComponent<SceneExit>(out var exit))
+                exit.Configure(SceneTravel.DungeonScene, RoadRules.StretchFromTown(GameSession.Current.DeepestDepth), Arrival.FromAbove);
             var sprite = WorldArt.Get("stairs_down");
             if (stairs != null && sprite != null && stairs.TryGetComponent<SpriteRenderer>(out var stairsRenderer))
             {

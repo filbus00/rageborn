@@ -134,6 +134,7 @@ namespace ARPG
 
             var deltaTime = Time.deltaTime;
             PlayerGround = IsoMath.WorldToGround(player.transform.position);
+            PlayerInLight = InLight(PlayerGround);
             RefreshFlow(deltaTime);
 
             // Dead enemies are left out of the hash so they are neither targeted nor pushed against.
@@ -177,6 +178,43 @@ namespace ARPG
         }
 
         internal void NotifyKilled(EnemyController enemy) => Killed?.Invoke(enemy);
+
+        // Lit beacons on the Vigil's road (Docs/05, 2026-10-06): "the demons from the stream above fear the light and do
+        // not pass further". Centres and radii in ground units.
+        readonly List<Vector2> lightCenters = new List<Vector2>(4);
+        readonly List<float> lightRadii = new List<float>(4);
+
+        /// <summary>A beacon's light that demons will not walk into, nor strike her inside.</summary>
+        public void AddSafeLight(Vector2 center, float radius)
+        {
+            lightCenters.Add(center);
+            lightRadii.Add(radius);
+        }
+
+        /// <summary>Whether a step ends inside a light and nearer its middle than it began: a demon pushed into the
+        /// light may still walk out.</summary>
+        internal bool StepsIntoLight(Vector2 from, Vector2 to)
+        {
+            for (var i = 0; i < lightCenters.Count; i++)
+            {
+                var toDistance = (to - lightCenters[i]).sqrMagnitude;
+                if (toDistance < lightRadii[i] * lightRadii[i] && toDistance < (from - lightCenters[i]).sqrMagnitude)
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>Whether a ground point lies in a beacon's light.</summary>
+        public bool InLight(Vector2 point)
+        {
+            for (var i = 0; i < lightCenters.Count; i++)
+                if ((point - lightCenters[i]).sqrMagnitude < lightRadii[i] * lightRadii[i])
+                    return true;
+            return false;
+        }
+
+        /// <summary>Whether she stands in a beacon's light this frame: no demon strikes her there.</summary>
+        public bool PlayerInLight { get; private set; }
 
         /// <summary>How much harder an enemy standing here hits: the best awake support aura that reaches it, else 1
         /// (EnemyRules.AuraMultiplier; a support does not empower itself).</summary>
