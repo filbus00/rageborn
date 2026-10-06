@@ -220,6 +220,7 @@ namespace ARPG
             }
 
             riftLook = PlaceRift(root, road.Rift);
+            PreloadRoster();
             var stream = new GameObject("Rift Stream").AddComponent<RiftStream>();
             stream.transform.SetParent(root, false);
             var fight = Layout.HasBossArena ? SetUpBoss(session, stream.Close) : null;
@@ -227,6 +228,23 @@ namespace ARPG
             arrivalNotice ??= RoadRules.IsEndless(depth)
                 ? "The rift that never closes. Hold the road as far up as you can."
                 : $"Rift {depth} of {RoadRules.Rifts}. Push up the road and slay its guardian.";
+        }
+
+        // The looks of every demon this stretch's stream is likely to send, loaded now behind the fade: loaded on a
+        // kind's first appearance instead, mid-fight, each cost a hitch of about 70 ms in the editor (2026-10-06).
+        void PreloadRoster()
+        {
+            var seen = new HashSet<EnemyDefinition>();
+            void Add(EnemyDefinition definition)
+            {
+                if (definition != null && seen.Add(definition))
+                    EnemyAnimationSet.For(definition.SpriteCharacter);
+            }
+            Add(championEnemy);
+            Add(eliteEnemy);
+            for (var i = 0; i < 48; i++)
+                foreach (var member in RollPack(PackKind.Normal, 5, -1 - i))
+                    Add(member);
         }
 
         // A pack for the stream: the stretch's mix (PackComposition, by the stretch as its depth), a champion leading
@@ -415,9 +433,10 @@ namespace ARPG
         {
             var bounds = Layout.Bounds;
             var torches = 0;
-            // The cap grew with the road's long halls (2026-10-06): one a hall leg, about as many as the hash places, so
-            // the torches do not all go to the cells scanned first. Lights off screen are culled.
-            var maxTorches = Mathf.Max(MaxWallTorches, Layout.Rooms.Count);
+            // The road's long halls (2026-10-06): about one leg in two keeps a torch, thinned by a hash so they spread
+            // along the whole hall rather than filling the cap with the cells scanned first; at most 48 lights.
+            var maxTorches = Mathf.Clamp(Layout.Rooms.Count / 2, MaxWallTorches, 48);
+            var keepShare = Mathf.Min(1f, MaxWallTorches * 4f / Mathf.Max(1, Layout.Rooms.Count * 2));
             for (var x = bounds.xMin; x < bounds.xMax; x++)
                 for (var y = bounds.yMin; y < bounds.yMax; y++)
                 {
@@ -435,7 +454,7 @@ namespace ARPG
                         ? FaceDetails[(int)(WallHash(x, y, 3) * FaceDetails.Length) % FaceDetails.Length]
                         : TopDetails[(int)(WallHash(x, y, 3) * TopDetails.Length) % TopDetails.Length];
                     var torch = name == "wall_torch";
-                    if (torch && torches >= maxTorches)
+                    if (torch && (torches >= maxTorches || WallHash(x, y, 7) > keepShare))
                         name = "wall_chains";
                     if (onFace)
                         name += faceX && (!faceY || WallHash(x, y, 4) < 0.5f) ? "_x" : "_y";

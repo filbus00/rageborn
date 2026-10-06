@@ -19,6 +19,9 @@ namespace ARPG
 
         int[] next;
         Vector2[] points;
+        // Each point's grid cell, so a clear resets only the cells used this frame: the road's stretches made the grid
+        // large (2026-10-06), and filling all of it every frame was wasted work.
+        int[] pointCell;
         int count;
 
         public SpatialHash(Vector2 min, Vector2 max, float cellSize, int capacity)
@@ -30,14 +33,16 @@ namespace ARPG
             cellHead = new int[columns * rows];
             next = new int[Mathf.Max(1, capacity)];
             points = new Vector2[next.Length];
-            Clear();
+            pointCell = new int[next.Length];
+            Array.Fill(cellHead, -1);
         }
 
         public int Count => count;
 
         public void Clear()
         {
-            Array.Fill(cellHead, -1);
+            for (var i = 0; i < count; i++)
+                cellHead[pointCell[i]] = -1;
             count = 0;
         }
 
@@ -48,9 +53,11 @@ namespace ARPG
             {
                 Array.Resize(ref next, count * 2);
                 Array.Resize(ref points, count * 2);
+                Array.Resize(ref pointCell, count * 2);
             }
 
             var cell = CellIndex(Column(point.x), Row(point.y));
+            pointCell[count] = cell;
             next[count] = cellHead[cell];
             cellHead[cell] = count;
             points[count] = point;

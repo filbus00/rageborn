@@ -250,8 +250,12 @@ namespace ARPG
                 glow.color = new Color(0.75f, 0.22f, 0.1f, 0.55f);
                 glow.rectTransform.sizeDelta = new Vector2(700f, 700f);
             }
+            // A shadow under her feet: the portrait's canvas is 640 px with her feet 96 px up from its bottom
+            // (CharacterPortrait, 8 times the baked cell), centred in the 660 px figure 120 px up.
+            var shadow = UiStyle.Disc(inside, "Shadow", new Color(0f, 0f, 0f, 0.45f));
+            UiStyle.Place(shadow.rectTransform, new Vector2(0.5f, 0f), new Vector2(0f, 120f + 10f + 96f - 28f), new Vector2(240f, 56f));
             var figure = UiStyle.Place(UiStyle.Rect(inside, "Character"), new Vector2(0.5f, 0f), new Vector2(0f, 120f), new Vector2(660f, 660f));
-            new CharacterPortrait(figure).Refresh(current.Equipment);
+            new CharacterPortrait(figure) { Animated = true }.Refresh(current.Equipment);
 
             var equipment = current.Equipment;
             // Left column: helm, weapon, gloves. Right: amulet, chest, off-hand, boots. Bottom: ring, belt, ring.

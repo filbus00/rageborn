@@ -822,3 +822,29 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
     main thread. About 4 ground atlases (64 MB).
 - Wall torches: the cap is one per hall leg, so torches no longer all go to the cells scanned first.
 - 597 of 597 tests pass. Not timed on the phone.
+
+## 2026-10-06: the Bag's character, and frame rate on the long road
+
+- The owner: in the Bag "the character is all jumbled ... the gear is rendered as way too big", and the figure is "just
+  the character enlarged ... very blurry"; and since the longer stretches "the fps is halved and the game stutters".
+- The jumble: `CharacterPortrait` stacked each layer as a UI image stretched over one shared rect. That was right while
+  every sheet's cell had the same size and feet, and wrong since `SheetTrimmer` crops each sheet to what it draws: a
+  cropped belt or helm was stretched over the whole figure. The HUD's portrait had the same fault.
+- Now each layer is drawn at true size into an 80 px render texture (the baked cell), placed by its own pivot, its feet,
+  with `Graphics.DrawTexture` and white as the colour (the default is half grey, which halved brightness and alpha).
+  The texture is shown with point filtering at a whole multiple: 8 times in the Bag (640 px), 6 times behind the HUD
+  circle. The Bag's figure faces south-west and plays its idle on unscaled time, over a shadow at her feet. The HUD
+  shows a still frame. The canvas is freed with its UI.
+- Frame rate: work that grew with the stretch's bounds (about 255,000 cells) rather than with the screen:
+  - The minimap repainted all its pixels five times a second while she explored. It now paints only the newly
+    explored cells (`MinimapReveal.RevealAround(cell, newly)`), uploading at most five times a second; the whole map is
+    drawn once at load and when opened.
+  - `FlowField.Compute` filled its whole cost and direction arrays on every refresh (each new cell she stepped into,
+    every 0.15 s at most). It now resets only the cells the last pass reached.
+  - `SpatialHash.Clear` filled every bucket each frame. It now resets only the buckets used.
+  - About 100 wall torch lights were reduced to about 30, spread by a hash along the whole hall (at most 48).
+  - Each demon kind's sheets loaded on its first appearance, mid-fight (a 70 ms hitch in the editor). The stretch's
+    likely roster is now preloaded with the level.
+  - A stepped walk up the hall measured about 1.4 ms a frame on the Mac, with one frame over 15 ms in 900. GPU cost and
+    the phone are unmeasured.
+- 597 of 597 tests pass. The Bag's new figure was checked from its render texture, not on the phone.

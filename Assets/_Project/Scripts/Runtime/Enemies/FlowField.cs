@@ -29,6 +29,10 @@ namespace ARPG
         readonly float[] cost;
         readonly Vector2[] direction;
 
+        // The cells the last pass reached, reset by the next: the road's stretches are about 255,000 cells (2026-10-06),
+        // and clearing all of them every 0.15 s while she moved cost more than the pass itself.
+        readonly System.Collections.Generic.List<int> touched = new System.Collections.Generic.List<int>(4096);
+
         // Binary min-heap with lazy deletion: a cell can be queued more than once, stale entries are skipped.
         float[] heapCost;
         int[] heapCell;
@@ -53,6 +57,7 @@ namespace ARPG
             direction = new Vector2[grid.CellCount];
             heapCost = new float[grid.CellCount * 2];
             heapCell = new int[grid.CellCount * 2];
+            Array.Fill(cost, float.PositiveInfinity);
         }
 
         /// <summary>The cell the field leads to, valid when <see cref="HasTarget"/> is true.</summary>
@@ -63,8 +68,12 @@ namespace ARPG
         /// <summary>Recomputes the field toward <paramref name="target"/>. Cells costing more than maxCost stay unreached.</summary>
         public void Compute(Vector2Int target, float maxCost)
         {
-            Array.Fill(cost, float.PositiveInfinity);
-            Array.Clear(direction, 0, direction.Length);
+            for (var i = 0; i < touched.Count; i++)
+            {
+                cost[touched[i]] = float.PositiveInfinity;
+                direction[touched[i]] = Vector2.zero;
+            }
+            touched.Clear();
             heapCount = 0;
             Target = target;
             HasTarget = false;
@@ -77,6 +86,7 @@ namespace ARPG
 
             var start = grid.IndexOf(target);
             cost[start] = 0f;
+            touched.Add(start);
             Push(0f, start);
             HasTarget = true;
 
@@ -108,6 +118,8 @@ namespace ARPG
                     if (newCost >= cost[neighbourIndex])
                         continue;
 
+                    if (float.IsPositiveInfinity(cost[neighbourIndex]))
+                        touched.Add(neighbourIndex);
                     cost[neighbourIndex] = newCost;
                     direction[neighbourIndex] = TowardParent[i];
                     Push(newCost, neighbourIndex);

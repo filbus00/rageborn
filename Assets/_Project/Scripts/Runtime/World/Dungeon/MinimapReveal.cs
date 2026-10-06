@@ -36,8 +36,13 @@ namespace ARPG
         /// Reveals around the player's cell. Does nothing while the player stays in the same cell. Returns whether any
         /// cell became explored, so the map only redraws when it changed.
         /// </summary>
-        public bool RevealAround(Vector2Int cell)
+        public bool RevealAround(Vector2Int cell) => RevealAround(cell, null);
+
+        /// <summary>As <see cref="RevealAround(Vector2Int)"/>, adding each newly explored cell to <paramref name="newly"/>,
+        /// so the map can paint just those (the road's stretches are about 255,000 cells, 2026-10-06).</summary>
+        public bool RevealAround(Vector2Int cell, System.Collections.Generic.List<Vector2Int> newly)
         {
+            added = newly;
             if (cell == lastCell)
                 return false;
             lastCell = cell;
@@ -67,8 +72,11 @@ namespace ARPG
             if (i < 0 || explored[i] || layout.Get(cell) == DungeonCell.Void)
                 return false;
             explored[i] = true;
+            added?.Add(cell);
             return true;
         }
+
+        System.Collections.Generic.List<Vector2Int> added;
 
         int Index(Vector2Int cell)
         {

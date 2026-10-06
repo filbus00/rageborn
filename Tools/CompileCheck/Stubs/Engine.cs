@@ -169,6 +169,19 @@ namespace UnityEngine
         public static RenderTexture active { get; set; } public static RenderTexture GetTemporary(int w, int h, int d) => null; public static RenderTexture GetTemporary(int w, int h, int d, RenderTextureFormat f) => null; public static RenderTexture GetTemporary(int w, int h, int d, RenderTextureFormat f, RenderTextureReadWrite rw) => null; public static void ReleaseTemporary(RenderTexture t) { }
         public bool Create() => true; public void Release() { } public int antiAliasing { get; set; } public int depth { get; set; }
     }
+    public static class GL
+    {
+        public static void PushMatrix() { } public static void PopMatrix() { } public static void LoadPixelMatrix() { } public static void LoadPixelMatrix(float left, float right, float bottom, float top) { }
+        public static void Clear(bool clearDepth, bool clearColor, Color backgroundColor) { } public static void Clear(bool clearDepth, bool clearColor, Color backgroundColor, float depth) { }
+    }
+    public static class Graphics
+    {
+        public static void DrawTexture(Rect screenRect, Texture texture) { } public static void DrawTexture(Rect screenRect, Texture texture, Material mat) { }
+        public static void DrawTexture(Rect screenRect, Texture texture, Rect sourceRect, int leftBorder, int rightBorder, int topBorder, int bottomBorder) { }
+        public static void DrawTexture(Rect screenRect, Texture texture, Rect sourceRect, int leftBorder, int rightBorder, int topBorder, int bottomBorder, Material mat) { }
+        public static void DrawTexture(Rect screenRect, Texture texture, Rect sourceRect, int leftBorder, int rightBorder, int topBorder, int bottomBorder, Color color, Material mat) { }
+        public static void Blit(Texture source, RenderTexture dest) { }
+    }
     public struct RenderTextureDescriptor { public RenderTextureDescriptor(int w, int h) { width = w; height = h; colorFormat = default; depthBufferBits = 0; msaaSamples = 1; sRGB = false; graphicsFormat = default; useMipMap = false; } public RenderTextureDescriptor(int w, int h, RenderTextureFormat f, int d) : this(w, h) { colorFormat = f; depthBufferBits = d; } public int width; public int height; public RenderTextureFormat colorFormat; public int depthBufferBits; public int msaaSamples; public bool sRGB; public Experimental.Rendering.GraphicsFormat graphicsFormat; public bool useMipMap; }
     public sealed class Sprite : Object
     {

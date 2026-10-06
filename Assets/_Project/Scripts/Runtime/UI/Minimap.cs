@@ -70,6 +70,8 @@ namespace ARPG
             };
             pixels = new Color32[b.width * b.height];
             BuildUi();
+            // The whole map once (what earlier visits explored), then only the cells explored since.
+            Redraw();
         }
 
         void OnDestroy()
@@ -84,12 +86,22 @@ namespace ARPG
                 return;
 
             var cell = IsoMath.GroundToCell(IsoMath.WorldToGround(player.position));
-            dirty |= reveal.RevealAround(cell);
+            newlyExplored.Clear();
+            if (reveal.RevealAround(cell, newlyExplored))
+            {
+                // Only the cells just explored are painted; the whole map only when it is built or opened.
+                var area = layout.Bounds;
+                foreach (var explored in newlyExplored)
+                    pixels[explored.x - area.xMin + (explored.y - area.yMin) * area.width] = layout.Get(explored) == DungeonCell.Wall ? WallColor : FloorColor;
+                MarkAll();
+                dirty = true;
+            }
 
             redrawTimer -= Time.unscaledDeltaTime;
             if (dirty && redrawTimer <= 0f)
             {
-                Redraw();
+                texture.SetPixels32(pixels);
+                texture.Apply(false);
                 dirty = false;
                 redrawTimer = RedrawSeconds;
             }
@@ -111,7 +123,7 @@ namespace ARPG
         {
             largeView.SetActive(!largeView.activeSelf);
             if (largeView.activeSelf)
-                dirty = true;
+                Redraw();
         }
 
         void Redraw()
@@ -127,14 +139,20 @@ namespace ARPG
                     pixels[x + y * b.width] = color;
                 }
 
+            MarkAll();
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+        }
+
+        readonly System.Collections.Generic.List<Vector2Int> newlyExplored = new System.Collections.Generic.List<Vector2Int>(256);
+
+        void MarkAll()
+        {
             Mark(layout.StairsUp, StairsUpColor);
             if (layout.HasStairsDown)
                 Mark(layout.StairsDown, StairsDownColor);
             for (var i = 0; i < layout.Chests.Count; i++)
                 Mark(layout.Chests[i], GameSession.Current.IsOpened(chestKeys[i]) ? OpenChestColor : ChestColor);
-
-            texture.SetPixels32(pixels);
-            texture.Apply(false);
         }
 
         /// <summary>Draws a 3 by 3 marker, only once the player has seen that spot.</summary>
