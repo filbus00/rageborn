@@ -89,6 +89,9 @@ Enemies with ranged or area attacks show telegraphs.
 
 ## Enemy behavior
 
+**Decided (the owner, 2026-10-06): on the Vigil's road (05) the enemies are a stream of packs from the open rift, coming at her awake, stronger the closer she is to the rift; no timers.** What follows describes each enemy's behaviour and still holds; the placed, idle packs are replaced.
+
+
 Enemies use one of six archetypes. Each has a state machine of Idle, Aggro, Approach, Attack, Recover and Death.
 
 | Archetype | Behavior | Counterplay |
@@ -113,6 +116,9 @@ Each elite carries one or two of these, chosen at spawn: Molten (leaves fire poo
 Bosses use phases. Each boss has three phases with a distinct attack set and an arena hazard. The stick is the only counter. Boss design rule: a player at gear parity dies to a boss only through repeated telegraph mistakes, never through unavoidable damage.
 
 ## Death and recovery
+
+**Decided (the owner, 2026-10-06): on the Vigil's road (05), she wakes at the last lit beacon and loses some gold (proposed: 10 percent of carried gold). Her gear stays on her; no corpse.** The rules below are the earlier corpse run, kept as history.
+
 
 - On death the character falls and is sent to the town.
 - The character loses its equipped gear at the death spot, where a corpse marks it. The gear is regained by walking to the corpse and picking it up. The backpack, gold and the Stash are kept.

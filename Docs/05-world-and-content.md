@@ -8,6 +8,38 @@ Tone: grim, weathered, quiet. Color palette is desaturated stone, ash and rust, 
 
 **Decided (the owner, 2026-10-05): no acts.** The game is one town (Emberwatch) above one dungeon of 24 levels that changes gradually with depth (no hard sections), with a boss every 6 levels, the Cinder Warden at 6. Things happen in town by depth reached: newcomers arrive (a stash keeper at depth 2, a healer at 4, a gambler at 8, a trainer at 12). The act structure, towns and per-act tables below are kept as a source of enemies, bosses and looks for the deeper levels, not as structure. Where they disagree with this paragraph, this paragraph wins.
 
+## The Vigil's road (decided 2026-10-06)
+
+The owner, 2026-10-06: the game as it was is "hard balance and make challenging in a fun way. There is no sense of progress or overcoming hard stuff". The dungeon levels become "open 'hell rifts' from which demons spawn in a never ending stream until you close the rift", so that "when you are undergeared you will not be able to handle the stream of a higher level rift". Then: "closed rifts cannot be reopened, that makes the progress clear but that all rifts have an internal rising dificulty. So that if you need to farm, you can farm a hard rifts first waves before you need to retreat"; and "if possible, no timers and stuff like that. The player enters a dungon. The rift has broken trough in there. The dungeon is in the shape of a long corridor leading forwards (up on the phone). The player pushes against the endlessly streaming demons. When the player closes a rift (about 24 total). Another rift further up the dungeon coridor breaks open and the player needs to push trough again close the rift further up the coridor."
+
+This replaces the 24 levels descended by stairs (Structure, Getting around, Level generation below keep their text as history and as the source of looks, enemies and bosses). Where they disagree, this section wins.
+
+**Story (decided: "The Watch's beacons").** Below Emberwatch runs the Vigil's road, the old Watch's road into the deep, with a beacon fire on every stretch. The beacons went dark and Hell broke through, a rift on each stretch. She takes an ember from the town's fire and goes down to relight them. Each rift she closes relights its beacon; the demons fear its light. The First Watchman, who let the fires die, waits at the top of the road.
+
+**Decided (the owner's answers, 2026-10-06):**
+
+- The road is one long, wide hall going up the screen, with pillars, rubble and small side rooms for chests and cover ("Wide hall, some side rooms").
+- One rift is open at a time, at the top of the current stretch. Demons come out of it in **packs, in surges** (a pack every few seconds), and come down the hall at her ("Packs in surges").
+- **No timers.** What makes the stream harder is **how close she is to the rift**: the nearer, the denser and stronger the packs ("Closeness to rift"). Stepping back makes it easier, so how far up she can hold is the gear check.
+- **Loot gets better the closer to the rift she fights** ("Yes, by closeness"): farming is holding the line as far up as she can.
+- A rift closes when she reaches it and **kills its guardian**, which comes through when she gets there ("Kill a guardian"). Every sixth guardian is a boss: the Cinder Warden (6), the Tidewife (12), Saint Marrow (18), the First Watchman (24).
+- **Closed rifts stay closed.** Closing a rift lights its beacon, "and the demons from the stream above fear the light and do not pass further": everything below a lit beacon is safe. Then the next rift breaks open further up the hall.
+- Coming back from town, she starts **at the last lit beacon** ("At the last closed rift").
+- **Death:** she wakes at the last lit beacon and **loses some gold** ("Back to waystone, lose gold"). This replaces the corpse run (01).
+- A push from a beacon to a closed rift takes **about 5 minutes** for a character geared right for it ("About 5 minutes").
+- About **24 rifts**. After the last, the road goes on past the last beacon to **a rift that never closes**: its stream only grows up the hall, and how far up she can hold is the endgame and its best loot ("An endless rift").
+
+**Proposed (Claude, to review):**
+
+- **The hall** winds up the screen in legs that run along the tile grid (up-left, then up-right, in turn), 8 to 10 tiles wide, so its walls stay straight lines; side rooms open off the legs. A stretch is about 70 units of hall from beacon to rift.
+- **Closeness** runs from 0 at the beacon to 1 at the rift, by how far up the hall she is. Packs are levelled by it: the stretch's level (the old depth curve: 1, 2, 3, 4, 5, 7, then 0.6 a level) at the beacon, plus 3 at the rift; champions and elites grow more common toward the rift; packs grow from 3 to 6. Their drops follow their level, as now.
+- **The stream:** a new pack every 3 to 6 seconds (faster near the rift), while fewer than 18 demons are awake on the stretch. To keep pace in a 70-unit hall, packs join the stream a screen ahead of her, up the hall toward the rift, never behind her and never in sight; they come down at her awake.
+- **The guardian** comes through when she is within 6 units of the rift: an elite of the stretch's mix at the rift's level, or the boss on every sixth stretch (in its arena at the top of the stretch). While the guardian lives the stream keeps coming; when it dies the stream stops, the rift closes and the beacon lights.
+- **The beacon's light** reaches 8 units; demons will not come within it. A lit beacon is also a waystone: the Waystone in town and the beacons jump between lit beacons.
+- **Death** costs 10 percent of carried gold.
+- **Newcomers** in town arrive by beacons lit (the stash keeper at 2, the healer at 4, the gambler at 8, the trainer at 12), the old "deepest depth".
+- **The next stretch:** past a lit beacon the hall goes on up; walking off the top of the stretch loads the next one, starting at that beacon.
+
 ## Story outline
 
 1. Act 1, Ashfields: the first fire dies. The player gathers survivors at a ruined chapel.
