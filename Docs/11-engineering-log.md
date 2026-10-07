@@ -848,3 +848,23 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   - A stepped walk up the hall measured about 1.4 ms a frame on the Mac, with one frame over 15 ms in 900. GPU cost and
     the phone are unmeasured.
 - 597 of 597 tests pass. The Bag's new figure was checked from its render texture, not on the phone.
+
+## 2026-10-07: the road reverted; the 30 fps drop explained
+
+- The owner: "lets restore the latest changes, go back to regular dungeon structure, no streaming enemies". These
+  files went back to the pets commit (7d17415): `DungeonLevel`, `DungeonGenerator` (`PortalTomeDepth` 3 again),
+  `EnemyManager` and `EnemyController` (no beacon light, no `Relentless`), `GameSession` (no `FallOnRoad`),
+  `DeathFlow` (the corpse run) and `TownDressing`. `Road.cs`, `RiftStream.cs` and `RoadTests.cs` were deleted. The one
+  later change kept in `DungeonLevel`: the ground painter shades its own cells, so `ShadeGround` runs only for the
+  fallback floors.
+- Kept: `CharacterPortrait` (the crisp Bag figure); the minimap, flow field and spatial hash touching only what
+  changed; `GroundPainter` on worker threads; the cap of 48 drops on the ground, now checked whether or not a spare
+  drop is pooled; `DeviceBenchmark`, now on the player's deepest dungeon level.
+- The drop to 30 fps after 2 to 3 minutes: the device benchmark on the owner's save showed frames of exactly 33.3 ms
+  with only about 10 ms of main thread work, 3 ms of render thread and 1.6 ms of GPU. The game went back to 60 by
+  itself at about 2.5 minutes, and dropped again later. The cause is the player setting "Adjust iOS FPS based on
+  thermal state" (`adjustIOSFPSUsingThermalState: 1`, 30 fps when iOS reports the phone's thermal state as serious, 15
+  when critical; `UnityAppController+Thermal.mm`). It is left on until the owner decides.
+- The benchmark is started by `benchmark.flag` in the app's Documents folder (`xcrun devicectl device copy to ...
+  --domain-type appDataContainer`). Launch arguments do not reach the game on iOS. A run in the background, or on a
+  locked phone, pauses.

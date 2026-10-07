@@ -170,20 +170,18 @@ namespace ARPG
                 : item.Rarity == ItemRarity.Magic ? SoundId.DropMagic : SoundId.DropCommon);
         }
 
-        /// <summary>At most this many drops lie on the ground: a rift's stream drops without end (the Vigil's road,
-        /// 2026-10-06), and every name on the ground is laid out four times a second.</summary>
+        /// <summary>At most this many drops lie on the ground (2026-10-06): every name on the ground is laid out four
+        /// times a second, and with a full backpack even wanted items stay lying.</summary>
         public const int MaxOnGround = 48;
 
         bool warnedPool;
 
         LootDrop TakeDrop()
         {
-            if (pool.Count > 0)
-                return pool.Pop();
-
             // Over the cap, the oldest item her pick-up rule leaves lying makes room; failing that (a full backpack
             // leaves even wanted items lying, and they piled up without end, 2026-10-07), the oldest item that is not a
-            // legendary.
+            // legendary. Checked whether or not a spare drop is pooled: the pool grows as drops are picked up, and
+            // checking only when it was empty let 75 lie on the ground (the device benchmark, 2026-10-07).
             if (active.Count >= MaxOnGround)
             {
                 for (var i = 0; i < active.Count; i++)
@@ -199,6 +197,8 @@ namespace ARPG
                         return pool.Pop();
                     }
             }
+            if (pool.Count > 0)
+                return pool.Pop();
 
             if (!warnedPool)
             {

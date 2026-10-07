@@ -8,11 +8,13 @@ Tone: grim, weathered, quiet. Color palette is desaturated stone, ash and rust, 
 
 **Decided (the owner, 2026-10-05): no acts.** The game is one town (Emberwatch) above one dungeon of 24 levels that changes gradually with depth (no hard sections), with a boss every 6 levels, the Cinder Warden at 6. Things happen in town by depth reached: newcomers arrive (a stash keeper at depth 2, a healer at 4, a gambler at 8, a trainer at 12). The act structure, towns and per-act tables below are kept as a source of enemies, bosses and looks for the deeper levels, not as structure. Where they disagree with this paragraph, this paragraph wins.
 
-## The Vigil's road (decided 2026-10-06)
+## The Vigil's road (decided 2026-10-06, reverted 2026-10-07)
+
+**Reverted (the owner, 2026-10-07): "lets restore the latest changes, go back to regular dungeon structure, no streaming enemies".** The dungeon is again 24 levels descended by stairs with packs placed in rooms (Structure, Getting around, Level generation below). This section is kept as the record of the idea; nothing in it is built.
 
 The owner, 2026-10-06: the game as it was is "hard balance and make challenging in a fun way. There is no sense of progress or overcoming hard stuff". The dungeon levels become "open 'hell rifts' from which demons spawn in a never ending stream until you close the rift", so that "when you are undergeared you will not be able to handle the stream of a higher level rift". Then: "closed rifts cannot be reopened, that makes the progress clear but that all rifts have an internal rising dificulty. So that if you need to farm, you can farm a hard rifts first waves before you need to retreat"; and "if possible, no timers and stuff like that. The player enters a dungon. The rift has broken trough in there. The dungeon is in the shape of a long corridor leading forwards (up on the phone). The player pushes against the endlessly streaming demons. When the player closes a rift (about 24 total). Another rift further up the dungeon coridor breaks open and the player needs to push trough again close the rift further up the coridor."
 
-This replaces the 24 levels descended by stairs (Structure, Getting around, Level generation below keep their text as history and as the source of looks, enemies and bosses). Where they disagree, this section wins.
+It was to replace the 24 levels descended by stairs.
 
 **Story (decided: "The Watch's beacons").** Below Emberwatch runs the Vigil's road, the old Watch's road into the deep, with a beacon fire on every stretch. The beacons went dark and Hell broke through, a rift on each stretch. She takes an ember from the town's fire and goes down to relight them. Each rift she closes relights its beacon; the demons fear its light. The First Watchman, who let the fires die, waits at the top of the road.
 

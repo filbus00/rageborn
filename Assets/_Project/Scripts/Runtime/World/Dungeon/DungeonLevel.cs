@@ -5,12 +5,10 @@ using UnityEngine.Tilemaps;
 namespace ARPG
 {
     /// <summary>
-    /// Builds the stretch of the Vigil's road the player is heading to when the dungeon scene loads (Docs/05, "The
-    /// Vigil's road", 2026-10-06; the depth is the stretch's number): generates it from the session's dungeon seed
-    /// (<see cref="RoadGenerator"/>), paints the tilemaps, places the player, the ways down and on, the chests, the
-    /// beacons and, while it is open, the rift and its stream (<see cref="RiftStream"/>). It runs before the
-    /// <see cref="EnemyManager"/> bakes its navigation grid from those tilemaps. The old levels' generator
-    /// (<see cref="DungeonGenerator"/>, placed packs, stairs down) is kept for its looks and tests, not built.
+    /// Builds the dungeon level the player is heading to when the dungeon scene loads: generates its layout from the
+    /// session's dungeon seed and the depth (<see cref="DungeonGenerator"/>), paints the tilemaps, and places the
+    /// player, the stairs, the chests and the packs. It runs before the <see cref="EnemyManager"/> bakes its
+    /// navigation grid from those tilemaps, and before the packs spawn their members.
     /// </summary>
     [DefaultExecutionOrder(-200)]
     public class DungeonLevel : MonoBehaviour
@@ -68,9 +66,6 @@ namespace ARPG
         string levelId;
         int depth;
         int levelSeed;
-        RoadLayout road;
-        Transform levelRoot;
-        GameObject riftLook;
 
         public DungeonLayout Layout { get; private set; }
 
@@ -96,13 +91,31 @@ namespace ARPG
 
             levelId = DungeonRules.LevelId(depth);
             LevelContext.Set(levelId);
-            // The first stretch's rift is open from the start: the open rift's stretch is kept as the deepest depth,
-            // which only closing a rift raises (newcomers come by it).
-            session.ReachDepth(1);
+            // The deepest depth reached brings newcomers to town (2026-10-05); the first time, a banner says who.
+            if (session.ReachDepth(depth) && Newcomers.TryArrivingAt(depth, out var newcomer))
+                arrivalNotice = $"Word from town: a {Newcomers.Name(newcomer).ToLowerInvariant()} has arrived.";
+
+            var shapes = new List<RoomShape>();
+            foreach (var template in rooms)
+            {
+                var shape = template != null ? template.TryGetShape() : null;
+                if (shape != null)
+                    shapes.Add(shape);
+            }
+            if (shapes.Count == 0)
+            {
+                Debug.LogError("[ARPG] The dungeon has no usable room templates.", this);
+                return;
+            }
+
+            var settings = new DungeonSettings();
+            if (normalEnemy != null)
+                settings.NormalAggroRange = normalEnemy.AggroRange;
+            if (eliteEnemy != null)
+                settings.EliteAggroRange = eliteEnemy.AggroRange;
 
             levelSeed = DungeonRules.LevelSeed(session.DungeonSeed, depth);
-            road = RoadGenerator.Generate(levelSeed, depth);
-            Layout = road.Layout;
+            Layout = DungeonGenerator.Generate(levelSeed, depth, shapes, settings);
 
             Paint();
             RescueCorpses(session);
@@ -117,23 +130,25 @@ namespace ARPG
                 PlacePlayer(ArrivalCell(arrival));
             }
 
-            var root = new GameObject("Stretch " + depth).transform;
-            levelRoot = root;
-            // The way back down the road: to the top of the stretch below, or the town.
+            var root = new GameObject("Level " + depth).transform;
             if (depth > 1)
                 AddStairs(root, "Stairs Up", Layout.StairsUp, dungeonScene, depth - 1, Arrival.FromBelow);
             else
                 AddStairs(root, "Stairs Up", Layout.StairsUp, townScene, 0, Arrival.FromAbove);
+            if (Layout.HasStairsDown)
+                AddStairs(root, "Stairs Down", Layout.StairsDown, dungeonScene, depth + 1, Arrival.FromAbove);
 
             for (var i = 0; i < Layout.Chests.Count; i++)
                 AddChest(root, i, Layout.Chests[i]);
 
-            SetUpRoad(session, root);
+            for (var i = 0; i < Layout.Packs.Count; i++)
+                AddPack(root, i, Layout.Packs[i]);
 
-            // The bottom beacon's waystone (Docs/05: a lit beacon is a waystone); the Wanderer with the Portal Tome on
-            // its stretch; an open portal.
+            if (Layout.HasBossArena)
+                SetUpBoss(session, root);
+
+            // Docs/05: a waypoint on every level; the Wanderer with the Portal Tome on its depth; an open portal.
             Waypoint.Create(depth, IsoMath.CellToGround(Layout.Waypoint), root);
-            session.ActivateWaypoint(depth);
             if (depth == DungeonRules.PortalTomeDepth && Layout.HasWandererSpot)
                 Wanderer.Create(IsoMath.CellToGround(Layout.WandererSpot), root);
             if (session.PortalDepth == depth)
@@ -161,15 +176,26 @@ namespace ARPG
         /// The stairs stand near the arena's far edge, not in its middle, so walking over to the boss's loot does not end
         /// the level.
         /// </summary>
-        BossFight SetUpBoss(GameSession session, System.Action defeated)
+        void SetUpBoss(GameSession session, Transform root)
         {
             var key = levelId + "/Boss";
+            var stairsCell = Layout.StairsDown;
+            void AddWayOn()
+            {
+                if (depth < DungeonRules.Depths)
+                    AddStairs(root, "Stairs Down", stairsCell, dungeonScene, depth + 1, Arrival.FromAbove);
+                else
+                    AddStairs(root, "Stairs To Town", stairsCell, townScene, 0, Arrival.FromAbove);
+            }
             if (session.IsKilled(key, 0))
-                return null;
+            {
+                AddWayOn();
+                return;
+            }
             if (bossEnemy == null)
             {
                 Debug.LogError("[ARPG] The boss arena has no boss definition.", this);
-                return null;
+                return;
             }
 
             // The boss of this depth (2026-10-05: one every 6 levels) and the adds it calls; a missing deep boss falls
@@ -197,127 +223,9 @@ namespace ARPG
                     fight = new GameObject("Cinder Warden Fight").AddComponent<CinderWardenFight>();
                     break;
             }
-            fight.Configure(definition, adds, RoadRules.GuardianLevel(depth), IsoMath.CellToGround(Layout.BossArenaCenter),
-                Layout.BossArenaRadius * 0.7071f, key, defeated);
-            return fight;
-        }
-
-        // --- The Vigil's road (Docs/05, 2026-10-06) --------------------------------------------------------------------
-
-        static readonly Color BeaconColor = new Color(1f, 0.62f, 0.28f);
-        static readonly Color RiftColor = new Color(0.9f, 0.12f, 0.1f);
-
-        /// <summary>The bottom beacon always burns; a closed stretch's top beacon too, with the way on open; an open
-        /// stretch has its rift, its stream and its guardian (the boss on every sixth).</summary>
-        void SetUpRoad(GameSession session, Transform root)
-        {
-            var enemies = FindAnyObjectByType<EnemyManager>();
-            PlaceBeacon(root, road.BottomBeacon, enemies);
-            if (RoadRules.IsClosed(depth, session.DeepestDepth))
-            {
-                LightTop(enemies);
-                return;
-            }
-
-            riftLook = PlaceRift(root, road.Rift);
-            PreloadRoster();
-            var stream = new GameObject("Rift Stream").AddComponent<RiftStream>();
-            stream.transform.SetParent(root, false);
-            var fight = Layout.HasBossArena ? SetUpBoss(session, stream.Close) : null;
-            stream.Configure(depth, road.Path, IsoMath.CellToGround(road.Rift), RollPack, eliteEnemy, fight, OnRiftClosed);
-            arrivalNotice ??= RoadRules.IsEndless(depth)
-                ? "The rift that never closes. Hold the road as far up as you can."
-                : $"Rift {depth} of {RoadRules.Rifts}. Push up the road and slay its guardian.";
-        }
-
-        // The looks of every demon this stretch's stream is likely to send, loaded now behind the fade: loaded on a
-        // kind's first appearance instead, mid-fight, each cost a hitch of about 70 ms in the editor (2026-10-06).
-        void PreloadRoster()
-        {
-            var seen = new HashSet<EnemyDefinition>();
-            void Add(EnemyDefinition definition)
-            {
-                if (definition != null && seen.Add(definition))
-                    EnemyAnimationSet.For(definition.SpriteCharacter);
-            }
-            Add(championEnemy);
-            Add(eliteEnemy);
-            for (var i = 0; i < 48; i++)
-                foreach (var member in RollPack(PackKind.Normal, 5, -1 - i))
-                    Add(member);
-        }
-
-        // A pack for the stream: the stretch's mix (PackComposition, by the stretch as its depth), a champion leading
-        // some, or a pair of elites.
-        EnemyDefinition[] RollPack(PackKind kind, int count, int index)
-        {
-            if (kind == PackKind.Elite)
-            {
-                var elites = new EnemyDefinition[count];
-                for (var i = 0; i < count; i++)
-                    elites[i] = eliteEnemy != null ? eliteEnemy : normalEnemy;
-                return elites;
-            }
-            var members = PackComposition.Roll(Mathf.Min(depth, RoadRules.Rifts), kind, count, levelSeed, 1000 + index);
-            var perSlot = new EnemyDefinition[members.Length];
-            for (var i = 0; i < members.Length; i++)
-                perSlot[i] = Definition(members[i]);
-            if (kind == PackKind.WithChampion && perSlot.Length > 0 && championEnemy != null)
-                perSlot[0] = championEnemy;
-            return perSlot;
-        }
-
-        void OnRiftClosed()
-        {
-            var session = GameSession.Current;
-            var next = depth + 1;
-            var message = "The beacon burns again. A rift tears open further up the road.";
-            if (session.ReachDepth(next) && Newcomers.TryArrivingAt(next, out var newcomer))
-                message += $" Word from town: a {Newcomers.Name(newcomer).ToLowerInvariant()} has arrived.";
-            session.ActivateWaypoint(next);
-            if (riftLook != null)
-                Destroy(riftLook);
-            LightTop(FindAnyObjectByType<EnemyManager>());
-            HintBanner.Current?.Show(message);
-            Sfx.Play(SoundId.Hint);
-            SaveDirector.SaveNow();
-        }
-
-        // The top beacon lit and the way on up the road open.
-        void LightTop(EnemyManager enemies)
-        {
-            PlaceBeacon(levelRoot, road.TopBeacon, enemies);
-            if (Layout.HasStairsDown)
-                AddStairs(levelRoot, "Stairs Down", Layout.StairsDown, dungeonScene, depth + 1, Arrival.FromAbove);
-        }
-
-        // A beacon fire: the brazier and a wide warm light; demons will not come into it.
-        void PlaceBeacon(Transform parent, Vector2Int cell, EnemyManager enemies)
-        {
-            var go = new GameObject("Beacon");
-            go.transform.SetParent(parent, false);
-            go.transform.position = CellWorld(cell);
-            walls.SetTile(new Vector3Int(cell.x, cell.y, 0), DungeonArt.Prop(PropKind.Brazier));
-            var light = WorldLights.Add(go.transform, BeaconColor, 1.5f, 0.5f, RoadRules.LightRadius, 0.6f);
-            if (light != null)
-                go.AddComponent<FlickerLight>().Init(light, cell.x * 0.7f + cell.y);
-            if (enemies != null)
-                enemies.AddSafeLight(IsoMath.CellToGround(cell), RoadRules.LightRadius);
-        }
-
-        // The rift: a torn summoning circle, a dark red tear standing over it and a pulsing red light.
-        GameObject PlaceRift(Transform parent, Vector2Int cell)
-        {
-            var go = new GameObject("Rift");
-            go.transform.SetParent(parent, false);
-            go.transform.position = CellWorld(cell);
-            WorldArt.Place("ritual_circle", go.transform, go.transform.position, true);
-            TravelArt.Standing(go.transform, 1.3f, 2.8f, new Color(0.35f, 0.02f, 0.04f, 0.95f));
-            TravelArt.GroundRing(go.transform, 3.2f, new Color(RiftColor.r, RiftColor.g, RiftColor.b, 0.5f));
-            var light = WorldLights.Add(go.transform, RiftColor, 1.6f, 0.5f, 6f, 0.8f);
-            if (light != null)
-                go.AddComponent<FlickerLight>().Init(light, cell.x + cell.y * 0.3f);
-            return go;
+            fight.Configure(definition, adds, Layout.EnemyLevel, IsoMath.CellToGround(Layout.BossArenaCenter),
+                Layout.BossArenaRadius * 0.7071f, key,
+                AddWayOn);
         }
 
         /// <summary>A corpse on this level whose spot is no longer floor (the generator changed since it fell) moves to
@@ -379,7 +287,7 @@ namespace ARPG
                 for (var x = 0; x < bounds.width; x++)
                     if (groundTiles[x + y * bounds.width] != null)
                         floorCells.Add(new Vector2Int(bounds.xMin + x, bounds.yMin + y));
-            // The painter shades its cells as it paints them; the fallback floors are tinted tile by tile.
+            // The painter shades its cells as it paints them (2026-10-06); the fallback floors are tinted tile by tile.
             if (!GroundPainter.PaintDungeon(ground, floorCells, Layout.Decals))
             {
                 ground.SetTilesBlock(area, groundTiles);
@@ -433,10 +341,6 @@ namespace ARPG
         {
             var bounds = Layout.Bounds;
             var torches = 0;
-            // The road's long halls (2026-10-06): about one leg in two keeps a torch, thinned by a hash so they spread
-            // along the whole hall rather than filling the cap with the cells scanned first; at most 48 lights.
-            var maxTorches = Mathf.Clamp(Layout.Rooms.Count / 2, MaxWallTorches, 48);
-            var keepShare = Mathf.Min(1f, MaxWallTorches * 4f / Mathf.Max(1, Layout.Rooms.Count * 2));
             for (var x = bounds.xMin; x < bounds.xMax; x++)
                 for (var y = bounds.yMin; y < bounds.yMax; y++)
                 {
@@ -454,7 +358,7 @@ namespace ARPG
                         ? FaceDetails[(int)(WallHash(x, y, 3) * FaceDetails.Length) % FaceDetails.Length]
                         : TopDetails[(int)(WallHash(x, y, 3) * TopDetails.Length) % TopDetails.Length];
                     var torch = name == "wall_torch";
-                    if (torch && (torches >= maxTorches || WallHash(x, y, 7) > keepShare))
+                    if (torch && torches >= MaxWallTorches)
                         name = "wall_chains";
                     if (onFace)
                         name += faceX && (!faceY || WallHash(x, y, 4) < 0.5f) ? "_x" : "_y";

@@ -48,7 +48,7 @@ Players aged 18 to 45 who know Diablo, Path of Exile or Vampire Survivors style 
 | Engine | Unity 6000.6.2f1 with the Universal Render Pipeline in 2D mode, see 07-technical.md | User |
 | Camera and art | Isometric view (2:1 dimetric), 2D frame-by-frame sprites pre-rendered from 3D models in 8 directions, 16 for the player (2026-09-27, replaces skeletal animation), isometric Tilemap for the world | User |
 | Gear on the character | Gear oriented like Diablo 2: equipped gear is displayed on the character (2026-09-27). Weapon, off-hand, helm and chest armour show; looks come in tiers by item level, and every legendary has its own. See 03-itemization.md, Appearance | User |
-| Game structure | **The Vigil's road (2026-10-06, replacing the descent by stairs below):** a safe town above one long hall going up the screen, where rifts from Hell have broken through. Each rift streams demon packs without end until she pushes up to it and kills its guardian; the rift closes for good, its beacon lights, and the next rift breaks open further up the hall. About 24 rifts, then an endless one. No timers. See 05-world-and-content.md, "The Vigil's road". Before: Diablo 1 style, a dungeon descended level by level with packs placed in rooms, idle until aggro, never a horde | User |
+| Game structure | Diablo 1 style: a safe town, then a dungeon descended level by level. Not a survivor or horde game: enemies are packs placed in rooms, idle until aggro, and killed enemies stay dead | User |
 | Town | A walkable scene with no enemies. NPCs open their panels when the player walks up to them. The way into the dungeon is a stairway the player walks into | User |
 | Dungeon | Diablo 1 style descent by stairs. **One town above one dungeon of 24 seeded levels** (the owner, 2026-10-05: "Skip the acts, lets just progress deeper into the dungeon and then have things happen in town depending on how deep you go"). It changes gradually with depth, no hard sections; a boss every 6 levels (the Cinder Warden at 6). Newcomers arrive in town as the player goes deeper: a stash keeper at depth 2, a healer at 4, a gambler at 8, a trainer at 12. Replaces five acts of 6 levels, each with its own town | User |
 | Players | Single player, offline first | Recommendation |
@@ -57,7 +57,7 @@ Players aged 18 to 45 who know Diablo, Path of Exile or Vampire Survivors style 
 | Weapons | Bows only (2026-09-30): short bows and longbows, with a quiver in the off-hand. The game is an action RPG that only uses bows | User |
 | Recurring content | No weekly seed, weekly challenges or similar live content | User |
 | Online features | None in 1.0: no leaderboards and no Game Center. iCloud save sync stays, because it only copies the save between the player's own devices through Apple | User |
-| Death | She wakes at the last lit beacon and loses some gold (2026-10-06, replacing the corpse run: the character sent to town, its equipped gear left at its corpse), see 01-core-gameplay.md | User |
+| Death | The character is sent to town and loses its equipped gear until it reaches its corpse, see 01-core-gameplay.md | User |
 | Menus | No separate pause menu. One inventory button opens stats, inventory, equipped gear, loadout, Settings and the loot filter, and pauses the game | User |
 
 ## Scope for version 1.0
