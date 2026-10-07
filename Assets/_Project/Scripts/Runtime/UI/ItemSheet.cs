@@ -187,17 +187,17 @@ namespace ARPG
             subtitle.text = $"Item level {item.ItemLevel}   ·   {position}" +
                             (Selling && !showingEquipped ? $"   ·   <color=#F0C840>sells for {SellRules.Price(item)} gold</color>" : "");
 
-            var worn = showingEquipped ? item : equipment.Get(PowerScore.PlaceFor(equipment, item, session.Level, session.PassiveTree.Bonuses));
+            var worn = showingEquipped ? item : equipment.Get(PowerScore.PlaceFor(equipment, item, session.Level, session.Talents.Bonuses));
             if (showingEquipped)
             {
-                var now = PowerScore.Evaluate(equipment, session.Level, session.PassiveTree.Bonuses);
+                var now = PowerScore.Evaluate(equipment, session.Level, session.Talents.Bonuses);
                 power.text = $"Damage per second {now.DamagePerSecond:0.#}   ·   Effective life {now.EffectiveLife:0}";
                 power.color = NeutralColor;
             }
             else
             {
-                var before = PowerScore.Evaluate(equipment, session.Level, session.PassiveTree.Bonuses);
-                var after = PowerScore.WithItem(equipment, item, session.Level, session.PassiveTree.Bonuses);
+                var before = PowerScore.Evaluate(equipment, session.Level, session.Talents.Bonuses);
+                var after = PowerScore.WithItem(equipment, item, session.Level, session.Talents.Bonuses);
                 var change = before.Score > 0f ? after.Score / before.Score - 1f : 0f;
                 power.text = $"{Arrow(change)} Power {change * 100f:+0;-0;0}%\n" +
                              $"<size=28>Damage per second {before.DamagePerSecond:0.#} → {after.DamagePerSecond:0.#}   ·   " +
@@ -212,20 +212,18 @@ namespace ARPG
         }
 
         // A named legendary's power, its home (the Codex shows it once found; Docs/03) and a Build tag when its power
-        // names a skill in the loadout (the power score cannot weigh powers, so this says why it matters).
+        // names a skill she has learned (the power score cannot weigh powers, so this says why it matters).
         static string LegendaryText(Item item, GameSession session)
         {
             var legendary = item.LegendaryDefinition;
             if (legendary == null)
                 return "";
             var build = false;
-            for (var slot = 0; slot < SkillLoadout.SlotCount; slot++)
-            {
-                var skill = session.Loadout.SkillAt(slot);
-                var definition = skill != null ? ClassSkills.Load()?.Find(skill) : null;
-                if (definition != null && legendary.Power.Contains(definition.DisplayName))
-                    build = true;
-            }
+            var classSkills = ClassSkills.Load();
+            if (classSkills != null)
+                foreach (var definition in classSkills.Skills)
+                    if (definition != null && session.Talents.Knows(definition.name) && legendary.Power.Contains(definition.DisplayName))
+                        build = true;
             var text = new StringBuilder();
             text.Append("<color=#FF9A3D>").Append(legendary.Power).Append("</color>");
             if (build)

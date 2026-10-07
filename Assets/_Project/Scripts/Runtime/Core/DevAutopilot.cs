@@ -218,7 +218,7 @@ namespace ARPG
         void OnPickedUp(Item item)
         {
             rarityFound[(int)item.Rarity]++;
-            if (PowerScore.IsUpgrade(session.Equipment, item, session.Level, session.PassiveTree.Bonuses))
+            if (PowerScore.IsUpgrade(session.Equipment, item, session.Level, session.Talents.Bonuses))
                 session.EquipFromInventory(item);
             else
                 session.Discard(item);

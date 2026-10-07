@@ -267,6 +267,8 @@ namespace ARPG
             SkillLevels.Changed += RaiseModified;
             PassiveTree = new PassiveTree();
             PassiveTree.Changed += RaiseModified;
+            Talents = new TalentState();
+            Talents.Changed += RaiseModified;
             // Stat points change max life, armor and the rest, so they raise Changed (which raises Modified) too.
             Attributes = new AttributePoints();
             Attributes.Changed += NotifyChanged;
@@ -426,6 +428,10 @@ namespace ARPG
         /// nothing can be bought and its bonuses stay zero; it is kept until the code reading it is cleared out.</summary>
         public PassiveTree PassiveTree { get; }
 
+        /// <summary>The Wild Arrow's three talent trees (2026-10-07): the skills she has learned and the passive bonuses
+        /// every system reads (the retired Wrathborn's <see cref="PassiveTree"/> stays, hidden and empty).</summary>
+        public TalentState Talents { get; }
+
         /// <summary>The stat points spent on the five attributes (Docs/02, decided 2026-09-30). Its changes raise
         /// <see cref="Changed"/>.</summary>
         public AttributePoints Attributes { get; }
@@ -576,10 +582,10 @@ namespace ARPG
         public bool RespecSkills()
         {
             var price = RespecRules.SkillsPrice(Level);
-            if (Gold < price || SkillLevels.Spent == 0)
+            if (Gold < price || Talents.Spent == 0)
                 return false;
             Gold -= price;
-            SkillLevels.ResetAll();
+            Talents.ResetAll();
             NotifyChanged();
             return true;
         }
@@ -623,7 +629,7 @@ namespace ARPG
         {
             if (item == null || !Inventory.Contains(item))
                 return false;
-            return EquipFromInventory(item, PowerScore.PlaceFor(Equipment, item, Level, PassiveTree.Bonuses));
+            return EquipFromInventory(item, PowerScore.PlaceFor(Equipment, item, Level, Talents.Bonuses));
         }
 
         /// <summary>Wears a backpack item in a chosen place, as when it is dragged onto a slot (the owner, 2026-10-03): a
@@ -693,7 +699,7 @@ namespace ARPG
             into.Clear();
             var gold = 0;
             foreach (var item in Inventory.Items)
-                if (SellRules.InBulkSale(item, rarity, PowerScore.IsUpgrade(Equipment, item, Level, PassiveTree.Bonuses)))
+                if (SellRules.InBulkSale(item, rarity, PowerScore.IsUpgrade(Equipment, item, Level, Talents.Bonuses)))
                 {
                     into.Add(item);
                     gold += SellRules.Price(item);
@@ -906,7 +912,7 @@ namespace ARPG
 
                 // Compared in the place it was worn, so the corpse's second ring is weighed against the second hand.
                 var worn = newEquipment.Get(slot);
-                if (worn == null || PowerScore.ChangeAt(newEquipment, slot, found, Level, PassiveTree.Bonuses) > 0f)
+                if (worn == null || PowerScore.ChangeAt(newEquipment, slot, found, Level, Talents.Bonuses) > 0f)
                     newEquipment = newEquipment.Equip(slot, found, toBag);
                 else
                 {

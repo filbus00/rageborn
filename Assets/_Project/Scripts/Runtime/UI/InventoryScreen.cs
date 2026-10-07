@@ -153,6 +153,7 @@ namespace ARPG
             if (sheet != null)
                 sheet.Hide();
             LoadoutScreen.CloseIfOpen();
+            TalentScreen.CloseIfOpen();
             PassiveTreeScreen.CloseIfOpen();
             StatsScreen.CloseIfOpen();
             CodexScreen.CloseIfOpen();
@@ -466,7 +467,7 @@ namespace ARPG
             var maxLife = health != null ? health.MaxLife : CombatFormulas.CharacterLife(current.Level) + current.AttributeBonuses.Life + equipment.TotalLifeBonus;
             var life = health != null ? health.Fraction * maxLife : maxLife;
             var armor = health != null ? health.Armor : equipment.TotalArmor;
-            var tree = current.PassiveTree.Bonuses;
+            var tree = current.Talents.Bonuses;
             var attributes = current.AttributeBonuses;
             var crit = equipment.CriticalChancePercent + tree.CriticalChance + attributes.CriticalChance;
             var speed = (equipment.AttackSpeedPercent / 100f + tree.AttackSpeed + attributes.AttackSpeed) * 100f;
@@ -649,7 +650,7 @@ namespace ARPG
                 var index = i;
                 tile.gameObject.AddComponent<Button>().onClick.AddListener(() => sheet.ShowBackpack(items, index));
                 Draggable(tile, item, null);
-                if (PowerScore.IsUpgrade(current.Equipment, item, current.Level, current.PassiveTree.Bonuses))
+                if (PowerScore.IsUpgrade(current.Equipment, item, current.Level, current.Talents.Bonuses))
                 {
                     var arrow = UiStyle.Text(tile.transform, "▲", 30, ItemSheet.GainColor, TextAnchor.MiddleCenter);
                     UiStyle.Place(arrow.rectTransform, new Vector2(1f, 1f), new Vector2(-6f, -4f), new Vector2(40f, 40f));
@@ -677,15 +678,14 @@ namespace ARPG
             bar.offsetMin = new Vector2(16f, 8f);
             bar.offsetMax = new Vector2(-16f, 8f + TabsHeight - 8f);
 
-            // Docs/02 and Q4: the loadout opens at level 9; before that the page shows while there are skill points to
-            // spend. Stats (Docs/02, 2026-09-30, in the retired passive tree's place): 5 points every level from 2.
-            var skillPoints = current.SkillLevels.Available(current.Level);
+            // The talent trees (2026-10-07, in place of the loadout and skill points): a point a level from 2. Stats
+            // (Docs/02, 2026-09-30): 5 points every level from 2.
+            var skillPoints = current.Talents.Available(current.Level);
             var statPoints = current.Attributes.Available(current.Level);
             var tabs = new List<(string label, System.Action open, bool enabled, bool active)>
             {
                 ("Inventory", null, true, true),
-                (skillPoints > 0 ? $"Skills +{skillPoints}" : "Skills", LoadoutScreen.Open,
-                    current.Level >= LoadoutScreen.OpensAtLevel || skillPoints > 0, false),
+                (skillPoints > 0 ? $"Talents +{skillPoints}" : "Talents", TalentScreen.Open, true, false),
                 (statPoints > 0 ? $"Stats +{statPoints}" : "Stats", StatsScreen.Open, true, false),
                 ("Codex", CodexScreen.Open, true, false),
                 ("Settings", SettingsScreen.Open, true, false),
@@ -722,7 +722,7 @@ namespace ARPG
             var items = current.Inventory.Items;
             var any = false;
             for (var i = 0; i < items.Count && !any; i++)
-                any = PowerScore.IsUpgrade(current.Equipment, items[i], current.Level, current.PassiveTree.Bonuses);
+                any = PowerScore.IsUpgrade(current.Equipment, items[i], current.Level, current.Talents.Bonuses);
             upgradeBadge.gameObject.SetActive(any);
         }
 

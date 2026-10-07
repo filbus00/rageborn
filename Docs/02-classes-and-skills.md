@@ -70,6 +70,25 @@ Skill levels: the Wrathborn's rules stand (below, "Skill levels 1 to 20"): a ski
 
 Skill tags (proposed): Split Arrow Projectile, Cone; Pierce Arrow Projectile, Pierce; Homing Arrow Projectile, Homing; Explosive Arrow Projectile, Area. 03's skill level affixes follow them.
 
+### Talent trees (decided 2026-10-07; replaces the loadout, skill levels and "all at level 1")
+
+The owner: "rebuild the skill system. Character starts with just regular bow attack", then, one question at a time: a skill tree with points per level; three trees; Hunter-style (Marksmanship, Beast Mastery, Survival); mostly passives, some skills; 1 point a level from level 2 (59 at level 60); every learned skill is cast automatically (no loadout, no slots).
+
+Rules (Claude's, to review): 6 rows a tree; a row opens with 5 points spent in that tree (Vanilla WoW's rule); some nodes need another to be full first. A skill node is one point and teaches the skill; "Improved" nodes (3 ranks) add 15 percent of the skill's damage a rank. Learned skills fire in the class order with their default trigger. The Trainer resets all talents for 50 gold a character level. The talents are worn on top of the stat points (above), which stay.
+
+Trees (Claude's contents and numbers, to review; the code is `TalentRules` in `Talents.cs`):
+
+| Row | Marksmanship | Beast Mastery | Survival |
+|---|---|---|---|
+| 0 | **Pierce Arrow**; Steady Aim (+1 crit chance, 5) | **Homing Arrow**; Kindred Spirit (+10% pet damage, 5) | **Knockback Shot**; Fleet Foot (+2% move speed, 3) |
+| 1 | Improved Pierce; Lethal Shots (+6 crit damage, 5) | Endurance Training (+2% life, 5); Thick Hide (+15% pet life, 3, needs Kindred Spirit) | Evasion (+1% dodge, 5); Toughness (+3% armor, 5) |
+| 2 | **Split Arrow**; Mortal Shots (+3% damage, 3) | **Hunter's Breath**; Improved Homing | **Explosive Arrow**; Fire Arrows (+4% ignite, 3) |
+| 3 | **Kill Shot**; Improved Split | Bestial Discipline (+10% Focus regeneration, 3); Ferocity (+3% damage, 3) | Improved Explosive; Frost Arrows (+5% chill, 3) |
+| 4 | Improved Kill Shot; Bow Mastery (+2% attack speed, 5) | **Wild Frenzy**; Spirit Bond (+1 life on hit, 3) | Improved Knockback; Deterrence (4% less damage from elites, 3) |
+| 5 | **Barrage** | The Beast Within (+50% pet damage, +10% attack speed) | Readiness (skills back 15% sooner) |
+
+The skill tables above keep each skill's numbers; their "Unlock" column, the loadout, triggers chosen per slot and skill levels no longer apply.
+
 ### Attributes and stat points (decided 2026-09-30: no passive tree)
 
 The owner: "No skill trees, add stat points to spend on attributes", with the attributes "Strength, agility, vitality, speed, and one more", the fifth chosen as Focus. This replaces the passive tree and the automatic attribute growth (Q6) for the Wild Arrow; the Attributes table above is the retired classes'. Effects per point (proposed, the owner approved the split):

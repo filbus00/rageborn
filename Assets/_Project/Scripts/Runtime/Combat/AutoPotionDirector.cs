@@ -74,7 +74,7 @@ namespace ARPG
             if (heal > 0f)
             {
                 // Iron Lungs (the passive tree) heals 50 percent instead of the potion's 40.
-                var tree = GameSession.Current.PassiveTree.Bonuses;
+                var tree = GameSession.Current.Talents.Bonuses;
                 health.Heal(heal * health.MaxLife * (tree.PotionHeal > 0f ? tree.PotionHeal / AutoPotion.HealFraction : 1f));
             }
 

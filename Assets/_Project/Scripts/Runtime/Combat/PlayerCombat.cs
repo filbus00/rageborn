@@ -6,13 +6,9 @@ namespace ARPG
     /// <summary>
     /// The player's automatic combat from Docs/01-core-gameplay.md. The class is the Wild Arrow (Docs/02-classes-and-skills.md,
     /// bows only since 2026-09-30): every frame it picks a target in the bow's reach and in sight, looses the basic arrow at
-    /// the attack rate, and fires the skills in the four
-    /// loadout slots (<see cref="SkillLoadout"/>) in slot order whenever the global cast timer is free, the skill is off
-    /// cooldown and paid for, a valid target or area exists and the slot's trigger passes: the skill's own (Docs/02's
-    /// trigger column) or one of its two alternatives (<see cref="SkillTriggerRules"/>). The class's eight skills:
-    /// Ground Breaker, Hurl Axe, Bull Rush and Hew (the M1 slice), Battle Roar and Blood Frenzy (buffs), Rending Spin (a
-    /// channel that holds back the lower slots and the basic attack while it spins) and Skullsplitter (an execute).
-    /// The skills are still the retired Wrathborn's until the Wild Arrow's are built; they cost Focus, which starts full,
+    /// the attack rate, and fires every skill she has learned in the talent trees (<see cref="TalentState"/>, since
+    /// 2026-10-07; she starts with the bow alone) in class order whenever the global cast timer is free, the skill is off
+    /// cooldown and paid for, a valid target or area exists and its default trigger passes. Skills cost Focus, which starts full,
     /// regenerates and grows with every basic arrow that hits (<see cref="FocusPool"/>); Stillness adds damage
     /// (<see cref="StanceStacks"/>).
     /// There is no input: movement is the only thing the player controls.
@@ -79,7 +75,9 @@ namespace ARPG
         [SerializeField] SkillDefinition[] skills;
 
         // Which class skill each loadout slot holds (an index into skills), -1 for none.
-        readonly int[] slotSkill = { -1, -1, -1, -1 };
+        // The skills she has learned in the talent trees, in the class's order (cast priority): every one fires on its own
+        // trigger (2026-10-07: no loadout). Indices into skills.
+        int[] slotSkill = new int[0];
         float stillSeconds;
 
         // Buffs (Battle Roar, Blood Frenzy): what they add and how long is left.
@@ -251,10 +249,11 @@ namespace ARPG
 
         public float SkillCooldownRemaining(int slot) => cooldowns != null && slot >= 0 && slot < cooldowns.Length ? cooldowns[slot] : 0f;
 
-        /// <summary>Whether the class skill at this index is unlocked at the character's level.</summary>
+        /// <summary>Whether the class skill at this index has been learned in the talent trees (she starts with only her
+        /// bow, 2026-10-07).</summary>
         public bool IsUnlocked(int skillIndex) =>
             skills != null && skillIndex >= 0 && skillIndex < skills.Length && skills[skillIndex] != null &&
-            SkillRules.IsUnlocked(skills[skillIndex].UnlockLevel, GameSession.Current.Level);
+            GameSession.Current.Talents.Knows(skills[skillIndex].name);
 
         /// <summary>The skill in a loadout slot, or null.</summary>
         public SkillDefinition SlotSkill(int slot) =>
@@ -313,8 +312,7 @@ namespace ARPG
             focus.Fill();
             knownLevel = session.Level;
             session.LeveledUp += OnLeveledUp;
-            session.Loadout.Changed += RefreshSlots;
-            session.Loadout.Fill(ClassSkillList(), session.Level, session.Level);
+            session.Talents.Changed += RefreshSlots;
             RefreshSlots();
             if (health != null)
                 health.HitTaken += OnHitTaken;
@@ -327,7 +325,7 @@ namespace ARPG
             if (session != null)
             {
                 session.LeveledUp -= OnLeveledUp;
-                session.Loadout.Changed -= RefreshSlots;
+                session.Talents.Changed -= RefreshSlots;
             }
             if (health != null)
                 health.HitTaken -= OnHitTaken;
@@ -335,36 +333,24 @@ namespace ARPG
 
         void RefreshSlots()
         {
-            for (var s = 0; s < slotSkill.Length; s++)
-            {
-                var id = session.Loadout.SkillAt(s);
-                slotSkill[s] = -1;
-                for (var i = 0; i < skills.Length && id != null; i++)
-                    if (skills[i] != null && skills[i].name == id)
-                        slotSkill[s] = i;
-            }
+            var learned = new List<int>(skills.Length);
+            for (var i = 0; i < skills.Length; i++)
+                if (IsUnlocked(i))
+                    learned.Add(i);
+            slotSkill = learned.ToArray();
+            channelSlot = -1;
         }
 
         void OnHitTaken(float damage) => focus.MarkCombat();
 
-        // Docs/02: a new skill equips itself; say so above the character, after the level callout.
+        // A talent point comes with every level (2026-10-07): say so above the character, after the level callout.
         void OnLeveledUp(int level)
         {
-            var levels = new List<int>(skills.Length);
-            foreach (var skill in skills)
-                levels.Add(skill != null ? skill.UnlockLevel : int.MaxValue);
-            var unlocked = SkillRules.NewlyUnlocked(levels, knownLevel, level);
-            // A new skill takes an empty slot by itself; with the four full it waits in the Bag's Skills page.
-            session.Loadout.Fill(ClassSkillList(), level, knownLevel);
             knownLevel = level;
             if (player == null)
                 return;
-            for (var i = 0; i < unlocked.Count; i++)
-            {
-                var equipped = session.Loadout.SlotOf(skills[unlocked[i]].name) >= 0;
-                DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 2.3f + 0.5f * i, 0f),
-                    "NEW SKILL: " + skills[unlocked[i]].DisplayName + (equipped ? "" : " (Bag > Skills)"), NewSkillColor, 46);
-            }
+            DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 2.3f, 0f),
+                "+1 TALENT POINT (Bag > Talents)", NewSkillColor, 46);
         }
 
         void Update()
@@ -378,10 +364,10 @@ namespace ARPG
 
             // Until the Wild Arrow's attributes replace the tree (Docs/02): Will adds to Focus regeneration, and the tree's
             // Berserker doubles the gain from hits below half life.
-            var tree = session.PassiveTree.Bonuses;
+            var tree = session.Talents.Bonuses;
             // The Focus attribute (Docs/02): faster regeneration and a larger pool.
             var attributes = session.AttributeBonuses;
-            focus.RegenMultiplier = 1f + attributes.FocusRegen;
+            focus.RegenMultiplier = 1f + attributes.FocusRegen + tree.FocusRegen;
             // Eye of the Storm: faster with enemies close (counted from last frame's query).
             if (session.Equipment.Wears(LegendaryId.EyeOfTheStorm) && CountAround(origin, Legendaries.StormRadius) >= Legendaries.StormEnemies)
                 focus.RegenMultiplier *= 1f + Legendaries.StormRegenBonus;
@@ -488,7 +474,7 @@ namespace ARPG
         void BasicAttack(Vector2 origin, Vector2 aim)
         {
             var equipment = GameSession.Current.Equipment;
-            var tree = session.PassiveTree.Bonuses;
+            var tree = session.Talents.Bonuses;
             attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + AttackSpeedBuff +
                                                     tree.AttackSpeed + tree.AttackSpeedPerMomentum * player.Stance.Momentum +
                                                     session.AttributeBonuses.AttackSpeed + equipment.GripAttackSpeedBonus +
@@ -580,7 +566,7 @@ namespace ARPG
                 var skill = skills[i];
                 if (CostOf(skill) > focus.Current)
                     continue;
-                if (!Ready(skill, session.Loadout.TriggerAt(s), origin, aim, target, out var skillTarget))
+                if (!Ready(skill, SkillTrigger.Default, origin, aim, target, out var skillTarget))
                     continue;
                 Cast(i, s, skill, origin, aim, skillTarget);
                 return;
@@ -751,7 +737,8 @@ namespace ARPG
             focus.TrySpend(cost);
             if (skill.RageGain > 0f)
                 focus.Gain(skill.RageGain);
-            var cdr = GameSession.Current.Equipment.CooldownReductionPercent / 100f + session.AttributeBonuses.CooldownReduction;
+            var cdr = GameSession.Current.Equipment.CooldownReductionPercent / 100f + session.AttributeBonuses.CooldownReduction +
+                      session.Talents.Bonuses.CooldownReduction;
             var cooldown = skill.CooldownSeconds;
             // Falconer's Hood: Homing Arrow comes back 2 s sooner.
             if (skill.Kind == SkillKind.HomingShot && session.Equipment.Wears(LegendaryId.FalconersHood))
@@ -969,7 +956,7 @@ namespace ARPG
 
         void StartBuff(Vector2 origin, SkillDefinition skill)
         {
-            var level = session.SkillLevels.LevelOf(skill.name);
+            const int level = 1; // Buffs no longer level (2026-10-07: talents in place of skill points).
             if (skill.BuffDamage > 0f)
             {
                 damageBuff = SkillLevels.Buff(skill.BuffDamage, level);
@@ -1279,8 +1266,8 @@ namespace ARPG
         {
             var equipment = session.Equipment;
             var stance = player.Stance;
-            shot.IgniteChance = equipment.IgniteChancePercent / 100f;
-            shot.ChillChance = equipment.ChillChancePercent / 100f;
+            shot.IgniteChance = equipment.IgniteChancePercent / 100f + session.Talents.Bonuses.IgniteChance;
+            shot.ChillChance = equipment.ChillChancePercent / 100f + session.Talents.Bonuses.ChillChance;
             if (shot.Style == ShotStyle.Pierce)
                 shot.PierceLeft = int.MaxValue;
             if (equipment.Wears(LegendaryId.MagpiesNest))
@@ -1569,7 +1556,7 @@ namespace ARPG
             Afflict(enemy, shot);
             OnArrowHit(ref shot, enemy, wasBleeding, bleed);
             if (shot.Style == ShotStyle.Basic)
-                focus.Gain(FocusPool.PerBasicHit + session.PassiveTree.Bonuses.RagePerBasicHit);
+                focus.Gain(FocusPool.PerBasicHit + session.Talents.Bonuses.RagePerBasicHit);
             else
                 focus.MarkCombat();
 
@@ -1878,7 +1865,7 @@ namespace ARPG
                 hits++;
                 Strike(enemy, DamageOf(chargeSkill, chargeSkill.DamageMultiplier), movementSkill: true);
                 // Crashing Wave (the passive tree): each enemy hit takes a second off Bull Rush's cooldown.
-                var refund = session.PassiveTree.Bonuses.BullRushRefund;
+                var refund = session.Talents.Bonuses.BullRushRefund;
                 if (refund > 0f)
                     for (var c = 0; c < skills.Length; c++)
                         if (skills[c] == chargeSkill)
@@ -1905,7 +1892,7 @@ namespace ARPG
         /// damage number, and the kill's hit stop. Returns whether it killed.</summary>
         bool Strike(EnemyController enemy, float multiplier, bool movementSkill = false, bool projectile = false, bool forceCrit = false)
         {
-            var tree = session.PassiveTree.Bonuses;
+            var tree = session.Talents.Bonuses;
             var attributes = session.AttributeBonuses;
             var critical = forceCrit || Random.value < (GameSession.Current.Equipment.CriticalChancePercent + tree.CriticalChance + attributes.CriticalChance) / 100f;
             lastCritical = critical;
@@ -1931,16 +1918,17 @@ namespace ARPG
             return false;
         }
 
-        /// <summary>A skill's damage multiplier at its level (Docs/02's proposal: plus 7 percent of level 1 a level).</summary>
+        /// <summary>A skill's damage multiplier: its own, raised by its "Improved" talent (2026-10-07; skill points and
+        /// levels are gone).</summary>
         float DamageOf(SkillDefinition skill, float levelOneMultiplier) =>
-            SkillLevels.Damage(levelOneMultiplier, session.SkillLevels.LevelOf(skill.name));
+            levelOneMultiplier * (1f + session.Talents.SkillDamage(skill.name));
 
         /// <summary>The hit formula for this character against an enemy: the gear's modifiers, Stillness and Battle
         /// Roar as increased damage.</summary>
         float Damage(EnemyController enemy, float multiplier, bool critical, bool movementSkill = false, bool projectile = false)
         {
             var equipment = GameSession.Current.Equipment;
-            var tree = session.PassiveTree.Bonuses;
+            var tree = session.Talents.Bonuses;
             var increased = equipment.IncreasedDamagePercent / 100f + player.Stance.IncreasedDamage + (damageBuffTimer > 0f ? damageBuff : 0f);
             // Strength, on every arrow (Docs/02, the Wild Arrow's attributes).
             var attributes = session.AttributeBonuses;
@@ -1993,7 +1981,7 @@ namespace ARPG
 
         void HealOnHit(int hits)
         {
-            var tree = session.PassiveTree.Bonuses;
+            var tree = session.Talents.Bonuses;
             var lifeOnHit = (GameSession.Current.Equipment.LifeOnHit + tree.LifeOnHit) * (1f + tree.MoreLifeOnHit);
             if (hits > 0 && lifeOnHit > 0f && health != null)
                 health.Heal(lifeOnHit * hits);

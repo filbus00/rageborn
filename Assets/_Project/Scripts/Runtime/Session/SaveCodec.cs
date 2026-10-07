@@ -29,7 +29,14 @@ namespace ARPG
             MigrateFrom11, // 11 to 12: stat points and pets did not exist. The save director sets such a save aside anyway.
             MigrateFrom12, // 12 to 13: no named legendaries existed; no item is one and nothing is in the Codex.
             MigrateFrom13, // 13 to 14: no deepest depth or stash existed; the deepest is the deepest waypoint, the stash empty.
+            MigrateFrom14, // 14 to 15: no talents existed; nothing is learned and every point is unspent (skill points are not carried over).
         };
+
+        static SaveData MigrateFrom14(SaveData data)
+        {
+            data.talents = new List<TalentData>();
+            return data;
+        }
 
         static SaveData MigrateFrom13(SaveData data)
         {
@@ -155,6 +162,14 @@ namespace ARPG
             return list;
         }
 
+        static List<TalentData> CaptureTalents(TalentState talents)
+        {
+            var list = new List<TalentData>();
+            foreach (var pair in talents.All)
+                list.Add(new TalentData { id = pair.Key, rank = pair.Value });
+            return list;
+        }
+
         static List<string> CaptureLoadoutSkills(SkillLoadout loadout)
         {
             var skills = new List<string>(SkillLoadout.SlotCount);
@@ -222,6 +237,7 @@ namespace ARPG
                 loadoutTriggers = CaptureLoadoutTriggers(session.Loadout),
                 loadoutChosen = session.Loadout.Chosen,
                 skillLevels = CaptureSkillLevels(session.SkillLevels),
+                talents = CaptureTalents(session.Talents),
                 passiveNodes = new List<string>(session.PassiveTree.Bought),
                 activeKeystone = session.PassiveTree.ActiveKeystone ?? "",
                 attributePoints = new List<int>(session.Attributes.ToArray()),
@@ -294,6 +310,8 @@ namespace ARPG
             RestoreLoadout(session.Loadout, data);
             foreach (var entry in data.skillLevels ?? new List<SkillLevelData>())
                 session.SkillLevels.Restore(entry.skill, entry.level);
+            foreach (var entry in data.talents ?? new List<TalentData>())
+                session.Talents.Restore(entry.id, entry.rank);
             session.PassiveTree.Restore(data.passiveNodes, string.IsNullOrEmpty(data.activeKeystone) ? null : data.activeKeystone);
             session.Attributes.Restore(data.attributePoints);
             session.Pets.Restore(data.pets, data.activePet, data.petRules, warnings);

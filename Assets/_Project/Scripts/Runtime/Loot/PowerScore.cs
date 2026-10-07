@@ -80,7 +80,7 @@ namespace ARPG
 
         /// <summary>The character's own gear, level and tree.</summary>
         public static PowerSnapshot Evaluate(GameSession session) =>
-            Evaluate(session.Equipment, session.Level, session.PassiveTree.Bonuses, session.AttributeBonuses);
+            Evaluate(session.Equipment, session.Level, session.Talents.Bonuses, session.AttributeBonuses);
 
         /// <summary>
         /// Where <paramref name="candidate"/> would be worn: its own slot, or for a ring an empty hand, else the hand

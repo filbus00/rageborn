@@ -350,8 +350,8 @@ namespace ARPG
             var session = GameSession.Current;
             subtitle.text = $"{Gold(session.Gold)}.  Spend the points again in the Bag.";
             var skills = RespecRules.SkillsPrice(session.Level);
-            Row($"<b>Reset skill points</b>\n<size=28><color=#CCCCCC>{session.SkillLevels.Spent} spent</color></size>", $"Reset {skills:N0}",
-                session.Gold >= skills && session.SkillLevels.Spent > 0, () =>
+            Row($"<b>Reset talent points</b>\n<size=28><color=#CCCCCC>{session.Talents.Spent} spent</color></size>", $"Reset {skills:N0}",
+                session.Gold >= skills && session.Talents.Spent > 0, () =>
                 {
                     if (session.RespecSkills())
                         Sfx.Play(SoundId.LevelUp, 0.6f);

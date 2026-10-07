@@ -99,13 +99,13 @@ namespace ARPG.Tests
             // A level 10 character, made the way a save makes one.
             var session = SaveCodec.Restore(new SaveData { version = SaveData.CurrentVersion, level = 10 }, 1);
             Assert.IsTrue(session.Attributes.Spend(Attribute.Strength, session.Level));
-            session.SkillLevels.Restore("SplitArrow", 3);
+            session.Talents.Restore("split_arrow", 1);
             Assert.IsFalse(session.RespecStats(), "no gold");
             session.AddGold(RespecRules.StatsPrice(10) + RespecRules.SkillsPrice(10));
             Assert.IsTrue(session.RespecStats());
             Assert.AreEqual(0, session.Attributes.TotalSpent);
             Assert.IsTrue(session.RespecSkills());
-            Assert.AreEqual(0, session.SkillLevels.Spent);
+            Assert.AreEqual(0, session.Talents.Spent);
             Assert.AreEqual(0, session.Gold);
         }
 

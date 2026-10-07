@@ -893,3 +893,8 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   trim round it; the tip falls behind and a cowl lies on the shoulders. The mask and the falconer's hood share it.
   Checked from the game's camera in 8 directions (`head_dirs.py` in the session scratchpad) and in the baked sheets
   stacked with the quiver and bow. Rebaked the hood, mask and falconer only (81 sheets, 158 s).
+
+## 2026-10-07: talent trees
+
+The owner asked for the skill system rebuilt: she starts with the bow alone and learns skills from three Hunter-style trees (answers in Docs/08). `TalentRules` (pure, `Session/Talents.cs`) holds 33 nodes in Marksmanship, Beast Mastery and Survival, 6 rows each, a row opening with 5 points in its tree; `TalentState` holds the ranks, the blocker text, `Knows(skill)`, `SkillDamage(skill)` and the summed `PassiveBonuses` (new effects FocusRegen, CooldownReduction, PetDamage, PetLife, IgniteChance, ChillChance). Every place that read the hidden passive tree's bonuses reads `GameSession.Talents.Bonuses` now. `PlayerCombat` fills its slots with every learned skill in class order (default triggers, skill level 1 times the Improved bonus), refreshed on `Talents.Changed`; a level up says "+1 TALENT POINT". The Bag's Skills tab became Talents (`TalentScreen`: tree tabs, a 6 by 3 grid, detail and Learn). The Trainer resets talents. Save format 15 adds `talents` (id and rank); a 14 loads with none. `SkillLoadout`, `SkillLevels` and `LoadoutScreen` are unused but kept, as is their save data. Tests: `TalentTests` (6) and the Trainer test moved to talents; 597 of 597 pass in Unity.
+

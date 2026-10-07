@@ -132,7 +132,7 @@ namespace ARPG
             if (Disengaged)
                 firing.Clear();
             // The passive tree's Momentum and Stillness changes (Docs/02), read live like the gear.
-            var tree = GameSession.Current.PassiveTree.Bonuses;
+            var tree = GameSession.Current.Talents.Bonuses;
             stance.MomentumStep = tree.MomentumStepSeconds > 0f ? tree.MomentumStepSeconds : StanceStacks.MomentumStepSeconds;
             stance.MomentumGrace = tree.MomentumGraceSeconds > 0f ? tree.MomentumGraceSeconds : StanceStacks.MomentumGraceSeconds;
             // Hide of the Running Stag (Docs/03) raises the cap too.

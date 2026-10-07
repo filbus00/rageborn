@@ -130,7 +130,7 @@ namespace ARPG
         static float MaxLifeOf(PetKind kind)
         {
             var session = GameSession.Current;
-            return PetRules.MaxLife(kind, session.Level) * (1f + session.Equipment.AffixTotal(AffixId.PetLife) / 100f);
+            return PetRules.MaxLife(kind, session.Level) * (1f + session.Equipment.AffixTotal(AffixId.PetLife) / 100f + session.Talents.Bonuses.PetLife);
         }
 
         void OnEnable() => Current = this;
@@ -348,7 +348,7 @@ namespace ARPG
                 attackAnimation = attackLength;
             }
             var damage = CombatFormulas.HitDamage(equipment.WeaponDamage, definition.DamageFactor, 0f,
-                equipment.AffixTotal(AffixId.PetDamage) / 100f, 1f,
+                equipment.AffixTotal(AffixId.PetDamage) / 100f + session.Talents.Bonuses.PetDamage, 1f,
                 critical, criticalDamage, target.Definition.Armor, target.Level);
             var world = IsoMath.GroundToWorld(target.GroundPosition);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);

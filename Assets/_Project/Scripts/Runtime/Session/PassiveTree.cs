@@ -17,6 +17,9 @@ namespace ARPG
         MomentumStepSeconds, MomentumGraceSeconds, MovementSkillDamage, AttackSpeedPerMomentum, MomentumCap, BullRushRefund,
         LessDamageFromElites, PotionHeal, LowLifeReduction, MoreLifeOnHit, StillnessCap,
         Berserker, Juggernaut,
+
+        // The Wild Arrow's talent trees (2026-10-07, Talents.cs): fractions.
+        FocusRegen, CooldownReduction, PetDamage, PetLife, IgniteChance, ChillChance,
     }
 
     public sealed class PassiveNode
@@ -302,6 +305,10 @@ namespace ARPG
         public float LessDamageFromElites, PotionHeal, LowLifeReduction, MoreLifeOnHit, StillnessCap;
         public bool Berserker, Juggernaut;
 
+        /// <summary>The talent trees' own (fractions): Focus regeneration, cooldown reduction, pet damage and life, and
+        /// the chance an arrow ignites or chills.</summary>
+        public float FocusRegen, CooldownReduction, PetDamage, PetLife, IgniteChance, ChillChance;
+
         public void Add(PassiveEffect effect, float value)
         {
             switch (effect)
@@ -334,6 +341,12 @@ namespace ARPG
                 case PassiveEffect.StillnessCap: StillnessCap += value; break;
                 case PassiveEffect.Berserker: Berserker = true; break;
                 case PassiveEffect.Juggernaut: Juggernaut = true; break;
+                case PassiveEffect.FocusRegen: FocusRegen += value; break;
+                case PassiveEffect.CooldownReduction: CooldownReduction += value; break;
+                case PassiveEffect.PetDamage: PetDamage += value; break;
+                case PassiveEffect.PetLife: PetLife += value; break;
+                case PassiveEffect.IgniteChance: IgniteChance += value; break;
+                case PassiveEffect.ChillChance: ChillChance += value; break;
             }
         }
     }

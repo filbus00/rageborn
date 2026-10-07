@@ -19,8 +19,9 @@ namespace ARPG
         /// waypoints, the Portal Tome and an open portal. 9: adds the skill loadout. 10: adds skill levels. 11: adds the passive tree.
         /// 12: bows only, the Wild Arrow (2026-09-30): adds spent stat points and pets. A save older than 12 is the retired
         /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses. 13: adds each
-        /// item's named legendary and the legendaries seen (the Codex).</summary>
-        public const int CurrentVersion = 14;
+        /// item's named legendary and the legendaries seen (the Codex). 14: the deepest depth and the stash. 15: the talent
+        /// trees' ranks (2026-10-07; skill levels and the loadout are kept in the file but no longer used).</summary>
+        public const int CurrentVersion = 15;
 
         public int version;
 
@@ -103,6 +104,16 @@ namespace ARPG
         // town, and the Stash Keeper's chest.
         public int deepestDepth;
         public List<ItemData> stash = new List<ItemData>();
+
+        // Version 15 (2026-10-07): the ranks bought in the talent trees, by talent id; she starts with only her bow.
+        public List<TalentData> talents = new List<TalentData>();
+    }
+
+    [Serializable]
+    public sealed class TalentData
+    {
+        public string id;
+        public int rank;
     }
 
     [Serializable]

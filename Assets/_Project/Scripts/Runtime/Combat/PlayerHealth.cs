@@ -49,7 +49,7 @@ namespace ARPG
         /// <summary>Armor from equipped Chest and Helm pieces: their base value by item level plus any Armor affix.</summary>
         public float Armor =>
             (GameSession.Current.Equipment.TotalArmor + GameSession.Current.AttributeBonuses.Armor) *
-            (1f + GameSession.Current.PassiveTree.Bonuses.ArmorPercent + PetRules.ArmorBonus(GameSession.Current.Pets.Active));
+            (1f + GameSession.Current.Talents.Bonuses.ArmorPercent + PetRules.ArmorBonus(GameSession.Current.Pets.Active));
 
         void Awake()
         {
@@ -83,7 +83,7 @@ namespace ARPG
                 return;
 
             var stance = player != null ? player.Stance : null;
-            var tree = session.PassiveTree.Bonuses;
+            var tree = session.Talents.Bonuses;
             var dodge = Mathf.Min(0.5f, stance != null
                 ? stance.DodgeChance + tree.Dodge + session.AttributeBonuses.Dodge + session.Equipment.DodgePercent / 100f
                 : 0f);
@@ -159,6 +159,6 @@ namespace ARPG
         static float ComputeMaxLife() =>
             (CombatFormulas.CharacterLife(GameSession.Current.Level) + GameSession.Current.AttributeBonuses.Life +
              GameSession.Current.Equipment.TotalLifeBonus) *
-            (1f + GameSession.Current.PassiveTree.Bonuses.LifePercent + PetRules.LifeBonus(GameSession.Current.Pets.Active));
+            (1f + GameSession.Current.Talents.Bonuses.LifePercent + PetRules.LifeBonus(GameSession.Current.Pets.Active));
     }
 }
