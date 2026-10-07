@@ -905,6 +905,15 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   for the cape. Rebaked the hood, mask and falconer only (81 sheets) and checked the sheets stacked as the game
   stacks them.
 
+- Fourth pass, the same day (the owner: facing right it looks good; facing left "the hood does not cover the left
+  side of the characters face"). Her idle and run lean and turn her head, and the hood was weighted rigidly (head,
+  neck, chest in bands), so in a pose its parts slid apart and the face opening swung off her face on one side.
+  `Builder.add` now takes a weight function, and the hood blends Head into Neck into Spine2 down its height (smooth
+  from 1.6 to 1.38), so it bends like cloth. The face opening is smaller (x 0.085, y 1.6 plus or minus 0.105, only
+  on faces more than 0.1 forward) and the hood's front is deeper (0.2), so the sides cover her cheeks in profile.
+  Checked by sampling idle, run and attack on her body and the hood in Unity (`AnimationMode.SampleAnimationClip`,
+  8 directions), then in the baked sheets.
+
 ## 2026-10-07: talent trees
 
 The owner asked for the skill system rebuilt: she starts with the bow alone and learns skills from three Hunter-style trees (answers in Docs/08). `TalentRules` (pure, `Session/Talents.cs`) holds 33 nodes in Marksmanship, Beast Mastery and Survival, 6 rows each, a row opening with 5 points in its tree; `TalentState` holds the ranks, the blocker text, `Knows(skill)`, `SkillDamage(skill)` and the summed `PassiveBonuses` (new effects FocusRegen, CooldownReduction, PetDamage, PetLife, IgniteChance, ChillChance). Every place that read the hidden passive tree's bonuses reads `GameSession.Talents.Bonuses` now. `PlayerCombat` fills its slots with every learned skill in class order (default triggers, skill level 1 times the Improved bonus), refreshed on `Talents.Changed`; a level up says "+1 TALENT POINT". The Bag's Skills tab became Talents (`TalentScreen`: tree tabs, a 6 by 3 grid, detail and Learn). The Trainer resets talents. Save format 15 adds `talents` (id and rank); a 14 loads with none. `SkillLoadout`, `SkillLevels` and `LoadoutScreen` are unused but kept, as is their save data. Tests: `TalentTests` (6) and the Trainer test moved to talents; 597 of 597 pass in Unity.

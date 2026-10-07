@@ -70,11 +70,14 @@ class Builder:
         return V(self.arm.data.bones["mixamorig:" + name].tail_local)
 
     def add(self, verts, faces, bone, color, fixed=False):
-        g = self.groups.setdefault("mixamorig:" + bone, len(self.groups))
+        """bone is a bone name, or a function of a corner giving [(bone, weight), ...] (the hood: cloth that bends
+        from the head down to the shoulders instead of tearing at a seam)."""
         vs = []
         for co in verts:
             v = self.bm.verts.new(co)
-            v[self.deform][g] = 1.0
+            for name, weight in (bone(co) if callable(bone) else [(bone, 1.0)]):
+                if weight > 0:
+                    v[self.deform][self.groups.setdefault("mixamorig:" + name, len(self.groups))] = weight
             vs.append(v)
         for f in faces:
             try:
@@ -568,7 +571,7 @@ def in_face(p, grow=1.0):
     return p.z > 0.03 and (p.x / (FACE_RX * grow)) ** 2 + ((p.y - FACE_Y) / (FACE_RY * grow)) ** 2 < 1
 
 
-HOOD_FACE = (1.6, 0.105, 0.118)  # the face opening: centre height, half width, half height
+HOOD_FACE = (1.6, 0.085, 0.105)  # the face opening: centre height, half width, half height
 
 
 def hood_shape(b, body, color, dark):
@@ -585,11 +588,11 @@ def hood_shape(b, body, color, dark):
         (1.785, 0.075, 0.06, 0.075, -0.1),
         (1.76, 0.12, 0.105, 0.13, -0.055),
         (1.725, 0.158, 0.152, 0.172, -0.022),
-        (1.66, 0.18, 0.183, 0.188, 0.0),
-        (1.60, 0.178, 0.185, 0.185, 0.0),
-        (1.545, 0.165, 0.175, 0.178, -0.005),
-        (1.50, 0.152, 0.15, 0.168, -0.01),
-        (1.47, 0.2, 0.16, 0.18, -0.02),
+        (1.66, 0.185, 0.2, 0.19, 0.0),
+        (1.60, 0.185, 0.205, 0.188, 0.0),
+        (1.545, 0.18, 0.2, 0.182, -0.005),
+        (1.50, 0.18, 0.185, 0.175, -0.01),
+        (1.47, 0.205, 0.18, 0.18, -0.02),
         (1.435, 0.25, 0.18, 0.19, -0.025),
         (1.385, 0.285, 0.2, 0.195, -0.025),
         (1.345, 0.3, 0.21, 0.2, -0.025),
@@ -613,11 +616,18 @@ def hood_shape(b, body, color, dark):
             pts.append(V(((rx - inset) * math.cos(a), y, cz + depth * math.sin(a))))
         return pts
 
-    def bone(y):
-        return "Head" if y > 1.52 else "Neck" if y > 1.475 else "Spine2"
+    def smooth(a, b, y):
+        t = min(1.0, max(0.0, (y - a) / (b - a)))
+        return t * t * (3 - 2 * t)
+
+    def weights(co):
+        # The head carries the crown and face, the neck the jaw, the upper chest the cape, blended in between.
+        head = smooth(1.5, 1.6, co.y)
+        neck = (1 - head) * smooth(1.38, 1.47, co.y)
+        return [("Head", head), ("Neck", neck), ("Spine2", 1 - head - neck)]
 
     def hole(p):
-        return p.z > 0.02 and p.y > 1.47 and (p.x / frx) ** 2 + ((p.y - fy) / fry) ** 2 < 1
+        return p.z > 0.1 and p.y > 1.47 and (p.x / frx) ** 2 + ((p.y - fy) / fry) ** 2 < 1
 
     for inset, shade in ((0.0, color), (0.008, "slit")):
         grid = [ring(r, inset) for r in rings]
@@ -626,7 +636,7 @@ def hood_shape(b, body, color, dark):
             grid = [g for g, r in zip(grid, rings) if r[0] < 1.72]
         for k in range(segs if inset == 0 else 0):
             j = (k + 1) % segs
-            b.add([apex + V((0, -inset, 0)), grid[0][k], grid[0][j]], [[2, 1, 0]], "Head", shade, fixed=True)
+            b.add([apex + V((0, -inset, 0)), grid[0][k], grid[0][j]], [[2, 1, 0]], weights, shade, fixed=True)
         for i in range(len(grid) - 1):
             for k in range(segs):
                 j = (k + 1) % segs
@@ -637,7 +647,7 @@ def hood_shape(b, body, color, dark):
                 trim = inset == 0 and p_near_hole(mid, frx, fry, fy)
                 # One winding only (a second face on the same corners is refused): outward for the cloth, inward
                 # for the lining, which is seen only from inside, through the face.
-                b.add(quad, [[0, 1, 2, 3] if inset == 0 else [3, 2, 1, 0]], bone(mid.y), dark if trim else shade, fixed=True)
+                b.add(quad, [[0, 1, 2, 3] if inset == 0 else [3, 2, 1, 0]], weights, dark if trim else shade, fixed=True)
     return []
 
 
