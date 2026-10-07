@@ -1033,7 +1033,8 @@ def export(arm, objects, path):
 BODIES = {"bare": None, "ranger": ranger, "brigand": brigand, "scale": scale, "plate": plate, "knight": knight,
           "stag_hide": stag_hide, "cinder_jerkin": cinder_jerkin}
 WORN = {
-    "helm": {"hood": hood, "mask": mask, "barbute": barbute, "visored": visored, "horned": horned,
+    # The hood is the owner's Meshy model since 2026-10-07, fitted by fit_hood.py; hood() is kept for the mask and falconer.
+    "helm": {"mask": mask, "barbute": barbute, "visored": visored, "horned": horned,
              "falconer": falconer, "unblinking_crown": unblinking_crown},
     "boots": {"wrapped": wrapped, "leather_boots": leather_boots, "strapped": strapped, "sabatons": sabatons,
               "spiked": spiked, "windrunner": windrunner, "stalker": stalker},

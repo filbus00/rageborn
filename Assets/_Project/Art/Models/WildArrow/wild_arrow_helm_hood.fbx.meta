@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Body
     second: {fileID: 2100000, guid: 3f837cf8d0e014842849e89e2c1b976e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hood
+    second: {fileID: 2100000, guid: 3f837cf8d0e014842849e89e2c1b976e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -914,6 +914,15 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   Checked by sampling idle, run and attack on her body and the hood in Unity (`AnimationMode.SampleAnimationClip`,
   8 directions), then in the baked sheets.
 
+- Replaced, the same day (the owner: "you are not fixing it. Use the hood I just saved in my downloads folder"): the
+  owner's Meshy model "Emerald Wraith" (a leather hood with a ragged shoulder mantle, a feather and green runes; the
+  source, texture and concept are in `ArtSource/models/hood/`). `ArtSource/tools/props/fit_hood.py` fits it on her
+  rig: decimated from 247,000 faces to 24,000, scaled 0.34 (its hood, 1.06 Meshy units wide, round her head), its
+  crown at 1.83, centred on her head in depth, its face (Meshy -y) to her front; weights blended Head, Neck, Spine2 by
+  height as above. It keeps its own texture (`wild_arrow_helm_hood_albedo.png`): `WildArrowBakeSetup` gives a worn
+  model its own `_albedo.png` when one is beside it, else the shared gear texture. `wild_arrow_gear.py` no longer
+  writes the hood (its code still makes the mask and the falconer's hood). Rebaked the hood only (41 sheets, 83 s).
+
 ## 2026-10-07: talent trees
 
 The owner asked for the skill system rebuilt: she starts with the bow alone and learns skills from three Hunter-style trees (answers in Docs/08). `TalentRules` (pure, `Session/Talents.cs`) holds 33 nodes in Marksmanship, Beast Mastery and Survival, 6 rows each, a row opening with 5 points in its tree; `TalentState` holds the ranks, the blocker text, `Knows(skill)`, `SkillDamage(skill)` and the summed `PassiveBonuses` (new effects FocusRegen, CooldownReduction, PetDamage, PetLife, IgniteChance, ChillChance). Every place that read the hidden passive tree's bonuses reads `GameSession.Talents.Bonuses` now. `PlayerCombat` fills its slots with every learned skill in class order (default triggers, skill level 1 times the Improved bonus), refreshed on `Talents.Changed`; a level up says "+1 TALENT POINT". The Bag's Skills tab became Talents (`TalentScreen`: tree tabs, a 6 by 3 grid, detail and Learn). The Trainer resets talents. Save format 15 adds `talents` (id and rank); a 14 loads with none. `SkillLoadout`, `SkillLevels` and `LoadoutScreen` are unused but kept, as is their save data. Tests: `TalentTests` (6) and the Trainer test moved to talents; 597 of 597 pass in Unity.

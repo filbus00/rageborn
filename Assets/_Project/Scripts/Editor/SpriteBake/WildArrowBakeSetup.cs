@@ -257,7 +257,8 @@ namespace ARPG.Editor
                     if (!File.Exists(path))
                         continue;
                     KeepAllBones(path);
-                    MixamoImport.ConfigureBody(path, GearAlbedoPath);
+                    // A model with its own texture beside it (the owner's Meshy hood, 2026-10-07) keeps it.
+                    MixamoImport.ConfigureBody(path, File.Exists(path.Replace(".fbx", "_albedo.png")) ? null : GearAlbedoPath);
                     TakeBareBodyMap(path);
                     job.bodies.Add(new SpriteBakeJob.Body { look = look, model = AssetDatabase.LoadAssetAtPath<GameObject>(path), layer = layer });
                 }
