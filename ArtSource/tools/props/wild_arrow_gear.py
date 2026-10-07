@@ -555,27 +555,57 @@ def face_slit(b, y, color, width=0.12, cross=True):
         b.box(V((0, y - 0.05, front)), (0.02, 0.08, 0.02), "Head", color)
 
 
-def hood_shape(b, color, dark):
-    """A cloth hood (2026-10-07: "it does not act like a hood"): a soft crown set a little back, its tip falling down
-    behind the head, sides that widen as they drape to the shoulders, a lip over the brow and the face left open."""
-    b.dome(V((HC.x, HC.y + 0.01, HC.z - 0.015)), HRX + 0.006, 0.13, HRZ + 0.01, "Head", color, 14)
-    b.limb(V((0, HC.y + 0.08, HC.z - 0.1)), V((0, HC.y + 0.0, HC.z - 0.25)), 0.065, 0.01, "Head", color, 8)
-    b.band(1.48, HC.y + 0.03, HRX + 0.035, HRZ + 0.03, HRX + 0.008, HRZ + 0.012, 0.02, "Head", color, 135, 405, cz=HC.z, segs=18)
-    b.band(HC.y + 0.035, HC.y + 0.06, HRX + 0.02, HRZ + 0.022, HRX + 0.012, HRZ + 0.018, 0.02, "Head", dark, 45, 135, cz=HC.z, segs=10)
+# Her face, in the armature's space: the oval a hood leaves open (from the measured head: the nose 0.155 forward).
+FACE_Y, FACE_RX, FACE_RY = 1.6, 0.075, 0.1
+
+
+def in_face(p, grow=1.0):
+    return p.z > 0.03 and (p.x / (FACE_RX * grow)) ** 2 + ((p.y - FACE_Y) / (FACE_RY * grow)) ** 2 < 1
+
+
+def hood_shape(b, body, color, dark):
+    """A cloth hood (2026-10-07, the owner twice: it "does not act like a hood" and leaves the side of her face bare):
+    one smooth egg of cloth just outside her head and hair everywhere (sides 0.17, front 0.19, top 1.78; her head
+    reaches 0.142, 0.155 and 1.73), flaring out as it falls to the neck, with only the oval of her face left open and
+    a trim round it; its tip falls down behind the head and a cowl lies on the shoulders. Walls built around her head
+    read as a bucket helm with a square hole; a copy of her surface pushed out followed her curls and read as a
+    cauliflower."""
+    centre = V((0, 1.605, 0.0))
+    rx, ry, rz, back = 0.17, 0.175, 0.19, 0.175
+    rings, segs, low = 14, 28, math.radians(118)
+    grid = []
+    for i in range(rings + 1):
+        phi = low * i / rings
+        flare = 1 + 0.35 * max(0.0, phi - math.radians(90)) / (low - math.radians(90))
+        row = []
+        for k in range(segs):
+            a = 2 * math.pi * k / segs
+            depth = rz if math.sin(a) > 0 else back
+            row.append(centre + V((math.sin(phi) * math.cos(a) * rx * flare, math.cos(phi) * ry, math.sin(phi) * math.sin(a) * depth * flare)))
+        grid.append(row)
+    for i in range(rings):
+        for k in range(segs):
+            j = (k + 1) % segs
+            quad = [grid[i][k], grid[i][j], grid[i + 1][j], grid[i + 1][k]]
+            mid = sum(quad, V((0, 0, 0))) / 4
+            if in_face(mid):
+                continue
+            b.add(quad, [[0, 1, 2, 3], [3, 2, 1, 0]], "Head", dark if in_face(mid, 1.3) else color)
+    b.limb(V((0, 1.72, -0.1)), V((0, 1.63, -0.27)), 0.07, 0.01, "Head", color, 8)
     b.band(1.4, 1.48, 0.22, 0.19, 0.17, 0.15, 0.025, "Spine2", dark, cz=-0.01, segs=18)
+    return []
 
 
 def hood(b, body):
-    hood_shape(b, "green", "green_hi")
-    return []
+    return hood_shape(b, body, "green", "green_hi")
 
 
 def mask(b, body):
-    hood_shape(b, "cloth_dark", "cloth")
+    parts = hood_shape(b, body, "cloth_dark", "cloth")
     # A cloth mask over the mouth and nose: only her eyes show.
     b.band(1.54, 1.625, HRX + 0.01, HRZ + 0.015, HRX + 0.01, HRZ + 0.015, 0.02, "Head", "black", 35, 145, cz=HC.z, segs=14)
     b.band(1.61, 1.63, HRX + 0.012, HRZ + 0.017, HRX + 0.012, HRZ + 0.017, 0.012, "Head", "red", 35, 145, cz=HC.z, segs=14)
-    return []
+    return parts
 
 
 def barbute(b, body):
@@ -615,7 +645,7 @@ def horned(b, body):
 
 
 def falconer(b, body):
-    hood_shape(b, "leather", "fur")
+    parts = hood_shape(b, body, "leather", "fur")
     # A beaked half-mask of gilded leather and a crest of falcon feathers.
     b.band(1.6, 1.69, HRX + 0.008, HRZ + 0.013, HRX + 0.008, HRZ + 0.013, 0.018, "Head", "gold_dark", 40, 140, cz=HC.z, segs=14)
     b.spike(V((0, 1.63, HC.z + HRZ + 0.005)), V((0, 1.58, HC.z + HRZ + 0.085)), 0.03, "Head", "gold")
@@ -624,7 +654,7 @@ def falconer(b, body):
         root = V((math.sin(a) * 0.05, HC.y + 0.16, HC.z - 0.04 - math.cos(a) * 0.02))
         tip = root + V((math.sin(a) * 0.12, 0.17, -0.1))
         b.limb(root, tip, 0.022, 0.006, "Head", "feather" if k % 2 else "feather_dark", 4)
-    return []
+    return parts
 
 
 def unblinking_crown(b, body):

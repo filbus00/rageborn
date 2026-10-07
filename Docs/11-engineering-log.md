@@ -885,3 +885,11 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   sheets stacked as the game stacks them.
 - Only the helms were rebaked: a temporary copy of `WildArrowJob` with the bare body (the reference) and the 7 helm
   bodies and no pieces, passed to `SpriteBaker.Bake`. 161 sheets in 302 s, instead of the full bake's 42 minutes.
+- Second try, the same day (the owner: "you did not fix the hood problem"). The walls built around her head read as
+  a bucket helm with a square hole, and from three quarters still showed her cheek and hair. A copy of her own head
+  surface pushed out 3 cm (`shell`) followed her curls and read as a cauliflower. The hood is now one smooth egg of
+  cloth just outside her head and hair everywhere (sides 0.17, front 0.19, back 0.175, top 1.78), flaring toward the
+  neck. Only an oval for the face is left open (`in_face`: x 0.075, y 1.6 plus or minus 0.1, z over 0.03), with a
+  trim round it; the tip falls behind and a cowl lies on the shoulders. The mask and the falconer's hood share it.
+  Checked from the game's camera in 8 directions (`head_dirs.py` in the session scratchpad) and in the baked sheets
+  stacked with the quiver and bow. Rebaked the hood, mask and falconer only (81 sheets, 158 s).
