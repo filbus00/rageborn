@@ -23,7 +23,8 @@ namespace ARPG
         public static bool Active { get; private set; }
 
         const float PhaseSeconds = 8f;
-        const float WalkSeconds = 45f;
+        const float SnapshotSeconds = 15f;
+        const int PlaySnapshots = 16;
 
         readonly FrameTiming[] timing = new FrameTiming[1];
         readonly StringBuilder report = new StringBuilder();
@@ -87,41 +88,22 @@ namespace ARPG
             yield return Measure("warm up (not counted)", 3f, false);
             yield return Measure("standing, all on", PhaseSeconds, true);
 
-            var lights = new List<Light2D>();
-            foreach (var light in FindObjectsByType<Light2D>(FindObjectsSortMode.None))
-                if (light.lightType != Light2D.LightType.Global && light.enabled)
-                    lights.Add(light);
-            SetAll(lights, false);
-            yield return Measure($"standing, {lights.Count} point lights off", PhaseSeconds, true);
-            SetAll(lights, true);
-
-            var wallRenderers = new List<TilemapRenderer>();
-            var groundRenderers = new List<TilemapRenderer>();
-            foreach (var tilemap in FindObjectsByType<TilemapRenderer>(FindObjectsSortMode.None))
-                (tilemap.name == "Ground" ? groundRenderers : wallRenderers).Add(tilemap);
-            SetRenderers(wallRenderers, false);
-            yield return Measure($"standing, walls tilemap off ({wallRenderers.Count})", PhaseSeconds, true);
-            SetRenderers(wallRenderers, true);
-            SetRenderers(groundRenderers, false);
-            yield return Measure($"standing, ground tilemap off ({groundRenderers.Count})", PhaseSeconds, true);
-            SetRenderers(groundRenderers, true);
-
+            // Then play for four minutes (the owner, 2026-10-07: "the fps drops to 30 after around 2-3 minutes"): fight
+            // standing and push up the hall in turn, and every 15 s note the frame times beside what might pile up.
             var enemies = FindAnyObjectByType<EnemyManager>();
-            enemies.gameObject.SetActive(false);
-            yield return Measure("standing, enemies off", PhaseSeconds, true);
-            enemies.gameObject.SetActive(true);
-
-            var canvases = new List<Canvas>();
-            foreach (var canvas in FindObjectsByType<Canvas>(FindObjectsSortMode.None))
-                if (canvas.enabled)
-                    canvases.Add(canvas);
-            SetAll(canvases, false);
-            yield return Measure("standing, UI off", PhaseSeconds, true);
-            SetAll(canvases, true);
-
-            walking = true;
+            var kills = 0;
+            enemies.Killed += _ => kills++;
             StartCoroutine(Walk(player, stick, road));
-            yield return Measure("walking up the hall", WalkSeconds, true);
+            for (var snapshot = 1; snapshot <= PlaySnapshots; snapshot++)
+            {
+                walking = snapshot % 2 == 0;
+                yield return Measure($"t {snapshot * SnapshotSeconds:0} s, {(walking ? "walking" : "standing")}", SnapshotSeconds, true);
+                var loot = FindAnyObjectByType<LootDirector>();
+                report.AppendLine($"  kills {kills}, level {GameSession.Current.Level}, lights {FindObjectsByType<Light2D>(FindObjectsSortMode.None).Length}, " +
+                                  $"objects {FindObjectsByType<Transform>(FindObjectsSortMode.None).Length}, drops {(loot != null ? loot.Active.Count : 0)}, " +
+                                  $"managed {System.GC.GetTotalMemory(false) / 1048576f:0} MB, backpack {GameSession.Current.Inventory.Count}");
+                File.WriteAllText(Path.Combine(Application.persistentDataPath, "benchmark.txt"), report.ToString());
+            }
             walking = false;
             stick.TestOverride = null;
 
@@ -136,8 +118,14 @@ namespace ARPG
 
         IEnumerator Walk(PlayerController player, FloatingStickInput stick, RoadLayout road)
         {
-            while (walking)
+            while (true)
             {
+                if (!walking)
+                {
+                    stick.TestOverride = Vector2.zero;
+                    yield return null;
+                    continue;
+                }
                 var here = IsoMath.WorldToGround(player.transform.position);
                 var progress = road.Path.Progress(here);
                 var target = road.Path.PointAt(progress + 2f) + (road.Path.PointAt(progress) - here) * 0.8f;

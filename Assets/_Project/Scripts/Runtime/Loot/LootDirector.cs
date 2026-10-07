@@ -181,14 +181,24 @@ namespace ARPG
             if (pool.Count > 0)
                 return pool.Pop();
 
-            // Over the cap, the oldest item her pick-up rule leaves lying makes room.
+            // Over the cap, the oldest item her pick-up rule leaves lying makes room; failing that (a full backpack
+            // leaves even wanted items lying, and they piled up without end, 2026-10-07), the oldest item that is not a
+            // legendary.
             if (active.Count >= MaxOnGround)
+            {
                 for (var i = 0; i < active.Count; i++)
                     if (!active[i].IsGold && !active[i].IsWanted())
                     {
                         Release(active[i]);
                         return pool.Pop();
                     }
+                for (var i = 0; i < active.Count; i++)
+                    if (!active[i].IsGold && active[i].Item.Rarity != ItemRarity.Legendary)
+                    {
+                        Release(active[i]);
+                        return pool.Pop();
+                    }
+            }
 
             if (!warnedPool)
             {
