@@ -59,6 +59,9 @@ class Builder:
         self.deform = self.bm.verts.layers.deform.verify()
         self.colors = []
         self.groups = {}
+        # Faces whose winding is set by hand (the hood: an open surface with a lining, which the recalculation turned
+        # inward, so the bake culled its near side and showed the inside).
+        self.fixed = set()
 
     def h(self, name):
         return V(self.arm.data.bones["mixamorig:" + name].head_local)
@@ -66,7 +69,7 @@ class Builder:
     def t(self, name):
         return V(self.arm.data.bones["mixamorig:" + name].tail_local)
 
-    def add(self, verts, faces, bone, color):
+    def add(self, verts, faces, bone, color, fixed=False):
         g = self.groups.setdefault("mixamorig:" + bone, len(self.groups))
         vs = []
         for co in verts:
@@ -75,8 +78,10 @@ class Builder:
             vs.append(v)
         for f in faces:
             try:
-                self.bm.faces.new([vs[i] for i in f])
+                face = self.bm.faces.new([vs[i] for i in f])
                 self.colors.append(NAMES.index(color))
+                if fixed:
+                    self.fixed.add(face)
             except ValueError:
                 pass
 
@@ -208,7 +213,7 @@ class Builder:
     def mesh(self, name):
         mesh = bpy.data.meshes.new(name)
         # Outward normals everywhere (the tubes were built facing in, and the bake culls back faces).
-        bmesh.ops.recalc_face_normals(self.bm, faces=self.bm.faces[:])
+        bmesh.ops.recalc_face_normals(self.bm, faces=[f for f in self.bm.faces if f not in self.fixed])
         self.bm.normal_update()
         self.bm.to_mesh(mesh)
         self.bm.free()
@@ -563,37 +568,81 @@ def in_face(p, grow=1.0):
     return p.z > 0.03 and (p.x / (FACE_RX * grow)) ** 2 + ((p.y - FACE_Y) / (FACE_RY * grow)) ** 2 < 1
 
 
+HOOD_FACE = (1.6, 0.105, 0.118)  # the face opening: centre height, half width, half height
+
+
 def hood_shape(b, body, color, dark):
-    """A cloth hood (2026-10-07, the owner twice: it "does not act like a hood" and leaves the side of her face bare):
-    one smooth egg of cloth just outside her head and hair everywhere (sides 0.17, front 0.19, top 1.78; her head
-    reaches 0.142, 0.155 and 1.73), flaring out as it falls to the neck, with only the oval of her face left open and
-    a trim round it; its tip falls down behind the head and a cowl lies on the shoulders. Walls built around her head
-    read as a bucket helm with a square hole; a copy of her surface pushed out followed her curls and read as a
+    """A cloth hood (2026-10-07, the owner three times: it "does not act like a hood", leaves the side of her face bare,
+    "still looks off"). One surface of rings from a point leaning back over her crown down to a short cape on her
+    shoulders: close round the skull (her head reaches 0.15 at the sides, 0.145 behind, 0.143 in front, 1.75 on top),
+    hanging straight past her cheeks, closing in under the jaw, then spreading over the shoulders (0.24 wide at 1.45).
+    The face is open in a wide oval and the inside is lined dark, so the opening reads as depth. An egg with a flared
+    hem read as a bell helm with a peephole; walls built round her head as a bucket; her surface pushed out as a
     cauliflower."""
-    centre = V((0, 1.605, 0.0))
-    rx, ry, rz, back = 0.17, 0.175, 0.19, 0.175
-    rings, segs, low = 14, 28, math.radians(118)
-    grid = []
-    for i in range(rings + 1):
-        phi = low * i / rings
-        flare = 1 + 0.35 * max(0.0, phi - math.radians(90)) / (low - math.radians(90))
-        row = []
+    # Rings from the top down: height, half width, front, back, centre z.
+    keys = [
+        (1.80, 0.03, 0.02, 0.03, -0.15),
+        (1.785, 0.075, 0.06, 0.075, -0.1),
+        (1.76, 0.12, 0.105, 0.13, -0.055),
+        (1.725, 0.158, 0.152, 0.172, -0.022),
+        (1.66, 0.18, 0.183, 0.188, 0.0),
+        (1.60, 0.178, 0.185, 0.185, 0.0),
+        (1.545, 0.165, 0.175, 0.178, -0.005),
+        (1.50, 0.152, 0.15, 0.168, -0.01),
+        (1.47, 0.2, 0.16, 0.18, -0.02),
+        (1.435, 0.25, 0.18, 0.19, -0.025),
+        (1.385, 0.285, 0.2, 0.195, -0.025),
+        (1.345, 0.3, 0.21, 0.2, -0.025),
+    ]
+    rings = []
+    for i in range(len(keys) - 1):
+        for t in range(3):
+            f = t / 3
+            rings.append(tuple(k0 + (k1 - k0) * f for k0, k1 in zip(keys[i], keys[i + 1])))
+    rings.append(keys[-1])
+    segs = 36
+    fy, frx, fry = HOOD_FACE
+    apex = V((0, 1.805, -0.19))
+
+    def ring(r, inset):
+        y, rx, front, back, cz = r
+        pts = []
         for k in range(segs):
             a = 2 * math.pi * k / segs
-            depth = rz if math.sin(a) > 0 else back
-            row.append(centre + V((math.sin(phi) * math.cos(a) * rx * flare, math.cos(phi) * ry, math.sin(phi) * math.sin(a) * depth * flare)))
-        grid.append(row)
-    for i in range(rings):
-        for k in range(segs):
+            depth = (front if math.sin(a) > 0 else back) - inset
+            pts.append(V(((rx - inset) * math.cos(a), y, cz + depth * math.sin(a))))
+        return pts
+
+    def bone(y):
+        return "Head" if y > 1.52 else "Neck" if y > 1.475 else "Spine2"
+
+    def hole(p):
+        return p.z > 0.02 and p.y > 1.47 and (p.x / frx) ** 2 + ((p.y - fy) / fry) ** 2 < 1
+
+    for inset, shade in ((0.0, color), (0.008, "slit")):
+        grid = [ring(r, inset) for r in rings]
+        # The lining is only seen through the face, so it stops below the crown (it showed through the peak).
+        if inset > 0:
+            grid = [g for g, r in zip(grid, rings) if r[0] < 1.72]
+        for k in range(segs if inset == 0 else 0):
             j = (k + 1) % segs
-            quad = [grid[i][k], grid[i][j], grid[i + 1][j], grid[i + 1][k]]
-            mid = sum(quad, V((0, 0, 0))) / 4
-            if in_face(mid):
-                continue
-            b.add(quad, [[0, 1, 2, 3], [3, 2, 1, 0]], "Head", dark if in_face(mid, 1.3) else color)
-    b.limb(V((0, 1.72, -0.1)), V((0, 1.63, -0.27)), 0.07, 0.01, "Head", color, 8)
-    b.band(1.4, 1.48, 0.22, 0.19, 0.17, 0.15, 0.025, "Spine2", dark, cz=-0.01, segs=18)
+            b.add([apex + V((0, -inset, 0)), grid[0][k], grid[0][j]], [[2, 1, 0]], "Head", shade, fixed=True)
+        for i in range(len(grid) - 1):
+            for k in range(segs):
+                j = (k + 1) % segs
+                quad = [grid[i][k], grid[i][j], grid[i + 1][j], grid[i + 1][k]]
+                mid = sum(quad, V((0, 0, 0))) / 4
+                if hole(mid):
+                    continue
+                trim = inset == 0 and p_near_hole(mid, frx, fry, fy)
+                # One winding only (a second face on the same corners is refused): outward for the cloth, inward
+                # for the lining, which is seen only from inside, through the face.
+                b.add(quad, [[0, 1, 2, 3] if inset == 0 else [3, 2, 1, 0]], bone(mid.y), dark if trim else shade, fixed=True)
     return []
+
+
+def p_near_hole(p, frx, fry, fy):
+    return p.z > 0.02 and p.y > 1.47 and (p.x / (frx * 1.3)) ** 2 + ((p.y - fy) / (fry * 1.25)) ** 2 < 1
 
 
 def hood(b, body):

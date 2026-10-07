@@ -894,6 +894,17 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
   Checked from the game's camera in 8 directions (`head_dirs.py` in the session scratchpad) and in the baked sheets
   stacked with the quiver and bow. Rebaked the hood, mask and falconer only (81 sheets, 158 s).
 
+- Third try, the same day (the owner: "the hood still looks off"). Two faults. The egg read as a bell helm with a
+  peephole. And the gear builder's `recalc_face_normals` turned the hood's faces inward (an open surface with a
+  lining confuses it), so Unity's bake culled the near side and drew only the inside of the far wall: in the sheets
+  the hood was a dark horseshoe around her head. Blender previews render both sides, so they never showed it; a
+  render of the imported FBX in Unity did. `Builder.add(..., fixed=True)` now keeps a face's winding out of the
+  recalculation. The hood is rebuilt as rings from a point leaning back over her crown, close round the skull,
+  hanging straight past her cheeks, closing under the jaw, then a short cape over the shoulders (to 1.345, 0.3 wide);
+  the face is open in a wide oval (`HOOD_FACE`) with a dark lining inside. Bones: Head above 1.52, Neck, then Spine2
+  for the cape. Rebaked the hood, mask and falconer only (81 sheets) and checked the sheets stacked as the game
+  stacks them.
+
 ## 2026-10-07: talent trees
 
 The owner asked for the skill system rebuilt: she starts with the bow alone and learns skills from three Hunter-style trees (answers in Docs/08). `TalentRules` (pure, `Session/Talents.cs`) holds 33 nodes in Marksmanship, Beast Mastery and Survival, 6 rows each, a row opening with 5 points in its tree; `TalentState` holds the ranks, the blocker text, `Knows(skill)`, `SkillDamage(skill)` and the summed `PassiveBonuses` (new effects FocusRegen, CooldownReduction, PetDamage, PetLife, IgniteChance, ChillChance). Every place that read the hidden passive tree's bonuses reads `GameSession.Talents.Bonuses` now. `PlayerCombat` fills its slots with every learned skill in class order (default triggers, skill level 1 times the Improved bonus), refreshed on `Talents.Changed`; a level up says "+1 TALENT POINT". The Bag's Skills tab became Talents (`TalentScreen`: tree tabs, a 6 by 3 grid, detail and Learn). The Trainer resets talents. Save format 15 adds `talents` (id and rank); a 14 loads with none. `SkillLoadout`, `SkillLevels` and `LoadoutScreen` are unused but kept, as is their save data. Tests: `TalentTests` (6) and the Trainer test moved to talents; 597 of 597 pass in Unity.
