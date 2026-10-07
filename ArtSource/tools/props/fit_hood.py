@@ -28,9 +28,12 @@ def smooth(a, b, y):
 
 
 def weights(p):
-    head = smooth(1.5, 1.6, p.y)
-    neck = (1 - head) * smooth(1.38, 1.47, p.y)
-    return [("Head", head), ("Neck", neck), ("Spine2", 1 - head - neck)]
+    # Mostly on the neck: her idle pitches and turns her head hard against her neck, and a hood that followed the
+    # head tore open between hood and mantle (2026-10-07). Her head moves inside it; the bake keeps her head from
+    # cutting it (SpriteBaker's keep-out).
+    upper = smooth(1.4, 1.5, p.y)
+    head = 0.35 * smooth(1.5, 1.62, p.y)
+    return [("Head", head), ("Neck", upper - head), ("Spine2", 1 - upper)]
 
 
 def main():

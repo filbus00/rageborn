@@ -297,6 +297,51 @@ namespace ARPG.Editor
             public Renderer[] Renderers;
         }
 
+        static readonly int PushBack = Shader.PropertyToID("_PushBack");
+
+        // How far her body may poke through a helm before it cuts it, in metres of her model (scaled with it).
+        const float HelmClearance = 0.06f;
+
+        // While a helm bakes, the first body's head, neck, upper chest, collarbones and upper arms (and her hair, skinned to
+        // the head) never cut it: they are marked in the occluder's vertex colours (alpha), and the depth shader skips
+        // them. In the idle her head pitches and turns inside the hood and her hair falls forward over the mantle, and
+        // the hood came out cut open on her face and shoulder (2026-10-07). Forearms and hands still cut it.
+        static readonly int KeepOut = Shader.PropertyToID("_KeepOut");
+
+        static readonly HumanBodyBones[] HelmCovers =
+        {
+            HumanBodyBones.Head, HumanBodyBones.Neck, HumanBodyBones.UpperChest, HumanBodyBones.Chest,
+            HumanBodyBones.LeftShoulder, HumanBodyBones.RightShoulder, HumanBodyBones.LeftUpperArm, HumanBodyBones.RightUpperArm,
+        };
+
+        /// <summary>
+        /// Gives a skinned body's mesh (a copy) vertex colours whose alpha is how much of each vertex the helm covers: the
+        /// summed weight of the bones above and of the head's children (hair, eyes, the crown end).
+        /// </summary>
+        static void MarkHelmCover(SkinnedMeshRenderer skinned, Animator animator)
+        {
+            if (skinned.sharedMesh == null || animator == null || !animator.isHuman)
+                return;
+            var covered = new HashSet<Transform>(HelmCovers.Select(animator.GetBoneTransform).Where(t => t != null));
+            var head = animator.GetBoneTransform(HumanBodyBones.Head);
+            var bones = skinned.bones;
+            var cover = new bool[bones.Length];
+            for (var i = 0; i < bones.Length; i++)
+                cover[i] = bones[i] != null && (covered.Contains(bones[i]) || (head != null && bones[i].IsChildOf(head)));
+            var mesh = Object.Instantiate(skinned.sharedMesh);
+            var weights = mesh.boneWeights;
+            var colors = new Color32[mesh.vertexCount];
+            for (var v = 0; v < colors.Length; v++)
+            {
+                var w = v < weights.Length ? weights[v] : default;
+                var sum = (cover[w.boneIndex0] ? w.weight0 : 0f) + (cover[w.boneIndex1] ? w.weight1 : 0f)
+                          + (cover[w.boneIndex2] ? w.weight2 : 0f) + (cover[w.boneIndex3] ? w.weight3 : 0f);
+                colors[v] = new Color32(255, 255, 255, (byte)Mathf.RoundToInt(Mathf.Clamp01(sum) * 255f));
+            }
+            mesh.colors32 = colors;
+            skinned.sharedMesh = mesh;
+        }
+
         sealed class Stage
         {
             public Camera Camera;
@@ -313,6 +358,12 @@ namespace ARPG.Editor
                     var drawn = layer.Piece == null && b == layer.BodyIndex;
                     // A piece, or a body drawn into another layer (a helm on the same rig), is cut by the first body.
                     var occluder = !drawn && b == 0 && (layer.Piece != null || layer.Layer != AppearanceLayer.Body);
+                    // A helm round her head is cut only where the body is well in front of it: her head turns inside
+                    // the hood in the idle and her hair and cheek poked through its side, cutting it open (2026-10-07).
+                    var helm = layer.Piece == null && layer.Layer == AppearanceLayer.Helm;
+                    var metre = Bodies[0].Root.transform.lossyScale.y;
+                    depthOnly.SetFloat(PushBack, helm ? HelmClearance * metre : 0f);
+                    depthOnly.SetFloat(KeepOut, helm ? 1f : 0f);
                     for (var r = 0; r < body.Renderers.Length; r++)
                     {
                         var renderer = body.Renderers[r];
@@ -416,6 +467,9 @@ namespace ARPG.Editor
 
                 // Taken before the pieces go on, so their own transforms are left alone.
                 var restPose = new Pose(model.transform);
+                if (b == 0)
+                    foreach (var skinned in model.GetComponentsInChildren<SkinnedMeshRenderer>(true))
+                        MarkHelmCover(skinned, animator);
                 var skins = model.GetComponentsInChildren<SkinnedMeshRenderer>(true).Select(s => new SkinProxy(s, scene)).ToArray();
                 var renderers = model.GetComponentsInChildren<MeshRenderer>(true).Cast<Renderer>()
                     .Concat(skins.Select(s => (Renderer)s.Renderer)).ToArray();

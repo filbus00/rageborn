@@ -198,7 +198,7 @@ namespace UnityEngine
     {
         public Material(Shader s) { } public Material(Material m) { }
         public Shader shader { get; set; } public Color color { get; set; } public Texture mainTexture { get; set; } public int renderQueue { get; set; }
-        public void SetColor(string n, Color c) { } public void SetColor(int n, Color c) { } public void SetFloat(string n, float v) { } public void SetFloat(int n, float v) { } public void SetTexture(string n, Texture t) { } public void SetTexture(int n, Texture t) { } public void SetInt(string n, int v) { } public void SetVector(string n, Vector4 v) { }
+        public void SetColor(string n, Color c) { } public void SetColor(int n, Color c) { } public void SetFloat(string n, float v) { } public void SetFloat(int n, float v) { } public void SetTexture(string n, Texture t) { } public void SetTexture(int n, Texture t) { } public void SetInt(string n, int v) { } public void SetVector(string n, Vector4 v) { } public void SetVector(int n, Vector4 v) { }
         public Color GetColor(string n) => default; public float GetFloat(string n) => 0; public bool HasProperty(string n) => false; public bool HasProperty(int n) => false;
         public void EnableKeyword(string k) { } public void DisableKeyword(string k) { }
     }
@@ -206,9 +206,11 @@ namespace UnityEngine
     {
         public void SetColor(string n, Color c) { } public void SetColor(int n, Color c) { } public void SetFloat(string n, float v) { } public void SetFloat(int n, float v) { } public void SetTexture(int n, Texture t) { } public void SetTexture(string n, Texture t) { } public void SetVector(int n, Vector4 v) { } public void Clear() { }
     }
+    public struct BoneWeight { public int boneIndex0 { get; set; } public int boneIndex1 { get; set; } public int boneIndex2 { get; set; } public int boneIndex3 { get; set; } public float weight0 { get; set; } public float weight1 { get; set; } public float weight2 { get; set; } public float weight3 { get; set; } }
+
     public class Mesh : Object
     {
-        public Vector3[] vertices { get; set; } public int[] triangles { get; set; } public Vector2[] uv { get; set; } public Vector3[] normals { get; set; } public Color[] colors { get; set; } public Bounds bounds { get; set; } public int vertexCount => 0; public int subMeshCount { get; set; }
+        public Vector3[] vertices { get; set; } public int[] triangles { get; set; } public Vector2[] uv { get; set; } public Vector3[] normals { get; set; } public Color[] colors { get; set; } public Color32[] colors32 { get; set; } public BoneWeight[] boneWeights { get; set; } public Bounds bounds { get; set; } public int vertexCount => 0; public int subMeshCount { get; set; }
         public void RecalculateBounds() { } public void RecalculateNormals() { } public void Clear() { } public void SetVertices(List<Vector3> v) { } public void SetTriangles(int[] t, int s) { } public void SetUVs(int c, List<Vector2> u) { }
         public void MarkDynamic() { } public bool isReadable => true; public void UploadMeshData(bool b) { } public int[] GetTriangles(int s) => new int[0];
     }
