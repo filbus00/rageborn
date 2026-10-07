@@ -868,3 +868,20 @@ The owner: "Just do all 4" (floors, enemies, bow variety, wall torches and detai
 - The benchmark is started by `benchmark.flag` in the app's Documents folder (`xcrun devicectl device copy to ...
   --domain-type appDataContainer`). Launch arguments do not reach the game on iOS. A run in the background, or on a
   locked phone, pauses.
+
+## 2026-10-07: helms that cover her head (the hood)
+
+- The owner: the hood "does not act like a hood and does not seem to cover the characters left side of the face".
+- Cause: the helm bake hides a helm wherever her body is in front of it (`SpriteBakeJob.Body.layer`: a helm body is
+  cut by the bare body). Her head and hair reach 0.142 to the sides, 0.167 forward (the nose) and 0.134 back from the
+  head's middle (0, 1.64, -0.012). The helms were 0.128 by 0.138 around that middle, so her head poked through them,
+  most on one side (her hair is not even). The bake then cut holes: the hood was open down one side and broken into
+  fragments from the side, and the barbute's and visored helm's face plates were cut where her face came through.
+- `wild_arrow_gear.py`: `HC` (0, 1.64, 0.008), `HRX` 0.155 and `HRZ` 0.165 clear her head everywhere. The mask's cloth,
+  the falconer's half-mask and beak, and the hood's lip now follow those sizes instead of fixed numbers.
+- The hood was remade as a hood: a soft crown set a little back, its tip falling down behind the head, sides that
+  widen toward the shoulders, a lip over the brow, and the face open at plus or minus 45 degrees.
+- Checked with a holdout preview (her body as an invisible mask, as the bake cuts) in 8 directions, then in the baked
+  sheets stacked as the game stacks them.
+- Only the helms were rebaked: a temporary copy of `WildArrowJob` with the bare body (the reference) and the 7 helm
+  bodies and no pieces, passed to `SpriteBaker.Bake`. 161 sheets in 302 s, instead of the full bake's 42 minutes.

@@ -532,8 +532,12 @@ def cinder_jerkin(b, body):
 
 # ---------------------------------------------------------------- helms (their own layer, cut by her body)
 
-HC = V((0, 1.64, -0.012))   # the middle of her head (hair included)
-HRX, HRZ = 0.128, 0.138      # a helm's half width and depth: close over her head (hair tucked in)
+# The middle of a helm and its half width and depth, clear of her head everywhere (2026-10-07). Her head and hair reach
+# 0.142 to the sides, 0.167 forward (the nose) and 0.134 back from the head's middle (0, 1.64, -0.012); the helms were
+# 0.128 by 0.138 around that middle, so her face and hair poked through them, and the bake, which hides a helm wherever
+# her body is in front of it, cut holes there (a hood open down one side, the barbute's face plate gone).
+HC = V((0, 1.64, 0.008))
+HRX, HRZ = 0.155, 0.165
 
 
 def helmet_shell(b, color, rx=HRX, rz=HRZ, low=1.535, rim=None):
@@ -552,9 +556,12 @@ def face_slit(b, y, color, width=0.12, cross=True):
 
 
 def hood_shape(b, color, dark):
-    b.dome(V((HC.x, HC.y + 0.01, HC.z - 0.005)), HRX + 0.012, 0.15, HRZ + 0.015, "Head", color, 14)
-    b.band(1.5, HC.y + 0.02, HRX + 0.02, HRZ + 0.02, HRX + 0.012, HRZ + 0.015, 0.018, "Head", color, 125, 415, cz=HC.z, segs=18)
-    b.spike(V((0, HC.y + 0.1, HC.z + 0.1)), V((0, HC.y + 0.05, HC.z + 0.2)), 0.04, "Head", color)
+    """A cloth hood (2026-10-07: "it does not act like a hood"): a soft crown set a little back, its tip falling down
+    behind the head, sides that widen as they drape to the shoulders, a lip over the brow and the face left open."""
+    b.dome(V((HC.x, HC.y + 0.01, HC.z - 0.015)), HRX + 0.006, 0.13, HRZ + 0.01, "Head", color, 14)
+    b.limb(V((0, HC.y + 0.08, HC.z - 0.1)), V((0, HC.y + 0.0, HC.z - 0.25)), 0.065, 0.01, "Head", color, 8)
+    b.band(1.48, HC.y + 0.03, HRX + 0.035, HRZ + 0.03, HRX + 0.008, HRZ + 0.012, 0.02, "Head", color, 135, 405, cz=HC.z, segs=18)
+    b.band(HC.y + 0.035, HC.y + 0.06, HRX + 0.02, HRZ + 0.022, HRX + 0.012, HRZ + 0.018, 0.02, "Head", dark, 45, 135, cz=HC.z, segs=10)
     b.band(1.4, 1.48, 0.22, 0.19, 0.17, 0.15, 0.025, "Spine2", dark, cz=-0.01, segs=18)
 
 
@@ -566,8 +573,8 @@ def hood(b, body):
 def mask(b, body):
     hood_shape(b, "cloth_dark", "cloth")
     # A cloth mask over the mouth and nose: only her eyes show.
-    b.band(1.54, 1.625, 0.135, 0.15, 0.135, 0.15, 0.02, "Head", "black", 35, 145, cz=HC.z, segs=14)
-    b.band(1.61, 1.63, 0.137, 0.152, 0.137, 0.152, 0.012, "Head", "red", 35, 145, cz=HC.z, segs=14)
+    b.band(1.54, 1.625, HRX + 0.01, HRZ + 0.015, HRX + 0.01, HRZ + 0.015, 0.02, "Head", "black", 35, 145, cz=HC.z, segs=14)
+    b.band(1.61, 1.63, HRX + 0.012, HRZ + 0.017, HRX + 0.012, HRZ + 0.017, 0.012, "Head", "red", 35, 145, cz=HC.z, segs=14)
     return []
 
 
@@ -610,8 +617,8 @@ def horned(b, body):
 def falconer(b, body):
     hood_shape(b, "leather", "fur")
     # A beaked half-mask of gilded leather and a crest of falcon feathers.
-    b.band(1.6, 1.69, 0.135, 0.15, 0.135, 0.15, 0.018, "Head", "gold_dark", 40, 140, cz=HC.z, segs=14)
-    b.spike(V((0, 1.63, HC.z + 0.15)), V((0, 1.58, HC.z + 0.23)), 0.03, "Head", "gold")
+    b.band(1.6, 1.69, HRX + 0.008, HRZ + 0.013, HRX + 0.008, HRZ + 0.013, 0.018, "Head", "gold_dark", 40, 140, cz=HC.z, segs=14)
+    b.spike(V((0, 1.63, HC.z + HRZ + 0.005)), V((0, 1.58, HC.z + HRZ + 0.085)), 0.03, "Head", "gold")
     for k in range(7):
         a = math.radians(-60 + k * 20)
         root = V((math.sin(a) * 0.05, HC.y + 0.16, HC.z - 0.04 - math.cos(a) * 0.02))
