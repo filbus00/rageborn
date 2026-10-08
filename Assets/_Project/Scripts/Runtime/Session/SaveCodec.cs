@@ -30,7 +30,14 @@ namespace ARPG
             MigrateFrom12, // 12 to 13: no named legendaries existed; no item is one and nothing is in the Codex.
             MigrateFrom13, // 13 to 14: no deepest depth or stash existed; the deepest is the deepest waypoint, the stash empty.
             MigrateFrom14, // 14 to 15: no talents existed; nothing is learned and every point is unspent (skill points are not carried over).
+            MigrateFrom15, // 15 to 16: no quests existed; none is taken.
         };
+
+        static SaveData MigrateFrom15(SaveData data)
+        {
+            data.quests = new List<QuestData>();
+            return data;
+        }
 
         static SaveData MigrateFrom14(SaveData data)
         {
@@ -162,6 +169,14 @@ namespace ARPG
             return list;
         }
 
+        static List<QuestData> CaptureQuests(QuestState quests)
+        {
+            var list = new List<QuestData>();
+            foreach (var pair in quests.All)
+                list.Add(new QuestData { id = pair.Key, step = pair.Value.Step, done = pair.Value.Done });
+            return list;
+        }
+
         static List<TalentData> CaptureTalents(TalentState talents)
         {
             var list = new List<TalentData>();
@@ -238,6 +253,7 @@ namespace ARPG
                 loadoutChosen = session.Loadout.Chosen,
                 skillLevels = CaptureSkillLevels(session.SkillLevels),
                 talents = CaptureTalents(session.Talents),
+                quests = CaptureQuests(session.Quests),
                 passiveNodes = new List<string>(session.PassiveTree.Bought),
                 activeKeystone = session.PassiveTree.ActiveKeystone ?? "",
                 attributePoints = new List<int>(session.Attributes.ToArray()),
@@ -291,6 +307,9 @@ namespace ARPG
         {
             var session = new GameSession(lootSeed, data.killsSinceLegendary);
             session.RestoreProgress(data.level, data.experience);
+            // Quests first: a finished quest can raise the potion's charges (2026-10-08).
+            foreach (var entry in data.quests ?? new List<QuestData>())
+                session.Quests.Restore(entry.id, entry.step, entry.done);
             session.RestorePotion(data.potionCharges, data.potionKillProgress);
             session.DungeonSeed = data.dungeonSeed;
             session.ReachDepth(data.deepestDepth);

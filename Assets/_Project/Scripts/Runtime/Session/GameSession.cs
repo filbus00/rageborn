@@ -269,6 +269,9 @@ namespace ARPG
             PassiveTree.Changed += RaiseModified;
             Talents = new TalentState();
             Talents.Changed += RaiseModified;
+            Quests = new QuestState();
+            Quests.Changed += RaiseModified;
+            Quests.Changed += () => Potion.ExtraCharges = Quests.Boons.PotionCharges;
             // Stat points change max life, armor and the rest, so they raise Changed (which raises Modified) too.
             Attributes = new AttributePoints();
             Attributes.Changed += NotifyChanged;
@@ -432,6 +435,12 @@ namespace ARPG
         /// every system reads (the retired Wrathborn's <see cref="PassiveTree"/> stays, hidden and empty).</summary>
         public TalentState Talents { get; }
 
+        /// <summary>What the merchant pays for an item: its price, and a quarter more once Tobin minds the stall.</summary>
+        public int SellPrice(Item item) => Mathf.RoundToInt(SellRules.Price(item) * Quests.Boons.SellPrice);
+
+        /// <summary>The quests taken and their steps (2026-10-08, Docs/05 Quests).</summary>
+        public QuestState Quests { get; }
+
         /// <summary>The stat points spent on the five attributes (Docs/02, decided 2026-09-30). Its changes raise
         /// <see cref="Changed"/>.</summary>
         public AttributePoints Attributes { get; }
@@ -567,7 +576,7 @@ namespace ARPG
             var price = GambleRules.Price(kind, itemLevel);
             if (Gold < price)
                 return false;
-            var item = Loot.RollItemOf(kind, GambleRules.Rarity(random.NextDouble()), itemLevel);
+            var item = Loot.RollItemOf(kind, GambleRules.Rarity(random.NextDouble(), Quests.Boons.LegendaryGamble), itemLevel);
             if (!Inventory.TryAdd(item))
                 return false;
             Gold -= price;
@@ -686,7 +695,7 @@ namespace ARPG
             if (item == null || !Inventory.Remove(item))
                 return 0;
 
-            var price = SellRules.Price(item);
+            var price = SellPrice(item);
             Gold += price;
             NotifyChanged();
             return price;
@@ -702,7 +711,7 @@ namespace ARPG
                 if (SellRules.InBulkSale(item, rarity, PowerScore.IsUpgrade(Equipment, item, Level, Talents.Bonuses)))
                 {
                     into.Add(item);
-                    gold += SellRules.Price(item);
+                    gold += SellPrice(item);
                 }
             return gold;
         }
@@ -716,7 +725,7 @@ namespace ARPG
             var gold = 0;
             foreach (var item in sold)
                 if (Inventory.Remove(item))
-                    gold += SellRules.Price(item);
+                    gold += SellPrice(item);
             if (gold == 0)
                 return 0;
             Gold += gold;
@@ -791,7 +800,7 @@ namespace ARPG
         }
 
         /// <summary>Puts back the potion charges read from a save.</summary>
-        internal void RestorePotion(int charges, int killProgress) => SetPotion(new AutoPotion(charges, killProgress));
+        internal void RestorePotion(int charges, int killProgress) => SetPotion(new AutoPotion(charges, killProgress, Quests.Boons.PotionCharges));
 
         void SetPotion(AutoPotion potion)
         {

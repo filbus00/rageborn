@@ -20,6 +20,8 @@ namespace ARPG.Editor
         {
             "Drowned", "Harpooner", "DrownedWatchman", "SkeletonKnight", "GravePriest", "Hollowed", "VoidWraith", "RiftCaller",
             "Tidewife", "SaintMarrow", "FirstWatchman",
+            // Quest targets to break (2026-10-08): standing, no attack, drawn with a world sprite.
+            "RiftHeart", "BonePyre",
         };
 
         [MenuItem("Tools/ARPG/Add Deep Roster")]
@@ -141,10 +143,39 @@ namespace ARPG.Editor
             Copy("CinderWarden", "Tidewife", so => { });
             Copy("CinderWarden", "SaintMarrow", so => { });
             Copy("CinderWarden", "FirstWatchman", so => F(so, "lifeMultiplier", 70f));
+            // Quest targets (2026-10-08): they stand and call others (BreakTargets); a pyre takes about eight normal
+            // enemies' arrows, the rift heart fifteen.
+            Copy("Swarmer", "BonePyre", so => Standing(so, 8f));
+            Copy("Swarmer", "RiftHeart", so => Standing(so, 15f));
+            SetBodySprite("BonePyre", "quest_bone_pyre");
+            SetBodySprite("RiftHeart", "quest_rift_heart");
             AssetDatabase.SaveAssets();
         }
 
         static void F(SerializedObject so, string property, float value) => so.FindProperty(property).floatValue = value;
+
+        static void Standing(SerializedObject so, float life)
+        {
+            F(so, "lifeMultiplier", life);
+            F(so, "moveSpeed", 0f);
+            F(so, "attackRange", 0f);
+            F(so, "aggroRange", 0f);
+            F(so, "damageMultiplier", 0f);
+        }
+
+        // The quest targets are drawn with their world sprite (Import World Art), set each run so new art shows.
+        static void SetBodySprite(string definitionName, string worldArt)
+        {
+            var definition = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(Folder + definitionName + ".asset");
+            var sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/_Project/Resources/Art/World/" + worldArt + ".png");
+            if (definition == null || sprite == null)
+                return;
+            var so = new SerializedObject(definition);
+            so.FindProperty("bodySprite").objectReferenceValue = sprite;
+            so.FindProperty("spriteCharacter").stringValue = "";
+            so.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(definition);
+        }
 
         static void Copy(string from, string to, System.Action<SerializedObject> tune)
         {

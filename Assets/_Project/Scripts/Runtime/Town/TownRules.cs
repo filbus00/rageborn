@@ -96,14 +96,16 @@ namespace ARPG
             return Mathf.RoundToInt(basePrice * factor / 5f) * 5;
         }
 
-        /// <summary>The rarity of a gamble from a roll in 0..1.</summary>
-        public static ItemRarity Rarity(double roll)
+        /// <summary>The rarity of a gamble from a roll in 0..1; <paramref name="legendaryFactor"/> scales the Legendary
+        /// weight (2026-10-08: twice once Silas's debt is settled, a quest).</summary>
+        public static ItemRarity Rarity(double roll, float legendaryFactor = 1f)
         {
-            var total = MagicWeight + RareWeight + LegendaryWeight;
+            var legendary = LegendaryWeight * legendaryFactor;
+            var total = MagicWeight + RareWeight + legendary;
             var r = roll * total;
-            if (r < LegendaryWeight)
+            if (r < legendary)
                 return ItemRarity.Legendary;
-            if (r < LegendaryWeight + RareWeight)
+            if (r < legendary + RareWeight)
                 return ItemRarity.Rare;
             return ItemRarity.Magic;
         }

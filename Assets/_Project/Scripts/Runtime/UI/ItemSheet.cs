@@ -185,7 +185,7 @@ namespace ARPG
 
             var position = showingEquipped ? "equipped" : $"{index + 1} of {list.Count}, swipe for more";
             subtitle.text = $"Item level {item.ItemLevel}   ·   {position}" +
-                            (Selling && !showingEquipped ? $"   ·   <color=#F0C840>sells for {SellRules.Price(item)} gold</color>" : "");
+                            (Selling && !showingEquipped ? $"   ·   <color=#F0C840>sells for {GameSession.Current.SellPrice(item)} gold</color>" : "");
 
             var worn = showingEquipped ? item : equipment.Get(PowerScore.PlaceFor(equipment, item, session.Level, session.Talents.Bonuses));
             if (showingEquipped)
@@ -301,7 +301,7 @@ namespace ARPG
                         Changed?.Invoke();
                     }
                 });
-                NewButton(Selling ? $"Sell +{SellRules.Price(item)}" : "Discard", () =>
+                NewButton(Selling ? $"Sell +{GameSession.Current.SellPrice(item)}" : "Discard", () =>
                 {
                     if (Selling ? session.Sell(item) == 0 : !session.Discard(item))
                         return;

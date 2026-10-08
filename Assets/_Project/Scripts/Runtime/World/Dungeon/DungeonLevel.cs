@@ -147,6 +147,9 @@ namespace ARPG
             if (Layout.HasBossArena)
                 SetUpBoss(session, root);
 
+            // The quests' things for this depth (2026-10-08).
+            QuestObjectives.Create(this, Layout, root, depth, levelSeed);
+
             // Docs/05: a waypoint on every level; the Wanderer with the Portal Tome on its depth; an open portal.
             Waypoint.Create(depth, IsoMath.CellToGround(Layout.Waypoint), root);
             if (depth == DungeonRules.PortalTomeDepth && Layout.HasWandererSpot)
@@ -225,7 +228,12 @@ namespace ARPG
             }
             fight.Configure(definition, adds, Layout.EnemyLevel, IsoMath.CellToGround(Layout.BossArenaCenter),
                 Layout.BossArenaRadius * 0.7071f, key,
-                AddWayOn);
+                () =>
+                {
+                    AddWayOn();
+                    // A quest waiting on this boss moves on (the kill is recorded by now).
+                    QuestSync.Bosses();
+                });
         }
 
         /// <summary>A corpse on this level whose spot is no longer floor (the generator changed since it fell) moves to
@@ -633,6 +641,12 @@ namespace ARPG
                 perSlot[0] = championEnemy;
             pack.Configure(perSlot, placement.Radius, Layout.EnemyLevel);
         }
+
+        /// <summary>The definition a pack member uses here (for quest foes and the waves at a watch fire).</summary>
+        public EnemyDefinition DefinitionOf(PackMember member) => Definition(member);
+
+        /// <summary>A deep or quest definition by its asset's name (RiftHeart, BonePyre), or null.</summary>
+        public EnemyDefinition DeepDefinition(string name) => Deep(name);
 
         // A missing ghoul or archer definition falls back to a husk, so an older scene still fills its packs.
         EnemyDefinition Definition(PackMember member)

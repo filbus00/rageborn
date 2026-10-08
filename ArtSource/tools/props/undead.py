@@ -20,8 +20,10 @@ DONORS = {"skeleton": "husk", "cultist": "bandit_archer", "cutthroat": "husk", "
           # The deep levels (2026-10-05) and their bosses (on the ghoul's rig, as the Warden).
           "drowned": "husk", "harpooner": "bandit_archer", "drowned_watchman": "ghoul", "skeleton_knight": "ghoul",
           "grave_priest": "bandit_archer", "hollowed": "husk", "void_wraith": "husk", "rift_caller": "bandit_archer",
-          "tidewife": "ghoul", "saint_marrow": "ghoul", "first_watchman": "ghoul"}
-NPCS = {"stash_keeper", "healer", "gambler", "trainer"}
+          "tidewife": "ghoul", "saint_marrow": "ghoul", "first_watchman": "ghoul",
+          # The quest people (2026-10-08): Mother Aldis, and those she brings back to town.
+          "aldis": "bandit_archer", "tobin": "bandit_archer", "pellam": "bandit_archer", "bram": "bandit_archer", "ivy": "bandit_archer"}
+NPCS = {"stash_keeper", "healer", "gambler", "trainer", "aldis", "tobin", "pellam", "bram", "ivy"}
 DONOR = DONORS[NAME]
 OUT = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "NPCs", NAME) if NAME in NPCS else os.path.join(ENEMIES, NAME)
 
@@ -376,6 +378,64 @@ def trainer():
     block(hip + V((0, 0.06 * U, 0)), (0.12 * U, 0.025 * U, 0.03 * U), "Hips", "iron")
 
 
+def aldis():
+    # An old woman, the keeper of the dead Vigil fire: a long ash-grey robe, a dark red shawl, white hair in a knot.
+    h = head("Head")
+    _townsfolk_body("ash", "ash_dark", "ash", "robe_dark", wide=0.95)
+    blob(h + V((0, 0.1 * U, 0)), (0.085 * U, 0.1 * U, 0.09 * U), "Head", "skin")
+    blob(h + V((0, 0.14 * U, -0.03 * U)), (0.09 * U, 0.08 * U, 0.085 * U), "Head", "bone_white")
+    blob(h + V((0, 0.2 * U, -0.07 * U)), (0.04 * U, 0.04 * U, 0.04 * U), "Head", "bone_white")
+    block(V((0, head("Spine2").y + 0.04 * U, 0)), (0.36 * U, 0.12 * U, 0.24 * U), "Spine2", "robe")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.11 * U, 0.13 * U, side + "UpLeg", "ash")
+        limb(head(side + "Leg"), head(side + "Foot") + V((0, 0.03 * U, 0)), 0.13 * U, 0.14 * U, side + "Leg", "ash")
+
+
+def tobin():
+    # A skinny boy: a patched brown tunic, a satchel across the chest, a mop of dark hair.
+    h = head("Head")
+    _townsfolk_body("tunic", "leather", "leather_dark", "robe_dark", wide=0.85)
+    blob(h + V((0, 0.1 * U, 0)), (0.08 * U, 0.095 * U, 0.085 * U), "Head", "skin")
+    blob(h + V((0, 0.15 * U, -0.01 * U)), (0.09 * U, 0.06 * U, 0.09 * U), "Head", "hair")
+    block(V((0.12 * U, head("Hips").y + 0.05 * U, 0.06 * U)), (0.08 * U, 0.1 * U, 0.06 * U), "Hips", "leather")
+
+
+def pellam():
+    # The lampwright: a leather apron over a grey shirt, a brass lamp hanging at his belt, spectacles, a bald crown.
+    h = head("Head")
+    _townsfolk_body("ash_dark", "leather_dark", "leather_dark", "robe_dark", wide=1.05)
+    blob(h + V((0, 0.1 * U, 0)), (0.09 * U, 0.1 * U, 0.095 * U), "Head", "skin")
+    blob(h + V((0, 0.08 * U, -0.04 * U)), (0.095 * U, 0.06 * U, 0.08 * U), "Head", "beard")
+    block(V((0, head("Spine1").y, 0.1 * U)), (0.24 * U, 0.34 * U, 0.03 * U), "Spine1", "apron")
+    block(h + V((0, 0.1 * U, 0.09 * U)), (0.12 * U, 0.02 * U, 0.02 * U), "Head", "brass")
+    lamp = V((0.14 * U, head("Hips").y - 0.06 * U, 0.06 * U))
+    blob(lamp, (0.04 * U, 0.06 * U, 0.04 * U), "Hips", "fire")
+    block(lamp + V((0, 0.06 * U, 0)), (0.06 * U, 0.02 * U, 0.06 * U), "Hips", "brass")
+
+
+def bram():
+    # The ferryman: a wide oilskin coat, a fisherman's cap, a big grey beard.
+    h = head("Head")
+    _townsfolk_body("oilskin", "leather_dark", "oilskin", "robe_dark", wide=1.2)
+    blob(h + V((0, 0.1 * U, 0)), (0.095 * U, 0.105 * U, 0.1 * U), "Head", "skin")
+    blob(h + V((0, 0.03 * U, 0.06 * U)), (0.085 * U, 0.09 * U, 0.06 * U), "Head", "beard")
+    blob(h + V((0, 0.19 * U, 0)), (0.1 * U, 0.05 * U, 0.1 * U), "Head", "oilskin")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.1 * U, 0.11 * U, side + "UpLeg", "oilskin")
+
+
+def ivy():
+    # A young sister of the saint's order: a black habit, a pale wimple, a red cord at the waist.
+    h = head("Head")
+    _townsfolk_body("robe_dark", "robe_dark", "robe_dark", "robe_dark", wide=0.9)
+    blob(h + V((0, 0.1 * U, 0)), (0.08 * U, 0.095 * U, 0.085 * U), "Head", "skin")
+    blob(h + V((0, 0.12 * U, -0.02 * U)), (0.1 * U, 0.11 * U, 0.1 * U), "Head", "linen")
+    block(V((0, head("Spine").y, 0)), (0.29 * U, 0.03 * U, 0.2 * U), "Spine", "scarf")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.1 * U, 0.12 * U, side + "UpLeg", "robe_dark")
+        limb(head(side + "Leg"), head(side + "Foot") + V((0, 0.03 * U, 0)), 0.12 * U, 0.13 * U, side + "Leg", "robe_dark")
+
+
 def drowned():
     # A drowned man: swollen pale blue-green skin, rags, kelp hanging from the shoulders.
     h = head("Head")
@@ -585,7 +645,8 @@ def first_watchman():
  "pyre_keeper": pyre_keeper, "carrion_bloat": carrion_bloat, "stash_keeper": stash_keeper, "healer": healer,
  "gambler": gambler, "trainer": trainer, "drowned": drowned, "harpooner": harpooner, "drowned_watchman": drowned_watchman,
  "skeleton_knight": skeleton_knight, "grave_priest": grave_priest, "hollowed": hollowed, "void_wraith": void_wraith,
- "rift_caller": rift_caller, "tidewife": tidewife, "saint_marrow": saint_marrow, "first_watchman": first_watchman}[NAME]()
+ "rift_caller": rift_caller, "tidewife": tidewife, "saint_marrow": saint_marrow, "first_watchman": first_watchman,
+ "aldis": aldis, "tobin": tobin, "pellam": pellam, "bram": bram, "ivy": ivy}[NAME]()
 
 # Every bone a humanoid needs keeps a vertex weighted to it: Unity strips bones nothing is weighted to, and the avatar
 # then cannot be made ("Required human bone 'LeftHand' not found", the skeleton knight's shield hand, 2026-10-05).

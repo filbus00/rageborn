@@ -157,6 +157,7 @@ namespace ARPG
             PassiveTreeScreen.CloseIfOpen();
             StatsScreen.CloseIfOpen();
             CodexScreen.CloseIfOpen();
+            QuestLogScreen.CloseIfOpen();
             SettingsScreen.CloseIfOpen();
             panelRoot.SetActive(false);
             Time.timeScale = 1f;
@@ -687,13 +688,14 @@ namespace ARPG
                 ("Inventory", null, true, true),
                 (skillPoints > 0 ? $"Talents +{skillPoints}" : "Talents", TalentScreen.Open, true, false),
                 (statPoints > 0 ? $"Stats +{statPoints}" : "Stats", StatsScreen.Open, true, false),
+                ("Quests", QuestLogScreen.Open, true, false),
                 ("Codex", CodexScreen.Open, true, false),
                 ("Settings", SettingsScreen.Open, true, false),
             };
             for (var i = 0; i < tabs.Count; i++)
             {
                 var (label, open, enabled, active) = tabs[i];
-                var button = UiStyle.Button(bar, label, () => open?.Invoke(), 34, active ? UiStyle.Blood : UiStyle.Panel);
+                var button = UiStyle.Button(bar, label, () => open?.Invoke(), 30, active ? UiStyle.Blood : UiStyle.Panel);
                 var rect = (RectTransform)button.transform;
                 rect.anchorMin = new Vector2(i / (float)tabs.Count, 0f);
                 rect.anchorMax = new Vector2((i + 1) / (float)tabs.Count, 1f);

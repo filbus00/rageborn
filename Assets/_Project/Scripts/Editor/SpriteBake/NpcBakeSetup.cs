@@ -20,6 +20,8 @@ namespace ARPG.Editor
         static readonly Dictionary<string, string> IdleFrom = new Dictionary<string, string>
         {
             { "stash_keeper", "merchant" }, { "healer", "merchant" }, { "gambler", "merchant" }, { "trainer", "merchant" },
+            // The quest people (2026-10-08).
+            { "aldis", "merchant" }, { "tobin", "merchant" }, { "pellam", "merchant" }, { "bram", "merchant" }, { "ivy", "merchant" },
         };
 
         [MenuItem("Tools/ARPG/Sprite Bake/Bake NPCs")]

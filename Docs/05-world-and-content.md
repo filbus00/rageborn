@@ -52,6 +52,42 @@ It was to replace the 24 levels descended by stairs.
 
 Story is delivered in short scenes across the campaign, about 20 minutes in all (25 scenes, below). Skippable at all times. Scenes are made in-engine from sprites, portraits and text lines, with no voice (decided 2026-09-27, Q20).
 
+## Quests (decided 2026-10-08)
+
+The owner: "Lets work on the story, make some quests, quest givers and quests to do in the dungeon. Nothing lame like kill x amount of this enemy." Answers, one question at a time: a main story plus side quests; in the dungeon, find and rescue people, unique named foes, recover objects, and events on a level; told in dialogue panels (a portrait, a few lines, Accept); the reward is the town growing; 4 main quests and 8 side quests to start. The content below is Claude's, to review.
+
+How it plays:
+
+- A quest giver in town with something to say has a gold **!** over the head (a quest to offer) or **?** (a quest to hand in). Walking up opens a dialogue panel first; walking up again opens the giver's usual trade.
+- A quest is a few steps. A step in the dungeon names its depth; on that level the thing is placed in a room far from the stairs, marked on the minimap with a gold star and by a faint light.
+- Kinds of step: **rescue** (a captive held in a lair; free them by walking up once their captors are dead or gone, and they make for town), **named foe** (a unique, stronger enemy with its own name over its head and its own guards; some carry an object to recover), **recover** (an object on a lectern, an altar or a body; walk up to take it), **hold the fire** (light a dead watch fire and keep near it for 30 seconds while the dead come for it), **break** (things to destroy with arrows that call enemies while they stand: bone pyres, a rift heart), **slay the boss**, and **return** (to a giver in town).
+- The reward is the town growing: the people she rescues stay in Emberwatch, and each finished quest gives the town (and her) something lasting. No gold, items or XP from quests.
+- The Bag has a Quests tab (active steps, then the finished quests with what they gave), and a line under the minimap names the step being followed (the main quest first).
+
+The main quest, given by **Mother Aldis**, keeper of Emberwatch's dead Vigil fire, who stands by it:
+
+| Quest | Steps | When done |
+|---|---|---|
+| The First Fire | Find the Cinder Warden's watch-log (recover, depth 4: "the Warden would not let it die; he walked into the fire and the fire took him"). Slay the Cinder Warden (6). Bring the first ember to Aldis. | Emberwatch's fire burns again: the Vigil's blessing, +5 percent life. |
+| The Drowned Watch | Relight the Drowned Watch's fire (hold the fire, 9). Find Bram the ferryman, held in the drowned's hold (rescue, 11). Slay the Tidewife (12) and bring the second ember. | +5 percent damage. Bram stays in town. |
+| The Saint's Bargain | Find Sister Ivy, sealed in a tomb (rescue, 14). Take Saint Marrow's reliquary from the Reliquary Keeper (named foe, 16). Slay Saint Marrow (18) and bring the third ember. | +5 percent life. Ivy stays in town. |
+| The First Watchman | Break the rift heart that feeds the deep (break, 20). Recover the Broken Oath-stone of the first watch (recover, 22). Slay the First Watchman (24) and bring the last ember. | +5 percent damage, and the ending: the four embers relight the Vigil. |
+
+Side quests, each from someone in town once they are there:
+
+| Quest | Giver | Steps | The town grows |
+|---|---|---|---|
+| The Apprentice | Odo the merchant | Find Tobin, his apprentice, who went down for salvage and did not come back (rescue, 2). | Tobin minds the stall: the merchant pays 25 percent more. |
+| Gorrak the Gnawer | Kestra the beast tamer | Kill Gorrak, the ghoul that dragged off her hounds, in his feeding pit (named foe, 3). | Her pens are safe again: pets have 25 percent more life and damage. |
+| A Lamp in the Dark | The healer (Maud) | Find her brother Pellam the lampwright, taken by cultists (rescue, 5). | Pellam stays and makes her a lantern: her light reaches 30 percent further below. |
+| The Cartographer's Notes | The stash keeper (Wenn) | Recover the old watch cartographer's notes from a tomb (recover, 7). | The minimap marks the stairs down on every level from her arrival. |
+| Vessa the Knife | The gambler (Silas) | Kill Vessa, the bandit queen he owes, at her camp (named foe, 9). | His debts are paid: a Legendary from a gamble is twice as likely. |
+| The Unquiet Knight | The trainer (Hale) | Lay his old commander Sir Aldric to rest (named foe, 13) and bring back Aldric's sword (Aldric carries it). | Hale's drills: +5 percent attack speed. |
+| The Last Novice | Sister Ivy | Break the grave priests' rite: three bone pyres (break, 15). | Ivy's prayers: potions heal 25 percent more, and one more potion charge. |
+| The Great Lamp | Pellam the lampwright | Recover his great lamp from a demon nest (recover, 19). | The great lamp hangs over the town: her light reaches a further 30 percent below. |
+
+Bram the ferryman, once rescued, rows her to her body: walking up to him while a corpse lies in the dungeon takes her to its level.
+
 ## Structure
 
 | Act | Levels | Player level (Vigil I, the first of five passes, decided 2026-09-27, Q1) | Boss | Signature enemies |

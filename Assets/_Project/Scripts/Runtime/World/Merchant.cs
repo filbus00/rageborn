@@ -25,13 +25,16 @@ namespace ARPG
 
             NpcFigure.Create(go.transform, "merchant", new Color(0.62f, 0.5f, 0.25f));
             TravelArt.Label(go.transform, "Merchant", LootColors.Gold, 1.5f);
+            QuestMarker.Attach(go.transform, QuestGiver.Merchant);
             return go.AddComponent<Merchant>();
         }
 
         protected override void OnWalkedOn()
         {
             var bag = InventoryScreen.Current;
-            if (bag == null || bag.IsOpen || PetVendorScreen.IsOpen)
+            if (bag == null || bag.IsOpen || PetVendorScreen.IsOpen || DialoguePanel.IsOpen)
+                return;
+            if (QuestTalk.TryTalk(QuestGiver.Merchant))
                 return;
             bag.OpenAtMerchant();
         }

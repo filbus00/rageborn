@@ -21,7 +21,7 @@ namespace ARPG
         /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses. 13: adds each
         /// item's named legendary and the legendaries seen (the Codex). 14: the deepest depth and the stash. 15: the talent
         /// trees' ranks (2026-10-07; skill levels and the loadout are kept in the file but no longer used).</summary>
-        public const int CurrentVersion = 15;
+        public const int CurrentVersion = 16;
 
         public int version;
 
@@ -107,6 +107,17 @@ namespace ARPG
 
         // Version 15 (2026-10-07): the ranks bought in the talent trees, by talent id; she starts with only her bow.
         public List<TalentData> talents = new List<TalentData>();
+
+        // Version 16 (2026-10-08): the quests taken, each with its current step and whether it is done.
+        public List<QuestData> quests = new List<QuestData>();
+    }
+
+    [Serializable]
+    public sealed class QuestData
+    {
+        public string id;
+        public int step;
+        public bool done;
     }
 
     [Serializable]

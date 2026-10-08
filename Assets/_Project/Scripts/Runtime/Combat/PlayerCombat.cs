@@ -476,7 +476,7 @@ namespace ARPG
             var equipment = GameSession.Current.Equipment;
             var tree = session.Talents.Bonuses;
             attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + AttackSpeedBuff +
-                                                    tree.AttackSpeed + tree.AttackSpeedPerMomentum * player.Stance.Momentum +
+                                                    tree.AttackSpeed + tree.AttackSpeedPerMomentum * player.Stance.Momentum + session.Quests.Boons.AttackSpeed +
                                                     session.AttributeBonuses.AttackSpeed + equipment.GripAttackSpeedBonus +
                                                     (equipment.Wears(LegendaryId.HideOfTheRunningStag)
                                                         ? Legendaries.StagAttackSpeedPerMomentum * player.Stance.Momentum : 0f)) *
@@ -1936,6 +1936,8 @@ namespace ARPG
             // The passive tree (Docs/02, proposed numbers): its flat increase, Bloodied Edge against the wounded, Hatred
             // for Rage held, Battering Ram for the movement skills, and Berserker below half life.
             increased += tree.IncreasedDamage + tree.DamagePerTenRage * Mathf.Floor(focus.Current / 10f);
+            // The Vigil's blessing (2026-10-08): +5 percent damage for each ember of the Drowned Watch and the First Watchman.
+            increased += session.Quests.Boons.DamagePercent;
             if (enemy.MaxLife > 0f && enemy.Life / enemy.MaxLife < 0.5f)
                 increased += tree.DamageVsWounded;
             if (movementSkill)

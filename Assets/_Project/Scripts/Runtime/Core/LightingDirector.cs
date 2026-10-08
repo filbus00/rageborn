@@ -57,9 +57,11 @@ namespace ARPG
                 }
 
             var player = FindAnyObjectByType<PlayerController>();
+            // Pellam's lantern and the great lamp (2026-10-08, quests) carry her light further below.
+            var reach = scene.name == SceneTravel.DungeonScene ? GameSession.Current.Quests.Boons.Light : 1f;
             if (player != null)
                 Flicker(WorldLights.Add(player.transform, LightingRules.EmberColor, LightingRules.EmberIntensity,
-                    LightingRules.EmberInnerRadius, LightingRules.EmberOuterRadius, 0.4f));
+                    LightingRules.EmberInnerRadius * reach, LightingRules.EmberOuterRadius * reach, 0.4f));
 
             // The dungeon shades its own floor as it paints it (DungeonLevel); the town's is painted in the scene.
             if (scene.name == SceneTravel.TownScene)

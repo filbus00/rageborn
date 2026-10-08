@@ -26,11 +26,18 @@ namespace ARPG
 
         float triggerFraction = DefaultTriggerFraction;
 
-        public AutoPotion(int charges = MaxCharges, int killProgress = 0)
+        public AutoPotion(int charges = MaxCharges, int killProgress = 0, int extraCharges = 0)
         {
-            Charges = Math.Max(0, Math.Min(MaxCharges, charges));
-            KillProgress = Charges >= MaxCharges ? 0 : Math.Max(0, Math.Min(KillsPerCharge - 1, killProgress));
+            ExtraCharges = Math.Max(0, extraCharges);
+            Charges = Math.Max(0, Math.Min(Capacity, charges));
+            KillProgress = Charges >= Capacity ? 0 : Math.Max(0, Math.Min(KillsPerCharge - 1, killProgress));
         }
+
+        /// <summary>Charges beyond <see cref="MaxCharges"/> (2026-10-08: Sister Ivy's blessing, a quest).</summary>
+        public int ExtraCharges { get; set; }
+
+        /// <summary>The charges held at most.</summary>
+        public int Capacity => MaxCharges + ExtraCharges;
 
         /// <summary>Raised when charges or kill progress change, so the session can be saved.</summary>
         public event Action Changed;
@@ -55,7 +62,7 @@ namespace ARPG
 
         public void RegisterKill()
         {
-            if (Charges >= MaxCharges)
+            if (Charges >= Capacity)
                 return;
 
             KillProgress++;
@@ -70,10 +77,10 @@ namespace ARPG
         /// <summary>Back to full charges, for arriving in town (tuning: the docs do not say).</summary>
         public void Refill()
         {
-            if (Charges == MaxCharges && KillProgress == 0)
+            if (Charges == Capacity && KillProgress == 0)
                 return;
 
-            Charges = MaxCharges;
+            Charges = Capacity;
             KillProgress = 0;
             Changed?.Invoke();
         }

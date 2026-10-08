@@ -159,6 +159,6 @@ namespace ARPG
         static float ComputeMaxLife() =>
             (CombatFormulas.CharacterLife(GameSession.Current.Level) + GameSession.Current.AttributeBonuses.Life +
              GameSession.Current.Equipment.TotalLifeBonus) *
-            (1f + GameSession.Current.Talents.Bonuses.LifePercent + PetRules.LifeBonus(GameSession.Current.Pets.Active));
+            (1f + GameSession.Current.Talents.Bonuses.LifePercent + GameSession.Current.Quests.Boons.LifePercent + PetRules.LifeBonus(GameSession.Current.Pets.Active));
     }
 }

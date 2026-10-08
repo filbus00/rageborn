@@ -29,6 +29,14 @@ namespace ARPG
             _ => new Color(0.4f, 0.45f, 0.6f),
         };
 
+        static QuestGiver GiverOf(Newcomer who) => who switch
+        {
+            Newcomer.StashKeeper => QuestGiver.StashKeeper,
+            Newcomer.Healer => QuestGiver.Healer,
+            Newcomer.Gambler => QuestGiver.Gambler,
+            _ => QuestGiver.Trainer,
+        };
+
         public static NewcomerNpc Create(Newcomer who, Transform parent)
         {
             var go = new GameObject(Newcomers.Name(who), typeof(CircleCollider2D));
@@ -43,6 +51,7 @@ namespace ARPG
 
             NpcFigure.Create(go.transform, Character(who), Placeholder(who));
             TravelArt.Label(go.transform, Newcomers.Name(who), LootColors.Gold, 1.5f);
+            QuestMarker.Attach(go.transform, GiverOf(who));
             var npc = go.AddComponent<NewcomerNpc>();
             npc.who = who;
             return npc;
@@ -51,7 +60,9 @@ namespace ARPG
         protected override void OnWalkedOn()
         {
             var bag = InventoryScreen.Current;
-            if ((bag != null && bag.IsOpen) || PetVendorScreen.IsOpen || TownSheets.AnyOpen)
+            if ((bag != null && bag.IsOpen) || PetVendorScreen.IsOpen || TownSheets.AnyOpen || DialoguePanel.IsOpen)
+                return;
+            if (QuestTalk.TryTalk(GiverOf(who)))
                 return;
             switch (who)
             {

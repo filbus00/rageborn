@@ -523,6 +523,116 @@ def _net(n):
         box((0.01, 0.4, 0.006), (k * 0.07, 0, 0.003), rope, rot=(0, 0, 10 * n))
 
 
+# ---------------------------------------------------------------- quests (2026-10-08)
+
+def _vigil_fire(lit):
+    """Emberwatch's Vigil fire, and the drowned watch's: a wide iron bowl on a stepped stone plinth, cold ash and
+    charred logs when dead, a tall fire when lit."""
+    rng = seed(61)
+    stone = [mat(STONE[3], 0.35, STONE[2], scale=8), mat(STONE[2], 0.35, STONE[1], scale=8)]
+    iron = mat(STONE[1], 0.2, STONE[0], metal=0.6, rough=0.5)
+    box((1.5, 1.5, 0.18), (0, 0, 0), stone[1], rot=(0, 0, 45), bevel=0.02)
+    box((1.15, 1.15, 0.2), (0, 0, 0.18), stone[0], rot=(0, 0, 45), bevel=0.02)
+    lathe([(0.25, 0.38), (0.6, 0.55), (0.72, 0.75), (0.68, 0.77), (0.0, 0.62)], (0, 0, 0), iron, 18, cap=False)
+    for k in range(4):
+        a = math.radians(45 + 90 * k)
+        box((0.08, 0.08, 0.4), (0.55 * math.cos(a), 0.55 * math.sin(a), 0.38), iron)
+    log = mat(WOOD[0], 0.4, STONE[0], scale=12) if not lit else mat(WOOD[2], 0.3, WOOD[1], scale=12)
+    for k in range(6):
+        a = 2 * math.pi * k / 6 + 0.2
+        cyl(0.07, 0.75, (0.3 * math.cos(a), 0.3 * math.sin(a), 0.66), log, 6, rot=(0, -58, math.degrees(a)))
+    if lit:
+        sphere(0.5, (0, 0, 0.66), mat(EMBER[1], 0.5, EMBER[0], emit=2.5, scale=20), scale=(1, 1, 0.3), segments=12)
+        flame((0, 0, 0.7), 0.3, 8)
+        flame((0.16, 0.1, 0.7), 0.22, 8)
+        flame((-0.15, 0.12, 0.7), 0.2, 8)
+        flame((0.05, -0.18, 0.7), 0.18, 8)
+    else:
+        sphere(0.5, (0, 0, 0.66), mat(STONE[2], 0.5, STONE[1], scale=20), scale=(1, 1, 0.22), segments=12)
+
+
+def vigil_fire_unlit():
+    _vigil_fire(False)
+
+
+def vigil_fire_lit():
+    _vigil_fire(True)
+
+
+def quest_lectern():
+    """A watch post's lectern with a book lying open on it (the Warden's log, the cartographer's notes)."""
+    wood = mat(WOOD[2], 0.4, WOOD[1], scale=18)
+    dark = mat(WOOD[1], 0.4, WOOD[0], scale=18)
+    page = mat(BONE[2], 0.15, BONE[1], scale=10)
+    box((0.3, 0.3, 0.06), (0, 0, 0), dark, rot=(0, 0, 45))
+    box((0.1, 0.1, 0.8), (0, 0, 0.06), wood, rot=(0, 0, 45))
+    box((0.5, 0.36, 0.05), (0, 0, 0.85), wood, rot=(-25, 0, 45))
+    box((0.42, 0.3, 0.03), (0, 0, 0.9), page, rot=(-25, 0, 45))
+    box((0.012, 0.3, 0.035), (0, 0, 0.9), dark, rot=(-25, 0, 45))
+    box((0.04, 0.2, 0.004), (0.12, -0.02, 0.93), mat(BLOOD[2], 0.0), rot=(-25, 0, 45))
+
+
+def quest_oath_stone():
+    """The first watch's oath-stone: a tall slab broken across, its top half fallen beside it, letters cut in it."""
+    rng = seed(62)
+    stone = mat(STONE[3], 0.35, STONE[2], scale=8)
+    cut = mat(EMBER[1], 0.0, emit=1.5)
+    box((0.55, 0.18, 0.7), (0, 0, 0), stone, rot=(0, 0, -45), bevel=0.02)
+    box((0.55, 0.18, 0.5), (0.25, -0.35, 0), stone, rot=(80, 0, -30), bevel=0.02)
+    for k in range(4):
+        box((0.35, 0.01, 0.03), (0.0, -0.1 * 0.7, 0.2 + k * 0.11), cut, rot=(0, 0, -45))
+    rock((0.3, 0.2, 0.03), 0.08, stone, rng)
+
+
+def quest_great_lamp():
+    """The watch's great lamp, fallen on its side: a brass cage taller than a man, its glass cracked, still glowing."""
+    brass = mat(EMBER[2], 0.3, EMBER[0], metal=0.7, rough=0.4)
+    glass = mat(EMBER[3], 0.0, emit=2.0)
+    lathe([(0.0, 0.0), (0.3, 0.0), (0.32, 0.1), (0.2, 0.15)], (0, 0, 0), brass, 12, rot=(0, 75, 30))
+    sphere(0.28, (0.35, 0.1, 0.3), glass, scale=(1.4, 1, 1), segments=12)
+    for k in range(6):
+        a = 2 * math.pi * k / 6
+        box((0.9, 0.03, 0.03), (0.4, 0.1 + 0.3 * math.cos(a), 0.3 + 0.3 * math.sin(a)), brass, rot=(0, 0, 0))
+    lathe([(0.0, 0.0), (0.25, 0.0), (0.12, 0.2), (0.0, 0.3)], (0.9, 0.1, 0.3), brass, 10, rot=(0, 90, 0))
+
+
+def quest_rift_heart():
+    """A rift heart: a knot of black stone and flesh split open on a violet glow, ribs of bone curling round it."""
+    rng = seed(63)
+    flesh = [mat(BLOOD[2], 0.4, BLOOD[0], scale=12), mat(VIOLET[0], 0.4, STONE[0], scale=12)]
+    glow = mat(VIOLET[1], 0.0, emit=5.0)
+    bonec = mat(BONE[1], 0.3, BONE[0], scale=15)
+    sphere(0.55, (0, 0, 0.55), flesh[1], scale=(1, 1, 1.15), segments=14)
+    sphere(0.3, (-0.25, -0.25, 0.7), glow, scale=(1, 1, 1.5), segments=10)
+    for k in range(8):
+        a = rng.random() * 6.28
+        sphere(rng.uniform(0.12, 0.22), (0.45 * math.cos(a), 0.45 * math.sin(a), rng.uniform(0.2, 0.9)), rng.choice(flesh), segments=8)
+    for k in range(6):
+        a = 2 * math.pi * k / 6
+        cone(0.06, 1.0, (0.62 * math.cos(a), 0.62 * math.sin(a), 0.0), bonec, 5, rot=(math.sin(a) * -25, math.cos(a) * 25, 0))
+    blob(0, 0, 1.0, mat(BLOOD[1], 0.0, rough=0.3), 14, 0.5, rng)
+
+
+def quest_bone_pyre():
+    """A grave priests' pyre: bones stacked in a cone round a stake, burning with a cold green fire."""
+    rng = seed(64)
+    bonec = mat(BONE[1], 0.3, BONE[0], scale=15)
+    wood = mat(WOOD[1], 0.4, WOOD[0], scale=20)
+    cyl(0.05, 1.3, (0, 0, 0), wood, 6)
+    for k in range(26):
+        a = rng.random() * 360
+        r = rng.random() * 0.45
+        z = (0.5 - r) * 0.8
+        bone((r * math.cos(math.radians(a)), r * math.sin(math.radians(a)), z), rng.uniform(0.3, 0.5), rng.random() * 360, bonec, 0.03, tilt=rng.random() * 30)
+    for k in range(3):
+        skull((rng.uniform(-0.3, 0.3), rng.uniform(-0.3, 0.3), rng.uniform(0.1, 0.45)), 0.09, bonec, turn=rng.random() * 360)
+    green = mat((120, 220, 130), 0.0, emit=5.0)
+    pale = mat((190, 240, 180), 0.0, emit=6.0)
+    for (x, y, size) in ((0, 0, 0.22), (0.12, 0.08, 0.15), (-0.12, 0.1, 0.14)):
+        lathe([(size * 0.5, 0), (size * 0.62, size * 0.5), (size * 0.35, size * 1.4), (0.001, size * 2.4)], (x, y, 0.55), green, 8)
+        lathe([(size * 0.3, 0), (size * 0.36, size * 0.4), (0.001, size * 1.5)], (x - size * 0.25, y - size * 0.25, 0.57), pale, 8)
+
+
 # ---------------------------------------------------------------- walls
 
 def _rubble_block(height, variant):
@@ -1559,6 +1669,13 @@ ALL = {
     "woodpile": ("world", woodpile, WORLD),
     "trough": ("world", pen_trough, WORLD),
     "graves": ("world", graves, WORLD),
+    "vigil_fire_unlit": ("world", vigil_fire_unlit, WORLD),
+    "vigil_fire_lit": ("world", vigil_fire_lit, WORLD),
+    "quest_lectern": ("world", quest_lectern, WORLD),
+    "quest_oath_stone": ("world", quest_oath_stone, WORLD),
+    "quest_great_lamp": ("world", quest_great_lamp, WORLD),
+    "quest_rift_heart": ("world", quest_rift_heart, WORLD),
+    "quest_bone_pyre": ("world", quest_bone_pyre, WORLD),
 }
 
 for n in range(1, 5):

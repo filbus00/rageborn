@@ -32,6 +32,21 @@ namespace ARPG
         static readonly Color32 StairsDownColor = new Color32(90, 240, 140, 255);
         static readonly Color32 ChestColor = new Color32(255, 210, 60, 255);
         static readonly Color32 OpenChestColor = new Color32(120, 100, 50, 255);
+        static readonly Color32 QuestColor = new Color32(255, 170, 40, 255);
+
+        /// <summary>Where this level's quest things stand (2026-10-08): marked even before they are seen, since the giver
+        /// said where to look. Set by <see cref="QuestObjectives"/>.</summary>
+        public static readonly System.Collections.Generic.List<Vector2Int> QuestMarks = new System.Collections.Generic.List<Vector2Int>();
+
+        /// <summary>Redraws the markers over the whole map and uploads it (a quest thing placed or done).</summary>
+        public void RefreshMarks()
+        {
+            if (layout == null || texture == null)
+                return;
+            MarkAll();
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+        }
 
         DungeonLayout layout;
         MinimapReveal reveal;
@@ -163,11 +178,7 @@ namespace ARPG
                 return;
             var area = layout.Bounds;
             // The markers inside the block keep drawing over it.
-            Mark(layout.StairsUp, StairsUpColor);
-            if (layout.HasStairsDown)
-                Mark(layout.StairsDown, StairsDownColor);
-            for (var i = 0; i < layout.Chests.Count; i++)
-                Mark(layout.Chests[i], GameSession.Current.IsOpened(chestKeys[i]) ? OpenChestColor : ChestColor);
+            MarkAll();
             var x0 = Mathf.Max(0, dirtyMin.x - 1);
             var y0 = Mathf.Max(0, dirtyMin.y - 1);
             var w = Mathf.Min(area.width, dirtyMax.x + 2) - x0;
@@ -186,16 +197,19 @@ namespace ARPG
         void MarkAll()
         {
             Mark(layout.StairsUp, StairsUpColor);
+            // Feln's maps (2026-10-08, a quest): the stairs down shown from arrival.
             if (layout.HasStairsDown)
-                Mark(layout.StairsDown, StairsDownColor);
+                Mark(layout.StairsDown, StairsDownColor, GameSession.Current.Quests.Boons.MapStairs);
             for (var i = 0; i < layout.Chests.Count; i++)
                 Mark(layout.Chests[i], GameSession.Current.IsOpened(chestKeys[i]) ? OpenChestColor : ChestColor);
+            foreach (var cell in QuestMarks)
+                Mark(cell, QuestColor, true);
         }
 
-        /// <summary>Draws a 3 by 3 marker, only once the player has seen that spot.</summary>
-        void Mark(Vector2Int center, Color32 color)
+        /// <summary>Draws a 3 by 3 marker, only once the player has seen that spot unless <paramref name="always"/>.</summary>
+        void Mark(Vector2Int center, Color32 color, bool always = false)
         {
-            if (!reveal.IsExplored(center))
+            if (!always && !reveal.IsExplored(center))
                 return;
             var b = layout.Bounds;
             for (var dx = -1; dx <= 1; dx++)

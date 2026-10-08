@@ -58,8 +58,33 @@ namespace ARPG
                 foreach (var who in Newcomers.All)
                     if (GameSession.Current.HasArrived(who))
                         NewcomerNpc.Create(who, null);
+                // The quest people (2026-10-08): Mother Aldis, and those she has brought back; the Vigil fire.
+                foreach (QuestPerson who in System.Enum.GetValues(typeof(QuestPerson)))
+                    if (QuestNpc.InTown(who))
+                        QuestNpc.Create(who, null);
+                vigilEmbers = -1;
             }
+            else
+                vigilFire = null;
             Refresh();
+        }
+
+        GameObject vigilFire;
+        int vigilEmbers = -1;
+
+        // The Vigil fire, rebuilt when an ember comes home while she is in town.
+        void RefreshVigilFire()
+        {
+            if (SceneManager.GetActiveScene().name != TownScene)
+                return;
+            var embers = VigilFire.Embers(GameSession.Current.Quests);
+            if (embers == vigilEmbers)
+                return;
+            vigilEmbers = embers;
+            if (vigilFire != null)
+                Destroy(vigilFire);
+            vigilFire = new GameObject("Vigil Fire");
+            VigilFire.Create(vigilFire.transform);
         }
 
         // The active pet follows; a different one replaces it at once.
@@ -67,6 +92,7 @@ namespace ARPG
         {
             if (session != GameSession.Current)
                 return;
+            RefreshVigilFire();
             var active = session.Pets.Active;
             if (pet != null && (active == null || pet.Kind != active.Value))
             {
@@ -100,13 +126,16 @@ namespace ARPG
                 go.layer = layer;
 
             NpcFigure.Create(go.transform, "pet_vendor", new Color(0.45f, 0.55f, 0.35f));
+            QuestMarker.Attach(go.transform, QuestGiver.Tamer);
             TravelArt.Label(go.transform, "Pet Vendor", new Color(0.8f, 0.95f, 0.7f), 1.5f);
             return go.AddComponent<PetVendor>();
         }
 
         protected override void OnWalkedOn()
         {
-            if (InventoryScreen.Current != null && InventoryScreen.Current.IsOpen)
+            if ((InventoryScreen.Current != null && InventoryScreen.Current.IsOpen) || DialoguePanel.IsOpen)
+                return;
+            if (QuestTalk.TryTalk(QuestGiver.Tamer))
                 return;
             PetVendorScreen.Open();
         }
