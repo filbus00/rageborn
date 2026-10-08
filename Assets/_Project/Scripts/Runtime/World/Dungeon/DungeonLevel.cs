@@ -91,6 +91,10 @@ namespace ARPG
 
             levelId = DungeonRules.LevelId(depth);
             LevelContext.Set(levelId);
+            // Elite packs roll their affixes by depth (2026-10-08).
+            var enemies = FindAnyObjectByType<EnemyManager>();
+            if (enemies != null)
+                enemies.Depth = depth;
             // The deepest depth reached brings newcomers to town (2026-10-05); the first time, a banner says who.
             if (session.ReachDepth(depth) && Newcomers.TryArrivingAt(depth, out var newcomer))
                 arrivalNotice = $"Word from town: a {Newcomers.Name(newcomer).ToLowerInvariant()} has arrived.";

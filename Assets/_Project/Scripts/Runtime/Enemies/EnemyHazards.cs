@@ -14,6 +14,7 @@ namespace ARPG
         // The burning ground's look: ember orange, fainter than a telegraph.
         static readonly Color FireColor = new Color(1f, 0.45f, 0.1f, 0.6f);
         static readonly Color BlastColor = new Color(1f, 0.22f, 0.12f, 0.95f);
+        static readonly Color PoisonColor = new Color(0.45f, 0.85f, 0.25f, 0.6f);
         public static readonly Color VoidColor = new Color(0.6f, 0.3f, 0.85f, 0.9f);
         const float BurnPulseSeconds = 0.5f;
 
@@ -29,6 +30,8 @@ namespace ARPG
             public float PulseTimer;
             public int Level;
             public bool Active;
+            public float SlowMultiplier;
+            public float SlowSeconds;
         }
 
         readonly Transform parent;
@@ -50,7 +53,24 @@ namespace ARPG
         public void Fire(Vector2 center, float radius, float seconds, float damagePerSecond, int level) =>
             Add(center, radius, 0f, seconds, 0f, damagePerSecond, level, FireColor);
 
-        void Add(Vector2 center, float radius, float fill, float burn, float damage, float burnPerSecond, int level, Color color)
+        /// <summary>
+        /// A circle that fills, strikes once (slowing her when <paramref name="slowMultiplier"/> is set), then burns on
+        /// for <paramref name="burnSeconds"/> (elite affixes, 2026-10-08: Desecrator, Frost Nova).
+        /// </summary>
+        public void Strike(Vector2 center, float radius, float fillSeconds, float damage, float burnSeconds, float burnPerSecond, int level,
+            Color color, float slowMultiplier = 0f, float slowSeconds = 0f)
+        {
+            var hazard = Add(center, radius, fillSeconds, burnSeconds, damage, burnPerSecond, level, color);
+            hazard.SlowMultiplier = slowMultiplier;
+            hazard.SlowSeconds = slowSeconds;
+        }
+
+        /// <summary>A poison pool (Plagued): it spreads over <paramref name="fillSeconds"/> without hitting, then hurts
+        /// while she stands in it.</summary>
+        public void Poison(Vector2 center, float radius, float fillSeconds, float seconds, float damagePerSecond, int level) =>
+            Add(center, radius, fillSeconds, seconds, 0f, damagePerSecond, level, PoisonColor);
+
+        Hazard Add(Vector2 center, float radius, float fill, float burn, float damage, float burnPerSecond, int level, Color color)
         {
             Hazard hazard = null;
             foreach (var h in hazards)
@@ -77,6 +97,9 @@ namespace ARPG
             hazard.PulseTimer = 0f;
             hazard.Level = level;
             hazard.Active = true;
+            hazard.SlowMultiplier = 0f;
+            hazard.SlowSeconds = 0f;
+            return hazard;
         }
 
         public void Tick(float deltaTime, EnemyManager world)
@@ -98,6 +121,8 @@ namespace ARPG
                     {
                         Sfx.Play(SoundId.EnemySlam, 0.6f);
                         player.TakeHit(h.Damage, h.Level, 0f, dodgeable: false);
+                        if (h.SlowMultiplier > 0f)
+                            world.PlayerController?.ApplySlow(h.SlowMultiplier, h.SlowSeconds);
                     }
                     if (h.BurnLeft <= 0f)
                     {

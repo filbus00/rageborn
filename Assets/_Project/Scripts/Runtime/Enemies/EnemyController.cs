@@ -90,6 +90,9 @@ namespace ARPG
         EnemyDefinition definition;
         EliteModifiers modifiers;
         EnemyPack pack;
+
+        /// <summary>The pack the enemy belongs to, or null.</summary>
+        public EnemyPack Pack => pack;
         EnemyManager manager;
         SpriteRenderer[] renderers;
         SpriteRenderer bodyRenderer;
@@ -343,6 +346,8 @@ namespace ARPG
                 if (!HasModifier(candidate))
                     continue;
 
+                if (shown >= modifierIcons.Length)
+                    break;
                 var icon = modifierIcons[shown];
                 if (icon != null)
                 {

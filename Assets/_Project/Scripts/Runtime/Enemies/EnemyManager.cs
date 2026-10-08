@@ -87,6 +87,12 @@ namespace ARPG
         /// <summary>Burning ground and bursts left by enemies (EnemyHazards).</summary>
         public EnemyHazards Hazards { get; private set; }
 
+        /// <summary>The elites' attack affixes (EliteAffixes, 2026-10-08).</summary>
+        public EliteAffixes Affixes { get; private set; }
+
+        /// <summary>The level's depth, for the affixes an elite pack may roll (set by DungeonLevel; 1 elsewhere).</summary>
+        public int Depth { get; set; } = 1;
+
         // The living supports this frame (the Pyre Keeper's aura), rebuilt with the hash.
         readonly List<EnemyController> supports = new List<EnemyController>(8);
 
@@ -120,6 +126,7 @@ namespace ARPG
             Hash = CreateHash(Nav);
             Projectiles = new EnemyProjectiles(transform);
             Hazards = new EnemyHazards(transform);
+            Affixes = new EliteAffixes(transform);
 
             for (var i = 0; i < poolSize; i++)
                 pool.Push(CreateInstance());
@@ -174,9 +181,14 @@ namespace ARPG
 
             Projectiles.Tick(deltaTime, this);
             Hazards.Tick(deltaTime, this);
+            Affixes.Tick(deltaTime, this);
         }
 
-        internal void NotifyKilled(EnemyController enemy) => Killed?.Invoke(enemy);
+        internal void NotifyKilled(EnemyController enemy)
+        {
+            Affixes.OnKilled(enemy, this);
+            Killed?.Invoke(enemy);
+        }
 
         /// <summary>How much harder an enemy standing here hits: the best awake support aura that reaches it, else 1
         /// (EnemyRules.AuraMultiplier; a support does not empower itself).</summary>
@@ -231,7 +243,19 @@ namespace ARPG
             }
 
             // Docs/01-core-gameplay.md: only elites carry modifiers, one or two, rolled fresh at spawn.
-            var modifiers = definition.Rank == EnemyRank.Elite ? EliteModifierRoller.Roll(modifierRandom) : EliteModifiers.None;
+            // 2026-10-08: a pack's elites share one roll of affixes, more and more dangerous with depth (EliteAffixRules).
+            var modifiers = EliteModifiers.None;
+            if (definition.Rank == EnemyRank.Elite)
+            {
+                if (pack != null && pack.EliteModifiers.HasValue)
+                    modifiers = pack.EliteModifiers.Value;
+                else
+                {
+                    modifiers = EliteAffixRules.Roll(modifierRandom, Depth);
+                    if (pack != null)
+                        pack.EliteModifiers = modifiers;
+                }
+            }
             enemy.Activate(definition, groundPosition, aggroed, pack, this, modifiers, level);
             active.Add(enemy);
             return enemy;

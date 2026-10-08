@@ -10,6 +10,9 @@ namespace ARPG
     /// </summary>
     public class EnemyPack : MonoBehaviour
     {
+        /// <summary>The affixes the pack's elites share (2026-10-08), rolled for its first elite.</summary>
+        public EliteModifiers? EliteModifiers { get; set; }
+
         // Ground-space distance covered by the home flow field. Larger than any level.
         const float HomeFieldRange = 200f;
 

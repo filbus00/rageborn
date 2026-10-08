@@ -361,6 +361,20 @@ Pack mixes (the built rule for act 1, `PackComposition`, extended): in each act,
 
 ### Elite modifiers (15, proposed)
 
+**Built (2026-10-08, the owner: "make them have interesting attacks that need to be dodged"; rolled affixes, all four pairs).** An elite pack rolls its affixes once, shared by every elite in it (`EliteAffixRules.Roll`, `EliteAffixes`): one affix to depth 6, two from 7, three from 19, always at least one attack. Each affix opens at a depth. The names float over the pack's leader. Every attack is a ground telegraph that fills before it lands, so it can be walked out of. Damage is the enemy's hit times the number given. The numbers are Claude's, to review.
+
+| Affix | What it does | Opens at depth |
+|---|---|---|
+| Hasted, Vampiric, Frozen | As before (below) | 1 |
+| Molten | A fire pool (radius 0.9, 4 s, 0.5 a second) where it walks, every 1.2 s; on death a blast (radius 2.2, 1.1 s fill, 1.6) | 1 |
+| Desecrator | A violet circle under her every 5 s (radius 1.6, 1.1 s fill, 1.2), burning on for 3 s (0.5 a second) | 2 |
+| Mortar | When she is over 3.5 away, every 4.5 s: three shells, one on her and two up to 1.7 around, landing 1.3, 1.55 and 1.8 s later (radius 1.2, 1.0) | 3 |
+| Plagued | A poison cloud under her every 6 s (radius 1.8, 0.8 s fill, 6 s, 0.4 a second) | 4 |
+| Frost Nova | Within 6 of her, every 7 s: a ring of radius 4 around the elite (1.3 s fill, 1.0, slows her 40 percent for 2.5 s) | 5 |
+| Lightning Lances | Every 6.5 s three parallel lanes 12 long, 2.4 apart, across her (1 s fill, 1.1) | 7 |
+| Fire Chains | Burning lines between the pack's elites; touching one hurts 0.5 every 0.4 s | 9 |
+| Arcane Beam | Every 11 s a sentry between the elite and her: a beam 7 long that winds up 1.2 s, then turns 50 degrees a second for 7 s (0.6 every 0.35 s) | 11 |
+
 01 lists eight; three are built (Hasted, Vampiric, Frozen). Proposed numbers for the other five and seven more. The built roller gives an elite one or two modifiers with equal chance; proposed: the chance of two rises with the tier (04, tier table: 75 percent on Vigil II and III, always two on IV and V). Modifiers open by act on Vigil I so the list grows as the player learns.
 
 | Modifier | Effect (proposed numbers) | Icon colour (09) | Opens |
