@@ -163,6 +163,8 @@ namespace ARPG
         SkillDefinition barrageSkill;
         int barrageLeft;
         float barrageTimer;
+        // The angle every arrow loosed now leaves off its aim by (AimRules): rolled once per shot, so a fan turns as one.
+        float strayDegrees;
 
         // A patch of floor that hurts what stands in it (Docs/03, ground marks): for now Gallowsreach's blood, which
         // makes enemies bleed. Pulsed twice a second.
@@ -471,8 +473,12 @@ namespace ARPG
         static bool InReach(Vector2 origin, EnemyController target, float range) =>
             Vector2.Distance(origin, target.GroundPosition) <= range + target.Definition.BodyRadius;
 
+        // Rolls how far the next loosed arrows stray, from how hard the stick is pushed (the owner, 2026-10-08).
+        void RollStray() => strayDegrees = AimRules.StrayDegrees(AimRules.Aim(player.StickPush), Random.value);
+
         void BasicAttack(Vector2 origin, Vector2 aim)
         {
+            RollStray();
             var equipment = GameSession.Current.Equipment;
             var tree = session.Talents.Bonuses;
             attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + AttackSpeedBuff +
@@ -730,6 +736,7 @@ namespace ARPG
 
         void Cast(int i, int slot, SkillDefinition skill, Vector2 origin, Vector2 aim, EnemyController skillTarget)
         {
+            RollStray();
             var cost = CostOf(skill);
             // Windrunner Treads' free skill is spent: the next needs another 3 s on the move.
             if (cost <= 0f && skill.RageCost > 0f && session.Equipment.Wears(LegendaryId.WindrunnerTreads))
@@ -1246,6 +1253,9 @@ namespace ARPG
             arrow.gameObject.SetActive(true);
             // Arrow speed (affix 97).
             velocity *= 1f + session.Equipment.AffixTotal(AffixId.ArrowSpeed) / 100f;
+            // Her aim: on the move the arrow leaves off target; Homing Arrow steers itself and flies true.
+            if (style != ShotStyle.Homing && strayDegrees != 0f)
+                velocity = Rotate(velocity, strayDegrees);
             PlaceArrow(arrow, origin, velocity);
             var shot = new Shot
             {
@@ -1806,6 +1816,7 @@ namespace ARPG
             if (target == null)
                 return;
             var direction = Rotate((target.GroundPosition - origin).normalized, Random.Range(-skill.SpreadDegrees, skill.SpreadDegrees) * 0.5f);
+            RollStray();
             Sfx.Play(SoundId.ArrowShot, 0.4f);
             shots.Add(NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot, DamageOf(skill, skill.DamageMultiplier),
                 ShotStyle.Barrage, Glow(skill)));

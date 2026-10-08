@@ -972,3 +972,12 @@ The owner asked for elites with attacks that need dodging; rolled affixes, all f
 - `EliteAffixes` (on `EnemyManager.Affixes`, ticked by it): per-elite timers that start part-way (offset by a counter, not `GetInstanceID`, which Unity 6.6 makes an error), only while the elite is awake and within 11 of her. Circles go through `EnemyHazards` (new `Strike`: a telegraph then a lingering burn, with an optional slow; `Poison`, green); lances and beams are pooled ground markers it moves itself; chains are lines between a pack's living elites; a label with the affix names floats over each pack's leader. `OnKilled` (from `NotifyKilled`) bursts a Molten elite.
 - Checked in play mode at depth 20 (a level 60 character, healed each step): packs rolled e.g. Desecrator, Frost Nova, Arcane; the label, the desecrator circle, the frost nova ring and the turning beams draw and read clearly. Play mode in the background only advances with `Application.runInBackground = true`; `EditorApplication.Step` looped inside one command errors ("PlayerLoop called recursively"). Lances, mortar, plague and chains were not seen on screen, only run.
 - Tests: `EliteAffixTests` (an attack always rolled, the count by depth, nothing before its depth, names, segment distance). 609 of 609 pass in Unity. Not yet played on the phone.
+
+## 2026-10-08: aim by stick push
+
+The owner: the further the thumb from the stick's middle, the worse her aim, 100, 80 and 60 percent; arrows stray, every shot but Homing Arrow (Docs/02, Docs/08).
+
+- `AimRules` (pure, `Combat/AimRules.cs`): `Aim(push)` (1 to a third of the push, 0.8 to two thirds, 0.6 past), `MaxStrayDegrees(aim)` (`ReferenceDegrees`, atan(0.6 / 5) = 6.8, divided by the aim; 0 at perfect aim), `StrayDegrees(aim, roll)`.
+- `PlayerController.StickPush` is the stick value's length (0 inside the dead zone, 1 at the ring). `PlayerCombat.RollStray` rolls one stray angle at the start of each basic attack, each skill cast and each Barrage arrow; `NewArrow` turns every arrow but `ShotStyle.Homing` by it, so a fan turns as one. Forks and ricochets come off a hit and do not stray again.
+- Tests: `AimRulesTests` (the bands, no stray at perfect aim, wider and both ways when worse, about aim percent of hits at 5 units). 614 of 614 pass in Unity. Not checked in play mode or on the phone.
+
