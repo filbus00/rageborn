@@ -35,9 +35,10 @@ namespace ARPG
         };
 
         /// <summary>Whether a prop gives off light (placed at most once a room, so a level has few lights).</summary>
-        public static bool IsLit(PropKind kind) => kind == PropKind.Brazier || kind == PropKind.Candles || kind == PropKind.Torch;
+        public static bool IsLit(PropKind kind) => kind == PropKind.Brazier || kind == PropKind.Candles || kind == PropKind.Torch ||
+                                                   kind == PropKind.Campfire || kind == PropKind.Hellfire;
 
-        public static void Place(DungeonLayout layout, List<Vector2Int>[] doors, System.Random random)
+        public static void Place(DungeonLayout layout, List<Vector2Int>[] doors, System.Random random, int levelSeed = 0)
         {
             var spots = new List<Vector2Int> { layout.StairsUp, layout.ArrivalFromAbove, layout.Waypoint };
             if (layout.HasStairsDown)
@@ -52,6 +53,8 @@ namespace ARPG
             foreach (var list in doors)
                 allDoors.AddRange(list);
 
+            PlaceLairs(layout, spots, allDoors, random, levelSeed);
+
             for (var i = 0; i < layout.Rooms.Count; i++)
             {
                 var room = layout.Rooms[i];
@@ -64,7 +67,7 @@ namespace ARPG
 
                 // The arena is left bare for the fight; its floor still gets marks.
                 if (room.Kind != RoomKind.Boss)
-                    PlaceProps(layout, floor, spots, allDoors, random);
+                    PlaceProps(layout, floor, spots, allDoors, random, layout.Depth);
                 PlaceDecals(layout, floor, room.Style, random);
                 if ((room.Kind == RoomKind.Combat || room.Kind == RoomKind.Elite) && random.Next(RitualOneIn) == 0)
                     PlaceRitual(layout, room.Interior);
@@ -85,8 +88,101 @@ namespace ARPG
             layout.Rituals.Add(middle);
         }
 
-        static void PlaceProps(DungeonLayout layout, List<Vector2Int> floor, List<Vector2Int> spots, List<Vector2Int> doors, System.Random random)
+        /// <summary>
+        /// Each pack's lair (2026-10-08): its theme from who lives there (<see cref="Lairs"/>), a fire or altar in its
+        /// middle where the pack gathers, the theme's things standing around it just outside the pack, and marks on the
+        /// floor under and around it. Elite packs take a theme by depth.
+        /// </summary>
+        static void PlaceLairs(DungeonLayout layout, List<Vector2Int> spots, List<Vector2Int> doors, System.Random random, int levelSeed)
         {
+            for (var p = 0; p < layout.Packs.Count; p++)
+            {
+                var pack = layout.Packs[p];
+                var theme = pack.Kind == PackKind.Elite
+                    ? Lairs.EliteTheme(layout.Depth)
+                    : Lairs.Theme(PackComposition.Roll(layout.Depth, pack.Kind, pack.Count, levelSeed, p));
+                // One entry a pack, in the packs' order, even for a pack with no lair.
+                layout.Lairs.Add((pack.Cell, theme));
+                if (theme == LairTheme.None)
+                    continue;
+                var center = IsoMath.CellToGround(pack.Cell);
+                var heart = Lairs.Heart(theme);
+                if (heart.HasValue && layout.IsFloor(pack.Cell) && Clear(pack.Cell, doors, DoorClearance) && Clear(pack.Cell, spots, SpotClearance) && SafeToBlock(layout, pack.Cell))
+                {
+                    layout.Set(pack.Cell.x, pack.Cell.y, DungeonCell.Prop);
+                    layout.Props[pack.Cell] = heart.Value;
+                }
+
+                // Cells in a ring just outside the pack, and the whole lair for marks.
+                var reach = Mathf.CeilToInt((pack.Radius + 4f) / 0.7071f);
+                var ring = new List<Vector2Int>();
+                var marks = new List<Vector2Int>();
+                for (var dx = -reach; dx <= reach; dx++)
+                    for (var dy = -reach; dy <= reach; dy++)
+                    {
+                        var cell = pack.Cell + new Vector2Int(dx, dy);
+                        if (!layout.IsFloor(cell))
+                            continue;
+                        var d = Vector2.Distance(center, IsoMath.CellToGround(cell));
+                        if (d <= pack.Radius + 3f)
+                            marks.Add(cell);
+                        if (d >= pack.Radius + 0.6f && d <= pack.Radius + 3.5f && Clear(cell, doors, DoorClearance) && Clear(cell, spots, SpotClearance))
+                            ring.Add(cell);
+                    }
+
+                foreach (var (kind, min, max) in Lairs.Props(theme))
+                {
+                    var count = random.Next(min, max + 1);
+                    for (var k = 0; k < count && ring.Count > 0; k++)
+                    {
+                        // A few tries for a cell that keeps the floor in one piece.
+                        for (var attempt = 0; attempt < 6 && ring.Count > 0; attempt++)
+                        {
+                            var index = random.Next(ring.Count);
+                            var cell = ring[index];
+                            ring.RemoveAt(index);
+                            if (!layout.IsFloor(cell) || !SafeToBlock(layout, cell))
+                                continue;
+                            layout.Set(cell.x, cell.y, DungeonCell.Prop);
+                            layout.Props[cell] = kind;
+                            break;
+                        }
+                    }
+                }
+
+                foreach (var (kind, min, max) in Lairs.Decals(theme))
+                {
+                    var count = random.Next(min, max + 1);
+                    for (var k = 0; k < count && marks.Count > 0; k++)
+                    {
+                        var cell = marks[random.Next(marks.Count)];
+                        if (layout.IsFloor(cell))
+                            layout.Decals[cell] = kind;
+                    }
+                }
+            }
+        }
+
+        // Deeper, the rooms' own clutter turns demonic (2026-10-08: "more demonic the further down"): flesh, spikes,
+        // stakes and cages take a growing share, up to half the weight at the bottom.
+        static (PropKind kind, int weight)[] PropWeightsAt(int depth)
+        {
+            var demonic = Mathf.Clamp01((depth - 8) / 16f);
+            var list = new List<(PropKind, int)>(PropWeights);
+            var extra = Mathf.RoundToInt(demonic * 120);
+            if (extra > 0)
+            {
+                list.Add((PropKind.FleshPod, extra * 3 / 10));
+                list.Add((PropKind.Spikes, extra * 3 / 10));
+                list.Add((PropKind.Stake, extra * 2 / 10));
+                list.Add((PropKind.Cage, extra * 2 / 10));
+            }
+            return list.ToArray();
+        }
+
+        static void PlaceProps(DungeonLayout layout, List<Vector2Int> floor, List<Vector2Int> spots, List<Vector2Int> doors, System.Random random, int depth = 1)
+        {
+            var weights = PropWeightsAt(depth);
             var candidates = new List<Vector2Int>();
             foreach (var cell in floor)
                 if (AgainstWall(layout, cell) && Clear(cell, doors, DoorClearance) && Clear(cell, spots, SpotClearance) && !InPack(layout, cell))
@@ -102,7 +198,7 @@ namespace ARPG
                 if (!layout.IsFloor(cell) || !SafeToBlock(layout, cell))
                     continue;
 
-                var kind = Pick(PropWeights, random);
+                var kind = Pick(weights, random);
                 if (IsLit(kind))
                 {
                     if (lit)

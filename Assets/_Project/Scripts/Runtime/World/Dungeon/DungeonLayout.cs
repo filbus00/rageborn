@@ -27,6 +27,19 @@ namespace ARPG
         Candles,
         Bucket,
         Torch,
+
+        // Lairs (2026-10-08, the owner: "make it so that it looks like the monsters and demons are truly living in them").
+        Campfire,
+        Sack,
+        WeaponRack,
+        Carcass,
+        Altar,
+        Coffin,
+        FleshPod,
+        Spikes,
+        Hellfire,
+        Cage,
+        Stake,
     }
 
     /// <summary>Marks on a dungeon floor, walked over.</summary>
@@ -40,6 +53,14 @@ namespace ARPG
         Skull,
         Puddle,
         Ritual,
+
+        // Lairs (2026-10-08).
+        Bedroll,
+        Straw,
+        Gore,
+        Sigil,
+        Ash,
+        Net,
     }
 
     /// <summary>Room types from Docs/05-world-and-content.md. Shrine and ambush rooms are not built; until they are,
@@ -141,6 +162,13 @@ namespace ARPG
         public List<Vector2Int> Chests { get; } = new List<Vector2Int>();
         public Dictionary<Vector2Int, PropKind> Props { get; } = new Dictionary<Vector2Int, PropKind>();
         public Dictionary<Vector2Int, DecalKind> Decals { get; } = new Dictionary<Vector2Int, DecalKind>();
+
+        /// <summary>Wall standing free inside a room (pillars, heaps of fallen stone), not joined to the rock around the
+        /// rooms: it keeps its full height on the camera side.</summary>
+        public HashSet<Vector2Int> FreeStanding { get; } = new HashSet<Vector2Int>();
+
+        /// <summary>Each pack's lair (2026-10-08): its middle and what kind of home it is.</summary>
+        public List<(Vector2Int cell, LairTheme theme)> Lairs { get; } = new List<(Vector2Int, LairTheme)>();
 
         /// <summary>The middles of the summoning circles painted on some rooms' floors (3 x 3 cells, walked over).</summary>
         public List<Vector2Int> Rituals { get; } = new List<Vector2Int>();

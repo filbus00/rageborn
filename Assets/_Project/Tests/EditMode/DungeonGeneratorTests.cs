@@ -85,7 +85,7 @@ namespace ARPG.Tests
                 var layout = DungeonGenerator.Generate(seed, depth, Library());
                 var label = $"seed {seed}, depth {depth}";
 
-                Assert.That(layout.Rooms.Count, Is.InRange(7, 10), label + ": 5 to 8 rooms between start and exit");
+                Assert.That(layout.Rooms.Count, Is.InRange(12, 17), label + ": 10 to 15 rooms between start and exit (2026-10-08: twice the levels)");
                 Assert.AreEqual(1, layout.Rooms.Count(r => r.Kind == RoomKind.Start), label);
                 var lastLevel = DungeonRules.IsBossDepth(depth);
                 Assert.AreEqual(lastLevel ? 0 : 1, layout.Rooms.Count(r => r.Kind == RoomKind.Exit), label);
@@ -131,8 +131,9 @@ namespace ARPG.Tests
                 }
                 foreach (var chest in layout.Chests)
                     Assert.IsTrue(reached.Contains(chest), label);
+                // A pack's middle is floor, or its lair's fire or altar (2026-10-08) with floor around it.
                 foreach (var pack in layout.Packs)
-                    Assert.IsTrue(reached.Contains(pack.Cell), label);
+                    Assert.IsTrue(reached.Contains(pack.Cell) || layout.Props.ContainsKey(pack.Cell) && Steps.Any(s => reached.Contains(pack.Cell + s)), label);
             }
         }
 
@@ -266,20 +267,77 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void NeighbouringRooms_ShareAWall_WithNoCorridorBetween()
+        public void NeighbouringRooms_HaveRockBetween_AndRoughWalls()
         {
+            var settings = new DungeonSettings();
             foreach (var (seed, depth) in Cases())
             {
                 var layout = DungeonGenerator.Generate(seed, depth, Library());
+                var label = $"seed {seed}, depth {depth}";
                 foreach (var a in layout.Rooms)
                     foreach (var b in layout.Rooms)
                     {
                         if (b.Macro == a.Macro + Vector2Int.right)
-                            Assert.AreEqual(a.Interior.xMax + 1, b.Interior.xMin, $"seed {seed}, depth {depth}");
+                            Assert.GreaterOrEqual(b.Interior.xMin - a.Interior.xMax, settings.MinRock, label);
                         if (b.Macro == a.Macro + Vector2Int.up)
-                            Assert.AreEqual(a.Interior.yMax + 1, b.Interior.yMin, $"seed {seed}, depth {depth}");
+                            Assert.GreaterOrEqual(b.Interior.yMin - a.Interior.yMax, settings.MinRock, label);
                     }
+                // No room's west wall runs straight: its first floor column varies along its length.
+                var straight = 0;
+                foreach (var room in layout.Rooms.Where(r => r.Kind != RoomKind.Boss))
+                {
+                    var starts = new HashSet<int>();
+                    for (var y = room.Interior.yMin; y < room.Interior.yMax; y++)
+                        for (var x = room.Interior.xMin; x < room.Interior.xMax; x++)
+                            if (layout.IsFloor(new Vector2Int(x, y)))
+                            {
+                                starts.Add(x);
+                                break;
+                            }
+                    if (starts.Count <= 2)
+                        straight++;
+                }
+                Assert.LessOrEqual(straight, layout.Rooms.Count / 4, label + ": rooms with a straight wall");
             }
+        }
+
+        [Test]
+        public void Ruggedness_GrowsWithDepth()
+        {
+            Assert.AreEqual(0.5f, DungeonGenerator.Ruggedness(1), 1e-4f);
+            Assert.AreEqual(1f, DungeonGenerator.Ruggedness(24), 1e-4f);
+            Assert.Less(DungeonGenerator.Ruggedness(6), DungeonGenerator.Ruggedness(18));
+        }
+
+        [Test]
+        public void EveryPackLivesInALair_OfItsKind()
+        {
+            foreach (var (seed, depth) in Cases().Take(60))
+            {
+                var layout = DungeonGenerator.Generate(seed, depth, Library());
+                Assert.AreEqual(layout.Packs.Count, layout.Lairs.Count, $"seed {seed}, depth {depth}");
+                for (var p = 0; p < layout.Packs.Count; p++)
+                {
+                    var pack = layout.Packs[p];
+                    var expected = pack.Kind == PackKind.Elite
+                        ? Lairs.EliteTheme(depth)
+                        : Lairs.Theme(PackComposition.Roll(depth, pack.Kind, pack.Count, seed, p));
+                    Assert.AreEqual(expected, layout.Lairs[p].theme, $"seed {seed}, depth {depth}, pack {p}");
+                }
+            }
+        }
+
+        [Test]
+        public void LairThemes_FollowWhoLivesThere()
+        {
+            Assert.AreEqual(LairTheme.Camp, Lairs.Theme(new[] { PackMember.Archer, PackMember.Cutthroat, PackMember.Husk }));
+            Assert.AreEqual(LairTheme.Feeding, Lairs.Theme(new[] { PackMember.Husk, PackMember.Ghoul, PackMember.Archer }));
+            Assert.AreEqual(LairTheme.Den, Lairs.Theme(new[] { PackMember.AshWolf, PackMember.AshWolf }));
+            Assert.AreEqual(LairTheme.Nest, Lairs.Theme(new[] { PackMember.Hollowed, PackMember.RiftCaller }));
+            Assert.AreEqual(LairTheme.Nest, Lairs.EliteTheme(20));
+            foreach (LairTheme theme in System.Enum.GetValues(typeof(LairTheme)))
+                if (theme != LairTheme.None)
+                    Assert.Greater(Lairs.Props(theme).Length + Lairs.Decals(theme).Length, 0, theme.ToString());
         }
 
         [Test]
@@ -295,7 +353,9 @@ namespace ARPG.Tests
                     Assert.AreEqual(DungeonCell.Prop, layout.Get(pair.Key), label);
                 foreach (var pair in layout.Decals)
                     Assert.AreNotEqual(DungeonCell.Wall, layout.Get(pair.Key), label + ": a decal on a wall");
-                Assert.LessOrEqual(layout.Props.Count(p => DungeonDressing.IsLit(p.Value)), layout.Rooms.Count, label + ": one light a room at most");
+                // One lit prop a room at most, besides what a lair holds (its fire, a shrine's brazier and candles); the
+                // level draws at most DungeonLevel's cap of them lit.
+                Assert.LessOrEqual(layout.Props.Count(p => DungeonDressing.IsLit(p.Value)), layout.Rooms.Count + 6 * layout.Packs.Count, label);
                 var spots = new List<Vector2Int> { layout.StairsUp, layout.ArrivalFromAbove, layout.Waypoint };
                 if (layout.HasStairsDown)
                     spots.AddRange(new[] { layout.StairsDown, layout.ArrivalFromBelow });

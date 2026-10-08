@@ -255,6 +255,7 @@ namespace ARPG
             var area = new BoundsInt(bounds.xMin, bounds.yMin, 0, bounds.width, bounds.height, 1);
             var groundTiles = new TileBase[bounds.width * bounds.height];
             var wallTiles = new TileBase[groundTiles.Length];
+            MeasureRock();
 
             for (var y = 0; y < bounds.height; y++)
                 for (var x = 0; x < bounds.width; x++)
@@ -264,6 +265,17 @@ namespace ARPG
                         continue;
                     var index = x + y * bounds.width;
                     var at = new Vector2Int(bounds.xMin + x, bounds.yMin + y);
+                    // Rock further from the open floor than this is left out: darkness, the earth around the rooms.
+                    var rock = RockDistance(at);
+                    if (rock > RockShown)
+                        continue;
+                    if (rock > 1)
+                    {
+                        wallTiles[index] = DungeonArt.Wall(false, WallVariant(at.x, at.y), false);
+                        continue;
+                    }
+                    var freeStanding = Layout.FreeStanding.Contains(at);
+                    var cameraSide = !freeStanding && WallRules.IsCameraSide(IsOpenCell, at.x, at.y);
                     // The room's floor style in one of its variants, with any decal drawn on; under walls too, so a wall
                     // never shows the void behind it.
                     var style = Layout.StyleAt(at);
@@ -272,8 +284,11 @@ namespace ARPG
                     groundTiles[index] = DungeonArt.Floor(style, variant, decal);
                     // Only the level's outer and dividing walls are cut low on the camera side: a pillar or stub standing
                     // inside a room keeps its height (cut low, a 2 x 2 pillar read as a cross of stubs).
+                    // Rock with no floor beside it is drawn the same but blocks nothing (2026-10-08: the rock between and
+                    // around the rooms is many thousand cells; colliders only where she can reach).
                     if (cell == DungeonCell.Wall)
-                        wallTiles[index] = DungeonArt.Wall(!InsideRoom(at) && WallRules.IsCameraSide(IsOpenCell, at.x, at.y), WallVariant(at.x, at.y));
+                        wallTiles[index] = DungeonArt.Wall(cameraSide, cameraSide ? LowWallVariant(at.x, at.y) : freeStanding ? WallVariant(at.x, at.y) : TallWallVariant(at.x, at.y),
+                            TouchesOpen(at));
                     else if (cell == DungeonCell.Prop && Layout.Props.TryGetValue(at, out var prop))
                         wallTiles[index] = DungeonArt.Prop(prop);
                 }
@@ -299,17 +314,30 @@ namespace ARPG
             // Braziers and candles light their corner of a dark level.
             var lights = new GameObject("Prop Lights").transform;
             lights.SetParent(transform, false);
+            // At most MaxPropLights lit (2026-10-08: lairs bring fires, braziers and candles; the phone draws every 2D
+            // light): fires first, then braziers and torches, then candles.
+            var lit = new List<KeyValuePair<Vector2Int, PropKind>>();
             foreach (var pair in Layout.Props)
+                if (DungeonDressing.IsLit(pair.Value))
+                    lit.Add(pair);
+            lit.Sort((a, b) => LightRank(a.Value).CompareTo(LightRank(b.Value)));
+            if (lit.Count > MaxPropLights)
+                lit.RemoveRange(MaxPropLights, lit.Count - MaxPropLights);
+            foreach (var pair in lit)
             {
-                if (!DungeonDressing.IsLit(pair.Value))
-                    continue;
                 var go = new GameObject(pair.Value.ToString());
                 go.transform.SetParent(lights, false);
                 go.transform.position = CellWorld(pair.Key);
                 var brazier = pair.Value == PropKind.Brazier;
                 var torch = pair.Value == PropKind.Torch;
-                var light = WorldLights.Add(go.transform, new Color(1f, 0.55f, 0.25f), brazier ? 1.3f : torch ? 1.1f : 0.9f, 0.3f,
-                    brazier ? 4.5f : torch ? 4f : 3f, torch ? 1.2f : 0.3f);
+                var campfire = pair.Value == PropKind.Campfire;
+                var hellfire = pair.Value == PropKind.Hellfire;
+                var light = campfire
+                    ? WorldLights.Add(go.transform, new Color(1f, 0.6f, 0.3f), 1.4f, 0.3f, 5.5f, 0.3f)
+                    : hellfire
+                        ? WorldLights.Add(go.transform, new Color(1f, 0.25f, 0.15f), 1.5f, 0.3f, 5f, 0.3f)
+                        : WorldLights.Add(go.transform, new Color(1f, 0.55f, 0.25f), brazier ? 1.3f : torch ? 1.1f : 0.9f, 0.3f,
+                            brazier ? 4.5f : torch ? 4f : 3f, torch ? 1.2f : 0.3f);
                 if (light != null)
                     go.AddComponent<FlickerLight>().Init(light, pair.Key.x * 1.7f + pair.Key.y);
             }
@@ -327,6 +355,11 @@ namespace ARPG
                     circle.gameObject.AddComponent<FlickerLight>().Init(glow, cell.x * 0.9f + cell.y);
             }
         }
+
+        const int MaxPropLights = 48;
+
+        static int LightRank(PropKind kind) =>
+            kind == PropKind.Campfire || kind == PropKind.Hellfire ? 0 : kind == PropKind.Brazier || kind == PropKind.Torch ? 1 : 2;
 
         // Wall details (WorldArt, the owner's "torches"; 2026-10-04): about one full-height wall block in nine that
         // faces into the room carries a torch, chains or a banner on its face, or candles, skulls or a cobweb on its top.
@@ -347,13 +380,15 @@ namespace ARPG
                     var at = new Vector2Int(x, y);
                     if (Layout.Get(at) != DungeonCell.Wall || WallHash(x, y, 1) > WallDetailChance)
                         continue;
-                    if (!InsideRoom(at) && WallRules.IsCameraSide(IsOpenCell, x, y))
+                    if (!Layout.FreeStanding.Contains(at) && WallRules.IsCameraSide(IsOpenCell, x, y))
                         continue;
                     // The faces the camera sees: toward -x (left front) and -y (right front).
                     bool faceX = IsOpenCell(x - 1, y), faceY = IsOpenCell(x, y - 1);
                     if (!faceX && !faceY)
                         continue;
-                    var onFace = WallHash(x, y, 2) < 0.7f;
+                    // Candles, skulls and webs sit on a short wall's top; a tall wall face (2026-10-08) only carries
+                    // things hung on it.
+                    var onFace = !Layout.FreeStanding.Contains(at) || WallHash(x, y, 2) < 0.7f;
                     var name = onFace
                         ? FaceDetails[(int)(WallHash(x, y, 3) * FaceDetails.Length) % FaceDetails.Length]
                         : TopDetails[(int)(WallHash(x, y, 3) * TopDetails.Length) % TopDetails.Length];
@@ -393,8 +428,82 @@ namespace ARPG
             return h < 0.55f ? 0 : 1 + Mathf.Min(2, (int)((h - 0.55f) / 0.45f * 3f));
         }
 
+        // The tall wall faces (2026-10-08): wall_5 to wall_16, three themes of four, crypt at the top, ruin in the middle,
+        // demonic at the bottom (the owner: "more rugged and broken down and more demonic the further down"). Each block
+        // takes its theme from the depth with a little spread, so the change comes on gradually, and its variant by a
+        // hash. Without them (an older import), the short walls.
+        const int FirstTallWall = 4;
+        const int TallThemes = 3;
+        const int TallPerTheme = 4;
+
+        int TallWallVariant(int x, int y)
+        {
+            if (DungeonArt.WallVariants(false) < FirstTallWall + TallThemes * TallPerTheme)
+                return WallVariant(x, y);
+            var theme = Mathf.Clamp(Mathf.FloorToInt(ThemeAt(x, y)), 0, TallThemes - 1);
+            var h = WallHash(x, y, 6);
+            // The plain variant half the time, the others shared out.
+            var variant = h < 0.45f ? 0 : 1 + Mathf.Min(2, (int)((h - 0.45f) / 0.55f * 3f));
+            return FirstTallWall + theme * TallPerTheme + variant;
+        }
+
+        // The theme a depth leans to, 0 (crypt) to 3: depth 1 is 0, 24 is 3, each block nudged by up to half a theme.
+        float ThemeAt(int x, int y) => (depth - 1) / (float)(DungeonRules.Depths - 1) * TallThemes + (WallHash(x, y, 7) - 0.5f);
+
+        // Camera-side walls: the demonic low walls (wall_low_5, 6) where the demonic theme has come.
+        int LowWallVariant(int x, int y)
+        {
+            if (DungeonArt.WallVariants(true) >= 6 && ThemeAt(x, y) >= 2f)
+                return 4 + (WallHash(x, y, 8) < 0.7f ? 0 : 1);
+            return WallVariant(x, y);
+        }
+
+        // How many cells of rock around the open floor are drawn, darkening into black (2026-10-08: the rock between the
+        // rooms, so the level reads as dug out of the earth rather than laid on a black page).
+        const int RockShown = 4;
+        static readonly float[] RockShade = { 1f, 1f, 0.5f, 0.26f, 0.1f };
+        int[,] rockDistance;
+
+        // Chebyshev distance from each wall cell to the nearest open cell, up to RockShown + 1.
+        void MeasureRock()
+        {
+            var b = Layout.Bounds;
+            rockDistance = new int[b.width, b.height];
+            var queue = new Queue<Vector2Int>();
+            for (var x = b.xMin; x < b.xMax; x++)
+                for (var y = b.yMin; y < b.yMax; y++)
+                {
+                    var open = IsOpenCell(x, y);
+                    rockDistance[x - b.xMin, y - b.yMin] = open ? 0 : RockShown + 1;
+                    if (open)
+                        queue.Enqueue(new Vector2Int(x, y));
+                }
+            while (queue.Count > 0)
+            {
+                var cell = queue.Dequeue();
+                var d = rockDistance[cell.x - b.xMin, cell.y - b.yMin] + 1;
+                if (d > RockShown)
+                    continue;
+                for (var dx = -1; dx <= 1; dx++)
+                    for (var dy = -1; dy <= 1; dy++)
+                    {
+                        var next = new Vector2Int(cell.x + dx, cell.y + dy);
+                        if (!b.Contains(next) || rockDistance[next.x - b.xMin, next.y - b.yMin] <= d)
+                            continue;
+                        rockDistance[next.x - b.xMin, next.y - b.yMin] = d;
+                        queue.Enqueue(next);
+                    }
+            }
+        }
+
+        int RockDistance(Vector2Int cell)
+        {
+            var b = Layout.Bounds;
+            return b.Contains(cell) ? rockDistance[cell.x - b.xMin, cell.y - b.yMin] : RockShown + 1;
+        }
+
         // Each wall block takes its own shade, so a run of wall does not read as one repeated box; one stone through every
-        // room (the owner, 2026-10-04: no per-room looks). Props keep their own colours.
+        // room (the owner, 2026-10-04: no per-room looks). Props keep their own colours. Rock away from the floor darkens.
         void ShadeWalls()
         {
             var bounds = Layout.Bounds;
@@ -402,20 +511,21 @@ namespace ARPG
                 for (var y = bounds.yMin; y < bounds.yMax; y++)
                 {
                     var at = new Vector2Int(x, y);
-                    if (Layout.Get(at) != DungeonCell.Wall)
+                    if (Layout.Get(at) != DungeonCell.Wall || RockDistance(at) > RockShown)
                         continue;
                     var cell = new Vector3Int(x, y, 0);
-                    var shade = 0.9f + 0.1f * LightingRules.FloorShade(at * 3).g;
+                    var shade = (0.9f + 0.1f * LightingRules.FloorShade(at * 3).g) * RockShade[RockDistance(at)];
                     walls.SetTileFlags(cell, TileFlags.None);
                     walls.SetColor(cell, new Color(shade, shade, shade, 1f));
                 }
         }
 
-        bool InsideRoom(Vector2Int cell)
+        bool TouchesOpen(Vector2Int cell)
         {
-            foreach (var room in Layout.Rooms)
-                if (room.Interior.Contains(cell))
-                    return true;
+            for (var dx = -1; dx <= 1; dx++)
+                for (var dy = -1; dy <= 1; dy++)
+                    if (IsOpenCell(cell.x + dx, cell.y + dy))
+                        return true;
             return false;
         }
 

@@ -317,6 +317,212 @@ def _ritual(n):
             cyl(0.02 * M, 0.04 * M, (x, y, 0), wax, 6)
 
 
+# ---------------------------------------------------------------- lairs (2026-10-08)
+# The owner: "make it so that it looks like the monsters and demons are truly living in them". Each pack's corner of
+# a room is dressed after who lives there (Lairs.cs): bandit camps, feeding grounds, dens, shrines, tombs, the drowned's
+# hold and demon nests. One cell each, standing in the cell's middle.
+
+def lair_campfire():
+    rng = seed(41)
+    stones = [mat(STONE[3], 0.35, STONE[2]), mat(STONE[2], 0.35, STONE[1])]
+    for k in range(9):
+        a = 2 * math.pi * k / 9
+        rock((0.28 * math.cos(a), 0.28 * math.sin(a), 0.02), 0.08, rng.choice(stones), rng, 0.7)
+    log = mat(WOOD[2], 0.3, WOOD[1], scale=12)
+    for k in range(4):
+        a = 2 * math.pi * k / 4 + 0.4
+        cyl(0.045, 0.42, (0.18 * math.cos(a), 0.18 * math.sin(a), 0.02), log, 6, rot=(0, -60, math.degrees(a)))
+    sphere(0.18, (0, 0, 0.0), mat(EMBER[1], 0.5, EMBER[0], emit=2.0, scale=20), scale=(1, 1, 0.3), segments=10)
+    flame((0, 0, 0.03), 0.13, 7)
+    flame((0.07, 0.04, 0.03), 0.09, 7)
+
+
+def lair_sack():
+    rng = seed(42)
+    cloth = [mat(EARTH[4], 0.35, EARTH[3], scale=14), mat(EARTH[5], 0.35, EARTH[4], scale=14)]
+    for k, (x, y, r) in enumerate([(-0.08, 0.07, 0.17), (0.13, -0.06, 0.15), (0.0, -0.16, 0.12)]):
+        sphere(r, (x, y, r * 0.75), cloth[k % 2], scale=(1, 1, 1.1), segments=10)
+        cyl(r * 0.35, r * 0.4, (x, y, r * 1.55), cloth[k % 2], 8)
+        cyl(r * 0.38, 0.015, (x, y, r * 1.6), mat(WOOD[1], 0.0), 8)
+
+
+def lair_weapon_rack():
+    wood = mat(WOOD[2], 0.4, WOOD[1], scale=20)
+    iron = mat(STONE[4], 0.2, STONE[2], metal=0.6, rough=0.5)
+    for y in (-0.2, 0.2):
+        box((0.07, 0.07, 0.6), (0.05, y, 0), wood, rot=(0, 0, -45))
+    box((0.05, 0.5, 0.05), (0.05, 0, 0.35), wood, rot=(0, 0, -45))
+    box((0.05, 0.5, 0.05), (0.05, 0, 0.12), wood, rot=(0, 0, -45))
+    for k, y in enumerate((-0.14, -0.04, 0.06, 0.16)):
+        x, yy = 0.05 * 0.7 - y * 0.7, 0.05 * 0.7 + y * 0.7
+        box((0.03, 0.03, 0.65), (x - 0.05, yy - 0.05, 0.0), wood, rot=(8, -8, 0))
+        cone(0.04, 0.12, (x - 0.08, yy - 0.08, 0.53), iron, 4, rot=(8, -8, 0))
+    box((0.04, 0.22, 0.2), (-0.15, -0.15, 0.0), iron, rot=(0, 0, -45))
+
+
+def lair_carcass():
+    rng = seed(43)
+    flesh = mat(BLOOD[2], 0.4, BLOOD[1], scale=12)
+    hide = mat(EARTH[3], 0.4, EARTH[2], scale=14)
+    bonec = mat(BONE[1], 0.3, BONE[0], scale=15)
+    sphere(0.2, (0, 0, 0.06), hide, scale=(1.5, 0.8, 0.5), segments=10)
+    sphere(0.14, (-0.06, -0.06, 0.1), flesh, scale=(1.3, 0.8, 0.55), segments=10)
+    for k in range(6):
+        x = -0.18 + k * 0.07
+        cyl(0.012, 0.18, (x, -0.08, 0.06), bonec, 6, rot=(60, 0, 0))
+    sphere(0.08, (0.28, 0.06, 0.06), hide, scale=(1.3, 0.9, 0.9), segments=8)
+    blob(0, 0, 0.32, mat(BLOOD[1], 0.0, rough=0.25), 12, 0.5, rng)
+
+
+def lair_altar():
+    stone = mat(STONE[2], 0.4, STONE[1], scale=8)
+    top = mat(STONE[3], 0.3, STONE[2], scale=8)
+    blood = mat(BLOOD[2], 0.0, rough=0.25, emit=0.8)
+    box((0.48, 0.3, 0.3), (0, 0, 0), stone, rot=(0, 0, -45), bevel=0.01)
+    box((0.56, 0.36, 0.06), (0, 0, 0.3), top, rot=(0, 0, -45), bevel=0.01)
+    box((0.3, 0.12, 0.004), (0.02, -0.02, 0.36), blood, rot=(0, 0, -45))
+    candles((0, 0, 0.36), count=4, seed_n=44, spread=0.15)
+    skull((-0.12, 0.12, 0.36), 0.05, mat(BONE[1], 0.3, BONE[0], scale=15), turn=10)
+
+
+def lair_coffin():
+    wood = mat(WOOD[1], 0.4, WOOD[0], scale=18)
+    inside = mat(STONE[0], 0.0)
+    bonec = mat(BONE[1], 0.3, BONE[0], scale=15)
+    pts = [(-0.38, -0.08), (-0.38, 0.08), (0.12, 0.15), (0.38, 0.1), (0.38, -0.1), (0.12, -0.15)]
+    prism(pts, 0.14, (0, 0, 0), wood, rot=(0, 0, -45))
+    inner = [(x * 0.85, y * 0.7) for x, y in pts]
+    prism(inner, 0.02, (0, 0, 0.125), inside, rot=(0, 0, -45))
+    skull((-0.08, 0.08, 0.1), 0.05, bonec, turn=-45)
+    # The lid, pushed half off.
+    prism(pts, 0.03, (0.12, -0.16, 0.0), wood, rot=(0, 18, -30))
+
+
+def lair_flesh_pod():
+    rng = seed(45)
+    flesh = [mat(BLOOD[2], 0.4, BLOOD[1], scale=12), mat(SKIN[1], 0.4, BLOOD[1], scale=12), mat(BLOOD[3], 0.3, BLOOD[2], scale=12)]
+    glow = mat(EMBER[1], 0.0, emit=2.5)
+    for k in range(rng.randint(3, 4)):
+        a = rng.random() * 6.28
+        r = rng.random() * 0.14
+        size = rng.uniform(0.08, 0.15)
+        sphere(size, (r * math.cos(a), r * math.sin(a), size * 0.8), rng.choice(flesh), scale=(1, 1, 1.3), segments=10)
+        sphere(size * 0.25, (r * math.cos(a) - size * 0.6, r * math.sin(a) - size * 0.6, size * 1.0), glow, segments=6)
+    blob(0, 0, 0.3, mat(BLOOD[1], 0.0, rough=0.3), 12, 0.6, rng)
+
+
+def lair_spikes():
+    rng = seed(46)
+    dark = [mat(STONE[1], 0.4, STONE[0], scale=10), mat(BLOOD[0], 0.4, STONE[0], scale=10)]
+    for k in range(7):
+        a = rng.random() * 6.28
+        r = rng.random() * 0.2
+        h = rng.uniform(0.25, 0.55)
+        cone(rng.uniform(0.04, 0.07), h, (r * math.cos(a), r * math.sin(a), 0), rng.choice(dark), 5,
+             rot=(rng.uniform(-15, 15), rng.uniform(-15, 15), 0))
+    sphere(0.22, (0, 0, -0.04), dark[0], scale=(1, 1, 0.3), segments=8, smooth=False)
+
+
+def lair_hellfire():
+    rng = seed(47)
+    rim = [mat(STONE[1], 0.4, STONE[0]), mat(BLOOD[0], 0.4, STONE[0])]
+    for k in range(8):
+        a = 2 * math.pi * k / 8
+        cone(0.05, rng.uniform(0.12, 0.25), (0.22 * math.cos(a), 0.22 * math.sin(a), 0), rng.choice(rim), 5, rot=(math.sin(a) * 20, -math.cos(a) * 20, 0))
+    sphere(0.2, (0, 0, 0.0), mat(BLOOD[3], 0.4, EMBER[1], emit=3.0, scale=20), scale=(1, 1, 0.25), segments=10)
+    core = mat(BLOOD[4], 0.0, emit=6.0)
+    outer = mat(BLOOD[3], 0.0, emit=4.0)
+    for (x, y, size) in ((0, 0, 0.12), (0.06, 0.03, 0.08), (-0.06, 0.04, 0.07)):
+        lathe([(size * 0.5, 0), (size * 0.62, size * 0.5), (size * 0.35, size * 1.4), (0.001, size * 2.4)], (x, y, 0.03), outer, 8)
+        lathe([(size * 0.3, 0), (size * 0.36, size * 0.4), (0.001, size * 1.5)], (x - size * 0.25, y - size * 0.25, 0.05), core, 8)
+
+
+def lair_cage():
+    iron = mat(STONE[1], 0.2, STONE[0], metal=0.6, rough=0.5)
+    bonec = mat(BONE[1], 0.3, BONE[0], scale=15)
+    box((0.42, 0.42, 0.04), (0, 0, 0), iron)
+    box((0.42, 0.42, 0.04), (0, 0, 0.6), iron)
+    for i in range(5):
+        for side in (-1, 1):
+            t = -0.19 + i * 0.095
+            box((0.02, 0.02, 0.6), (t, side * 0.2, 0.02), iron)
+            box((0.02, 0.02, 0.6), (side * 0.2, t, 0.02), iron)
+    skull((0.02, 0.02, 0.04), 0.05, bonec, turn=0)
+    bone((-0.1, 0.0, 0.04), 0.18, 30, bonec, 0.015)
+
+
+def lair_stake():
+    wood = mat(WOOD[1], 0.4, WOOD[0], scale=20)
+    bonec = mat(BONE[1], 0.3, BONE[0], scale=15)
+    blood = mat(BLOOD[2], 0.0, rough=0.25)
+    cyl(0.025, 0.7, (0, 0, 0), wood, 6, rot=(4, -3, 0))
+    skull((0.0, 0.0, 0.62), 0.065, bonec, turn=-45)
+    box((0.03, 0.03, 0.2), (0.0, -0.03, 0.42), blood)
+    rng = seed(48)
+    blob(0, 0, 0.12, blood, 9, 0.5, rng)
+
+
+def _bedroll(n):
+    rng = seed(400 + n)
+    cloth = mat([EARTH[4], WOOD[3], COLD[2]][n % 3], 0.35, EARTH[2], scale=12)
+    fur = mat(EARTH[5], 0.4, EARTH[3], scale=20)
+    a = -45 + (n - 1) * 30
+    box((0.5, 0.22, 0.02), (0, 0, 0), cloth, rot=(0, 0, a))
+    cyl(0.05, 0.22, (-0.2 * math.cos(math.radians(a)), -0.2 * math.sin(math.radians(a)), 0.05), fur, 8, rot=(0, 90, a + 90))
+
+
+def _straw(n):
+    rng = seed(410 + n)
+    straw = [mat(EMBER[3], 0.4, WOOD[3], scale=20), mat(WOOD[4], 0.4, WOOD[3], scale=20)]
+    blob(0, 0, 0.28, mat(WOOD[3], 0.3, WOOD[2], scale=20), 12, 0.5, rng)
+    for k in range(30):
+        a = rng.random() * 180
+        r = rng.random() * 0.26
+        b = rng.random() * 6.28
+        box((0.12, 0.008, 0.004), (r * math.cos(b), r * math.sin(b), 0.004), rng.choice(straw), rot=(0, 0, a))
+
+
+def _gore(n):
+    rng = seed(420 + n)
+    deep = mat(BLOOD[1], 0.0, rough=0.25, emit=0.6)
+    meat = mat(BLOOD[3], 0.3, BLOOD[2], scale=14)
+    blob(0, 0, 0.18 + 0.04 * n, deep, 12, 0.6, rng)
+    for k in range(3 + n):
+        a = rng.random() * 6.28
+        r = rng.random() * 0.15
+        sphere(rng.uniform(0.02, 0.04), (r * math.cos(a), r * math.sin(a), 0.01), meat, scale=(1.3, 1, 0.5), segments=6)
+
+
+def _sigil(n):
+    rng = seed(430 + n)
+    glow = mat(BLOOD[3], 0.0, rough=0.3, emit=2.0)
+    R = 0.2
+    for k in range(3 + n):
+        a0 = rng.random() * 6.28
+        a1 = a0 + rng.uniform(1.5, 3.0)
+        x0, y0, x1, y1 = R * math.cos(a0), R * math.sin(a0), R * math.cos(a1), R * math.sin(a1)
+        dx, dy = x1 - x0, y1 - y0
+        l = math.hypot(dx, dy)
+        nx, ny = -dy / l * 0.012, dx / l * 0.012
+        flat([(x0 + nx, y0 + ny), (x1 + nx, y1 + ny), (x1 - nx, y1 - ny), (x0 - nx, y0 - ny)], glow, 0.003)
+
+
+def _ash(n):
+    rng = seed(440 + n)
+    blob(0, 0, 0.22, mat(STONE[1], 0.4, STONE[0], scale=14), 12, 0.5, rng)
+    blob(0.02, 0.02, 0.1, mat(STONE[2], 0.4, STONE[1], scale=14), 9, 0.5, rng, z=0.004)
+    for k in range(4):
+        cyl(0.012, 0.12, ((rng.random() - 0.5) * 0.2, (rng.random() - 0.5) * 0.2, 0.012), mat(STONE[0], 0.0), 5, rot=(0, 90, rng.random() * 180))
+
+
+def _net(n):
+    rng = seed(450 + n)
+    rope = mat(EARTH[4], 0.3, EARTH[2], scale=14)
+    for k in range(-3, 4):
+        box((0.5, 0.01, 0.006), (0, k * 0.06, 0.003), rope, rot=(0, 0, 10 * n))
+        box((0.01, 0.4, 0.006), (k * 0.07, 0, 0.003), rope, rot=(0, 0, 10 * n))
+
+
 # ---------------------------------------------------------------- walls
 
 def _rubble_block(height, variant):
@@ -400,6 +606,186 @@ def _rubble_block(height, variant):
                     box((0.012, w, drop), (-half - 0.035, along, height - drop), rng.choice(moss))
                 else:
                     box((w, 0.012, drop), (along, -half - 0.035, height - drop), rng.choice(moss))
+
+
+# Tall wall faces (2026-10-08, the owner: "no real feel of traveling underground", "all walls are perfectly straight
+# and nothing feels rugged", built halls "more rugged and broken down and more demonic the further down"). They stand
+# only where the floor is in front and rock behind (the far side of a room or passage), so they can rise well above a
+# character without hiding anything. Three themes by depth, four variants each:
+#   crypt (the top levels): fieldstone courses, broken top; 1 plain, 2 timber shoring, 3 stones fallen out, 4 roots.
+#   ruin (the middle): darker stone, large gaps of raw rock, cracks, boulders bulging out, rubble at the foot.
+#   demonic (the bottom): blackened stone, cracks glowing ember red, veins of flesh, bones and horns set in the wall.
+TALL_WALL_H = 1.1 / 0.866
+THEMES = ("crypt", "ruin", "demonic")
+
+
+def _tall_wall(theme, variant):
+    rng = seed(theme * 1000 + variant * 7919 + 13)
+    half = CELL / 2
+    h = TALL_WALL_H
+    if theme == 0:
+        stones = [mat(STONE[4], 0.35, STONE[3], scale=16), mat(STONE[5], 0.3, STONE[4], scale=16),
+                  mat(EARTH[5], 0.35, EARTH[4], scale=16), mat(EARTH[4], 0.3, EARTH[3], scale=16), mat(STONE[3], 0.3, EARTH[2], scale=16)]
+        core = mat(EARTH[0], 0.0)
+        missing = 0.06 if variant != 3 else 0.28
+    elif theme == 1:
+        stones = [mat(STONE[3], 0.35, STONE[2], scale=16), mat(STONE[4], 0.35, STONE[2], scale=16),
+                  mat(EARTH[3], 0.35, EARTH[2], scale=16), mat(EARTH[4], 0.35, EARTH[2], scale=16)]
+        core = mat(STONE[1], 0.5, STONE[0], scale=8)
+        missing = 0.22 if variant != 3 else 0.42
+    else:
+        stones = [mat(STONE[2], 0.4, STONE[1], scale=16), mat(STONE[1], 0.35, STONE[0], scale=16),
+                  mat(BLOOD[1], 0.4, BLOOD[0], scale=16), mat(STONE[2], 0.4, BLOOD[0], scale=16)]
+        core = mat(STONE[0], 0.4, BLOOD[0], scale=8)
+        missing = 0.2
+    raw = mat(STONE[1], 0.6, STONE[0], scale=5) if theme > 0 else mat(EARTH[1], 0.5, EARTH[0], scale=6)
+
+    # The broken top: the wall's height along each face, in three steps that differ by a fifth or more.
+    def tops():
+        return [h * rng.uniform(0.8 if theme else 0.86, 1.0) for _ in range(3)]
+    face_tops = {"x": tops(), "y": tops()}
+
+    def top_at(face, t):
+        k = min(2, int((t + half) / CELL * 3))
+        return face_tops[face][k]
+
+    # The core: nine columns of rock, each as tall as the lower of the faces' steps over it, so the top is jagged.
+    n = 3
+    step = CELL / n
+    for i in range(n):
+        for j in range(n):
+            cx = -half + step * (i + 0.5)
+            cy = -half + step * (j + 0.5)
+            ch = min(top_at("y", cx), top_at("x", cy)) * rng.uniform(0.92, 1.0)
+            box((step + 0.004, step + 0.004, ch), (cx, cy, 0), core)
+            # Rough rock heaped on top.
+            rock((cx, cy, ch - 0.01), rng.uniform(0.05, 0.09), raw, rng, squash=0.6)
+
+    # Courses of stone on the two faces the camera sees.
+    for face in ("x", "y"):
+        z = 0.0
+        course = 0
+        while z < h - 0.03:
+            ch = rng.uniform(0.085, 0.15)
+            t = -half + (rng.uniform(0.0, 0.12) if course % 2 else 0.0)
+            pieces = [(-half, t)] if t > -half else []
+            while t < half - 0.03:
+                length = min(rng.uniform(0.12, 0.28), half - t)
+                pieces.append((t, t + length))
+                t += length
+            for t0, t1 in pieces:
+                mid = (t0 + t1) / 2
+                top = top_at(face, mid)
+                if z + 0.04 > top:
+                    continue
+                # Fallen out: higher up more often; the dark core or raw rock shows.
+                fall = missing * (0.4 + 1.2 * z / h)
+                if rng.random() < fall:
+                    continue
+                gap = 0.012
+                length = t1 - t0 - gap
+                if length < 0.03:
+                    continue
+                proud = rng.uniform(0.012, 0.04 if theme else 0.032)
+                sh = min(ch - gap - rng.uniform(0, 0.014), top - z)
+                lift = z + gap / 2 + rng.uniform(0, 0.006)
+                tilt = rng.uniform(-4, 4) if theme else 0
+                if face == "x":
+                    box((proud * 2, length, sh), (-half, mid, lift), rng.choice(stones), rot=(tilt, 0, 0), bevel=0.01)
+                else:
+                    box((length, proud * 2, sh), (mid, -half, lift), rng.choice(stones), rot=(0, tilt, 0), bevel=0.01)
+            z += ch
+            course += 1
+
+    def on_face(face, along, out, z):
+        return (-half - out, along, z) if face == "x" else (along, -half - out, z)
+
+    # Rubble fallen at the foot.
+    for k in range(rng.randint(1, 3) + theme + (3 if variant == 3 else 0)):
+        face = rng.choice("xy")
+        rock(on_face(face, rng.uniform(-half + 0.05, half - 0.05), rng.uniform(0.03, 0.14), 0.0), rng.uniform(0.03, 0.08), rng.choice(stones), rng, squash=0.7)
+
+    if theme == 0 and variant == 2:
+        # Timber shoring, as in a mine: two posts and a lintel braced against the face.
+        wood = mat(WOOD[2], 0.4, WOOD[1], scale=20)
+        for face in ("x", "y"):
+            for along in (-half + 0.06, half - 0.06):
+                x, y, _ = on_face(face, along, 0.04, 0)
+                box((0.07, 0.07, h * 0.8), (x, y, 0), wood, bevel=0.006)
+            x, y, _ = on_face(face, 0, 0.05, 0)
+            box((0.08, CELL, 0.07) if face == "x" else (CELL, 0.08, 0.07), (x, y, h * 0.8 - 0.07), wood, bevel=0.006)
+    if theme == 0 and variant == 4 or theme == 1 and variant == 4:
+        # Roots and moss hanging from the broken top.
+        moss = [mat(MOSS[2], 0.4, MOSS[1], scale=20), mat(WOOD[1], 0.4, WOOD[0], scale=20)]
+        for face in ("x", "y"):
+            for k in range(rng.randint(4, 7)):
+                along = rng.uniform(-half + 0.04, half - 0.04)
+                top = top_at(face, along)
+                drop = rng.uniform(0.1, top * 0.7)
+                w = rng.uniform(0.015, 0.05)
+                x, y, _ = on_face(face, along, 0.045, 0)
+                box((0.012, w, drop) if face == "x" else (w, 0.012, drop), (x, y, top - drop), rng.choice(moss))
+    if theme == 1 and variant == 2:
+        # Boulders of the raw rock behind, bulging through the masonry.
+        for k in range(rng.randint(2, 3)):
+            face = rng.choice("xy")
+            rock(on_face(face, rng.uniform(-half + 0.1, half - 0.1), 0.0, rng.uniform(0.1, h * 0.6)), rng.uniform(0.09, 0.15), raw, rng, squash=0.9)
+    if theme == 2 and variant in (2, 4):
+        # Cracks glowing ember red, zigzagging down the faces.
+        glow = mat(EMBER[1], 0.0, emit=3.0)
+        for face in ("x", "y"):
+            along = rng.uniform(-half + 0.1, half - 0.1)
+            z = top_at(face, along) * rng.uniform(0.6, 0.95)
+            while z > 0.05:
+                seg = rng.uniform(0.06, 0.14)
+                x, y, _ = on_face(face, along, 0.03, 0)
+                box((0.014, 0.022, seg) if face == "x" else (0.022, 0.014, seg), (x, y, z - seg), glow, rot=(rng.uniform(-25, 25), 0, 0) if face == "x" else (0, rng.uniform(-25, 25), 0))
+                along = max(-half + 0.05, min(half - 0.05, along + rng.uniform(-0.06, 0.06)))
+                z -= seg
+    if theme == 2 and variant == 3:
+        # Veins of flesh spread over the stone.
+        flesh = [mat(BLOOD[2], 0.4, BLOOD[1], scale=12), mat(SKIN[1], 0.4, BLOOD[1], scale=12)]
+        for face in ("x", "y"):
+            for k in range(rng.randint(3, 5)):
+                along = rng.uniform(-half + 0.06, half - 0.06)
+                z = rng.uniform(0.1, top_at(face, along) * 0.9)
+                sphere(rng.uniform(0.03, 0.06), on_face(face, along, 0.02, z), rng.choice(flesh), scale=(1.4, 1.4, 0.8), segments=8)
+                length = rng.uniform(0.15, 0.4)
+                x, y, _ = on_face(face, along, 0.03, 0)
+                box((0.02, 0.02, length) if face == "x" else (0.02, 0.02, length), (x, y, max(0.0, z - length * 0.6)), flesh[0])
+    if theme == 2 and variant == 4:
+        # Bones and horns set into the wall.
+        bone_m = mat(BONE[1], 0.3, BONE[0], scale=12)
+        for face in ("x", "y"):
+            for k in range(rng.randint(1, 3)):
+                along = rng.uniform(-half + 0.1, half - 0.1)
+                z = rng.uniform(0.2, top_at(face, along) * 0.85)
+                x, y, _ = on_face(face, along, 0.0, 0)
+                out = (-1, 0) if face == "x" else (0, -1)
+                cone(0.035, 0.16, (x, y, z), bone_m, 6, rot=(0, -70, 180) if face == "x" else (70, 0, 0))
+            skull(on_face(face, rng.uniform(-half + 0.1, half - 0.1), 0.04, rng.uniform(0.1, 0.4)), 0.05, bone_m, turn=0 if face == "x" else 90)
+
+
+def tall_wall(n):
+    """wall_5 to wall_16: theme (n - 5) // 4, variant (n - 5) % 4 + 1."""
+    _tall_wall((n - 5) // 4, (n - 5) % 4 + 1)
+
+
+def _demonic_low(variant):
+    """wall_low_5 and wall_low_6: the cut-down camera-side wall in blackened stone, the second with a glowing crack."""
+    rng = seed(500 + variant)
+    half = CELL / 2
+    h = 0.125 / 0.866
+    stones = [mat(STONE[2], 0.4, STONE[1], scale=16), mat(STONE[1], 0.35, STONE[0], scale=16), mat(BLOOD[1], 0.4, BLOOD[0], scale=16)]
+    box((CELL - 0.01, CELL - 0.01, h - 0.02), (0, 0, 0), mat(STONE[0], 0.4, BLOOD[0], scale=8))
+    for k in range(9):
+        size = rng.uniform(0.07, 0.13)
+        rock((rng.uniform(-half + 0.08, half - 0.08), rng.uniform(-half + 0.08, half - 0.08), h - 0.04), size, rng.choice(stones), rng, squash=0.5)
+    if variant == 2:
+        glow = mat(EMBER[1], 0.0, emit=3.0)
+        x = -half + 0.05
+        for k in range(5):
+            box((0.025, 0.12, 0.012), (x + k * 0.12, rng.uniform(-0.15, 0.15), h - 0.015), glow, rot=(0, 0, rng.uniform(-40, 40)))
 
 
 def wall(variant=1):
@@ -1193,6 +1579,23 @@ for n in range(1, 7):
 for n in range(1, 5):
     ALL["wall_%d" % n] = ("dungeon", (lambda n=n: wall(n)), (160, 200, 80, 40))
     ALL["wall_low_%d" % n] = ("dungeon", (lambda n=n: wall_low(n)), (160, 120, 80, 40))
+for name, build, frame in [("campfire", lair_campfire, PROP), ("sack", lair_sack, PROP), ("weapon_rack", lair_weapon_rack, PROP),
+                           ("carcass", lair_carcass, PROP), ("altar", lair_altar, PROP), ("coffin", lair_coffin, PROP),
+                           ("flesh_pod", lair_flesh_pod, PROP), ("spikes", lair_spikes, PROP), ("hellfire", lair_hellfire, PROP),
+                           ("cage", lair_cage, PROP), ("stake", lair_stake, TALL)]:
+    ALL["prop_" + name] = ("dungeon", build, frame)
+for n in range(1, 4):
+    ALL["decal_bedroll_%d" % n] = ("dungeon", (lambda n=n: _bedroll(n)), DECAL)
+    ALL["decal_gore_%d" % n] = ("dungeon", (lambda n=n: _gore(n)), DECAL)
+for n in range(1, 3):
+    ALL["decal_straw_%d" % n] = ("dungeon", (lambda n=n: _straw(n)), DECAL)
+    ALL["decal_sigil_%d" % n] = ("dungeon", (lambda n=n: _sigil(n)), DECAL)
+    ALL["decal_ash_%d" % n] = ("dungeon", (lambda n=n: _ash(n)), DECAL)
+    ALL["decal_net_%d" % n] = ("dungeon", (lambda n=n: _net(n)), DECAL)
+for n in range(5, 17):
+    ALL["wall_%d" % n] = ("dungeon", (lambda n=n: tall_wall(n)), (160, 320, 80, 40))
+for n in range(5, 7):
+    ALL["wall_low_%d" % n] = ("dungeon", (lambda n=n: _demonic_low(n - 4)), (160, 120, 80, 40))
 
 WALL_DECOR = {
     "wall_torch_x": lambda: _wall_torch("x"),

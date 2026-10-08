@@ -73,6 +73,9 @@ namespace ARPG
             System.Array.Sort(all, (x, y) => string.CompareOrdinal(x.name, y.name));
             var floorSlots = new SortedList<int, Sprite>[importedFloors.Length];
             var decalSlots = new Dictionary<int, SortedList<int, Sprite>>();
+            // Walls by their number (wall_10 after wall_9, not after wall_1), so a variant is always the same wall.
+            var wallSlots = new SortedList<int, Sprite>();
+            var lowWallSlots = new SortedList<int, Sprite>();
             foreach (var sprite in all)
             {
                 switch (ArtNames.Parse(sprite.name, out var index, out var variant))
@@ -86,10 +89,10 @@ namespace ARPG
                         list[variant] = sprite;
                         break;
                     case ArtKind.Wall:
-                        importedWalls.Add(sprite);
+                        wallSlots[variant] = sprite;
                         break;
                     case ArtKind.LowWall:
-                        importedLowWalls.Add(sprite);
+                        lowWallSlots[variant] = sprite;
                         break;
                     case ArtKind.Prop:
                         importedProps[index] = sprite;
@@ -101,6 +104,8 @@ namespace ARPG
                     importedFloors[i].AddRange(floorSlots[i].Values);
             foreach (var pair in decalSlots)
                 importedDecals[pair.Key] = new List<Sprite>(pair.Value.Values);
+            importedWalls.AddRange(wallSlots.Values);
+            importedLowWalls.AddRange(lowWallSlots.Values);
         }
 
         /// <summary>How many cells a side the continuous floors repeat over (2026-10-04): a style imported with
@@ -157,17 +162,25 @@ namespace ARPG
 
         /// <summary>A wall block, full height or cut low (the camera-side walls, WallRules), in one of its imported
         /// variants (wall_1.., wall_low_1..; picked by the caller's hash), or the code-drawn block.</summary>
-        public static Tile Wall(bool low, int hash = 0)
+        /// <summary>How many full-height and cut-low wall variants were imported (0 when the walls are drawn in code).</summary>
+        public static int WallVariants(bool low)
+        {
+            LoadImported();
+            return low ? importedLowWalls.Count : importedWalls.Count;
+        }
+
+        /// <summary>A wall tile: <paramref name="hash"/> is the variant (wall_1 is 0), wrapped into those imported.</summary>
+        public static Tile Wall(bool low, int hash = 0, bool solid = true)
         {
             LoadImported();
             var list = low ? importedLowWalls : importedWalls;
             if (list.Count > 0)
             {
                 var variant = ((hash % list.Count) + list.Count) % list.Count;
-                var key = (low ? 1000 : 0) + variant;
+                var key = (low ? 1000 : 0) + (solid ? 0 : 2000) + variant;
                 if (wallVariants.TryGetValue(key, out var known) && known != null && known.sprite != null)
                     return known;
-                var importedTile = SpriteTile(list[variant], Tile.ColliderType.Grid);
+                var importedTile = SpriteTile(list[variant], solid ? Tile.ColliderType.Grid : Tile.ColliderType.None);
                 wallVariants[key] = importedTile;
                 return importedTile;
             }
