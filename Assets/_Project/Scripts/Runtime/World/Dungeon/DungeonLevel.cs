@@ -15,6 +15,10 @@ namespace ARPG
     {
         [SerializeField] Tilemap ground;
         [SerializeField] Tilemap walls;
+
+        // The props (barrels, braziers, bones) on a tilemap of their own beside the walls, with no collider: she walks
+        // through them (the owner, 2026-10-10: "make it so that they have no collision, it is annoying").
+        Tilemap props;
         [Tooltip("No longer painted: the floors come from DungeonArt (2026-09-30). Kept so the scene's reference stays valid.")]
         [SerializeField] TileBase[] floorTiles;
         [SerializeField] TileBase wallTile;
@@ -267,6 +271,7 @@ namespace ARPG
             var area = new BoundsInt(bounds.xMin, bounds.yMin, 0, bounds.width, bounds.height, 1);
             var groundTiles = new TileBase[bounds.width * bounds.height];
             var wallTiles = new TileBase[groundTiles.Length];
+            var propTiles = new TileBase[groundTiles.Length];
             MeasureRock();
 
             for (var y = 0; y < bounds.height; y++)
@@ -302,7 +307,7 @@ namespace ARPG
                         wallTiles[index] = DungeonArt.Wall(cameraSide, cameraSide ? LowWallVariant(at.x, at.y) : freeStanding ? WallVariant(at.x, at.y) : TallWallVariant(at.x, at.y),
                             TouchesOpen(at));
                     else if (cell == DungeonCell.Prop && Layout.Props.TryGetValue(at, out var prop))
-                        wallTiles[index] = DungeonArt.Prop(prop);
+                        propTiles[index] = DungeonArt.Prop(prop);
                 }
 
             ground.ClearAllTiles();
@@ -321,6 +326,9 @@ namespace ARPG
                 WorldLights.ShadeGround(ground);
             }
             walls.SetTilesBlock(area, wallTiles);
+            var propMap = PropTilemap();
+            propMap.ClearAllTiles();
+            propMap.SetTilesBlock(area, propTiles);
             ShadeWalls();
 
             // Braziers and candles light their corner of a dark level.
@@ -530,6 +538,28 @@ namespace ARPG
                     walls.SetTileFlags(cell, TileFlags.None);
                     walls.SetColor(cell, new Color(shade, shade, shade, 1f));
                 }
+        }
+
+        // Made once beside the walls, drawn the same way (sorted with the characters), but blocking nothing: the enemy
+        // manager bakes its nav grid from the walls alone.
+        Tilemap PropTilemap()
+        {
+            if (props != null)
+                return props;
+            var go = new GameObject("Props", typeof(Tilemap), typeof(TilemapRenderer));
+            go.transform.SetParent(walls.transform.parent, false);
+            go.transform.localPosition = walls.transform.localPosition;
+            props = go.GetComponent<Tilemap>();
+            props.tileAnchor = walls.tileAnchor;
+            props.orientation = walls.orientation;
+            var from = walls.GetComponent<TilemapRenderer>();
+            var to = go.GetComponent<TilemapRenderer>();
+            to.sortingLayerID = from.sortingLayerID;
+            to.sortingOrder = from.sortingOrder;
+            to.mode = from.mode;
+            to.sortOrder = from.sortOrder;
+            to.sharedMaterial = from.sharedMaterial;
+            return props;
         }
 
         bool TouchesOpen(Vector2Int cell)

@@ -63,6 +63,7 @@ namespace ARPG
         public DodgeCharges DodgeCharges => dodgeCharges;
 
         float dodgeSeconds;
+        bool wasDisengaged;
 
         /// <summary>A dodge's dive is under way, getting up included: she holds her fire and the dive animation plays.</summary>
         public bool IsDodging => dodgeSeconds > 0f;
@@ -160,9 +161,12 @@ namespace ARPG
             dodgeCharges.Tick(deltaTime);
             untouchableSeconds = Mathf.Max(0f, untouchableSeconds - deltaTime);
             dodgeSeconds = Mathf.Max(0f, dodgeSeconds - deltaTime);
-            // A flick of the stick dodges that way (the owner, 2026-10-10).
-            if (input != null && input.TryTakeFlick(out var flickDirection))
-                TryDodge(IsoMath.StickToGround(flickDirection).normalized);
+            // In a fight, the thumb leaving the stick's ring dives her that way (the owner, 2026-10-10: the flick was hard
+            // to trigger); out of a fight, or with no charge left, it only disengages as before.
+            var disengaged = Disengaged;
+            if (input != null && DodgeRules.Triggers(disengaged, wasDisengaged, combat != null && combat.InCombat))
+                TryDodge(IsoMath.StickToGround(input.Value).normalized);
+            wasDisengaged = disengaged;
             slow.Tick(deltaTime);
             firing.Tick(deltaTime);
             if (Disengaged)

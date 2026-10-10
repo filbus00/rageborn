@@ -226,6 +226,11 @@ namespace ARPG
         /// <summary>The enemy the basic attack is aimed at this frame, or null. The animation follows it through a swing.</summary>
         public EnemyController Target { get; private set; }
 
+        float lastTargetTime = float.NegativeInfinity;
+
+        /// <summary>She has had a target within the last 1.5 s: a fight is on (the dodge needs one, the owner, 2026-10-10).</summary>
+        public bool InCombat => Time.time - lastTargetTime < 1.5f;
+
         /// <summary>A basic attack starts, with its ground direction and the time until the next may start (so an
         /// animation can fit the attack rate).</summary>
         public event System.Action<Vector2, float> BasicAttackStarted;
@@ -412,6 +417,8 @@ namespace ARPG
 
             var target = PickTarget(origin, previousTarget);
             Target = target;
+            if (target != null)
+                lastTargetTime = Time.time;
             var aim = target != null ? (target.GroundPosition - origin).normalized : facing;
             if (aim.sqrMagnitude < 1e-6f)
                 aim = facing;

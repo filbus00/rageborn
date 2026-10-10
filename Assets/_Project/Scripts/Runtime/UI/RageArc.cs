@@ -21,6 +21,7 @@ namespace ARPG
         static readonly Color MomentumColor = new Color(0.45f, 0.85f, 1f, 1f);
         static readonly Color StillnessColor = new Color(1f, 0.75f, 0.3f, 1f);
         static readonly Color EmptyPipColor = new Color(0f, 0f, 0f, 0.35f);
+        static readonly Color DodgeColor = new Color(1f, 1f, 1f, 0.95f);
 
         static Sprite ring;
 
@@ -29,6 +30,9 @@ namespace ARPG
         Image track;
         Image fill;
         Image[] pips;
+        // The dodge's charges (2026-10-10): one pip at each end of the arc, lit when ready, filling while it comes back.
+        Image[] dodgeBacks;
+        Image[] dodgeFills;
         PlayerCombat combat;
         PlayerController player;
 
@@ -81,6 +85,31 @@ namespace ARPG
                 image.raycastTarget = false;
                 pips[i] = image;
             }
+
+            dodgeBacks = new Image[DodgeRules.MaxCharges];
+            dodgeFills = new Image[DodgeRules.MaxCharges];
+            for (var i = 0; i < DodgeRules.MaxCharges; i++)
+            {
+                var back = new GameObject("Dodge " + i, typeof(RectTransform), typeof(Image));
+                back.transform.SetParent(root, false);
+                dodgeBacks[i] = back.GetComponent<Image>();
+                dodgeBacks[i].color = EmptyPipColor;
+                dodgeBacks[i].raycastTarget = false;
+                var fillObject = new GameObject("Charge", typeof(RectTransform), typeof(Image));
+                fillObject.transform.SetParent(back.transform, false);
+                var rect = (RectTransform)fillObject.transform;
+                rect.anchorMin = Vector2.zero;
+                rect.anchorMax = Vector2.one;
+                rect.offsetMin = rect.offsetMax = Vector2.zero;
+                var image = fillObject.GetComponent<Image>();
+                image.sprite = Square;
+                image.type = Image.Type.Filled;
+                image.fillMethod = Image.FillMethod.Vertical;
+                image.color = DodgeColor;
+                image.raycastTarget = false;
+                dodgeFills[i] = image;
+                back.transform.localRotation = Quaternion.Euler(0f, 0f, 45f);
+            }
         }
 
         Image NewImage(string name, Color color)
@@ -130,6 +159,37 @@ namespace ARPG
                 rect.sizeDelta = new Vector2(pipSize, pipSize);
                 rect.anchoredPosition = new Vector2((i - (pips.Length - 1) / 2f) * pipSize * 1.6f, -radius * 0.62f);
                 pips[i].color = i < stacks ? (momentum ? MomentumColor : StillnessColor) : EmptyPipColor;
+            }
+
+            // The dodge's charges, small diamonds just past the arc's two ends; the one coming back fills bottom-up.
+            var charges = player.DodgeCharges;
+            var dodgeSize = Mathf.Max(5f, radius * 0.2f);
+            for (var i = 0; i < dodgeBacks.Length; i++)
+            {
+                var rect = (RectTransform)dodgeBacks[i].transform;
+                rect.sizeDelta = new Vector2(dodgeSize, dodgeSize);
+                rect.anchoredPosition = new Vector2((i == 0 ? -1f : 1f) * radius * 1.08f, -radius * 0.14f);
+                dodgeFills[i].fillAmount = i < charges.Charges ? 1f : i == charges.Charges ? charges.Refill * 0.8f : 0f;
+            }
+        }
+
+        static Sprite square;
+
+        /// <summary>A plain white square for the dodge pips.</summary>
+        static Sprite Square
+        {
+            get
+            {
+                if (square != null)
+                    return square;
+                var texture = new Texture2D(4, 4, TextureFormat.RGBA32, false) { name = "Dodge Pip" };
+                var pixels = new Color32[16];
+                for (var i = 0; i < pixels.Length; i++)
+                    pixels[i] = new Color32(255, 255, 255, 255);
+                texture.SetPixels32(pixels);
+                texture.Apply(false, true);
+                square = Sprite.Create(texture, new Rect(0, 0, 4, 4), new Vector2(0.5f, 0.5f), 4, 0, SpriteMeshType.FullRect, Vector4.zero, false);
+                return square;
             }
         }
 
