@@ -176,3 +176,28 @@ namespace UnityEditor.TestTools.TestRunner.Api
     public interface ICallbacks { void RunStarted(ITestAdaptor t); void RunFinished(ITestResultAdaptor r); void TestStarted(ITestAdaptor t); void TestFinished(ITestResultAdaptor r); }
     public class TestRunnerApi : ScriptableObject { public string Execute(ExecutionSettings s) => ""; public void RegisterCallbacks<T>(T c, int p = 0) where T : ICallbacks { } public void UnregisterCallbacks<T>(T c) where T : ICallbacks { } }
 }
+
+namespace UnityEditor.Callbacks
+{
+    [System.AttributeUsage(System.AttributeTargets.Method)]
+    public sealed class PostProcessBuildAttribute : System.Attribute
+    {
+        public PostProcessBuildAttribute() { }
+        public PostProcessBuildAttribute(int callbackOrder) { }
+    }
+}
+
+namespace UnityEditor.iOS.Xcode
+{
+    public class PlistElementDict
+    {
+        public void SetString(string key, string val) { }
+    }
+
+    public class PlistDocument
+    {
+        public PlistElementDict root = new PlistElementDict();
+        public void ReadFromFile(string path) { }
+        public void WriteToFile(string path) { }
+    }
+}

@@ -989,3 +989,10 @@ The owner asked for a small marker for her aim; a cone toward the target.
 - Checked in play mode: the cone draws on the floor under the enemies and turns red at a full push. Seen only in a crowd of husks; not seen on the phone. Testing note: a level 60 character kills depth 1 packs before a capture; setting `attacksPerSecond` low through a SerializedObject in play mode holds her fire, and between two MCP commands only a frame or two passes with `Application.runInBackground` on.
 - 614 of 614 tests pass in Unity.
 
+## 2026-10-10: the app icon and the name Wild Arrow
+
+- The owner's new icon, `ArtSource/icon/wildarrowicon.png` (1254 px, painted with its own rounded frame), cropped 40 px on each side and scaled to 1024 with `sips` into `Art/UI/Icon/AppIcon.png`, which `ProjectSetup` sets as the icon.
+- The name under the icon is "Wild Arrow": `IosDisplayName` (an editor `PostProcessBuild`, iOS only) writes `CFBundleDisplayName` into the Xcode project's Info.plist. `PlayerSettings.productName` stays Rageborn on purpose: the .app keeps its name for the install commands, and the editor's save folder (named after company and product) does not move. The bundle ID is unchanged, so the phone's save is kept.
+- The compile check builds as iOS, so its stubs gained `UnityEditor.Callbacks.PostProcessBuildAttribute` and `UnityEditor.iOS.Xcode.PlistDocument`.
+- Installed on the phone; the built app's Info.plist reads "Wild Arrow".
+

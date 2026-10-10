@@ -1,6 +1,6 @@
 # Project overview
 
-Rageborn: isometric Diablo-style action RPG for iOS. Unity 6000.6.2f1, URP 2D renderer, new Input System only (`activeInputHandler: 1`, so never use `UnityEngine.Input`). Company Filbus Software, bundle ID `com.filipbusic.rageborn`.
+Rageborn: isometric Diablo-style action RPG for iOS. Unity 6000.6.2f1, URP 2D renderer, new Input System only (`activeInputHandler: 1`, so never use `UnityEngine.Input`). Company Filbus Software, bundle ID `com.filipbusic.rageborn`. On the home screen the app is "Wild Arrow" (2026-10-10, `IosDisplayName` sets only the display name; the product name stays Rageborn).
 
 - `Docs/` is the source of truth for design. Start at `Docs/00-vision-and-scope.md`. If code and docs disagree, ask before changing either. Decisions are logged in `Docs/08-production.md`; log yours there (marked "Claude, to review") when the docs leave a choice open.
 - **`Docs/11-engineering-log.md`** holds the full history: how each system was built, what was measured, every bug found and why things are the way they are, including the retired Wrathborn class. This file is the current state only. Search the log before re-deriving something or when a detail is missing here.

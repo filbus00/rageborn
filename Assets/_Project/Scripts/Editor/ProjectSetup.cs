@@ -55,7 +55,7 @@ namespace ARPG.Editor
             PlayerSettings.iOS.appleEnableAutomaticSigning = true;
             PlayerSettings.iOS.appleDeveloperTeamID = "ACN5244YB8";
 
-            // The app icon (the owner's, 2026-09-29), cropped inside its own frame and enlarged to 1024. iOS rounds the corners.
+            // The app icon (the owner's Wild Arrow, 2026-10-10, source in ArtSource/icon), cropped inside its painted frame to 1024. iOS rounds the corners.
             if (AssetImporter.GetAtPath(AppIconPath) is TextureImporter importer &&
                 importer.textureCompression != TextureImporterCompression.Uncompressed)
             {
