@@ -114,6 +114,14 @@ Each act has one town, a small safe scene the player walks through with the stic
 
 ## Level generation
 
+**Crypt, then caves (the owner, 2026-10-10, from his concept art: "a full rebuild of how you generate the dungeons", walls "not only right shapes").** Depths 1 to 12 are a gothic crypt and cathedral; from 13 the dungeon is natural caves. The room tree, room kinds, packs, chests, stairs and lairs are as before; what changed is how each room is shaped and drawn:
+
+- Crypt: each room is an octagon (corners cut 3 cells or more), a round or oval hall, a cross, a hall with a round apse at one end, or a hall with its corners cut a little; edges are clean, corridors straight (3 to 5 wide). Pillar rows and grids stand as gothic columns. Walls are dressed stone with a plinth and cornice; one in ten or so carries a pilaster, a niche with a skull, or cobwebs. Where the floor meets a wall on two touching sides (a cut corner, a round room) the wall is drawn cut along the diagonal, so walls run in more than two directions. The floor is paved.
+- Caves: each room is an oval worn into the rock with a lumpy edge, smoothed so it reads as rock; tunnels between them wander and fray. Walls are heaps of boulders, some crowned with pale spikes; clumps of stalagmites stand in the caves. Three caves in four that are big enough get a raised terrace: a lump of floor ringed by a rock ledge that blocks the way, with one or two flights of steps (three cells wide) through it, never cutting the cave in two; the terrace floor is painted lighter. The floor is bare earth with puddles and rubble.
+- Props follow the look: urns, sarcophagi, candles, fallen columns and braziers in the crypt; rubble, bones, torches and a few miners' crates in the caves. Torches, chains and banners hang only on crypt walls.
+
+Claude's choices, to review: the shapes and their shares, the cave and terrace sizes, the change at depth 13, the props per look. Generator version 7 (old saves forget their dungeon kills and chests).
+
 Levels are connected halls, as in Diablo 1's cathedral (the owner, 2026-09-30: the rooms-and-corridors levels were "more like corridors with open rooms"; "make the levels more open spaces"). A seeded generator packs rooms of different sizes wall to wall and joins them without corridors.
 
 - Rooms: rectangles about 13 to 23 units a side (18 to 32 cells), packed wall to wall on a grid whose columns and rows each have their own width. Neighbours along the level's room tree open into each other through a wide arch (5 to 11 cells) or, a third of the time, through the whole shared wall bar a pier at each end, making one hall; other neighbours often get an arch too, so there are several ways around. No corridors.

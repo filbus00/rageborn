@@ -54,6 +54,8 @@ namespace ARPG
             wall = null;
             lowWall = null;
             loaded = false;
+            pieces.Clear();
+            blocker = null;
         }
 
         static void LoadImported()
@@ -285,6 +287,36 @@ namespace ARPG
             tile.sprite = Sprite.Create(texture, new Rect(0, 0, w, h), pivot, Unit, 0, SpriteMeshType.FullRect, Vector4.zero, false);
             tile.colliderType = collider;
             return tile;
+        }
+
+        static readonly Dictionary<string, Tile> pieces = new Dictionary<string, Tile>();
+        static Tile blocker;
+
+        /// <summary>A crypt or cave piece (2026-10-10, <see cref="ThemePieces"/>) from Resources/Art/World as a tile that
+        /// blocks nothing (the level puts a <see cref="Blocker"/> under it where it should), or null when not imported.</summary>
+        public static Tile Piece(string name)
+        {
+            if (pieces.TryGetValue(name, out var tile) && tile != null && tile.sprite != null)
+                return tile;
+            var sprite = WorldArt.Get(name);
+            tile = sprite != null ? SpriteTile(sprite, Tile.ColliderType.None) : null;
+            pieces[name] = tile;
+            return tile;
+        }
+
+        /// <summary>An invisible tile that blocks its whole cell: the collision under a drawn piece (the pieces' textures
+        /// are not readable, which a colliding sprite tile needs on iOS).</summary>
+        public static Tile Blocker
+        {
+            get
+            {
+                if (blocker != null)
+                    return blocker;
+                blocker = ScriptableObject.CreateInstance<Tile>();
+                blocker.name = "Blocker";
+                blocker.colliderType = Tile.ColliderType.Grid;
+                return blocker;
+            }
         }
 
         /// <summary>A tile showing an imported sprite as it is.</summary>

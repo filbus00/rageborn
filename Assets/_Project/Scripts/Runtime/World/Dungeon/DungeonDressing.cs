@@ -21,11 +21,24 @@ namespace ARPG
         const int DoorClearance = 4;
         const int SpotClearance = 2;
 
-        static readonly (PropKind kind, int weight)[] PropWeights =
+        // The two looks' own clutter (2026-10-10): the crypt's urns, tombs, candles and fallen columns; the caves' rubble,
+        // bones, torches and a few miners' stores.
+        static readonly (PropKind kind, int weight)[] CryptPropWeights =
         {
-            (PropKind.Barrel, 20), (PropKind.Crate, 16), (PropKind.Urn, 12), (PropKind.BonePile, 12), (PropKind.Rubble, 14),
-            (PropKind.BrokenColumn, 8), (PropKind.Sarcophagus, 6), (PropKind.Brazier, 7), (PropKind.Candles, 5),
-            (PropKind.Bucket, 8), (PropKind.Torch, 7),
+            (PropKind.Urn, 18), (PropKind.BonePile, 12), (PropKind.Rubble, 8), (PropKind.BrokenColumn, 14), (PropKind.Sarcophagus, 12),
+            (PropKind.Brazier, 8), (PropKind.Candles, 12), (PropKind.Barrel, 6), (PropKind.Crate, 4), (PropKind.Torch, 6),
+        };
+
+        static readonly (PropKind kind, int weight)[] CavePropWeights =
+        {
+            (PropKind.Rubble, 30), (PropKind.BonePile, 18), (PropKind.Torch, 10), (PropKind.Bucket, 8), (PropKind.Crate, 8),
+            (PropKind.Barrel, 6), (PropKind.Brazier, 4),
+        };
+
+        static readonly (DecalKind kind, int weight)[] CaveDecalWeights =
+        {
+            (DecalKind.Rubble, 30), (DecalKind.Puddle, 22), (DecalKind.Bones, 14), (DecalKind.Blood, 10), (DecalKind.Cracks, 12),
+            (DecalKind.Skull, 6), (DecalKind.Ritual, 3),
         };
 
         static readonly (DecalKind kind, int weight)[] DecalWeights =
@@ -47,6 +60,12 @@ namespace ARPG
                 spots.Add(layout.ArrivalFromBelow);
             }
             spots.AddRange(layout.Chests);
+            // A terrace's steps and the floor at their foot and head stay clear (2026-10-10).
+            foreach (var pair in layout.TerraceStairs)
+            {
+                spots.Add(pair.Key + pair.Value);
+                spots.Add(pair.Key - pair.Value);
+            }
             if (layout.HasWandererSpot)
                 spots.Add(layout.WandererSpot);
             var allDoors = new List<Vector2Int>();
@@ -168,7 +187,7 @@ namespace ARPG
         static (PropKind kind, int weight)[] PropWeightsAt(int depth)
         {
             var demonic = Mathf.Clamp01((depth - 8) / 16f);
-            var list = new List<(PropKind, int)>(PropWeights);
+            var list = new List<(PropKind, int)>(DungeonRules.ThemeAt(depth) == DungeonTheme.Cave ? CavePropWeights : CryptPropWeights);
             var extra = Mathf.RoundToInt(demonic * 120);
             if (extra > 0)
             {
@@ -202,7 +221,7 @@ namespace ARPG
                 if (IsLit(kind))
                 {
                     if (lit)
-                        kind = PropKind.Barrel;
+                        kind = layout.Theme == DungeonTheme.Cave ? PropKind.Rubble : PropKind.Urn;
                     lit = true;
                 }
                 layout.Set(cell.x, cell.y, DungeonCell.Prop);
@@ -236,7 +255,7 @@ namespace ARPG
                 var cell = floor[random.Next(floor.Count)];
                 if (!layout.IsFloor(cell) || layout.Decals.ContainsKey(cell))
                     continue;
-                var kind = Pick(DecalWeights, random);
+                var kind = Pick(layout.Theme == DungeonTheme.Cave ? CaveDecalWeights : DecalWeights, random);
                 // Moss grows in the damp rooms (style 3) and hardly elsewhere.
                 if (kind == DecalKind.Moss && style != 3 && random.Next(3) > 0)
                     kind = DecalKind.Cracks;

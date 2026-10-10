@@ -1727,3 +1727,7 @@ WALL_DECOR = {
 }
 for name, build in WALL_DECOR.items():
     ALL[name] = ("world", build, WORLD)
+
+# The crypt and cave pieces (2026-10-10).
+import themes
+themes.register(ALL)

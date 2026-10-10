@@ -45,7 +45,21 @@ namespace ARPG
         /// <summary>The dungeon: dirt with cobbles, every listed cell, decals stamped on, each cell's shade
         /// (<see cref="LightingRules.GroundShade"/>) painted in, so the caller need not tint the tiles one by one.</summary>
         public static bool PaintDungeon(Tilemap ground, List<Vector2Int> cells, IReadOnlyDictionary<Vector2Int, DecalKind> decals) =>
-            Paint(ground, cells, false, decals, true);
+            PaintDungeon(ground, cells, decals, DungeonTheme.Crypt, null);
+
+        /// <summary>The dungeon in its theme (2026-10-10): the crypt paved, the caves bare earth; raised terrace cells
+        /// painted lighter, so the terrace reads as higher ground.</summary>
+        public static bool PaintDungeon(Tilemap ground, List<Vector2Int> cells, IReadOnlyDictionary<Vector2Int, DecalKind> decals,
+            DungeonTheme theme, HashSet<Vector2Int> raised)
+        {
+            dungeonTheme = theme;
+            raisedCells = raised;
+            return Paint(ground, cells, false, decals, true);
+        }
+
+        // Read by the worker threads while a dungeon paints; set before and never changed during.
+        static DungeonTheme dungeonTheme;
+        static HashSet<Vector2Int> raisedCells;
 
         /// <summary>The town: every cell the scene's ground has, dirt with grass spots and worn paths.</summary>
         public static bool PaintTown(Tilemap ground)
@@ -157,10 +171,12 @@ namespace ARPG
         static void Shade(Color32[] pixels, Vector2Int cell)
         {
             var tint = LightingRules.GroundShade(cell);
+            if (raisedCells != null && raisedCells.Contains(cell))
+                tint *= 1.25f;
             for (var i = 0; i < pixels.Length; i++)
             {
                 var c = pixels[i];
-                pixels[i] = new Color32((byte)(c.r * tint.r), (byte)(c.g * tint.g), (byte)(c.b * tint.b), c.a);
+                pixels[i] = new Color32((byte)Mathf.Min(255f, c.r * tint.r), (byte)Mathf.Min(255f, c.g * tint.g), (byte)Mathf.Min(255f, c.b * tint.b), c.a);
             }
         }
 
@@ -195,7 +211,7 @@ namespace ARPG
                         layer = GroundRules.TownPick(g, cover, grass[s].a / 255f, path[s].a / 255f);
                     }
                     else
-                        layer = GroundRules.DungeonPick(g, cobble[s].a / 255f);
+                        layer = GroundRules.DungeonPick(g, cobble[s].a / 255f, dungeonTheme);
                     var c = layer switch
                     {
                         GroundLayer.Cobble => cobble[s],

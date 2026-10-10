@@ -137,6 +137,14 @@ namespace ARPG
         public int Room { get; }
     }
 
+    /// <summary>How a level is built and drawn (the owner, 2026-10-10, from his concept art): a gothic crypt and
+    /// cathedral under the town for the first half, natural caves below it.</summary>
+    public enum DungeonTheme : byte
+    {
+        Crypt,
+        Cave,
+    }
+
     /// <summary>
     /// One generated dungeon level: which cells are floor, wall or nothing, the rooms, where the packs, chests and
     /// stairs go, and where the player arrives. Built by <see cref="DungeonGenerator"/>; pure data.
@@ -156,6 +164,20 @@ namespace ARPG
 
         public int Depth { get; internal set; }
         public int EnemyLevel { get; internal set; }
+
+        /// <summary>Crypt or cave (<see cref="DungeonRules.ThemeAt"/>).</summary>
+        public DungeonTheme Theme { get; internal set; }
+
+        /// <summary>Caves (2026-10-10, the owner's terraces): the rim of a raised terrace, wall cells drawn as a rock
+        /// ledge rather than a wall.</summary>
+        public HashSet<Vector2Int> Ledges { get; } = new HashSet<Vector2Int>();
+
+        /// <summary>Floor cells on a raised terrace, drawn lighter.</summary>
+        public HashSet<Vector2Int> Raised { get; } = new HashSet<Vector2Int>();
+
+        /// <summary>The steps cut through a ledge: floor cells, each with the way down (an edge step toward the lower
+        /// floor), so the steps are drawn facing it.</summary>
+        public Dictionary<Vector2Int, Vector2Int> TerraceStairs { get; } = new Dictionary<Vector2Int, Vector2Int>();
 
         public List<RoomPlacement> Rooms { get; } = new List<RoomPlacement>();
         public List<PackPlacement> Packs { get; } = new List<PackPlacement>();

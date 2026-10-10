@@ -74,6 +74,13 @@ namespace ARPG
         public static GroundLayer DungeonPick(Vector2 ground, float cobbleHeight) =>
             cobbleHeight > 1.05f - CobbleCover(ground) ? GroundLayer.Cobble : GroundLayer.Dirt;
 
+        /// <summary>The layer at a dungeon point by theme (2026-10-10): the crypt is paved, with earth showing only where
+        /// the stones are worn away; the caves are bare earth, a few stones here and there.</summary>
+        public static GroundLayer DungeonPick(Vector2 ground, float cobbleHeight, DungeonTheme theme) =>
+            theme == DungeonTheme.Crypt
+                ? cobbleHeight > 0.15f + 0.4f * Smooth(ground.x / 4f, ground.y / 4f, 11) ? GroundLayer.Cobble : GroundLayer.Dirt
+                : cobbleHeight > 1.25f - CobbleCover(ground) * 0.6f ? GroundLayer.Cobble : GroundLayer.Dirt;
+
         /// <summary>The layer at a town point: a path over all (its worn middle first), else grass tufts, else dirt.</summary>
         public static GroundLayer TownPick(Vector2 ground, float pathCover, float grassDensity, float pathWear)
         {

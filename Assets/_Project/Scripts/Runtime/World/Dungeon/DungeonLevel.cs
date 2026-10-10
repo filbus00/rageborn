@@ -19,6 +19,10 @@ namespace ARPG
         // The props (barrels, braziers, bones) on a tilemap of their own beside the walls, with no collider: she walks
         // through them (the owner, 2026-10-10: "make it so that they have no collision, it is annoying").
         Tilemap props;
+
+        // The crypt and cave pieces (2026-10-10) drawn on their own tilemap; the walls tilemap keeps only invisible
+        // blockers under them.
+        Tilemap wallArt;
         [Tooltip("No longer painted: the floors come from DungeonArt (2026-09-30). Kept so the scene's reference stays valid.")]
         [SerializeField] TileBase[] floorTiles;
         [SerializeField] TileBase wallTile;
@@ -272,6 +276,8 @@ namespace ARPG
             var groundTiles = new TileBase[bounds.width * bounds.height];
             var wallTiles = new TileBase[groundTiles.Length];
             var propTiles = new TileBase[groundTiles.Length];
+            var artTiles = new TileBase[groundTiles.Length];
+            var theme = Layout.Theme;
             MeasureRock();
 
             for (var y = 0; y < bounds.height; y++)
@@ -288,7 +294,11 @@ namespace ARPG
                         continue;
                     if (rock > 1)
                     {
-                        wallTiles[index] = DungeonArt.Wall(false, WallVariant(at.x, at.y), false);
+                        var rockPiece = DungeonArt.Piece(ThemePieces.Rock(theme, PieceHash(at)));
+                        if (rockPiece != null)
+                            artTiles[index] = rockPiece;
+                        else
+                            wallTiles[index] = DungeonArt.Wall(false, WallVariant(at.x, at.y), false);
                         continue;
                     }
                     var freeStanding = Layout.FreeStanding.Contains(at);
@@ -303,11 +313,23 @@ namespace ARPG
                     // inside a room keeps its height (cut low, a 2 x 2 pillar read as a cross of stubs).
                     // Rock with no floor beside it is drawn the same but blocks nothing (2026-10-08: the rock between and
                     // around the rooms is many thousand cells; colliders only where she can reach).
-                    if (cell == DungeonCell.Wall)
+                    // The crypt or cave piece when imported (2026-10-10), over an invisible blocker; else the older walls.
+                    var piece = cell == DungeonCell.Wall
+                        ? DungeonArt.Piece(ThemePieces.Wall(theme, IsOpenCell, at.x, at.y, cameraSide, freeStanding, Layout.Ledges.Contains(at), PieceHash(at)))
+                        : null;
+                    if (piece != null)
+                    {
+                        artTiles[index] = piece;
+                        if (TouchesOpen(at))
+                            wallTiles[index] = DungeonArt.Blocker;
+                    }
+                    else if (cell == DungeonCell.Wall)
                         wallTiles[index] = DungeonArt.Wall(cameraSide, cameraSide ? LowWallVariant(at.x, at.y) : freeStanding ? WallVariant(at.x, at.y) : TallWallVariant(at.x, at.y),
                             TouchesOpen(at));
                     else if (cell == DungeonCell.Prop && Layout.Props.TryGetValue(at, out var prop))
                         propTiles[index] = DungeonArt.Prop(prop);
+                    if (Layout.TerraceStairs.TryGetValue(at, out var down))
+                        propTiles[index] = DungeonArt.Piece(ThemePieces.Stairs(down));
                 }
 
             ground.ClearAllTiles();
@@ -320,7 +342,7 @@ namespace ARPG
                     if (groundTiles[x + y * bounds.width] != null)
                         floorCells.Add(new Vector2Int(bounds.xMin + x, bounds.yMin + y));
             // The painter shades its cells as it paints them (2026-10-06); the fallback floors are tinted tile by tile.
-            if (!GroundPainter.PaintDungeon(ground, floorCells, Layout.Decals))
+            if (!GroundPainter.PaintDungeon(ground, floorCells, Layout.Decals, theme, Layout.Raised))
             {
                 ground.SetTilesBlock(area, groundTiles);
                 WorldLights.ShadeGround(ground);
@@ -329,6 +351,9 @@ namespace ARPG
             var propMap = PropTilemap();
             propMap.ClearAllTiles();
             propMap.SetTilesBlock(area, propTiles);
+            wallArt ??= Overlay("Wall Art");
+            wallArt.ClearAllTiles();
+            wallArt.SetTilesBlock(area, artTiles);
             ShadeWalls();
 
             // Braziers and candles light their corner of a dark level.
@@ -399,6 +424,9 @@ namespace ARPG
                 {
                     var at = new Vector2Int(x, y);
                     if (Layout.Get(at) != DungeonCell.Wall || WallHash(x, y, 1) > WallDetailChance)
+                        continue;
+                    // Torches and banners hang on built walls: not on the caves' boulders or a cut corner (2026-10-10).
+                    if (Layout.Theme == DungeonTheme.Cave || ThemePieces.Diagonal(IsOpenCell, x, y) != null)
                         continue;
                     if (!Layout.FreeStanding.Contains(at) && WallRules.IsCameraSide(IsOpenCell, x, y))
                         continue;
@@ -535,23 +563,29 @@ namespace ARPG
                         continue;
                     var cell = new Vector3Int(x, y, 0);
                     var shade = (0.9f + 0.1f * LightingRules.FloorShade(at * 3).g) * RockShade[RockDistance(at)];
+                    var tint = new Color(shade, shade, shade, 1f);
                     walls.SetTileFlags(cell, TileFlags.None);
-                    walls.SetColor(cell, new Color(shade, shade, shade, 1f));
+                    walls.SetColor(cell, tint);
+                    if (wallArt != null && wallArt.HasTile(cell))
+                    {
+                        wallArt.SetTileFlags(cell, TileFlags.None);
+                        wallArt.SetColor(cell, tint);
+                    }
                 }
         }
 
         // Made once beside the walls, drawn the same way (sorted with the characters), but blocking nothing: the enemy
         // manager bakes its nav grid from the walls alone.
-        Tilemap PropTilemap()
+        Tilemap PropTilemap() => props != null ? props : props = Overlay("Props");
+
+        Tilemap Overlay(string name)
         {
-            if (props != null)
-                return props;
-            var go = new GameObject("Props", typeof(Tilemap), typeof(TilemapRenderer));
+            var go = new GameObject(name, typeof(Tilemap), typeof(TilemapRenderer));
             go.transform.SetParent(walls.transform.parent, false);
             go.transform.localPosition = walls.transform.localPosition;
-            props = go.GetComponent<Tilemap>();
-            props.tileAnchor = walls.tileAnchor;
-            props.orientation = walls.orientation;
+            var map = go.GetComponent<Tilemap>();
+            map.tileAnchor = walls.tileAnchor;
+            map.orientation = walls.orientation;
             var from = walls.GetComponent<TilemapRenderer>();
             var to = go.GetComponent<TilemapRenderer>();
             to.sortingLayerID = from.sortingLayerID;
@@ -559,8 +593,10 @@ namespace ARPG
             to.mode = from.mode;
             to.sortOrder = from.sortOrder;
             to.sharedMaterial = from.sharedMaterial;
-            return props;
+            return map;
         }
+
+        static int PieceHash(Vector2Int cell) => (int)(WallHash(cell.x, cell.y, 9) * 100000f);
 
         bool TouchesOpen(Vector2Int cell)
         {
