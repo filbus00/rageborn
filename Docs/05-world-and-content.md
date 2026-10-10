@@ -367,6 +367,33 @@ Act 5 (shadow):
 
 Pack mixes (the built rule for act 1, `PackComposition`, extended): in each act, depth 1 uses the act's swarmer only; deeper, a pack is swarmers only (40 percent), swarmers with 2 or 3 of one other type (45, the type drawn from those unlocked at that depth), or a band of 5 non-swarmers (15). A Support or Caster is never alone in a pack. Elite packs are made of one type, any of the act's eight.
 
+### Every enemy's special (built 2026-10-11)
+
+The owner: "more ranged and telegraphed attacks, make them quicker also", and the dodge used for more than keeping space; answers: every type gets one; noticeably quicker; a dodge stays a dodge. Each type keeps its normal attack and every 6 to 8 s, while chasing her within range and in sight, stops for a short cast and throws its special, drawn on the ground before it lands (0.7 to 1.1 s), so walking or diving out of it is the answer (`EnemySpecialRules`). Enemies move 25 percent faster and attack 20 percent faster; the wind-ups that paint a telegraph (slam circles, aim lines, casters' circles) keep their warning time. Bosses keep their own pace and attacks.
+
+| Enemy | Special |
+|---|---|
+| Husk | Bile Spit: a circle on her that poisons on for 2.5 s |
+| Ghoul | Ground Pound: a wide ring around itself when she is close |
+| Bandit Archer | Volley: three lanes in a fan |
+| Skeleton | Bone Throw: one lane |
+| Cultist | Fire Rain: three circles falling one after another round her |
+| Ash Wolf | Pounce Bite: a short lane |
+| Cutthroat | Thrown Knives: two lanes |
+| Ember Acolyte | Fire Wave: a wide lane |
+| Pyre Keeper | Ember Burst: a ring around itself that burns on |
+| Carrion Bloat | Gas Lob: a wide poison cloud on her |
+| Drowned | Brine Spit: a lane that slows |
+| Harpooner | Net: a circle on her that slows |
+| Drowned Watchman | Tide Wave: a wide lane that slows |
+| Skeleton Knight | Shield Bash: a ring around itself |
+| Grave Priest | Grave Hands: two circles on and beside her |
+| Hollowed | Shriek: a wide ring around itself |
+| Rift Caller | Rift Bolt: a lane |
+| Void Wraith | Void Mark: a circle on her |
+
+Claude's numbers, to review: every timing, size and damage in the table in code.
+
 ### Elite modifiers (15, proposed)
 
 **Built (2026-10-08, the owner: "make them have interesting attacks that need to be dodged"; rolled affixes, all four pairs).** An elite pack rolls its affixes once, shared by every elite in it (`EliteAffixRules.Roll`, `EliteAffixes`): one affix to depth 6, two from 7, three from 19, always at least one attack. Each affix opens at a depth. The names float over the pack's leader. Every attack is a ground telegraph that fills before it lands, so it can be walked out of. Damage is the enemy's hit times the number given. The numbers are Claude's, to review.

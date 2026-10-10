@@ -34,8 +34,22 @@ namespace ARPG
             public float SlowSeconds;
         }
 
+        sealed class LineHazard
+        {
+            public GroundMarker Marker;
+            public Vector2 From;
+            public Vector2 To;
+            public float Width;
+            public float Damage;
+            public int Level;
+            public float SlowMultiplier;
+            public float SlowSeconds;
+            public bool Active;
+        }
+
         readonly Transform parent;
         readonly List<Hazard> hazards = new List<Hazard>();
+        readonly List<LineHazard> lines = new List<LineHazard>();
 
         public EnemyHazards(Transform parent) => this.parent = parent;
 
@@ -69,6 +83,62 @@ namespace ARPG
         /// while she stands in it.</summary>
         public void Poison(Vector2 center, float radius, float fillSeconds, float seconds, float damagePerSecond, int level) =>
             Add(center, radius, fillSeconds, seconds, 0f, damagePerSecond, level, PoisonColor);
+
+        /// <summary>A poison pool in a colour that also strikes when it lands (the enemies' specials, 2026-10-11).</summary>
+        public void Poison(Vector2 center, float radius, float fillSeconds, float seconds, float damagePerSecond, int level, Color color, float landDamage) =>
+            Add(center, radius, fillSeconds, seconds, landDamage, damagePerSecond, level, color);
+
+        /// <summary>
+        /// A lane from <paramref name="from"/> to <paramref name="to"/>, <paramref name="width"/> wide, that fills and
+        /// then strikes her if she stands in it (the enemies' thrown and breathed specials, 2026-10-11).
+        /// </summary>
+        public void Line(Vector2 from, Vector2 to, float width, float fillSeconds, float damage, int level, Color color, float slowMultiplier = 0f, float slowSeconds = 0f)
+        {
+            LineHazard line = null;
+            foreach (var l in lines)
+                if (!l.Active)
+                {
+                    line = l;
+                    break;
+                }
+            if (line == null)
+            {
+                line = new LineHazard { Marker = GroundMarker.Line(from, to, width, Mathf.Max(fillSeconds, 0.01f), color, parent) };
+                lines.Add(line);
+            }
+            line.Marker.SetColor(color);
+            line.Marker.RestartLine(from, to, width, Mathf.Max(fillSeconds, 0.01f));
+            line.From = from;
+            line.To = to;
+            line.Width = width;
+            line.Damage = damage;
+            line.Level = level;
+            line.SlowMultiplier = slowMultiplier;
+            line.SlowSeconds = slowSeconds;
+            line.Active = true;
+        }
+
+        void TickLines(float deltaTime, EnemyManager world)
+        {
+            foreach (var line in lines)
+            {
+                if (!line.Active)
+                    continue;
+                line.Marker.Advance(deltaTime);
+                if (!line.Marker.Done)
+                    continue;
+                line.Active = false;
+                line.Marker.Hide();
+                Sfx.Play(SoundId.EnemySlam, 0.5f);
+                var player = world.Player;
+                if (player == null || !player.IsAlive ||
+                    EliteAffixRules.DistanceToSegment(world.PlayerGround, line.From, line.To) > line.Width / 2f)
+                    continue;
+                player.TakeHit(line.Damage, line.Level, 0f, dodgeable: false);
+                if (line.SlowMultiplier > 0f)
+                    world.PlayerController?.ApplySlow(line.SlowMultiplier, line.SlowSeconds);
+            }
+        }
 
         Hazard Add(Vector2 center, float radius, float fill, float burn, float damage, float burnPerSecond, int level, Color color)
         {
@@ -104,6 +174,7 @@ namespace ARPG
 
         public void Tick(float deltaTime, EnemyManager world)
         {
+            TickLines(deltaTime, world);
             for (var i = 0; i < hazards.Count; i++)
             {
                 var h = hazards[i];
@@ -153,6 +224,11 @@ namespace ARPG
         {
             foreach (var h in hazards)
                 Finish(h);
+            foreach (var l in lines)
+            {
+                l.Active = false;
+                l.Marker.Hide();
+            }
         }
     }
 }

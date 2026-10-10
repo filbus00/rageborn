@@ -28,5 +28,18 @@ namespace ARPG
 
         /// <summary>A lunge hits the player when it passes within this of her, beyond the two bodies' radii.</summary>
         public const float LungeHitSlack = 0.35f;
+
+        /// <summary>The owner, 2026-10-11: enemies "quicker", noticeably: 25 percent faster on their feet, 20 percent
+        /// quicker attacks. Bosses keep their own pace (their fights are timed by hand).</summary>
+        public const float QuickerMove = 1.25f;
+        public const float QuickerAttack = 1.2f;
+
+        public static float MoveSpeedFactor(EnemyRank rank) => rank == EnemyRank.Boss ? 1f : QuickerMove;
+
+        public static float AttackSpeedFactor(EnemyRank rank) => rank == EnemyRank.Boss ? 1f : QuickerAttack;
+
+        /// <summary>Wind-ups that paint a telegraph (brute, archer, caster) keep their warning time; the rest quicken.</summary>
+        public static float WindupSpeedFactor(EnemyRank rank, EnemyArchetype archetype) =>
+            archetype == EnemyArchetype.Brute || archetype == EnemyArchetype.Archer || archetype == EnemyArchetype.Caster ? 1f : AttackSpeedFactor(rank);
     }
 }

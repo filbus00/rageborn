@@ -189,11 +189,29 @@ namespace ARPG
         public bool HasModifier(EliteModifiers modifier) => (modifiers & modifier) != 0;
 
         /// <summary>Docs: Hasted is plus 30 percent move and attack speed.</summary>
-        float EffectiveMoveSpeed => definition.MoveSpeed * slow.Multiplier * (HasModifier(EliteModifiers.Hasted) ? HastedMoveSpeedMultiplier : 1f);
+        float EffectiveMoveSpeed => definition.MoveSpeed * slow.Multiplier * (HasModifier(EliteModifiers.Hasted) ? HastedMoveSpeedMultiplier : 1f) *
+                                    EnemyRules.MoveSpeedFactor(definition.Rank);
 
-        float EffectiveAttackWindupSeconds => definition.AttackWindupSeconds / (HasModifier(EliteModifiers.Hasted) ? HastedAttackSpeedMultiplier : 1f);
+        // Quicker (the owner, 2026-10-11): melee wind-ups and every recovery are shorter; the wind-ups that paint a
+        // telegraph (a brute's slam circle, an archer's aim line, a caster's circle) keep their warning time.
+        float EffectiveAttackWindupSeconds => definition.AttackWindupSeconds / (HasModifier(EliteModifiers.Hasted) ? HastedAttackSpeedMultiplier : 1f) /
+                                              EnemyRules.WindupSpeedFactor(definition.Rank, definition.Archetype);
 
-        float EffectiveAttackRecoverSeconds => definition.AttackRecoverSeconds / (HasModifier(EliteModifiers.Hasted) ? HastedAttackSpeedMultiplier : 1f);
+        float EffectiveAttackRecoverSeconds => definition.AttackRecoverSeconds / (HasModifier(EliteModifiers.Hasted) ? HastedAttackSpeedMultiplier : 1f) /
+                                               EnemyRules.AttackSpeedFactor(definition.Rank);
+
+        float castTimer;
+        float castSeconds;
+
+        /// <summary>Free to throw a special (<see cref="EnemySpecials"/>): alive, chasing, not mid-attack, dash or cast.</summary>
+        public bool CanCast => IsAlive && State == EnemyState.Approach && dashLeft <= 0f && castTimer <= 0f && !chill.IsFrozen && !Scripted;
+
+        /// <summary>Stands and shows its attack for this long, facing the given way, while its special's telegraph starts.</summary>
+        public void BeginCast(float seconds, Vector2 toward)
+        {
+            castTimer = castSeconds = seconds;
+            attackAim = toward;
+        }
 
         /// <summary>Position on the ground plane, in ground units.</summary>
         public Vector2 GroundPosition => ground;
@@ -408,6 +426,11 @@ namespace ARPG
             if (dashLeft > 0f)
             {
                 Dash(deltaTime, world, playerGround);
+                return;
+            }
+            if (castTimer > 0f)
+            {
+                castTimer -= deltaTime;
                 return;
             }
 
@@ -751,6 +774,13 @@ namespace ARPG
             var speed = velocity.magnitude;
             var count = animationSet.DirectionCount;
 
+            if (castTimer > 0f && animationSet.Attack != null)
+            {
+                Face(attackAim, count);
+                var progress = EnemyAnimationRules.AttackProgress(false, castSeconds - castTimer, castSeconds);
+                ShowFrame(animationSet.Attack, EnemyAnimationRules.OneShotFrame(progress, animationSet.Attack.Frames));
+                return;
+            }
             if ((State == EnemyState.Attack || State == EnemyState.Recover) && animationSet.Attack != null)
             {
                 Face((State == EnemyState.Attack && definition.Archetype == EnemyArchetype.Archer) || lungeAttack || dashLeft > 0f

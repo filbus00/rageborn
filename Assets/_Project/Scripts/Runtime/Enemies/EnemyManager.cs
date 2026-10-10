@@ -90,6 +90,9 @@ namespace ARPG
         /// <summary>The elites' attack affixes (EliteAffixes, 2026-10-08).</summary>
         public EliteAffixes Affixes { get; private set; }
 
+        /// <summary>Every type's telegraphed special (2026-10-11).</summary>
+        public EnemySpecials Specials { get; private set; }
+
         /// <summary>The level's depth, for the affixes an elite pack may roll (set by DungeonLevel; 1 elsewhere).</summary>
         public int Depth { get; set; } = 1;
 
@@ -127,6 +130,7 @@ namespace ARPG
             Projectiles = new EnemyProjectiles(transform);
             Hazards = new EnemyHazards(transform);
             Affixes = new EliteAffixes(transform);
+            Specials = new EnemySpecials();
 
             for (var i = 0; i < poolSize; i++)
                 pool.Push(CreateInstance());
@@ -182,11 +186,13 @@ namespace ARPG
             Projectiles.Tick(deltaTime, this);
             Hazards.Tick(deltaTime, this);
             Affixes.Tick(deltaTime, this);
+            Specials.Tick(deltaTime, this);
         }
 
         internal void NotifyKilled(EnemyController enemy)
         {
             Affixes.OnKilled(enemy, this);
+            Specials.Forget(enemy);
             Killed?.Invoke(enemy);
         }
 
