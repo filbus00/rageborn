@@ -981,3 +981,11 @@ The owner: the further the thumb from the stick's middle, the worse her aim, 100
 - `PlayerController.StickPush` is the stick value's length (0 inside the dead zone, 1 at the ring). `PlayerCombat.RollStray` rolls one stray angle at the start of each basic attack, each skill cast and each Barrage arrow; `NewArrow` turns every arrow but `ShotStyle.Homing` by it, so a fan turns as one. Forks and ricochets come off a hit and do not stray again.
 - Tests: `AimRulesTests` (the bands, no stray at perfect aim, wider and both ways when worse, about aim percent of hits at 5 units). 614 of 614 pass in Unity. Not checked in play mode or on the phone.
 
+## 2026-10-10: the aim cone
+
+The owner asked for a small marker for her aim; a cone toward the target.
+
+- `AimCone` (added to the Player Combat object by `PlayerCombat.Awake`): one SpriteRenderer on the Decals layer with a code-made wedge sprite (tip at the pivot, brighter rim), placed each LateUpdate from her feet to across her target, as wide as `AimRules.MaxStrayDegrees` at the target's distance (at least 0.05, a line), both ends projected from the ground. White, amber, red by band. Hidden with no target, when disengaged or with the target within 0.5.
+- Checked in play mode: the cone draws on the floor under the enemies and turns red at a full push. Seen only in a crowd of husks; not seen on the phone. Testing note: a level 60 character kills depth 1 packs before a capture; setting `attacksPerSecond` low through a SerializedObject in play mode holds her fire, and between two MCP commands only a frame or two passes with `Application.runInBackground` on.
+- 614 of 614 tests pass in Unity.
+

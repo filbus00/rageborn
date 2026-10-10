@@ -291,6 +291,9 @@ namespace ARPG
                 enemies = FindAnyObjectByType<EnemyManager>();
             if (health == null)
                 health = FindAnyObjectByType<PlayerHealth>();
+            // Her aim drawn on the ground (the owner, 2026-10-08).
+            if (GetComponent<AimCone>() == null)
+                gameObject.AddComponent<AimCone>();
 
             if (skills == null)
                 skills = new SkillDefinition[0];
