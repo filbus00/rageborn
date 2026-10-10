@@ -39,6 +39,26 @@ namespace ARPG
         /// test (no touches can be injected there). Null hands control back to the touch.</summary>
         public Vector2? TestOverride { get; set; }
 
+        readonly FlickDetector flick = new FlickDetector();
+        Vector2? pendingFlick;
+
+        /// <summary>A quick flick of the thumb since last asked (<see cref="FlickDetector"/>): its screen direction, unit
+        /// length. Taken once; the dodge reads it.</summary>
+        public bool TryTakeFlick(out Vector2 screenDirection)
+        {
+            screenDirection = pendingFlick ?? Vector2.zero;
+            var had = pendingFlick.HasValue;
+            pendingFlick = null;
+            return had;
+        }
+
+        /// <summary>Editor and development builds only: a flick as if the thumb made one, for play-mode tests.</summary>
+        public void TestFlick(Vector2 screenDirection)
+        {
+            if (Debug.isDebugBuild && screenDirection.sqrMagnitude > 1e-6f)
+                pendingFlick = screenDirection.normalized;
+        }
+
         /// <summary>Where the stick base sits, in screen pixels.</summary>
         public Vector2 BaseScreenPosition => origin;
 
@@ -108,6 +128,10 @@ namespace ARPG
                     }
 
                     thumb = touch.screenPosition;
+                    // Measured before the base can follow the thumb, so a long flick is not shortened by the drift.
+                    var offset = thumb - origin;
+                    if (flick.Feed(offset / Mathf.Max(1f, RadiusPixels), Time.unscaledTime))
+                        pendingFlick = offset.normalized;
                     Disengaged = StickMath.Disengaged((thumb - origin).magnitude, RadiusPixels, Disengaged);
                     Value = StickMath.Evaluate(ref origin, thumb, RadiusPixels, SettingsDirector.Current.DeadZoneFraction);
                     return;
@@ -134,6 +158,7 @@ namespace ARPG
                 origin = touch.screenPosition;
                 thumb = origin;
                 Value = Vector2.zero;
+                flick.Begin(Time.unscaledTime);
                 return;
             }
         }
@@ -163,6 +188,7 @@ namespace ARPG
             activeFinger = -1;
             Value = Vector2.zero;
             Disengaged = false;
+            flick.Release();
         }
     }
 }

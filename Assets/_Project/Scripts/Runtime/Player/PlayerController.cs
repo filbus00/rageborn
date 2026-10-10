@@ -56,6 +56,31 @@ namespace ARPG
         /// <summary>Whether a skill's dash (Bull Rush) is carrying the character; the stick is ignored meanwhile.</summary>
         public bool IsDashing => dashSeconds > 0f;
 
+        readonly DodgeCharges dodgeCharges = new DodgeCharges();
+        float untouchableSeconds;
+
+        /// <summary>The dodge's charges (Docs/01, the dodge), for the HUD.</summary>
+        public DodgeCharges DodgeCharges => dodgeCharges;
+
+        /// <summary>A dodge's dive is carrying her: she holds her fire and the dive animation plays.</summary>
+        public bool IsDodging { get; private set; }
+
+        /// <summary>The first part of a dive, when nothing can hit her.</summary>
+        public bool IsUntouchable => untouchableSeconds > 0f;
+
+        /// <summary>Dives her <see cref="DodgeRules.Distance"/> along a ground direction when a charge is left and nothing
+        /// else carries her. True when she dives.</summary>
+        public bool TryDodge(Vector2 groundDirection)
+        {
+            if (IsDashing || groundDirection.sqrMagnitude < 1e-6f || !dodgeCharges.TryUse())
+                return false;
+            Dash(groundDirection, DodgeRules.Distance, DodgeRules.Speed);
+            IsDodging = true;
+            untouchableSeconds = DodgeRules.UntouchableSeconds;
+            Sfx.Play(SoundId.Swing, 0.7f);
+            return true;
+        }
+
         void Awake()
         {
             body = GetComponent<Rigidbody2D>();
@@ -130,6 +155,11 @@ namespace ARPG
         void FixedUpdate()
         {
             var deltaTime = Time.fixedDeltaTime;
+            dodgeCharges.Tick(deltaTime);
+            untouchableSeconds = Mathf.Max(0f, untouchableSeconds - deltaTime);
+            // A flick of the stick dodges that way (the owner, 2026-10-10).
+            if (input != null && input.TryTakeFlick(out var flickDirection))
+                TryDodge(IsoMath.StickToGround(flickDirection).normalized);
             slow.Tick(deltaTime);
             firing.Tick(deltaTime);
             if (Disengaged)
@@ -151,7 +181,10 @@ namespace ARPG
                 body.linearVelocity = IsoMath.GroundToWorld(groundVelocity);
                 stance.Tick(deltaTime, true);
                 if (dashSeconds <= 0f)
+                {
                     groundVelocity = dashVelocity.normalized * moveSpeed;
+                    IsDodging = false;
+                }
                 return;
             }
 

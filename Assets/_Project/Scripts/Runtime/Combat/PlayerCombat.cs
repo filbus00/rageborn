@@ -398,7 +398,7 @@ namespace ARPG
                 UpdateChannel(origin, deltaTime);
             if (executeSkill != null)
                 UpdateExecute(origin, deltaTime);
-            if (barrageLeft > 0)
+            if (barrageLeft > 0 && !player.IsDodging)
                 UpdateBarrage(origin, deltaTime);
 
             enemies.QueryEnemies(origin, LongestReach() + QueryMargin, candidates);
@@ -416,8 +416,8 @@ namespace ARPG
             if (aim.sqrMagnitude < 1e-6f)
                 aim = facing;
 
-            // Disengaged (the thumb outside the stick's ring), she holds her fire and runs.
-            if (player.Disengaged)
+            // Disengaged (the thumb outside the stick's ring), she holds her fire and runs; mid-dive too.
+            if (player.Disengaged || player.IsDodging)
                 return;
 
             if (castTimer <= 0f && !charging)

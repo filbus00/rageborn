@@ -81,6 +81,9 @@ namespace ARPG
         {
             if (!IsAlive)
                 return;
+            // Mid-dive nothing lands (the dodge, the owner, 2026-10-10).
+            if (player != null && player.IsUntouchable)
+                return;
 
             var stance = player != null ? player.Stance : null;
             var tree = session.Talents.Bonuses;

@@ -142,6 +142,18 @@ namespace ARPG
 
         /// <summary>How fast to play a locomotion cycle: the actual speed over the speed it was recorded at, within limits.
         /// 1 when the recorded speed is unknown.</summary>
+        /// <summary>Below this ground speed she walks instead of running (the owner, 2026-10-10: a walk when moving
+        /// slowly). Her full speed is about 4 to 5 a second; this is about a third of the stick's push or slower.</summary>
+        public const float WalkBelow = 2.2f;
+
+        /// <summary>How far past <see cref="WalkBelow"/> the walk or run holds, so a speed at the edge does not flip them.</summary>
+        public const float WalkMargin = 0.3f;
+
+        /// <summary>Whether to show the walk at this speed: below <see cref="WalkBelow"/>, holding either way by
+        /// <see cref="WalkMargin"/>.</summary>
+        public static bool Walks(float speed, bool wasWalking) =>
+            speed < WalkBelow + (wasWalking ? WalkMargin : -WalkMargin);
+
         public static float PlaybackRate(float speed, float recordedSpeed) =>
             recordedSpeed <= 0f ? 1f : Mathf.Clamp(speed / recordedSpeed, MinRate, MaxRate);
     }

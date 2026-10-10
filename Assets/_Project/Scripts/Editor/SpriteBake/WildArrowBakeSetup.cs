@@ -37,12 +37,16 @@ namespace ARPG.Editor
         {
             ("idle", 24, true),
             ("run", 10, true),
+            // Her walk when moving slowly (the owner, 2026-10-10): the pack's Standing Walk Forward, left out until it is there.
+            ("walk", 16, true),
             ("run_back", 10, true),
             ("attack", 10, false),
             ("overdraw", 12, false),
             ("recoil", 10, false),
             ("hit", 4, false),
             ("death", 16, false),
+            // The dodge's dive (the owner, 2026-10-10): the pack's Standing Dive Forward, whole, left out until it is there.
+            ("dive", 12, false),
         };
 
         // The actions that get moving variants, over her aiming walk (forward, back and the two sides).
@@ -339,7 +343,7 @@ namespace ARPG.Editor
                     Debug.LogWarning($"[ARPG] No clip for the Wild Arrow's {name} in {path}; left out.");
                     continue;
                 }
-                var window = loop ? new Vector2(0f, clip.length) : MixamoImport.ActionWindow(bodyPath, clip, name == "death");
+                var window = loop || name == "dive" ? new Vector2(0f, clip.length) : MixamoImport.ActionWindow(bodyPath, clip, name == "death");
                 var entry = new SpriteBakeJob.Clip
                 {
                     name = name, clip = clip, frames = frames, loop = loop,

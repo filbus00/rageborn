@@ -154,5 +154,14 @@ namespace ARPG.Tests
         }
 
         static Vector2 Rotate(Vector2 v, float degrees) => Quaternion.Euler(0f, 0f, degrees) * v;
+
+        [Test]
+        public void SlowMovement_Walks_AndTheEdgeHolds()
+        {
+            Assert.IsTrue(LocomotionRules.Walks(1f, false));
+            Assert.IsFalse(LocomotionRules.Walks(4.5f, true));
+            Assert.IsFalse(LocomotionRules.Walks(LocomotionRules.WalkBelow, false), "a run does not drop to a walk at the edge");
+            Assert.IsTrue(LocomotionRules.Walks(LocomotionRules.WalkBelow, true), "a walk does not jump to a run at the edge");
+        }
     }
 }

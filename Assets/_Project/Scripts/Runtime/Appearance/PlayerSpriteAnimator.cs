@@ -39,6 +39,8 @@ namespace ARPG
         const float MaxSkillSeconds = 1.2f;
         const float RunThreshold = 0.5f;
 
+        bool diving;
+
         // How long the character must stand before the idle shows, so a quick reversal does not flash it.
         const float IdleGraceSeconds = 0.1f;
 
@@ -298,6 +300,22 @@ namespace ARPG
             var velocity = player.GroundVelocity;
             var speed = velocity.magnitude;
 
+            // The dodge's dive (the owner, 2026-10-10): once, facing the way she dives, over whatever was playing. Without
+            // a baked dive she just runs, fast, the usual way.
+            if (player.IsDodging && sprite.Has("dive"))
+            {
+                if (!diving)
+                {
+                    diving = true;
+                    inAction = false;
+                    action = null;
+                    sprite.Face(velocity);
+                    sprite.Play("dive", false, DodgeRules.Seconds);
+                }
+                return;
+            }
+            diving = false;
+
             if (dashing)
             {
                 if (player.IsDashing)
@@ -368,7 +386,8 @@ namespace ARPG
             var heading = player.InputDirection.sqrMagnitude > 0f ? player.InputDirection : velocity;
             var row = LocomotionRules.ChooseRow(sprite.Row, heading, sprite.DirectionCount);
             sprite.FaceRow(row);
-            sprite.Loop("run");
+            // Moving slowly she walks (when the walk is baked), else she runs.
+            sprite.Loop(sprite.Has("walk") && LocomotionRules.Walks(speed, sprite.Animation == "walk") ? "walk" : "run");
             sprite.Rate = LocomotionRules.PlaybackRate(speed, sprite.CurrentRecordedSpeed);
         }
     }

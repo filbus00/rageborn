@@ -996,3 +996,9 @@ The owner asked for a small marker for her aim; a cone toward the target.
 - The compile check builds as iOS, so its stubs gained `UnityEditor.Callbacks.PostProcessBuildAttribute` and `UnityEditor.iOS.Xcode.PlistDocument`.
 - Installed on the phone; the built app's Info.plist reads "Wild Arrow".
 
+## 2026-10-10: walking and the dodge
+
+- Walk: `LocomotionRules.Walks(speed, wasWalking)` (below 2.2 a second, a 0.3 margin), `PlayerSpriteAnimator` loops `walk` in place of `run` when the sheet exists; `WildArrowBakeSetup` lists `walk` (16 frames, loop; the baker measures its ground speed from the planted foot like the run's). Waiting on the owner's download of Standing Walk Forward as `Art/Models/WildArrow/wild_arrow_walk.fbx`.
+- Dodge: `Player/Dodge.cs` (pure): `DodgeRules` (3 units in 0.4 s, untouchable 0.35 s, 2 charges, 3 s each), `DodgeCharges`, `FlickDetector` (near the middle, then the ring's edge within 0.15 s; one per trip out). `FloatingStickInput` feeds it each frame before the base drifts, `TryTakeFlick` hands the direction over once (`TestFlick` for play-mode tests). `PlayerController.TryDodge` spends a charge and uses the existing `Dash`; `IsDodging` (combat holds fire and Barrage, the animator plays `dive` once if baked), `IsUntouchable` (`PlayerHealth.TakeHit` returns at once). The bake lists `dive` (12 frames, the whole clip, travel held in the pose by the bake). Waiting on Standing Dive Forward as `wild_arrow_dive.fbx`.
+- Checked in play mode: a test flick right moved her 3.3 units with one charge spent; a 20 point hit mid-dive did nothing, the same hit after landing took 20 percent. Tests: `DodgeTests`, a walk test in `LocomotionTests`; 619 of 619 pass in Unity.
+
