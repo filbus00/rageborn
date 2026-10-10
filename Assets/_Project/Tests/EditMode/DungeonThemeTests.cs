@@ -71,6 +71,32 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void Stairs_StandInAFarWall_WithFloorBeforeThem()
+        {
+            var inWalls = 0;
+            var total = 0;
+            foreach (var depth in new[] { 2, 5, 9, 14, 20 })
+                for (var seed = 1; seed <= 8; seed++)
+                {
+                    var layout = DungeonGenerator.Generate(seed * 7919, depth, Library());
+                    foreach (var (cell, into) in new[] { (layout.StairsUp, layout.StairsUpInto), (layout.StairsDown, layout.StairsDownInto) })
+                    {
+                        if (cell == layout.StairsDown && !layout.HasStairsDown)
+                            continue;
+                        total++;
+                        Assert.IsTrue(layout.IsFloor(cell), $"depth {depth}, seed {seed}: the stairs' cell is floor");
+                        if (into == Vector2Int.zero)
+                            continue;
+                        inWalls++;
+                        Assert.IsTrue(into == Vector2Int.right || into == Vector2Int.up, "a far wall, seen face on");
+                        Assert.AreEqual(DungeonCell.Wall, layout.Get(cell + into));
+                        Assert.IsTrue(layout.IsFloor(cell - into), "room to walk up to them");
+                    }
+                }
+            Assert.GreaterOrEqual(inWalls, total * 9 / 10, "nearly all stairs stand in a wall");
+        }
+
+        [Test]
         public void Pieces_FollowTheTheme()
         {
             bool Nothing(int x, int y) => false;

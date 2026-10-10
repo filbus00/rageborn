@@ -214,6 +214,11 @@ namespace ARPG
 
         public Vector2Int StairsUp { get; internal set; }
 
+        /// <summary>The way from each stairway's cell into the wall it is set in (2026-10-10: stairs stand in a far wall,
+        /// +x or +y), or zero for stairs standing free (the arena's).</summary>
+        public Vector2Int StairsUpInto { get; internal set; }
+        public Vector2Int StairsDownInto { get; internal set; }
+
         /// <summary>Where the player stands on coming down from the level above (or the town).</summary>
         public Vector2Int ArrivalFromAbove { get; internal set; }
 

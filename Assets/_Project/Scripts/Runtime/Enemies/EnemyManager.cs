@@ -306,6 +306,10 @@ namespace ARPG
             var found = new List<Tilemap>();
             foreach (var tilemap in FindObjectsByType<Tilemap>(FindObjectsInactive.Exclude))
             {
+                // The level's drawn-only tilemaps (props, wall pieces, 2026-10-10) are neither ground nor obstacle: taken
+                // for the ground, they left almost nothing walkable, so packs spawned one or two members who never chased.
+                if (tilemap.GetComponent<DecorTilemap>() != null)
+                    continue;
                 if (obstacleLayer >= 0 && tilemap.gameObject.layer == obstacleLayer)
                     found.Add(tilemap);
                 else if (groundTilemap == null)

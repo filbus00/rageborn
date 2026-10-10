@@ -1731,3 +1731,4 @@ for name, build in WALL_DECOR.items():
 # The crypt and cave pieces (2026-10-10).
 import themes
 themes.register(ALL)
+themes.register_stairs(ALL)

@@ -177,8 +177,9 @@ namespace ARPG
         /// 5: buckets, standing torches, ritual sigils and summoning circles (2026-10-04).
         /// 6: twice the rooms, rock between rooms with rough passages, broken walls and collapses (2026-10-08).
         /// 7: crypt rooms of many shapes to depth 12, caves with terraces below (2026-10-10).
+        /// 8: the stairs set into a far wall (2026-10-10).
         /// </summary>
-        public const int Version = 7;
+        public const int Version = 8;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -429,7 +430,15 @@ namespace ARPG
             // side of them, so heading off into the level never walks back over the stairs (the first build put them in
             // the middle with the player just below, and walking up the screen went straight back to town).
             var startRoom = layout.Rooms[0];
-            layout.StairsUp = NearestFloor(layout, startRoom.Interior, CornerAwayFrom(startRoom.Interior, doors[0]), null, 0);
+            // Set into a far wall (2026-10-10, the owner: stairs "spawning inside walls", "weird with stairs in the middle
+            // of a room leading up"): a straight stretch of wall with open floor before it, away from the doorways.
+            if (WallStairs(layout, startRoom.Interior, doors[0], out var upCell, out var upInto))
+            {
+                layout.StairsUp = upCell;
+                layout.StairsUpInto = upInto;
+            }
+            else
+                layout.StairsUp = NearestFloor(layout, startRoom.Interior, CornerAwayFrom(startRoom.Interior, doors[0]), null, 0);
             layout.ArrivalFromAbove = ArrivalBeside(layout, layout.StairsUp, Center(startRoom.Interior));
             // Docs/05: each level has a waypoint. In the start room (the user's choice), further in than the arrival
             // point, so it is passed on the way in but not stood on when arriving by the stairs. No random numbers are
@@ -452,7 +461,13 @@ namespace ARPG
             {
                 // In the corner furthest from the doorway the player walks in by, so arriving from below lands clear of
                 // the exit room's own pack, which goes toward the doorway, and the way out does not cross the stairs.
-                layout.StairsDown = NearestFloor(layout, exitRoom.Interior, CornerAwayFrom(exitRoom.Interior, doors[exit]), null, 0);
+                if (WallStairs(layout, exitRoom.Interior, doors[exit], out var downCell, out var downInto))
+                {
+                    layout.StairsDown = downCell;
+                    layout.StairsDownInto = downInto;
+                }
+                else
+                    layout.StairsDown = NearestFloor(layout, exitRoom.Interior, CornerAwayFrom(exitRoom.Interior, doors[exit]), null, 0);
                 layout.ArrivalFromBelow = ArrivalBeside(layout, layout.StairsDown, Center(exitRoom.Interior));
             }
 
@@ -546,6 +561,48 @@ namespace ARPG
         }
 
         static Vector2Int Center(RectInt r) => new Vector2Int(r.xMin + r.width / 2, r.yMin + r.height / 2);
+
+        /// <summary>
+        /// A place for stairs set into a far wall: a floor cell whose +x or +y neighbour is wall two deep, with the wall
+        /// running straight a cell to each side and open floor two cells in front and to each side, as far from the
+        /// room's doorways as can be. False when the room has no such wall.
+        /// </summary>
+        static bool WallStairs(DungeonLayout layout, RectInt room, List<Vector2Int> doors, out Vector2Int cell, out Vector2Int into)
+        {
+            cell = default;
+            into = default;
+            var best = -1f;
+            foreach (var dir in new[] { Vector2Int.right, Vector2Int.up })
+            {
+                var side = new Vector2Int(dir.y, dir.x);
+                for (var x = room.xMin - 2; x < room.xMax + 2; x++)
+                    for (var y = room.yMin - 2; y < room.yMax + 2; y++)
+                    {
+                        var c = new Vector2Int(x, y);
+                        var wall = c + dir;
+                        var fits = true;
+                        for (var k = -1; k <= 1 && fits; k++)
+                        {
+                            var along = side * k;
+                            fits = layout.IsFloor(c + along) && layout.IsFloor(c + along - dir) && layout.IsFloor(c + along - dir * 2) &&
+                                   layout.Get(wall + along) == DungeonCell.Wall && layout.Get(wall + along + dir) == DungeonCell.Wall &&
+                                   !layout.FreeStanding.Contains(wall + along);
+                        }
+                        if (!fits)
+                            continue;
+                        var nearest = float.MaxValue;
+                        foreach (var door in doors)
+                            nearest = Mathf.Min(nearest, Vector2Int.Distance(c, door));
+                        if (nearest > best)
+                        {
+                            best = nearest;
+                            cell = c;
+                            into = dir;
+                        }
+                    }
+            }
+            return best >= 0f;
+        }
 
         /// <summary>Of the four spots three cells in from the room's corners, the one whose nearest doorway is furthest.</summary>
         static Vector2Int CornerAwayFrom(RectInt interior, List<Vector2Int> doors)

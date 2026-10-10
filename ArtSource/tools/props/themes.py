@@ -327,3 +327,178 @@ def register(all_pieces):
         all_pieces["stalagmite_%d" % n] = ("world", (lambda n=n: stalagmite(n)), WORLD)
     for d in STAIRS:
         all_pieces["cave_stairs_" + d] = ("world", (lambda d=d: cave_stairs(d)), WORLD)
+
+
+# ---------------------------------------------------------------- stairways set into a wall (2026-10-10)
+#
+#   stairs_<up|down>_<x|y>_<crypt|cave>  a doorway in a wall cell, its face toward -x or -y: steps rise into it (up), or
+#                                        sink through a pit in the floor before it and on down under the arch (down).
+#                                        The origin is the wall cell's middle; the pit lies in the floor cell in front.
+
+def _holdout_rect(x0, x1, y0, y1, outer=4.0, z=0.0):
+    """A ground plane with a rectangular hole: hides whatever lies below ground outside the hole."""
+    m = bpy.data.materials.new("HoldoutRect")
+    m.use_nodes = True
+    nodes = m.node_tree.nodes
+    for n in list(nodes):
+        nodes.remove(n)
+    out = nodes.new("ShaderNodeOutputMaterial")
+    hold = nodes.new("ShaderNodeHoldout")
+    m.node_tree.links.new(hold.outputs["Holdout"], out.inputs["Surface"])
+    o = outer
+    verts = [(-o, -o, z), (o, -o, z), (o, o, z), (-o, o, z), (x0, y0, z), (x1, y0, z), (x1, y1, z), (x0, y1, z)]
+    faces = [(0, 1, 5, 4), (1, 2, 6, 5), (2, 3, 7, 6), (3, 0, 4, 7)]
+    return poly(verts, faces, m)
+
+
+class _Frame:
+    """Coordinates across a wall face: u into the wall from its face, v along it, for a face toward -x or -y."""
+
+    def __init__(self, axis):
+        self.x = axis == "x"
+
+    def at(self, u, v, z=0.0):
+        return (-HALF + u, v, z) if self.x else (v, -HALF + u, z)
+
+    def size(self, du, dv, dz):
+        return (du, dv, dz) if self.x else (dv, du, dz)
+
+    def box(self, u0, u1, v0, v1, z0, z1, material, bevel=0.0):
+        box(self.size(u1 - u0, v1 - v0, z1 - z0), self.at((u0 + u1) / 2, (v0 + v1) / 2, z0), material, bevel=bevel)
+
+    def line(self, v0, v1, u=0.0):
+        return (self.at(u, v0)[:2], self.at(u, v1)[:2])
+
+    @property
+    def normal(self):
+        return (-1, 0) if self.x else (0, -1)
+
+
+OPEN_W = 0.25   # half the doorway's width
+OPEN_H = 0.95   # the doorway's height at its crown
+
+
+def _doorway(f, theme, rng):
+    """The wall cell around a doorway: masonry piers and a lintel with an arch (crypt), or boulders heaped round a
+    rough opening (cave). Behind the doorway, a dark passage."""
+    h = WALL_H
+    # The passage behind the doorway: dark sides, ceiling and back, open toward the camera so its steps show.
+    dark = mat(STONE[0], 0.0)
+    inner = mat(STONE[1], 0.2, STONE[0], scale=8)
+    f.box(CELL - 0.04, CELL, -OPEN_W, OPEN_W, -1.3, OPEN_H, dark)
+    f.box(0.0, CELL, -OPEN_W, OPEN_W, OPEN_H - 0.02, OPEN_H, dark)
+    for v in (-OPEN_W, OPEN_W - 0.02):
+        f.box(0.0, CELL, v, v + 0.02, -1.3, OPEN_H, inner)
+    if theme == "crypt":
+        core = mat(STONE[0], 0.0)
+        stones = _crypt_stones()
+        f.box(0.0, CELL, -HALF, -OPEN_W, 0, h - 0.02, core)
+        f.box(0.0, CELL, OPEN_W, HALF, 0, h - 0.02, core)
+        f.box(0.0, CELL, -OPEN_W, OPEN_W, OPEN_H, h - 0.02, core)
+        for v0, v1 in ((-HALF, -OPEN_W - 0.04), (OPEN_W + 0.04, HALF)):
+            a, b = f.line(v0, v1)
+            _ashlar_line(a, b, f.normal, h - 0.12, rng, stones, z0=0.1)
+        a, b = f.line(-OPEN_W, OPEN_W)
+        _ashlar_line(a, b, f.normal, h - 0.12, rng, stones, z0=OPEN_H + 0.04)
+        a, b = f.line(-HALF, HALF)
+        _crypt_trim(a, b, f.normal, h, False)
+        # The arch: jambs and voussoirs standing proud of the face.
+        frame = mat(STONE[4], 0.2, STONE[2], scale=10)
+        spring = OPEN_H - OPEN_W
+        for side in (-1, 1):
+            f.box(-0.04, 0.03, side * OPEN_W - 0.03, side * OPEN_W + 0.03, 0, spring, frame, bevel=0.006)
+        for k in range(9):
+            a = math.pi * k / 8
+            v = math.cos(a) * OPEN_W
+            z = spring + math.sin(a) * OPEN_W
+            f.box(-0.04, 0.03, v - 0.035, v + 0.035, z - 0.03, z + 0.04, frame, bevel=0.006)
+        top = [f.at(0, -HALF)[:2], f.at(CELL, -HALF)[:2], f.at(CELL, HALF)[:2], f.at(0, HALF)[:2]]
+        _crypt_top(top, h)
+    else:
+        rocks = _cave_rocks()
+        core = mat(EARTH[0], 0.2, STONE[0], scale=6)
+        f.box(0.0, CELL, -HALF, -OPEN_W, 0, h * 0.8, core)
+        f.box(0.0, CELL, OPEN_W, HALF, 0, h * 0.8, core)
+        f.box(0.0, CELL, -OPEN_W, OPEN_W, OPEN_H, h * 0.8, core)
+        # Boulders heaped up the two sides of the opening and over it.
+        for layer in range(7):
+            z = h * layer / 7
+            for side in (-1, 1):
+                for j in range(2):
+                    r = 0.12 * rng.uniform(0.85, 1.15)
+                    v = side * (OPEN_W + 0.13 + rng.uniform(0.0, 0.05))
+                    u = CELL * (0.2 + 0.55 * j) + rng.uniform(-0.04, 0.04)
+                    _rock(f.at(u - (0.05 if j == 0 else 0), v, z + r * 0.4), r, rng.choice(rocks), rng, squash=rng.uniform(0.6, 0.85))
+            if z >= OPEN_H - 0.05:
+                for k in range(3):
+                    r = 0.16 * rng.uniform(0.85, 1.2)
+                    _rock(f.at(rng.uniform(0.0, CELL * 0.8), rng.uniform(-OPEN_W, OPEN_W), z + r * 0.4), r, rng.choice(rocks), rng, squash=0.75)
+        # A lintel of one long slab over the opening.
+        f.box(-0.05, 0.25, -OPEN_W - 0.08, OPEN_W + 0.08, OPEN_H - 0.05, OPEN_H + 0.1, rng.choice(rocks), bevel=0.03)
+
+
+def _marker(f, theme, down):
+    """What makes a stairway stand out in the dark: a torch on each side of the doorway, and warm light inside the
+    passage lighting its steps (from above for the way up, from below for the way down)."""
+    from models import flame
+    iron = mat(STONE[1], 0.2, STONE[0], metal=0.6, rough=0.5)
+    wood = mat(WOOD[2], 0.3, WOOD[1])
+    for side in (-1, 1):
+        v = side * (OPEN_W + 0.13)
+        x, y, _ = f.at(-0.05, v)
+        box((0.06, 0.06, 0.1), (x, y, 0.62), iron)
+        cyl(0.03, 0.24, (x, y, 0.66), wood, 8)
+        lathe([(0.025, 0), (0.06, 0.07), (0.065, 0.09)], (x, y, 0.88), iron, 8, smooth=False, cap=False)
+        flame((x, y, 0.92), 0.08, 8)
+    light("POINT", f.at(CELL * 0.75, 0, -0.6 if down else 0.8), 60, (1.0, 0.62, 0.32), 0.2)
+    light("POINT", f.at(-0.3, 0, 0.9), 25, (1.0, 0.6, 0.3), 0.2)
+
+
+def _steps(f, theme, count, u0, u1, z0, rise, rng):
+    """count steps from u0 to u1 along the passage, the first at z0, each rise higher (negative rise goes down)."""
+    stone = [mat(STONE[5], 0.3, STONE[3], scale=10), mat(STONE[4], 0.3, STONE[3], scale=10)] if theme == "crypt" else \
+            [mat(STONE[4], 0.35, STONE[2], scale=12), mat(EARTH[4], 0.35, EARTH[2], scale=12)]
+    depth = (u1 - u0) / count
+    for k in range(count):
+        top = z0 + rise * k
+        ua = u0 + depth * k
+        f.box(ua, u1 if rise > 0 else ua + depth + 0.01, -OPEN_W + 0.01, OPEN_W - 0.01, min(top - 0.12, -1.3) if rise < 0 else 0, top,
+              stone[k % 2], bevel=0.008 if theme == "crypt" else 0.02)
+
+
+def stairs_up(axis, theme):
+    rng = _rng("stairs_up", axis, theme)
+    f = _Frame(axis)
+    _doorway(f, theme, rng)
+    _steps(f, theme, 6, 0.0, CELL, 0.11, 0.12, rng)
+    _marker(f, theme, False)
+    _holdout_rect(0.0, 0.0, 0.0, 0.0)  # nothing below the ground shows
+
+
+def stairs_down(axis, theme):
+    rng = _rng("stairs_down", axis, theme)
+    f = _Frame(axis)
+    _doorway(f, theme, rng)
+    pit = CELL * 0.95
+    # The pit in the floor before the wall: its sides go down into the dark.
+    side = mat(STONE[2], 0.3, STONE[1], scale=8) if theme == "crypt" else mat(EARTH[1], 0.35, EARTH[0], scale=8)
+    for v in (-OPEN_W - 0.03, OPEN_W + 0.03):
+        f.box(-pit, 0.05, v - 0.03, v + 0.03, -1.3, 0, side)
+    f.box(-pit - 0.04, -pit, -OPEN_W - 0.06, OPEN_W + 0.06, -1.3, 0, side)
+    _steps(f, theme, 8, -pit, CELL, -0.1, -0.13, rng)
+    _marker(f, theme, True)
+    a = f.at(-pit, -OPEN_W - 0.06)
+    b = f.at(0.06, OPEN_W + 0.06)
+    _holdout_rect(min(a[0], b[0]), max(a[0], b[0]), min(a[1], b[1]), max(a[1], b[1]))
+    # The kerb round the pit.
+    kerb = mat(STONE[4], 0.25, STONE[2], scale=10) if theme == "crypt" else mat(STONE[3], 0.35, EARTH[1], scale=10)
+    f.box(-pit - 0.1, -pit - 0.02, -OPEN_W - 0.12, OPEN_W + 0.12, 0, 0.05, kerb, bevel=0.01)
+    for v in (-1, 1):
+        f.box(-pit - 0.1, 0.0, v * (OPEN_W + 0.08) - 0.04, v * (OPEN_W + 0.08) + 0.04, 0, 0.05, kerb, bevel=0.01)
+
+
+def register_stairs(all_pieces):
+    for axis in "xy":
+        for theme in ("crypt", "cave"):
+            all_pieces["stairs_up_%s_%s" % (axis, theme)] = ("world", (lambda a=axis, t=theme: stairs_up(a, t)), WORLD)
+            all_pieces["stairs_down_%s_%s" % (axis, theme)] = ("world", (lambda a=axis, t=theme: stairs_down(a, t)), WORLD)

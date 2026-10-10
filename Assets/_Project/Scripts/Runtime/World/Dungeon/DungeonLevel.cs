@@ -144,11 +144,11 @@ namespace ARPG
 
             var root = new GameObject("Level " + depth).transform;
             if (depth > 1)
-                AddStairs(root, "Stairs Up", Layout.StairsUp, dungeonScene, depth - 1, Arrival.FromBelow);
+                AddStairs(root, "Stairs Up", Layout.StairsUp, Layout.StairsUpInto, dungeonScene, depth - 1, Arrival.FromBelow);
             else
-                AddStairs(root, "Stairs Up", Layout.StairsUp, townScene, 0, Arrival.FromAbove);
+                AddStairs(root, "Stairs Up", Layout.StairsUp, Layout.StairsUpInto, townScene, 0, Arrival.FromAbove);
             if (Layout.HasStairsDown)
-                AddStairs(root, "Stairs Down", Layout.StairsDown, dungeonScene, depth + 1, Arrival.FromAbove);
+                AddStairs(root, "Stairs Down", Layout.StairsDown, Layout.StairsDownInto, dungeonScene, depth + 1, Arrival.FromAbove);
 
             for (var i = 0; i < Layout.Chests.Count; i++)
                 AddChest(root, i, Layout.Chests[i]);
@@ -198,9 +198,9 @@ namespace ARPG
             void AddWayOn()
             {
                 if (depth < DungeonRules.Depths)
-                    AddStairs(root, "Stairs Down", stairsCell, dungeonScene, depth + 1, Arrival.FromAbove);
+                    AddStairs(root, "Stairs Down", stairsCell, Vector2Int.zero, dungeonScene, depth + 1, Arrival.FromAbove);
                 else
-                    AddStairs(root, "Stairs To Town", stairsCell, townScene, 0, Arrival.FromAbove);
+                    AddStairs(root, "Stairs To Town", stairsCell, Vector2Int.zero, townScene, 0, Arrival.FromAbove);
             }
             if (session.IsKilled(key, 0))
             {
@@ -314,7 +314,7 @@ namespace ARPG
                     // Rock with no floor beside it is drawn the same but blocks nothing (2026-10-08: the rock between and
                     // around the rooms is many thousand cells; colliders only where she can reach).
                     // The crypt or cave piece when imported (2026-10-10), over an invisible blocker; else the older walls.
-                    var piece = cell == DungeonCell.Wall
+                    var piece = cell == DungeonCell.Wall && !IsStairsWall(at)
                         ? DungeonArt.Piece(ThemePieces.Wall(theme, IsOpenCell, at.x, at.y, cameraSide, freeStanding, Layout.Ledges.Contains(at), PieceHash(at)))
                         : null;
                     if (piece != null)
@@ -427,6 +427,9 @@ namespace ARPG
                         continue;
                     // Torches and banners hang on built walls: not on the caves' boulders or a cut corner (2026-10-10).
                     if (Layout.Theme == DungeonTheme.Cave || ThemePieces.Diagonal(IsOpenCell, x, y) != null)
+                        continue;
+                    if (IsStairsWall(at) || IsStairsWall(at + Vector2Int.right) || IsStairsWall(at + Vector2Int.left) ||
+                        IsStairsWall(at + Vector2Int.up) || IsStairsWall(at + Vector2Int.down))
                         continue;
                     if (!Layout.FreeStanding.Contains(at) && WallRules.IsCameraSide(IsOpenCell, x, y))
                         continue;
@@ -580,7 +583,7 @@ namespace ARPG
 
         Tilemap Overlay(string name)
         {
-            var go = new GameObject(name, typeof(Tilemap), typeof(TilemapRenderer));
+            var go = new GameObject(name, typeof(Tilemap), typeof(TilemapRenderer), typeof(DecorTilemap));
             go.transform.SetParent(walls.transform.parent, false);
             go.transform.localPosition = walls.transform.localPosition;
             var map = go.GetComponent<Tilemap>();
@@ -595,6 +598,11 @@ namespace ARPG
             to.sharedMaterial = from.sharedMaterial;
             return map;
         }
+
+        // The wall cells a stairway is set into, drawn by the stairway itself.
+        bool IsStairsWall(Vector2Int cell) =>
+            Layout.StairsUpInto != Vector2Int.zero && cell == Layout.StairsUp + Layout.StairsUpInto ||
+            Layout.HasStairsDown && Layout.StairsDownInto != Vector2Int.zero && cell == Layout.StairsDown + Layout.StairsDownInto;
 
         static int PieceHash(Vector2Int cell) => (int)(WallHash(cell.x, cell.y, 9) * 100000f);
 
@@ -640,12 +648,34 @@ namespace ARPG
                 body.position = position;
         }
 
-        void AddStairs(Transform parent, string objectName, Vector2Int cell, string scene, int depth, Arrival arriveBy)
+        void AddStairs(Transform parent, string objectName, Vector2Int cell, Vector2Int into, string scene, int depth, Arrival arriveBy)
         {
             var go = new GameObject(objectName, typeof(SpriteRenderer), typeof(CircleCollider2D));
             go.transform.SetParent(parent, false);
             go.transform.position = CellWorld(cell);
             SetLayer(go, GameLayers.Interactable);
+
+            // A stairway set into a far wall (2026-10-10): its doorway drawn in the wall cell, standing and sorted like
+            // the walls; walking into the cell before it takes her through.
+            var down = objectName == "Stairs Down";
+            var wallPiece = into == Vector2Int.zero ? null
+                : WorldArt.Get($"stairs_{(down ? "down" : "up")}_{(into.x != 0 ? "x" : "y")}_{(Layout.Theme == DungeonTheme.Cave ? "cave" : "crypt")}");
+            if (wallPiece != null)
+            {
+                var doorway = new GameObject("Doorway", typeof(SpriteRenderer));
+                doorway.transform.SetParent(go.transform, false);
+                doorway.transform.position = CellWorld(cell + into);
+                var doorwayRenderer = doorway.GetComponent<SpriteRenderer>();
+                doorwayRenderer.sprite = wallPiece;
+                doorwayRenderer.sortingLayerName = GameSortingLayers.Entities;
+                doorwayRenderer.spriteSortPoint = SpriteSortPoint.Pivot;
+                WorldArt.Lit(doorwayRenderer);
+                var trigger = go.GetComponent<CircleCollider2D>();
+                trigger.isTrigger = true;
+                trigger.radius = 0.45f;
+                go.AddComponent<SceneExit>().Configure(scene, depth, arriveBy);
+                return;
+            }
 
             var spriteRenderer = go.GetComponent<SpriteRenderer>();
             // The modelled stairs (WorldArt) when imported: a shaft down, or a flight of steps up.
