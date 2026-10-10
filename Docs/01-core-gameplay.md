@@ -17,7 +17,7 @@ No tap, swipe, long press or double tap has a combat function. The top of the sc
 
 ### The dodge (the owner, 2026-10-10)
 
-A quick flick of the stick (the thumb from near the middle, within 0.35 of the radius, to the ring's edge in 0.15 s) dives her about 3 units that way in 0.4 s. Nothing can hit her for the first 0.35 s, telegraphs and projectiles alike, and she holds her fire until she lands. Two charges, one back every 3 s. A slow push past the ring is no flick and still disengages her as before. The animation is Mixamo's Standing Dive Forward from the longbow pack, baked as `dive`; without it she dashes in her run. Claude's numbers, to review: the flick's thresholds and the untouchable window (`DodgeRules`).
+A quick flick of the stick (the thumb from near the middle, within 0.35 of the radius, to the ring's edge in 0.15 s) dives her about 3 units that way in 0.4 s; the dive animation, getting up included, lasts 0.65 s, and she holds her fire for all of it. Nothing can hit her for the first 0.35 s, telegraphs and projectiles alike, Two charges, one back every 3 s. A slow push past the ring is no flick and still disengages her as before. The animation is Mixamo's Standing Dive Forward from the longbow pack, baked as `dive`; without it she dashes in her run. Claude's numbers, to review: the flick's thresholds and the untouchable window (`DodgeRules`).
 
 ### Walking (the owner, 2026-10-10)
 

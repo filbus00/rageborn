@@ -310,7 +310,7 @@ namespace ARPG
                     inAction = false;
                     action = null;
                     sprite.Face(velocity);
-                    sprite.Play("dive", false, DodgeRules.Seconds);
+                    sprite.Play("dive", false, DodgeRules.AnimationSeconds);
                 }
                 return;
             }

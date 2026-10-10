@@ -49,6 +49,7 @@ namespace ARPG.Tests
         {
             Assert.AreEqual(DodgeRules.Distance, DodgeRules.Speed * DodgeRules.Seconds, 1e-4f);
             Assert.LessOrEqual(DodgeRules.UntouchableSeconds, DodgeRules.Seconds);
+            Assert.GreaterOrEqual(DodgeRules.AnimationSeconds, DodgeRules.Seconds, "she gets up after the travel");
         }
     }
 }

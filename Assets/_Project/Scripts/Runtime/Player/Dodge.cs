@@ -13,6 +13,10 @@ namespace ARPG
         public const float Seconds = 0.4f;
         public const float Speed = Distance / Seconds;
 
+        /// <summary>The dive animation, travel and getting up (Mixamo's Standing Dive Forward is 1.6 s, played faster):
+        /// she holds her fire this long, longer than the travel.</summary>
+        public const float AnimationSeconds = 0.65f;
+
         /// <summary>She cannot be hit for this long from the dive's start.</summary>
         public const float UntouchableSeconds = 0.35f;
 

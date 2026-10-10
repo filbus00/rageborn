@@ -62,8 +62,10 @@ namespace ARPG
         /// <summary>The dodge's charges (Docs/01, the dodge), for the HUD.</summary>
         public DodgeCharges DodgeCharges => dodgeCharges;
 
-        /// <summary>A dodge's dive is carrying her: she holds her fire and the dive animation plays.</summary>
-        public bool IsDodging { get; private set; }
+        float dodgeSeconds;
+
+        /// <summary>A dodge's dive is under way, getting up included: she holds her fire and the dive animation plays.</summary>
+        public bool IsDodging => dodgeSeconds > 0f;
 
         /// <summary>The first part of a dive, when nothing can hit her.</summary>
         public bool IsUntouchable => untouchableSeconds > 0f;
@@ -75,7 +77,7 @@ namespace ARPG
             if (IsDashing || groundDirection.sqrMagnitude < 1e-6f || !dodgeCharges.TryUse())
                 return false;
             Dash(groundDirection, DodgeRules.Distance, DodgeRules.Speed);
-            IsDodging = true;
+            dodgeSeconds = DodgeRules.AnimationSeconds;
             untouchableSeconds = DodgeRules.UntouchableSeconds;
             Sfx.Play(SoundId.Swing, 0.7f);
             return true;
@@ -157,6 +159,7 @@ namespace ARPG
             var deltaTime = Time.fixedDeltaTime;
             dodgeCharges.Tick(deltaTime);
             untouchableSeconds = Mathf.Max(0f, untouchableSeconds - deltaTime);
+            dodgeSeconds = Mathf.Max(0f, dodgeSeconds - deltaTime);
             // A flick of the stick dodges that way (the owner, 2026-10-10).
             if (input != null && input.TryTakeFlick(out var flickDirection))
                 TryDodge(IsoMath.StickToGround(flickDirection).normalized);
@@ -181,10 +184,7 @@ namespace ARPG
                 body.linearVelocity = IsoMath.GroundToWorld(groundVelocity);
                 stance.Tick(deltaTime, true);
                 if (dashSeconds <= 0f)
-                {
                     groundVelocity = dashVelocity.normalized * moveSpeed;
-                    IsDodging = false;
-                }
                 return;
             }
 
