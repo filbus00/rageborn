@@ -48,8 +48,11 @@ namespace ARPG
                 session.Changed += Refresh;
             }
 
-            // The old scene's pet went with it.
-            pet = null;
+            // The old scene's pet went with it. One already made in this scene stays: a session change during the scene's
+            // own Awake (a new deepest depth, DungeonLevel) spawns it before this runs, and forgetting it here made a
+            // second (2026-10-11, the owner: "the dog splits in two").
+            if (pet == null || pet.gameObject.scene != scene)
+                pet = null;
             if (scene.name == TownScene)
             {
                 PetVendor.Create(IsoMath.CellToGround(VendorCell), null);

@@ -178,8 +178,9 @@ namespace ARPG
         /// 6: twice the rooms, rock between rooms with rough passages, broken walls and collapses (2026-10-08).
         /// 7: crypt rooms of many shapes to depth 12, caves with terraces below (2026-10-10).
         /// 8: the stairs set into a far wall (2026-10-10).
+        /// 9: roomier caves and tunnels, terrace steps facing the camera (2026-10-11).
         /// </summary>
-        public const int Version = 8;
+        public const int Version = 9;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -350,8 +351,8 @@ namespace ARPG
                     mains[i] = interiors[i] = slot;
                     continue;
                 }
-                var mw = Mathf.Max(MinMainSpan, Mathf.RoundToInt(slot.width * Mathf.Lerp(cave ? 0.8f : 0.7f, 1f, (float)random.NextDouble())));
-                var mh = Mathf.Max(MinMainSpan, Mathf.RoundToInt(slot.height * Mathf.Lerp(cave ? 0.8f : 0.7f, 1f, (float)random.NextDouble())));
+                var mw = Mathf.Max(MinMainSpan, Mathf.RoundToInt(slot.width * Mathf.Lerp(cave ? 0.9f : 0.7f, 1f, (float)random.NextDouble())));
+                var mh = Mathf.Max(MinMainSpan, Mathf.RoundToInt(slot.height * Mathf.Lerp(cave ? 0.9f : 0.7f, 1f, (float)random.NextDouble())));
                 mw = Mathf.Min(mw, slot.width);
                 mh = Mathf.Min(mh, slot.height);
                 var main = new RectInt(slot.xMin + random.Next(0, slot.width - mw + 1), slot.yMin + random.Next(0, slot.height - mh + 1), mw, mh);
@@ -377,12 +378,10 @@ namespace ARPG
                 {
                     // A cave: a lump of open ground worn into the rock, its edge rough all round.
                     CarveCave(layout, mains[i], random);
-                    // The start and exit rooms stay open, so the stairs and the arrival have room.
+                    // The start and exit rooms stay open, so the stairs and the arrival have room. No collapses in caves
+                    // (2026-10-11, the owner: the caves were "too cramped", the way on often not to be seen).
                     if (kinds[i] != RoomKind.Start && kinds[i] != RoomKind.Exit)
-                    {
                         Stalagmites(layout, mains[i], rugged, random);
-                        Collapse(layout, mains[i], rugged, random);
-                    }
                 }
                 else
                 {
@@ -659,7 +658,7 @@ namespace ARPG
             var horizontal = macros[b].x != macros[a].x;
             var boss = kinds[a] == RoomKind.Boss || kinds[b] == RoomKind.Boss;
             // A crypt's corridors are built, straight and clean; a cave's tunnels wander and fray.
-            var width = boss ? RoomShape.DoorWidth : hall ? random.Next(7, 14) : cave ? random.Next(3, 7) : random.Next(3, 6);
+            var width = boss ? RoomShape.DoorWidth : hall ? random.Next(7, 14) : cave ? random.Next(5, 9) : random.Next(3, 6);
             var fray = !boss && cave;
 
             int Across(RectInt r, bool high) => horizontal ? (high ? r.xMax : r.xMin) : (high ? r.yMax : r.yMin);
@@ -801,8 +800,9 @@ namespace ARPG
                     var ny = (y + 0.5f - h / 2f) / (h / 2f);
                     var d = Mathf.Sqrt(nx * nx + ny * ny);
                     var n = ValueNoise(noise, x / 5f, y / 5f) * 0.7f + ValueNoise(noise + 3, x / 2.5f, y / 2.5f) * 0.3f;
-                    core[x, y] = d < 0.45f;
-                    open[x, y] = core[x, y] || d < 0.6f + 0.55f * n;
+                    // Filling most of the rectangle (2026-10-11: 0.45 and 0.6 left caves cramped ovals).
+                    core[x, y] = d < 0.6f;
+                    open[x, y] = core[x, y] || d < 0.8f + 0.45f * n;
                 }
             for (var pass = 0; pass < 2; pass++)
             {
@@ -832,7 +832,7 @@ namespace ARPG
             const int margin = 4;
             if (r.width <= 2 * margin + 2 || r.height <= 2 * margin + 2)
                 return;
-            var count = random.Next(2, 5) + Mathf.RoundToInt(rugged * r.width * r.height / 300f);
+            var count = random.Next(1, 4) + Mathf.RoundToInt(rugged * r.width * r.height / 600f);
             for (var k = 0; k < count; k++)
             {
                 var cell = new Vector2Int(random.Next(r.xMin + margin, r.xMax - margin), random.Next(r.yMin + margin, r.yMax - margin));
@@ -916,6 +916,10 @@ namespace ARPG
                         if (fits)
                             flights.Add((cell, down));
                     }
+                // Only flights coming down toward the camera (toward -x or -y), so their risers face it: seen from above,
+                // a flight going down away from it hides its steps behind each other (2026-10-11, the owner: the steps
+                // "do not look like stairs").
+                flights.RemoveAll(f => f.down.x > 0 || f.down.y > 0);
                 if (flights.Count == 0)
                     continue;
                 var chosen = new List<(Vector2Int cell, Vector2Int down)> { flights[random.Next(flights.Count)] };
@@ -1000,34 +1004,6 @@ namespace ARPG
             var top = Mathf.Lerp(L(x0, y0), L(x0 + 1, y0), fx);
             var bottom = Mathf.Lerp(L(x0, y0 + 1), L(x0 + 1, y0 + 1), fx);
             return Mathf.Lerp(top, bottom, fy);
-        }
-
-        /// <summary>
-        /// Heaps of fallen ceiling standing in a room: rough blobs of rubble and broken masonry, one to a few, more the
-        /// deeper and the bigger the room. Kept away from the room's edge, so walking around them is always possible.
-        /// </summary>
-        static void Collapse(DungeonLayout layout, RectInt r, float rugged, System.Random random)
-        {
-            var area = r.width * r.height;
-            var count = random.Next(0, 2) + Mathf.RoundToInt(rugged * area / 500f * (float)random.NextDouble());
-            for (var k = 0; k < count; k++)
-            {
-                var radius = 1f + (float)random.NextDouble() * (0.8f + 1f * rugged);
-                var reach = Mathf.CeilToInt(radius);
-                var margin = RoughDepth + reach + 2;
-                if (r.width <= 2 * margin || r.height <= 2 * margin)
-                    return;
-                var cx = random.Next(r.xMin + margin, r.xMax - margin);
-                var cy = random.Next(r.yMin + margin, r.yMax - margin);
-                var stretch = 0.6f + (float)random.NextDouble() * 0.8f;
-                for (var dx = -reach - 1; dx <= reach + 1; dx++)
-                    for (var dy = -reach - 1; dy <= reach + 1; dy++)
-                    {
-                        var d = Mathf.Sqrt(dx * dx * stretch + dy * dy / stretch);
-                        if (d <= radius + (float)random.NextDouble() * 0.9f - 0.45f)
-                            layout.Set(cx + dx, cy + dy, DungeonCell.Wall);
-                    }
-            }
         }
 
         /// <summary>Every cell of the level that is not floor is solid rock (wall), so between and around the rooms there

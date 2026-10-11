@@ -18,7 +18,9 @@ import math
 from kit import *
 
 HALF = CELL / 2
-WALL_H = 1.1 / 0.866
+# Twice her height (the owner, 2026-10-11: "Make the walls of all levels higher. It looks like the main character is a
+# giant"); 1.1 / 0.866 until then, about her shoulders.
+WALL_H = 2.0 / 0.866
 LOW_H = 0.14 / 0.866
 
 
@@ -259,10 +261,11 @@ def cave_wall(variant, low=False):
 
 
 def cave_ledge(variant):
-    """A terrace's rim: a lip of flat-topped rock with a rough face, a third of a man high."""
+    """A terrace's rim: a lip of flat-topped rock with a rough face, half a man high (2026-10-11: at a third, the owner
+    could not tell the ground was changing height)."""
     rng = _rng("ledge", variant)
     rocks = _cave_rocks()
-    h = 0.3
+    h = LEDGE_H
     _heap(h, rng, rocks, 0.15, front=0.05)
     # A flatter top, as a lip of the terrace.
     for k in range(4):
@@ -271,28 +274,36 @@ def cave_ledge(variant):
         _spikes(0.05, 0.05, h - 0.02, 4, 0.25, rng)
 
 
+LEDGE_H = 0.45
+
 STAIRS = {"px": (1, 0), "nx": (-1, 0), "py": (0, 1), "ny": (0, -1)}
 
 
 def cave_stairs(direction):
-    """Three rough steps across the cell, the lowest toward the way down."""
+    """A flight of cut steps through a terrace's rim, the lowest toward the way down (2026-10-11, the owner: the old
+    rough steps "do not look like stairs and it is not clear that the elevation is changing"): five pale treads with
+    dark risers climbing to the rim's height across the whole cell, so the three cells of a flight join into one wide
+    stair with the rim's rock either side. The game builds flights only coming down toward the camera, risers in view."""
     rng = _rng("stairs", direction)
     dx, dy = STAIRS[direction]
-    slab = [mat(STONE[3], 0.35, STONE[1], scale=12), mat(STONE[2], 0.35, EARTH[1], scale=12)]
-    rocks = _cave_rocks()
-    depth = CELL / 3
-    for k in range(3):
-        # Step k is k from the low side; its middle along the way down.
-        t = HALF - depth * (k + 0.5)
-        x, y = dx * t, dy * t
-        height = 0.08 * (k + 1)
-        size = (depth + 0.01, CELL + 0.02, height) if dx else (CELL + 0.02, depth + 0.01, height)
-        box(size, (x, y, 0), rng.choice(slab), rot=(0, 0, rng.uniform(-2, 2)), bevel=0.02)
-        # Broken stones along each step's edge.
-        for side in (-1, 1):
-            ex = x + (0 if dx else side * HALF)
-            ey = y + (side * HALF if dx else 0)
-            _rock((ex, ey, height * 0.5), rng.uniform(0.07, 0.11), rng.choice(rocks), rng, squash=0.7)
+    tread = [mat(STONE[5], 0.3, STONE[4], scale=12), mat(STONE[6], 0.3, STONE[4], scale=12)]
+    riser = mat(STONE[1], 0.3, STONE[0], scale=10)
+    count = 5
+    depth = CELL / count
+    rise = LEDGE_H / count
+    across = CELL + 0.01
+    for k in range(count):
+        # Step k is k from the low side; it runs from its front edge to the top of the flight, so no gap shows below.
+        front = HALF - depth * k
+        mid = (front - HALF) / 2
+        top = rise * (k + 1)
+        length = front + HALF
+        size = (length, across, top) if dx else (across, length, top)
+        box(size, (dx * mid, dy * mid, 0), riser, bevel=0.004)
+        # The tread: a pale slab on top, a little proud of the riser at its front edge.
+        t = front - depth / 2 + 0.006
+        size = (depth + 0.012, across, 0.025) if dx else (across, depth + 0.012, 0.025)
+        box(size, (dx * t, dy * t, top - 0.025), rng.choice(tread), bevel=0.006)
 
 
 def stalagmite(variant):
@@ -374,8 +385,11 @@ class _Frame:
         return (-1, 0) if self.x else (0, -1)
 
 
-OPEN_W = 0.25   # half the doorway's width
-OPEN_H = 0.95   # the doorway's height at its crown
+# Three wall cells wide (2026-10-11, the owner: "The stairs between levels are too small. Make them bigger"): the piece
+# stands on the middle wall cell and covers the wall cell each side of it, which the game leaves undrawn.
+SPAN = 1.5 * CELL  # half the whole piece's width
+OPEN_W = 0.5    # half the doorway's width
+OPEN_H = 1.5    # the doorway's height at its crown
 
 
 def _doorway(f, theme, rng):
@@ -392,45 +406,56 @@ def _doorway(f, theme, rng):
     if theme == "crypt":
         core = mat(STONE[0], 0.0)
         stones = _crypt_stones()
-        f.box(0.0, CELL, -HALF, -OPEN_W, 0, h - 0.02, core)
-        f.box(0.0, CELL, OPEN_W, HALF, 0, h - 0.02, core)
+        f.box(0.0, CELL, -SPAN, -OPEN_W, 0, h - 0.02, core)
+        f.box(0.0, CELL, OPEN_W, SPAN, 0, h - 0.02, core)
         f.box(0.0, CELL, -OPEN_W, OPEN_W, OPEN_H, h - 0.02, core)
-        for v0, v1 in ((-HALF, -OPEN_W - 0.04), (OPEN_W + 0.04, HALF)):
+        for v0, v1 in ((-SPAN, -OPEN_W - 0.04), (OPEN_W + 0.04, SPAN)):
             a, b = f.line(v0, v1)
             _ashlar_line(a, b, f.normal, h - 0.12, rng, stones, z0=0.1)
         a, b = f.line(-OPEN_W, OPEN_W)
         _ashlar_line(a, b, f.normal, h - 0.12, rng, stones, z0=OPEN_H + 0.04)
-        a, b = f.line(-HALF, HALF)
+        a, b = f.line(-SPAN, SPAN)
         _crypt_trim(a, b, f.normal, h, False)
         # The arch: jambs and voussoirs standing proud of the face.
         frame = mat(STONE[4], 0.2, STONE[2], scale=10)
         spring = OPEN_H - OPEN_W
         for side in (-1, 1):
             f.box(-0.04, 0.03, side * OPEN_W - 0.03, side * OPEN_W + 0.03, 0, spring, frame, bevel=0.006)
-        for k in range(9):
-            a = math.pi * k / 8
+        for k in range(15):
+            a = math.pi * k / 14
             v = math.cos(a) * OPEN_W
             z = spring + math.sin(a) * OPEN_W
             f.box(-0.04, 0.03, v - 0.035, v + 0.035, z - 0.03, z + 0.04, frame, bevel=0.006)
-        top = [f.at(0, -HALF)[:2], f.at(CELL, -HALF)[:2], f.at(CELL, HALF)[:2], f.at(0, HALF)[:2]]
+        # The spandrels: stone filling the corners between the arch and the square opening above it, in thin slices.
+        slices = 16
+        for k in range(slices):
+            v0 = -OPEN_W + 2 * OPEN_W * k / slices
+            v1 = v0 + 2 * OPEN_W / slices
+            v = (v0 + v1) / 2
+            z = spring + math.sqrt(max(0.0, OPEN_W * OPEN_W - v * v)) + 0.03
+            if z < OPEN_H:
+                f.box(0.0, 0.12, v0, v1, z, OPEN_H + 0.01, rng.choice(stones))
+        top = [f.at(0, -SPAN)[:2], f.at(CELL, -SPAN)[:2], f.at(CELL, SPAN)[:2], f.at(0, SPAN)[:2]]
         _crypt_top(top, h)
     else:
         rocks = _cave_rocks()
         core = mat(EARTH[0], 0.2, STONE[0], scale=6)
-        f.box(0.0, CELL, -HALF, -OPEN_W, 0, h * 0.8, core)
-        f.box(0.0, CELL, OPEN_W, HALF, 0, h * 0.8, core)
+        f.box(0.0, CELL, -SPAN, -OPEN_W, 0, h * 0.8, core)
+        f.box(0.0, CELL, OPEN_W, SPAN, 0, h * 0.8, core)
         f.box(0.0, CELL, -OPEN_W, OPEN_W, OPEN_H, h * 0.8, core)
-        # Boulders heaped up the two sides of the opening and over it.
-        for layer in range(7):
-            z = h * layer / 7
+        # Boulders heaped up the two sides of the opening, out to the piece's edges, and over it.
+        columns = int(math.ceil((SPAN - OPEN_W) / 0.22))
+        for layer in range(12):
+            z = h * layer / 12
             for side in (-1, 1):
-                for j in range(2):
-                    r = 0.12 * rng.uniform(0.85, 1.15)
-                    v = side * (OPEN_W + 0.13 + rng.uniform(0.0, 0.05))
-                    u = CELL * (0.2 + 0.55 * j) + rng.uniform(-0.04, 0.04)
-                    _rock(f.at(u - (0.05 if j == 0 else 0), v, z + r * 0.4), r, rng.choice(rocks), rng, squash=rng.uniform(0.6, 0.85))
+                for c in range(columns):
+                    for j in range(2):
+                        r = 0.12 * rng.uniform(0.85, 1.15)
+                        v = side * (OPEN_W + 0.13 + 0.22 * c + rng.uniform(0.0, 0.05))
+                        u = CELL * (0.2 + 0.55 * j) + rng.uniform(-0.04, 0.04)
+                        _rock(f.at(u - (0.05 if j == 0 else 0), v, z + r * 0.4), r, rng.choice(rocks), rng, squash=rng.uniform(0.6, 0.85))
             if z >= OPEN_H - 0.05:
-                for k in range(3):
+                for k in range(5):
                     r = 0.16 * rng.uniform(0.85, 1.2)
                     _rock(f.at(rng.uniform(0.0, CELL * 0.8), rng.uniform(-OPEN_W, OPEN_W), z + r * 0.4), r, rng.choice(rocks), rng, squash=0.75)
         # A lintel of one long slab over the opening.
@@ -444,14 +469,14 @@ def _marker(f, theme, down):
     iron = mat(STONE[1], 0.2, STONE[0], metal=0.6, rough=0.5)
     wood = mat(WOOD[2], 0.3, WOOD[1])
     for side in (-1, 1):
-        v = side * (OPEN_W + 0.13)
+        v = side * (OPEN_W + 0.3)
         x, y, _ = f.at(-0.05, v)
-        box((0.06, 0.06, 0.1), (x, y, 0.62), iron)
-        cyl(0.03, 0.24, (x, y, 0.66), wood, 8)
-        lathe([(0.025, 0), (0.06, 0.07), (0.065, 0.09)], (x, y, 0.88), iron, 8, smooth=False, cap=False)
-        flame((x, y, 0.92), 0.08, 8)
+        box((0.06, 0.06, 0.1), (x, y, 0.97), iron)
+        cyl(0.03, 0.24, (x, y, 1.01), wood, 8)
+        lathe([(0.025, 0), (0.06, 0.07), (0.065, 0.09)], (x, y, 1.23), iron, 8, smooth=False, cap=False)
+        flame((x, y, 1.27), 0.1, 8)
     light("POINT", f.at(CELL * 0.75, 0, -0.6 if down else 0.8), 60, (1.0, 0.62, 0.32), 0.2)
-    light("POINT", f.at(-0.3, 0, 0.9), 25, (1.0, 0.6, 0.3), 0.2)
+    light("POINT", f.at(-0.3, 0, 1.2), 40, (1.0, 0.6, 0.3), 0.2)
 
 
 def _steps(f, theme, count, u0, u1, z0, rise, rng):
@@ -470,7 +495,7 @@ def stairs_up(axis, theme):
     rng = _rng("stairs_up", axis, theme)
     f = _Frame(axis)
     _doorway(f, theme, rng)
-    _steps(f, theme, 6, 0.0, CELL, 0.11, 0.12, rng)
+    _steps(f, theme, 7, 0.0, CELL, 0.11, 0.13, rng)
     _marker(f, theme, False)
     _holdout_rect(0.0, 0.0, 0.0, 0.0)  # nothing below the ground shows
 

@@ -329,6 +329,8 @@ namespace ARPG
                         if (TouchesOpen(at))
                             wallTiles[index] = DungeonArt.Blocker;
                     }
+                    else if (cell == DungeonCell.Wall && IsStairsWall(at))
+                        wallTiles[index] = DungeonArt.Blocker;
                     else if (cell == DungeonCell.Wall)
                         wallTiles[index] = DungeonArt.Wall(cameraSide, cameraSide ? LowWallVariant(at.x, at.y) : freeStanding ? WallVariant(at.x, at.y) : TallWallVariant(at.x, at.y),
                             TouchesOpen(at));
@@ -415,13 +417,13 @@ namespace ARPG
             kind == PropKind.Campfire || kind == PropKind.Hellfire ? 0 : kind == PropKind.Brazier || kind == PropKind.Torch ? 1 : 2;
 
         // Wall details (WorldArt, the owner's "torches"; 2026-10-04): about one full-height wall block in nine that
-        // faces into the room carries a torch, chains or a banner on its face, or candles, skulls or a cobweb on its top.
+        // faces into the room carries a torch, chains or a banner on its face (candles, skulls and cobwebs on its top until
+        // 2026-10-11, when the walls became twice her height).
         // Picked by a hash of the cell, so a level dresses the same every time without touching the generator. Torches
         // light their stretch of wall, at most MaxWallTorches a level.
         const float WallDetailChance = 0.11f;
         const int MaxWallTorches = 14;
         static readonly string[] FaceDetails = { "wall_torch", "wall_torch", "wall_torch", "wall_chains", "wall_banner" };
-        static readonly string[] TopDetails = { "wall_candles", "wall_skulls", "wall_web" };
 
         void DressWalls(Transform parent)
         {
@@ -445,17 +447,11 @@ namespace ARPG
                     bool faceX = IsOpenCell(x - 1, y), faceY = IsOpenCell(x, y - 1);
                     if (!faceX && !faceY)
                         continue;
-                    // Candles, skulls and webs sit on a short wall's top; a tall wall face (2026-10-08) only carries
-                    // things hung on it.
-                    var onFace = !Layout.FreeStanding.Contains(at) || WallHash(x, y, 2) < 0.7f;
-                    var name = onFace
-                        ? FaceDetails[(int)(WallHash(x, y, 3) * FaceDetails.Length) % FaceDetails.Length]
-                        : TopDetails[(int)(WallHash(x, y, 3) * TopDetails.Length) % TopDetails.Length];
+                    var name = FaceDetails[(int)(WallHash(x, y, 3) * FaceDetails.Length) % FaceDetails.Length];
                     var torch = name == "wall_torch";
                     if (torch && torches >= MaxWallTorches)
                         name = "wall_chains";
-                    if (onFace)
-                        name += faceX && (!faceY || WallHash(x, y, 4) < 0.5f) ? "_x" : "_y";
+                    name += faceX && (!faceY || WallHash(x, y, 4) < 0.5f) ? "_x" : "_y";
                     // A hair in front of its own block, so it draws over the wall and under anyone standing before it.
                     var detail = WorldArt.Place(name, parent, CellWorld(at) + new Vector3(0f, -0.01f, 0f));
                     if (detail == null || !torch || name == "wall_chains_x" || name == "wall_chains_y")
@@ -611,9 +607,18 @@ namespace ARPG
         }
 
         // The wall cells a stairway is set into, drawn by the stairway itself.
+        // The wall cells a stairway's doorway stands in: the one behind its floor cell and the one each side (2026-10-11,
+        // the owner: "The stairs between levels are too small"; the piece is three cells wide, and WallStairs keeps the
+        // wall straight there).
         bool IsStairsWall(Vector2Int cell) =>
-            Layout.StairsUpInto != Vector2Int.zero && cell == Layout.StairsUp + Layout.StairsUpInto ||
-            Layout.HasStairsDown && Layout.StairsDownInto != Vector2Int.zero && cell == Layout.StairsDown + Layout.StairsDownInto;
+            Layout.StairsUpInto != Vector2Int.zero && InDoorway(cell, Layout.StairsUp + Layout.StairsUpInto, Layout.StairsUpInto) ||
+            Layout.HasStairsDown && Layout.StairsDownInto != Vector2Int.zero && InDoorway(cell, Layout.StairsDown + Layout.StairsDownInto, Layout.StairsDownInto);
+
+        static bool InDoorway(Vector2Int cell, Vector2Int middle, Vector2Int into)
+        {
+            var side = new Vector2Int(into.y, into.x);
+            return cell == middle || cell == middle + side || cell == middle - side;
+        }
 
         static int PieceHash(Vector2Int cell) => (int)(WallHash(cell.x, cell.y, 9) * 100000f);
 
@@ -683,7 +688,8 @@ namespace ARPG
                 WorldArt.Lit(doorwayRenderer);
                 var trigger = go.GetComponent<CircleCollider2D>();
                 trigger.isTrigger = true;
-                trigger.radius = 0.45f;
+                // The doorway is three cells wide; the trigger reaches the cells before its sides.
+                trigger.radius = 0.75f;
                 go.AddComponent<SceneExit>().Configure(scene, depth, arriveBy);
                 return;
             }
