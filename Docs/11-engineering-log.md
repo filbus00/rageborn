@@ -1034,3 +1034,7 @@ The owner: the dungeon "still looks really bad", walls "not only right shapes", 
 - `SpecialShape.Throw` (`EnemySpecial.Speed`): during the cast, a 0.18-wide aim line per projectile fills as the warning (`EnemyHazards.Line` with no damage, which now stays silent), then `EnemyProjectiles.Fire` sends them down those lines, at the throw's speed, its hit times the projectile damage factor, coloured. Throws: Ghoul Rock Throw (it gave up Ground Pound), Bandit Archer Volley (3), Skeleton Bone Throw (2), Cutthroat Thrown Knives (3), Ember Acolyte Fire Bolts (2, in place of Fire Wave), Rift Caller Rift Bolt, Void Wraith Void Shards (3, in place of Void Mark).
 - 627 of 627 tests pass in Unity. In play mode at depth 5 the skeletons went into their throw cast, but she was killed before a throw was caught in flight (the shots use the archers' tested projectile path). Not yet played on the phone.
 
+## 2026-10-11: the waypoint list scrolls
+
+- The owner: past eight waypoints the rows ran off the sheet and could not be tapped. `WaypointScreen` now puts its rows in a `ScrollRect` (a `RectMask2D` viewport taking the sheet's room between the title and Close, the content fitted to its rows), the sheet 1800 tall, opening at the top. Checked in play mode with all 24 waypoints: scrolled to the bottom, Level 24 lies inside the viewport and a raycast there hits its button.
+

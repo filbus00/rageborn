@@ -22,6 +22,7 @@ namespace ARPG
         static WaypointScreen current;
 
         RectTransform list;
+        ScrollRect scroll;
         int here;
 
         /// <summary>Opens the list at a waypoint of the given depth, or at the Waystone (0).</summary>
@@ -63,7 +64,7 @@ namespace ARPG
             sheetRect.anchorMin = new Vector2(0f, 0f);
             sheetRect.anchorMax = new Vector2(1f, 0f);
             sheetRect.pivot = new Vector2(0.5f, 0f);
-            sheetRect.sizeDelta = new Vector2(0f, 1500f);
+            sheetRect.sizeDelta = new Vector2(0f, 1800f);
             sheet.GetComponent<Image>().color = SheetColor;
             UiStyle.Leather(sheet.GetComponent<Image>());
             var layout = sheet.GetComponent<VerticalLayoutGroup>();
@@ -89,15 +90,39 @@ namespace ARPG
             title.color = UiStyle.Gold;
             Height(title.gameObject, 100f);
 
-            var listObject = new GameObject("List", typeof(RectTransform), typeof(VerticalLayoutGroup));
-            listObject.transform.SetParent(sheet.transform, false);
+            // The list scrolls (2026-10-11, the owner: past eight waypoints the rows ran off the sheet and could not be
+            // tapped): a viewport taking the sheet's room between the title and Close, its content as tall as its rows.
+            var viewport = new GameObject("Viewport", typeof(RectTransform), typeof(RectMask2D), typeof(Image), typeof(ScrollRect), typeof(LayoutElement));
+            viewport.transform.SetParent(sheet.transform, false);
+            viewport.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
+            var viewportElement = viewport.GetComponent<LayoutElement>();
+            viewportElement.minHeight = RowHeight * 2f;
+            viewportElement.flexibleHeight = 1f;
+
+            var listObject = new GameObject("List", typeof(RectTransform), typeof(VerticalLayoutGroup), typeof(ContentSizeFitter));
+            listObject.transform.SetParent(viewport.transform, false);
+            var listRect = (RectTransform)listObject.transform;
+            listRect.anchorMin = new Vector2(0f, 1f);
+            listRect.anchorMax = new Vector2(1f, 1f);
+            listRect.pivot = new Vector2(0.5f, 1f);
+            listRect.offsetMin = listRect.offsetMax = Vector2.zero;
             var listLayout = listObject.GetComponent<VerticalLayoutGroup>();
             listLayout.spacing = 12f;
             listLayout.childControlHeight = true;
             listLayout.childControlWidth = true;
             listLayout.childForceExpandHeight = false;
             listLayout.childForceExpandWidth = true;
-            screen.list = (RectTransform)listObject.transform;
+            listObject.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+            var scroll = viewport.GetComponent<ScrollRect>();
+            scroll.content = listRect;
+            scroll.viewport = (RectTransform)viewport.transform;
+            scroll.horizontal = false;
+            scroll.vertical = true;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+            scroll.scrollSensitivity = 40f;
+            screen.list = listRect;
+            screen.scroll = scroll;
 
             var close = NewButton(sheet.transform, "Close", screen.Close);
             Height(close.gameObject, RowHeight);
@@ -118,6 +143,9 @@ namespace ARPG
             AddRow(0, "Town", "");
             foreach (var depth in GameSession.Current.Waypoints)
                 AddRow(depth, $"Level {depth}", $"   <size=30><color=#999999>enemy level {DungeonRules.EnemyLevel(depth)}</color></size>");
+            // Opens at the top of the list.
+            Canvas.ForceUpdateCanvases();
+            scroll.verticalNormalizedPosition = 1f;
         }
 
         void AddRow(int depth, string name, string detail)
