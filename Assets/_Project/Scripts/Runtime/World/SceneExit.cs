@@ -64,8 +64,8 @@ namespace ARPG
             if (fade != null)
                 yield return fade.FadeOut(fadeSeconds);
 
-            if (targetDepth > 0)
-                GameSession.Current.Travel = new LevelTravel(targetDepth, arrival);
+            // Also to the town (depth 0), which reads the arrival: up from the first level she comes out of the mausoleum.
+            GameSession.Current.Travel = new LevelTravel(targetDepth, arrival);
             LoadTimer.Begin(targetScene);
             SceneManager.LoadScene(targetScene);
         }

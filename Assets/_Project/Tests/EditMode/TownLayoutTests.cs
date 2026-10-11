@@ -20,13 +20,26 @@ namespace ARPG.Tests
             for (var i = 0; i < pieces.Length; i++)
                 for (var j = i + 1; j < pieces.Length; j++)
                 {
-                    // The pen's fences meet at its corners.
-                    if (pieces[i].Name.StartsWith("fence") && pieces[j].Name.StartsWith("fence"))
+                    // Fences meet at their corners.
+                    if (pieces[i].Name.Contains("fence") && pieces[j].Name.Contains("fence"))
                         continue;
                     var d = pieces[i].Cell - pieces[j].Cell;
                     var apart = Mathf.Abs(d.x) > pieces[i].Half.x + pieces[j].Half.x || Mathf.Abs(d.y) > pieces[i].Half.y + pieces[j].Half.y;
                     Assert.IsTrue(apart, $"{pieces[i].Name} at {pieces[i].Cell} overlaps {pieces[j].Name} at {pieces[j].Cell}");
                 }
+        }
+
+        [Test]
+        public void TheStairs_StandBeforeTheMausoleumsDoor_OffTheSquare()
+        {
+            // The door faces -y: the stairs are a few cells straight out from it, outside its footprint.
+            var mausoleum = System.Array.Find(TownLayout.Pieces, p => p.Name == "mausoleum");
+            Assert.AreEqual(TownLayout.MausoleumCell, mausoleum.Cell);
+            Assert.AreEqual(mausoleum.Cell.x, TownLayout.StairsCell.x);
+            Assert.That(mausoleum.Cell.y - TownLayout.StairsCell.y, Is.InRange(3, 5));
+            Assert.IsFalse(TownLayout.Covers(mausoleum, TownLayout.StairsCell));
+            // Well away from the square's middle.
+            Assert.Greater(Vector2Int.Distance(Vector2Int.zero, TownLayout.StairsCell), 15f);
         }
 
         [Test]

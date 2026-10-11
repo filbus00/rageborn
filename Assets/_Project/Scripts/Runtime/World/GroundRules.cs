@@ -9,11 +9,13 @@ namespace ARPG
         Cobble,
         Grass,
         Path,
+        /// <summary>Standing water in the town's mud and between its cobbles (2026-10-11), drawn from the dirt, dark.</summary>
+        Puddle,
     }
 
     /// <summary>
     /// What the ground is made of, point by point, in ground space (the owner, 2026-10-04: "Make the town just dirt with
-    /// some grassy spots and some paths. Make the dungeon mostly dirt and some cobble stones showing through. Do not
+    /// some grassy spots and some paths" (the town remade 2026-10-11: paved square and roads, mud, puddles). Make the dungeon mostly dirt and some cobble stones showing through. Do not
     /// make each room in the dungeon have its own floor texture ... Take inspiration from the first act in Diablo 2").
     /// Broad smooth noise says how much of a layer belongs at a point; the layer's own texture strength (a stone's
     /// height, a grass tuft's density, a path's wear) decides pixel by pixel, so stone tops show through the dirt first
@@ -22,40 +24,37 @@ namespace ARPG
     /// </summary>
     public static class GroundRules
     {
-        /// <summary>The town's worn paths, as pairs of cells (start, end): from the square to the stairs, the merchant,
-        /// the Pet Vendor, the Waystone, the portal, the campfire and the well, and two roads out of town.</summary>
+        /// <summary>The town's paved roads, as pairs of cells (start, end) (remade 2026-10-11): from the square to the
+        /// mausoleum's door (<see cref="TownLayout.StairsCell"/>) and three roads out of town. The square itself is
+        /// paved all over (<see cref="SquareCover"/>).</summary>
         public static readonly Vector2Int[] TownPaths =
         {
-            new Vector2Int(0, 0), new Vector2Int(5, 5),
-            new Vector2Int(0, 0), new Vector2Int(-4, 1),
-            new Vector2Int(-4, 1), new Vector2Int(-10, 2),
-            new Vector2Int(0, 0), new Vector2Int(5, 1),
-            new Vector2Int(5, 1), new Vector2Int(14, -3),
-            new Vector2Int(0, 0), new Vector2Int(3, -3),
-            new Vector2Int(3, -3), new Vector2Int(-2, -11),
-            new Vector2Int(0, 0), new Vector2Int(-2, -4),
-            new Vector2Int(-4, 1), new Vector2Int(-5, 6),
-            new Vector2Int(-5, 6), new Vector2Int(-3, 15),
-            new Vector2Int(5, 5), new Vector2Int(18, 8),
-            new Vector2Int(14, -3), new Vector2Int(30, -6),
-            new Vector2Int(-10, 2), new Vector2Int(-30, 4),
+            new Vector2Int(0, 0), new Vector2Int(6, 6),
+            new Vector2Int(6, 6), new Vector2Int(16, 12),
+            new Vector2Int(16, 12), new Vector2Int(16, 15),
+            new Vector2Int(-8, -2), new Vector2Int(-30, -4),
+            new Vector2Int(2, -10), new Vector2Int(4, -30),
+            new Vector2Int(10, -2), new Vector2Int(30, -6),
         };
 
-        /// <summary>A path's half width in ground units, before its wobble.</summary>
-        public const float PathHalfWidth = 0.8f;
+        /// <summary>How far the paved square reaches from the town's middle, ground units, before its ragged edge.</summary>
+        public const float SquareRadius = 9.5f;
+
+        /// <summary>How much of the paved square is at a point, 1 inside, 0 beyond its ragged edge.</summary>
+        public static float SquareCover(Vector2 ground)
+        {
+            var edge = SquareRadius * (0.85f + 0.3f * Smooth(ground.x / 3f, ground.y / 3f, 14));
+            return Mathf.Clamp01((edge - ground.magnitude) / 1.5f);
+        }
+
+        /// <summary>A road's half width in ground units, before its wobble.</summary>
+        public const float PathHalfWidth = 1.3f;
 
         /// <summary>How much cobble belongs at a point of the dungeon, 0 to 1: mostly none, patches here and there.</summary>
         public static float CobbleCover(Vector2 ground)
         {
             var n = Smooth(ground.x / 5f, ground.y / 5f, 3) * 0.7f + Smooth(ground.x / 1.7f, ground.y / 1.7f, 4) * 0.3f;
             return Mathf.Clamp01((n - 0.52f) * 2.6f);
-        }
-
-        /// <summary>How much grass belongs at a point of the town, 0 to 1, before the paths wear it away.</summary>
-        public static float GrassCover(Vector2 ground)
-        {
-            var n = Smooth(ground.x / 6f, ground.y / 6f, 5) * 0.7f + Smooth(ground.x / 2f, ground.y / 2f, 6) * 0.3f;
-            return Mathf.Clamp01((n - 0.36f) * 2.2f);
         }
 
         /// <summary>How much path is at a point, 1 on a path's middle line, 0 beyond its edge (its edge wobbles).</summary>
@@ -81,13 +80,18 @@ namespace ARPG
                 ? cobbleHeight > 0.15f + 0.4f * Smooth(ground.x / 4f, ground.y / 4f, 11) ? GroundLayer.Cobble : GroundLayer.Dirt
                 : cobbleHeight > 1.25f - CobbleCover(ground) * 0.6f ? GroundLayer.Cobble : GroundLayer.Dirt;
 
-        /// <summary>The layer at a town point: a path over all (its worn middle first), else grass tufts, else dirt.</summary>
-        public static GroundLayer TownPick(Vector2 ground, float pathCover, float grassDensity, float pathWear)
+        /// <summary>
+        /// The layer at a town point (remade dark 2026-10-11, the owner's concept art: wet cobbles and mud, no grass):
+        /// cobbles where the square or a road is paved, their tops first, mud between and beyond, and puddles where the
+        /// ground dips (<paramref name="cobbleHeight"/> is the cobble texture's stone height there).
+        /// </summary>
+        public static GroundLayer TownPick(Vector2 ground, float roadCover, float cobbleHeight)
         {
-            if (pathCover + pathWear * 0.6f > 0.75f)
-                return GroundLayer.Path;
-            var grass = GrassCover(ground) * Mathf.Clamp01(1f - pathCover * 2.5f);
-            return grassDensity > 1.05f - grass ? GroundLayer.Grass : GroundLayer.Dirt;
+            var paved = Mathf.Max(SquareCover(ground), roadCover);
+            var dip = Smooth(ground.x / 2.2f, ground.y / 2.2f, 13) * 0.75f + Smooth(ground.x / 0.9f, ground.y / 0.9f, 15) * 0.25f;
+            if (paved > 0f && cobbleHeight > 1.0f - paved * 0.85f)
+                return dip > 0.7f && cobbleHeight < 0.35f ? GroundLayer.Puddle : GroundLayer.Cobble;
+            return dip > 0.66f ? GroundLayer.Puddle : GroundLayer.Dirt;
         }
 
         public static float SegmentDistance(Vector2 p, Vector2 a, Vector2 b)

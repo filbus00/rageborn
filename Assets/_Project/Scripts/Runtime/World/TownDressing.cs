@@ -6,8 +6,8 @@ namespace ARPG
     /// <summary>
     /// Dresses the town when it loads (<see cref="TownLayout"/>): each piece's sprite from <see cref="WorldArt"/>,
     /// standing on its cell, blocking the character with its footprint (on the Obstacle layer, as walls do), the fires
-    /// and lamps lit and flickering. Swaps the town stairway's placeholder for the modelled one. Pieces not imported yet
-    /// are skipped. Created from code before the first scene and kept across scenes, so the town scene needs no rebuild.
+    /// and lamps lit and flickering. Moves the town stairway into the mausoleum's doorway, and puts the player before it
+    /// when she comes up from the first level. Pieces not imported yet are skipped. Created from code before the first scene and kept across scenes, so the town scene needs no rebuild.
     /// </summary>
     public class TownDressing : MonoBehaviour
     {
@@ -60,15 +60,31 @@ namespace ARPG
                 }
             }
 
-            // The modelled stairway down, lying flat where the placeholder was.
+            // The stairs down are the mausoleum's doorway (2026-10-11): the scene's stairway moves there and shows nothing
+            // of its own; the mausoleum piece draws the door and the steps going down inside.
             var stairs = GameObject.Find("Stairs Down");
-            var sprite = WorldArt.Get("stairs_down");
-            if (stairs != null && sprite != null && stairs.TryGetComponent<SpriteRenderer>(out var stairsRenderer))
+            if (stairs != null && WorldArt.Get("mausoleum") != null)
             {
-                stairsRenderer.sprite = sprite;
-                stairsRenderer.sortingLayerName = GameSortingLayers.Decals;
-                WorldArt.Lit(stairsRenderer);
+                var door = IsoMath.GroundToWorld(IsoMath.CellToGround(TownLayout.StairsCell));
+                stairs.transform.position = new Vector3(door.x, door.y, stairs.transform.position.z);
+                if (stairs.TryGetComponent<SpriteRenderer>(out var stairsRenderer))
+                    stairsRenderer.enabled = false;
+                if (stairs.TryGetComponent<CircleCollider2D>(out var trigger))
+                    trigger.radius = 0.9f;
             }
+
+            // Up the stairs from the first level: she comes out of the mausoleum, on the road before its door.
+            var session = GameSession.Current;
+            if (session.Travel.Arrival == Arrival.FromBelow)
+            {
+                var player = FindAnyObjectByType<PlayerController>();
+                if (player != null)
+                {
+                    var outside = IsoMath.GroundToWorld(IsoMath.CellToGround(TownLayout.StairsCell + new Vector2Int(0, -3)));
+                    player.transform.position = new Vector3(outside.x, outside.y, player.transform.position.z);
+                }
+            }
+            session.Travel = default;
         }
 
         static void Flicker(UnityEngine.Rendering.Universal.Light2D light, int index)

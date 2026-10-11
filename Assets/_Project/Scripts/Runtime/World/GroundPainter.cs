@@ -61,7 +61,7 @@ namespace ARPG
         static DungeonTheme dungeonTheme;
         static HashSet<Vector2Int> raisedCells;
 
-        /// <summary>The town: every cell the scene's ground has, dirt with grass spots and worn paths.</summary>
+        /// <summary>The town: every cell the scene's ground has, a paved square and roads, mud and puddles.</summary>
         public static bool PaintTown(Tilemap ground)
         {
             var cells = new List<Vector2Int>();
@@ -213,7 +213,7 @@ namespace ARPG
                     if (town)
                     {
                         var cover = nearPath ? GroundRules.PathCover(g, GroundRules.TownPaths) : 0f;
-                        layer = GroundRules.TownPick(g, cover, grass[s].a / 255f, path[s].a / 255f);
+                        layer = GroundRules.TownPick(g, cover, cobble[s].a / 255f);
                     }
                     else
                         layer = GroundRules.DungeonPick(g, cobble[s].a / 255f, dungeonTheme);
@@ -224,6 +224,15 @@ namespace ARPG
                         GroundLayer.Path => path[s],
                         _ => dirt[s],
                     };
+                    if (town)
+                    {
+                        // The dark town (2026-10-11): wet, dark mud and stone; puddles the mud darkened toward cold water.
+                        c = layer == GroundLayer.Puddle
+                            ? new Color32((byte)(c.r * 0.42f + 16), (byte)(c.g * 0.44f + 19), (byte)(c.b * 0.46f + 25), 255)
+                            : layer == GroundLayer.Cobble
+                                ? new Color32((byte)(c.r * 0.78f), (byte)(c.g * 0.78f), (byte)(c.b * 0.8f), 255)
+                                : new Color32((byte)(c.r * 0.62f), (byte)(c.g * 0.6f), (byte)(c.b * 0.58f), 255);
+                    }
                     cellPixels[i] = new Color32(c.r, c.g, c.b, 255);
                 }
         }

@@ -1137,11 +1137,12 @@ def tent(stripes, seed_n):
 
 
 def tent_1():
-    tent((BONE[1], BONE[0]), 1)
+    # Dark, weathered canvas (2026-10-11: the town remade dark; it was pale).
+    tent((STONE[2], STONE[1]), 1)
 
 
 def tent_2():
-    tent((BLOOD[3], BONE[1]), 2)
+    tent((WOOD[1], STONE[2]), 2)
     crate((-1.8, -1.25, 0), 0.45)
     barrel((-1.8, -0.6, 0), 0.8)
 
@@ -1191,8 +1192,8 @@ def well():
 
 def market_stall():
     wood = mat(WOOD[3], 0.3, WOOD[2], scale=12)
-    awning = mat(BLOOD[3], 0.15, BLOOD[2], scale=5)
-    awning2 = mat(BONE[1], 0.15, BONE[0], scale=5)
+    awning = mat(WOOD[2], 0.25, WOOD[1], scale=5)
+    awning2 = mat(STONE[3], 0.25, STONE[2], scale=5)
     sx, sy = 2.4, 1.2
     for x in (-sx / 2, sx / 2):
         for y in (-sy / 2, sy / 2):
@@ -1328,8 +1329,8 @@ def pine():
 
 def banner():
     wood = mat(WOOD[2], 0.3, WOOD[1])
-    cloth = mat(BLOOD[3], 0.2, BLOOD[2], scale=6)
-    trim = mat(EMBER[3], 0.0)
+    cloth = mat(BLOOD[1], 0.3, BLOOD[0], scale=6)
+    trim = mat(EMBER[0], 0.0)
     cyl(0.05, 3.0, (0, 0, 0), wood, 6)
     box((0.06, 0.8, 0.06), (0, -0.35, 2.85), wood)
     poly([(0, -0.7, 2.82), (0, 0.0, 2.82), (0, 0.0, 1.6), (0, -0.35, 1.85), (0, -0.7, 1.6)], [(0, 1, 2, 3, 4)], cloth, loc=(-0.04, 0, 0))
@@ -1732,3 +1733,7 @@ for name, build in WALL_DECOR.items():
 import themes
 themes.register(ALL)
 themes.register_stairs(ALL)
+
+# The dark town (2026-10-11): its houses replace the ones above.
+import town
+town.register(ALL)

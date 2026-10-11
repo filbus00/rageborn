@@ -32,28 +32,51 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void Town_HasGrassSpots_NotAField()
+        public void Town_SquareIsPaved_TheRestIsMud_WithSomePuddles()
         {
-            var grass = Share(g => GroundRules.TownPick(g, 0f, 0.8f, 0f) == GroundLayer.Grass);
-            Assert.Greater(grass, 0.1f);
-            Assert.Less(grass, 0.6f);
+            // Stones of middling height: the square shows cobbles, far out there is only mud and water.
+            var square = 0;
+            var mud = 0;
+            var puddles = 0;
+            var samples = 0;
+            for (var x = -40; x <= 40; x += 2)
+                for (var y = -40; y <= 40; y += 2)
+                {
+                    var g = new Vector2(x * 0.25f, y * 0.25f);
+                    if (g.magnitude < 5f && GroundRules.TownPick(g, 0f, 0.6f) == GroundLayer.Cobble)
+                        square++;
+                    var far = new Vector2(30f + x * 0.25f, 30f + y * 0.25f);
+                    var layer = GroundRules.TownPick(far, 0f, 0.6f);
+                    Assert.AreNotEqual(GroundLayer.Cobble, layer, "no cobbles far from the square and roads");
+                    Assert.AreNotEqual(GroundLayer.Grass, layer, "no grass in the dark town");
+                    if (layer == GroundLayer.Puddle)
+                        puddles++;
+                    else
+                        mud++;
+                    samples++;
+                }
+            Assert.Greater(square, 0);
+            Assert.That(puddles / (float)samples, Is.InRange(0.02f, 0.3f), "puddles here and there");
         }
 
         [Test]
-        public void Town_PathRunsFromTheSquareToTheStairs()
+        public void Town_RoadRunsFromTheSquareToTheMausoleum()
         {
-            var start = IsoMath.CellToGround(new Vector2Int(0, 0));
-            var stairs = IsoMath.CellToGround(new Vector2Int(5, 5));
-            var onPath = 0;
-            for (var t = 0f; t <= 1f; t += 0.05f)
-            {
-                var g = Vector2.Lerp(start, stairs, t);
-                var cover = GroundRules.PathCover(g, GroundRules.TownPaths);
-                if (GroundRules.TownPick(g, cover, 1f, 0.5f) == GroundLayer.Path)
-                    onPath++;
-            }
-            Assert.GreaterOrEqual(onPath, 17, "the path meanders but stays under the line, wearing grass away");
-            // Far from every path there is none.
+            // Along the road's first three pieces, from the square to the mausoleum's door.
+            var paved = 0;
+            var steps = 0;
+            Assert.AreEqual(TownLayout.StairsCell, GroundRules.TownPaths[5]);
+            for (var k = 0; k < 6; k += 2)
+                for (var t = 0f; t <= 1f; t += 0.1f)
+                {
+                    var g = Vector2.Lerp(IsoMath.CellToGround(GroundRules.TownPaths[k]), IsoMath.CellToGround(GroundRules.TownPaths[k + 1]), t);
+                    var cover = GroundRules.PathCover(g, GroundRules.TownPaths);
+                    if (GroundRules.TownPick(g, cover, 0.6f) != GroundLayer.Dirt)
+                        paved++;
+                    steps++;
+                }
+            Assert.GreaterOrEqual(paved, steps - 3, "the road meanders but stays under the line");
+            // Far from every road there is none.
             Assert.AreEqual(0f, GroundRules.PathCover(IsoMath.CellToGround(new Vector2Int(-20, 25)), GroundRules.TownPaths));
         }
 

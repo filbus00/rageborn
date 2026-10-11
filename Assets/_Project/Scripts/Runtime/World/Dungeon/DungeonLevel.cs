@@ -150,7 +150,7 @@ namespace ARPG
             if (depth > 1)
                 AddStairs(root, "Stairs Up", Layout.StairsUp, Layout.StairsUpInto, dungeonScene, depth - 1, Arrival.FromBelow);
             else
-                AddStairs(root, "Stairs Up", Layout.StairsUp, Layout.StairsUpInto, townScene, 0, Arrival.FromAbove);
+                AddStairs(root, "Stairs Up", Layout.StairsUp, Layout.StairsUpInto, townScene, 0, Arrival.FromBelow);
             if (Layout.HasStairsDown)
                 AddStairs(root, "Stairs Down", Layout.StairsDown, Layout.StairsDownInto, dungeonScene, depth + 1, Arrival.FromAbove);
 

@@ -29,7 +29,11 @@ namespace ARPG.Tests
                 var cell = Newcomers.Cell(who);
                 foreach (var piece in TownLayout.Pieces)
                     Assert.IsFalse(TownLayout.Covers(piece, cell, 0.5f), $"{who} stands on {piece.Name}");
-                foreach (var kept in TownLayout.KeptClear)
+                // The kept points include every newcomer's own place: none stands on another's, or on the town's points.
+                foreach (var other in Newcomers.All)
+                    if (other != who)
+                        Assert.AreNotEqual(Newcomers.Cell(other), cell, who.ToString());
+                foreach (var kept in new[] { Vector2Int.zero, TownLayout.StairsCell, new Vector2Int(3, -3), new Vector2Int(-2, -4) })
                     Assert.AreNotEqual(kept, cell, who.ToString());
             }
         }

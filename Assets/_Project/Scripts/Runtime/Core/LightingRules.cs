@@ -42,8 +42,10 @@ namespace ARPG
             return new Mood(color, Mathf.Lerp(Dungeon.AmbientIntensity, 0.14f, t), Mathf.Lerp(Dungeon.CharacterShade, 0.74f, t));
         }
 
-        // Town at dusk: dimmer than day but everything visible, since nothing there attacks.
-        public static readonly Mood Town = new Mood(new Color(0.8f, 0.74f, 0.92f), 0.62f, 0.9f);
+        // Town at night (2026-10-11, the owner's concept art: "the town is way too vibrant"): cold and dark, lit warm by
+        // its fires, torches and windows; still enough to see the way, since nothing there attacks. Dusk until then
+        // (0.8, 0.74, 0.92 at 0.62).
+        public static readonly Mood Town = new Mood(new Color(0.55f, 0.6f, 0.8f), 0.42f, 0.82f);
 
         public static readonly Color EmberColor = new Color(1f, 0.64f, 0.34f);
         public const float EmberIntensity = 1.15f;
