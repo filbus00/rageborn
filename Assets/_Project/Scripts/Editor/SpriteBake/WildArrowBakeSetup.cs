@@ -418,12 +418,32 @@ namespace ARPG.Editor
             };
         }
 
+        /// <summary>Bakes only the sheets whose models, clips or settings changed since their last bake (2026-10-11).</summary>
         [MenuItem("Tools/ARPG/Sprite Bake/Bake Wild Arrow")]
         public static void Bake()
         {
             var job = SetUp();
             if (job != null)
                 SpriteBaker.Bake(job);
+        }
+
+        /// <summary>Takes the Wild Arrow's sheets on disk as baked from the current models and clips, rendering nothing: for
+        /// when they are known to be up to date and the bake cache is new or was cleared.</summary>
+        [MenuItem("Tools/ARPG/Sprite Bake/Mark Wild Arrow Sheets As Baked")]
+        public static void MarkBaked()
+        {
+            var job = SetUp();
+            if (job != null)
+                Debug.Log($"[ARPG] {SpriteBaker.MarkBaked(job)} Wild Arrow sheets marked as baked.");
+        }
+
+        /// <summary>Bakes every sheet again, whatever changed (half an hour or more).</summary>
+        [MenuItem("Tools/ARPG/Sprite Bake/Bake Wild Arrow (Full)")]
+        public static void BakeFull()
+        {
+            var job = SetUp();
+            if (job != null)
+                SpriteBaker.Bake(job, true);
         }
     }
 }

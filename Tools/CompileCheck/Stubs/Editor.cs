@@ -24,6 +24,7 @@ namespace UnityEditor
     }
     public static class AssetDatabase
     {
+        public static string[] GetDependencies(string pathName, bool recursive) => new string[0];
         public static T LoadAssetAtPath<T>(string p) where T : UnityEngine.Object => null; public static UnityEngine.Object LoadAssetAtPath(string p, Type t) => null; public static UnityEngine.Object LoadMainAssetAtPath(string p) => null;
         public static UnityEngine.Object[] LoadAllAssetsAtPath(string p) => new UnityEngine.Object[0]; public static UnityEngine.Object[] LoadAllAssetRepresentationsAtPath(string p) => new UnityEngine.Object[0];
         public static void CreateAsset(UnityEngine.Object o, string p) { } public static void AddObjectToAsset(UnityEngine.Object o, string p) { } public static void AddObjectToAsset(UnityEngine.Object o, UnityEngine.Object a) { } public static void RemoveObjectFromAsset(UnityEngine.Object o) { }

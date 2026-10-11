@@ -33,6 +33,15 @@ namespace ARPG.Editor
     {
         const string BakeRendererPath = "Assets/_Project/Settings/SpriteBakeRenderer.asset";
 
+        /// <summary>Forgets what every sheet was baked from, so the next bake of any character renders all of its sheets.</summary>
+        [MenuItem("Tools/ARPG/Sprite Bake/Forget Baked Sheets")]
+        static void ForgetBaked()
+        {
+            if (Directory.Exists("Library/SpriteBakeCache"))
+                Directory.Delete("Library/SpriteBakeCache", true);
+            Debug.Log("[ARPG] The bake cache is cleared: the next bake renders every sheet.");
+        }
+
         [MenuItem("Tools/ARPG/Sprite Bake/Bake Selected Jobs")]
         static void BakeSelected()
         {
@@ -46,8 +55,46 @@ namespace ARPG.Editor
                 Bake(job);
         }
 
-        /// <summary>Bakes every grip, clip and layer of the job. Returns the written file paths.</summary>
-        public static List<string> Bake(SpriteBakeJob job)
+        /// <summary>
+        /// Bakes the job's grips, clips and layers: only the sheets whose inputs changed since they were last baked
+        /// (<see cref="SpriteBakeCache"/>), or every one with <paramref name="full"/>. Returns the written file paths.
+        /// </summary>
+        public static List<string> Bake(SpriteBakeJob job, bool full = false) => Bake(job, full, false);
+
+        /// <summary>
+        /// Records every sheet already on disk as baked from the job's current inputs, without rendering anything: for
+        /// sheets known to be up to date when the cache is first made (or after it was cleared).
+        /// </summary>
+        public static int MarkBaked(SpriteBakeJob job)
+        {
+            var cache = new SpriteBakeCache(job);
+            var folder = job.outputFolder.TrimEnd('/');
+            var codes = AppearanceRules.DirectionCodes(job.DirectionCount);
+            var marked = 0;
+            foreach (var gripSet in job.grips)
+                foreach (var clip in gripSet.clips)
+                {
+                    if (clip.clip == null || string.IsNullOrEmpty(clip.name))
+                        continue;
+                    foreach (var (layer, look, bodyIndex, piece) in JobLayers(job, gripSet.grip))
+                    {
+                        if (clip.offHandOnly && layer != AppearanceLayer.OffHand)
+                            continue;
+                        var sheet = job.SheetName(layer, look, gripSet.grip, clip.name);
+                        var single = $"{folder}/{sheet}.png";
+                        var files = File.Exists(single) ? new List<string> { single }
+                            : codes.Select(c => $"{folder}/{sheet}_{c}.png").Where(File.Exists).ToList();
+                        if (files.Count == 0)
+                            continue;
+                        cache.Record(sheet, cache.Key(job, gripSet.grip, clip, bodyIndex, piece), files);
+                        marked++;
+                    }
+                }
+            cache.Save();
+            return marked;
+        }
+
+        static List<string> Bake(SpriteBakeJob job, bool full, bool unused)
         {
             var written = new List<string>();
             if (job.bodies.Count == 0 || job.bodies.Any(b => b.model == null) || job.grips.All(g => g.clips.Count == 0))
@@ -55,6 +102,34 @@ namespace ARPG.Editor
                 Debug.LogError($"{job.name}: needs at least one body with a model and one clip.");
                 return written;
             }
+
+            // Which sheets to render: those whose key changed or whose files are gone (2026-10-11).
+            var started = System.DateTime.Now;
+            var cache = new SpriteBakeCache(job);
+            var keys = new Dictionary<string, string>();
+            var total = 0;
+            foreach (var gripSet in job.grips)
+                foreach (var clip in gripSet.clips)
+                {
+                    if (clip.clip == null || string.IsNullOrEmpty(clip.name))
+                        continue;
+                    foreach (var (layer, look, bodyIndex, piece) in JobLayers(job, gripSet.grip))
+                    {
+                        if (clip.offHandOnly && layer != AppearanceLayer.OffHand)
+                            continue;
+                        total++;
+                        var sheet = job.SheetName(layer, look, gripSet.grip, clip.name);
+                        var key = cache.Key(job, gripSet.grip, clip, bodyIndex, piece);
+                        if (full || !cache.IsFresh(sheet, key))
+                            keys[sheet] = key;
+                    }
+                }
+            if (keys.Count == 0)
+            {
+                Debug.Log($"{job.name}: all {total} sheets are up to date; nothing to bake ({(System.DateTime.Now - started).TotalSeconds:0.0} s to check).");
+                return written;
+            }
+            Debug.Log($"{job.name}: baking {keys.Count} of {total} sheets{(full ? " (full bake)" : "")}.");
 
             var pipeline = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
             if (pipeline == null)
@@ -85,6 +160,9 @@ namespace ARPG.Editor
                     {
                         if (clip.clip == null || string.IsNullOrEmpty(clip.name))
                             continue;
+                        // A clip none of whose sheets changed is not sampled at all (its loop speed is measured still, for
+                        // the timing file).
+                        var clipChanged = LayersFor(stage, gripSet.grip).Any(l => keys.ContainsKey(job.SheetName(l.Layer, l.Look, gripSet.grip, clip.name)));
                         var windowEnd = clip.end > clip.start ? Mathf.Min(clip.end, clip.clip.length) : clip.clip.length;
                         var windowStart = Mathf.Clamp(clip.start, 0f, windowEnd);
                         var times = SpriteBakeMath.SampleTimes(windowEnd - windowStart, clip.frames, clip.loop, job.framesPerSecond);
@@ -101,59 +179,76 @@ namespace ARPG.Editor
                         if (clip.loop)
                             speeds[$"{(string.IsNullOrEmpty(gripSet.grip) ? "" : gripSet.grip + "_")}{clip.name}"] = MeasureGroundSpeed(stage.Bodies[0], clip.clip);
 
+                        if (!clipChanged)
+                            continue;
                         foreach (var layer in LayersFor(stage, gripSet.grip))
                         {
                             if (clip.offHandOnly && layer.Layer != AppearanceLayer.OffHand)
                                 continue;
-                            var sheet = new SheetWriter(job, job.SheetName(layer.Layer, layer.Look, gripSet.grip, clip.name), times.Length);
+                            var sheetName = job.SheetName(layer.Layer, layer.Look, gripSet.grip, clip.name);
+                            if (!keys.TryGetValue(sheetName, out var sheetKey))
+                                continue;
+                            var sheet = new SheetWriter(job, sheetName, times.Length);
                             var poseIndex = layer.BodyIndex;
-                            var hipsStart = Vector3.zero;
+                            // The first body hides what is behind a gear body or a piece, so it takes the same pose every
+                            // frame (2026-10-11: it was posed only while its own sheet baked, so every other layer was cut
+                            // by it frozen in that sheet's last frame; a belt showed over her arm wherever the arm had
+                            // moved since).
+                            var poses = poseIndex == 0 ? new[] { 0 } : new[] { poseIndex, 0 };
+                            var hipsStart = new Vector3[stage.Bodies.Count];
                             for (var row = 0; row < job.DirectionCount; row++)
                             {
                                 stage.Turntable.rotation = Quaternion.LookRotation(SpriteBakeMath.Facing(row, job.DirectionCount), Vector3.up);
                                 for (var frame = 0; frame < times.Length; frame++)
                                 {
-                                    var body = stage.Bodies[poseIndex];
-                                    // A generic clip writes only the bones it animates; the rest would keep the last clip's
-                                    // pose (the first test attack ran on frozen running legs). SampleAnimation poses humanoid
-                                    // and generic clips alike; a PlayableGraph evaluated in the editor left a humanoid in its
-                                    // bind pose (the Wrathborn's first bake). The root is put back after, so a clip that was
-                                    // not downloaded in place still stays on the spot.
-                                    body.RestPose.Restore();
-                                    if (legTimes != null && body.LowerBody != null)
+                                    foreach (var index in poses)
                                     {
-                                        // A moving action: the hips and legs of the run under the clip's spine, arms and head,
-                                        // as an avatar mask would blend them, so it swings while it runs.
-                                        clip.legs.SampleAnimation(body.Root, legTimes[frame]);
-                                        body.CaptureLowerBody();
+                                        var body = stage.Bodies[index];
+                                        // A generic clip writes only the bones it animates; the rest would keep the last
+                                        // clip's pose (the first test attack ran on frozen running legs). SampleAnimation
+                                        // poses humanoid and generic clips alike; a PlayableGraph evaluated in the editor
+                                        // left a humanoid in its bind pose (the Wrathborn's first bake). The root is put
+                                        // back after, so a clip that was not downloaded in place still stays on the spot.
                                         body.RestPose.Restore();
-                                        clip.clip.SampleAnimation(body.Root, times[frame]);
-                                        body.RestoreLowerBody();
+                                        if (legTimes != null && body.LowerBody != null)
+                                        {
+                                            // A moving action: the hips and legs of the run under the clip's spine, arms and
+                                            // head, as an avatar mask would blend them, so it swings while it runs.
+                                            clip.legs.SampleAnimation(body.Root, legTimes[frame]);
+                                            body.CaptureLowerBody();
+                                            body.RestPose.Restore();
+                                            clip.clip.SampleAnimation(body.Root, times[frame]);
+                                            body.RestoreLowerBody();
+                                        }
+                                        else
+                                            clip.clip.SampleAnimation(body.Root, times[frame]);
+                                        body.Root.transform.localPosition = body.RootPosition;
+                                        body.Root.transform.localRotation = Quaternion.identity;
+                                        // A one-shot keeps its hips over the ground spot they start on. On a humanoid the
+                                        // clip's travel rides on the hips, not the root: Ground Breaker leapt out of the top
+                                        // of its cells and the death slid out of the side. Loops are recorded in place.
+                                        if (!clip.loop && body.Hips != null && legTimes == null)
+                                        {
+                                            var hips = body.Root.transform.parent.InverseTransformPoint(body.Hips.position);
+                                            if (frame == 0)
+                                                hipsStart[index] = hips;
+                                            var drift = hips - hipsStart[index];
+                                            drift.y *= 1f - Mathf.Clamp01(clip.riseScale);
+                                            body.Root.transform.localPosition = body.RootPosition - drift;
+                                        }
+                                        body.Skin();
                                     }
-                                    else
-                                        clip.clip.SampleAnimation(body.Root, times[frame]);
-                                    body.Root.transform.localPosition = body.RootPosition;
-                                    body.Root.transform.localRotation = Quaternion.identity;
-                                    // A one-shot keeps its hips over the ground spot they start on. On a humanoid the
-                                    // clip's travel rides on the hips, not the root: Ground Breaker leapt out of the top
-                                    // of its cells and the death slid out of the side. Loops are recorded in place.
-                                    if (!clip.loop && body.Hips != null && legTimes == null)
-                                    {
-                                        var hips = body.Root.transform.parent.InverseTransformPoint(body.Hips.position);
-                                        if (frame == 0)
-                                            hipsStart = hips;
-                                        var drift = hips - hipsStart;
-                                        drift.y *= 1f - Mathf.Clamp01(clip.riseScale);
-                                        body.Root.transform.localPosition = body.RootPosition - drift;
-                                    }
-                                    body.Skin();
 
                                     stage.Show(layer, depthOnly);
                                     sheet.Put(row, frame, RenderCell(stage.Camera, target, readback, job));
                                 }
                             }
-                            written.AddRange(sheet.Save());
+                            var files = sheet.Save().ToList();
+                            written.AddRange(files);
+                            cache.Record(sheetName, sheetKey, files);
                         }
+                        // Saved after every clip, so a bake stopped part way keeps what it finished.
+                        cache.Save();
                     }
             }
             finally
@@ -166,8 +261,23 @@ namespace ARPG.Editor
             }
 
             written.Add(WriteTiming(job, speeds));
-            Debug.Log($"{job.name}: baked {written.Count} file(s):\n" + string.Join("\n", written));
+            cache.Save();
+            Debug.Log($"{job.name}: baked {keys.Count} of {total} sheets in {(System.DateTime.Now - started).TotalMinutes:0.0} min, {written.Count} file(s):\n" + string.Join("\n", written));
             return written;
+        }
+
+        /// <summary>The layers a job bakes for a grip, from its definitions alone (as <see cref="LayersFor"/> yields them
+        /// from the stage): every body, then every piece for that grip.</summary>
+        static IEnumerable<(AppearanceLayer layer, string look, int bodyIndex, SpriteBakeJob.Piece piece)> JobLayers(SpriteBakeJob job, string grip)
+        {
+            for (var b = 0; b < job.bodies.Count; b++)
+                yield return (job.bodies[b].layer, job.bodies[b].look ?? "", b, null);
+            foreach (var piece in job.pieces)
+            {
+                if (piece.grips.Count > 0 && !piece.grips.Contains(grip))
+                    continue;
+                yield return (piece.layer, piece.look, 0, piece);
+            }
         }
 
         /// <summary>
