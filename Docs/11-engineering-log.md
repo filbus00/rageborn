@@ -1075,3 +1075,11 @@ The owner: the dungeon "still looks really bad", walls "not only right shapes", 
 - Caves (`DungeonGenerator` `Version` 9): main rectangles 0.9 to 1 of their slot (were 0.8), `CarveCave` core 0.6 and edge 0.8 + 0.45 noise (were 0.45 and 0.6 + 0.55), tunnels 5 to 8 wide (were 3 to 6), no collapses in caves (`Collapse` removed, caves were its only user), stalagmite clumps 1 to 3 plus area / 600 (were 2 to 4 plus area / 300).
 - Checked in play mode at depths 3 and 14: walls twice her height, the three-cell doorways up and down, a terrace flight reading as steps. 627 of 627 tests pass in Unity.
 
+## 2026-10-11: more gore
+
+- The owner: "add more gore and blood. Make sure that the monster bleed and that the blood splashes when they are hit". Until now only arrows sprayed (`ArrowFx.Blood`), five drops a hit, landing as round dots that dried in 4 s; pet bites, bleeds, burns and blasts drew no blood, and nothing stayed.
+- `Combat/BloodArt.cs`: splats drawn in code at 40 pixels a unit, 32 x 16 (flat on the floor), six variants from `SplatShade` (pure, tested in `BloodArtTests`): a blob whose edge wanders with two sine lumps, a dark rim, a wet middle and a glint, and five to eight drops round it; and three chunks of flesh, 6 pixels.
+- `ArrowFx`: `Current` (the level's effects, set by `PlayerCombat`, let go in its `OnDestroy`). Stains: a ring of 260 splat sprites on the Decals layer, each lying 30 s and fading over its last 6, the oldest reused; a landing drop becomes a stain (2.2 to 3.4 times its size) and a landing chunk lies as itself. `Wound` (any hit: 3 + 5 x amount drops every way and a splat under it), `Drip`, `Gore` (a kill: 16 drops a unit of size, 4 to 7 chunks, a mist and two pool splats). `Blood` throws 8 drops per amount (was 5).
+- `EnemyController.TakeDamage` calls `Wound` with the hit's share of life (4 x damage / max life, 0.3 to 1.5) at the body's middle (`BodyHeight`, 0.45 x the visual scale), and `Gore` on the kill; `TickDrip` drips every 0.35 to 0.7 s under half life, every 0.12 to 0.25 s while bleeding.
+- Checked in play mode at depth 3: two kills and three wounded leave pools, splats and chunks. 630 of 630 tests pass in Unity.
+

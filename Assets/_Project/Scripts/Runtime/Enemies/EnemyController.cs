@@ -410,6 +410,7 @@ namespace ARPG
             UpdatePunch(deltaTime);
             slow.Tick(deltaTime);
             TickBleed(deltaTime);
+            TickDrip(deltaTime);
             TickBurn(deltaTime);
             chill.Tick(deltaTime);
             markTimer = Mathf.Max(0f, markTimer - deltaTime);
@@ -581,9 +582,15 @@ namespace ARPG
             life -= amount;
             Damaged?.Invoke(amount);
             effects.Flash(Color.white, FlashSeconds);
+            // Every hit splashes, the harder the more (2026-10-11, the owner: "the blood splashes when they are hit").
+            var gore = ArrowFx.Current;
+            var maxLife = MaxLife;
+            if (gore != null && maxLife > 0f)
+                gore.Wound(IsoMath.GroundToWorld(ground), BodyHeight, Mathf.Clamp(amount / maxLife * 4f, 0.3f, 1.5f));
             if (life <= 0f)
             {
                 life = 0f;
+                gore?.Gore(IsoMath.GroundToWorld(ground), BodyHeight, definition.VisualScale);
                 State = EnemyState.Dead;
                 deathTimer = definition.DeathSeconds;
                 HideModifierIcons();
@@ -614,6 +621,24 @@ namespace ARPG
                 pack?.Alert();
             }
             return false;
+        }
+
+        // Where blood leaves the body: about the middle of the figure, higher for a bigger one.
+        float BodyHeight => 0.45f * definition.VisualScale;
+
+        // Wounded (under half life) or bleeding, it drips as it goes, faster while bleeding (2026-10-11).
+        const float WoundedFraction = 0.5f;
+        float dripTimer;
+
+        void TickDrip(float deltaTime)
+        {
+            if (!IsAlive || (bleedTimer <= 0f && life > MaxLife * WoundedFraction))
+                return;
+            dripTimer -= deltaTime;
+            if (dripTimer > 0f)
+                return;
+            dripTimer = bleedTimer > 0f ? Random.Range(0.12f, 0.25f) : Random.Range(0.35f, 0.7f);
+            ArrowFx.Current?.Drip(IsoMath.GroundToWorld(ground), BodyHeight);
         }
 
         /// <summary>Starts or replaces a bleed: this much damage a second, already through the hit formula, for this long.</summary>

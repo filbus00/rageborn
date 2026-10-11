@@ -9,13 +9,30 @@ namespace ARPG
     /// and blood: a spray where an arrow hits flesh, and a piercing arrow that has gone through an enemy drips a trail of
     /// blood that splashes on the floor and dries away. A pool of plain sprites, made on first need and reused, ticked by
     /// <see cref="PlayerCombat"/>, so a fight allocates nothing once the pool has grown. All numbers are tuning.
+    ///
+    /// More gore (2026-10-11, the owner: "add more gore and blood. Make sure that the monster bleed and that the blood
+    /// splashes when they are hit"): every hit on a monster splashes (<see cref="Wound"/>, from
+    /// <see cref="EnemyController.TakeDamage"/>), wounded and bleeding monsters drip as they go (<see cref="Drip"/>), a
+    /// kill bursts (<see cref="Gore"/>: a spray all round, chunks and a pool), and blood that lands stays on the floor as
+    /// a pixel splat (<see cref="BloodArt"/>) for half a minute, the oldest giving way when <see cref="MaxStains"/> lie.
     /// </summary>
     public sealed class ArrowFx
     {
+        /// <summary>The level's effects, for the monsters' own blood; null between levels.</summary>
+        public static ArrowFx Current { get; private set; }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => Current = null;
+
+        // Blood on the floor: at most this many splats, each lying this long and fading over its last seconds.
+        const int MaxStains = 260;
+        const float StainSeconds = 30f;
+        const float StainFadeSeconds = 6f;
+
         // More than this many particles at once and new ones are skipped: effects must never cost the frame.
         const int MaxParticles = 450;
 
-        // A droplet's fall: world units a second squared, and how long its splash lies on the floor.
+        // A droplet's fall, world units a second squared; and how long a scorch lies on the floor.
         const float Gravity = 9f;
         const float SplatSeconds = 4f;
 
@@ -39,7 +56,18 @@ namespace ARPG
             public Color Color1;
             public bool Falls;          // a droplet: gravity, and a splash on the floor when it lands
             public bool Flat;           // lies on the floor (a splash, a scorch)
+            public bool Chunk;          // a chunk of flesh: lands as itself, not a splat
         }
+
+        struct Stain
+        {
+            public SpriteRenderer Renderer;
+            public float Age;
+            public float Alpha;
+        }
+
+        readonly Stain[] stains = new Stain[MaxStains];
+        int nextStain;
 
         readonly Transform root;
         readonly List<Particle> live = new List<Particle>(MaxParticles);
@@ -50,6 +78,14 @@ namespace ARPG
             var go = new GameObject("Arrow Effects");
             go.transform.SetParent(parent, false);
             root = go.transform;
+            Current = this;
+        }
+
+        /// <summary>Lets go of <see cref="Current"/> when its level ends.</summary>
+        public void Release()
+        {
+            if (Current == this)
+                Current = null;
         }
 
         public int Count => live.Count;
@@ -77,7 +113,7 @@ namespace ARPG
         /// floor. <paramref name="amount"/> scales it: a kill or a piercing arrow sprays more.</summary>
         public void Blood(Vector2 ground, Vector2 direction, float height, float amount)
         {
-            var count = Mathf.RoundToInt(5f * amount);
+            var count = Mathf.RoundToInt(8f * amount);
             for (var i = 0; i < count; i++)
             {
                 var spray = Rotate(direction, Random.Range(-35f, 35f)) * Random.Range(0.8f, 3.2f) * Mathf.Sqrt(amount);
@@ -87,6 +123,54 @@ namespace ARPG
             // A dark mist hanging a moment where the arrow went in.
             Emit(ground, direction * 0.4f, height, 0f, 0.3f, 0.18f * amount, 0.34f * amount, 1f,
                 new Color(BloodColor.r, BloodColor.g, BloodColor.b, 0.7f), Faded(BloodDark), false, false);
+        }
+
+        /// <summary>Any hit on a monster (<see cref="EnemyController.TakeDamage"/>): drops thrown every way, more the harder
+        /// the hit (<paramref name="amount"/>, about 0.3 for a scratch to 1.5 for a heavy blow), and a splat under it.</summary>
+        public void Wound(Vector2 ground, float height, float amount)
+        {
+            var count = Mathf.RoundToInt(3f + 5f * amount);
+            for (var i = 0; i < count; i++)
+            {
+                var spray = Rotate(Vector2.right, Random.Range(0f, 360f)) * Random.Range(0.6f, 2.4f) * Mathf.Sqrt(amount);
+                spray.y *= IsoMath.GroundSquash;
+                Emit(ground, spray, height, Random.Range(0.8f, 2.6f), 1.5f, Random.Range(0.06f, 0.11f), 0.05f, 1.5f,
+                    BloodColor, BloodDark, true, false);
+            }
+            AddStain(ground + Random.insideUnitCircle * 0.12f, 0.35f + 0.35f * Mathf.Min(amount, 1.5f), 0.85f);
+        }
+
+        /// <summary>A drop or two falling from a wounded or bleeding monster as it goes, leaving a trail.</summary>
+        public void Drip(Vector2 ground, float height)
+        {
+            Emit(ground + Random.insideUnitCircle * 0.1f, Random.insideUnitCircle * 0.3f, height, Random.Range(-0.3f, 0.3f), 1f,
+                Random.Range(0.05f, 0.08f), 0.05f, 1.2f, BloodColor, BloodDark, true, false);
+        }
+
+        /// <summary>A kill: blood thrown all round, chunks of flesh flung out, and a wide pool where it fell.
+        /// <paramref name="size"/> is the monster's size (its visual scale): a boss bursts bigger.</summary>
+        public void Gore(Vector2 ground, float height, float size)
+        {
+            var count = Mathf.RoundToInt(16f * size);
+            for (var i = 0; i < count; i++)
+            {
+                var spray = Rotate(Vector2.right, Random.Range(0f, 360f)) * Random.Range(1f, 4f) * Mathf.Sqrt(size);
+                spray.y *= IsoMath.GroundSquash;
+                Emit(ground, spray, height, Random.Range(1.2f, 3.5f), 1.6f, Random.Range(0.07f, 0.14f), 0.05f, 1.6f,
+                    BloodColor, BloodDark, true, false);
+            }
+            var chunkCount = Mathf.RoundToInt(Random.Range(4f, 7f) * Mathf.Sqrt(size));
+            for (var i = 0; i < chunkCount; i++)
+            {
+                var fling = Rotate(Vector2.right, Random.Range(0f, 360f)) * Random.Range(1f, 3f) * Mathf.Sqrt(size);
+                fling.y *= IsoMath.GroundSquash;
+                EmitChunk(ground, fling, height, Random.Range(1.5f, 3.5f));
+            }
+            // The mist of the burst, and the pool spreading where it fell.
+            Emit(ground, Vector2.zero, height, 0f, 0.35f, 0.3f * size, 0.7f * size, 1f,
+                new Color(BloodColor.r, BloodColor.g, BloodColor.b, 0.75f), Faded(BloodDark), false, false);
+            AddStain(ground, 1.1f * size, 0.95f);
+            AddStain(ground + Random.insideUnitCircle * 0.3f * size, 0.7f * size, 0.9f);
         }
 
         /// <summary>The blood trail of a piercing arrow that has gone through a body: drops shaken off the shaft that
@@ -199,6 +283,80 @@ namespace ARPG
             });
         }
 
+        void EmitChunk(Vector2 ground, Vector2 velocity, float height, float heightVelocity)
+        {
+            var renderer = Take();
+            if (renderer == null)
+                return;
+            renderer.sprite = BloodArt.Chunk(Random.Range(0, 3));
+            Layer(renderer, false);
+            live.Add(new Particle
+            {
+                Renderer = renderer,
+                Ground = ground,
+                Velocity = velocity,
+                Height = height,
+                HeightVelocity = heightVelocity,
+                Life = 2f,
+                Size0 = 1f,
+                Size1 = 1f,
+                Stretch = 0f,
+                Color0 = Color.white,
+                Color1 = Color.white,
+                Falls = true,
+                Chunk = true,
+            });
+        }
+
+        /// <summary>A splat of blood on the floor, <paramref name="size"/> world units across, lying a while. The oldest
+        /// splat makes way when <see cref="MaxStains"/> lie.</summary>
+        public void AddStain(Vector2 ground, float size, float alpha) => AddStain(ground, size, alpha, BloodArt.Splat(Random.Range(0, BloodArt.Variants)));
+
+        void AddStain(Vector2 ground, float size, float alpha, Sprite sprite)
+        {
+            ref var stain = ref stains[nextStain];
+            nextStain = (nextStain + 1) % MaxStains;
+            if (stain.Renderer == null)
+            {
+                stain.Renderer = GroundMarker.NewSprite("Blood", sprite, Color.white, root, 0).GetComponent<SpriteRenderer>();
+                stain.Renderer.sortingLayerName = GameSortingLayers.Decals;
+                stain.Renderer.sortingOrder = 4;
+            }
+            var renderer = stain.Renderer;
+            renderer.gameObject.SetActive(true);
+            renderer.sprite = sprite;
+            renderer.color = new Color(1f, 1f, 1f, alpha);
+            stain.Age = 0f;
+            stain.Alpha = alpha;
+            var transform = renderer.transform;
+            transform.position = new Vector3(ground.x, ground.y, 0f);
+            transform.rotation = Quaternion.identity;
+            // The splat sprite is 0.8 units across at scale 1; a random flip so neighbours differ.
+            var scale = size / (BloodArt.SplatWidth / (float)PixelArt.PixelsPerUnit);
+            if (sprite.rect.width < BloodArt.SplatWidth)
+                scale = 1f;
+            transform.localScale = new Vector3(Random.value < 0.5f ? -scale : scale, scale, 1f);
+        }
+
+        void TickStains(float deltaTime)
+        {
+            for (var i = 0; i < stains.Length; i++)
+            {
+                ref var stain = ref stains[i];
+                if (stain.Renderer == null || !stain.Renderer.gameObject.activeSelf)
+                    continue;
+                stain.Age += deltaTime;
+                if (stain.Age >= StainSeconds)
+                {
+                    stain.Renderer.gameObject.SetActive(false);
+                    continue;
+                }
+                var left = StainSeconds - stain.Age;
+                if (left < StainFadeSeconds)
+                    stain.Renderer.color = new Color(1f, 1f, 1f, stain.Alpha * left / StainFadeSeconds);
+            }
+        }
+
         SpriteRenderer Take()
         {
             if (live.Count >= MaxParticles)
@@ -218,6 +376,7 @@ namespace ARPG
 
         public void Tick(float deltaTime)
         {
+            TickStains(deltaTime);
             for (var i = live.Count - 1; i >= 0; i--)
             {
                 var p = live[i];
@@ -237,19 +396,15 @@ namespace ARPG
                     p.Height += p.HeightVelocity * deltaTime;
                     if (p.Height <= 0f)
                     {
-                        // Landed: the drop becomes a splash on the floor, which dries away.
-                        p.Height = 0f;
-                        p.Falls = false;
-                        p.Flat = true;
-                        p.Velocity = Vector2.zero;
-                        p.Age = 0f;
-                        p.Life = SplatSeconds * Random.Range(0.7f, 1.2f);
-                        p.Size0 = p.Size1 = p.Size0 * Random.Range(1.4f, 2.4f);
-                        p.Stretch = 1f;
-                        p.Color0 = new Color(BloodDark.r, BloodDark.g, BloodDark.b, 0.9f);
-                        p.Color1 = new Color(BloodDark.r, BloodDark.g, BloodDark.b, 0f);
-                        p.Renderer.sprite = TelegraphArt.Disc;
-                        Layer(p.Renderer, true);
+                        // Landed: the drop becomes a splat on the floor, the chunk lies where it fell; both stay a while.
+                        if (p.Chunk)
+                            AddStain(p.Ground, 0f, 1f, p.Renderer.sprite);
+                        else
+                            AddStain(p.Ground, p.Size0 * Random.Range(2.2f, 3.4f), 0.9f);
+                        Release(p.Renderer);
+                        live[i] = live[live.Count - 1];
+                        live.RemoveAt(live.Count - 1);
+                        continue;
                     }
                 }
                 else

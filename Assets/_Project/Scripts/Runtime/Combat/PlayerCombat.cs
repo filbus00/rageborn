@@ -332,6 +332,7 @@ namespace ARPG
 
         void OnDestroy()
         {
+            fx?.Release();
             if (session != null)
             {
                 session.LeveledUp -= OnLeveledUp;
