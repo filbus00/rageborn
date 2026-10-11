@@ -224,6 +224,17 @@ namespace ARPG
                         GroundLayer.Path => path[s],
                         _ => dirt[s],
                     };
+                    if (!town && dungeonTheme == DungeonTheme.Library)
+                    {
+                        // Ash grey over the dirt, smoke-darkened stone (2026-10-11).
+                        if (layer == GroundLayer.Dirt)
+                        {
+                            var grey = (c.r * 0.3f + c.g * 0.5f + c.b * 0.2f) * 0.9f;
+                            c = new Color32((byte)grey, (byte)(grey * 0.97f), (byte)(grey * 0.94f), 255);
+                        }
+                        else
+                            c = new Color32((byte)(c.r * 0.8f), (byte)(c.g * 0.76f), (byte)(c.b * 0.74f), 255);
+                    }
                     if (town)
                     {
                         // The dark town (2026-10-11): wet, dark mud and stone; puddles the mud darkened toward cold water.

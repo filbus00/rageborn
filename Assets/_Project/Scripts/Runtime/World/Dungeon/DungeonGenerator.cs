@@ -10,9 +10,9 @@ namespace ARPG
     /// </summary>
     public static class DungeonRules
     {
-        /// <summary>The owner, 2026-10-05: no acts; one town above one dungeon of about 24 levels ("Fixed, about 24
-        /// levels"), changing gradually with depth.</summary>
-        public const int Depths = 24;
+        /// <summary>The owner, 2026-10-05: no acts; one town above one dungeon, changing gradually with depth. 24 levels
+        /// until 2026-10-11, then 36 ("more depths than 24 ... so 12-12-12 for now"): crypt, burnt library, caves.</summary>
+        public const int Depths = 36;
 
         /// <summary>A boss every 6 levels (the Cinder Warden at 6). The first 6 are what was act 1.</summary>
         public const int BossEvery = 6;
@@ -21,8 +21,9 @@ namespace ARPG
         public const int LevelsPerAct = BossEvery;
 
         /// <summary>Depths whose exit room is a boss arena: the Cinder Warden at 6, the Tidewife at 12, Saint Marrow at 18
-        /// and the First Watchman at 24 (2026-10-05).</summary>
-        static readonly int[] BuiltBossDepths = { 6, 12, 18, 24 };
+        /// (2026-10-05), the Ash Archivist at 24, the Rift Mother at 30 and the First Watchman, moved to the bottom, at 36
+        /// (2026-10-11).</summary>
+        static readonly int[] BuiltBossDepths = { 6, 12, 18, 24, 30, 36 };
 
         public static bool IsBossDepth(int depth) => System.Array.IndexOf(BuiltBossDepths, depth) >= 0;
 
@@ -52,11 +53,15 @@ namespace ARPG
             return ActOneEnemyLevels[BossEvery] + Mathf.CeilToInt((depth - BossEvery) * EnemyLevelsPerDepth - 1e-4f);
         }
 
-        /// <summary>The first cave level (the owner, 2026-10-10: a crypt and cathedral to the Tidewife at 12, then caves
-        /// going down).</summary>
-        public const int CaveFrom = 13;
+        /// <summary>The first burnt library level (the owner, 2026-10-11: "first crypt, then library, then caves", 12
+        /// levels each).</summary>
+        public const int LibraryFrom = 13;
 
-        public static DungeonTheme ThemeAt(int depth) => depth >= CaveFrom ? DungeonTheme.Cave : DungeonTheme.Crypt;
+        /// <summary>The first cave level (2026-10-10 from 13; from 25 since the library came between, 2026-10-11).</summary>
+        public const int CaveFrom = 25;
+
+        public static DungeonTheme ThemeAt(int depth) =>
+            depth >= CaveFrom ? DungeonTheme.Cave : depth >= LibraryFrom ? DungeonTheme.Library : DungeonTheme.Crypt;
 
         /// <summary>Extra Champion chance below the first boss: a point a level, at most 20 points.</summary>
         public static float ExtraChampionChance(int depth) => Mathf.Clamp(depth - BossEvery, 0, 20) * 0.01f;
@@ -179,8 +184,9 @@ namespace ARPG
         /// 7: crypt rooms of many shapes to depth 12, caves with terraces below (2026-10-10).
         /// 8: the stairs set into a far wall (2026-10-10).
         /// 9: roomier caves and tunnels, terrace steps facing the camera (2026-10-11).
+        /// 10: 36 depths, the burnt library from 13 with its aisles of shelves, the caves from 25 (2026-10-11).
         /// </summary>
-        public const int Version = 9;
+        public const int Version = 10;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -386,9 +392,15 @@ namespace ARPG
                 else
                 {
                     // A crypt: a built hall, octagonal, round, a cross, with an apse, or with its corners cut; clean edges.
+                    // The burnt library is built the same, most of its halls filled with rows of shelves (2026-10-11).
                     CarveCrypt(layout, mains[i], random);
                     if (kinds[i] != RoomKind.Start && kinds[i] != RoomKind.Exit)
-                        shapesUsed[i] = Dress(layout, mains[i], shapes, random);
+                    {
+                        if (layout.Theme == DungeonTheme.Library && random.Next(100) < LibraryAislePercent)
+                            Aisles(layout, mains[i], random);
+                        else
+                            shapesUsed[i] = Dress(layout, mains[i], shapes, random);
+                    }
                 }
                 layout.Rooms.Add(new RoomPlacement(kinds[i], shapesUsed[i], macros[i], interior, styles[i]));
             }
@@ -1070,6 +1082,55 @@ namespace ARPG
                     if (clump.Count <= MaxFreeStanding || clump.TrueForAll(c => layout.Ledges.Contains(c)))
                         layout.FreeStanding.UnionWith(clump);
                 }
+        }
+
+        /// <summary>How many of the burnt library's halls are filled with aisles of shelves; the rest are dressed as the
+        /// crypt's.</summary>
+        const int LibraryAislePercent = 80;
+
+        /// <summary>
+        /// Rows of bookshelves across a hall (the burnt library, 2026-10-11): one cell thick, 5 to 9 long with 2-cell gaps,
+        /// 3 cells apart, along the hall's length or across it. Each shelf cell has open floor all round it, so a row
+        /// never touches the hall's wall and stands free (<see cref="MarkFreeStanding"/>), and a cross of open floor 3
+        /// wide runs through the middle, where the passages meet, so every aisle can be walked out of.
+        /// </summary>
+        static void Aisles(DungeonLayout layout, RectInt r, System.Random random)
+        {
+            var clear = new HashSet<Vector2Int>();
+            for (var x = r.xMin; x < r.xMax; x++)
+                for (var y = r.yMin; y < r.yMax; y++)
+                {
+                    var ok = true;
+                    for (var dx = -1; dx <= 1 && ok; dx++)
+                        for (var dy = -1; dy <= 1 && ok; dy++)
+                            ok = layout.IsFloor(new Vector2Int(x + dx, y + dy));
+                    if (ok)
+                        clear.Add(new Vector2Int(x, y));
+                }
+            var alongX = random.Next(2) == 0;
+            var length = alongX ? r.width : r.height;
+            var across = alongX ? r.height : r.width;
+            var midAlong = length / 2;
+            var midAcross = across / 2;
+            for (var a = 3; a < across - 3; a += 3)
+            {
+                if (Mathf.Abs(a - midAcross) <= 1)
+                    continue;
+                var t = 2 + random.Next(2);
+                while (t < length - 2)
+                {
+                    var run = random.Next(5, 10);
+                    for (var k = 0; k < run && t + k < length - 2; k++)
+                    {
+                        if (Mathf.Abs(t + k - midAlong) <= 1)
+                            continue;
+                        var cell = alongX ? new Vector2Int(r.xMin + t + k, r.yMin + a) : new Vector2Int(r.xMin + a, r.yMin + t + k);
+                        if (clear.Contains(cell))
+                            layout.Set(cell.x, cell.y, DungeonCell.Wall);
+                    }
+                    t += run + 2;
+                }
+            }
         }
 
         /// <summary>The largest clump of wall that stands free; bigger ones are rock.</summary>

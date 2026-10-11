@@ -153,6 +153,8 @@ namespace ARPG
             "bone_pyres" => "the Bone Pyres",
             "great_lamp" => "the Great Lamp",
             "drowned_fire" => "the Drowned Watch's Fire",
+            "fire_ledger" => "the Fire-Ledger",
+            "corvane" => "Corvane the Scrivener",
             _ => target,
         };
 
@@ -248,29 +250,58 @@ namespace ARPG
                 },
                 Boon = QuestBoon.LifeBlessing, Gift = "The fire roars: +5% life. Ivy stays in town.",
             },
+            // The burnt library's chapter (2026-10-11, the owner: "Make a new questline for the library", the main story).
             new QuestDefinition
             {
-                Id = "first_watchman", Title = "The First Watchman", Giver = QuestGiver.Aldis, Main = true, After = "saints_bargain", FromDepth = 18,
+                Id = "burnt_archive", Title = "The Burnt Archive", Giver = QuestGiver.Aldis, Main = true, After = "saints_bargain", FromDepth = 18,
+                Offer = new[]
+                {
+                    "Below the saint's halls lies the Watch's archive. Every fire was written down there. Who kept it, who failed it.",
+                    "It burned. Not in the fall. Before. Someone burned it on purpose, and the fires died soon after.",
+                    "The Archivist kept the records. If any page survived, it will say why. Find the fire-ledger.",
+                },
+                Progress = "The fire-ledger first. Then whoever keeps the pyres burning. Then the Archivist.",
+                Complete = new[]
+                {
+                    "He burned the truth to hide it. That the First Watchman let the fires die. That he chose to.",
+                    "And the Archivist burned with his books, and kept burning. The fourth ember.",
+                    "Now we know who waits at the bottom. Rest first. The caves are worse.",
+                },
+                Steps = new[]
+                {
+                    Step(QuestStepKind.Recover, 20, "fire_ledger", "Find the Watch's fire-ledger in the burnt archive (depth 20).",
+                        "Half the ledger is ash. The last page: \"The Watchman ordered the fires out. Burn the record.\""),
+                    Step(QuestStepKind.NamedFoe, 22, "corvane", "Kill Corvane the Scrivener, who keeps the book-pyres burning (depth 22).",
+                        "Corvane is dead. His pyres gutter out."),
+                    Step(QuestStepKind.Boss, 24, "ash_archivist", "Slay the Ash Archivist (depth 24).", "The Archivist's ember is yours."),
+                    Back("Bring the fourth ember to Mother Aldis."),
+                },
+                Boon = QuestBoon.DamageBlessing, Gift = "The fire burns hotter: +5% damage.",
+            },
+            new QuestDefinition
+            {
+                Id = "first_watchman", Title = "The First Watchman", Giver = QuestGiver.Aldis, Main = true, After = "burnt_archive", FromDepth = 24,
                 Offer = new[]
                 {
                     "The first fire was his. The First Watchman. His failure is the night we live in.",
-                    "Something feeds the deep. A rift, beating like a heart. Break it.",
+                    "Something feeds the deep. A rift, beating like a heart, and the thing that breeds below it. Break the one, kill the other.",
                     "And find his oath-stone. A watchman's oath was cut in stone. I want to read what he broke.",
                 },
-                Progress = "The heart, the stone, then him. Come back with the last ember.",
+                Progress = "The heart, the Rift Mother, the stone, then him. Come back with the last ember.",
                 Complete = new[]
                 {
-                    "Four embers. Four fires. I did not think I would live to see it.",
+                    "Five embers. Five fires. I did not think I would live to see it.",
                     "Stand back. ... There. The Vigil burns.",
                     "The Hollow will remember this. Let it.",
                 },
                 Steps = new[]
                 {
-                    Step(QuestStepKind.Break, 20, "rift_heart", "Break the rift heart that feeds the deep (depth 20).",
+                    Step(QuestStepKind.Break, 28, "rift_heart", "Break the rift heart that feeds the deep (depth 28).",
                         "The rift heart bursts. The deep goes quiet, for a moment."),
-                    Step(QuestStepKind.Recover, 22, "oath_stone", "Recover the Broken Oath-Stone (depth 22).",
+                    Step(QuestStepKind.Boss, 30, "rift_mother", "Slay the Rift Mother (depth 30).", "The Rift Mother is dead. Her brood scatters."),
+                    Step(QuestStepKind.Recover, 34, "oath_stone", "Recover the Broken Oath-Stone (depth 34).",
                         "The oath-stone: \"I will hold the dark.\" Below it, scratched later: \"I could not.\""),
-                    Step(QuestStepKind.Boss, 24, "first_watchman", "Slay the First Watchman (depth 24).", "The last ember is yours."),
+                    Step(QuestStepKind.Boss, 36, "first_watchman", "Slay the First Watchman (depth 36).", "The last ember is yours."),
                     Back("Bring the last ember to Mother Aldis."),
                 },
                 Boon = QuestBoon.DamageBlessing, Gift = "The Vigil burns again: +5% damage.",

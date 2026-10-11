@@ -10,14 +10,17 @@ namespace ARPG.Tests
         static List<RoomShape> Library() => PlaceholderRooms.All.Select(r => RoomShape.Parse(r.name, r.layout)).ToList();
 
         [Test]
-        public void TheCryptRunsToTheTidewife_ThenCaves()
+        public void TheCryptRunsToTheTidewife_ThenTheLibrary_ThenCaves()
         {
             Assert.AreEqual(DungeonTheme.Crypt, DungeonRules.ThemeAt(1));
             Assert.AreEqual(DungeonTheme.Crypt, DungeonRules.ThemeAt(12));
-            Assert.AreEqual(DungeonTheme.Cave, DungeonRules.ThemeAt(13));
-            Assert.AreEqual(DungeonTheme.Cave, DungeonRules.ThemeAt(24));
+            Assert.AreEqual(DungeonTheme.Library, DungeonRules.ThemeAt(13));
+            Assert.AreEqual(DungeonTheme.Library, DungeonRules.ThemeAt(24));
+            Assert.AreEqual(DungeonTheme.Cave, DungeonRules.ThemeAt(25));
+            Assert.AreEqual(DungeonTheme.Cave, DungeonRules.ThemeAt(36));
             Assert.AreEqual(DungeonTheme.Crypt, DungeonGenerator.Generate(7919, 4, Library()).Theme);
-            Assert.AreEqual(DungeonTheme.Cave, DungeonGenerator.Generate(7919, 16, Library()).Theme);
+            Assert.AreEqual(DungeonTheme.Library, DungeonGenerator.Generate(7919, 16, Library()).Theme);
+            Assert.AreEqual(DungeonTheme.Cave, DungeonGenerator.Generate(7919, 28, Library()).Theme);
         }
 
         [Test]
@@ -38,12 +41,30 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void LibraryHalls_HaveAislesOfShelves_StandingFree()
+        {
+            // A shelf: a free-standing wall cell in a row (a wall neighbour along x or y). Most library levels have many.
+            var withAisles = 0;
+            for (var seed = 1; seed <= 8; seed++)
+            {
+                var layout = DungeonGenerator.Generate(seed * 7919, 16, Library());
+                var shelves = 0;
+                foreach (var cell in layout.FreeStanding)
+                    if (layout.Get(cell + Vector2Int.right) == DungeonCell.Wall || layout.Get(cell + Vector2Int.up) == DungeonCell.Wall)
+                        shelves++;
+                if (shelves >= 30)
+                    withAisles++;
+            }
+            Assert.GreaterOrEqual(withAisles, 6, "most library levels have aisles of shelves");
+        }
+
+        [Test]
         public void CaveTerraces_AreRingedByLedges_AndReachedByTheirSteps()
         {
             var withTerraces = 0;
             for (var seed = 1; seed <= 12; seed++)
             {
-                var layout = DungeonGenerator.Generate(seed * 7919, 17, Library());
+                var layout = DungeonGenerator.Generate(seed * 7919, 29, Library());
                 var label = $"seed {seed}";
                 if (layout.Raised.Count > 0)
                     withTerraces++;

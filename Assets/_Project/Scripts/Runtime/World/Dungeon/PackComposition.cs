@@ -97,13 +97,19 @@ namespace ARPG
         // Each deep type: the first depth it appears, how fast it spreads, and its cap. Tuning.
         public const int FirstDrownedDepth = 7, FirstHarpoonerDepth = 8, FirstWatchmanDepth = 9;
         public const int FirstKnightDepth = 13, FirstPriestDepth = 14;
-        public const int FirstHollowedDepth = 19, FirstRiftCallerDepth = 19, FirstWraithDepth = 20;
+        // The void's creatures belong to the caves (2026-10-11, the library between: from 19 and 20 until then).
+        public const int FirstHollowedDepth = 19, FirstRiftCallerDepth = 25, FirstWraithDepth = 26;
+
+        /// <summary>In the burnt library (2026-10-11) the fire casters are commoner: ember acolytes in place of archers
+        /// and cultists, and pyre keepers at the back of packs.</summary>
+        public const int LibraryAcolytePercent = 65, LibraryKeeperPercent = 50;
 
         /// <summary>
         /// The deep levels' roster, from a fourth hash of the pack. From 7 the drowned take the husks' places, from 8
         /// harpooners the archers', from 9 drowned watchmen the ghouls'; from 13 skeleton knights the brutes', from 14 a
-        /// grave priest stands at the back of some packs of 4 or more; from 19 the hollowed take the swarmers' places
-        /// and rift callers the ranged ones', from 20 the wolf packs turn to void wraiths. Each spreads by its share
+        /// grave priest stands at the back of some packs of 4 or more; from 19 the hollowed take the swarmers' places; in
+        /// the caves, from 25 rift callers take the ranged ones' and from 26 the wolf packs turn to void wraiths. The
+        /// drowned, harpooners and drowned watchmen stay out of the burnt library (2026-10-11). Each spreads by its share
         /// (<see cref="DeepShare"/>), so a level has some old and some new. Elite packs and a Champion's slot 0 stay.
         /// </summary>
         static PackMember[] Deep(int depth, PackKind kind, PackMember[] members, int levelSeed, int packIndex)
@@ -115,9 +121,10 @@ namespace ARPG
             var first = kind == PackKind.WithChampion ? 1 : 0;
             bool Rolls(uint hash, int share) => hash % 100 < share;
 
-            var drowned = Rolls(a, DeepShare(depth, FirstDrownedDepth, 15, 75));
-            var harpoon = Rolls(a / 100, DeepShare(depth, FirstHarpoonerDepth, 15, 70));
-            var watchman = Rolls(a / 10000, DeepShare(depth, FirstWatchmanDepth, 15, 70));
+            var dry = DungeonRules.ThemeAt(depth) == DungeonTheme.Library;
+            var drowned = !dry && Rolls(a, DeepShare(depth, FirstDrownedDepth, 15, 75));
+            var harpoon = !dry && Rolls(a / 100, DeepShare(depth, FirstHarpoonerDepth, 15, 70));
+            var watchman = !dry && Rolls(a / 10000, DeepShare(depth, FirstWatchmanDepth, 15, 70));
             var knight = Rolls(a / 1000000, DeepShare(depth, FirstKnightDepth, 15, 75));
             var priest = Rolls(b, DeepShare(depth, FirstPriestDepth, 10, 40));
             var hollowed = Rolls(b / 100, DeepShare(depth, FirstHollowedDepth, 15, 80));
@@ -173,11 +180,12 @@ namespace ARPG
                 for (var i = first; i < members.Length; i++)
                     if (members[i] == PackMember.Husk && i % 2 == 1)
                         members[i] = PackMember.Cutthroat;
-            if (depth >= FirstAcolyteDepth && hash / 10000 % 100 < AcolytePercent)
+            var library = DungeonRules.ThemeAt(depth) == DungeonTheme.Library;
+            if (depth >= FirstAcolyteDepth && hash / 10000 % 100 < (library ? LibraryAcolytePercent : AcolytePercent))
                 for (var i = first; i < members.Length; i++)
-                    if (members[i] == PackMember.Archer)
+                    if (members[i] == PackMember.Archer || library && members[i] == PackMember.Cultist)
                         members[i] = PackMember.EmberAcolyte;
-            if (depth >= FirstKeeperDepth && members.Length >= 4 && hash / 1000000 % 100 < KeeperPercent)
+            if (depth >= FirstKeeperDepth && members.Length >= 4 && hash / 1000000 % 100 < (library ? LibraryKeeperPercent : KeeperPercent))
             {
                 for (var i = members.Length - 1; i >= first; i--)
                     if (members[i] != PackMember.None)

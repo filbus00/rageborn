@@ -74,11 +74,15 @@ namespace ARPG
             cobbleHeight > 1.05f - CobbleCover(ground) ? GroundLayer.Cobble : GroundLayer.Dirt;
 
         /// <summary>The layer at a dungeon point by theme (2026-10-10): the crypt is paved, with earth showing only where
-        /// the stones are worn away; the caves are bare earth, a few stones here and there.</summary>
+        /// the stones are worn away; the burnt library paved under ash; the caves are bare earth, a few stones here and
+        /// there.</summary>
         public static GroundLayer DungeonPick(Vector2 ground, float cobbleHeight, DungeonTheme theme) =>
             theme == DungeonTheme.Crypt
                 ? cobbleHeight > 0.15f + 0.4f * Smooth(ground.x / 4f, ground.y / 4f, 11) ? GroundLayer.Cobble : GroundLayer.Dirt
-                : cobbleHeight > 1.25f - CobbleCover(ground) * 0.6f ? GroundLayer.Cobble : GroundLayer.Dirt;
+                // The burnt library (2026-10-11): flagstones under drifts of ash (the dirt, painted grey by the painter).
+                : theme == DungeonTheme.Library
+                    ? cobbleHeight > 0.05f + 1.1f * Smooth(ground.x / 3f, ground.y / 3f, 16) ? GroundLayer.Cobble : GroundLayer.Dirt
+                    : cobbleHeight > 1.25f - CobbleCover(ground) * 0.6f ? GroundLayer.Cobble : GroundLayer.Dirt;
 
         /// <summary>
         /// The layer at a town point (remade dark 2026-10-11, the owner's concept art: wet cobbles and mud, no grass):

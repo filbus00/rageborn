@@ -35,10 +35,18 @@ namespace ARPG
         /// darker and turning from cold blue toward a bruised red-violet by the bottom, so the deep feels like a
         /// different place without a seam between levels.
         /// </summary>
+        static readonly Color LibraryEmber = new Color(0.95f, 0.55f, 0.35f);
+
         public static Mood DungeonAt(int depth)
         {
             var t = Mathf.Clamp01((depth - 1) / (float)(DungeonRules.Depths - 1));
             var color = Color.Lerp(Dungeon.Ambient, new Color(0.72f, 0.46f, 0.58f), t);
+            // The burnt library smoulders (2026-10-11): its light turns toward ember orange, most in its middle levels.
+            if (DungeonRules.ThemeAt(depth) == DungeonTheme.Library)
+            {
+                var u = (depth - DungeonRules.LibraryFrom + 0.5f) / (DungeonRules.CaveFrom - DungeonRules.LibraryFrom);
+                color = Color.Lerp(color, LibraryEmber, 0.55f * Mathf.Sin(Mathf.Clamp01(u) * Mathf.PI));
+            }
             return new Mood(color, Mathf.Lerp(Dungeon.AmbientIntensity, 0.14f, t), Mathf.Lerp(Dungeon.CharacterShade, 0.74f, t));
         }
 

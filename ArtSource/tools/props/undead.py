@@ -21,6 +21,8 @@ DONORS = {"skeleton": "husk", "cultist": "bandit_archer", "cutthroat": "husk", "
           "drowned": "husk", "harpooner": "bandit_archer", "drowned_watchman": "ghoul", "skeleton_knight": "ghoul",
           "grave_priest": "bandit_archer", "hollowed": "husk", "void_wraith": "husk", "rift_caller": "bandit_archer",
           "tidewife": "ghoul", "saint_marrow": "ghoul", "first_watchman": "ghoul",
+          # The burnt library's boss and the caves' (2026-10-11).
+          "ash_archivist": "ghoul", "rift_mother": "ghoul",
           # The quest people (2026-10-08): Mother Aldis, and those she brings back to town.
           "aldis": "bandit_archer", "tobin": "bandit_archer", "pellam": "bandit_archer", "bram": "bandit_archer", "ivy": "bandit_archer"}
 NPCS = {"stash_keeper", "healer", "gambler", "trainer", "aldis", "tobin", "pellam", "bram", "ivy"}
@@ -50,6 +52,9 @@ COLORS = {
     "rust_plate": (112, 72, 46), "bone_white": BONE[2], "priest_green": MOSS[3], "ghost_green": (150, 220, 140),
     "ash_black": (34, 30, 36), "void": VIOLET[1], "void_dark": VIOLET[0], "void_glow": (190, 120, 240), "coral": (190, 96, 86),
     "black_iron": (40, 40, 46),
+    # The Ash Archivist and the Rift Mother (2026-10-11).
+    "char_robe": (46, 38, 34), "char_dark": (26, 22, 22), "parchment": (200, 186, 150), "ink": (24, 20, 30),
+    "mother_skin": (92, 60, 104), "mother_dark": (52, 32, 62),
 }
 color_list = list(COLORS)
 bm = bmesh.new()
@@ -641,11 +646,73 @@ def first_watchman():
     block(hand + d * 0.02 * U, (0.3 * U, 0.04 * U, 0.04 * U), "RightHand", "gold")
 
 
+def ash_archivist():
+    # The Ash Archivist: a tall hooded scholar in charred robes, his face a burnt skull with ember eyes, a book alight in
+    # his left hand, loose pages round his shoulders, a long quill in his right.
+    h = head("Head")
+    _townsfolk_body("char_robe", "char_dark", "char_robe", "char_dark", skin="char_dark", wide=1.25)
+    blob(h + V((0, 0.1 * U, -0.01 * U)), (0.14 * U, 0.17 * U, 0.14 * U), "Head", "char_dark")
+    blob(h + V((0, 0.08 * U, 0.06 * U)), (0.07 * U, 0.085 * U, 0.06 * U), "Head", "ash_black")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.03 * U, 0.1 * U, 0.11 * U)), (0.03 * U, 0.02 * U, 0.015 * U), "Head", "fire")
+    # The robe's long skirt, wide at the hem, on the hips and legs.
+    block(V((0, head("Hips").y - 0.25 * U, 0)), (0.42 * U, 0.5 * U, 0.34 * U), "Hips", "char_robe")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg") - V((0, 0.05 * U, 0)), 0.17 * U, 0.2 * U, side + "UpLeg", "char_robe")
+        limb(head(side + "Leg"), head(side + "Foot") + V((0, 0.02 * U, 0)), 0.2 * U, 0.23 * U, side + "Leg", "char_dark")
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.07 * U, 0.08 * U, side + "Arm", "char_robe")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.08 * U, 0.11 * U, side + "ForeArm", "char_robe")
+    # Pages round his shoulders.
+    for k in range(7):
+        a = math.pi * (0.1 + 0.8 * k / 6)
+        p = head("Spine2") + V((math.cos(a) * 0.32 * U, 0.15 * U + math.sin(a) * 0.12 * U, -0.1 * U))
+        block(p, (0.08 * U, 0.1 * U, 0.01 * U), "Spine2", "parchment")
+    # The burning book in his left hand, the quill in his right.
+    hand = head("LeftHand") + (tail("LeftHand") - head("LeftHand")) * 0.5
+    block(hand + V((0, 0.03 * U, 0.06 * U)), (0.2 * U, 0.04 * U, 0.15 * U), "LeftHand", "char_dark")
+    block(hand + V((0, 0.06 * U, 0.06 * U)), (0.18 * U, 0.01 * U, 0.14 * U), "LeftHand", "parchment")
+    for k in range(3):
+        blob(hand + V(((k - 1) * 0.05 * U, 0.12 * U + 0.03 * U * (k % 2), 0.06 * U)), (0.035 * U, 0.08 * U, 0.035 * U), "LeftHand", "fire")
+    q = head("RightHand") + (tail("RightHand") - head("RightHand")) * 0.5
+    limb(q - V((0, 0.05 * U, 0)), q + V((0, 0.45 * U, 0.05 * U)), 0.012 * U, 0.004 * U, "RightHand", "ink", 4)
+    block(q + V((0, 0.35 * U, 0.05 * U)), (0.06 * U, 0.16 * U, 0.01 * U), "RightHand", "parchment")
+
+
+def rift_mother():
+    # The Rift Mother: a swollen void-beast, hunched, her belly a glowing rift, sacs along her back, long clawed arms.
+    h = head("Head")
+    s2 = head("Spine2")
+    blob(V((0, head("Spine").y, 0.08 * U)), (0.42 * U, 0.38 * U, 0.42 * U), "Spine", "mother_skin")
+    blob(V((0, head("Spine").y, 0.36 * U)), (0.2 * U, 0.24 * U, 0.08 * U), "Spine", "void_glow")
+    blob(V((0, s2.y, 0)), (0.36 * U, 0.26 * U, 0.32 * U), "Spine2", "mother_dark")
+    for k in range(4):
+        x = (k - 1.5) * 0.16 * U
+        blob(s2 + V((x, 0.18 * U, -0.22 * U)), (0.09 * U, 0.11 * U, 0.09 * U), "Spine2", "void")
+    blob(h + V((0, 0.06 * U, 0.04 * U)), (0.13 * U, 0.12 * U, 0.15 * U), "Head", "mother_dark")
+    for sx in (-1, 0, 1):
+        block(h + V((sx * 0.045 * U, 0.08 * U, 0.17 * U)), (0.025 * U, 0.025 * U, 0.015 * U), "Head", "void_glow")
+    for k in range(4):
+        a = (k - 1.5) * 0.4
+        limb(h + V((math.sin(a) * 0.1 * U, 0.15 * U, -0.02 * U)), h + V((math.sin(a) * 0.2 * U, 0.35 * U, -0.12 * U)), 0.03 * U, 0.005 * U, "Head", "void_dark", 4)
+    block(V((0, head("Hips").y, 0)), (0.4 * U, 0.16 * U, 0.3 * U), "Hips", "mother_dark")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.13 * U, 0.1 * U, side + "UpLeg", "mother_skin")
+        limb(head(side + "Leg"), head(side + "Foot"), 0.1 * U, 0.07 * U, side + "Leg", "mother_dark")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.12 * U, 0.06 * U, 0.2 * U), side + "Foot", "mother_dark")
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.1 * U, 0.08 * U, side + "Arm", "mother_skin")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.08 * U, 0.06 * U, side + "ForeArm", "mother_dark")
+        hand = head(side + "Hand")
+        d = (tail(side + "Hand") - hand).normalized()
+        for k in range(3):
+            limb(hand, hand + d * 0.28 * U + V(((k - 1) * 0.05 * U, 0, 0.04 * U)), 0.025 * U, 0.004 * U, side + "Hand", "bone_white", 4)
+
+
 {"skeleton": skeleton, "cultist": cultist, "cutthroat": cutthroat, "ember_acolyte": ember_acolyte,
  "pyre_keeper": pyre_keeper, "carrion_bloat": carrion_bloat, "stash_keeper": stash_keeper, "healer": healer,
  "gambler": gambler, "trainer": trainer, "drowned": drowned, "harpooner": harpooner, "drowned_watchman": drowned_watchman,
  "skeleton_knight": skeleton_knight, "grave_priest": grave_priest, "hollowed": hollowed, "void_wraith": void_wraith,
  "rift_caller": rift_caller, "tidewife": tidewife, "saint_marrow": saint_marrow, "first_watchman": first_watchman,
+ "ash_archivist": ash_archivist, "rift_mother": rift_mother,
  "aldis": aldis, "tobin": tobin, "pellam": pellam, "bram": bram, "ivy": ivy}[NAME]()
 
 # Every bone a humanoid needs keeps a vertex weighted to it: Unity strips bones nothing is weighted to, and the avatar

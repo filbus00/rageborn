@@ -16,7 +16,7 @@ namespace ARPG
         {
             "tobin" or "gorrak" => LairTheme.Feeding,
             "bram" => LairTheme.Drowned,
-            "pellam" => LairTheme.Shrine,
+            "pellam" or "fire_ledger" or "corvane" => LairTheme.Shrine,
             "vessa" => LairTheme.Camp,
             "ivy" or "aldric" or "reliquary_keeper" or "watch_log" or "cartographer_notes" or "bone_pyres" => LairTheme.Tomb,
             "oath_stone" or "great_lamp" or "rift_heart" => LairTheme.Nest,

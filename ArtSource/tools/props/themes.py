@@ -340,6 +340,200 @@ def register(all_pieces):
         all_pieces["cave_stairs_" + d] = ("world", (lambda d=d: cave_stairs(d)), WORLD)
 
 
+# ---------------------------------------------------------------- the burnt library (2026-10-11)
+#
+# The owner: "first crypt, then library, then caves"; the library burnt ("Charred shelves, heaps of ash and half-burnt
+# books, embers still glowing in the rubble"). Built like the crypt (its stone and cut corners), its faces toward the
+# rooms lined with tall bookcases.
+#   library_wall_1..4       1 a full bookcase, 2 one burnt out (charred books, a few embers), 3 a bookcase fallen
+#                           forward, books spilled, 4 bare scorched stone
+#   library_wall_low_1..2   the same cut low: a row of books on a low stone base
+#   library_diag_<o>[_low]  a cut corner in scorched stone
+#   library_shelf_x|y_1..2  a free-standing double bookcase along x or y (an aisle), 2 burnt
+#   library_pillar          a scorched stone column
+
+
+def _library_stone():
+    return [mat(STONE[2], 0.35, STONE[1], scale=14), mat(STONE[1], 0.35, STONE[0], scale=14), mat(EARTH[1], 0.35, STONE[0], scale=14)]
+
+
+def _books(face, u0, u1, z0, height, rng, burnt, depth=0.16):
+    """A shelf's row of books along a face from u0 to u1 standing on z0: spines of muted leathers, some leaning, burnt
+    ones black and gaps where they fell."""
+    leathers = [mat(BLOOD[1], 0.3, BLOOD[0], scale=12), mat(WOOD[2], 0.3, WOOD[1], scale=12), mat(MOSS[1], 0.3, MOSS[0], scale=12),
+                mat(COLD[1], 0.3, COLD[0], scale=12), mat(WOOD[3], 0.3, WOOD[2], scale=12)]
+    char = mat(STONE[0], 0.3, WOOD[0], scale=12)
+    ember = mat(EMBER[2], 0.3, EMBER[0], emit=2.5)
+    u = u0
+    while u < u1 - 0.03:
+        w = rng.uniform(0.025, 0.05)
+        if rng.random() < (0.25 if burnt else 0.08):
+            u += w * rng.uniform(1, 3)
+            continue
+        h = height * rng.uniform(0.65, 0.95)
+        black = burnt and rng.random() < 0.75
+        material = char if black else rng.choice(leathers)
+        lean = rng.uniform(-12, 12) if rng.random() < 0.15 else 0
+        x, y, _ = face(u + w / 2, depth / 2)
+        if lean:
+            box((depth, w, h) if face.x else (w, depth, h), (x, y, z0), material, rot=(lean, 0, 0) if face.x else (0, lean, 0))
+        else:
+            box((depth, w, h) if face.x else (w, depth, h), (x, y, z0), material)
+        if black and rng.random() < 0.12:
+            box((depth * 0.3, w * 0.8, 0.02) if face.x else (w * 0.8, depth * 0.3, 0.02), face(u + w / 2, 0.01, z0 + h * 0.5), ember)
+        u += w + 0.004
+
+
+class _LFace:
+    """A wall face toward -x ("x") or -y ("y"), u along it; p(u, out, z) is a point that far out from the face."""
+
+    def __init__(self, axis):
+        self.x = axis == "x"
+
+    def __call__(self, u, out=0.0, z=0.0):
+        return (-HALF - out, u, z) if self.x else (u, -HALF - out, z)
+
+
+def _bookcase(face, burnt, rng, h, fallen=False):
+    """A tall bookcase across a face: dark wood sides, top and shelves, books on every shelf."""
+    wood = mat(WOOD[1], 0.3, WOOD[0], scale=12) if not burnt else mat(STONE[0], 0.35, WOOD[0], scale=12)
+    depth = 0.2
+    top = h - 0.1
+    def board(u0, u1, z0, z1, out0, out1):
+        a = face(u0, out0)
+        b = face(u1, out1)
+        cx, cy = (a[0] + b[0]) / 2, (a[1] + b[1]) / 2
+        sx, sy = abs(a[0] - b[0]) or 0.02, abs(a[1] - b[1]) or 0.02
+        box((sx, sy, z1 - z0), (cx, cy, z0), wood, bevel=0.004)
+    if fallen:
+        # The case has pitched forward onto the floor: it lies on its face, its back up, books spilled round it.
+        x, y, _ = face(0.0, 0.5)
+        box((0.9, CELL - 0.06, 0.24) if face.x else (CELL - 0.06, 0.9, 0.24), (x, y, 0.0), wood, bevel=0.01)
+        for k in range(3):
+            px, py, _ = face(0.0, 0.15 + 0.3 * k)
+            box((0.03, CELL - 0.1, 0.03) if face.x else (CELL - 0.1, 0.03, 0.03), (px, py, 0.24), mat(STONE[0], 0.3, WOOD[0], scale=12))
+        char = [mat(STONE[0], 0.3, WOOD[0], scale=12), mat(BLOOD[1], 0.3, BLOOD[0], scale=12), mat(WOOD[2], 0.3, WOOD[1], scale=12)]
+        for n in range(22):
+            px, py, _ = face(rng.uniform(-HALF, HALF), rng.uniform(0.1, 0.9))
+            box((0.07, 0.1, 0.025), (px, py, rng.uniform(0, 0.08)), rng.choice(char), rot=(rng.uniform(-20, 20), rng.uniform(-20, 20), rng.uniform(0, 180)))
+        return
+    for u in (-HALF + 0.02, HALF - 0.04):
+        board(u, u + 0.04, 0.0, top, 0.0, depth)
+    board(-HALF, HALF, top, top + 0.06, 0.0, depth + 0.02)
+    shelves = 5
+    for k in range(shelves):
+        z = 0.12 + (top - 0.2) * k / shelves
+        board(-HALF + 0.04, HALF - 0.04, z, z + 0.035, 0.0, depth)
+        if k < shelves:
+            _books(face, -HALF + 0.07, HALF - 0.07, z + 0.035, (top - 0.2) / shelves - 0.05, rng, burnt, depth - 0.03)
+
+
+def library_wall(variant, low=False):
+    rng = _rng("library", variant, low)
+    h = LOW_H if low else WALL_H
+    stones = _library_stone()
+    box((CELL - 0.01, CELL - 0.01, h - 0.02), (0, 0, 0), mat(STONE[0], 0.0))
+    if low:
+        _ashlar_line((-HALF, HALF), (-HALF, -HALF), (-1, 0), h - 0.03, rng, stones, z0=0.0)
+        _ashlar_line((-HALF, -HALF), (HALF, -HALF), (0, -1), h - 0.03, rng, stones, z0=0.0)
+        for axis in "xy":
+            _books(_LFace(axis), -HALF + 0.05, HALF - 0.05, h - 0.02, 0.16, rng, variant == 2, 0.12)
+        _crypt_top([(-HALF, -HALF), (HALF, -HALF), (HALF, HALF), (-HALF, HALF)], h)
+        return
+    fallen_axis = "x" if rng.random() < 0.5 else "y"
+    for axis, a, b, n in (("x", (-HALF, HALF), (-HALF, -HALF), (-1, 0)), ("y", (-HALF, -HALF), (HALF, -HALF), (0, -1))):
+        _ashlar_line(a, b, n, h - 0.12, rng, stones, z0=0.1)
+        if variant in (1, 2):
+            _bookcase(_LFace(axis), variant == 2, rng, h * 0.82)
+        elif variant == 3:
+            # One face's case has fallen forward; the other still stands, burnt.
+            _bookcase(_LFace(axis), True, rng, h * 0.82, fallen=axis == fallen_axis)
+    # Soot up the stone, and the cornice.
+    _crypt_trim((-HALF, HALF), (-HALF, -HALF), (-1, 0), h, False)
+    _crypt_trim((-HALF, -HALF), (HALF, -HALF), (0, -1), h, False)
+    _crypt_top([(-HALF, -HALF), (HALF, -HALF), (HALF, HALF), (-HALF, HALF)], h)
+    soot = mat(STONE[0], 0.4, WOOD[0], scale=6)
+    for axis in "xy":
+        f = _LFace(axis)
+        for k in range(3):
+            x, y, _ = f(rng.uniform(-HALF, HALF), 0.03)
+            box((0.01, 0.2, 0.6) if f.x else (0.2, 0.01, 0.6), (x, y, h * rng.uniform(0.55, 0.75)), soot)
+
+
+def library_diag(orient, low=False):
+    rng = _rng("ldiag", orient, low)
+    h = LOW_H if low else WALL_H
+    tri, (a, b), normal = DIAG[orient]
+    prism(tri, h - 0.02, (0, 0, 0), mat(STONE[0], 0.0))
+    stones = _library_stone()
+    _ashlar_line(a, b, normal, h - (0.03 if low else 0.12), rng, stones, z0=0.1)
+    _crypt_trim(a, b, normal, h, low)
+    for (p, q, n) in (((-HALF, HALF), (-HALF, -HALF), (-1, 0)), ((-HALF, -HALF), (HALF, -HALF), (0, -1))):
+        mid = ((p[0] + q[0]) / 2, (p[1] + q[1]) / 2)
+        if mid[0] * normal[0] + mid[1] * normal[1] < -0.01:
+            _ashlar_line(p, q, n, h - (0.03 if low else 0.12), rng, stones, z0=0.1)
+            _crypt_trim(p, q, n, h, low)
+    _crypt_top(tri, h)
+
+
+def library_shelf(axis, variant):
+    """A free-standing double bookcase along x or y, filling its cell's length so a row of cells reads as one case."""
+    rng = _rng("lshelf", axis, variant)
+    burnt = variant == 2
+    wood = mat(WOOD[1], 0.3, WOOD[0], scale=12) if not burnt else mat(STONE[0], 0.35, WOOD[0], scale=12)
+    h = 1.75
+    thick = 0.36
+    length = CELL + 0.01
+    size = lambda along, across, tall: (along, across, tall) if axis == "x" else (across, along, tall)
+    box(size(length, 0.04, h), (0, 0, 0), wood)
+    box(size(length, thick + 0.04, 0.06), (0, 0, h), wood, bevel=0.005)
+    box(size(length, thick, 0.06), (0, 0, 0), wood)
+    for k in range(5):
+        z = 0.1 + (h - 0.2) * k / 5
+        box(size(length, thick, 0.03), (0, 0, z), wood)
+    # Books on both faces: build each face as a wall face at the case's side.
+    class Side:
+        def __init__(self, sign):
+            self.x = axis == "y"
+            self.sign = sign
+
+        def __call__(self, u, out=0.0, z=0.0):
+            # "out" is measured inward from the case's face, as a wall's books stand out from the wall.
+            d = self.sign * (thick / 2 - out)
+            return (d, u, z) if self.x else (u, d, z)
+    for sign in (-1, 1):
+        side = Side(sign)
+        for k in range(5):
+            z = 0.1 + (h - 0.2) * k / 5 + 0.03
+            _books(side, -length / 2 + 0.02, length / 2 - 0.02, z, (h - 0.2) / 5 - 0.05, rng, burnt, 0.15)
+
+
+def library_pillar():
+    rng = _rng("lpillar")
+    h = WALL_H * 1.05
+    stone = mat(STONE[2], 0.3, STONE[1], scale=10)
+    dark = mat(STONE[1], 0.3, STONE[0], scale=10)
+    box((0.58, 0.58, 0.14), (0, 0, 0), dark, bevel=0.012)
+    box((0.42, 0.42, h - 0.36), (0, 0, 0.14), stone, bevel=0.03)
+    box((0.58, 0.58, 0.14), (0, 0, h - 0.22), dark, bevel=0.012)
+    soot = mat(STONE[0], 0.4, WOOD[0], scale=6)
+    for k in range(3):
+        box((0.01, 0.15, 0.5), (-0.215, rng.uniform(-0.15, 0.15), rng.uniform(0.6, 1.4)), soot)
+
+
+def register_library(all_pieces):
+    for n in range(1, 5):
+        all_pieces["library_wall_%d" % n] = ("world", (lambda n=n: library_wall(n)), WORLD)
+    for n in range(1, 3):
+        all_pieces["library_wall_low_%d" % n] = ("world", (lambda n=n: library_wall(n, True)), WORLD)
+        for axis in "xy":
+            all_pieces["library_shelf_%s_%d" % (axis, n)] = ("world", (lambda a=axis, n=n: library_shelf(a, n)), WORLD)
+    for o in "bflr":
+        all_pieces["library_diag_" + o] = ("world", (lambda o=o: library_diag(o)), WORLD)
+        all_pieces["library_diag_%s_low" % o] = ("world", (lambda o=o: library_diag(o, True)), WORLD)
+    all_pieces["library_pillar"] = ("world", library_pillar, WORLD)
+
+
 # ---------------------------------------------------------------- stairways set into a wall (2026-10-10)
 #
 #   stairs_<up|down>_<x|y>_<crypt|cave>  a doorway in a wall cell, its face toward -x or -y: steps rise into it (up), or

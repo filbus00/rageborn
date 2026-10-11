@@ -196,7 +196,7 @@ namespace ARPG
     }
 
     /// <summary>
-    /// A unique foe (Gorrak, Vessa, Sir Aldric, the Reliquary Keeper): an enemy of its kind four levels up, its name over
+    /// A unique foe (Gorrak, Vessa, Sir Aldric, the Reliquary Keeper, Corvane): an enemy of its kind four levels up, its name over
     /// its head, waiting in its lair among its pack. Its death finishes the step.
     /// </summary>
     public class NamedFoe : MonoBehaviour
@@ -215,6 +215,7 @@ namespace ARPG
             "gorrak" => PackMember.Ghoul,
             "vessa" => PackMember.Cutthroat,
             "aldric" => PackMember.SkeletonKnight,
+            "corvane" => PackMember.EmberAcolyte,
             _ => PackMember.GravePriest,
         };
 

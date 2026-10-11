@@ -212,15 +212,16 @@ namespace ARPG.Tests
             Assert.AreEqual(8, DungeonRules.EnemyLevel(7));
             Assert.AreEqual(11, DungeonRules.EnemyLevel(12));
             Assert.AreEqual(15, DungeonRules.EnemyLevel(18));
-            Assert.AreEqual(18, DungeonRules.EnemyLevel(DungeonRules.Depths));
+            Assert.AreEqual(18, DungeonRules.EnemyLevel(24));
+            Assert.AreEqual(25, DungeonRules.EnemyLevel(DungeonRules.Depths));
             for (var depth = 2; depth <= DungeonRules.Depths; depth++)
                 Assert.GreaterOrEqual(DungeonRules.EnemyLevel(depth), DungeonRules.EnemyLevel(depth - 1));
         }
 
         [Test]
-        public void TheDungeonIs24Deep_WithTheWardenAt6()
+        public void TheDungeonIs36Deep_WithTheWardenAt6()
         {
-            Assert.AreEqual(24, DungeonRules.Depths);
+            Assert.AreEqual(36, DungeonRules.Depths);
             Assert.IsTrue(DungeonRules.IsBossDepth(6));
             Assert.IsFalse(DungeonRules.IsBossDepth(5));
             Assert.IsFalse(DungeonRules.IsBossDepth(7));
@@ -305,7 +306,7 @@ namespace ARPG.Tests
         public void Ruggedness_GrowsWithDepth()
         {
             Assert.AreEqual(0.5f, DungeonGenerator.Ruggedness(1), 1e-4f);
-            Assert.AreEqual(1f, DungeonGenerator.Ruggedness(24), 1e-4f);
+            Assert.AreEqual(1f, DungeonGenerator.Ruggedness(DungeonRules.Depths), 1e-4f);
             Assert.Less(DungeonGenerator.Ruggedness(6), DungeonGenerator.Ruggedness(18));
         }
 

@@ -1630,6 +1630,102 @@ def _wall_web():
             thread(a, b, 0.011)
 
 
+# ---------------------------------------------------------------- the burnt library's props (2026-10-11)
+
+def _book(at, size, material, turn=0.0, tilt=0.0, open_=False):
+    page = mat(BONE[1], 0.2, BONE[0], scale=14)
+    w, d, h = size
+    if open_:
+        box((w, d, 0.015), at, page, rot=(tilt, 0, turn))
+        box((w + 0.02, d + 0.02, 0.012), (at[0], at[1], at[2] - 0.012), material, rot=(tilt, 0, turn))
+    else:
+        box((w, d, h), at, material, rot=(tilt, 0, turn))
+        box((w - 0.02, d + 0.004, h * 0.8), (at[0] + 0.012, at[1], at[2] + h * 0.1), page, rot=(tilt, 0, turn))
+
+
+def _leathers():
+    return [mat(BLOOD[1], 0.3, BLOOD[0], scale=12), mat(WOOD[2], 0.3, WOOD[1], scale=12), mat(MOSS[1], 0.3, MOSS[0], scale=12),
+            mat(COLD[1], 0.3, COLD[0], scale=12), mat(STONE[0], 0.35, WOOD[0], scale=12)]
+
+
+def book_pile():
+    rng = seed(61)
+    leathers = _leathers()
+    for k in range(14):
+        z = 0.0 if k < 8 else 0.05 * (k - 7)
+        _book((rng.uniform(-0.22, 0.22), rng.uniform(-0.2, 0.2), z), (0.2, 0.15, 0.05), rng.choice(leathers), rng.uniform(0, 180), rng.uniform(-8, 8))
+    _book((0.05, -0.18, 0.05), (0.24, 0.17, 0.0), leathers[1], 20, 0, open_=True)
+
+
+def ash_heap():
+    rng = seed(62)
+    ash = [mat(STONE[2], 0.4, STONE[1], scale=16), mat(STONE[3], 0.4, STONE[2], scale=16)]
+    char = mat(STONE[0], 0.3, WOOD[0], scale=12)
+    ember = mat(EMBER[2], 0.3, EMBER[0], emit=3.0)
+    sphere(0.32, (0, 0, -0.05), ash[0], scale=(1.2, 1, 0.45), segments=10)
+    for k in range(6):
+        sphere(rng.uniform(0.08, 0.16), (rng.uniform(-0.3, 0.3), rng.uniform(-0.25, 0.25), 0.02), rng.choice(ash), scale=(1.3, 1, 0.5), segments=8)
+    for k in range(5):
+        box((0.03, 0.03, rng.uniform(0.2, 0.4)), (rng.uniform(-0.25, 0.25), rng.uniform(-0.2, 0.2), 0.05), char,
+            rot=(rng.uniform(40, 80), 0, rng.uniform(0, 180)))
+    for k in range(4):
+        sphere(0.025, (rng.uniform(-0.2, 0.2), rng.uniform(-0.2, 0.15), 0.1), ember, segments=6)
+
+
+def lectern():
+    wood = mat(WOOD[1], 0.3, WOOD[0], scale=12)
+    box((0.3, 0.3, 0.06), (0, 0, 0), wood, bevel=0.01)
+    box((0.1, 0.1, 0.85), (0, 0, 0.06), wood)
+    box((0.42, 0.34, 0.05), (-0.03, 0, 0.9), wood, rot=(0, 22, 0), bevel=0.008)
+    _book((-0.05, 0, 0.97), (0.32, 0.26, 0.0), _leathers()[0], 0, 22, open_=True)
+    from models import flame
+    cyl(0.02, 0.12, (0.12, 0.13, 0.92), mat(BONE[1], 0.2, BONE[0]), 6)
+    flame((0.12, 0.13, 1.05), 0.05, 6)
+
+
+def reading_desk():
+    rng = seed(63)
+    wood = mat(WOOD[1], 0.3, WOOD[0], scale=12)
+    box((0.9, 0.5, 0.06), (0, 0, 0.62), wood, bevel=0.01)
+    for x in (-0.38, 0.38):
+        for y in (-0.18, 0.18):
+            box((0.06, 0.06, 0.62), (x, y, 0), wood)
+    leathers = _leathers()
+    for k in range(4):
+        _book((rng.uniform(-0.3, 0.1), rng.uniform(-0.12, 0.12), 0.68 + 0.05 * k), (0.2, 0.15, 0.05), rng.choice(leathers), rng.uniform(-20, 20))
+    _book((0.2, -0.02, 0.68), (0.28, 0.2, 0.0), leathers[2], 10, 0, open_=True)
+    cyl(0.05, 0.6, (0.32, 0.3, 0.0), wood, 6)
+    from models import flame
+    cyl(0.02, 0.1, (-0.35, 0.15, 0.68), mat(BONE[1], 0.2, BONE[0]), 6)
+    flame((-0.35, 0.15, 0.79), 0.05, 6)
+
+
+def burning_books():
+    rng = seed(64)
+    leathers = _leathers()
+    char = mat(STONE[0], 0.3, WOOD[0], scale=12)
+    for k in range(12):
+        _book((rng.uniform(-0.2, 0.2), rng.uniform(-0.18, 0.18), 0.04 * (k % 4)), (0.2, 0.15, 0.05), char if k % 2 else rng.choice(leathers),
+              rng.uniform(0, 180), rng.uniform(-10, 10))
+    sphere(0.25, (0, 0, 0.0), mat(EMBER[1], 0.5, EMBER[0], emit=2.5, scale=20), scale=(1.2, 1, 0.3), segments=10)
+    from models import flame
+    flame((0, 0, 0.12), 0.16, 8)
+    flame((0.1, 0.06, 0.1), 0.11, 7)
+    flame((-0.1, -0.05, 0.1), 0.1, 7)
+
+
+def fallen_shelf():
+    rng = seed(65)
+    wood = mat(STONE[0], 0.35, WOOD[0], scale=12)
+    box((0.75, 0.32, 0.18), (0, 0, 0.0), wood, rot=(0, 8, 35), bevel=0.01)
+    for k in range(3):
+        box((0.03, 0.3, 0.1), (-0.25 + 0.25 * k, 0, 0.18), wood, rot=(0, 8, 35))
+    leathers = _leathers()
+    for k in range(12):
+        _book((rng.uniform(-0.32, 0.32), rng.uniform(-0.3, 0.3), 0.0), (0.18, 0.13, 0.045), rng.choice(leathers), rng.uniform(0, 180), rng.uniform(-15, 15))
+
+
+
 ALL = {
     "ritual_circle": ("world", ritual_circle, WORLD),
     "prop_barrel": ("dungeon", barrel, PROP),
@@ -1643,6 +1739,12 @@ ALL = {
     "prop_candles": ("dungeon", candle_cluster, PROP),
     "prop_bucket": ("dungeon", bucket, PROP),
     "prop_torch": ("dungeon", torch_stand, TALL),
+    "prop_book_pile": ("dungeon", book_pile, PROP),
+    "prop_ash_heap": ("dungeon", ash_heap, PROP),
+    "prop_lectern": ("dungeon", lectern, PROP),
+    "prop_reading_desk": ("dungeon", reading_desk, PROP),
+    "prop_burning_books": ("dungeon", burning_books, PROP),
+    "prop_fallen_shelf": ("dungeon", fallen_shelf, PROP),
     "stairs_down": ("world", stairs_down, WORLD),
     "stairs_up": ("world", stairs_up, WORLD),
     "chest_closed": ("world", chest_closed, WORLD),
@@ -1733,6 +1835,7 @@ for name, build in WALL_DECOR.items():
 import themes
 themes.register(ALL)
 themes.register_stairs(ALL)
+themes.register_library(ALL)
 
 # The dark town (2026-10-11): its houses replace the ones above.
 import town

@@ -235,7 +235,19 @@ namespace ARPG
                     definition = Deep("SaintMarrow");
                     adds = skeletonEnemy != null ? skeletonEnemy : normalEnemy;
                     break;
-                case 24 when Deep("FirstWatchman") != null:
+                // The burnt library's end and the caves (2026-10-11): the Ash Archivist with his scribes, the Rift Mother
+                // with her brood, and the First Watchman at the bottom.
+                case 24 when Deep("AshArchivist") != null:
+                    fight = new GameObject("Ash Archivist Fight").AddComponent<AshArchivistFight>();
+                    definition = Deep("AshArchivist");
+                    adds = DefinitionOf(PackMember.EmberAcolyte) ?? normalEnemy;
+                    break;
+                case 30 when Deep("RiftMother") != null:
+                    fight = new GameObject("Rift Mother Fight").AddComponent<RiftMotherFight>();
+                    definition = Deep("RiftMother");
+                    adds = Deep("VoidWraith") ?? normalEnemy;
+                    break;
+                case 36 when Deep("FirstWatchman") != null:
                     fight = new GameObject("First Watchman Fight").AddComponent<FirstWatchmanFight>();
                     definition = Deep("FirstWatchman");
                     adds = Deep("Hollowed") ?? normalEnemy;
@@ -435,8 +447,9 @@ namespace ARPG
                     var at = new Vector2Int(x, y);
                     if (Layout.Get(at) != DungeonCell.Wall || WallHash(x, y, 1) > WallDetailChance)
                         continue;
-                    // Torches and banners hang on built walls: not on the caves' boulders or a cut corner (2026-10-10).
-                    if (Layout.Theme == DungeonTheme.Cave || ThemePieces.Diagonal(IsOpenCell, x, y) != null)
+                    // Torches and banners hang on built walls: not on the caves' boulders or a cut corner (2026-10-10), nor on
+                    // the burnt library's shelves (2026-10-11).
+                    if (Layout.Theme != DungeonTheme.Crypt || ThemePieces.Diagonal(IsOpenCell, x, y) != null)
                         continue;
                     if (IsStairsWall(at) || IsStairsWall(at + Vector2Int.right) || IsStairsWall(at + Vector2Int.left) ||
                         IsStairsWall(at + Vector2Int.up) || IsStairsWall(at + Vector2Int.down))

@@ -288,9 +288,14 @@ namespace ARPG.Tests
             Assert.Greater(Share(14, PackMember.GravePriest), 0f);
             Assert.AreEqual(0f, Share(18, PackMember.Hollowed));
             Assert.Greater(Share(19, PackMember.Hollowed), 0f);
-            Assert.Greater(Share(19, PackMember.RiftCaller), 0f);
-            Assert.AreEqual(0f, Share(19, PackMember.VoidWraith));
-            Assert.Greater(Share(20, PackMember.VoidWraith), 0f);
+            // The void's creatures wait in the caves (2026-10-11), and the burnt library is dry.
+            Assert.AreEqual(0f, Share(24, PackMember.RiftCaller));
+            Assert.Greater(Share(25, PackMember.RiftCaller), 0f);
+            Assert.AreEqual(0f, Share(25, PackMember.VoidWraith));
+            Assert.Greater(Share(26, PackMember.VoidWraith), 0f);
+            Assert.AreEqual(0f, Share(16, PackMember.Drowned));
+            Assert.Greater(Share(28, PackMember.Drowned), 0f);
+            Assert.Greater(Share(16, PackMember.EmberAcolyte), Share(10, PackMember.EmberAcolyte), "fire casters fill the library");
             // Older types thin out but are still met.
             Assert.Greater(Share(16, PackMember.Husk) + Share(16, PackMember.Skeleton), 0f);
         }
@@ -307,9 +312,9 @@ namespace ARPG.Tests
         [Test]
         public void ABossWaitsEverySixLevels()
         {
-            foreach (var depth in new[] { 6, 12, 18, 24 })
+            foreach (var depth in new[] { 6, 12, 18, 24, 30, 36 })
                 Assert.IsTrue(DungeonRules.IsBossDepth(depth), depth.ToString());
-            foreach (var depth in new[] { 1, 5, 7, 11, 13, 23 })
+            foreach (var depth in new[] { 1, 5, 7, 11, 13, 23, 25, 35 })
                 Assert.IsFalse(DungeonRules.IsBossDepth(depth), depth.ToString());
         }
     }

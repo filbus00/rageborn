@@ -37,6 +37,8 @@ namespace ARPG.Editor
             { "drowned", 72f }, { "harpooner", 96f }, { "drowned_watchman", 92f }, { "skeleton_knight", 88f },
             { "grave_priest", 96f }, { "hollowed", 72f }, { "void_wraith", 76f }, { "rift_caller", 98f },
             { "tidewife", 100f }, { "saint_marrow", 112f }, { "first_watchman", 100f },
+            // The burnt library's boss and the caves' (2026-10-11).
+            { "ash_archivist", 108f }, { "rift_mother", 104f },
             // The pets (2026-10-06, ArtSource/tools/props/pets.py): the wolf a little over the Ash Wolf (seen from behind it is narrow), the raven measured with
             // its wings spread.
             { "pet_wolf", 68f }, { "pet_boar", 58f }, { "pet_raven", 34f },
@@ -45,7 +47,8 @@ namespace ARPG.Editor
         /// <summary>Cells wider than the default 128 px: the ghoul's slam swings its big arm past a 128 px cell (clipped on
         /// the first bake, 2026-09-29).</summary>
         static readonly Dictionary<string, int> CellSizes = new Dictionary<string, int> { { "ghoul", 192 }, { "cinder_warden", 192 }, { "carrion_bloat", 192 },
-            { "drowned_watchman", 192 }, { "skeleton_knight", 192 }, { "tidewife", 192 }, { "saint_marrow", 192 }, { "first_watchman", 192 } };
+            { "drowned_watchman", 192 }, { "skeleton_knight", 192 }, { "tidewife", 192 }, { "saint_marrow", 192 }, { "first_watchman", 192 },
+            { "ash_archivist", 192 }, { "rift_mother", 192 } };
 
         /// <summary>Bodies whose clips are copies of another enemy's (the Cinder Warden moves as the ghoul).</summary>
         static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string>
@@ -55,6 +58,7 @@ namespace ARPG.Editor
             { "drowned", "husk" }, { "harpooner", "bandit_archer" }, { "drowned_watchman", "ghoul" }, { "skeleton_knight", "ghoul" },
             { "grave_priest", "bandit_archer" }, { "hollowed", "husk" }, { "void_wraith", "husk" }, { "rift_caller", "bandit_archer" },
             { "tidewife", "ghoul" }, { "saint_marrow", "ghoul" }, { "first_watchman", "ghoul" },
+            { "ash_archivist", "ghoul" }, { "rift_mother", "ghoul" },
         };
 
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
@@ -76,6 +80,7 @@ namespace ARPG.Editor
             ("SkeletonKnight", "skeleton_knight", null), ("GravePriest", "grave_priest", null), ("Hollowed", "hollowed", null),
             ("VoidWraith", "void_wraith", null), ("RiftCaller", "rift_caller", null),
             ("Tidewife", "tidewife", null), ("SaintMarrow", "saint_marrow", null), ("FirstWatchman", "first_watchman", null),
+            ("AshArchivist", "ash_archivist", null), ("RiftMother", "rift_mother", null),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the

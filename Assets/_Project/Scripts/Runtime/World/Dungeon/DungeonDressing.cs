@@ -35,6 +35,19 @@ namespace ARPG
             (PropKind.Barrel, 6), (PropKind.Brazier, 4),
         };
 
+        // The burnt library (2026-10-11): books heaped and burnt, ash, lecterns and desks, smouldering piles for light.
+        static readonly (PropKind kind, int weight)[] LibraryPropWeights =
+        {
+            (PropKind.BookPile, 22), (PropKind.AshHeap, 16), (PropKind.Lectern, 10), (PropKind.ReadingDesk, 10),
+            (PropKind.BurningBooks, 10), (PropKind.FallenShelf, 10), (PropKind.Candles, 8), (PropKind.Urn, 4),
+        };
+
+        static readonly (DecalKind kind, int weight)[] LibraryDecalWeights =
+        {
+            (DecalKind.Ash, 34), (DecalKind.Cracks, 20), (DecalKind.Rubble, 14), (DecalKind.Blood, 10), (DecalKind.Bones, 10),
+            (DecalKind.Skull, 4),
+        };
+
         static readonly (DecalKind kind, int weight)[] CaveDecalWeights =
         {
             (DecalKind.Rubble, 30), (DecalKind.Puddle, 22), (DecalKind.Bones, 14), (DecalKind.Blood, 10), (DecalKind.Cracks, 12),
@@ -49,7 +62,7 @@ namespace ARPG
 
         /// <summary>Whether a prop gives off light (placed at most once a room, so a level has few lights).</summary>
         public static bool IsLit(PropKind kind) => kind == PropKind.Brazier || kind == PropKind.Candles || kind == PropKind.Torch ||
-                                                   kind == PropKind.Campfire || kind == PropKind.Hellfire;
+                                                   kind == PropKind.Campfire || kind == PropKind.Hellfire || kind == PropKind.BurningBooks;
 
         public static void Place(DungeonLayout layout, List<Vector2Int>[] doors, System.Random random, int levelSeed = 0)
         {
@@ -187,7 +200,8 @@ namespace ARPG
         static (PropKind kind, int weight)[] PropWeightsAt(int depth)
         {
             var demonic = Mathf.Clamp01((depth - 8) / 16f);
-            var list = new List<(PropKind, int)>(DungeonRules.ThemeAt(depth) == DungeonTheme.Cave ? CavePropWeights : CryptPropWeights);
+            var theme = DungeonRules.ThemeAt(depth);
+            var list = new List<(PropKind, int)>(theme == DungeonTheme.Cave ? CavePropWeights : theme == DungeonTheme.Library ? LibraryPropWeights : CryptPropWeights);
             var extra = Mathf.RoundToInt(demonic * 120);
             if (extra > 0)
             {
@@ -255,7 +269,7 @@ namespace ARPG
                 var cell = floor[random.Next(floor.Count)];
                 if (!layout.IsFloor(cell) || layout.Decals.ContainsKey(cell))
                     continue;
-                var kind = Pick(layout.Theme == DungeonTheme.Cave ? CaveDecalWeights : DecalWeights, random);
+                var kind = Pick(layout.Theme == DungeonTheme.Cave ? CaveDecalWeights : layout.Theme == DungeonTheme.Library ? LibraryDecalWeights : DecalWeights, random);
                 // Moss grows in the damp rooms (style 3) and hardly elsewhere.
                 if (kind == DecalKind.Moss && style != 3 && random.Next(3) > 0)
                     kind = DecalKind.Cracks;
