@@ -66,6 +66,7 @@ namespace ARPG
 
             if (targetDepth > 0)
                 GameSession.Current.Travel = new LevelTravel(targetDepth, arrival);
+            LoadTimer.Begin(targetScene);
             SceneManager.LoadScene(targetScene);
         }
     }

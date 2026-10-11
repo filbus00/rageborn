@@ -14,6 +14,7 @@ namespace UnityEngine
 namespace UnityEngine.Tilemaps
 {
     public enum TileFlags { None = 0, LockColor = 1, LockTransform = 2, InstantiateGameObjectRuntimeOnly = 4, LockAll = 3 }
+    public struct TileChangeData { public Vector3Int position; public Object tileAsset; public Color color; public Matrix4x4 transform; public TileChangeData(Vector3Int position, TileBase tile, Color color, Matrix4x4 transform) { this.position = position; tileAsset = tile; this.color = color; this.transform = transform; } }
     public abstract class TileBase : ScriptableObject { public virtual void GetTileData(Vector3Int p, ITilemap t, ref TileData d) { } public virtual void RefreshTile(Vector3Int p, ITilemap t) { } }
     public class ITilemap { }
     public struct TileData { public Sprite sprite { get; set; } public Color color { get; set; } public Matrix4x4 transform { get; set; } public GameObject gameObject { get; set; } public TileFlags flags { get; set; } public Tile.ColliderType colliderType { get; set; } }
@@ -26,7 +27,7 @@ namespace UnityEngine.Tilemaps
     {
         public enum Orientation { XY, XZ, YX, YZ, ZX, ZY, Custom }
         public BoundsInt cellBounds => default; public Vector3Int origin { get; set; } public Vector3Int size { get; set; } public Color color { get; set; } public Grid layoutGrid => null; public Vector3 tileAnchor { get; set; } public Orientation orientation { get; set; } public Bounds localBounds => default;
-        public TileBase GetTile(Vector3Int p) => null; public T GetTile<T>(Vector3Int p) where T : TileBase => null; public bool HasTile(Vector3Int p) => false; public void SetTile(Vector3Int p, TileBase t) { } public void SetTiles(Vector3Int[] p, TileBase[] t) { } public void SetTilesBlock(BoundsInt b, TileBase[] t) { } public TileBase[] GetTilesBlock(BoundsInt b) => new TileBase[0];
+        public TileBase GetTile(Vector3Int p) => null; public T GetTile<T>(Vector3Int p) where T : TileBase => null; public bool HasTile(Vector3Int p) => false; public void SetTile(Vector3Int p, TileBase t) { } public void SetTiles(Vector3Int[] p, TileBase[] t) { } public void SetTiles(TileChangeData[] tileChangeDataArray, bool ignoreLockFlags) { } public void SetTilesBlock(BoundsInt b, TileBase[] t) { } public TileBase[] GetTilesBlock(BoundsInt b) => new TileBase[0];
         public void ClearAllTiles() { } public void CompressBounds() { } public void RefreshAllTiles() { } public void RefreshTile(Vector3Int p) { } public void ResizeBounds() { }
         public void SetColor(Vector3Int p, Color c) { } public Color GetColor(Vector3Int p) => Color.white; public void SetTileFlags(Vector3Int p, TileFlags f) { } public void RemoveTileFlags(Vector3Int p, TileFlags f) { } public void AddTileFlags(Vector3Int p, TileFlags f) { } public TileFlags GetTileFlags(Vector3Int p) => default;
         public void SetTransformMatrix(Vector3Int p, Matrix4x4 m) { } public Matrix4x4 GetTransformMatrix(Vector3Int p) => default; public Sprite GetSprite(Vector3Int p) => null; public int GetUsedTilesCount() => 0;

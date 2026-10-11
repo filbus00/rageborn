@@ -49,6 +49,7 @@ namespace ARPG
                 yield return fade.FadeOut(FadeSeconds);
             if (depth > 0)
                 GameSession.Current.Travel = new LevelTravel(depth, arrival);
+            LoadTimer.Begin(scene);
             SceneManager.LoadScene(scene);
         }
     }

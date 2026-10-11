@@ -41,6 +41,12 @@ namespace ARPG
 
         public static float MoveSpeedFactor(EnemyRank rank) => 1f;
 
+        /// <summary>Enemy telegraphs fill twice as fast (the owner, 2026-10-11: attacks "telegraphed too far in advance"):
+        /// slam circles, aim lines, casters' circles, lunges, every special and elite attack. Bosses keep their own.</summary>
+        public const float TelegraphSpeed = 2f;
+
+        public static float Telegraph(float seconds) => seconds / TelegraphSpeed;
+
         static bool Ranged(EnemyArchetype archetype) => archetype == EnemyArchetype.Archer || archetype == EnemyArchetype.Caster;
 
         public static float AttackSpeedFactor(EnemyRank rank, EnemyArchetype archetype) =>
@@ -48,7 +54,7 @@ namespace ARPG
 
         /// <summary>Wind-ups that paint a telegraph (brute, archer, caster) keep their warning time; the rest quicken.</summary>
         public static float WindupSpeedFactor(EnemyRank rank, EnemyArchetype archetype) =>
-            archetype == EnemyArchetype.Brute || Ranged(archetype) ? 1f : AttackSpeedFactor(rank, archetype);
+            rank == EnemyRank.Boss ? 1f : archetype == EnemyArchetype.Brute || Ranged(archetype) ? TelegraphSpeed : AttackSpeedFactor(rank, archetype);
 
         public static float ProjectileSpeedFactor(EnemyRank rank) => rank == EnemyRank.Boss ? 1f : ProjectileSpeed;
 

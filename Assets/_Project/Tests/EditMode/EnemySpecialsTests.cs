@@ -57,7 +57,7 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void Enemies_AttackQuicker_ButWalkAsBefore_AndKeepTheirTelegraphs()
+        public void Enemies_AttackQuicker_ButWalkAsBefore_AndTelegraphFaster()
         {
             Assert.AreEqual(1f, EnemyRules.MoveSpeedFactor(EnemyRank.Normal), "they walk at their own speed (the owner, 2026-10-11)");
             Assert.AreEqual(1.5f, EnemyRules.AttackSpeedFactor(EnemyRank.Normal, EnemyArchetype.Archer), "ranged attacks faster");
@@ -65,8 +65,10 @@ namespace ARPG.Tests
             Assert.AreEqual(1.5f, EnemyRules.ProjectileSpeedFactor(EnemyRank.Normal));
             Assert.AreEqual(1.4f, EnemyRules.ProjectileDamageFactor(EnemyRank.Normal));
             Assert.AreEqual(1.2f, EnemyRules.WindupSpeedFactor(EnemyRank.Normal, EnemyArchetype.Swarmer));
-            Assert.AreEqual(1f, EnemyRules.WindupSpeedFactor(EnemyRank.Elite, EnemyArchetype.Brute), "a slam circle keeps its warning");
-            Assert.AreEqual(1f, EnemyRules.WindupSpeedFactor(EnemyRank.Normal, EnemyArchetype.Archer), "an aim line keeps its warning");
+            Assert.AreEqual(2f, EnemyRules.WindupSpeedFactor(EnemyRank.Elite, EnemyArchetype.Brute), "a slam circle fills twice as fast (2026-10-11)");
+            Assert.AreEqual(2f, EnemyRules.WindupSpeedFactor(EnemyRank.Normal, EnemyArchetype.Archer), "an aim line too");
+            Assert.AreEqual(1f, EnemyRules.WindupSpeedFactor(EnemyRank.Boss, EnemyArchetype.Brute), "bosses keep their own timing");
+            Assert.AreEqual(0.5f, EnemyRules.Telegraph(1f), 1e-5f);
         }
     }
 }

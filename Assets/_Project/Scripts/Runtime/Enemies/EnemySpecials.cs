@@ -244,7 +244,7 @@ namespace ARPG
             if (special.Shape == SpecialShape.Throw)
             {
                 // A thin aim line along each throw for the wind-up, then the projectiles fly down them.
-                var warning = EnemySpecialRules.CastSeconds + special.Fill;
+                var warning = EnemyRules.Telegraph(EnemySpecialRules.CastSeconds + special.Fill);
                 enemy.BeginCast(warning, aim);
                 for (var k = 0; k < special.Count; k++)
                 {
@@ -255,13 +255,13 @@ namespace ARPG
                 Queue(enemy, special, target, aim, warning, 0);
                 return;
             }
-            enemy.BeginCast(EnemySpecialRules.CastSeconds + special.Fill * 0.5f, aim);
+            enemy.BeginCast(EnemyRules.Telegraph(EnemySpecialRules.CastSeconds + special.Fill * 0.5f), aim);
             var roll = Random.value;
             var count = special.Shape == SpecialShape.Lob ? special.Count : 1;
             for (var k = 0; k < count; k++)
             {
                 var point = special.Shape == SpecialShape.Lob ? EnemySpecialRules.LobPoint(target, k, special.Count, special.Spread, roll) : target;
-                Queue(enemy, special, point, aim, EnemySpecialRules.CastSeconds + special.Stagger * k, k);
+                Queue(enemy, special, point, aim, EnemyRules.Telegraph(EnemySpecialRules.CastSeconds + special.Stagger * k), k);
             }
         }
 
@@ -298,12 +298,12 @@ namespace ARPG
             {
                 case SpecialShape.Lob:
                     if (s.Poison)
-                        world.Hazards.Poison(p.Target, s.Size, s.Fill, s.LingerSeconds, hit * s.LingerHit, level, s.Color, hit * s.Hit);
+                        world.Hazards.Poison(p.Target, s.Size, EnemyRules.Telegraph(s.Fill), s.LingerSeconds, hit * s.LingerHit, level, s.Color, hit * s.Hit);
                     else
-                        world.Hazards.Strike(p.Target, s.Size, s.Fill, hit * s.Hit, s.LingerSeconds, hit * s.LingerHit, level, s.Color, s.Slow, s.SlowSeconds);
+                        world.Hazards.Strike(p.Target, s.Size, EnemyRules.Telegraph(s.Fill), hit * s.Hit, s.LingerSeconds, hit * s.LingerHit, level, s.Color, s.Slow, s.SlowSeconds);
                     break;
                 case SpecialShape.Ring:
-                    world.Hazards.Strike(enemy.GroundPosition, s.Size, s.Fill, hit * s.Hit, s.LingerSeconds, hit * s.LingerHit, level, s.Color, s.Slow, s.SlowSeconds);
+                    world.Hazards.Strike(enemy.GroundPosition, s.Size, EnemyRules.Telegraph(s.Fill), hit * s.Hit, s.LingerSeconds, hit * s.LingerHit, level, s.Color, s.Slow, s.SlowSeconds);
                     break;
                 case SpecialShape.Throw:
                     Sfx.Play(SoundId.ArrowShot, 0.6f);
@@ -319,7 +319,7 @@ namespace ARPG
                     {
                         var direction = EnemySpecialRules.LineDirection(p.Aim, k, s.Count, s.Spread);
                         var from = enemy.GroundPosition + direction * enemy.Definition.BodyRadius;
-                        world.Hazards.Line(from, from + direction * s.Length, s.Size, s.Fill, hit * s.Hit, level, s.Color, s.Slow, s.SlowSeconds);
+                        world.Hazards.Line(from, from + direction * s.Length, s.Size, EnemyRules.Telegraph(s.Fill), hit * s.Hit, level, s.Color, s.Slow, s.SlowSeconds);
                     }
                     break;
             }

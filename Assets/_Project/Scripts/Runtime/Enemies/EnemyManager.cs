@@ -124,9 +124,11 @@ namespace ARPG
                 return;
             }
 
+            LoadTimer.Mark("before enemy manager");
             Nav = NavGridBaker.Bake(groundTilemap, obstacleTilemaps);
             flow = new FlowField(Nav);
             Hash = CreateHash(Nav);
+            LoadTimer.Mark("nav grid");
             Projectiles = new EnemyProjectiles(transform);
             Hazards = new EnemyHazards(transform);
             Affixes = new EliteAffixes(transform);
@@ -134,6 +136,7 @@ namespace ARPG
 
             for (var i = 0; i < poolSize; i++)
                 pool.Push(CreateInstance());
+            LoadTimer.Mark("enemy pool");
 
             IsReady = true;
         }

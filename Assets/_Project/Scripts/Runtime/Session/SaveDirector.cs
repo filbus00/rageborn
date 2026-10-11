@@ -78,6 +78,7 @@ namespace ARPG
                 instance.dirtySince = -1f;
             }
             Time.timeScale = 1f;
+            LoadTimer.Begin(TownScene);
             SceneManager.LoadScene(TownScene);
         }
 

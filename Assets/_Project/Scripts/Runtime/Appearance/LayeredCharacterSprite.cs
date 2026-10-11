@@ -27,11 +27,51 @@ namespace ARPG
         readonly CharacterSheet[] current = new CharacterSheet[LayerCount];
         // Seconds per animation from the character's timing file ("<grip>_<clip> <seconds> [<ground speed>]"), written by
         // the sprite bake, and the ground speed a locomotion clip was recorded at.
-        readonly Dictionary<string, float> timing = new Dictionary<string, float>();
-        readonly Dictionary<string, float> speeds = new Dictionary<string, float>();
-        bool timingLoaded;
+        Dictionary<string, float> timing => Loaded.Timing;
+        Dictionary<string, float> speeds => Loaded.Speeds;
+        bool timingLoaded
+        {
+            get => Loaded.TimingLoaded;
+            set => Loaded.TimingLoaded = value;
+        }
         float currentSeconds;
-        readonly Dictionary<string, CharacterSheet> sheets = new Dictionary<string, CharacterSheet>();
+        Dictionary<string, CharacterSheet> sheets => Loaded.Sheets;
+
+        // What is loaded of a character, kept across scenes (2026-10-11, the owner: "loading times could be somewhat
+        // shorter"): the player is made again in every scene, and a scene change frees what nothing holds, so every
+        // stairs, portal and death loaded her 200 sheets again, about 3 s of a 4 s load on the iPhone 11. Held here, they
+        // stay loaded, and only a changed look loads anything.
+        sealed class Store
+        {
+            public readonly Dictionary<string, float> Timing = new Dictionary<string, float>();
+            public readonly Dictionary<string, float> Speeds = new Dictionary<string, float>();
+            public bool TimingLoaded;
+            public readonly Dictionary<string, CharacterSheet> Sheets = new Dictionary<string, CharacterSheet>();
+            public readonly List<string> Baked = new List<string>();
+            public readonly Dictionary<string, bool> LookBaked = new Dictionary<string, bool>();
+            public readonly HashSet<string> Absent = new HashSet<string>();
+        }
+
+        static readonly Dictionary<string, Store> stores = new Dictionary<string, Store>();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => stores.Clear();
+
+        Store loaded;
+        bool shown;
+
+        Store Loaded
+        {
+            get
+            {
+                if (loaded != null)
+                    return loaded;
+                var key = character ?? "";
+                if (!stores.TryGetValue(key, out loaded))
+                    stores[key] = loaded = new Store();
+                return loaded;
+            }
+        }
         readonly List<SpriteRenderer> visible = new List<SpriteRenderer>(LayerCount);
         string character;
         CharacterAppearance appearance;
@@ -117,8 +157,10 @@ namespace ARPG
 
         public void SetAppearance(CharacterAppearance next)
         {
-            if (next.Equals(appearance) && sheets.Count > 0)
+            // The sheets may be loaded from an earlier scene; this sprite still has to show them once.
+            if (shown && next.Equals(appearance))
                 return;
+            shown = true;
             appearance = next;
             // Only the sheets of looks no longer worn are let go; the body's and every unchanged layer's stay loaded, so
             // equipping a bow loads the bow's sheets and nothing else. Equipping used to drop every sheet, call
@@ -172,7 +214,7 @@ namespace ARPG
             LocomotionRules.MovingLeftSuffix,
         };
 
-        readonly List<string> baked = new List<string>();
+        List<string> baked => Loaded.Baked;
 
         void Preload()
         {
@@ -348,7 +390,7 @@ namespace ARPG
         // Whether any sheet of a look exists (its idle or its attack), asked once per look: a look not modelled yet (a
         // recurve bow while only the hunting bow is) skips straight to the fallback instead of searching for each of its
         // animations, 17 file names apiece, on every equip.
-        readonly Dictionary<string, bool> lookBaked = new Dictionary<string, bool>();
+        Dictionary<string, bool> lookBaked => Loaded.LookBaked;
 
         bool Baked(AppearanceLayer layer, string look, CharacterGrip grip)
         {
@@ -361,22 +403,24 @@ namespace ARPG
         }
 
         // Sheets that do not exist, remembered for good (nothing to free), so a missing one is searched for once.
-        readonly HashSet<string> absent = new HashSet<string>();
+        HashSet<string> absent => Loaded.Absent;
 
         CharacterSheet LoadCached(string name)
         {
-            if (sheets.TryGetValue(name, out var cached))
-                return cached;
-            if (absent.Contains(name))
-                return null;
-            var sheet = CharacterSheets.Load($"Characters/{character}/{name}");
-            if (sheet == null)
+            if (!sheets.TryGetValue(name, out var sheet))
             {
-                absent.Add(name);
-                return null;
+                if (absent.Contains(name))
+                    return null;
+                sheet = CharacterSheets.Load($"Characters/{character}/{name}");
+                if (sheet == null)
+                {
+                    absent.Add(name);
+                    return null;
+                }
+                sheets[name] = sheet;
             }
-            sheets[name] = sheet;
-            if (sheet != null && sheet.Rows.Length != directionCount)
+            // Also for a sheet kept from an earlier scene, which this sprite has not seen yet.
+            if (sheet.Rows.Length != directionCount)
             {
                 // A row index means a different direction at another count: keep the same heading.
                 row = row * sheet.Rows.Length / directionCount;

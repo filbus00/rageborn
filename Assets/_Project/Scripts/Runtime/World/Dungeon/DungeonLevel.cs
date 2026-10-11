@@ -85,12 +85,14 @@ namespace ARPG
 
         void Start()
         {
+            LoadTimer.Mark("until the level's start");
             if (arrivalNotice != null)
                 HintBanner.Current?.Show(arrivalNotice);
         }
 
         void Awake()
         {
+            LoadTimer.Mark("scene");
             var session = GameSession.Current;
             var travel = session.Travel;
             depth = travel.Depth > 0 ? travel.Depth : editorDepth;
@@ -128,8 +130,10 @@ namespace ARPG
 
             levelSeed = DungeonRules.LevelSeed(session.DungeonSeed, depth);
             Layout = DungeonGenerator.Generate(levelSeed, depth, shapes, settings);
+            LoadTimer.Mark("generate");
 
             Paint();
+            LoadTimer.Mark("paint");
             RescueCorpses(session);
             if (arrival == Arrival.AtPortal && session.PortalDepth == depth)
             {
@@ -155,6 +159,7 @@ namespace ARPG
 
             for (var i = 0; i < Layout.Packs.Count; i++)
                 AddPack(root, i, Layout.Packs[i]);
+            LoadTimer.Mark("packs");
 
             if (Layout.HasBossArena)
                 SetUpBoss(session, root);
@@ -172,6 +177,7 @@ namespace ARPG
             var playerController = FindAnyObjectByType<PlayerController>();
             if (playerController != null)
                 gameObject.AddComponent<Minimap>().Init(Layout, levelId, playerController.transform);
+            LoadTimer.Mark("objectives, minimap");
         }
 
         Vector2Int ArrivalCell(Arrival arrival)
@@ -342,19 +348,21 @@ namespace ARPG
                     if (groundTiles[x + y * bounds.width] != null)
                         floorCells.Add(new Vector2Int(bounds.xMin + x, bounds.yMin + y));
             // The painter shades its cells as it paints them (2026-10-06); the fallback floors are tinted tile by tile.
+            LoadTimer.Mark("paint: cells");
             if (!GroundPainter.PaintDungeon(ground, floorCells, Layout.Decals, theme, Layout.Raised))
             {
                 ground.SetTilesBlock(area, groundTiles);
                 WorldLights.ShadeGround(ground);
             }
-            walls.SetTilesBlock(area, wallTiles);
+            LoadTimer.Mark("paint: ground");
+            SetShaded(walls, area, wallTiles);
             var propMap = PropTilemap();
             propMap.ClearAllTiles();
             propMap.SetTilesBlock(area, propTiles);
             wallArt ??= Overlay("Wall Art");
             wallArt.ClearAllTiles();
-            wallArt.SetTilesBlock(area, artTiles);
-            ShadeWalls();
+            SetShaded(wallArt, area, artTiles);
+            LoadTimer.Mark("paint: walls");
 
             // Braziers and candles light their corner of a dark level.
             var lights = new GameObject("Prop Lights").transform;
@@ -555,26 +563,29 @@ namespace ARPG
 
         // Each wall block takes its own shade, so a run of wall does not read as one repeated box; one stone through every
         // room (the owner, 2026-10-04: no per-room looks). Props keep their own colours. Rock away from the floor darkens.
-        void ShadeWalls()
+        // Walls and rock darken away from the floor. Set with their tiles in one call (2026-10-11: four tilemap calls a
+        // cell, after the tiles, took a good part of the load on the phone).
+        void SetShaded(Tilemap map, BoundsInt area, TileBase[] tiles)
         {
-            var bounds = Layout.Bounds;
-            for (var x = bounds.xMin; x < bounds.xMax; x++)
-                for (var y = bounds.yMin; y < bounds.yMax; y++)
+            var changes = new List<TileChangeData>(tiles.Length / 2);
+            for (var y = 0; y < area.size.y; y++)
+                for (var x = 0; x < area.size.x; x++)
                 {
-                    var at = new Vector2Int(x, y);
-                    if (Layout.Get(at) != DungeonCell.Wall || RockDistance(at) > RockShown)
+                    var tile = tiles[x + y * area.size.x];
+                    if (tile == null)
                         continue;
-                    var cell = new Vector3Int(x, y, 0);
-                    var shade = (0.9f + 0.1f * LightingRules.FloorShade(at * 3).g) * RockShade[RockDistance(at)];
-                    var tint = new Color(shade, shade, shade, 1f);
-                    walls.SetTileFlags(cell, TileFlags.None);
-                    walls.SetColor(cell, tint);
-                    if (wallArt != null && wallArt.HasTile(cell))
-                    {
-                        wallArt.SetTileFlags(cell, TileFlags.None);
-                        wallArt.SetColor(cell, tint);
-                    }
+                    var at = new Vector2Int(area.xMin + x, area.yMin + y);
+                    changes.Add(new TileChangeData(new Vector3Int(at.x, at.y, 0), tile, WallTint(at), Matrix4x4.identity));
                 }
+            map.SetTiles(changes.ToArray(), true);
+        }
+
+        Color WallTint(Vector2Int at)
+        {
+            if (Layout.Get(at) != DungeonCell.Wall || RockDistance(at) > RockShown)
+                return Color.white;
+            var shade = (0.9f + 0.1f * LightingRules.FloorShade(at * 3).g) * RockShade[RockDistance(at)];
+            return new Color(shade, shade, shade, 1f);
         }
 
         // Made once beside the walls, drawn the same way (sorted with the characters), but blocking nothing: the enemy

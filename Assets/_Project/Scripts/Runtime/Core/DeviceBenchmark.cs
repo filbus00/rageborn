@@ -92,7 +92,14 @@ namespace ARPG
             var session = GameSession.Current;
             var depth = Mathf.Clamp(session.DeepestDepth, 1, DungeonRules.Depths);
             Step($"save {(loaded.Loaded ? "loaded" : "none, fresh character")}: level {session.Level}, depth {depth}, pet {(session.Pets.Active.HasValue ? session.Pets.Active.Value.ToString() : "none")}");
+            // Town first, as a loaded game starts, then down: both loads are timed (LoadTimer), the first cold, the
+            // second as every later scene change is.
+            LoadTimer.Begin(SceneTravel.TownScene);
+            SceneManager.LoadScene(SceneTravel.TownScene);
+            yield return null;
+            yield return new WaitForSeconds(2f);
             session.Travel = new LevelTravel(depth, Arrival.FromAbove);
+            LoadTimer.Begin(SceneTravel.DungeonScene);
             SceneManager.LoadScene(SceneTravel.DungeonScene);
             yield return null;
             yield return new WaitForSeconds(1f);

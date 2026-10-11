@@ -594,7 +594,7 @@ namespace ARPG
                 if (definition.BurstOnDeath && !burstDone && manager != null)
                 {
                     burstDone = true;
-                    manager.Hazards.Blast(ground, definition.SlamRadius, definition.BurstFillSeconds,
+                    manager.Hazards.Blast(ground, definition.SlamRadius, EnemyRules.Telegraph(definition.BurstFillSeconds),
                         CombatFormulas.EnemyHitDamage(Level) * definition.DamageMultiplier, Level);
                 }
                 pack?.NotifyDeath(this);
@@ -884,7 +884,7 @@ namespace ARPG
                         if (PlayerWithinCircle(world, attackCenter, definition.SlamRadius))
                             world.Player.TakeHit(damage, Level, armorIgnorePercent, dodgeable: false);
                         for (var pulse = 1; pulse < definition.CastPulses; pulse++)
-                            world.Hazards.Blast(attackCenter, definition.SlamRadius, definition.CastPulseGap * pulse, damage, Level, EnemyHazards.VoidColor);
+                            world.Hazards.Blast(attackCenter, definition.SlamRadius, EnemyRules.Telegraph(definition.CastPulseGap * pulse), damage, Level, EnemyHazards.VoidColor);
                     }
                     else
                         world.Hazards.Fire(attackCenter, definition.SlamRadius, definition.BurnSeconds, damage * definition.BurnHitsPerSecond, Level);
@@ -1000,7 +1000,7 @@ namespace ARPG
         {
             State = EnemyState.Attack;
             lungeAttack = true;
-            stateTimer = definition.LungeWindupSeconds;
+            stateTimer = EnemyRules.Telegraph(definition.LungeWindupSeconds);
             var aim = playerGround - ground;
             attackAim = aim.sqrMagnitude > 1e-4f ? aim.normalized : Vector2.down;
             var end = ground + attackAim * definition.LungeDistance;

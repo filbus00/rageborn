@@ -78,6 +78,7 @@ namespace ARPG
         {
             if (ground == null || !Load())
                 return false;
+            LoadTimer.Mark("ground: textures");
             Release();
             positions.Clear();
             tiles.Clear();
@@ -104,6 +105,7 @@ namespace ARPG
                 Put(buffer, atlases[n / perAtlas], n % perAtlas, columns);
                 return buffer;
             }, _ => { });
+            LoadTimer.Mark("ground: draw");
 
             if (decals != null)
                 for (var n = 0; n < cells.Count; n++)
@@ -117,6 +119,7 @@ namespace ARPG
                     Put(cellPixels, atlases[n / perAtlas], n % perAtlas, columns);
                 }
 
+            LoadTimer.Mark("ground: decals");
             var pending = new List<(Vector2Int cell, int slot)>();
             for (var a = 0; a < atlasCount; a++)
             {
@@ -126,10 +129,12 @@ namespace ARPG
                 Flush(atlases[a], heights[a], pending, columns);
             }
 
+            LoadTimer.Mark("ground: atlases, tiles");
             ground.ClearAllTiles();
             ground.SetTiles(positions.ToArray(), tiles.ToArray());
             positions.Clear();
             tiles.Clear();
+            LoadTimer.Mark("ground: set tiles");
             return true;
         }
 

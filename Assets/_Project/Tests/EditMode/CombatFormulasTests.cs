@@ -18,7 +18,7 @@ namespace ARPG.Tests
         public void EnemyAndCharacterCurves_AtLevelOne()
         {
             Assert.AreEqual(8f, CombatFormulas.EnemyLife(1), 1e-4f);
-            Assert.AreEqual(3f, CombatFormulas.EnemyHitDamage(1), 1e-4f);
+            Assert.AreEqual(4.5f, CombatFormulas.EnemyHitDamage(1), 1e-4f);
             Assert.AreEqual(100f, CombatFormulas.CharacterBaseLife(1), 1e-4f);
             // The stand-in Vitality starts at level 2: 8 points a level, 8 life a point.
             Assert.AreEqual(100f, CombatFormulas.CharacterLife(1), 1e-4f);
@@ -109,15 +109,15 @@ namespace ARPG.Tests
         [Test]
         public void EnemyHitOnPlayer_IsTheLevelCurve_WithoutArmor()
         {
-            Assert.AreEqual(3f, CombatFormulas.EnemyHitOnPlayer(1, 1f, 0f), 1e-5f);
-            Assert.AreEqual(4.5f, CombatFormulas.EnemyHitOnPlayer(1, 1.5f, 0f), 1e-5f, "an archetype multiplier scales it");
+            Assert.AreEqual(4.5f, CombatFormulas.EnemyHitOnPlayer(1, 1f, 0f), 1e-5f);
+            Assert.AreEqual(6.75f, CombatFormulas.EnemyHitOnPlayer(1, 1.5f, 0f), 1e-5f, "an archetype multiplier scales it");
         }
 
         [Test]
         public void EnemyHitOnPlayer_IsReducedByArmorAgainstTheAttackersLevel()
         {
             // At level 1, 450 armor blocks 450 / (450 + 450) = half of the hit.
-            Assert.AreEqual(1.5f, CombatFormulas.EnemyHitOnPlayer(1, 1f, 450f), 1e-4f);
+            Assert.AreEqual(2.25f, CombatFormulas.EnemyHitOnPlayer(1, 1f, 450f), 1e-4f);
         }
 
         [Test]

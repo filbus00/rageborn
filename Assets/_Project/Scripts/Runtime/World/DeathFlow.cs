@@ -64,6 +64,7 @@ namespace ARPG
             if (fade != null)
                 yield return fade.FadeOut(fadeSeconds);
 
+            LoadTimer.Begin(townScene);
             SceneManager.LoadScene(townScene);
         }
     }

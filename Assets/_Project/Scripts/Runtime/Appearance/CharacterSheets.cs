@@ -21,6 +21,19 @@ namespace ARPG
         /// direction code and the frame number. Null when the sheet does not exist.</summary>
         public static CharacterSheet Load(string path)
         {
+            var since = LoadTimer.Now;
+            try
+            {
+                return LoadSheet(path);
+            }
+            finally
+            {
+                LoadTimer.Spent("sheet loads", since);
+            }
+        }
+
+        static CharacterSheet LoadSheet(string path)
+        {
             var sprites = new List<Sprite>(Resources.LoadAll<Sprite>(path));
             if (sprites.Count == 0)
                 foreach (var code in AppearanceRules.DirectionCodes(16))

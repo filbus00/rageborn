@@ -252,28 +252,28 @@ namespace ARPG
             if ((m & EliteModifiers.Desecrator) != 0 && (t.Desecrator -= dt) <= 0f)
             {
                 t.Desecrator = EliteAffixRules.DesecratorEvery;
-                world.Hazards.Strike(target, EliteAffixRules.DesecratorRadius, EliteAffixRules.DesecratorFill, hit * EliteAffixRules.DesecratorHit,
+                world.Hazards.Strike(target, EliteAffixRules.DesecratorRadius, EnemyRules.Telegraph(EliteAffixRules.DesecratorFill), hit * EliteAffixRules.DesecratorHit,
                     EliteAffixRules.DesecratorSeconds, hit * EliteAffixRules.DesecratorBurn, level, DesecrateColor);
             }
             if ((m & EliteModifiers.Mortar) != 0 && (t.Mortar -= dt) <= 0f && Vector2.Distance(here, target) > EliteAffixRules.MortarMinRange)
             {
                 t.Mortar = EliteAffixRules.MortarEvery;
-                world.Hazards.Blast(target, EliteAffixRules.MortarRadius, EliteAffixRules.MortarFill, hit * EliteAffixRules.MortarHit, level);
+                world.Hazards.Blast(target, EliteAffixRules.MortarRadius, EnemyRules.Telegraph(EliteAffixRules.MortarFill), hit * EliteAffixRules.MortarHit, level);
                 for (var k = 0; k < 2; k++)
                 {
                     var spot = target + Random.insideUnitCircle.normalized * EliteAffixRules.MortarSpread;
-                    world.Hazards.Blast(spot, EliteAffixRules.MortarRadius, EliteAffixRules.MortarFill + 0.25f * (k + 1), hit * EliteAffixRules.MortarHit, level);
+                    world.Hazards.Blast(spot, EliteAffixRules.MortarRadius, EnemyRules.Telegraph(EliteAffixRules.MortarFill + 0.25f * (k + 1)), hit * EliteAffixRules.MortarHit, level);
                 }
             }
             if ((m & EliteModifiers.Plagued) != 0 && (t.Plague -= dt) <= 0f)
             {
                 t.Plague = EliteAffixRules.PlagueEvery;
-                world.Hazards.Poison(target, EliteAffixRules.PlagueRadius, EliteAffixRules.PlagueFill, EliteAffixRules.PlagueSeconds, hit * EliteAffixRules.PlagueBurn, level);
+                world.Hazards.Poison(target, EliteAffixRules.PlagueRadius, EnemyRules.Telegraph(EliteAffixRules.PlagueFill), EliteAffixRules.PlagueSeconds, hit * EliteAffixRules.PlagueBurn, level);
             }
             if ((m & EliteModifiers.FrostNova) != 0 && (t.Nova -= dt) <= 0f && Vector2.Distance(here, target) <= EliteAffixRules.NovaRange)
             {
                 t.Nova = EliteAffixRules.NovaEvery;
-                world.Hazards.Strike(here, EliteAffixRules.NovaRadius, EliteAffixRules.NovaFill, hit * EliteAffixRules.NovaHit, 0f, 0f, level, FrostColor,
+                world.Hazards.Strike(here, EliteAffixRules.NovaRadius, EnemyRules.Telegraph(EliteAffixRules.NovaFill), hit * EliteAffixRules.NovaHit, 0f, 0f, level, FrostColor,
                     EliteAffixRules.NovaSlow, EliteAffixRules.NovaSlowSeconds);
             }
             if ((m & EliteModifiers.LightningLances) != 0 && (t.Lance -= dt) <= 0f)
@@ -306,7 +306,7 @@ namespace ARPG
             timers.Remove(enemy);
             if (enemy.Definition == null || (enemy.Modifiers & EliteModifiers.Molten) == 0)
                 return;
-            world.Hazards.Blast(enemy.GroundPosition, EliteAffixRules.MoltenDeathRadius, EliteAffixRules.MoltenDeathFill,
+            world.Hazards.Blast(enemy.GroundPosition, EliteAffixRules.MoltenDeathRadius, EnemyRules.Telegraph(EliteAffixRules.MoltenDeathFill),
                 Hit(enemy) * EliteAffixRules.MoltenDeathHit, enemy.Level);
         }
 
@@ -321,11 +321,11 @@ namespace ARPG
                 }
             if (lance == null)
             {
-                lance = new Lance { Marker = GroundMarker.Line(from, to, EliteAffixRules.LanceWidth, EliteAffixRules.LanceFill, LightningColor, parent) };
+                lance = new Lance { Marker = GroundMarker.Line(from, to, EliteAffixRules.LanceWidth, EnemyRules.Telegraph(EliteAffixRules.LanceFill), LightningColor, parent) };
                 lances.Add(lance);
             }
             lance.Marker.SetColor(LightningColor);
-            lance.Marker.RestartLine(from, to, EliteAffixRules.LanceWidth, EliteAffixRules.LanceFill);
+            lance.Marker.RestartLine(from, to, EliteAffixRules.LanceWidth, EnemyRules.Telegraph(EliteAffixRules.LanceFill));
             lance.From = from;
             lance.To = to;
             lance.Damage = damage;
@@ -366,18 +366,18 @@ namespace ARPG
             {
                 beam = new Beam
                 {
-                    Marker = GroundMarker.Line(center, end, EliteAffixRules.BeamWidth, EliteAffixRules.BeamWindup, ArcaneColor, parent),
+                    Marker = GroundMarker.Line(center, end, EliteAffixRules.BeamWidth, EnemyRules.Telegraph(EliteAffixRules.BeamWindup), ArcaneColor, parent),
                     Base = GroundMarker.Circle(center, 0.45f, 0.01f, ArcaneColor, parent),
                 };
                 beams.Add(beam);
             }
             beam.Marker.SetColor(ArcaneColor);
-            beam.Marker.RestartLine(center, end, EliteAffixRules.BeamWidth, EliteAffixRules.BeamWindup);
+            beam.Marker.RestartLine(center, end, EliteAffixRules.BeamWidth, EnemyRules.Telegraph(EliteAffixRules.BeamWindup));
             beam.Base.RestartCircle(center, 0.45f, 0.01f);
             beam.Base.Advance(1f);
             beam.Center = center;
             beam.Angle = angle;
-            beam.Windup = EliteAffixRules.BeamWindup;
+            beam.Windup = EnemyRules.Telegraph(EliteAffixRules.BeamWindup);
             beam.Left = EliteAffixRules.BeamSeconds;
             beam.Pulse = 0f;
             beam.Damage = damage;

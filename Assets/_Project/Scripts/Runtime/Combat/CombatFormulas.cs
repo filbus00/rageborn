@@ -18,7 +18,10 @@ namespace ARPG
         public static float WeaponAverageDamage(int itemLevel) => 6f + 2.6f * Mathf.Pow(itemLevel, 1.35f);
 
         /// <summary>Damage of one hit from an enemy of the given level, before the player's armor.</summary>
-        public static float EnemyHitDamage(int level) => 3f * Mathf.Pow(level, 1.45f);
+        public static float EnemyHitDamage(int level) => EnemyHitScale * Mathf.Pow(level, 1.45f);
+
+        /// <summary>An enemy hit at level 1: 3 by Docs/03, half again since the owner found enemies too weak (2026-10-11).</summary>
+        public const float EnemyHitScale = 4.5f;
 
         /// <summary>Life of a normal enemy of the given level.</summary>
         public static float EnemyLife(int level) => 8f * Mathf.Pow(level, EnemyLifeExponent);
