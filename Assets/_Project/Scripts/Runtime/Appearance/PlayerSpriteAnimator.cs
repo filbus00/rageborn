@@ -40,6 +40,7 @@ namespace ARPG
         const float RunThreshold = 0.5f;
 
         bool diving;
+        int diveShown;
 
         // How long the character must stand before the idle shows, so a quick reversal does not flash it.
         const float IdleGraceSeconds = 0.1f;
@@ -304,9 +305,12 @@ namespace ARPG
             // a baked dive she just runs, fast, the usual way.
             if (player.IsDodging && sprite.Has("dive"))
             {
-                if (!diving)
+                // A second dive chained during the first's getting-up plays from its start too (2026-10-11: it slid her
+                // along on the first dive's last frame).
+                if (!diving || diveShown != player.DodgeCount)
                 {
                     diving = true;
+                    diveShown = player.DodgeCount;
                     inAction = false;
                     action = null;
                     sprite.Face(velocity);

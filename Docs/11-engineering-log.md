@@ -1061,3 +1061,7 @@ The owner: the dungeon "still looks really bad", walls "not only right shapes", 
 - `DungeonLevel` sets walls and wall art with their shade in one `Tilemap.SetTiles(TileChangeData[], true)` call each (`SetShaded`, `WallTint`), in place of `ShadeWalls`' four tilemap calls a cell after the tiles (254 to 231 ms, less than hoped).
 - After: the town at app start 4.3 s (her sheets the first time, 2.8 s; painting the town ground about 1 s), then the dungeon 1.35 s (setting the ground's tiles 341 ms, the walls 231, the first enemies' sheets 318). What is left: the tilemaps' per-tile cost (the ground could be drawn as a few chunk sprites instead of a tile a cell, but the nav grid reads the ground tilemap), and loading her sheets at app start.
 
+## 2026-10-11: chained dodges
+
+- Bug (the owner: "when you try and chain two dodges after one another the second dodge does not fire and the character just slides in the dodge direction while being frozen"): the dive's travel is 0.4 s but its animation 0.65 s, and a second dive could start in between. `PlayerSpriteAnimator` started the dive only when not already diving, so the second dive's travel played over the first dive's finished, frozen last frame. `PlayerController.DodgeCount` now counts dives and the animator restarts the dive when it changes.
+

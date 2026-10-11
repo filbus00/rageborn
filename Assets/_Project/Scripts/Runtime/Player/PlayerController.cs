@@ -68,6 +68,9 @@ namespace ARPG
         /// <summary>A dodge's dive is under way, getting up included: she holds her fire and the dive animation plays.</summary>
         public bool IsDodging => dodgeSeconds > 0f;
 
+        /// <summary>Counts the dives, so a dive started while the last one's getting-up still plays is seen as new.</summary>
+        public int DodgeCount { get; private set; }
+
         /// <summary>The first part of a dive, when nothing can hit her.</summary>
         public bool IsUntouchable => untouchableSeconds > 0f;
 
@@ -79,6 +82,7 @@ namespace ARPG
                 return false;
             Dash(groundDirection, DodgeRules.Distance, DodgeRules.Speed);
             dodgeSeconds = DodgeRules.AnimationSeconds;
+            DodgeCount++;
             untouchableSeconds = DodgeRules.UntouchableSeconds;
             Sfx.Play(SoundId.Swing, 0.7f);
             return true;
