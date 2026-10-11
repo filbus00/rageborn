@@ -198,7 +198,7 @@ namespace ARPG
                                               EnemyRules.WindupSpeedFactor(definition.Rank, definition.Archetype);
 
         float EffectiveAttackRecoverSeconds => definition.AttackRecoverSeconds / (HasModifier(EliteModifiers.Hasted) ? HastedAttackSpeedMultiplier : 1f) /
-                                               EnemyRules.AttackSpeedFactor(definition.Rank);
+                                               EnemyRules.AttackSpeedFactor(definition.Rank, definition.Archetype);
 
         float castTimer;
         float castSeconds;
@@ -900,8 +900,10 @@ namespace ARPG
                 case EnemyArchetype.Archer:
                     // The arrow does the hitting, or a wall stops it.
                     Sfx.Play(SoundId.ArrowShot, 0.7f);
-                    world.Projectiles.Fire(this, ground + attackAim * definition.BodyRadius, attackAim * definition.ProjectileSpeed,
-                        definition.AttackRange + ArrowOvershoot, damage, Level, armorIgnorePercent, definition.ProjectileColor);
+                    world.Projectiles.Fire(this, ground + attackAim * definition.BodyRadius,
+                        attackAim * (definition.ProjectileSpeed * EnemyRules.ProjectileSpeedFactor(definition.Rank)),
+                        definition.AttackRange + ArrowOvershoot, damage * EnemyRules.ProjectileDamageFactor(definition.Rank), Level, armorIgnorePercent,
+                        definition.ProjectileColor);
                     return;
 
                 default:

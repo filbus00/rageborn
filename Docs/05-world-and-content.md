@@ -369,18 +369,18 @@ Pack mixes (the built rule for act 1, `PackComposition`, extended): in each act,
 
 ### Every enemy's special (built 2026-10-11)
 
-The owner: "more ranged and telegraphed attacks, make them quicker also", and the dodge used for more than keeping space; answers: every type gets one; noticeably quicker; a dodge stays a dodge. Each type keeps its normal attack and every 6 to 8 s, while chasing her within range and in sight, stops for a short cast and throws its special, drawn on the ground before it lands (0.7 to 1.1 s), so walking or diving out of it is the answer (`EnemySpecialRules`). Enemies move 25 percent faster and attack 20 percent faster; the wind-ups that paint a telegraph (slam circles, aim lines, casters' circles) keep their warning time. Bosses keep their own pace and attacks.
+The owner: "more ranged and telegraphed attacks, make them quicker also", and the dodge used for more than keeping space; answers: every type gets one; noticeably quicker; a dodge stays a dodge. Each type keeps its normal attack and every 6 to 8 s, while chasing her within range and in sight, stops for a short cast and throws its special, drawn on the ground before it lands (0.7 to 1.1 s), so walking or diving out of it is the answer (`EnemySpecialRules`). Enemies attack 20 percent faster, ranged ones (archers, casters) half again as often; they walk at their own speed (the owner, 2026-10-11: "enemies do not need to move faster"). Their projectiles fly half again as fast and hit 40 percent harder. The wind-ups that paint a telegraph (slam circles, aim lines, casters' circles) keep their warning time. Bosses keep their own pace and attacks. Throws (the owner: "more throwing attacks with projectiles") show a thin aim line for about a second, then real projectiles fly down it.
 
 | Enemy | Special |
 |---|---|
 | Husk | Bile Spit: a circle on her that poisons on for 2.5 s |
-| Ghoul | Ground Pound: a wide ring around itself when she is close |
-| Bandit Archer | Volley: three lanes in a fan |
-| Skeleton | Bone Throw: one lane |
+| Ghoul | Rock Throw: a heavy stone thrown at her |
+| Bandit Archer | Volley: three arrows in a fan |
+| Skeleton | Bone Throw: two bones |
 | Cultist | Fire Rain: three circles falling one after another round her |
 | Ash Wolf | Pounce Bite: a short lane |
-| Cutthroat | Thrown Knives: two lanes |
-| Ember Acolyte | Fire Wave: a wide lane |
+| Cutthroat | Thrown Knives: three knives in a fan |
+| Ember Acolyte | Fire Bolts: two bolts |
 | Pyre Keeper | Ember Burst: a ring around itself that burns on |
 | Carrion Bloat | Gas Lob: a wide poison cloud on her |
 | Drowned | Brine Spit: a lane that slows |
@@ -389,8 +389,8 @@ The owner: "more ranged and telegraphed attacks, make them quicker also", and th
 | Skeleton Knight | Shield Bash: a ring around itself |
 | Grave Priest | Grave Hands: two circles on and beside her |
 | Hollowed | Shriek: a wide ring around itself |
-| Rift Caller | Rift Bolt: a lane |
-| Void Wraith | Void Mark: a circle on her |
+| Rift Caller | Rift Bolt: one heavy bolt |
+| Void Wraith | Void Shards: three shards in a fan |
 
 Claude's numbers, to review: every timing, size and damage in the table in code.
 

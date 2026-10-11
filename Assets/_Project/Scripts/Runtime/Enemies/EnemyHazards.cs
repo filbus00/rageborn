@@ -129,6 +129,9 @@ namespace ARPG
                     continue;
                 line.Active = false;
                 line.Marker.Hide();
+                // A line that only warns (a throw's aim line) does nothing when it fills.
+                if (line.Damage <= 0f)
+                    continue;
                 Sfx.Play(SoundId.EnemySlam, 0.5f);
                 var player = world.Player;
                 if (player == null || !player.IsAlive ||

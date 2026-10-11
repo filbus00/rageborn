@@ -1028,3 +1028,9 @@ The owner: the dungeon "still looks really bad", walls "not only right shapes", 
 - Quicker: `EnemyRules.MoveSpeedFactor` 1.25, `AttackSpeedFactor` 1.2 (recoveries), `WindupSpeedFactor` 1.2 except brutes, archers and casters, whose wind-up is their telegraph; bosses 1.
 - Checked in play mode at depth 3: a ghoul's Ground Pound ring filling around the pack; she was swarmed and fell with her fire held off. Tests: `EnemySpecialsTests` (every roster type has a special with at least 0.7 s to get out, the longest kind wins, fans centred, speeds). 627 of 627 pass in Unity. Not yet played on the phone.
 
+## 2026-10-11: projectiles instead of speed
+
+- The owner: enemies need not move faster; ranged attacks faster; more thrown projectiles, faster and harder hitting. `EnemyRules`: `MoveSpeedFactor` 1 again; `AttackSpeedFactor(rank, archetype)` 1.5 for archers and casters (`QuickerRanged`), 1.2 for the rest; `ProjectileSpeedFactor` 1.5, `ProjectileDamageFactor` 1.4 (bosses 1), applied to the archers' and cultists' shots in `EnemyController`.
+- `SpecialShape.Throw` (`EnemySpecial.Speed`): during the cast, a 0.18-wide aim line per projectile fills as the warning (`EnemyHazards.Line` with no damage, which now stays silent), then `EnemyProjectiles.Fire` sends them down those lines, at the throw's speed, its hit times the projectile damage factor, coloured. Throws: Ghoul Rock Throw (it gave up Ground Pound), Bandit Archer Volley (3), Skeleton Bone Throw (2), Cutthroat Thrown Knives (3), Ember Acolyte Fire Bolts (2, in place of Fire Wave), Rift Caller Rift Bolt, Void Wraith Void Shards (3, in place of Void Mark).
+- 627 of 627 tests pass in Unity. In play mode at depth 5 the skeletons went into their throw cast, but she was killed before a throw was caught in flight (the shots use the archers' tested projectile path). Not yet played on the phone.
+

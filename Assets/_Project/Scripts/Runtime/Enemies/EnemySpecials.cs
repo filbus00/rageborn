@@ -11,6 +11,10 @@ namespace ARPG
         Lob,
         Lines,
         Ring,
+
+        /// <summary>Real projectiles thrown at her along the aim lines it showed during the wind-up (2026-10-11: "more
+        /// throwing attacks with projectiles").</summary>
+        Throw,
     }
 
     /// <summary>One enemy type's special attack (numbers in ground units, seconds and enemy hits).</summary>
@@ -18,8 +22,9 @@ namespace ARPG
     {
         public EnemySpecial(string name, SpecialShape shape, float every, float minRange, float maxRange, float size, float fill, float hit,
             Color color, int count = 1, float spread = 0f, float length = 0f, float lingerSeconds = 0f, float lingerHit = 0f, bool poison = false,
-            float slow = 0f, float slowSeconds = 0f, float stagger = 0f)
+            float slow = 0f, float slowSeconds = 0f, float stagger = 0f, float speed = 0f)
         {
+            Speed = speed;
             Name = name;
             Shape = shape;
             Every = every;
@@ -69,6 +74,8 @@ namespace ARPG
         public float SlowSeconds { get; }
         /// <summary>Several circles fall one after another, this many seconds apart.</summary>
         public float Stagger { get; }
+        /// <summary>A thrown projectile's speed (ground units a second).</summary>
+        public float Speed { get; }
     }
 
     /// <summary>
@@ -85,18 +92,20 @@ namespace ARPG
         static readonly Color Water = new Color(0.35f, 0.65f, 0.95f, 0.85f);
         static readonly Color Void = new Color(0.6f, 0.3f, 0.85f, 0.9f);
         static readonly Color Grave = new Color(0.45f, 0.9f, 0.6f, 0.85f);
+        static readonly Color Rock = new Color(0.55f, 0.5f, 0.45f, 1f);
+        static readonly Color Steel = new Color(0.8f, 0.82f, 0.85f, 1f);
 
         // By the definition's name; a champion or elite of a kind ("SwarmerChampion") takes the kind's.
         static readonly (string kind, EnemySpecial special)[] Table =
         {
             ("Swarmer", new EnemySpecial("Bile Spit", SpecialShape.Lob, 6.5f, 2.5f, 6.5f, 0.9f, 0.9f, 0.8f, Bile, lingerSeconds: 2.5f, lingerHit: 0.3f, poison: true)),
-            ("Ghoul", new EnemySpecial("Ground Pound", SpecialShape.Ring, 7f, 0f, 3.2f, 2.6f, 1.0f, 1.4f, Blood)),
-            ("BanditArcher", new EnemySpecial("Volley", SpecialShape.Lines, 7f, 2.5f, 9f, 0.55f, 0.8f, 0.9f, Blood, count: 3, spread: 16f, length: 10f)),
-            ("Skeleton", new EnemySpecial("Bone Throw", SpecialShape.Lines, 6f, 2f, 7.5f, 0.6f, 0.75f, 1.0f, Bone, length: 8f)),
+            ("Ghoul", new EnemySpecial("Rock Throw", SpecialShape.Throw, 7f, 2.5f, 8.5f, 0.3f, 0.5f, 1.6f, Rock, length: 10f, speed: 12f)),
+            ("BanditArcher", new EnemySpecial("Volley", SpecialShape.Throw, 6f, 2.5f, 10f, 0.2f, 0.45f, 1.0f, Steel, count: 3, spread: 14f, length: 12f, speed: 17f)),
+            ("Skeleton", new EnemySpecial("Bone Throw", SpecialShape.Throw, 5.5f, 2f, 8f, 0.25f, 0.45f, 1.1f, Bone, count: 2, spread: 9f, length: 10f, speed: 15f)),
             ("Cultist", new EnemySpecial("Fire Rain", SpecialShape.Lob, 8f, 2f, 9f, 1.0f, 0.9f, 0.9f, Fire, count: 3, spread: 1.6f, stagger: 0.35f)),
             ("AshWolf", new EnemySpecial("Pounce Bite", SpecialShape.Lines, 6f, 2.5f, 6f, 0.9f, 0.7f, 1.1f, Blood, length: 6f)),
-            ("Cutthroat", new EnemySpecial("Thrown Knives", SpecialShape.Lines, 6f, 2f, 7f, 0.45f, 0.7f, 0.8f, Blood, count: 2, spread: 14f, length: 8f)),
-            ("EmberAcolyte", new EnemySpecial("Fire Wave", SpecialShape.Lines, 8f, 2f, 8f, 1.1f, 1.0f, 1.0f, Fire, length: 9f)),
+            ("Cutthroat", new EnemySpecial("Thrown Knives", SpecialShape.Throw, 5f, 2f, 8f, 0.2f, 0.45f, 0.8f, Steel, count: 3, spread: 12f, length: 10f, speed: 18f)),
+            ("EmberAcolyte", new EnemySpecial("Fire Bolts", SpecialShape.Throw, 6.5f, 2f, 9f, 0.3f, 0.5f, 1.0f, Fire, count: 2, spread: 10f, length: 11f, speed: 13f)),
             ("PyreKeeper", new EnemySpecial("Ember Burst", SpecialShape.Ring, 7f, 0f, 3.5f, 3f, 1.1f, 1.0f, Fire, lingerSeconds: 2f, lingerHit: 0.4f)),
             ("CarrionBloat", new EnemySpecial("Gas Lob", SpecialShape.Lob, 7f, 2.5f, 7f, 1.6f, 1.0f, 0.5f, Bile, lingerSeconds: 4f, lingerHit: 0.4f, poison: true)),
             ("Drowned", new EnemySpecial("Brine Spit", SpecialShape.Lines, 6.5f, 2f, 7f, 0.7f, 0.8f, 0.8f, Water, length: 8f, slow: 0.6f, slowSeconds: 1.5f)),
@@ -105,8 +114,8 @@ namespace ARPG
             ("SkeletonKnight", new EnemySpecial("Shield Bash", SpecialShape.Ring, 6.5f, 0f, 3f, 2.2f, 0.9f, 1.4f, Bone)),
             ("GravePriest", new EnemySpecial("Grave Hands", SpecialShape.Lob, 7.5f, 2f, 8f, 1.2f, 1.0f, 1.0f, Grave, count: 2, spread: 2f, stagger: 0.5f)),
             ("Hollowed", new EnemySpecial("Shriek", SpecialShape.Ring, 7f, 0f, 4f, 3.2f, 1.1f, 1.0f, Void)),
-            ("RiftCaller", new EnemySpecial("Rift Bolt", SpecialShape.Lines, 7f, 2f, 9f, 0.9f, 0.9f, 1.1f, Void, length: 10f)),
-            ("VoidWraith", new EnemySpecial("Void Mark", SpecialShape.Lob, 6f, 2f, 8f, 1.2f, 0.9f, 1.2f, Void)),
+            ("RiftCaller", new EnemySpecial("Rift Bolt", SpecialShape.Throw, 6f, 2f, 10f, 0.35f, 0.55f, 1.4f, Void, length: 12f, speed: 13f)),
+            ("VoidWraith", new EnemySpecial("Void Shards", SpecialShape.Throw, 5.5f, 2f, 9f, 0.25f, 0.45f, 0.9f, Void, count: 3, spread: 18f, length: 11f, speed: 15f)),
         };
 
         /// <summary>The special of a definition by its name, or one with <see cref="SpecialShape.None"/>.</summary>
@@ -203,7 +212,7 @@ namespace ARPG
                     if (distance >= special.MinRange && distance <= special.MaxRange && world.Nav.HasLineOfSight(enemy.GroundPosition, target))
                     {
                         timer = special.Every * Random.Range(0.85f, 1.15f);
-                        Begin(enemy, special, target);
+                        Begin(enemy, special, target, world);
                     }
                     else
                         timer = 0.4f;
@@ -226,10 +235,26 @@ namespace ARPG
             }
         }
 
-        void Begin(EnemyController enemy, EnemySpecial special, Vector2 target)
+        const float AimWidth = 0.18f;
+
+        void Begin(EnemyController enemy, EnemySpecial special, Vector2 target, EnemyManager world)
         {
             var aim = target - enemy.GroundPosition;
             aim = aim.sqrMagnitude > 1e-4f ? aim.normalized : Vector2.down;
+            if (special.Shape == SpecialShape.Throw)
+            {
+                // A thin aim line along each throw for the wind-up, then the projectiles fly down them.
+                var warning = EnemySpecialRules.CastSeconds + special.Fill;
+                enemy.BeginCast(warning, aim);
+                for (var k = 0; k < special.Count; k++)
+                {
+                    var direction = EnemySpecialRules.LineDirection(aim, k, special.Count, special.Spread);
+                    var from = enemy.GroundPosition + direction * enemy.Definition.BodyRadius;
+                    world.Hazards.Line(from, from + direction * special.Length, AimWidth, warning, 0f, enemy.Level, special.Color);
+                }
+                Queue(enemy, special, target, aim, warning, 0);
+                return;
+            }
             enemy.BeginCast(EnemySpecialRules.CastSeconds + special.Fill * 0.5f, aim);
             var roll = Random.value;
             var count = special.Shape == SpecialShape.Lob ? special.Count : 1;
@@ -279,6 +304,15 @@ namespace ARPG
                     break;
                 case SpecialShape.Ring:
                     world.Hazards.Strike(enemy.GroundPosition, s.Size, s.Fill, hit * s.Hit, s.LingerSeconds, hit * s.LingerHit, level, s.Color, s.Slow, s.SlowSeconds);
+                    break;
+                case SpecialShape.Throw:
+                    Sfx.Play(SoundId.ArrowShot, 0.6f);
+                    for (var k = 0; k < s.Count; k++)
+                    {
+                        var direction = EnemySpecialRules.LineDirection(p.Aim, k, s.Count, s.Spread);
+                        world.Projectiles.Fire(enemy, enemy.GroundPosition + direction * enemy.Definition.BodyRadius, direction * s.Speed, s.Length,
+                            hit * s.Hit * EnemyRules.ProjectileDamageFactor(enemy.Definition.Rank), level, 0f, s.Color);
+                    }
                     break;
                 case SpecialShape.Lines:
                     for (var k = 0; k < s.Count; k++)

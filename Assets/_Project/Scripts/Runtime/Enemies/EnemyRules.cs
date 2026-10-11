@@ -29,17 +29,29 @@ namespace ARPG
         /// <summary>A lunge hits the player when it passes within this of her, beyond the two bodies' radii.</summary>
         public const float LungeHitSlack = 0.35f;
 
-        /// <summary>The owner, 2026-10-11: enemies "quicker", noticeably: 25 percent faster on their feet, 20 percent
-        /// quicker attacks. Bosses keep their own pace (their fights are timed by hand).</summary>
-        public const float QuickerMove = 1.25f;
+        /// <summary>The owner, 2026-10-11: enemies quicker in their attacks, 20 percent, and the ranged ones (archers,
+        /// casters) firing half again as often ("make their ranged attacks faster"). They walk at their own speed again
+        /// ("enemies do not need to move faster"). Bosses keep their own pace (their fights are timed by hand).</summary>
         public const float QuickerAttack = 1.2f;
+        public const float QuickerRanged = 1.5f;
 
-        public static float MoveSpeedFactor(EnemyRank rank) => rank == EnemyRank.Boss ? 1f : QuickerMove;
+        /// <summary>Their projectiles fly half again as fast and hit 40 percent harder (the owner, 2026-10-11).</summary>
+        public const float ProjectileSpeed = 1.5f;
+        public const float ProjectileDamage = 1.4f;
 
-        public static float AttackSpeedFactor(EnemyRank rank) => rank == EnemyRank.Boss ? 1f : QuickerAttack;
+        public static float MoveSpeedFactor(EnemyRank rank) => 1f;
+
+        static bool Ranged(EnemyArchetype archetype) => archetype == EnemyArchetype.Archer || archetype == EnemyArchetype.Caster;
+
+        public static float AttackSpeedFactor(EnemyRank rank, EnemyArchetype archetype) =>
+            rank == EnemyRank.Boss ? 1f : Ranged(archetype) ? QuickerRanged : QuickerAttack;
 
         /// <summary>Wind-ups that paint a telegraph (brute, archer, caster) keep their warning time; the rest quicken.</summary>
         public static float WindupSpeedFactor(EnemyRank rank, EnemyArchetype archetype) =>
-            archetype == EnemyArchetype.Brute || archetype == EnemyArchetype.Archer || archetype == EnemyArchetype.Caster ? 1f : AttackSpeedFactor(rank);
+            archetype == EnemyArchetype.Brute || Ranged(archetype) ? 1f : AttackSpeedFactor(rank, archetype);
+
+        public static float ProjectileSpeedFactor(EnemyRank rank) => rank == EnemyRank.Boss ? 1f : ProjectileSpeed;
+
+        public static float ProjectileDamageFactor(EnemyRank rank) => rank == EnemyRank.Boss ? 1f : ProjectileDamage;
     }
 }

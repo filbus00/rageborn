@@ -20,7 +20,10 @@ namespace ARPG.Tests
             {
                 var special = EnemySpecialRules.For(name);
                 Assert.AreNotEqual(SpecialShape.None, special.Shape, name);
-                Assert.GreaterOrEqual(special.Fill, 0.7f, name + ": time to get out");
+                // A ground shape fills for time to get out; a throw warns with its aim line, then the projectile flies.
+                Assert.GreaterOrEqual(special.Fill, special.Shape == SpecialShape.Throw ? 0.45f : 0.7f, name + ": time to get out");
+                if (special.Shape == SpecialShape.Throw)
+                    Assert.Greater(special.Speed, 0f, name);
                 Assert.Greater(special.Every, special.Fill + EnemySpecialRules.CastSeconds + 1f, name);
                 Assert.Less(special.MinRange, special.MaxRange, name);
                 if (special.Shape == SpecialShape.Lines)
@@ -35,6 +38,7 @@ namespace ARPG.Tests
             Assert.AreEqual("Tide Wave", EnemySpecialRules.For("DrownedWatchman").Name);
             Assert.AreEqual("Brine Spit", EnemySpecialRules.For("Drowned").Name);
             Assert.AreEqual("Shield Bash", EnemySpecialRules.For("SkeletonKnight").Name);
+            Assert.AreEqual(SpecialShape.Throw, EnemySpecialRules.For("Skeleton").Shape);
             Assert.AreEqual("Bile Spit", EnemySpecialRules.For("SwarmerElite").Name);
         }
 
@@ -53,10 +57,13 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void Enemies_AreQuicker_ButKeepTheirTelegraphs()
+        public void Enemies_AttackQuicker_ButWalkAsBefore_AndKeepTheirTelegraphs()
         {
-            Assert.AreEqual(1.25f, EnemyRules.MoveSpeedFactor(EnemyRank.Normal));
-            Assert.AreEqual(1f, EnemyRules.MoveSpeedFactor(EnemyRank.Boss));
+            Assert.AreEqual(1f, EnemyRules.MoveSpeedFactor(EnemyRank.Normal), "they walk at their own speed (the owner, 2026-10-11)");
+            Assert.AreEqual(1.5f, EnemyRules.AttackSpeedFactor(EnemyRank.Normal, EnemyArchetype.Archer), "ranged attacks faster");
+            Assert.AreEqual(1f, EnemyRules.AttackSpeedFactor(EnemyRank.Boss, EnemyArchetype.Archer));
+            Assert.AreEqual(1.5f, EnemyRules.ProjectileSpeedFactor(EnemyRank.Normal));
+            Assert.AreEqual(1.4f, EnemyRules.ProjectileDamageFactor(EnemyRank.Normal));
             Assert.AreEqual(1.2f, EnemyRules.WindupSpeedFactor(EnemyRank.Normal, EnemyArchetype.Swarmer));
             Assert.AreEqual(1f, EnemyRules.WindupSpeedFactor(EnemyRank.Elite, EnemyArchetype.Brute), "a slam circle keeps its warning");
             Assert.AreEqual(1f, EnemyRules.WindupSpeedFactor(EnemyRank.Normal, EnemyArchetype.Archer), "an aim line keeps its warning");
