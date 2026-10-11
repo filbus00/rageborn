@@ -165,11 +165,13 @@ namespace ARPG
         /// <summary>Where each stands in town (clear of the town's pieces; checked by a test).</summary>
         public static Vector2Int Cell(QuestPerson who) => who switch
         {
-            QuestPerson.Aldis => new Vector2Int(2, 10),
-            QuestPerson.Tobin => new Vector2Int(-6, -1),
-            QuestPerson.Pellam => new Vector2Int(5, -6),
-            QuestPerson.Bram => new Vector2Int(1, -11),
-            _ => new Vector2Int(-3, 12),
+            // The walled town (2026-10-12): Aldis by the Vigil fire, Tobin by the merchant's stall, Pellam by his lamps,
+            // Bram at the front gate, Ivy by the healer.
+            QuestPerson.Aldis => new Vector2Int(3, 5),
+            QuestPerson.Tobin => new Vector2Int(-9, 9),
+            QuestPerson.Pellam => new Vector2Int(-13, -10),
+            QuestPerson.Bram => new Vector2Int(5, -16),
+            _ => new Vector2Int(16, 7),
         };
 
         /// <summary>The rescue that brings each to town ("" for Aldis, who is there from the start).</summary>
@@ -255,7 +257,7 @@ namespace ARPG
     /// </summary>
     public static class VigilFire
     {
-        public static readonly Vector2Int Cell = new Vector2Int(0, 9);
+        public static readonly Vector2Int Cell = new Vector2Int(0, 3);
 
         /// <summary>How many embers have come home: the main quests handed in.</summary>
         public static int Embers(QuestState quests)

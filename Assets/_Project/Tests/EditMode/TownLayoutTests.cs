@@ -20,8 +20,8 @@ namespace ARPG.Tests
             for (var i = 0; i < pieces.Length; i++)
                 for (var j = i + 1; j < pieces.Length; j++)
                 {
-                    // Fences meet at their corners.
-                    if (pieces[i].Name.Contains("fence") && pieces[j].Name.Contains("fence"))
+                    // Walls, gate footprints and fences meet at their ends and corners.
+                    if (TownLayout.IsWallPart(pieces[i]) && TownLayout.IsWallPart(pieces[j]))
                         continue;
                     var d = pieces[i].Cell - pieces[j].Cell;
                     var apart = Mathf.Abs(d.x) > pieces[i].Half.x + pieces[j].Half.x || Mathf.Abs(d.y) > pieces[i].Half.y + pieces[j].Half.y;

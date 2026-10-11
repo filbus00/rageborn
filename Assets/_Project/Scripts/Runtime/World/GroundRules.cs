@@ -24,17 +24,16 @@ namespace ARPG
     /// </summary>
     public static class GroundRules
     {
-        /// <summary>The town's paved roads, as pairs of cells (start, end) (remade 2026-10-11): from the square to the
-        /// mausoleum's door (<see cref="TownLayout.StairsCell"/>) and three roads out of town. The square itself is
-        /// paved all over (<see cref="SquareCover"/>).</summary>
+        /// <summary>The town's paved roads, as pairs of cells (start, end) (the walled town, 2026-10-12): from the square
+        /// through the back gate to the mausoleum's door (<see cref="TownLayout.StairsCell"/>), and from the square out
+        /// of the front gate. The square itself is paved all over (<see cref="SquareCover"/>).</summary>
         public static readonly Vector2Int[] TownPaths =
         {
-            new Vector2Int(0, 0), new Vector2Int(6, 6),
-            new Vector2Int(6, 6), new Vector2Int(16, 12),
-            new Vector2Int(16, 12), new Vector2Int(16, 15),
-            new Vector2Int(-8, -2), new Vector2Int(-30, -4),
-            new Vector2Int(2, -10), new Vector2Int(4, -30),
-            new Vector2Int(10, -2), new Vector2Int(30, -6),
+            new Vector2Int(0, 0), new Vector2Int(8, 12),
+            new Vector2Int(8, 12), new Vector2Int(8, 22),
+            new Vector2Int(8, 22), new Vector2Int(8, 29),
+            new Vector2Int(0, 0), new Vector2Int(0, -22),
+            new Vector2Int(0, -22), new Vector2Int(0, -46),
         };
 
         /// <summary>How far the paved square reaches from the town's middle, ground units, before its ragged edge.</summary>

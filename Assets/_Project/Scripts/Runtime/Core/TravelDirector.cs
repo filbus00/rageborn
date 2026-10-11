@@ -15,8 +15,9 @@ namespace ARPG
         const string TownScene = "Town";
 
         // In town the Waystone and the return portal stand a few cells below the start, away from the Forge and stairs.
-        static readonly Vector2Int TownPortalCell = new Vector2Int(-2, -4);
-        static readonly Vector2Int WaystoneCell = new Vector2Int(3, -3);
+        // Inside the front gate (2026-10-12, the walled town).
+        static readonly Vector2Int TownPortalCell = new Vector2Int(-9, -17);
+        static readonly Vector2Int WaystoneCell = new Vector2Int(-5, -15);
 
         GameSession session;
         GameObject button;

@@ -510,9 +510,254 @@ def torch_post():
     flame((0, 0, 2.0), 0.16, 8)
 
 
+# ---------------------------------------------------------------- the walled town (2026-10-12, concept 2)
+#
+# The owner: "Make a wall around the town, space the NPCs further, they should all have their own areas/shops".
+#   town_wall_x|y      four cells of crenellated stone wall along x or y
+#   town_tower         a square corner tower
+#   town_gate_x|y      a gatehouse four cells long: two towers and an open arch between them
+#   shop_<kind>        a stall under a dark awning: goods (the merchant), herbs (the healer), lamps (Pellam, lit),
+#                      dice (the gambler)
+#   training_yard      straw dummies and a weapon rack on a trodden patch (the trainer)
+#   vault              iron-bound chests and strongboxes behind a rail (the stash keeper)
+
+WALL_H_TOWN = 1.9
+WALL_T = 0.5
+
+
+def _wall_run(axis, length, h, rng, stones, gap=None):
+    """A run of wall along x or y centred on the origin, courses on both long faces, merlons on top. gap is an
+    (from, to) stretch along the run left open (a gate's arch)."""
+    core = mat(STONE[1], 0.3, STONE[0], scale=6)
+    pieces = [(-length / 2, length / 2)] if gap is None else [(-length / 2, gap[0]), (gap[1], length / 2)]
+    for a, b in pieces:
+        mid, ln = (a + b) / 2, b - a
+        size = (ln, WALL_T, h) if axis == "x" else (WALL_T, ln, h)
+        box(size, (mid, 0, 0) if axis == "x" else (0, mid, 0), core)
+        for side in (-1, 1):
+            off = side * WALL_T / 2
+            p0 = (a, off) if axis == "x" else (off, a)
+            p1 = (b, off) if axis == "x" else (off, b)
+            normal = (0, side) if axis == "x" else (side, 0)
+            _courses(p0, p1, normal, 0.0, h, rng, stones)
+        # Merlons along the top.
+        t = a + 0.12
+        while t < b - 0.12:
+            m = (t + 0.11, 0, h) if axis == "x" else (0, t + 0.11, h)
+            box((0.22, WALL_T + 0.04, 0.22) if axis == "x" else (WALL_T + 0.04, 0.22, 0.22), m, rng.choice(stones), bevel=0.01)
+            t += 0.42
+
+
+def town_wall(axis):
+    rng = _rng("twall", axis)
+    _wall_run(axis, CELL * 4 + 0.02, WALL_H_TOWN, rng, _stone())
+    moss = mat(MOSS[1], 0.4, MOSS[0], scale=10)
+    for k in range(3):
+        t = rng.uniform(-1.2, 1.2)
+        box((0.3, 0.02, 0.15) if axis == "x" else (0.02, 0.3, 0.15), (t, -WALL_T / 2 - 0.02, 0.0) if axis == "x" else (-WALL_T / 2 - 0.02, t, 0.0), moss)
+
+
+def town_wall_x():
+    town_wall("x")
+
+
+def town_wall_y():
+    town_wall("y")
+
+
+def _tower(cx, cy, size, h, rng, stones):
+    core = mat(STONE[1], 0.3, STONE[0], scale=6)
+    box((size, size, h), (cx, cy, 0), core)
+    for f in (Face("x", cx - size / 2, size / 2), Face("y", cy - size / 2, size / 2)):
+        a, b = f.ends
+        a = (a[0], a[1] + (cy if f.x else 0)) if f.x else (a[0] + cx, a[1])
+        b = (b[0], b[1] + (cy if f.x else 0)) if f.x else (b[0] + cx, b[1])
+        _courses(a, b, f.normal, 0.0, h, rng, stones)
+    for dx in (-1, 1):
+        for dy in (-1, 1):
+            box((0.26, 0.26, 0.28), (cx + dx * (size / 2 - 0.13), cy + dy * (size / 2 - 0.13), h), rng.choice(stones), bevel=0.01)
+    box((size + 0.08, size + 0.08, 0.1), (cx, cy, h - 0.1), mat(STONE[2], 0.3, STONE[1], scale=8))
+
+
+def town_tower():
+    rng = _rng("ttower")
+    _tower(0, 0, CELL * 2, WALL_H_TOWN + 0.7, rng, _stone())
+
+
+def town_gate(axis):
+    """A gatehouse along x or y, four cells long (one wall run): two towers and the arch between, open, a portcullis
+    raised."""
+    from models import flame
+    rng = _rng("tgate", axis)
+    stones = _stone()
+    length = CELL * 4
+    arch = CELL * 0.8
+    tower = CELL * 1.2
+    for side in (-1, 1):
+        c = side * (length / 2 - tower / 2)
+        _tower(c if axis == "x" else 0, 0 if axis == "x" else c, tower, WALL_H_TOWN + 0.9, rng, stones)
+    # The span over the arch.
+    core = mat(STONE[1], 0.3, STONE[0], scale=6)
+    frame = mat(STONE[3], 0.3, STONE[2], scale=10)
+    span = (2 * arch, WALL_T, WALL_H_TOWN - 1.35) if axis == "x" else (WALL_T, 2 * arch, WALL_H_TOWN - 1.35)
+    box(span, (0, 0, 1.35), core)
+    for k in range(11):
+        a = math.pi * k / 10
+        u = math.cos(a) * arch
+        z = 0.95 + math.sin(a) * arch * 0.5
+        box((0.12, WALL_T + 0.06, 0.12) if axis == "x" else (WALL_T + 0.06, 0.12, 0.12), (u, 0, z) if axis == "x" else (0, u, z), frame, bevel=0.01)
+    # The portcullis, raised into the arch's top.
+    iron = mat(STONE[0], 0.2, COLD[0], metal=0.6, rough=0.5)
+    for k in range(7):
+        u = -arch + 0.15 + k * (2 * arch - 0.3) / 6
+        box((0.03, 0.03, 0.3), (u, -WALL_T / 2 - 0.03, 1.2) if axis == "x" else (-WALL_T / 2 - 0.03, u, 1.2), iron)
+    # Torches either side of the arch, on the outer face.
+    for side in (-1, 1):
+        u = side * (arch + 0.25)
+        x, y = (u, -WALL_T / 2 - 0.08) if axis == "x" else (-WALL_T / 2 - 0.08, u)
+        cyl(0.03, 0.22, (x, y, 1.1), mat(WOOD[1], 0.3, WOOD[0]), 6)
+        flame((x, y, 1.34), 0.08, 7)
+
+
+def town_gate_x():
+    town_gate("x")
+
+
+def town_gate_y():
+    town_gate("y")
+
+
+def _awning_stall(cloth, key):
+    """A stall under a sagging dark awning on four poles, a counter at the front; returns the counter's top height."""
+    rng = _rng("stall", key)
+    wood = mat(WOOD[1], 0.3, WOOD[0], scale=12)
+    sx, sy = 2.2, 1.4
+    for x in (-sx / 2, sx / 2):
+        for y in (-sy / 2, sy / 2):
+            box((0.08, 0.08, 2.1 if y > 0 else 1.85), (x, y, 0), wood)
+    poly([(-sx / 2 - 0.2, -sy / 2 - 0.35, 1.8), (sx / 2 + 0.2, -sy / 2 - 0.35, 1.8), (sx / 2 + 0.2, sy / 2 + 0.1, 2.15),
+          (-sx / 2 - 0.2, sy / 2 + 0.1, 2.15)], [(0, 1, 2, 3)], cloth)
+    # A ragged valance along the front edge.
+    for k in range(8):
+        x0 = -sx / 2 - 0.2 + (sx + 0.4) * k / 8
+        poly([(x0, -sy / 2 - 0.35, 1.8), (x0 + (sx + 0.4) / 8, -sy / 2 - 0.35, 1.8), (x0 + (sx + 0.4) / 16, -sy / 2 - 0.36, 1.62 - 0.05 * (k % 2))],
+             [(0, 1, 2)], cloth)
+    box((sx, 0.5, 0.85), (0, -sy / 2 + 0.25, 0), wood, bevel=0.01)
+    return 0.85, sx, sy, rng
+
+
+def shop_goods():
+    from models import barrel, crate
+    cloth = mat(BLOOD[1], 0.35, BLOOD[0], scale=6)
+    top, sx, sy, rng = _awning_stall(cloth, "goods")
+    clay = mat(SKIN[1], 0.3, SKIN[0])
+    for k in range(5):
+        lathe([(0.06, 0), (0.1, 0.09), (0.05, 0.18)], (-0.85 + k * 0.4, -sy / 2 + 0.25, top), clay, 10)
+    sphere(0.22, (-1.4, -0.9, 0.18), mat(WOOD[3], 0.3, WOOD[2]), scale=(1, 1, 1.1), segments=10)
+    barrel((1.4, -0.4, 0), 0.8)
+    crate((1.45, 0.3, 0), 0.45, turn=12)
+    rug = mat(BLOOD[2], 0.35, BLOOD[0], scale=8)
+    box((1.0, 0.7, 0.01), (-0.3, -1.3, 0), rug)
+
+
+def shop_herbs():
+    cloth = mat(MOSS[1], 0.35, MOSS[0], scale=6)
+    top, sx, sy, rng = _awning_stall(cloth, "herbs")
+    glass = [mat(MOSS[3], 0.2, MOSS[1], rough=0.3), mat(COLD[3], 0.2, COLD[1], rough=0.3), mat(BLOOD[3], 0.2, BLOOD[1], rough=0.3)]
+    for k in range(7):
+        lathe([(0.04, 0), (0.06, 0.06), (0.03, 0.14)], (-0.95 + k * 0.3, -sy / 2 + 0.25 + rng.uniform(-0.1, 0.1), top), rng.choice(glass), 8)
+    herb = mat(MOSS[2], 0.45, MOSS[1], scale=14)
+    for k in range(6):
+        x = -0.9 + k * 0.36
+        box((0.02, 0.02, 0.2), (x, -sy / 2 - 0.25, 1.55), mat(WOOD[1], 0.3, WOOD[0]))
+        cone(0.07, 0.22, (x, -sy / 2 - 0.25, 1.35), herb, 6, rot=(180, 0, 0))
+
+
+def shop_lamps():
+    from models import flame
+    cloth = mat(EMBER[0], 0.35, WOOD[0], scale=6)
+    top, sx, sy, rng = _awning_stall(cloth, "lamps")
+    iron = mat(STONE[0], 0.2, COLD[0], metal=0.6, rough=0.5)
+    glow = mat(EMBER[4], 0.0, emit=3.5)
+    for k in range(4):
+        x = -0.8 + k * 0.55
+        box((0.16, 0.16, 0.22), (x, -sy / 2 + 0.25, top), glow)
+        lathe([(0.12, 0), (0.0, 0.1)], (x, -sy / 2 + 0.25, top + 0.22), iron, 4, smooth=False)
+    for k in range(3):
+        x = -0.6 + k * 0.6
+        box((0.02, 0.02, 0.25), (x, -sy / 2 - 0.25, 1.55), iron)
+        box((0.13, 0.13, 0.18), (x, -sy / 2 - 0.25, 1.37), glow)
+    light("POINT", (0, -sy / 2 - 0.2, 1.2), 40, (1.0, 0.7, 0.35), 0.3)
+
+
+def shop_dice():
+    from models import barrel
+    cloth = mat(VIOLET[0], 0.35, STONE[0], scale=6)
+    top, sx, sy, rng = _awning_stall(cloth, "dice")
+    wood = mat(WOOD[1], 0.3, WOOD[0], scale=12)
+    felt = mat(MOSS[0], 0.3, STONE[0], scale=8)
+    box((0.8, 0.8, 0.7), (0.2, -1.5, 0), wood, bevel=0.01)
+    box((0.74, 0.74, 0.02), (0.2, -1.5, 0.7), felt)
+    bone_m = mat(BONE[2], 0.1, BONE[1])
+    for k in range(3):
+        box((0.06, 0.06, 0.06), (0.05 + k * 0.12, -1.55 + 0.05 * k, 0.72), bone_m, rot=(0, 0, 20 * k))
+    for k in range(4):
+        box((0.1, 0.14, 0.004), (0.35 - k * 0.06, -1.35, 0.725), mat(BONE[1], 0.2, BONE[0]), rot=(0, 0, 15 * k))
+    for dx, dy in ((-0.4, -1.5), (0.8, -1.5)):
+        barrel((dx, dy, 0), 0.6)
+    gold = mat(EMBER[3], 0.2, EMBER[1], metal=0.6)
+    for k in range(6):
+        cyl(0.04, 0.01, (-0.6 + k * 0.08, -sy / 2 + 0.2, top + 0.01 * k), gold, 8)
+
+
+def training_yard():
+    """Straw dummies on posts, a weapon rack and a trodden patch (the trainer)."""
+    rng = _rng("yard")
+    wood = mat(WOOD[1], 0.3, WOOD[0], scale=12)
+    straw = mat(WOOD[2], 0.45, EMBER[0], scale=20)
+    sack = mat(WOOD[2], 0.35, WOOD[1], scale=10)
+    dirt = mat(EARTH[1], 0.4, EARTH[0], scale=8)
+    box((2.6, 2.0, 0.01), (0, 0, 0), dirt)
+    for k, (x, y) in enumerate(((-0.8, 0.3), (0.5, -0.2), (0.0, 0.8))):
+        cyl(0.05, 1.5, (x, y, 0), wood, 6)
+        box((0.7, 0.06, 0.06), (x, y, 1.15), wood)
+        sphere(0.2, (x, y, 1.05), straw, scale=(1, 0.8, 1.4), segments=8)
+        sphere(0.13, (x, y, 1.5), sack, segments=8)
+        if k == 1:
+            for n in range(3):
+                box((0.4, 0.015, 0.015), (x - 0.2, y - 0.05 + n * 0.03, 1.1 + n * 0.08), mat(WOOD[2], 0.3, WOOD[1]), rot=(0, rng.uniform(-20, 20), rng.uniform(10, 40)))
+    iron = mat(STONE[2], 0.2, STONE[1], metal=0.6, rough=0.4)
+    box((0.1, 1.2, 0.08), (1.1, 0, 1.0), wood)
+    for y in (-0.55, 0.55):
+        box((0.08, 0.08, 1.2), (1.1, y, 0), wood)
+    for k in range(4):
+        box((0.03, 0.03, 1.1), (1.05, -0.4 + k * 0.27, 0.0), iron, rot=(0, -8, 0))
+
+
+def vault():
+    """Iron-bound chests and strongboxes behind a rail (the stash keeper)."""
+    wood = mat(WOOD[1], 0.3, WOOD[0], scale=12)
+    iron = mat(STONE[0], 0.2, COLD[0], metal=0.6, rough=0.5)
+    gold = mat(EMBER[3], 0.2, EMBER[1], metal=0.6)
+    for k, (x, y, s) in enumerate(((-0.6, 0.2, 0.55), (0.1, 0.25, 0.5), (0.75, 0.2, 0.45), (-0.25, -0.3, 0.4))):
+        box((s * 1.4, s, s * 0.8), (x, y, 0), wood, bevel=0.01)
+        for dx in (-0.5, 0.5):
+            box((0.04, s + 0.02, s * 0.8 + 0.02), (x + dx * s, y, 0), iron)
+        box((0.08, 0.02, 0.1), (x, y - s / 2 - 0.01, s * 0.55), gold)
+    box((0.5, 0.4, 0.3), (-0.3, 0.3, 0.44), wood, bevel=0.01)
+    for x in (-1.2, 1.2):
+        box((0.08, 0.08, 0.9), (x, -0.8, 0), wood)
+    box((2.5, 0.06, 0.06), (0, -0.8, 0.8), wood)
+    box((2.5, 0.06, 0.06), (0, -0.8, 0.45), wood)
+
+
 def register(all_pieces):
     for name, build in (("house_1", house_1), ("house_2", house_2), ("house_3", house_3), ("house_4", house_4),
                         ("ruin_1", ruin_1), ("ruin_2", ruin_2), ("mausoleum", mausoleum),
                         ("iron_fence_x", iron_fence_x), ("iron_fence_y", iron_fence_y), ("grave_cross", grave_cross),
-                        ("tomb", tomb), ("cage_stall", cage_stall), ("forge", forge), ("torch_post", torch_post)):
+                        ("tomb", tomb), ("cage_stall", cage_stall), ("forge", forge), ("torch_post", torch_post),
+                        ("town_wall_x", town_wall_x), ("town_wall_y", town_wall_y), ("town_tower", town_tower),
+                        ("town_gate_x", town_gate_x), ("town_gate_y", town_gate_y), ("shop_goods", shop_goods),
+                        ("shop_herbs", shop_herbs), ("shop_lamps", shop_lamps), ("shop_dice", shop_dice),
+                        ("training_yard", training_yard), ("vault", vault)):
         all_pieces[name] = ("world", build, WORLD)

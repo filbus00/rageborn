@@ -15,9 +15,9 @@ namespace ARPG
         const string DungeonScene = "Dungeon";
 
         // To the side of the town's own stairway (TownSceneBuilder puts it at cell 5, 5).
-        static readonly Vector2Int BossCell = new Vector2Int(9, 5);
+        static readonly Vector2Int BossCell = new Vector2Int(6, -19);
         // Moved from (9, 1) on 2026-10-03: its label ran into the Pet Vendor's (cell 5, 1).
-        static readonly Vector2Int MixedCell = new Vector2Int(12, 0);
+        static readonly Vector2Int MixedCell = new Vector2Int(-5, -19);
         const int MixedDepth = 3;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

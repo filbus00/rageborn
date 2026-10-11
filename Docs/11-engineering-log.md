@@ -1105,3 +1105,11 @@ The owner: the dungeon "still looks really bad", walls "not only right shapes", 
 - Checked in play mode: a library level at 16 (bookcase walls, aisles, an elite pack), the Archivist's arena at 24 and the Rift Mother's at 30 (both fights set up, bosses standing; no fight was played through). Mid-session the editor was left in play mode while scripts changed; the recompile under it hung the Unity bridge for 30 minutes until Unity was restarted.
 - 632 of 632 tests pass in Unity.
 
+## 2026-10-12: the walled town
+
+- The owner, with concept art 2: "Make a wall around the town, space the NPCs further, they should all have their own areas/shops in town"; answer: the graveyard and mausoleum outside, through a back gate.
+- Art (`town.py`): `town_wall_x|y` (four cells of crenellated wall), `town_tower`, `town_gate_x|y` (a gatehouse four cells long, its arch open, a raised portcullis, torches), `shop_goods`, `shop_herbs`, `shop_lamps` (lit), `shop_dice` (stalls under dark awnings), `training_yard`, `vault`.
+- `TownLayout.Pieces` is built by `Build()`: the plots by hand, the wall in a loop (runs every four cells on the four sides at plus and minus `WallReach` 22, towers at the corners; at `FrontGate` (0, -22) and `BackGate` (8, 22) a gatehouse with no footprint and two footprint-only pieces (an empty name) for its towers, leaving the arch open), and the forest by a hash outside the wall, clear of the graveyard and the road. `TownLayout.IsWallPart` lets wall parts and fences meet in the overlap test; `TownDressing` makes a footprint without a sprite for an empty name.
+- Everyone moved to their plot: `TownRules.Cell` (stash keeper (-2, 9), healer (13, 7), gambler (10, -2), trainer (9, -11)), `QuestTown.Cell` (Aldis (3, 5), Tobin (-9, 9), Pellam (-13, -10), Bram (5, -16), Ivy (16, 7)), `VigilFire.Cell` (0, 3), `PetDirector` (Pet Vendor (-12, 0), merchant (-12, 9)), `TravelDirector` (Waystone (-5, -15), portal (-9, -17)), `DevShortcuts` (-5, -19) and (6, -19). `StairsCell` (8, 29), `MausoleumCell` (8, 33); roads (`GroundRules.TownPaths`) from the square through the back gate to the mausoleum and out of the front gate.
+- Checked in play mode: the walled courtyard, every person at their stall, the gates, the graveyard outside. 632 of 632 tests pass in Unity.
+

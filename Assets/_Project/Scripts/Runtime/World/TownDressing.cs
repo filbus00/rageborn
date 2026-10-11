@@ -34,10 +34,21 @@ namespace ARPG
             {
                 var piece = TownLayout.Pieces[i];
                 var world = IsoMath.GroundToWorld(IsoMath.CellToGround(piece.Cell));
-                var renderer = WorldArt.Place(piece.Name, root, new Vector3(world.x, world.y, 0f));
-                if (renderer == null)
-                    continue;
-                var go = renderer.gameObject;
+                GameObject go;
+                if (piece.Name.Length == 0)
+                {
+                    // A footprint only (a gatehouse's towers either side of its open arch).
+                    go = new GameObject("Footprint Only");
+                    go.transform.SetParent(root, false);
+                    go.transform.position = new Vector3(world.x, world.y, 0f);
+                }
+                else
+                {
+                    var renderer = WorldArt.Place(piece.Name, root, new Vector3(world.x, world.y, 0f));
+                    if (renderer == null)
+                        continue;
+                    go = renderer.gameObject;
+                }
                 if (piece.Half.x > 0f && piece.Half.y > 0f)
                 {
                     // On a child with no sprite: a polygon collider added beside a sprite traces the sprite's outline
