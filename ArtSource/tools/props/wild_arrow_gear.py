@@ -840,9 +840,11 @@ def pouch_belt(b, body):
     girdle(b, "leather", 0.0, 0.045)
     y = b.h("Hips").y
     b.box(V((0, y + 0.022, front())), (0.05, 0.05, 0.015), "Hips", "gold")
-    b.box(V((-0.13, y - 0.03, 0.09)), (0.07, 0.08, 0.05), "Hips", "leather_dark")
-    b.box(V((0.14, y - 0.025, 0.06)), (0.06, 0.07, 0.045), "Hips", "leather_hi")
-    b.limb(V((0.17, y, -0.05)), V((0.19, y - 0.18, -0.07)), 0.014, 0.008, "Hips", "iron_edge", 4)
+    # The pouches and the knife sit in front and behind, inside the hips' width: at the sides they stood out over her
+    # arms hanging there, and were drawn over them (2026-10-11, the owner).
+    b.box(V((-0.08, y - 0.03, 0.1)), (0.06, 0.07, 0.045), "Hips", "leather_dark")
+    b.box(V((0.09, y - 0.025, -0.1)), (0.06, 0.07, 0.045), "Hips", "leather_hi")
+    b.limb(V((0.06, y, -0.13)), V((0.08, y - 0.18, -0.15)), 0.014, 0.008, "Hips", "iron_edge", 4)
     return []
 
 
@@ -854,7 +856,7 @@ def studded(b, body):
         b.ball(V((math.cos(a) * (WAIST_RX + 0.06), y + 0.025, 0.01 + math.sin(a) * (WAIST_RZ + 0.065))), (0.01, 0.01, 0.01), "Hips", "gold")
     for side, sx in SIDES:
         hip = b.h(side + "UpLeg")
-        b.box(V((hip.x + sx * 0.03, hip.y - 0.07, 0.08)), (0.1, 0.14, 0.015), side + "UpLeg", "leather")
+        b.box(V((hip.x, hip.y - 0.07, 0.08)), (0.085, 0.14, 0.015), side + "UpLeg", "leather")
     b.box(V((0, y - 0.07, front())), (0.09, 0.16, 0.012), "Hips", "leather_dark")
     return []
 
@@ -866,8 +868,8 @@ def tassets(b, body):
     for side, sx in SIDES:
         hip = b.h(side + "UpLeg")
         for i in range(3):
-            b.box(V((hip.x + sx * 0.035, hip.y - 0.06 - i * 0.06, 0.075)), (0.12 - i * 0.008, 0.065, 0.016), side + "UpLeg", "iron")
-            b.box(V((hip.x + sx * 0.035, hip.y - 0.092 - i * 0.06, 0.084)), (0.12 - i * 0.008, 0.008, 0.012), side + "UpLeg", "iron_edge")
+            b.box(V((hip.x, hip.y - 0.06 - i * 0.06, 0.075)), (0.095 - i * 0.008, 0.065, 0.016), side + "UpLeg", "iron")
+            b.box(V((hip.x, hip.y - 0.092 - i * 0.06, 0.084)), (0.095 - i * 0.008, 0.008, 0.012), side + "UpLeg", "iron_edge")
     b.box(V((0, y - 0.11, front())), (0.11, 0.24, 0.012), "Hips", "red")
     return []
 
@@ -884,8 +886,8 @@ def war_girdle(b, body):
     for side, sx in SIDES:
         hip = b.h(side + "UpLeg")
         for i in range(2):
-            b.box(V((hip.x + sx * 0.035, hip.y - 0.07 - i * 0.07, 0.08)), (0.13, 0.075, 0.018), side + "UpLeg", "iron_dark")
-            b.box(V((hip.x + sx * 0.035, hip.y - 0.105 - i * 0.07, 0.09)), (0.13, 0.008, 0.012), side + "UpLeg", "gold")
+            b.box(V((hip.x, hip.y - 0.07 - i * 0.07, 0.08)), (0.1, 0.075, 0.018), side + "UpLeg", "iron_dark")
+            b.box(V((hip.x, hip.y - 0.105 - i * 0.07, 0.09)), (0.1, 0.008, 0.012), side + "UpLeg", "gold")
     return []
 
 

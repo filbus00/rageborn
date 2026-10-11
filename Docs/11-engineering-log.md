@@ -1038,3 +1038,8 @@ The owner: the dungeon "still looks really bad", walls "not only right shapes", 
 
 - The owner: past eight waypoints the rows ran off the sheet and could not be tapped. `WaypointScreen` now puts its rows in a `ScrollRect` (a `RectMask2D` viewport taking the sheet's room between the title and Close, the content fitted to its rows), the sheet 1800 tall, opening at the top. Checked in play mode with all 24 waypoints: scrolled to the bottom, Level 24 lies inside the viewport and a raycast there hits its button.
 
+## 2026-10-11: the Bag's figure faces front; belts no longer cover her arm
+
+- `CharacterPortrait` showed a fixed row 2 of 16, which has her turned away to the left. The rows, checked in play mode one by one: 0 faces left, 4 away, 8 right, 14 straight at the viewer (the ground's axes run diagonally on screen, so facing the viewer is ground (1, -1)). It now takes `AppearanceRules.DirectionRow((1, -1))`, row 14.
+- Belts (the owner: "they now render over her left arm"): the pouch belt's pouches and knife hung at her hips' sides, and the studded belt's, the tassets' and the war girdle's thigh plates stood out past her thighs, in front of the arms hanging there, so they were drawn over them. `wild_arrow_gear.py`: the pouches and knife go to the front and back inside the hips' width, the thigh plates sit on the thigh, narrower. The four belts re-exported and re-baked alone (a copy of the bake job with only the bare body, the occluder, and the belt bodies: a few minutes instead of half an hour). A first try, bringing her arms forward in the occluder while a belt bakes, changed nothing on the old belts and, on the second run, failed to write the arm marks (the mesh copy was not readable), so the whole body cut the belts away; it was taken out.
+

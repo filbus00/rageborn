@@ -27,9 +27,10 @@ namespace ARPG
         public const int CanvasSize = 80;
         static readonly Vector2 Feet = new Vector2(CanvasSize / 2f, 12f);
 
-        /// <summary>Which way she faces: three quarters toward the viewer (row 2 of 16 is south-west; rows run clockwise
-        /// from south, seen from above).</summary>
-        const int FacingRow = 2;
+        /// <summary>Which way she faces: straight at the viewer (2026-10-11, the owner: "facing front"). The ground's axes
+        /// run diagonally on screen, so that is ground (1, -1), row 14 of 16; the old fixed row 2 had her turned away to
+        /// the left.</summary>
+        static readonly Vector2 Facing = new Vector2(1f, -1f);
 
         readonly RawImage image;
         readonly RenderTexture canvas;
@@ -113,7 +114,7 @@ namespace ARPG
                 var sheet = sheets[i];
                 if (sheet == null || sheet.Rows.Length == 0 || sheet.Frames == 0)
                     continue;
-                var row = sheet.Rows[Mathf.Min(FacingRow, sheet.Rows.Length - 1)];
+                var row = sheet.Rows[Mathf.Clamp(AppearanceRules.DirectionRow(Facing, sheet.Rows.Length), 0, sheet.Rows.Length - 1)];
                 var sprite = row[index % row.Length];
                 if (sprite == null)
                     continue;
