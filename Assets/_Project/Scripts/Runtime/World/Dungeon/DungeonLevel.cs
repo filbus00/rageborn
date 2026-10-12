@@ -230,24 +230,36 @@ namespace ARPG
                     definition = Deep("Tidewife");
                     adds = Deep("Drowned") ?? normalEnemy;
                     break;
-                case 18 when Deep("SaintMarrow") != null:
+                // The prison (2026-10-12): the Gaoler with the prisoners he lets out, the Hanged Magistrate with his bailiffs.
+                case 18 when Deep("Gaoler") != null:
+                    fight = new GameObject("Gaoler Fight").AddComponent<GaolerFight>();
+                    definition = Deep("Gaoler");
+                    adds = Deep("Hollowed") ?? normalEnemy;
+                    break;
+                case 24 when Deep("HangedMagistrate") != null:
+                    fight = new GameObject("Hanged Magistrate Fight").AddComponent<HangedMagistrateFight>();
+                    definition = Deep("HangedMagistrate");
+                    adds = Deep("SkeletonKnight") ?? normalEnemy;
+                    break;
+                // Each 12 deeper since the prison came between (2026-10-12).
+                case 30 when Deep("SaintMarrow") != null:
                     fight = new GameObject("Saint Marrow Fight").AddComponent<SaintMarrowFight>();
                     definition = Deep("SaintMarrow");
                     adds = skeletonEnemy != null ? skeletonEnemy : normalEnemy;
                     break;
                 // The burnt library's end and the caves (2026-10-11): the Ash Archivist with his scribes, the Rift Mother
                 // with her brood, and the First Watchman at the bottom.
-                case 24 when Deep("AshArchivist") != null:
+                case 36 when Deep("AshArchivist") != null:
                     fight = new GameObject("Ash Archivist Fight").AddComponent<AshArchivistFight>();
                     definition = Deep("AshArchivist");
                     adds = DefinitionOf(PackMember.EmberAcolyte) ?? normalEnemy;
                     break;
-                case 30 when Deep("RiftMother") != null:
+                case 42 when Deep("RiftMother") != null:
                     fight = new GameObject("Rift Mother Fight").AddComponent<RiftMotherFight>();
                     definition = Deep("RiftMother");
                     adds = Deep("VoidWraith") ?? normalEnemy;
                     break;
-                case 36 when Deep("FirstWatchman") != null:
+                case 48 when Deep("FirstWatchman") != null:
                     fight = new GameObject("First Watchman Fight").AddComponent<FirstWatchmanFight>();
                     definition = Deep("FirstWatchman");
                     adds = Deep("Hollowed") ?? normalEnemy;
@@ -448,8 +460,9 @@ namespace ARPG
                     if (Layout.Get(at) != DungeonCell.Wall || WallHash(x, y, 1) > WallDetailChance)
                         continue;
                     // Torches and banners hang on built walls: not on the caves' boulders or a cut corner (2026-10-10), nor on
-                    // the burnt library's shelves (2026-10-11).
-                    if (Layout.Theme != DungeonTheme.Crypt || ThemePieces.Diagonal(IsOpenCell, x, y) != null)
+                    // the burnt library's shelves (2026-10-11); in the prison on its walls, not on its cages' bars (2026-10-12).
+                    var built = Layout.Theme == DungeonTheme.Crypt || Layout.Theme == DungeonTheme.Prison && !Layout.FreeStanding.Contains(at);
+                    if (!built || ThemePieces.Diagonal(IsOpenCell, x, y) != null)
                         continue;
                     if (IsStairsWall(at) || IsStairsWall(at + Vector2Int.right) || IsStairsWall(at + Vector2Int.left) ||
                         IsStairsWall(at + Vector2Int.up) || IsStairsWall(at + Vector2Int.down))

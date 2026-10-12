@@ -76,7 +76,10 @@ namespace ARPG
         /// the stones are worn away; the burnt library paved under ash; the caves are bare earth, a few stones here and
         /// there.</summary>
         public static GroundLayer DungeonPick(Vector2 ground, float cobbleHeight, DungeonTheme theme) =>
-            theme == DungeonTheme.Crypt
+            theme == DungeonTheme.Prison
+                // The prison (2026-10-12): rough flagstones, more worn through to the earth than the crypt's.
+                ? cobbleHeight > 0.25f + 0.45f * Smooth(ground.x / 3.5f, ground.y / 3.5f, 19) ? GroundLayer.Cobble : GroundLayer.Dirt
+                : theme == DungeonTheme.Crypt
                 ? cobbleHeight > 0.15f + 0.4f * Smooth(ground.x / 4f, ground.y / 4f, 11) ? GroundLayer.Cobble : GroundLayer.Dirt
                 // The burnt library (2026-10-11): flagstones under drifts of ash (the dirt, painted grey by the painter).
                 : theme == DungeonTheme.Library

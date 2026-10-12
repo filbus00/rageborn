@@ -37,6 +37,9 @@ namespace ARPG
         /// </summary>
         static readonly Color LibraryEmber = new Color(0.95f, 0.55f, 0.35f);
 
+        /// <summary>The prison (2026-10-12, the concept art): dark, lit warm by torches and braziers.</summary>
+        static readonly Color PrisonTorch = new Color(0.85f, 0.6f, 0.45f);
+
         public static Mood DungeonAt(int depth)
         {
             var t = Mathf.Clamp01((depth - 1) / (float)(DungeonRules.Depths - 1));
@@ -47,6 +50,8 @@ namespace ARPG
                 var u = (depth - DungeonRules.LibraryFrom + 0.5f) / (DungeonRules.CaveFrom - DungeonRules.LibraryFrom);
                 color = Color.Lerp(color, LibraryEmber, 0.55f * Mathf.Sin(Mathf.Clamp01(u) * Mathf.PI));
             }
+            if (DungeonRules.ThemeAt(depth) == DungeonTheme.Prison)
+                color = Color.Lerp(color, PrisonTorch, 0.4f);
             return new Mood(color, Mathf.Lerp(Dungeon.AmbientIntensity, 0.14f, t), Mathf.Lerp(Dungeon.CharacterShade, 0.74f, t));
         }
 

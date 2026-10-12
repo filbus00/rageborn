@@ -253,7 +253,7 @@ namespace ARPG
 
     /// <summary>
     /// Emberwatch's Vigil fire in the square (2026-10-08): dead until the first ember comes back, then burning, its
-    /// light growing with each ember (the main quest's five steps home; four until the library's chapter, 2026-10-11).
+    /// light growing with each ember (the main quest's six steps home; four until the library's chapter, 2026-10-11, five until the prison's, 2026-10-12).
     /// </summary>
     public static class VigilFire
     {

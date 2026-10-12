@@ -39,6 +39,8 @@ namespace ARPG.Editor
             { "tidewife", 100f }, { "saint_marrow", 112f }, { "first_watchman", 100f },
             // The burnt library's boss and the caves' (2026-10-11).
             { "ash_archivist", 108f }, { "rift_mother", 104f },
+            // The prison's bosses (2026-10-12).
+            { "gaoler", 108f }, { "hanged_magistrate", 112f },
             // The pets (2026-10-06, ArtSource/tools/props/pets.py): the wolf a little over the Ash Wolf (seen from behind it is narrow), the raven measured with
             // its wings spread.
             { "pet_wolf", 68f }, { "pet_boar", 58f }, { "pet_raven", 34f },
@@ -48,7 +50,7 @@ namespace ARPG.Editor
         /// the first bake, 2026-09-29).</summary>
         static readonly Dictionary<string, int> CellSizes = new Dictionary<string, int> { { "ghoul", 192 }, { "cinder_warden", 192 }, { "carrion_bloat", 192 },
             { "drowned_watchman", 192 }, { "skeleton_knight", 192 }, { "tidewife", 192 }, { "saint_marrow", 192 }, { "first_watchman", 192 },
-            { "ash_archivist", 192 }, { "rift_mother", 192 } };
+            { "ash_archivist", 192 }, { "rift_mother", 192 }, { "gaoler", 192 }, { "hanged_magistrate", 192 } };
 
         /// <summary>Bodies whose clips are copies of another enemy's (the Cinder Warden moves as the ghoul).</summary>
         static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string>
@@ -59,6 +61,7 @@ namespace ARPG.Editor
             { "grave_priest", "bandit_archer" }, { "hollowed", "husk" }, { "void_wraith", "husk" }, { "rift_caller", "bandit_archer" },
             { "tidewife", "ghoul" }, { "saint_marrow", "ghoul" }, { "first_watchman", "ghoul" },
             { "ash_archivist", "ghoul" }, { "rift_mother", "ghoul" },
+            { "gaoler", "ghoul" }, { "hanged_magistrate", "ghoul" },
         };
 
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
@@ -81,6 +84,7 @@ namespace ARPG.Editor
             ("VoidWraith", "void_wraith", null), ("RiftCaller", "rift_caller", null),
             ("Tidewife", "tidewife", null), ("SaintMarrow", "saint_marrow", null), ("FirstWatchman", "first_watchman", null),
             ("AshArchivist", "ash_archivist", null), ("RiftMother", "rift_mother", null),
+            ("Gaoler", "gaoler", null), ("HangedMagistrate", "hanged_magistrate", null),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the

@@ -48,6 +48,13 @@ namespace ARPG
         ReadingDesk,
         BurningBooks,
         FallenShelf,
+
+        // The prison (2026-10-12).
+        HangingCage,
+        TortureBench,
+        Stocks,
+        FloorGrate,
+        StrawPile,
     }
 
     /// <summary>Marks on a dungeon floor, walked over.</summary>
@@ -153,6 +160,9 @@ namespace ARPG
         Cave,
         /// <summary>The burnt library (2026-10-11): built like the crypt, with charred shelves for walls and aisles.</summary>
         Library,
+        /// <summary>The prison (2026-10-12, the owner's concept art): built like the crypt in dark rough stone, its walls
+        /// lined with barred cells, shackles and cell doors, cages of bars standing in its halls.</summary>
+        Prison,
     }
 
     /// <summary>
@@ -175,7 +185,7 @@ namespace ARPG
         public int Depth { get; internal set; }
         public int EnemyLevel { get; internal set; }
 
-        /// <summary>Crypt, burnt library or cave (<see cref="DungeonRules.ThemeAt"/>).</summary>
+        /// <summary>Crypt, prison, burnt library or cave (<see cref="DungeonRules.ThemeAt"/>).</summary>
         public DungeonTheme Theme { get; internal set; }
 
         /// <summary>Caves (2026-10-10, the owner's terraces): the rim of a raised terrace, wall cells drawn as a rock

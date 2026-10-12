@@ -97,8 +97,9 @@ namespace ARPG
         // Each deep type: the first depth it appears, how fast it spreads, and its cap. Tuning.
         public const int FirstDrownedDepth = 7, FirstHarpoonerDepth = 8, FirstWatchmanDepth = 9;
         public const int FirstKnightDepth = 13, FirstPriestDepth = 14;
-        // The void's creatures belong to the caves (2026-10-11, the library between: from 19 and 20 until then).
-        public const int FirstHollowedDepth = 19, FirstRiftCallerDepth = 25, FirstWraithDepth = 26;
+        // The void's creatures belong to the caves (2026-10-11, the library between: from 19 and 20 until then; from 37 and
+        // 38 since the prison came between, 2026-10-12). The hollowed are the prison's inmates, from 19.
+        public const int FirstHollowedDepth = 19, FirstRiftCallerDepth = 37, FirstWraithDepth = 38;
 
         /// <summary>In the burnt library (2026-10-11) the fire casters are commoner: ember acolytes in place of archers
         /// and cultists, and pyre keepers at the back of packs.</summary>
@@ -108,7 +109,7 @@ namespace ARPG
         /// The deep levels' roster, from a fourth hash of the pack. From 7 the drowned take the husks' places, from 8
         /// harpooners the archers', from 9 drowned watchmen the ghouls'; from 13 skeleton knights the brutes', from 14 a
         /// grave priest stands at the back of some packs of 4 or more; from 19 the hollowed take the swarmers' places; in
-        /// the caves, from 25 rift callers take the ranged ones' and from 26 the wolf packs turn to void wraiths. The
+        /// the caves, from 37 rift callers take the ranged ones' and from 38 the wolf packs turn to void wraiths. The
         /// drowned, harpooners and drowned watchmen stay out of the burnt library (2026-10-11). Each spreads by its share
         /// (<see cref="DeepShare"/>), so a level has some old and some new. Elite packs and a Champion's slot 0 stay.
         /// </summary>

@@ -1846,6 +1846,9 @@ import themes
 themes.register(ALL)
 themes.register_stairs(ALL)
 themes.register_library(ALL)
+# The prison (2026-10-12).
+import prison
+prison.register(ALL)
 
 # The dark town (2026-10-11): its houses replace the ones above.
 import town

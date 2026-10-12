@@ -288,16 +288,18 @@ namespace ARPG.Tests
             Assert.Greater(Share(14, PackMember.GravePriest), 0f);
             Assert.AreEqual(0f, Share(18, PackMember.Hollowed));
             Assert.Greater(Share(19, PackMember.Hollowed), 0f);
-            // The void's creatures wait in the caves (2026-10-11), and the burnt library is dry.
-            Assert.AreEqual(0f, Share(24, PackMember.RiftCaller));
-            Assert.Greater(Share(25, PackMember.RiftCaller), 0f);
-            Assert.AreEqual(0f, Share(25, PackMember.VoidWraith));
-            Assert.Greater(Share(26, PackMember.VoidWraith), 0f);
-            Assert.AreEqual(0f, Share(16, PackMember.Drowned));
-            Assert.Greater(Share(28, PackMember.Drowned), 0f);
-            Assert.Greater(Share(16, PackMember.EmberAcolyte), Share(10, PackMember.EmberAcolyte), "fire casters fill the library");
+            // The void's creatures wait in the caves (2026-10-11; from 37 since the prison, 2026-10-12), and the burnt
+            // library is dry.
+            Assert.AreEqual(0f, Share(36, PackMember.RiftCaller));
+            Assert.Greater(Share(37, PackMember.RiftCaller), 0f);
+            Assert.AreEqual(0f, Share(37, PackMember.VoidWraith));
+            Assert.Greater(Share(38, PackMember.VoidWraith), 0f);
+            Assert.AreEqual(0f, Share(28, PackMember.Drowned));
+            Assert.Greater(Share(16, PackMember.Drowned), 0f);
+            Assert.Greater(Share(40, PackMember.Drowned), 0f);
+            Assert.Greater(Share(28, PackMember.EmberAcolyte), Share(10, PackMember.EmberAcolyte), "fire casters fill the library");
             // Older types thin out but are still met.
-            Assert.Greater(Share(16, PackMember.Husk) + Share(16, PackMember.Skeleton), 0f);
+            Assert.Greater(Share(28, PackMember.Husk) + Share(28, PackMember.Skeleton), 0f);
         }
 
         [Test]

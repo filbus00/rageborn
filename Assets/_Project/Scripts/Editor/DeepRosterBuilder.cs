@@ -8,7 +8,7 @@ namespace ARPG.Editor
     /// <summary>
     /// `Tools > ARPG > Add Deep Roster`: the deep levels' enemies and bosses (2026-10-05, from Docs/05's later acts):
     /// Drowned, Harpooner, Drowned Watchman, Skeleton Knight, Grave Priest, Hollowed, Void Wraith, Rift Caller, and the
-    /// Tidewife, Saint Marrow, the First Watchman, the Ash Archivist and the Rift Mother. Creates their definitions if missing, copied from the existing
+    /// Tidewife, Saint Marrow, the First Watchman, the Ash Archivist, the Rift Mother, the Gaoler and the Hanged Magistrate. Creates their definitions if missing, copied from the existing
     /// enemies with Docs/05's numbers (left alone after, so tuning survives a rerun), and lists them on the dungeon
     /// scene's level (<c>deepRoster</c>). Their art: ArtSource/tools/props/undead.py, then Bake Enemies.
     /// </summary>
@@ -22,6 +22,8 @@ namespace ARPG.Editor
             "Tidewife", "SaintMarrow", "FirstWatchman",
             // The burnt library's boss and the caves' (2026-10-11).
             "AshArchivist", "RiftMother",
+            // The prison's bosses (2026-10-12).
+            "Gaoler", "HangedMagistrate",
             // Quest targets to break (2026-10-08): standing, no attack, drawn with a world sprite.
             "RiftHeart", "BonePyre",
         };
@@ -147,6 +149,8 @@ namespace ARPG.Editor
             Copy("CinderWarden", "FirstWatchman", so => F(so, "lifeMultiplier", 70f));
             Copy("CinderWarden", "AshArchivist", so => F(so, "lifeMultiplier", 62f));
             Copy("CinderWarden", "RiftMother", so => F(so, "lifeMultiplier", 66f));
+            Copy("CinderWarden", "Gaoler", so => F(so, "lifeMultiplier", 60f));
+            Copy("CinderWarden", "HangedMagistrate", so => F(so, "lifeMultiplier", 60f));
             // Quest targets (2026-10-08): they stand and call others (BreakTargets); a pyre takes about eight normal
             // enemies' arrows, the rift heart fifteen.
             Copy("Swarmer", "BonePyre", so => Standing(so, 8f));

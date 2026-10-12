@@ -11,8 +11,9 @@ namespace ARPG
     public static class DungeonRules
     {
         /// <summary>The owner, 2026-10-05: no acts; one town above one dungeon, changing gradually with depth. 24 levels
-        /// until 2026-10-11, then 36 ("more depths than 24 ... so 12-12-12 for now"): crypt, burnt library, caves.</summary>
-        public const int Depths = 36;
+        /// until 2026-10-11, then 36 ("more depths than 24 ... so 12-12-12 for now"): crypt, burnt library, caves; 48 from
+        /// 2026-10-12, the prison after the crypt.</summary>
+        public const int Depths = 48;
 
         /// <summary>A boss every 6 levels (the Cinder Warden at 6). The first 6 are what was act 1.</summary>
         public const int BossEvery = 6;
@@ -20,10 +21,10 @@ namespace ARPG
         /// <summary>The first 6 levels (was act 1): the autopilot plays them, the DEV shortcuts reach their boss.</summary>
         public const int LevelsPerAct = BossEvery;
 
-        /// <summary>Depths whose exit room is a boss arena: the Cinder Warden at 6, the Tidewife at 12, Saint Marrow at 18
-        /// (2026-10-05), the Ash Archivist at 24, the Rift Mother at 30 and the First Watchman, moved to the bottom, at 36
-        /// (2026-10-11).</summary>
-        static readonly int[] BuiltBossDepths = { 6, 12, 18, 24, 30, 36 };
+        /// <summary>Depths whose exit room is a boss arena: the Cinder Warden at 6, the Tidewife at 12, the prison's Gaoler
+        /// at 18 and Hanged Magistrate at 24 (2026-10-12), Saint Marrow at 30, the Ash Archivist at 36, the Rift Mother at
+        /// 42 and the First Watchman at the bottom, 48 (each 12 deeper since the prison came between).</summary>
+        static readonly int[] BuiltBossDepths = { 6, 12, 18, 24, 30, 36, 42, 48 };
 
         public static bool IsBossDepth(int depth) => System.Array.IndexOf(BuiltBossDepths, depth) >= 0;
 
@@ -53,15 +54,21 @@ namespace ARPG
             return ActOneEnemyLevels[BossEvery] + Mathf.CeilToInt((depth - BossEvery) * EnemyLevelsPerDepth - 1e-4f);
         }
 
-        /// <summary>The first burnt library level (the owner, 2026-10-11: "first crypt, then library, then caves", 12
-        /// levels each).</summary>
-        public const int LibraryFrom = 13;
+        /// <summary>The first prison level (the owner, 2026-10-12, from the prison concept art: a new band after the
+        /// crypt, 12 levels).</summary>
+        public const int PrisonFrom = 13;
 
-        /// <summary>The first cave level (2026-10-10 from 13; from 25 since the library came between, 2026-10-11).</summary>
-        public const int CaveFrom = 25;
+        /// <summary>The first burnt library level (the owner, 2026-10-11: "first crypt, then library, then caves", 12
+        /// levels each; from 25 since the prison came between, 2026-10-12).</summary>
+        public const int LibraryFrom = 25;
+
+        /// <summary>The first cave level (2026-10-10 from 13; from 25 since the library came between, 2026-10-11; from 37
+        /// since the prison, 2026-10-12).</summary>
+        public const int CaveFrom = 37;
 
         public static DungeonTheme ThemeAt(int depth) =>
-            depth >= CaveFrom ? DungeonTheme.Cave : depth >= LibraryFrom ? DungeonTheme.Library : DungeonTheme.Crypt;
+            depth >= CaveFrom ? DungeonTheme.Cave : depth >= LibraryFrom ? DungeonTheme.Library :
+            depth >= PrisonFrom ? DungeonTheme.Prison : DungeonTheme.Crypt;
 
         /// <summary>Extra Champion chance below the first boss: a point a level, at most 20 points.</summary>
         public static float ExtraChampionChance(int depth) => Mathf.Clamp(depth - BossEvery, 0, 20) * 0.01f;
@@ -185,8 +192,9 @@ namespace ARPG
         /// 8: the stairs set into a far wall (2026-10-10).
         /// 9: roomier caves and tunnels, terrace steps facing the camera (2026-10-11).
         /// 10: 36 depths, the burnt library from 13 with its aisles of shelves, the caves from 25 (2026-10-11).
+        /// 11: 48 depths, the prison from 13 with its cages, the library from 25, the caves from 37 (2026-10-12).
         /// </summary>
-        public const int Version = 10;
+        public const int Version = 11;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -398,6 +406,9 @@ namespace ARPG
                     {
                         if (layout.Theme == DungeonTheme.Library && random.Next(100) < LibraryAislePercent)
                             Aisles(layout, mains[i], random);
+                        // The prison (2026-10-12): most halls hold barred cages standing free on the floor.
+                        else if (layout.Theme == DungeonTheme.Prison && random.Next(100) < PrisonCagePercent)
+                            Cages(layout, mains[i], random);
                         else
                             shapesUsed[i] = Dress(layout, mains[i], shapes, random);
                     }
@@ -1130,6 +1141,58 @@ namespace ARPG
                     }
                     t += run + 2;
                 }
+            }
+        }
+
+        /// <summary>How many of the prison's halls hold cages; the rest are dressed as the crypt's.</summary>
+        const int PrisonCagePercent = 70;
+
+        /// <summary>
+        /// Barred cages standing on a hall's floor (the prison, 2026-10-12, the concept's cell blocks): rings of bars 4 to
+        /// 6 cells by 3 to 5, each with a doorway one cell wide in one side (not at a corner), so its inside can be walked
+        /// into. Each stands on floor with two cells of open floor all round it, so cages never touch the hall's wall or
+        /// each other and stand free (<see cref="MarkFreeStanding"/>: a ring is at most 18 cells), and the hall stays
+        /// open between them. Up to four a hall.
+        /// </summary>
+        static void Cages(DungeonLayout layout, RectInt r, System.Random random)
+        {
+            var taken = new List<RectInt>();
+            for (var attempt = 0; attempt < 40 && taken.Count < 4; attempt++)
+            {
+                var w = random.Next(4, 7);
+                var h = random.Next(3, 6);
+                if (random.Next(2) == 0)
+                    (w, h) = (h, w);
+                if (r.width < w + 6 || r.height < h + 6)
+                    continue;
+                var x0 = r.xMin + random.Next(2, r.width - w - 1);
+                var y0 = r.yMin + random.Next(2, r.height - h - 1);
+                var cage = new RectInt(x0, y0, w, h);
+                var ok = true;
+                foreach (var other in taken)
+                    if (cage.xMin < other.xMax + 2 && other.xMin < cage.xMax + 2 && cage.yMin < other.yMax + 2 && other.yMin < cage.yMax + 2)
+                        ok = false;
+                // Two cells of floor all round: every cell of the cage grown by 2 is floor.
+                for (var x = x0 - 2; x < x0 + w + 2 && ok; x++)
+                    for (var y = y0 - 2; y < y0 + h + 2 && ok; y++)
+                        ok = layout.IsFloor(new Vector2Int(x, y));
+                if (!ok)
+                    continue;
+                taken.Add(cage);
+                // The doorway: one side, one cell at least one in from each corner.
+                var side = random.Next(4);
+                var along = side < 2 ? w : h;
+                var door = 1 + random.Next(along - 2);
+                for (var x = 0; x < w; x++)
+                    for (var y = 0; y < h; y++)
+                    {
+                        if (x > 0 && x < w - 1 && y > 0 && y < h - 1)
+                            continue;
+                        var isDoor = side == 0 ? y == 0 && x == door : side == 1 ? y == h - 1 && x == door :
+                            side == 2 ? x == 0 && y == door : x == w - 1 && y == door;
+                        if (!isDoor)
+                            layout.Set(x0 + x, y0 + y, DungeonCell.Wall);
+                    }
             }
         }
 

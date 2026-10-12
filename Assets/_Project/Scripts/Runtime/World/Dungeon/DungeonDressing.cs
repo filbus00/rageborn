@@ -42,6 +42,21 @@ namespace ARPG
             (PropKind.BurningBooks, 10), (PropKind.FallenShelf, 10), (PropKind.Candles, 8), (PropKind.Urn, 4),
         };
 
+        // The prison (2026-10-12, the concept's props): hanging cages, torture benches, stocks, floor grates, straw, bones,
+        // barrels and crates, braziers and torches; blood on the floor.
+        static readonly (PropKind kind, int weight)[] PrisonPropWeights =
+        {
+            (PropKind.HangingCage, 14), (PropKind.TortureBench, 10), (PropKind.Stocks, 8), (PropKind.FloorGrate, 10),
+            (PropKind.StrawPile, 12), (PropKind.BonePile, 12), (PropKind.Barrel, 8), (PropKind.Crate, 6), (PropKind.Bucket, 6),
+            (PropKind.Brazier, 8), (PropKind.Torch, 6),
+        };
+
+        static readonly (DecalKind kind, int weight)[] PrisonDecalWeights =
+        {
+            (DecalKind.Blood, 30), (DecalKind.Cracks, 20), (DecalKind.Bones, 16), (DecalKind.Rubble, 12), (DecalKind.Puddle, 10),
+            (DecalKind.Skull, 6), (DecalKind.Moss, 6),
+        };
+
         static readonly (DecalKind kind, int weight)[] LibraryDecalWeights =
         {
             (DecalKind.Ash, 34), (DecalKind.Cracks, 20), (DecalKind.Rubble, 14), (DecalKind.Blood, 10), (DecalKind.Bones, 10),
@@ -201,7 +216,8 @@ namespace ARPG
         {
             var demonic = Mathf.Clamp01((depth - 8) / 16f);
             var theme = DungeonRules.ThemeAt(depth);
-            var list = new List<(PropKind, int)>(theme == DungeonTheme.Cave ? CavePropWeights : theme == DungeonTheme.Library ? LibraryPropWeights : CryptPropWeights);
+            var list = new List<(PropKind, int)>(theme == DungeonTheme.Cave ? CavePropWeights : theme == DungeonTheme.Library ? LibraryPropWeights :
+                theme == DungeonTheme.Prison ? PrisonPropWeights : CryptPropWeights);
             var extra = Mathf.RoundToInt(demonic * 120);
             if (extra > 0)
             {
@@ -269,7 +285,8 @@ namespace ARPG
                 var cell = floor[random.Next(floor.Count)];
                 if (!layout.IsFloor(cell) || layout.Decals.ContainsKey(cell))
                     continue;
-                var kind = Pick(layout.Theme == DungeonTheme.Cave ? CaveDecalWeights : layout.Theme == DungeonTheme.Library ? LibraryDecalWeights : DecalWeights, random);
+                var kind = Pick(layout.Theme == DungeonTheme.Cave ? CaveDecalWeights : layout.Theme == DungeonTheme.Library ? LibraryDecalWeights :
+                    layout.Theme == DungeonTheme.Prison ? PrisonDecalWeights : DecalWeights, random);
                 // Moss grows in the damp rooms (style 3) and hardly elsewhere.
                 if (kind == DecalKind.Moss && style != 3 && random.Next(3) > 0)
                     kind = DecalKind.Cracks;

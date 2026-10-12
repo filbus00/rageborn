@@ -10,17 +10,48 @@ namespace ARPG.Tests
         static List<RoomShape> Library() => PlaceholderRooms.All.Select(r => RoomShape.Parse(r.name, r.layout)).ToList();
 
         [Test]
-        public void TheCryptRunsToTheTidewife_ThenTheLibrary_ThenCaves()
+        public void TheCryptRunsToTheTidewife_ThenThePrison_TheLibrary_AndCaves()
         {
             Assert.AreEqual(DungeonTheme.Crypt, DungeonRules.ThemeAt(1));
             Assert.AreEqual(DungeonTheme.Crypt, DungeonRules.ThemeAt(12));
-            Assert.AreEqual(DungeonTheme.Library, DungeonRules.ThemeAt(13));
-            Assert.AreEqual(DungeonTheme.Library, DungeonRules.ThemeAt(24));
-            Assert.AreEqual(DungeonTheme.Cave, DungeonRules.ThemeAt(25));
-            Assert.AreEqual(DungeonTheme.Cave, DungeonRules.ThemeAt(36));
+            Assert.AreEqual(DungeonTheme.Prison, DungeonRules.ThemeAt(13));
+            Assert.AreEqual(DungeonTheme.Prison, DungeonRules.ThemeAt(24));
+            Assert.AreEqual(DungeonTheme.Library, DungeonRules.ThemeAt(25));
+            Assert.AreEqual(DungeonTheme.Library, DungeonRules.ThemeAt(36));
+            Assert.AreEqual(DungeonTheme.Cave, DungeonRules.ThemeAt(37));
+            Assert.AreEqual(DungeonTheme.Cave, DungeonRules.ThemeAt(48));
             Assert.AreEqual(DungeonTheme.Crypt, DungeonGenerator.Generate(7919, 4, Library()).Theme);
-            Assert.AreEqual(DungeonTheme.Library, DungeonGenerator.Generate(7919, 16, Library()).Theme);
-            Assert.AreEqual(DungeonTheme.Cave, DungeonGenerator.Generate(7919, 28, Library()).Theme);
+            Assert.AreEqual(DungeonTheme.Prison, DungeonGenerator.Generate(7919, 16, Library()).Theme);
+            Assert.AreEqual(DungeonTheme.Library, DungeonGenerator.Generate(7919, 28, Library()).Theme);
+            Assert.AreEqual(DungeonTheme.Cave, DungeonGenerator.Generate(7919, 40, Library()).Theme);
+        }
+
+        [Test]
+        public void PrisonHalls_HoldCages_StandingFree_WithTheirInsidesReached()
+        {
+            var withCages = 0;
+            for (var seed = 1; seed <= 8; seed++)
+            {
+                var layout = DungeonGenerator.Generate(seed * 7919, 16, Library());
+                if (layout.FreeStanding.Count >= 30)
+                    withCages++;
+                // Every floor cell, the cages' insides too, is reached from the arrival.
+                var seen = new HashSet<Vector2Int> { layout.ArrivalFromAbove };
+                var queue = new Queue<Vector2Int>(seen);
+                while (queue.Count > 0)
+                {
+                    var cell = queue.Dequeue();
+                    foreach (var step in RoomShape.Sides)
+                        if (layout.IsFloor(cell + step) && seen.Add(cell + step))
+                            queue.Enqueue(cell + step);
+                }
+                var b = layout.Bounds;
+                for (var x = b.xMin; x < b.xMax; x++)
+                    for (var y = b.yMin; y < b.yMax; y++)
+                        if (layout.IsFloor(new Vector2Int(x, y)))
+                            Assert.IsTrue(seen.Contains(new Vector2Int(x, y)), $"seed {seed}: ({x}, {y}) cut off");
+            }
+            Assert.GreaterOrEqual(withCages, 6, "most prison levels have cages");
         }
 
         [Test]
@@ -47,7 +78,7 @@ namespace ARPG.Tests
             var withAisles = 0;
             for (var seed = 1; seed <= 8; seed++)
             {
-                var layout = DungeonGenerator.Generate(seed * 7919, 16, Library());
+                var layout = DungeonGenerator.Generate(seed * 7919, 28, Library());
                 var shelves = 0;
                 foreach (var cell in layout.FreeStanding)
                     if (layout.Get(cell + Vector2Int.right) == DungeonCell.Wall || layout.Get(cell + Vector2Int.up) == DungeonCell.Wall)
@@ -64,7 +95,7 @@ namespace ARPG.Tests
             var withTerraces = 0;
             for (var seed = 1; seed <= 12; seed++)
             {
-                var layout = DungeonGenerator.Generate(seed * 7919, 29, Library());
+                var layout = DungeonGenerator.Generate(seed * 7919, 41, Library());
                 var label = $"seed {seed}";
                 if (layout.Raised.Count > 0)
                     withTerraces++;

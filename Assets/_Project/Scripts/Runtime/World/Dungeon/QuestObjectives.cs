@@ -216,6 +216,7 @@ namespace ARPG
             "vessa" => PackMember.Cutthroat,
             "aldric" => PackMember.SkeletonKnight,
             "corvane" => PackMember.EmberAcolyte,
+            "vask" => PackMember.Ghoul,
             _ => PackMember.GravePriest,
         };
 

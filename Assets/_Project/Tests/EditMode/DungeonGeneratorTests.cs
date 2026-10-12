@@ -213,15 +213,17 @@ namespace ARPG.Tests
             Assert.AreEqual(11, DungeonRules.EnemyLevel(12));
             Assert.AreEqual(15, DungeonRules.EnemyLevel(18));
             Assert.AreEqual(18, DungeonRules.EnemyLevel(24));
-            Assert.AreEqual(25, DungeonRules.EnemyLevel(DungeonRules.Depths));
+            Assert.AreEqual(33, DungeonRules.EnemyLevel(DungeonRules.Depths));
             for (var depth = 2; depth <= DungeonRules.Depths; depth++)
                 Assert.GreaterOrEqual(DungeonRules.EnemyLevel(depth), DungeonRules.EnemyLevel(depth - 1));
         }
 
         [Test]
-        public void TheDungeonIs36Deep_WithTheWardenAt6()
+        public void TheDungeonIs48Deep_WithTheWardenAt6_AndABossEvery6()
         {
-            Assert.AreEqual(36, DungeonRules.Depths);
+            Assert.AreEqual(48, DungeonRules.Depths);
+            for (var depth = 6; depth <= 48; depth += 6)
+                Assert.IsTrue(DungeonRules.IsBossDepth(depth), "a boss at " + depth);
             Assert.IsTrue(DungeonRules.IsBossDepth(6));
             Assert.IsFalse(DungeonRules.IsBossDepth(5));
             Assert.IsFalse(DungeonRules.IsBossDepth(7));

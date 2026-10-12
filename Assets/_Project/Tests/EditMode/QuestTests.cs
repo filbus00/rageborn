@@ -64,7 +64,7 @@ namespace ARPG.Tests
             foreach (var quest in QuestRules.All)
                 quests.Restore(quest.Id, quest.Steps.Length, true);
             var boons = quests.Boons;
-            Assert.AreEqual(0.1f, boons.LifePercent, 1e-5f);
+            Assert.AreEqual(0.15f, boons.LifePercent, 1e-5f);
             Assert.AreEqual(0.15f, boons.DamagePercent, 1e-5f);
             Assert.AreEqual(1.25f, boons.SellPrice, 1e-5f);
             Assert.AreEqual(1.25f, boons.PetPower, 1e-5f);
@@ -80,7 +80,7 @@ namespace ARPG.Tests
         public void TheQuests_AreWellFormed()
         {
             var ids = new HashSet<string>();
-            Assert.AreEqual(5, QuestRules.All.Count(q => q.Main));
+            Assert.AreEqual(6, QuestRules.All.Count(q => q.Main));
             Assert.AreEqual(8, QuestRules.All.Count(q => !q.Main));
             foreach (var quest in QuestRules.All)
             {

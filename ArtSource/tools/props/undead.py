@@ -23,6 +23,8 @@ DONORS = {"skeleton": "husk", "cultist": "bandit_archer", "cutthroat": "husk", "
           "tidewife": "ghoul", "saint_marrow": "ghoul", "first_watchman": "ghoul",
           # The burnt library's boss and the caves' (2026-10-11).
           "ash_archivist": "ghoul", "rift_mother": "ghoul",
+          # The prison's bosses (2026-10-12).
+          "gaoler": "ghoul", "hanged_magistrate": "ghoul",
           # The quest people (2026-10-08): Mother Aldis, and those she brings back to town.
           "aldis": "bandit_archer", "tobin": "bandit_archer", "pellam": "bandit_archer", "bram": "bandit_archer", "ivy": "bandit_archer"}
 NPCS = {"stash_keeper", "healer", "gambler", "trainer", "aldis", "tobin", "pellam", "bram", "ivy"}
@@ -55,6 +57,9 @@ COLORS = {
     # The Ash Archivist and the Rift Mother (2026-10-11).
     "char_robe": (46, 38, 34), "char_dark": (26, 22, 22), "parchment": (200, 186, 150), "ink": (24, 20, 30),
     "mother_skin": (92, 60, 104), "mother_dark": (52, 32, 62),
+    # The Gaoler and the Hanged Magistrate (2026-10-12).
+    "jailer_skin": (112, 100, 90), "jailer_dark": (78, 68, 62), "hood_black": (30, 26, 26), "apron": (70, 46, 30),
+    "wig": (214, 208, 192), "robe_black": (30, 28, 34), "rope": (124, 94, 62), "pale": (176, 170, 156),
 }
 color_list = list(COLORS)
 bm = bmesh.new()
@@ -707,12 +712,82 @@ def rift_mother():
             limb(hand, hand + d * 0.28 * U + V(((k - 1) * 0.05 * U, 0, 0.04 * U)), 0.025 * U, 0.004 * U, side + "Hand", "bone_white", 4)
 
 
+def gaoler():
+    # The Gaoler: a huge jailer, grey-skinned, bare-armed, an executioner's hood with eye holes, a leather apron
+    # stained dark, a great ring of keys at his belt, a heavy chain wound round his right fist and hanging to the floor.
+    h = head("Head")
+    s2 = head("Spine2")
+    blob(V((0, s2.y, 0.02 * U)), (0.3 * U, 0.24 * U, 0.24 * U), "Spine2", "jailer_skin")
+    blob(V((0, head("Spine1").y, 0.04 * U)), (0.28 * U, 0.18 * U, 0.26 * U), "Spine1", "jailer_skin")
+    blob(V((0, head("Spine").y, 0.06 * U)), (0.3 * U, 0.16 * U, 0.28 * U), "Spine", "jailer_dark")
+    block(V((0, head("Spine").y - 0.15 * U, 0.2 * U)), (0.4 * U, 0.6 * U, 0.03 * U), "Spine", "apron")
+    block(V((0, head("Hips").y, 0)), (0.42 * U, 0.12 * U, 0.3 * U), "Hips", "leather_dark")
+    blob(V((0, s2.y + 0.18 * U, 0.02 * U)), (0.2 * U, 0.1 * U, 0.16 * U), "Spine2", "hood_black")
+    blob(h + V((0, 0.08 * U, 0.02 * U)), (0.13 * U, 0.15 * U, 0.13 * U), "Head", "hood_black")
+    cone_tip = h + V((0, 0.3 * U, -0.02 * U))
+    limb(h + V((0, 0.18 * U, 0)), cone_tip, 0.09 * U, 0.01 * U, "Head", "hood_black", 6)
+    for sx in (-1, 1):
+        block(h + V((sx * 0.045 * U, 0.1 * U, 0.12 * U)), (0.035 * U, 0.02 * U, 0.02 * U), "Head", "fire")
+    for side in ("Left", "Right"):
+        blob(head(side + "Arm") + V((0, 0.03 * U, 0)), (0.13 * U, 0.11 * U, 0.12 * U), side + "Arm", "jailer_skin")
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.1 * U, 0.09 * U, side + "Arm", "jailer_skin")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.09 * U, 0.08 * U, side + "ForeArm", "jailer_dark")
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.07 * U, 0.07 * U, 0.07 * U), side + "Hand", "jailer_skin")
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.12 * U, 0.1 * U, side + "UpLeg", "leather_dark")
+        limb(head(side + "Leg"), head(side + "Foot"), 0.1 * U, 0.08 * U, side + "Leg", "leather")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.12 * U, 0.08 * U, 0.2 * U), side + "Foot", "black_iron")
+    # The ring of keys at his left hip.
+    ring = V((0.24 * U, head("Hips").y - 0.04 * U, 0.1 * U))
+    for k in range(10):
+        a = 2 * math.pi * k / 10
+        block(ring + V((0, math.sin(a) * 0.08 * U, math.cos(a) * 0.08 * U)), (0.02 * U, 0.025 * U, 0.025 * U), "Hips", "rust")
+    for k in range(5):
+        block(ring + V((0.01 * U, -0.1 * U - 0.01 * U * (k % 2), (k - 2) * 0.035 * U)), (0.012 * U, 0.09 * U, 0.02 * U), "Hips", "iron")
+    # The chain: wound round his right fist, hanging down past it.
+    hand = head("RightHand") + (tail("RightHand") - head("RightHand")) * 0.4
+    for k in range(12):
+        p = hand + V((0, -0.06 * U * k, 0.02 * U * math.sin(k)))
+        block(p, (0.035 * U, 0.05 * U, 0.02 * U) if k % 2 else (0.02 * U, 0.05 * U, 0.035 * U), "RightHand", "iron")
+    blob(hand + V((0, -0.75 * U, 0)), (0.08 * U, 0.06 * U, 0.08 * U), "RightHand", "black_iron")
+
+
+def hanged_magistrate():
+    # The Hanged Magistrate: a gaunt judge in a long black robe with a white collar, a powdered wig over a pale dead face,
+    # a noose round his neck with its cut rope hanging, a gavel in his right hand and a scroll of sentences in his left.
+    h = head("Head")
+    _townsfolk_body("robe_black", "robe_black", "robe_black", "robe_black", skin="pale", wide=1.15)
+    block(V((0, head("Hips").y - 0.3 * U, 0)), (0.42 * U, 0.62 * U, 0.34 * U), "Hips", "robe_black")
+    block(V((0, head("Spine2").y + 0.08 * U, 0.1 * U)), (0.14 * U, 0.08 * U, 0.04 * U), "Spine2", "linen")
+    blob(h + V((0, 0.09 * U, 0.03 * U)), (0.1 * U, 0.13 * U, 0.1 * U), "Head", "pale")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.035 * U, 0.1 * U, 0.115 * U)), (0.025 * U, 0.018 * U, 0.012 * U), "Head", "ghost_green")
+    # The wig: a crown and rolls of curls down each side.
+    blob(h + V((0, 0.18 * U, -0.01 * U)), (0.13 * U, 0.08 * U, 0.13 * U), "Head", "wig")
+    for sx in (-1, 1):
+        for k in range(3):
+            blob(h + V((sx * 0.12 * U, 0.12 * U - 0.07 * U * k, -0.02 * U)), (0.045 * U, 0.04 * U, 0.06 * U), "Head", "wig")
+    # The noose and its rope, cut, hanging over his shoulder.
+    n = head("Neck")
+    for k in range(10):
+        a = 2 * math.pi * k / 10
+        block(n + V((math.cos(a) * 0.06 * U, 0.02 * U, math.sin(a) * 0.06 * U)), (0.03 * U, 0.03 * U, 0.03 * U), "Neck", "rope")
+    limb(n + V((0.05 * U, 0.04 * U, -0.03 * U)), n + V((0.12 * U, 0.45 * U, -0.08 * U)), 0.018 * U, 0.015 * U, "Neck", "rope", 5)
+    # The gavel and the scroll.
+    hand = head("RightHand") + (tail("RightHand") - head("RightHand")) * 0.4
+    d = (tail("RightHand") - head("RightHand")).normalized()
+    limb(hand - d * 0.05 * U, hand + d * 0.3 * U, 0.018 * U, 0.018 * U, "RightHand", "leather_dark", 5)
+    blob(hand + d * 0.32 * U, (0.07 * U, 0.05 * U, 0.05 * U), "RightHand", "leather_dark")
+    q = head("LeftHand") + (tail("LeftHand") - head("LeftHand")) * 0.4
+    limb(q - V((0.06 * U, 0, 0)), q + V((0.06 * U, 0, 0)), 0.035 * U, 0.035 * U, "LeftHand", "parchment", 6)
+    block(q + V((0, -0.12 * U, 0.02 * U)), (0.1 * U, 0.22 * U, 0.008 * U), "LeftHand", "parchment")
+
+
 {"skeleton": skeleton, "cultist": cultist, "cutthroat": cutthroat, "ember_acolyte": ember_acolyte,
  "pyre_keeper": pyre_keeper, "carrion_bloat": carrion_bloat, "stash_keeper": stash_keeper, "healer": healer,
  "gambler": gambler, "trainer": trainer, "drowned": drowned, "harpooner": harpooner, "drowned_watchman": drowned_watchman,
  "skeleton_knight": skeleton_knight, "grave_priest": grave_priest, "hollowed": hollowed, "void_wraith": void_wraith,
  "rift_caller": rift_caller, "tidewife": tidewife, "saint_marrow": saint_marrow, "first_watchman": first_watchman,
- "ash_archivist": ash_archivist, "rift_mother": rift_mother,
+ "ash_archivist": ash_archivist, "rift_mother": rift_mother, "gaoler": gaoler, "hanged_magistrate": hanged_magistrate,
  "aldis": aldis, "tobin": tobin, "pellam": pellam, "bram": bram, "ivy": ivy}[NAME]()
 
 # Every bone a humanoid needs keeps a vertex weighted to it: Unity strips bones nothing is weighted to, and the avatar

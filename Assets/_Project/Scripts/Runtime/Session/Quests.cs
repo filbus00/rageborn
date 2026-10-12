@@ -101,7 +101,7 @@ namespace ARPG
     }
 
     /// <summary>
-    /// The quests (2026-10-08): four main quests from Mother Aldis and eight side quests from the town's people, each a
+    /// The quests (2026-10-08): six main quests from Mother Aldis (the prison's and the library's added 2026-10-11 and 12) and eight side quests from the town's people, each a
     /// few steps ending with a return to the giver. Content and numbers are Claude's, to review (Docs/05 Quests). Pure.
     /// </summary>
     public static class QuestRules
@@ -155,6 +155,8 @@ namespace ARPG
             "drowned_fire" => "the Drowned Watch's Fire",
             "fire_ledger" => "the Fire-Ledger",
             "corvane" => "Corvane the Scrivener",
+            "hold_keys" => "the Hold's keys",
+            "vask" => "Vask the Questioner",
             _ => target,
         };
 
@@ -224,12 +226,40 @@ namespace ARPG
                 },
                 Boon = QuestBoon.DamageBlessing, Gift = "The fire grows: +5% damage. Bram stays in town.",
             },
+            // The prison's chapter (2026-10-12, the owner: the prison after the crypt, two bosses and a main questline).
             new QuestDefinition
             {
-                Id = "saints_bargain", Title = "The Saint's Bargain", Giver = QuestGiver.Aldis, Main = true, After = "drowned_watch", FromDepth = 12,
+                Id = "iron_hold", Title = "The Iron Hold", Giver = QuestGiver.Aldis, Main = true, After = "drowned_watch", FromDepth = 12,
                 Offer = new[]
                 {
-                    "Saint Marrow kept the third fire. They say he kept the dead quiet. They do not say how.",
+                    "Below the drowned halls the Watch kept its prison. The Iron Hold. Oathbreakers went there, and the ones the Hollow had touched.",
+                    "When the fires died, the Gaoler kept the doors locked. With everyone still inside. He never stopped.",
+                    "The Hold's fire burned in the Magistrate's court. He judged them by its light. Find out what he judges now.",
+                },
+                Progress = "The Gaoler's keys, then the Gaoler. Then Vask, and the Magistrate's court.",
+                Complete = new[]
+                {
+                    "Hanged by his own court, and still passing sentence. The third ember.",
+                    "The prisoners you let out came up the stair behind you. Some of them will stay. We need the hands.",
+                },
+                Steps = new[]
+                {
+                    Step(QuestStepKind.Recover, 15, "hold_keys", "Find the Hold's ring of keys (depth 15).",
+                        "The keys. Every cell in the Hold, on one iron ring."),
+                    Step(QuestStepKind.Boss, 18, "gaoler", "Slay the Gaoler (depth 18).", "The Gaoler falls. His cells stand open."),
+                    Step(QuestStepKind.NamedFoe, 21, "vask", "Kill Vask the Questioner in the Hold's lower cells (depth 21).",
+                        "Vask the Questioner is dead. His tools go quiet."),
+                    Step(QuestStepKind.Boss, 24, "magistrate", "Slay the Hanged Magistrate (depth 24).", "The Magistrate's ember is yours."),
+                    Back("Bring the third ember to Mother Aldis."),
+                },
+                Boon = QuestBoon.LifeBlessing, Gift = "The fire steadies: +5% life.",
+            },
+            new QuestDefinition
+            {
+                Id = "saints_bargain", Title = "The Saint's Bargain", Giver = QuestGiver.Aldis, Main = true, After = "iron_hold", FromDepth = 24,
+                Offer = new[]
+                {
+                    "Saint Marrow kept the fourth fire. They say he kept the dead quiet. They do not say how.",
                     "A sister of his order went down to pray at his tomb and never came back. Ivy. Find her.",
                     "His reliquary holds his sermons. Bring it, and we will know what he bargained.",
                 },
@@ -237,23 +267,23 @@ namespace ARPG
                 Complete = new[]
                 {
                     "He fed them the dead, and the Hollow kept him alive for it. Four hundred years of it.",
-                    "The third ember. Ivy is praying by the fire. She will not say for whom.",
+                    "The fourth ember. Ivy is praying by the fire. She will not say for whom.",
                 },
                 Steps = new[]
                 {
-                    Step(QuestStepKind.Rescue, 14, "ivy", "Find Sister Ivy, sealed in a tomb (depth 14).",
+                    Step(QuestStepKind.Rescue, 26, "ivy", "Find Sister Ivy, sealed in a tomb (depth 26).",
                         "Ivy: \"He is not a saint. He never was. I will find my own way up.\""),
-                    Step(QuestStepKind.NamedFoe, 16, "reliquary_keeper", "Take Saint Marrow's reliquary from the Reliquary Keeper (depth 16).",
+                    Step(QuestStepKind.NamedFoe, 28, "reliquary_keeper", "Take Saint Marrow's reliquary from the Reliquary Keeper (depth 28).",
                         "The reliquary is yours. Inside, the saint's sermons, and a bargain in his hand."),
-                    Step(QuestStepKind.Boss, 18, "saint_marrow", "Slay Saint Marrow (depth 18).", "Saint Marrow's ember is yours."),
-                    Back("Bring the third ember to Mother Aldis."),
+                    Step(QuestStepKind.Boss, 30, "saint_marrow", "Slay Saint Marrow (depth 30).", "Saint Marrow's ember is yours."),
+                    Back("Bring the fourth ember to Mother Aldis."),
                 },
                 Boon = QuestBoon.LifeBlessing, Gift = "The fire roars: +5% life. Ivy stays in town.",
             },
             // The burnt library's chapter (2026-10-11, the owner: "Make a new questline for the library", the main story).
             new QuestDefinition
             {
-                Id = "burnt_archive", Title = "The Burnt Archive", Giver = QuestGiver.Aldis, Main = true, After = "saints_bargain", FromDepth = 18,
+                Id = "burnt_archive", Title = "The Burnt Archive", Giver = QuestGiver.Aldis, Main = true, After = "saints_bargain", FromDepth = 30,
                 Offer = new[]
                 {
                     "Below the saint's halls lies the Watch's archive. Every fire was written down there. Who kept it, who failed it.",
@@ -264,23 +294,23 @@ namespace ARPG
                 Complete = new[]
                 {
                     "He burned the truth to hide it. That the First Watchman let the fires die. That he chose to.",
-                    "And the Archivist burned with his books, and kept burning. The fourth ember.",
+                    "And the Archivist burned with his books, and kept burning. The fifth ember.",
                     "Now we know who waits at the bottom. Rest first. The caves are worse.",
                 },
                 Steps = new[]
                 {
-                    Step(QuestStepKind.Recover, 20, "fire_ledger", "Find the Watch's fire-ledger in the burnt archive (depth 20).",
+                    Step(QuestStepKind.Recover, 32, "fire_ledger", "Find the Watch's fire-ledger in the burnt archive (depth 32).",
                         "Half the ledger is ash. The last page: \"The Watchman ordered the fires out. Burn the record.\""),
-                    Step(QuestStepKind.NamedFoe, 22, "corvane", "Kill Corvane the Scrivener, who keeps the book-pyres burning (depth 22).",
+                    Step(QuestStepKind.NamedFoe, 34, "corvane", "Kill Corvane the Scrivener, who keeps the book-pyres burning (depth 34).",
                         "Corvane is dead. His pyres gutter out."),
-                    Step(QuestStepKind.Boss, 24, "ash_archivist", "Slay the Ash Archivist (depth 24).", "The Archivist's ember is yours."),
-                    Back("Bring the fourth ember to Mother Aldis."),
+                    Step(QuestStepKind.Boss, 36, "ash_archivist", "Slay the Ash Archivist (depth 36).", "The Archivist's ember is yours."),
+                    Back("Bring the fifth ember to Mother Aldis."),
                 },
                 Boon = QuestBoon.DamageBlessing, Gift = "The fire burns hotter: +5% damage.",
             },
             new QuestDefinition
             {
-                Id = "first_watchman", Title = "The First Watchman", Giver = QuestGiver.Aldis, Main = true, After = "burnt_archive", FromDepth = 24,
+                Id = "first_watchman", Title = "The First Watchman", Giver = QuestGiver.Aldis, Main = true, After = "burnt_archive", FromDepth = 36,
                 Offer = new[]
                 {
                     "The first fire was his. The First Watchman. His failure is the night we live in.",
@@ -290,18 +320,18 @@ namespace ARPG
                 Progress = "The heart, the Rift Mother, the stone, then him. Come back with the last ember.",
                 Complete = new[]
                 {
-                    "Five embers. Five fires. I did not think I would live to see it.",
+                    "Six embers. Six fires. I did not think I would live to see it.",
                     "Stand back. ... There. The Vigil burns.",
                     "The Hollow will remember this. Let it.",
                 },
                 Steps = new[]
                 {
-                    Step(QuestStepKind.Break, 28, "rift_heart", "Break the rift heart that feeds the deep (depth 28).",
+                    Step(QuestStepKind.Break, 40, "rift_heart", "Break the rift heart that feeds the deep (depth 40).",
                         "The rift heart bursts. The deep goes quiet, for a moment."),
-                    Step(QuestStepKind.Boss, 30, "rift_mother", "Slay the Rift Mother (depth 30).", "The Rift Mother is dead. Her brood scatters."),
-                    Step(QuestStepKind.Recover, 34, "oath_stone", "Recover the Broken Oath-Stone (depth 34).",
+                    Step(QuestStepKind.Boss, 42, "rift_mother", "Slay the Rift Mother (depth 42).", "The Rift Mother is dead. Her brood scatters."),
+                    Step(QuestStepKind.Recover, 46, "oath_stone", "Recover the Broken Oath-Stone (depth 46).",
                         "The oath-stone: \"I will hold the dark.\" Below it, scratched later: \"I could not.\""),
-                    Step(QuestStepKind.Boss, 36, "first_watchman", "Slay the First Watchman (depth 36).", "The last ember is yours."),
+                    Step(QuestStepKind.Boss, 48, "first_watchman", "Slay the First Watchman (depth 48).", "The last ember is yours."),
                     Back("Bring the last ember to Mother Aldis."),
                 },
                 Boon = QuestBoon.DamageBlessing, Gift = "The Vigil burns again: +5% damage.",
@@ -418,18 +448,18 @@ namespace ARPG
             },
             new QuestDefinition
             {
-                Id = "last_novice", Title = "The Last Novice", Giver = QuestGiver.Ivy, After = "saints_bargain", FromDepth = 14,
+                Id = "last_novice", Title = "The Last Novice", Giver = QuestGiver.Ivy, After = "saints_bargain", FromDepth = 26,
                 Offer = new[]
                 {
-                    "The grave priests still keep the saint's rite. Three pyres of bone on the fifteenth level.",
+                    "The grave priests still keep the saint's rite. Three pyres of bone on the twenty-seventh level.",
                     "While they burn, the dead there cannot rest. I was a novice of that rite. I helped build them.",
                     "Break them. All three. I will pray for you, and my prayers are worth something now.",
                 },
-                Progress = "Three pyres. Fifteenth level.",
+                Progress = "Three pyres. Twenty-seventh level.",
                 Complete = new[] { "They are cold? Then it is over.", "Take my blessing on your draughts. They will mend more, and you will carry one more." },
                 Steps = new[]
                 {
-                    Step(QuestStepKind.Break, 15, "bone_pyres", "Break the grave priests' three bone pyres (depth 15).", "The last pyre falls. The rite is broken."),
+                    Step(QuestStepKind.Break, 27, "bone_pyres", "Break the grave priests' three bone pyres (depth 27).", "The last pyre falls. The rite is broken."),
                     Back("Tell Sister Ivy the rite is broken."),
                 },
                 Boon = QuestBoon.Potions, Gift = "Ivy's blessing: potions heal 25% more, and one more charge.",
