@@ -381,7 +381,6 @@ def boss():
 
 
 argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
-# The boss track is the owner's own since 2026-10-12 (import_owner_sounds.py): only remade here when asked for by name.
 for name, make in (("town", town), ("dungeon", dungeon), ("boss", boss)):
-    if (not argv and name != "boss") or name in argv:
+    if not argv or name in argv:
         make()
