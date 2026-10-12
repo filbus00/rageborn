@@ -1156,3 +1156,9 @@ The owner: the dungeon "still looks really bad", walls "not only right shapes", 
 - Dungeon (128 s): drones, choir and wind as before over four 32 s sections; a double-thump heartbeat every 1.6 s in the second and fourth, the cello's D, E flat, D, C motif in the first and third, tremolo clusters swelling at the ends of the second and fourth, clanks every 9 to 17 s, a rush into each section.
 - Checked by measurement only (no listening possible): peaks 0.67 and 0.71, no clipping, the loop seams as smooth as any other sample step. Played on the owner's phone build.
 
+## 2026-10-13: developer tools
+
+- The owner: "open up the waypoint to all levels at start, give me a button in settings that equips full loadout of legendaries, give me max level and full skills". Development builds only (`Debug.isDebugBuild`, so the owner's phone builds have them).
+- `DevShortcuts`: entering town activates every depth's waypoint.
+- `DevTools` (Core): `EquipLegendaries` puts the first legendary of each kind in every place that has one (9: bow, quiver, helm, chest, gloves, boots, belt, amulet, ring; there is one ring legendary, so the second ring stays), at her level, what she wore going to the backpack; `MaxCharacter` levels her to 60 and sets every talent node to its full rank (`TalentState.MaxAll`, more points than the level earns). Settings' Developer group: "Legendaries: Equip all" and "Level 60, all talents: Give". Tests in `DevToolsTests`.
+

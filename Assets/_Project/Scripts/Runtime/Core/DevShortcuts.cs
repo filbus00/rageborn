@@ -33,6 +33,11 @@ namespace ARPG
             if (scene.name != TownScene)
                 return;
 
+            // Every waypoint open from the start (the owner, 2026-10-13), so any depth is a waypoint away.
+            var session = GameSession.Current;
+            for (var depth = 1; depth <= DungeonRules.Depths; depth++)
+                session.ActivateWaypoint(depth);
+
             var town = GameObject.Find("Stairs Down");
             if (town == null)
                 return;

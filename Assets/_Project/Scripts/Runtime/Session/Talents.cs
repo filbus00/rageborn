@@ -245,6 +245,15 @@ namespace ARPG
             return true;
         }
 
+        /// <summary>Every node at its full rank, points or not (the developer's "full skills", 2026-10-13).</summary>
+        public void MaxAll()
+        {
+            foreach (var node in TalentRules.Nodes)
+                ranks[node.Id] = node.MaxRanks;
+            bonuses = null;
+            Changed?.Invoke();
+        }
+
         /// <summary>Every point back (the Trainer).</summary>
         public void ResetAll()
         {

@@ -221,6 +221,26 @@ namespace ARPG
             Group("Accessibility");
             Choice("Reduce flashing", s.reduceFlashing ? "On" : "Off", s.reduceFlashing, c => c.reduceFlashing = !c.reduceFlashing);
             Choice("Reduce motion", s.reduceMotion ? "On" : "Off", s.reduceMotion, c => c.reduceMotion = !c.reduceMotion);
+
+            // Development builds only (2026-10-13).
+            if (DevTools.Enabled)
+            {
+                Group("Developer");
+                DevAction("Legendaries", "Equip all", () => DevTools.EquipLegendaries(GameSession.Current));
+                DevAction("Level 60, all talents", "Give", () => DevTools.MaxCharacter(GameSession.Current));
+            }
+        }
+
+        void DevAction(string label, string button, Action act)
+        {
+            var row = NewRow(label);
+            Button chip = null;
+            chip = NewButton(row.transform, button, () =>
+            {
+                act();
+                chip.GetComponentInChildren<Text>().text = "Done";
+            });
+            Width(chip.gameObject, 574f, 0f);
         }
 
         void Group(string name)
