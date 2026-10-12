@@ -213,11 +213,11 @@ namespace ARPG
         static PackMember Kind(string target) => target switch
         {
             "gorrak" => PackMember.Ghoul,
-            "vessa" => PackMember.Cutthroat,
-            "aldric" => PackMember.SkeletonKnight,
-            "corvane" => PackMember.EmberAcolyte,
-            "vask" => PackMember.Ghoul,
-            _ => PackMember.GravePriest,
+            "vessa" => PackMember.Fallen,
+            "corwen" => PackMember.SkeletonWarrior,
+            "corvane" => PackMember.DarkCultist,
+            "vask" => PackMember.Ogre,
+            _ => PackMember.Lich,
         };
 
         public static void Create(Transform parent, string questId, QuestStep step, Vector2Int cell, DungeonLevel level, int enemyLevel)

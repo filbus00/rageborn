@@ -83,232 +83,96 @@ namespace ARPG.Tests
             Assert.AreEqual(6f, Vector2.Distance(from, end), EnemyProjectileFlight.MaxStep);
         }
 
-        // --- Pack composition ---
+        // --- Pack composition (the concept roster, 2026-10-13) ---
 
-        [Test]
-        public void TheFirstLevel_IsHusksOnly()
+        static float Share(int depth, PackMember member, PackKind kind = PackKind.Normal)
         {
-            for (var pack = 0; pack < 200; pack++)
-                Assert.IsTrue(PackComposition.Roll(1, PackKind.Normal, 10, 12345, pack).All(m => m == PackMember.Husk));
+            var with = 0;
+            for (var pack = 0; pack < 2000; pack++)
+                if (PackComposition.Roll(depth, kind, 8, 2468, pack).Contains(member))
+                    with++;
+            return with / 2000f;
         }
 
         [Test]
-        public void ElitePacks_StayHusks()
+        public void TheFirstLevel_IsZombiesOnly()
         {
             for (var pack = 0; pack < 200; pack++)
-                Assert.IsTrue(PackComposition.Roll(5, PackKind.Elite, 4, 777, pack).All(m => m == PackMember.Husk));
+                Assert.IsTrue(PackComposition.Roll(1, PackKind.Normal, 10, 12345, pack).All(m => m == PackMember.Zombie));
+        }
+
+        [Test]
+        public void ElitePacks_AreOneKind()
+        {
+            for (var pack = 0; pack < 200; pack++)
+            {
+                var members = PackComposition.Roll(20, PackKind.Elite, 4, 777, pack);
+                Assert.IsTrue(members.All(m => m == members[0] && m != PackMember.None));
+            }
         }
 
         [Test]
         public void APack_IsTheSameEveryTimeTheLevelLoads()
         {
             for (var pack = 0; pack < 50; pack++)
-                CollectionAssert.AreEqual(PackComposition.Roll(4, PackKind.Normal, 9, 31337, pack), PackComposition.Roll(4, PackKind.Normal, 9, 31337, pack));
+                CollectionAssert.AreEqual(PackComposition.Roll(14, PackKind.Normal, 9, 31337, pack), PackComposition.Roll(14, PackKind.Normal, 9, 31337, pack));
         }
 
         [Test]
-        public void DeeperLevels_MixInGhoulsAndArchers_AtRoughlyTheDesignedShares()
+        public void EveryKind_IsMetInItsSpan_AndNeverOutsideIt()
         {
-            int husksOnly = 0, withGhouls = 0, withArchers = 0, bands = 0;
-            const int packs = 4000;
-            for (var pack = 0; pack < packs; pack++)
+            foreach (var entry in PackComposition.Table)
             {
-                // Depth 2: the mix alone, before the rest of act 1's roster joins at depth 3.
-                var members = PackComposition.Roll(2, PackKind.Normal, 10, 2024, pack);
-                var ghouls = members.Count(m => m == PackMember.Ghoul);
-                var archers = members.Count(m => m == PackMember.Archer);
-                var empty = members.Count(m => m == PackMember.None);
+                Assert.Greater(Share(entry.First + 2, entry.Member), 0f, entry.Member + " in its span");
+                if (entry.First > 1)
+                    Assert.AreEqual(0f, Share(entry.First - 1, entry.Member), entry.Member + " before its first depth");
+                if (entry.Last < DungeonRules.Depths)
+                    Assert.AreEqual(0f, Share(entry.Last + 1, entry.Member), entry.Member + " after its last depth");
+            }
+        }
 
-                if (ghouls == 0 && archers == 0)
-                    husksOnly++;
-                else if (empty > 0)
+        [Test]
+        public void EveryDepth_HasFrontFighters()
+        {
+            for (var depth = 1; depth <= DungeonRules.Depths; depth++)
+                Assert.IsTrue(PackComposition.Has(PackRole.Front, depth), depth.ToString());
+        }
+
+        [Test]
+        public void SwarmPacks_AreOneKindOfFourToSix()
+        {
+            var swarms = 0;
+            for (var pack = 0; pack < 500; pack++)
+            {
+                var members = PackComposition.Roll(30, PackKind.Normal, 8, 99, pack);
+                var kinds = members.Where(m => m != PackMember.None).Distinct().ToArray();
+                if (kinds.Length == 1 && PackComposition.RoleOf(kinds[0]) == PackRole.Swarm)
                 {
-                    bands++;
-                    Assert.AreEqual(3, ghouls);
-                    Assert.AreEqual(2, archers);
-                    Assert.AreEqual(0, members.Count(m => m == PackMember.Husk));
-                }
-                else if (ghouls > 0)
-                {
-                    withGhouls++;
-                    Assert.That(ghouls, Is.InRange(2, 3));
-                    Assert.AreEqual(0, archers);
-                    // Ghouls take the last slots, on the pack's outside.
-                    Assert.IsTrue(members.Skip(10 - ghouls).All(m => m == PackMember.Ghoul));
+                    swarms++;
+                    Assert.That(members.Count(m => m != PackMember.None), Is.InRange(PackComposition.MinSwarm, PackComposition.MaxSwarm));
                 }
                 else
-                {
-                    withArchers++;
-                    Assert.That(archers, Is.InRange(2, 3));
-                    Assert.IsTrue(members.Skip(10 - archers).All(m => m == PackMember.Archer));
-                }
+                    Assert.IsFalse(members.Any(m => m != PackMember.None && PackComposition.RoleOf(m) == PackRole.Swarm), "swarms run alone");
             }
-
-            Assert.AreEqual(0.40f, husksOnly / (float)packs, 0.04f);
-            Assert.AreEqual(0.25f, withGhouls / (float)packs, 0.04f);
-            Assert.AreEqual(0.20f, withArchers / (float)packs, 0.04f);
-            Assert.AreEqual(0.15f, bands / (float)packs, 0.04f);
+            Assert.That(swarms / 500f, Is.InRange(0.1f, 0.3f));
         }
 
         [Test]
-        public void Depth4_TurnsSomePacksUndead_AtRoughlyTheDesignedShares()
-        {
-            int withSkeletons = 0, withArchery = 0, withCultists = 0, packs = 0;
-            for (var pack = 0; pack < 4000; pack++)
-            {
-                var members = PackComposition.Roll(5, PackKind.Normal, 10, 2024, pack);
-                // Wolf packs (the rest of act 1's roster) replace a pack whole; the undead shares are of the others.
-                if (members.Contains(PackMember.AshWolf))
-                    continue;
-                packs++;
-                // Skeletons replace all the husks of a pack or none; cultists all the archers or none.
-                var skeletons = members.Count(m => m == PackMember.Skeleton);
-                Assert.IsTrue(skeletons == 0 || members.All(m => m != PackMember.Husk));
-                if (skeletons > 0)
-                    withSkeletons++;
-                // Ember acolytes take the archers a pack kept after the cultists' roll.
-                var archers = members.Count(m => m == PackMember.Archer || m == PackMember.EmberAcolyte);
-                var cultists = members.Count(m => m == PackMember.Cultist);
-                Assert.IsTrue(archers == 0 || cultists == 0);
-                if (archers + cultists > 0)
-                    withArchery++;
-                if (cultists > 0)
-                    withCultists++;
-            }
-            // Skeletons need husks (85 percent of packs have some), so about 35 percent of those.
-            Assert.AreEqual(0.35f * 0.85f, withSkeletons / (float)packs, 0.04f);
-            Assert.AreEqual(0.5f, withCultists / (float)withArchery, 0.06f);
-        }
-
-        [Test]
-        public void Depth3_HasNoUndead_AndElitePacksNeverDo()
+        public void ASupport_StandsAtTheBack()
         {
             for (var pack = 0; pack < 500; pack++)
             {
-                Assert.IsFalse(PackComposition.Roll(3, PackKind.Normal, 10, 7, pack).Any(m => m == PackMember.Skeleton || m == PackMember.Cultist));
-                Assert.IsTrue(PackComposition.Roll(6, PackKind.Elite, 6, 7, pack).All(m => m == PackMember.Husk));
+                var members = PackComposition.Roll(20, PackKind.Normal, 6, 4321, pack);
+                for (var i = 0; i < members.Length - 1; i++)
+                    Assert.AreNotEqual(PackRole.Support, members[i] == PackMember.None ? PackRole.Front : PackComposition.RoleOf(members[i]), "only the last slot");
             }
         }
 
         [Test]
-        public void AChampionPack_KeepsAHuskInSlotZero_ForTheLeader()
+        public void AGuardPack_KeepsEverySlotFilled()
         {
-            for (var pack = 0; pack < 500; pack++)
-                Assert.AreEqual(PackMember.Husk, PackComposition.Roll(6, PackKind.WithChampion, 8, 99, pack)[0]);
-        }
-
-        [Test]
-        public void ASmallGuardPack_KeepsEverySlotFilled()
-        {
-            // A treasure guard can be 3 strong; a band of 3 ghouls and 2 archers must not leave it with empty slots.
-            for (var pack = 0; pack < 500; pack++)
-            {
-                var members = PackComposition.Roll(2, PackKind.Normal, 3, 5, pack);
-                Assert.AreEqual(3, members.Length);
-                Assert.IsFalse(members.Contains(PackMember.None));
-            }
-        }
-
-        [Test]
-        public void TheRestOfAct1_JoinsFromItsDepths()
-        {
-            bool Has(int depth, PackMember member)
-            {
-                for (var pack = 0; pack < 2000; pack++)
-                    if (PackComposition.Roll(depth, PackKind.Normal, 8, 4242, pack).Contains(member))
-                        return true;
-                return false;
-            }
-            Assert.IsFalse(Has(2, PackMember.AshWolf));
-            Assert.IsFalse(Has(2, PackMember.Cutthroat));
-            Assert.IsTrue(Has(3, PackMember.AshWolf));
-            Assert.IsTrue(Has(3, PackMember.Cutthroat));
-            Assert.IsFalse(Has(3, PackMember.EmberAcolyte));
-            Assert.IsFalse(Has(3, PackMember.PyreKeeper));
-            Assert.IsTrue(Has(4, PackMember.EmberAcolyte));
-            Assert.IsTrue(Has(4, PackMember.PyreKeeper));
-            Assert.IsFalse(Has(4, PackMember.CarrionBloat));
-            Assert.IsTrue(Has(5, PackMember.CarrionBloat));
-        }
-
-        [Test]
-        public void WolfPacks_AreFourToSixWolvesAndNobodyElse()
-        {
-            var wolfPacks = 0;
-            for (var pack = 0; pack < 2000; pack++)
-            {
-                var members = PackComposition.Roll(4, PackKind.Normal, 9, 99, pack);
-                if (!members.Contains(PackMember.AshWolf))
-                    continue;
-                wolfPacks++;
-                Assert.That(members.Count(m => m == PackMember.AshWolf), Is.InRange(PackComposition.MinWolves, PackComposition.MaxWolves));
-                Assert.IsTrue(members.All(m => m == PackMember.AshWolf || m == PackMember.None));
-            }
-            Assert.AreEqual(PackComposition.WolfPackPercent / 100f, wolfPacks / 2000f, 0.04f);
-            // Champion and elite packs never become wolves.
-            for (var pack = 0; pack < 500; pack++)
-            {
-                Assert.IsFalse(PackComposition.Roll(5, PackKind.WithChampion, 8, 99, pack).Contains(PackMember.AshWolf));
-                Assert.IsFalse(PackComposition.Roll(5, PackKind.Elite, 6, 99, pack).Contains(PackMember.AshWolf));
-            }
-        }
-
-        [Test]
-        public void APyreKeeper_StandsAtTheBack()
-        {
-            for (var pack = 0; pack < 2000; pack++)
-            {
-                var members = PackComposition.Roll(5, PackKind.Normal, 8, 7, pack);
-                var keeper = System.Array.IndexOf(members, PackMember.PyreKeeper);
-                if (keeper < 0)
-                    continue;
-                Assert.AreEqual(1, members.Count(m => m == PackMember.PyreKeeper));
-                for (var i = keeper + 1; i < members.Length; i++)
-                    Assert.AreEqual(PackMember.None, members[i]);
-            }
-        }
-
-        [Test]
-        public void TheDeepRoster_JoinsFromItsDepths_AndSpreads()
-        {
-            float Share(int depth, PackMember member)
-            {
-                var with = 0;
-                for (var pack = 0; pack < 2000; pack++)
-                    if (PackComposition.Roll(depth, PackKind.Normal, 8, 2468, pack).Contains(member))
-                        with++;
-                return with / 2000f;
-            }
-            Assert.AreEqual(0f, Share(6, PackMember.Drowned), "nothing deep above the first boss");
-            Assert.Greater(Share(7, PackMember.Drowned), 0f);
-            Assert.Greater(Share(11, PackMember.Drowned), Share(7, PackMember.Drowned), "the drowned spread with depth");
-            Assert.AreEqual(0f, Share(12, PackMember.SkeletonKnight));
-            Assert.Greater(Share(13, PackMember.SkeletonKnight), 0f);
-            Assert.AreEqual(0f, Share(13, PackMember.GravePriest));
-            Assert.Greater(Share(14, PackMember.GravePriest), 0f);
-            Assert.AreEqual(0f, Share(18, PackMember.Hollowed));
-            Assert.Greater(Share(19, PackMember.Hollowed), 0f);
-            // The void's creatures wait in the caves (2026-10-11; from 37 since the prison, 2026-10-12), and the burnt
-            // library is dry.
-            Assert.AreEqual(0f, Share(36, PackMember.RiftCaller));
-            Assert.Greater(Share(37, PackMember.RiftCaller), 0f);
-            Assert.AreEqual(0f, Share(37, PackMember.VoidWraith));
-            Assert.Greater(Share(38, PackMember.VoidWraith), 0f);
-            Assert.AreEqual(0f, Share(28, PackMember.Drowned));
-            Assert.Greater(Share(16, PackMember.Drowned), 0f);
-            Assert.Greater(Share(40, PackMember.Drowned), 0f);
-            Assert.Greater(Share(28, PackMember.EmberAcolyte), Share(10, PackMember.EmberAcolyte), "fire casters fill the library");
-            // Older types thin out but are still met.
-            Assert.Greater(Share(28, PackMember.Husk) + Share(28, PackMember.Skeleton), 0f);
-        }
-
-        [Test]
-        public void DeepShare_RisesPerLevel_UpToItsCap()
-        {
-            Assert.AreEqual(0, PackComposition.DeepShare(6, 7, 15, 75));
-            Assert.AreEqual(15, PackComposition.DeepShare(7, 7, 15, 75));
-            Assert.AreEqual(45, PackComposition.DeepShare(9, 7, 15, 75));
-            Assert.AreEqual(75, PackComposition.DeepShare(24, 7, 15, 75));
+            for (var pack = 0; pack < 200; pack++)
+                Assert.IsTrue(PackComposition.Roll(10, PackKind.WithChampion, 3, 55, pack).All(m => m != PackMember.None));
         }
 
         [Test]

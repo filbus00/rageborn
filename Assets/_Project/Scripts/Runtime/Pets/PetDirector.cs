@@ -120,7 +120,7 @@ namespace ARPG
     {
         public static PetVendor Create(Vector2 ground, Transform parent)
         {
-            var go = new GameObject("Pet Vendor", typeof(CircleCollider2D));
+            var go = new GameObject("Lyriel", typeof(CircleCollider2D));
             go.transform.SetParent(parent, false);
             go.transform.position = IsoMath.GroundToWorld(ground);
             var collider = go.GetComponent<CircleCollider2D>();
@@ -132,7 +132,7 @@ namespace ARPG
 
             NpcFigure.Create(go.transform, "pet_vendor", new Color(0.45f, 0.55f, 0.35f));
             QuestMarker.Attach(go.transform, QuestGiver.Tamer);
-            TravelArt.Label(go.transform, "Pet Vendor", new Color(0.8f, 0.95f, 0.7f), 1.5f);
+            TravelArt.Label(go.transform, "Lyriel", new Color(0.8f, 0.95f, 0.7f), 1.5f);
             return go.AddComponent<PetVendor>();
         }
 

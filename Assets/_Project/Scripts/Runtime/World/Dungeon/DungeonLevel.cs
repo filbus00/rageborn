@@ -37,23 +37,8 @@ namespace ARPG
         [SerializeField] EnemyDefinition championEnemy;
         [SerializeField] EnemyDefinition eliteEnemy;
 
-        [Tooltip("Act 1's brute (Docs/05): mixed into packs from depth 2 (PackComposition).")]
-        [SerializeField] EnemyDefinition ghoulEnemy;
-
-        [Tooltip("Act 1's archer (Docs/05): mixed into packs from depth 2 (PackComposition).")]
-        [SerializeField] EnemyDefinition archerEnemy;
-
-        [Tooltip("From depth 4 (PackComposition): the skeleton in a husk's place, the cultist in an archer's.")]
-        [SerializeField] EnemyDefinition skeletonEnemy;
-        [SerializeField] EnemyDefinition cultistEnemy;
-        [Tooltip("The rest of act 1's roster (PackComposition, 2026-10-05).")]
-        [SerializeField] EnemyDefinition ashWolfEnemy;
-        [SerializeField] EnemyDefinition cutthroatEnemy;
-        [SerializeField] EnemyDefinition emberAcolyteEnemy;
-        [SerializeField] EnemyDefinition pyreKeeperEnemy;
-        [SerializeField] EnemyDefinition carrionBloatEnemy;
-        [Tooltip("The deep levels' enemies and bosses (2026-10-05), found by name: a pack member's (Drowned, Harpooner...) " +
-                 "or a boss's (Tidewife, SaintMarrow, FirstWatchman).")]
+        [Tooltip("The monsters (2026-10-13, the concept roster) and the bosses, found by name: a pack member's (Zombie, " +
+                 "Mummy...) or a boss's (Tidewife, SaintMarrow, FirstWatchman).")]
         [SerializeField] EnemyDefinition[] deepRoster;
 
         [Tooltip("The act boss, fought in the arena on the act's last level.")]
@@ -228,41 +213,41 @@ namespace ARPG
                 case 12 when Deep("Tidewife") != null:
                     fight = new GameObject("Tidewife Fight").AddComponent<TidewifeFight>();
                     definition = Deep("Tidewife");
-                    adds = Deep("Drowned") ?? normalEnemy;
+                    adds = Deep("Zombie") ?? normalEnemy;
                     break;
                 // The prison (2026-10-12): the Gaoler with the prisoners he lets out, the Hanged Magistrate with his bailiffs.
                 case 18 when Deep("Gaoler") != null:
                     fight = new GameObject("Gaoler Fight").AddComponent<GaolerFight>();
                     definition = Deep("Gaoler");
-                    adds = Deep("Hollowed") ?? normalEnemy;
+                    adds = Deep("Mummy") ?? normalEnemy;
                     break;
                 case 24 when Deep("HangedMagistrate") != null:
                     fight = new GameObject("Hanged Magistrate Fight").AddComponent<HangedMagistrateFight>();
                     definition = Deep("HangedMagistrate");
-                    adds = Deep("SkeletonKnight") ?? normalEnemy;
+                    adds = Deep("SkeletonWarrior") ?? normalEnemy;
                     break;
                 // Each 12 deeper since the prison came between (2026-10-12).
                 case 30 when Deep("SaintMarrow") != null:
                     fight = new GameObject("Saint Marrow Fight").AddComponent<SaintMarrowFight>();
                     definition = Deep("SaintMarrow");
-                    adds = skeletonEnemy != null ? skeletonEnemy : normalEnemy;
+                    adds = Deep("SkeletonWarrior") ?? normalEnemy;
                     break;
                 // The burnt library's end and the caves (2026-10-11): the Ash Archivist with his scribes, the Rift Mother
                 // with her brood, and the First Watchman at the bottom.
                 case 36 when Deep("AshArchivist") != null:
                     fight = new GameObject("Ash Archivist Fight").AddComponent<AshArchivistFight>();
                     definition = Deep("AshArchivist");
-                    adds = DefinitionOf(PackMember.EmberAcolyte) ?? normalEnemy;
+                    adds = Deep("DarkCultist") ?? normalEnemy;
                     break;
                 case 42 when Deep("RiftMother") != null:
                     fight = new GameObject("Rift Mother Fight").AddComponent<RiftMotherFight>();
                     definition = Deep("RiftMother");
-                    adds = Deep("VoidWraith") ?? normalEnemy;
+                    adds = Deep("Imp") ?? normalEnemy;
                     break;
                 case 48 when Deep("FirstWatchman") != null:
                     fight = new GameObject("First Watchman Fight").AddComponent<FirstWatchmanFight>();
                     definition = Deep("FirstWatchman");
-                    adds = Deep("Hollowed") ?? normalEnemy;
+                    adds = Deep("Wraith") ?? normalEnemy;
                     break;
                 default:
                     fight = new GameObject("Cinder Warden Fight").AddComponent<CinderWardenFight>();
@@ -791,25 +776,10 @@ namespace ARPG
         /// <summary>A deep or quest definition by its asset's name (RiftHeart, BonePyre), or null.</summary>
         public EnemyDefinition DeepDefinition(string name) => Deep(name);
 
-        // A missing ghoul or archer definition falls back to a husk, so an older scene still fills its packs.
-        EnemyDefinition Definition(PackMember member)
-        {
-            switch (member)
-            {
-                case PackMember.None: return null;
-                case PackMember.Ghoul: return ghoulEnemy != null ? ghoulEnemy : normalEnemy;
-                case PackMember.Archer: return archerEnemy != null ? archerEnemy : normalEnemy;
-                case PackMember.Skeleton: return skeletonEnemy != null ? skeletonEnemy : normalEnemy;
-                case PackMember.Cultist: return cultistEnemy != null ? cultistEnemy : archerEnemy != null ? archerEnemy : normalEnemy;
-                case PackMember.AshWolf: return ashWolfEnemy != null ? ashWolfEnemy : normalEnemy;
-                case PackMember.Cutthroat: return cutthroatEnemy != null ? cutthroatEnemy : normalEnemy;
-                case PackMember.EmberAcolyte: return emberAcolyteEnemy != null ? emberAcolyteEnemy : archerEnemy != null ? archerEnemy : normalEnemy;
-                case PackMember.PyreKeeper: return pyreKeeperEnemy != null ? pyreKeeperEnemy : normalEnemy;
-                case PackMember.CarrionBloat: return carrionBloatEnemy != null ? carrionBloatEnemy : ghoulEnemy != null ? ghoulEnemy : normalEnemy;
-                case PackMember.Husk: return normalEnemy;
-                default: return Deep(member.ToString()) ?? normalEnemy;
-            }
-        }
+        // A pack member's definition by its name (the concept roster, 2026-10-13); a missing one falls back to the
+        // zombie, so an older scene still fills its packs.
+        EnemyDefinition Definition(PackMember member) =>
+            member == PackMember.None ? null : Deep(member.ToString()) ?? normalEnemy;
 
         /// <summary>A deep enemy or boss definition by its asset's name, or null.</summary>
         EnemyDefinition Deep(string name)

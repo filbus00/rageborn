@@ -1,0 +1,977 @@
+fileFormatVersion: 2
+guid: fe346e5ce3b754a1ea2342096c0ea3eb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5539557272820761745
+    second: wight_hit_0
+  - first:
+      213: 2172263441394706294
+    second: wight_hit_1
+  - first:
+      213: 2963718764931827811
+    second: wight_hit_2
+  - first:
+      213: 7340973617837546292
+    second: wight_hit_3
+  - first:
+      213: 4707388362691250218
+    second: wight_hit_4
+  - first:
+      213: -616123515612763495
+    second: wight_hit_5
+  - first:
+      213: -4394897603005822816
+    second: wight_hit_6
+  - first:
+      213: 5130804089700253786
+    second: wight_hit_7
+  - first:
+      213: -2564587017388295972
+    second: wight_hit_8
+  - first:
+      213: -1106337453873967678
+    second: wight_hit_9
+  - first:
+      213: 6181076933877626066
+    second: wight_hit_10
+  - first:
+      213: 49282898823153080
+    second: wight_hit_11
+  - first:
+      213: 3768292323118122215
+    second: wight_hit_12
+  - first:
+      213: -2587751533174496409
+    second: wight_hit_13
+  - first:
+      213: -7997373118772488371
+    second: wight_hit_14
+  - first:
+      213: -8105124125533714337
+    second: wight_hit_15
+  - first:
+      213: 8205101091345781069
+    second: wight_hit_16
+  - first:
+      213: -7639531480289248536
+    second: wight_hit_17
+  - first:
+      213: -2436837942652961982
+    second: wight_hit_18
+  - first:
+      213: 2424549000070841744
+    second: wight_hit_19
+  - first:
+      213: 7067346079813656314
+    second: wight_hit_20
+  - first:
+      213: 3910624803769751876
+    second: wight_hit_21
+  - first:
+      213: -6358407742915202734
+    second: wight_hit_22
+  - first:
+      213: -7291956044609781743
+    second: wight_hit_23
+  - first:
+      213: 2723601292084196523
+    second: wight_hit_24
+  - first:
+      213: 7193411386108695108
+    second: wight_hit_25
+  - first:
+      213: 6412635967924153742
+    second: wight_hit_26
+  - first:
+      213: 489867623179145635
+    second: wight_hit_27
+  - first:
+      213: 1737658099206607123
+    second: wight_hit_28
+  - first:
+      213: -1227211030583207516
+    second: wight_hit_29
+  - first:
+      213: 263891070343818692
+    second: wight_hit_30
+  - first:
+      213: 7365696925963942632
+    second: wight_hit_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wight_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 490
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9063fda1fa014ee1b74f9d55dd72020
+      internalID: 215504282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 490
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9ad44a4dbaf349f8a73198c1af7f945
+      internalID: -655652793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_s_02
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 490
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efa7f753eb54848d680cb24e79838008
+      internalID: -422877327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_s_03
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 490
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e86aa449910ff4434934bc98ac10ec7a
+      internalID: 2102975553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 420
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50cad9294ad5a408ab78f451aad992ee
+      internalID: -1133308043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 420
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eccd86f7f96d24cf89ddb0b98089cac1
+      internalID: 1714751713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_sw_02
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 420
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ed83f96fa8e94edabb559dff931bdc3
+      internalID: 651213296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_sw_03
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 420
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 858dda5fa56a347af9b0bb9dcf185137
+      internalID: -793161827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 350
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d753fb8ea764d44489b8afce0a2e33d0
+      internalID: -515366669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 350
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36944fcf234a941c79a16916e568c3c1
+      internalID: 1531747504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_w_02
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 350
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d17ca68039962401788ab95b2eeb0ab8
+      internalID: -153308221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_w_03
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 350
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c493805eaaad4048bd8b0e16c91b9da
+      internalID: -1989850957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be36a0bea0cfc44d4b30abaf1e8f036b
+      internalID: 671003760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 280
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a62fec69301e40c8a64e0d7c79c10db
+      internalID: -1010308491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_nw_02
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 280
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edddf78990f5e47818dc469ea64ead9d
+      internalID: 1597110384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_nw_03
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 280
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 662b2d1a1e1a34dacb2dcbe92d03cfcd
+      internalID: 114986209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 210
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a0858ca2ce104ce2b9db2fc5ef9c5fb
+      internalID: -2073938510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 210
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09a909d121f0646f0a5dcbffce5fc14c
+      internalID: 1260322142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_n_02
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 210
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88e2b1523adf46c1bf6a2b7e84f77c3
+      internalID: -1256599627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_n_03
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 210
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed4add35b40df44378409e3a2778055a
+      internalID: 2047256228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b14743198db24d9ba62f4cc0fb388d8
+      internalID: 954538000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 140
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cba251c6e5724e91bf16c43b944a2d3
+      internalID: 1662559618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_ne_02
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 140
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e561eb140d0724414bdda35f24c8cf21
+      internalID: -1018133536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_ne_03
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 140
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61cbd788048bf4ccd9d7d572fe2764bd
+      internalID: -1382267408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 70
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81a7ae13b6ef146fcbe94e1f61661041
+      internalID: -828881383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 70
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec2daf96a56354bd58f835fb1b833d1e
+      internalID: -1000346028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_e_02
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 70
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 375ece8c17e154dbb829bf4b1e38836c
+      internalID: -600139200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_e_03
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 70
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc5d2fbaa897541a3a322431a2f12ad6
+      internalID: 313311987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68694428016a842c3ba87bca5dc861ae
+      internalID: 254363684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 0
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d2658488510b4625af212800dc24f52
+      internalID: 304221503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_se_02
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e093423a489a4442956ad00067bb948
+      internalID: -377348464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wight_hit_se_03
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 50
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5cabc19f1256430c9b755e7b8d3e0c7
+      internalID: -1751179334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2deea2205b13148d6af89ac04f7deade
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      wight_hit_e_00: -828881383
+      wight_hit_e_01: -1000346028
+      wight_hit_e_02: -600139200
+      wight_hit_e_03: 313311987
+      wight_hit_n_00: -2073938510
+      wight_hit_n_01: 1260322142
+      wight_hit_n_02: -1256599627
+      wight_hit_n_03: 2047256228
+      wight_hit_ne_00: 954538000
+      wight_hit_ne_01: 1662559618
+      wight_hit_ne_02: -1018133536
+      wight_hit_ne_03: -1382267408
+      wight_hit_nw_00: 671003760
+      wight_hit_nw_01: -1010308491
+      wight_hit_nw_02: 1597110384
+      wight_hit_nw_03: 114986209
+      wight_hit_s_00: 215504282
+      wight_hit_s_01: -655652793
+      wight_hit_s_02: -422877327
+      wight_hit_s_03: 2102975553
+      wight_hit_se_00: 254363684
+      wight_hit_se_01: 304221503
+      wight_hit_se_02: -377348464
+      wight_hit_se_03: -1751179334
+      wight_hit_sw_00: -1133308043
+      wight_hit_sw_01: 1714751713
+      wight_hit_sw_02: 651213296
+      wight_hit_sw_03: -793161827
+      wight_hit_w_00: -515366669
+      wight_hit_w_01: 1531747504
+      wight_hit_w_02: -153308221
+      wight_hit_w_03: -1989850957
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

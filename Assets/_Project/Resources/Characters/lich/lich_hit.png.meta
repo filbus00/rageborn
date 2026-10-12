@@ -1,0 +1,977 @@
+fileFormatVersion: 2
+guid: 08677fb71e0e448ea89a9f4359374ebd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9164680759429157582
+    second: lich_hit_0
+  - first:
+      213: 5773339606267817806
+    second: lich_hit_1
+  - first:
+      213: 9158944230951812960
+    second: lich_hit_2
+  - first:
+      213: 2783963106699200383
+    second: lich_hit_3
+  - first:
+      213: -7159466865123252462
+    second: lich_hit_4
+  - first:
+      213: 2555186433705938012
+    second: lich_hit_5
+  - first:
+      213: -495646745537755440
+    second: lich_hit_6
+  - first:
+      213: 2673543272794775070
+    second: lich_hit_7
+  - first:
+      213: -6574219405010998964
+    second: lich_hit_8
+  - first:
+      213: -7019423215016085773
+    second: lich_hit_9
+  - first:
+      213: -7855344787554650139
+    second: lich_hit_10
+  - first:
+      213: -8826330454904978042
+    second: lich_hit_11
+  - first:
+      213: -3455083345541265437
+    second: lich_hit_12
+  - first:
+      213: 2835485471662707123
+    second: lich_hit_13
+  - first:
+      213: -2117795651672027327
+    second: lich_hit_14
+  - first:
+      213: 1348938933351839507
+    second: lich_hit_15
+  - first:
+      213: -8374152832017328686
+    second: lich_hit_16
+  - first:
+      213: -5598030878381737110
+    second: lich_hit_17
+  - first:
+      213: 5569048958069366126
+    second: lich_hit_18
+  - first:
+      213: 115841012900269782
+    second: lich_hit_19
+  - first:
+      213: -5819525185141769189
+    second: lich_hit_20
+  - first:
+      213: -4677960517265536018
+    second: lich_hit_21
+  - first:
+      213: 4394937557877833552
+    second: lich_hit_22
+  - first:
+      213: 7626483371528547091
+    second: lich_hit_23
+  - first:
+      213: -4279641507119072575
+    second: lich_hit_24
+  - first:
+      213: -6580066146279907613
+    second: lich_hit_25
+  - first:
+      213: -2649877772606493778
+    second: lich_hit_26
+  - first:
+      213: 2670875892429063788
+    second: lich_hit_27
+  - first:
+      213: 7870463676980658900
+    second: lich_hit_28
+  - first:
+      213: 4060189207531060912
+    second: lich_hit_29
+  - first:
+      213: 3569324689680477460
+    second: lich_hit_30
+  - first:
+      213: -4538010691160762595
+    second: lich_hit_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lich_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 483
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12fece826c5874eed840d667e8de875f
+      internalID: 1628910836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 483
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82d8ba8aef8be40988e96336bfdb96f1
+      internalID: 1138151045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_s_02
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 483
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e64ef79ea9d8948de8bd227a64d30479
+      internalID: 909629612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_s_03
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 483
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5e3c5d7035f440bc9c8f7fd38893058
+      internalID: -60218794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 414
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c14554b487649405cb6abdb8c1e32cc9
+      internalID: 1198340420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 414
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f21fdcd72e6d44cdaa9ff1908ea5e5d
+      internalID: 244027229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_sw_02
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 414
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a9a7f35c9c124e84a0145bfec897403
+      internalID: 1942601239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_sw_03
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 414
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7c8d11b75b464a6abfaba6955f6fe69
+      internalID: 850806089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 345
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff45778b2f45f4a57951915a23a4831e
+      internalID: -2123287840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 345
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 958999a0b45c540128b5c147d793cf23
+      internalID: 1410638489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_w_02
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 345
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6f4b0e47e34c4abda96a51f21287807
+      internalID: -151211688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_w_03
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 345
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd9f66bc866c14e5094d3d20d37c315c
+      internalID: -995669591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 276
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd30f2fb92cc249c9a1f83f840810177
+      internalID: 849766191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 276
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4883d626d6cff4bf48297ac073612553
+      internalID: 285771194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_nw_02
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 276
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5521e7e44c40a47e5849621e46823f45
+      internalID: 862037088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_nw_03
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 276
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98a718f6ef856482ebf0f70f7d5eb79f
+      internalID: -1926410198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 207
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a2787ec22804948a3c09c311374bea
+      internalID: -1246504248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 207
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 437f8d08d6f7241bcb345c6a1b53517f
+      internalID: 600277060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_n_02
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 207
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69ce06335a19f481987fadc7decea192
+      internalID: -972156781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_n_03
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 207
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 119ae6488c15b4d61b46b36264e8bc64
+      internalID: 1133445990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 138
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d2747931b6ed4be68dac459871bbd1d
+      internalID: 1029730429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 138
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ec8a340635894f1d9c074b38c99c445
+      internalID: -1405585112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_ne_02
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 138
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0f291340d2e5485ab7af6b77b5cae3c
+      internalID: -1521478349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_ne_03
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 138
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7bb40761d1f541c5963bfe3e1fec820
+      internalID: -803423628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 69
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd71fb33c055249cba9979b158ddbeb7
+      internalID: -64225123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 69
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a69dca2922ec54e1cad862666cad569f
+      internalID: -398246342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_e_02
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 69
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8a91b8cbb75941eea32a3a7eccfa8f7
+      internalID: 1914874864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_e_03
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 69
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5011fbfba35845bb99989191d669bbb
+      internalID: 247870316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 353c097ee61ae428db0c771805eb0ec6
+      internalID: -785358200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b805e2079d7f48e7819c5e9875c9170
+      internalID: -1289018466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_se_02
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac00d0760930a4c698342633e6a71832
+      internalID: -1908907991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lich_hit_se_03
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 112
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17391305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ef7fbe3234f84edb8440bc780ba5df5
+      internalID: 1056340600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d8be0ad2dc04b46cf9b3dbb4bfad6e68
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      lich_hit_e_00: -64225123
+      lich_hit_e_01: -398246342
+      lich_hit_e_02: 1914874864
+      lich_hit_e_03: 247870316
+      lich_hit_n_00: -1246504248
+      lich_hit_n_01: 600277060
+      lich_hit_n_02: -972156781
+      lich_hit_n_03: 1133445990
+      lich_hit_ne_00: 1029730429
+      lich_hit_ne_01: -1405585112
+      lich_hit_ne_02: -1521478349
+      lich_hit_ne_03: -803423628
+      lich_hit_nw_00: 849766191
+      lich_hit_nw_01: 285771194
+      lich_hit_nw_02: 862037088
+      lich_hit_nw_03: -1926410198
+      lich_hit_s_00: 1628910836
+      lich_hit_s_01: 1138151045
+      lich_hit_s_02: 909629612
+      lich_hit_s_03: -60218794
+      lich_hit_se_00: -785358200
+      lich_hit_se_01: -1289018466
+      lich_hit_se_02: -1908907991
+      lich_hit_se_03: 1056340600
+      lich_hit_sw_00: 1198340420
+      lich_hit_sw_01: 244027229
+      lich_hit_sw_02: 1942601239
+      lich_hit_sw_03: 850806089
+      lich_hit_w_00: -2123287840
+      lich_hit_w_01: 1410638489
+      lich_hit_w_02: -151211688
+      lich_hit_w_03: -995669591
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

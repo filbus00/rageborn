@@ -48,7 +48,15 @@ MonoBehaviour:
   burnHitsPerSecond: 0.5
   auraRadius: 5
   auraDamageBonus: 0.2
+  hitSlowFraction: 0
+  hitSlowSeconds: 1
+  slamForward: 0
+  healPercent: 0
+  healEverySeconds: 6
+  healRadius: 6
+  castPulses: 0
+  castPulseGap: 1
   burstOnDeath: 1
   diesOnAttack: 1
   burstFillSeconds: 0.8
-  spriteCharacter: carrion_bloat
+  spriteCharacter: 

@@ -1,0 +1,977 @@
+fileFormatVersion: 2
+guid: 90d9312e9d9a3440194f599d115a6394
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9130510196618572383
+    second: fallen_hit_0
+  - first:
+      213: 5364093009710141078
+    second: fallen_hit_1
+  - first:
+      213: -5183322305177496157
+    second: fallen_hit_2
+  - first:
+      213: 2685193720812795106
+    second: fallen_hit_3
+  - first:
+      213: -8848827503391481135
+    second: fallen_hit_4
+  - first:
+      213: -5845937726166935109
+    second: fallen_hit_5
+  - first:
+      213: 5724265253009782640
+    second: fallen_hit_6
+  - first:
+      213: 2201160547251956666
+    second: fallen_hit_7
+  - first:
+      213: 1347829300558325706
+    second: fallen_hit_8
+  - first:
+      213: -1302957431586811168
+    second: fallen_hit_9
+  - first:
+      213: -3703995931927879471
+    second: fallen_hit_10
+  - first:
+      213: -413580543455170095
+    second: fallen_hit_11
+  - first:
+      213: -4140610648852921631
+    second: fallen_hit_12
+  - first:
+      213: -6959179743811775353
+    second: fallen_hit_13
+  - first:
+      213: 6129033718341717533
+    second: fallen_hit_14
+  - first:
+      213: 9007421572447966118
+    second: fallen_hit_15
+  - first:
+      213: -9171855568191701321
+    second: fallen_hit_16
+  - first:
+      213: -5145683597757126476
+    second: fallen_hit_17
+  - first:
+      213: -1704069006861887105
+    second: fallen_hit_18
+  - first:
+      213: -6112273366768656084
+    second: fallen_hit_19
+  - first:
+      213: -7963915309453027891
+    second: fallen_hit_20
+  - first:
+      213: -3027121216639023766
+    second: fallen_hit_21
+  - first:
+      213: 7431197864910894284
+    second: fallen_hit_22
+  - first:
+      213: -298534379433555989
+    second: fallen_hit_23
+  - first:
+      213: 6558348418259094067
+    second: fallen_hit_24
+  - first:
+      213: -8445351253104393953
+    second: fallen_hit_25
+  - first:
+      213: 3458841309144274671
+    second: fallen_hit_26
+  - first:
+      213: 7619801369183136692
+    second: fallen_hit_27
+  - first:
+      213: -2522716180737441869
+    second: fallen_hit_28
+  - first:
+      213: 226308497840876167
+    second: fallen_hit_29
+  - first:
+      213: 7287553274336868055
+    second: fallen_hit_30
+  - first:
+      213: 952585731746862729
+    second: fallen_hit_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fallen_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 392
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3fd6103118e84b509c93e563b8f6bea
+      internalID: -164430319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 392
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87c0e6fac482a456c90bae99fd353b98
+      internalID: -1499818713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_s_02
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 392
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa194df9dfab4b39bd804c2cd6b1ad9
+      internalID: -987805329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_s_03
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 392
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23f354eee3188443b8dfdea4bfc39f3d
+      internalID: 1570482328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdcb5749a72bd415d822f5ac24f461e9
+      internalID: 17531509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 336
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcba9593e0e6a48f8837902d8b50ba2a
+      internalID: 1811106581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_sw_02
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 336
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2876cbbf89bb46fdb798bb2ce348e99
+      internalID: 653831630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_sw_03
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 336
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a2a4900ebb4149c7a7a9adb7c5d1b06
+      internalID: 1657685866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b1cc34fd85af4a63a85aa6ecb1b1363
+      internalID: -1565859979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 280
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 481898a74193b45b6bf06cadca57ab29
+      internalID: -1194744270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_w_02
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 280
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3148656e74f14c21904963e03b9d7fc
+      internalID: 645424680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_w_03
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 280
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3917626ed01fb45709646af91ed32834
+      internalID: -1873354917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ff4462f1fe6a44d5ad254eb5414baf9
+      internalID: -597710552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 224
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 398a9923159e048e5be3f358a9042478
+      internalID: 1394242565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_nw_02
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 224
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16b2bc34784ab40bbbac3acb3f96e77a
+      internalID: -120952074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_nw_03
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 224
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed2a67602e4c24cb5891ca55befdb6ae
+      internalID: 1985846006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 168
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53d95145ee7af4d9daf5dee12cf40e5d
+      internalID: 222857892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 168
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54e0fec1fe3754dcd918b5481251a6a5
+      internalID: 264125614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_n_02
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 168
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9741316a4331d48ab8e83ac296b1f705
+      internalID: -1989249993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_n_03
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 168
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 039ce753b339d4bcb9f51aa63aa20e8f
+      internalID: 1749975399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 221e46ef85c2845ca919982ce97e58d8
+      internalID: 2021629694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 112
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3719deae562fd4b799fc219aaf43b62a
+      internalID: -1423489395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_ne_02
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 112
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22cbd42759ad648caaf1ac085b577b49
+      internalID: 1666828160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_ne_03
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 112
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c68ba4d4110154687ba650ccf5331170
+      internalID: 1584211961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 56
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b1067e13dcd34d53ab0a7925e5fc68f
+      internalID: 1169563872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 56
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c43456ef083f642de9050fdcb34643e3
+      internalID: -674783567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_e_02
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 56
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8a539c4d4c494e0b8a47a49c28565a9
+      internalID: 1304404533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_e_03
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 56
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed10641b6d6ef4ffd99924aa59bf5ef9
+      internalID: 937864060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 130125b4755d74f33bc454914b210d35
+      internalID: 1452869097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 0
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2326e4ae590da49b8bbe406923e5b186
+      internalID: 926459677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_se_02
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 0
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e41a1a02fe3d44260a1b1144e99c6d10
+      internalID: 31777855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fallen_hit_se_03
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 0
+        width: 31
+        height: 56
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0.1607143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c699a6e278a54682b461546fcdbaa92
+      internalID: -1283361425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ef9684b24d57d4d73bd1b6b0cb6c26af
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      fallen_hit_e_00: 1169563872
+      fallen_hit_e_01: -674783567
+      fallen_hit_e_02: 1304404533
+      fallen_hit_e_03: 937864060
+      fallen_hit_n_00: 222857892
+      fallen_hit_n_01: 264125614
+      fallen_hit_n_02: -1989249993
+      fallen_hit_n_03: 1749975399
+      fallen_hit_ne_00: 2021629694
+      fallen_hit_ne_01: -1423489395
+      fallen_hit_ne_02: 1666828160
+      fallen_hit_ne_03: 1584211961
+      fallen_hit_nw_00: -597710552
+      fallen_hit_nw_01: 1394242565
+      fallen_hit_nw_02: -120952074
+      fallen_hit_nw_03: 1985846006
+      fallen_hit_s_00: -164430319
+      fallen_hit_s_01: -1499818713
+      fallen_hit_s_02: -987805329
+      fallen_hit_s_03: 1570482328
+      fallen_hit_se_00: 1452869097
+      fallen_hit_se_01: 926459677
+      fallen_hit_se_02: 31777855
+      fallen_hit_se_03: -1283361425
+      fallen_hit_sw_00: 17531509
+      fallen_hit_sw_01: 1811106581
+      fallen_hit_sw_02: 653831630
+      fallen_hit_sw_03: 1657685866
+      fallen_hit_w_00: -1565859979
+      fallen_hit_w_01: -1194744270
+      fallen_hit_w_02: 645424680
+      fallen_hit_w_03: -1873354917
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

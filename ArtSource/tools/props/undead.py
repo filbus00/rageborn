@@ -32,6 +32,13 @@ DONORS = {"skeleton": "husk", "cultist": "bandit_archer", "cutthroat": "husk", "
           # meshy models"), on the rigs their Mixamo files had.
           "husk": "husk", "husk_champion": "husk", "husk_elite": "husk", "ghoul": "ghoul", "bandit_archer": "bandit_archer",
           "merchant": "bandit_archer", "pet_vendor": "bandit_archer",
+          # The concept roster (2026-10-13, the owner's enemies concept art).
+          "zombie": "husk", "zombie_champion": "husk", "zombie_elite": "husk", "skeleton_warrior": "husk", "fallen": "husk",
+          "wight": "husk", "mummy": "husk", "imp": "husk",
+          "bile_fiend": "ghoul", "flesh_golem": "ghoul", "ogre": "ghoul", "gargoyle": "ghoul", "stygian_demon": "ghoul",
+          "giant": "ghoul", "balrog_lite": "ghoul",
+          "dark_cultist": "bandit_archer", "bone_mage": "bandit_archer", "wraith": "bandit_archer", "lich": "bandit_archer",
+          "succubus": "bandit_archer", "harpy": "bandit_archer",
           # The quest people (2026-10-08): Mother Aldis, and those she brings back to town.
           "aldis": "bandit_archer", "tobin": "bandit_archer", "pellam": "bandit_archer", "bram": "bandit_archer", "ivy": "bandit_archer"}
 NPCS = {"merchant", "pet_vendor", "stash_keeper", "healer", "gambler", "trainer", "aldis", "tobin", "pellam", "bram", "ivy"}
@@ -69,10 +76,24 @@ COLORS = {
     "wig": (214, 208, 192), "robe_black": (30, 28, 34), "rope": (124, 94, 62), "pale": (176, 170, 156),
     # The husk (and its champion and elite colourings), the ghoul, the bandit archer, the merchant, the beast tamer.
     "husk_skin": (112, 116, 92), "husk_dark": (70, 74, 56), "rag": (66, 56, 44), "frost": (150, 186, 214),
-    "frost_dark": (88, 120, 150), "ash_skin": (52, 48, 50), "ash_rag": (30, 26, 26), "ghoul_skin": (150, 140, 122),
-    "ghoul_dark": (98, 88, 76), "claw": (200, 190, 160), "bandit_hood": (60, 50, 40), "bow_wood": (110, 74, 44),
+    "frost_dark": (88, 120, 150), "ash_skin": (52, 48, 50), "ash_rag": (30, 26, 26), "ghoul_skin": (182, 176, 162),
+    "ghoul_dark": (122, 116, 104), "claw": (200, 190, 160), "bandit_hood": (60, 50, 40), "bow_wood": (110, 74, 44),
     "coat": (92, 64, 40), "coat_dark": (62, 42, 28), "pack": (120, 92, 58), "cloth_red": (120, 40, 34),
     "hat": (50, 40, 32), "fur": (110, 92, 70), "fur_dark": (72, 60, 46),
+    # The concept roster's palettes (from the sheet's swatches).
+    "zombie": (96, 112, 64), "zombie_dark": (60, 72, 40), "rotten": (110, 70, 40), "demon": (150, 34, 26),
+    "demon_dark": (90, 20, 18), "horn": (60, 50, 44), "fiend": (110, 140, 60), "fiend_dark": (66, 88, 36),
+    "wraith_blue": (60, 100, 150), "wraith_glow": (120, 190, 240), "wight_green": (90, 200, 90), "gauze": (176, 160, 120),
+    "gauze_dark": (124, 110, 80), "golem": (120, 116, 90), "stitch": (60, 40, 30), "ogre": (130, 98, 64),
+    "ogre_dark": (88, 64, 40), "stone_grey": (96, 96, 100), "stone_dark": (60, 60, 64), "lich_violet": (90, 60, 130),
+    "lich_dark": (46, 30, 70), "succubus": (150, 110, 140), "wing": (70, 46, 66), "harpy": (110, 86, 60), "feather_dark": (64, 50, 36),
+    "giant": (140, 110, 80), "giant_dark": (96, 72, 50), "lava": (255, 140, 40), "imp": (170, 50, 30),
+    # The NPC sheet's palettes (2026-10-13).
+    "royal_red": (130, 30, 30), "gold_trim": (200, 160, 70), "elf_green": (70, 100, 50), "elf_dark": (44, 64, 34),
+    "scholar_blue": (50, 66, 120), "scholar_dark": (34, 44, 80), "cream": (210, 196, 170), "apron_brown": (110, 76, 46),
+    "teal": (40, 80, 90), "teal_dark": (26, 52, 60), "silver": (190, 196, 204), "ginger": (170, 80, 40),
+    "priest_white": (220, 214, 196), "grey_hair": (170, 166, 160), "purple": (84, 50, 120), "purple_dark": (52, 30, 80),
+    "goggles": (60, 120, 130),
 }
 color_list = list(COLORS)
 bm = bmesh.new()
@@ -944,6 +965,441 @@ def pet_vendor():
         block(ring + V((0, math.sin(a) * 0.07 * U, math.cos(a) * 0.07 * U)), (0.025 * U, 0.03 * U, 0.03 * U), "Hips", "leather_dark")
 
 
+
+def _body(top, top_dark, legs, feet, skin, wide=1.0, bulk=1.0):
+    """A plain figure in blocks (any rig): torso, arms, legs, feet; bulk thickens limbs."""
+    s2 = head("Spine2")
+    block(V((0, s2.y, 0)), (0.3 * U * wide, 0.2 * U, 0.19 * U * wide), "Spine2", top)
+    block(V((0, head("Spine1").y, 0)), (0.27 * U * wide, 0.12 * U, 0.18 * U * wide), "Spine1", top)
+    block(V((0, head("Spine").y - 0.02 * U, 0)), (0.27 * U * wide, 0.07 * U, 0.19 * U * wide), "Spine", top_dark)
+    block(V((0, head("Hips").y, 0)), (0.26 * U * wide, 0.1 * U, 0.17 * U * wide), "Hips", legs)
+    for side in ("Left", "Right"):
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.055 * U * bulk, 0.05 * U * bulk, side + "Arm", top)
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.05 * U * bulk, 0.045 * U * bulk, side + "ForeArm", top_dark)
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.04 * U * bulk, 0.04 * U * bulk, 0.04 * U * bulk), side + "Hand", skin)
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.065 * U * bulk, 0.055 * U * bulk, side + "UpLeg", legs)
+        limb(head(side + "Leg"), head(side + "Foot"), 0.055 * U * bulk, 0.045 * U * bulk, side + "Leg", legs)
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.08 * U * bulk, 0.06 * U, 0.16 * U * bulk), side + "Foot", feet)
+    limb(head("Neck"), head("Head"), 0.04 * U * bulk, 0.04 * U * bulk, "Neck", skin)
+
+
+def _head(color, eye="eye", r=(0.09, 0.105, 0.095), y=0.1, eyes_y=0.11, eyes_z=0.085):
+    h = head("Head")
+    blob(h + V((0, y * U, 0.01 * U)), (r[0] * U, r[1] * U, r[2] * U), "Head", color)
+    for sx in (-1, 1):
+        block(h + V((sx * 0.03 * U, eyes_y * U, eyes_z * U)), (0.024 * U, 0.016 * U, 0.016 * U), "Head", eye)
+    return h
+
+
+def _horns(h, color, size=1.0, up=0.18):
+    for sx in (-1, 1):
+        limb(h + V((sx * 0.06 * U, 0.17 * U, 0)), h + V((sx * 0.13 * U * size, (0.17 + up) * U * size, -0.06 * U)), 0.03 * U * size, 0.004 * U, "Head", color, 5)
+
+
+def _wings(color, span=0.6, bone="Spine2", up=0.3):
+    s2 = head("Spine2")
+    for sx in (-1, 1):
+        root = V((sx * 0.08 * U, s2.y + 0.05 * U, -0.12 * U))
+        tip = V((sx * span * U, s2.y + up * U, -0.3 * U))
+        limb(root, tip, 0.025 * U, 0.01 * U, bone, color, 4)
+        for k in range(3):
+            f = 0.4 + 0.3 * k
+            p = root + (tip - root) * f
+            block(p + V((0, -0.14 * U, 0)), (0.02 * U, 0.3 * U * (1.1 - 0.25 * k), 0.12 * U), bone, color)
+
+
+def _staff(color, top_color, hand_side="Left", length=0.75, glow=None):
+    hand = head(hand_side + "Hand") + (tail(hand_side + "Hand") - head(hand_side + "Hand")) * 0.4
+    limb(hand - V((0, 0.8 * U, 0)), hand + V((0, length * U, 0)), 0.02 * U, 0.02 * U, hand_side + "Hand", color, 5)
+    blob(hand + V((0, (length + 0.06) * U, 0)), (0.06 * U, 0.07 * U, 0.06 * U), hand_side + "Hand", top_color)
+    if glow:
+        blob(hand + V((0, (length + 0.06) * U, 0)), (0.035 * U, 0.04 * U, 0.035 * U), hand_side + "Hand", glow)
+
+
+def _weapon(hand_side, length, color, guard=None, width=0.03):
+    hand = head(hand_side + "Hand")
+    d = (tail(hand_side + "Hand") - hand).normalized()
+    limb(hand, hand + d * length * U, width * U, 0.008 * U, hand_side + "Hand", color, 4)
+    if guard:
+        block(hand + d * 0.04 * U, (0.14 * U, 0.03 * U, 0.03 * U), hand_side + "Hand", guard)
+
+
+def zombie(skin="zombie", dark="zombie_dark", rag="rotten", eye="eye"):
+    # The zombie: green-grey rotting flesh, a hanging jaw, torn rags, a hunch.
+    _body(rag, dark, rag, dark, skin, wide=1.05)
+    h = _head(skin, eye)
+    block(h + V((0, 0.03 * U, 0.07 * U)), (0.08 * U, 0.05 * U, 0.05 * U), "Head", dark)
+    for side in ("Left", "Right"):
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.045 * U, 0.04 * U, side + "Arm", skin)
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.04 * U, 0.035 * U, side + "ForeArm", skin)
+    block(V((0.05 * U, head("Spine1").y, 0.1 * U)), (0.08 * U, 0.1 * U, 0.02 * U), "Spine1", dark)
+
+
+def zombie_champion():
+    zombie("frost", "frost_dark", "ash_rag", "eye")
+
+
+def zombie_elite():
+    zombie("ash_skin", "ash_rag", "ash_rag", "fire")
+
+
+def skeleton_warrior():
+    # A skeleton in light armour: a helm, a breastplate, a round shield and a sword.
+    skeleton()
+    h = head("Head")
+    blob(h + V((0, 0.15 * U, 0)), (0.1 * U, 0.06 * U, 0.1 * U), "Head", "iron")
+    block(V((0, head("Spine2").y, 0.03 * U)), (0.26 * U, 0.2 * U, 0.16 * U), "Spine2", "iron")
+    hand = head("LeftHand") + (tail("LeftHand") - head("LeftHand")) * 0.4
+    blob(hand + V((0, 0, 0.06 * U)), (0.15 * U, 0.15 * U, 0.03 * U), "LeftHand", "rust")
+    blob(hand + V((0, 0, 0.08 * U)), (0.04 * U, 0.04 * U, 0.02 * U), "LeftHand", "iron")
+
+
+def fallen():
+    # A small red demon: a hunched imp-like body, a mask of a face with a grin, a spear.
+    _body("demon", "demon_dark", "demon", "demon_dark", "demon", wide=0.9, bulk=0.9)
+    h = _head("demon", "fire", r=(0.1, 0.11, 0.1))
+    _horns(h, "horn", 0.8, 0.1)
+    block(h + V((0, 0.04 * U, 0.09 * U)), (0.09 * U, 0.02 * U, 0.02 * U), "Head", "bone")
+    block(V((0, head("Hips").y - 0.05 * U, 0.08 * U)), (0.16 * U, 0.15 * U, 0.02 * U), "Hips", "rotten")
+    hand = head("RightHand") + (tail("RightHand") - head("RightHand")) * 0.4
+    limb(hand - V((0, 0.5 * U, 0)), hand + V((0, 0.7 * U, 0)), 0.015 * U, 0.015 * U, "RightHand", "bow_wood", 4)
+    limb(hand + V((0, 0.7 * U, 0)), hand + V((0, 0.88 * U, 0)), 0.03 * U, 0.003 * U, "RightHand", "steel", 4)
+
+
+def wight():
+    # A gaunt undead knight in tattered black, sickly green light in its eyes and hands, a curved blade.
+    _body("robe_black", "robe_dark", "robe_black", "black_iron", "pale", wide=1.0)
+    h = _head("pale", "wight_green")
+    blob(h + V((0, 0.13 * U, -0.01 * U)), (0.11 * U, 0.09 * U, 0.11 * U), "Head", "robe_black")
+    for side in ("Left", "Right"):
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.05 * U, 0.05 * U, 0.05 * U), side + "Hand", "wight_green")
+    _weapon("Right", 0.6, "steel", "black_iron")
+
+
+def mummy():
+    # Wrapped in yellowed bandages, strips hanging loose, a dark slit for the eyes.
+    _body("gauze", "gauze_dark", "gauze", "gauze_dark", "gauze", wide=1.0)
+    h = _head("gauze", "eye_dark" if "eye_dark" in COLORS else "robe_dark")
+    block(h + V((0, 0.11 * U, 0.09 * U)), (0.1 * U, 0.02 * U, 0.01 * U), "Head", "robe_dark")
+    for k in range(4):
+        y = head("Spine2").y - k * 0.08 * U
+        block(V((0, y, 0.1 * U)), (0.3 * U, 0.015 * U, 0.01 * U), "Spine2" if k < 2 else "Spine1", "gauze_dark")
+    for side in ("Left", "Right"):
+        block(head(side + "ForeArm") + V((0, -0.08 * U, 0)), (0.02 * U, 0.15 * U, 0.04 * U), side + "ForeArm", "gauze")
+
+
+def imp():
+    # A small fiery winged demon: red skin, horns, bat wings, a long tail.
+    _body("imp", "demon_dark", "imp", "demon_dark", "imp", wide=0.85, bulk=0.85)
+    h = _head("imp", "fire", r=(0.1, 0.1, 0.1))
+    _horns(h, "horn", 0.9, 0.12)
+    _wings("wing", 0.45, up=0.25)
+    limb(V((0, head("Hips").y, -0.1 * U)), V((0, head("Hips").y - 0.3 * U, -0.4 * U)), 0.02 * U, 0.005 * U, "Hips", "imp", 4)
+
+
+def bile_fiend():
+    # A bloated green fiend: a huge round belly, a small head with a gaping maw, short thick limbs, pustules.
+    s2 = head("Spine2")
+    blob(V((0, head("Spine").y, 0.05 * U)), (0.38 * U, 0.36 * U, 0.38 * U), "Spine", "fiend")
+    blob(V((0, s2.y, 0)), (0.3 * U, 0.2 * U, 0.28 * U), "Spine2", "fiend_dark")
+    for k in range(6):
+        a = k * 1.1
+        blob(V((math.cos(a) * 0.3 * U, head("Spine").y + math.sin(a * 1.7) * 0.15 * U, 0.2 * U + math.sin(a) * 0.1 * U)), (0.05 * U, 0.05 * U, 0.05 * U), "Spine", "pus")
+    h = _head("fiend", "eye", r=(0.12, 0.1, 0.12), y=0.04)
+    block(h + V((0, 0.0, 0.12 * U)), (0.14 * U, 0.06 * U, 0.04 * U), "Head", "robe_dark")
+    for side in ("Left", "Right"):
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.09 * U, 0.08 * U, side + "Arm", "fiend")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.08 * U, 0.07 * U, side + "ForeArm", "fiend_dark")
+        blob(head(side + "Hand"), (0.07 * U, 0.06 * U, 0.07 * U), side + "Hand", "fiend")
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.11 * U, 0.09 * U, side + "UpLeg", "fiend")
+        limb(head(side + "Leg"), head(side + "Foot"), 0.09 * U, 0.08 * U, side + "Leg", "fiend_dark")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.12 * U, 0.06 * U, 0.2 * U), side + "Foot", "fiend_dark")
+
+
+def flesh_golem():
+    # A hulk stitched from corpses: patchwork skin of different shades, heavy stitches, a small head, huge fists.
+    _body("golem", "zombie_dark", "rotten", "stitch", "golem", wide=1.5, bulk=1.7)
+    h = _head("golem", "eye", r=(0.08, 0.09, 0.09), y=0.05)
+    s2 = head("Spine2")
+    blob(V((0, s2.y + 0.05 * U, -0.05 * U)), (0.3 * U, 0.2 * U, 0.25 * U), "Spine2", "golem")
+    for k in range(5):
+        block(V(((k - 2) * 0.06 * U, s2.y + (k % 2) * 0.05 * U, 0.2 * U)), (0.012 * U, 0.2 * U, 0.01 * U), "Spine2", "stitch")
+    blob(V((0.12 * U, head("Spine1").y, 0.12 * U)), (0.1 * U, 0.08 * U, 0.06 * U), "Spine1", "zombie")
+    for side in ("Left", "Right"):
+        blob(head(side + "Hand"), (0.1 * U, 0.09 * U, 0.1 * U), side + "Hand", "golem")
+
+
+def ogre():
+    # A brown-skinned ogre: a big gut, a loincloth, tusks, a spiked club.
+    _body("ogre", "ogre_dark", "leather", "ogre_dark", "ogre", wide=1.5, bulk=1.6)
+    h = _head("ogre", "eye", r=(0.11, 0.11, 0.11), y=0.06)
+    for sx in (-1, 1):
+        limb(h + V((sx * 0.04 * U, 0.0, 0.1 * U)), h + V((sx * 0.06 * U, 0.08 * U, 0.14 * U)), 0.015 * U, 0.004 * U, "Head", "bone", 4)
+    blob(V((0, head("Spine").y, 0.12 * U)), (0.25 * U, 0.2 * U, 0.15 * U), "Spine", "ogre")
+    hand = head("RightHand")
+    d = (tail("RightHand") - hand).normalized()
+    limb(hand, hand + d * 0.7 * U, 0.04 * U, 0.09 * U, "RightHand", "bow_wood", 6)
+    for k in range(4):
+        block(hand + d * (0.5 + 0.05 * k) * U + V((0, 0.06 * U, 0)), (0.02 * U, 0.06 * U, 0.02 * U), "RightHand", "iron")
+
+
+def gargoyle():
+    # A stone gargoyle: grey stone skin, a beaked face, horns, folded stone wings, clawed hands.
+    _body("stone_grey", "stone_dark", "stone_grey", "stone_dark", "stone_grey", wide=1.2, bulk=1.3)
+    h = _head("stone_grey", "fire", r=(0.1, 0.1, 0.11))
+    block(h + V((0, 0.07 * U, 0.12 * U)), (0.05 * U, 0.05 * U, 0.08 * U), "Head", "stone_dark")
+    _horns(h, "stone_dark", 1.0, 0.12)
+    _wings("stone_dark", 0.55, up=0.4)
+
+
+def stygian_demon():
+    # A red horned demon with broad shoulders and a heavy jaw.
+    _body("demon", "demon_dark", "demon_dark", "horn", "demon", wide=1.4, bulk=1.5)
+    h = _head("demon", "lava", r=(0.11, 0.11, 0.11), y=0.06)
+    _horns(h, "horn", 1.3, 0.2)
+    for side in ("Left", "Right"):
+        blob(head(side + "Arm"), (0.13 * U, 0.12 * U, 0.12 * U), side + "Arm", "demon")
+
+
+def giant():
+    # A towering giant: tan skin, a fur loincloth, a rope belt, a rock in one fist.
+    _body("giant", "giant_dark", "fur", "giant_dark", "giant", wide=1.6, bulk=1.8)
+    _head("giant", "eye", r=(0.11, 0.12, 0.11), y=0.07)
+    blob(V((0, head("Spine").y, 0.1 * U)), (0.26 * U, 0.2 * U, 0.15 * U), "Spine", "giant")
+    blob(head("RightHand") + V((0, 0, 0.05 * U)), (0.14 * U, 0.13 * U, 0.14 * U), "RightHand", "stone_grey")
+
+
+def balrog_lite():
+    # A fire demon: black-red skin cracked with lava, great horns, wings, a whip of fire.
+    _body("demon_dark", "ash_black", "demon_dark", "ash_black", "demon_dark", wide=1.5, bulk=1.6)
+    h = _head("demon_dark", "lava", r=(0.12, 0.12, 0.12), y=0.06)
+    _horns(h, "horn", 1.6, 0.18)
+    _wings("ash_black", 0.75, up=0.45)
+    s2 = head("Spine2")
+    for k in range(5):
+        block(V(((k - 2) * 0.07 * U, s2.y - 0.05 * U + (k % 2) * 0.08 * U, 0.17 * U)), (0.03 * U, 0.12 * U, 0.01 * U), "Spine2", "lava")
+    hand = head("RightHand")
+    d = (tail("RightHand") - hand).normalized()
+    p = hand
+    for k in range(6):
+        q = p + d * 0.12 * U + V((0, -0.06 * U, 0.02 * U * math.sin(k)))
+        limb(p, q, 0.015 * U, 0.012 * U, "RightHand", "lava", 4)
+        p = q
+
+
+def dark_cultist():
+    # A dark hooded cultist in brown robes with a fire in one hand and a twisted staff.
+    cultist()
+    hand = head("RightHand") + (tail("RightHand") - head("RightHand")) * 0.4
+    blob(hand + V((0, 0.06 * U, 0)), (0.05 * U, 0.07 * U, 0.05 * U), "RightHand", "fire")
+
+
+def bone_mage():
+    # A skeleton in a hooded beige robe, a skull-topped staff.
+    h = head("Head")
+    blob(h + V((0, 0.1 * U, 0.01 * U)), (0.09 * U, 0.1 * U, 0.09 * U), "Head", "bone")
+    blob(h + V((0, 0.12 * U, -0.01 * U)), (0.115 * U, 0.12 * U, 0.11 * U), "Head", "gauze_dark")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.03 * U, 0.1 * U, 0.09 * U)), (0.024 * U, 0.02 * U, 0.016 * U), "Head", "robe_dark")
+    s2 = head("Spine2")
+    block(V((0, s2.y, 0)), (0.3 * U, 0.2 * U, 0.19 * U), "Spine2", "gauze")
+    block(V((0, head("Spine1").y, 0)), (0.27 * U, 0.12 * U, 0.18 * U), "Spine1", "gauze")
+    block(V((0, head("Spine").y - 0.02 * U, 0)), (0.27 * U, 0.06 * U, 0.19 * U), "Spine", "rust")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.1 * U, 0.12 * U, side + "UpLeg", "gauze")
+        limb(head(side + "Leg"), head(side + "Foot") + V((0, 0.03 * U, 0)), 0.12 * U, 0.14 * U, side + "Leg", "gauze_dark")
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.06 * U, 0.06 * U, side + "Arm", "gauze")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.06 * U, 0.075 * U, side + "ForeArm", "gauze_dark")
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.035 * U, 0.035 * U, 0.035 * U), side + "Hand", "bone")
+    _staff("bone_dark", "bone", "Left", glow="eye")
+
+
+def wraith():
+    # A blue spectral wraith: a hooded robe trailing to nothing below the knees, glowing hands and eyes.
+    h = head("Head")
+    blob(h + V((0, 0.11 * U, -0.01 * U)), (0.12 * U, 0.14 * U, 0.12 * U), "Head", "wraith_blue")
+    blob(h + V((0, 0.09 * U, 0.04 * U)), (0.07 * U, 0.08 * U, 0.06 * U), "Head", "ash_black")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.025 * U, 0.1 * U, 0.1 * U)), (0.02 * U, 0.015 * U, 0.015 * U), "Head", "wraith_glow")
+    s2 = head("Spine2")
+    block(V((0, s2.y, 0)), (0.3 * U, 0.2 * U, 0.2 * U), "Spine2", "wraith_blue")
+    block(V((0, head("Spine1").y, 0)), (0.28 * U, 0.12 * U, 0.19 * U), "Spine1", "wraith_blue")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.12 * U, 0.08 * U, side + "UpLeg", "wraith_blue")
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.06 * U, 0.07 * U, side + "Arm", "wraith_blue")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.07 * U, 0.09 * U, side + "ForeArm", "wraith_blue")
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.5, (0.045 * U, 0.045 * U, 0.045 * U), side + "Hand", "wraith_glow")
+
+
+def lich():
+    # A lich: a crowned skull, purple robes with a high collar, a staff with a green orb.
+    h = head("Head")
+    blob(h + V((0, 0.1 * U, 0.01 * U)), (0.09 * U, 0.105 * U, 0.095 * U), "Head", "bone")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.03 * U, 0.11 * U, 0.085 * U)), (0.024 * U, 0.016 * U, 0.016 * U), "Head", "wight_green")
+    for k in range(5):
+        a = math.pi * (0.15 + 0.7 * k / 4)
+        limb(h + V((math.cos(a) * 0.08 * U, 0.18 * U, math.sin(a) * 0.03 * U)), h + V((math.cos(a) * 0.08 * U, 0.26 * U, math.sin(a) * 0.03 * U)), 0.012 * U, 0.004 * U, "Head", "gold", 4)
+    _townsfolk_body("lich_violet", "lich_dark", "lich_violet", "lich_dark", skin="bone", wide=1.2)
+    block(V((0, head("Hips").y - 0.3 * U, 0)), (0.4 * U, 0.6 * U, 0.32 * U), "Hips", "lich_violet")
+    blob(V((0, head("Spine2").y + 0.12 * U, -0.05 * U)), (0.2 * U, 0.1 * U, 0.12 * U), "Spine2", "lich_dark")
+    _staff("lich_dark", "lich_dark", "Left", glow="wight_green")
+
+
+def succubus():
+    # A winged temptress: pale lilac skin, dark hair, bat wings, horns, claws.
+    _body("succubus", "wing", "succubus", "wing", "succubus", wide=0.9, bulk=0.85)
+    h = _head("succubus", "fire")
+    blob(h + V((0, 0.14 * U, -0.03 * U)), (0.1 * U, 0.08 * U, 0.1 * U), "Head", "ash_black")
+    limb(h + V((0, 0.08 * U, -0.1 * U)), h + V((0, -0.15 * U, -0.13 * U)), 0.03 * U, 0.015 * U, "Head", "ash_black", 6)
+    _horns(h, "horn", 0.9, 0.12)
+    _wings("wing", 0.6, up=0.35)
+
+
+def harpy():
+    # A harpy: a feathered body, a beaked head, wide feathered wings for arms, taloned feet.
+    _body("harpy", "feather_dark", "harpy", "horn", "harpy", wide=0.95, bulk=0.9)
+    h = _head("harpy", "fire")
+    block(h + V((0, 0.07 * U, 0.12 * U)), (0.035 * U, 0.04 * U, 0.08 * U), "Head", "gold")
+    for side in ("Left", "Right"):
+        a0, a1 = head(side + "Arm"), head(side + "Hand")
+        for k in range(5):
+            p = a0 + (a1 - a0) * (0.2 + 0.18 * k)
+            block(p + V((0, -0.12 * U, -0.02 * U)), (0.06 * U, 0.26 * U, 0.02 * U), side + ("Arm" if k < 2 else "ForeArm"), "feather_dark" if k % 2 else "harpy")
+
+
+
+# ---- The townsfolk after the owner's NPC sheet (2026-10-13), taking its names: each keeps its file name.
+
+def _face(h, hair, beard=None, hair_back=0.0, ears=False):
+    blob(h + V((0, 0.1 * U, 0.01 * U)), (0.088 * U, 0.105 * U, 0.095 * U), "Head", "skin")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.03 * U, 0.11 * U, 0.088 * U)), (0.02 * U, 0.012 * U, 0.01 * U), "Head", "robe_dark")
+    if hair:
+        blob(h + V((0, 0.15 * U, -0.02 * U)), (0.095 * U, 0.075 * U, 0.1 * U), "Head", hair)
+        if hair_back:
+            block(h + V((0, 0.05 * U, -0.08 * U)), (0.15 * U, hair_back * U, 0.04 * U), "Head", hair)
+    if beard:
+        block(h + V((0, 0.03 * U, 0.075 * U)), (0.11 * U, 0.08 * U, 0.05 * U), "Head", beard)
+    if ears:
+        for sx in (-1, 1):
+            limb(h + V((sx * 0.08 * U, 0.11 * U, 0)), h + V((sx * 0.15 * U, 0.17 * U, -0.02 * U)), 0.02 * U, 0.003 * U, "Head", "skin", 4)
+
+
+def _robe(color, dark, wide=1.15, trim=None):
+    block(V((0, head("Hips").y - 0.3 * U, 0)), (0.38 * U * wide, 0.62 * U, 0.3 * U * wide), "Hips", color)
+    if trim:
+        block(V((0, head("Hips").y - 0.6 * U, 0)), (0.4 * U * wide, 0.04 * U, 0.32 * U * wide), "Hips", trim)
+        block(V((0, head("Spine2").y, 0.1 * U)), (0.05 * U, 0.2 * U, 0.02 * U), "Spine2", trim)
+
+
+def merchant():
+    # Garrett: a charismatic trader in rich red and gold robes, a coin pouch at the belt, a short beard.
+    h = head("Head")
+    _townsfolk_body("royal_red", "royal_red", "royal_red", "leather_dark", wide=1.15)
+    _face(h, "hair", "hair")
+    _robe("royal_red", "royal_red", 1.15, "gold_trim")
+    blob(V((0, head("Spine2").y + 0.1 * U, 0)), (0.2 * U, 0.06 * U, 0.14 * U), "Spine2", "gold_trim")
+    blob(V((0.15 * U, head("Hips").y, 0.08 * U)), (0.05 * U, 0.06 * U, 0.05 * U), "Hips", "gold")
+
+
+def pet_vendor():
+    # Lyriel: a graceful elven scout in green with leaf motifs, pointed ears, a bow.
+    h = head("Head")
+    _townsfolk_body("elf_green", "elf_dark", "elf_dark", "leather_dark", wide=0.95)
+    _face(h, "gold_trim", hair_back=0.25, ears=True)
+    block(V((0, head("Hips").y - 0.18 * U, 0.05 * U)), (0.25 * U, 0.3 * U, 0.04 * U), "Hips", "elf_green")
+    hand = head("LeftHand") + (tail("LeftHand") - head("LeftHand")) * 0.4
+    for sy in (-1, 1):
+        limb(hand, hand + V((0, sy * 0.5 * U, -0.08 * U)), 0.015 * U, 0.008 * U, "LeftHand", "bow_wood", 5)
+
+
+def stash_keeper():
+    # Elara: a young scholar in simple blue robes with a book satchel.
+    h = head("Head")
+    _townsfolk_body("scholar_blue", "scholar_dark", "scholar_blue", "leather_dark", wide=1.0)
+    _face(h, "hair", hair_back=0.12)
+    _robe("scholar_blue", "scholar_dark", 1.05, "cream")
+    block(V((-0.17 * U, head("Hips").y + 0.02 * U, 0.04 * U)), (0.06 * U, 0.16 * U, 0.14 * U), "Hips", "apron_brown")
+    hand = head("RightHand") + (tail("RightHand") - head("RightHand")) * 0.4
+    block(hand + V((0, 0, 0.04 * U)), (0.12 * U, 0.16 * U, 0.04 * U), "RightHand", "royal_red")
+
+
+def healer():
+    # Miranda: the innkeeper, a friendly face, a cream blouse, a brown corset and apron over a long skirt.
+    h = head("Head")
+    _townsfolk_body("cream", "apron_brown", "apron_brown", "leather_dark", wide=1.05)
+    _face(h, "hair", hair_back=0.1)
+    _robe("apron_brown", "apron_brown", 1.1)
+    block(V((0, head("Hips").y - 0.25 * U, 0.12 * U)), (0.24 * U, 0.5 * U, 0.02 * U), "Hips", "cream")
+
+
+def gambler():
+    # Sylthara: an informant in a teal hooded cloak with silver accents.
+    h = head("Head")
+    _townsfolk_body("teal", "teal_dark", "teal_dark", "leather_dark", wide=1.0)
+    _face(h, None)
+    blob(h + V((0, 0.11 * U, -0.015 * U)), (0.115 * U, 0.13 * U, 0.115 * U), "Head", "teal")
+    blob(h + V((0, 0.09 * U, 0.04 * U)), (0.07 * U, 0.08 * U, 0.06 * U), "Head", "skin")
+    _robe("teal", "teal_dark", 1.15, "silver")
+    block(V((0, head("Spine2").y - 0.05 * U, -0.13 * U)), (0.34 * U, 0.6 * U, 0.03 * U), "Spine2", "teal_dark")
+
+
+def trainer():
+    # Brunhilde: a guard captain, red braids, a heavy fur-trimmed cloak over armour, sturdy boots.
+    h = head("Head")
+    _townsfolk_body("mail", "steel", "leather_dark", "leather_dark", wide=1.2)
+    _face(h, "ginger", hair_back=0.3)
+    blob(V((0, head("Spine2").y + 0.1 * U, -0.02 * U)), (0.24 * U, 0.07 * U, 0.16 * U), "Spine2", "fur")
+    block(V((0, head("Spine2").y - 0.12 * U, -0.13 * U)), (0.36 * U, 0.55 * U, 0.03 * U), "Spine2", "royal_red")
+    for side in ("Left", "Right"):
+        blob(head(side + "Arm"), (0.07 * U, 0.05 * U, 0.07 * U), side + "Arm", "steel")
+
+
+def aldis():
+    # Aldric (the main quest's giver, Mother Aldis until 2026-10-13): a wise elder priest in white and gold robes, grey
+    # hair and beard, a simple staff.
+    h = head("Head")
+    _townsfolk_body("priest_white", "gold_trim", "priest_white", "leather_dark", wide=1.15)
+    _face(h, "grey_hair", "grey_hair")
+    _robe("priest_white", "priest_white", 1.2, "gold_trim")
+    _staff("gold_trim", "gold_trim", "Left", 0.75)
+
+
+def pellam():
+    # Thorin (Pellam until 2026-10-13): a stout blacksmith, a thick beard, practical leather gear, a hammer.
+    h = head("Head")
+    _townsfolk_body("leather", "apron_brown", "leather_dark", "leather_dark", wide=1.3)
+    _face(h, "hair", "hair")
+    block(V((0, head("Spine1").y - 0.05 * U, 0.11 * U)), (0.26 * U, 0.4 * U, 0.03 * U), "Spine1", "apron_brown")
+    hand = head("RightHand")
+    d = (tail("RightHand") - hand).normalized()
+    limb(hand, hand + d * 0.3 * U, 0.02 * U, 0.02 * U, "RightHand", "bow_wood", 4)
+    block(hand + d * 0.32 * U, (0.1 * U, 0.06 * U, 0.06 * U), "RightHand", "iron")
+
+
+def bram():
+    # Drok (Bram until 2026-10-13): a grizzled miner, dusty leather and plates, goggles, a pickaxe.
+    h = head("Head")
+    _townsfolk_body("leather_dark", "rust", "leather_dark", "leather_dark", wide=1.2)
+    _face(h, None, "beard")
+    blob(h + V((0, 0.17 * U, 0)), (0.1 * U, 0.06 * U, 0.1 * U), "Head", "leather_dark")
+    block(h + V((0, 0.13 * U, 0.09 * U)), (0.1 * U, 0.03 * U, 0.02 * U), "Head", "goggles")
+    hand = head("RightHand")
+    d = (tail("RightHand") - hand).normalized()
+    limb(hand, hand + d * 0.5 * U, 0.018 * U, 0.018 * U, "RightHand", "bow_wood", 4)
+    limb(hand + d * 0.5 * U + V((0, 0.12 * U, 0)), hand + d * 0.5 * U - V((0, 0.12 * U, 0)), 0.02 * U, 0.005 * U, "RightHand", "iron", 4)
+
+
+def ivy():
+    # Faelan (Sister Ivy until 2026-10-13): a slender elven mage in flowing purple robes with silver embroidery.
+    h = head("Head")
+    _townsfolk_body("purple", "purple_dark", "purple", "purple_dark", wide=0.95)
+    _face(h, "ash_black", hair_back=0.3, ears=True)
+    _robe("purple", "purple_dark", 1.1, "silver")
+    blob(V((0, head("Spine2").y + 0.12 * U, -0.03 * U)), (0.18 * U, 0.08 * U, 0.12 * U), "Spine2", "purple_dark")
+
+
 {"skeleton": skeleton, "cultist": cultist, "cutthroat": cutthroat, "ember_acolyte": ember_acolyte,
  "pyre_keeper": pyre_keeper, "carrion_bloat": carrion_bloat, "stash_keeper": stash_keeper, "healer": healer,
  "gambler": gambler, "trainer": trainer, "drowned": drowned, "harpooner": harpooner, "drowned_watchman": drowned_watchman,
@@ -952,6 +1408,10 @@ def pet_vendor():
  "ash_archivist": ash_archivist, "rift_mother": rift_mother, "gaoler": gaoler, "hanged_magistrate": hanged_magistrate,
  "husk": husk, "husk_champion": husk_champion, "husk_elite": husk_elite, "ghoul": ghoul, "bandit_archer": bandit_archer,
  "merchant": merchant, "pet_vendor": pet_vendor,
+ "zombie": zombie, "zombie_champion": zombie_champion, "zombie_elite": zombie_elite, "skeleton_warrior": skeleton_warrior,
+ "fallen": fallen, "wight": wight, "mummy": mummy, "imp": imp, "bile_fiend": bile_fiend, "flesh_golem": flesh_golem,
+ "ogre": ogre, "gargoyle": gargoyle, "stygian_demon": stygian_demon, "giant": giant, "balrog_lite": balrog_lite,
+ "dark_cultist": dark_cultist, "bone_mage": bone_mage, "wraith": wraith, "lich": lich, "succubus": succubus, "harpy": harpy,
  "aldis": aldis, "tobin": tobin, "pellam": pellam, "bram": bram, "ivy": ivy}[NAME]()
 
 # Every bone a humanoid needs keeps a vertex weighted to it: Unity strips bones nothing is weighted to, and the avatar

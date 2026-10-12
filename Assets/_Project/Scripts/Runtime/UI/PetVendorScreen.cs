@@ -48,7 +48,7 @@ namespace ARPG
             scaler.referenceResolution = new Vector2(1170f, 2532f);
             scaler.matchWidthOrHeight = 0.5f;
 
-            var root = new GameObject("Pet Vendor", typeof(RectTransform), typeof(Image), typeof(Button));
+            var root = new GameObject("Lyriel", typeof(RectTransform), typeof(Image), typeof(Button));
             root.transform.SetParent(canvasObject.transform, false);
             var rootRect = (RectTransform)root.transform;
             rootRect.anchorMin = Vector2.zero;
@@ -76,7 +76,7 @@ namespace ARPG
             layout.childForceExpandHeight = false;
             layout.childForceExpandWidth = true;
 
-            var title = NewText(sheet.transform, "Pet Vendor", 56, FontStyle.Bold, TextAnchor.MiddleCenter);
+            var title = NewText(sheet.transform, "Lyriel", 56, FontStyle.Bold, TextAnchor.MiddleCenter);
             title.color = UiStyle.Gold;
             Height(title.gameObject, 90f);
             screen.gold = NewText(sheet.transform, "", 34, FontStyle.Normal, TextAnchor.MiddleCenter);

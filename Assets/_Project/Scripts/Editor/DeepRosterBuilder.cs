@@ -16,7 +16,7 @@ namespace ARPG.Editor
     {
         const string Folder = "Assets/_Project/Data/Enemies/";
 
-        public static readonly string[] Names =
+        public static readonly string[] Names = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(new[]
         {
             "Drowned", "Harpooner", "DrownedWatchman", "SkeletonKnight", "GravePriest", "Hollowed", "VoidWraith", "RiftCaller",
             "Tidewife", "SaintMarrow", "FirstWatchman",
@@ -26,7 +26,55 @@ namespace ARPG.Editor
             "Gaoler", "HangedMagistrate",
             // Quest targets to break (2026-10-08): standing, no attack, drawn with a world sprite.
             "RiftHeart", "BonePyre",
-        };
+        }, ConceptNames));
+
+        /// <summary>The concept roster (2026-10-13): one definition per <see cref="PackMember"/>, by its name.</summary>
+        static string[] ConceptNames => System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Where(
+            System.Enum.GetNames(typeof(PackMember)), n => n != "None"));
+
+        /// <summary>The concept roster's definitions (2026-10-13, the owner's enemies concept art): each copied from the old
+        /// kind that fights the way its card says, then tuned (life, speed, damage). Claude's numbers, to review.</summary>
+        static void CreateConceptDefinitions()
+        {
+            void Concept(string to, string from, float life, float speed, float damage = 1f, System.Action<SerializedObject> more = null) =>
+                Copy(from, to, so =>
+                {
+                    F(so, "lifeMultiplier", life);
+                    if (speed > 0f)
+                        F(so, "moveSpeed", speed);
+                    F(so, "damageMultiplier", damage);
+                    more?.Invoke(so);
+                });
+            // The crypt.
+            Concept("Zombie", "Swarmer", 1.2f, 2.8f);
+            Concept("SkeletonWarrior", "Skeleton", 1.2f, 0f, 1.1f);
+            Concept("Fallen", "Swarmer", 0.7f, 3.8f, 0.9f);
+            Concept("QuillRat", "Swarmer", 0.6f, 4f, 0.8f, so => F(so, "bodyRadius", 0.25f));
+            Concept("Ghoul", "Cutthroat", 1.1f, 3.8f, 1.1f);
+            Concept("DarkCultist", "EmberAcolyte", 1f, 0f);
+            Concept("BileFiend", "CarrionBloat", 2f, 0f, 1.1f);
+            Concept("Wight", "GravePriest", 1.4f, 0f, 1.1f);
+            // The prison.
+            Concept("Mummy", "Drowned", 1.6f, 2.4f, 1.2f);
+            Concept("BoneMage", "RiftCaller", 0.8f, 0f);
+            Concept("FleshGolem", "Ghoul", 2.4f, 2.4f, 1.2f);
+            Concept("Wraith", "BanditArcher", 1f, 0f, 1f, so => so.FindProperty("projectileColor").colorValue = new Color(0.45f, 0.7f, 1f, 1f));
+            Concept("Ogre", "DrownedWatchman", 2.2f, 0f, 1.3f);
+            Concept("Gargoyle", "AshWolf", 1.4f, 0f, 1.1f, so => F(so, "armor", 40f));
+            Concept("Lich", "GravePriest", 2.2f, 0f, 1.2f);
+            // The burnt library.
+            Concept("Imp", "Swarmer", 0.6f, 4.2f, 0.9f, so => F(so, "bodyRadius", 0.25f));
+            Concept("Succubus", "Harpooner", 1.1f, 0f, 1.1f, so => so.FindProperty("projectileColor").colorValue = new Color(0.8f, 0.35f, 0.9f, 1f));
+            Concept("Harpy", "BanditArcher", 0.8f, 0f, 0.9f);
+            Concept("StygianDemon", "Ghoul", 1.8f, 0f, 1.3f);
+            Concept("HellHound", "AshWolf", 1.1f, 0f, 1.1f);
+            // The caves.
+            Concept("Arachnid", "Harpooner", 1.2f, 0f, 1.1f, so => so.FindProperty("projectileColor").colorValue = new Color(0.55f, 0.85f, 0.25f, 1f));
+            Concept("SandWorm", "AshWolf", 2f, 3.2f, 1.3f);
+            Concept("Giant", "Ghoul", 3f, 2.2f, 1.5f, so => F(so, "slamRadius", 2.5f));
+            Concept("Nightmare", "AshWolf", 1.6f, 4.5f, 1.2f);
+            Concept("BalrogLite", "PyreKeeper", 2.6f, 0f, 1.3f);
+        }
 
         [MenuItem("Tools/ARPG/Add Deep Roster")]
         public static void Build()
@@ -63,6 +111,7 @@ namespace ARPG.Editor
 
         public static void CreateDefinitions()
         {
+            CreateConceptDefinitions();
             // Docs/05 act 2: husk-like, 1.1 life, hits slow 10 percent for 1 s.
             Copy("Swarmer", "Drowned", so =>
             {

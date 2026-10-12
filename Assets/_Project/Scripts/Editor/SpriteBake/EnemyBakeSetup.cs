@@ -45,6 +45,12 @@ namespace ARPG.Editor
             { "ash_archivist", 108f }, { "rift_mother", 104f },
             // The prison's bosses (2026-10-12).
             { "gaoler", 108f }, { "hanged_magistrate", 112f },
+            // The concept roster (2026-10-13): small, man-sized, big.
+            { "zombie", 74f }, { "zombie_champion", 74f }, { "zombie_elite", 74f }, { "skeleton_warrior", 80f }, { "fallen", 56f },
+            { "quill_rat", 40f }, { "dark_cultist", 84f }, { "bile_fiend", 84f }, { "wight", 86f }, { "mummy", 78f },
+            { "bone_mage", 88f }, { "flesh_golem", 100f }, { "wraith", 86f }, { "ogre", 104f }, { "gargoyle", 84f }, { "lich", 96f },
+            { "imp", 54f }, { "succubus", 86f }, { "harpy", 70f }, { "stygian_demon", 100f }, { "hell_hound", 58f },
+            { "arachnid", 52f }, { "sand_worm", 70f }, { "giant", 120f }, { "nightmare", 80f }, { "balrog_lite", 112f },
             // The pets (2026-10-06, ArtSource/tools/props/pets.py): the wolf a little over the Ash Wolf (seen from behind it is narrow), the raven measured with
             // its wings spread.
             { "pet_wolf", 68f }, { "pet_boar", 58f }, { "pet_raven", 34f },
@@ -54,7 +60,9 @@ namespace ARPG.Editor
         /// the first bake, 2026-09-29).</summary>
         static readonly Dictionary<string, int> CellSizes = new Dictionary<string, int> { { "ghoul", 192 }, { "cinder_warden", 192 }, { "carrion_bloat", 192 },
             { "drowned_watchman", 192 }, { "skeleton_knight", 192 }, { "tidewife", 192 }, { "saint_marrow", 192 }, { "first_watchman", 192 },
-            { "ash_archivist", 192 }, { "rift_mother", 192 }, { "gaoler", 192 }, { "hanged_magistrate", 192 } };
+            { "ash_archivist", 192 }, { "rift_mother", 192 }, { "gaoler", 192 }, { "hanged_magistrate", 192 },
+            { "bile_fiend", 192 }, { "flesh_golem", 192 }, { "ogre", 192 }, { "gargoyle", 192 }, { "stygian_demon", 192 }, { "giant", 192 },
+            { "balrog_lite", 192 }, { "lich", 192 }, { "nightmare", 192 }, { "sand_worm", 192 }, { "arachnid", 192 }, { "succubus", 192 }, { "harpy", 192 } };
 
         /// <summary>Bodies whose clips are copies of another enemy's (the Cinder Warden moves as the ghoul).</summary>
         static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string>
@@ -67,13 +75,19 @@ namespace ARPG.Editor
             { "ash_archivist", "ghoul" }, { "rift_mother", "ghoul" },
             { "gaoler", "ghoul" }, { "hanged_magistrate", "ghoul" },
             { "husk", "husk" }, { "husk_champion", "husk" }, { "husk_elite", "husk" }, { "ghoul", "ghoul" }, { "bandit_archer", "bandit_archer" },
+            // The concept roster (2026-10-13), on the rig whose clips fit: the husk's shamble, the ghoul's heavy swing, the archer's draw.
+            { "zombie", "husk" }, { "zombie_champion", "husk" }, { "zombie_elite", "husk" }, { "skeleton_warrior", "husk" },
+            { "fallen", "husk" }, { "wight", "husk" }, { "mummy", "husk" }, { "imp", "husk" },
+            { "bile_fiend", "ghoul" }, { "flesh_golem", "ghoul" }, { "ogre", "ghoul" }, { "gargoyle", "ghoul" }, { "stygian_demon", "ghoul" },
+            { "giant", "ghoul" }, { "balrog_lite", "ghoul" },
+            { "dark_cultist", "bandit_archer" }, { "bone_mage", "bandit_archer" }, { "wraith", "bandit_archer" }, { "lich", "bandit_archer" },
+            { "succubus", "bandit_archer" }, { "harpy", "bandit_archer" },
         };
 
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
         /// until the rank has its own.</summary>
         static readonly (string definition, string character, string fallback)[] Wiring =
         {
-            ("Swarmer", "husk", null), ("SwarmerChampion", "husk_champion", "husk"), ("SwarmerElite", "husk_elite", "husk"),
             ("Ghoul", "ghoul", null), ("BanditArcher", "bandit_archer", null),
             // The act boss (2026-10-04): built in Blender on the ghoul's rig, ArtSource/tools/props/boss.py.
             ("CinderWarden", "cinder_warden", null),
@@ -90,11 +104,21 @@ namespace ARPG.Editor
             ("Tidewife", "tidewife", null), ("SaintMarrow", "saint_marrow", null), ("FirstWatchman", "first_watchman", null),
             ("AshArchivist", "ash_archivist", null), ("RiftMother", "rift_mother", null),
             ("Gaoler", "gaoler", null), ("HangedMagistrate", "hanged_magistrate", null),
+            // The concept roster (2026-10-13): every kind its own look; the swarmer (the zombie, the fallback) and its ranks.
+            ("Swarmer", "zombie", null), ("SwarmerChampion", "zombie_champion", "zombie"), ("SwarmerElite", "zombie_elite", "zombie"),
+            ("Zombie", "zombie", null), ("SkeletonWarrior", "skeleton_warrior", null), ("Fallen", "fallen", null),
+            ("QuillRat", "quill_rat", null), ("DarkCultist", "dark_cultist", null), ("BileFiend", "bile_fiend", null),
+            ("Wight", "wight", null), ("Mummy", "mummy", null), ("BoneMage", "bone_mage", null), ("FleshGolem", "flesh_golem", null),
+            ("Wraith", "wraith", null), ("Ogre", "ogre", null), ("Gargoyle", "gargoyle", null), ("Lich", "lich", null), ("Imp", "imp", null),
+            ("Succubus", "succubus", null), ("Harpy", "harpy", null), ("StygianDemon", "stygian_demon", null), ("HellHound", "hell_hound", null),
+            ("Arachnid", "arachnid", null), ("SandWorm", "sand_worm", null), ("Giant", "giant", null), ("Nightmare", "nightmare", null),
+            ("BalrogLite", "balrog_lite", null),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the
         /// animation (wolf.py exports idle, run, attack, hit and death as takes).</summary>
-        static readonly HashSet<string> GenericBodies = new HashSet<string> { "ash_wolf", "pet_wolf", "pet_boar", "pet_raven" };
+        static readonly HashSet<string> GenericBodies = new HashSet<string> { "ash_wolf", "pet_wolf", "pet_boar", "pet_raven",
+            "hell_hound", "nightmare", "quill_rat", "arachnid", "sand_worm" };
 
         const string PetsRoot = "Assets/_Project/Art/Models/Pets";
 

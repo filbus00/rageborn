@@ -153,11 +153,11 @@ namespace ARPG
 
         public static string Name(QuestPerson who) => who switch
         {
-            QuestPerson.Aldis => "Mother Aldis",
+            QuestPerson.Aldis => "Father Aldric",
             QuestPerson.Tobin => "Tobin",
-            QuestPerson.Pellam => "Pellam",
-            QuestPerson.Bram => "Bram",
-            _ => "Sister Ivy",
+            QuestPerson.Pellam => "Thorin",
+            QuestPerson.Bram => "Drok",
+            _ => "Faelan",
         };
 
         public static string Character(QuestPerson who) => who.ToString().ToLowerInvariant();
@@ -228,7 +228,7 @@ namespace ARPG
             DialoguePanel.Show(Name(who), Character(who), new[] { TobinLine() }, "Farewell", null);
         }
 
-        static string TobinLine() => "Odo says I am not to go below again. I am going below again. Not yet, though.";
+        static string TobinLine() => "Garrett says I am not to go below again. I am going below again. Not yet, though.";
 
         // Bram rows her to the level where her body lies (2026-10-08), arriving at its waypoint.
         static void Ferry()

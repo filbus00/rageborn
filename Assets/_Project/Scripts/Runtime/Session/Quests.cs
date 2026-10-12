@@ -123,33 +123,33 @@ namespace ARPG
         /// <summary>A giver's name as the dialogue shows it.</summary>
         public static string GiverName(QuestGiver giver) => giver switch
         {
-            QuestGiver.Aldis => "Mother Aldis",
-            QuestGiver.Merchant => "Odo the Merchant",
-            QuestGiver.Tamer => "Kestra the Beast Tamer",
-            QuestGiver.Healer => "Maud the Healer",
-            QuestGiver.StashKeeper => "Wenn the Stash Keeper",
-            QuestGiver.Gambler => "Silas the Gambler",
-            QuestGiver.Trainer => "Hale the Trainer",
-            QuestGiver.Ivy => "Sister Ivy",
-            QuestGiver.Pellam => "Pellam the Lampwright",
-            _ => "Bram the Ferryman",
+            QuestGiver.Aldis => "Father Aldric",
+            QuestGiver.Merchant => "Garrett the Merchant",
+            QuestGiver.Tamer => "Lyriel the Scout",
+            QuestGiver.Healer => "Miranda the Innkeeper",
+            QuestGiver.StashKeeper => "Elara the Scholar",
+            QuestGiver.Gambler => "Sylthara the Informant",
+            QuestGiver.Trainer => "Brunhilde the Guard Captain",
+            QuestGiver.Ivy => "Faelan",
+            QuestGiver.Pellam => "Thorin the Blacksmith",
+            _ => "Drok the Miner",
         };
 
         /// <summary>The name of what a step's target is, as banners and the minimap say it.</summary>
         public static string TargetName(string target) => target switch
         {
             "watch_log" => "the Warden's Watch-Log",
-            "bram" => "Bram the Ferryman",
-            "ivy" => "Sister Ivy",
+            "bram" => "Drok the Miner",
+            "ivy" => "Faelan",
             "reliquary_keeper" => "the Reliquary Keeper",
             "rift_heart" => "the Rift Heart",
             "oath_stone" => "the Broken Oath-Stone",
             "tobin" => "Tobin",
             "gorrak" => "Gorrak the Gnawer",
-            "pellam" => "Pellam",
+            "pellam" => "Thorin",
             "cartographer_notes" => "the Cartographer's Notes",
             "vessa" => "Vessa the Knife",
-            "aldric" => "Sir Aldric the Unquiet",
+            "corwen" => "Sir Corwen the Unquiet",
             "bone_pyres" => "the Bone Pyres",
             "great_lamp" => "the Great Lamp",
             "drowned_fire" => "the Drowned Watch's Fire",
@@ -196,7 +196,7 @@ namespace ARPG
                     Step(QuestStepKind.Recover, 4, "watch_log", "Find the Cinder Warden's watch-log (depth 4).",
                         "The log's last page: \"It will not die while I stand. I go into it.\""),
                     Step(QuestStepKind.Boss, 6, "warden", "Slay the Cinder Warden (depth 6).", "The Warden's ember is yours."),
-                    Back("Bring the first ember to Mother Aldis."),
+                    Back("Bring the first ember to Father Aldric."),
                 },
                 Boon = QuestBoon.LifeBlessing, Gift = "Emberwatch's fire burns: +5% life.",
             },
@@ -207,24 +207,24 @@ namespace ARPG
                 {
                     "Below the Warden's halls the water came in. The watch there kept a fire too.",
                     "The watchmen chose the water over the Hollow. Light their fire, and the dead will remember what they swore.",
-                    "And find Bram. He ferried the watch. If anyone lives down there, it is that stubborn fool.",
+                    "And find Drok. He dug the watch's tunnels. If anyone lives down there, it is that stubborn fool.",
                 },
-                Progress = "The drowned fire first, then Bram. The Tidewife holds the second ember.",
+                Progress = "The drowned fire first, then Drok. The Tidewife holds the second ember.",
                 Complete = new[]
                 {
                     "The second ember. She called them into the water, and you sent her after them.",
-                    "The fire grows. So does the town. Bram has been telling everyone about you.",
+                    "The fire grows. So does the town. Drok has been telling everyone about you.",
                 },
                 Steps = new[]
                 {
                     Step(QuestStepKind.HoldFire, 9, "drowned_fire", "Relight the Drowned Watch's fire and hold it (depth 9).",
                         "The fire catches. The drowned fall back from it."),
-                    Step(QuestStepKind.Rescue, 11, "bram", "Find Bram the ferryman in the drowned's hold (depth 11).",
-                        "Bram: \"About time. Go on, I know the way up.\""),
+                    Step(QuestStepKind.Rescue, 11, "bram", "Find Drok the miner in the drowned's hold (depth 11).",
+                        "Drok: \"About time. Go on, I know the way up.\""),
                     Step(QuestStepKind.Boss, 12, "tidewife", "Slay the Tidewife (depth 12).", "The Tidewife's ember is yours."),
-                    Back("Bring the second ember to Mother Aldis."),
+                    Back("Bring the second ember to Father Aldric."),
                 },
-                Boon = QuestBoon.DamageBlessing, Gift = "The fire grows: +5% damage. Bram stays in town.",
+                Boon = QuestBoon.DamageBlessing, Gift = "The fire grows: +5% damage. Drok stays in town.",
             },
             // The prison's chapter (2026-10-12, the owner: the prison after the crypt, two bosses and a main questline).
             new QuestDefinition
@@ -250,7 +250,7 @@ namespace ARPG
                     Step(QuestStepKind.NamedFoe, 21, "vask", "Kill Vask the Questioner in the Hold's lower cells (depth 21).",
                         "Vask the Questioner is dead. His tools go quiet."),
                     Step(QuestStepKind.Boss, 24, "magistrate", "Slay the Hanged Magistrate (depth 24).", "The Magistrate's ember is yours."),
-                    Back("Bring the third ember to Mother Aldis."),
+                    Back("Bring the third ember to Father Aldric."),
                 },
                 Boon = QuestBoon.LifeBlessing, Gift = "The fire steadies: +5% life.",
             },
@@ -260,25 +260,25 @@ namespace ARPG
                 Offer = new[]
                 {
                     "Saint Marrow kept the fourth fire. They say he kept the dead quiet. They do not say how.",
-                    "A sister of his order went down to pray at his tomb and never came back. Ivy. Find her.",
+                    "An elven mage came to study his order and went down to his tomb, and never came back. Faelan. Find him.",
                     "His reliquary holds his sermons. Bring it, and we will know what he bargained.",
                 },
-                Progress = "Ivy first. Then the reliquary. Then the saint himself.",
+                Progress = "Faelan first. Then the reliquary. Then the saint himself.",
                 Complete = new[]
                 {
                     "He fed them the dead, and the Hollow kept him alive for it. Four hundred years of it.",
-                    "The fourth ember. Ivy is praying by the fire. She will not say for whom.",
+                    "The fourth ember. Faelan sits by the fire, reading the sermons. He will not say what he looks for.",
                 },
                 Steps = new[]
                 {
-                    Step(QuestStepKind.Rescue, 26, "ivy", "Find Sister Ivy, sealed in a tomb (depth 26).",
-                        "Ivy: \"He is not a saint. He never was. I will find my own way up.\""),
+                    Step(QuestStepKind.Rescue, 26, "ivy", "Find Faelan, sealed in a tomb (depth 26).",
+                        "Faelan: \"He is not a saint. He never was. I will find my own way up.\""),
                     Step(QuestStepKind.NamedFoe, 28, "reliquary_keeper", "Take Saint Marrow's reliquary from the Reliquary Keeper (depth 28).",
                         "The reliquary is yours. Inside, the saint's sermons, and a bargain in his hand."),
                     Step(QuestStepKind.Boss, 30, "saint_marrow", "Slay Saint Marrow (depth 30).", "Saint Marrow's ember is yours."),
-                    Back("Bring the fourth ember to Mother Aldis."),
+                    Back("Bring the fourth ember to Father Aldric."),
                 },
-                Boon = QuestBoon.LifeBlessing, Gift = "The fire roars: +5% life. Ivy stays in town.",
+                Boon = QuestBoon.LifeBlessing, Gift = "The fire roars: +5% life. Faelan stays in town.",
             },
             // The burnt library's chapter (2026-10-11, the owner: "Make a new questline for the library", the main story).
             new QuestDefinition
@@ -304,7 +304,7 @@ namespace ARPG
                     Step(QuestStepKind.NamedFoe, 34, "corvane", "Kill Corvane the Scrivener, who keeps the book-pyres burning (depth 34).",
                         "Corvane is dead. His pyres gutter out."),
                     Step(QuestStepKind.Boss, 36, "ash_archivist", "Slay the Ash Archivist (depth 36).", "The Archivist's ember is yours."),
-                    Back("Bring the fifth ember to Mother Aldis."),
+                    Back("Bring the fifth ember to Father Aldric."),
                 },
                 Boon = QuestBoon.DamageBlessing, Gift = "The fire burns hotter: +5% damage.",
             },
@@ -332,7 +332,7 @@ namespace ARPG
                     Step(QuestStepKind.Recover, 46, "oath_stone", "Recover the Broken Oath-Stone (depth 46).",
                         "The oath-stone: \"I will hold the dark.\" Below it, scratched later: \"I could not.\""),
                     Step(QuestStepKind.Boss, 48, "first_watchman", "Slay the First Watchman (depth 48).", "The last ember is yours."),
-                    Back("Bring the last ember to Mother Aldis."),
+                    Back("Bring the last ember to Father Aldric."),
                 },
                 Boon = QuestBoon.DamageBlessing, Gift = "The Vigil burns again: +5% damage.",
             },
@@ -352,7 +352,7 @@ namespace ARPG
                 Steps = new[]
                 {
                     Step(QuestStepKind.Rescue, 2, "tobin", "Find Tobin, the merchant's apprentice (depth 2).", "Tobin: \"I am not crying. Let's go.\""),
-                    Back("Tell Odo his apprentice is safe."),
+                    Back("Tell Garrett his apprentice is safe."),
                 },
                 Boon = QuestBoon.MerchantPrices, Gift = "Tobin minds the stall: the merchant pays 25% more.",
             },
@@ -370,27 +370,27 @@ namespace ARPG
                 Steps = new[]
                 {
                     Step(QuestStepKind.NamedFoe, 3, "gorrak", "Kill Gorrak the Gnawer in his feeding pit (depth 3).", "Gorrak the Gnawer is dead."),
-                    Back("Tell Kestra that Gorrak is dead."),
+                    Back("Tell Lyriel that Gorrak is dead."),
                 },
-                Boon = QuestBoon.PetPower, Gift = "Kestra's pens are safe: pets have 25% more life and damage.",
+                Boon = QuestBoon.PetPower, Gift = "Lyriel's pens are safe: pets have 25% more life and damage.",
             },
             new QuestDefinition
             {
                 Id = "lamp_in_the_dark", Title = "A Lamp in the Dark", Giver = QuestGiver.Healer, FromDepth = 4,
                 Offer = new[]
                 {
-                    "My brother Pellam made the lamps for the watch. Good lamps. The cultists wanted them for their rites.",
+                    "My brother Thorin made the lamps for the watch. Good lamps. The cultists wanted them for their rites.",
                     "They took him, not the lamps. Fifth level, the shrine where the candles never go out.",
                     "Bring him home. He will light your way down there better than any torch.",
                 },
-                Progress = "Pellam. The cultists' shrine, fifth level.",
-                Complete = new[] { "Pellam. Look at you.", "He is already at his bench. Take his lantern; it is the best he has made." },
+                Progress = "Thorin. The cultists' shrine, fifth level.",
+                Complete = new[] { "Thorin. Look at you.", "He is already at his bench. Take his lantern; it is the best he has made." },
                 Steps = new[]
                 {
-                    Step(QuestStepKind.Rescue, 5, "pellam", "Find Pellam the lampwright, taken by cultists (depth 5).", "Pellam: \"My sister sent you? Of course she did.\""),
-                    Back("Tell Maud her brother is safe."),
+                    Step(QuestStepKind.Rescue, 5, "pellam", "Find Thorin the blacksmith, taken by cultists (depth 5).", "Thorin: \"My sister sent you? Of course she did.\""),
+                    Back("Tell Miranda her brother is safe."),
                 },
-                Boon = QuestBoon.Lantern, Gift = "Pellam's lantern: your light reaches 30% further below.",
+                Boon = QuestBoon.Lantern, Gift = "Thorin's lantern: your light reaches 30% further below.",
             },
             new QuestDefinition
             {
@@ -406,7 +406,7 @@ namespace ARPG
                 Steps = new[]
                 {
                     Step(QuestStepKind.Recover, 7, "cartographer_notes", "Recover the watch cartographer's notes (depth 7).", "Feln's notes, every stair marked."),
-                    Back("Bring the notes to Wenn."),
+                    Back("Bring the notes to Elara."),
                 },
                 Boon = QuestBoon.MapStairs, Gift = "Feln's maps: the minimap shows the stairs down as you arrive.",
             },
@@ -420,31 +420,31 @@ namespace ARPG
                     "If she were to stop being alive, my luck would change. And luck is what I sell.",
                 },
                 Progress = "Vessa's camp. Ninth level. Mind the knives.",
-                Complete = new[] { "She is dead? Truly? Then I am a free man.", "My luck is yours: my gambles will turn up legendaries twice as often." },
+                Complete = new[] { "She is dead? Truly? Then I am a free woman.", "My luck is yours: my gambles will turn up legendaries twice as often." },
                 Steps = new[]
                 {
                     Step(QuestStepKind.NamedFoe, 9, "vessa", "Kill Vessa the Knife at her camp (depth 9).", "Vessa the Knife is dead."),
-                    Back("Tell Silas his debt is settled."),
+                    Back("Tell Sylthara her debt is settled."),
                 },
-                Boon = QuestBoon.GambleLegendary, Gift = "Silas's luck: a gambled Legendary is twice as likely.",
+                Boon = QuestBoon.GambleLegendary, Gift = "Sylthara's luck: a gambled Legendary is twice as likely.",
             },
             new QuestDefinition
             {
                 Id = "unquiet_knight", Title = "The Unquiet Knight", Giver = QuestGiver.Trainer, FromDepth = 12,
                 Offer = new[]
                 {
-                    "Sir Aldric trained me. Best blade in the watch. He died on the thirteenth level, holding a stair.",
+                    "Sir Corwen trained me. Best blade in the watch. He died on the thirteenth level, holding a stair.",
                     "The men coming up say he still holds it. Bones and armour and nothing behind the eyes.",
                     "Put him down. Bring me his sword. I will teach you what he taught me.",
                 },
-                Progress = "Aldric. The thirteenth level. Bring the sword.",
+                Progress = "Corwen. The thirteenth level. Bring the sword.",
                 Complete = new[] { "His sword. He would hate how notched it is.", "Now. Again, faster. That is how he taught it." },
                 Steps = new[]
                 {
-                    Step(QuestStepKind.NamedFoe, 13, "aldric", "Lay Sir Aldric to rest and take his sword (depth 13).", "Sir Aldric rests. His sword is yours."),
-                    Back("Bring Aldric's sword to Hale."),
+                    Step(QuestStepKind.NamedFoe, 13, "corwen", "Lay Sir Corwen to rest and take his sword (depth 13).", "Sir Corwen rests. His sword is yours."),
+                    Back("Bring Corwen's sword to Brunhilde."),
                 },
-                Boon = QuestBoon.AttackSpeed, Gift = "Hale's drills: +5% attack speed.",
+                Boon = QuestBoon.AttackSpeed, Gift = "Brunhilde's drills: +5% attack speed.",
             },
             new QuestDefinition
             {
@@ -460,9 +460,9 @@ namespace ARPG
                 Steps = new[]
                 {
                     Step(QuestStepKind.Break, 27, "bone_pyres", "Break the grave priests' three bone pyres (depth 27).", "The last pyre falls. The rite is broken."),
-                    Back("Tell Sister Ivy the rite is broken."),
+                    Back("Tell Faelan the rite is broken."),
                 },
-                Boon = QuestBoon.Potions, Gift = "Ivy's blessing: potions heal 25% more, and one more charge.",
+                Boon = QuestBoon.Potions, Gift = "Faelan's blessing: potions heal 25% more, and one more charge.",
             },
             new QuestDefinition
             {
@@ -478,7 +478,7 @@ namespace ARPG
                 Steps = new[]
                 {
                     Step(QuestStepKind.Recover, 19, "great_lamp", "Recover the watch's great lamp from a demon nest (depth 19).", "The great lamp. Heavy, and still warm."),
-                    Back("Bring the great lamp to Pellam."),
+                    Back("Bring the great lamp to Thorin."),
                 },
                 Boon = QuestBoon.GreatLamp, Gift = "The great lamp: your light reaches a further 30% below.",
             },

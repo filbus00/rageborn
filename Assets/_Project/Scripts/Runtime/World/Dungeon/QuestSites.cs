@@ -18,7 +18,7 @@ namespace ARPG
             "bram" => LairTheme.Drowned,
             "pellam" or "fire_ledger" or "corvane" => LairTheme.Shrine,
             "vessa" or "vask" => LairTheme.Camp,
-            "ivy" or "aldric" or "reliquary_keeper" or "watch_log" or "hold_keys" or "cartographer_notes" or "bone_pyres" => LairTheme.Tomb,
+            "ivy" or "corwen" or "reliquary_keeper" or "watch_log" or "hold_keys" or "cartographer_notes" or "bone_pyres" => LairTheme.Tomb,
             "oath_stone" or "great_lamp" or "rift_heart" => LairTheme.Nest,
             _ => LairTheme.None,
         };

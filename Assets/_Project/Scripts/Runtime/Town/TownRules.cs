@@ -32,10 +32,10 @@ namespace ARPG
 
         public static string Name(Newcomer who) => who switch
         {
-            Newcomer.StashKeeper => "Stash Keeper",
-            Newcomer.Healer => "Healer",
-            Newcomer.Gambler => "Gambler",
-            _ => "Trainer",
+            Newcomer.StashKeeper => "Elara",
+            Newcomer.Healer => "Miranda",
+            Newcomer.Gambler => "Sylthara",
+            _ => "Brunhilde",
         };
 
         /// <summary>The cell each stands on.</summary>

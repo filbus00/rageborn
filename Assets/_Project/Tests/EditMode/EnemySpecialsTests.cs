@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -6,12 +7,8 @@ namespace ARPG.Tests
     public class EnemySpecialsTests
     {
         // Every enemy the packs are made of (Data/Enemies), bosses and break targets aside.
-        static readonly string[] Roster =
-        {
-            "Swarmer", "SwarmerChampion", "SwarmerElite", "Ghoul", "BanditArcher", "Skeleton", "Cultist", "AshWolf", "Cutthroat",
-            "EmberAcolyte", "PyreKeeper", "CarrionBloat", "Drowned", "Harpooner", "DrownedWatchman", "SkeletonKnight", "GravePriest",
-            "Hollowed", "RiftCaller", "VoidWraith",
-        };
+        static readonly string[] Roster = System.Enum.GetNames(typeof(PackMember)).Where(n => n != "None")
+            .Concat(new[] { "Swarmer", "SwarmerChampion", "SwarmerElite" }).ToArray();
 
         [Test]
         public void EveryEnemyType_HasASpecial_ThatCanBeDodged()
@@ -35,10 +32,8 @@ namespace ARPG.Tests
         [Test]
         public void TheLongestKind_Wins()
         {
-            Assert.AreEqual("Tide Wave", EnemySpecialRules.For("DrownedWatchman").Name);
-            Assert.AreEqual("Brine Spit", EnemySpecialRules.For("Drowned").Name);
-            Assert.AreEqual("Shield Bash", EnemySpecialRules.For("SkeletonKnight").Name);
-            Assert.AreEqual(SpecialShape.Throw, EnemySpecialRules.For("Skeleton").Shape);
+            Assert.AreEqual("Javelin", EnemySpecialRules.For("SkeletonWarrior").Name);
+            Assert.AreEqual("Fire Spit", EnemySpecialRules.For("Fallen").Name);
             Assert.AreEqual("Bile Spit", EnemySpecialRules.For("SwarmerElite").Name);
         }
 

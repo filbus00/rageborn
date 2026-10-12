@@ -1,272 +1,195 @@
 namespace ARPG
 {
-    /// <summary>Which act 1 enemy fills a pack slot (Docs/05-world-and-content.md: husks, ghouls, bandit archers).</summary>
+    /// <summary>
+    /// The dungeon's monsters (2026-10-13, the owner's "enemies concept art", "Replace the roster": the sheet's 25 in
+    /// place of the old types). Values are saved nowhere; their names name the enemy definitions (Data/Enemies) and the
+    /// special attacks (<see cref="EnemySpecialRules"/>).
+    /// </summary>
     public enum PackMember
     {
         /// <summary>Nobody: the pack is smaller than its placement.</summary>
         None,
-        Husk,
+        Zombie,
+        SkeletonWarrior,
+        Fallen,
+        QuillRat,
         Ghoul,
-        Archer,
+        DarkCultist,
+        BileFiend,
+        Wight,
+        Mummy,
+        BoneMage,
+        FleshGolem,
+        Wraith,
+        Ogre,
+        Gargoyle,
+        Lich,
+        Imp,
+        Succubus,
+        Harpy,
+        StygianDemon,
+        HellHound,
+        Arachnid,
+        SandWorm,
+        Giant,
+        Nightmare,
+        BalrogLite,
+    }
 
-        /// <summary>From depth 4 (2026-10-04): a slower, armoured melee fighter in the husk's place.</summary>
-        Skeleton,
-
-        /// <summary>From depth 4: a robed fire caster in the archer's place.</summary>
-        Cultist,
-
-        // The rest of act 1's roster (2026-10-05, Docs/05).
-        /// <summary>From depth 3: a charger, in packs of its own.</summary>
-        AshWolf,
-
-        /// <summary>From depth 3: a fast double striker among husks.</summary>
-        Cutthroat,
-
-        /// <summary>From depth 4: a caster of burning circles in an archer's place.</summary>
-        EmberAcolyte,
-
-        /// <summary>From depth 4: a support at the back of a pack, its aura making the others hit harder.</summary>
-        PyreKeeper,
-
-        /// <summary>From depth 5: a slow brute that bursts, in a ghoul's place.</summary>
-        CarrionBloat,
-
-        // The deep levels (2026-10-05), each fading in over the levels from its first (PackComposition.Deep).
-        Drowned,
-        Harpooner,
-        DrownedWatchman,
-        SkeletonKnight,
-        GravePriest,
-        Hollowed,
-        VoidWraith,
-        RiftCaller,
+    /// <summary>Where a kind stands in a pack: in front, at the back, one behind the rest helping them, or in a pack
+    /// of its own kind only.</summary>
+    public enum PackRole
+    {
+        Front,
+        Back,
+        Support,
+        Swarm,
     }
 
     /// <summary>
-    /// Decides what a generated pack is made of, slot by slot. It is not part of the generator's random stream: it is
-    /// hashed from the level's seed and the pack's number, so adding enemy types left every layout, and so every saved
-    /// kill, where it was. The mixes and shares are tuning values; the docs name the act's enemies but not how they mix.
-    /// Pure.
-    ///
-    /// Depth 1 is husks only, so the first level teaches the basics. Deeper, a pack is husks only (40 percent), husks
-    /// with 2 or 3 ghouls (25), husks with 2 or 3 archers (20), or a small band of 3 ghouls and 2 archers (15). Ghouls
-    /// and archers take the last slots, which the pack's spiral puts on its outside, so archers start at the back. Elite
-    /// packs stay husks, and a Champion keeps slot 0.
-    ///
-    /// From depth 4 (<see cref="FirstUndeadDepth"/>, 2026-10-04) a second hash of the pack turns some of them undead: in
-    /// 35 percent of packs the husks become skeletons, and in half of them the archers become cultists (each decided on
-    /// its own). A Champion's slot 0 and elite packs stay husks.
+    /// Decides what a generated pack is made of, slot by slot (2026-10-13, the concept roster). Hashed from the level's
+    /// seed and the pack's number, not the generator's stream, so the layout never depends on it. Each kind has a role,
+    /// a span of depths and a weight (<see cref="Table"/>): the crypt's dead and fallen to 12, the prison's mummies,
+    /// golems and mages from 13, the library's demons from 25, the caves' beasts from 37; each fades in over three
+    /// levels from its first depth and is gone after its last, so neighbouring bands mix at their seam. A pack is one
+    /// kind of swarm (20 percent, 4 or more slots), or front fighters with 2 or 3 at the back (60 percent of the rest)
+    /// and a support behind them (30 percent of packs of 4 or more). Depth 1 is zombies only. A Champion keeps slot 0;
+    /// elite packs are made elsewhere. Pure.
     /// </summary>
     public static class PackComposition
     {
-        public const int FirstMixedDepth = 2;
-
-        /// <summary>The first depth with skeletons and cultists.</summary>
-        public const int FirstUndeadDepth = 4;
-
-        public const int SkeletonPercent = 35;
-        public const int CultistPercent = 50;
-
-        // The rest of act 1's roster (2026-10-05, Docs/05; depths from its "From depth" column, shares are tuning).
-        public const int FirstWolfDepth = 3;
-        public const int FirstCutthroatDepth = 3;
-        public const int FirstAcolyteDepth = 4;
-        public const int FirstKeeperDepth = 4;
-        public const int FirstBloatDepth = 5;
-        public const int WolfPackPercent = 20;
-        public const int CutthroatPercent = 30;
-        public const int AcolytePercent = 35;
-        public const int KeeperPercent = 30;
-        public const int BloatPercent = 40;
-
-        /// <summary>Docs/05: wolves run in packs of 4 to 6.</summary>
-        public const int MinWolves = 4;
-        public const int MaxWolves = 6;
-
-        public static PackMember[] Roll(int depth, PackKind kind, int count, int levelSeed, int packIndex) =>
-            Deep(depth, kind, Roster(depth, kind, RollUndead(depth, kind, count, levelSeed, packIndex), levelSeed, packIndex), levelSeed, packIndex);
-
-        /// <summary>
-        /// How likely a pack is to have a deep type in place of an older one: none before its first depth, then
-        /// <paramref name="perLevel"/> percent more a level, up to <paramref name="max"/> (2026-10-05: the dungeon changes
-        /// gradually, no hard sections).
-        /// </summary>
-        public static int DeepShare(int depth, int first, int perLevel, int max) =>
-            depth < first ? 0 : System.Math.Min(max, (depth - first + 1) * perLevel);
-
-        // Each deep type: the first depth it appears, how fast it spreads, and its cap. Tuning.
-        public const int FirstDrownedDepth = 7, FirstHarpoonerDepth = 8, FirstWatchmanDepth = 9;
-        public const int FirstKnightDepth = 13, FirstPriestDepth = 14;
-        // The void's creatures belong to the caves (2026-10-11, the library between: from 19 and 20 until then; from 37 and
-        // 38 since the prison came between, 2026-10-12). The hollowed are the prison's inmates, from 19.
-        public const int FirstHollowedDepth = 19, FirstRiftCallerDepth = 37, FirstWraithDepth = 38;
-
-        /// <summary>In the burnt library (2026-10-11) the fire casters are commoner: ember acolytes in place of archers
-        /// and cultists, and pyre keepers at the back of packs.</summary>
-        public const int LibraryAcolytePercent = 65, LibraryKeeperPercent = 50;
-
-        /// <summary>
-        /// The deep levels' roster, from a fourth hash of the pack. From 7 the drowned take the husks' places, from 8
-        /// harpooners the archers', from 9 drowned watchmen the ghouls'; from 13 skeleton knights the brutes', from 14 a
-        /// grave priest stands at the back of some packs of 4 or more; from 19 the hollowed take the swarmers' places; in
-        /// the caves, from 37 rift callers take the ranged ones' and from 38 the wolf packs turn to void wraiths. The
-        /// drowned, harpooners and drowned watchmen stay out of the burnt library (2026-10-11). Each spreads by its share
-        /// (<see cref="DeepShare"/>), so a level has some old and some new. Elite packs and a Champion's slot 0 stay.
-        /// </summary>
-        static PackMember[] Deep(int depth, PackKind kind, PackMember[] members, int levelSeed, int packIndex)
+        public readonly struct Entry
         {
-            if (kind == PackKind.Elite || depth < FirstDrownedDepth)
-                return members;
-            var a = (uint)DungeonRules.LevelSeed(levelSeed, 5000 + packIndex);
-            var b = (uint)DungeonRules.LevelSeed(levelSeed, 6000 + packIndex);
-            var first = kind == PackKind.WithChampion ? 1 : 0;
-            bool Rolls(uint hash, int share) => hash % 100 < share;
+            public readonly PackMember Member;
+            public readonly PackRole Role;
+            public readonly int First, Last, Weight;
 
-            var dry = DungeonRules.ThemeAt(depth) == DungeonTheme.Library;
-            var drowned = !dry && Rolls(a, DeepShare(depth, FirstDrownedDepth, 15, 75));
-            var harpoon = !dry && Rolls(a / 100, DeepShare(depth, FirstHarpoonerDepth, 15, 70));
-            var watchman = !dry && Rolls(a / 10000, DeepShare(depth, FirstWatchmanDepth, 15, 70));
-            var knight = Rolls(a / 1000000, DeepShare(depth, FirstKnightDepth, 15, 75));
-            var priest = Rolls(b, DeepShare(depth, FirstPriestDepth, 10, 40));
-            var hollowed = Rolls(b / 100, DeepShare(depth, FirstHollowedDepth, 15, 80));
-            var rift = Rolls(b / 10000, DeepShare(depth, FirstRiftCallerDepth, 12, 60));
-            var wraith = Rolls(b / 1000000, DeepShare(depth, FirstWraithDepth, 20, 100));
-
-            for (var i = first; i < members.Length; i++)
+            public Entry(PackMember member, PackRole role, int first, int last, int weight)
             {
-                var m = members[i];
-                if (m == PackMember.Husk || m == PackMember.Skeleton || m == PackMember.Cutthroat)
-                    m = hollowed ? PackMember.Hollowed : drowned ? PackMember.Drowned : m;
-                else if (m == PackMember.Archer || m == PackMember.Cultist || m == PackMember.EmberAcolyte)
-                    m = rift ? PackMember.RiftCaller : harpoon && m == PackMember.Archer ? PackMember.Harpooner : m;
-                else if (m == PackMember.Ghoul || m == PackMember.CarrionBloat)
-                    m = knight ? PackMember.SkeletonKnight : watchman ? PackMember.DrownedWatchman : m;
-                else if (m == PackMember.AshWolf && wraith)
-                    m = PackMember.VoidWraith;
-                members[i] = m;
+                Member = member;
+                Role = role;
+                First = first;
+                Last = last;
+                Weight = weight;
             }
-            if (priest && members.Length >= 4 && System.Array.IndexOf(members, PackMember.PyreKeeper) < 0 &&
-                System.Array.IndexOf(members, PackMember.AshWolf) < 0 && System.Array.IndexOf(members, PackMember.VoidWraith) < 0)
-            {
-                for (var i = members.Length - 1; i >= first; i--)
-                    if (members[i] != PackMember.None)
-                    {
-                        members[i] = PackMember.GravePriest;
-                        break;
-                    }
-            }
-            return members;
         }
 
-        /// <summary>
-        /// The rest of act 1's roster, from a third hash of the pack so every earlier roll stays as it was. Normal packs
-        /// from depth 3: one in five is a wolf pack (4 to 6 wolves and nobody else; a placement for fewer keeps its
-        /// husks); in 30 percent every second husk is a cutthroat. From depth 4: in 35 percent the archers left are
-        /// ember acolytes, and in 30 percent of packs of 4 or more the last slot (the back) is a pyre keeper. From depth 5,
-        /// in 40 percent of packs the ghouls are carrion bloats. Elite packs and a Champion's slot 0 stay as they were.
-        /// </summary>
-        static PackMember[] Roster(int depth, PackKind kind, PackMember[] members, int levelSeed, int packIndex)
+        /// <summary>The roster: who, in which role, from which depth to which, how common. Tuning.</summary>
+        public static readonly Entry[] Table =
         {
-            if (kind == PackKind.Elite || depth < FirstWolfDepth)
-                return members;
-            var hash = (uint)DungeonRules.LevelSeed(levelSeed, 3000 + packIndex);
-            var first = kind == PackKind.WithChampion ? 1 : 0;
-            if (kind == PackKind.Normal && hash % 100 < WolfPackPercent && members.Length >= MinWolves)
-            {
-                for (var i = 0; i < members.Length; i++)
-                    members[i] = i < MaxWolves ? PackMember.AshWolf : PackMember.None;
-                return members;
-            }
-            if (depth >= FirstCutthroatDepth && hash / 100 % 100 < CutthroatPercent)
-                for (var i = first; i < members.Length; i++)
-                    if (members[i] == PackMember.Husk && i % 2 == 1)
-                        members[i] = PackMember.Cutthroat;
-            var library = DungeonRules.ThemeAt(depth) == DungeonTheme.Library;
-            if (depth >= FirstAcolyteDepth && hash / 10000 % 100 < (library ? LibraryAcolytePercent : AcolytePercent))
-                for (var i = first; i < members.Length; i++)
-                    if (members[i] == PackMember.Archer || library && members[i] == PackMember.Cultist)
-                        members[i] = PackMember.EmberAcolyte;
-            if (depth >= FirstKeeperDepth && members.Length >= 4 && hash / 1000000 % 100 < (library ? LibraryKeeperPercent : KeeperPercent))
-            {
-                for (var i = members.Length - 1; i >= first; i--)
-                    if (members[i] != PackMember.None)
-                    {
-                        members[i] = PackMember.PyreKeeper;
-                        break;
-                    }
-            }
-            if (depth >= FirstBloatDepth && (uint)DungeonRules.LevelSeed(levelSeed, 4000 + packIndex) % 100 < BloatPercent)
-                for (var i = first; i < members.Length; i++)
-                    if (members[i] == PackMember.Ghoul)
-                        members[i] = PackMember.CarrionBloat;
-            return members;
+            // The crypt (1 to 12).
+            new Entry(PackMember.Zombie, PackRole.Front, 1, 15, 10),
+            new Entry(PackMember.SkeletonWarrior, PackRole.Front, 3, 18, 8),
+            new Entry(PackMember.Ghoul, PackRole.Front, 4, 16, 6),
+            new Entry(PackMember.BileFiend, PackRole.Front, 5, 16, 4),
+            new Entry(PackMember.DarkCultist, PackRole.Back, 2, 16, 8),
+            new Entry(PackMember.Wight, PackRole.Support, 7, 18, 5),
+            new Entry(PackMember.Fallen, PackRole.Swarm, 2, 14, 6),
+            new Entry(PackMember.QuillRat, PackRole.Swarm, 3, 15, 5),
+            // The prison (13 to 24).
+            new Entry(PackMember.Mummy, PackRole.Front, 13, 28, 8),
+            new Entry(PackMember.FleshGolem, PackRole.Front, 14, 30, 5),
+            new Entry(PackMember.Ogre, PackRole.Front, 16, 30, 5),
+            new Entry(PackMember.Gargoyle, PackRole.Front, 15, 30, 4),
+            new Entry(PackMember.Wraith, PackRole.Back, 13, 30, 6),
+            new Entry(PackMember.BoneMage, PackRole.Back, 14, 30, 6),
+            new Entry(PackMember.Lich, PackRole.Support, 18, 32, 5),
+            // The burnt library (25 to 36).
+            new Entry(PackMember.StygianDemon, PackRole.Front, 25, 42, 8),
+            new Entry(PackMember.Succubus, PackRole.Back, 26, 42, 7),
+            new Entry(PackMember.Imp, PackRole.Swarm, 25, 40, 6),
+            new Entry(PackMember.Harpy, PackRole.Swarm, 27, 42, 5),
+            new Entry(PackMember.HellHound, PackRole.Swarm, 25, 44, 6),
+            // The caves (37 to 48).
+            new Entry(PackMember.SandWorm, PackRole.Front, 38, 48, 5),
+            new Entry(PackMember.Giant, PackRole.Front, 39, 48, 6),
+            new Entry(PackMember.Arachnid, PackRole.Back, 37, 48, 7),
+            new Entry(PackMember.BalrogLite, PackRole.Support, 42, 48, 5),
+            new Entry(PackMember.Nightmare, PackRole.Swarm, 40, 48, 5),
+        };
+
+        public const int SwarmPercent = 20;
+        public const int BackPercent = 60;
+        public const int SupportPercent = 30;
+        public const int MinSwarm = 4;
+        public const int MaxSwarm = 6;
+
+        /// <summary>A kind's weight at a depth: none outside its span, rising over its first three levels.</summary>
+        public static int WeightAt(Entry entry, int depth) =>
+            depth < entry.First || depth > entry.Last ? 0 : entry.Weight * System.Math.Min(3, depth - entry.First + 1);
+
+        /// <summary>The kinds of a role met at a depth.</summary>
+        public static bool Has(PackRole role, int depth)
+        {
+            foreach (var entry in Table)
+                if (entry.Role == role && WeightAt(entry, depth) > 0)
+                    return true;
+            return false;
         }
 
-        /// <summary>Below the first boss the undead spread: 3 points more of packs a level, up to 85 percent (2026-10-05:
-        /// the dungeon changes gradually, no hard sections).</summary>
-        public static int UndeadPercent(int basePercent, int depth) =>
-            System.Math.Min(85, basePercent + 3 * System.Math.Max(0, depth - DungeonRules.BossEvery));
-
-        static PackMember[] RollUndead(int depth, PackKind kind, int count, int levelSeed, int packIndex)
+        public static PackMember[] Roll(int depth, PackKind kind, int count, int levelSeed, int packIndex)
         {
-            var members = RollAct1(depth, kind, count, levelSeed, packIndex);
-            if (depth < FirstUndeadDepth || kind == PackKind.Elite)
-                return members;
-            var hash = (uint)DungeonRules.LevelSeed(levelSeed, 2000 + packIndex);
-            var skeletons = hash % 100 < UndeadPercent(SkeletonPercent, depth);
-            var cultists = hash / 100 % 100 < UndeadPercent(CultistPercent, depth);
-            var first = kind == PackKind.WithChampion ? 1 : 0;
-            for (var i = first; i < members.Length; i++)
-            {
-                if (skeletons && members[i] == PackMember.Husk)
-                    members[i] = PackMember.Skeleton;
-                else if (cultists && members[i] == PackMember.Archer)
-                    members[i] = PackMember.Cultist;
-            }
-            return members;
-        }
-
-        static PackMember[] RollAct1(int depth, PackKind kind, int count, int levelSeed, int packIndex)
-        {
+            depth = System.Math.Max(1, depth);
             var members = new PackMember[count];
-            for (var i = 0; i < count; i++)
-                members[i] = PackMember.Husk;
-
-            if (depth < FirstMixedDepth || kind == PackKind.Elite || count < 3)
-                return members;
-
             var hash = (uint)DungeonRules.LevelSeed(levelSeed, 1000 + packIndex);
-            var roll = hash % 100;
-            var extra = 2 + (int)(hash / 100 % 2); // 2 or 3
-            extra = System.Math.Min(extra, count - 1);
-
-            if (roll < 40)
+            var first = kind == PackKind.WithChampion ? 1 : 0;
+            var front = Pick(PackRole.Front, depth, hash);
+            for (var i = 0; i < count; i++)
+                members[i] = front;
+            if (depth < 2 || kind == PackKind.Elite || count < 3)
                 return members;
 
-            if (roll < 65)
+            if (kind == PackKind.Normal && count >= MinSwarm && hash / 7 % 100 < SwarmPercent && Has(PackRole.Swarm, depth))
             {
-                Fill(members, count - extra, count, PackMember.Ghoul);
+                var swarm = Pick(PackRole.Swarm, depth, hash / 11);
+                for (var i = 0; i < count; i++)
+                    members[i] = i < MaxSwarm ? swarm : PackMember.None;
+                return members;
             }
-            else if (roll < 85)
+            var end = count;
+            if (count >= 4 && hash / 13 % 100 < SupportPercent && Has(PackRole.Support, depth))
             {
-                Fill(members, count - extra, count, PackMember.Archer);
+                members[count - 1] = Pick(PackRole.Support, depth, hash / 17);
+                end = count - 1;
             }
-            else
+            if (hash / 19 % 100 < BackPercent && Has(PackRole.Back, depth))
             {
-                // A band: 3 ghouls in front, 2 archers behind, nobody else. A Champion still leads from slot 0.
-                var first = kind == PackKind.WithChampion ? 1 : 0;
-                for (var i = first; i < count; i++)
-                    members[i] = PackMember.None;
-                Fill(members, first, System.Math.Min(first + 3, count), PackMember.Ghoul);
-                Fill(members, System.Math.Min(first + 3, count), System.Math.Min(first + 5, count), PackMember.Archer);
+                var back = Pick(PackRole.Back, depth, hash / 23);
+                var extra = System.Math.Min(2 + (int)(hash / 29 % 2), end - first - 1);
+                for (var i = System.Math.Max(first, end - extra); i < end; i++)
+                    members[i] = back;
             }
             return members;
         }
 
-        static void Fill(PackMember[] members, int from, int to, PackMember member)
+        /// <summary>A kind of a role at a depth, by weight from a hash; zombies when the role has nobody there.</summary>
+        static PackMember Pick(PackRole role, int depth, uint hash)
         {
-            for (var i = System.Math.Max(0, from); i < to; i++)
-                members[i] = member;
+            var total = 0;
+            foreach (var entry in Table)
+                if (entry.Role == role)
+                    total += WeightAt(entry, depth);
+            if (total == 0)
+                return PackMember.Zombie;
+            var roll = (int)(hash % (uint)total);
+            foreach (var entry in Table)
+            {
+                if (entry.Role != role)
+                    continue;
+                roll -= WeightAt(entry, depth);
+                if (roll < 0)
+                    return entry.Member;
+            }
+            return PackMember.Zombie;
+        }
+
+        /// <summary>The role of a kind (swarms are their own packs).</summary>
+        public static PackRole RoleOf(PackMember member)
+        {
+            foreach (var entry in Table)
+                if (entry.Member == member)
+                    return entry.Role;
+            return PackRole.Front;
         }
     }
 }

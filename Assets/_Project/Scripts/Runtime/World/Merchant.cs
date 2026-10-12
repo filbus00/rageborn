@@ -13,7 +13,7 @@ namespace ARPG
     {
         public static Merchant Create(Vector2 ground, Transform parent)
         {
-            var go = new GameObject("Merchant", typeof(CircleCollider2D));
+            var go = new GameObject("Garrett", typeof(CircleCollider2D));
             go.transform.SetParent(parent, false);
             go.transform.position = IsoMath.GroundToWorld(ground);
             var collider = go.GetComponent<CircleCollider2D>();
@@ -24,7 +24,7 @@ namespace ARPG
                 go.layer = layer;
 
             NpcFigure.Create(go.transform, "merchant", new Color(0.62f, 0.5f, 0.25f));
-            TravelArt.Label(go.transform, "Merchant", LootColors.Gold, 1.5f);
+            TravelArt.Label(go.transform, "Garrett", LootColors.Gold, 1.5f);
             QuestMarker.Attach(go.transform, QuestGiver.Merchant);
             return go.AddComponent<Merchant>();
         }

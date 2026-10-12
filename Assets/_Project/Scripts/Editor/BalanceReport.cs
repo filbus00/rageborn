@@ -21,6 +21,16 @@ namespace ARPG.Editor
     /// </summary>
     public static class BalanceReport
     {
+        // A pack member's definition by its name (the concept roster, 2026-10-13), loaded once.
+        static readonly Dictionary<PackMember, EnemyDefinition> kinds = new Dictionary<PackMember, EnemyDefinition>();
+
+        static EnemyDefinition Kind(PackMember member)
+        {
+            if (!kinds.TryGetValue(member, out var definition))
+                kinds[member] = definition = AssetDatabase.LoadAssetAtPath<EnemyDefinition>("Assets/_Project/Data/Enemies/" + member + ".asset");
+            return definition;
+        }
+
         const int Seeds = 40;
         const string OutputPath = "Logs/BalanceReport.md";
         const string EnemiesFolder = "Assets/_Project/Data/Enemies";
@@ -127,26 +137,8 @@ namespace ARPG.Editor
                         {
                             if (k == 0 && pack.Kind == PackKind.WithChampion)
                                 kills.Add(champion);
-                            else if (members[k] == PackMember.Ghoul)
-                                kills.Add(ghoul);
-                            else if (members[k] == PackMember.Archer)
-                                kills.Add(archer);
-                            else if (members[k] == PackMember.Husk)
-                                kills.Add(husk);
-                            else if (members[k] == PackMember.Skeleton)
-                                kills.Add(skeleton);
-                            else if (members[k] == PackMember.Cultist)
-                                kills.Add(cultist);
-                            else if (members[k] == PackMember.AshWolf)
-                                kills.Add(ashWolf);
-                            else if (members[k] == PackMember.Cutthroat)
-                                kills.Add(cutthroat);
-                            else if (members[k] == PackMember.EmberAcolyte)
-                                kills.Add(acolyte);
-                            else if (members[k] == PackMember.PyreKeeper)
-                                kills.Add(keeper);
-                            else if (members[k] == PackMember.CarrionBloat)
-                                kills.Add(bloat);
+                            else if (members[k] != PackMember.None)
+                                kills.Add(Kind(members[k]) ?? husk);
                         }
                     }
                     if (layout.HasBossArena)

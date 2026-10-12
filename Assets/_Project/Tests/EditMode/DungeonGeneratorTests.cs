@@ -333,10 +333,10 @@ namespace ARPG.Tests
         [Test]
         public void LairThemes_FollowWhoLivesThere()
         {
-            Assert.AreEqual(LairTheme.Camp, Lairs.Theme(new[] { PackMember.Archer, PackMember.Cutthroat, PackMember.Husk }));
-            Assert.AreEqual(LairTheme.Feeding, Lairs.Theme(new[] { PackMember.Husk, PackMember.Ghoul, PackMember.Archer }));
-            Assert.AreEqual(LairTheme.Den, Lairs.Theme(new[] { PackMember.AshWolf, PackMember.AshWolf }));
-            Assert.AreEqual(LairTheme.Nest, Lairs.Theme(new[] { PackMember.Hollowed, PackMember.RiftCaller }));
+            Assert.AreEqual(LairTheme.Camp, Lairs.Theme(new[] { PackMember.Fallen, PackMember.Fallen, PackMember.Zombie }));
+            Assert.AreEqual(LairTheme.Feeding, Lairs.Theme(new[] { PackMember.Zombie, PackMember.Ghoul, PackMember.DarkCultist }));
+            Assert.AreEqual(LairTheme.Den, Lairs.Theme(new[] { PackMember.HellHound, PackMember.HellHound }));
+            Assert.AreEqual(LairTheme.Nest, Lairs.Theme(new[] { PackMember.Imp, PackMember.Succubus }));
             Assert.AreEqual(LairTheme.Nest, Lairs.EliteTheme(20));
             foreach (LairTheme theme in System.Enum.GetValues(typeof(LairTheme)))
                 if (theme != LairTheme.None)

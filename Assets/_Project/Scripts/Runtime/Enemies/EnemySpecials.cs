@@ -95,27 +95,36 @@ namespace ARPG
         static readonly Color Rock = new Color(0.55f, 0.5f, 0.45f, 1f);
         static readonly Color Steel = new Color(0.8f, 0.82f, 0.85f, 1f);
 
-        // By the definition's name; a champion or elite of a kind ("SwarmerChampion") takes the kind's.
+        // By the definition's name; a champion or elite of a kind ("SwarmerChampion") takes the kind's. The concept
+        // roster's (2026-10-13), each the ranged move its card names. Claude's numbers, to review.
         static readonly (string kind, EnemySpecial special)[] Table =
         {
             ("Swarmer", new EnemySpecial("Bile Spit", SpecialShape.Lob, 6.5f, 2.5f, 6.5f, 0.9f, 0.9f, 0.8f, Bile, lingerSeconds: 2.5f, lingerHit: 0.3f, poison: true)),
-            ("Ghoul", new EnemySpecial("Rock Throw", SpecialShape.Throw, 7f, 2.5f, 8.5f, 0.3f, 0.5f, 1.6f, Rock, length: 10f, speed: 12f)),
-            ("BanditArcher", new EnemySpecial("Volley", SpecialShape.Throw, 6f, 2.5f, 10f, 0.2f, 0.45f, 1.0f, Steel, count: 3, spread: 14f, length: 12f, speed: 17f)),
-            ("Skeleton", new EnemySpecial("Bone Throw", SpecialShape.Throw, 5.5f, 2f, 8f, 0.25f, 0.45f, 1.1f, Bone, count: 2, spread: 9f, length: 10f, speed: 15f)),
-            ("Cultist", new EnemySpecial("Fire Rain", SpecialShape.Lob, 8f, 2f, 9f, 1.0f, 0.9f, 0.9f, Fire, count: 3, spread: 1.6f, stagger: 0.35f)),
-            ("AshWolf", new EnemySpecial("Pounce Bite", SpecialShape.Lines, 6f, 2.5f, 6f, 0.9f, 0.7f, 1.1f, Blood, length: 6f)),
-            ("Cutthroat", new EnemySpecial("Thrown Knives", SpecialShape.Throw, 5f, 2f, 8f, 0.2f, 0.45f, 0.8f, Steel, count: 3, spread: 12f, length: 10f, speed: 18f)),
-            ("EmberAcolyte", new EnemySpecial("Fire Bolts", SpecialShape.Throw, 6.5f, 2f, 9f, 0.3f, 0.5f, 1.0f, Fire, count: 2, spread: 10f, length: 11f, speed: 13f)),
-            ("PyreKeeper", new EnemySpecial("Ember Burst", SpecialShape.Ring, 7f, 0f, 3.5f, 3f, 1.1f, 1.0f, Fire, lingerSeconds: 2f, lingerHit: 0.4f)),
-            ("CarrionBloat", new EnemySpecial("Gas Lob", SpecialShape.Lob, 7f, 2.5f, 7f, 1.6f, 1.0f, 0.5f, Bile, lingerSeconds: 4f, lingerHit: 0.4f, poison: true)),
-            ("Drowned", new EnemySpecial("Brine Spit", SpecialShape.Lines, 6.5f, 2f, 7f, 0.7f, 0.8f, 0.8f, Water, length: 8f, slow: 0.6f, slowSeconds: 1.5f)),
-            ("Harpooner", new EnemySpecial("Net", SpecialShape.Lob, 8f, 3f, 8f, 1.3f, 0.9f, 0.5f, Water, slow: 0.5f, slowSeconds: 2f)),
-            ("DrownedWatchman", new EnemySpecial("Tide Wave", SpecialShape.Lines, 8f, 1.5f, 7f, 1.6f, 1.1f, 1.3f, Water, length: 8f, slow: 0.6f, slowSeconds: 1.5f)),
-            ("SkeletonKnight", new EnemySpecial("Shield Bash", SpecialShape.Ring, 6.5f, 0f, 3f, 2.2f, 0.9f, 1.4f, Bone)),
-            ("GravePriest", new EnemySpecial("Grave Hands", SpecialShape.Lob, 7.5f, 2f, 8f, 1.2f, 1.0f, 1.0f, Grave, count: 2, spread: 2f, stagger: 0.5f)),
-            ("Hollowed", new EnemySpecial("Shriek", SpecialShape.Ring, 7f, 0f, 4f, 3.2f, 1.1f, 1.0f, Void)),
-            ("RiftCaller", new EnemySpecial("Rift Bolt", SpecialShape.Throw, 6f, 2f, 10f, 0.35f, 0.55f, 1.4f, Void, length: 12f, speed: 13f)),
-            ("VoidWraith", new EnemySpecial("Void Shards", SpecialShape.Throw, 5.5f, 2f, 9f, 0.25f, 0.45f, 0.9f, Void, count: 3, spread: 18f, length: 11f, speed: 15f)),
+            ("Zombie", new EnemySpecial("Vomit", SpecialShape.Lob, 7f, 2f, 6f, 1.0f, 1.0f, 0.8f, Bile, lingerSeconds: 2.5f, lingerHit: 0.3f, poison: true)),
+            ("SkeletonWarrior", new EnemySpecial("Javelin", SpecialShape.Throw, 6f, 2.5f, 9f, 0.25f, 0.5f, 1.2f, Bone, length: 11f, speed: 15f)),
+            ("Fallen", new EnemySpecial("Fire Spit", SpecialShape.Throw, 6.5f, 2f, 8f, 0.25f, 0.45f, 0.8f, Fire, length: 9f, speed: 13f)),
+            ("QuillRat", new EnemySpecial("Quill Shot", SpecialShape.Throw, 5.5f, 2f, 8f, 0.2f, 0.45f, 0.7f, Bone, count: 3, spread: 14f, length: 9f, speed: 16f)),
+            ("Ghoul", new EnemySpecial("Flesh Throw", SpecialShape.Throw, 6f, 2.5f, 8f, 0.3f, 0.5f, 1.2f, Blood, length: 10f, speed: 12f)),
+            ("DarkCultist", new EnemySpecial("Fire Rain", SpecialShape.Lob, 8f, 2f, 9f, 1.0f, 0.9f, 0.9f, Fire, count: 3, spread: 1.6f, stagger: 0.35f)),
+            ("BileFiend", new EnemySpecial("Poison Spit", SpecialShape.Lob, 7f, 2.5f, 7.5f, 1.4f, 1.0f, 0.6f, Bile, lingerSeconds: 4f, lingerHit: 0.4f, poison: true)),
+            ("Wight", new EnemySpecial("Curse", SpecialShape.Lob, 7.5f, 2f, 8f, 1.2f, 1.0f, 0.9f, Grave, slow: 0.6f, slowSeconds: 2f)),
+            ("Mummy", new EnemySpecial("Rot Curse", SpecialShape.Ring, 7f, 0f, 3.5f, 3f, 1.1f, 0.9f, Bile, lingerSeconds: 2f, lingerHit: 0.3f, poison: true)),
+            ("BoneMage", new EnemySpecial("Bone Spears", SpecialShape.Throw, 6f, 2f, 10f, 0.25f, 0.5f, 1.0f, Bone, count: 3, spread: 12f, length: 12f, speed: 15f)),
+            ("FleshGolem", new EnemySpecial("Vomit", SpecialShape.Lines, 7f, 1.5f, 6f, 1.2f, 1.0f, 1.1f, Bile, length: 6f, slow: 0.6f, slowSeconds: 1.5f)),
+            ("Wraith", new EnemySpecial("Phase Bolts", SpecialShape.Throw, 6f, 2f, 9f, 0.25f, 0.5f, 0.9f, Water, count: 2, spread: 16f, length: 11f, speed: 14f)),
+            ("Ogre", new EnemySpecial("Club Toss", SpecialShape.Lob, 7f, 2.5f, 8f, 1.5f, 1.1f, 1.5f, Rock)),
+            ("Gargoyle", new EnemySpecial("Rock Throw", SpecialShape.Throw, 7f, 2.5f, 9f, 0.3f, 0.5f, 1.4f, Rock, length: 11f, speed: 12f)),
+            ("Lich", new EnemySpecial("Soul Bolts", SpecialShape.Throw, 6f, 2f, 10f, 0.3f, 0.55f, 1.2f, Void, count: 3, spread: 15f, length: 12f, speed: 13f)),
+            ("Imp", new EnemySpecial("Fire Spit", SpecialShape.Throw, 5.5f, 2f, 8f, 0.25f, 0.45f, 0.8f, Fire, length: 9f, speed: 14f)),
+            ("Succubus", new EnemySpecial("Drain", SpecialShape.Throw, 6f, 2f, 9f, 0.3f, 0.55f, 1.0f, Void, length: 11f, speed: 12f, slow: 0.6f, slowSeconds: 1.5f)),
+            ("Harpy", new EnemySpecial("Feather Darts", SpecialShape.Throw, 5.5f, 2f, 9f, 0.2f, 0.45f, 0.8f, Steel, count: 3, spread: 12f, length: 10f, speed: 17f)),
+            ("StygianDemon", new EnemySpecial("Fireball", SpecialShape.Lob, 7f, 2.5f, 9f, 1.3f, 1.0f, 1.3f, Fire, lingerSeconds: 2f, lingerHit: 0.4f)),
+            ("HellHound", new EnemySpecial("Fire Spit", SpecialShape.Lines, 6f, 2.5f, 6f, 0.9f, 0.7f, 1.0f, Fire, length: 6f)),
+            ("Arachnid", new EnemySpecial("Poison Web", SpecialShape.Lob, 7f, 2.5f, 9f, 1.3f, 0.9f, 0.6f, Bile, lingerSeconds: 3f, lingerHit: 0.3f, poison: true, slow: 0.5f, slowSeconds: 2f)),
+            ("SandWorm", new EnemySpecial("Burrow Burst", SpecialShape.Ring, 7.5f, 0f, 4f, 3.4f, 1.1f, 1.4f, Rock)),
+            ("Giant", new EnemySpecial("Rock Throw", SpecialShape.Throw, 7f, 3f, 10f, 0.4f, 0.6f, 1.8f, Rock, length: 12f, speed: 11f)),
+            ("Nightmare", new EnemySpecial("Fire Breath", SpecialShape.Lines, 6.5f, 1.5f, 6f, 1.2f, 0.8f, 1.2f, Fire, length: 6f, lingerSeconds: 2f, lingerHit: 0.4f)),
+            ("BalrogLite", new EnemySpecial("Fireball", SpecialShape.Lob, 7f, 2.5f, 10f, 1.6f, 1.0f, 1.6f, Fire, count: 2, spread: 2f, stagger: 0.4f, lingerSeconds: 2f, lingerHit: 0.5f)),
         };
 
         /// <summary>The special of a definition by its name, or one with <see cref="SpecialShape.None"/>.</summary>

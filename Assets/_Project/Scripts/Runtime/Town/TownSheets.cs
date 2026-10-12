@@ -304,7 +304,7 @@ namespace ARPG
         public static void Open()
         {
             if (current == null)
-                current = Make<GamblerScreen>("Gambler");
+                current = Make<GamblerScreen>("Sylthara");
             current.lastBought = null;
             current.Show();
         }
@@ -341,7 +341,7 @@ namespace ARPG
         public static void Open()
         {
             if (current == null)
-                current = Make<TrainerScreen>("Trainer");
+                current = Make<TrainerScreen>("Brunhilde");
             current.Show();
         }
 

@@ -1,0 +1,977 @@
+fileFormatVersion: 2
+guid: 12ce3ca6c026e44699c561f788cfe427
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8683745541534126242
+    second: mummy_hit_0
+  - first:
+      213: 9033991132959880135
+    second: mummy_hit_1
+  - first:
+      213: -5717368566270318737
+    second: mummy_hit_2
+  - first:
+      213: 6910215866116195437
+    second: mummy_hit_3
+  - first:
+      213: -5313355397611887450
+    second: mummy_hit_4
+  - first:
+      213: -5573797356347516397
+    second: mummy_hit_5
+  - first:
+      213: -3827667403659232953
+    second: mummy_hit_6
+  - first:
+      213: 561792216356011099
+    second: mummy_hit_7
+  - first:
+      213: -8132097829682134297
+    second: mummy_hit_8
+  - first:
+      213: 5160754932038534808
+    second: mummy_hit_9
+  - first:
+      213: 5186579908870525179
+    second: mummy_hit_10
+  - first:
+      213: 8353454400049258953
+    second: mummy_hit_11
+  - first:
+      213: 6809372049088527399
+    second: mummy_hit_12
+  - first:
+      213: -7073447497963517183
+    second: mummy_hit_13
+  - first:
+      213: -8862934445757650228
+    second: mummy_hit_14
+  - first:
+      213: -4231403920860968099
+    second: mummy_hit_15
+  - first:
+      213: 561887498117190194
+    second: mummy_hit_16
+  - first:
+      213: -4390305716440218839
+    second: mummy_hit_17
+  - first:
+      213: -6801406959993657001
+    second: mummy_hit_18
+  - first:
+      213: -1889005566778791289
+    second: mummy_hit_19
+  - first:
+      213: -6652049440043440465
+    second: mummy_hit_20
+  - first:
+      213: -3394751350572717887
+    second: mummy_hit_21
+  - first:
+      213: -4252001502167825183
+    second: mummy_hit_22
+  - first:
+      213: -9053143106162141732
+    second: mummy_hit_23
+  - first:
+      213: 2944491094382719677
+    second: mummy_hit_24
+  - first:
+      213: 5831212092052764827
+    second: mummy_hit_25
+  - first:
+      213: -7305783053574731810
+    second: mummy_hit_26
+  - first:
+      213: -6627961219969953785
+    second: mummy_hit_27
+  - first:
+      213: 4231773058052521845
+    second: mummy_hit_28
+  - first:
+      213: 4764535288149488403
+    second: mummy_hit_29
+  - first:
+      213: 5748246189854352186
+    second: mummy_hit_30
+  - first:
+      213: -4481450382765443463
+    second: mummy_hit_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mummy_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 462
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe67a9236124d445ea55da51febb74a8
+      internalID: -1196130052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 462
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcb8fa1676bdb4120a42418ecdc6f11d
+      internalID: 1990378306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_s_02
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 462
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6069c627c7e374a0a994d905752e5c20
+      internalID: 414012807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_s_03
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 462
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27c37eff15a07423b83fc772fba5e9bc
+      internalID: 844913531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 396
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 543b38679256143f0b75837e33d97139
+      internalID: -1319997845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 396
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a397edcc4a0d403a828ac7c4b9cd230
+      internalID: -1184495149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_sw_02
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 396
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5ec9f212e3224114b34ba46aba794e6
+      internalID: 1780556851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_sw_03
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 396
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7d77edba418646bc918fd2bb506a585
+      internalID: 2133878257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 330
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2611a1172a6da4dddb68ab3dd7da7d71
+      internalID: 966887676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 330
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29689c77e87b54237b87617ff3736a1b
+      internalID: 517840248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_w_02
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 330
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6cda15dd06084a4892e7ef55f59c476
+      internalID: -548014205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_w_03
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 330
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20f8a7152ef824e61aa279dc60a459b6
+      internalID: 2085069155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 264
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99c58cfd6ba454287a0036a28026ce99
+      internalID: -1507757384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 264
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c6901ef35994fe28d01d843d96aeb6
+      internalID: -797233616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_nw_02
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 264
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdbf8b5c5ced04a7a9a1dfd0bb1d7b3b
+      internalID: 52424632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_nw_03
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 264
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 273fcf0140d2f4e2f8c34bdf44104cb6
+      internalID: 1404713569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 198
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd1c706911c554781953d11f0c358ff0
+      internalID: 1932243087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 198
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f425bbb857f7f4022964e4b4f8aa3770
+      internalID: -1618258573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_n_02
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 198
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dfb7ab807c3c4aa3807b4a842cbed5a
+      internalID: 919043107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_n_03
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 198
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 057e4a7c17b6c4b94b30c52ed87756e5
+      internalID: 1837820424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 132
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aa263531a2f049eda93c31e02260d83
+      internalID: -1806325002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 132
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3129c9c0dfcf43d591f448e9229084d
+      internalID: 708760771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_ne_02
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 132
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0665370340a424bc1a42425584018c6d
+      internalID: 1346100089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_ne_03
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 132
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7276431c8af44f9db84e074998ef288
+      internalID: -1597289413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 66
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fcdfe0ddc15f41a085f104ec957eb2e
+      internalID: 1399154433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 66
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32df78021bcfd452b80e7e7ad009f63a
+      internalID: -746090500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_e_02
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 66
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80a43e64743f24a1c922247dafa3c0d5
+      internalID: 1657671945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_e_03
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 66
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c79564f49a1d41dfa368d8274694851
+      internalID: -1691361439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e22a1e1c66158488192200037d83a627
+      internalID: -1307456454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 0
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a74c92bf9b2a4b0e82b82cfe8020233
+      internalID: 1508241069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_se_02
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d33d4928ebee4de48b2844f07dc2893
+      internalID: -925997258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mummy_hit_se_03
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 0
+        width: 36
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15151516}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 029db6426143e4a1b913d39c7eae5faa
+      internalID: -1271617018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 8f2f23ff1437d4e489b75dc9e45fd378
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      mummy_hit_e_00: 1399154433
+      mummy_hit_e_01: -746090500
+      mummy_hit_e_02: 1657671945
+      mummy_hit_e_03: -1691361439
+      mummy_hit_n_00: 1932243087
+      mummy_hit_n_01: -1618258573
+      mummy_hit_n_02: 919043107
+      mummy_hit_n_03: 1837820424
+      mummy_hit_ne_00: -1806325002
+      mummy_hit_ne_01: 708760771
+      mummy_hit_ne_02: 1346100089
+      mummy_hit_ne_03: -1597289413
+      mummy_hit_nw_00: -1507757384
+      mummy_hit_nw_01: -797233616
+      mummy_hit_nw_02: 52424632
+      mummy_hit_nw_03: 1404713569
+      mummy_hit_s_00: -1196130052
+      mummy_hit_s_01: 1990378306
+      mummy_hit_s_02: 414012807
+      mummy_hit_s_03: 844913531
+      mummy_hit_se_00: -1307456454
+      mummy_hit_se_01: 1508241069
+      mummy_hit_se_02: -925997258
+      mummy_hit_se_03: -1271617018
+      mummy_hit_sw_00: -1319997845
+      mummy_hit_sw_01: -1184495149
+      mummy_hit_sw_02: 1780556851
+      mummy_hit_sw_03: 2133878257
+      mummy_hit_w_00: 966887676
+      mummy_hit_w_01: 517840248
+      mummy_hit_w_02: -548014205
+      mummy_hit_w_03: 2085069155
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

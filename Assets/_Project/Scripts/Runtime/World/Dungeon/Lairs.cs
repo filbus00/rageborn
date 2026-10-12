@@ -54,30 +54,38 @@ namespace ARPG
         {
             switch (member)
             {
-                case PackMember.Archer:
-                case PackMember.Cutthroat:
+                // The concept roster (2026-10-13): raiders camp, the hungry feed, beasts den, casters keep shrines,
+                // the dead keep tombs, demons nest.
+                case PackMember.Fallen:
+                case PackMember.Ogre:
+                case PackMember.Giant:
                     return LairTheme.Camp;
-                case PackMember.Husk:
+                case PackMember.Zombie:
                 case PackMember.Ghoul:
-                case PackMember.CarrionBloat:
+                case PackMember.BileFiend:
+                case PackMember.FleshGolem:
+                case PackMember.QuillRat:
                     return LairTheme.Feeding;
-                case PackMember.AshWolf:
+                case PackMember.HellHound:
+                case PackMember.Nightmare:
+                case PackMember.Harpy:
+                case PackMember.Arachnid:
+                case PackMember.SandWorm:
                     return LairTheme.Den;
-                case PackMember.Cultist:
-                case PackMember.EmberAcolyte:
-                case PackMember.PyreKeeper:
+                case PackMember.DarkCultist:
+                case PackMember.BoneMage:
+                case PackMember.Lich:
                     return LairTheme.Shrine;
-                case PackMember.Skeleton:
-                case PackMember.SkeletonKnight:
-                case PackMember.GravePriest:
+                case PackMember.SkeletonWarrior:
+                case PackMember.Wight:
+                case PackMember.Mummy:
+                case PackMember.Wraith:
                     return LairTheme.Tomb;
-                case PackMember.Drowned:
-                case PackMember.Harpooner:
-                case PackMember.DrownedWatchman:
-                    return LairTheme.Drowned;
-                case PackMember.Hollowed:
-                case PackMember.VoidWraith:
-                case PackMember.RiftCaller:
+                case PackMember.Imp:
+                case PackMember.Succubus:
+                case PackMember.StygianDemon:
+                case PackMember.Gargoyle:
+                case PackMember.BalrogLite:
                     return LairTheme.Nest;
                 default:
                     return LairTheme.None;
