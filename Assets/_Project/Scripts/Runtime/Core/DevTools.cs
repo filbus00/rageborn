@@ -37,12 +37,24 @@ namespace ARPG
             return filled.Count;
         }
 
-        /// <summary>Level 60 and every talent at its full rank.</summary>
+        /// <summary>Level 60, every talent at its full rank, and the stat points not yet spent spread evenly (2026-10-13),
+        /// each to whichever stat has the fewest.</summary>
         public static void MaxCharacter(GameSession session)
         {
             while (!session.Progress.IsMaxLevel)
                 session.GrantExperience(session.Progress.XpToNextLevel - session.Progress.Xp);
             session.Talents.MaxAll();
+            var points = session.Attributes;
+            var stats = (Attribute[])System.Enum.GetValues(typeof(Attribute));
+            while (points.Available(session.Level) > 0)
+            {
+                var least = stats[0];
+                foreach (var stat in stats)
+                    if (points.Spent(stat) < points.Spent(least))
+                        least = stat;
+                if (!points.Spend(least, session.Level))
+                    break;
+            }
         }
     }
 }

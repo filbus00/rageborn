@@ -23,6 +23,9 @@ namespace ARPG.Tests
             Assert.AreEqual(Experience.MaxLevel, session.Level);
             foreach (var node in TalentRules.Nodes)
                 Assert.AreEqual(node.MaxRanks, session.Talents.RankOf(node.Id), node.Id);
+            Assert.AreEqual(0, session.Attributes.Available(session.Level));
+            foreach (Attribute stat in System.Enum.GetValues(typeof(Attribute)))
+                Assert.AreEqual(AttributePoints.Earned(session.Level) / 5, session.Attributes.Spent(stat), stat.ToString());
         }
     }
 }
