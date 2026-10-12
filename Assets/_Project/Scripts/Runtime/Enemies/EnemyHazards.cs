@@ -32,6 +32,8 @@ namespace ARPG
             public bool Active;
             public float SlowMultiplier;
             public float SlowSeconds;
+            /// <summary>A sound when it goes off, heard whether it hits or not (the Frost Nova, 2026-10-12).</summary>
+            public SoundId? Sound;
         }
 
         sealed class LineHazard
@@ -72,11 +74,12 @@ namespace ARPG
         /// for <paramref name="burnSeconds"/> (elite affixes, 2026-10-08: Desecrator, Frost Nova).
         /// </summary>
         public void Strike(Vector2 center, float radius, float fillSeconds, float damage, float burnSeconds, float burnPerSecond, int level,
-            Color color, float slowMultiplier = 0f, float slowSeconds = 0f)
+            Color color, float slowMultiplier = 0f, float slowSeconds = 0f, SoundId? sound = null)
         {
             var hazard = Add(center, radius, fillSeconds, burnSeconds, damage, burnPerSecond, level, color);
             hazard.SlowMultiplier = slowMultiplier;
             hazard.SlowSeconds = slowSeconds;
+            hazard.Sound = sound;
         }
 
         /// <summary>A poison pool (Plagued): it spreads over <paramref name="fillSeconds"/> without hitting, then hurts
@@ -159,6 +162,8 @@ namespace ARPG
             }
             hazard.Marker.SetColor(color);
             hazard.Marker.RestartCircle(center, radius, Mathf.Max(fill, 0.01f));
+            // A reused hazard forgets the last one's sound (Strike sets its own).
+            hazard.Sound = null;
             if (fill <= 0f)
                 hazard.Marker.Advance(1f);
             hazard.Center = center;
@@ -191,6 +196,8 @@ namespace ARPG
                     h.Marker.Advance(deltaTime);
                     if (h.FillLeft > 0f)
                         continue;
+                    if (h.Sound.HasValue)
+                        Sfx.Play(h.Sound.Value, 0.8f);
                     if (inside && h.Damage > 0f)
                     {
                         Sfx.Play(SoundId.EnemySlam, 0.6f);

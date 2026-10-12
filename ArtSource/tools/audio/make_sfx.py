@@ -374,6 +374,8 @@ def write(name, samples):
 
 
 wanted = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+# The owner's own recordings (import_owner_sounds.py, 2026-10-12) are only remade here when asked for by name.
+OWNER = {"ArrowShot", "Hit", "Gold", "Explosion", "FrostNova", "PierceShot", "KnockbackShot"}
 for name, make in SOUNDS.items():
-    if not wanted or name in wanted:
+    if (not wanted and name not in OWNER) or name in wanted:
         write(name, make())

@@ -212,6 +212,12 @@ namespace ARPG
                     AddSweep(s, 90f, 30f, 1f, 0.2f);
                     AddNoise(s, 1200f, 200f, 0.9f, 0.18f, false, 11);
                     return Finish(s, 0.9f);
+                case SoundId.PierceShot:
+                    return Make(SoundId.ArrowShot);
+                case SoundId.KnockbackShot:
+                    return Make(SoundId.AxeThrow);
+                case SoundId.FrostNova:
+                    return Make(SoundId.Explosion);
                 default:
                     return new float[1];
             }
@@ -248,5 +254,14 @@ namespace ARPG
 
         /// <summary>Explosive Arrow's burst (2026-10-04; a file only, the synth makes it a short boom).</summary>
         Explosion,
+
+        // The owner's own sounds (2026-10-12, ArtSource/tools/audio/import_owner_sounds.py); the synth stands in with a
+        // near one when the file is missing.
+        /// <summary>Pierce Arrow's release.</summary>
+        PierceShot,
+        /// <summary>Knockback Shot's release.</summary>
+        KnockbackShot,
+        /// <summary>An elite's Frost Nova bursting.</summary>
+        FrostNova,
     }
 }

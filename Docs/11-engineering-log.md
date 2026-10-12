@@ -1120,3 +1120,10 @@ The owner: the dungeon "still looks really bad", walls "not only right shapes", 
 - The accidental full bake changed 152 chest and glove sheets by render noise only (34 pixels of 283,000 in the ranger's idle, a shade each); restored to the committed files.
 - 632 of 632 tests pass in Unity.
 
+## 2026-10-12: the owner's sounds
+
+- The owner's recordings, kept in ArtSource/audio/owner: the bow firing, an arrow hitting a monster, a coin pickup, an explosion, a frost nova, a piercing shot, a push back shot (all 2 s or 1 s files with the sound at their start, stereo, 48 kHz) and 15 s of boss music.
+- `ArtSource/tools/audio/import_owner_sounds.py` (python3, macOS afconvert to decode) writes them where the game loads sounds: effects trimmed to the sound (10 ms lead-in, 60 ms tail fading over 40), mono, 44.1 kHz, levelled to a target loudness (RMS of the sound) near the sound they replace or sit beside, never peaking over -1 dB: `ArrowShot` -18 (+4 dB), `Hit` -17, `Gold` -23, `Explosion` -14 (-4 dB), `FrostNova` -15, `PierceShot` and `KnockbackShot` -18 asked, -22 reached at the peak cap (the push back shot was very quiet, +10 dB); the boss music decoded as is, stereo, to Music/boss.wav (streamed, looped). `make_sfx.py` and `make_music.py` now skip these names unless asked for by name.
+- `SoundId.PierceShot`, `KnockbackShot` (played by those skills in place of the old axe throw) and `FrostNova` (the elites' Frost Nova when it bursts, hit or not: `EnemyHazards.Strike` takes a sound, cleared when a pooled hazard is reused); the synth stands in with the shot, the axe throw and the explosion when a file is missing; priority 2.
+- 632 of 632 tests pass in Unity. Not listened to in the game (no audio check from here); the levels are by measurement.
+

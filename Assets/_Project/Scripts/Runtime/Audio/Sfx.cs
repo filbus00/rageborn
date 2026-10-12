@@ -145,6 +145,9 @@ namespace ARPG
                     return 3;
                 case SoundId.GroundBreaker:
                 case SoundId.Explosion:
+                case SoundId.PierceShot:
+                case SoundId.KnockbackShot:
+                case SoundId.FrostNova:
                 case SoundId.BullRush:
                 case SoundId.Hew:
                 case SoundId.AxeThrow:

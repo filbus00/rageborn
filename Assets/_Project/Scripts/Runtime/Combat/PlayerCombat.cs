@@ -807,7 +807,7 @@ namespace ARPG
                     LooseVolley(origin, direction, skill);
                     break;
                 case SkillKind.PierceShot:
-                    Sfx.Play(SoundId.AxeThrow, 0.8f);
+                    Sfx.Play(SoundId.PierceShot);
                     LoosePierce(origin, direction, skill);
                     break;
                 case SkillKind.HomingShot:
@@ -820,7 +820,7 @@ namespace ARPG
                     break;
                 case SkillKind.KnockbackShot:
                 {
-                    Sfx.Play(SoundId.AxeThrow, 0.9f);
+                    Sfx.Play(SoundId.KnockbackShot);
                     var shot = NewArrow(origin, direction * skill.Speed, skill.Range + ArrowOvershoot,
                         DamageOf(skill, skill.DamageMultiplier), ShotStyle.Knockback, Glow(skill));
                     shot.KnockDistance = skill.EffectStrength;

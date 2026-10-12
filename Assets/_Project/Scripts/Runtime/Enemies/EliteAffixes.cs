@@ -274,7 +274,7 @@ namespace ARPG
             {
                 t.Nova = EliteAffixRules.NovaEvery;
                 world.Hazards.Strike(here, EliteAffixRules.NovaRadius, EnemyRules.Telegraph(EliteAffixRules.NovaFill), hit * EliteAffixRules.NovaHit, 0f, 0f, level, FrostColor,
-                    EliteAffixRules.NovaSlow, EliteAffixRules.NovaSlowSeconds);
+                    EliteAffixRules.NovaSlow, EliteAffixRules.NovaSlowSeconds, SoundId.FrostNova);
             }
             if ((m & EliteModifiers.LightningLances) != 0 && (t.Lance -= dt) <= 0f)
             {
