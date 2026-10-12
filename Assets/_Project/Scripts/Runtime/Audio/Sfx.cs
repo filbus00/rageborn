@@ -121,10 +121,22 @@ namespace ARPG
             startedAt[voice] = now;
             var source = sources[voice];
             source.clip = clips[index];
+            var pitch = 1f + Random.Range(-0.06f, 0.06f);
+            if (id == SoundId.Gold)
+            {
+                // Coins picked up one after another climb and soften rather than repeat (2026-10-12, CoinStreak).
+                goldStreak = CoinStreak.Next(goldStreak, now - lastGold);
+                lastGold = now;
+                pitch = CoinStreak.Pitch(goldStreak) + Random.Range(-0.02f, 0.02f);
+                volume *= CoinStreak.Volume(goldStreak);
+            }
             source.volume = Mathf.Clamp01(volume * SettingsDirector.Current.EffectsLevel);
-            source.pitch = 1f + Random.Range(-0.06f, 0.06f);
+            source.pitch = pitch;
             source.Play();
         }
+
+        int goldStreak;
+        float lastGold = -10f;
 
         // Loot and progression cues matter most (Docs/01 makes rarity sounds a point of the loot), then skills and big
         // hits, then the steady stream of swings and hits.
@@ -145,8 +157,6 @@ namespace ARPG
                     return 3;
                 case SoundId.GroundBreaker:
                 case SoundId.Explosion:
-                case SoundId.PierceShot:
-                case SoundId.KnockbackShot:
                 case SoundId.FrostNova:
                 case SoundId.BullRush:
                 case SoundId.Hew:
@@ -182,5 +192,25 @@ namespace ARPG
                     return 0.02f;
             }
         }
+    }
+
+    /// <summary>
+    /// How a run of coin pickups sounds (2026-10-12, the owner: the coin "sounds very repetitive, maybe make it sound
+    /// different when repeated"): pickups less than <see cref="StreakGap"/> apart are a streak; each step up it plays a
+    /// little higher (a rising five-note run, then round again) and a little softer, and a pause starts it over. Pure.
+    /// </summary>
+    public static class CoinStreak
+    {
+        public const float StreakGap = 1.2f;
+
+        static readonly float[] Steps = { 1f, 1.06f, 1.12f, 1.19f, 1.26f };
+
+        /// <summary>The streak after a pickup <paramref name="sinceLast"/> seconds after the last: one more, or 0 again.</summary>
+        public static int Next(int streak, float sinceLast) => sinceLast < StreakGap ? streak + 1 : 0;
+
+        public static float Pitch(int streak) => Steps[streak % Steps.Length];
+
+        /// <summary>Full for the first coin, down to 60 percent by the fifth and on.</summary>
+        public static float Volume(int streak) => Mathf.Max(0.6f, 1f - 0.1f * streak);
     }
 }

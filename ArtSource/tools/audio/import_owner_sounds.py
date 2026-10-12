@@ -1,5 +1,6 @@
 # The owner's own sounds (2026-10-12: "I have made some new game sounds. Use them"): the recordings in
-# ArtSource/audio/owner (the hit and the boss music were tried and dropped, the owner: "Does not sound good"), decoded
+# ArtSource/audio/owner (the hit, the boss music and the three bow shots were tried and dropped, the owner: "Does not
+# sound good", "remove all new bow sounds"), decoded
 # with macOS afconvert, trimmed to where the sound is (a short lead-in kept, a short fade at
 # the end), effects made mono, levelled to sit with the game's other sounds (never peaking above -1 dB), and written as
 # 44.1 kHz WAVs where the game loads them: Resources/Audio/Sfx/<SoundId>.wav and Resources/Audio/Music/<track>.wav.
@@ -17,12 +18,9 @@ RATE = 44100
 # about what the sound it replaces or sits beside has (the bow and hit as the old shot and hit, the coin a little
 # quieter, gold being picked up in bursts).
 SOUNDS = [
-    ("Sound of firing bow 1.wav", "ArrowShot", SFX, -18.0),
-    ("Coin pickup.mp3", "Gold", SFX, -23.0),
+    ("Coin pickup.mp3", "Gold", SFX, -27.0),
     ("Explosion.mp3", "Explosion", SFX, -14.0),
     ("Frost nova.mp3", "FrostNova", SFX, -15.0),
-    ("Sound of piercing shot.wav", "PierceShot", SFX, -18.0),
-    ("Sound of push back shot.mp3", "KnockbackShot", SFX, -18.0),
 ]
 OWNER_NAMES = {name for _, name, _, _ in SOUNDS}
 
@@ -42,14 +40,22 @@ def to_mono(channels, data):
     return [(data[i] + data[i + 1]) / 2 for i in range(0, len(data), channels)]
 
 
-def trim(samples, lead=0.01, tail=0.06, fade=0.04):
-    """From just before the sound starts to a short fade after it ends (the sound: above 2 percent of the peak)."""
+# Cut shorter than the recording (the coin, 2026-10-12: "maybe shorter and lower volume overall").
+MAX_SECONDS = {"Gold": 0.22}
+
+
+def trim(samples, lead=0.01, tail=0.06, fade=0.04, longest=None):
+    """From just before the sound starts to a short fade after it ends (the sound: above 2 percent of the peak), or
+    to longest seconds, fading out over its last third, when that is shorter."""
     peak = max(abs(s) for s in samples) or 1
     threshold = peak * 0.02
     first = next(i for i, s in enumerate(samples) if abs(s) > threshold)
     last = len(samples) - next(i for i, s in enumerate(reversed(samples)) if abs(s) > threshold)
     start = max(0, first - int(lead * RATE))
     end = min(len(samples), last + int(tail * RATE))
+    if longest is not None and end - start > int(longest * RATE):
+        end = start + int(longest * RATE)
+        fade = longest / 3
     out = samples[start:end]
     n = int(fade * RATE)
     for k in range(min(n, len(out))):
@@ -84,7 +90,7 @@ if __name__ == "__main__":
             write(os.path.join(folder, name + ".wav"), channels, data)
             print("REPORT %-14s %.2f s, stereo, as made" % (name, len(data) / channels / RATE))
             continue
-        samples = trim(to_mono(channels, data))
+        samples = trim(to_mono(channels, data), longest=MAX_SECONDS.get(name))
         samples, gain = level(samples, target)
         write(os.path.join(folder, name + ".wav"), 1, samples)
         print("REPORT %-14s %.2f s, %+.1f dB" % (name, len(samples) / RATE, gain))
