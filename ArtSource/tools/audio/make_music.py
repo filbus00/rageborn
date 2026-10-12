@@ -1,9 +1,10 @@
 # The game's music (2026-10-04), composed and played in code and written as looping WAV files to
 # Assets/_Project/Resources/Audio/Music/<track>.wav, which MusicDirector plays (MusicSynth stays the fallback):
-#   town     a slow fingerpicked guitar in D minor, 6/8, with a low drone, soft strings and a wooden flute in the second
-#            half, after the feel of Tristram's and the Rogue camp's guitar (not their notes)
-#   dungeon  dark ambience: low drones that slowly open and close, a distant "oo" choir, wind, sparse bells and deep
-#            booms far off, in a long reverb
+#   town     a fingerpicked guitar in D minor, 6/8, after the feel of Tristram's and the Rogue camp's guitar (not their
+#            notes), building over three passes: harp sparkles; then a hand drum, a cello and the flute's tune; then strings,
+#            a second guitar and a fiddle's countermelody (remade 2026-10-12)
+#   dungeon  dark: low drones, a distant "oo" choir and wind, with a slow heartbeat of deep drums, a cello's Phrygian
+#            motif, tremolo string swells, chains clanking and sparse bells, in a long reverb (remade 2026-10-12)
 #   boss     a driving piece at 132 a minute: taiko drums, a low string ostinato, choir chords and brass stabs
 # Every track is one seamless loop: notes that run past the end wrap round to the start, and all filtering and the
 # reverb are circular (done in the frequency domain over the whole loop), so the loop point cannot be heard.
@@ -189,6 +190,65 @@ def strings_note(freq, seconds, rng, bright=0.3):
     return out * adsr(seconds, 0.015, 0.06) * 0.5
 
 
+def bowed(freq, seconds, rng, bright=0.35, vibrato=12.0, attack=0.35, release=0.5, lo=120, hi=3200):
+    """A bowed string (cello, fiddle): two detuned saws with a vibrato that comes in after the attack, through a body
+    band, swelling in and dying away."""
+    t = times(seconds)
+    vib = vibrato * np.minimum(1, t / 0.5)
+    out = np.zeros_like(t)
+    for d in (-3, 3):
+        cents = d + vib * np.sin(2 * np.pi * 5.3 * t + rng.uniform(0, 6.28))
+        f = freq * 2 ** (cents / 1200.0)
+        phase = 2 * np.pi * np.cumsum(f) / RATE + rng.uniform(0, 6.28)
+        k = 1
+        while freq * k < 9000 and k <= 40:
+            out += np.sin(k * phase) / k * np.exp(-(k - 1) / (bright * 12.0))
+            k += 1
+    out = bandpass_once(out, lo, hi)
+    return out * adsr(seconds, attack, release, 1.3) * 0.5
+
+
+def tremolo(freqs, seconds, rng, rate=9.0, attack=3.0, release=1.5):
+    """A cluster of strings bowed in tremolo, swelling."""
+    t = times(seconds)
+    out = np.zeros_like(t)
+    for f in freqs:
+        for d in (-6, 0, 6):
+            out += saw(f, t, 0.45, detune_cents=d, vibrato=8, rng=rng)
+    out *= 0.55 + 0.45 * np.sin(2 * np.pi * rate * t + rng.uniform(0, 6.28))
+    out = bandpass_once(out, 150, 4000)
+    return out * adsr(seconds, attack, release, 1.5) / (3 * len(freqs))
+
+
+def hand_drum(rng, accent=1.0):
+    """A bodhran-ish frame drum: a low thump with a little skin."""
+    t = times(0.5)
+    f = 78 + 50 * np.exp(-t / 0.02)
+    body = np.sin(2 * np.pi * np.cumsum(f) / RATE) * np.exp(-t / 0.16)
+    skin = bandpass_once(rng.uniform(-1, 1, len(t)), 300, 2500) * np.exp(-t / 0.03) * 0.5
+    return (body + skin) * accent
+
+
+def clank(rng):
+    """A chain or an iron door somewhere: a short burst of hard metallic hits."""
+    out = np.zeros(int(1.6 * RATE))
+    at = 0.0
+    for k in range(rng.integers(2, 5)):
+        hit = bell(rng.uniform(900, 1800), 0.9, rng, decay=0.25) * rng.uniform(0.4, 1.0)
+        i = int(at * RATE)
+        n = min(len(hit), len(out) - i)
+        out[i:i + n] += hit[:n]
+        at += rng.uniform(0.06, 0.22)
+    return out
+
+
+def swell(seconds, rng, cutoff=900):
+    """A low rush of noise rising into a section's start."""
+    x = lowpass_once(rng.uniform(-1, 1, int(seconds * RATE)), cutoff)
+    t = times(seconds)
+    return x * (t / seconds) ** 2.5
+
+
 # ------------------------------------------------------------------ filters (one-off on a note, and circular on a bus)
 
 def lowpass_once(x, cutoff):
@@ -267,20 +327,25 @@ D = 50  # D3
 
 
 def town():
-    eighth = 60.0 / (56 * 3)       # 6/8, dotted quarter at 56
+    # Remade 2026-10-12 (the owner: "punch up the background music"): the same 6/8 guitar in D minor, a little quicker,
+    # built up over three passes of the 16-bar progression. A: the guitar alone with a drone and harp sparkles. B: a
+    # hand drum, a cello on the roots and the flute's tune. C: soft strings, a second guitar, fuller drums and a fiddle's
+    # countermelody; its last two bars thin out again into A.
+    eighth = 60.0 / (60 * 3)       # 6/8, dotted quarter at 60
     bar = eighth * 6
-    # One chord a bar (root, third, fifth as MIDI from D3 = 50), two times through, the second with the flute.
     prog = ["Dm", "Dm", "C", "C", "Bb", "Bb", "A", "A", "Dm", "Dm", "F", "C", "Gm", "Gm", "A", "A"]
     chords = {"Dm": (38, 50, 53, 57), "C": (36, 48, 52, 55), "Bb": (34, 46, 50, 53), "A": (33, 45, 49, 52),
               "F": (41, 48, 53, 57), "Gm": (31, 43, 46, 50)}
-    bars = len(prog) * 2
+    bars = len(prog) * 3
     tr = Track(bar * bars, 11)
     rng = tr.rng
     for b in range(bars):
         name = prog[b % len(prog)]
         bass, root, third, fifth = chords[name]
         start = b * bar
-        # Bass on the bar, then the arpeggio climbs and falls: fifth, root up, third up, root up, fifth.
+        section = b // len(prog)
+        tail = section == 2 and b % len(prog) >= 14
+        # Bass on the bar, then the arpeggio climbs and falls.
         tr.add("guitar", start, pluck(hz(bass + 12), 4.0, rng, bright=0.8, decay=3.2), pan=-0.15, gain=0.6)
         pattern = [fifth, root + 12, third + 12, root + 12, fifth]
         if b % 4 == 3:
@@ -289,52 +354,106 @@ def town():
             swing = rng.normal(0, 0.008)
             tr.add("guitar", start + (i + 1) * eighth + swing, pluck(hz(note), 2.6, rng, bright=0.9, decay=1.8),
                    pan=0.1 + 0.05 * i, gain=0.45 + 0.08 * (i == 2))
-        # Soft strings under the second time through, and a drone every four bars.
+            # The second guitar in C: the same pattern an octave up, strummed a hair later, on the other side.
+            if section == 2 and not tail and i % 2 == 0:
+                tr.add("guitar2", start + (i + 1) * eighth + 0.012, pluck(hz(note + 12), 1.6, rng, bright=1.0, decay=1.1), pan=-0.55, gain=0.3)
         if b % 4 == 0:
             tr.add("drone", start, pluck(hz(38), 8.0, rng, bright=0.5, decay=6.0), gain=0.3)
-        if b >= len(prog):
+        # Harp sparkles in A: a rolled chord high up every other bar.
+        if section == 0 and b % 2 == 1:
+            for i, note in enumerate((root + 24, third + 24, fifth + 24)):
+                tr.add("harp", start + 3 * eighth + i * 0.07, pluck(hz(note), 2.0, rng, bright=1.0, decay=1.4, position=0.5), pan=0.45, gain=0.22)
+        # The hand drum from B: the bar's one strong, the fourth eighth softer; in C every other eighth taps too.
+        if section >= 1 and not tail:
+            hits = [(0, 1.0), (3, 0.6), (5, 0.35)]
+            if section == 2:
+                hits += [(2, 0.3), (4, 0.25)]
+            for e, accent in hits:
+                tr.add("drums", start + e * eighth + rng.normal(0, 0.005), hand_drum(rng, accent), pan=0.15)
+        # The cello on the roots from B.
+        if section >= 1:
+            tr.add("cello", start + 0.02, bowed(hz(bass + 12), bar + 0.3, rng, bright=0.3, vibrato=10, attack=0.4, release=0.6, lo=60, hi=2200), pan=-0.35, gain=0.5)
+        if section == 2:
             tr.add("strings", start - 0.3, pad([hz(root), hz(third), hz(fifth)], bar + 0.8, rng, attack=0.9, release=1.0, brightness=0.25), gain=0.35)
-    # The flute's tune over the second time through: (bar, eighth, MIDI, eighths long).
+    # The flute's tune over B: (bar, eighth, MIDI, eighths long).
     tune = [(16, 0, 69, 3), (16, 3, 67, 3), (17, 0, 65, 4), (17, 4, 64, 2), (18, 0, 64, 3), (18, 3, 65, 3), (19, 0, 67, 6),
             (20, 0, 65, 3), (20, 3, 62, 3), (21, 0, 62, 6), (22, 0, 61, 3), (22, 3, 64, 3), (23, 0, 64, 6),
             (24, 0, 69, 3), (24, 3, 72, 3), (25, 0, 70, 4), (25, 4, 69, 2), (26, 0, 69, 3), (26, 3, 65, 3), (27, 0, 67, 6),
             (28, 0, 70, 3), (28, 3, 69, 3), (29, 0, 67, 6), (30, 0, 64, 3), (30, 3, 61, 3), (31, 0, 62, 6)]
     for b, e, note, length in tune:
         tr.add("flute", b * bar + e * eighth, flute(hz(note), length * eighth + 0.2, rng), pan=0.25, gain=0.32)
-    out = mix(tr, {"guitar": (1.0, 0.35), "drone": (0.4, 0.5), "strings": (0.8, 0.6), "flute": (1.3, 0.5)}, 2.6, 0.55, 3500)
+    # The fiddle's countermelody over C, higher, the flute answering it an octave down in its gaps.
+    fiddle = [(32, 0, 74, 3), (32, 3, 77, 3), (33, 0, 76, 4), (33, 4, 74, 2), (34, 0, 72, 6), (35, 0, 67, 3), (35, 3, 72, 3),
+              (36, 0, 74, 3), (36, 3, 70, 3), (37, 0, 69, 4), (37, 4, 67, 2), (38, 0, 69, 6), (39, 0, 73, 3), (39, 3, 76, 3),
+              (40, 0, 77, 3), (40, 3, 74, 3), (41, 0, 74, 6), (42, 0, 72, 3), (42, 3, 77, 3), (43, 0, 76, 4), (43, 4, 72, 2),
+              (44, 0, 74, 3), (44, 3, 70, 3), (45, 0, 67, 6), (46, 0, 69, 3), (46, 3, 73, 3), (47, 0, 69, 6)]
+    for b, e, note, length in fiddle:
+        tr.add("fiddle", b * bar + e * eighth, bowed(hz(note), length * eighth + 0.15, rng, bright=0.55, vibrato=18, attack=0.06, release=0.2, lo=350, hi=5000), pan=0.3, gain=0.42)
+    for b, e, note, length in ((34, 3, 60, 3), (38, 3, 61, 3), (41, 3, 62, 3), (45, 3, 62, 3)):
+        tr.add("flute", b * bar + e * eighth, flute(hz(note), length * eighth + 0.2, rng), pan=0.4, gain=0.26)
+    out = mix(tr, {"guitar": (1.0, 0.35), "guitar2": (1.0, 0.4), "harp": (1.0, 0.7), "drone": (0.4, 0.5), "drums": (0.9, 0.25),
+                   "cello": (1.0, 0.45), "strings": (0.8, 0.6), "flute": (1.3, 0.5), "fiddle": (1.2, 0.5)}, 2.6, 0.5, 3800)
     save("town", out)
 
 
 def dungeon():
-    seconds = 96.0
+    # Remade 2026-10-12 (the owner: "punch up the background music"): the old drones, choir, wind and bells under four
+    # 32-second sections with more going on: a slow heartbeat of deep drums in the second and fourth, a cello's
+    # Phrygian motif (D, E flat, D, C) in the first and third, tremolo string clusters swelling at the ends of the
+    # second and fourth, chains and iron clanking somewhere, and a rush of noise into each section.
+    seconds = 128.0
+    section = 32.0
     tr = Track(seconds, 23)
     rng = tr.rng
     t = times(seconds)
-    # Drones on D1 and A1 whose brightness breathes over 24 and 32 seconds (whole cycles in the loop).
-    for midi, period, gain in ((26, 24.0, 0.5), (33, 32.0, 0.3), (38, 48.0, 0.2)):
-        bright = 0.12 + 0.18 * (0.5 + 0.5 * np.sin(2 * np.pi * t / period + rng.uniform(0, 6.28)))
+    # Drones on D1, A1 and D2 whose brightness breathes (whole cycles in the loop).
+    for midi, period, gain in ((26, 32.0, 0.5), (33, 128.0 / 3, 0.3), (38, 64.0, 0.2)):
+        bright = 0.12 + 0.2 * (0.5 + 0.5 * np.sin(2 * np.pi * t / period + rng.uniform(0, 6.28)))
         f = round(hz(midi) * seconds) / seconds
         tone = saw(f, t, bright, detune_cents=0) + saw(round(f * 1.004 * seconds) / seconds, t, bright)
         tr.add("drone", 0, tone, gain=gain)
-    # A distant choir: four long chords of 24 seconds, crossfading.
+    # A distant choir: four long chords, one a section, crossfading.
     chords = [(50, 53, 57), (46, 50, 53, 57), (43, 50, 55, 58), (45, 49, 52)]
     for i, chord in enumerate(chords):
         for note in chord:
-            tr.add("choir", i * 24.0 - 3.0, choir(hz(note), 30.0, rng, "oo", attack=6.0, release=8.0), pan=rng.uniform(-0.6, 0.6), gain=0.22)
-    # Wind: band-passed noise swelling over 16 seconds, panned apart.
+            tr.add("choir", i * section - 4.0, choir(hz(note), section + 10.0, rng, "oo", attack=7.0, release=9.0), pan=rng.uniform(-0.6, 0.6), gain=0.2)
     for side in (-0.7, 0.7):
         wind = bandpass_once(rng.uniform(-1, 1, len(t)), 180, 900)
-        swell = 0.4 + 0.6 * (0.5 + 0.5 * np.sin(2 * np.pi * t / 16.0 + rng.uniform(0, 6.28))) ** 2
-        tr.add("wind", 0, wind * swell, pan=side, gain=0.25)
-    # Sparse bells and far booms.
+        swing = 0.4 + 0.6 * (0.5 + 0.5 * np.sin(2 * np.pi * t / 16.0 + rng.uniform(0, 6.28))) ** 2
+        tr.add("wind", 0, wind * swing, pan=side, gain=0.25)
+    # The heartbeat: a deep double thump every 1.6 s through the second and fourth sections, rising then fading.
+    for s0 in (section, 3 * section):
+        beats = int(section / 1.6)
+        for k in range(beats):
+            level = np.sin(np.pi * (k + 0.5) / beats) ** 0.7
+            at = s0 + k * 1.6
+            tr.add("pulse", at, boom(1.2, rng, f0=60, f1=34, decay=0.35), gain=0.9 * level)
+            tr.add("pulse", at + 0.3, boom(1.0, rng, f0=52, f1=32, decay=0.3), gain=0.55 * level)
+    # The cello's motif in the first and third sections: long notes, each swelling.
+    motif = [(0.0, 38, 6.0), (6.5, 39, 4.0), (11.0, 38, 6.0), (18.0, 36, 5.0), (23.5, 38, 7.0)]
+    for s0 in (0.0, 2 * section):
+        for at, note, length in motif:
+            tr.add("cello", s0 + 2.0 + at, bowed(hz(note), length, rng, bright=0.3, vibrato=14, attack=1.4, release=2.0, lo=50, hi=1800), pan=-0.3, gain=0.75)
+    # Tremolo clusters swelling at the ends of the second and fourth sections, cut at the turn.
+    for s0 in (section, 3 * section):
+        tr.add("tremolo", s0 + section - 9.0, tremolo([hz(50), hz(51), hz(57)], 9.0, rng, attack=7.0, release=0.4), pan=0.2, gain=0.6)
+    # Chains and iron somewhere in the dark, now and then.
+    at = 5.0
+    while at < seconds - 2:
+        tr.add("clank", at, clank(rng), pan=rng.uniform(-0.9, 0.9), gain=0.12)
+        at += rng.uniform(9.0, 17.0)
+    # Sparse bells and far booms; a rush into each section.
     at = 3.0
     while at < seconds - 1:
-        note = rng.choice([62, 65, 69, 61, 74])
-        tr.add("bells", at, bell(hz(note), 7.0, rng, decay=4.5), pan=rng.uniform(-0.8, 0.8), gain=0.14)
+        note = rng.choice([62, 65, 69, 61, 74, 63])
+        tr.add("bells", at, bell(hz(note), 7.0, rng, decay=4.5), pan=rng.uniform(-0.8, 0.8), gain=0.13)
         at += rng.uniform(7.0, 13.0)
-    for at in (0.0, 22.0, 46.0, 58.0, 80.0):
+    for at in (0.0, 20.0, 44.0, 58.0, 76.0, 100.0, 116.0):
         tr.add("booms", at, boom(4.0, rng, decay=1.6), gain=0.7)
-    out = mix(tr, {"drone": (0.35, 0.4), "choir": (1.6, 0.9), "wind": (1.0, 0.5), "bells": (2.0, 1.0), "booms": (0.6, 0.8)}, 5.0, 0.8, 2500)
+    for k in range(4):
+        tr.add("swell", k * section - 3.0, swell(3.0, rng), gain=0.5)
+    out = mix(tr, {"drone": (0.35, 0.4), "choir": (1.5, 0.9), "wind": (1.0, 0.5), "pulse": (0.8, 0.4), "cello": (1.0, 0.6),
+                   "tremolo": (0.9, 0.6), "clank": (1.0, 1.0), "bells": (2.0, 1.0), "booms": (0.6, 0.8), "swell": (0.6, 0.7)}, 5.0, 0.7, 2500)
     save("dungeon", out)
 
 

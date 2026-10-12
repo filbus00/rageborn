@@ -1149,3 +1149,10 @@ The owner: the dungeon "still looks really bad", walls "not only right shapes", 
 - Story (`Session/Quests.cs`): "The Iron Hold" (main, after the Drowned Watch: the Hold's keys at 15, the Gaoler at 18, Vask the Questioner (a ghoul four levels up) at 21, the Magistrate at 24; the third ember, +5% life). The Saint's Bargain follows it (Ivy 26, the reliquary 28, Saint Marrow 30), then the Burnt Archive (32, 34, 36) and the First Watchman (40, 42, 46, 48); the Last Novice's pyres at 27. Six embers for the Vigil. An old save part-way through a moved quest keeps its step, now 12 deeper.
 - Checked in play mode: a prison level at 16 (cages, barred-cell walls, props, packs), the Gaoler at 18 and the Magistrate at 24 (both fights set up, bosses standing; no fight was played through).
 
+## 2026-10-12: fuller town and dungeon music
+
+- `ArtSource/tools/audio/make_music.py`: new instruments `bowed` (cello and fiddle: two detuned saws, vibrato after the attack, a body band), `tremolo` (a string cluster), `hand_drum`, `clank` (chains: short inharmonic hits), `swell` (a low rush of noise).
+- Town (96 s): dotted quarter 60, the 16-bar progression three times: A guitar, drone, harp rolls; B a hand drum, a cello on the roots, the flute's tune; C strings, a second guitar an octave up, fuller drums, a fiddle's countermelody with the flute answering, its last two bars thinning back into A. Loudness rises about 3 dB from A to C.
+- Dungeon (128 s): drones, choir and wind as before over four 32 s sections; a double-thump heartbeat every 1.6 s in the second and fourth, the cello's D, E flat, D, C motif in the first and third, tremolo clusters swelling at the ends of the second and fourth, clanks every 9 to 17 s, a rush into each section.
+- Checked by measurement only (no listening possible): peaks 0.67 and 0.71, no clipping, the loop seams as smooth as any other sample step. Played on the owner's phone build.
+
