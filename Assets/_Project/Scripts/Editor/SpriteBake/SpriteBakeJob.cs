@@ -141,6 +141,9 @@ namespace ARPG.Editor
 
         public int DirectionCount => directions == 16 ? 16 : 8;
 
+        [Tooltip("Bakes only this direction row (0 south, clockwise), -1 for all: the Bag's portrait faces one way only (2026-10-12).")]
+        public int onlyRow = -1;
+
         [Tooltip("Where the sheets are written. The game loads a character's sheets from Resources/Characters/<name>.")]
         public string outputFolder = "Assets/_Project/Resources/Characters/character";
 

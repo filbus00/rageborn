@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
@@ -435,6 +436,70 @@ namespace ARPG.Editor
             var job = SetUp();
             if (job != null)
                 Debug.Log($"[ARPG] {SpriteBaker.MarkBaked(job)} Wild Arrow sheets marked as baked.");
+        }
+
+        /// <summary>
+        /// The Bag's portrait (2026-10-12, the owner: the Bag's figure is "very pixelated and it is hard to see what the
+        /// character is wearing"): every look baked once more as one still frame of the idle, facing the viewer (row 14
+        /// of 16), smooth, not pixel art, at six times the game's size, into Resources/Characters/wild_arrow_portrait.
+        /// About 5 to 10 MB for every look, against the game sheets' 16 directions of every clip.
+        /// </summary>
+        [MenuItem("Tools/ARPG/Sprite Bake/Bake Wild Arrow Portrait")]
+        public static void BakePortrait()
+        {
+            var main = SetUp();
+            if (main == null)
+                return;
+            var job = AssetDatabase.LoadAssetAtPath<SpriteBakeJob>(PortraitJobPath);
+            if (job == null)
+            {
+                job = ScriptableObject.CreateInstance<SpriteBakeJob>();
+                AssetDatabase.CreateAsset(job, PortraitJobPath);
+            }
+            const float times = 6f;
+            job.characterName = PortraitCharacter;
+            job.outputFolder = $"Assets/_Project/Resources/Characters/{PortraitCharacter}";
+            job.pixelsPerUnit = main.pixelsPerUnit * times;
+            job.pixelArt = false;
+            job.cellSize = Mathf.RoundToInt(main.cellSize * times);
+            job.pivot = main.pivot * times;
+            job.targetHeightPixels = main.targetHeightPixels * times;
+            job.supersample = 2;
+            job.directions = 16;
+            job.onlyRow = AppearanceRules.DirectionRow(new Vector2(1f, -1f), 16);
+            job.bodies.Clear();
+            job.bodies.AddRange(main.bodies);
+            job.pieces.Clear();
+            job.pieces.AddRange(main.pieces);
+            job.grips.Clear();
+            foreach (var set in main.grips)
+            {
+                var idle = set.clips.Find(c => c.name == "idle");
+                if (idle == null)
+                    continue;
+                var still = JsonUtility.FromJson<SpriteBakeJob.Clip>(JsonUtility.ToJson(idle));
+                still.frames = 1;
+                job.grips.Add(new SpriteBakeJob.GripSet { grip = set.grip, clips = new List<SpriteBakeJob.Clip> { still } });
+            }
+            EditorUtility.SetDirty(job);
+            AssetDatabase.SaveAssets();
+            SpriteBaker.Bake(job);
+        }
+
+        const string PortraitCharacter = "wild_arrow_portrait";
+        const string PortraitJobPath = Folder + "/" + PortraitCharacter + "_bake_job.asset";
+
+        /// <summary>How many of her sheets a bake would render now, and about how long that takes, rendering nothing
+        /// (2026-10-12: check this before any bake).</summary>
+        [MenuItem("Tools/ARPG/Sprite Bake/Report Stale Wild Arrow Sheets")]
+        public static void ReportStale()
+        {
+            var job = SetUp();
+            if (job == null)
+                return;
+            var (stale, total) = SpriteBaker.CountStale(job);
+            // About 2.2 s a sheet on the owner's Mac (a full bake: 1,254 sheets in 45 minutes).
+            Debug.Log($"[ARPG] Wild Arrow: {stale} of {total} sheets would bake, about {stale * 2.2f / 60f:0} min.");
         }
 
         /// <summary>Bakes every sheet again, whatever changed (half an hour or more).</summary>

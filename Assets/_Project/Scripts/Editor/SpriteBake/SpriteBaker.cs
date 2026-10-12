@@ -62,6 +62,45 @@ namespace ARPG.Editor
         public static List<string> Bake(SpriteBakeJob job, bool full = false) => Bake(job, full, false);
 
         /// <summary>
+        /// The version of how sheets are drawn (2026-10-12): every sheet's cache key carries it. Bump it when a change
+        /// to the bake changes the pixels (lighting, camera, cutting, outlines); changes that do not (menus, set-up, new
+        /// options) leave it alone, so they no longer redraw all 1,250 of her sheets. Until 2026-10-12 the key carried a
+        /// hash of every bake script, and adding the Bag's portrait bake set off two full bakes.
+        /// </summary>
+        public const int BakeVersion = 1;
+
+        /// <summary>How many of the job's sheets a bake would render now, without rendering anything.</summary>
+        public static (int stale, int total) CountStale(SpriteBakeJob job)
+        {
+            var keys = Plan(job, false, new SpriteBakeCache(job), out var total);
+            return (keys.Count, total);
+        }
+
+        // The sheets to render: those whose key changed or whose files are gone (2026-10-11), or all with full.
+        static Dictionary<string, string> Plan(SpriteBakeJob job, bool full, SpriteBakeCache cache, out int total)
+        {
+            var keys = new Dictionary<string, string>();
+            total = 0;
+            foreach (var gripSet in job.grips)
+                foreach (var clip in gripSet.clips)
+                {
+                    if (clip.clip == null || string.IsNullOrEmpty(clip.name))
+                        continue;
+                    foreach (var (layer, look, bodyIndex, piece) in JobLayers(job, gripSet.grip))
+                    {
+                        if (clip.offHandOnly && layer != AppearanceLayer.OffHand)
+                            continue;
+                        total++;
+                        var sheet = job.SheetName(layer, look, gripSet.grip, clip.name);
+                        var key = cache.Key(job, gripSet.grip, clip, bodyIndex, piece);
+                        if (full || !cache.IsFresh(sheet, key))
+                            keys[sheet] = key;
+                    }
+                }
+            return keys;
+        }
+
+        /// <summary>
         /// Records every sheet already on disk as baked from the job's current inputs, without rendering anything: for
         /// sheets known to be up to date when the cache is first made (or after it was cleared).
         /// </summary>
@@ -106,24 +145,7 @@ namespace ARPG.Editor
             // Which sheets to render: those whose key changed or whose files are gone (2026-10-11).
             var started = System.DateTime.Now;
             var cache = new SpriteBakeCache(job);
-            var keys = new Dictionary<string, string>();
-            var total = 0;
-            foreach (var gripSet in job.grips)
-                foreach (var clip in gripSet.clips)
-                {
-                    if (clip.clip == null || string.IsNullOrEmpty(clip.name))
-                        continue;
-                    foreach (var (layer, look, bodyIndex, piece) in JobLayers(job, gripSet.grip))
-                    {
-                        if (clip.offHandOnly && layer != AppearanceLayer.OffHand)
-                            continue;
-                        total++;
-                        var sheet = job.SheetName(layer, look, gripSet.grip, clip.name);
-                        var key = cache.Key(job, gripSet.grip, clip, bodyIndex, piece);
-                        if (full || !cache.IsFresh(sheet, key))
-                            keys[sheet] = key;
-                    }
-                }
+            var keys = Plan(job, full, cache, out var total);
             if (keys.Count == 0)
             {
                 Debug.Log($"{job.name}: all {total} sheets are up to date; nothing to bake ({(System.DateTime.Now - started).TotalSeconds:0.0} s to check).");
@@ -155,9 +177,13 @@ namespace ARPG.Editor
                 // one thrown away warms it up.
                 stage.Camera.Render();
 
+                var done = 0;
+                var cancelled = false;
                 foreach (var gripSet in job.grips)
                     foreach (var clip in gripSet.clips)
                     {
+                        if (cancelled)
+                            break;
                         if (clip.clip == null || string.IsNullOrEmpty(clip.name))
                             continue;
                         // A clip none of whose sheets changed is not sampled at all (its loop speed is measured still, for
@@ -198,6 +224,8 @@ namespace ARPG.Editor
                             var hipsStart = new Vector3[stage.Bodies.Count];
                             for (var row = 0; row < job.DirectionCount; row++)
                             {
+                                if (job.onlyRow >= 0 && row != job.onlyRow)
+                                    continue;
                                 stage.Turntable.rotation = Quaternion.LookRotation(SpriteBakeMath.Facing(row, job.DirectionCount), Vector3.up);
                                 for (var frame = 0; frame < times.Length; frame++)
                                 {
@@ -246,6 +274,15 @@ namespace ARPG.Editor
                             var files = sheet.Save().ToList();
                             written.AddRange(files);
                             cache.Record(sheetName, sheetKey, files);
+                            // A Cancel button (2026-10-12): stops after the sheet in hand, keeping every finished one.
+                            done++;
+                            if (EditorUtility.DisplayCancelableProgressBar($"Baking {job.name}", $"{clip.name}: {done} of {keys.Count} sheets",
+                                    done / (float)keys.Count))
+                            {
+                                cancelled = true;
+                                Debug.LogWarning($"{job.name}: bake cancelled after {done} of {keys.Count} sheets; the rest bake next time.");
+                                break;
+                            }
                         }
                         // Saved after every clip, so a bake stopped part way keeps what it finished.
                         cache.Save();
@@ -253,6 +290,7 @@ namespace ARPG.Editor
             }
             finally
             {
+                EditorUtility.ClearProgressBar();
                 EditorSceneManager.ClosePreviewScene(scene);
                 RemoveRenderer(pipeline, rendererData);
                 Object.DestroyImmediate(target);
@@ -812,6 +850,7 @@ namespace ARPG.Editor
             readonly int frames;
             readonly bool split;
             readonly int directions;
+            readonly int rows;
             readonly string[] codes;
             readonly Vector2Int grid;
             readonly Texture2D[] textures;
@@ -825,9 +864,11 @@ namespace ARPG.Editor
                 var cell = job.cellSize;
                 directions = job.DirectionCount;
                 codes = AppearanceRules.DirectionCodes(directions);
-                split = SpriteBakeMath.NeedsSplit(frames, cell, directions);
-                grid = split ? SpriteBakeMath.SplitGrid(frames, cell) : new Vector2Int(frames, directions);
-                var count = split ? directions : 1;
+                // A one-row bake (the portrait) writes a sheet of that row alone, its frames named by its direction.
+                rows = job.onlyRow >= 0 ? 1 : directions;
+                split = SpriteBakeMath.NeedsSplit(frames, cell, rows);
+                grid = split ? SpriteBakeMath.SplitGrid(frames, cell) : new Vector2Int(frames, rows);
+                var count = split ? rows : 1;
                 textures = new Texture2D[count];
                 rects = new List<(string, Rect)>[count];
                 for (var i = 0; i < count; i++)
@@ -841,10 +882,11 @@ namespace ARPG.Editor
             public void Put(int row, int frame, Color[] pixels)
             {
                 var cell = job.cellSize;
+                var place = job.onlyRow >= 0 ? 0 : row;
                 int file, x, y;
                 if (split)
                 {
-                    file = row;
+                    file = place;
                     x = frame % grid.x * cell;
                     y = (grid.y - 1 - frame / grid.x) * cell;
                 }
@@ -852,7 +894,7 @@ namespace ARPG.Editor
                 {
                     file = 0;
                     x = frame * cell;
-                    y = (directions - 1 - row) * cell;
+                    y = (rows - 1 - place) * cell;
                 }
                 textures[file].SetPixels(x, y, cell, cell, pixels);
                 rects[file].Add(($"{name}_{codes[row]}_{frame:00}", new Rect(x, y, cell, cell)));

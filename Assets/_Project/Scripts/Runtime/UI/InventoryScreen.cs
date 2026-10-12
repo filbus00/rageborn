@@ -257,7 +257,7 @@ namespace ARPG
             var shadow = UiStyle.Disc(inside, "Shadow", new Color(0f, 0f, 0f, 0.45f));
             UiStyle.Place(shadow.rectTransform, new Vector2(0.5f, 0f), new Vector2(0f, 120f + 10f + 96f - 28f), new Vector2(240f, 56f));
             var figure = UiStyle.Place(UiStyle.Rect(inside, "Character"), new Vector2(0.5f, 0f), new Vector2(0f, 120f), new Vector2(660f, 660f));
-            new CharacterPortrait(figure) { Animated = true }.Refresh(current.Equipment);
+            new CharacterPortrait(figure, true) { Animated = true }.Refresh(current.Equipment);
 
             var equipment = current.Equipment;
             // Left column: helm, weapon, gloves. Right: amulet, chest, off-hand, boots. Bottom: ring, belt, ring.
