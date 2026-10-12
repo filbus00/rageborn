@@ -168,10 +168,10 @@ namespace ARPG
             // The walled town (2026-10-12): Aldis by the Vigil fire, Tobin by the merchant's stall, Pellam by his lamps,
             // Bram at the front gate, Ivy by the healer.
             QuestPerson.Aldis => new Vector2Int(3, 5),
-            QuestPerson.Tobin => new Vector2Int(-9, 9),
-            QuestPerson.Pellam => new Vector2Int(-13, -10),
-            QuestPerson.Bram => new Vector2Int(5, -16),
-            _ => new Vector2Int(16, 7),
+            QuestPerson.Tobin => new Vector2Int(-10, 10),
+            QuestPerson.Pellam => new Vector2Int(6, -8),
+            QuestPerson.Bram => new Vector2Int(-18, -3),
+            _ => new Vector2Int(8, 11),
         };
 
         /// <summary>The rescue that brings each to town ("" for Aldis, who is there from the start).</summary>

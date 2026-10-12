@@ -38,6 +38,7 @@ namespace ARPG.Tests
             var square = 0;
             var mud = 0;
             var puddles = 0;
+            var grass = 0;
             var samples = 0;
             for (var x = -40; x <= 40; x += 2)
                 for (var y = -40; y <= 40; y += 2)
@@ -48,15 +49,18 @@ namespace ARPG.Tests
                     var far = new Vector2(30f + x * 0.25f, 30f + y * 0.25f);
                     var layer = GroundRules.TownPick(far, 0f, 0.6f);
                     Assert.AreNotEqual(GroundLayer.Cobble, layer, "no cobbles far from the square and roads");
-                    Assert.AreNotEqual(GroundLayer.Grass, layer, "no grass in the dark town");
+                    Assert.AreNotEqual(GroundLayer.Grass, GroundRules.TownPick(g, 0f, 0.6f) == GroundLayer.Grass && g.magnitude < 5f ? GroundLayer.Grass : GroundLayer.Dirt, "no grass on the square");
                     if (layer == GroundLayer.Puddle)
                         puddles++;
+                    else if (layer == GroundLayer.Grass)
+                        grass++;
                     else
                         mud++;
                     samples++;
                 }
             Assert.Greater(square, 0);
             Assert.That(puddles / (float)samples, Is.InRange(0.02f, 0.3f), "puddles here and there");
+            Assert.That(grass / (float)samples, Is.InRange(0.03f, 0.4f), "patches of grass");
         }
 
         [Test]

@@ -43,10 +43,10 @@ namespace ARPG
         {
             // Each before their own place in the walled town (2026-10-12, TownLayout): the vault, the herb stall, the
             // dice table, the training yard.
-            Newcomer.StashKeeper => new Vector2Int(-2, 9),
-            Newcomer.Healer => new Vector2Int(13, 7),
-            Newcomer.Gambler => new Vector2Int(10, -2),
-            _ => new Vector2Int(9, -11),
+            Newcomer.StashKeeper => new Vector2Int(4, 10),
+            Newcomer.Healer => new Vector2Int(8, 7),
+            Newcomer.Gambler => new Vector2Int(-4, -9),
+            _ => new Vector2Int(-11, 1),
         };
 
         /// <summary>The newcomer whose arrival depth this is, if reaching it brings one (for the arrival notice).</summary>

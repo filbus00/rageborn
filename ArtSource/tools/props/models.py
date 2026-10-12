@@ -1016,13 +1016,23 @@ def waypoint():
 
 
 def waystone():
-    _dais(0.85, True)
+    # The town's waypoint (2026-10-12, the town concept: a round dais glowing blue between two blue-flamed pillars; an
+    # obelisk until then).
+    _dais(0.95, True)
+    rune = mat(COLD[4], 0.0, emit=4.0)
+    glow = mat(COLD[3], 0.0, emit=2.5)
     stone = mat(STONE[3], 0.3, STONE[2], scale=6)
-    rune = mat(COLD[4], 0.0, emit=3.0)
-    obelisk = lathe([(0.2, 0), (0.17, 1.5), (0.0, 1.75)], (0, 0, 0.1), stone, 4, smooth=False)
-    obelisk.rotation_euler.z = math.radians(45)
-    for k in range(4):
-        box((0.06, 0.03, 0.06), (-0.12, -0.12, 0.45 + k * 0.28), rune, rot=(0, 0, 45))
+    for k in range(16):
+        a = 2 * math.pi * k / 16
+        box((0.1, 0.03, 0.01), (0.55 * math.cos(a), 0.55 * math.sin(a), 0.13), rune, rot=(0, 0, math.degrees(a) + 90))
+    for k in range(3):
+        a = 2 * math.pi * k / 3 + 0.5
+        box((0.7, 0.03, 0.01), (0.15 * math.cos(a), 0.15 * math.sin(a), 0.13), glow, rot=(0, 0, math.degrees(a)))
+    for x, y in ((-0.85, 0.55), (0.55, -0.85)):
+        box((0.2, 0.2, 0.8), (x, y, 0), stone, bevel=0.02)
+        lathe([(0.08, 0), (0.13, 0.08)], (x, y, 0.8), stone, 8, smooth=False, cap=False)
+        cone(0.08, 0.28, (x, y, 0.85), rune, 6)
+    light("POINT", (0, 0, 0.6), 60, (0.45, 0.6, 1.0), 0.5)
 
 
 # ---------------------------------------------------------------- town

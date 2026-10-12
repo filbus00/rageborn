@@ -242,7 +242,10 @@ namespace ARPG
                             ? new Color32((byte)(c.r * 0.42f + 16), (byte)(c.g * 0.44f + 19), (byte)(c.b * 0.46f + 25), 255)
                             : layer == GroundLayer.Cobble
                                 ? new Color32((byte)(c.r * 0.78f), (byte)(c.g * 0.78f), (byte)(c.b * 0.8f), 255)
-                                : new Color32((byte)(c.r * 0.62f), (byte)(c.g * 0.6f), (byte)(c.b * 0.58f), 255);
+                                // Grass dulled toward the mud (2026-10-12), so it reads as dark tufts, not a lawn.
+                                : layer == GroundLayer.Grass
+                                    ? new Color32((byte)(c.r * 0.5f + 8), (byte)(c.g * 0.52f + 6), (byte)(c.b * 0.45f + 4), 255)
+                                    : new Color32((byte)(c.r * 0.62f), (byte)(c.g * 0.6f), (byte)(c.b * 0.58f), 255);
                     }
                     cellPixels[i] = new Color32(c.r, c.g, c.b, 255);
                 }

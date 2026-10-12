@@ -15,10 +15,10 @@ namespace ARPG
         // Beside the Waystone (3, -3), away from the Forge (-4, 4), the portal back (-2, -4) and the DEV stairs (9, 1), (9, 5).
         // Each before their own stall in the walled town (2026-10-12): the Pet Vendor by her cages, the merchant by his
         // goods (TownLayout).
-        static readonly Vector2Int VendorCell = new Vector2Int(-12, 0);
+        static readonly Vector2Int VendorCell = new Vector2Int(-6, 12);
 
         // The merchant (2026-10-02) mirrors the vendor on the other side of the start.
-        static readonly Vector2Int MerchantCell = new Vector2Int(-12, 9);
+        static readonly Vector2Int MerchantCell = new Vector2Int(-7, 1);
 
         GameSession session;
         PetController pet;

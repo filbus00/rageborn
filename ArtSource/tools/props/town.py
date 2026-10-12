@@ -751,6 +751,164 @@ def vault():
     box((2.5, 0.06, 0.06), (0, -0.8, 0.45), wood)
 
 
+# ---------------------------------------------------------------- the concept town (2026-10-12, "Town concept art")
+#
+#   church     a stone church with a bell tower and spire at its front (-x), steps up to its door, stained glass lit
+#              from within on its long face, buttresses, a slate roof
+#   smithy     a stone smithy with a lean-to over an open forge on its -y face, an anvil, a quench barrel, tools
+#   stables    a long open-fronted timber shed (-y), stalls, hay, two horses
+
+
+def _slate_roof(x0, x1, y0, y1, z, h, slate, slate2):
+    """A gable roof over x0..x1 (ridge along x), y0..y1, eaves at z, ridge h higher, with rows of slates."""
+    ym = (y0 + y1) / 2
+    poly([(x0, y0, z), (x1, y0, z), (x1, ym, z + h), (x0, ym, z + h), (x0, y1, z), (x1, y1, z)], [(0, 1, 2, 3), (3, 2, 5, 4)], slate)
+    rows = int(h / 0.16)
+    for k in range(1, rows):
+        f = k / rows
+        box((x1 - x0, 0.035, 0.03), ((x0 + x1) / 2, y0 + (ym - y0) * f - 0.01, z + h * f - 0.02), slate2 if k % 2 else slate)
+    box((x1 - x0 + 0.06, 0.16, 0.1), ((x0 + x1) / 2, ym, z + h - 0.06), mat(STONE[0], 0.2))
+
+
+def church():
+    from models import flame
+    rng = _rng("church")
+    stones = _stone()
+    core = mat(STONE[1], 0.3, STONE[0], scale=6)
+    frame = mat(STONE[3], 0.3, STONE[2], scale=10)
+    slate = mat(STONE[1], 0.4, COLD[0], scale=18)
+    slate2 = mat(STONE[2], 0.4, COLD[1], scale=18)
+    dark = mat(STONE[0], 0.0)
+    sx, sy, h = 5.0, 3.0, 2.6
+    nave_x0 = -sx / 2 + 1.4  # the tower stands at the front (-x) end
+    box((sx - 1.4, sy, h), ((nave_x0 + sx / 2) / 2, 0, 0), core)
+    fy = Face("y", -sy / 2, sx / 2)
+    _courses((nave_x0, -sy / 2), (sx / 2, -sy / 2), (0, -1), 0.0, h, rng, stones)
+    # Buttresses and tall pointed windows of stained glass between them, lit from within.
+    glass = [mat(BLOOD[3], 0.2, BLOOD[1], emit=1.6), mat(COLD[3], 0.2, COLD[1], emit=1.6), mat(EMBER[3], 0.2, EMBER[1], emit=1.6)]
+    for k, x in enumerate((nave_x0 + 0.55, nave_x0 + 1.45, nave_x0 + 2.35, nave_x0 + 3.25)):
+        box((0.22, 0.3, h - 0.3), (x - 0.45, -sy / 2 - 0.12, 0), frame, bevel=0.01)
+        cone(0.16, 0.35, (x - 0.45, -sy / 2 - 0.12, h - 0.3), frame, 4)
+        if k < 3:
+            fy_w = Face("y", -sy / 2, sx / 2)
+            fy_w.box(x - 0.12, x + 0.12, 0.7, 1.8, 0.02, rng.choice(glass), out=0.045)
+            for m in range(5):
+                a = math.pi * m / 4
+                fy_w.box(x + math.cos(a) * 0.12 - 0.03, x + math.cos(a) * 0.12 + 0.03, 1.8 + math.sin(a) * 0.18 - 0.03, 1.8 + math.sin(a) * 0.18 + 0.03, 0.05, frame, out=0.05)
+            fy_w.box(x - 0.01, x + 0.01, 0.7, 1.95, 0.03, frame, out=0.05)
+    _slate_roof(nave_x0 - 0.1, sx / 2 + 0.2, -sy / 2 - 0.25, sy / 2 + 0.25, h - 0.05, 2.0, slate, slate2)
+    poly([(sx / 2, -sy / 2, h), (sx / 2, sy / 2, h), (sx / 2, 0, h + 1.9)], [(0, 1, 2)], core)
+    # The tower at the front: stone, a belfry with open arches, a slate spire and a cross.
+    tw = 1.6
+    tx = -sx / 2 + tw / 2
+    th = h + 1.6
+    box((tw, tw, th), (tx, 0, 0), core)
+    for f in (Face("x", -sx / 2, tw / 2), Face("y", -tw / 2, tw / 2)):
+        a, b = f.ends
+        if not f.x:
+            a, b = (a[0] + tx, a[1]), (b[0] + tx, b[1])
+        _courses(a, b, f.normal, 0.0, th, rng, stones)
+    for f, off in ((Face("x", -sx / 2, tw / 2), 0.0), (Face("y", -tw / 2, tw / 2), tx)):
+        f.box(off - 0.22, off + 0.22, th - 0.95, th - 0.25, 0.03, dark, out=0.045)
+    box((tw + 0.12, tw + 0.12, 0.12), (tx, 0, th), frame, bevel=0.01)
+    lathe([(tw * 0.62, 0), (0.0, 1.7)], (tx, 0, th + 0.12), slate, 4, smooth=False, rot=(0, 0, 45))
+    iron = mat(STONE[0], 0.2, COLD[0], metal=0.6, rough=0.5)
+    box((0.04, 0.04, 0.45), (tx, 0, th + 1.75), iron)
+    box((0.04, 0.24, 0.04), (tx, 0, th + 2.05), iron)
+    # The door in the tower's front face, steps up to it, a lantern each side.
+    door = mat(WOOD[1], 0.3, WOOD[0], scale=14)
+    _arch(Face("x", -sx / 2, tw / 2), 0.0, 0.3, 0.7, 1.5, door, frame)
+    for k in range(3):
+        box((0.3, 1.3 - 0.15 * k, 0.1), (-sx / 2 - 0.55 + 0.25 * k, 0, 0.1 * k), stones[k % 2], bevel=0.01)
+    for side in (-1, 1):
+        x, y = -sx / 2 - 0.08, side * 0.62
+        box((0.06, 0.06, 0.18), (x, y, 1.2), iron)
+        box((0.14, 0.14, 0.2), (x - 0.05, y, 1.0), mat(EMBER[4], 0.0, emit=3.5))
+    light("POINT", (-sx / 2 - 0.6, 0, 1.3), 60, (1.0, 0.65, 0.35), 0.3)
+
+
+def smithy():
+    from models import flame, barrel
+    rng = _rng("smithy")
+    stones = _stone()
+    core = mat(STONE[1], 0.3, STONE[0], scale=6)
+    slate = mat(STONE[1], 0.4, COLD[0], scale=18)
+    slate2 = mat(STONE[2], 0.4, COLD[1], scale=18)
+    wood = mat(WOOD[1], 0.3, WOOD[0], scale=12)
+    sx, sy, h = 3.4, 2.4, 2.0
+    box((sx, sy, h), (0, 0.3, 0), core)
+    for f, a, b in ((Face("x", -sx / 2, sy / 2), (-sx / 2, sy / 2 + 0.3), (-sx / 2, -sy / 2 + 0.3)), (Face("y", -sy / 2 + 0.3, sx / 2), (-sx / 2, -sy / 2 + 0.3), (sx / 2, -sy / 2 + 0.3))):
+        _courses(a, b, f.normal, 0.0, h, rng, stones)
+    _slate_roof(-sx / 2 - 0.2, sx / 2 + 0.2, -sy / 2 + 0.05, sy / 2 + 0.55, h - 0.05, 1.5, slate, slate2)
+    box((0.5, 0.5, 2.4), (sx * 0.3, 0.6, h), core)
+    # The lean-to over the open forge on the front.
+    for x in (-sx / 2 + 0.1, sx / 2 - 0.1):
+        box((0.1, 0.1, 1.7), (x, -sy / 2 - 1.0, 0), wood)
+    poly([(-sx / 2 - 0.1, -sy / 2 + 0.3, 1.95), (sx / 2 + 0.1, -sy / 2 + 0.3, 1.95), (sx / 2 + 0.1, -sy / 2 - 1.2, 1.6), (-sx / 2 - 0.1, -sy / 2 - 1.2, 1.6)],
+         [(0, 1, 2, 3)], mat(WOOD[2], 0.4, WOOD[1], scale=16))
+    # The forge: a brick hearth with glowing coals against the wall, its hood.
+    brick = [mat(BLOOD[1], 0.35, STONE[1], scale=12), mat(STONE[2], 0.35, BLOOD[0], scale=12)]
+    box((1.3, 0.8, 0.8), (-0.6, -sy / 2 - 0.1, 0), brick[0], bevel=0.01)
+    sphere(0.35, (-0.6, -sy / 2 - 0.1, 0.78), mat(EMBER[2], 0.5, EMBER[0], emit=3.5, scale=20), scale=(1.5, 1, 0.25), segments=10)
+    flame((-0.65, -sy / 2 - 0.12, 0.8), 0.13, 8)
+    lathe([(0.75, 0), (0.3, 0.7)], (-0.6, -sy / 2 + 0.05, 1.2), core, 4, smooth=False, rot=(0, 0, 45))
+    light("POINT", (-0.6, -sy / 2 - 0.6, 1.1), 90, (1.0, 0.5, 0.2), 0.3)
+    iron = mat(STONE[0], 0.2, COLD[0], metal=0.7, rough=0.4)
+    cyl(0.22, 0.5, (0.8, -sy / 2 - 0.7, 0), wood, 8, smooth=False)
+    box((0.5, 0.2, 0.18), (0.8, -sy / 2 - 0.7, 0.5), iron)
+    lathe([(0.09, 0), (0.0, 0.26)], (1.05, -sy / 2 - 0.7, 0.6), iron, 6, rot=(0, 90, 0), smooth=False)
+    barrel((1.4, -sy / 2 - 0.2, 0), 0.8)
+    for k in range(4):
+        box((0.03, 0.03, 0.7), (-1.55 + k * 0.1, -sy / 2 + 0.15, 0.9), wood, rot=(0, -10 + k * 6, 0))
+
+
+def _horse(x, y, turn, coat, mane):
+    """A standing horse, simple blocks: body, legs, neck and head, tail."""
+    import mathutils
+    def p(dx, dy, z):
+        r = math.radians(turn)
+        return (x + dx * math.cos(r) - dy * math.sin(r), y + dx * math.sin(r) + dy * math.cos(r), z)
+    box((0.9, 0.32, 0.38), p(0, 0, 0.55), coat, rot=(0, 0, turn), bevel=0.06)
+    for dx in (-0.33, 0.33):
+        for dy in (-0.1, 0.1):
+            box((0.08, 0.08, 0.58), p(dx, dy, 0.0), coat, rot=(0, 0, turn))
+    box((0.16, 0.18, 0.5), p(-0.5, 0, 0.75), coat, rot=(0, -35, turn), bevel=0.03)
+    box((0.34, 0.14, 0.16), p(-0.72, 0, 1.08), coat, rot=(0, 15, turn), bevel=0.03)
+    box((0.3, 0.06, 0.08), p(-0.45, 0, 1.0), mane, rot=(0, -35, turn))
+    box((0.06, 0.06, 0.4), p(0.47, 0, 0.5), mane, rot=(0, 25, turn))
+
+
+def stables():
+    from models import crate
+    rng = _rng("stables")
+    wood = mat(WOOD[1], 0.3, WOOD[0], scale=12)
+    plank = mat(WOOD[2], 0.35, WOOD[1], scale=14)
+    roof = mat(WOOD[1], 0.4, STONE[0], scale=16)
+    hay = mat(EMBER[1], 0.45, WOOD[2], scale=20)
+    sx, sy, h = 4.4, 2.0, 1.8
+    # The back and ends in planks; the front open on posts.
+    box((sx, 0.1, h), (0, sy / 2, 0), plank)
+    for x in (-sx / 2, sx / 2):
+        box((0.1, sy, h), (x, 0, 0), plank)
+    for k in range(5):
+        x = -sx / 2 + sx * k / 4
+        box((0.12, 0.12, h + 0.1), (x, -sy / 2, 0), wood)
+    for k in range(1, 4):
+        x = -sx / 2 + sx * k / 4
+        box((0.06, sy - 0.1, 1.0), (x, 0, 0), plank)
+    poly([(-sx / 2 - 0.25, -sy / 2 - 0.45, h - 0.1), (sx / 2 + 0.25, -sy / 2 - 0.45, h - 0.1), (sx / 2 + 0.25, sy / 2 + 0.2, h + 0.7),
+          (-sx / 2 - 0.25, sy / 2 + 0.2, h + 0.7)], [(0, 1, 2, 3)], roof)
+    for k in range(6):
+        box((sx + 0.5, 0.03, 0.03), (0, -sy / 2 - 0.45 + (sy + 0.65) * k / 6, h - 0.1 + 0.8 * k / 6), wood)
+    box((sx, sy, 0.02), (0, 0, 0), hay)
+    coats = [mat(WOOD[2], 0.3, WOOD[1], scale=10), mat(STONE[0], 0.3, WOOD[0], scale=10), mat(WOOD[3], 0.3, WOOD[2], scale=10)]
+    _horse(-1.1, 0.05, 90, coats[0], mat(STONE[0], 0.2))
+    _horse(0.0, 0.0, 85, coats[1], mat(WOOD[0], 0.2))
+    for k in range(3):
+        box((0.5, 0.35, 0.3), (1.5, 0.4 - k * 0.12, 0.3 * k), hay, rot=(0, 0, 10 * k), bevel=0.02)
+    crate((1.6, -0.5, 0), 0.4)
+
+
 def register(all_pieces):
     for name, build in (("house_1", house_1), ("house_2", house_2), ("house_3", house_3), ("house_4", house_4),
                         ("ruin_1", ruin_1), ("ruin_2", ruin_2), ("mausoleum", mausoleum),
@@ -759,5 +917,6 @@ def register(all_pieces):
                         ("town_wall_x", town_wall_x), ("town_wall_y", town_wall_y), ("town_tower", town_tower),
                         ("town_gate_x", town_gate_x), ("town_gate_y", town_gate_y), ("shop_goods", shop_goods),
                         ("shop_herbs", shop_herbs), ("shop_lamps", shop_lamps), ("shop_dice", shop_dice),
-                        ("training_yard", training_yard), ("vault", vault)):
+                        ("training_yard", training_yard), ("vault", vault),
+                        ("church", church), ("smithy", smithy), ("stables", stables)):
         all_pieces[name] = ("world", build, WORLD)

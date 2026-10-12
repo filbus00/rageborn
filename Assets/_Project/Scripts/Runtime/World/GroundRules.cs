@@ -29,11 +29,11 @@ namespace ARPG
         /// of the front gate. The square itself is paved all over (<see cref="SquareCover"/>).</summary>
         public static readonly Vector2Int[] TownPaths =
         {
-            new Vector2Int(0, 0), new Vector2Int(8, 12),
-            new Vector2Int(8, 12), new Vector2Int(8, 22),
-            new Vector2Int(8, 22), new Vector2Int(8, 29),
-            new Vector2Int(0, 0), new Vector2Int(0, -22),
-            new Vector2Int(0, -22), new Vector2Int(0, -46),
+            new Vector2Int(0, 0), new Vector2Int(22, 4),
+            new Vector2Int(22, 4), new Vector2Int(31, 3),
+            new Vector2Int(31, 3), new Vector2Int(31, 6),
+            new Vector2Int(0, 0), new Vector2Int(-22, -4),
+            new Vector2Int(-22, -4), new Vector2Int(-46, -4),
         };
 
         /// <summary>How far the paved square reaches from the town's middle, ground units, before its ragged edge.</summary>
@@ -84,9 +84,10 @@ namespace ARPG
                     : cobbleHeight > 1.25f - CobbleCover(ground) * 0.6f ? GroundLayer.Cobble : GroundLayer.Dirt;
 
         /// <summary>
-        /// The layer at a town point (remade dark 2026-10-11, the owner's concept art: wet cobbles and mud, no grass):
-        /// cobbles where the square or a road is paved, their tops first, mud between and beyond, and puddles where the
-        /// ground dips (<paramref name="cobbleHeight"/> is the cobble texture's stone height there).
+        /// The layer at a town point (remade dark 2026-10-11, the owner's concept art: wet cobbles and mud): cobbles where
+        /// the square or a road is paved, their tops first, mud between and beyond, puddles where the ground dips
+        /// (<paramref name="cobbleHeight"/> is the cobble texture's stone height there), and patches of dark grass on the
+        /// unpaved ground (2026-10-12, the town concept art).
         /// </summary>
         public static GroundLayer TownPick(Vector2 ground, float roadCover, float cobbleHeight)
         {
@@ -94,7 +95,10 @@ namespace ARPG
             var dip = Smooth(ground.x / 2.2f, ground.y / 2.2f, 13) * 0.75f + Smooth(ground.x / 0.9f, ground.y / 0.9f, 15) * 0.25f;
             if (paved > 0f && cobbleHeight > 1.0f - paved * 0.85f)
                 return dip > 0.7f && cobbleHeight < 0.35f ? GroundLayer.Puddle : GroundLayer.Cobble;
-            return dip > 0.66f ? GroundLayer.Puddle : GroundLayer.Dirt;
+            if (dip > 0.66f)
+                return GroundLayer.Puddle;
+            var grass = Smooth(ground.x / 3.5f, ground.y / 3.5f, 17) * 0.8f + Smooth(ground.x / 1.1f, ground.y / 1.1f, 18) * 0.2f;
+            return paved <= 0f && grass > 0.6f ? GroundLayer.Grass : GroundLayer.Dirt;
         }
 
         public static float SegmentDistance(Vector2 p, Vector2 a, Vector2 b)

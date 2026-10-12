@@ -16,8 +16,8 @@ namespace ARPG
 
         // In town the Waystone and the return portal stand a few cells below the start, away from the Forge and stairs.
         // Inside the front gate (2026-10-12, the walled town).
-        static readonly Vector2Int TownPortalCell = new Vector2Int(-9, -17);
-        static readonly Vector2Int WaystoneCell = new Vector2Int(-5, -15);
+        static readonly Vector2Int TownPortalCell = new Vector2Int(5, -15);
+        static readonly Vector2Int WaystoneCell = new Vector2Int(8, -12);
 
         GameSession session;
         GameObject button;
