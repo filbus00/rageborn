@@ -16,12 +16,13 @@ MonoBehaviour:
   bodies:
   - look: 
     model: {fileID: 919132149155446097, guid: 99a7bb5ac817941bcaf61579da5f433f, type: 3}
+    layer: 0
   pieces: []
   grips:
   - grip: 
     clips:
     - name: idle
-      clip: {fileID: -203655887218126122, guid: 99a7bb5ac817941bcaf61579da5f433f, type: 3}
+      clip: {fileID: -203655887218126122, guid: f87487dda195c49c3923b7c35f03cdf4, type: 3}
       frames: 12
       loop: 1
       playbackSeconds: 4
@@ -84,4 +85,5 @@ MonoBehaviour:
   supersample: 4
   framesPerSecond: 12
   directions: 8
+  onlyRow: -1
   outputFolder: Assets/_Project/Resources/Characters/husk_champion

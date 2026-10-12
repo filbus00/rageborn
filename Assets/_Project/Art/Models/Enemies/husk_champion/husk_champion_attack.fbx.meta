@@ -535,28 +535,28 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: husk_champion(Clone)
+    - name: husk(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Camera
-      parentName: husk_champion(Clone)
+      parentName: husk(Clone)
       position: {x: -7.3588915, y: 4.958309, z: 6.925791}
       rotation: {x: 0.09062847, y: 0.89379627, z: -0.20997298, w: 0.3857799}
       scale: {x: 100, y: 100.00001, z: 99.99999}
     - name: Light
-      parentName: husk_champion(Clone)
+      parentName: husk(Clone)
       position: {x: -4.0762453, y: 5.903862, z: -1.005454}
       rotation: {x: 0.52327543, y: -0.34203392, z: 0.72694236, w: 0.28416622}
       scale: {x: 100.00001, y: 100, z: 100}
     - name: obj1
-      parentName: husk_champion(Clone)
+      parentName: husk(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.00000003774895, y: 0, z: -0, w: 1}
       scale: {x: 100, y: 100, z: 100}
     - name: mixamorig:Hips
-      parentName: husk_champion(Clone)
+      parentName: husk(Clone)
       position: {x: 0.002247423, y: 0.60560095, z: -0.01540885}
       rotation: {x: 0.000000014536343, y: 0.000000013216878, z: 0.000000001274763, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -892,7 +892,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 99a7bb5ac817941bcaf61579da5f433f, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: f87487dda195c49c3923b7c35f03cdf4, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1

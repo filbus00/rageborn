@@ -22,12 +22,12 @@ MonoBehaviour:
   - grip: 
     clips:
     - name: idle
-      clip: {fileID: -203655887218126122, guid: 27cc8dd71e170477080f0a5c348c6eb6, type: 3}
+      clip: {fileID: -623603649343465320, guid: 24145bf13ad35427f817f1e233f8fe4c, type: 3}
       frames: 24
       loop: 1
-      playbackSeconds: 8.333334
+      playbackSeconds: 8.3
       start: 0
-      end: 8.333334
+      end: 8.3
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
@@ -41,4 +41,5 @@ MonoBehaviour:
   supersample: 4
   framesPerSecond: 12
   directions: 8
+  onlyRow: -1
   outputFolder: Assets/_Project/Resources/Characters/bram

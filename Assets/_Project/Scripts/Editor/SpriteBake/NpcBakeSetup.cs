@@ -19,9 +19,12 @@ namespace ARPG.Editor
         /// <summary>The newcomers in town (2026-10-05) idle in another NPC's clip.</summary>
         static readonly Dictionary<string, string> IdleFrom = new Dictionary<string, string>
         {
-            { "stash_keeper", "merchant" }, { "healer", "merchant" }, { "gambler", "merchant" }, { "trainer", "merchant" },
+            // Since 2026-10-13 every one, the merchant and the beast tamer too, is our own body on the archer's rig, idling in
+            // the merchant's old clip (Rigs/merchant_idle, its Meshy mesh taken out).
+            { "merchant", "merchant_idle" }, { "pet_vendor", "merchant_idle" },
+            { "stash_keeper", "merchant_idle" }, { "healer", "merchant_idle" }, { "gambler", "merchant_idle" }, { "trainer", "merchant_idle" },
             // The quest people (2026-10-08).
-            { "aldis", "merchant" }, { "tobin", "merchant" }, { "pellam", "merchant" }, { "bram", "merchant" }, { "ivy", "merchant" },
+            { "aldis", "merchant_idle" }, { "tobin", "merchant_idle" }, { "pellam", "merchant_idle" }, { "bram", "merchant_idle" }, { "ivy", "merchant_idle" },
         };
 
         [MenuItem("Tools/ARPG/Sprite Bake/Bake NPCs")]
@@ -44,6 +47,13 @@ namespace ARPG.Editor
             Debug.Log(baked.Count == 0 ? $"No NPC models in {Root}/<name>/<name>.fbx yet." : "Baked NPCs: " + string.Join(", ", baked));
         }
 
+        // The donor's clip on a humanoid rig of its own, so it retargets onto the body.
+        static AnimationClip DonorClip(string path)
+        {
+            MixamoImport.ConfigureBody(path);
+            return MixamoImport.FirstClip(path);
+        }
+
         static SpriteBakeJob SetUp(string folder)
         {
             var name = Path.GetFileName(folder);
@@ -57,7 +67,7 @@ namespace ARPG.Editor
             // A body built in Blender on a borrowed rig (the newcomers, ArtSource/tools/props/undead.py) has no idle of
             // its own: it stands in the merchant's, retargeted by the humanoid.
             var clip = IdleFrom.TryGetValue(name, out var donor)
-                ? MixamoImport.FirstClip($"{Root}/{donor}/{donor}.fbx")
+                ? DonorClip($"{EnemyBakeSetup.RigsRoot}/{donor}/{donor}.fbx")
                 : MixamoImport.FirstClip(bodyPath);
             if (clip == null)
             {

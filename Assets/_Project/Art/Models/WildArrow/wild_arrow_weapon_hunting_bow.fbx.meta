@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Bow
     second: {fileID: 2100000, guid: 8dd968c6fbb0341979126ed173d0b83a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gear
+    second: {fileID: 2100000, guid: 8dd968c6fbb0341979126ed173d0b83a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -1,6 +1,6 @@
 # The Wild Arrow's worn gear (the owner, 2026-10-04: "making models for other gear that show up on the character when
 # equipped. Like chest armor and helmets"), built in Blender from code on her own rig and exported as bodies for the
-# sprite bake (WildArrowBakeSetup): wild_arrow_body_<look>.fbx, her mesh with the chest armour bound to her bones
+# sprite bake (WildArrowBakeSetup): wild_arrow_body_<look>.fbx, her mesh (her own body since 2026-10-13, wild_arrow_body.py) with the chest armour bound to her bones
 # (bare: her alone; padded, leather, mail), and wild_arrow_helm_<look>.fbx, only a helm bound to her head (cap, nasal,
 # great), which the bake draws into the helm layer with her body cutting it. Every part is a solid weighted wholly to
 # one bone (rigid; a skirt plate to a thigh, so it swings with the leg). All exports go through this one path, so they
@@ -33,6 +33,10 @@ COLORS = [
     ("bone", BONE[0]), ("bone_hi", BONE[1]), ("ember", EMBER[4]), ("ember_mid", EMBER[3]),
     ("violet", VIOLET[1]), ("violet_dark", VIOLET[0]), ("eye", BLOOD[4]),
     ("feather", BONE[2]), ("feather_dark", EARTH[2]), ("cloth", EARTH[2]), ("cloth_dark", EARTH[1]), ("slit", (14, 10, 10)),
+    # Her own body (2026-10-13, wild_arrow_body.py, in place of the Meshy model): skin, auburn hair, a green tunic.
+    ("skin", SKIN[3]), ("skin_shade", SKIN[2]), ("lips", (150, 80, 70)), ("hair", (88, 40, 24)), ("hair_hi", (122, 60, 34)),
+    ("eye_dark", (24, 18, 16)), ("tunic", (46, 70, 44)), ("tunic_dark", (32, 48, 32)), ("trousers", (54, 44, 36)),
+    ("boot", (58, 38, 24)),
 ]
 NAMES = [c[0] for c in COLORS]
 STRIP = 16   # the strip's height is 1/STRIP of the texture
@@ -593,9 +597,9 @@ def hood_shape(b, body, color, dark):
         (1.545, 0.18, 0.2, 0.182, -0.005),
         (1.50, 0.18, 0.185, 0.175, -0.01),
         (1.47, 0.205, 0.18, 0.18, -0.02),
-        (1.435, 0.25, 0.18, 0.19, -0.025),
-        (1.385, 0.285, 0.2, 0.195, -0.025),
-        (1.345, 0.3, 0.21, 0.2, -0.025),
+        (1.435, 0.225, 0.18, 0.19, -0.025),
+        (1.385, 0.24, 0.19, 0.19, -0.025),
+        (1.345, 0.245, 0.19, 0.19, -0.025),
     ]
     rings = []
     for i in range(len(keys) - 1):
@@ -1035,8 +1039,8 @@ def export(arm, objects, path):
 BODIES = {"bare": None, "ranger": ranger, "brigand": brigand, "scale": scale, "plate": plate, "knight": knight,
           "stag_hide": stag_hide, "cinder_jerkin": cinder_jerkin}
 WORN = {
-    # The hood is the owner's Meshy model since 2026-10-07, fitted by fit_hood.py; hood() is kept for the mask and falconer.
-    "helm": {"mask": mask, "barbute": barbute, "visored": visored, "horned": horned,
+    # The hood was the owner's Meshy model from 2026-10-07 (fit_hood.py) to 2026-10-13; built here again since.
+    "helm": {"hood": hood, "mask": mask, "barbute": barbute, "visored": visored, "horned": horned,
              "falconer": falconer, "unblinking_crown": unblinking_crown},
     "boots": {"wrapped": wrapped, "leather_boots": leather_boots, "strapped": strapped, "sabatons": sabatons,
               "spiked": spiked, "windrunner": windrunner, "stalker": stalker},

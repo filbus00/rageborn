@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Gear
+    second: {fileID: 2100000, guid: ef0e6d08a4ba44d94a57b209dee409eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Quiver
     second: {fileID: 2100000, guid: ef0e6d08a4ba44d94a57b209dee409eb, type: 2}
   materials:

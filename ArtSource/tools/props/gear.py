@@ -138,6 +138,9 @@ def quiver(body, trim, fletch, studs=None, bone_plates=False, glow_trim=0.0, twi
 
 
 LOOKS = {
+    # The starting bow and quiver (2026-10-13): built here in place of the owner's Meshy models.
+    "weapon_hunting_bow": lambda: bow(1.3, 0.08, 0.05, WOOD[3], WOOD[1], WOOD[2], bands=(-0.12, 0.12), band_color=WOOD[0]),
+    "offhand_hide_quiver": lambda: quiver(EARTH[3], WOOD[1], BONE[2], fur=EARTH[4]),
     "weapon_recurve_bow": lambda: bow(1.15, 0.07, 0.07, WOOD[2], WOOD[0], BONE[1]),
     "weapon_horn_bow": lambda: bow(1.05, 0.08, 0.1, BONE[1], BLOOD[1], WOOD[1], thick=1.15),
     "weapon_yew_longbow": lambda: bow(1.65, 0.1, 0.0, WOOD[4], WOOD[1], BONE[1]),

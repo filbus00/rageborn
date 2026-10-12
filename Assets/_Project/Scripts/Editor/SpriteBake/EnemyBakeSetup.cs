@@ -19,6 +19,10 @@ namespace ARPG.Editor
     {
         const string Root = "Assets/_Project/Art/Models/Enemies";
 
+        /// <summary>The rigs and clips the bodies borrow (2026-10-13): the husk's, ghoul's and bandit archer's Mixamo files,
+        /// moved out of the enemies when their bodies were replaced by our own (ArtSource/tools/props/undead.py).</summary>
+        public const string RigsRoot = "Assets/_Project/Art/Models/Rigs";
+
         // The brief's frames and loops (5.1). The attack has room for a readable wind-up; the death is not held (the
         // engine burns the body away).
         static readonly (string name, int frames, bool loop)[] Animations =
@@ -62,6 +66,7 @@ namespace ARPG.Editor
             { "tidewife", "ghoul" }, { "saint_marrow", "ghoul" }, { "first_watchman", "ghoul" },
             { "ash_archivist", "ghoul" }, { "rift_mother", "ghoul" },
             { "gaoler", "ghoul" }, { "hanged_magistrate", "ghoul" },
+            { "husk", "husk" }, { "husk_champion", "husk" }, { "husk_elite", "husk" }, { "ghoul", "ghoul" }, { "bandit_archer", "bandit_archer" },
         };
 
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
@@ -157,7 +162,7 @@ namespace ARPG.Editor
             if (!ClipAvatarFrom.TryGetValue(name, out var donor))
                 donor = null;
             else
-                avatar = AssetDatabase.LoadAllAssetsAtPath($"{Root}/{donor}/{donor}.fbx").OfType<Avatar>().FirstOrDefault() ?? avatar;
+                avatar = AssetDatabase.LoadAllAssetsAtPath($"{RigsRoot}/{donor}/{donor}.fbx").OfType<Avatar>().FirstOrDefault() ?? avatar;
 
             var job = JobFor(folder, name, bodyPath);
 
@@ -165,7 +170,7 @@ namespace ARPG.Editor
             foreach (var (animation, frames, loop) in Animations)
             {
                 var path = $"{folder}/{name}_{animation}.fbx";
-                var idleFrom = donor != null ? $"{Root}/{donor}/{donor}.fbx" : bodyPath;
+                var idleFrom = donor != null ? $"{RigsRoot}/{donor}/{donor}.fbx" : bodyPath;
                 var clip = File.Exists(path)
                     ? MixamoImport.ConfigureAnimation(path, loop, avatar, animation, false)
                     : animation == "idle" ? MixamoImport.FirstClip(idleFrom) : null;

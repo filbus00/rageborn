@@ -28,7 +28,7 @@ namespace ARPG.Editor
         const string JobPath = Folder + "/WildArrowJob.asset";
         const string Character = PlayerSpriteAnimator.WildArrowCharacter;
         const string BodyPath = "Assets/_Project/Art/Models/Wrathborn/wrathborn_body_leather.fbx";
-        const string ArcherFolder = "Assets/_Project/Art/Models/Enemies/bandit_archer";
+        const string ArcherFolder = EnemyBakeSetup.RigsRoot + "/bandit_archer";
         const string WrathbornFolder = "Assets/_Project/Art/Models/Wrathborn";
         const string Grip = "1h";
         const string OwnBodyPath = Folder + "/" + Character + ".fbx";
@@ -329,10 +329,17 @@ namespace ARPG.Editor
             return any ? bounds.size.y : 0f;
         }
 
-        // Her own model and the longbow pack's clips, configured as humanoid clips on her avatar.
+        /// <summary>The avatar her clips share (2026-10-13): a copy of the Mixamo idle, whose hierarchy is the clips' own (the
+        /// file's root, then the hips). Her body, our own since then and exported from Blender, has an "Armature" node over
+        /// the hips, so the clips can no longer copy its avatar; the humanoid retargets them onto it instead.</summary>
+        const string ClipAvatarPath = EnemyBakeSetup.RigsRoot + "/wild_arrow_rig/wild_arrow_rig.fbx";
+
+        // Her own model and the longbow pack's clips, configured as humanoid clips on the clips' avatar.
         static SpriteBakeJob.GripSet OwnClips(string bodyPath)
         {
-            var avatar = AssetDatabase.LoadAllAssetsAtPath(bodyPath).OfType<Avatar>().FirstOrDefault();
+            MixamoImport.ConfigureBody(ClipAvatarPath);
+            var avatar = AssetDatabase.LoadAllAssetsAtPath(ClipAvatarPath).OfType<Avatar>().FirstOrDefault()
+                         ?? AssetDatabase.LoadAllAssetsAtPath(bodyPath).OfType<Avatar>().FirstOrDefault();
             var set = new SpriteBakeJob.GripSet { grip = Grip };
             var actions = new System.Collections.Generic.Dictionary<string, SpriteBakeJob.Clip>();
             foreach (var (name, frames, loop) in OwnAnimations)

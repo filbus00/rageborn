@@ -12,6 +12,9 @@ from kit import STONE, WOOD, BLOOD, EMBER, BONE, COLD, MOSS, VIOLET, linear
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
 ENEMIES = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "Enemies")
+# The rigs and clips everything here borrows (2026-10-13: the husk's, ghoul's and archer's Mixamo files moved out of the
+# enemies, their bodies replaced by ours, below).
+RIGS = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "Rigs")
 NAME = sys.argv[sys.argv.index("--") + 1]
 DONORS = {"skeleton": "husk", "cultist": "bandit_archer", "cutthroat": "husk", "ember_acolyte": "bandit_archer",
           "pyre_keeper": "bandit_archer", "carrion_bloat": "ghoul",
@@ -25,14 +28,18 @@ DONORS = {"skeleton": "husk", "cultist": "bandit_archer", "cutthroat": "husk", "
           "ash_archivist": "ghoul", "rift_mother": "ghoul",
           # The prison's bosses (2026-10-12).
           "gaoler": "ghoul", "hanged_magistrate": "ghoul",
+          # Our own bodies for the first enemies and the two first townsfolk (2026-10-13, the owner: "remove all imported
+          # meshy models"), on the rigs their Mixamo files had.
+          "husk": "husk", "husk_champion": "husk", "husk_elite": "husk", "ghoul": "ghoul", "bandit_archer": "bandit_archer",
+          "merchant": "bandit_archer", "pet_vendor": "bandit_archer",
           # The quest people (2026-10-08): Mother Aldis, and those she brings back to town.
           "aldis": "bandit_archer", "tobin": "bandit_archer", "pellam": "bandit_archer", "bram": "bandit_archer", "ivy": "bandit_archer"}
-NPCS = {"stash_keeper", "healer", "gambler", "trainer", "aldis", "tobin", "pellam", "bram", "ivy"}
+NPCS = {"merchant", "pet_vendor", "stash_keeper", "healer", "gambler", "trainer", "aldis", "tobin", "pellam", "bram", "ivy"}
 DONOR = DONORS[NAME]
 OUT = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "NPCs", NAME) if NAME in NPCS else os.path.join(ENEMIES, NAME)
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
-bpy.ops.import_scene.fbx(filepath=os.path.join(ENEMIES, DONOR, DONOR + ".fbx"))
+bpy.ops.import_scene.fbx(filepath=os.path.join(RIGS, DONOR, DONOR + ".fbx"))
 arm = [o for o in bpy.context.scene.objects if o.type == "ARMATURE"][0]
 for o in [o for o in bpy.context.scene.objects if o.type == "MESH"]:
     bpy.data.objects.remove(o, do_unlink=True)
@@ -60,6 +67,12 @@ COLORS = {
     # The Gaoler and the Hanged Magistrate (2026-10-12).
     "jailer_skin": (112, 100, 90), "jailer_dark": (78, 68, 62), "hood_black": (30, 26, 26), "apron": (70, 46, 30),
     "wig": (214, 208, 192), "robe_black": (30, 28, 34), "rope": (124, 94, 62), "pale": (176, 170, 156),
+    # The husk (and its champion and elite colourings), the ghoul, the bandit archer, the merchant, the beast tamer.
+    "husk_skin": (112, 116, 92), "husk_dark": (70, 74, 56), "rag": (66, 56, 44), "frost": (150, 186, 214),
+    "frost_dark": (88, 120, 150), "ash_skin": (52, 48, 50), "ash_rag": (30, 26, 26), "ghoul_skin": (150, 140, 122),
+    "ghoul_dark": (98, 88, 76), "claw": (200, 190, 160), "bandit_hood": (60, 50, 40), "bow_wood": (110, 74, 44),
+    "coat": (92, 64, 40), "coat_dark": (62, 42, 28), "pack": (120, 92, 58), "cloth_red": (120, 40, 34),
+    "hat": (50, 40, 32), "fur": (110, 92, 70), "fur_dark": (72, 60, 46),
 }
 color_list = list(COLORS)
 bm = bmesh.new()
@@ -782,12 +795,163 @@ def hanged_magistrate():
     block(q + V((0, -0.12 * U, 0.02 * U)), (0.1 * U, 0.22 * U, 0.008 * U), "LeftHand", "parchment")
 
 
+def husk(skin="husk_skin", dark="husk_dark", rag="rag", eye="eye"):
+    # A starved dead man: grey-green skin over a gaunt frame, ribs showing, a jaw hanging, rags round the hips, long
+    # bony hands. The champion is frost-blue, the elite ash-black with ember eyes (colourings of the same body).
+    h = head("Head")
+    blob(h + V((0, 0.1 * U, 0.01 * U)), (0.085 * U, 0.105 * U, 0.095 * U), "Head", skin)
+    block(h + V((0, 0.03 * U, 0.065 * U)), (0.08 * U, 0.05 * U, 0.05 * U), "Head", dark)
+    for sx in (-1, 1):
+        block(h + V((sx * 0.032 * U, 0.115 * U, 0.08 * U)), (0.026 * U, 0.02 * U, 0.02 * U), "Head", eye)
+    limb(head("Neck"), head("Head"), 0.035 * U, 0.03 * U, "Neck", skin)
+    s2 = head("Spine2")
+    block(V((0, s2.y, 0.0)), (0.25 * U, 0.18 * U, 0.15 * U), "Spine2", skin)
+    for k in range(4):
+        block(V((0, s2.y + 0.05 * U - k * 0.045 * U, 0.075 * U)), (0.2 * U - k * 0.02 * U, 0.012 * U, 0.01 * U), "Spine2", dark)
+    block(V((0, head("Spine1").y, 0)), (0.2 * U, 0.12 * U, 0.12 * U), "Spine1", skin)
+    block(V((0, head("Spine").y - 0.02 * U, 0)), (0.2 * U, 0.08 * U, 0.12 * U), "Spine", dark)
+    block(V((0, head("Hips").y - 0.03 * U, 0)), (0.25 * U, 0.15 * U, 0.16 * U), "Hips", rag)
+    for side in ("Left", "Right"):
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.04 * U, 0.032 * U, side + "Arm", skin)
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.032 * U, 0.026 * U, side + "ForeArm", skin)
+        blob(head(side + "ForeArm"), (0.04 * U, 0.04 * U, 0.04 * U), side + "Arm", dark)
+        hand = head(side + "Hand")
+        d = (tail(side + "Hand") - hand).normalized()
+        block(hand + d * 0.05 * U, (0.1 * U, 0.025 * U, 0.06 * U) if abs(d.x) > 0.5 else (0.06 * U, 0.1 * U, 0.025 * U), side + "Hand", skin)
+        for k in (-1, 0, 1):
+            limb(hand + d * 0.09 * U + V((0, 0, k * 0.02 * U)), hand + d * 0.17 * U + V((0, -0.01 * U, k * 0.025 * U)), 0.009 * U, 0.004 * U, side + "Hand", dark, 4)
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.055 * U, 0.04 * U, side + "UpLeg", skin)
+        limb(head(side + "Leg"), head(side + "Foot"), 0.04 * U, 0.032 * U, side + "Leg", skin)
+        blob(head(side + "Leg"), (0.045 * U, 0.045 * U, 0.045 * U), side + "Leg", dark)
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.07 * U, 0.04 * U, 0.15 * U), side + "Foot", dark)
+        # A rag hanging from each hip.
+        block(mid(side + "UpLeg", side + "Leg", 0.25) + V((0, 0, 0.05 * U)), (0.1 * U, 0.16 * U, 0.02 * U), side + "UpLeg", rag)
+
+
+def husk_champion():
+    husk("frost", "frost_dark", "ash_rag", "eye")
+
+
+def husk_elite():
+    husk("ash_skin", "ash_rag", "ash_rag", "fire")
+
+
+def ghoul():
+    # A hulking eater of the dead: pale bloated flesh, a hunched back with bone spurs, a small head sunk between huge
+    # shoulders, long arms ending in claws, torn trousers.
+    h = head("Head")
+    s2 = head("Spine2")
+    blob(V((0, s2.y + 0.02 * U, -0.02 * U)), (0.3 * U, 0.24 * U, 0.24 * U), "Spine2", "ghoul_skin")
+    blob(V((0, s2.y + 0.12 * U, -0.12 * U)), (0.2 * U, 0.12 * U, 0.12 * U), "Spine2", "ghoul_dark")
+    for k in range(3):
+        limb(V(((k - 1) * 0.08 * U, s2.y + 0.15 * U, -0.18 * U)), V(((k - 1) * 0.1 * U, s2.y + 0.3 * U, -0.28 * U)), 0.03 * U, 0.004 * U, "Spine2", "claw", 4)
+    blob(V((0, head("Spine1").y, 0.02 * U)), (0.26 * U, 0.18 * U, 0.22 * U), "Spine1", "ghoul_skin")
+    blob(V((0, head("Spine").y, 0.04 * U)), (0.25 * U, 0.16 * U, 0.23 * U), "Spine", "ghoul_dark")
+    block(V((0, head("Hips").y, 0)), (0.36 * U, 0.14 * U, 0.24 * U), "Hips", "rag")
+    limb(head("Neck") - V((0, 0.06 * U, 0)), head("Head") + V((0, 0.04 * U, 0.03 * U)), 0.11 * U, 0.09 * U, "Neck", "ghoul_dark", 8)
+    blob(h + V((0, 0.06 * U, 0.05 * U)), (0.12 * U, 0.12 * U, 0.13 * U), "Head", "ghoul_skin")
+    block(h + V((0, 0.0, 0.12 * U)), (0.12 * U, 0.05 * U, 0.06 * U), "Head", "ghoul_dark")
+    for k in range(4):
+        block(h + V(((k - 1.5) * 0.025 * U, 0.03 * U, 0.15 * U)), (0.012 * U, 0.025 * U, 0.01 * U), "Head", "claw")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.035 * U, 0.09 * U, 0.14 * U)), (0.025 * U, 0.018 * U, 0.015 * U), "Head", "eye")
+    for side in ("Left", "Right"):
+        blob(head(side + "Arm"), (0.13 * U, 0.12 * U, 0.12 * U), side + "Arm", "ghoul_skin")
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.1 * U, 0.08 * U, side + "Arm", "ghoul_skin")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.09 * U, 0.07 * U, side + "ForeArm", "ghoul_dark")
+        hand = head(side + "Hand")
+        d = (tail(side + "Hand") - hand).normalized()
+        blob(hand + d * 0.06 * U, (0.08 * U, 0.07 * U, 0.08 * U), side + "Hand", "ghoul_skin")
+        for k in (-1, 0, 1):
+            limb(hand + d * 0.1 * U + V((0, 0, k * 0.04 * U)), hand + d * 0.28 * U + V((0, -0.03 * U, k * 0.05 * U)), 0.02 * U, 0.004 * U, side + "Hand", "claw", 4)
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.11 * U, 0.08 * U, side + "UpLeg", "rag")
+        limb(head(side + "Leg"), head(side + "Foot"), 0.08 * U, 0.06 * U, side + "Leg", "ghoul_skin")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.12 * U, 0.06 * U, 0.2 * U), side + "Foot", "ghoul_dark")
+
+
+def bandit_archer():
+    # A bandit with a bow: a dark hood and a scarf over the face, a leather jerkin over a red shirt, a quiver on the
+    # back, a short bow in the left hand.
+    h = head("Head")
+    blob(h + V((0, 0.1 * U, -0.01 * U)), (0.11 * U, 0.125 * U, 0.11 * U), "Head", "bandit_hood")
+    block(h + V((0, 0.07 * U, 0.08 * U)), (0.12 * U, 0.05 * U, 0.04 * U), "Head", "scarf")
+    block(h + V((0, 0.115 * U, 0.088 * U)), (0.1 * U, 0.03 * U, 0.02 * U), "Head", "skin")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.028 * U, 0.115 * U, 0.1 * U)), (0.02 * U, 0.012 * U, 0.01 * U), "Head", "robe_dark")
+    s2 = head("Spine2")
+    block(V((0, s2.y, 0)), (0.29 * U, 0.19 * U, 0.18 * U), "Spine2", "leather")
+    block(V((0, s2.y + 0.02 * U, 0.08 * U)), (0.1 * U, 0.15 * U, 0.03 * U), "Spine2", "cloth_red")
+    block(V((0, head("Spine1").y, 0)), (0.26 * U, 0.12 * U, 0.17 * U), "Spine1", "leather")
+    block(V((0, head("Spine").y - 0.02 * U, 0)), (0.27 * U, 0.06 * U, 0.18 * U), "Spine", "leather_dark")
+    block(V((0, head("Hips").y, 0)), (0.27 * U, 0.1 * U, 0.17 * U), "Hips", "leather_dark")
+    # The quiver on the back, arrows showing.
+    block(V((0.06 * U, s2.y, -0.13 * U)), (0.09 * U, 0.4 * U, 0.08 * U), "Spine2", "leather_dark")
+    for k in range(4):
+        limb(V((0.04 * U + k * 0.015 * U, s2.y + 0.2 * U, -0.13 * U)), V((0.04 * U + k * 0.015 * U, s2.y + 0.3 * U, -0.13 * U)), 0.01 * U, 0.01 * U, "Spine2", "linen", 4)
+    for side in ("Left", "Right"):
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.048 * U, 0.042 * U, side + "Arm", "cloth_red")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.042 * U, 0.036 * U, side + "ForeArm", "leather")
+        blob(head(side + "Hand") + (tail(side + "Hand") - head(side + "Hand")) * 0.4, (0.036 * U, 0.036 * U, 0.036 * U), side + "Hand", "skin")
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.065 * U, 0.052 * U, side + "UpLeg", "rag")
+        limb(head(side + "Leg"), head(side + "Foot"), 0.052 * U, 0.042 * U, side + "Leg", "leather_dark")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.075 * U, 0.05 * U, 0.16 * U), side + "Foot", "leather_dark")
+    # The bow, upright through the left fist.
+    hand = head("LeftHand") + (tail("LeftHand") - head("LeftHand")) * 0.4
+    for sy in (-1, 1):
+        limb(hand, hand + V((0, sy * 0.5 * U, -0.08 * U)), 0.018 * U, 0.01 * U, "LeftHand", "bow_wood", 5)
+    limb(hand + V((0, 0.5 * U, -0.08 * U)), hand + V((0, -0.5 * U, -0.08 * U)), 0.003 * U, 0.003 * U, "LeftHand", "linen", 3)
+
+
+def merchant():
+    # A pack bearer: a long brown coat with a red sash, a wide hat, a beard, and a great pack of goods on his back with
+    # a pot and a bedroll tied on.
+    h = head("Head")
+    _townsfolk_body("coat", "coat_dark", "coat_dark", "leather_dark", wide=1.15)
+    blob(h + V((0, 0.1 * U, 0.01 * U)), (0.09 * U, 0.105 * U, 0.095 * U), "Head", "skin")
+    block(h + V((0, 0.04 * U, 0.07 * U)), (0.11 * U, 0.08 * U, 0.05 * U), "Head", "beard")
+    for sx in (-1, 1):
+        block(h + V((sx * 0.03 * U, 0.115 * U, 0.088 * U)), (0.02 * U, 0.012 * U, 0.01 * U), "Head", "robe_dark")
+    block(h + V((0, 0.19 * U, 0)), (0.3 * U, 0.025 * U, 0.3 * U), "Head", "hat")
+    blob(h + V((0, 0.22 * U, 0)), (0.09 * U, 0.06 * U, 0.09 * U), "Head", "hat")
+    block(V((0, head("Spine").y, 0)), (0.3 * U, 0.06 * U, 0.21 * U), "Spine", "cloth_red")
+    for side in ("Left", "Right"):
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.1 * U, 0.11 * U, side + "UpLeg", "coat")
+    s2 = head("Spine2")
+    block(V((0, s2.y + 0.05 * U, -0.22 * U)), (0.34 * U, 0.5 * U, 0.22 * U), "Spine2", "pack")
+    block(V((0, s2.y + 0.33 * U, -0.22 * U)), (0.38 * U, 0.09 * U, 0.12 * U), "Spine2", "cloth_red")
+    blob(V((0.12 * U, s2.y - 0.1 * U, -0.36 * U)), (0.07 * U, 0.06 * U, 0.07 * U), "Spine2", "iron")
+    for sx in (-1, 1):
+        limb(V((sx * 0.1 * U, s2.y + 0.1 * U, 0.1 * U)), V((sx * 0.1 * U, s2.y + 0.1 * U, -0.12 * U)), 0.015 * U, 0.015 * U, "Spine2", "leather_dark", 4)
+
+
+def pet_vendor():
+    # A beast tamer: a fur cloak over the shoulders, a leather vest on bare arms, a braid, a whip coiled at the hip.
+    h = head("Head")
+    _townsfolk_body("leather", "leather_dark", "leather_dark", "leather_dark", skin="skin", wide=1.1)
+    blob(h + V((0, 0.1 * U, 0.01 * U)), (0.088 * U, 0.105 * U, 0.095 * U), "Head", "skin")
+    blob(h + V((0, 0.14 * U, -0.02 * U)), (0.095 * U, 0.08 * U, 0.1 * U), "Head", "hair")
+    limb(h + V((0, 0.1 * U, -0.1 * U)), h + V((0, -0.15 * U, -0.13 * U)), 0.03 * U, 0.015 * U, "Head", "hair", 6)
+    for sx in (-1, 1):
+        block(h + V((sx * 0.03 * U, 0.11 * U, 0.088 * U)), (0.02 * U, 0.012 * U, 0.01 * U), "Head", "robe_dark")
+    for side in ("Left", "Right"):
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.05 * U, 0.045 * U, side + "Arm", "skin")
+    s2 = head("Spine2")
+    blob(V((0, s2.y + 0.1 * U, -0.03 * U)), (0.25 * U, 0.08 * U, 0.17 * U), "Spine2", "fur")
+    block(V((0, s2.y - 0.1 * U, -0.13 * U)), (0.34 * U, 0.4 * U, 0.04 * U), "Spine2", "fur_dark")
+    ring = V((-0.17 * U, head("Hips").y, 0.05 * U))
+    for k in range(10):
+        a = 2 * math.pi * k / 10
+        block(ring + V((0, math.sin(a) * 0.07 * U, math.cos(a) * 0.07 * U)), (0.025 * U, 0.03 * U, 0.03 * U), "Hips", "leather_dark")
+
+
 {"skeleton": skeleton, "cultist": cultist, "cutthroat": cutthroat, "ember_acolyte": ember_acolyte,
  "pyre_keeper": pyre_keeper, "carrion_bloat": carrion_bloat, "stash_keeper": stash_keeper, "healer": healer,
  "gambler": gambler, "trainer": trainer, "drowned": drowned, "harpooner": harpooner, "drowned_watchman": drowned_watchman,
  "skeleton_knight": skeleton_knight, "grave_priest": grave_priest, "hollowed": hollowed, "void_wraith": void_wraith,
  "rift_caller": rift_caller, "tidewife": tidewife, "saint_marrow": saint_marrow, "first_watchman": first_watchman,
  "ash_archivist": ash_archivist, "rift_mother": rift_mother, "gaoler": gaoler, "hanged_magistrate": hanged_magistrate,
+ "husk": husk, "husk_champion": husk_champion, "husk_elite": husk_elite, "ghoul": ghoul, "bandit_archer": bandit_archer,
+ "merchant": merchant, "pet_vendor": pet_vendor,
  "aldis": aldis, "tobin": tobin, "pellam": pellam, "bram": bram, "ivy": ivy}[NAME]()
 
 # Every bone a humanoid needs keeps a vertex weighted to it: Unity strips bones nothing is weighted to, and the avatar
@@ -846,6 +1010,6 @@ bpy.ops.export_scene.fbx(filepath=os.path.join(OUT, NAME + ".fbx"), use_selectio
 # The idle is the ghoul's own (EnemyBakeSetup takes it from ghoul.fbx): the body's exported animation does not come
 # through as a clip the bake finds, and a copy of ghoul.fbx as a clip file drew T-pose frames.
 for clip in (() if NAME in NPCS else ("run", "attack", "hit", "death")):
-    source = os.path.join(ENEMIES, DONOR, "%s_%s.fbx" % (DONOR, clip))
+    source = os.path.join(RIGS, DONOR, "%s_%s.fbx" % (DONOR, clip))
     shutil.copyfile(source, os.path.join(OUT, "%s_%s.fbx" % (NAME, clip)))
 print("REPORT wrote", OUT, len(mesh.polygons), "faces,", len(groups), "bones")

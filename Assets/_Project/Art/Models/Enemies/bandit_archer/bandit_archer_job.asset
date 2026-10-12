@@ -15,7 +15,8 @@ MonoBehaviour:
   characterName: bandit_archer
   bodies:
   - look: 
-    model: {fileID: 919132149155446097, guid: 7aa9268e641ff49d19a14b2741e60821, type: 3}
+    model: {fileID: 919132149155446097, guid: fa5d6e978bcd74216b11c48108dc2678, type: 3}
+    layer: 0
   pieces: []
   grips:
   - grip: 
@@ -32,7 +33,7 @@ MonoBehaviour:
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: run
-      clip: {fileID: -203655887218126122, guid: 2626a06e786a64ff18b04e8e36795cad, type: 3}
+      clip: {fileID: -203655887218126122, guid: 11144663f6da749809b05d172f9051b9, type: 3}
       frames: 10
       loop: 1
       playbackSeconds: 0.86666673
@@ -43,7 +44,7 @@ MonoBehaviour:
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: attack
-      clip: {fileID: -203655887218126122, guid: 6ca2096aee7364100934fa05d2c1b2c4, type: 3}
+      clip: {fileID: -203655887218126122, guid: 36205133f2f014ddd9be6aea477efb0f, type: 3}
       frames: 12
       loop: 0
       playbackSeconds: 1
@@ -54,7 +55,7 @@ MonoBehaviour:
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: hit
-      clip: {fileID: -203655887218126122, guid: 3be83ff7be7934e14bc33baef6f03aea, type: 3}
+      clip: {fileID: -203655887218126122, guid: ba4ac7cf0bea04c77ab608a8b00afe70, type: 3}
       frames: 4
       loop: 0
       playbackSeconds: 0.4
@@ -65,7 +66,7 @@ MonoBehaviour:
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: death
-      clip: {fileID: -203655887218126122, guid: 765cb10aad6cf4914934357de585b4fb, type: 3}
+      clip: {fileID: -203655887218126122, guid: 1447171d2d70f487ab99080adb17c476, type: 3}
       frames: 12
       loop: 0
       playbackSeconds: 3.1666667
@@ -84,4 +85,5 @@ MonoBehaviour:
   supersample: 4
   framesPerSecond: 12
   directions: 8
+  onlyRow: -1
   outputFolder: Assets/_Project/Resources/Characters/bandit_archer

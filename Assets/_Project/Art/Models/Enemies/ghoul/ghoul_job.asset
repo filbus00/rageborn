@@ -15,7 +15,8 @@ MonoBehaviour:
   characterName: ghoul
   bodies:
   - look: 
-    model: {fileID: 919132149155446097, guid: 1c40d4d2e9b434864898a0c26eb6790d, type: 3}
+    model: {fileID: 919132149155446097, guid: cf7e7867b631c46a98c49849091610a6, type: 3}
+    layer: 0
   pieces: []
   grips:
   - grip: 
@@ -32,7 +33,7 @@ MonoBehaviour:
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: run
-      clip: {fileID: -203655887218126122, guid: 2554d81d88c0145d0ba62a6ccda3adb1, type: 3}
+      clip: {fileID: -203655887218126122, guid: 0ce01f186cb7b4d8fadd9cadd24b6c44, type: 3}
       frames: 10
       loop: 1
       playbackSeconds: 0.86666673
@@ -43,7 +44,7 @@ MonoBehaviour:
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: attack
-      clip: {fileID: -203655887218126122, guid: f3bbbc7a9d3634c85bfd3eadd1075fcd, type: 3}
+      clip: {fileID: -203655887218126122, guid: fe8c21c07bc8b44fb83d729869ad10f2, type: 3}
       frames: 12
       loop: 0
       playbackSeconds: 0.8
@@ -54,7 +55,7 @@ MonoBehaviour:
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: hit
-      clip: {fileID: -203655887218126122, guid: 8b9fb7c1f2c614062853d78412ba22b8, type: 3}
+      clip: {fileID: -203655887218126122, guid: 18239134d72c7481bb021ca5e01f0aba, type: 3}
       frames: 4
       loop: 0
       playbackSeconds: 1.2
@@ -65,7 +66,7 @@ MonoBehaviour:
       legsGroundSpeed: 4.4
       offHandOnly: 0
     - name: death
-      clip: {fileID: -203655887218126122, guid: 13f1dd5b9074447adb56e37a9d11c197, type: 3}
+      clip: {fileID: -203655887218126122, guid: 2f3b6218b432940d39b6c88b7f0ea1ea, type: 3}
       frames: 12
       loop: 0
       playbackSeconds: 3.0000005
@@ -84,4 +85,5 @@ MonoBehaviour:
   supersample: 4
   framesPerSecond: 12
   directions: 8
+  onlyRow: -1
   outputFolder: Assets/_Project/Resources/Characters/ghoul

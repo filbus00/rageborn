@@ -22,12 +22,12 @@ MonoBehaviour:
   - grip: 
     clips:
     - name: idle
-      clip: {fileID: -203655887218126122, guid: acef9500f6e30484b890e4ac8eb32280, type: 3}
+      clip: {fileID: -623603649343465320, guid: 24145bf13ad35427f817f1e233f8fe4c, type: 3}
       frames: 24
       loop: 1
-      playbackSeconds: 16.633335
+      playbackSeconds: 8.3
       start: 0
-      end: 16.633335
+      end: 8.3
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
@@ -41,4 +41,5 @@ MonoBehaviour:
   supersample: 4
   framesPerSecond: 12
   directions: 8
+  onlyRow: -1
   outputFolder: Assets/_Project/Resources/Characters/pet_vendor
