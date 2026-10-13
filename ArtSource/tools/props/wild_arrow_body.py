@@ -129,13 +129,16 @@ def build(b):
                 p0 = V(b.arm.data.bones[bone].head_local)
                 p1 = V(b.arm.data.bones[nxt].head_local)
                 b.limb(p0, p1 + (p1 - p0) * (0.4 if i == 3 else 0.0), 0.011, 0.009, "%sHand%s%d" % (side, finger, i), "skin", 6)
-        # Leg: the trouser leg, a knee, the boot to the knee, the foot.
+        # Leg: a full buckskin thigh, a leather knee patch, the dark boot to below the knee with a pale cuff, the foot.
+        # (2026-10-13, the owner: the run looked like "spaghetti legs". Trousers and boots were one dark brown, as the
+        # trunk's bottom, so in a stride both legs read as one thin arc; now the thigh, knee and boot each show.)
         up, knee, ankle = h(side + "UpLeg"), h(side + "Leg"), h(side + "Foot")
-        b.limb(up + V((0, 0.03, 0)), knee, 0.082, 0.054, side + "UpLeg", "trousers", 10)
-        b.limb(knee, ankle, 0.048, 0.036, side + "Leg", "trousers", 10)
-        b.limb(knee + (ankle - knee) * 0.12, ankle + V((0, -0.02, 0)), 0.05, 0.043, side + "Leg", "boot", 10)
-        b.band(knee.y - (knee.y - ankle.y) * 0.16, knee.y - (knee.y - ankle.y) * 0.1, 0.056, 0.056, 0.056, 0.056, 0.012,
-               side + "Leg", "leather_dark", cx=knee.x + (ankle.x - knee.x) * 0.13, cz=knee.z, segs=12)
+        b.limb(up + V((0, 0.03, 0)), knee, 0.104, 0.066, side + "UpLeg", "trousers", 10)
+        b.ball(knee + V((0, 0.005, 0.02)), (0.05, 0.055, 0.045), side + "Leg", "leather", 10)
+        b.limb(knee, ankle, 0.058, 0.042, side + "Leg", "trousers", 10)
+        b.limb(knee + (ankle - knee) * 0.2, ankle + V((0, -0.02, 0)), 0.058, 0.047, side + "Leg", "boot", 10)
+        b.band(knee.y - (knee.y - ankle.y) * 0.24, knee.y - (knee.y - ankle.y) * 0.17, 0.064, 0.064, 0.064, 0.064, 0.014,
+               side + "Leg", "leather_hi", cx=knee.x + (ankle.x - knee.x) * 0.2, cz=knee.z + (ankle.z - knee.z) * 0.2, segs=12)
         toe = h(side + "ToeBase")
         end = h(side + "Toe_End")
         b.limb(ankle + V((0, -0.03, -0.02)), toe + V((0, 0.0, 0)), 0.045, 0.04, side + "Foot", "boot", 10)

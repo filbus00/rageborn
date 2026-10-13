@@ -35,8 +35,8 @@ COLORS = [
     ("feather", BONE[2]), ("feather_dark", EARTH[2]), ("cloth", EARTH[2]), ("cloth_dark", EARTH[1]), ("slit", (14, 10, 10)),
     # Her own body (2026-10-13, wild_arrow_body.py, in place of the Meshy model): skin, auburn hair, a green tunic.
     ("skin", SKIN[3]), ("skin_shade", SKIN[2]), ("lips", (150, 80, 70)), ("hair", (88, 40, 24)), ("hair_hi", (122, 60, 34)),
-    ("eye_dark", (24, 18, 16)), ("tunic", (46, 70, 44)), ("tunic_dark", (32, 48, 32)), ("trousers", (54, 44, 36)),
-    ("boot", (58, 38, 24)),
+    ("eye_dark", (24, 18, 16)), ("tunic", (46, 70, 44)), ("tunic_dark", (32, 48, 32)), ("trousers", (84, 76, 70)),
+    ("boot", (40, 26, 18)),
 ]
 NAMES = [c[0] for c in COLORS]
 STRIP = 16   # the strip's height is 1/STRIP of the texture
