@@ -605,6 +605,8 @@ namespace ARPG
         /// <summary>The first quest a giver can offer now, or null.</summary>
         public QuestDefinition OfferFrom(QuestGiver giver, int deepestDepth)
         {
+            if (!Features.Quests)
+                return null;
             foreach (var quest in QuestRules.All)
                 if (quest.Giver == giver && CanOffer(quest, deepestDepth))
                     return quest;
@@ -614,6 +616,8 @@ namespace ARPG
         /// <summary>An active quest of this giver's waiting to be handed in, or null.</summary>
         public QuestDefinition TurnInAt(QuestGiver giver)
         {
+            if (!Features.Quests)
+                return null;
             foreach (var quest in QuestRules.All)
                 if (quest.Giver == giver && CurrentStep(quest.Id)?.Kind == QuestStepKind.Return)
                     return quest;

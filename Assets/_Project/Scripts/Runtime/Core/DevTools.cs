@@ -37,24 +37,10 @@ namespace ARPG
             return filled.Count;
         }
 
-        /// <summary>Level 60, every talent at its full rank, and the stat points not yet spent spread evenly (2026-10-13),
-        /// each to whichever stat has the fewest.</summary>
-        public static void MaxCharacter(GameSession session)
-        {
-            while (!session.Progress.IsMaxLevel)
-                session.GrantExperience(session.Progress.XpToNextLevel - session.Progress.Xp);
-            session.Talents.MaxAll();
-            var points = session.Attributes;
-            var stats = (Attribute[])System.Enum.GetValues(typeof(Attribute));
-            while (points.Available(session.Level) > 0)
-            {
-                var least = stats[0];
-                foreach (var stat in stats)
-                    if (points.Spent(stat) < points.Spent(least))
-                        least = stat;
-                if (!points.Spend(least, session.Level))
-                    break;
-            }
-        }
+        /// <summary>Every boon at its full rank (the roguelite, 2026-10-13: there are no levels to give).</summary>
+        public static void MaxCharacter(GameSession session) => session.Talents.MaxAll();
+
+        /// <summary>Coins to try the town's upgrades.</summary>
+        public static void GiveCoins(GameSession session, int amount = 100000) => session.AddGold(amount);
     }
 }

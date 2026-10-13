@@ -21,7 +21,7 @@ namespace ARPG
         /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses. 13: adds each
         /// item's named legendary and the legendaries seen (the Codex). 14: the deepest depth and the stash. 15: the talent
         /// trees' ranks (2026-10-07; skill levels and the loadout are kept in the file but no longer used).</summary>
-        public const int CurrentVersion = 16;
+        public const int CurrentVersion = 17;
 
         public int version;
 
@@ -110,6 +110,16 @@ namespace ARPG
 
         // Version 16 (2026-10-08): the quests taken, each with its current step and whether it is done.
         public List<QuestData> quests = new List<QuestData>();
+
+        // 17 (2026-10-13): the roguelite. The town's upgrades (by name and rank), runs and the deepest ever, and this
+        // run's boon choices owed, rerolls left, its item sent to the stash and whether it has begun.
+        public List<TalentData> metaUpgrades = new List<TalentData>();
+        public int metaRuns;
+        public int metaDeepest;
+        public int pendingBoons;
+        public int rerollsLeft;
+        public bool sentToStash;
+        public bool runStarted;
     }
 
     [Serializable]

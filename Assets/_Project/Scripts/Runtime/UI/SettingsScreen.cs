@@ -227,7 +227,8 @@ namespace ARPG
             {
                 Group("Developer");
                 DevAction("Legendaries", "Equip all", () => DevTools.EquipLegendaries(GameSession.Current));
-                DevAction("Level 60, all talents", "Give", () => DevTools.MaxCharacter(GameSession.Current));
+                DevAction("Every boon", "Give", () => DevTools.MaxCharacter(GameSession.Current));
+                DevAction("100,000 coins", "Give", () => DevTools.GiveCoins(GameSession.Current));
             }
         }
 

@@ -43,8 +43,7 @@ namespace ARPG.Tests
         public void Levels_AreSaved_AndAVersionNineSaveStartsAtOne()
         {
             var session = new GameSession(1);
-            while (session.Level < 5)
-                session.GrantExperience(Experience.XpToNextLevel(session.Level));
+            session.ReachDepth(5);
             Assert.IsTrue(session.SkillLevels.Raise("Hew", 1, session.Level));
             Assert.IsTrue(SaveCodec.TryParse(SaveCodec.ToJson(SaveCodec.Capture(session, 1)), out var data, out var error), error);
             Assert.AreEqual(2, SaveCodec.Restore(data, 1).SkillLevels.LevelOf("Hew"));

@@ -91,7 +91,8 @@ namespace ARPG
             if (enemies != null)
                 enemies.Depth = depth;
             // The deepest depth reached brings newcomers to town (2026-10-05); the first time, a banner says who.
-            if (session.ReachDepth(depth) && Newcomers.TryArrivingAt(depth, out var newcomer))
+            // A new depth owes a boon (the roguelite, 2026-10-13; BoonDirector offers it).
+            if (session.ReachDepth(depth) && !Features.Roguelite && Newcomers.TryArrivingAt(depth, out var newcomer))
                 arrivalNotice = $"Word from town: a {Newcomers.Name(newcomer).ToLowerInvariant()} has arrived.";
 
             var shapes = new List<RoomShape>();
@@ -132,7 +133,9 @@ namespace ARPG
             }
 
             var root = new GameObject("Level " + depth).transform;
-            if (depth > 1)
+            // The roguelite (2026-10-13): a straight descent, no way back up.
+            if (Features.Roguelite) { }
+            else if (depth > 1)
                 AddStairs(root, "Stairs Up", Layout.StairsUp, Layout.StairsUpInto, dungeonScene, depth - 1, Arrival.FromBelow);
             else
                 AddStairs(root, "Stairs Up", Layout.StairsUp, Layout.StairsUpInto, townScene, 0, Arrival.FromBelow);
@@ -152,9 +155,11 @@ namespace ARPG
             // The quests' things for this depth (2026-10-08).
             QuestObjectives.Create(this, Layout, root, depth, levelSeed);
 
-            // Docs/05: a waypoint on every level; the Wanderer with the Portal Tome on its depth; an open portal.
-            Waypoint.Create(depth, IsoMath.CellToGround(Layout.Waypoint), root);
-            if (depth == DungeonRules.PortalTomeDepth && Layout.HasWandererSpot)
+            // Docs/05: a waypoint on every level; the Wanderer with the Portal Tome on its depth; an open portal. None in
+            // the roguelite (2026-10-13): the run is one straight descent.
+            if (!Features.Roguelite)
+                Waypoint.Create(depth, IsoMath.CellToGround(Layout.Waypoint), root);
+            if (!Features.Roguelite && depth == DungeonRules.PortalTomeDepth && Layout.HasWandererSpot)
                 Wanderer.Create(IsoMath.CellToGround(Layout.WandererSpot), root);
             if (session.PortalDepth == depth)
                 TownPortal.Create(false, depth, session.PortalPosition, root);

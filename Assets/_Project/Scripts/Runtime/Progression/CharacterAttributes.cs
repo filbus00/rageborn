@@ -31,7 +31,8 @@ namespace ARPG
         public event Action Changed;
 
         /// <summary>Points earned by a level: 5 a level from 2, so 295 at 60.</summary>
-        public static int Earned(int level) => PointsPerLevel * Mathf.Max(0, level - 1);
+        // The roguelite (2026-10-13): no stat points; base stats are bought in town (MetaProgress).
+        public static int Earned(int level) => 0;
 
         public int Spent(Attribute attribute) => spent[(int)attribute];
 

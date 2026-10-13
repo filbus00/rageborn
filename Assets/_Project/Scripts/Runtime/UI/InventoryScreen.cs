@@ -686,12 +686,15 @@ namespace ARPG
             var tabs = new List<(string label, System.Action open, bool enabled, bool active)>
             {
                 ("Inventory", null, true, true),
-                (skillPoints > 0 ? $"Talents +{skillPoints}" : "Talents", TalentScreen.Open, true, false),
-                (statPoints > 0 ? $"Stats +{statPoints}" : "Stats", StatsScreen.Open, true, false),
-                ("Quests", QuestLogScreen.Open, true, false),
-                ("Codex", CodexScreen.Open, true, false),
-                ("Settings", SettingsScreen.Open, true, false),
+                (Features.Roguelite ? "Boons" : skillPoints > 0 ? $"Talents +{skillPoints}" : "Talents", TalentScreen.Open, true, false),
             };
+            // The roguelite (2026-10-13): no stat points and no quests.
+            if (!Features.Roguelite)
+                tabs.Add((statPoints > 0 ? $"Stats +{statPoints}" : "Stats", StatsScreen.Open, true, false));
+            if (Features.Quests)
+                tabs.Add(("Quests", QuestLogScreen.Open, true, false));
+            tabs.Add(("Codex", CodexScreen.Open, true, false));
+            tabs.Add(("Settings", SettingsScreen.Open, true, false));
             for (var i = 0; i < tabs.Count; i++)
             {
                 var (label, open, enabled, active) = tabs[i];

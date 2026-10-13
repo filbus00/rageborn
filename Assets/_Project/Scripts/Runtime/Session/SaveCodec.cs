@@ -31,7 +31,18 @@ namespace ARPG
             MigrateFrom13, // 13 to 14: no deepest depth or stash existed; the deepest is the deepest waypoint, the stash empty.
             MigrateFrom14, // 14 to 15: no talents existed; nothing is learned and every point is unspent (skill points are not carried over).
             MigrateFrom15, // 15 to 16: no quests existed; none is taken.
+            MigrateFrom16, // 16 to 17: the roguelite; the save director sets such a save aside (FirstRogueliteVersion).
         };
+
+        static SaveData MigrateFrom16(SaveData data)
+        {
+            data.metaUpgrades = new List<TalentData>();
+            return data;
+        }
+
+        /// <summary>The first version of the roguelite (2026-10-13): older saves are set aside, the owner's "disregard my
+        /// saves".</summary>
+        public const int FirstRogueliteVersion = 17;
 
         static SaveData MigrateFrom15(SaveData data)
         {
@@ -69,7 +80,7 @@ namespace ARPG
         public const int FirstBowsVersion = 12;
 
         /// <summary>Whether a parsed save is from before bows only.</summary>
-        public static bool IsRetired(SaveData data) => data != null && data.readFromVersion > 0 && data.readFromVersion < FirstBowsVersion;
+        public static bool IsRetired(SaveData data) => data != null && data.readFromVersion > 0 && data.readFromVersion < FirstRogueliteVersion;
 
         static SaveData MigrateFrom11(SaveData data)
         {
@@ -263,7 +274,15 @@ namespace ARPG
                 codex = session.CodexNames(),
                 equipped = CaptureEquipment(session.Equipment),
                 deepestDepth = session.DeepestDepth,
+                metaRuns = session.Meta.Runs,
+                metaDeepest = session.Meta.DeepestEver,
+                pendingBoons = session.PendingBoons,
+                rerollsLeft = session.RerollsLeft,
+                sentToStash = session.SentToStash,
+                runStarted = session.RunStarted,
             };
+            foreach (var pair in session.Meta.Ranks)
+                data.metaUpgrades.Add(new TalentData { id = pair.Key.ToString(), rank = pair.Value });
 
             foreach (var item in session.Stash)
                 data.stash.Add(CaptureItem(item));
@@ -313,6 +332,15 @@ namespace ARPG
             session.RestorePotion(data.potionCharges, data.potionKillProgress);
             session.DungeonSeed = data.dungeonSeed;
             session.ReachDepth(data.deepestDepth);
+            var meta = new MetaProgress { Runs = data.metaRuns, DeepestEver = data.metaDeepest };
+            foreach (var entry in data.metaUpgrades ?? new List<TalentData>())
+                if (TryParseEnum(entry.id, out MetaUpgradeId upgrade))
+                    meta.Restore(upgrade, entry.rank);
+            session.RestoreMeta(meta);
+            session.PendingBoons = data.pendingBoons;
+            session.RerollsLeft = data.rerollsLeft;
+            session.SentToStash = data.sentToStash;
+            session.RunStarted = data.runStarted;
             foreach (var saved in data.stash ?? new List<ItemData>())
             {
                 var stored = RestoreItem(saved, warnings);

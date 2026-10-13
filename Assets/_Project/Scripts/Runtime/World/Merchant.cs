@@ -36,7 +36,11 @@ namespace ARPG
                 return;
             if (QuestTalk.TryTalk(QuestGiver.Merchant))
                 return;
-            bag.OpenAtMerchant();
+            // The roguelite (2026-10-13): Garrett outfits her for the next run instead of buying.
+            if (Features.Roguelite)
+                UpgradeShopScreen.Open(MetaShop.Outfitting, "Garrett");
+            else
+                bag.OpenAtMerchant();
         }
     }
 }

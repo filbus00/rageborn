@@ -50,7 +50,9 @@ namespace ARPG
                     body.linearVelocity = Vector2.zero;
             }
 
-            GameSession.Current.Die(LevelContext.CurrentId, ground);
+            // The roguelite (2026-10-13): no corpse; the run ends when the town loads (RunDirector).
+            if (!Features.Roguelite)
+                GameSession.Current.Die(LevelContext.CurrentId, ground);
 
             // At once, not after the debounce: quitting the app during the fade must not undo the death.
             SaveDirector.SaveNow();
@@ -64,6 +66,7 @@ namespace ARPG
             if (fade != null)
                 yield return fade.FadeOut(fadeSeconds);
 
+            RunDirector.BeforeTownLoad(died: true);
             LoadTimer.Begin(townScene);
             SceneManager.LoadScene(townScene);
         }

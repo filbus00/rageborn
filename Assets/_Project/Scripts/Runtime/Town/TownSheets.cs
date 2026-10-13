@@ -27,6 +27,15 @@ namespace ARPG
 
         public void Close() => gameObject.SetActive(false);
 
+        /// <summary>A sheet that cannot be put away without a choice (no Close, the backdrop does nothing).</summary>
+        protected virtual bool MustChoose => false;
+
+        void CloseByTap()
+        {
+            if (!MustChoose)
+                Close();
+        }
+
         protected void Show()
         {
             gameObject.SetActive(true);
@@ -68,7 +77,7 @@ namespace ARPG
             rootRect.offsetMin = rootRect.offsetMax = Vector2.zero;
             root.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
             var screen = root.AddComponent<T>();
-            root.GetComponent<Button>().onClick.AddListener(screen.Close);
+            root.GetComponent<Button>().onClick.AddListener(screen.CloseByTap);
 
             var sheet = new GameObject("Sheet", typeof(RectTransform), typeof(Image), typeof(VerticalLayoutGroup), typeof(Button));
             sheet.transform.SetParent(root.transform, false);
@@ -121,6 +130,7 @@ namespace ARPG
 
             var close = Button(sheet.transform, "Close", screen.Close, 40);
             Height(close.gameObject, 150f);
+            close.gameObject.SetActive(!screen.MustChoose);
             return screen;
         }
 
@@ -278,19 +288,163 @@ namespace ARPG
         protected override void Render()
         {
             var session = GameSession.Current;
-            subtitle.text = $"{session.Stash.Count} of {GameSession.StashCapacity} kept.  Tap an item to move it.";
+            // The roguelite (2026-10-13): slots are bought here; an item goes in once a run, from the dungeon (the Bag),
+            // and comes out into the backpack to take on the next run.
+            var slots = session.Meta.StashSlots;
+            subtitle.text = $"{session.Stash.Count} of {slots} slots used.  {Gold(session.Gold)}.  Tap an item to take it on the next run.";
+            var slot = MetaRules.Get(MetaUpgradeId.StashSlot);
+            var maxed = session.Meta.IsMaxed(MetaUpgradeId.StashSlot);
+            var cost = session.Meta.NextCost(MetaUpgradeId.StashSlot);
+            Row($"<b>{slot.Name}</b>\n<size=28><color=#CCCCCC>One more slot. Send one item a run from the Bag.</color></size>",
+                maxed ? "All bought" : $"Buy {cost:N0}", !maxed && session.Gold >= cost, () =>
+                {
+                    if (session.BuyUpgrade(MetaUpgradeId.StashSlot))
+                        Sfx.Play(SoundId.LevelUp, 0.6f);
+                    Rerender();
+                });
             Heading("In the stash");
             Tiles(session.Stash, item =>
             {
                 if (session.TakeFromStash(item))
                     Sfx.Play(SoundId.Pickup);
             }, "Nothing kept yet.");
+            if (Features.Roguelite)
+                return;
             Heading("In the backpack");
             Tiles(session.Inventory.Items, item =>
             {
                 if (session.StoreInStash(item))
                     Sfx.Play(SoundId.Pickup);
             }, "The backpack is empty.");
+        }
+    }
+
+    /// <summary>
+    /// A townsperson's upgrades (the roguelite, 2026-10-13): Brunhilde's training, Miranda's brews, Sylthara's secrets of the
+    /// boons, Garrett's outfitting. Each row the upgrade, what it gives now and next, and its price in coins.
+    /// </summary>
+    public class UpgradeShopScreen : TownSheets
+    {
+        static readonly System.Collections.Generic.Dictionary<string, UpgradeShopScreen> screens =
+            new System.Collections.Generic.Dictionary<string, UpgradeShopScreen>();
+
+        MetaShop shop;
+
+        public static void Open(MetaShop shop, string title)
+        {
+            if (!screens.TryGetValue(title, out var screen) || screen == null)
+                screens[title] = screen = Make<UpgradeShopScreen>(title);
+            screen.shop = shop;
+            screen.Show();
+        }
+
+        protected override void Render()
+        {
+            var session = GameSession.Current;
+            subtitle.text = $"{Gold(session.Gold)}.  Upgrades last for every run.";
+            foreach (var upgrade in MetaRules.All)
+            {
+                if (upgrade.Shop != shop)
+                    continue;
+                var rank = session.Meta.Rank(upgrade.Id);
+                var maxed = rank >= upgrade.MaxRanks;
+                var cost = session.Meta.NextCost(upgrade.Id);
+                var now = rank > 0 ? MetaRules.Describe(upgrade, rank) : "Not yet bought.";
+                var next = maxed ? "" : $"\n<size=26><color=#E8C66A>Next: {MetaRules.Describe(upgrade, rank + 1)}</color></size>";
+                var captured = upgrade.Id;
+                Row($"<b>{upgrade.Name}</b>  <size=28>({rank}/{upgrade.MaxRanks})</size>\n<size=28><color=#CCCCCC>{now}</color></size>{next}",
+                    maxed ? "All bought" : $"Buy {cost:N0}", !maxed && session.Gold >= cost, () =>
+                    {
+                        if (session.BuyUpgrade(captured))
+                            Sfx.Play(SoundId.LevelUp, 0.6f);
+                        Rerender();
+                    }, 190f);
+            }
+        }
+    }
+
+    /// <summary>
+    /// The boon choice (the roguelite, 2026-10-13): on each new depth three boons (four with A Fourth Path), drawn from the
+    /// talent nodes she can take another rank of; she takes one. Rerolls bought from Sylthara draw again. The game waits
+    /// while it is open.
+    /// </summary>
+    public class BoonScreen : TownSheets
+    {
+        static BoonScreen current;
+        static readonly System.Random random = new System.Random();
+        readonly System.Collections.Generic.List<string> offer = new System.Collections.Generic.List<string>();
+        float savedTimeScale = 1f;
+
+        public static bool IsOpen => current != null && current.gameObject.activeSelf;
+
+        // A boon owed is taken before the run goes on.
+        protected override bool MustChoose => true;
+
+        public static void Open()
+        {
+            if (current == null)
+                current = Make<BoonScreen>("Choose a Boon");
+            current.Draw();
+            current.savedTimeScale = Time.timeScale > 0f ? Time.timeScale : 1f;
+            Time.timeScale = 0f;
+            current.Show();
+        }
+
+        void OnDisable()
+        {
+            if (Time.timeScale == 0f)
+                Time.timeScale = savedTimeScale;
+        }
+
+        void Draw()
+        {
+            var session = GameSession.Current;
+            offer.Clear();
+            offer.AddRange(BoonRules.Offer(session.Talents, session.Meta.MaxBoonTier, session.Meta.BoonChoices, random));
+        }
+
+        protected override void Render()
+        {
+            var session = GameSession.Current;
+            subtitle.text = $"Depth {session.DeepestDepth}.  {(session.PendingBoons > 1 ? session.PendingBoons + " boons owed." : "One boon.")}";
+            if (offer.Count == 0)
+            {
+                Row("<b>Nothing left to learn</b>", "Go on", true, () =>
+                {
+                    session.PendingBoons = 0;
+                    Close();
+                });
+                return;
+            }
+            foreach (var id in offer)
+            {
+                var node = TalentRules.Get(id);
+                var rank = session.Talents.RankOf(id);
+                var ranks = node.MaxRanks > 1 ? $"  <size=28>({rank + 1}/{node.MaxRanks})</size>" : "";
+                var captured = id;
+                Row($"<b>{node.Name}</b>{ranks}\n<size=28><color=#CCCCCC>{TalentRules.Describe(node, rank + 1)}</color></size>", "Take", true, () =>
+                {
+                    if (!session.TakeBoon(captured))
+                        return;
+                    Sfx.Play(SoundId.LevelUp, 0.8f);
+                    if (session.PendingBoons > 0)
+                    {
+                        Draw();
+                        Rerender();
+                    }
+                    else
+                        Close();
+                }, 190f);
+            }
+            if (session.RerollsLeft > 0)
+                Row($"<b>Reroll</b>\n<size=28><color=#CCCCCC>{session.RerollsLeft} left this run.</color></size>", "Reroll", true, () =>
+                {
+                    if (session.UseReroll())
+                    {
+                        Draw();
+                        Rerender();
+                    }
+                });
         }
     }
 

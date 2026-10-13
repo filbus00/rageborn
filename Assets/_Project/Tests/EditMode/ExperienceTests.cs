@@ -120,39 +120,6 @@ namespace ARPG.Tests
             Assert.AreEqual(0, new CharacterProgress(1, -5).Xp);
         }
 
-        [Test]
-        public void GrantExperience_RaisesChangedAndLeveledUp_OnlyOnALevelUp()
-        {
-            var session = new GameSession();
-            var changed = 0;
-            var modified = 0;
-            var leveledTo = 0;
-            session.Changed += () => changed++;
-            session.Modified += () => modified++;
-            session.LeveledUp += level => leveledTo = level;
 
-            session.GrantExperience(8);
-            Assert.AreEqual(0, changed);
-            Assert.AreEqual(1, modified, "plain XP must still be saved");
-            Assert.AreEqual(0, leveledTo);
-
-            session.GrantExperience(400);
-            Assert.AreEqual(1, changed, "maximum life depends on level");
-            Assert.AreEqual(2, leveledTo);
-            Assert.AreEqual(2, session.Level);
-        }
-
-        [Test]
-        public void ALevelUp_RefillsLife_ButPlainXpDoesNot()
-        {
-            var session = new GameSession();
-            session.LifeFraction = 0.3f;
-
-            session.GrantExperience(8);
-            Assert.AreEqual(0.3f, session.LifeFraction);
-
-            session.GrantExperience(400);
-            Assert.AreEqual(1f, session.LifeFraction);
-        }
     }
 }

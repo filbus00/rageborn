@@ -16,16 +16,14 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void MaxCharacter_ReachesTheLevelCap_WithEveryTalent()
+        public void MaxCharacter_GivesEveryBoon_AndCoinsCome()
         {
             var session = new GameSession(7);
             DevTools.MaxCharacter(session);
-            Assert.AreEqual(Experience.MaxLevel, session.Level);
             foreach (var node in TalentRules.Nodes)
                 Assert.AreEqual(node.MaxRanks, session.Talents.RankOf(node.Id), node.Id);
-            Assert.AreEqual(0, session.Attributes.Available(session.Level));
-            foreach (Attribute stat in System.Enum.GetValues(typeof(Attribute)))
-                Assert.AreEqual(AttributePoints.Earned(session.Level) / 5, session.Attributes.Spent(stat), stat.ToString());
+            DevTools.GiveCoins(session, 500);
+            Assert.AreEqual(500, session.Gold);
         }
     }
 }

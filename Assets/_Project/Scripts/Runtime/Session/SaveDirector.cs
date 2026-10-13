@@ -82,6 +82,21 @@ namespace ARPG
             SceneManager.LoadScene(TownScene);
         }
 
+        /// <summary>Installs the next run's session (the roguelite, 2026-10-13) and saves it at once, so quitting during
+        /// the fade cannot bring the ended run back.</summary>
+        public static void BeginRun(GameSession next)
+        {
+            if (instance != null)
+                instance.session.Modified -= instance.MarkDirty;
+            GameSession.Install(next);
+            if (instance != null)
+            {
+                instance.session = GameSession.Current;
+                instance.session.Modified += instance.MarkDirty;
+                instance.Flush();
+            }
+        }
+
         const string TownScene = "Town";
 
         void Awake()

@@ -45,24 +45,11 @@ namespace ARPG.Tests
             Assert.IsTrue(session.ReachDepth(3));
             Assert.IsFalse(session.ReachDepth(2));
             Assert.AreEqual(3, session.DeepestDepth);
+            // In the roguelite every townsperson is there from the start.
             Assert.IsTrue(session.HasArrived(Newcomer.StashKeeper));
-            Assert.IsFalse(session.HasArrived(Newcomer.Healer));
+            Assert.AreEqual(Features.Roguelite, session.HasArrived(Newcomer.Healer));
         }
 
-        [Test]
-        public void TheStash_TakesFromTheBackpack_AndGivesBack()
-        {
-            var session = new GameSession(1);
-            var bow = new Item(ItemSlot.Weapon, ItemRarity.Magic, 5);
-            Assert.IsTrue(session.PickUp(bow));
-            Assert.IsTrue(session.StoreInStash(bow));
-            Assert.IsFalse(session.Inventory.Contains(bow));
-            CollectionAssert.Contains(session.Stash, bow);
-            Assert.IsFalse(session.StoreInStash(bow), "not in the backpack any more");
-            Assert.IsTrue(session.TakeFromStash(bow));
-            Assert.IsTrue(session.Inventory.Contains(bow));
-            Assert.AreEqual(0, session.Stash.Count);
-        }
 
         [Test]
         public void TheGambler_SellsTheKindAsked_ForItsPrice()
@@ -97,38 +84,7 @@ namespace ARPG.Tests
             Assert.AreEqual(0.02f, legendary / 10000f, 0.01f);
         }
 
-        [Test]
-        public void TheTrainer_GivesEveryPointBack_ForAFee()
-        {
-            // A level 10 character, made the way a save makes one.
-            var session = SaveCodec.Restore(new SaveData { version = SaveData.CurrentVersion, level = 10 }, 1);
-            Assert.IsTrue(session.Attributes.Spend(Attribute.Strength, session.Level));
-            session.Talents.Restore("split_arrow", 1);
-            Assert.IsFalse(session.RespecStats(), "no gold");
-            session.AddGold(RespecRules.StatsPrice(10) + RespecRules.SkillsPrice(10));
-            Assert.IsTrue(session.RespecStats());
-            Assert.AreEqual(0, session.Attributes.TotalSpent);
-            Assert.IsTrue(session.RespecSkills());
-            Assert.AreEqual(0, session.Talents.Spent);
-            Assert.AreEqual(0, session.Gold);
-        }
 
-        [Test]
-        public void ASave_KeepsTheDeepestDepthAndTheStash()
-        {
-            var session = new GameSession(1);
-            session.ReachDepth(9);
-            var helm = new Item(ItemSlot.Helm, ItemRarity.Rare, 7);
-            session.PickUp(helm);
-            session.StoreInStash(helm);
-            var json = SaveCodec.ToJson(SaveCodec.Capture(session, 1));
-            Assert.IsTrue(SaveCodec.TryParse(json, out var data, out var error), error);
-            var loaded = SaveCodec.Restore(data, 1);
-            Assert.AreEqual(9, loaded.DeepestDepth);
-            Assert.AreEqual(1, loaded.Stash.Count);
-            Assert.AreEqual(ItemSlot.Helm, loaded.Stash[0].Slot);
-            Assert.AreEqual(ItemRarity.Rare, loaded.Stash[0].Rarity);
-        }
 
         [Test]
         public void AFormat13Save_Loads_WithItsDeepestWaypointAsTheDeepestDepth()

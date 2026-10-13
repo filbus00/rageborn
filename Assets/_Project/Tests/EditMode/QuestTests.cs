@@ -7,6 +7,13 @@ namespace ARPG.Tests
 {
     public class QuestTests
     {
+        // Quests are switched off in the roguelite; their rules are kept and tested with them on.
+        [SetUp]
+        public void QuestsOn() => Features.Quests = true;
+
+        [TearDown]
+        public void QuestsOff() => Features.Quests = false;
+
         [Test]
         public void Aldis_OffersTheFirstFire_AndTheNextOnlyAfterIt()
         {

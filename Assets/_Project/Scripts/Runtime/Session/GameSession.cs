@@ -271,12 +271,16 @@ namespace ARPG
             Talents.Changed += RaiseModified;
             Quests = new QuestState();
             Quests.Changed += RaiseModified;
-            Quests.Changed += () => Potion.ExtraCharges = Quests.Boons.PotionCharges;
+            // The roguelite (2026-10-13): extra potion charges are bought in town.
+            Meta = new MetaProgress();
+            Talents.Meta = Meta;
+            Meta.Changed += OnMetaChanged;
             // Stat points change max life, armor and the rest, so they raise Changed (which raises Modified) too.
             Attributes = new AttributePoints();
             Attributes.Changed += NotifyChanged;
             Pets = new PetState();
             Pets.Changed += NotifyChanged;
+            Potion.ExtraCharges = Meta.ExtraPotionCharges;
 
             // Its own number, not the loot seed itself, so the dungeon and the drops do not move in step.
             DungeonSeed = DungeonRules.LevelSeed(lootSeed, 0);
@@ -450,7 +454,133 @@ namespace ARPG
 
         /// <summary>The pets bought at the Pet Vendor, the active one and its rules (Docs/02, decided 2026-09-30). Its
         /// changes raise <see cref="Changed"/>.</summary>
-        public PetState Pets { get; }
+        public PetState Pets { get; private set; }
+
+        // --- The roguelite (2026-10-13) -------------------------------------------------------------------------------
+
+        /// <summary>What survives every run (the town's upgrades). Saved.</summary>
+        public MetaProgress Meta { get; private set; }
+
+        /// <summary>Boon choices owed: one for each new depth reached this run, taken in the dungeon. Saved.</summary>
+        public int PendingBoons { get; internal set; }
+
+        /// <summary>Rerolls of the boon choice left this run. Saved.</summary>
+        public int RerollsLeft { get; internal set; }
+
+        /// <summary>Whether this run's one item has gone to the stash. Saved.</summary>
+        public bool SentToStash { get; internal set; }
+
+        /// <summary>Whether this run has begun (she has gone down the stairs). Saved.</summary>
+        public bool RunStarted { get; internal set; }
+
+        void OnMetaChanged()
+        {
+            Talents.Refresh();
+            Potion.ExtraCharges = Meta.ExtraPotionCharges;
+            NotifyChanged();
+        }
+
+        /// <summary>Puts back the meta read from a save.</summary>
+        internal void RestoreMeta(MetaProgress meta)
+        {
+            Meta.Changed -= OnMetaChanged;
+            Meta = meta;
+            Talents.Meta = meta;
+            Meta.Changed += OnMetaChanged;
+            Potion.ExtraCharges = Meta.ExtraPotionCharges;
+        }
+
+        /// <summary>Buys the next rank of a town upgrade with the coins. False when it is maxed or the coins are short.</summary>
+        public bool BuyUpgrade(MetaUpgradeId id)
+        {
+            if (Meta.IsMaxed(id))
+                return false;
+            var cost = Meta.NextCost(id);
+            if (Gold < cost)
+                return false;
+            Gold -= cost;
+            Meta.Raise(id);
+            if (!RunStarted)
+                Equip(StartingKit());
+            return true;
+        }
+
+        /// <summary>Takes a boon: a rank of a talent node, paying one pending choice.</summary>
+        public bool TakeBoon(string id)
+        {
+            if (PendingBoons <= 0 || !Talents.Grant(id))
+                return false;
+            PendingBoons--;
+            NotifyChanged();
+            return true;
+        }
+
+        /// <summary>Spends a reroll of the boon choice. False when none are left.</summary>
+        public bool UseReroll()
+        {
+            if (RerollsLeft <= 0)
+                return false;
+            RerollsLeft--;
+            RaiseModified();
+            return true;
+        }
+
+        /// <summary>The run's one item to the stash, from the backpack or worn. False when it was sent already, the stash
+        /// has no free slot, or the item is not hers.</summary>
+        public bool SendToStash(Item item)
+        {
+            if (SentToStash || item == null || stash.Count >= Meta.StashSlots)
+                return false;
+            if (!Inventory.Remove(item))
+            {
+                var place = Equipment.PlaceOf(item);
+                if (place == null)
+                    return false;
+                Equipment = Equipment.With(place.Value, null);
+            }
+            stash.Add(item);
+            SentToStash = true;
+            NotifyChanged();
+            return true;
+        }
+
+        /// <summary>The kit she starts a run with: a bow and a quiver, better as they are bought, and armour once bought.</summary>
+        public EquipmentState StartingKit()
+        {
+            var bow = MetaRules.KitRarity(Meta.Rank(MetaUpgradeId.StartBow));
+            var quiver = MetaRules.KitRarity(Meta.Rank(MetaUpgradeId.StartQuiver));
+            var kit = EquipmentState.Starting;
+            if (bow != ItemRarity.Common)
+                kit = kit.With(ItemSlot.Weapon, Loot.RollItemOf(ItemSlot.Weapon, bow, 1));
+            if (quiver != ItemRarity.Common)
+                kit = kit.With(ItemSlot.OffHand, Loot.RollItemOf(ItemSlot.Shield, quiver, 1));
+            var armour = Meta.Rank(MetaUpgradeId.StartArmour);
+            if (armour > 0)
+                kit = kit.With(ItemSlot.Chest, Loot.RollItemOf(ItemSlot.Chest, MetaRules.KitRarity(armour), 1));
+            return kit;
+        }
+
+        /// <summary>
+        /// Ends this run and makes the next (the roguelite: at death or after the last boss): a fresh session with the
+        /// coins, the town's upgrades, the pets, the stash, the Codex and the hints carried over, and the starting kit on.
+        /// </summary>
+        public GameSession NextRun(int lootSeed)
+        {
+            var next = new GameSession(lootSeed);
+            next.Gold = Gold;
+            Meta.Runs++;
+            next.RestoreMeta(Meta);
+            Pets.Changed -= NotifyChanged;
+            next.Pets = Pets;
+            next.Pets.Changed += next.NotifyChanged;
+            next.stash.AddRange(stash);
+            foreach (var id in codex)
+                next.codex.Add(id);
+            next.SetOnboarding(onboarding);
+            next.Equipment = next.StartingKit();
+            next.LifeFraction = 1f;
+            return next;
+        }
 
         public int Level => Progress.Level;
 
@@ -529,12 +659,22 @@ namespace ARPG
         {
             if (depth <= DeepestDepth)
                 return false;
+            if (DeepestDepth == 0)
+                RerollsLeft = Meta.RerollsPerRun;
             DeepestDepth = depth;
+            RunStarted = true;
+            // The roguelite (2026-10-13): a boon for every new depth, and she fights at the depth's level.
+            PendingBoons++;
+            Meta.RecordDepth(depth);
+            var level = BoonRules.LevelAt(depth);
+            if (level > Progress.Level)
+                Progress = new CharacterProgress(level);
             NotifyChanged();
             return true;
         }
 
-        public bool HasArrived(Newcomer who) => Newcomers.HasArrived(who, DeepestDepth);
+        // The roguelite (2026-10-13): everyone is in town from the start; they sell the town's upgrades.
+        public bool HasArrived(Newcomer who) => Features.Roguelite || Newcomers.HasArrived(who, DeepestDepth);
 
         /// <summary>How many items the stash holds (a list, not a grid). Tuning.</summary>
         public const int StashCapacity = 60;
@@ -548,7 +688,7 @@ namespace ARPG
         /// backpack.</summary>
         public bool StoreInStash(Item item)
         {
-            if (stash.Count >= StashCapacity || !Inventory.Remove(item))
+            if (stash.Count >= Meta.StashSlots || !Inventory.Remove(item))
                 return false;
             stash.Add(item);
             NotifyChanged();
@@ -784,6 +924,10 @@ namespace ARPG
         /// </summary>
         public int GrantExperience(int amount)
         {
+            // The roguelite (2026-10-13): no experience; her level follows the depth (ReachDepth).
+            return 0;
+#pragma warning disable CS0162
+
             var before = Progress.Xp;
             var gained = Progress.Add(amount);
             if (gained > 0)
@@ -798,9 +942,10 @@ namespace ARPG
             }
             return gained;
         }
+#pragma warning restore CS0162
 
         /// <summary>Puts back the potion charges read from a save.</summary>
-        internal void RestorePotion(int charges, int killProgress) => SetPotion(new AutoPotion(charges, killProgress, Quests.Boons.PotionCharges));
+        internal void RestorePotion(int charges, int killProgress) => SetPotion(new AutoPotion(charges, killProgress, Meta.ExtraPotionCharges));
 
         void SetPotion(AutoPotion potion)
         {

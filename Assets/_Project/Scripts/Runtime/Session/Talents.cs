@@ -67,7 +67,8 @@ namespace ARPG
         public const int Tiers = 6;
 
         /// <summary>Points earned by a character level: one a level from 2 (the owner: "1 per level from level 2").</summary>
-        public static int EarnedPoints(int characterLevel) => Mathf.Max(0, characterLevel - 1);
+        // The roguelite (2026-10-13): no points; talents come only as boons (BoonRules), one a new depth.
+        public static int EarnedPoints(int characterLevel) => 0;
 
         public static string TreeName(TalentTree tree) => tree switch
         {
@@ -254,6 +255,38 @@ namespace ARPG
             Changed?.Invoke();
         }
 
+        /// <summary>A boon (the roguelite, 2026-10-13): one more rank of a node, no points asked.</summary>
+        public bool Grant(string id)
+        {
+            var node = TalentRules.Get(id);
+            if (node == null || RankOf(id) >= node.MaxRanks)
+                return false;
+            ranks[id] = RankOf(id) + 1;
+            bonuses = null;
+            Changed?.Invoke();
+            return true;
+        }
+
+        /// <summary>The town's upgrades, added to the boons' bonuses (set by the session).</summary>
+        public MetaProgress Meta
+        {
+            get => meta;
+            set
+            {
+                meta = value;
+                bonuses = null;
+            }
+        }
+
+        MetaProgress meta;
+
+        /// <summary>Drops the cached bonuses (the meta changed).</summary>
+        public void Refresh()
+        {
+            bonuses = null;
+            Changed?.Invoke();
+        }
+
         /// <summary>Every point back (the Trainer).</summary>
         public void ResetAll()
         {
@@ -317,6 +350,7 @@ namespace ARPG
                     if (node.Effect2 != PassiveEffect.None)
                         bonuses.Add(node.Effect2, node.PerRank2 * pair.Value);
                 }
+                meta?.AddTo(bonuses);
                 return bonuses;
             }
         }

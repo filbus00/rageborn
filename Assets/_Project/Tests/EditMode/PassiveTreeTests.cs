@@ -94,8 +94,7 @@ namespace ARPG.Tests
         public void TheTree_IsSaved_AndAVersionTenSaveStartsEmpty()
         {
             var session = new GameSession(1);
-            while (session.Level < 3)
-                session.GrantExperience(Experience.XpToNextLevel(session.Level));
+            session.ReachDepth(3);
             var first = PassiveTree.Nodes.First(n => n.Branch == PassiveBranch.Scar);
             Assert.IsTrue(session.PassiveTree.Buy(first.Id, session.Level));
             Assert.IsTrue(SaveCodec.TryParse(SaveCodec.ToJson(SaveCodec.Capture(session, 1)), out var data, out var error), error);

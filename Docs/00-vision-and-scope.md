@@ -57,7 +57,8 @@ Players aged 18 to 45 who know Diablo, Path of Exile or Vampire Survivors style 
 | Weapons | Bows only (2026-09-30): short bows and longbows, with a quiver in the off-hand. The game is an action RPG that only uses bows | User |
 | Recurring content | No weekly seed, weekly challenges or similar live content | User |
 | Online features | None in 1.0: no leaderboards and no Game Center. iCloud save sync stays, because it only copies the save between the player's own devices through Apple | User |
-| Death | The character is sent to town and loses its equipped gear until it reaches its corpse, see 01-core-gameplay.md | User |
+| Death | The character is sent to town and loses its equipped gear until it reaches its corpse, see 01-core-gameplay.md. **Replaced 2026-10-13 by the roguelite (below): a death ends the run** | User |
+| Roguelite (2026-10-13) | The owner: "I want to make this more into a roguelite". A run is the whole descent from depth 1, straight down (no portal, no waypoints); a death ends it and the next starts at depth 1. No experience or levelling: every new depth offers three random boons, one taken. Coins picked up are kept and buy permanent upgrades in town (base stats, the boon pool, potions, pets, the starting kit). Gear is lost with the run, but one item a run can be sent to the stash, whose slots cost a lot. No quests. Details in 08-production.md's decision log | User |
 | Menus | No separate pause menu. One inventory button opens stats, inventory, equipped gear, loadout, Settings and the loot filter, and pauses the game | User |
 
 ## Scope for version 1.0

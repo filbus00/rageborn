@@ -315,6 +315,16 @@ namespace ARPG
                         ShowBackpack(list, Mathf.Min(index, list.Count - 1));
                 });
             }
+            // The roguelite (2026-10-13): one item a run may go to the stash, if a slot is free.
+            if (Features.Roguelite && session.RunStarted && !session.SentToStash && session.Stash.Count < session.Meta.StashSlots)
+                NewButton("To stash", () =>
+                {
+                    if (!session.SendToStash(item))
+                        return;
+                    Sfx.Play(SoundId.Pickup);
+                    Hide();
+                    Changed?.Invoke();
+                });
             NewButton("Close", Hide);
         }
 

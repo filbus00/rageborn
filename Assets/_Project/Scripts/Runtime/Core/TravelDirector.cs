@@ -59,7 +59,8 @@ namespace ARPG
             button = null;
             if (scene.name == TownScene)
             {
-                Waypoint.Create(0, IsoMath.CellToGround(WaystoneCell), null);
+                if (!Features.Roguelite)
+                    Waypoint.Create(0, IsoMath.CellToGround(WaystoneCell), null);
                 if (session.PortalDepth > 0)
                     TownPortal.Create(true, session.PortalDepth, IsoMath.CellToGround(TownPortalCell), null);
             }

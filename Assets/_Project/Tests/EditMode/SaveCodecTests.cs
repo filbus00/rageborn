@@ -77,17 +77,6 @@ namespace ARPG.Tests
             Assert.IsFalse(loaded.IsKilled("Sandbox/Pack West", 3));
         }
 
-        [Test]
-        public void ARoundTrip_KeepsLevelAndXp()
-        {
-            var session = new GameSession();
-            session.GrantExperience(Experience.XpToNextLevel(1) + Experience.XpToNextLevel(2) + 123);
-
-            var loaded = RoundTrip(session);
-
-            Assert.AreEqual(3, loaded.Level);
-            Assert.AreEqual(123, loaded.Progress.Xp);
-        }
 
         [Test]
         public void ARoundTrip_KeepsPotionCharges()

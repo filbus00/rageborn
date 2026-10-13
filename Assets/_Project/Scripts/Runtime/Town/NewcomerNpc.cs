@@ -64,6 +64,26 @@ namespace ARPG
                 return;
             if (QuestTalk.TryTalk(GiverOf(who)))
                 return;
+            // The roguelite (2026-10-13): each sells the town's upgrades of their trade, for the coins.
+            if (Features.Roguelite)
+            {
+                switch (who)
+                {
+                    case Newcomer.StashKeeper:
+                        StashScreen.Open();
+                        break;
+                    case Newcomer.Healer:
+                        UpgradeShopScreen.Open(MetaShop.Potions, "Miranda");
+                        break;
+                    case Newcomer.Gambler:
+                        UpgradeShopScreen.Open(MetaShop.Secrets, "Sylthara");
+                        break;
+                    default:
+                        UpgradeShopScreen.Open(MetaShop.Training, "Brunhilde");
+                        break;
+                }
+                return;
+            }
             switch (who)
             {
                 case Newcomer.StashKeeper:

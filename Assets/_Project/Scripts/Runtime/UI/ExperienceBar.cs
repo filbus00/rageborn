@@ -14,6 +14,13 @@ namespace ARPG
 
         int shownLevel = -1;
 
+        // The roguelite (2026-10-13): no experience to show.
+        void Start()
+        {
+            if (Features.Roguelite)
+                gameObject.SetActive(false);
+        }
+
         void Update()
         {
             var progress = GameSession.Current.Progress;
