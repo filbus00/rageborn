@@ -140,6 +140,8 @@ namespace ARPG
             // Ailments on hit, as chances (1 for certain).
             public float IgniteChance;
             public float ChillChance;
+            // Freezing Arrow (a boon): each chill counts twice.
+            public bool Freezing;
             // Stillwater Yew's certain crit, and Gallowsreach's blood pools along the trail.
             public bool CertainCrit;
             public bool BloodPools;
@@ -158,6 +160,17 @@ namespace ARPG
             public float ExecuteBelow;
             public float ExecuteMultiplier;
         }
+
+        // Boons (2026-10-13): Extra Shot's loosings still to come after a basic attack, and the time to the next.
+        int echoesLeft;
+        float echoTimer;
+        float echoGap;
+        const float EchoGapSeconds = 0.12f;
+
+        // Extra Arrow's copies fan out from the attack's first arrow this far apart (degrees).
+        const float ExtraArrowFanDegrees = 7f;
+
+        int ExtraArrowCount => Mathf.RoundToInt(session.Talents.Bonuses.ExtraArrows);
 
         // Barrage (2026-10-04): the arrows still to loose, the time to the next and the skill they come from.
         SkillDefinition barrageSkill;
@@ -414,7 +427,10 @@ namespace ARPG
             var previousTarget = Target;
             Target = null;
             if (candidates.Count == 0)
+            {
+                echoesLeft = 0;
                 return;
+            }
 
             var target = PickTarget(origin, previousTarget);
             Target = target;
@@ -426,7 +442,27 @@ namespace ARPG
 
             // Disengaged (the thumb outside the stick's ring), she holds her fire and runs; mid-dive too.
             if (player.Disengaged || player.IsDodging)
+            {
+                echoesLeft = 0;
                 return;
+            }
+
+            // Extra Shot: the bow looses again shortly after the basic attack, at the target she has now.
+            if (echoesLeft > 0)
+            {
+                echoTimer -= deltaTime;
+                if (echoTimer <= 0f)
+                {
+                    if (target != null)
+                    {
+                        LooseEcho(origin, aim);
+                        echoesLeft--;
+                    }
+                    else
+                        echoesLeft = 0;
+                    echoTimer = echoGap;
+                }
+            }
 
             if (castTimer <= 0f && !charging)
                 TryCastSkill(origin, aim, target);
@@ -490,6 +526,7 @@ namespace ARPG
         void BasicAttack(Vector2 origin, Vector2 aim)
         {
             RollStray();
+            var firstShot = shots.Count;
             var equipment = GameSession.Current.Equipment;
             var tree = session.Talents.Bonuses;
             attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + AttackSpeedBuff +
@@ -545,6 +582,46 @@ namespace ARPG
                 if (second == aim)
                     second = Rotate(aim, 8f);
                 shots.Add(NewArrow(origin, second * ArrowSpeed, BasicRange + ArrowOvershoot, 1f, ShotStyle.Basic, BasicTrailColor));
+            }
+
+            AddExtraArrows(firstShot);
+            // Extra Shot: as many more loosings, spaced within the time to the next attack.
+            echoesLeft = Mathf.RoundToInt(session.Talents.Bonuses.ExtraShots);
+            echoGap = Mathf.Min(EchoGapSeconds, attackTimer / (echoesLeft + 1));
+            echoTimer = echoGap;
+        }
+
+        // One more basic arrow (Extra Shot), with Extra Arrow's copies; it gives Focus on a hit like any basic arrow.
+        void LooseEcho(Vector2 origin, Vector2 aim)
+        {
+            RollStray();
+            Sfx.Play(SoundId.ArrowShot, 0.4f);
+            var firstShot = shots.Count;
+            shots.Add(NewArrow(origin, aim * ArrowSpeed, BasicRange + ArrowOvershoot, 1f, ShotStyle.Basic, BasicTrailColor));
+            AddExtraArrows(firstShot);
+        }
+
+        // Extra Arrow (a boon, 2026-10-13): copies of the attack's first arrow, with all its traits, fanned out to either
+        // side of it in turn.
+        void AddExtraArrows(int firstShot)
+        {
+            var extra = ExtraArrowCount;
+            if (extra <= 0 || shots.Count <= firstShot)
+                return;
+            var source = shots[firstShot];
+            for (var k = 1; k <= extra; k++)
+            {
+                var angle = (k % 2 == 1 ? 1f : -1f) * ExtraArrowFanDegrees * ((k + 1) / 2);
+                var arrow = spareArrows.Count > 0 ? spareArrows.Pop() : CreateArrow();
+                arrow.gameObject.SetActive(true);
+                var copy = source;
+                copy.Transform = arrow;
+                copy.Velocity = Rotate(source.Velocity, angle);
+                copy.Pierced = null;
+                if (source.Pierced != null)
+                    EnsurePierceSet(ref copy);
+                PlaceArrow(arrow, copy.Position, copy.Velocity);
+                shots.Add(copy);
             }
         }
 
@@ -768,6 +845,7 @@ namespace ARPG
             focus.MarkCombat();
             var direction = skillTarget != null ? (skillTarget.GroundPosition - origin).normalized : aim;
             SkillCast?.Invoke(skill, direction);
+            var firstShot = shots.Count;
 
             switch (skill.Kind)
             {
@@ -830,7 +908,7 @@ namespace ARPG
                 }
                 case SkillKind.Barrage:
                     barrageSkill = skill;
-                    barrageLeft = skill.ProjectileCount + Mathf.RoundToInt(session.Equipment.AffixTotal(AffixId.ExtraSkillArrow));
+                    barrageLeft = skill.ProjectileCount + Mathf.RoundToInt(session.Equipment.AffixTotal(AffixId.ExtraSkillArrow)) + ExtraArrowCount;
                     barrageTimer = 0f;
                     break;
                 case SkillKind.KillShot:
@@ -844,6 +922,9 @@ namespace ARPG
                     break;
                 }
             }
+            // Extra Arrow: every arrow skill looses more (Barrage's are added to its count above).
+            if (skill.Kind != SkillKind.Barrage)
+                AddExtraArrows(firstShot);
         }
 
         int CountInSweep(Vector2 origin, Vector2 aim, float range, float arcDegrees)
@@ -1289,6 +1370,12 @@ namespace ARPG
             var stance = player.Stance;
             shot.IgniteChance = equipment.IgniteChancePercent / 100f + session.Talents.Bonuses.IgniteChance;
             shot.ChillChance = equipment.ChillChancePercent / 100f + session.Talents.Bonuses.ChillChance;
+            // Freezing Arrow (a boon): every arrow chills, twice over.
+            if (session.Talents.Bonuses.FreezingArrows)
+            {
+                shot.ChillChance = 1f;
+                shot.Freezing = true;
+            }
             if (shot.Style == ShotStyle.Pierce)
                 shot.PierceLeft = int.MaxValue;
             if (equipment.Wears(LegendaryId.MagpiesNest))
@@ -1704,6 +1791,8 @@ namespace ARPG
             if (shot.ChillChance > 0f && Random.value < shot.ChillChance)
             {
                 enemy.ApplyChill();
+                if (shot.Freezing)
+                    enemy.ApplyChill();
                 fx.Sparks(world, Vector2.up, ArrowHeight, ChillColor, 3);
             }
         }

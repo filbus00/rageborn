@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
@@ -153,6 +154,39 @@ namespace ARPG.Tests
             var loaded = SaveCodec.Restore(SaveCodec.Capture(next, 0), 3);
             Assert.AreEqual(1, loaded.Potion.Charges);
             Assert.AreEqual(2, loaded.Potion.Capacity);
+        }
+        [Test]
+        public void TheNewBoons_AreOfferedFromTheFirstDepth_AndGiveTheirEffects()
+        {
+            var talents = new TalentState();
+            foreach (var id in new[] { "extra_arrow", "extra_shot", "fire_arrow", "freezing_arrow" })
+            {
+                var node = TalentRules.Get(id);
+                Assert.IsNotNull(node, id);
+                Assert.IsTrue(BoonRules.CanTake(talents, node, MetaProgress.BaseBoonTier), id);
+            }
+            Assert.AreEqual(3, TalentRules.Get("extra_arrow").MaxRanks);
+            Assert.AreEqual(3, TalentRules.Get("extra_shot").MaxRanks);
+            talents.Grant("extra_arrow");
+            talents.Grant("extra_arrow");
+            talents.Grant("extra_shot");
+            talents.Grant("fire_arrow");
+            talents.Grant("freezing_arrow");
+            var bonuses = talents.Bonuses;
+            Assert.AreEqual(2f, bonuses.ExtraArrows);
+            Assert.AreEqual(1f, bonuses.ExtraShots);
+            Assert.AreEqual(1f, bonuses.IgniteChance, 1e-6f);
+            Assert.IsTrue(bonuses.FreezingArrows);
+            Assert.AreEqual("Every attack and skill looses 2 more arrows.", TalentRules.Describe(TalentRules.Get("extra_arrow"), 2));
+            Assert.AreEqual("She looses her bow once more after each shot.", TalentRules.Describe(TalentRules.Get("extra_shot"), 1));
+        }
+
+        [Test]
+        public void NoTwoTalents_ShareAPlaceOnTheScreen()
+        {
+            var seen = new HashSet<string>();
+            foreach (var node in TalentRules.Nodes)
+                Assert.IsTrue(seen.Add($"{node.Tree} {node.Tier} {node.Column}"), node.Id);
         }
     }
 }

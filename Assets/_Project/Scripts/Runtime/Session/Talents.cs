@@ -114,6 +114,10 @@ namespace ARPG
             {
                 // Marksmanship: precision, crits, Pierce Arrow and Kill Shot, Barrage at the top.
                 Skill(M, 0, 0, "pierce_arrow", "Pierce Arrow", "PierceArrow", "Learn Pierce Arrow: a heavy arrow through every enemy on its line."),
+                // Boons (the owner, 2026-10-13: "a boon that makes all attacks fire +1 extra arrow (can be leveled up) a
+                // boon that makes the character fire the bow +1 extra time (can be leveled up)").
+                Passive(M, 0, 1, "extra_arrow", "Extra Arrow", 3, PassiveEffect.ExtraArrows, 1f, "Every attack and skill looses {0}."),
+                Passive(M, 1, 1, "extra_shot", "Extra Shot", 3, PassiveEffect.ExtraShots, 1f, "She looses her bow {0} after each shot."),
                 Passive(M, 0, 2, "steady_aim", "Steady Aim", 5, PassiveEffect.CriticalChance, 1f, "{0} critical strike chance."),
                 Improved(M, 1, 0, "pierce_arrow", "PierceArrow", "Pierce Arrow"),
                 Passive(M, 1, 2, "lethal_shots", "Lethal Shots", 5, PassiveEffect.CriticalDamage, 6f, "{0} critical strike damage."),
@@ -144,6 +148,10 @@ namespace ARPG
 
                 // Survival: Momentum and dodge, fire and frost, Knockback Shot and Explosive Arrow.
                 Skill(S, 0, 0, "knockback_shot", "Knockback Shot", "KnockbackShot", "Learn Knockback Shot: a heavy arrow that throws enemies back."),
+                // Boons (the owner, 2026-10-13: "freezing arrow that freezes enemies, fire arrow that gets them burning").
+                Passive(S, 0, 1, "fire_arrow", "Fire Arrow", 1, PassiveEffect.IgniteChance, 1f, "Every arrow sets enemies burning."),
+                Passive(S, 1, 0, "freezing_arrow", "Freezing Arrow", 1, PassiveEffect.FreezingArrows, 1f,
+                    "Every arrow chills twice over: two hits freeze an enemy for a second (not a boss)."),
                 Passive(S, 0, 2, "fleet_foot", "Fleet Foot", 3, PassiveEffect.MoveSpeed, 0.02f, "{0} movement speed."),
                 Passive(S, 1, 1, "evasion", "Evasion", 5, PassiveEffect.Dodge, 0.01f, "{0} chance to dodge."),
                 Passive(S, 1, 2, "toughness", "Toughness", 5, PassiveEffect.ArmorPercent, 0.03f, "{0} armor."),
@@ -166,6 +174,10 @@ namespace ARPG
             if (node.ImprovesSkill != null)
                 return string.Format(node.Text, Percent(node.SkillDamage * shown));
             var value = node.PerRank * shown;
+            if (node.Effect == PassiveEffect.ExtraArrows)
+                return string.Format(node.Text, shown == 1 ? "one more arrow" : $"{shown} more arrows");
+            if (node.Effect == PassiveEffect.ExtraShots)
+                return string.Format(node.Text, shown == 1 ? "once more" : $"{shown} more times");
             var text = node.Effect == PassiveEffect.CriticalChance || node.Effect == PassiveEffect.CriticalDamage ? $"+{value:0.#} percent"
                 : node.Effect == PassiveEffect.LifeOnHit ? $"+{value:0.#}"
                 : node.Effect == PassiveEffect.LessDamageFromElites ? Percent(value).TrimStart('+')

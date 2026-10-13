@@ -20,6 +20,9 @@ namespace ARPG
 
         // The Wild Arrow's talent trees (2026-10-07, Talents.cs): fractions.
         FocusRegen, CooldownReduction, PetDamage, PetLife, IgniteChance, ChillChance,
+
+        // Boons (2026-10-13): arrows added to every attack, extra loosings of the bow, and arrows that freeze.
+        ExtraArrows, ExtraShots, FreezingArrows,
     }
 
     public sealed class PassiveNode
@@ -309,6 +312,11 @@ namespace ARPG
         /// the chance an arrow ignites or chills.</summary>
         public float FocusRegen, CooldownReduction, PetDamage, PetLife, IgniteChance, ChillChance;
 
+        /// <summary>Boons (2026-10-13): more arrows on every attack and skill, more loosings of the bow after each basic
+        /// attack (counts), and arrows that always chill, twice over, so enemies freeze fast.</summary>
+        public float ExtraArrows, ExtraShots;
+        public bool FreezingArrows;
+
         public void Add(PassiveEffect effect, float value)
         {
             switch (effect)
@@ -347,6 +355,9 @@ namespace ARPG
                 case PassiveEffect.PetLife: PetLife += value; break;
                 case PassiveEffect.IgniteChance: IgniteChance += value; break;
                 case PassiveEffect.ChillChance: ChillChance += value; break;
+                case PassiveEffect.ExtraArrows: ExtraArrows += value; break;
+                case PassiveEffect.ExtraShots: ExtraShots += value; break;
+                case PassiveEffect.FreezingArrows: FreezingArrows = true; break;
             }
         }
     }
