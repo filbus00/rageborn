@@ -50,7 +50,8 @@ namespace ARPG
 
             var potion = GameSession.Current.Potion;
             potion.Cancel();
-            if (scene.name == TownScene)
+            // In the roguelite the town fills only the next run's potions, not a run resumed through it.
+            if (scene.name == TownScene && !(Features.Roguelite && GameSession.Current.RunStarted))
                 potion.Refill();
         }
 

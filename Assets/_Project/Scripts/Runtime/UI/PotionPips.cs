@@ -38,6 +38,12 @@ namespace ARPG
                 if (fills[i] == null)
                     continue;
 
+                // Only the charges she can hold have pips (the roguelite's are bought in town, 2026-10-13).
+                var pip = fills[i].transform.parent.gameObject;
+                var shown = i < potion.Capacity;
+                if (pip.activeSelf != shown)
+                    pip.SetActive(shown);
+
                 float amount;
                 if (i < potion.Charges)
                     amount = 1f;

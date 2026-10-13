@@ -329,7 +329,6 @@ namespace ARPG
             // Quests first: a finished quest can raise the potion's charges (2026-10-08).
             foreach (var entry in data.quests ?? new List<QuestData>())
                 session.Quests.Restore(entry.id, entry.step, entry.done);
-            session.RestorePotion(data.potionCharges, data.potionKillProgress);
             session.DungeonSeed = data.dungeonSeed;
             session.ReachDepth(data.deepestDepth);
             var meta = new MetaProgress { Runs = data.metaRuns, DeepestEver = data.metaDeepest };
@@ -337,6 +336,8 @@ namespace ARPG
                 if (TryParseEnum(entry.id, out MetaUpgradeId upgrade))
                     meta.Restore(upgrade, entry.rank);
             session.RestoreMeta(meta);
+            // After the meta: its bought charges are the roguelite's whole capacity.
+            session.RestorePotion(data.potionCharges, data.potionKillProgress);
             session.PendingBoons = data.pendingBoons;
             session.RerollsLeft = data.rerollsLeft;
             session.SentToStash = data.sentToStash;

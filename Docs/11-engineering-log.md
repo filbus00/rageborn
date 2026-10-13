@@ -1199,3 +1199,9 @@ The owner's answers are in Docs/08. How it is built:
 - Dev: Settings has "Every boon" (`Talents.MaxAll`) and "100,000 coins"; `DevTools.MaxCharacter` no longer loops on experience (it hung the test runner when experience became 0).
 - Checked: offline 618 passed (the 5 known NavGrid failures); Unity 623 of 623. In the editor: Brunhilde's shop buys and shows ranks; going down to depth 1 starts the run and opens the boon choice (four rows with A Fourth Path bought); a death goes to town on a new run with the coins kept, the boons gone, `Runs` 1 and the banner. Resuming a run needs a save, which the editor does not write: not checked there.
 
+## 2026-10-13: fewer drops, no free potions
+
+- `LootRoller.DropScale` (an instance setting, 1 by default) multiplies every source's item drop chance; `GameSession` sets `RogueliteDropScale` 0.1. The static `DropChance` table is Docs/03's and stays as it is.
+- `AutoPotion.UseRogueliteRules()`: `BaseCharges` 0 (capacity = the charges bought from Miranda) and `RefillsFromKills` false. `NextRun` fills the next run's potion; `AutoPotionDirector` refills in town only when no run has started, so a run resumed through the town keeps what it had. `SaveCodec.Restore` now restores the potion after the meta, or its bought capacity would clamp the saved charges to 0. `PotionPips` hides pips beyond the capacity.
+- Tests: the old potion tests were rewritten for bought charges. Offline 621 passed (the 5 NavGrid failures); Unity 626 of 626.
+

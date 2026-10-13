@@ -281,6 +281,11 @@ namespace ARPG
             Pets = new PetState();
             Pets.Changed += NotifyChanged;
             Potion.ExtraCharges = Meta.ExtraPotionCharges;
+            if (Features.Roguelite)
+            {
+                Loot.DropScale = RogueliteDropScale;
+                Potion.UseRogueliteRules();
+            }
 
             // Its own number, not the loot seed itself, so the dungeon and the drops do not move in step.
             DungeonSeed = DungeonRules.LevelSeed(lootSeed, 0);
@@ -579,6 +584,7 @@ namespace ARPG
             next.SetOnboarding(onboarding);
             next.Equipment = next.StartingKit();
             next.LifeFraction = 1f;
+            next.Potion.Refill();
             return next;
         }
 
@@ -945,7 +951,15 @@ namespace ARPG
 #pragma warning restore CS0162
 
         /// <summary>Puts back the potion charges read from a save.</summary>
-        internal void RestorePotion(int charges, int killProgress) => SetPotion(new AutoPotion(charges, killProgress, Meta.ExtraPotionCharges));
+        internal void RestorePotion(int charges, int killProgress)
+        {
+            SetPotion(new AutoPotion(charges, killProgress, Meta.ExtraPotionCharges));
+            if (Features.Roguelite)
+                Potion.UseRogueliteRules();
+        }
+
+        /// <summary>The roguelite's item drop chance, a tenth of Docs/03's (the owner, 2026-10-13).</summary>
+        public const float RogueliteDropScale = 0.1f;
 
         void SetPotion(AutoPotion potion)
         {

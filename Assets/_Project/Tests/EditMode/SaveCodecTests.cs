@@ -81,17 +81,19 @@ namespace ARPG.Tests
         [Test]
         public void ARoundTrip_KeepsPotionCharges()
         {
+            // The roguelite: three charges bought in town, then two potions fired (the second once the first heal has run out).
             var session = new GameSession();
-            // Fire two potions (the second once the first heal has run out), then 7 kills toward the next charge.
+            session.AddGold(100000);
+            for (var i = 0; i < 3; i++)
+                session.BuyUpgrade(MetaUpgradeId.PotionCharges);
+            session.Potion.Refill();
             session.Potion.Tick(AutoPotion.HealSeconds, 0.1f, true, out _);
             session.Potion.Tick(AutoPotion.HealSeconds, 0.1f, true, out _);
-            for (var i = 0; i < 7; i++)
-                session.Potion.RegisterKill();
 
             var loaded = RoundTrip(session);
 
             Assert.AreEqual(1, loaded.Potion.Charges);
-            Assert.AreEqual(7, loaded.Potion.KillProgress);
+            Assert.AreEqual(3, loaded.Potion.Capacity);
         }
 
         [Test]
@@ -123,7 +125,8 @@ namespace ARPG.Tests
             Assert.AreNotEqual(0, session.DungeonSeed);
             Assert.IsEmpty(session.OpenedChests);
             Assert.AreEqual(3, session.Level);
-            Assert.AreEqual(2, session.Potion.Charges);
+            // The roguelite holds no potions without bought charges.
+            Assert.AreEqual(System.Math.Min(2, session.Potion.Capacity), session.Potion.Charges);
         }
 
         [Test]
@@ -198,7 +201,7 @@ namespace ARPG.Tests
             Assert.IsTrue(SaveCodec.TryParse(versionTwo, out var data, out var error), error);
             var session = SaveCodec.Restore(data, 1);
 
-            Assert.AreEqual(AutoPotion.MaxCharges, session.Potion.Charges);
+            Assert.AreEqual(session.Potion.Capacity, session.Potion.Charges);
             Assert.AreEqual(0, session.Potion.KillProgress);
             Assert.AreEqual(2, session.Level);
             Assert.AreEqual(24, session.Progress.Xp);

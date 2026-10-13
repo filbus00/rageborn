@@ -37,7 +37,24 @@ namespace ARPG
         public int ExtraCharges { get; set; }
 
         /// <summary>The charges held at most.</summary>
-        public int Capacity => MaxCharges + ExtraCharges;
+        public int Capacity => BaseCharges + ExtraCharges;
+
+        /// <summary>Charges held without upgrades: <see cref="MaxCharges"/>, or none in the roguelite.</summary>
+        public int BaseCharges { get; private set; } = MaxCharges;
+
+        /// <summary>Whether kills refill charges (not in the roguelite).</summary>
+        public bool RefillsFromKills { get; private set; } = true;
+
+        /// <summary>The roguelite (the owner, 2026-10-13: "Remove the starting potions. Remove the recharging of potions
+        /// while playing"): no base charges and no refill from kills; only the charges bought in town, filled at a run's start.</summary>
+        public void UseRogueliteRules()
+        {
+            BaseCharges = 0;
+            RefillsFromKills = false;
+            KillProgress = 0;
+            if (Charges > Capacity)
+                Charges = Capacity;
+        }
 
         /// <summary>Raised when charges or kill progress change, so the session can be saved.</summary>
         public event Action Changed;
@@ -62,7 +79,7 @@ namespace ARPG
 
         public void RegisterKill()
         {
-            if (Charges >= Capacity)
+            if (!RefillsFromKills || Charges >= Capacity)
                 return;
 
             KillProgress++;

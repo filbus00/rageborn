@@ -175,14 +175,18 @@ namespace ARPG.Tests
         public void PotionChanges_RaiseTheSessionsModified_SoTheyAreSaved()
         {
             var session = new GameSession();
+            session.AddGold(100000);
+            session.BuyUpgrade(MetaUpgradeId.PotionCharges);
+            session.Potion.Refill();
             var modified = 0;
             session.Modified += () => modified++;
 
             session.Potion.Tick(Frame, 0.2f, true, out _);
             Assert.AreEqual(1, modified, "a fired potion");
 
+            // The roguelite: kills refill nothing.
             session.Potion.RegisterKill();
-            Assert.AreEqual(2, modified, "kill progress");
+            Assert.AreEqual(1, modified, "no kill progress");
         }
     }
 }

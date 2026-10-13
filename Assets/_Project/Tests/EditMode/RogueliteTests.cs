@@ -113,5 +113,46 @@ namespace ARPG.Tests
             Assert.IsTrue(SaveCodec.IsRetired(new SaveData { readFromVersion = 16 }));
             Assert.IsFalse(SaveCodec.IsRetired(new SaveData { readFromVersion = SaveData.CurrentVersion }));
         }
+        [Test]
+        public void ARun_HasNoPotions_UntilSomeAreBought_AndKillsDoNotRefillThem()
+        {
+            var session = new GameSession(1);
+            Assert.AreEqual(0, session.Potion.Capacity);
+            Assert.AreEqual(0, session.Potion.Charges);
+            session.AddGold(100000);
+            Assert.IsTrue(session.BuyUpgrade(MetaUpgradeId.PotionCharges));
+            var next = session.NextRun(2);
+            Assert.AreEqual(1, next.Potion.Charges);
+            next.Potion.Tick(0.1f, 0.1f, true, out var fired);
+            Assert.IsTrue(fired);
+            for (var i = 0; i < 50; i++)
+                next.Potion.RegisterKill();
+            Assert.AreEqual(0, next.Potion.Charges);
+        }
+
+        [Test]
+        public void Items_DropATenthAsOften()
+        {
+            var session = new GameSession(1);
+            Assert.AreEqual(0.1f, session.Loot.DropScale, 1e-6f);
+            var drops = 0;
+            for (var i = 0; i < 1000; i++)
+                drops += session.Loot.RollDrops(LootSource.Elite, 10, 0f).Count > 0 ? 1 : 0;
+            Assert.That(drops, Is.InRange(60, 140));
+        }
+
+        [Test]
+        public void ASavedRun_KeepsItsPotionCharges()
+        {
+            var session = new GameSession(1);
+            session.AddGold(100000);
+            session.BuyUpgrade(MetaUpgradeId.PotionCharges);
+            session.BuyUpgrade(MetaUpgradeId.PotionCharges);
+            var next = session.NextRun(2);
+            next.Potion.Tick(0.1f, 0.1f, true, out _);
+            var loaded = SaveCodec.Restore(SaveCodec.Capture(next, 0), 3);
+            Assert.AreEqual(1, loaded.Potion.Charges);
+            Assert.AreEqual(2, loaded.Potion.Capacity);
+        }
     }
 }

@@ -136,7 +136,7 @@ namespace ARPG
             if (source != LootSource.ZoneChest)
                 KillsSinceLegendary++;
 
-            if (random.NextDouble() >= DropChance(source))
+            if (random.NextDouble() >= DropChance(source) * DropScale)
                 return System.Array.Empty<Item>();
 
             var floor = RarityFloor(source);
@@ -213,6 +213,10 @@ namespace ARPG
                 amount *= BossGoldMultiplier;
             return Mathf.Max(1, Mathf.RoundToInt(amount));
         }
+
+        /// <summary>Scales every source's item drop chance (gold is not scaled). The roguelite sets 0.1 (the owner,
+        /// 2026-10-13: "make the item droprate 10% of what it is now").</summary>
+        public float DropScale { get; set; } = 1f;
 
         public static float DropChance(LootSource source)
         {
