@@ -164,5 +164,28 @@ namespace ARPG.Tests
             for (var hash = 0; hash < 40; hash++)
                 Assert.IsTrue(System.Text.RegularExpressions.Regex.IsMatch(ThemePieces.Wall(DungeonTheme.Crypt, Nothing, 0, 0, false, false, false, hash), "^crypt_wall_[1-5]$"));
         }
+        [Test]
+        public void NoThinWall_ReachesIntoARoom_OutsideTheCaves()
+        {
+            // 2026-10-13, the owner: stubs of wall joined to a room's side were cut low on the camera side and read as
+            // loose slabs. A wall one cell thin with floor on both sides, not standing free, is such a stub.
+            var found = new List<string>();
+            foreach (var seed in new[] { 7919, 31, 4242 })
+                for (var depth = 1; depth <= 36; depth++)
+                {
+                    var layout = DungeonGenerator.Generate(seed, depth, Library());
+                    bool Open(int x, int y) => layout.Get(x, y) == DungeonCell.Floor;
+                    var b = layout.Bounds;
+                    var count = 0;
+                    for (var x = b.xMin; x < b.xMax; x++)
+                        for (var y = b.yMin; y < b.yMax; y++)
+                            if (layout.Get(x, y) == DungeonCell.Wall && !layout.FreeStanding.Contains(new UnityEngine.Vector2Int(x, y)) &&
+                                ((Open(x - 1, y) && Open(x + 1, y)) || (Open(x, y - 1) && Open(x, y + 1))))
+                                count++;
+                    if (count > 0)
+                        found.Add($"seed {seed} depth {depth}: {count}");
+                }
+            Assert.IsEmpty(found, string.Join("; ", found));
+        }
     }
 }

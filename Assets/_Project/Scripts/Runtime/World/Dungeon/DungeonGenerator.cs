@@ -176,7 +176,7 @@ namespace ARPG
     /// per slot, grown as a tree from the start room so every room is reachable; the exit room is the one furthest from
     /// the start along the tree. Tree neighbours are joined through their shared wall by a wide arch or opened into one
     /// hall, other neighbours often by an arch too, so there are loops and no corridors. Rooms are dressed with pillar
-    /// rows, pillar grids, wall stubs or a hand-authored pillar layout, and get a floor style, props against the walls
+    /// rows, pillar grids or a hand-authored pillar layout, and get a floor style, props against the walls
     /// and floor decals. Every empty cell touching floor becomes wall. Same seed, same level. Pure.
     /// </summary>
     public static class DungeonGenerator
@@ -193,8 +193,9 @@ namespace ARPG
         /// 9: roomier caves and tunnels, terrace steps facing the camera (2026-10-11).
         /// 10: 36 depths, the burnt library from 13 with its aisles of shelves, the caves from 25 (2026-10-11).
         /// 11: 48 depths, the prison from 13 with its cages, the library from 25, the caves from 37 (2026-10-12).
+        /// 12: no stubs of wall reaching into rooms, no walls one cell thin between halls and passages (2026-10-13).
         /// </summary>
-        public const int Version = 11;
+        public const int Version = 12;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -445,6 +446,8 @@ namespace ARPG
 
             KeepReachable(layout, mains[0]);
             FillRock(layout);
+            if (!cave)
+                OpenThinWalls(layout);
             MarkFreeStanding(layout);
 
             // 5. Stairs and arrival points.
@@ -1045,6 +1048,66 @@ namespace ARPG
         /// corner, to the rock at the level's edge. Free-standing wall keeps its full height on the camera side; the rest
         /// is cut low there (<see cref="WallRules"/>).
         /// </summary>
+        /// <summary>
+        /// Opens every wall one cell thin, joined to the rock round the level, with floor on both sides (2026-10-13, the
+        /// owner: such walls, between a hall and a passage running beside it, were cut low on the camera side and read
+        /// as loose slabs on the floor). Pillars, shelves and cages standing free on the floor (clumps of at most
+        /// <see cref="MaxFreeStanding"/> cells) stay. Repeated, so a thin wall opens along its whole length.
+        /// </summary>
+        static void OpenThinWalls(DungeonLayout layout)
+        {
+            // Rock is wall in a clump bigger than a free-standing piece (as MarkFreeStanding judges it).
+            var b = layout.Bounds;
+            var rock = new bool[b.width, b.height];
+            var seen = new bool[b.width, b.height];
+            var queue = new Queue<Vector2Int>();
+            var clump = new List<Vector2Int>();
+            for (var x = b.xMin; x < b.xMax; x++)
+                for (var y = b.yMin; y < b.yMax; y++)
+                {
+                    if (layout.Get(x, y) != DungeonCell.Wall || seen[x - b.xMin, y - b.yMin])
+                        continue;
+                    clump.Clear();
+                    seen[x - b.xMin, y - b.yMin] = true;
+                    queue.Enqueue(new Vector2Int(x, y));
+                    while (queue.Count > 0)
+                    {
+                        var cell = queue.Dequeue();
+                        clump.Add(cell);
+                        for (var dx = -1; dx <= 1; dx++)
+                            for (var dy = -1; dy <= 1; dy++)
+                            {
+                                var next = new Vector2Int(cell.x + dx, cell.y + dy);
+                                if (!b.Contains(next) || seen[next.x - b.xMin, next.y - b.yMin] || layout.Get(next) != DungeonCell.Wall)
+                                    continue;
+                                seen[next.x - b.xMin, next.y - b.yMin] = true;
+                                queue.Enqueue(next);
+                            }
+                    }
+                    if (clump.Count > MaxFreeStanding)
+                        foreach (var cell in clump)
+                            rock[cell.x - b.xMin, cell.y - b.yMin] = true;
+                }
+            bool Open(int x, int y) => layout.Get(x, y) == DungeonCell.Floor;
+            for (var pass = 0; pass < 64; pass++)
+            {
+                var opened = false;
+                for (var x = b.xMin + 1; x < b.xMax - 1; x++)
+                    for (var y = b.yMin + 1; y < b.yMax - 1; y++)
+                    {
+                        if (!rock[x - b.xMin, y - b.yMin] || layout.Get(x, y) != DungeonCell.Wall)
+                            continue;
+                        if ((Open(x - 1, y) && Open(x + 1, y)) || (Open(x, y - 1) && Open(x, y + 1)))
+                        {
+                            layout.Set(x, y, DungeonCell.Floor);
+                            opened = true;
+                        }
+                    }
+                if (!opened)
+                    break;
+            }
+        }
+
         static void MarkFreeStanding(DungeonLayout layout)
         {
             var b = layout.Bounds;
@@ -1201,7 +1264,7 @@ namespace ARPG
 
         /// <summary>
         /// Dresses a room with standing stone: a hand-authored pillar layout when one fits, else pillar rows along its
-        /// length, a grid of pillars, or stubs of wall reaching in from its sides, or nothing. Returns the authored shape
+        /// length, a grid of pillars, or nothing. Returns the authored shape
         /// used, or null.
         /// </summary>
         static RoomShape Dress(DungeonLayout layout, RectInt r, IReadOnlyList<RoomShape> shapes, System.Random random)
@@ -1245,27 +1308,9 @@ namespace ARPG
                     for (var y = 5; y + 2 <= r.height - 5; y += 7)
                         Block(layout, r.xMin + x, r.yMin + y, 2);
             }
-            else if (roll < 90)
-            {
-                // Stubs of wall reaching in from the sides, breaking the room into bays.
-                for (var side = 0; side < 4; side++)
-                {
-                    var alongX = side < 2;
-                    var length = alongX ? r.width : r.height;
-                    var stubs = random.Next(0, 3);
-                    for (var k = 0; k < stubs; k++)
-                    {
-                        var at = random.Next(4, length - 4);
-                        var reach = random.Next(2, 5);
-                        for (var d = 0; d < reach; d++)
-                        {
-                            var x = alongX ? r.xMin + at : side == 2 ? r.xMin + d : r.xMax - 1 - d;
-                            var y = !alongX ? r.yMin + at : side == 0 ? r.yMin + d : r.yMax - 1 - d;
-                            layout.Set(x, y, DungeonCell.Wall);
-                        }
-                    }
-                }
-            }
+            // (Stubs of wall reaching in from the sides were removed on 2026-10-13, the owner: "something in the dungeon
+            // generator keeps adding blocks of that sort all over the place, remove those blocks". Joined to the room's
+            // walls, they were cut low on the camera side and read as loose slabs on the floor.)
             return null;
         }
 

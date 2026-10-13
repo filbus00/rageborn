@@ -1205,3 +1205,9 @@ The owner's answers are in Docs/08. How it is built:
 - `AutoPotion.UseRogueliteRules()`: `BaseCharges` 0 (capacity = the charges bought from Miranda) and `RefillsFromKills` false. `NextRun` fills the next run's potion; `AutoPotionDirector` refills in town only when no run has started, so a run resumed through the town keeps what it had. `SaveCodec.Restore` now restores the potion after the meta, or its bought capacity would clamp the saved charges to 0. `PotionPips` hides pips beyond the capacity.
 - Tests: the old potion tests were rewritten for bought charges. Offline 621 passed (the 5 NavGrid failures); Unity 626 of 626.
 
+## 2026-10-13: no loose wall slabs
+
+- The owner's screenshot showed flat slabs on the floor: wall cells that are not free-standing but have floor behind them are drawn cut low (`WallRules.IsCameraSide`), so a wall reaching into open floor reads as a slab. Two sources: `Dress`'s stubs of wall from a room's sides, removed; and walls one cell thin with floor on both sides along an axis (a hall and a passage side by side), about 30 cells a level before the change.
+- `DungeonGenerator.OpenThinWalls` runs after `FillRock` (not in caves): wall cells in clumps bigger than `MaxFreeStanding` with floor on both sides along x or y become floor, repeated (up to 64 passes) until none is left, so a thin wall opens along its length. `Version` 12.
+- `DungeonThemeTests.NoThinWall_ReachesIntoARoom_OutsideTheCaves` checks three seeds at depths 1 to 36. Maps of depth 1 and 14 drawn cell by cell looked clean (no eaten walls). Unity 627 of 627.
+
