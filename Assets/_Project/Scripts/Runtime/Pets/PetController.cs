@@ -55,6 +55,9 @@ namespace ARPG
         SpriteRenderer bodyRenderer;
         int animationRow;
         float animationTime;
+
+        /// <summary>How far through its run the pet is (advanced by the rate, as <see cref="EnemyController"/>'s).</summary>
+        float runPhase;
         float attackAnimation;
         float attackLength;
         float hitAnimation;
@@ -265,7 +268,8 @@ namespace ARPG
             {
                 // The run plays at the speed it was recorded for, so the feet keep to the ground.
                 var rate = set.RunRecordedSpeed > 0f ? speed / set.RunRecordedSpeed : 1f;
-                ShowFrame(set.Run, EnemyAnimationRules.LoopFrame(animationTime * rate, set.RunSeconds, set.Run.Frames));
+                runPhase += deltaTime * rate;
+                ShowFrame(set.Run, EnemyAnimationRules.LoopFrame(runPhase, set.RunSeconds, set.Run.Frames));
             }
             else
                 ShowFrame(set.Idle, EnemyAnimationRules.LoopFrame(animationTime, set.IdleSeconds, set.Idle.Frames));

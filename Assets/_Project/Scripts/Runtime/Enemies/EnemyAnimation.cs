@@ -72,6 +72,13 @@ namespace ARPG
         /// <summary>Speeds below this count as standing (ground units a second).</summary>
         public const float MovingSpeed = 0.3f;
 
+        /// <summary>Seconds over which an enemy's movement is smoothed for its animation.</summary>
+        public const float SmoothingSeconds = 0.08f;
+
+        /// <summary>How much of this frame's movement goes into the smoothed one (frame-rate independent).</summary>
+        public static float SmoothingWeight(float deltaTime) =>
+            deltaTime <= 0f ? 0f : 1f - UnityEngine.Mathf.Exp(-deltaTime / SmoothingSeconds);
+
         /// <summary>How long a hit reaction shows when the enemy is not attacking.</summary>
         public const float HitSeconds = 0.25f;
 

@@ -106,6 +106,15 @@ namespace ARPG
         // The baked animations of this enemy's type, or null for the placeholder body (EnemyAnimation.cs).
         EnemyAnimationSet animationSet;
         float animationTime;
+
+        /// <summary>How far through its run the enemy is, advanced by the playback rate each frame (2026-10-13: the run
+        /// was picked by the total time times the current rate, so every change of speed jumped the legs to another
+        /// frame, and the bosses, which speed up and slow down, ran glitchily).</summary>
+        float runPhase;
+
+        /// <summary>The movement smoothed over a few frames, so uneven steps do not flicker between run and idle or
+        /// between facing rows.</summary>
+        Vector2 smoothedVelocity;
         int animationRow;
         Vector2 lastGround;
         float hitAnimationTimer;
@@ -321,6 +330,8 @@ namespace ARPG
                 bodyRenderer.transform.localScale = animationSet != null ? Vector3.one / animationSet.BakedScale : bodyDefaultScale;
             }
             animationTime = 0f;
+            runPhase = 0f;
+            smoothedVelocity = Vector2.zero;
             animationRow = 0;
             lastGround = groundPosition;
             hitAnimationTimer = 0f;
@@ -796,7 +807,8 @@ namespace ARPG
             lastGround = ground;
             hitAnimationTimer = Mathf.Max(0f, hitAnimationTimer - deltaTime);
             animationTime += deltaTime;
-            var speed = velocity.magnitude;
+            smoothedVelocity = Vector2.Lerp(smoothedVelocity, velocity, EnemyAnimationRules.SmoothingWeight(deltaTime));
+            var speed = smoothedVelocity.magnitude;
             var count = animationSet.DirectionCount;
 
             if (castTimer > 0f && animationSet.Attack != null)
@@ -824,10 +836,10 @@ namespace ARPG
             }
             if (speed > EnemyAnimationRules.MovingSpeed && animationSet.Run != null)
             {
-                Face(velocity, count);
+                Face(smoothedVelocity, count);
                 // The run plays at the speed the enemy moves over the speed its feet were recorded at.
-                var rate = LocomotionRules.PlaybackRate(speed, animationSet.RunRecordedSpeed);
-                ShowFrame(animationSet.Run, EnemyAnimationRules.LoopFrame(animationTime * rate, animationSet.RunSeconds, animationSet.Run.Frames));
+                runPhase += deltaTime * LocomotionRules.PlaybackRate(speed, animationSet.RunRecordedSpeed);
+                ShowFrame(animationSet.Run, EnemyAnimationRules.LoopFrame(runPhase, animationSet.RunSeconds, animationSet.Run.Frames));
                 return;
             }
             ShowFrame(animationSet.Idle, EnemyAnimationRules.LoopFrame(animationTime, animationSet.IdleSeconds, animationSet.Idle.Frames));
