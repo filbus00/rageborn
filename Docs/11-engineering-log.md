@@ -1179,3 +1179,9 @@ The owner: the dungeon "still looks really bad", walls "not only right shapes", 
 - Townsfolk: same files and code names, new models after the NPC sheet; names in labels, sheets and quests (string literals only, so enums stay): Father Aldric, Garrett, Lyriel, Miranda, Elara, Sylthara, Brunhilde, Thorin, Drok, Faelan; Sir Corwen the Unquiet (quest target id `corwen`). Pronouns and roles fixed where a person changed (Faelan an elven mage, Sylthara a woman, Drok a miner who dug the watch's tunnels).
 - Her full bake ran afterwards (2419 s, 1254 sheets, and the Bag portraits): her own body now shows in game.
 
+## 2026-10-13: her first bake on her own body was broken
+
+- The owner: "there are alot of visual buggs on the character, recheck it". Her layered frames, drawn from the sheets as the game stacks them, showed solid boxes in several directions, the quiver missing in the rest. Cause: Blender's FBX export left the armature node at scale 100 (the Mixamo file had the hips at the root, scale 1); every bone inherited it, and the quiver, which the bake hangs on her chest bone with offsets (the bow is placed from her finger bones, `autoGrip`, so it looked right), came out a hundred times too big and far off, filling the frame when it crossed the camera.
+- Fix: `wild_arrow_gear.export` uses `apply_scale_options="FBX_SCALE_ALL"`; her body and all 35 gear files rebuilt; their `.meta` files deleted, since a saved bone map from the scale-100 hierarchy put her legs 40 cm off ("Bone length in configuration does not match"). A small test bake (bare body, brigand, hood, bow, quiver; idle, run, attack) into a scratch folder looked right before the full bake ran again.
+- Lesson: after any change to her body or rig, test-bake a few layers and look at them stacked (all eight directions) before the full bake and before installing.
+

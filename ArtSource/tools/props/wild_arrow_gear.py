@@ -1030,8 +1030,11 @@ def export(arm, objects, path):
     arm.select_set(True)
     for o in objects:
         o.select_set(True)
+    # Scale applied to everything (2026-10-13): left as units, Unity read the armature node at 100 and every bone with
+    # it, so a piece the bake hangs on a bone (the quiver on her chest) came out a hundred times too big once her body
+    # was ours rather than Mixamo's file.
     bpy.ops.export_scene.fbx(filepath=path, use_selection=True, add_leaf_bones=False, bake_anim=False,
-                             path_mode="STRIP", embed_textures=False)
+                             apply_scale_options="FBX_SCALE_ALL", path_mode="STRIP", embed_textures=False)
     print("REPORT wrote", os.path.basename(path))
 
 
