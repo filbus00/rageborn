@@ -4,8 +4,9 @@ using UnityEngine.UI;
 namespace ARPG
 {
     /// <summary>
-    /// The HUD's arrangement (the owner, 2026-09-28): the player's round portrait in the top-left corner with the level
-    /// on it, the life bar, experience bar and potion pips to its right, and the Bag button under the portrait; the
+    /// The HUD's arrangement (the owner, 2026-09-28): the player's round portrait in the top-left corner, the life bar,
+    /// experience bar, potion pips and the depth (2026-10-13, in place of the level on the portrait) to its right, and
+    /// the Bag button under the portrait; the
     /// mini-map sits top right (<see cref="Minimap"/>). Arranges the scene's HUD objects at runtime inside the safe area,
     /// so the scenes need no rebuild, and keeps the portrait in the character's current gear.
     /// </summary>
@@ -46,8 +47,11 @@ namespace ARPG
                 else if (child.name == "Bag Button")
                     StyleBag(rect);
                 else if (child.name == "Level")
-                    StyleLevel(area, rect);
+                    // The roguelite has no character levels to show (the owner, 2026-10-13: "remove the level
+                    // indicator in the profile picture"); the depth is shown instead.
+                    child.gameObject.SetActive(false);
             }
+            DepthLabel.Create(area, new Vector2(BarsLeft, -Top - 138f));
 
             layout.session = GameSession.Current;
             layout.session.Changed += layout.RefreshPortrait;
@@ -97,22 +101,36 @@ namespace ARPG
                 label.fontSize = 36;
             }
         }
+    }
 
-        // The level number on a small dark disc at the bottom of the portrait.
-        static void StyleLevel(Transform area, RectTransform rect)
+    /// <summary>
+    /// Which dungeon level she is on, under the potion pips (the owner, 2026-10-13: "Add a level indicator for which
+    /// dungeon level the player is at"): "Depth 7", or "Town". Set once, since every depth is its own scene load.
+    /// </summary>
+    public class DepthLabel : MonoBehaviour
+    {
+        Text text;
+
+        public static DepthLabel Create(Transform parent, Vector2 topLeft)
         {
-            var badge = UiStyle.Disc(area, "Level Badge", UiStyle.FrameDark);
-            UiStyle.Place(badge.rectTransform, new Vector2(0f, 1f), new Vector2(Margin + PortraitSize / 2f - 32f, -Top - PortraitSize + 44f), new Vector2(64f, 64f));
-            badge.transform.SetSiblingIndex(rect.GetSiblingIndex());
-            UiStyle.Place(rect, new Vector2(0f, 1f), new Vector2(Margin + PortraitSize / 2f - 40f, -Top - PortraitSize + 44f), new Vector2(80f, 64f));
-            var text = rect.GetComponent<Text>();
-            if (text != null)
-            {
-                text.alignment = TextAnchor.MiddleCenter;
-                text.font = UiStyle.Title;
-                text.fontSize = 34;
-                text.color = UiStyle.Gold;
-            }
+            var rect = UiStyle.Place(UiStyle.Rect(parent, "Depth"), new Vector2(0f, 1f), topLeft, new Vector2(400f, 48f));
+            var label = rect.gameObject.AddComponent<DepthLabel>();
+            label.text = rect.gameObject.AddComponent<Text>();
+            label.text.font = UiStyle.Title;
+            label.text.fontSize = 34;
+            label.text.color = UiStyle.Gold;
+            label.text.alignment = TextAnchor.MiddleLeft;
+            label.text.raycastTarget = false;
+            var shadow = rect.gameObject.AddComponent<Outline>();
+            shadow.effectColor = new Color(0f, 0f, 0f, 0.85f);
+            shadow.effectDistance = new Vector2(2f, -2f);
+            return label;
+        }
+
+        void Start()
+        {
+            var level = FindAnyObjectByType<DungeonLevel>();
+            text.text = level != null ? "Depth " + level.Depth : "Town";
         }
     }
 }
