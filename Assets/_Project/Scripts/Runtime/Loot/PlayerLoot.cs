@@ -63,7 +63,9 @@ namespace ARPG
                 {
                     // The raven's Gilded Beak (2026-10-15): more coins.
                     var beak = session.Pets.ActiveRank(PetSkillId.GildedBeak) * PetSkillRules.Get(PetSkillId.GildedBeak).PerRank;
-                    session.AddGold(Mathf.RoundToInt(drop.GoldAmount * (1f + beak)));
+                    var coins = Mathf.RoundToInt(drop.GoldAmount * (1f + beak));
+                    session.AddGold(coins);
+                    session.Run.Coins += coins;
                     // Quiet and spaced (Sfx.MinGap): a room of gold piles plays a few soft purse sounds, not a stream.
                     Sfx.Play(SoundId.Gold, 0.55f);
                     GoldPickedUp += drop.GoldAmount;
@@ -78,6 +80,10 @@ namespace ARPG
                 {
                     Sfx.Play(SoundId.Pickup);
                     ItemsPickedUp++;
+                    if (drop.Item.IsBlueprint)
+                        session.Run.Blueprints++;
+                    else
+                        session.Run.Items++;
                     // Its name over the character in its rarity's color.
                     DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 2f, 0f),
                         ItemComparison.Name(drop.Item), LootColors.Of(drop.Item.Rarity), 38);

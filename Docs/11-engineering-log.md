@@ -1240,3 +1240,10 @@ The owner's answers are in Docs/08. How it is built:
 - Lyriel's screen (`PetVendorScreen`) lists the following pet's skills with their rank, what the next rank gives, the boon they pair with and the price.
 - Tests: `PetSkillTests`. Offline 639 passed (the 5 NavGrid failures), Unity 644 of 644. In the editor a wolf with every skill mastered fought two packs at depth 1 with no errors; the packs died too fast for a bleed or freeze to be caught in a sample, so the effects are not yet seen in play.
 
+## 2026-10-15: the run summary
+
+- `Session/RunStats.cs` (pure): `RunStats` on `GameSession.Run` (kills, bosses, coins, items, blueprints, seconds, and the deepest depth ever when the run began, set in `ReachDepth`); saved (format 20). `RunSummary.Of(ending, end, learned, next)` builds the sheet's text: `Title`, `Headline`, `Lines()`, the boons and ranks.
+- Counting: `RunDirector` subscribes to the dungeon's `EnemyManager.Killed` on each level load and adds the dungeon time in `Update` (scaled, so the paused boon choice does not count); `PlayerLoot` adds coins (after the raven's Gilded Beak), items and blueprints.
+- `RunDirector.BeforeTownLoad` keeps the summary and opens `RunSummaryScreen` (TownSheets, with a new `Line` helper) when the town has loaded, in place of the banner.
+- Tests: `RunSummaryTests`. Offline 642 passed (the 5 NavGrid failures), Unity 647 of 647; in the editor a death at depth 1 opened the summary in town with the depth, the new record and the four boons.
+

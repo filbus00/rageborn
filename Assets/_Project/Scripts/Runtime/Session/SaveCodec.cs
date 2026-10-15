@@ -34,7 +34,10 @@ namespace ARPG
             MigrateFrom16, // 16 to 17: the roguelite; the save director sets such a save aside (FirstRogueliteVersion).
             MigrateFrom17, // 17 to 18: no blueprints existed; Thorin knows none and has forged nothing.
             MigrateFrom18, // 18 to 19: no pet skills existed; none is taught.
+            MigrateFrom19, // 19 to 20: no run numbers were kept; a run under way starts them at zero.
         };
+
+        static SaveData MigrateFrom19(SaveData data) => data;
 
         static SaveData MigrateFrom18(SaveData data)
         {
@@ -299,6 +302,9 @@ namespace ARPG
             foreach (var pair in session.Meta.Ranks)
                 data.metaUpgrades.Add(new TalentData { id = pair.Key.ToString(), rank = pair.Value });
             data.metaBlueprints.AddRange(session.Meta.Blueprints);
+            var run = session.Run;
+            (data.runKills, data.runBosses, data.runCoins, data.runItems, data.runBlueprints, data.runRecordBefore, data.runSeconds) =
+                (run.Kills, run.Bosses, run.Coins, run.Items, run.Blueprints, run.RecordBefore, run.Seconds);
             foreach (var pair in session.Pets.SkillRanks)
                 data.petSkills.Add(new TalentData { id = pair.Key.ToString(), rank = pair.Value });
             foreach (var pair in session.Meta.Forged)
@@ -364,6 +370,9 @@ namespace ARPG
             // After the meta: its bought charges are the roguelite's whole capacity.
             session.RestorePotion(data.potionCharges, data.potionKillProgress);
             session.PendingBoons = data.pendingBoons;
+            var stats = session.Run;
+            (stats.Kills, stats.Bosses, stats.Coins, stats.Items, stats.Blueprints, stats.RecordBefore, stats.Seconds) =
+                (data.runKills, data.runBosses, data.runCoins, data.runItems, data.runBlueprints, data.runRecordBefore, data.runSeconds);
             session.RerollsLeft = data.rerollsLeft;
             session.SentToStash = data.sentToStash;
             session.RunStarted = data.runStarted;

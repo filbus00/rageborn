@@ -13,13 +13,12 @@ namespace ARPG
     public class RunDirector : MonoBehaviour
     {
         static bool launched;
-        static string endNotice;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Create()
         {
             launched = false;
-            endNotice = null;
+            pendingSummary = null;
             if (!Features.Roguelite)
                 return;
             var go = new GameObject("Run Director");
@@ -51,12 +50,20 @@ namespace ARPG
             var learned = died ? 0 : session.LearnCarriedBlueprints();
             var next = session.NextRun(System.Environment.TickCount, !died);
             SaveDirector.BeginRun(next);
-            var taught = learned == 1 ? "  Thorin learns a new blueprint." : learned > 1 ? $"  Thorin learns {learned} new blueprints." : "";
-            endNotice = won
-                ? $"The First Watchman has fallen. The run is won.  {next.Gold:N0} coins kept.{taught}"
-                : died
-                    ? $"The run ended at depth {depth}.  All you carried is lost; {next.Gold:N0} coins kept."
-                    : $"Home through the portal from depth {depth}, with everything you carried.{taught}";
+            // The run summary, shown when the town has loaded (2026-10-15).
+            pendingSummary = RunSummary.Of(session, died ? RunEnd.Died : won ? RunEnd.Won : RunEnd.Portal, learned, next);
+        }
+
+        static RunSummary pendingSummary;
+        EnemyManager countedEnemies;
+
+        // Counts the run's kills and bosses for its summary.
+        void OnKilled(EnemyController enemy)
+        {
+            var run = GameSession.Current.Run;
+            run.Kills++;
+            if (enemy.Definition.Rank == EnemyRank.Boss)
+                run.Bosses++;
         }
 
         void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
@@ -66,9 +73,15 @@ namespace ARPG
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             var session = GameSession.Current;
+            if (countedEnemies != null)
+                countedEnemies.Killed -= OnKilled;
+            countedEnemies = null;
             if (scene.name != SceneTravel.TownScene)
             {
                 launched = true;
+                countedEnemies = FindAnyObjectByType<EnemyManager>();
+                if (countedEnemies != null)
+                    countedEnemies.Killed += OnKilled;
                 return;
             }
             if (!launched)
@@ -83,18 +96,19 @@ namespace ARPG
                 }
                 return;
             }
-            if (endNotice != null)
+            if (pendingSummary != null)
             {
-                var notice = endNotice;
-                endNotice = null;
-                var banner = HintBanner.Current != null ? HintBanner.Current : HintBanner.Create();
-                banner.Show(notice);
+                RunSummaryScreen.Open(pendingSummary);
+                pendingSummary = null;
             }
         }
 
         void Update()
         {
             var session = GameSession.Current;
+            // The run's time in the dungeon, for its summary.
+            if (session.RunStarted && SceneManager.GetActiveScene().name == SceneTravel.DungeonScene)
+                session.Run.Seconds += Time.deltaTime;
             if (session.PendingBoons <= 0 || BoonScreen.IsOpen || TownSheets.AnyOpen || SceneTravel.IsTravelling)
                 return;
             if (SceneManager.GetActiveScene().name != SceneTravel.DungeonScene || Time.timeSinceLevelLoad < 0.6f)

@@ -660,6 +660,9 @@ namespace ARPG
 
         public int Level => Progress.Level;
 
+        /// <summary>What this run has done (the run summary, 2026-10-15). Saved.</summary>
+        public RunStats Run { get; } = new RunStats();
+
         /// <summary>Raised with the new level when the character levels up, after <see cref="Changed"/>.</summary>
         public event Action<int> LeveledUp;
 
@@ -752,7 +755,10 @@ namespace ARPG
             if (depth <= DeepestDepth)
                 return false;
             if (DeepestDepth == 0)
+            {
                 RerollsLeft = Meta.RerollsPerRun;
+                Run.RecordBefore = Meta.DeepestEver;
+            }
             DeepestDepth = depth;
             RunStarted = true;
             // The roguelite (2026-10-13): a boon for every new depth, and she fights at the depth's level.

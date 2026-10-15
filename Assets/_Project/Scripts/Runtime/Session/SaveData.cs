@@ -21,7 +21,7 @@ namespace ARPG
         /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses. 13: adds each
         /// item's named legendary and the legendaries seen (the Codex). 14: the deepest depth and the stash. 15: the talent
         /// trees' ranks (2026-10-07; skill levels and the loadout are kept in the file but no longer used).</summary>
-        public const int CurrentVersion = 19;
+        public const int CurrentVersion = 20;
 
         public int version;
 
@@ -96,6 +96,10 @@ namespace ARPG
         public List<string> pets = new List<string>();
         public string activePet = "";
         public List<string> petRules = new List<string>();
+
+        /// <summary>The run's numbers for its summary (format 20, 2026-10-15).</summary>
+        public int runKills, runBosses, runCoins, runItems, runBlueprints, runRecordBefore;
+        public float runSeconds;
 
         /// <summary>The pets' skills by name and rank (format 19, 2026-10-15).</summary>
         public List<TalentData> petSkills = new List<TalentData>();

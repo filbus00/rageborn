@@ -168,6 +168,13 @@ namespace ARPG
             Height(heading.gameObject, 70f);
         }
 
+        /// <summary>A line of text, no button.</summary>
+        protected void Line(string text, int size = 32, float height = 56f)
+        {
+            var line = Label(content, text, size, FontStyle.Normal, TextAnchor.MiddleLeft);
+            Height(line.gameObject, height);
+        }
+
         /// <summary>A wrapping grid of item tiles; a tap on one calls <paramref name="onTap"/> with it.</summary>
         protected void Tiles(System.Collections.Generic.IReadOnlyList<Item> items, Action<Item> onTap, string empty)
         {
@@ -314,6 +321,39 @@ namespace ARPG
                 if (session.StoreInStash(item))
                     Sfx.Play(SoundId.Pickup);
             }, "The backpack is empty.");
+        }
+    }
+
+    /// <summary>
+    /// The run summary (2026-10-15): when a run ends, the town opens on what it came to (<see cref="RunSummary"/>): how it
+    /// ended, the depth, time, kills, coins, items and blueprints, and the boons she had.
+    /// </summary>
+    public class RunSummaryScreen : TownSheets
+    {
+        static RunSummaryScreen current;
+        RunSummary summary;
+
+        public static void Open(RunSummary summary)
+        {
+            if (current == null)
+                current = Make<RunSummaryScreen>("Run Summary");
+            current.summary = summary;
+            current.Show();
+            Sfx.Play(summary.End == RunEnd.Died ? SoundId.Death : SoundId.LevelUp, 0.6f);
+        }
+
+        protected override void Render()
+        {
+            if (summary == null)
+                return;
+            var color = summary.End == RunEnd.Died ? "#D06050" : "#E8C66A";
+            subtitle.text = $"<color={color}><b>{summary.Title}</b></color>\n<size=28>{summary.Headline}</size>";
+            foreach (var line in summary.Lines())
+                Line(line);
+            Heading(summary.Boons.Count > 0 ? $"Boons ({summary.Boons.Count})" : "No boons taken");
+            foreach (var (name, rank) in summary.Boons)
+                Line(rank > 1 ? $"{name}  <color=#E8C66A>{rank}</color>" : name, 30, 46f);
+            Line("<size=28><color=#999999>Coins buy upgrades in town; the chest keeps what you put in it.</color></size>", 28, 80f);
         }
     }
 
