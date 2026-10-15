@@ -60,9 +60,12 @@ namespace ARPG
         /// <param name="reforges">How many times the Forge has reforged it, which raises the next reforge's cost.</param>
         /// <param name="tempers">How many times it has been tempered, at most <see cref="ForgeRules.MaxTempers"/>.</param>
         /// <param name="legendary">Which named legendary it is (Docs/03, 2026-10-01), or None.</param>
+        /// <param name="blueprint">A blueprint (2026-10-15): not worn; brought home, it teaches Thorin the smith to forge
+        /// the item of its kind and look (<see cref="BlueprintRules"/>).</param>
         public Item(ItemSlot slot, ItemRarity rarity, int itemLevel, AffixRoll[] affixes = null, int reforges = 0, int tempers = 0,
-            LegendaryId legendary = LegendaryId.None)
+            LegendaryId legendary = LegendaryId.None, bool blueprint = false)
         {
+            IsBlueprint = blueprint;
             Legendary = legendary;
             Slot = slot;
             Rarity = rarity;
@@ -73,6 +76,9 @@ namespace ARPG
         }
 
         public ItemSlot Slot { get; }
+
+        /// <summary>A blueprint for the item of this kind and look (by its item level), not an item to wear. Saved.</summary>
+        public bool IsBlueprint { get; }
 
         /// <summary>The named legendary this is, with its power (<see cref="Legendaries"/>), or None. Saved by name.</summary>
         public LegendaryId Legendary { get; }

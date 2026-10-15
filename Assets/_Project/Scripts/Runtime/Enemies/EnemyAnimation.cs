@@ -82,6 +82,11 @@ namespace ARPG
         /// <summary>How long a hit reaction shows when the enemy is not attacking.</summary>
         public const float HitSeconds = 0.25f;
 
+        /// <summary>Seconds a boss waits between hit flinches (2026-10-15); every other rank flinches at each hit.</summary>
+        public const float BossFlinchGapSeconds = 5f;
+
+        public static float FlinchGap(EnemyRank rank) => rank == EnemyRank.Boss ? BossFlinchGapSeconds : 0f;
+
         /// <summary>
         /// The attack's progress, 0 to 1: the wind-up runs from the start to <see cref="HitFraction"/>, so the blow lands
         /// on the animation's strike exactly when the game lands it, and the recovery runs the rest.

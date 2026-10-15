@@ -21,7 +21,7 @@ namespace ARPG
         /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses. 13: adds each
         /// item's named legendary and the legendaries seen (the Codex). 14: the deepest depth and the stash. 15: the talent
         /// trees' ranks (2026-10-07; skill levels and the loadout are kept in the file but no longer used).</summary>
-        public const int CurrentVersion = 17;
+        public const int CurrentVersion = 18;
 
         public int version;
 
@@ -116,6 +116,10 @@ namespace ARPG
         public List<TalentData> metaUpgrades = new List<TalentData>();
         public int metaRuns;
         public int metaDeepest;
+
+        /// <summary>Thorin's blueprints (format 18, 2026-10-15): the keys he knows and the items forged for each kind.</summary>
+        public List<string> metaBlueprints = new List<string>();
+        public List<ItemData> metaForged = new List<ItemData>();
         public int pendingBoons;
         public int rerollsLeft;
         public bool sentToStash;
@@ -165,6 +169,9 @@ namespace ARPG
 
         /// <summary>The named legendary it is, by name (empty for none).</summary>
         public string legendary = "";
+
+        /// <summary>A blueprint, not a wearable item (2026-10-15).</summary>
+        public bool blueprint;
     }
 
     [Serializable]

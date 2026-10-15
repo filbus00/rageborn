@@ -135,7 +135,7 @@ namespace ARPG
             new Definition(AffixKind.Suffix, 7f, 11f, On(ItemSlot.Weapon, ItemSlot.Gloves, ItemSlot.Ring, ItemSlot.Shield)),   // AttackSpeed
             new Definition(AffixKind.Suffix, 4f, 7f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Amulet, ItemSlot.Gloves, ItemSlot.Shield)), // CriticalChance
             new Definition(AffixKind.Suffix, 20f, 30f, On(ItemSlot.Weapon, ItemSlot.Amulet, ItemSlot.Ring, ItemSlot.Shield)),  // CriticalDamage
-            new Definition(AffixKind.Suffix, 4f, 8f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Gloves)),                     // LifeOnHit
+            new Definition(AffixKind.Suffix, 2f, 4f, On(ItemSlot.Weapon, ItemSlot.Ring, ItemSlot.Gloves)),                     // LifeOnHit (halved 2026-10-15, the owner)
             new Definition(AffixKind.Suffix, 5f, 9f, On(ItemSlot.Helm, ItemSlot.Amulet, ItemSlot.Ring)),                       // CooldownReduction
             new Definition(AffixKind.Suffix, 6f, 10f, On(ItemSlot.Boots)),                                                     // MovementSpeed
             new Definition(AffixKind.Suffix, 3f, 5f, On(ItemSlot.Boots, ItemSlot.Belt, ItemSlot.Ring)),                        // DodgeChance

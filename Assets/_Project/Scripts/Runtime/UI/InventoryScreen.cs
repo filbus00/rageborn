@@ -225,6 +225,17 @@ namespace ARPG
 
             var close = UiStyle.Button(header, "Close", Close, 34);
             UiStyle.Place((RectTransform)close.transform, new Vector2(1f, 1f), new Vector2(-24f, -32f), new Vector2(144f, 112f));
+
+            // The portal home (2026-10-15): in the dungeon, ends the run keeping what she carries, after a short channel.
+            if (PortalChannel.CanOpen)
+            {
+                var portal = UiStyle.Button(header, PortalChannel.IsOpening ? "Opening..." : "Portal home", () =>
+                {
+                    Close();
+                    PortalChannel.Begin();
+                }, 30, UiStyle.Blood);
+                UiStyle.Place((RectTransform)portal.transform, new Vector2(1f, 1f), new Vector2(-24f, -150f), new Vector2(300f, 64f));
+            }
         }
 
         // --- Paper doll ---------------------------------------------------------------------------------------------
@@ -314,7 +325,7 @@ namespace ARPG
             var canvas = panelRoot.GetComponentInParent<Canvas>().rootCanvas;
             var source = (RectTransform)tile.transform;
             var ghost = UiStyle.Image(canvas.transform, "Dragged Item", new Color(1f, 1f, 1f, 0.85f));
-            ghost.sprite = ItemIcons.For(item.Slot, item.Rarity);
+            ghost.sprite = ItemIcons.For(item);
             ghost.preserveAspect = true;
             ghost.raycastTarget = false;
             dragGhost = ghost.rectTransform;
@@ -436,7 +447,7 @@ namespace ARPG
 
             rim.color = Color.Lerp(LootColors.Of(item.Rarity), UiStyle.Frame, item.Rarity == ItemRarity.Common ? 0.5f : 0.15f);
             var icon = UiStyle.Image(tile.transform, "Icon", Color.white);
-            icon.sprite = ItemIcons.For(item.Slot, item.Rarity);
+            icon.sprite = ItemIcons.For(item);
             icon.preserveAspect = true;
             UiStyle.Stretch(icon.rectTransform, 8f);
             // The item level in a corner; a one-cell tile has no room for it.

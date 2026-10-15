@@ -16,16 +16,13 @@ namespace ARPG.Tests
 
 
         [Test]
-        public void EveryClassSkill_IsTaughtOnce_AndEveryCapstoneCanBeReached()
+        public void EveryClassSkill_IsTaughtOnce_AndEveryNodeIsInTheTrees()
         {
+            // The roguelite (2026-10-15): boons ignore the trees' points, so only the rows' bounds are checked.
             foreach (var skill in ClassSkills)
                 Assert.AreEqual(1, TalentRules.Nodes.Count(n => n.Skill == skill), skill);
-            foreach (TalentTree tree in System.Enum.GetValues(typeof(TalentTree)))
-            {
-                var below = TalentRules.Nodes.Where(n => n.Tree == tree && n.Tier < TalentRules.Tiers - 1).Sum(n => n.MaxRanks);
-                Assert.GreaterOrEqual(below, (TalentRules.Tiers - 1) * TalentRules.PointsPerTier, tree.ToString());
-                Assert.IsTrue(TalentRules.Nodes.Any(n => n.Tree == tree && n.Tier == TalentRules.Tiers - 1), tree + " has a capstone");
-            }
+            foreach (var node in TalentRules.Nodes)
+                Assert.IsTrue(node.Tier >= 0 && node.Tier < TalentRules.Tiers && node.Column >= 0 && node.Column < 3, node.Id);
             var ids = new HashSet<string>();
             foreach (var node in TalentRules.Nodes)
             {

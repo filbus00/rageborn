@@ -198,6 +198,21 @@ namespace ARPG
         }
 
         // A band seen from the front.
+        /// <summary>A blueprint's icon (2026-10-15): a rolled sheet of parchment tied with a cord, one cell.</summary>
+        public static Color32[] DrawBlueprint(out int width, out int height)
+        {
+            width = height = PixelsPerCell;
+            var c = new Canvas(width, height);
+            c.Rect(2, 3, 8, 6, Bone);
+            c.Rect(1, 2, 2, 8, WoodLight);
+            c.Rect(9, 2, 2, 8, WoodLight);
+            c.Rect(4, 5, 4, 1, ClothDark);
+            c.Rect(4, 7, 3, 1, ClothDark);
+            c.Rect(5, 3, 1, 6, Feather);
+            PixelArt.Process(c.Pixels, width, height, true);
+            return c.Pixels;
+        }
+
         static void Ring(Canvas c)
         {
             var w = c.Width;

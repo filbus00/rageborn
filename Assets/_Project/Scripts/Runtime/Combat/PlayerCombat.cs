@@ -142,6 +142,9 @@ namespace ARPG
             public float ChillChance;
             // Freezing Arrow (a boon): each chill counts twice.
             public bool Freezing;
+            // Boons (2026-10-15): Ricochet's leaps left, Seeking Arrows' bend toward the target.
+            public int Bounces;
+            public bool Seeking;
             // Stillwater Yew's certain crit, and Gallowsreach's blood pools along the trail.
             public bool CertainCrit;
             public bool BloodPools;
@@ -585,6 +588,11 @@ namespace ARPG
             }
 
             AddExtraArrows(firstShot);
+            // Arrow Nova (a boon): every sixth shot, a ring of arrows all round her.
+            if (session.Talents.Bonuses.ArrowNova && basicShotCount % NovaEvery == 0)
+                for (var k = 0; k < NovaArrows; k++)
+                    shots.Add(NewArrow(origin, Rotate(aim, 360f * k / NovaArrows) * ArrowSpeed, BasicRange + ArrowOvershoot, NovaShare,
+                        ShotStyle.Basic, BasicTrailColor));
             // Extra Shot: as many more loosings, spaced within the time to the next attack.
             echoesLeft = Mathf.RoundToInt(session.Talents.Bonuses.ExtraShots);
             echoGap = Mathf.Min(EchoGapSeconds, attackTimer / (echoesLeft + 1));
@@ -1412,9 +1420,41 @@ namespace ARPG
             // Affix 91: a chance to fork on the first hit, for any arrow that does not already.
             if (!shot.CanFork && Random.value < equipment.AffixTotal(AffixId.ForkChance) / 100f)
                 shot.CanFork = true;
-            if (shot.PierceLeft > 0)
+            // Boons (2026-10-15).
+            var boons = session.Talents.Bonuses;
+            if (boons.SplittingArrows && shot.Style != ShotStyle.Explosive)
+                shot.CanFork = true;
+            var piercing = Mathf.RoundToInt(boons.PiercingArrows);
+            if (piercing > 0 && shot.PierceLeft != int.MaxValue && shot.Style != ShotStyle.Explosive)
+                shot.PierceLeft += piercing;
+            shot.Bounces = shot.Style == ShotStyle.Explosive ? 0 : Mathf.RoundToInt(boons.Ricochet);
+            if (boons.SeekingArrows && shot.Style != ShotStyle.Homing && Target != null)
+            {
+                shot.Seeking = true;
+                shot.Chasing = Target;
+                shot.TurnRadians = SeekingTurnRadians;
+            }
+            if (shot.PierceLeft > 0 || shot.Bounces > 0)
                 EnsurePierceSet(ref shot);
         }
+
+        // Seeking Arrows: how fast a seeking arrow bends toward its target (radians a second); Homing Arrow turns faster.
+        const float SeekingTurnRadians = 2.5f;
+        // Ricochet: how far an arrow looks for the next enemy, and how far it flies on.
+        const float RicochetRadius = 6f;
+        // Chain Lightning: the enemies it arcs to, how far, and its share of the hit.
+        const int ChainTargets = 3;
+        const float ChainRadius = 4.5f;
+        const float ChainShare = 0.5f;
+        // Corpse Burst: its radius and its share of the killing arrow.
+        const float CorpseBurstRadius = 2.2f;
+        const float CorpseBurstShare = 0.6f;
+        // Arrow Nova: every this many basic shots, this many arrows in a ring, each at this share.
+        const int NovaEvery = 6;
+        const int NovaArrows = 8;
+        const float NovaShare = 0.6f;
+        static readonly Color LightningColor = new Color(0.65f, 0.8f, 1f, 1f);
+        static readonly Color CorpseBurstColor = new Color(0.75f, 0.1f, 0.08f, 1f);
 
         void EnsurePierceSet(ref Shot shot)
         {
@@ -1455,7 +1495,7 @@ namespace ARPG
             for (var i = shots.Count - 1; i >= 0; i--)
             {
                 var shot = shots[i];
-                if (shot.Style == ShotStyle.Homing)
+                if (shot.Style == ShotStyle.Homing || shot.Seeking)
                     Steer(ref shot, deltaTime);
 
                 var step = shot.Velocity * deltaTime;
@@ -1658,6 +1698,11 @@ namespace ARPG
             var wasBleeding = enemy.IsBleeding;
             var bleed = enemy.BleedPerSecond;
             var killed = Strike(enemy, multiplier, projectile: true, forceCrit: forceCrit);
+            var boons = session.Talents.Bonuses;
+            if (boons.ChainLightning > 0f && Random.value < boons.ChainLightning)
+                ChainLightning(enemy, multiplier);
+            if (killed && boons.CorpseBurst)
+                CorpseBurst(enemy, multiplier);
             if (shot.KnockDistance > 0f)
                 KnockBack(enemy, direction, shot);
             HealOnHit(1);
@@ -1687,7 +1732,107 @@ namespace ARPG
                 return false;
             }
             fx.Blood(world, screenDirection, ArrowHeight, killed ? 1.8f : 0.8f);
+            // Ricochet: on to the nearest enemy it has not struck, while it has leaps left.
+            if (shot.Bounces > 0)
+            {
+                EnsurePierceSet(ref shot);
+                shot.Pierced.Add(enemy);
+                var next = NearestUnstruck(enemy, RicochetRadius, shot.Pierced);
+                if (next != null)
+                {
+                    shot.Bounces--;
+                    shot.Velocity = (next.GroundPosition - shot.Position).normalized * shot.Velocity.magnitude;
+                    shot.Travelled = 0f;
+                    shot.MaxDistance = RicochetRadius + ArrowOvershoot;
+                    shot.Chasing = next;
+                    fx.Sparks(world, IsoMath.GroundToWorld(shot.Velocity.normalized), ArrowHeight, shot.Glow, 3);
+                    return false;
+                }
+            }
             return true;
+        }
+
+        // The nearest living enemy to another within a radius that is not in a set (Ricochet's next mark).
+        EnemyController NearestUnstruck(EnemyController from, float radius, HashSet<EnemyController> struck)
+        {
+            enemies.QueryEnemies(from.GroundPosition, radius + QueryMargin, spreadNearby);
+            EnemyController best = null;
+            var bestDistance = radius;
+            for (var n = 0; n < spreadNearby.Count; n++)
+            {
+                var enemy = spreadNearby[n];
+                if (enemy == from || !enemy.IsAlive || struck.Contains(enemy))
+                    continue;
+                var distance = Vector2.Distance(from.GroundPosition, enemy.GroundPosition);
+                if (distance > bestDistance || !enemies.Nav.HasLineOfSight(from.GroundPosition, enemy.GroundPosition))
+                    continue;
+                best = enemy;
+                bestDistance = distance;
+            }
+            return best;
+        }
+
+        // Chain Lightning (a boon): from a struck enemy to the nearest others, each taking a share of the hit.
+        readonly List<EnemyController> chainTargets = new List<EnemyController>(ChainTargets);
+
+        void ChainLightning(EnemyController from, float multiplier)
+        {
+            enemies.QueryEnemies(from.GroundPosition, ChainRadius + QueryMargin, spreadNearby);
+            chainTargets.Clear();
+            for (var k = 0; k < ChainTargets; k++)
+            {
+                EnemyController best = null;
+                var bestDistance = ChainRadius;
+                for (var n = 0; n < spreadNearby.Count; n++)
+                {
+                    var enemy = spreadNearby[n];
+                    if (enemy == from || !enemy.IsAlive || chainTargets.Contains(enemy))
+                        continue;
+                    var distance = Vector2.Distance(from.GroundPosition, enemy.GroundPosition);
+                    if (distance <= bestDistance)
+                    {
+                        best = enemy;
+                        bestDistance = distance;
+                    }
+                }
+                if (best == null)
+                    break;
+                chainTargets.Add(best);
+            }
+            var start = from.GroundPosition;
+            foreach (var enemy in chainTargets)
+            {
+                Bolt(start, enemy.GroundPosition);
+                start = enemy.GroundPosition;
+                Strike(enemy, multiplier * ChainShare, projectile: true);
+            }
+            if (chainTargets.Count > 0)
+                Sfx.Play(SoundId.Crit, 0.35f);
+        }
+
+        // A bolt drawn as sparks along the line between two ground points.
+        void Bolt(Vector2 from, Vector2 to)
+        {
+            var steps = Mathf.Max(2, Mathf.CeilToInt(Vector2.Distance(from, to) / 0.6f));
+            var along = IsoMath.GroundToWorld((to - from).normalized);
+            for (var k = 0; k <= steps; k++)
+                fx.Sparks(IsoMath.GroundToWorld(Vector2.Lerp(from, to, (float)k / steps)), along, ArrowHeight, LightningColor, 1);
+        }
+
+        // Corpse Burst (a boon): the enemy an arrow killed bursts, striking those around it with a share of that arrow.
+        void CorpseBurst(EnemyController dead, float multiplier)
+        {
+            var at = dead.GroundPosition;
+            fx.Burst(IsoMath.GroundToWorld(at), CorpseBurstRadius * 0.5f, CorpseBurstColor);
+            fx.Gore(IsoMath.GroundToWorld(at), ArrowHeight, 1.2f);
+            enemies.QueryEnemies(at, CorpseBurstRadius + QueryMargin, spreadNearby);
+            for (var n = 0; n < spreadNearby.Count; n++)
+            {
+                var enemy = spreadNearby[n];
+                if (enemy == dead || !enemy.IsAlive || Vector2.Distance(at, enemy.GroundPosition) > CorpseBurstRadius + enemy.Definition.BodyRadius)
+                    continue;
+                Strike(enemy, multiplier * CorpseBurstShare, projectile: true);
+            }
         }
 
         // The powers that fire when an arrow strikes (Docs/03): The Widow's Draw, Bloodletter's Grips, Falconer's Hood and
@@ -1788,6 +1933,9 @@ namespace ARPG
                 enemy.ApplyBurn(Damage(enemy, BurnShare / BurnStacks.Seconds, false) * BurnFactor);
                 fx.Sparks(world, Vector2.up, ArrowHeight, BurnColor, 3);
             }
+            // Bleeding Arrows (a boon): every hit bleeds, 30 percent of weapon damage a second for 3 s.
+            if (session.Talents.Bonuses.BleedingArrows)
+                enemy.ApplyBleed(Damage(enemy, BleedingArrowShare, false), BleedingArrowSeconds);
             if (shot.ChillChance > 0f && Random.value < shot.ChillChance)
             {
                 enemy.ApplyChill();
@@ -1798,6 +1946,8 @@ namespace ARPG
         }
 
         const float BurnShare = 0.6f;
+        const float BleedingArrowShare = 0.3f;
+        const float BleedingArrowSeconds = 3f;
 
         // Affix 93: burns, and burning ground, deal more.
         float BurnFactor => 1f + session.Equipment.AffixTotal(AffixId.BurnDamage) / 100f;

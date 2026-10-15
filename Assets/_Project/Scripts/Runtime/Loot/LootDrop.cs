@@ -149,7 +149,8 @@ namespace ARPG
             wantedCheckedAt = Time.unscaledTime;
             var session = GameSession.Current;
             var upgrade = PowerScore.IsUpgrade(session.Equipment, Item, session.Level, session.Talents.Bonuses);
-            wanted = AutoLootRules.Wants(SettingsDirector.Current.PickupRule, Item.Rarity, upgrade);
+            // A blueprint is always taken.
+            wanted = Item.IsBlueprint || AutoLootRules.Wants(SettingsDirector.Current.PickupRule, Item.Rarity, upgrade);
             // A drop the rule leaves behind shows its name dimmed.
             var color = LootColors.Of(Item.Rarity);
             label.color = wanted ? color : new Color(color.r, color.g, color.b, 0.45f);

@@ -88,6 +88,7 @@ namespace ARPG
             var items = loot.RollDrops(source, level, MagicFind);
             for (var i = 0; i < items.Count; i++)
                 DropItem(items[i], at + Scatter(ItemScatterRadius), at);
+            DropBlueprint(source, level, at);
 
             if (Features.Forge)
                 GrantMaterials(source, at);
@@ -142,6 +143,17 @@ namespace ARPG
             var items = loot.RollDrops(LootSource.ZoneChest, itemLevel, MagicFind);
             for (var i = 0; i < items.Count; i++)
                 DropItem(items[i], ground + Scatter(ItemScatterRadius), ground);
+            DropBlueprint(LootSource.ZoneChest, itemLevel, ground);
+        }
+
+        // A rare blueprint for Thorin (2026-10-15), of a kind he does not know yet in this level's look.
+        void DropBlueprint(LootSource source, int itemLevel, Vector2 at)
+        {
+            if (!Features.Roguelite)
+                return;
+            var blueprint = GameSession.Current.Loot.RollBlueprint(source, itemLevel, GameSession.Current.Meta.Blueprints);
+            if (blueprint != null)
+                DropItem(blueprint, at + Scatter(ItemScatterRadius), at);
         }
 
         /// <summary>Puts gold on the ground at a ground position. Chests, elites and bosses will use this too.</summary>

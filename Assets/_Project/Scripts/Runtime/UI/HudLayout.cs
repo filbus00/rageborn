@@ -52,6 +52,9 @@ namespace ARPG
                     child.gameObject.SetActive(false);
             }
             DepthLabel.Create(area, new Vector2(BarsLeft, -Top - 138f));
+            // The boons taken, as icons under the depth (2026-10-15).
+            if (Features.Roguelite)
+                BoonBar.Create(area, new Vector2(BarsLeft, -Top - 192f));
 
             layout.session = GameSession.Current;
             layout.session.Changed += layout.RefreshPortrait;

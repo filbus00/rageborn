@@ -133,6 +133,6 @@ namespace ARPG
         public const float SameThreshold = 0.005f;
 
         public static bool IsUpgrade(EquipmentState equipment, Item candidate, int characterLevel, PassiveBonuses tree = null) =>
-            Change(equipment, candidate, characterLevel, tree) > SameThreshold;
+            candidate != null && !candidate.IsBlueprint && Change(equipment, candidate, characterLevel, tree) > SameThreshold;
     }
 }

@@ -31,7 +31,12 @@ namespace ARPG
     public static class ItemComparison
     {
         /// <summary>A named legendary's name, else its rarity and kind ("Magic Bow").</summary>
-        public static string Name(Item item) => item.LegendaryDefinition != null ? item.LegendaryDefinition.Name : $"{item.Rarity} {KindName(item.Slot)}";
+        // Plain names by what the item is (the owner, 2026-10-15: "Rename the weapons and armor to regular names, their
+        // uniqueness will be displayed by the color"); named legendaries keep their names.
+        public static string Name(Item item) =>
+            item.LegendaryDefinition != null ? item.LegendaryDefinition.Name
+            : item.IsBlueprint ? "Blueprint: " + ItemNames.BaseName(item.Slot, item.ItemLevel)
+            : ItemNames.BaseName(item.Slot, item.ItemLevel);
 
         /// <summary>An item kind's name for players: bows only (Docs/03, 2026-09-30), so Weapon is a short bow, the
         /// two-handed kind a longbow and the shield kind a quiver.</summary>

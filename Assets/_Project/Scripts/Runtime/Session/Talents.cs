@@ -105,63 +105,54 @@ namespace ARPG
                 ImprovesSkill = skill, SkillDamage = 0.15f, Requires = skillNode, Text = skillName + " deals {0} more damage.",
             };
 
-        // The numbers are Claude's, to review (Docs/08). Percent-point effects (crit chance, crit damage) are in points;
-        // the rest are fractions.
+        // The boons (the roguelite, 2026-10-13; reworked 2026-10-15, the owner: "Add new interesting boons, crit chance,
+        // walk speed, armor and things like that are not fun"): the skills, their improvements and boons that change what
+        // her arrows do. The plain stat nodes (crit, speed, armour, life, pet stats) are gone; those live in Brunhilde's
+        // training. The numbers are Claude's, to review (Docs/08). Rows 0 and 1 are offered from the first depth, the rest
+        // once Hidden Lore is bought.
         static List<TalentNode> Build()
         {
             const TalentTree M = TalentTree.Marksmanship, B = TalentTree.BeastMastery, S = TalentTree.Survival;
             return new List<TalentNode>
             {
-                // Marksmanship: precision, crits, Pierce Arrow and Kill Shot, Barrage at the top.
+                // Marksmanship: more arrows and arrows that go further.
                 Skill(M, 0, 0, "pierce_arrow", "Pierce Arrow", "PierceArrow", "Learn Pierce Arrow: a heavy arrow through every enemy on its line."),
-                // Boons (the owner, 2026-10-13: "a boon that makes all attacks fire +1 extra arrow (can be leveled up) a
-                // boon that makes the character fire the bow +1 extra time (can be leveled up)").
+                // The owner, 2026-10-13: "a boon that makes all attacks fire +1 extra arrow (can be leveled up) a boon that
+                // makes the character fire the bow +1 extra time (can be leveled up)".
                 Passive(M, 0, 1, "extra_arrow", "Extra Arrow", 3, PassiveEffect.ExtraArrows, 1f, "Every attack and skill looses {0}."),
-                Passive(M, 1, 1, "extra_shot", "Extra Shot", 3, PassiveEffect.ExtraShots, 1f, "She looses her bow {0} after each shot."),
-                Passive(M, 0, 2, "steady_aim", "Steady Aim", 5, PassiveEffect.CriticalChance, 1f, "{0} critical strike chance."),
+                Passive(M, 0, 2, "piercing_arrows", "Piercing Arrows", 3, PassiveEffect.PiercingArrows, 1f, "Every arrow passes through {0}."),
                 Improved(M, 1, 0, "pierce_arrow", "PierceArrow", "Pierce Arrow"),
-                Passive(M, 1, 2, "lethal_shots", "Lethal Shots", 5, PassiveEffect.CriticalDamage, 6f, "{0} critical strike damage."),
+                Passive(M, 1, 1, "extra_shot", "Extra Shot", 3, PassiveEffect.ExtraShots, 1f, "She looses her bow {0} after each shot."),
+                Passive(M, 1, 2, "splitting_arrows", "Splitting Arrows", 1, PassiveEffect.SplittingArrows, 1f,
+                    "Every arrow splits in two on its first hit, the halves flying on to either side."),
                 Skill(M, 2, 1, "split_arrow", "Split Arrow", "SplitArrow", "Learn Split Arrow: five arrows in a fan."),
-                Passive(M, 2, 2, "mortal_shots", "Mortal Shots", 3, PassiveEffect.IncreasedDamage, 0.03f, "{0} more damage with every arrow."),
+                Passive(M, 2, 2, "seeking_arrows", "Seeking Arrows", 1, PassiveEffect.SeekingArrows, 1f, "Every arrow bends in flight toward its target."),
                 Skill(M, 3, 0, "kill_shot", "Kill Shot", "KillShot", "Learn Kill Shot: a fast arrow that executes the wounded."),
                 Improved(M, 3, 1, "split_arrow", "SplitArrow", "Split Arrow"),
                 Improved(M, 4, 0, "kill_shot", "KillShot", "Kill Shot"),
-                Passive(M, 4, 2, "bow_mastery", "Bow Mastery", 5, PassiveEffect.AttackSpeed, 0.02f, "{0} attack speed."),
                 Skill(M, 5, 1, "barrage", "Barrage", "Barrage", "Learn Barrage: eight arrows over a second as she moves."),
 
-                // Beast Mastery: the pet as a build, Homing Arrow, Hunter's Breath, Wild Frenzy.
+                // Beast Mastery: arrows that hunt on after the hit.
                 Skill(B, 0, 0, "homing_arrow", "Homing Arrow", "HomingArrow", "Learn Homing Arrow: three arrows that seek their targets."),
-                Passive(B, 0, 2, "kindred_spirit", "Kindred Spirit", 5, PassiveEffect.PetDamage, 0.1f, "{0} pet damage."),
-                Passive(B, 1, 1, "endurance_training", "Endurance Training", 5, PassiveEffect.LifePercent, 0.02f, "{0} maximum life."),
-                Passive(B, 1, 2, "thick_hide", "Thick Hide", 3, PassiveEffect.PetLife, 0.15f, "{0} pet life.", "kindred_spirit"),
-                Skill(B, 2, 1, "hunters_breath", "Hunter's Breath", "HuntersBreath", "Learn Hunter's Breath: refills Focus when it runs low."),
+                Passive(B, 0, 2, "bleeding_arrows", "Bleeding Arrows", 1, PassiveEffect.BleedingArrows, 1f, "Every hit opens a wound that bleeds for 3 seconds."),
+                Passive(B, 1, 1, "ricochet", "Ricochet", 3, PassiveEffect.Ricochet, 1f, "An arrow that hits leaps on to the nearest other enemy, {0}."),
+                Passive(B, 1, 2, "arrow_nova", "Arrow Nova", 1, PassiveEffect.ArrowNova, 1f, "Every sixth shot, a ring of eight arrows bursts out around her."),
                 Improved(B, 2, 0, "homing_arrow", "HomingArrow", "Homing Arrow"),
-                Passive(B, 3, 0, "bestial_discipline", "Bestial Discipline", 3, PassiveEffect.FocusRegen, 0.1f, "{0} Focus regeneration."),
-                Passive(B, 3, 2, "ferocity", "Ferocity", 3, PassiveEffect.IncreasedDamage, 0.03f, "{0} more damage with every arrow."),
+                Skill(B, 2, 1, "hunters_breath", "Hunter's Breath", "HuntersBreath", "Learn Hunter's Breath: refills Focus when it runs low."),
+                Passive(B, 2, 2, "corpse_burst", "Corpse Burst", 1, PassiveEffect.CorpseBurst, 1f, "An enemy her arrow kills bursts, striking those around it."),
                 Skill(B, 4, 1, "wild_frenzy", "Wild Frenzy", "WildFrenzy", "Learn Wild Frenzy: a burst of attack speed in a fight."),
-                Passive(B, 4, 2, "spirit_bond", "Spirit Bond", 3, PassiveEffect.LifeOnHit, 1f, "{0} life on every hit."),
-                new TalentNode
-                {
-                    Id = "beast_within", Tree = B, Tier = 5, Column = 1, Name = "The Beast Within", Effect = PassiveEffect.PetDamage, PerRank = 0.5f,
-                    Effect2 = PassiveEffect.AttackSpeed, PerRank2 = 0.1f, Text = "Pet damage +50 percent and attack speed +10 percent.",
-                },
 
-                // Survival: Momentum and dodge, fire and frost, Knockback Shot and Explosive Arrow.
+                // Survival: fire, frost and lightning, and the heavy skills.
                 Skill(S, 0, 0, "knockback_shot", "Knockback Shot", "KnockbackShot", "Learn Knockback Shot: a heavy arrow that throws enemies back."),
-                // Boons (the owner, 2026-10-13: "freezing arrow that freezes enemies, fire arrow that gets them burning").
+                // The owner, 2026-10-13: "freezing arrow that freezes enemies, fire arrow that gets them burning".
                 Passive(S, 0, 1, "fire_arrow", "Fire Arrow", 1, PassiveEffect.IgniteChance, 1f, "Every arrow sets enemies burning."),
+                Passive(S, 0, 2, "chain_lightning", "Chain Lightning", 3, PassiveEffect.ChainLightning, 0.15f,
+                    "A hit has {0} chance to arc lightning to three enemies near it."),
                 Passive(S, 1, 0, "freezing_arrow", "Freezing Arrow", 1, PassiveEffect.FreezingArrows, 1f,
                     "Every arrow chills twice over: two hits freeze an enemy for a second (not a boss)."),
-                Passive(S, 0, 2, "fleet_foot", "Fleet Foot", 3, PassiveEffect.MoveSpeed, 0.02f, "{0} movement speed."),
-                Passive(S, 1, 1, "evasion", "Evasion", 5, PassiveEffect.Dodge, 0.01f, "{0} chance to dodge."),
-                Passive(S, 1, 2, "toughness", "Toughness", 5, PassiveEffect.ArmorPercent, 0.03f, "{0} armor."),
                 Skill(S, 2, 0, "explosive_arrow", "Explosive Arrow", "ExplosiveArrow", "Learn Explosive Arrow: an arrow that bursts among a crowd."),
-                Passive(S, 2, 2, "fire_arrows", "Fire Arrows", 3, PassiveEffect.IgniteChance, 0.04f, "{0} chance to set enemies burning."),
                 Improved(S, 3, 0, "explosive_arrow", "ExplosiveArrow", "Explosive Arrow"),
-                Passive(S, 3, 2, "frost_arrows", "Frost Arrows", 3, PassiveEffect.ChillChance, 0.05f, "{0} chance to chill enemies."),
                 Improved(S, 4, 0, "knockback_shot", "KnockbackShot", "Knockback Shot"),
-                Passive(S, 4, 2, "deterrence", "Deterrence", 3, PassiveEffect.LessDamageFromElites, 0.04f, "{0} less damage from elites and bosses."),
-                Passive(S, 5, 1, "readiness", "Readiness", 1, PassiveEffect.CooldownReduction, 0.15f, "Skills come back 15 percent sooner."),
             };
         }
 
@@ -178,6 +169,10 @@ namespace ARPG
                 return string.Format(node.Text, shown == 1 ? "one more arrow" : $"{shown} more arrows");
             if (node.Effect == PassiveEffect.ExtraShots)
                 return string.Format(node.Text, shown == 1 ? "once more" : $"{shown} more times");
+            if (node.Effect == PassiveEffect.PiercingArrows)
+                return string.Format(node.Text, shown == 1 ? "one more enemy" : $"{shown} more enemies");
+            if (node.Effect == PassiveEffect.Ricochet)
+                return string.Format(node.Text, shown == 1 ? "once" : $"{shown} times");
             var text = node.Effect == PassiveEffect.CriticalChance || node.Effect == PassiveEffect.CriticalDamage ? $"+{value:0.#} percent"
                 : node.Effect == PassiveEffect.LifeOnHit ? $"+{value:0.#}"
                 : node.Effect == PassiveEffect.LessDamageFromElites ? Percent(value).TrimStart('+')

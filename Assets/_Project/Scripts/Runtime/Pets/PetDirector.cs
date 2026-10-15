@@ -67,6 +67,9 @@ namespace ARPG
                 foreach (QuestPerson who in System.Enum.GetValues(typeof(QuestPerson)))
                     if (QuestNpc.InTown(who))
                         QuestNpc.Create(who, null);
+                // Thorin at his smithy, forging from blueprints (the roguelite, 2026-10-15).
+                if (Features.Roguelite)
+                    SmithNpc.Create(null);
                 vigilEmbers = -1;
             }
             else

@@ -505,8 +505,9 @@ namespace ARPG
                 return false;
             Gold -= cost;
             Meta.Raise(id);
-            if (!RunStarted)
-                Equip(StartingKit());
+            // A better kit piece goes on now in town, but only over nothing or a plain kit piece, never over what she found.
+            if (!RunStarted && MetaRules.Get(id)?.Shop == MetaShop.Outfitting)
+                PutOnKitWhereBare();
             return true;
         }
 
@@ -528,6 +529,61 @@ namespace ARPG
             RerollsLeft--;
             RaiseModified();
             return true;
+        }
+
+        /// <summary>Puts the kit's piece on in each place that is empty or holds a Common item (in town, after buying).</summary>
+        void PutOnKitWhereBare()
+        {
+            var kit = StartingKit();
+            var equipment = Equipment;
+            foreach (ItemSlot place in System.Enum.GetValues(typeof(ItemSlot)))
+            {
+                var piece = kit.Get(place);
+                var worn = equipment.Get(place);
+                if (piece != null && (worn == null || (worn.Rarity == ItemRarity.Common && worn.Legendary == LegendaryId.None)))
+                    equipment = equipment.With(place, piece);
+            }
+            Equip(equipment);
+        }
+
+        /// <summary>
+        /// Thorin forges the item of a blueprint he knows (2026-10-15): Rare, at the look's level, for coins. It goes into
+        /// the backpack and becomes that kind's kit piece, worn at the start of every run after a death. Null when he does
+        /// not know it, the coins are short or the backpack has no room.
+        /// </summary>
+        public Item Forge(string key)
+        {
+            if (!Meta.Knows(key) || !BlueprintRules.TryParse(key, out var kind, out var look))
+                return null;
+            var cost = BlueprintRules.ForgeCost(look);
+            if (Gold < cost)
+                return null;
+            var level = BlueprintRules.ForgeLevel(kind, look, DungeonRules.EnemyLevel(Mathf.Max(1, Meta.DeepestEver)));
+            var item = Loot.RollItemOf(kind, ItemRarity.Rare, level);
+            if (!Inventory.TryAdd(item))
+                return null;
+            Gold -= cost;
+            Meta.SetForged(item);
+            NotifyChanged();
+            return item;
+        }
+
+        /// <summary>Teaches Thorin every blueprint in the backpack and takes them out (a run come home, 2026-10-15). Returns
+        /// how many were new to him.</summary>
+        public int LearnCarriedBlueprints()
+        {
+            var learned = 0;
+            var carried = new List<Item>();
+            foreach (var item in Inventory.Items)
+                if (item.IsBlueprint)
+                    carried.Add(item);
+            foreach (var blueprint in carried)
+            {
+                if (Meta.Learn(BlueprintRules.Key(blueprint)))
+                    learned++;
+                Inventory.Remove(blueprint);
+            }
+            return learned;
         }
 
         /// <summary>The run's one item to the stash, from the backpack or worn. False when it was sent already, the stash
@@ -562,6 +618,9 @@ namespace ARPG
             var armour = Meta.Rank(MetaUpgradeId.StartArmour);
             if (armour > 0)
                 kit = kit.With(ItemSlot.Chest, Loot.RollItemOf(ItemSlot.Chest, MetaRules.KitRarity(armour), 1));
+            // Thorin's forged pieces in their places (2026-10-15).
+            foreach (var pair in Meta.Forged)
+                kit = kit.Equip(EquipmentState.PlacesFor(pair.Key)[0], pair.Value);
             return kit;
         }
 
@@ -569,7 +628,11 @@ namespace ARPG
         /// Ends this run and makes the next (the roguelite: at death or after the last boss): a fresh session with the
         /// coins, the town's upgrades, the pets, the stash, the Codex and the hints carried over, and the starting kit on.
         /// </summary>
-        public GameSession NextRun(int lootSeed)
+        public GameSession NextRun(int lootSeed) => NextRun(lootSeed, false);
+
+        /// <param name="keepCarried">Through the portal (2026-10-15): what she wears and carries comes home with her.
+        /// Otherwise (a death) it is lost and she starts again in the kit.</param>
+        public GameSession NextRun(int lootSeed, bool keepCarried)
         {
             var next = new GameSession(lootSeed);
             next.Gold = Gold;
@@ -582,7 +645,14 @@ namespace ARPG
             foreach (var id in codex)
                 next.codex.Add(id);
             next.SetOnboarding(onboarding);
-            next.Equipment = next.StartingKit();
+            if (keepCarried)
+            {
+                next.Equipment = Equipment;
+                foreach (var item in Inventory.Items)
+                    next.Inventory.TryAdd(item);
+            }
+            else
+                next.Equipment = next.StartingKit();
             next.LifeFraction = 1f;
             next.Potion.Refill();
             return next;
@@ -782,7 +852,7 @@ namespace ARPG
         /// </summary>
         public bool EquipFromInventory(Item item)
         {
-            if (item == null || !Inventory.Contains(item))
+            if (item == null || item.IsBlueprint || !Inventory.Contains(item))
                 return false;
             return EquipFromInventory(item, PowerScore.PlaceFor(Equipment, item, Level, Talents.Bonuses));
         }
@@ -792,7 +862,7 @@ namespace ARPG
         /// (<see cref="EquipmentState.PlacesFor"/>), is not in the backpack, or what comes off has no room.</summary>
         public bool EquipFromInventory(Item item, ItemSlot place)
         {
-            if (item == null || !Inventory.Contains(item) || System.Array.IndexOf(EquipmentState.PlacesFor(item.Slot), place) < 0)
+            if (item == null || item.IsBlueprint || !Inventory.Contains(item) || System.Array.IndexOf(EquipmentState.PlacesFor(item.Slot), place) < 0)
                 return false;
 
             // Under the grip rules a two-hander can push out both hands' items (Docs/03), so check room for all of them.

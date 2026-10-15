@@ -188,6 +188,14 @@ namespace ARPG
 
         /// <summary>One item of a chosen kind and rarity (the Gambler, 2026-10-05). A Legendary resets the bad luck
         /// counter, as a rolled one does.</summary>
+        /// <summary>A blueprint now and then (<see cref="BlueprintRules"/>), for a kind and look not yet known; else null.</summary>
+        public Item RollBlueprint(LootSource source, int itemLevel, System.Collections.Generic.IReadOnlyCollection<string> known)
+        {
+            if (random.NextDouble() >= BlueprintRules.DropChance(source))
+                return null;
+            return BlueprintRules.Roll(itemLevel, new System.Collections.Generic.List<string>(known), random);
+        }
+
         public Item RollItemOf(ItemSlot slot, ItemRarity rarity, int itemLevel)
         {
             if (rarity == ItemRarity.Legendary)

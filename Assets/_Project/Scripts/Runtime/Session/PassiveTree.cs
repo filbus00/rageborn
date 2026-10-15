@@ -23,6 +23,9 @@ namespace ARPG
 
         // Boons (2026-10-13): arrows added to every attack, extra loosings of the bow, and arrows that freeze.
         ExtraArrows, ExtraShots, FreezingArrows,
+
+        // Boons (2026-10-15): arrows that pierce, split, bounce, seek, bleed, arc lightning, burst corpses, ring out.
+        PiercingArrows, SplittingArrows, Ricochet, SeekingArrows, BleedingArrows, ChainLightning, CorpseBurst, ArrowNova,
     }
 
     public sealed class PassiveNode
@@ -317,6 +320,11 @@ namespace ARPG
         public float ExtraArrows, ExtraShots;
         public bool FreezingArrows;
 
+        /// <summary>Boons (2026-10-15): pierces and bounces added to every arrow (counts), the chance a hit arcs lightning,
+        /// and the on-or-off ones.</summary>
+        public float PiercingArrows, Ricochet, ChainLightning;
+        public bool SplittingArrows, SeekingArrows, BleedingArrows, CorpseBurst, ArrowNova;
+
         public void Add(PassiveEffect effect, float value)
         {
             switch (effect)
@@ -358,6 +366,14 @@ namespace ARPG
                 case PassiveEffect.ExtraArrows: ExtraArrows += value; break;
                 case PassiveEffect.ExtraShots: ExtraShots += value; break;
                 case PassiveEffect.FreezingArrows: FreezingArrows = true; break;
+                case PassiveEffect.PiercingArrows: PiercingArrows += value; break;
+                case PassiveEffect.Ricochet: Ricochet += value; break;
+                case PassiveEffect.ChainLightning: ChainLightning += value; break;
+                case PassiveEffect.SplittingArrows: SplittingArrows = true; break;
+                case PassiveEffect.SeekingArrows: SeekingArrows = true; break;
+                case PassiveEffect.BleedingArrows: BleedingArrows = true; break;
+                case PassiveEffect.CorpseBurst: CorpseBurst = true; break;
+                case PassiveEffect.ArrowNova: ArrowNova = true; break;
             }
         }
     }

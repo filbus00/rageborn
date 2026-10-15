@@ -10,6 +10,9 @@ namespace ARPG
     /// </summary>
     public static class ItemSize
     {
+        /// <summary>An item's block: its kind's, or one cell for a blueprint.</summary>
+        public static Vector2Int Of(Item item) => item.IsBlueprint ? Vector2Int.one : Of(item.Slot);
+
         public static Vector2Int Of(ItemSlot kind)
         {
             switch (kind)
@@ -72,7 +75,7 @@ namespace ARPG
                 var used = 0;
                 foreach (var item in items)
                 {
-                    var size = ItemSize.Of(item.Slot);
+                    var size = ItemSize.Of(item);
                     used += size.x * size.y;
                 }
                 return used;
@@ -89,9 +92,9 @@ namespace ARPG
         /// <summary>Whether an item would be taken: it fits as things lie, or after a repack.</summary>
         public bool CanFit(Item item)
         {
-            if (item == null || refused.Contains(ItemSize.Of(item.Slot)))
+            if (item == null || refused.Contains(ItemSize.Of(item)))
                 return false;
-            return FindSpace(ItemSize.Of(item.Slot), Occupancy()).HasValue || Pack(With(item)) != null;
+            return FindSpace(ItemSize.Of(item), Occupancy()).HasValue || Pack(With(item)) != null;
         }
 
         /// <summary>Whether, with <paramref name="leaving"/> taken out, every item in <paramref name="arriving"/> would
@@ -121,7 +124,7 @@ namespace ARPG
             var spots = new List<RectInt>(arriving.Count);
             foreach (var item in arriving)
             {
-                var size = ItemSize.Of(item.Slot);
+                var size = ItemSize.Of(item);
                 var spot = FindSpace(size, used);
                 if (!spot.HasValue)
                 {
@@ -166,7 +169,7 @@ namespace ARPG
             if (item == null || items.Contains(item))
                 return false;
 
-            var size = ItemSize.Of(item.Slot);
+            var size = ItemSize.Of(item);
             if (refused.Contains(size))
                 return false;
             var spot = FindSpace(size, Occupancy());
@@ -205,7 +208,7 @@ namespace ARPG
         public bool Replace(Item old, Item replacement)
         {
             var index = items.IndexOf(old);
-            if (index < 0 || replacement == null || ItemSize.Of(old.Slot) != ItemSize.Of(replacement.Slot))
+            if (index < 0 || replacement == null || ItemSize.Of(old) != ItemSize.Of(replacement))
                 return false;
             items[index] = replacement;
             placements[replacement] = placements[old];
@@ -264,7 +267,7 @@ namespace ARPG
                 arrival[set[i]] = i;
             order.Sort((a, b) =>
             {
-                Vector2Int sa = ItemSize.Of(a.Slot), sb = ItemSize.Of(b.Slot);
+                Vector2Int sa = ItemSize.Of(a), sb = ItemSize.Of(b);
                 if (sa.y != sb.y)
                     return sb.y.CompareTo(sa.y);
                 if (sa.x != sb.x)
@@ -276,7 +279,7 @@ namespace ARPG
             var result = new Dictionary<Item, RectInt>();
             foreach (var item in order)
             {
-                var size = ItemSize.Of(item.Slot);
+                var size = ItemSize.Of(item);
                 var spot = FindSpace(size, used);
                 if (!spot.HasValue)
                     return null;

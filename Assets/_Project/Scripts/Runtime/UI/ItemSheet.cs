@@ -187,6 +187,21 @@ namespace ARPG
             subtitle.text = $"Item level {item.ItemLevel}   ·   {position}" +
                             (Selling && !showingEquipped ? $"   ·   <color=#F0C840>sells for {GameSession.Current.SellPrice(item)} gold</color>" : "");
 
+            // A blueprint (2026-10-15): what it teaches, and that it must come home.
+            if (item.IsBlueprint)
+            {
+                var key = BlueprintRules.Key(item);
+                BlueprintRules.TryParse(key, out var kind, out var look);
+                power.text = session.Meta.Knows(key) ? "Thorin knows this one already." : "Bring it home through the portal: Thorin the smith learns it.";
+                power.color = NeutralColor;
+                affixes.text = $"<color=#CCCCCC>Teaches Thorin to forge a Rare {ItemNames.LookName(kind, look)} " +
+                               $"for {BlueprintRules.ForgeCost(look):N0} coins, worn at the start of every run after a death.</color>\n" +
+                               "<size=26><color=#999999>Lost if you die carrying it.</color></size>";
+                comparison.text = "";
+                BuildActions(session, item);
+                return;
+            }
+
             var worn = showingEquipped ? item : equipment.Get(PowerScore.PlaceFor(equipment, item, session.Level, session.Talents.Bonuses));
             if (showingEquipped)
             {
@@ -293,14 +308,17 @@ namespace ARPG
             }
             else
             {
-                NewButton("Equip", () =>
+                if (!item.IsBlueprint)
                 {
-                    if (session.EquipFromInventory(item))
+                    NewButton("Equip", () =>
                     {
-                        Hide();
-                        Changed?.Invoke();
-                    }
-                });
+                        if (session.EquipFromInventory(item))
+                        {
+                            Hide();
+                            Changed?.Invoke();
+                        }
+                    });
+                }
                 NewButton(Selling ? $"Sell +{GameSession.Current.SellPrice(item)}" : "Discard", () =>
                 {
                     if (Selling ? session.Sell(item) == 0 : !session.Discard(item))
@@ -315,16 +333,6 @@ namespace ARPG
                         ShowBackpack(list, Mathf.Min(index, list.Count - 1));
                 });
             }
-            // The roguelite (2026-10-13): one item a run may go to the stash, if a slot is free.
-            if (Features.Roguelite && session.RunStarted && !session.SentToStash && session.Stash.Count < session.Meta.StashSlots)
-                NewButton("To stash", () =>
-                {
-                    if (!session.SendToStash(item))
-                        return;
-                    Sfx.Play(SoundId.Pickup);
-                    Hide();
-                    Changed?.Invoke();
-                });
             NewButton("Close", Hide);
         }
 

@@ -87,7 +87,9 @@ namespace ARPG
             new MetaUpgrade { Id = MetaUpgradeId.StartBow, Shop = MetaShop.Outfitting, Name = "A Better Bow", Text = "Start each run with a {0} bow.", MaxRanks = 2, BaseCost = 1000, Growth = 4f },
             new MetaUpgrade { Id = MetaUpgradeId.StartQuiver, Shop = MetaShop.Outfitting, Name = "A Better Quiver", Text = "Start each run with a {0} quiver.", MaxRanks = 2, BaseCost = 800, Growth = 4f },
             new MetaUpgrade { Id = MetaUpgradeId.StartArmour, Shop = MetaShop.Outfitting, Name = "Travelling Armour", Text = "Start each run wearing a {0} chest.", MaxRanks = 2, BaseCost = 1200, Growth = 4f },
-            new MetaUpgrade { Id = MetaUpgradeId.StashSlot, Shop = MetaShop.Stash, Name = "A Place in the Vault", Text = "{0} stash slots.", MaxRanks = 5, BaseCost = 5000, Growth = 2f },
+            // The stash chest (the owner, 2026-10-15: "A stash (a chest) in town is available and can be expanded with
+            // coin"): ten slots free, ten more a rank.
+            new MetaUpgrade { Id = MetaUpgradeId.StashSlot, Shop = MetaShop.Stash, Name = "A Bigger Chest", Text = "{0} stash slots.", MaxRanks = 5, BaseCost = 500, Growth = 2f },
         };
 
         public static MetaUpgrade Get(MetaUpgradeId id)
@@ -116,10 +118,10 @@ namespace ARPG
             {
                 case MetaUpgradeId.PotionCharges:
                 case MetaUpgradeId.Reroll:
-                case MetaUpgradeId.StashSlot:
                     value = "+" + rank;
-                    if (upgrade.Id == MetaUpgradeId.StashSlot)
-                        value = rank.ToString();
+                    break;
+                case MetaUpgradeId.StashSlot:
+                    value = (MetaProgress.BaseStashSlots + MetaProgress.StashSlotsPerRank * rank).ToString();
                     break;
                 case MetaUpgradeId.HiddenLore:
                     value = (MetaProgress.BaseBoonTier + 2 * rank).ToString();
@@ -194,7 +196,36 @@ namespace ARPG
         public int RerollsPerRun => Rank(MetaUpgradeId.Reroll);
         public int BoonChoices => 3 + Rank(MetaUpgradeId.FourthChoice);
         public int MaxBoonTier => BaseBoonTier + 2 * Rank(MetaUpgradeId.HiddenLore);
-        public int StashSlots => Rank(MetaUpgradeId.StashSlot);
+        public const int BaseStashSlots = 10;
+        public const int StashSlotsPerRank = 10;
+        public int StashSlots => BaseStashSlots + StashSlotsPerRank * Rank(MetaUpgradeId.StashSlot);
+
+        // Thorin's blueprints (2026-10-15): the keys he knows (BlueprintRules.Key), and the item forged for each kind,
+        // which she starts a run wearing after a death. Saved.
+        readonly HashSet<string> blueprints = new HashSet<string>();
+        readonly Dictionary<ItemSlot, Item> forged = new Dictionary<ItemSlot, Item>();
+
+        public IReadOnlyCollection<string> Blueprints => blueprints;
+        public bool Knows(string key) => key != null && blueprints.Contains(key);
+
+        public bool Learn(string key)
+        {
+            if (!BlueprintRules.TryParse(key, out _, out _) || !blueprints.Add(key))
+                return false;
+            Changed?.Invoke();
+            return true;
+        }
+
+        public IEnumerable<KeyValuePair<ItemSlot, Item>> Forged => forged;
+        public Item ForgedFor(ItemSlot kind) => forged.TryGetValue(kind, out var item) ? item : null;
+
+        public void SetForged(Item item)
+        {
+            if (item == null)
+                return;
+            forged[item.Slot] = item;
+            Changed?.Invoke();
+        }
 
         public void RecordDepth(int depth)
         {

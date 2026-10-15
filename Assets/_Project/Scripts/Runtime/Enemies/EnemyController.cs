@@ -112,6 +112,9 @@ namespace ARPG
         /// frame, and the bosses, which speed up and slow down, ran glitchily).</summary>
         float runPhase;
 
+        /// <summary>Seconds before this enemy may play its hit flinch again (<see cref="EnemyAnimationRules.FlinchGap"/>).</summary>
+        float flinchCooldown;
+
         /// <summary>The movement smoothed over a few frames, so uneven steps do not flicker between run and idle or
         /// between facing rows.</summary>
         Vector2 smoothedVelocity;
@@ -335,6 +338,7 @@ namespace ARPG
             animationRow = 0;
             lastGround = groundPosition;
             hitAnimationTimer = 0f;
+            flinchCooldown = 0f;
             effects.Clear();
             SetVisuals(1f, 1f);
             UpdateModifierIcons();
@@ -621,8 +625,13 @@ namespace ARPG
             }
 
             punchTimer = PunchSeconds;
-            if (State != EnemyState.Attack && State != EnemyState.Recover)
+            // A boss flinches at most once every few seconds (the owner, 2026-10-15: bosses flinched so often it "looks
+            // odd"); the rest at every hit.
+            if (State != EnemyState.Attack && State != EnemyState.Recover && flinchCooldown <= 0f)
+            {
                 hitAnimationTimer = EnemyAnimationRules.HitSeconds;
+                flinchCooldown = EnemyAnimationRules.FlinchGap(definition.Rank);
+            }
 
             // A hit wakes an idle or returning enemy, and its pack with it. One that is mid-attack keeps attacking.
             if (State == EnemyState.Idle || State == EnemyState.Return)
@@ -806,6 +815,7 @@ namespace ARPG
             var velocity = deltaTime > 0f ? (ground - lastGround) / deltaTime : Vector2.zero;
             lastGround = ground;
             hitAnimationTimer = Mathf.Max(0f, hitAnimationTimer - deltaTime);
+            flinchCooldown = Mathf.Max(0f, flinchCooldown - deltaTime);
             animationTime += deltaTime;
             smoothedVelocity = Vector2.Lerp(smoothedVelocity, velocity, EnemyAnimationRules.SmoothingWeight(deltaTime));
             var speed = smoothedVelocity.magnitude;

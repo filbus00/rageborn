@@ -203,7 +203,7 @@ namespace ARPG
                 var icon = new GameObject("Icon", typeof(RectTransform), typeof(Image));
                 icon.transform.SetParent(go.transform, false);
                 var image = icon.GetComponent<Image>();
-                image.sprite = ItemIcons.For(item.Slot, item.Rarity);
+                image.sprite = ItemIcons.For(item);
                 image.preserveAspect = true;
                 image.raycastTarget = false;
                 var rect = (RectTransform)icon.transform;
@@ -288,34 +288,85 @@ namespace ARPG
         protected override void Render()
         {
             var session = GameSession.Current;
-            // The roguelite (2026-10-13): slots are bought here; an item goes in once a run, from the dungeon (the Bag),
-            // and comes out into the backpack to take on the next run.
+            // The stash chest (the owner, 2026-10-15): slots bought with coins; items go in and out freely in town, and
+            // what is in it is safe from death. What she wears or carries into the dungeon is lost if she dies there.
             var slots = session.Meta.StashSlots;
-            subtitle.text = $"{session.Stash.Count} of {slots} slots used.  {Gold(session.Gold)}.  Tap an item to take it on the next run.";
+            subtitle.text = $"{session.Stash.Count} of {slots} slots used.  {Gold(session.Gold)}.  Tap an item to move it.";
             var slot = MetaRules.Get(MetaUpgradeId.StashSlot);
             var maxed = session.Meta.IsMaxed(MetaUpgradeId.StashSlot);
             var cost = session.Meta.NextCost(MetaUpgradeId.StashSlot);
-            Row($"<b>{slot.Name}</b>\n<size=28><color=#CCCCCC>One more slot. Send one item a run from the Bag.</color></size>",
+            Row($"<b>{slot.Name}</b>\n<size=28><color=#CCCCCC>{MetaProgress.StashSlotsPerRank} more slots. The chest keeps what is in it through every death.</color></size>",
                 maxed ? "All bought" : $"Buy {cost:N0}", !maxed && session.Gold >= cost, () =>
                 {
                     if (session.BuyUpgrade(MetaUpgradeId.StashSlot))
                         Sfx.Play(SoundId.LevelUp, 0.6f);
                     Rerender();
                 });
-            Heading("In the stash");
+            Heading("In the chest");
             Tiles(session.Stash, item =>
             {
                 if (session.TakeFromStash(item))
                     Sfx.Play(SoundId.Pickup);
             }, "Nothing kept yet.");
-            if (Features.Roguelite)
-                return;
             Heading("In the backpack");
             Tiles(session.Inventory.Items, item =>
             {
                 if (session.StoreInStash(item))
                     Sfx.Play(SoundId.Pickup);
             }, "The backpack is empty.");
+        }
+    }
+
+    /// <summary>
+    /// Thorin's forge (2026-10-15): every blueprint he has learned, forged for coins into a Rare piece that goes into the
+    /// backpack and is the kit she starts a run in after a death (<see cref="GameSession.Forge"/>).
+    /// </summary>
+    public class SmithScreen : TownSheets
+    {
+        static SmithScreen current;
+        readonly System.Collections.Generic.List<string> keys = new System.Collections.Generic.List<string>();
+
+        public static void Open()
+        {
+            if (current == null)
+                current = Make<SmithScreen>(SmithNpc.Name);
+            current.Show();
+        }
+
+        protected override void Render()
+        {
+            var session = GameSession.Current;
+            subtitle.text = $"{Gold(session.Gold)}.  Bring blueprints home through the portal and I learn them for good.";
+            keys.Clear();
+            keys.AddRange(session.Meta.Blueprints);
+            keys.Sort(System.StringComparer.Ordinal);
+            if (keys.Count == 0)
+            {
+                Row("<b>No blueprints yet</b>\n<size=28><color=#CCCCCC>They drop now and then, most often from bosses and elites.</color></size>",
+                    "Farewell", true, Close);
+                return;
+            }
+            foreach (var key in keys)
+            {
+                if (!BlueprintRules.TryParse(key, out var kind, out var look))
+                    continue;
+                var cost = BlueprintRules.ForgeCost(look);
+                var kit = session.Meta.ForgedFor(kind);
+                var now = kit != null ? $"Starting kit: {ItemComparison.Name(kit)}, item level {kit.ItemLevel}." : "Not yet forged.";
+                var captured = key;
+                Row($"<b>{ItemNames.LookName(kind, look)}</b>  <size=26><color=#999999>{ItemComparison.KindName(kind)}</color></size>\n" +
+                    $"<size=28><color=#CCCCCC>{now}</color></size>",
+                    $"Forge {cost:N0}", session.Gold >= cost && session.Inventory.CanFit(new Item(kind, ItemRarity.Rare, 1)), () =>
+                    {
+                        var item = session.Forge(captured);
+                        if (item != null)
+                        {
+                            Sfx.Play(SoundId.LevelUp, 0.7f);
+                            (HintBanner.Current != null ? HintBanner.Current : HintBanner.Create()).Show($"Thorin forged a {ItemComparison.Name(item)}. It is in your bag.");
+                        }
+                        Rerender();
+                    });
+            }
         }
     }
 

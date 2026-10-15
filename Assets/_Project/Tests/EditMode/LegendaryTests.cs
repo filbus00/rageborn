@@ -126,7 +126,8 @@ namespace ARPG.Tests
             var restored = SaveCodec.Restore(SaveCodec.Capture(session, 0), 1);
             Assert.AreEqual(LegendaryId.Gallowsreach, restored.Equipment.Weapon.Legendary);
             Assert.IsTrue(restored.HasSeen(LegendaryId.Gallowsreach));
-            Assert.AreEqual("Magic Bow", ItemComparison.Name(new Item(ItemSlot.Weapon, ItemRarity.Magic, 3)));
+            // Plain names by look (2026-10-15): a level 3 short bow is a Hunting Bow, whatever its rarity.
+            Assert.AreEqual("Hunting Bow", ItemComparison.Name(new Item(ItemSlot.Weapon, ItemRarity.Magic, 3)));
         }
 
         [Test]

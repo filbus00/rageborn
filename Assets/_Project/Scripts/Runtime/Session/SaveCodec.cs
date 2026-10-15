@@ -32,7 +32,15 @@ namespace ARPG
             MigrateFrom14, // 14 to 15: no talents existed; nothing is learned and every point is unspent (skill points are not carried over).
             MigrateFrom15, // 15 to 16: no quests existed; none is taken.
             MigrateFrom16, // 16 to 17: the roguelite; the save director sets such a save aside (FirstRogueliteVersion).
+            MigrateFrom17, // 17 to 18: no blueprints existed; Thorin knows none and has forged nothing.
         };
+
+        static SaveData MigrateFrom17(SaveData data)
+        {
+            data.metaBlueprints = new List<string>();
+            data.metaForged = new List<ItemData>();
+            return data;
+        }
 
         static SaveData MigrateFrom16(SaveData data)
         {
@@ -283,6 +291,9 @@ namespace ARPG
             };
             foreach (var pair in session.Meta.Ranks)
                 data.metaUpgrades.Add(new TalentData { id = pair.Key.ToString(), rank = pair.Value });
+            data.metaBlueprints.AddRange(session.Meta.Blueprints);
+            foreach (var pair in session.Meta.Forged)
+                data.metaForged.Add(CaptureItem(pair.Value));
 
             foreach (var item in session.Stash)
                 data.stash.Add(CaptureItem(item));
@@ -335,6 +346,11 @@ namespace ARPG
             foreach (var entry in data.metaUpgrades ?? new List<TalentData>())
                 if (TryParseEnum(entry.id, out MetaUpgradeId upgrade))
                     meta.Restore(upgrade, entry.rank);
+            foreach (var key in data.metaBlueprints ?? new List<string>())
+                if (!meta.Learn(key))
+                    warnings?.Add($"Left out an unknown blueprint ({key}).");
+            foreach (var saved in data.metaForged ?? new List<ItemData>())
+                meta.SetForged(RestoreItem(saved, warnings));
             session.RestoreMeta(meta);
             // After the meta: its bought charges are the roguelite's whole capacity.
             session.RestorePotion(data.potionCharges, data.potionKillProgress);
@@ -497,6 +513,7 @@ namespace ARPG
                 reforges = item.Reforges,
                 tempers = item.Tempers,
                 legendary = item.Legendary == LegendaryId.None ? "" : item.Legendary.ToString(),
+                blueprint = item.IsBlueprint,
             };
             foreach (var affix in item.Affixes)
                 data.affixes.Add(new AffixData { id = affix.Id.ToString(), tier = affix.Tier, value = affix.Value });
@@ -568,7 +585,7 @@ namespace ARPG
                 warnings?.Add($"Kept a {rarity} {slot} whose legendary ({data.legendary}) is unknown, without its power.");
                 legendary = LegendaryId.None;
             }
-            return new Item(slot, rarity, data.itemLevel, affixes.ToArray(), data.reforges, data.tempers, legendary);
+            return new Item(slot, rarity, data.itemLevel, affixes.ToArray(), data.reforges, data.tempers, legendary, data.blueprint);
         }
 
         // Enum.TryParse also accepts numbers and any defined value's number, so "7" would parse as a slot that does not
