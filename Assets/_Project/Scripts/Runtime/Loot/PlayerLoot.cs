@@ -61,7 +61,9 @@ namespace ARPG
 
                 if (drop.IsGold)
                 {
-                    session.AddGold(drop.GoldAmount);
+                    // The raven's Gilded Beak (2026-10-15): more coins.
+                    var beak = session.Pets.ActiveRank(PetSkillId.GildedBeak) * PetSkillRules.Get(PetSkillId.GildedBeak).PerRank;
+                    session.AddGold(Mathf.RoundToInt(drop.GoldAmount * (1f + beak)));
                     // Quiet and spaced (Sfx.MinGap): a room of gold piles plays a few soft purse sounds, not a stream.
                     Sfx.Play(SoundId.Gold, 0.55f);
                     GoldPickedUp += drop.GoldAmount;

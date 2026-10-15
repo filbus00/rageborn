@@ -142,9 +142,11 @@ namespace ARPG
             public float ChillChance;
             // Freezing Arrow (a boon): each chill counts twice.
             public bool Freezing;
-            // Boons (2026-10-15): Ricochet's leaps left, Seeking Arrows' bend toward the target.
+            // Boons (2026-10-15): Ricochet's leaps left, Seeking Arrows' bend toward the target; whether the raven's
+            // Guiding Cry has added leaps to it.
             public int Bounces;
             public bool Seeking;
+            public bool Guided;
             // Stillwater Yew's certain crit, and Gallowsreach's blood pools along the trail.
             public bool CertainCrit;
             public bool BloodPools;
@@ -405,6 +407,7 @@ namespace ARPG
             movingSeconds = stillSeconds > 0f ? 0f : movingSeconds + deltaTime;
             damageBuffTimer = Mathf.Max(0f, damageBuffTimer - deltaTime);
             speedBuffTimer = Mathf.Max(0f, speedBuffTimer - deltaTime);
+            howlTimer = Mathf.Max(0f, howlTimer - deltaTime);
             attackTimer = Mathf.Max(0f, attackTimer - deltaTime);
             castTimer = Mathf.Max(0f, castTimer - deltaTime);
             for (var i = 0; i < cooldowns.Length; i++)
@@ -633,9 +636,19 @@ namespace ARPG
             }
         }
 
+        // The wolf's Pack Howl (2026-10-15): attack speed while it lasts.
+        float howl;
+        float howlTimer;
+
+        public void Howl(float attackSpeed, float seconds)
+        {
+            howl = attackSpeed;
+            howlTimer = seconds;
+        }
+
         /// <summary>Increased attack speed from Blood Frenzy while it lasts: its own, and more for each live Momentum
         /// stack (Docs/02).</summary>
-        float AttackSpeedBuff => speedBuffTimer > 0f ? speedBuff + speedBuffPerMomentum * player.Stance.Momentum : 0f;
+        float AttackSpeedBuff => (speedBuffTimer > 0f ? speedBuff + speedBuffPerMomentum * player.Stance.Momentum : 0f) + (howlTimer > 0f ? howl : 0f);
 
         Camera view;
 
@@ -1698,6 +1711,14 @@ namespace ARPG
             var wasBleeding = enemy.IsBleeding;
             var bleed = enemy.BleedPerSecond;
             var killed = Strike(enemy, multiplier, projectile: true, forceCrit: forceCrit);
+            // The raven's Guiding Cry: an arrow that hits its target leaps on.
+            var guiding = session.Pets.ActiveRank(PetSkillId.GuidingCry);
+            if (guiding > 0 && !shot.Guided && PetController.Current != null && PetController.Current.Target == enemy &&
+                shot.Style != ShotStyle.Explosive)
+            {
+                shot.Guided = true;
+                shot.Bounces += guiding;
+            }
             var boons = session.Talents.Bonuses;
             if (boons.ChainLightning > 0f && Random.value < boons.ChainLightning)
                 ChainLightning(enemy, multiplier);
@@ -1810,8 +1831,8 @@ namespace ARPG
                 Sfx.Play(SoundId.Crit, 0.35f);
         }
 
-        // A bolt drawn as sparks along the line between two ground points.
-        void Bolt(Vector2 from, Vector2 to)
+        // A bolt drawn as sparks along the line between two ground points (the raven's Storm Wings too).
+        public void Bolt(Vector2 from, Vector2 to)
         {
             var steps = Mathf.Max(2, Mathf.CeilToInt(Vector2.Distance(from, to) / 0.6f));
             var along = IsoMath.GroundToWorld((to - from).normalized);
@@ -2235,6 +2256,12 @@ namespace ARPG
                 more *= 1f + Legendaries.HoundMarkBonus;
             if (enemy.IsBleeding && equipment.Wears(LegendaryId.BloodlettersGrips))
                 more *= 1f + Legendaries.BloodletterBonus;
+            // The pets' skills (2026-10-15): the wolf's Rend on the bleeding, the raven's Hunter's Mark on the marked.
+            var pets = session.Pets;
+            if (enemy.IsBleeding)
+                more *= 1f + pets.ActiveRank(PetSkillId.Rend) * PetSkillRules.Get(PetSkillId.Rend).PerRank;
+            if (enemy.IsMarked)
+                more *= 1f + pets.ActiveRank(PetSkillId.HuntersMark) * PetSkillRules.Get(PetSkillId.HuntersMark).PerRank;
             return more;
         }
 

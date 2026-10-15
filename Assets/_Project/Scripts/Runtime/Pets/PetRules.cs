@@ -242,6 +242,35 @@ namespace ARPG
 
         public bool Owns(PetKind kind) => owned.Contains(kind);
 
+        // The skills Lyriel has taught (2026-10-15, PetSkillRules), by rank; they last for every run. Saved.
+        readonly Dictionary<PetSkillId, int> skillRanks = new Dictionary<PetSkillId, int>();
+
+        public int Rank(PetSkillId id) => skillRanks.TryGetValue(id, out var rank) ? rank : 0;
+
+        /// <summary>A skill's rank when its pet is the one following her, else 0: only the active pet's skills work.</summary>
+        public int ActiveRank(PetSkillId id)
+        {
+            var skill = PetSkillRules.Get(id);
+            return skill != null && Active == skill.Pet ? Rank(id) : 0;
+        }
+
+        public IEnumerable<KeyValuePair<PetSkillId, int>> SkillRanks => skillRanks;
+
+        internal bool RaiseSkill(PetSkillId id)
+        {
+            if (Rank(id) >= PetSkillRules.MaxRanks)
+                return false;
+            skillRanks[id] = Rank(id) + 1;
+            Changed?.Invoke();
+            return true;
+        }
+
+        public void RestoreSkill(PetSkillId id, int rank)
+        {
+            if (rank > 0)
+                skillRanks[id] = System.Math.Min(rank, PetSkillRules.MaxRanks);
+        }
+
         public bool Has(PetBehaviour behaviour) => (Behaviours & behaviour) != 0;
 
         internal void AddOwned(PetKind kind)

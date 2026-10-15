@@ -33,7 +33,14 @@ namespace ARPG
             MigrateFrom15, // 15 to 16: no quests existed; none is taken.
             MigrateFrom16, // 16 to 17: the roguelite; the save director sets such a save aside (FirstRogueliteVersion).
             MigrateFrom17, // 17 to 18: no blueprints existed; Thorin knows none and has forged nothing.
+            MigrateFrom18, // 18 to 19: no pet skills existed; none is taught.
         };
+
+        static SaveData MigrateFrom18(SaveData data)
+        {
+            data.petSkills = new List<TalentData>();
+            return data;
+        }
 
         static SaveData MigrateFrom17(SaveData data)
         {
@@ -292,6 +299,8 @@ namespace ARPG
             foreach (var pair in session.Meta.Ranks)
                 data.metaUpgrades.Add(new TalentData { id = pair.Key.ToString(), rank = pair.Value });
             data.metaBlueprints.AddRange(session.Meta.Blueprints);
+            foreach (var pair in session.Pets.SkillRanks)
+                data.petSkills.Add(new TalentData { id = pair.Key.ToString(), rank = pair.Value });
             foreach (var pair in session.Meta.Forged)
                 data.metaForged.Add(CaptureItem(pair.Value));
 
@@ -379,6 +388,11 @@ namespace ARPG
             session.PassiveTree.Restore(data.passiveNodes, string.IsNullOrEmpty(data.activeKeystone) ? null : data.activeKeystone);
             session.Attributes.Restore(data.attributePoints);
             session.Pets.Restore(data.pets, data.activePet, data.petRules, warnings);
+            foreach (var entry in data.petSkills ?? new List<TalentData>())
+                if (TryParseEnum(entry.id, out PetSkillId skill))
+                    session.Pets.RestoreSkill(skill, entry.rank);
+                else
+                    warnings?.Add($"Left out an unknown pet skill ({entry.id}).");
             foreach (var name in data.codex)
                 if (TryParseEnum(name, out LegendaryId seen))
                     session.RecordLegendary(seen);

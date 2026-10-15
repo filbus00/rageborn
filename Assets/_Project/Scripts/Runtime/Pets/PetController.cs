@@ -72,6 +72,14 @@ namespace ARPG
 
         public PetKind Kind => kind;
         public Vector2 GroundPosition => ground;
+
+        /// <summary>What it is attacking now (the raven's Guiding Cry reads it), or null.</summary>
+        public EnemyController Target { get; private set; }
+
+        // The timed skills' clocks (2026-10-15): the wolf's Pounce and Pack Howl, the boar's Trample.
+        float pounceTimer, howlTimer, trampleTimer;
+        bool feastHooked;
+        readonly List<EnemyController> struck = new List<EnemyController>(8);
         public bool IsKnockedOut => knockedOut > 0f;
         public float Life => life;
 
@@ -154,10 +162,12 @@ namespace ARPG
                 return false;
             if (Vector2.Distance(attacker.GroundPosition, ground) > attacker.Definition.AttackRange + attacker.Definition.BodyRadius + BodyRadius)
                 return false;
-            if (Random.value >= definition.AggroChance)
+            // The boar's Bristle: likelier to draw the blow, and it takes less (2026-10-15).
+            var bristle = GameSession.Current.Pets.ActiveRank(PetSkillId.Bristle);
+            if (Random.value >= Mathf.Min(0.9f, definition.AggroChance + bristle * PetSkillRules.Get(PetSkillId.Bristle).PerRank))
                 return false;
 
-            life -= damage;
+            life -= damage * (1f - 0.1f * bristle);
             hitAnimation = EnemyAnimationRules.HitSeconds;
             var world = IsoMath.GroundToWorld(ground);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y + 0.6f, 0f), damage, false, isDamageToPlayer: true);
@@ -201,8 +211,15 @@ namespace ARPG
             }
 
             attackTimer = Mathf.Max(0f, attackTimer - deltaTime);
+            pounceTimer = Mathf.Max(0f, pounceTimer - deltaTime);
+            howlTimer = Mathf.Max(0f, howlTimer - deltaTime);
+            trampleTimer = Mathf.Max(0f, trampleTimer - deltaTime);
+            HookFeast();
             var rules = session.Pets;
             var target = ChooseTarget(rules, playerGround);
+            Target = target;
+            if (target != null)
+                UseTimedSkills(rules, target);
             if (target == null)
                 life = Mathf.Min(maxLife, life + maxLife * RegenPerSecond * deltaTime);
 
@@ -354,6 +371,10 @@ namespace ARPG
             var damage = CombatFormulas.HitDamage(equipment.WeaponDamage, definition.DamageFactor, 0f,
                 equipment.AffixTotal(AffixId.PetDamage) / 100f + session.Talents.Bonuses.PetDamage, 1f,
                 critical, criticalDamage, target.Definition.Armor, target.Level) * session.Quests.Boons.PetPower;
+            // The boar's Ember Tusks: more on the burning (2026-10-15).
+            var pets = session.Pets;
+            if (target.IsBurning)
+                damage *= 1f + pets.ActiveRank(PetSkillId.EmberTusks) * PetSkillRules.Get(PetSkillId.EmberTusks).PerRank;
             var world = IsoMath.GroundToWorld(target.GroundPosition);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);
             // Quiver of the Hollow Hound (Docs/03): what the pet bites is marked for the arrows.
@@ -361,8 +382,170 @@ namespace ARPG
                 target.Mark(Legendaries.HoundMarkSeconds);
             var killed = target.TakeDamage(damage);
             Sfx.Play(killed ? SoundId.Kill : SoundId.Hit, 0.5f);
+            AfterBite(target, damage, killed);
             if (killed && signet && combat != null)
                 combat.Focus.Gain(Legendaries.PackLeaderFocusOnKill);
+        }
+
+        // --- Skills (2026-10-15, PetSkillRules) ------------------------------------------------------------------
+
+        // What a bite does beyond its damage, by the pet's skills.
+        void AfterBite(EnemyController target, float damage, bool killed)
+        {
+            var pets = GameSession.Current.Pets;
+            var boons = GameSession.Current.Talents.Bonuses;
+            if (!killed && target.IsAlive)
+            {
+                // The wolf's Rend: a bleed of a fifth of the bite a second a rank.
+                var rend = pets.ActiveRank(PetSkillId.Rend);
+                if (rend > 0)
+                    target.ApplyBleed(damage * 0.2f * rend, PetSkillRules.BleedSeconds);
+                // The raven's Hunter's Mark.
+                if (pets.ActiveRank(PetSkillId.HuntersMark) > 0)
+                    target.Mark(PetSkillRules.MarkSeconds);
+                // The boar's Ember Tusks: a burn of a fifth of the gore a second a rank.
+                var tusks = pets.ActiveRank(PetSkillId.EmberTusks);
+                if (tusks > 0)
+                    target.ApplyBurn(damage * 0.2f * tusks);
+            }
+            // The raven's Storm Wings: lightning to the nearest others, one more with Chain Lightning.
+            var wings = pets.ActiveRank(PetSkillId.StormWings);
+            if (wings > 0 && enemies != null)
+            {
+                var arcs = wings + (boons.ChainLightning > 0f ? 1 : 0);
+                var from = target.GroundPosition;
+                enemies.QueryEnemies(from, 4.5f, near);
+                struck.Clear();
+                struck.Add(target);
+                for (var k = 0; k < arcs; k++)
+                {
+                    EnemyController best = null;
+                    var bestDistance = 4.5f;
+                    foreach (var enemy in near)
+                    {
+                        if (!enemy.IsAlive || struck.Contains(enemy))
+                            continue;
+                        var distance = Vector2.Distance(from, enemy.GroundPosition);
+                        if (distance < bestDistance)
+                        {
+                            best = enemy;
+                            bestDistance = distance;
+                        }
+                    }
+                    if (best == null)
+                        break;
+                    struck.Add(best);
+                    combat?.Bolt(from, best.GroundPosition);
+                    best.TakeDamage(damage * 0.5f);
+                    from = best.GroundPosition;
+                }
+            }
+            // The boar's Gore Burst: its kill bursts, wider with Corpse Burst.
+            var burst = pets.ActiveRank(PetSkillId.GoreBurst);
+            if (killed && burst > 0 && enemies != null)
+            {
+                var radius = PetSkillRules.BurstRadius + (boons.CorpseBurst ? 1f : 0f);
+                enemies.QueryEnemies(target.GroundPosition, radius + 1f, near);
+                foreach (var enemy in near)
+                    if (enemy != target && enemy.IsAlive && Vector2.Distance(enemy.GroundPosition, target.GroundPosition) <= radius + enemy.Definition.BodyRadius)
+                        enemy.TakeDamage(damage * PetSkillRules.Get(PetSkillId.GoreBurst).PerRank * burst);
+                var world = IsoMath.GroundToWorld(target.GroundPosition);
+                DamageNumbers.Current?.ShowText(new Vector3(world.x, world.y + 1f, 0f), "GORE BURST", definition.Color, 30);
+            }
+        }
+
+        // The skills that come round on a clock, while it has a target.
+        void UseTimedSkills(PetState pets, EnemyController target)
+        {
+            var distance = Vector2.Distance(ground, target.GroundPosition);
+            // The wolf's Pounce: leaps beside a far enemy and bites, chilling it a time a rank.
+            var pounce = pets.ActiveRank(PetSkillId.Pounce);
+            if (pounce > 0 && pounceTimer <= 0f && distance > 2f && distance <= PetSkillRules.PounceReach &&
+                enemies != null && enemies.Nav.HasLineOfSight(ground, target.GroundPosition))
+            {
+                pounceTimer = PetSkillRules.PounceSeconds;
+                var direction = (target.GroundPosition - ground).normalized;
+                ground = target.GroundPosition - direction * (PetRules.BiteReach * 0.8f + target.Definition.BodyRadius);
+                Bite(target);
+                for (var k = 0; k < pounce && target.IsAlive; k++)
+                    target.ApplyChill();
+                Callout("POUNCE");
+            }
+            // The wolf's Pack Howl: attack speed for her.
+            var howl = pets.ActiveRank(PetSkillId.PackHowl);
+            if (howl > 0 && howlTimer <= 0f && combat != null)
+            {
+                howlTimer = PetSkillRules.HowlSeconds;
+                combat.Howl(howl * PetSkillRules.Get(PetSkillId.PackHowl).PerRank, PetSkillRules.HowlLasts);
+                Callout("HOWL");
+            }
+            // The boar's Trample: a charge through the enemies before it.
+            var trample = pets.ActiveRank(PetSkillId.Trample);
+            if (trample > 0 && trampleTimer <= 0f && distance <= PetSkillRules.TrampleLength + 1f && enemies != null)
+            {
+                trampleTimer = PetSkillRules.TrampleSeconds;
+                var direction = (target.GroundPosition - ground).normalized;
+                var length = PetSkillRules.TrampleLength;
+                while (length > 0.5f && !enemies.Nav.HasLineOfSight(ground, ground + direction * length))
+                    length -= 0.5f;
+                var end = ground + direction * length;
+                var gore = CombatFormulas.HitDamage(GameSession.Current.Equipment.WeaponDamage, definition.DamageFactor, 0f, 0f, 1f,
+                    false, 0f, target.Definition.Armor, target.Level) * trample * PetSkillRules.Get(PetSkillId.Trample).PerRank;
+                enemies.QueryEnemies((ground + end) * 0.5f, length * 0.5f + 1.5f, near);
+                foreach (var enemy in near)
+                {
+                    if (!enemy.IsAlive || DistanceToSegment(enemy.GroundPosition, ground, end) > 1f + enemy.Definition.BodyRadius)
+                        continue;
+                    var side = new Vector2(-direction.y, direction.x);
+                    if (Vector2.Dot(enemy.GroundPosition - ground, side) < 0f)
+                        side = -side;
+                    enemy.TakeDamage(gore);
+                    if (enemy.IsAlive)
+                        enemy.Push(side * 1.2f);
+                }
+                ground = end;
+                Callout("TRAMPLE");
+            }
+        }
+
+        static float DistanceToSegment(Vector2 p, Vector2 a, Vector2 b)
+        {
+            var ab = b - a;
+            var t = ab.sqrMagnitude > 1e-6f ? Mathf.Clamp01(Vector2.Dot(p - a, ab) / ab.sqrMagnitude) : 0f;
+            return Vector2.Distance(p, a + ab * t);
+        }
+
+        void Callout(string text)
+        {
+            var world = IsoMath.GroundToWorld(ground);
+            DamageNumbers.Current?.ShowText(new Vector3(world.x, world.y + 1.1f, 0f), text, definition.Color, 28);
+        }
+
+        // The wolf's Blood Feast: a bleeding enemy dying near the wolf heals her and the wolf.
+        void HookFeast()
+        {
+            if (feastHooked || enemies == null)
+                return;
+            enemies.Killed += OnEnemyKilled;
+            feastHooked = true;
+        }
+
+        void OnEnemyKilled(EnemyController enemy)
+        {
+            var feast = GameSession.Current.Pets.ActiveRank(PetSkillId.BloodFeast);
+            if (feast <= 0 || kind != PetKind.Wolf || knockedOut > 0f || !enemy.IsBleeding ||
+                Vector2.Distance(enemy.GroundPosition, ground) > PetSkillRules.FeastRadius)
+                return;
+            var share = feast * PetSkillRules.Get(PetSkillId.BloodFeast).PerRank;
+            if (health != null && health.IsAlive)
+                health.Heal(health.MaxLife * share);
+            life = Mathf.Min(MaxLifeOf(kind), life + MaxLifeOf(kind) * share);
+        }
+
+        void OnDestroy()
+        {
+            if (feastHooked && enemies != null)
+                enemies.Killed -= OnEnemyKilled;
         }
 
         // Loot within the kind's reach of the character and outside the character's own pick-up reach, fetched when the

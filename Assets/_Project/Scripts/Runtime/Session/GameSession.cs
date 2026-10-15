@@ -715,6 +715,22 @@ namespace ARPG
             return true;
         }
 
+        /// <summary>Lyriel teaches the next rank of a pet's skill (2026-10-15) for coins. False when the pet is not hers, the
+        /// skill is at its last rank or the coins are short.</summary>
+        public bool TeachPetSkill(PetSkillId id)
+        {
+            var skill = PetSkillRules.Get(id);
+            if (skill == null || !Pets.Owns(skill.Pet) || Pets.Rank(id) >= PetSkillRules.MaxRanks)
+                return false;
+            var cost = PetSkillRules.Cost(Pets.Rank(id));
+            if (Gold < cost)
+                return false;
+            Gold -= cost;
+            Pets.RaiseSkill(id);
+            NotifyChanged();
+            return true;
+        }
+
         public void AddGold(int amount)
         {
             if (amount <= 0)

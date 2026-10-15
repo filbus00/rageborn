@@ -141,6 +141,30 @@ namespace ARPG
                 Row($"<b>{definition.Name}</b>\n<size=28><color=#CCCCCC>{definition.BonusText}; levels with you</color></size>", action, enabled, onClick, 150f);
             }
 
+            // The pet's skills (2026-10-15): taught for coins, kept for good, all of them working while it follows her.
+            if (pets.Active is PetKind active)
+            {
+                var skillsHeader = NewText(content, $"{PetRules.Get(active).Name}'s skills", 38, FontStyle.Bold, TextAnchor.MiddleLeft);
+                skillsHeader.color = UiStyle.Gold;
+                Height(skillsHeader.gameObject, 70f);
+                foreach (var skill in PetSkillRules.For(active))
+                {
+                    var rank = pets.Rank(skill.Id);
+                    var maxed = rank >= PetSkillRules.MaxRanks;
+                    var cost = PetSkillRules.Cost(rank);
+                    var pairs = skill.Pairs != null && TalentRules.Get(skill.Pairs) != null
+                        ? $"  <color=#E0C040>Pairs with {TalentRules.Get(skill.Pairs).Name}.</color>" : "";
+                    var captured = skill.Id;
+                    Row($"<b>{skill.Name}</b>  <size=26>({rank}/{PetSkillRules.MaxRanks})</size>\n" +
+                        $"<size=26><color=#CCCCCC>{PetSkillRules.Describe(skill, rank > 0 && !maxed ? rank + 1 : System.Math.Max(rank, 1))}</color>{pairs}</size>",
+                        maxed ? "Mastered" : rank == 0 ? $"Teach {cost:N0}" : $"Rank up {cost:N0}", !maxed && session.Gold >= cost, () =>
+                        {
+                            if (session.TeachPetSkill(captured))
+                                Sfx.Play(SoundId.LevelUp, 0.6f);
+                        }, 190f);
+                }
+            }
+
             var header = NewText(content, pets.Active != null ? "Its rules" : "Its rules (for the pet you buy)", 38, FontStyle.Bold, TextAnchor.MiddleLeft);
             header.color = UiStyle.Gold;
             Height(header.gameObject, 70f);
