@@ -77,7 +77,11 @@ namespace ARPG
                     continue;
                 }
 
-                if (outcome == EnemyProjectileFlight.Outcome.HitPlayer && world.Player != null && world.Player.IsAlive)
+                // Cover (2026-10-17): a shot from the covered side breaks on it.
+                var combat = PlayerCombat.Current;
+                if (outcome == EnemyProjectileFlight.Outcome.HitPlayer && combat != null && CoverRules.Blocks(combat.Cover, shot.Velocity))
+                    combat.CoverBlocked(shot.Position, shot.Velocity);
+                else if (outcome == EnemyProjectileFlight.Outcome.HitPlayer && world.Player != null && world.Player.IsAlive)
                 {
                     var lifeBefore = world.Player.Life;
                     world.Player.TakeHit(shot.Damage, shot.Level, shot.ArmorIgnore);

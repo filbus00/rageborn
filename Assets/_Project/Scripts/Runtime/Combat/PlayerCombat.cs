@@ -266,8 +266,9 @@ namespace ARPG
 
         /// <summary>The basic arrow's reach (Docs/03: 7.5 with a short bow, 9 with a longbow). Unarmed shoots as far as a
         /// short bow, so a character never has to walk into melee.</summary>
-        public float BasicRange => GripRules.ShortBowReach + GameSession.Current.Equipment.GripReach +
-                                   (GameSession.Current.Equipment.Wears(LegendaryId.TheLongSilence) ? Legendaries.LongSilenceReach : 0f);
+        public float BasicRange => (GripRules.ShortBowReach + GameSession.Current.Equipment.GripReach +
+                                    (GameSession.Current.Equipment.Wears(LegendaryId.TheLongSilence) ? Legendaries.LongSilenceReach : 0f)) *
+                                   (player != null ? MomentumShots.ArrowFactor(player.Stance.Momentum) : 1f);
 
         /// <summary>How many times the skill in a slot has fired since the scene started, for tests and tuning.</summary>
         public int CastCount(int slot) => castCounts != null && slot >= 0 && slot < castCounts.Length ? castCounts[slot] : 0;
@@ -345,11 +346,58 @@ namespace ARPG
             if (health != null)
                 health.HitTaken += OnHitTaken;
             if (player != null)
+            {
                 RageArc.Create(this, player);
+                coverShield = CoverShield.Create(player.transform);
+            }
+            Current = this;
+        }
+
+        /// <summary>The live combat, for the enemy projectiles' cover check.</summary>
+        public static PlayerCombat Current { get; private set; }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetCurrent() => Current = null;
+
+        // Cover (2026-10-17, CoverRules): which way it lies (zero for none), how long she has had it, and when in that
+        // time the last ambush went off (negative for none yet).
+        public Vector2 Cover { get; private set; }
+        float coverSeconds;
+        float lastAmbush = -1f;
+        float blockedCalloutAt;
+        CoverShield coverShield;
+
+        // Made once, so the per-frame check allocates nothing.
+        System.Func<Vector2Int, bool> blockedCell;
+
+        void UpdateCover(Vector2 origin, float deltaTime)
+        {
+            blockedCell ??= c => enemies != null && enemies.Nav != null && !enemies.Nav.IsWalkable(c);
+            Cover = enemies.Nav != null ? CoverRules.Direction(blockedCell, origin) : Vector2.zero;
+            if (Cover == Vector2.zero)
+            {
+                coverSeconds = 0f;
+                lastAmbush = -1f;
+            }
+            else
+                coverSeconds += deltaTime;
+            coverShield?.Show(Cover != Vector2.zero, CoverRules.AmbushReady(coverSeconds, lastAmbush));
+        }
+
+        /// <summary>An enemy projectile broke on her cover (EnemyProjectiles): sparks there, and a callout now and then.</summary>
+        public void CoverBlocked(Vector2 at, Vector2 velocity)
+        {
+            fx.Sparks(IsoMath.GroundToWorld(at), IsoMath.GroundToWorld(-velocity.normalized), ArrowHeight, new Color(0.85f, 0.85f, 0.8f, 1f), 4);
+            if (Time.time < blockedCalloutAt)
+                return;
+            blockedCalloutAt = Time.time + 1f;
+            DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 1.6f, 0f), "BLOCKED", new Color(0.8f, 0.85f, 0.95f), 30);
         }
 
         void OnDestroy()
         {
+            if (Current == this)
+                Current = null;
             fx?.Release();
             if (session != null)
             {
@@ -390,6 +438,7 @@ namespace ARPG
             var deltaTime = Time.deltaTime;
             var origin = IsoMath.WorldToGround(player.transform.position);
             UpdateFacing();
+            UpdateCover(origin, deltaTime);
 
             // Until the Wild Arrow's attributes replace the tree (Docs/02): Will adds to Focus regeneration, and the tree's
             // Berserker doubles the gain from hits below half life.
@@ -537,6 +586,7 @@ namespace ARPG
             var tree = session.Talents.Bonuses;
             attackTimer = 1f / (attacksPerSecond * (1f + equipment.AttackSpeedPercent / 100f + AttackSpeedBuff +
                                                     tree.AttackSpeed + tree.AttackSpeedPerMomentum * player.Stance.Momentum + session.Quests.Boons.AttackSpeed +
+                                                    MomentumShots.AttackSpeed(player.Stance.Momentum) +
                                                     session.AttributeBonuses.AttackSpeed + equipment.GripAttackSpeedBonus +
                                                     (equipment.Wears(LegendaryId.HideOfTheRunningStag)
                                                         ? Legendaries.StagAttackSpeedPerMomentum * player.Stance.Momentum : 0f)) *
@@ -558,6 +608,13 @@ namespace ARPG
                 first.CertainCrit = true;
                 first.PierceLeft = int.MaxValue;
                 EnsurePierceSet(ref first);
+            }
+            // Cover's ambush: the first shot after a while in cover, half again as hard.
+            if (CoverRules.AmbushReady(coverSeconds, lastAmbush))
+            {
+                lastAmbush = coverSeconds;
+                first.Multiplier *= CoverRules.AmbushDamage;
+                DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 1.6f, 0f), "AMBUSH", new Color(1f, 0.85f, 0.4f), 32);
             }
             shots.Add(first);
 
@@ -1364,8 +1421,10 @@ namespace ARPG
         {
             var arrow = spareArrows.Count > 0 ? spareArrows.Pop() : CreateArrow();
             arrow.gameObject.SetActive(true);
-            // Arrow speed (affix 97).
-            velocity *= 1f + session.Equipment.AffixTotal(AffixId.ArrowSpeed) / 100f;
+            // Arrow speed (affix 97), and Momentum's: faster and further the longer she has been on the move.
+            var momentum = MomentumShots.ArrowFactor(player.Stance.Momentum);
+            velocity *= (1f + session.Equipment.AffixTotal(AffixId.ArrowSpeed) / 100f) * momentum;
+            maxDistance *= momentum;
             // Her aim: on the move the arrow leaves off target; Homing Arrow steers itself and flies true.
             if (style != ShotStyle.Homing && strayDegrees != 0f)
                 velocity = Rotate(velocity, strayDegrees);
