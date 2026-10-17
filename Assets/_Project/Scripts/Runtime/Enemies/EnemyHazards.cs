@@ -34,6 +34,61 @@ namespace ARPG
             public float SlowSeconds;
             /// <summary>A sound when it goes off, heard whether it hits or not (the Frost Nova, 2026-10-12).</summary>
             public SoundId? Sound;
+            public Color Color;
+            public bool Pooled;
+        }
+
+        // A thin bright ring that flies out where an attack lands and fades (2026-10-18).
+        sealed class Shock
+        {
+            public SpriteRenderer Renderer;
+            public Vector2 Center;
+            public float Radius;
+            public float Time;
+            public Color Color;
+        }
+
+        const float ShockSeconds = 0.3f;
+        readonly List<Shock> shocks = new List<Shock>();
+
+        void ShockAt(Vector2 center, float radius, Color color)
+        {
+            Shock shock = null;
+            foreach (var s in shocks)
+                if (s.Time >= 1f)
+                {
+                    shock = s;
+                    break;
+                }
+            if (shock == null)
+            {
+                shock = new Shock { Renderer = GroundMarker.NewSprite("Shock", TelegraphArt.Shock, color, parent, 44).GetComponent<SpriteRenderer>() };
+                shocks.Add(shock);
+            }
+            shock.Center = center;
+            shock.Radius = radius;
+            shock.Time = 0f;
+            shock.Color = Color.Lerp(color, Color.white, 0.5f);
+            shock.Renderer.gameObject.SetActive(true);
+            shock.Renderer.transform.position = IsoMath.GroundToWorld(center);
+        }
+
+        void TickShocks(float deltaTime)
+        {
+            foreach (var s in shocks)
+            {
+                if (s.Time >= 1f)
+                    continue;
+                s.Time += deltaTime / ShockSeconds;
+                if (s.Time >= 1f)
+                {
+                    s.Renderer.gameObject.SetActive(false);
+                    continue;
+                }
+                var r = s.Radius * (0.85f + 0.45f * s.Time);
+                s.Renderer.transform.localScale = new Vector3(r * 2f, r * 2f * IsoMath.GroundSquash, 1f);
+                s.Renderer.color = new Color(s.Color.r, s.Color.g, s.Color.b, s.Color.a * (1f - s.Time));
+            }
         }
 
         sealed class LineHazard
@@ -42,6 +97,7 @@ namespace ARPG
             public Vector2 From;
             public Vector2 To;
             public float Width;
+            public Color Color;
             public float Damage;
             public int Level;
             public float SlowMultiplier;
@@ -114,6 +170,7 @@ namespace ARPG
             line.From = from;
             line.To = to;
             line.Width = width;
+            line.Color = color;
             line.Damage = damage;
             line.Level = level;
             line.SlowMultiplier = slowMultiplier;
@@ -132,6 +189,8 @@ namespace ARPG
                     continue;
                 line.Active = false;
                 line.Marker.Hide();
+                if (line.Damage > 0f)
+                    LaneShock(line);
                 // A line that only warns (a throw's aim line) does nothing when it fills.
                 if (line.Damage <= 0f)
                     continue;
@@ -177,12 +236,15 @@ namespace ARPG
             hazard.Active = true;
             hazard.SlowMultiplier = 0f;
             hazard.SlowSeconds = 0f;
+            hazard.Color = color;
+            hazard.Pooled = false;
             return hazard;
         }
 
         public void Tick(float deltaTime, EnemyManager world)
         {
             TickLines(deltaTime, world);
+            TickShocks(deltaTime);
             for (var i = 0; i < hazards.Count; i++)
             {
                 var h = hazards[i];
@@ -198,6 +260,8 @@ namespace ARPG
                         continue;
                     if (h.Sound.HasValue)
                         Sfx.Play(h.Sound.Value, 0.8f);
+                    if (h.Damage > 0f)
+                        ShockAt(h.Center, h.Radius, h.Color);
                     if (inside && h.Damage > 0f)
                     {
                         Sfx.Play(SoundId.EnemySlam, 0.6f);
@@ -211,6 +275,13 @@ namespace ARPG
                         continue;
                     }
                 }
+                // What lasts after landing is drawn as a pool (2026-10-18).
+                if (!h.Pooled)
+                {
+                    h.Pooled = true;
+                    h.Marker.SetPool();
+                }
+                h.Marker.Animate(deltaTime);
                 h.BurnLeft -= deltaTime;
                 h.PulseTimer -= deltaTime;
                 if (inside && h.PulseTimer <= 0f)
@@ -229,11 +300,25 @@ namespace ARPG
             h.Marker.Hide();
         }
 
+        // A lane that strikes flashes along its length as it goes off.
+        void LaneShock(LineHazard line)
+        {
+            var length = Vector2.Distance(line.From, line.To);
+            var steps = Mathf.Clamp(Mathf.CeilToInt(length / 1.5f), 1, 6);
+            for (var k = 0; k <= steps; k++)
+                ShockAt(Vector2.Lerp(line.From, line.To, (float)k / steps), line.Width * 0.7f, line.Color);
+        }
+
         /// <summary>Clears every hazard (a new level).</summary>
         public void Clear()
         {
             foreach (var h in hazards)
                 Finish(h);
+            foreach (var s in shocks)
+            {
+                s.Time = 1f;
+                s.Renderer.gameObject.SetActive(false);
+            }
             foreach (var l in lines)
             {
                 l.Active = false;

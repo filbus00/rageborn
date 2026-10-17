@@ -16,9 +16,19 @@ namespace ARPG
 
         static readonly Color ArrowColor = new Color(0.75f, 0.85f, 1f, 1f);
 
+        // A projectile's pooled look (2026-10-18): a root that moves, the body that turns or spins, a glow under it and
+        // a tapered trail behind it along the flight.
+        sealed class Visual
+        {
+            public Transform Root;
+            public SpriteRenderer Body;
+            public SpriteRenderer Glow;
+            public SpriteRenderer Trail;
+        }
+
         struct Shot
         {
-            public Transform Transform;
+            public Visual Look;
             public Vector2 Position;
             public Vector2 Velocity;
             public float Travelled;
@@ -36,7 +46,7 @@ namespace ARPG
 
         readonly Transform parent;
         readonly List<Shot> flying = new List<Shot>(16);
-        readonly Stack<Transform> spare = new Stack<Transform>(16);
+        readonly Stack<Visual> spare = new Stack<Visual>(16);
 
         public EnemyProjectiles(Transform parent) => this.parent = parent;
 
@@ -48,33 +58,55 @@ namespace ARPG
         public void Fire(EnemyController shooter, Vector2 origin, Vector2 velocity, float maxDistance, float damage, int level, float armorIgnore,
             Color color = default, ProjectileKind kind = ProjectileKind.Plain)
         {
-            var transform = spare.Count > 0 ? spare.Pop() : Create();
-            transform.gameObject.SetActive(true);
-            var renderer = transform.GetComponent<SpriteRenderer>();
+            var look = spare.Count > 0 ? spare.Pop() : Create();
+            look.Root.gameObject.SetActive(true);
+            var tint = color.a > 0f ? color : ArrowColor;
+            var renderer = look.Body;
             var art = ProjectileArt.For(kind);
+            float glowSize, trailLength, trailWidth;
             if (art != null)
             {
                 // A drawn thing (a knife, an axe, a bomb, a blade) in its own colours.
                 renderer.sprite = art;
                 renderer.color = Color.white;
-                transform.localScale = kind == ProjectileKind.Axe || kind == ProjectileKind.Bomb ? new Vector3(1.9f, 1.9f, 1f) : new Vector3(1.5f, 1.5f, 1f);
+                look.Body.transform.localScale = kind == ProjectileKind.Axe || kind == ProjectileKind.Bomb ? new Vector3(1.9f, 1.9f, 1f) : new Vector3(1.5f, 1.5f, 1f);
+                glowSize = 0.7f;
+                trailLength = kind == ProjectileKind.Knife ? 0.9f : 0.6f;
+                trailWidth = kind == ProjectileKind.Knife ? 0.08f : 0.18f;
+            }
+            else if (kind == ProjectileKind.Fireball)
+            {
+                // A white-hot heart in a big glow of its colour, a long burning tail.
+                renderer.sprite = TelegraphArt.Glow;
+                renderer.color = Color.Lerp(tint, Color.white, 0.65f);
+                look.Body.transform.localScale = new Vector3(0.55f, 0.55f, 1f);
+                glowSize = 1.5f;
+                trailLength = 1.2f;
+                trailWidth = 0.45f;
             }
             else
             {
-                // A shooter's own colour (a cultist's fire bolt, drawn larger), else the arrow streak; a fireball is a big
-                // round glow.
+                // A bolt: a bright core stretched along the flight (an arrow is thinner and paler).
                 var bolt = color.a > 0f;
                 renderer.sprite = TelegraphArt.Ember;
-                renderer.color = bolt ? color : ArrowColor;
-                transform.localScale = kind == ProjectileKind.Fireball ? new Vector3(0.8f, 0.8f, 1f)
-                    : bolt ? new Vector3(0.6f, 0.35f, 1f) : new Vector3(0.7f, 0.16f, 1f);
+                renderer.color = Color.Lerp(tint, Color.white, 0.4f);
+                look.Body.transform.localScale = bolt ? new Vector3(0.6f, 0.3f, 1f) : new Vector3(0.7f, 0.14f, 1f);
+                glowSize = bolt ? 0.9f : 0.45f;
+                trailLength = bolt ? 1.0f : 1.1f;
+                trailWidth = bolt ? 0.22f : 0.08f;
             }
-            transform.position = IsoMath.GroundToWorld(origin);
+            look.Glow.color = new Color(tint.r, tint.g, tint.b, art != null ? 0.25f : 0.55f);
+            look.Glow.transform.localScale = new Vector3(glowSize, glowSize * 0.75f, 1f);
+            look.Trail.color = new Color(tint.r, tint.g, tint.b, art != null ? 0.45f : 0.8f);
+            look.Trail.transform.localScale = new Vector3(trailLength, trailWidth, 1f);
+            look.Root.position = IsoMath.GroundToWorld(origin);
             var world = IsoMath.GroundToWorld(velocity);
-            transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(world.y, world.x) * Mathf.Rad2Deg);
+            var heading = Quaternion.Euler(0f, 0f, Mathf.Atan2(world.y, world.x) * Mathf.Rad2Deg);
+            look.Body.transform.rotation = heading;
+            look.Trail.transform.rotation = heading;
             flying.Add(new Shot
             {
-                Transform = transform,
+                Look = look,
                 Position = origin,
                 Velocity = velocity,
                 MaxDistance = maxDistance,
@@ -108,13 +140,19 @@ namespace ARPG
 
                 if (outcome == EnemyProjectileFlight.Outcome.Flying)
                 {
-                    shot.Transform.position = IsoMath.GroundToWorld(shot.Position);
+                    shot.Look.Root.position = IsoMath.GroundToWorld(shot.Position);
+                    var heading = IsoMath.GroundToWorld(shot.Velocity);
+                    var turn = Quaternion.Euler(0f, 0f, Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg);
+                    shot.Look.Trail.transform.rotation = turn;
                     if (shot.Spin != 0f)
-                        shot.Transform.Rotate(0f, 0f, -shot.Spin * deltaTime);
+                        shot.Look.Body.transform.Rotate(0f, 0f, -shot.Spin * deltaTime);
                     else
+                        shot.Look.Body.transform.rotation = turn;
+                    // A fireball's heart and glow flicker.
+                    if (shot.Kind == ProjectileKind.Fireball)
                     {
-                        var heading = IsoMath.GroundToWorld(shot.Velocity);
-                        shot.Transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg);
+                        var flicker = 1f + 0.12f * Mathf.Sin((shot.Travelled + Time.time) * 23f);
+                        shot.Look.Glow.transform.localScale = new Vector3(1.5f * flicker, 1.1f * flicker, 1f);
                     }
                     flying[i] = shot;
                     continue;
@@ -141,20 +179,30 @@ namespace ARPG
                             shot.Damage * ProjectileKinds.FireballBurstShare, 0f, 0f, shot.Level, shot.Color);
                 }
 
-                shot.Transform.gameObject.SetActive(false);
-                spare.Push(shot.Transform);
+                shot.Look.Root.gameObject.SetActive(false);
+                spare.Push(shot.Look);
                 flying[i] = flying[flying.Count - 1];
                 flying.RemoveAt(flying.Count - 1);
             }
         }
 
-        Transform Create()
+        Visual Create()
         {
-            // A short bright streak: the ember sprite stretched along the flight.
-            var go = GroundMarker.NewSprite("Arrow", TelegraphArt.Ember, ArrowColor, parent, 0);
-            go.GetComponent<SpriteRenderer>().sortingLayerName = GameSortingLayers.Effects;
-            go.transform.localScale = new Vector3(0.7f, 0.16f, 1f);
-            return go.transform;
+            var root = new GameObject("Projectile").transform;
+            root.SetParent(parent, false);
+            SpriteRenderer Part(string name, Sprite sprite, int order)
+            {
+                var renderer = GroundMarker.NewSprite(name, sprite, ArrowColor, root, order).GetComponent<SpriteRenderer>();
+                renderer.sortingLayerName = GameSortingLayers.Effects;
+                return renderer;
+            }
+            return new Visual
+            {
+                Root = root,
+                Glow = Part("Glow", TelegraphArt.Glow, 0),
+                Trail = Part("Trail", TelegraphArt.Streak, 1),
+                Body = Part("Body", TelegraphArt.Ember, 2),
+            };
         }
     }
 }

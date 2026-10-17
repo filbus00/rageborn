@@ -1308,3 +1308,11 @@ The owner's answers are in Docs/08. How it is built:
 - `AimCone` is now the aim arc: a screen-overlay canvas (sorting 8, under the Focus arc's 9) that follows her feet, a parent squashed to the floor's half height, and two images turned toward her target: a background arc (`BackgroundHalfDegrees` 45) and the firing arc (`FiringHalfDegrees`: the stray of `AimRules` at the stick's push, at least 3 degrees). Shown from the first target until 1.5 s after the last. A first try drew it as ground sprites on the Decals layer: under the dark floor's lighting and the enemies' feet it was nearly invisible.
 - `EnemyRules.MoveSpeedFactor`: 0.9 for every rank but Boss.
 - Tests: `AimRulesTests.TheFiringArc_WidensWithPace_InsideItsBackground`, `EnemySpecialsTests` updated. Offline 663 passed (the 5 NavGrid failures), Unity 668 of 668; the arc checked in the editor at depth 1 (grey band, red running spread toward the pack).
+
+## 2026-10-18: telegraphs, pools and projectiles remade
+
+- `TelegraphArt` gained `Rim`, `FillDisc`, `Shock`, `Pool`, `Bubbles`, `Lane`, `LaneFill`, `Glow`, `Streak` (code-made, `MakeXY` for shapes that are not round). The old `Circle`, `Disc`, `Line`, `Ember`, `Ring` stay for their other users (shadows, travel points, arrows).
+- `GroundMarker`: circles use the rim and fill, pulse in the last quarter (only markers with a fill); lines have a fill child grown from the start; `SetPool` turns a landed circle into a pool and `Animate` breathes it and turns its bubbles; `Restart` turns it back.
+- `EnemyHazards`: a pooled `Shock` ring (0.3 s) where a damaging circle lands and along a striking lane; a hazard with time left after landing calls `SetPool` once and `Animate` each tick.
+- `EnemyProjectiles`: each pooled projectile is a `Visual` (root, glow, trail, body); the body turns or spins, the trail follows the flight; fireballs flicker.
+- Checked in the editor at depth 1 (a filling circle, a lane, fire, poison and void pools, each projectile). Offline 663 passed (the 5 NavGrid failures), Unity 668 of 668.
