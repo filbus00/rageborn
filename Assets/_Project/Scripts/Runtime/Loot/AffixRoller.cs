@@ -50,7 +50,7 @@ namespace ARPG
             foreach (var id in picked)
             {
                 var tier = RollTier(itemLevel, random);
-                var value = RollValue(id, tier, random);
+                var value = RollValue(id, tier, random, itemLevel);
                 into.Add(new AffixRoll(id, tier, value));
             }
         }
@@ -88,21 +88,39 @@ namespace ARPG
             return best + random.Next(AffixTable.WorstTier - best + 1);
         }
 
-        /// <summary>A value uniformly within the tier's range for this affix.</summary>
-        public static float RollValue(AffixId id, int tier, System.Random random)
+        /// <summary>A value uniformly within the tier's range for this affix at an item level.</summary>
+        public static float RollValue(AffixId id, int tier, System.Random random, int itemLevel = FullScaleLevel)
         {
-            var (min, max) = ValueRange(id, tier);
+            var (min, max) = ValueRange(id, tier, itemLevel);
             return min + (float)random.NextDouble() * (max - min);
         }
 
-        /// <summary>The lowest and highest value an affix can roll at a tier: its T1 range scaled by the tier's shares.</summary>
-        public static (float min, float max) ValueRange(AffixId id, int tier)
+        /// <summary>
+        /// The lowest and highest value an affix can roll at a tier: its T1 range scaled by the tier's shares, and for the
+        /// flat affixes (weapon damage, life, armour) by the item level too (<see cref="LevelScale"/>).
+        /// </summary>
+        public static (float min, float max) ValueRange(AffixId id, int tier, int itemLevel = FullScaleLevel)
         {
             var definition = AffixTable.Get(id);
             if (definition.Fixed)
                 return (definition.T1Min, definition.T1Min);
             var scale = AffixTable.GetTier(tier);
-            return (definition.T1Min * scale.LowShare, definition.T1Max * scale.HighShare);
+            var level = ScalesWithLevel(id) ? LevelScale(itemLevel) : 1f;
+            return (definition.T1Min * scale.LowShare * level, definition.T1Max * scale.HighShare * level);
         }
+
+        /// <summary>
+        /// The owner, 2026-10-17: "the gear that drops on the first levels is too powerful". The flat affixes rolled the
+        /// same numbers at item level 1 as at 60: a T5 +12 to +31 weapon damage on a bow of 8.6 at level 1 (two to four
+        /// times its damage), +36 to +84 life on 100. They now grow with the item level, to their full range at
+        /// <see cref="FullScaleLevel"/>: about a tenth of it at level 1. Percent affixes are unchanged. Claude's numbers.
+        /// </summary>
+        public const int FullScaleLevel = 60;
+        public const int LevelScaleOffset = 5;
+
+        public static bool ScalesWithLevel(AffixId id) => id == AffixId.FlatWeaponDamage || id == AffixId.Life || id == AffixId.Armor;
+
+        public static float LevelScale(int itemLevel) =>
+            System.Math.Min(1f, (System.Math.Max(1, itemLevel) + LevelScaleOffset) / (float)(FullScaleLevel + LevelScaleOffset));
     }
 }

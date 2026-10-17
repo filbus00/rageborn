@@ -264,7 +264,7 @@ namespace ARPG
             var tier = AffixTable.BestUnlockedTier(itemLevel);
             var affixes = new List<AffixRoll>(legendary.FixedAffixes.Count + 2);
             foreach (var id in legendary.FixedAffixes)
-                affixes.Add(new AffixRoll(id, tier, AffixRoller.RollValue(id, tier, random)));
+                affixes.Add(new AffixRoll(id, tier, AffixRoller.RollValue(id, tier, random, itemLevel)));
             var extra = 0;
             if (rolled != null)
                 foreach (var roll in rolled)

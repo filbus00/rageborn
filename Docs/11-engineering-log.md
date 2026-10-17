@@ -1293,3 +1293,7 @@ The owner's answers are in Docs/08. How it is built:
 
 - Cover is gone: `CoverRules`, `CoverShield`, `PlayerCombat.UpdateCover`/`CoverBlocked`/the ambush and the check in `EnemyProjectiles`; its tests went with it (`MomentumShotTests` keeps the momentum test).
 - Selling: Garrett's `UpgradeShopScreen` (`MetaShop.Outfitting`) has a Sell loot card first, which closes the sheet and calls `InventoryScreen.OpenAtMerchant` (the old merchant Bag: `ItemSheet.Selling`, the bulk-sale row). `GameSession.SellPrice` multiplies by `SellRules.RogueliteFactor` (3) in the roguelite; blueprints price at 0, are refused by `Sell` and left out of bulk sales, and their sheet offers Discard. Tests: `BlueprintTests.Garrett_BuysLoot_ButNotBlueprints`; `SellAndIconTests` compare with the session's price. Offline 658 passed (the 5 NavGrid failures), Unity 663 of 663; in the editor the button opened the Bag at the merchant.
+
+## 2026-10-17: early gear nerfed
+
+- `AffixRoller.ValueRange`/`RollValue` take the item level: `FlatWeaponDamage`, `Life` and `Armor` are scaled by `LevelScale` = min(1, (item level + 5) / 65). `AffixRoller.Roll` and `Legendaries.Affixes` pass the item level; the shelved forge keeps the full-scale default. Test: `WildArrowAffixTests.FlatAffixes_GrowWithTheItemLevel_PercentOnesDoNot`. Offline 659 passed (the 5 NavGrid failures), Unity 664 of 664. Items already in a save keep their values.

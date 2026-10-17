@@ -68,5 +68,25 @@ namespace ARPG.Tests
             var equipment = EquipmentState.Empty.With(ItemSlot.Amulet, amulet).With(ItemSlot.Belt, belt);
             Assert.AreEqual(9f, equipment.AffixTotal(AffixId.PetDamage), 1e-4f);
         }
+
+        [Test]
+        public void FlatAffixes_GrowWithTheItemLevel_PercentOnesDoNot()
+        {
+            // The owner, 2026-10-17: "the gear that drops on the first levels is too powerful".
+            var (_, lowMax) = AffixRoller.ValueRange(AffixId.FlatWeaponDamage, AffixTable.WorstTier, 1);
+            Assert.Less(lowMax, CombatFormulas.WeaponAverageDamage(1) * 0.5f, "a level 1 bow gains at most half again");
+            var (_, fullMax) = AffixRoller.ValueRange(AffixId.FlatWeaponDamage, AffixTable.WorstTier, AffixRoller.FullScaleLevel);
+            Assert.Greater(fullMax, lowMax * 5f);
+            Assert.AreEqual(AffixRoller.ValueRange(AffixId.Life, 1), AffixRoller.ValueRange(AffixId.Life, 1, 80), "full from level 60 on");
+            Assert.AreEqual(AffixRoller.ValueRange(AffixId.AttackSpeed, 5, 1), AffixRoller.ValueRange(AffixId.AttackSpeed, 5, 60));
+            var (_, lifeMax) = AffixRoller.ValueRange(AffixId.Life, AffixTable.WorstTier, 1);
+            Assert.Less(lifeMax, CombatFormulas.CharacterBaseLife(1) * 0.15f);
+
+            var random = new System.Random(4);
+            for (var i = 0; i < 200; i++)
+                foreach (var roll in AffixRoller.Roll(ItemSlot.Weapon, ItemRarity.Rare, 2, random))
+                    if (roll.Id == AffixId.FlatWeaponDamage)
+                        Assert.LessOrEqual(roll.Value, AffixRoller.ValueRange(roll.Id, roll.Tier, 2).max + 1e-4f);
+        }
     }
 }
