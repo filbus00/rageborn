@@ -16,6 +16,8 @@ namespace ARPG
 
         protected RectTransform content;
         protected Text subtitle;
+        protected ScrollRect scroll;
+        RectTransform sheetRect;
 
         public static bool AnyOpen => openSheet != null && openSheet.gameObject.activeSelf;
 
@@ -41,6 +43,8 @@ namespace ARPG
             gameObject.SetActive(true);
             openSheet = this;
             Rerender();
+            if (scroll != null)
+                scroll.verticalNormalizedPosition = 1f;
         }
 
         /// <summary>Fills <see cref="content"/> and <see cref="subtitle"/> from the session.</summary>
@@ -55,6 +59,8 @@ namespace ARPG
                 Destroy(child.gameObject);
             }
             Render();
+            if (sheetRect != null)
+                SheetKit.FitSheet(sheetRect, content);
         }
 
         protected static T Make<T>(string title) where T : TownSheets
@@ -83,6 +89,7 @@ namespace ARPG
             sheet.transform.SetParent(root.transform, false);
             sheet.GetComponent<Button>().transition = Selectable.Transition.None;
             var sheetRect = (RectTransform)sheet.transform;
+            screen.sheetRect = sheetRect;
             sheetRect.anchorMin = new Vector2(0f, 0f);
             sheetRect.anchorMax = new Vector2(1f, 0f);
             sheetRect.pivot = new Vector2(0.5f, 0f);
@@ -97,82 +104,45 @@ namespace ARPG
             layout.childForceExpandHeight = false;
             layout.childForceExpandWidth = true;
 
-            var heading = Label(sheet.transform, title, 56, FontStyle.Bold, TextAnchor.MiddleCenter);
+            var heading = Label(sheet.transform, title, 58, FontStyle.Bold, TextAnchor.MiddleCenter);
             heading.color = UiStyle.Gold;
-            Height(heading.gameObject, 90f);
-            screen.subtitle = Label(sheet.transform, "", 32, FontStyle.Normal, TextAnchor.MiddleCenter);
-            Height(screen.subtitle.gameObject, 96f);
+            var headingShadow = heading.gameObject.AddComponent<Shadow>();
+            headingShadow.effectColor = new Color(0f, 0f, 0f, 0.85f);
+            headingShadow.effectDistance = new Vector2(2f, -3f);
+            Height(heading.gameObject, 84f);
+            SheetKit.Rule(sheet.transform, 4f);
+            screen.subtitle = Label(sheet.transform, "", 30, FontStyle.Normal, TextAnchor.MiddleCenter);
+            screen.subtitle.color = UiStyle.TextDim;
+            screen.subtitle.gameObject.AddComponent<LayoutElement>().minHeight = 64f;
 
-            // The list scrolls inside the sheet, masked, so a long one never pushes Close off the screen.
-            var view = new GameObject("View", typeof(RectTransform), typeof(RectMask2D), typeof(ScrollRect), typeof(Image));
-            view.transform.SetParent(sheet.transform, false);
-            view.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
-            view.AddComponent<LayoutElement>().flexibleHeight = 1f;
-            var list = new GameObject("Rows", typeof(RectTransform), typeof(VerticalLayoutGroup), typeof(ContentSizeFitter));
-            list.transform.SetParent(view.transform, false);
-            var listRect = (RectTransform)list.transform;
-            listRect.anchorMin = new Vector2(0f, 1f);
-            listRect.anchorMax = new Vector2(1f, 1f);
-            listRect.pivot = new Vector2(0.5f, 1f);
-            listRect.offsetMin = listRect.offsetMax = Vector2.zero;
-            var listLayout = list.GetComponent<VerticalLayoutGroup>();
-            listLayout.spacing = 10f;
-            listLayout.childControlHeight = true;
-            listLayout.childControlWidth = true;
-            listLayout.childForceExpandHeight = false;
-            listLayout.childForceExpandWidth = true;
-            list.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-            var scroll = view.GetComponent<ScrollRect>();
-            scroll.content = listRect;
-            scroll.horizontal = false;
-            scroll.movementType = ScrollRect.MovementType.Clamped;
-            screen.content = listRect;
+            // The list scrolls inside the sheet, masked, so a long one never pushes Close off the screen
+            // (SheetKit, 2026-10-17: a scrollbar shows when it is longer than the sheet).
+            screen.content = SheetKit.ScrollList(sheet.transform, out screen.scroll);
 
-            var close = Button(sheet.transform, "Close", screen.Close, 40);
-            Height(close.gameObject, 150f);
+            var close = Button(sheet.transform, "Close", screen.Close, 38);
+            Height(close.gameObject, 118f);
             close.gameObject.SetActive(!screen.MustChoose);
             return screen;
         }
 
-        /// <summary>A row: a label on the left and one button on the right.</summary>
-        protected void Row(string label, string action, bool enabled, Action onClick, float height = 150f, float buttonWidth = 320f)
-        {
-            var row = new GameObject("Row", typeof(RectTransform), typeof(Image), typeof(HorizontalLayoutGroup));
-            row.transform.SetParent(content, false);
-            row.GetComponent<Image>().color = UiStyle.RowFill;
-            var layout = row.GetComponent<HorizontalLayoutGroup>();
-            layout.padding = new RectOffset(20, 12, 8, 8);
-            layout.spacing = 12f;
-            layout.childControlWidth = true;
-            layout.childControlHeight = true;
-            layout.childForceExpandWidth = false;
-            layout.childForceExpandHeight = true;
-            Height(row, height);
-
-            var text = Label(row.transform, label, 34, FontStyle.Normal, TextAnchor.MiddleLeft);
-            Width(text.gameObject, 0f, 1f);
-            var button = Button(row.transform, action, () =>
+        /// <summary>A row: a card with a label on the left and one button on the right (SheetKit). It grows to fit its
+        /// text.</summary>
+        protected RectTransform Row(string label, string action, bool enabled, Action onClick, float height = 130f, float buttonWidth = 300f,
+            bool highlighted = false, Sprite icon = null) =>
+            SheetKit.Card(content, label, action, enabled, () =>
             {
                 onClick?.Invoke();
                 Rerender();
-            }, 30);
-            Width(button.gameObject, buttonWidth, 0f);
-            button.interactable = enabled;
-        }
+            }, height, buttonWidth, highlighted, icon);
 
         /// <summary>A heading line inside the list.</summary>
-        protected void Heading(string label)
-        {
-            var heading = Label(content, label, 38, FontStyle.Bold, TextAnchor.MiddleLeft);
-            heading.color = UiStyle.Gold;
-            Height(heading.gameObject, 70f);
-        }
+        protected void Heading(string label) => SheetKit.Heading(content, label);
 
         /// <summary>A line of text, no button.</summary>
         protected void Line(string text, int size = 32, float height = 56f)
         {
-            var line = Label(content, text, size, FontStyle.Normal, TextAnchor.MiddleLeft);
-            Height(line.gameObject, height);
+            var line = SheetKit.Note(content, text, size, UiStyle.TextMain);
+            line.GetComponent<LayoutElement>().minHeight = height;
         }
 
         /// <summary>A wrapping grid of item tiles; a tap on one calls <paramref name="onTap"/> with it.</summary>
@@ -352,7 +322,14 @@ namespace ARPG
                 Line(line);
             Heading(summary.Boons.Count > 0 ? $"Boons ({summary.Boons.Count})" : "No boons taken");
             foreach (var (name, rank) in summary.Boons)
-                Line(rank > 1 ? $"{name}  <color=#E8C66A>{rank}</color>" : name, 30, 46f);
+            {
+                TalentNode node = null;
+                foreach (var each in TalentRules.Nodes)
+                    if (each.Name == name)
+                        node = each;
+                var pips = node != null ? SheetKit.Pips(rank, node.MaxRanks) : "";
+                SheetKit.Card(content, $"<b>{name}</b>{pips}", null, false, null, 76f, 0f, false, node != null ? BoonBar.SpriteFor(node) : null);
+            }
             Line("<size=28><color=#999999>Coins buy upgrades in town; the chest keeps what you put in it.</color></size>", 28, 80f);
         }
     }
@@ -394,6 +371,7 @@ namespace ARPG
                 var kit = session.Meta.ForgedFor(kind);
                 var now = kit != null ? $"Starting kit: {ItemComparison.Name(kit)}, item level {kit.ItemLevel}." : "Not yet forged.";
                 var captured = key;
+                var picture = ItemIcons.For(new Item(kind, ItemRarity.Rare, ItemNames.LevelOfLook(kind, look)));
                 Row($"<b>{ItemNames.LookName(kind, look)}</b>  <size=26><color=#999999>{ItemComparison.KindName(kind)}</color></size>\n" +
                     $"<size=28><color=#CCCCCC>{now}</color></size>",
                     $"Forge {cost:N0}", session.Gold >= cost && session.Inventory.CanFit(new Item(kind, ItemRarity.Rare, 1)), () =>
@@ -405,7 +383,7 @@ namespace ARPG
                             (HintBanner.Current != null ? HintBanner.Current : HintBanner.Create()).Show($"Thorin forged a {ItemComparison.Name(item)}. It is in your bag.");
                         }
                         Rerender();
-                    });
+                    }, 130f, 300f, false, picture);
             }
         }
     }
@@ -440,16 +418,16 @@ namespace ARPG
                 var rank = session.Meta.Rank(upgrade.Id);
                 var maxed = rank >= upgrade.MaxRanks;
                 var cost = session.Meta.NextCost(upgrade.Id);
-                var now = rank > 0 ? MetaRules.Describe(upgrade, rank) : "Not yet bought.";
-                var next = maxed ? "" : $"\n<size=26><color=#E8C66A>Next: {MetaRules.Describe(upgrade, rank + 1)}</color></size>";
+                var now = rank > 0 ? $"\n<size=27><color=#BBBBBB>Now: {MetaRules.Describe(upgrade, rank)}</color></size>" : "";
+                var next = maxed ? "" : $"\n<size=27><color=#E8C66A>Next: {MetaRules.Describe(upgrade, rank + 1)}</color></size>";
                 var captured = upgrade.Id;
-                Row($"<b>{upgrade.Name}</b>  <size=28>({rank}/{upgrade.MaxRanks})</size>\n<size=28><color=#CCCCCC>{now}</color></size>{next}",
+                Row($"<b>{upgrade.Name}</b>{SheetKit.Pips(rank, upgrade.MaxRanks)}{now}{next}",
                     maxed ? "All bought" : $"Buy {cost:N0}", !maxed && session.Gold >= cost, () =>
                     {
                         if (session.BuyUpgrade(captured))
                             Sfx.Play(SoundId.LevelUp, 0.6f);
                         Rerender();
-                    }, 190f);
+                    }, 150f);
             }
         }
     }
@@ -511,9 +489,9 @@ namespace ARPG
             {
                 var node = TalentRules.Get(id);
                 var rank = session.Talents.RankOf(id);
-                var ranks = node.MaxRanks > 1 ? $"  <size=28>({rank + 1}/{node.MaxRanks})</size>" : "";
+                var ranks = SheetKit.Pips(rank + 1, node.MaxRanks);
                 if (node.IsRare)
-                    ranks += "  <size=28><color=#E0B040>Rare</color></size>";
+                    ranks += "  <size=26><color=#E0B040>RARE</color></size>";
                 var captured = id;
                 Row($"<b>{node.Name}</b>{ranks}\n<size=28><color=#CCCCCC>{TalentRules.Describe(node, rank + 1)}</color></size>", "Take", true, () =>
                 {
@@ -527,7 +505,7 @@ namespace ARPG
                     }
                     else
                         Close();
-                }, 190f);
+                }, 170f, 220f, false, BoonBar.SpriteFor(node));
             }
             if (session.RerollsLeft > 0)
                 Row($"<b>Reroll</b>\n<size=28><color=#CCCCCC>{session.RerollsLeft} left this run.</color></size>", "Reroll", true, () =>

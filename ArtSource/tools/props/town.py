@@ -751,6 +751,70 @@ def vault():
     box((2.5, 0.06, 0.06), (0, -0.8, 0.45), wood)
 
 
+def stash_chest():
+    """The stash chest (the owner, 2026-10-17: "Render a nice chest in town"): a big iron-bound chest with a domed lid,
+    corner caps, rows of rivets and a gold lock, on a stone step, a candle on either side. Its long side to the camera."""
+    import mathutils
+    wood = mat(WOOD[2], 0.35, WOOD[0], scale=14)
+    lidwood = mat(WOOD[3], 0.35, WOOD[1], scale=14)
+    iron = mat(STONE[1], 0.2, COLD[0], metal=0.7, rough=0.4)
+    rivet = mat(STONE[3], 0.1, STONE[1], metal=0.8, rough=0.3)
+    gold = mat(EMBER[3], 0.2, EMBER[1], metal=0.85, rough=0.25, emit=0.4)
+    step = mat(STONE[3], 0.35, STONE[1], scale=8)
+    step2 = mat(STONE[2], 0.35, STONE[1], scale=8)
+    wax = mat((222, 210, 180), 0.1)
+    flame = mat(EMBER[4], 0.0, emit=6.0)
+    L, W, H = 1.15, 0.66, 0.46
+    R = W / 2
+    base = 0.14
+    parts = [box((L + 0.5, W + 0.45, 0.07), (0, 0, 0), step2, bevel=0.015),
+             box((L + 0.3, W + 0.28, 0.07), (0, 0, 0.07), step, bevel=0.015)]
+    # The body, with feet, iron bands down its sides and caps on its corners.
+    for fx in (-1, 1):
+        for fy in (-1, 1):
+            parts.append(box((0.1, 0.1, 0.05), (fx * (L / 2 - 0.06), fy * (R - 0.06), base), iron, bevel=0.01))
+    z0 = base + 0.04
+    parts.append(box((L, W, H), (0, 0, z0), wood, bevel=0.012))
+    for t in (-0.32, 0.0, 0.32):
+        parts.append(box((0.06, W + 0.02, H + 0.01), (t * L, 0, z0), iron))
+    parts.append(box((L + 0.02, W + 0.02, 0.05), (0, 0, z0), iron))
+    parts.append(box((L + 0.02, W + 0.02, 0.04), (0, 0, z0 + H - 0.04), iron))
+    for fx in (-1, 1):
+        for fy in (-1, 1):
+            parts.append(box((0.1, 0.1, H + 0.02), (fx * (L / 2 - 0.035), fy * (R - 0.035), z0 - 0.005), iron))
+    # Plank seams on the front and ends.
+    seam = mat(WOOD[0], 0.0)
+    for k in (1, 2):
+        parts.append(box((L + 0.004, W + 0.004, 0.012), (0, 0, z0 + k * H / 3), seam))
+    # Rivets along the bands on the front (-y).
+    for t in (-0.32, 0.0, 0.32):
+        for k in range(4):
+            parts.append(sphere(0.014, (t * L, -R - 0.012, z0 + 0.07 + k * 0.11), rivet, segments=6))
+    # The domed lid: half a cylinder along x on the body, with bands over it and an iron rim.
+    top = z0 + H
+    parts.append(cyl(R, L, (-L / 2, 0, top), lidwood, 24, rot=(0, 90, 0)))
+    for t in (-0.32, 0.0, 0.32):
+        parts.append(cyl(R + 0.012, 0.065, (t * L - 0.0325, 0, top), iron, 24, rot=(0, 90, 0)))
+    for x in (-L / 2 - 0.01, L / 2 - 0.02):
+        parts.append(cyl(R + 0.01, 0.03, (x, 0, top), iron, 24, rot=(0, 90, 0)))
+    # The lock: a gold plate with a hasp over the lid's edge, and gold handles at the ends.
+    parts.append(box((0.16, 0.025, 0.2), (0, -R - 0.012, top - 0.16), gold, bevel=0.008))
+    parts.append(box((0.06, 0.03, 0.12), (0, -R - 0.02, top - 0.02), gold, bevel=0.006))
+    parts.append(box((0.03, 0.04, 0.04), (0, -R - 0.03, top - 0.11), mat(WOOD[0], 0.0)))
+    for x in (-1, 1):
+        parts.append(cyl(0.07, 0.02, (x * (L / 2 + 0.012), 0, z0 + H * 0.62), gold, 12, rot=(0, 90, 0)))
+    # Candles on the step's front corners.
+    for x, y in ((-L / 2 - 0.12, -R - 0.08), (L / 2 + 0.12, -R - 0.08)):
+        parts.append(cyl(0.035, 0.16, (x, y, 0.14), wax, 10))
+        parts.append(sphere(0.022, (x, y, 0.32), flame, scale=(1, 1, 1.8), segments=8))
+    # Turned a little off square to the camera, so an end shows.
+    turn = mathutils.Matrix.Rotation(math.radians(-25), 3, "Z")
+    for o in parts:
+        o.location = turn @ o.location
+        o.rotation_euler.z += math.radians(-25)
+    light("POINT", (-0.6, -0.6, 0.5), 25, (1.0, 0.75, 0.45), 0.2)
+
+
 # ---------------------------------------------------------------- the concept town (2026-10-12, "Town concept art")
 #
 #   church     a stone church with a bell tower and spire at its front (-x), steps up to its door, stained glass lit
@@ -917,6 +981,6 @@ def register(all_pieces):
                         ("town_wall_x", town_wall_x), ("town_wall_y", town_wall_y), ("town_tower", town_tower),
                         ("town_gate_x", town_gate_x), ("town_gate_y", town_gate_y), ("shop_goods", shop_goods),
                         ("shop_herbs", shop_herbs), ("shop_lamps", shop_lamps), ("shop_dice", shop_dice),
-                        ("training_yard", training_yard), ("vault", vault),
+                        ("training_yard", training_yard), ("vault", vault), ("stash_chest", stash_chest),
                         ("church", church), ("smithy", smithy), ("stables", stables)):
         all_pieces[name] = ("world", build, WORLD)

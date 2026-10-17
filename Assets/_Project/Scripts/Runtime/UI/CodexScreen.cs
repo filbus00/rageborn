@@ -68,7 +68,7 @@ namespace ARPG
             sheetRect.anchorMin = new Vector2(0f, 0f);
             sheetRect.anchorMax = new Vector2(1f, 0f);
             sheetRect.pivot = new Vector2(0.5f, 0f);
-            sheetRect.sizeDelta = new Vector2(0f, 1900f);
+            sheetRect.sizeDelta = new Vector2(0f, 2060f);
             sheet.GetComponent<Image>().color = UiStyle.Sheet;
             UiStyle.Leather(sheet.GetComponent<Image>());
             var layout = sheet.GetComponent<VerticalLayoutGroup>();
@@ -81,44 +81,17 @@ namespace ARPG
 
             var title = NewText(sheet.transform, "Codex", 56, FontStyle.Bold, TextAnchor.MiddleCenter);
             title.color = UiStyle.Gold;
-            Height(title.gameObject, 90f);
-            screen.count = NewText(sheet.transform, "", 34, FontStyle.Normal, TextAnchor.MiddleCenter);
-            Height(screen.count.gameObject, 60f);
+            Height(title.gameObject, 84f);
+            SheetKit.Rule(sheet.transform, 4f);
+            screen.count = NewText(sheet.transform, "", 32, FontStyle.Normal, TextAnchor.MiddleCenter);
+            Height(screen.count.gameObject, 64f);
 
-            // The list scrolls: 24 entries do not fit a phone's sheet.
-            var viewport = new GameObject("List", typeof(RectTransform), typeof(Image), typeof(Mask), typeof(ScrollRect));
-            viewport.transform.SetParent(sheet.transform, false);
-            viewport.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.01f);
-            viewport.GetComponent<Mask>().showMaskGraphic = false;
-            var viewportElement = viewport.AddComponent<LayoutElement>();
-            viewportElement.flexibleHeight = 1f;
-
-            var list = new GameObject("Rows", typeof(RectTransform), typeof(VerticalLayoutGroup), typeof(ContentSizeFitter));
-            list.transform.SetParent(viewport.transform, false);
-            var listRect = (RectTransform)list.transform;
-            listRect.anchorMin = new Vector2(0f, 1f);
-            listRect.anchorMax = new Vector2(1f, 1f);
-            listRect.pivot = new Vector2(0.5f, 1f);
-            listRect.offsetMin = listRect.offsetMax = Vector2.zero;
-            var listLayout = list.GetComponent<VerticalLayoutGroup>();
-            listLayout.spacing = 12f;
-            listLayout.childControlHeight = true;
-            listLayout.childControlWidth = true;
-            listLayout.childForceExpandHeight = false;
-            listLayout.childForceExpandWidth = true;
-            list.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-            screen.content = listRect;
-
-            var scrollRect = viewport.GetComponent<ScrollRect>();
-            scrollRect.content = listRect;
-            scrollRect.horizontal = false;
-            scrollRect.vertical = true;
-            scrollRect.movementType = ScrollRect.MovementType.Clamped;
-            scrollRect.scrollSensitivity = 40f;
-            screen.scroll = scrollRect;
+            // The list scrolls: 24 entries do not fit a phone's sheet (SheetKit since 2026-10-17, with a scrollbar).
+            screen.content = SheetKit.ScrollList(sheet.transform, out screen.scroll);
 
             var close = NewButton(sheet.transform, "Close", screen.Close);
-            Height(close.gameObject, 168f);
+            close.GetComponentInChildren<Text>().fontSize = 38;
+            Height(close.gameObject, 118f);
             return screen;
         }
 
@@ -142,9 +115,13 @@ namespace ARPG
                 Destroy(child.gameObject);
             }
             // Found ones first, then the rest, each group in table order.
+            if (found > 0)
+                SheetKit.Heading(content, "Found");
             foreach (var legendary in Legendaries.All)
                 if (session.HasSeen(legendary.Id))
                     AddRow(legendary, true, session.Equipment.Wears(legendary.Id));
+            if (found < total)
+                SheetKit.Heading(content, "Not yet found");
             foreach (var legendary in Legendaries.All)
                 if (!session.HasSeen(legendary.Id))
                     AddRow(legendary, false, false);
@@ -153,59 +130,35 @@ namespace ARPG
 
         void AddRow(LegendaryDefinition legendary, bool seen, bool worn)
         {
-            var row = new GameObject(legendary.Id.ToString(), typeof(RectTransform), typeof(Image), typeof(VerticalLayoutGroup));
-            row.transform.SetParent(content, false);
-            row.GetComponent<Image>().color = seen ? UiStyle.RowFill : UiStyle.Locked;
-            var layout = row.GetComponent<VerticalLayoutGroup>();
-            layout.padding = new RectOffset(24, 24, 16, 16);
-            layout.spacing = 6f;
-            layout.childControlWidth = true;
-            layout.childControlHeight = true;
-            layout.childForceExpandWidth = true;
-            layout.childForceExpandHeight = false;
-
             var kind = $"{ItemComparison.KindName(legendary.Slot)} · {legendary.Archetype}";
-            if (DevGive)
-                AddGiveButton(row.transform, legendary);
-            if (seen)
-            {
-                var color = ColorUtility.ToHtmlStringRGB(LootColors.Of(ItemRarity.Legendary));
-                NewText(row.transform, $"<b><color=#{color}>{legendary.Name}</color></b>{(worn ? "  <color=#7FD07F>worn</color>" : "")}",
-                    38, FontStyle.Normal, TextAnchor.MiddleLeft);
-                NewText(row.transform, $"<color=#999999>{kind}</color>", 28, FontStyle.Normal, TextAnchor.MiddleLeft);
-                NewText(row.transform, legendary.Power, 30, FontStyle.Normal, TextAnchor.UpperLeft);
-                NewText(row.transform, $"<color=#999999>Drops most from:</color> {legendary.HomeText}", 28, FontStyle.Normal, TextAnchor.MiddleLeft);
-            }
-            else
-            {
-                NewText(row.transform, "<color=#777777><b>Not yet found</b></color>", 34, FontStyle.Normal, TextAnchor.MiddleLeft);
-                NewText(row.transform, $"<color=#777777>{kind}</color>", 28, FontStyle.Normal, TextAnchor.MiddleLeft);
-            }
+            var color = ColorUtility.ToHtmlStringRGB(LootColors.Of(ItemRarity.Legendary));
+            var label = seen
+                ? $"<b><color=#{color}>{legendary.Name}</color></b>{(worn ? "  <size=26><color=#7FD07F>worn</color></size>" : "")}\n" +
+                  $"<size=25><color=#999999>{kind}</color></size>\n<size=28>{legendary.Power}</size>\n" +
+                  $"<size=25><color=#999999>Drops most from:</color> {legendary.HomeText}</size>"
+                : $"<color=#8A8078><b>Not yet found</b></color>\n<size=25><color=#6E665E>{kind}</color></size>";
+            // Development builds and the editor: a small Give button on the card's right.
+            SheetKit.Card(content, label, DevGive ? "DEV give" : null, true, DevGive ? () => Give(legendary) : (Action)null,
+                seen ? 130f : 96f, 170f, false, ItemIcons.For(legendary.Slot, seen ? ItemRarity.Legendary : ItemRarity.Common),
+                seen ? LootColors.Of(ItemRarity.Legendary) : SheetKit.CardEdge);
         }
 
-        // Development builds and the editor only: a button per entry that puts that legendary in the backpack, at the
-        // character's level (at least the legendaries' minimum), so a power can be tried without farming for it.
+        // Development builds and the editor only: puts that legendary in the backpack, at the character's level (at
+        // least the legendaries' minimum), so a power can be tried without farming for it.
         static bool DevGive => Debug.isDebugBuild;
 
         static readonly System.Random DevRandom = new System.Random();
 
-        void AddGiveButton(Transform row, LegendaryDefinition legendary)
+        void Give(LegendaryDefinition legendary)
         {
-            var button = NewButton(row, "DEV: give", () =>
+            var session = GameSession.Current;
+            var item = Legendaries.Create(legendary.Id, Mathf.Max(Legendaries.MinItemLevel, session.Level), DevRandom);
+            if (!session.PickUp(item))
             {
-                var session = GameSession.Current;
-                var item = Legendaries.Create(legendary.Id, Mathf.Max(Legendaries.MinItemLevel, session.Level), DevRandom);
-                if (!session.PickUp(item))
-                {
-                    count.text = "<color=#FF6060>No room in the backpack</color>";
-                    return;
-                }
-                Render();
-            });
-            var text = button.GetComponentInChildren<Text>();
-            text.fontSize = 30;
-            text.color = new Color(1f, 0.6f, 0.2f);
-            Height(button.gameObject, 64f);
+                count.text = "<color=#FF6060>No room in the backpack</color>";
+                return;
+            }
+            Render();
         }
 
         static Button NewButton(Transform parent, string label, Action onClick)

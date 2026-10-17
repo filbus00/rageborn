@@ -118,7 +118,7 @@ namespace UnityEngine.UI
     public class Toggle : Selectable { public class ToggleEvent : UnityEvent<bool> { } public bool isOn { get; set; } public ToggleEvent onValueChanged { get; set; } = new ToggleEvent(); public Graphic graphic { get; set; } public ToggleGroup group { get; set; } public void SetIsOnWithoutNotify(bool v) { } }
     public class ToggleGroup : UIBehaviour { public bool allowSwitchOff { get; set; } }
     public class Slider : Selectable { public class SliderEvent : UnityEvent<float> { } public float value { get; set; } public float minValue { get; set; } public float maxValue { get; set; } public bool wholeNumbers { get; set; } public SliderEvent onValueChanged { get; set; } = new SliderEvent(); public RectTransform fillRect { get; set; } public RectTransform handleRect { get; set; } public void SetValueWithoutNotify(float v) { } }
-    public class Scrollbar : Selectable { public float value { get; set; } public float size { get; set; } }
+    public class Scrollbar : Selectable { public enum Direction { LeftToRight, RightToLeft, BottomToTop, TopToBottom } public float value { get; set; } public float size { get; set; } public RectTransform handleRect { get; set; } public Direction direction { get; set; } }
     public class InputField : Selectable { public string text { get; set; } }
     public class Dropdown : Selectable { }
     public class ScrollRect : UIBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IInitializePotentialDragHandler, IScrollHandler

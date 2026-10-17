@@ -42,11 +42,12 @@ namespace ARPG
         public static Vector2Int Cell(Newcomer who) => who switch
         {
             // Each before their own place in the walled town (2026-10-12, TownLayout): the vault, the herb stall, the
-            // dice table, the training yard.
-            Newcomer.StashKeeper => new Vector2Int(4, 10),
-            Newcomer.Healer => new Vector2Int(8, 7),
+            // dice table, the training yard. Spread apart on 2026-10-17 (the owner: "All the townspeople are standing too
+            // close"): Elara by her chest, Miranda at the herb stall, Brunhilde at the yard's far side.
+            Newcomer.StashKeeper => new Vector2Int(1, 10),
+            Newcomer.Healer => new Vector2Int(8, 12),
             Newcomer.Gambler => new Vector2Int(-4, -9),
-            _ => new Vector2Int(-11, 1),
+            _ => new Vector2Int(-12, -3),
         };
 
         /// <summary>The newcomer whose arrival depth this is, if reaching it brings one (for the arrival notice).</summary>

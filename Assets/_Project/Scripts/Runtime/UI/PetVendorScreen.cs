@@ -16,6 +16,7 @@ namespace ARPG
         static PetVendorScreen current;
 
         RectTransform content;
+        ScrollRect scroll;
         Text gold;
 
         public static bool IsOpen => current != null && current.gameObject.activeSelf;
@@ -26,6 +27,7 @@ namespace ARPG
                 current = Create();
             current.gameObject.SetActive(true);
             current.Render();
+            current.scroll.verticalNormalizedPosition = 1f;
         }
 
         public static void CloseIfOpen()
@@ -79,22 +81,15 @@ namespace ARPG
             var title = NewText(sheet.transform, "Lyriel", 56, FontStyle.Bold, TextAnchor.MiddleCenter);
             title.color = UiStyle.Gold;
             Height(title.gameObject, 90f);
-            screen.gold = NewText(sheet.transform, "", 34, FontStyle.Normal, TextAnchor.MiddleCenter);
-            Height(screen.gold.gameObject, 56f);
+            SheetKit.Rule(sheet.transform, 4f);
+            screen.gold = NewText(sheet.transform, "", 32, FontStyle.Normal, TextAnchor.MiddleCenter);
+            Height(screen.gold.gameObject, 64f);
 
-            var list = new GameObject("Rows", typeof(RectTransform), typeof(VerticalLayoutGroup));
-            list.transform.SetParent(sheet.transform, false);
-            var listLayout = list.GetComponent<VerticalLayoutGroup>();
-            listLayout.spacing = 10f;
-            listLayout.childControlHeight = true;
-            listLayout.childControlWidth = true;
-            listLayout.childForceExpandHeight = false;
-            listLayout.childForceExpandWidth = true;
-            list.AddComponent<LayoutElement>().flexibleHeight = 1f;
-            screen.content = (RectTransform)list.transform;
+            // The list scrolls (2026-10-17: with a pet's four skills it ran off the sheet).
+            screen.content = SheetKit.ScrollList(sheet.transform, out screen.scroll);
 
-            var close = NewButton(sheet.transform, "Close", screen.Close, 40);
-            Height(close.gameObject, 150f);
+            var close = NewButton(sheet.transform, "Close", screen.Close, 38);
+            Height(close.gameObject, 118f);
             return screen;
         }
 
@@ -102,7 +97,7 @@ namespace ARPG
         {
             var session = GameSession.Current;
             var pets = session.Pets;
-            gold.text = $"<color=#E8C66A>{session.Gold} gold</color>";
+            gold.text = $"<color=#E8C66A>{session.Gold:N0} gold</color>.  Pets follow you into the dungeon and fight at your side.";
 
             for (var i = content.childCount - 1; i >= 0; i--)
             {
@@ -111,6 +106,7 @@ namespace ARPG
                 Destroy(child.gameObject);
             }
 
+            SheetKit.Heading(content, "Companions");
             foreach (var kind in PetRules.All)
             {
                 var definition = PetRules.Get(kind);
@@ -144,9 +140,7 @@ namespace ARPG
             // The pet's skills (2026-10-15): taught for coins, kept for good, all of them working while it follows her.
             if (pets.Active is PetKind active)
             {
-                var skillsHeader = NewText(content, $"{PetRules.Get(active).Name}'s skills", 38, FontStyle.Bold, TextAnchor.MiddleLeft);
-                skillsHeader.color = UiStyle.Gold;
-                Height(skillsHeader.gameObject, 70f);
+                SheetKit.Heading(content, $"{PetRules.Get(active).Name}'s skills");
                 foreach (var skill in PetSkillRules.For(active))
                 {
                     var rank = pets.Rank(skill.Id);
@@ -155,19 +149,17 @@ namespace ARPG
                     var pairs = skill.Pairs != null && TalentRules.Get(skill.Pairs) != null
                         ? $"  <color=#E0C040>Pairs with {TalentRules.Get(skill.Pairs).Name}.</color>" : "";
                     var captured = skill.Id;
-                    Row($"<b>{skill.Name}</b>  <size=26>({rank}/{PetSkillRules.MaxRanks})</size>\n" +
+                    Row($"<b>{skill.Name}</b>{SheetKit.Pips(rank, PetSkillRules.MaxRanks)}\n" +
                         $"<size=26><color=#CCCCCC>{PetSkillRules.Describe(skill, rank > 0 && !maxed ? rank + 1 : System.Math.Max(rank, 1))}</color>{pairs}</size>",
                         maxed ? "Mastered" : rank == 0 ? $"Teach {cost:N0}" : $"Rank up {cost:N0}", !maxed && session.Gold >= cost, () =>
                         {
                             if (session.TeachPetSkill(captured))
                                 Sfx.Play(SoundId.LevelUp, 0.6f);
-                        }, 190f);
+                        }, 150f);
                 }
             }
 
-            var header = NewText(content, pets.Active != null ? "Its rules" : "Its rules (for the pet you buy)", 38, FontStyle.Bold, TextAnchor.MiddleLeft);
-            header.color = UiStyle.Gold;
-            Height(header.gameObject, 70f);
+            SheetKit.Heading(content, pets.Active != null ? "How it behaves" : "How it behaves (the pet you buy)");
             Row($"<b>Target</b>\n<size=28><color=#CCCCCC>Tap to change</color></size>", PetRules.TargetingText(pets.Targeting), true,
                 pets.CycleTargeting, 150f, 520f);
             foreach (PetBehaviour behaviour in Enum.GetValues(typeof(PetBehaviour)))
@@ -175,36 +167,16 @@ namespace ARPG
                 if (behaviour == PetBehaviour.None)
                     continue;
                 var on = pets.Has(behaviour);
-                Row(PetRules.BehaviourText(behaviour), on ? "On" : "Off", true, () => pets.Toggle(behaviour), 130f, 200f, on);
+                Row(PetRules.BehaviourText(behaviour), on ? "On" : "Off", true, () => pets.Toggle(behaviour), 110f, 180f, on);
             }
         }
 
-        void Row(string label, string action, bool enabled, Action onClick, float height, float buttonWidth = 320f, bool highlighted = false)
-        {
-            var row = new GameObject("Row", typeof(RectTransform), typeof(Image), typeof(HorizontalLayoutGroup));
-            row.transform.SetParent(content, false);
-            row.GetComponent<Image>().color = UiStyle.RowFill;
-            var layout = row.GetComponent<HorizontalLayoutGroup>();
-            layout.padding = new RectOffset(20, 12, 8, 8);
-            layout.spacing = 12f;
-            layout.childControlWidth = true;
-            layout.childControlHeight = true;
-            layout.childForceExpandWidth = false;
-            layout.childForceExpandHeight = true;
-            Height(row, height);
-
-            var text = NewText(row.transform, label, 34, FontStyle.Normal, TextAnchor.MiddleLeft);
-            Width(text.gameObject, 0f, 1f);
-            var button = NewButton(row.transform, action, () =>
+        void Row(string label, string action, bool enabled, Action onClick, float height, float buttonWidth = 300f, bool highlighted = false) =>
+            SheetKit.Card(content, label, action, enabled, () =>
             {
                 onClick?.Invoke();
                 Render();
-            }, 30);
-            Width(button.gameObject, buttonWidth, 0f);
-            button.interactable = enabled;
-            if (highlighted)
-                button.GetComponent<Image>().color = UiStyle.Selected;
-        }
+            }, height, buttonWidth, highlighted);
 
         static Button NewButton(Transform parent, string label, Action onClick, int size)
         {

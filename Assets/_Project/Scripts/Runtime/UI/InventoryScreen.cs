@@ -154,6 +154,7 @@ namespace ARPG
                 sheet.Hide();
             LoadoutScreen.CloseIfOpen();
             TalentScreen.CloseIfOpen();
+            BoonListScreen.CloseIfOpen();
             PassiveTreeScreen.CloseIfOpen();
             StatsScreen.CloseIfOpen();
             CodexScreen.CloseIfOpen();
@@ -201,12 +202,19 @@ namespace ARPG
             var header = UiStyle.Place(UiStyle.Rect(content, "Header"), new Vector2(0.5f, 1f), new Vector2(0f, 0f), new Vector2(0f, HeaderHeight));
             header.anchorMin = new Vector2(0f, 1f);
             header.anchorMax = new Vector2(1f, 1f);
+            // An opaque band behind the header, so the HUD under the Bag does not show through (2026-10-17).
+            var band = UiStyle.Image(header, "Band", UiStyle.Sheet);
+            UiStyle.Stretch(band.rectTransform);
+            UiStyle.Leather(band);
+            band.color = new Color(0.12f, 0.1f, 0.09f, 1f);
 
             HudLayout.Portrait(header, new Vector2(24f, -12f), 176f, current.Equipment);
 
             var name = UiStyle.Text(header, "Wild Arrow", 52, UiStyle.Gold, TextAnchor.MiddleLeft, true);
             UiStyle.Place(name.rectTransform, new Vector2(0f, 1f), new Vector2(222f, -24f), new Vector2(480f, 66f));
-            var level = UiStyle.Text(header, atMerchant ? $"Level {current.Level}   ·   <color=#E0C040>At the merchant</color>" : $"Level {current.Level}", 32, UiStyle.TextDim, TextAnchor.MiddleLeft, true);
+            // The roguelite has no levels to show (the owner, 2026-10-13): where she is instead (2026-10-17).
+            var where = Features.Roguelite ? (FindAnyObjectByType<DungeonLevel>() is DungeonLevel dungeon ? $"Depth {dungeon.Depth}" : "In town") : $"Level {current.Level}";
+            var level = UiStyle.Text(header, atMerchant ? $"{where}   ·   <color=#E0C040>At the merchant</color>" : where, 32, UiStyle.TextDim, TextAnchor.MiddleLeft, true);
             UiStyle.Place(level.rectTransform, new Vector2(0f, 1f), new Vector2(224f, -92f), new Vector2(560f, 44f));
 
             // A thin life bar under the name, as the reference has it.
@@ -697,7 +705,8 @@ namespace ARPG
             var tabs = new List<(string label, System.Action open, bool enabled, bool active)>
             {
                 ("Inventory", null, true, true),
-                (Features.Roguelite ? "Boons" : skillPoints > 0 ? $"Talents +{skillPoints}" : "Talents", TalentScreen.Open, true, false),
+                (Features.Roguelite ? "Boons" : skillPoints > 0 ? $"Talents +{skillPoints}" : "Talents",
+                    Features.Roguelite ? BoonListScreen.Open : (System.Action)TalentScreen.Open, true, false),
             };
             // The roguelite (2026-10-13): no stat points and no quests.
             if (!Features.Roguelite)

@@ -60,8 +60,8 @@ namespace ARPG
         {
             new Vector2Int(0, 0), StairsCell, new Vector2Int(8, -12), new Vector2Int(5, -15),
             new Vector2Int(-6, 12), new Vector2Int(-7, 1), new Vector2Int(-13, -8), new Vector2Int(-17, -8),
-            new Vector2Int(4, 10), new Vector2Int(8, 7), new Vector2Int(-4, -9), new Vector2Int(-11, 1),
-            new Vector2Int(3, 5), new Vector2Int(-10, 10), new Vector2Int(6, -8), new Vector2Int(-18, -3), new Vector2Int(8, 11),
+            new Vector2Int(1, 10), new Vector2Int(8, 12), new Vector2Int(-4, -9), new Vector2Int(-12, -3),
+            new Vector2Int(8, 4), new Vector2Int(-10, 10), new Vector2Int(6, -8), new Vector2Int(-18, -3), new Vector2Int(8, 11),
             new Vector2Int(0, 3),
         };
 
@@ -98,6 +98,8 @@ namespace ARPG
                 // The stash keeper: the long hall, the vault before it.
                 new Piece("house_3", 4, 17, 3.6f, 2.2f),
                 new Piece("vault", 4, 13, 1.3f, 0.9f),
+                // The stash chest (the owner, 2026-10-17: "Render a nice chest in town"), beside Elara.
+                new Piece("stash_chest", 1, 13, 0.8f, 0.6f),
                 // The plaza's stalls: the merchant's goods, the gambler's dice (his tent behind), Pellam's lamps.
                 new Piece("shop_goods", -7, 4, 1.6f, 1.0f),
                 new Piece("shop_dice", -4, -6, 1.6f, 1.2f),

@@ -52,5 +52,20 @@ namespace ARPG.Tests
             Assert.AreEqual(new Vector2(0f, 0.25f), corners[2]);
             Assert.AreEqual(new Vector2(-0.5f, 0f), corners[3]);
         }
+    
+        [Test]
+        public void TheTownsfolk_StandApart()
+        {
+            // The owner, 2026-10-17: "All the townspeople are standing too close".
+            var cells = new System.Collections.Generic.List<UnityEngine.Vector2Int>
+            {
+                Newcomers.Cell(Newcomer.StashKeeper), Newcomers.Cell(Newcomer.Healer), Newcomers.Cell(Newcomer.Gambler),
+                Newcomers.Cell(Newcomer.Trainer), QuestNpc.Cell(QuestPerson.Aldis), SmithNpc.Cell,
+                new UnityEngine.Vector2Int(-6, 12), new UnityEngine.Vector2Int(-7, 1),
+            };
+            for (var i = 0; i < cells.Count; i++)
+                for (var j = i + 1; j < cells.Count; j++)
+                    Assert.GreaterOrEqual(UnityEngine.Vector2Int.Distance(cells[i], cells[j]), 5.5f, $"{cells[i]} and {cells[j]}");
+        }
     }
 }

@@ -182,7 +182,8 @@ namespace ARPG
             }
         }
 
-        static Sprite SpriteFor(TalentNode node)
+        /// <summary>A boon's icon as a sprite (cached).</summary>
+        public static Sprite SpriteFor(TalentNode node)
         {
             if (Sprites.TryGetValue(node.Id, out var sprite) && sprite != null)
                 return sprite;

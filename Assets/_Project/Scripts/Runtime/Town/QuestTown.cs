@@ -167,7 +167,8 @@ namespace ARPG
         {
             // The walled town (2026-10-12): Aldis by the Vigil fire, Tobin by the merchant's stall, Pellam by his lamps,
             // Bram at the front gate, Ivy by the healer.
-            QuestPerson.Aldis => new Vector2Int(3, 5),
+            // Aldric before the church's tower since 2026-10-17 (the townsfolk spread apart).
+            QuestPerson.Aldis => new Vector2Int(8, 4),
             QuestPerson.Tobin => new Vector2Int(-10, 10),
             QuestPerson.Pellam => new Vector2Int(6, -8),
             QuestPerson.Bram => new Vector2Int(-18, -3),
