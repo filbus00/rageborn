@@ -18,12 +18,16 @@ namespace ARPG
         /// <summary>A named legendary (Docs/03) is worth this much more than its rarity alone.</summary>
         public const float NamedLegendaryMultiplier = 1.5f;
 
+        /// <summary>The roguelite (2026-10-17, the owner: "give me a way to sell loot"): items drop a tenth as often and
+        /// coins buy the town's upgrades, so Garrett pays this many times the old prices. Claude's number, to review.</summary>
+        public const float RogueliteFactor = 3f;
+
         /// <summary>The rarities offered for a sale of all at once. Legendaries are sold one by one.</summary>
         public static readonly ItemRarity[] BulkRarities = { ItemRarity.Common, ItemRarity.Magic, ItemRarity.Rare };
 
         public static int Price(Item item)
         {
-            if (item == null)
+            if (item == null || item.IsBlueprint)
                 return 0;
             float price = Base(item.Rarity) * (1f + PerItemLevel * System.Math.Max(1, item.ItemLevel));
             if (item.Legendary != LegendaryId.None)
@@ -33,7 +37,7 @@ namespace ARPG
 
         /// <summary>Whether a sale of all of a rarity takes this item: that rarity, not an upgrade, not a named legendary.</summary>
         public static bool InBulkSale(Item item, ItemRarity rarity, bool isUpgrade) =>
-            item != null && item.Rarity == rarity && !isUpgrade && item.Legendary == LegendaryId.None;
+            item != null && item.Rarity == rarity && !isUpgrade && item.Legendary == LegendaryId.None && !item.IsBlueprint;
 
         static int Base(ItemRarity rarity)
         {

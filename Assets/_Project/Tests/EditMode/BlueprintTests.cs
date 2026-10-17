@@ -158,5 +158,21 @@ namespace ARPG.Tests
             Assert.AreEqual(5f, EnemyAnimationRules.FlinchGap(EnemyRank.Boss));
             Assert.AreEqual(0f, EnemyAnimationRules.FlinchGap(EnemyRank.Elite));
         }
+
+        [Test]
+        public void Garrett_BuysLoot_ButNotBlueprints()
+        {
+            var session = new GameSession(1);
+            var bow = new Item(ItemSlot.Weapon, ItemRarity.Rare, 10);
+            var blueprint = new Item(ItemSlot.Chest, ItemRarity.Rare, 9, blueprint: true);
+            Assert.IsTrue(session.Inventory.TryAdd(bow));
+            Assert.IsTrue(session.Inventory.TryAdd(blueprint));
+            Assert.AreEqual(0, session.Sell(blueprint), "Thorin learns blueprints; they are not sold");
+            Assert.AreEqual(UnityEngine.Mathf.RoundToInt(SellRules.Price(bow) * SellRules.RogueliteFactor), session.SellPrice(bow));
+            var before = session.Gold;
+            Assert.AreEqual(session.SellPrice(bow), session.Sell(bow));
+            Assert.AreEqual(before + session.SellPrice(bow), session.Gold);
+            Assert.IsFalse(SellRules.InBulkSale(blueprint, ItemRarity.Rare, false));
+        }
     }
 }

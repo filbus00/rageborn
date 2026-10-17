@@ -34,7 +34,7 @@ namespace ARPG.Tests
             var gold = session.Gold;
 
             var paid = session.Sell(helm);
-            Assert.AreEqual(SellRules.Price(helm), paid);
+            Assert.AreEqual(session.SellPrice(helm), paid);
             Assert.AreEqual(gold + paid, session.Gold);
             Assert.IsFalse(session.Inventory.Contains(helm));
             Assert.AreEqual(0, session.Sell(helm), "it is gone; nothing more is paid");
@@ -62,7 +62,7 @@ namespace ARPG.Tests
             var listed = new List<Item>();
             var quoted = session.BulkSale(ItemRarity.Magic, listed);
             CollectionAssert.AreEquivalent(new[] { junk1, junk2 }, listed);
-            Assert.AreEqual(SellRules.Price(junk1) + SellRules.Price(junk2), quoted);
+            Assert.AreEqual(session.SellPrice(junk1) + session.SellPrice(junk2), quoted);
 
             var gold = session.Gold;
             Assert.AreEqual(quoted, session.SellAll(ItemRarity.Magic));

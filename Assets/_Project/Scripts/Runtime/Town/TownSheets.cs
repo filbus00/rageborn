@@ -411,6 +411,22 @@ namespace ARPG
         {
             var session = GameSession.Current;
             subtitle.text = $"{Gold(session.Gold)}.  Upgrades last for every run.";
+            // Garrett also buys loot (the owner, 2026-10-17: "give me a way to sell loot"): the Bag opens at his stall.
+            if (shop == MetaShop.Outfitting)
+            {
+                var count = 0;
+                foreach (var item in session.Inventory.Items)
+                    if (!item.IsBlueprint)
+                        count++;
+                Heading("Sell loot");
+                Row($"<b>Sell what you carry</b>\n<size=27><color=#CCCCCC>{(count > 0 ? $"{count} item{(count == 1 ? "" : "s")} in your backpack. Tap one to sell it, or sell a whole rarity at once." : "Your backpack is empty. Bring loot home through the portal.")}</color></size>",
+                    "Sell loot", count > 0, () =>
+                    {
+                        Close();
+                        InventoryScreen.Current?.OpenAtMerchant();
+                    }, 150f);
+                Heading("Outfitting");
+            }
             foreach (var upgrade in MetaRules.All)
             {
                 if (upgrade.Shop != shop)

@@ -348,53 +348,15 @@ namespace ARPG
             if (health != null)
                 health.HitTaken += OnHitTaken;
             if (player != null)
-            {
                 RageArc.Create(this, player);
-                coverShield = CoverShield.Create(player.transform);
-            }
             Current = this;
         }
 
-        /// <summary>The live combat, for the enemy projectiles' cover check.</summary>
+        /// <summary>The live combat.</summary>
         public static PlayerCombat Current { get; private set; }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetCurrent() => Current = null;
-
-        // Cover (2026-10-17, CoverRules): which way it lies (zero for none), how long she has had it, and when in that
-        // time the last ambush went off (negative for none yet).
-        public Vector2 Cover { get; private set; }
-        float coverSeconds;
-        float lastAmbush = -1f;
-        float blockedCalloutAt;
-        CoverShield coverShield;
-
-        // Made once, so the per-frame check allocates nothing.
-        System.Func<Vector2Int, bool> blockedCell;
-
-        void UpdateCover(Vector2 origin, float deltaTime)
-        {
-            blockedCell ??= c => enemies != null && enemies.Nav != null && !enemies.Nav.IsWalkable(c);
-            Cover = enemies.Nav != null ? CoverRules.Direction(blockedCell, origin) : Vector2.zero;
-            if (Cover == Vector2.zero)
-            {
-                coverSeconds = 0f;
-                lastAmbush = -1f;
-            }
-            else
-                coverSeconds += deltaTime;
-            coverShield?.Show(Cover != Vector2.zero, CoverRules.AmbushReady(coverSeconds, lastAmbush));
-        }
-
-        /// <summary>An enemy projectile broke on her cover (EnemyProjectiles): sparks there, and a callout now and then.</summary>
-        public void CoverBlocked(Vector2 at, Vector2 velocity)
-        {
-            fx.Sparks(IsoMath.GroundToWorld(at), IsoMath.GroundToWorld(-velocity.normalized), ArrowHeight, new Color(0.85f, 0.85f, 0.8f, 1f), 4);
-            if (Time.time < blockedCalloutAt)
-                return;
-            blockedCalloutAt = Time.time + 1f;
-            DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 1.6f, 0f), "BLOCKED", new Color(0.8f, 0.85f, 0.95f), 30);
-        }
 
         void OnDestroy()
         {
@@ -445,7 +407,6 @@ namespace ARPG
             var deltaTime = Time.deltaTime;
             var origin = IsoMath.WorldToGround(player.transform.position);
             UpdateFacing();
-            UpdateCover(origin, deltaTime);
 
             // Until the Wild Arrow's attributes replace the tree (Docs/02): Will adds to Focus regeneration, and the tree's
             // Berserker doubles the gain from hits below half life.
@@ -622,13 +583,6 @@ namespace ARPG
             {
                 first.Thunder = true;
                 first.Glow = LightningColor;
-            }
-            // Cover's ambush: the first shot after a while in cover, half again as hard.
-            if (CoverRules.AmbushReady(coverSeconds, lastAmbush))
-            {
-                lastAmbush = coverSeconds;
-                first.Multiplier *= CoverRules.AmbushDamage;
-                DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 1.6f, 0f), "AMBUSH", new Color(1f, 0.85f, 0.4f), 32);
             }
             shots.Add(first);
 

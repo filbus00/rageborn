@@ -185,7 +185,7 @@ namespace ARPG
 
             var position = showingEquipped ? "equipped" : $"{index + 1} of {list.Count}, swipe for more";
             subtitle.text = $"Item level {item.ItemLevel}   ·   {position}" +
-                            (Selling && !showingEquipped ? $"   ·   <color=#F0C840>sells for {GameSession.Current.SellPrice(item)} gold</color>" : "");
+                            (Selling && !showingEquipped && !item.IsBlueprint ? $"   ·   <color=#F0C840>sells for {GameSession.Current.SellPrice(item)} gold</color>" : "");
 
             // A blueprint (2026-10-15): what it teaches, and that it must come home.
             if (item.IsBlueprint)
@@ -319,11 +319,13 @@ namespace ARPG
                         }
                     });
                 }
-                NewButton(Selling ? $"Sell +{GameSession.Current.SellPrice(item)}" : "Discard", () =>
+                // Blueprints are not sold (2026-10-17): Thorin learns them.
+                var selling = Selling && !item.IsBlueprint;
+                NewButton(selling ? $"Sell +{GameSession.Current.SellPrice(item)}" : "Discard", () =>
                 {
-                    if (Selling ? session.Sell(item) == 0 : !session.Discard(item))
+                    if (selling ? session.Sell(item) == 0 : !session.Discard(item))
                         return;
-                    if (Selling)
+                    if (selling)
                         Sfx.Play(SoundId.Gold);
                     Changed?.Invoke();
                     // Stay open on the next item, so a run of junk can be cleared quickly.

@@ -445,7 +445,8 @@ namespace ARPG
         public TalentState Talents { get; }
 
         /// <summary>What the merchant pays for an item: its price, and a quarter more once Tobin minds the stall.</summary>
-        public int SellPrice(Item item) => Mathf.RoundToInt(SellRules.Price(item) * Quests.Boons.SellPrice);
+        public int SellPrice(Item item) =>
+            Mathf.RoundToInt(SellRules.Price(item) * Quests.Boons.SellPrice * (Features.Roguelite ? SellRules.RogueliteFactor : 1f));
 
         /// <summary>The quests taken and their steps (2026-10-08, Docs/05 Quests).</summary>
         public QuestState Quests { get; }
@@ -932,7 +933,7 @@ namespace ARPG
         /// paid, or 0 when the item was not in the backpack.</summary>
         public int Sell(Item item)
         {
-            if (item == null || !Inventory.Remove(item))
+            if (item == null || item.IsBlueprint || !Inventory.Remove(item))
                 return 0;
 
             var price = SellPrice(item);
