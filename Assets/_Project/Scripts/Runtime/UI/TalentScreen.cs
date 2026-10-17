@@ -158,7 +158,7 @@ namespace ARPG
             for (var tier = 0; tier < TalentRules.Tiers; tier++)
             {
                 var row = Row(grid, CellHeight);
-                for (var column = 0; column < 3; column++)
+                for (var column = 0; column < TalentRules.Columns; column++)
                 {
                     var node = Find(tree, tier, column);
                     if (node == null)

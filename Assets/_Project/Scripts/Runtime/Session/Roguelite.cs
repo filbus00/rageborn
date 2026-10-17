@@ -246,10 +246,21 @@ namespace ARPG
             foreach (var node in TalentRules.Nodes)
                 if (CanTake(talents, node, maxTier))
                     open.Add(node.Id);
+            // By weight (2026-10-17): the boons that multiply her arrows come up less often.
             var picked = new List<string>();
             while (picked.Count < count && open.Count > 0)
             {
-                var i = random.Next(open.Count);
+                var total = 0f;
+                foreach (var id in open)
+                    total += TalentRules.Get(id).Weight;
+                var roll = (float)random.NextDouble() * total;
+                var i = 0;
+                for (; i < open.Count - 1; i++)
+                {
+                    roll -= TalentRules.Get(open[i]).Weight;
+                    if (roll < 0f)
+                        break;
+                }
                 picked.Add(open[i]);
                 open.RemoveAt(i);
             }

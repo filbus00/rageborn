@@ -59,6 +59,13 @@ namespace ARPG
             "fire_arrow" => ("flame", new Color32(232, 90, 24, 255), new Color32(255, 210, 90, 255)),
             "chain_lightning" => ("bolt", new Color32(150, 200, 255, 255), Bone),
             "freezing_arrow" => ("frost", new Color32(150, 220, 255, 255), Bone),
+            // The unique boons (2026-10-17).
+            "thunder_arrow" => ("bolt", new Color32(255, 230, 120, 255), Bone),
+            "marked_prey" => ("seek", new Color32(220, 50, 40, 255), Bone),
+            "dive_volley" => ("arrows", new Color32(150, 200, 255, 255), Bone),
+            "vengeful_quiver" => ("burst", Bone, new Color32(220, 50, 40, 255)),
+            "wildfire" => ("flame", new Color32(255, 160, 40, 255), new Color32(200, 40, 20, 255)),
+            "shatter" => ("frost", Bone, new Color32(120, 200, 255, 255)),
             "explosive_arrow" => ("burst", new Color32(240, 120, 30, 255), new Color32(255, 220, 110, 255)),
             _ => ("arrow", Bone, Wood),
         };

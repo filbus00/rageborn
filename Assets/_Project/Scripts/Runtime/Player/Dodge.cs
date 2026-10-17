@@ -52,6 +52,13 @@ namespace ARPG
             Charges++;
         }
 
+        /// <summary>Gives a charge back (Marked Prey's kill), up to the most.</summary>
+        public void Refund()
+        {
+            if (Charges < DodgeRules.MaxCharges)
+                Charges++;
+        }
+
         public bool TryUse()
         {
             if (Charges <= 0)

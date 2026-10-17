@@ -14,7 +14,7 @@ namespace ARPG
     /// There is no input: movement is the only thing the player controls.
     /// Runs in Update for now; combat will move to a fixed timestep (Docs/07-technical.md).
     /// </summary>
-    public class PlayerCombat : MonoBehaviour
+    public partial class PlayerCombat : MonoBehaviour
     {
         // From Docs/01-core-gameplay.md.
         const float GlobalCastSeconds = 0.35f;
@@ -164,6 +164,8 @@ namespace ARPG
             // Kill Shot: below this share of its life a target takes ExecuteMultiplier instead, as a certain crit.
             public float ExecuteBelow;
             public float ExecuteMultiplier;
+            // Thunder Arrow (a boon): lightning where it strikes, once.
+            public bool Thunder;
         }
 
         // Boons (2026-10-13): Extra Shot's loosings still to come after a basic attack, and the time to the next.
@@ -406,6 +408,7 @@ namespace ARPG
             }
             if (health != null)
                 health.HitTaken -= OnHitTaken;
+            UnhookBoonKills();
         }
 
         void RefreshSlots()
@@ -418,7 +421,11 @@ namespace ARPG
             channelSlot = -1;
         }
 
-        void OnHitTaken(float damage) => focus.MarkCombat();
+        void OnHitTaken(float damage)
+        {
+            focus.MarkCombat();
+            Retaliate();
+        }
 
         // A talent point comes with every level (2026-10-07): say so above the character, after the level callout.
         void OnLeveledUp(int level)
@@ -463,6 +470,7 @@ namespace ARPG
                 cooldowns[i] = Mathf.Max(0f, cooldowns[i] - deltaTime);
 
             UpdateShots(deltaTime);
+            UpdateBoons(origin, deltaTime);
             UpdateMarks(deltaTime);
             fx.Tick(deltaTime);
             UpdateSlamEffect(deltaTime);
@@ -608,6 +616,12 @@ namespace ARPG
                 first.CertainCrit = true;
                 first.PierceLeft = int.MaxValue;
                 EnsurePierceSet(ref first);
+            }
+            // Thunder Arrow (a boon): every eighth shot.
+            if (tree.ThunderArrow && UniqueBoonRules.IsThunderShot(basicShotCount))
+            {
+                first.Thunder = true;
+                first.Glow = LightningColor;
             }
             // Cover's ambush: the first shot after a while in cover, half again as hard.
             if (CoverRules.AmbushReady(coverSeconds, lastAmbush))
@@ -1783,6 +1797,11 @@ namespace ARPG
                 ChainLightning(enemy, multiplier);
             if (killed && boons.CorpseBurst)
                 CorpseBurst(enemy, multiplier);
+            if (shot.Thunder)
+            {
+                shot.Thunder = false;
+                Thunder(enemy, multiplier);
+            }
             if (shot.KnockDistance > 0f)
                 KnockBack(enemy, direction, shot);
             HealOnHit(1);
@@ -2307,7 +2326,7 @@ namespace ARPG
         float ArrowMore(EnemyController enemy)
         {
             var equipment = session.Equipment;
-            var more = 1f;
+            var more = PreyMore(enemy);
             if (equipment.Wears(LegendaryId.TheLongSilence) && player != null &&
                 Vector2.Distance(IsoMath.WorldToGround(player.transform.position), enemy.GroundPosition) > Legendaries.LongSilenceFar)
                 more *= 1f + Legendaries.LongSilenceBonus;

@@ -25,7 +25,7 @@ namespace ARPG
         /// in the tree.</summary>
         public int Tier;
 
-        /// <summary>The column the screen draws it in, 0 to 2.</summary>
+        /// <summary>The column the screen draws it in, 0 to 3.</summary>
         public int Column;
 
         public string Name;
@@ -52,6 +52,13 @@ namespace ARPG
         /// <summary>What it does, for the screen; {0} is the value at the current rank (or the first).</summary>
         public string Text;
 
+        /// <summary>How often it is offered as a boon, against 1 for most (the owner, 2026-10-17: the boons that multiply
+        /// arrows "not fewer ranks but less common").</summary>
+        public float Weight = 1f;
+
+        /// <summary>Offered less often than most: shown as a rare boon.</summary>
+        public bool IsRare => Weight < 1f;
+
         public bool IsSkill => Skill != null;
     }
 
@@ -65,6 +72,14 @@ namespace ARPG
     {
         public const int PointsPerTier = 5;
         public const int Tiers = 6;
+
+        /// <summary>Nodes a row (the screen's columns).</summary>
+        public const int Columns = 4;
+
+        /// <summary>The weights of the boons that multiply her arrows (2026-10-17, Claude's numbers, to review): Extra
+        /// Arrow and Extra Shot a quarter as often as the rest, Splitting Arrows and Ricochet half as often.</summary>
+        public const float RareWeight = 0.25f;
+        public const float UncommonWeight = 0.5f;
 
         /// <summary>Points earned by a character level: one a level from 2 (the owner: "1 per level from level 2").</summary>
         // The roguelite (2026-10-13): no points; talents come only as boons (BoonRules), one a new depth.
@@ -98,6 +113,12 @@ namespace ARPG
             string requires = null) =>
             new TalentNode { Id = id, Tree = tree, Tier = tier, Column = column, Name = name, MaxRanks = ranks, Effect = effect, PerRank = perRank, Text = text, Requires = requires };
 
+        static TalentNode Rare(TalentNode node, float weight)
+        {
+            node.Weight = weight;
+            return node;
+        }
+
         static TalentNode Improved(TalentTree tree, int tier, int column, string skillNode, string skill, string skillName) =>
             new TalentNode
             {
@@ -119,12 +140,15 @@ namespace ARPG
                 Skill(M, 0, 0, "pierce_arrow", "Pierce Arrow", "PierceArrow", "Learn Pierce Arrow: a heavy arrow through every enemy on its line."),
                 // The owner, 2026-10-13: "a boon that makes all attacks fire +1 extra arrow (can be leveled up) a boon that
                 // makes the character fire the bow +1 extra time (can be leveled up)".
-                Passive(M, 0, 1, "extra_arrow", "Extra Arrow", 3, PassiveEffect.ExtraArrows, 1f, "Every attack and skill looses {0}."),
+                Rare(Passive(M, 0, 1, "extra_arrow", "Extra Arrow", 3, PassiveEffect.ExtraArrows, 1f, "Every attack and skill looses {0}."), RareWeight),
                 Passive(M, 0, 2, "piercing_arrows", "Piercing Arrows", 3, PassiveEffect.PiercingArrows, 1f, "Every arrow passes through {0}."),
                 Improved(M, 1, 0, "pierce_arrow", "PierceArrow", "Pierce Arrow"),
-                Passive(M, 1, 1, "extra_shot", "Extra Shot", 3, PassiveEffect.ExtraShots, 1f, "She looses her bow {0} after each shot."),
-                Passive(M, 1, 2, "splitting_arrows", "Splitting Arrows", 1, PassiveEffect.SplittingArrows, 1f,
-                    "Every arrow splits in two on its first hit, the halves flying on to either side."),
+                Rare(Passive(M, 1, 1, "extra_shot", "Extra Shot", 3, PassiveEffect.ExtraShots, 1f, "She looses her bow {0} after each shot."), RareWeight),
+                Rare(Passive(M, 1, 2, "splitting_arrows", "Splitting Arrows", 1, PassiveEffect.SplittingArrows, 1f,
+                    "Every arrow splits in two on its first hit, the halves flying on to either side."), UncommonWeight),
+                // The owner, 2026-10-17: "Add more unique boons". Claude's, to review (Docs/08).
+                Passive(M, 0, 3, "thunder_arrow", "Thunder Arrow", 1, PassiveEffect.ThunderArrow, 1f,
+                    "Every eighth shot is a thunder arrow: where it strikes, lightning hits every enemy within 2.5."),
                 Skill(M, 2, 1, "split_arrow", "Split Arrow", "SplitArrow", "Learn Split Arrow: five arrows in a fan."),
                 Passive(M, 2, 2, "seeking_arrows", "Seeking Arrows", 1, PassiveEffect.SeekingArrows, 1f, "Every arrow bends in flight toward its target."),
                 Skill(M, 3, 0, "kill_shot", "Kill Shot", "KillShot", "Learn Kill Shot: a fast arrow that executes the wounded."),
@@ -135,8 +159,12 @@ namespace ARPG
                 // Beast Mastery: arrows that hunt on after the hit.
                 Skill(B, 0, 0, "homing_arrow", "Homing Arrow", "HomingArrow", "Learn Homing Arrow: three arrows that seek their targets."),
                 Passive(B, 0, 2, "bleeding_arrows", "Bleeding Arrows", 1, PassiveEffect.BleedingArrows, 1f, "Every hit opens a wound that bleeds for 3 seconds."),
-                Passive(B, 1, 1, "ricochet", "Ricochet", 3, PassiveEffect.Ricochet, 1f, "An arrow that hits leaps on to the nearest other enemy, {0}."),
+                Rare(Passive(B, 1, 1, "ricochet", "Ricochet", 3, PassiveEffect.Ricochet, 1f, "An arrow that hits leaps on to the nearest other enemy, {0}."), UncommonWeight),
                 Passive(B, 1, 2, "arrow_nova", "Arrow Nova", 1, PassiveEffect.ArrowNova, 1f, "Every sixth shot, a ring of eight arrows bursts out around her."),
+                Passive(B, 0, 1, "marked_prey", "Marked Prey", 1, PassiveEffect.MarkedPrey, 1f,
+                    "Every 8 seconds the toughest enemy in reach becomes her prey: her arrows deal 50 percent more to it, and its death gives back a dive."),
+                Passive(B, 1, 0, "dive_volley", "Dive Volley", 1, PassiveEffect.DiveVolley, 1f,
+                    "Every dive looses an arrow at each of the four nearest enemies."),
                 Improved(B, 2, 0, "homing_arrow", "HomingArrow", "Homing Arrow"),
                 Skill(B, 2, 1, "hunters_breath", "Hunter's Breath", "HuntersBreath", "Learn Hunter's Breath: refills Focus when it runs low."),
                 Passive(B, 2, 2, "corpse_burst", "Corpse Burst", 1, PassiveEffect.CorpseBurst, 1f, "An enemy her arrow kills bursts, striking those around it."),
@@ -150,6 +178,12 @@ namespace ARPG
                     "A hit has {0} chance to arc lightning to three enemies near it."),
                 Passive(S, 1, 0, "freezing_arrow", "Freezing Arrow", 1, PassiveEffect.FreezingArrows, 1f,
                     "Every arrow chills twice over: two hits freeze an enemy for a second (not a boss)."),
+                Passive(S, 0, 3, "vengeful_quiver", "Vengeful Quiver", 1, PassiveEffect.VengefulQuiver, 1f,
+                    "When she is hurt, she looses an arrow at each of up to five enemies near her (once a second)."),
+                Passive(S, 1, 1, "wildfire", "Wildfire", 1, PassiveEffect.Wildfire, 1f,
+                    "A burning enemy that dies spreads its fire to every enemy within 2.5.", "fire_arrow"),
+                Passive(S, 1, 2, "shatter", "Shatter", 1, PassiveEffect.Shatter, 1f,
+                    "A frozen enemy that dies shatters, striking and chilling every enemy within 2.5.", "freezing_arrow"),
                 Skill(S, 2, 0, "explosive_arrow", "Explosive Arrow", "ExplosiveArrow", "Learn Explosive Arrow: an arrow that bursts among a crowd."),
                 Improved(S, 3, 0, "explosive_arrow", "ExplosiveArrow", "Explosive Arrow"),
                 Improved(S, 4, 0, "knockback_shot", "KnockbackShot", "Knockback Shot"),

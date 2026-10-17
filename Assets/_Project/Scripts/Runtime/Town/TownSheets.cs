@@ -512,6 +512,8 @@ namespace ARPG
                 var node = TalentRules.Get(id);
                 var rank = session.Talents.RankOf(id);
                 var ranks = node.MaxRanks > 1 ? $"  <size=28>({rank + 1}/{node.MaxRanks})</size>" : "";
+                if (node.IsRare)
+                    ranks += "  <size=28><color=#E0B040>Rare</color></size>";
                 var captured = id;
                 Row($"<b>{node.Name}</b>{ranks}\n<size=28><color=#CCCCCC>{TalentRules.Describe(node, rank + 1)}</color></size>", "Take", true, () =>
                 {

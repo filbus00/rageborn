@@ -152,11 +152,12 @@ namespace ARPG
         public float EliteAggroRange = 10f;
         public float ArrivalMargin = 1.5f;
 
-        /// <summary>Docs: normal packs have 3 to 12 members.</summary>
-        public int MinPackSize = 6;
-        public int MaxPackSize = 12;
-        public int MinElitePackSize = 3;
-        public int MaxElitePackSize = 4;
+        /// <summary>Docs: normal packs have 3 to 12 members; 8 to 15 since 2026-10-17 (the owner, "the game feels too
+        /// easy": steady pressure), elite packs 4 to 6 (were 3 to 4).</summary>
+        public int MinPackSize = 8;
+        public int MaxPackSize = 15;
+        public int MinElitePackSize = 4;
+        public int MaxElitePackSize = 6;
         public int MinGuardPackSize = 3;
         public int MaxGuardPackSize = 5;
 
@@ -194,8 +195,9 @@ namespace ARPG
         /// 10: 36 depths, the burnt library from 13 with its aisles of shelves, the caves from 25 (2026-10-11).
         /// 11: 48 depths, the prison from 13 with its cages, the library from 25, the caves from 37 (2026-10-12).
         /// 12: no stubs of wall reaching into rooms, no walls one cell thin between halls and passages (2026-10-13).
+        /// 13: bigger packs, 8 to 15, and elite packs of 4 to 6 (2026-10-17).
         /// </summary>
-        public const int Version = 12;
+        public const int Version = 13;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>

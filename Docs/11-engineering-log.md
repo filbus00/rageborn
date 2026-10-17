@@ -1272,3 +1272,12 @@ The owner's answers are in Docs/08. How it is built:
 
 - `DevAutopilot` plays the roguelite now (random boons, closes the town sheets, follows the replaced session) and has a probe mode (`EditorPrefs` `ARPG.AutopilotProbe`): a fresh run at depths 3, 9, 15, 21, 27, 33, owed the skipped boons at random, Magic gear of the depth's item level, no potions, 150 s each; report `Logs/BalanceProbe.md`.
 - Result (the autopilot stands to shoot and never dives): alive at 3 (lowest life 37%); died at 9 (64 s), 15 (78 s), 21 (14 s), 27 (69 s), 33 (19 s). Kills 34 to 88 a minute. From depth 9 on she died to 4 to 6 hits: one hit is a fifth to a third of her life. So the danger is a few large, telegraphed hits: a player who dives them takes almost nothing, which is why it feels easy by hand.
+
+## 2026-10-17: steadier pressure, rarer multiplying boons, six unique boons
+
+- The owner, after the probe: "do 1 and 3. Not fewer ranks but less common. Add more unique boons" (Docs/08).
+- Pressure: `DungeonSettings` packs 8 to 15 and elite packs 4 to 6 (`DungeonGenerator.Version` 13); `PackComposition.BackPercent` 85 and `MinBack` 3; `EnemyRules.QuickerRanged` 2 and `ProjectileDamage` 1.
+- Boon weights: `TalentNode.Weight` (`RareWeight` 0.25 for Extra Arrow and Extra Shot, `UncommonWeight` 0.5 for Splitting Arrows and Ricochet), picked by weight without repeats in `BoonRules.Offer`; the boon card says Rare.
+- Unique boons: `PassiveEffect` MarkedPrey, DiveVolley, VengefulQuiver, ThunderArrow, Wildfire, Shatter; `PlayerCombat` is now partial, the effects in `Combat/PlayerCombat.Boons.cs` (`UniqueBoonRules` pure). Deaths that spread (Wildfire, Shatter) are queued from `EnemyManager.Killed` and handled in the next Update, since a shatter can kill another and the query lists are shared. `DodgeCharges.Refund` for the prey's death. The talent screen draws four columns (`TalentRules.Columns`).
+- Tests: `UniqueBoonTests`; `EnemySpecialsTests` updated. Offline 658 passed (the 5 NavGrid failures), Unity 663 of 663. In the editor at depth 4 with the six boons: 12 kills from 8 basic shots on the first pack, no errors.
+- Probe again (same seeds, `Logs/BalanceProbe.before.md` for the first): the damage now comes in more, smaller hits (depth 3: 43 hits, was 30; 9: 20, was 14; 15: 17, was 5); she died at depth 3 too (108 s). From depth 21 she still dies to 5 to 7 large hits: those are melee and specials, not projectiles.

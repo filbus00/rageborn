@@ -33,11 +33,13 @@ namespace ARPG
         /// casters) firing half again as often ("make their ranged attacks faster"). They walk at their own speed again
         /// ("enemies do not need to move faster"). Bosses keep their own pace (their fights are timed by hand).</summary>
         public const float QuickerAttack = 1.2f;
-        public const float QuickerRanged = 1.5f;
+        // 2026-10-17 (the owner, "the game feels too easy": steady pressure): the ranged fire twice as often, hitting softer.
+        public const float QuickerRanged = 2f;
 
-        /// <summary>Their projectiles fly half again as fast and hit 40 percent harder (the owner, 2026-10-11).</summary>
+        /// <summary>Their projectiles fly half again as fast (the owner, 2026-10-11); they hit 40 percent harder until
+        /// 2026-10-17, now at Docs/03's damage, since they come twice as often.</summary>
         public const float ProjectileSpeed = 1.5f;
-        public const float ProjectileDamage = 1.4f;
+        public const float ProjectileDamage = 1f;
 
         public static float MoveSpeedFactor(EnemyRank rank) => 1f;
 

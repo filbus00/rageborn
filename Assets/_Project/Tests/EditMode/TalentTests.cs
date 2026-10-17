@@ -22,7 +22,7 @@ namespace ARPG.Tests
             foreach (var skill in ClassSkills)
                 Assert.AreEqual(1, TalentRules.Nodes.Count(n => n.Skill == skill), skill);
             foreach (var node in TalentRules.Nodes)
-                Assert.IsTrue(node.Tier >= 0 && node.Tier < TalentRules.Tiers && node.Column >= 0 && node.Column < 3, node.Id);
+                Assert.IsTrue(node.Tier >= 0 && node.Tier < TalentRules.Tiers && node.Column >= 0 && node.Column < TalentRules.Columns, node.Id);
             var ids = new HashSet<string>();
             foreach (var node in TalentRules.Nodes)
             {

@@ -114,7 +114,9 @@ namespace ARPG
         };
 
         public const int SwarmPercent = 20;
-        public const int BackPercent = 60;
+        // More packs with a ranged back row, and a bigger one (2026-10-17, steady pressure; was 60 percent, 2 or 3).
+        public const int BackPercent = 85;
+        public const int MinBack = 3;
         public const int SupportPercent = 30;
         public const int MinSwarm = 4;
         public const int MaxSwarm = 6;
@@ -160,7 +162,7 @@ namespace ARPG
             if (hash / 19 % 100 < BackPercent && Has(PackRole.Back, depth))
             {
                 var back = Pick(PackRole.Back, depth, hash / 23);
-                var extra = System.Math.Min(2 + (int)(hash / 29 % 2), end - first - 1);
+                var extra = System.Math.Min(MinBack + (int)(hash / 29 % 2), end - first - 1);
                 for (var i = System.Math.Max(first, end - extra); i < end; i++)
                     members[i] = back;
             }
