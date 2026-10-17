@@ -68,4 +68,54 @@ namespace ARPG
             return Outcome.Flying;
         }
     }
+
+    /// <summary>The kinds of enemy projectile (the owner, 2026-10-17: "add more ranged attacks, and not in the way that
+    /// they spawn damaging pools under your feet ... add thrown axes, knifes, fireballs, exploding projectiles, bouncing
+    /// projectiles").</summary>
+    public enum ProjectileKind
+    {
+        /// <summary>An arrow or bolt streak.</summary>
+        Plain,
+        /// <summary>A small fast blade.</summary>
+        Knife,
+        /// <summary>A spinning hand axe: slower, harder.</summary>
+        Axe,
+        /// <summary>A ball of fire that bursts where it stops (a wall, or the end of its flight).</summary>
+        Fireball,
+        /// <summary>A bomb thrown to where she stood, which blows up after a short fuse shown on the ground.</summary>
+        Bomb,
+        /// <summary>A spinning blade that bounces off walls.</summary>
+        Bouncing,
+    }
+
+    /// <summary>The kinds' numbers and the bounce off a wall. Claude's numbers, to review. Pure.</summary>
+    public static class ProjectileKinds
+    {
+        public const float FireballBurstRadius = 1.1f;
+        public const float FireballBurstFill = 0.35f;
+        public const float FireballBurstShare = 0.6f;
+        public const float BombRadius = 1.5f;
+        public const float BombFuse = 0.7f;
+        public const int Bounces = 3;
+        public const float BouncingReach = 16f;
+        public const float AxeSpinDegrees = 900f;
+        public const float BladeSpinDegrees = 1400f;
+
+        /// <summary>Whether it is drawn spinning.</summary>
+        public static bool Spins(ProjectileKind kind) => kind == ProjectileKind.Axe || kind == ProjectileKind.Bouncing || kind == ProjectileKind.Bomb;
+
+        /// <summary>
+        /// The velocity after striking a wall from <paramref name="position"/> (the last open point): the side that is
+        /// blocked turns back, both in a corner.
+        /// </summary>
+        public static Vector2 Bounce(Vector2 position, Vector2 velocity, System.Func<Vector2Int, bool> walkable)
+        {
+            var step = velocity.normalized * EnemyProjectileFlight.MaxStep;
+            var blockedX = !walkable(IsoMath.GroundToCell(position + new Vector2(step.x, 0f)));
+            var blockedY = !walkable(IsoMath.GroundToCell(position + new Vector2(0f, step.y)));
+            if (!blockedX && !blockedY)
+                return -velocity;
+            return new Vector2(blockedX ? -velocity.x : velocity.x, blockedY ? -velocity.y : velocity.y);
+        }
+    }
 }

@@ -25,8 +25,9 @@ namespace ARPG
     {
         public EnemySpecial(string name, SpecialShape shape, float every, float minRange, float maxRange, float size, float fill, float hit,
             Color color, int count = 1, float spread = 0f, float length = 0f, float lingerSeconds = 0f, float lingerHit = 0f, bool poison = false,
-            float slow = 0f, float slowSeconds = 0f, float stagger = 0f, float speed = 0f)
+            float slow = 0f, float slowSeconds = 0f, float stagger = 0f, float speed = 0f, ProjectileKind kind = ProjectileKind.Plain)
         {
+            Kind = kind;
             Speed = speed;
             Name = name;
             Shape = shape;
@@ -79,6 +80,8 @@ namespace ARPG
         public float Stagger { get; }
         /// <summary>A thrown projectile's speed (ground units a second).</summary>
         public float Speed { get; }
+        /// <summary>What a throw throws (2026-10-17): a knife, an axe, a fireball, a bomb, a bouncing blade.</summary>
+        public ProjectileKind Kind { get; }
     }
 
     /// <summary>
@@ -100,37 +103,43 @@ namespace ARPG
 
         // By the definition's name; a champion or elite of a kind ("SwarmerChampion") takes the kind's. The concept
         // roster's (2026-10-13), each the ranged move its card names. Claude's numbers, to review.
+        // 2026-10-17 (the owner: "add more ranged attacks, and not in the way that they spawn damaging pools under your
+        // feet", "pools are okay but now there are too many enemies using that attack"): pools stay with the Bile Fiend,
+        // the Arachnid, the Retcher and the Dark Cultist's own fire circle; the rest throw knives, axes, fireballs, bombs
+        // and bouncing blades.
+        static readonly Color Ember = new Color(1f, 0.55f, 0.15f, 0.95f);
+
         static readonly (string kind, EnemySpecial special)[] Table =
         {
-            ("Swarmer", new EnemySpecial("Bile Spit", SpecialShape.Lob, 6.5f, 2.5f, 6.5f, 0.9f, 0.9f, 0.8f, Bile, lingerSeconds: 2.5f, lingerHit: 0.3f, poison: true)),
-            ("Zombie", new EnemySpecial("Vomit", SpecialShape.Lob, 7f, 2f, 6f, 1.0f, 1.0f, 0.8f, Bile, lingerSeconds: 2.5f, lingerHit: 0.3f, poison: true)),
+            ("Swarmer", new EnemySpecial("Bone Shards", SpecialShape.Throw, 6f, 2f, 8f, 0.2f, 0.45f, 0.6f, Steel, count: 2, spread: 12f, length: 9f, speed: 17f, kind: ProjectileKind.Knife)),
+            ("Zombie", new EnemySpecial("Rotten Glob", SpecialShape.Throw, 7f, 2f, 7f, 0.3f, 0.55f, 0.8f, Bile, length: 8f, speed: 9f, kind: ProjectileKind.Fireball)),
             ("SkeletonWarrior", new EnemySpecial("Javelin", SpecialShape.Throw, 6f, 2.5f, 9f, 0.25f, 0.5f, 1.2f, Bone, length: 11f, speed: 15f)),
-            ("Fallen", new EnemySpecial("Fire Spit", SpecialShape.Throw, 6.5f, 2f, 8f, 0.25f, 0.45f, 0.8f, Fire, length: 9f, speed: 13f)),
-            ("QuillRat", new EnemySpecial("Quill Shot", SpecialShape.Throw, 5.5f, 2f, 8f, 0.2f, 0.45f, 0.7f, Bone, count: 3, spread: 14f, length: 9f, speed: 16f)),
-            ("Ghoul", new EnemySpecial("Flesh Throw", SpecialShape.Throw, 6f, 2.5f, 8f, 0.3f, 0.5f, 1.2f, Blood, length: 10f, speed: 12f)),
-            ("DarkCultist", new EnemySpecial("Fire Rain", SpecialShape.Lob, 8f, 2f, 9f, 1.0f, 0.9f, 0.9f, Fire, count: 3, spread: 1.6f, stagger: 0.35f)),
+            ("Fallen", new EnemySpecial("Hand Axe", SpecialShape.Throw, 6f, 2f, 8f, 0.3f, 0.5f, 1.0f, Steel, length: 9f, speed: 11f, kind: ProjectileKind.Axe)),
+            ("QuillRat", new EnemySpecial("Quill Shot", SpecialShape.Throw, 5.5f, 2f, 8f, 0.2f, 0.45f, 0.7f, Bone, count: 3, spread: 14f, length: 9f, speed: 16f, kind: ProjectileKind.Knife)),
+            ("Ghoul", new EnemySpecial("Skull Ricochet", SpecialShape.Throw, 6.5f, 2.5f, 8f, 0.3f, 0.5f, 1.0f, Bone, length: ProjectileKinds.BouncingReach, speed: 11f, kind: ProjectileKind.Bouncing)),
+            ("DarkCultist", new EnemySpecial("Fireball", SpecialShape.Throw, 7f, 2f, 9f, 0.35f, 0.55f, 1.0f, Fire, length: 10f, speed: 9f, kind: ProjectileKind.Fireball)),
             // The Retcher (2026-10-17): three lanes of bile in a narrow fan, and a puddle that poisons for 4 s.
             ("Retcher", new EnemySpecial("Spew", SpecialShape.Spew, 5f, 1.5f, 6.5f, 0.8f, 1.1f, 0.7f, Bile, count: 3, spread: 16f, length: 7f,
                 lingerSeconds: 4f, lingerHit: 0.35f, poison: true, slow: 0.7f, slowSeconds: 1.5f)),
             ("BileFiend", new EnemySpecial("Poison Spit", SpecialShape.Lob, 7f, 2.5f, 7.5f, 1.4f, 1.0f, 0.6f, Bile, lingerSeconds: 4f, lingerHit: 0.4f, poison: true)),
-            ("Wight", new EnemySpecial("Curse", SpecialShape.Lob, 7.5f, 2f, 8f, 1.2f, 1.0f, 0.9f, Grave, slow: 0.6f, slowSeconds: 2f)),
-            ("Mummy", new EnemySpecial("Rot Curse", SpecialShape.Ring, 7f, 0f, 3.5f, 3f, 1.1f, 0.9f, Bile, lingerSeconds: 2f, lingerHit: 0.3f, poison: true)),
+            ("Wight", new EnemySpecial("Grave Daggers", SpecialShape.Throw, 6.5f, 2f, 9f, 0.2f, 0.5f, 0.7f, Grave, count: 3, spread: 15f, length: 10f, speed: 15f, kind: ProjectileKind.Knife)),
+            ("Mummy", new EnemySpecial("Rot Curse", SpecialShape.Ring, 7f, 0f, 3.5f, 3f, 1.1f, 1.0f, Bile)),
             ("BoneMage", new EnemySpecial("Bone Spears", SpecialShape.Throw, 6f, 2f, 10f, 0.25f, 0.5f, 1.0f, Bone, count: 3, spread: 12f, length: 12f, speed: 15f)),
             ("FleshGolem", new EnemySpecial("Vomit", SpecialShape.Lines, 7f, 1.5f, 6f, 1.2f, 1.0f, 1.1f, Bile, length: 6f, slow: 0.6f, slowSeconds: 1.5f)),
-            ("Wraith", new EnemySpecial("Phase Bolts", SpecialShape.Throw, 6f, 2f, 9f, 0.25f, 0.5f, 0.9f, Water, count: 2, spread: 16f, length: 11f, speed: 14f)),
-            ("Ogre", new EnemySpecial("Club Toss", SpecialShape.Lob, 7f, 2.5f, 8f, 1.5f, 1.1f, 1.5f, Rock)),
-            ("Gargoyle", new EnemySpecial("Rock Throw", SpecialShape.Throw, 7f, 2.5f, 9f, 0.3f, 0.5f, 1.4f, Rock, length: 11f, speed: 12f)),
+            ("Wraith", new EnemySpecial("Phase Blades", SpecialShape.Throw, 6f, 2f, 9f, 0.25f, 0.5f, 0.9f, Water, count: 2, spread: 20f, length: ProjectileKinds.BouncingReach, speed: 12f, kind: ProjectileKind.Bouncing)),
+            ("Ogre", new EnemySpecial("Cleaver Toss", SpecialShape.Throw, 7f, 2.5f, 8f, 0.4f, 0.6f, 1.6f, Steel, length: 9f, speed: 10f, kind: ProjectileKind.Axe)),
+            ("Gargoyle", new EnemySpecial("Bouncing Stone", SpecialShape.Throw, 7f, 2.5f, 9f, 0.3f, 0.5f, 1.2f, Rock, length: ProjectileKinds.BouncingReach, speed: 11f, kind: ProjectileKind.Bouncing)),
             ("Lich", new EnemySpecial("Soul Bolts", SpecialShape.Throw, 6f, 2f, 10f, 0.3f, 0.55f, 1.2f, Void, count: 3, spread: 15f, length: 12f, speed: 13f)),
-            ("Imp", new EnemySpecial("Fire Spit", SpecialShape.Throw, 5.5f, 2f, 8f, 0.25f, 0.45f, 0.8f, Fire, length: 9f, speed: 14f)),
+            ("Imp", new EnemySpecial("Firebomb", SpecialShape.Throw, 6.5f, 2.5f, 8f, 0.3f, 0.5f, 1.1f, Ember, length: 8f, speed: 9f, kind: ProjectileKind.Bomb)),
             ("Succubus", new EnemySpecial("Drain", SpecialShape.Throw, 6f, 2f, 9f, 0.3f, 0.55f, 1.0f, Void, length: 11f, speed: 12f, slow: 0.6f, slowSeconds: 1.5f)),
-            ("Harpy", new EnemySpecial("Feather Darts", SpecialShape.Throw, 5.5f, 2f, 9f, 0.2f, 0.45f, 0.8f, Steel, count: 3, spread: 12f, length: 10f, speed: 17f)),
-            ("StygianDemon", new EnemySpecial("Fireball", SpecialShape.Lob, 7f, 2.5f, 9f, 1.3f, 1.0f, 1.3f, Fire, lingerSeconds: 2f, lingerHit: 0.4f)),
+            ("Harpy", new EnemySpecial("Feather Darts", SpecialShape.Throw, 5.5f, 2f, 9f, 0.2f, 0.45f, 0.8f, Steel, count: 3, spread: 12f, length: 10f, speed: 17f, kind: ProjectileKind.Knife)),
+            ("StygianDemon", new EnemySpecial("Fireball", SpecialShape.Throw, 7f, 2.5f, 9f, 0.4f, 0.6f, 1.3f, Fire, length: 10f, speed: 9f, kind: ProjectileKind.Fireball)),
             ("HellHound", new EnemySpecial("Fire Spit", SpecialShape.Lines, 6f, 2.5f, 6f, 0.9f, 0.7f, 1.0f, Fire, length: 6f)),
             ("Arachnid", new EnemySpecial("Poison Web", SpecialShape.Lob, 7f, 2.5f, 9f, 1.3f, 0.9f, 0.6f, Bile, lingerSeconds: 3f, lingerHit: 0.3f, poison: true, slow: 0.5f, slowSeconds: 2f)),
             ("SandWorm", new EnemySpecial("Burrow Burst", SpecialShape.Ring, 7.5f, 0f, 4f, 3.4f, 1.1f, 1.4f, Rock)),
-            ("Giant", new EnemySpecial("Rock Throw", SpecialShape.Throw, 7f, 3f, 10f, 0.4f, 0.6f, 1.8f, Rock, length: 12f, speed: 11f)),
-            ("Nightmare", new EnemySpecial("Fire Breath", SpecialShape.Lines, 6.5f, 1.5f, 6f, 1.2f, 0.8f, 1.2f, Fire, length: 6f, lingerSeconds: 2f, lingerHit: 0.4f)),
-            ("BalrogLite", new EnemySpecial("Fireball", SpecialShape.Lob, 7f, 2.5f, 10f, 1.6f, 1.0f, 1.6f, Fire, count: 2, spread: 2f, stagger: 0.4f, lingerSeconds: 2f, lingerHit: 0.5f)),
+            ("Giant", new EnemySpecial("Boulder", SpecialShape.Throw, 7.5f, 3f, 10f, 0.4f, 0.6f, 1.8f, Rock, length: 10f, speed: 8f, kind: ProjectileKind.Bomb)),
+            ("Nightmare", new EnemySpecial("Fire Breath", SpecialShape.Lines, 6.5f, 1.5f, 6f, 1.2f, 0.8f, 1.2f, Fire, length: 6f)),
+            ("BalrogLite", new EnemySpecial("Fireballs", SpecialShape.Throw, 7f, 2.5f, 10f, 0.4f, 0.6f, 1.4f, Fire, count: 3, spread: 18f, length: 11f, speed: 9f, kind: ProjectileKind.Fireball)),
         };
 
         /// <summary>The special of a definition by its name, or one with <see cref="SpecialShape.None"/>.</summary>
@@ -159,6 +168,10 @@ namespace ARPG
                     yield return row.kind;
             }
         }
+
+        /// <summary>How far a throw flies: a bomb lands where she stood (never beyond its length), the rest fly their length.</summary>
+        public static float ThrowReach(EnemySpecial special, float distanceToHer) =>
+            special.Kind == ProjectileKind.Bomb ? Mathf.Clamp(distanceToHer, 1f, special.Length) : special.Length;
 
         /// <summary>How long the enemy shows its cast before the telegraph starts filling.</summary>
         public const float CastSeconds = 0.35f;
@@ -261,11 +274,12 @@ namespace ARPG
                 // A thin aim line along each throw for the wind-up, then the projectiles fly down them.
                 var warning = EnemyRules.Telegraph(EnemySpecialRules.CastSeconds + special.Fill);
                 enemy.BeginCast(warning, aim);
+                var reach = EnemySpecialRules.ThrowReach(special, Vector2.Distance(enemy.GroundPosition, target));
                 for (var k = 0; k < special.Count; k++)
                 {
                     var direction = EnemySpecialRules.LineDirection(aim, k, special.Count, special.Spread);
                     var from = enemy.GroundPosition + direction * enemy.Definition.BodyRadius;
-                    world.Hazards.Line(from, from + direction * special.Length, AimWidth, warning, 0f, enemy.Level, special.Color);
+                    world.Hazards.Line(from, from + direction * reach, AimWidth, warning, 0f, enemy.Level, special.Color);
                 }
                 Queue(enemy, special, target, aim, warning, 0);
                 return;
@@ -325,8 +339,9 @@ namespace ARPG
                     for (var k = 0; k < s.Count; k++)
                     {
                         var direction = EnemySpecialRules.LineDirection(p.Aim, k, s.Count, s.Spread);
-                        world.Projectiles.Fire(enemy, enemy.GroundPosition + direction * enemy.Definition.BodyRadius, direction * s.Speed, s.Length,
-                            hit * s.Hit * EnemyRules.ProjectileDamageFactor(enemy.Definition.Rank), level, 0f, s.Color);
+                        world.Projectiles.Fire(enemy, enemy.GroundPosition + direction * enemy.Definition.BodyRadius, direction * s.Speed,
+                            EnemySpecialRules.ThrowReach(s, Vector2.Distance(enemy.GroundPosition, p.Target)),
+                            hit * s.Hit * EnemyRules.ProjectileDamageFactor(enemy.Definition.Rank), level, 0f, s.Color, s.Kind);
                     }
                     break;
                 case SpecialShape.Spew:

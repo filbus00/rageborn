@@ -33,8 +33,8 @@ namespace ARPG.Tests
         public void TheLongestKind_Wins()
         {
             Assert.AreEqual("Javelin", EnemySpecialRules.For("SkeletonWarrior").Name);
-            Assert.AreEqual("Fire Spit", EnemySpecialRules.For("Fallen").Name);
-            Assert.AreEqual("Bile Spit", EnemySpecialRules.For("SwarmerElite").Name);
+            Assert.AreEqual("Hand Axe", EnemySpecialRules.For("Fallen").Name);
+            Assert.AreEqual("Bone Shards", EnemySpecialRules.For("SwarmerElite").Name);
         }
 
         [Test]
@@ -64,6 +64,48 @@ namespace ARPG.Tests
             Assert.AreEqual(2f, EnemyRules.WindupSpeedFactor(EnemyRank.Normal, EnemyArchetype.Archer), "an aim line too");
             Assert.AreEqual(1f, EnemyRules.WindupSpeedFactor(EnemyRank.Boss, EnemyArchetype.Brute), "bosses keep their own timing");
             Assert.AreEqual(0.5f, EnemyRules.Telegraph(1f), 1e-5f);
+        }
+
+        [Test]
+        public void FewKindsLeavePools_AndTheThrowsUseTheNewProjectiles()
+        {
+            // The owner, 2026-10-17: "pools are okay but now there are too many enemies using that attack".
+            var pools = 0;
+            var kinds = new System.Collections.Generic.HashSet<ProjectileKind>();
+            foreach (var kind in EnemySpecialRules.Kinds)
+            {
+                var special = EnemySpecialRules.For(kind);
+                if (special.LingerSeconds > 0f)
+                    pools++;
+                if (special.Shape == SpecialShape.Throw)
+                    kinds.Add(special.Kind);
+            }
+            Assert.LessOrEqual(pools, 3);
+            foreach (var wanted in new[] { ProjectileKind.Knife, ProjectileKind.Axe, ProjectileKind.Fireball, ProjectileKind.Bomb, ProjectileKind.Bouncing })
+                Assert.IsTrue(kinds.Contains(wanted), wanted.ToString());
+        }
+
+        [Test]
+        public void ABomb_LandsWhereSheStood_OthersFlyTheirLength()
+        {
+            var bomb = EnemySpecialRules.For("Imp");
+            Assert.AreEqual(ProjectileKind.Bomb, bomb.Kind);
+            Assert.AreEqual(5f, EnemySpecialRules.ThrowReach(bomb, 5f), 1e-4f);
+            Assert.AreEqual(bomb.Length, EnemySpecialRules.ThrowReach(bomb, 50f), 1e-4f);
+            var knife = EnemySpecialRules.For("Harpy");
+            Assert.AreEqual(knife.Length, EnemySpecialRules.ThrowReach(knife, 3f), 1e-4f);
+        }
+
+        [Test]
+        public void ABlade_BouncesOffTheWallItHits()
+        {
+            // A wall along x >= 2 (cells): flying right, it turns back in x and keeps its y.
+            bool Walkable(Vector2Int c) => IsoMath.CellToGround(c).x < IsoMath.CellToGround(new Vector2Int(2, 0)).x;
+            var at = IsoMath.CellToGround(new Vector2Int(1, 0));
+            var velocity = new Vector2(10f, 0f);
+            var bounced = ProjectileKinds.Bounce(at, velocity, Walkable);
+            Assert.Less(bounced.x, 0f);
+            Assert.AreEqual(velocity.magnitude, bounced.magnitude, 1e-4f);
         }
     }
 }

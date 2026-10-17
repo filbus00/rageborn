@@ -93,11 +93,13 @@ namespace ARPG
         }
 
         // The numbers: seconds between uses, radii in ground units, damage as a share of the elite's own hit.
-        public const float MoltenEvery = 1.2f, MoltenRadius = 0.9f, MoltenSeconds = 4f, MoltenBurn = 0.5f;
+        // 2026-10-17 (the owner: "too many enemies using" pools): Molten's trail, Desecrator's and Plagued's pools come
+        // less often and last less (Molten 1.2 s apart for 4 s, Desecrator every 5 s for 3, Plagued every 6 s for 6).
+        public const float MoltenEvery = 2f, MoltenRadius = 0.9f, MoltenSeconds = 2.5f, MoltenBurn = 0.5f;
         public const float MoltenDeathRadius = 2.2f, MoltenDeathFill = 1.1f, MoltenDeathHit = 1.6f;
-        public const float DesecratorEvery = 5f, DesecratorRadius = 1.6f, DesecratorFill = 1.1f, DesecratorHit = 1.2f, DesecratorBurn = 0.5f, DesecratorSeconds = 3f;
+        public const float DesecratorEvery = 8f, DesecratorRadius = 1.6f, DesecratorFill = 1.1f, DesecratorHit = 1.2f, DesecratorBurn = 0.5f, DesecratorSeconds = 1.5f;
         public const float MortarEvery = 4.5f, MortarRadius = 1.2f, MortarFill = 1.3f, MortarHit = 1.0f, MortarMinRange = 3.5f, MortarSpread = 1.7f;
-        public const float PlagueEvery = 6f, PlagueRadius = 1.8f, PlagueFill = 0.8f, PlagueSeconds = 6f, PlagueBurn = 0.4f;
+        public const float PlagueEvery = 9f, PlagueRadius = 1.5f, PlagueFill = 0.8f, PlagueSeconds = 3.5f, PlagueBurn = 0.4f;
         public const float NovaEvery = 7f, NovaRange = 6f, NovaRadius = 4f, NovaFill = 1.3f, NovaHit = 1.0f, NovaSlow = 0.6f, NovaSlowSeconds = 2.5f;
         public const float LanceEvery = 6.5f, LanceLength = 12f, LanceWidth = 0.9f, LanceFill = 1.0f, LanceHit = 1.1f, LanceGap = 4.8f;
 

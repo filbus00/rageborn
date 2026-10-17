@@ -1297,3 +1297,8 @@ The owner's answers are in Docs/08. How it is built:
 ## 2026-10-17: early gear nerfed
 
 - `AffixRoller.ValueRange`/`RollValue` take the item level: `FlatWeaponDamage`, `Life` and `Armor` are scaled by `LevelScale` = min(1, (item level + 5) / 65). `AffixRoller.Roll` and `Legendaries.Affixes` pass the item level; the shelved forge keeps the full-scale default. Test: `WildArrowAffixTests.FlatAffixes_GrowWithTheItemLevel_PercentOnesDoNot`. Offline 659 passed (the 5 NavGrid failures), Unity 664 of 664. Items already in a save keep their values.
+
+## 2026-10-17: thrown attacks, fewer pools
+
+- `ProjectileKind` (Plain, Knife, Axe, Fireball, Bomb, Bouncing) and `ProjectileKinds` (numbers, `Bounce` off a wall) in `RangedRules.cs`; `ProjectileArt` draws the knife, axe, bomb and blade in code; `EnemyProjectiles.Fire` takes a kind: drawn things spin (axe, bomb, blade), a blade bounces three times, a fireball that misses bursts (1.1, 60 percent, 0.35 s fill), a bomb lands at her spot and blows up after 0.7 s (a direct hit at once). `EnemySpecial.Kind`, `EnemySpecialRules.ThrowReach` (a bomb's aim line ends where she stood). The table: pools left on four kinds. Elite pool numbers cut in `EliteAffixRules`.
+- Tests in `EnemySpecialsTests` (at most 3 specials with lingering pools, every new kind used, the bomb's reach, the bounce). Offline 662 passed (the 5 NavGrid failures), Unity 667 of 667; each kind fired at her in the editor at depth 5, no errors.
