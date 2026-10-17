@@ -89,11 +89,7 @@ namespace ARPG
                 launched = true;
                 // Opened mid-run: back down to the depth she was on.
                 if (session.RunStarted && session.DeepestDepth > 0)
-                {
-                    session.Travel = new LevelTravel(session.DeepestDepth, Arrival.FromAbove);
-                    LoadTimer.Begin(SceneTravel.DungeonScene);
-                    SceneManager.LoadScene(SceneTravel.DungeonScene);
-                }
+                    StartCoroutine(Resume(session.DeepestDepth));
                 return;
             }
             if (pendingSummary != null)
@@ -101,6 +97,17 @@ namespace ARPG
                 RunSummaryScreen.Open(pendingSummary);
                 pendingSummary = null;
             }
+        }
+
+        // The travel is set a frame after the town's load: in the load's own frame the town's Start
+        // (TownDressing) clears it, and the dungeon then came up at depth 1 (the owner, 2026-10-17: "if phone is locked
+        // during a ongoing run and the game is relaunched, the character starts at level one").
+        System.Collections.IEnumerator Resume(int depth)
+        {
+            yield return null;
+            GameSession.Current.Travel = new LevelTravel(depth, Arrival.FromAbove);
+            LoadTimer.Begin(SceneTravel.DungeonScene);
+            SceneManager.LoadScene(SceneTravel.DungeonScene);
         }
 
         void Update()
