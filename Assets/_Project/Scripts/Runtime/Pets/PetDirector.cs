@@ -69,7 +69,11 @@ namespace ARPG
                         QuestNpc.Create(who, null);
                 // Thorin at his smithy, forging from blueprints (the roguelite, 2026-10-15).
                 if (Features.Roguelite)
+                {
                     SmithNpc.Create(null);
+                    // The deep entrances by the mausoleum, one for every ten depths reached (2026-10-17).
+                    DeepEntrance.CreateAll(null);
+                }
                 vigilEmbers = -1;
             }
             else

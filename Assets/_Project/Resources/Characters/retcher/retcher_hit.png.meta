@@ -1,0 +1,977 @@
+fileFormatVersion: 2
+guid: 9f5c98fcd4c2a48ec8e2f9741f487099
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1796448728471722264
+    second: retcher_hit_0
+  - first:
+      213: -4375165599367090494
+    second: retcher_hit_1
+  - first:
+      213: 2395971021155909151
+    second: retcher_hit_2
+  - first:
+      213: 7607115910985615763
+    second: retcher_hit_3
+  - first:
+      213: 1293912549021081056
+    second: retcher_hit_4
+  - first:
+      213: -4689008716644605459
+    second: retcher_hit_5
+  - first:
+      213: 6053128321741596699
+    second: retcher_hit_6
+  - first:
+      213: -15535692600338152
+    second: retcher_hit_7
+  - first:
+      213: -5781912627784993151
+    second: retcher_hit_8
+  - first:
+      213: 7709718073312943796
+    second: retcher_hit_9
+  - first:
+      213: 5551587705440721516
+    second: retcher_hit_10
+  - first:
+      213: -3490356907053238107
+    second: retcher_hit_11
+  - first:
+      213: -4314613031602970492
+    second: retcher_hit_12
+  - first:
+      213: -2305379995283779688
+    second: retcher_hit_13
+  - first:
+      213: -570980259646032668
+    second: retcher_hit_14
+  - first:
+      213: 673654600523117297
+    second: retcher_hit_15
+  - first:
+      213: -2884434569323086629
+    second: retcher_hit_16
+  - first:
+      213: -7244146469895140161
+    second: retcher_hit_17
+  - first:
+      213: 6486014692985368554
+    second: retcher_hit_18
+  - first:
+      213: 1048011098321637007
+    second: retcher_hit_19
+  - first:
+      213: 1323807427393886991
+    second: retcher_hit_20
+  - first:
+      213: 3468960241795040613
+    second: retcher_hit_21
+  - first:
+      213: -1858345041211662010
+    second: retcher_hit_22
+  - first:
+      213: 3782170046072995029
+    second: retcher_hit_23
+  - first:
+      213: 2449659940097225495
+    second: retcher_hit_24
+  - first:
+      213: -4801609236430528880
+    second: retcher_hit_25
+  - first:
+      213: -1872095856999358399
+    second: retcher_hit_26
+  - first:
+      213: -3514343596415242208
+    second: retcher_hit_27
+  - first:
+      213: -8330956557539141279
+    second: retcher_hit_28
+  - first:
+      213: -7040933056685352534
+    second: retcher_hit_29
+  - first:
+      213: -7532974504481229843
+    second: retcher_hit_30
+  - first:
+      213: -6294094882895442828
+    second: retcher_hit_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: retcher_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 378
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f831c8d15a96e4e2c92c1f18752e5750
+      internalID: -1477253283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 378
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83a12db7175114ace9fcdde37c79c857
+      internalID: -1181749176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_s_02
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 378
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 970149022b8e54a3ba4c5f660f6444ba
+      internalID: -2063937296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_s_03
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 378
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a042be204024404ba5c2948d470cd8f
+      internalID: 1769081725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 324
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae0d0b9c4fa07462db940942ec98cca4
+      internalID: 1318998537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 324
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35c1c80d3f0444b05a59210da3cceb82
+      internalID: -192088025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_sw_02
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 324
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eea3a64cbfd541908652d54199f1e54
+      internalID: -1604798041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_sw_03
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 324
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37b31063b30104314a93c7a83a6359c5
+      internalID: -1501437605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 270
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b417f2681472492cafcba008b401f7b
+      internalID: 1986168748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 270
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e34321cf8201841b79c28ad016104263
+      internalID: -54762164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_w_02
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 270
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a11653e9d620b4a92a3c88b957d459d6
+      internalID: -769273816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_w_03
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 270
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93d99af46de224d798a294f0060513a7
+      internalID: -1041811226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 216
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 202c73a044dc1477bb079e3f2983d661
+      internalID: 1999382091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 216
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eba07596c9d5b4b33943905163e4e05b
+      internalID: 1835709019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_nw_02
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 216
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6110e38c320647a7975fd1a52ad28d1
+      internalID: 1474182932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_nw_03
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 216
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa40a5fc08db74b459fbef274ea80b4c
+      internalID: 878570247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 162
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58700882377f24362980ca4638807c6e
+      internalID: 1801325755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 162
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f217c71bd332f4a0f819dae307d27081
+      internalID: 152047557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_n_02
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 162
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c24044f3dc354782ae1c324b87417bd
+      internalID: 25541015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_n_03
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 162
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6d128299d03944359939c2263c11236
+      internalID: 1129748813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 108
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f28ba7fe58c94718bfe358cfa607cb0
+      internalID: 1717670551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 108
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302cebde14b0d46968a74dde84484fe3
+      internalID: 1178060096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_ne_02
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 108
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a1969f139b154b9f9efc450b543a480
+      internalID: 860965171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_ne_03
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 108
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2522ae5627c58427598fbab909007ea4
+      internalID: -1031566311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 54
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61ff8b635c2fc49fa9cf41a220fe863d
+      internalID: -365969725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 54
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dce29cae97c45479884b79a06bfeaeba
+      internalID: 1417769806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_e_02
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 54
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04ebef7760ce14eb9837e5ffec5a2f0c
+      internalID: 1459901717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_e_03
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 54
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12b412123105e4fa7b1c45fa7602592e
+      internalID: 1237422010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0ab80c1de9614a82aff1a5bd810411a
+      internalID: 347033555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd6163d2fbb1d46db9fee41453b63e84
+      internalID: -18616247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_se_02
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e16c4bbb425e47189b798ee1974ca18
+      internalID: 1943767013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: retcher_hit_se_03
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1851852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c85b8d0e12fa347ce89e2dbdacc3a3fb
+      internalID: -1892106911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e65d2211dae2849e9a7f075dfbbd4e6a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      retcher_hit_e_00: -365969725
+      retcher_hit_e_01: 1417769806
+      retcher_hit_e_02: 1459901717
+      retcher_hit_e_03: 1237422010
+      retcher_hit_n_00: 1801325755
+      retcher_hit_n_01: 152047557
+      retcher_hit_n_02: 25541015
+      retcher_hit_n_03: 1129748813
+      retcher_hit_ne_00: 1717670551
+      retcher_hit_ne_01: 1178060096
+      retcher_hit_ne_02: 860965171
+      retcher_hit_ne_03: -1031566311
+      retcher_hit_nw_00: 1999382091
+      retcher_hit_nw_01: 1835709019
+      retcher_hit_nw_02: 1474182932
+      retcher_hit_nw_03: 878570247
+      retcher_hit_s_00: -1477253283
+      retcher_hit_s_01: -1181749176
+      retcher_hit_s_02: -2063937296
+      retcher_hit_s_03: 1769081725
+      retcher_hit_se_00: 347033555
+      retcher_hit_se_01: -18616247
+      retcher_hit_se_02: 1943767013
+      retcher_hit_se_03: -1892106911
+      retcher_hit_sw_00: 1318998537
+      retcher_hit_sw_01: -192088025
+      retcher_hit_sw_02: -1604798041
+      retcher_hit_sw_03: -1501437605
+      retcher_hit_w_00: 1986168748
+      retcher_hit_w_01: -54762164
+      retcher_hit_w_02: -769273816
+      retcher_hit_w_03: -1041811226
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

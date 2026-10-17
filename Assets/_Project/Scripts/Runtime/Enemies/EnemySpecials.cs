@@ -15,6 +15,9 @@ namespace ARPG
         /// <summary>Real projectiles thrown at her along the aim lines it showed during the wind-up (2026-10-11: "more
         /// throwing attacks with projectiles").</summary>
         Throw,
+
+        /// <summary>A fan of bile lanes spewed at her, and a poison puddle where she stood (the Retcher, 2026-10-17).</summary>
+        Spew,
     }
 
     /// <summary>One enemy type's special attack (numbers in ground units, seconds and enemy hits).</summary>
@@ -106,6 +109,9 @@ namespace ARPG
             ("QuillRat", new EnemySpecial("Quill Shot", SpecialShape.Throw, 5.5f, 2f, 8f, 0.2f, 0.45f, 0.7f, Bone, count: 3, spread: 14f, length: 9f, speed: 16f)),
             ("Ghoul", new EnemySpecial("Flesh Throw", SpecialShape.Throw, 6f, 2.5f, 8f, 0.3f, 0.5f, 1.2f, Blood, length: 10f, speed: 12f)),
             ("DarkCultist", new EnemySpecial("Fire Rain", SpecialShape.Lob, 8f, 2f, 9f, 1.0f, 0.9f, 0.9f, Fire, count: 3, spread: 1.6f, stagger: 0.35f)),
+            // The Retcher (2026-10-17): three lanes of bile in a narrow fan, and a puddle that poisons for 4 s.
+            ("Retcher", new EnemySpecial("Spew", SpecialShape.Spew, 5f, 1.5f, 6.5f, 0.8f, 1.1f, 0.7f, Bile, count: 3, spread: 16f, length: 7f,
+                lingerSeconds: 4f, lingerHit: 0.35f, poison: true, slow: 0.7f, slowSeconds: 1.5f)),
             ("BileFiend", new EnemySpecial("Poison Spit", SpecialShape.Lob, 7f, 2.5f, 7.5f, 1.4f, 1.0f, 0.6f, Bile, lingerSeconds: 4f, lingerHit: 0.4f, poison: true)),
             ("Wight", new EnemySpecial("Curse", SpecialShape.Lob, 7.5f, 2f, 8f, 1.2f, 1.0f, 0.9f, Grave, slow: 0.6f, slowSeconds: 2f)),
             ("Mummy", new EnemySpecial("Rot Curse", SpecialShape.Ring, 7f, 0f, 3.5f, 3f, 1.1f, 0.9f, Bile, lingerSeconds: 2f, lingerHit: 0.3f, poison: true)),
@@ -322,6 +328,16 @@ namespace ARPG
                         world.Projectiles.Fire(enemy, enemy.GroundPosition + direction * enemy.Definition.BodyRadius, direction * s.Speed, s.Length,
                             hit * s.Hit * EnemyRules.ProjectileDamageFactor(enemy.Definition.Rank), level, 0f, s.Color);
                     }
+                    break;
+                case SpecialShape.Spew:
+                    Sfx.Play(SoundId.EnemySlam, 0.4f);
+                    for (var k = 0; k < s.Count; k++)
+                    {
+                        var direction = EnemySpecialRules.LineDirection(p.Aim, k, s.Count, s.Spread);
+                        var from = enemy.GroundPosition + direction * enemy.Definition.BodyRadius;
+                        world.Hazards.Line(from, from + direction * s.Length, s.Size, EnemyRules.Telegraph(s.Fill), hit * s.Hit, level, s.Color, s.Slow, s.SlowSeconds);
+                    }
+                    world.Hazards.Poison(p.Target, 1.3f, EnemyRules.Telegraph(s.Fill), s.LingerSeconds, hit * s.LingerHit, level, s.Color, 0f);
                     break;
                 case SpecialShape.Lines:
                     for (var k = 0; k < s.Count; k++)

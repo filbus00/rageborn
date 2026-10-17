@@ -1247,3 +1247,12 @@ The owner's answers are in Docs/08. How it is built:
 - `RunDirector.BeforeTownLoad` keeps the summary and opens `RunSummaryScreen` (TownSheets, with a new `Line` helper) when the town has loaded, in place of the banner.
 - Tests: `RunSummaryTests`. Offline 642 passed (the 5 NavGrid failures), Unity 647 of 647; in the editor a death at depth 1 opened the summary in town with the depth, the new record and the four boons.
 
+## 2026-10-17: deep entrances, enemy health bars, the Retcher
+
+- `Core/DevShortcuts.cs` deleted (the DEV stairs in town, and the dev build's opening of every waypoint).
+- Deep entrances: `Town/DeepEntrances.cs`: `EntranceRules.Open(deepestEver)` (10, 20, 30, 40), `Cell` (round the mausoleum, clear of the town's pieces; a test checks); `DeepEntrance` (the waypoint stone with an orange ring and a label, a `WalkOnTrigger` that calls `SceneTravel.ToDepth`), made by `PetDirector` on the town's load. `GameSession.ReachDepth` owes a run begun at depth N the boons of the N - 1 depths skipped.
+- Health bars: `Enemies/EnemyHealthBar.cs`, made in `EnemyController.Awake` after the renderers are gathered (so the fades and flashes leave it), shown from `Tick` while hurt and alive, never for a boss; size kept against the enemy's scale; 1.7 over the feet (1.0 for bodies of radius 0.3 or less). A first height of 0.82 sat at a ghoul's chest; the baked figures are about 1.8 tall.
+- `CombatFormulas.EnemyLifeScale` 1.2. `EliteAffixRules.LanceGap` 4.8, `LanceExtraSeconds` 1 on top of the telegraph.
+- The Retcher: `undead.py retcher` on the bandit archer's rig (the bile drool made thicker after the first bake, where it hardly showed), wired in `EnemyBakeSetup` (height 78, cell 192, avatar from the archer), baked alone with `EnemyBakeSetup.SetUp` and `SpriteBaker.Bake`; the definition by Add Deep Roster (`Concept("Retcher", "Harpooner", 1.3, 2.4)` with a bile projectile); `PackMember.Retcher` in `PackComposition.Table` (Back, 4 to 20); a feeding lair; `SpecialShape.Spew` in `EnemySpecials` (lanes by `Hazards.Line` and a puddle by `Hazards.Poison`).
+- Tests: `DeepEntranceTests`; the formula tests take the new life (a level 1 enemy now takes two basic hits). Offline 648 passed (the 5 NavGrid failures), Unity 653 of 653. In the editor: the entrances for 10 and 20 stood in the graveyard after a record of 25, the depth 10 one started a run at depth 10 with 10 boons owed; hurt enemies showed their bars over their heads; Retchers stood in the packs at depth 5. Their spew was not watched.
+

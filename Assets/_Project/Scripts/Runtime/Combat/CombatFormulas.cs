@@ -23,8 +23,11 @@ namespace ARPG
         /// <summary>An enemy hit at level 1: 3 by Docs/03, half again since the owner found enemies too weak (2026-10-11).</summary>
         public const float EnemyHitScale = 4.5f;
 
-        /// <summary>Life of a normal enemy of the given level.</summary>
-        public static float EnemyLife(int level) => 8f * Mathf.Pow(level, EnemyLifeExponent);
+        /// <summary>Life of a normal enemy of the given level (ranks and bosses multiply it).</summary>
+        public static float EnemyLife(int level) => 8f * EnemyLifeScale * Mathf.Pow(level, EnemyLifeExponent);
+
+        /// <summary>Every enemy's life, bosses' too, a fifth more (the owner, 2026-10-17: "raise all enemies hp by 20%").</summary>
+        public const float EnemyLifeScale = 1.2f;
 
         /// <summary>Docs/03 had 1.9; the balance pass of 2026-10-04 softened it to 1.6, since weapon damage grows as item
         /// level to the 1.35 and act 1's husks took 2.6 s to kill by its last level (tuning, Claude, to review).</summary>

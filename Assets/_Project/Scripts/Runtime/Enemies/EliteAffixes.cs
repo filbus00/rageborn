@@ -99,7 +99,12 @@ namespace ARPG
         public const float MortarEvery = 4.5f, MortarRadius = 1.2f, MortarFill = 1.3f, MortarHit = 1.0f, MortarMinRange = 3.5f, MortarSpread = 1.7f;
         public const float PlagueEvery = 6f, PlagueRadius = 1.8f, PlagueFill = 0.8f, PlagueSeconds = 6f, PlagueBurn = 0.4f;
         public const float NovaEvery = 7f, NovaRange = 6f, NovaRadius = 4f, NovaFill = 1.3f, NovaHit = 1.0f, NovaSlow = 0.6f, NovaSlowSeconds = 2.5f;
-        public const float LanceEvery = 6.5f, LanceLength = 12f, LanceWidth = 0.9f, LanceFill = 1.0f, LanceHit = 1.1f, LanceGap = 2.4f;
+        public const float LanceEvery = 6.5f, LanceLength = 12f, LanceWidth = 0.9f, LanceFill = 1.0f, LanceHit = 1.1f, LanceGap = 4.8f;
+
+        /// <summary>Lightning Lances strike a second later than the telegraph rule gives, and their strips stand twice as far
+        /// apart (4.8, was 2.4; the owner, 2026-10-17: "Make the lightning enemy attack 1sec slower and double the space
+        /// between strips of lightning").</summary>
+        public const float LanceExtraSeconds = 1f;
         public const float ChainWidth = 0.35f, ChainPulse = 0.4f, ChainHit = 0.5f;
         public const float BeamEvery = 11f, BeamLength = 7f, BeamWidth = 0.5f, BeamWindup = 1.2f, BeamSeconds = 7f, BeamDegreesPerSecond = 50f, BeamPulse = 0.35f, BeamHit = 0.6f;
 
@@ -310,6 +315,8 @@ namespace ARPG
                 Hit(enemy) * EliteAffixRules.MoltenDeathHit, enemy.Level);
         }
 
+        static float LanceSeconds => EnemyRules.Telegraph(EliteAffixRules.LanceFill) + EliteAffixRules.LanceExtraSeconds;
+
         void AddLance(Vector2 from, Vector2 to, float damage, int level)
         {
             Lance lance = null;
@@ -321,11 +328,11 @@ namespace ARPG
                 }
             if (lance == null)
             {
-                lance = new Lance { Marker = GroundMarker.Line(from, to, EliteAffixRules.LanceWidth, EnemyRules.Telegraph(EliteAffixRules.LanceFill), LightningColor, parent) };
+                lance = new Lance { Marker = GroundMarker.Line(from, to, EliteAffixRules.LanceWidth, LanceSeconds, LightningColor, parent) };
                 lances.Add(lance);
             }
             lance.Marker.SetColor(LightningColor);
-            lance.Marker.RestartLine(from, to, EliteAffixRules.LanceWidth, EnemyRules.Telegraph(EliteAffixRules.LanceFill));
+            lance.Marker.RestartLine(from, to, EliteAffixRules.LanceWidth, LanceSeconds);
             lance.From = from;
             lance.To = to;
             lance.Damage = damage;

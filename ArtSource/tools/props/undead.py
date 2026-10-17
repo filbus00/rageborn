@@ -39,6 +39,9 @@ DONORS = {"skeleton": "husk", "cultist": "bandit_archer", "cutthroat": "husk", "
           "giant": "ghoul", "balrog_lite": "ghoul",
           "dark_cultist": "bandit_archer", "bone_mage": "bandit_archer", "wraith": "bandit_archer", "lich": "bandit_archer",
           "succubus": "bandit_archer", "harpy": "bandit_archer",
+          # The Retcher (2026-10-17, the owner: "Make a puking enemy that spews bile at the character"): on the archer's
+          # rig, so its draw reads as the heave before it spews.
+          "retcher": "bandit_archer",
           # The quest people (2026-10-08): Mother Aldis, and those she brings back to town.
           "aldis": "bandit_archer", "tobin": "bandit_archer", "pellam": "bandit_archer", "bram": "bandit_archer", "ivy": "bandit_archer"}
 NPCS = {"merchant", "pet_vendor", "stash_keeper", "healer", "gambler", "trainer", "aldis", "tobin", "pellam", "bram", "ivy"}
@@ -83,6 +86,8 @@ COLORS = {
     # The concept roster's palettes (from the sheet's swatches).
     "zombie": (96, 112, 64), "zombie_dark": (60, 72, 40), "rotten": (110, 70, 40), "demon": (150, 34, 26),
     "demon_dark": (90, 20, 18), "horn": (60, 50, 44), "fiend": (110, 140, 60), "fiend_dark": (66, 88, 36),
+    # The Retcher (2026-10-17): grey-yellow sick skin, a dark mouth, bright bile.
+    "sick": (150, 140, 96), "sick_dark": (92, 84, 56), "maw": (40, 16, 16), "bile": (150, 200, 40),
     "wraith_blue": (60, 100, 150), "wraith_glow": (120, 190, 240), "wight_green": (90, 200, 90), "gauze": (176, 160, 120),
     "gauze_dark": (124, 110, 80), "golem": (120, 116, 90), "stitch": (60, 40, 30), "ogre": (130, 98, 64),
     "ogre_dark": (88, 64, 40), "stone_grey": (96, 96, 100), "stone_dark": (60, 60, 64), "lich_violet": (90, 60, 130),
@@ -1116,6 +1121,38 @@ def bile_fiend():
         block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.12 * U, 0.06 * U, 0.2 * U), side + "Foot", "fiend_dark")
 
 
+def retcher():
+    # A bloated, hunched thing (2026-10-17): a swollen sagging gut, a thin neck, a small bald head with a jaw hanging wide
+    # open, strings of bile from the mouth down the chest, spindly arms, sores.
+    s, s1, s2 = head("Spine"), head("Spine1"), head("Spine2")
+    blob(V((0, s.y - 0.02 * U, 0.12 * U)), (0.3 * U, 0.3 * U, 0.32 * U), "Spine", "sick")
+    blob(V((0, s1.y, 0.06 * U)), (0.26 * U, 0.2 * U, 0.26 * U), "Spine1", "sick")
+    blob(V((0, s2.y, -0.04 * U)), (0.22 * U, 0.16 * U, 0.2 * U), "Spine2", "sick_dark")
+    # A hump over the shoulders.
+    blob(V((0, s2.y + 0.1 * U, -0.12 * U)), (0.16 * U, 0.12 * U, 0.12 * U), "Spine2", "sick_dark")
+    for k in range(7):
+        a = k * 0.9
+        blob(V((math.cos(a) * 0.26 * U, s.y + math.sin(a * 1.3) * 0.16 * U, 0.26 * U + math.sin(a) * 0.08 * U)),
+             (0.04 * U, 0.04 * U, 0.03 * U), "Spine", "pus")
+    limb(head("Neck"), head("Head"), 0.05 * U, 0.05 * U, "Neck", "sick_dark")
+    h = _head("sick", "eye", r=(0.09, 0.095, 0.1), y=0.05)
+    # The jaw hanging open, the dark mouth, and bile pouring out of it down the front.
+    block(h + V((0, -0.08 * U, 0.08 * U)), (0.13 * U, 0.04 * U, 0.1 * U), "Head", "sick_dark")
+    block(h + V((0, -0.03 * U, 0.1 * U)), (0.1 * U, 0.05 * U, 0.04 * U), "Head", "maw")
+    for k, (x, length) in enumerate(((-0.03, 0.22), (0.01, 0.3), (0.04, 0.18))):
+        top = h + V((x * U, -0.06 * U, 0.12 * U))
+        limb(top, top + V((0, -length * U, 0.05 * U)), 0.04 * U, 0.025 * U, "Head", "bile", 6)
+    blob(V((0, s1.y + 0.02 * U, 0.3 * U)), (0.16 * U, 0.18 * U, 0.06 * U), "Spine1", "bile")
+    blob(V((0.06 * U, s.y + 0.04 * U, 0.38 * U)), (0.1 * U, 0.1 * U, 0.05 * U), "Spine", "bile")
+    for side in ("Left", "Right"):
+        limb(head(side + "Arm"), head(side + "ForeArm"), 0.05 * U, 0.04 * U, side + "Arm", "sick")
+        limb(head(side + "ForeArm"), head(side + "Hand"), 0.04 * U, 0.035 * U, side + "ForeArm", "sick_dark")
+        blob(head(side + "Hand"), (0.05 * U, 0.04 * U, 0.05 * U), side + "Hand", "sick")
+        limb(head(side + "UpLeg"), head(side + "Leg"), 0.09 * U, 0.07 * U, side + "UpLeg", "sick")
+        limb(head(side + "Leg"), head(side + "Foot"), 0.07 * U, 0.06 * U, side + "Leg", "sick_dark")
+        block((head(side + "Foot") + head(side + "ToeBase")) / 2, (0.1 * U, 0.05 * U, 0.17 * U), side + "Foot", "sick_dark")
+
+
 def flesh_golem():
     # A hulk stitched from corpses: patchwork skin of different shades, heavy stitches, a small head, huge fists.
     _body("golem", "zombie_dark", "rotten", "stitch", "golem", wide=1.5, bulk=1.7)
@@ -1411,7 +1448,7 @@ def ivy():
  "zombie": zombie, "zombie_champion": zombie_champion, "zombie_elite": zombie_elite, "skeleton_warrior": skeleton_warrior,
  "fallen": fallen, "wight": wight, "mummy": mummy, "imp": imp, "bile_fiend": bile_fiend, "flesh_golem": flesh_golem,
  "ogre": ogre, "gargoyle": gargoyle, "stygian_demon": stygian_demon, "giant": giant, "balrog_lite": balrog_lite,
- "dark_cultist": dark_cultist, "bone_mage": bone_mage, "wraith": wraith, "lich": lich, "succubus": succubus, "harpy": harpy,
+ "retcher": retcher, "dark_cultist": dark_cultist, "bone_mage": bone_mage, "wraith": wraith, "lich": lich, "succubus": succubus, "harpy": harpy,
  "aldis": aldis, "tobin": tobin, "pellam": pellam, "bram": bram, "ivy": ivy}[NAME]()
 
 # Every bone a humanoid needs keeps a vertex weighted to it: Unity strips bones nothing is weighted to, and the avatar

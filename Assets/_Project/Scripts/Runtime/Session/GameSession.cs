@@ -758,6 +758,8 @@ namespace ARPG
             {
                 RerollsLeft = Meta.RerollsPerRun;
                 Run.RecordBefore = Meta.DeepestEver;
+                // A run begun deeper (a deep entrance, 2026-10-17) is owed the boons of the depths it skipped.
+                PendingBoons += depth - 1;
             }
             DeepestDepth = depth;
             RunStarted = true;

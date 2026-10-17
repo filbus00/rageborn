@@ -17,7 +17,7 @@ namespace ARPG.Tests
         [Test]
         public void EnemyAndCharacterCurves_AtLevelOne()
         {
-            Assert.AreEqual(8f, CombatFormulas.EnemyLife(1), 1e-4f);
+            Assert.AreEqual(8f * CombatFormulas.EnemyLifeScale, CombatFormulas.EnemyLife(1), 1e-4f);
             Assert.AreEqual(4.5f, CombatFormulas.EnemyHitDamage(1), 1e-4f);
             Assert.AreEqual(100f, CombatFormulas.CharacterBaseLife(1), 1e-4f);
             // The stand-in Vitality starts at level 2: 8 points a level, 8 life a point.
@@ -29,7 +29,7 @@ namespace ARPG.Tests
         [Test]
         public void EnemyCurves_GrowWithLevel()
         {
-            Assert.AreEqual(8f * Mathf.Pow(10f, CombatFormulas.EnemyLifeExponent), CombatFormulas.EnemyLife(10), 0.1f);
+            Assert.AreEqual(8f * CombatFormulas.EnemyLifeScale * Mathf.Pow(10f, CombatFormulas.EnemyLifeExponent), CombatFormulas.EnemyLife(10), 0.1f);
             Assert.Greater(CombatFormulas.EnemyLife(11), CombatFormulas.EnemyLife(10));
             Assert.Greater(CombatFormulas.EnemyHitDamage(11), CombatFormulas.EnemyHitDamage(10));
         }
@@ -129,12 +129,14 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void LevelOneBasicHit_KillsALevelOneEnemyInOneHit()
+        public void LevelOneBasicHits_KillALevelOneEnemyInTwoHits()
         {
-            // The docs aim for a normal enemy to die in 0.6 to 1.2 seconds; at 1.4 attacks a second, one hit does it.
+            // The docs aim for a normal enemy to die in 0.6 to 1.2 seconds; at 1.4 attacks a second, two hits do it
+            // (one until enemy life went up a fifth, 2026-10-17).
             var hit = CombatFormulas.HitDamage(CombatFormulas.WeaponAverageDamage(1), 1f, 0f, 0f, 1f, false, 0f, 0f, 1);
 
-            Assert.GreaterOrEqual(hit, CombatFormulas.EnemyLife(1));
+            Assert.Less(hit, CombatFormulas.EnemyLife(1));
+            Assert.GreaterOrEqual(2f * hit, CombatFormulas.EnemyLife(1));
         }
     }
 }

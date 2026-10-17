@@ -63,6 +63,7 @@ namespace ARPG
                 case PackMember.Zombie:
                 case PackMember.Ghoul:
                 case PackMember.BileFiend:
+                case PackMember.Retcher:
                 case PackMember.FleshGolem:
                 case PackMember.QuillRat:
                     return LairTheme.Feeding;

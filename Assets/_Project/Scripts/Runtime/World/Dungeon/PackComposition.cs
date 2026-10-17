@@ -34,6 +34,9 @@ namespace ARPG
         Giant,
         Nightmare,
         BalrogLite,
+
+        /// <summary>The Retcher (2026-10-17, the owner: "Make a puking enemy that spews bile at the character").</summary>
+        Retcher,
     }
 
     /// <summary>Where a kind stands in a pack: in front, at the back, one behind the rest helping them, or in a pack
@@ -86,6 +89,8 @@ namespace ARPG
             new Entry(PackMember.Wight, PackRole.Support, 7, 18, 5),
             new Entry(PackMember.Fallen, PackRole.Swarm, 2, 14, 6),
             new Entry(PackMember.QuillRat, PackRole.Swarm, 3, 15, 5),
+            // The Retcher (2026-10-17): at the back, spewing; from the crypt's middle into the prison.
+            new Entry(PackMember.Retcher, PackRole.Back, 4, 20, 5),
             // The prison (13 to 24).
             new Entry(PackMember.Mummy, PackRole.Front, 13, 28, 8),
             new Entry(PackMember.FleshGolem, PackRole.Front, 14, 30, 5),

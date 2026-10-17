@@ -74,6 +74,8 @@ namespace ARPG.Editor
             Concept("Giant", "Ghoul", 3f, 2.2f, 1.5f, so => F(so, "slamRadius", 2.5f));
             Concept("Nightmare", "AshWolf", 1.6f, 4.5f, 1.2f);
             Concept("BalrogLite", "PyreKeeper", 2.6f, 0f, 1.3f);
+            // The Retcher (2026-10-17): the harpooner's thrown attack as a glob of bile that slows, and its Spew.
+            Concept("Retcher", "Harpooner", 1.3f, 2.4f, 1f, so => so.FindProperty("projectileColor").colorValue = new Color(0.55f, 0.85f, 0.25f, 1f));
         }
 
         [MenuItem("Tools/ARPG/Add Deep Roster")]

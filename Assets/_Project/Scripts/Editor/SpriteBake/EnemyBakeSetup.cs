@@ -51,6 +51,8 @@ namespace ARPG.Editor
             { "bone_mage", 88f }, { "flesh_golem", 100f }, { "wraith", 86f }, { "ogre", 104f }, { "gargoyle", 84f }, { "lich", 96f },
             { "imp", 54f }, { "succubus", 86f }, { "harpy", 70f }, { "stygian_demon", 100f }, { "hell_hound", 58f },
             { "arachnid", 52f }, { "sand_worm", 70f }, { "giant", 120f }, { "nightmare", 80f }, { "balrog_lite", 112f },
+            // The Retcher (2026-10-17), hunched.
+            { "retcher", 78f },
             // The pets (2026-10-06, ArtSource/tools/props/pets.py): the wolf a little over the Ash Wolf (seen from behind it is narrow), the raven measured with
             // its wings spread.
             { "pet_wolf", 68f }, { "pet_boar", 58f }, { "pet_raven", 34f },
@@ -62,7 +64,7 @@ namespace ARPG.Editor
             { "drowned_watchman", 192 }, { "skeleton_knight", 192 }, { "tidewife", 192 }, { "saint_marrow", 192 }, { "first_watchman", 192 },
             { "ash_archivist", 192 }, { "rift_mother", 192 }, { "gaoler", 192 }, { "hanged_magistrate", 192 },
             { "bile_fiend", 192 }, { "flesh_golem", 192 }, { "ogre", 192 }, { "gargoyle", 192 }, { "stygian_demon", 192 }, { "giant", 192 },
-            { "balrog_lite", 192 }, { "lich", 192 }, { "nightmare", 192 }, { "sand_worm", 192 }, { "arachnid", 192 }, { "succubus", 192 }, { "harpy", 192 } };
+            { "balrog_lite", 192 }, { "retcher", 192 }, { "lich", 192 }, { "nightmare", 192 }, { "sand_worm", 192 }, { "arachnid", 192 }, { "succubus", 192 }, { "harpy", 192 } };
 
         /// <summary>Bodies whose clips are copies of another enemy's (the Cinder Warden moves as the ghoul).</summary>
         static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string>
@@ -82,6 +84,8 @@ namespace ARPG.Editor
             { "giant", "ghoul" }, { "balrog_lite", "ghoul" },
             { "dark_cultist", "bandit_archer" }, { "bone_mage", "bandit_archer" }, { "wraith", "bandit_archer" }, { "lich", "bandit_archer" },
             { "succubus", "bandit_archer" }, { "harpy", "bandit_archer" },
+            // The Retcher (2026-10-17): the archer's draw is its heave.
+            { "retcher", "bandit_archer" },
         };
 
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
@@ -113,6 +117,7 @@ namespace ARPG.Editor
             ("Succubus", "succubus", null), ("Harpy", "harpy", null), ("StygianDemon", "stygian_demon", null), ("HellHound", "hell_hound", null),
             ("Arachnid", "arachnid", null), ("SandWorm", "sand_worm", null), ("Giant", "giant", null), ("Nightmare", "nightmare", null),
             ("BalrogLite", "balrog_lite", null),
+            ("Retcher", "retcher", null),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the

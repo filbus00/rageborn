@@ -273,7 +273,11 @@ namespace ARPG
                 bodyDefaultPosition = body.localPosition;
                 bodyDefaultScale = body.localScale;
             }
+            // Made after the renderers are gathered, so the fades and flashes leave it alone.
+            healthBar = new EnemyHealthBar(transform);
         }
+
+        EnemyHealthBar healthBar;
 
         static int IconIndexFromName(string name)
         {
@@ -422,6 +426,7 @@ namespace ARPG
         /// <summary>Advances the enemy by one frame.</summary>
         internal void Tick(float deltaTime, EnemyManager world)
         {
+            healthBar?.Show(IsAlive && definition.Rank != EnemyRank.Boss ? life / Mathf.Max(1f, MaxLife) : 1f, definition.VisualScale, definition.BodyRadius);
             UpdatePunch(deltaTime);
             slow.Tick(deltaTime);
             TickBleed(deltaTime);

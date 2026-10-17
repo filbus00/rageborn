@@ -9,7 +9,7 @@ namespace ARPG
         /// <summary>Up the stairs from the level below: at the level's stairs down.</summary>
         FromBelow,
 
-        /// <summary>Development only (<see cref="DevShortcuts"/>): just inside the boss arena, so the boss can be tested
+        /// <summary>Just inside the boss arena (it was the DEV stairs' arrival until 2026-10-17), so the boss can be tested
         /// without fighting through the level. Anywhere else it means <see cref="FromAbove"/>.</summary>
         AtBoss,
 
