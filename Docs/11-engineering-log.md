@@ -1267,3 +1267,8 @@ The owner's answers are in Docs/08. How it is built:
 - `PlayerCombat`: the momentum attack speed in `BasicAttack`, the arrow factor in `NewArrow` (speed and distance) and in `BasicRange`; `UpdateCover` each frame from `EnemyManager.Nav` (a blocked-cell lookup made once, so nothing allocates); the ambush on the basic attack's first arrow; `CoverBlocked` (sparks, a callout once a second at most); `PlayerCombat.Current` for the projectiles. `EnemyProjectiles.Tick` lets a covered-side shot break instead of hitting. `Combat/CoverShield.cs`: a pixel shield over her head, grey, gold when an ambush is ready.
 - Tests: `CoverAndMomentumTests`. Offline 651 passed (the 5 NavGrid failures), Unity 656 of 656. In the editor: after a few seconds' run she had five stacks and a reach of 9 (from 7.5); against a wall the shield showed, a projectile sent from the wall's side did nothing and one from the open side took 16 of her 100 life.
 
+
+## 2026-10-17: a balance probe (the owner: "the game feels too easy")
+
+- `DevAutopilot` plays the roguelite now (random boons, closes the town sheets, follows the replaced session) and has a probe mode (`EditorPrefs` `ARPG.AutopilotProbe`): a fresh run at depths 3, 9, 15, 21, 27, 33, owed the skipped boons at random, Magic gear of the depth's item level, no potions, 150 s each; report `Logs/BalanceProbe.md`.
+- Result (the autopilot stands to shoot and never dives): alive at 3 (lowest life 37%); died at 9 (64 s), 15 (78 s), 21 (14 s), 27 (69 s), 33 (19 s). Kills 34 to 88 a minute. From depth 9 on she died to 4 to 6 hits: one hit is a fifth to a third of her life. So the danger is a few large, telegraphed hits: a player who dives them takes almost nothing, which is why it feels easy by hand.

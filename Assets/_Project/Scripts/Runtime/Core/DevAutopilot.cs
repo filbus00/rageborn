@@ -21,10 +21,30 @@ namespace ARPG
     public class DevAutopilot : MonoBehaviour
     {
         public const string RequestKey = "ARPG.AutopilotRequested";
+
+        // The balance probe (2026-10-17, the owner: "run a ballance test, the game feels too easy"): in place of one long
+        // run, a fresh run at each of these depths, owed the boons of the depths skipped (picked at random) and in Magic
+        // gear of the depth's item level, fought for ProbeSeconds of game time. Writes Logs/BalanceProbe.md.
+        public const string ProbeKey = "ARPG.AutopilotProbe";
+        static readonly int[] ProbeDepths = { 3, 9, 15, 21, 27, 33 };
+        const float ProbeSeconds = 150f;
+        const string ProbeReportPath = "Logs/BalanceProbe.md";
+        bool probing;
+        static bool startProbing;
+        int probeIndex = -1;
+        float probeClock = -1f;
+        int probeKills, probeHits;
+        float probeDamage, probeMinLife, probeMaxLife;
+        bool probeDied;
+        readonly List<string> probeRows = new List<string>();
+        static readonly ItemSlot[] ProbeKit = { ItemSlot.Weapon, ItemSlot.Shield, ItemSlot.Chest, ItemSlot.Helm, ItemSlot.Gloves,
+            ItemSlot.Boots, ItemSlot.Belt, ItemSlot.Amulet, ItemSlot.Ring };
         const string ReportPath = "Logs/AutopilotReport.md";
         const float StepSeconds = 1f / 30f;
         const float TimeLimitSeconds = 90f * 60f;
-        const int DeathLimit = 12;
+        // The roguelite (2026-10-17): three runs, each from depth 1 until she dies, or one that reaches past this depth.
+        const int DeathLimit = 3;
+        const int TargetDepth = 24;
 
         const string TownScene = "Town";
         
@@ -47,8 +67,13 @@ namespace ARPG
         sealed class DepthStats
         {
             public float FirstEntry = -1f, LastExit, MinLife = 1f, DamageTaken;
-            public int Deaths, Kills, Potions, LevelIn, LevelOut, Visits;
+            public int Deaths, Kills, Potions, LevelIn, LevelOut, Visits, Runs;
         }
+
+        // Each run's end: how deep, after how long, with how many boons.
+        readonly List<string> runs = new List<string>();
+        float runStartedAt;
+        System.Random boonPicks = new System.Random(17);
 
         readonly Dictionary<int, DepthStats> depths = new Dictionary<int, DepthStats>();
         readonly HashSet<object> unreachable = new HashSet<object>();
@@ -85,17 +110,23 @@ namespace ARPG
         static void MaybeStart()
         {
 #if UNITY_EDITOR
-            if (!UnityEditor.EditorPrefs.GetBool(RequestKey, false))
+            var probe = UnityEditor.EditorPrefs.GetBool(ProbeKey, false);
+            if (!UnityEditor.EditorPrefs.GetBool(RequestKey, false) && !probe)
                 return;
             UnityEditor.EditorPrefs.SetBool(RequestKey, false);
+            UnityEditor.EditorPrefs.SetBool(ProbeKey, false);
             var go = new GameObject("Dev Autopilot");
             DontDestroyOnLoad(go);
+            // Read in Awake, which runs inside AddComponent.
+            startProbing = probe;
             go.AddComponent<DevAutopilot>();
 #endif
         }
 
         void Awake()
         {
+            probing = startProbing;
+            startProbing = false;
             Application.runInBackground = true;
             Time.captureDeltaTime = StepSeconds;
             session = GameSession.Current;
@@ -138,6 +169,14 @@ namespace ARPG
                 if (depth > 0)
                     Stats(depth).LastExit = clock;
                 depth = 0;
+                if (probing)
+                {
+                    // The town after a probe's death, or at the start: on to the next probe.
+                    if (probeClock >= 0f)
+                        EndProbe();
+                    StartNextProbe();
+                    return;
+                }
                 if (bossKilled)
                     Finish("the Cinder Warden is dead and the character is back in town");
                 return;
@@ -145,8 +184,15 @@ namespace ARPG
 
             var level = LevelContext.CurrentId;
             depth = level != null && level.StartsWith("Dungeon ") ? int.Parse(level.Substring(8)) : 0;
+            if (depth > TargetDepth && !probing)
+            {
+                runs.Add($"reached depth {depth} in {(clock - runStartedAt) / 60f:0.0} min with {session.Talents.Spent} boons");
+                Finish($"a run reached depth {depth}");
+                return;
+            }
             var stats = Stats(depth);
             stats.Visits++;
+            stats.Runs++;
             if (stats.FirstEntry < 0f)
             {
                 stats.FirstEntry = clock;
@@ -156,6 +202,75 @@ namespace ARPG
             }
             if (enemies != null)
                 enemies.Killed += OnKilled;
+            if (probing && probeClock < 0f && depth > 0)
+            {
+                probeClock = 0f;
+                probeMaxLife = health != null ? health.MaxLife : 0f;
+            }
+        }
+
+        // A fresh run at the next probe depth, in Magic gear of its item level; the boons come owed on arrival.
+        void StartNextProbe()
+        {
+            probeIndex++;
+            if (probeIndex >= ProbeDepths.Length)
+            {
+                FinishProbe();
+                return;
+            }
+            var target = ProbeDepths[probeIndex];
+            session.PickedUp -= OnPickedUp;
+            session = new GameSession(1000 + probeIndex);
+            GameSession.Install(session);
+            session.PickedUp += OnPickedUp;
+            var level = DungeonRules.EnemyLevel(target);
+            var kit = EquipmentState.Empty;
+            foreach (var slot in ProbeKit)
+                kit = kit.Equip(EquipmentState.PlacesFor(slot)[0], session.Loot.RollItemOf(slot, ItemRarity.Magic, level));
+            session.Equip(kit);
+            probeClock = -1f;
+            probeKills = probeHits = 0;
+            probeDamage = 0f;
+            probeMinLife = 1f;
+            probeDied = false;
+            SceneTravel.ToDepth(target, Arrival.FromAbove);
+        }
+
+        void EndProbe()
+        {
+            var target = ProbeDepths[probeIndex];
+            var minutes = Mathf.Max(0.01f, probeClock / 60f);
+            var maxLife = probeMaxLife;
+            var power = PowerScore.Evaluate(session);
+            probeRows.Add($"| {target} | {DungeonRules.EnemyLevel(target)} | {session.Talents.Spent} | {power.DamagePerSecond:0} | {power.EffectiveLife:0} | " +
+                          $"{(probeDied ? $"died at {probeClock:0} s" : $"alive, {probeClock:0} s")} | {probeKills} ({probeKills / minutes:0.0}/min) | " +
+                          $"{probeHits} hits, {probeDamage:0} ({(maxLife > 0f ? probeDamage / maxLife : 0f):0.0} lives) | {probeMinLife * 100f:0}% |");
+            probeClock = -1f;
+        }
+
+        void FinishProbe()
+        {
+            finished = true;
+            if (stick != null)
+                stick.TestOverride = null;
+            Time.captureDeltaTime = 0f;
+            var text = new StringBuilder();
+            text.AppendLine("# Balance probe");
+            text.AppendLine();
+            text.AppendLine($"A fresh run started at each depth, owed the boons of the depths skipped (picked at random), in Magic gear of the depth's item level, " +
+                            $"no potions, played by the autopilot (it stands to shoot, steps out of circles, fights every pack) for {ProbeSeconds:0} s of game time or until it died.");
+            text.AppendLine();
+            text.AppendLine("| Depth | Enemy level | Boons | Power: DPS | Power: effective life | Result | Kills | Damage taken | Lowest life |");
+            text.AppendLine("|---|---|---|---|---|---|---|---|---|");
+            foreach (var row in probeRows)
+                text.AppendLine(row);
+            Directory.CreateDirectory(Path.GetDirectoryName(ProbeReportPath));
+            File.WriteAllText(ProbeReportPath, text.ToString());
+            Debug.Log($"[ARPG] Balance probe finished. Report at {ProbeReportPath}.\n{text}");
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+            Destroy(gameObject);
         }
 
         DepthStats Stats(int d)
@@ -167,6 +282,8 @@ namespace ARPG
 
         void OnKilled(EnemyController enemy)
         {
+            if (probing && probeClock >= 0f)
+                probeKills++;
             if (depth > 0)
                 Stats(depth).Kills++;
             if (enemy.Definition.Rank == EnemyRank.Boss)
@@ -178,6 +295,14 @@ namespace ARPG
 
         void OnDied()
         {
+            if (probing)
+            {
+                probeDied = true;
+                return;
+            }
+            runs.Add($"died at depth {depth} after {(clock - runStartedAt) / 60f:0.0} min with {session.Talents.Spent} boons, " +
+                     $"{session.Run.Kills} kills");
+            runStartedAt = clock;
             deaths++;
             if (depth > 0)
                 Stats(depth).Deaths++;
@@ -189,6 +314,12 @@ namespace ARPG
         {
             if (depth <= 0 || health == null)
                 return;
+            if (probing && probeClock >= 0f)
+            {
+                probeHits++;
+                probeDamage += damage;
+                probeMinLife = Mathf.Min(probeMinLife, health.Fraction);
+            }
             var stats = Stats(depth);
             stats.DamageTaken += damage;
             stats.MinLife = Mathf.Min(stats.MinLife, health.Fraction);
@@ -231,6 +362,35 @@ namespace ARPG
 
             clock += Time.deltaTime;
             flowAge += Time.deltaTime;
+            // A new run replaces the session (the roguelite): follow it.
+            if (session != GameSession.Current)
+            {
+                session.PickedUp -= OnPickedUp;
+                session = GameSession.Current;
+                session.PickedUp += OnPickedUp;
+            }
+            // A boon owed: one of those offered, at random, as a player who does not plan would.
+            if (BoonScreen.IsOpen)
+            {
+                var offer = BoonRules.Offer(session.Talents, session.Meta.MaxBoonTier, session.Meta.BoonChoices, boonPicks);
+                if (offer.Count == 0 || !session.TakeBoon(offer[boonPicks.Next(offer.Count)]))
+                    session.PendingBoons = 0;
+                if (session.PendingBoons <= 0)
+                    TownSheets.CloseAny();
+                return;
+            }
+            if (depth == 0 && TownSheets.AnyOpen)
+                TownSheets.CloseAny();
+            if (probing && probeClock >= 0f && depth > 0 && health != null && health.IsAlive)
+            {
+                probeClock += Time.deltaTime;
+                if (probeClock >= ProbeSeconds)
+                {
+                    EndProbe();
+                    StartNextProbe();
+                    return;
+                }
+            }
             SpendStatPoints();
             if (depth > 0)
                 Stats(depth).LevelOut = session.Level;
@@ -436,7 +596,7 @@ namespace ARPG
             Time.captureDeltaTime = 0f;
 
             var text = new StringBuilder();
-            text.AppendLine("# Autopilot report (act 1)");
+            text.AppendLine("# Autopilot report (the roguelite)");
             text.AppendLine();
             text.AppendLine($"Result: {how}. Game time {clock / 60f:0.0} min, {deaths} deaths, character level {session.Level}, " +
                             $"power {PowerScore.Evaluate(session).Score:0}.");
@@ -444,14 +604,20 @@ namespace ARPG
                 text.AppendLine($"Boss: engaged at {bossEngagedAt / 60f:0.0} min, " + (bossKilledAt >= 0f ? $"killed {bossKilledAt - bossEngagedAt:0} s later." : "not killed."));
             text.AppendLine($"Items picked up: {rarityFound[0]} Common, {rarityFound[1]} Magic, {rarityFound[2]} Rare, {rarityFound[3]} Legendary.");
             text.AppendLine();
-            text.AppendLine("| Depth | Minutes in the level | Deaths | Kills | Level in → out | Lowest life | Damage taken | Potions |");
-            text.AppendLine("|---|---|---|---|---|---|---|---|");
-            for (var d = 1; d <= DungeonRules.LevelsPerAct; d++)
+            text.AppendLine("Runs:");
+            foreach (var run in runs)
+                text.AppendLine("- " + run);
+            text.AppendLine();
+            text.AppendLine("| Depth | Runs there | Deaths | Kills | Lowest life | Damage taken (all runs) | Potions |");
+            text.AppendLine("|---|---|---|---|---|---|---|");
+            var visited = new List<int>(depths.Keys);
+            visited.Sort();
+            foreach (var d in visited)
             {
-                if (!depths.TryGetValue(d, out var s))
+                if (d <= 0)
                     continue;
-                var end = s.LastExit > s.FirstEntry ? s.LastExit : clock;
-                text.AppendLine($"| {d} | {(end - s.FirstEntry) / 60f:0.0} | {s.Deaths} | {s.Kills} | {s.LevelIn} → {s.LevelOut} | {s.MinLife * 100f:0}% | {s.DamageTaken:0} | {s.Potions} |");
+                var s = depths[d];
+                text.AppendLine($"| {d} | {s.Runs} | {s.Deaths} | {s.Kills} | {s.MinLife * 100f:0}% | {s.DamageTaken:0} | {s.Potions} |");
             }
             text.AppendLine();
             text.AppendLine("Minutes in a level run from the first arrival to leaving it for the next, so they include trips back after a death. " +
