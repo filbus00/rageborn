@@ -41,7 +41,11 @@ namespace ARPG
         public const float ProjectileSpeed = 1.5f;
         public const float ProjectileDamage = 1f;
 
-        public static float MoveSpeedFactor(EnemyRank rank) => 1f;
+        /// <summary>The owner, 2026-10-17: "lower the move speed of most enemies by 10%": every enemy but the bosses (their
+        /// fights are timed by hand).</summary>
+        public const float SlowerWalk = 0.9f;
+
+        public static float MoveSpeedFactor(EnemyRank rank) => rank == EnemyRank.Boss ? 1f : SlowerWalk;
 
         /// <summary>Enemy telegraphs fill twice as fast (the owner, 2026-10-11: attacks "telegraphed too far in advance"):
         /// slam circles, aim lines, casters' circles, lunges, every special and elite attack. Bosses keep their own.</summary>

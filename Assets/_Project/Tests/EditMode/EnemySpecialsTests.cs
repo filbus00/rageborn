@@ -54,7 +54,8 @@ namespace ARPG.Tests
         [Test]
         public void Enemies_AttackQuicker_ButWalkAsBefore_AndTelegraphFaster()
         {
-            Assert.AreEqual(1f, EnemyRules.MoveSpeedFactor(EnemyRank.Normal), "they walk at their own speed (the owner, 2026-10-11)");
+            Assert.AreEqual(0.9f, EnemyRules.MoveSpeedFactor(EnemyRank.Normal), 1e-5f, "10 percent slower (the owner, 2026-10-17)");
+            Assert.AreEqual(1f, EnemyRules.MoveSpeedFactor(EnemyRank.Boss), "bosses keep their pace");
             Assert.AreEqual(2f, EnemyRules.AttackSpeedFactor(EnemyRank.Normal, EnemyArchetype.Archer), "ranged attacks twice as often (2026-10-17)");
             Assert.AreEqual(1f, EnemyRules.AttackSpeedFactor(EnemyRank.Boss, EnemyArchetype.Archer));
             Assert.AreEqual(1.5f, EnemyRules.ProjectileSpeedFactor(EnemyRank.Normal));

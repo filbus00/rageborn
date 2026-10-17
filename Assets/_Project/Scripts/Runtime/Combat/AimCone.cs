@@ -1,112 +1,201 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ARPG
 {
     /// <summary>
-    /// Her aim on the ground (the owner, 2026-10-08): a faint wedge from her toward her target, as wide as her arrows
-    /// may stray (<see cref="AimRules"/>): a thin line at perfect aim, wider at 80 percent, widest at 60, tinted white,
-    /// amber and red. Shown only while she has a target and is fighting. Added by <see cref="PlayerCombat"/>.
+    /// Her aim on the ground (the owner, 2026-10-17: "change the aming to partial circles around the character, the
+    /// partial circle shows the firing radius for the current movement speed. The partial circle should be present during
+    /// all of combat. It should have a background and the firing radius should be another foreground color"): a dark arc
+    /// round her feet facing her target (or where she last aimed), and on it, in white, amber or red, the arc her arrows
+    /// may stray over at her current pace (<see cref="AimRules"/>): a thin tick standing, wider walking, widest running.
+    /// Shown while she is in a fight. Drawn like the Focus arc (<see cref="RageArc"/>): an overlay that follows her feet,
+    /// so the dark floor and the enemies' bodies never hide it, with the arcs turned inside a parent squashed like the
+    /// floor (<see cref="IsoMath"/>). Added by <see cref="PlayerCombat"/>. (Until 2026-10-17 a wedge toward the target.)
     /// </summary>
     public class AimCone : MonoBehaviour
     {
-        /// <summary>The wedge's width at its far end at perfect aim, in world units: a thin line.</summary>
-        const float LineWidth = 0.05f;
+        /// <summary>The arc's radius and band, in ground units, and the background's half span in degrees.</summary>
+        public const float Radius = 1.35f;
+        public const float Band = 0.24f;
+        public const float BackgroundHalfDegrees = 45f;
 
-        static readonly Color Steady = new Color(1f, 1f, 1f, 0.22f);
-        static readonly Color Walking = new Color(1f, 0.78f, 0.3f, 0.26f);
-        static readonly Color Running = new Color(1f, 0.32f, 0.22f, 0.3f);
+        /// <summary>The foreground never thinner than this either side, so perfect aim still shows a tick.</summary>
+        public const float MinimumHalfDegrees = 3f;
+
+        /// <summary>How long the arc stays after the last target, so it does not flicker between enemies.</summary>
+        const float LingerSeconds = 1.5f;
+        const float TurnSpeed = 14f;
+
+        static readonly Color Background = new Color(0.85f, 0.8f, 0.72f, 0.28f);
+        static readonly Color Steady = new Color(0.95f, 0.95f, 0.9f, 0.9f);
+        static readonly Color Walking = new Color(1f, 0.74f, 0.25f, 0.9f);
+        static readonly Color Running = new Color(1f, 0.3f, 0.2f, 0.9f);
 
         PlayerCombat combat;
         PlayerController player;
-        SpriteRenderer wedge;
-        static Sprite wedgeSprite;
+        RectTransform root;
+        RectTransform ground;
+        Image back;
+        Image front;
+        float angle;
+        bool hasAngle;
+        float shownAim = -1f;
+        float lastFight = -100f;
+
+        static readonly Dictionary<int, Sprite> Arcs = new Dictionary<int, Sprite>();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => Arcs.Clear();
+
+        /// <summary>The foreground's half span for an aim, in degrees.</summary>
+        public static float FiringHalfDegrees(float aim) => Mathf.Max(MinimumHalfDegrees, AimRules.MaxStrayDegrees(aim));
+
+        Canvas canvas;
 
         void Awake()
         {
             combat = GetComponent<PlayerCombat>();
-            var go = new GameObject("Aim Cone");
-            go.transform.SetParent(transform, false);
-            wedge = go.AddComponent<SpriteRenderer>();
-            wedge.sprite = WedgeSprite;
-            wedge.sortingLayerName = GameSortingLayers.Decals;
-            wedge.sortingOrder = 500;
-            wedge.enabled = false;
+            var canvasObject = new GameObject("Aim Arc Canvas", typeof(Canvas));
+            canvasObject.transform.SetParent(transform, false);
+            canvas = canvasObject.GetComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 8; // Under the Focus arc (9) and the HUD.
+            var rootObject = new GameObject("Aim Arc", typeof(RectTransform));
+            rootObject.transform.SetParent(canvasObject.transform, false);
+            root = (RectTransform)rootObject.transform;
+            var groundObject = new GameObject("Ground", typeof(RectTransform));
+            groundObject.transform.SetParent(root, false);
+            ground = (RectTransform)groundObject.transform;
+            ground.localScale = new Vector3(1f, IsoMath.GroundSquash, 1f);
+            back = NewArc("Background");
+            back.sprite = ArcSprite(BackgroundHalfDegrees);
+            back.color = Background;
+            front = NewArc("Firing");
+            Show(false);
+        }
+
+        Image NewArc(string name)
+        {
+            var go = new GameObject(name, typeof(RectTransform), typeof(Image));
+            go.transform.SetParent(ground, false);
+            var rect = (RectTransform)go.transform;
+            rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
+            var image = go.GetComponent<Image>();
+            image.raycastTarget = false;
+            return image;
+        }
+
+        void OnDestroy()
+        {
+            if (canvas != null)
+                Destroy(canvas.gameObject);
         }
 
         void LateUpdate()
         {
             if (player == null)
                 player = FindAnyObjectByType<PlayerController>();
-            var target = combat != null ? combat.Target : null;
-            if (player == null || target == null || !target.IsAlive || player.Disengaged)
+            if (player == null || combat == null)
             {
-                wedge.enabled = false;
+                Show(false);
+                return;
+            }
+
+            var origin = IsoMath.WorldToGround(player.transform.position);
+            var target = combat.Target;
+            if (target != null && target.IsAlive)
+            {
+                lastFight = Time.time;
+                var toTarget = target.GroundPosition - origin;
+                if (toTarget.sqrMagnitude > 1e-4f)
+                {
+                    var wanted = Mathf.Atan2(toTarget.y, toTarget.x) * Mathf.Rad2Deg;
+                    angle = hasAngle ? Mathf.LerpAngle(angle, wanted, 1f - Mathf.Exp(-TurnSpeed * Time.deltaTime)) : wanted;
+                    hasAngle = true;
+                }
+            }
+            // All through the fight: from the first target until a moment after the last.
+            if (!hasAngle || Time.time - lastFight > LingerSeconds)
+            {
+                Show(false);
                 return;
             }
 
             var aim = AimRules.Aim(player.StickPush);
-            var origin = IsoMath.WorldToGround(player.transform.position);
-            var toTarget = target.GroundPosition - origin;
-            var length = toTarget.magnitude;
-            if (length < 0.5f)
+            if (aim != shownAim)
             {
-                wedge.enabled = false;
+                shownAim = aim;
+                front.sprite = ArcSprite(FiringHalfDegrees(aim));
+                front.color = aim >= 1f ? Steady : aim >= AimRules.WalkingAim ? Walking : Running;
+            }
+            var cam = Camera.main;
+            if (cam == null)
+            {
+                Show(false);
                 return;
             }
-
-            // The wedge's tip at her feet and its far end across the target, both projected from the ground, so it
-            // lies on the floor in the isometric view.
-            var stray = AimRules.MaxStrayDegrees(aim) * Mathf.Deg2Rad;
-            var along = toTarget / length;
-            var across = new Vector2(-along.y, along.x);
-            var halfWidth = Mathf.Tan(stray) * length;
-            Vector2 tip = IsoMath.GroundToWorld(origin);
-            Vector2 left = IsoMath.GroundToWorld(target.GroundPosition + across * halfWidth);
-            Vector2 right = IsoMath.GroundToWorld(target.GroundPosition - across * halfWidth);
-            var end = (left + right) * 0.5f;
-            var delta = end - tip;
-
-            var t = wedge.transform;
-            t.position = new Vector3(tip.x, tip.y, 0f);
-            t.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg);
-            t.localScale = new Vector3(delta.magnitude, Mathf.Max(LineWidth, (left - right).magnitude), 1f);
-            wedge.color = aim >= 1f ? Steady : aim >= AimRules.WalkingAim ? Walking : Running;
-            wedge.enabled = true;
+            // Sized from the camera each frame, so the arc keeps its size on the ground whatever the zoom.
+            var feet = player.transform.position;
+            var center = cam.WorldToScreenPoint(feet);
+            var unit = Mathf.Abs(cam.WorldToScreenPoint(feet + Vector3.right).x - center.x);
+            root.position = center;
+            var size = Vector2.one * (back.sprite.rect.width / PixelArt.PixelsPerUnit * unit);
+            back.rectTransform.sizeDelta = size;
+            front.rectTransform.sizeDelta = size;
+            var turn = Quaternion.Euler(0f, 0f, angle);
+            back.rectTransform.localRotation = turn;
+            front.rectTransform.localRotation = turn;
+            Show(true);
         }
 
-        /// <summary>A white wedge one unit long and one wide: its tip at the pivot on the left, its base on the right, a
-        /// brighter rim along its two sides.</summary>
-        static Sprite WedgeSprite
+        void Show(bool on)
         {
-            get
+            back.enabled = on;
+            front.enabled = on;
+        }
+
+        /// <summary>A white ring arc, <see cref="Radius"/> across its middle and <see cref="Band"/> thick, spanning half
+        /// degrees either side of +x, at the pixel art's scale, its pivot at the ring's centre; a brighter rim on its
+        /// edges. Cached by span.</summary>
+        static Sprite ArcSprite(float halfDegrees)
+        {
+            var key = Mathf.RoundToInt(halfDegrees * 10f);
+            if (Arcs.TryGetValue(key, out var sprite) && sprite != null)
+                return sprite;
+            var ppu = PixelArt.PixelsPerUnit;
+            var outer = (Radius + Band * 0.5f) * ppu;
+            var inner = (Radius - Band * 0.5f) * ppu;
+            var size = Mathf.CeilToInt(outer * 2f) + 2;
+            var half = size / 2f;
+            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false)
             {
-                if (wedgeSprite != null)
-                    return wedgeSprite;
-                const int width = 64, height = 64;
-                var texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
+                name = "Aim Arc " + key,
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp,
+            };
+            var pixels = new Color32[size * size];
+            for (var y = 0; y < size; y++)
+                for (var x = 0; x < size; x++)
                 {
-                    name = "Aim Cone",
-                    filterMode = FilterMode.Point,
-                    wrapMode = TextureWrapMode.Clamp,
-                };
-                var pixels = new Color32[width * height];
-                for (var y = 0; y < height; y++)
-                    for (var x = 0; x < width; x++)
+                    var dx = x + 0.5f - half;
+                    var dy = y + 0.5f - half;
+                    var r = Mathf.Sqrt(dx * dx + dy * dy);
+                    var a = Mathf.Abs(Mathf.Atan2(dy, dx) * Mathf.Rad2Deg);
+                    byte alpha = 0;
+                    if (r >= inner && r <= outer && a <= halfDegrees)
                     {
-                        var u = (x + 0.5f) / width;
-                        var v = Mathf.Abs((y + 0.5f) / height - 0.5f) * 2f;
-                        byte alpha = 0;
-                        if (v <= u)
-                            alpha = (byte)(u - v < 0.08f ? 255 : 110);
-                        pixels[x + y * width] = new Color32(255, 255, 255, alpha);
+                        var edge = r - inner < 1.5f || outer - r < 1.5f || (halfDegrees - a) * Mathf.Deg2Rad * r < 1.5f;
+                        alpha = (byte)(edge ? 255 : 170);
                     }
-                texture.SetPixels32(pixels);
-                texture.Apply(false, true);
-                // Full rect, no physics shape: the texture is no longer readable (CLAUDE.md, pixel art).
-                wedgeSprite = Sprite.Create(texture, new Rect(0, 0, width, height), new Vector2(0f, 0.5f), width, 0,
-                    SpriteMeshType.FullRect, Vector4.zero, false);
-                return wedgeSprite;
-            }
+                    pixels[x + y * size] = new Color32(255, 255, 255, alpha);
+                }
+            texture.SetPixels32(pixels);
+            texture.Apply(false, true);
+            // Full rect, no physics shape: the texture is no longer readable (CLAUDE.md, pixel art).
+            sprite = Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), ppu, 0, SpriteMeshType.FullRect, Vector4.zero, false);
+            return Arcs[key] = sprite;
         }
     }
 }

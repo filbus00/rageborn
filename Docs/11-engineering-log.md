@@ -1302,3 +1302,9 @@ The owner's answers are in Docs/08. How it is built:
 
 - `ProjectileKind` (Plain, Knife, Axe, Fireball, Bomb, Bouncing) and `ProjectileKinds` (numbers, `Bounce` off a wall) in `RangedRules.cs`; `ProjectileArt` draws the knife, axe, bomb and blade in code; `EnemyProjectiles.Fire` takes a kind: drawn things spin (axe, bomb, blade), a blade bounces three times, a fireball that misses bursts (1.1, 60 percent, 0.35 s fill), a bomb lands at her spot and blows up after 0.7 s (a direct hit at once). `EnemySpecial.Kind`, `EnemySpecialRules.ThrowReach` (a bomb's aim line ends where she stood). The table: pools left on four kinds. Elite pool numbers cut in `EliteAffixRules`.
 - Tests in `EnemySpecialsTests` (at most 3 specials with lingering pools, every new kind used, the bomb's reach, the bounce). Offline 662 passed (the 5 NavGrid failures), Unity 667 of 667; each kind fired at her in the editor at depth 5, no errors.
+
+## 2026-10-18: the aim arc, slower enemies
+
+- `AimCone` is now the aim arc: a screen-overlay canvas (sorting 8, under the Focus arc's 9) that follows her feet, a parent squashed to the floor's half height, and two images turned toward her target: a background arc (`BackgroundHalfDegrees` 45) and the firing arc (`FiringHalfDegrees`: the stray of `AimRules` at the stick's push, at least 3 degrees). Shown from the first target until 1.5 s after the last. A first try drew it as ground sprites on the Decals layer: under the dark floor's lighting and the enemies' feet it was nearly invisible.
+- `EnemyRules.MoveSpeedFactor`: 0.9 for every rank but Boss.
+- Tests: `AimRulesTests.TheFiringArc_WidensWithPace_InsideItsBackground`, `EnemySpecialsTests` updated. Offline 663 passed (the 5 NavGrid failures), Unity 668 of 668; the arc checked in the editor at depth 1 (grey band, red running spread toward the pack).

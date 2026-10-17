@@ -47,5 +47,18 @@ namespace ARPG.Tests
             }
             Assert.AreEqual(aim, hits / (float)rolls, 0.02f);
         }
+
+        [Test]
+        public void TheFiringArc_WidensWithPace_InsideItsBackground()
+        {
+            // The owner, 2026-10-17: the partial circle shows the firing radius for the current movement speed.
+            var standing = AimCone.FiringHalfDegrees(AimRules.Aim(0f));
+            var walking = AimCone.FiringHalfDegrees(AimRules.Aim(0.5f));
+            var running = AimCone.FiringHalfDegrees(AimRules.Aim(1f));
+            Assert.AreEqual(AimCone.MinimumHalfDegrees, standing, 1e-4f);
+            Assert.Greater(walking, standing);
+            Assert.Greater(running, walking);
+            Assert.Less(running, AimCone.BackgroundHalfDegrees);
+        }
     }
 }
