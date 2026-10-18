@@ -53,7 +53,10 @@ namespace ARPG
             {
                 var rect = (RectTransform)child;
                 if (child.GetComponent<LifeBar>() != null)
+                {
                     UiStyle.Place(rect, new Vector2(0f, 1f), new Vector2(BarsLeft, -LifeTop), new Vector2(BarWidth, LifeHeight));
+                    StyleLifeBar(rect);
+                }
                 else if (child.GetComponent<ExperienceBar>() != null)
                     UiStyle.Place(rect, new Vector2(0f, 1f), new Vector2(BarsLeft, -Top - 74f), new Vector2(BarWidth, 14f));
                 else if (child.GetComponent<PotionPips>() != null)
@@ -100,6 +103,30 @@ namespace ARPG
             var portrait = new CharacterPortrait(figure) { Root = ring.transform };
             portrait.Refresh(equipment);
             return portrait;
+        }
+
+        /// <summary>The empty part of the life bar: dark grey, edged in black, so what she has lost shows against the
+        /// dark dungeon (the owner, 2026-10-19: "put a dark gray background on the health bar").</summary>
+        public static readonly Color LifeBarBack = new Color(0.22f, 0.21f, 0.2f, 1f);
+
+        static void StyleLifeBar(RectTransform rect)
+        {
+            var back = rect.GetComponent<Image>();
+            if (back == null)
+            {
+                // Behind the fill: a background of its own as the bar's first child.
+                back = UiStyle.Image(rect, "Background", LifeBarBack);
+                UiStyle.Stretch(back.rectTransform);
+                back.transform.SetAsFirstSibling();
+            }
+            back.sprite = null;
+            back.color = LifeBarBack;
+            // Not ??: a missing component is Unity's fake null in the editor.
+            var edge = back.gameObject.GetComponent<Outline>();
+            if (edge == null)
+                edge = back.gameObject.AddComponent<Outline>();
+            edge.effectColor = new Color(0f, 0f, 0f, 0.9f);
+            edge.effectDistance = new Vector2(3f, -3f);
         }
 
         // The Bag button as a framed bag icon (the owner, 2026-10-18: "the bag button looks wierd. Make an icon with a
