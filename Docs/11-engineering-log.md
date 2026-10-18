@@ -1352,3 +1352,12 @@ The owner's answers are in Docs/08. How it is built:
 ## 2026-10-18: the dive 10 percent slower
 
 - `DodgeRules.Seconds` 0.264 (was 0.24; the same 3.2 units, so the speed follows), `UntouchableSeconds` 0.264, `AnimationSeconds` 0.42 (was 0.38). Offline 674 passed (the 5 NavGrid failures), Unity 679 of 679.
+
+## 2026-10-18: one dive every half second, no Focus arc, the Bag reworked
+
+- `DodgeRules.MaxCharges` 1, `RechargeSeconds` 0.5. `DodgeTests.TheDive_IsReadyAgainHalfASecondAfterIt`.
+- `RageArc` is no longer created (not by `PlayerCombat`, not in town by `PlayerController`); the class is kept.
+- `InventoryScreen.BuildDoll`: no `CharacterPortrait`, glow or shadow; `SlotInRow` lays the ten slots in two rows of five (`DollHeight` 520, was 800, so everything below moves up). The old `Slot` is gone.
+- `Inventory.TryMove`, `TryAddAt`, `Sort` (rarity first, then `Pack`), `Fits`; `GameSession.MoveInBackpack`, `SortBackpack`. The Bag: a backpack item dropped on the backpack moves to the cell under the finger (`CellUnder`), centred; the backpack's rim lights for every drag; a Sort button in the row under the stats.
+- Save format 21: `SaveData.backpackCells` beside `backpack`; restored with `TryAddAt`, else `TryAdd`. `MigrateFrom20`.
+- Tests: `InventoryTests` (move, sort, saved places). Offline 677 passed (the 5 NavGrid failures), Unity 682 of 682; the Bag checked at phone size.

@@ -6,19 +6,17 @@ namespace ARPG.Tests
     public class DodgeTests
     {
         [Test]
-        public void Charges_ThreeThenEmpty_OneBackEveryThreeSeconds()
+        public void TheDive_IsReadyAgainHalfASecondAfterIt()
         {
+            // The owner, 2026-10-18: "Just put the dive on 0.5 sec reload timer".
             var charges = new DodgeCharges();
             Assert.IsTrue(charges.TryUse());
-            Assert.IsTrue(charges.TryUse());
-            Assert.IsTrue(charges.TryUse());
-            Assert.IsFalse(charges.TryUse(), "three charges (2026-10-18)");
-            charges.Tick(DodgeRules.RechargeSeconds - 0.1f);
+            Assert.IsFalse(charges.TryUse(), "one dive at a time");
+            charges.Tick(DodgeRules.RechargeSeconds - 0.05f);
             Assert.AreEqual(0, charges.Charges);
-            charges.Tick(0.2f);
+            charges.Tick(0.1f);
             Assert.AreEqual(1, charges.Charges);
-            charges.Tick(DodgeRules.RechargeSeconds);
-            Assert.AreEqual(2, charges.Charges);
+            Assert.AreEqual(0.5f, DodgeRules.RechargeSeconds, 1e-5f);
             charges.Tick(10f);
             Assert.AreEqual(DodgeRules.MaxCharges, charges.Charges, "never past the most");
         }

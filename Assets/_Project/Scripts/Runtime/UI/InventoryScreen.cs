@@ -248,7 +248,10 @@ namespace ARPG
 
         // --- Paper doll ---------------------------------------------------------------------------------------------
 
-        const float DollTop = -HeaderHeight - 8f, DollHeight = 800f;
+        // Only the gear slots since 2026-10-18 (the owner: "Remove the character display in the inventory screen, just put
+        // the gear slots there"): two rows of five, so the backpack has more room.
+        const float DollTop = -HeaderHeight - 8f, DollHeight = 520f;
+        const float SlotRowHeight = 230f, SlotGap = 16f;
 
         void BuildDoll(GameSession current)
         {
@@ -261,44 +264,32 @@ namespace ARPG
             rect.offsetMax = new Vector2(-16f, DollTop);
             var inside = UiStyle.FillOf(doll).transform;
 
-            // A dark red glow behind the character.
-            var glow = UiStyle.Disc(inside, "Glow", new Color(0.35f, 0.05f, 0.04f, 0.35f));
-            UiStyle.Place(glow.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0f, 40f), new Vector2(560f, 560f));
-            // A soft ember glow rather than a flat disc (2026-10-04).
-            if (UiTextures.Glow != null)
-            {
-                glow.sprite = UiTextures.Glow;
-                glow.color = new Color(0.75f, 0.22f, 0.1f, 0.55f);
-                glow.rectTransform.sizeDelta = new Vector2(700f, 700f);
-            }
-            // A shadow under her feet: the portrait's canvas is 640 px with her feet 96 px up from its bottom
-            // (CharacterPortrait, 8 times the baked cell), centred in the 660 px figure 120 px up.
-            var shadow = UiStyle.Disc(inside, "Shadow", new Color(0f, 0f, 0f, 0.45f));
-            UiStyle.Place(shadow.rectTransform, new Vector2(0.5f, 0f), new Vector2(0f, 120f + 10f + 96f - 28f), new Vector2(240f, 56f));
-            var figure = UiStyle.Place(UiStyle.Rect(inside, "Character"), new Vector2(0.5f, 0f), new Vector2(0f, 120f), new Vector2(660f, 660f));
-            new CharacterPortrait(figure, true) { Animated = true }.Refresh(current.Equipment);
-
+            // Weapons and the head on the top row, the body below: bow, helm, amulet, ring, quiver; gloves, chest,
+            // belt, ring, boots.
             var equipment = current.Equipment;
-            // Left column: helm, weapon, gloves. Right: amulet, chest, off-hand, boots. Bottom: ring, belt, ring.
-            Slot(inside, equipment, ItemSlot.Helm, new Vector2(0f, 1f), new Vector2(16f, -16f), new Vector2(200f, 200f));
-            Slot(inside, equipment, ItemSlot.Weapon, new Vector2(0f, 1f), new Vector2(16f, -232f), new Vector2(200f, 330f));
-            Slot(inside, equipment, ItemSlot.Gloves, new Vector2(0f, 1f), new Vector2(16f, -578f), new Vector2(200f, 190f));
-            Slot(inside, equipment, ItemSlot.Amulet, new Vector2(1f, 1f), new Vector2(-16f, -16f), new Vector2(200f, 160f));
-            Slot(inside, equipment, ItemSlot.Chest, new Vector2(1f, 1f), new Vector2(-16f, -192f), new Vector2(200f, 230f));
-            Slot(inside, equipment, ItemSlot.OffHand, new Vector2(1f, 1f), new Vector2(-16f, -438f), new Vector2(200f, 160f));
-            Slot(inside, equipment, ItemSlot.Boots, new Vector2(1f, 1f), new Vector2(-16f, -614f), new Vector2(200f, 170f));
-            Slot(inside, equipment, ItemSlot.Ring, new Vector2(0.5f, 0f), new Vector2(-190f, 16f), new Vector2(130f, 130f));
-            Slot(inside, equipment, ItemSlot.Belt, new Vector2(0.5f, 0f), new Vector2(0f, 16f), new Vector2(220f, 130f));
-            Slot(inside, equipment, ItemSlot.Ring2, new Vector2(0.5f, 0f), new Vector2(190f, 16f), new Vector2(130f, 130f));
+            var rows = new[]
+            {
+                new[] { ItemSlot.Weapon, ItemSlot.Helm, ItemSlot.Amulet, ItemSlot.Ring, ItemSlot.OffHand },
+                new[] { ItemSlot.Gloves, ItemSlot.Chest, ItemSlot.Belt, ItemSlot.Ring2, ItemSlot.Boots },
+            };
+            for (var row = 0; row < rows.Length; row++)
+                for (var column = 0; column < rows[row].Length; column++)
+                    SlotInRow(inside, equipment, rows[row][column], column, rows[row].Length, row);
         }
 
-        void Slot(Transform parent, EquipmentState equipment, ItemSlot place, Vector2 anchor, Vector2 position, Vector2 size)
+        // A slot in the grid of slots: a fifth of the width, a row of SlotRowHeight, a gap all round.
+        void SlotInRow(Transform parent, EquipmentState equipment, ItemSlot place, int column, int columns, int row)
         {
             var item = equipment.Get(place);
-            var tile = ItemTile(parent, item, UiStyle.SlotLabel(place), size.y >= 160f ? 30 : 26);
+            var tile = ItemTile(parent, item, UiStyle.SlotLabel(place), 28);
             if (item == null)
                 Ghost(tile, place);
-            UiStyle.Place(tile.rectTransform, anchor, position, size);
+            var rect = tile.rectTransform;
+            rect.anchorMin = new Vector2(column / (float)columns, 1f);
+            rect.anchorMax = new Vector2((column + 1) / (float)columns, 1f);
+            rect.pivot = new Vector2(0.5f, 1f);
+            rect.offsetMin = new Vector2(SlotGap / 2f, -SlotGap - (row + 1) * SlotRowHeight - row * SlotGap);
+            rect.offsetMax = new Vector2(-SlotGap / 2f, -SlotGap - row * (SlotRowHeight + SlotGap));
             tile.gameObject.AddComponent<ItemDropTarget>().Place = place;
             var rim = tile.transform.GetChild(0).GetComponent<Image>();
             slotRims[place] = (rim, rim.color);
@@ -345,7 +336,8 @@ namespace ARPG
             var places = EquipmentState.PlacesFor(item.Slot);
             foreach (var pair in slotRims)
                 pair.Value.rim.color = wornIn == null && System.Array.IndexOf(places, pair.Key) >= 0 ? DropColor : NoDropColor;
-            if (wornIn != null && backpackRim != null)
+            // Worn gear can go back in the backpack, and a backpack item can be moved within it (2026-10-18).
+            if (backpackRim != null)
                 backpackRim.color = DropColor;
         }
 
@@ -375,6 +367,13 @@ namespace ARPG
                 done = current.EquipFromInventory(item, target.Place);
             else if (from != null && target.Backpack)
                 done = current.Unequip(from.Value);
+            // A backpack item dropped on the backpack moves there, centred on the finger, if those cells are free (the
+            // owner, 2026-10-18: "make it so that the inventory can be manually organized").
+            else if (from == null && target.Backpack && CellUnder(eventData.position, out var cell))
+            {
+                var size = ItemSize.Of(item);
+                done = current.MoveInBackpack(item, new Vector2Int(cell.x - (size.x - 1) / 2, cell.y - (size.y - 1) / 2));
+            }
             // The Bag redraws itself only for the item sheet's buttons, so a drop does it here; a refused drop just
             // restores the colors (EndDrag).
             if (!done)
@@ -542,6 +541,15 @@ namespace ARPG
                 entries.Add(("Soulglass", LootColors.Of(ItemRarity.Legendary), current.Materials(CraftingMaterial.Soulglass).ToString()));
             }
             entries.Add(("Backpack", UiStyle.TextDim, $"{current.Inventory.CellsUsed}/{current.Inventory.CellCount} space"));
+            // The auto sort (2026-10-18): the backpack packed afresh, largest and best first.
+            var sort = UiStyle.Button(inside, "Sort", () =>
+            {
+                current.SortBackpack();
+                Sfx.Play(SoundId.Pickup, 0.6f);
+                Refresh();
+            }, 30);
+            UiStyle.Place((RectTransform)sort.transform, new Vector2(1f, 0.5f), new Vector2(-10f, 0f), new Vector2(220f, 72f));
+            ((RectTransform)sort.transform).pivot = new Vector2(1f, 0.5f);
             for (var i = 0; i < entries.Count; i++)
             {
                 var (name, color, count) = entries[i];
@@ -650,6 +658,7 @@ namespace ARPG
                 inventory.Rows * Cell + (inventory.Rows - 1) * CellGap + 2f * GridPadding);
             scroll.content = grid;
             scroll.viewport = inside;
+            gridRect = grid;
 
             for (var y = 0; y < inventory.Rows; y++)
                 for (var x = 0; x < inventory.Columns; x++)
@@ -676,6 +685,24 @@ namespace ARPG
                     UiStyle.Place(arrow.rectTransform, new Vector2(1f, 1f), new Vector2(-6f, -4f), new Vector2(40f, 40f));
                 }
             }
+        }
+
+        RectTransform gridRect;
+
+        /// <summary>The backpack cell under a point of the screen (x right, y down from the top left), if any.</summary>
+        bool CellUnder(Vector2 screenPosition, out Vector2Int cell)
+        {
+            cell = default;
+            if (gridRect == null || !RectTransformUtility.ScreenPointToLocalPointInRectangle(gridRect, screenPosition, null, out var local))
+                return false;
+            // The grid's pivot is its top middle.
+            var fromLeft = local.x + gridRect.rect.width * 0.5f;
+            var fromTop = -local.y - GridPadding;
+            if (fromLeft < 0f || fromTop < 0f)
+                return false;
+            cell = new Vector2Int(Mathf.FloorToInt(fromLeft / (Cell + CellGap)), Mathf.FloorToInt(fromTop / (Cell + CellGap)));
+            var inventory = GameSession.Current.Inventory;
+            return cell.x < inventory.Columns && cell.y < inventory.Rows;
         }
 
         /// <summary>Puts a rect over a block of grid cells, counted from the grid's top left.</summary>

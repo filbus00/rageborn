@@ -35,7 +35,14 @@ namespace ARPG
             MigrateFrom17, // 17 to 18: no blueprints existed; Thorin knows none and has forged nothing.
             MigrateFrom18, // 18 to 19: no pet skills existed; none is taught.
             MigrateFrom19, // 19 to 20: no run numbers were kept; a run under way starts them at zero.
+            MigrateFrom20, // 20 to 21: backpack places were not kept; the backpack packs itself as before.
         };
+
+        static SaveData MigrateFrom20(SaveData data)
+        {
+            data.backpackCells = new List<CellData>();
+            return data;
+        }
 
         static SaveData MigrateFrom19(SaveData data) => data;
 
@@ -314,7 +321,11 @@ namespace ARPG
                 data.stash.Add(CaptureItem(item));
 
             foreach (var item in session.Inventory.Items)
+            {
                 data.backpack.Add(CaptureItem(item));
+                session.Inventory.PlacementOf(item, out var cells);
+                data.backpackCells.Add(new CellData { x = cells.x, y = cells.y });
+            }
 
             foreach (var corpse in session.Corpses)
                 data.corpses.Add(new CorpseData
@@ -410,10 +421,15 @@ namespace ARPG
 
             session.Equip(RestoreEquipment(data.equipped, warnings));
 
-            foreach (var saved in data.backpack)
+            // Each item back where it lay (21), else wherever it fits.
+            for (var i = 0; i < data.backpack.Count; i++)
             {
-                var item = RestoreItem(saved, warnings);
-                if (item != null && !session.Inventory.TryAdd(item))
+                var item = RestoreItem(data.backpack[i], warnings);
+                if (item == null)
+                    continue;
+                var placed = i < data.backpackCells.Count &&
+                             session.Inventory.TryAddAt(item, new Vector2Int(data.backpackCells[i].x, data.backpackCells[i].y));
+                if (!placed && !session.Inventory.TryAdd(item))
                     warnings?.Add($"No room in the backpack grid, dropped {item}.");
             }
 

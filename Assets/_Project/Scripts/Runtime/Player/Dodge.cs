@@ -34,9 +34,13 @@ namespace ARPG
         /// <summary>Whether to dive this step: the thumb has just left the stick's ring, and a fight is on.</summary>
         public static bool Triggers(bool disengaged, bool wasDisengaged, bool inCombat) => disengaged && !wasDisengaged && inCombat;
 
-        /// <summary>Three since 2026-10-18 (the owner: "Add a third roll that the character gets from the start").</summary>
-        public const int MaxCharges = 3;
-        public const float RechargeSeconds = 3f;
+        /// <summary>
+        /// One dive, ready again half a second after it (the owner, 2026-10-18: "I am failing to see how the dive being
+        /// limited makes the game anything other than more boring. Just put the dive on 0.5 sec reload timer"). Three
+        /// charges coming back one every 3 s until then.
+        /// </summary>
+        public const int MaxCharges = 1;
+        public const float RechargeSeconds = 0.5f;
 
     }
 

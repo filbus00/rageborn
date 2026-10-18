@@ -21,7 +21,7 @@ namespace ARPG
         /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses. 13: adds each
         /// item's named legendary and the legendaries seen (the Codex). 14: the deepest depth and the stash. 15: the talent
         /// trees' ranks (2026-10-07; skill levels and the loadout are kept in the file but no longer used).</summary>
-        public const int CurrentVersion = 20;
+        public const int CurrentVersion = 21;
 
         public int version;
 
@@ -49,6 +49,9 @@ namespace ARPG
         public int dungeonVersion;
         public List<ItemData> equipped = new List<ItemData>();
         public List<ItemData> backpack = new List<ItemData>();
+
+        /// <summary>Where each backpack item lies, in the same order (21, 2026-10-18: the backpack arranged by hand).</summary>
+        public List<CellData> backpackCells = new List<CellData>();
         public List<CorpseData> corpses = new List<CorpseData>();
         public List<KilledPackData> killed = new List<KilledPackData>();
 
@@ -179,6 +182,13 @@ namespace ARPG
 
         /// <summary>A blueprint, not a wearable item (2026-10-15).</summary>
         public bool blueprint;
+    }
+
+    [Serializable]
+    public sealed class CellData
+    {
+        public int x;
+        public int y;
     }
 
     [Serializable]

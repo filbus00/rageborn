@@ -1192,6 +1192,22 @@ namespace ARPG
             return true;
         }
 
+        /// <summary>Moves a backpack item by hand (2026-10-18). False when those cells are not free.</summary>
+        public bool MoveInBackpack(Item item, Vector2Int corner)
+        {
+            if (!Inventory.TryMove(item, corner))
+                return false;
+            NotifyChanged();
+            return true;
+        }
+
+        /// <summary>The backpack's auto sort (2026-10-18).</summary>
+        public void SortBackpack()
+        {
+            Inventory.Sort();
+            NotifyChanged();
+        }
+
         void NotifyChanged()
         {
             Changed?.Invoke();

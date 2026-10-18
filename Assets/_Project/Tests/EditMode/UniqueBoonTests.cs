@@ -108,11 +108,10 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void TheDive_BurstsAndEasesOut_OverItsDistance_WithThreeCharges()
+        public void TheDive_BurstsAndEasesOut_OverItsDistance()
         {
-            // The owner, 2026-10-18: a third roll from the start, and snappier.
-            Assert.AreEqual(3, DodgeRules.MaxCharges);
-            Assert.AreEqual(3, new DodgeCharges().Charges);
+            // The owner, 2026-10-18: snappier.
+            Assert.AreEqual(DodgeRules.MaxCharges, new DodgeCharges().Charges);
             Assert.Greater(DodgeRules.DiveSpeed(0f), 1f);
             Assert.Less(DodgeRules.DiveSpeed(1f), 1f);
             // The burst covers the dive's distance: the average share across it is 1.

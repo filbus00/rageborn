@@ -349,8 +349,8 @@ namespace ARPG
             RefreshSlots();
             if (health != null)
                 health.HitTaken += OnHitTaken;
-            if (player != null)
-                RageArc.Create(this, player);
+            // The Focus arc under her feet is gone (the owner, 2026-10-18: "it really does not add any relevant info to the
+            // game. Remove it or rework it"); RageArc stays for later.
             Current = this;
         }
 

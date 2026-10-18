@@ -141,5 +141,50 @@ namespace ARPG.Tests
             Assert.AreEqual(before, after);
             Assert.IsFalse(inventory.Replace(second, Of(ItemSlot.Weapon)), "a different size cannot take the place");
         }
+
+        [Test]
+        public void AnItem_CanBeMovedByHand_OnlyOntoFreeCells()
+        {
+            // The owner, 2026-10-18: "make it so that the inventory can be manually organized".
+            var inventory = new Inventory();
+            var bow = new Item(ItemSlot.Weapon, ItemRarity.Magic, 3);
+            var ring = new Item(ItemSlot.Ring, ItemRarity.Rare, 3);
+            Assert.IsTrue(inventory.TryAdd(bow));
+            Assert.IsTrue(inventory.TryAdd(ring));
+            Assert.IsTrue(inventory.TryMove(bow, new Vector2Int(8, 2)));
+            inventory.PlacementOf(bow, out var cells);
+            Assert.AreEqual(new RectInt(8, 2, 2, 4), cells);
+            Assert.IsFalse(inventory.TryMove(bow, new Vector2Int(9, 2)), "off the grid");
+            inventory.PlacementOf(ring, out var ringCells);
+            Assert.IsFalse(inventory.TryMove(bow, new Vector2Int(ringCells.x, ringCells.y)), "onto the ring");
+            Assert.IsTrue(inventory.TryMove(bow, new Vector2Int(8, 1)), "overlapping only itself");
+        }
+
+        [Test]
+        public void Sort_PacksEverythingAfresh_LargestFirst()
+        {
+            var inventory = new Inventory();
+            var ring = new Item(ItemSlot.Ring, ItemRarity.Common, 1);
+            var bow = new Item(ItemSlot.Weapon, ItemRarity.Magic, 1);
+            Assert.IsTrue(inventory.TryAdd(ring));
+            Assert.IsTrue(inventory.TryAdd(bow));
+            Assert.IsTrue(inventory.TryMove(bow, new Vector2Int(6, 2)));
+            inventory.Sort();
+            inventory.PlacementOf(bow, out var cells);
+            Assert.AreEqual(Vector2Int.zero, cells.position, "the bow, largest, top left");
+            Assert.AreEqual(2, inventory.Count);
+        }
+
+        [Test]
+        public void TheSave_KeepsWhereEachItemLies()
+        {
+            var session = new GameSession(1);
+            var bow = new Item(ItemSlot.Weapon, ItemRarity.Magic, 3);
+            Assert.IsTrue(session.Inventory.TryAdd(bow));
+            Assert.IsTrue(session.MoveInBackpack(bow, new Vector2Int(7, 1)));
+            var loaded = SaveCodec.Restore(SaveCodec.Capture(session, 0), 2);
+            Assert.IsTrue(loaded.Inventory.PlacementOf(loaded.Inventory.Items[0], out var cells));
+            Assert.AreEqual(new Vector2Int(7, 1), cells.position);
+        }
     }
 }

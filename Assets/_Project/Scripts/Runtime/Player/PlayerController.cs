@@ -105,10 +105,8 @@ namespace ARPG
                 gameObject.AddComponent<PlayerSpriteAnimator>();
         }
 
-        // A scene with no combat (the town) still shows the Focus arc under the feet.
         void Start()
         {
-            RageArc.EnsureWithoutCombat(this);
             combat = FindAnyObjectByType<PlayerCombat>();
             if (combat != null)
             {

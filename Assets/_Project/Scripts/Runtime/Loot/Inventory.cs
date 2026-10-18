@@ -38,7 +38,8 @@ namespace ARPG
 
     /// <summary>
     /// The backpack: a grid of cells (10 x 6, the owner's choice of 2026-10-02) where each item takes the space its kind
-    /// needs (<see cref="ItemSize"/>). Packing is automatic, so nothing is dragged with one thumb: a new item goes in the
+    /// needs (<see cref="ItemSize"/>). Items can be moved by hand (<see cref="TryMove"/>) and sorted (<see cref="Sort"/>)
+    /// since 2026-10-18; a new item goes in the
     /// first place it fits, scanning rows from the top left; when it fits nowhere as things lie, everything is repacked,
     /// largest first, and the item is taken only if the repacked grid holds it. <see cref="Items"/> keeps the order
     /// items came in; <see cref="PlacementOf"/> says where each lies. Pure.
@@ -217,6 +218,61 @@ namespace ARPG
         }
 
         public bool Contains(Item item) => items.Contains(item);
+
+        /// <summary>
+        /// Moves an item to lie with its top left at <paramref name="corner"/> (the owner, 2026-10-18: "make it so that the
+        /// inventory can be manually organized"): only onto cells inside the grid that nothing else takes. Returns false,
+        /// moving nothing, otherwise.
+        /// </summary>
+        public bool TryMove(Item item, Vector2Int corner)
+        {
+            if (item == null || !placements.ContainsKey(item))
+                return false;
+            var cells = new RectInt(corner, ItemSize.Of(item));
+            if (!Fits(cells, item))
+                return false;
+            placements[item] = cells;
+            refused.Clear();
+            return true;
+        }
+
+        /// <summary>Puts an item in at a given place (a loaded save's own arrangement). False, adding nothing, when the
+        /// place is taken or off the grid.</summary>
+        public bool TryAddAt(Item item, Vector2Int corner)
+        {
+            if (item == null || items.Contains(item))
+                return false;
+            var cells = new RectInt(corner, ItemSize.Of(item));
+            if (!Fits(cells, null))
+                return false;
+            items.Add(item);
+            placements[item] = cells;
+            refused.Clear();
+            return true;
+        }
+
+        /// <summary>The auto sort (2026-10-18): everything packed afresh, largest first, then by rarity, best first.</summary>
+        public void Sort()
+        {
+            var order = new List<Item>(items);
+            order.Sort((a, b) => b.Rarity.CompareTo(a.Rarity));
+            var packed = Pack(order);
+            if (packed == null)
+                return;
+            Apply(packed);
+            refused.Clear();
+        }
+
+        // Whether a block of cells lies inside the grid on cells no item but <paramref name="ignoring"/> takes.
+        bool Fits(RectInt cells, Item ignoring)
+        {
+            if (cells.x < 0 || cells.y < 0 || cells.xMax > Columns || cells.yMax > Rows)
+                return false;
+            foreach (var pair in placements)
+                if (pair.Key != ignoring && pair.Value.Overlaps(cells))
+                    return false;
+            return true;
+        }
 
         List<Item> With(Item item)
         {
