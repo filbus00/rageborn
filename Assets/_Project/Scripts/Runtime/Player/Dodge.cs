@@ -13,7 +13,8 @@ namespace ARPG
         // an even 7.5 a second (under twice her run) and held her fire for 0.65 s. Now a little further in 0.24 s, fastest
         // at the start and easing out (DiveSpeed), and she is back on her feet and shooting after 0.38 s.
         public const float Distance = 3.2f;
-        public const float Seconds = 0.24f;
+        // 10 percent slower on 2026-10-18 (the owner: "make the dive 10% slower"): 0.264 s, was 0.24.
+        public const float Seconds = 0.264f;
         public const float Speed = Distance / Seconds;
 
         /// <summary>The dive's speed at its start, as a multiple of its average: it falls evenly to
@@ -25,10 +26,10 @@ namespace ARPG
 
         /// <summary>The dive animation, travel and getting up (Mixamo's Standing Dive Forward is 1.6 s, played faster):
         /// she holds her fire this long, a little longer than the travel.</summary>
-        public const float AnimationSeconds = 0.38f;
+        public const float AnimationSeconds = 0.42f;
 
         /// <summary>She cannot be hit for this long from the dive's start: the whole travel.</summary>
-        public const float UntouchableSeconds = 0.24f;
+        public const float UntouchableSeconds = 0.264f;
 
         /// <summary>Whether to dive this step: the thumb has just left the stick's ring, and a fight is on.</summary>
         public static bool Triggers(bool disengaged, bool wasDisengaged, bool inCombat) => disengaged && !wasDisengaged && inCombat;

@@ -1348,3 +1348,7 @@ The owner's answers are in Docs/08. How it is built:
 - `PlayerCombat`: `Shot.Fiery`, `Frosty`, `Charged` set in `ApplyGear` (from a 25 percent chance, Freezing Arrow, Chain Lightning, Thunder Arrow); a basic arrow takes the first one's glow; `Trail` adds their motes; `Afflict` plays `Flames` and `FireHit`, `FrostShards` and `FrostHit`, or a bigger burst and `Freeze` when this hit froze it; `Bolt` draws `Lightning`; `Thunderbolt` from 3.5 above; chain lightning plays `Zap`, Thunder Arrow `Thunder`; Wildfire and Shatter use flames, shards and `Freeze`.
 - Sounds: `FireHit`, `FrostHit`, `Freeze`, `Zap`, `Thunder` from `make_sfx.py` (fire_hit, frost_hit, freeze, zap, thunder), `SoundId` and `Sfx.MinGap` (0.12 to 0.3 s), synth stand-ins for `SoundTests`. Not listened to by Claude.
 - Checked in the editor: bolts and thunderbolts drawn (the first try was a dotted line, remade jagged and solid), no errors in a fight with the four boons. Offline 674 passed (the 5 NavGrid failures), Unity 679 of 679.
+
+## 2026-10-18: the dive 10 percent slower
+
+- `DodgeRules.Seconds` 0.264 (was 0.24; the same 3.2 units, so the speed follows), `UntouchableSeconds` 0.264, `AnimationSeconds` 0.42 (was 0.38). Offline 674 passed (the 5 NavGrid failures), Unity 679 of 679.
