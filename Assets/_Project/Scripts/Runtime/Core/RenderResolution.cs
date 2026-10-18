@@ -33,6 +33,22 @@ namespace ARPG
         /// </summary>
         public static int Factor(int screenLongSide) => Mathf.Max(1, Mathf.RoundToInt(screenLongSide / (float)TargetLongSide));
 
+        /// <summary>
+        /// Heavier pixels (the owner, 2026-10-18: "Implement the 1.5 pixelation"): the world is drawn at a resolution this
+        /// many times lower on each side with the same view, so each rendered pixel is half again as big (3 x 3 screen
+        /// pixels on an iPhone 11, was 2 x 2). The art is drawn at fewer pixels a unit to keep the view's size.
+        /// </summary>
+        public const float Pixelation = 1.5f;
+
+        /// <summary>The screen pixels a rendered pixel covers with the heavier pixels: <see cref="Pixelation"/> times
+        /// <see cref="Factor"/>, rounded up to a whole number (3 on a 2x phone, 5 on a 3x one).</summary>
+        public static int PixelatedFactor(int screenLongSide) => Mathf.CeilToInt(Factor(screenLongSide) * Pixelation - 0.01f);
+
+        /// <summary>The art's pixels a unit at the heavier pixels, so the view stays as wide as at <see cref="Factor"/>
+        /// with <see cref="PixelArt.PixelsPerUnit"/> (27 on an iPhone 11: 40 times 2 over 3).</summary>
+        public static int PixelatedUnit(int screenLongSide) =>
+            Mathf.Max(1, Mathf.RoundToInt(PixelArt.PixelsPerUnit * Factor(screenLongSide) / (float)PixelatedFactor(screenLongSide)));
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Install()
         {
@@ -45,7 +61,8 @@ namespace ARPG
             var camera = Camera.main;
             if (camera == null || !camera.orthographic || camera.GetComponent<PixelPerfectCamera>() != null)
                 return;
-            var factor = Factor(Mathf.Max(Screen.width, Screen.height));
+            var longSide = Mathf.Max(Screen.width, Screen.height);
+            var factor = PixelatedFactor(longSide);
             // The component renders into a texture of the screen over the factor (rounded down to even) and sets the
             // camera's orthographic size from its height and the pixels per unit.
             var height = Screen.height / factor / 2 * 2;
@@ -55,7 +72,8 @@ namespace ARPG
             // Every world sprite is drawn at PixelArt.PixelsPerUnit, so the world renders at that too and one art pixel is
             // one rendered pixel; the view's height follows the screen (14.9 units on an iPhone 11, the scenes' 15 give
             // or take, 16.4 on an iPhone 17). It used to follow the camera's size instead, which the art could not match.
-            pixelPerfect.assetsPPU = PixelArt.PixelsPerUnit;
+            // Since 2026-10-18 at the heavier pixels: fewer art pixels a unit (PixelatedUnit), the same view.
+            pixelPerfect.assetsPPU = PixelatedUnit(longSide);
             pixelPerfect.gridSnapping = PixelPerfectCamera.GridSnapping.UpscaleRenderTexture;
             pixelPerfect.cropFrame = PixelPerfectCamera.CropFrame.None;
             Debug.Log($"RenderResolution: {scene.name} world at {Screen.width / factor} x {height}, " +

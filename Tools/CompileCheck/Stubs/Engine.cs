@@ -374,6 +374,8 @@ namespace UnityEngine.Rendering
     public class MinFloatParameter : VolumeParameter<float> { public MinFloatParameter(float v, float a, bool o = false) { } }
     public class ColorParameter : VolumeParameter<Color> { public ColorParameter(Color c, bool o = false) { } }
     public class BoolParameter : VolumeParameter<bool> { public BoolParameter(bool c, bool o = false) { } }
+    public class FloatParameter : VolumeParameter<float> { public FloatParameter(float v, bool o = false) { } }
+    public class Vector2Parameter : VolumeParameter<Vector2> { public Vector2Parameter(Vector2 v, bool o = false) { } }
 }
 
 namespace UnityEngine.Experimental.Rendering { public enum GraphicsFormat { None = 0, R8G8B8A8_SRGB = 8, R8G8B8A8_UNorm = 4, R16G16B16A16_SFloat = 48, R32G32B32A32_SFloat = 52 } }

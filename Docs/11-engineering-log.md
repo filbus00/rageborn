@@ -1335,3 +1335,9 @@ The owner's answers are in Docs/08. How it is built:
 - `AimRules`: `SteadyPush` 0.5, `WalkingPush` 0.8, `RunningAim` 0.5. The aim arc follows them.
 - `RageArc`: charge diamonds alternate between the arc's ends, a third outside the first.
 - Tests: `DodgeTests` (three charges), `UniqueBoonTests.TheDive_BurstsAndEasesOut_OverItsDistance_WithThreeCharges`, `AimRulesTests`. Offline 673 passed (the 5 NavGrid failures), Unity 678 of 678.
+
+## 2026-10-18: heavier pixels and the grim grade
+
+- `RenderResolution`: `Pixelation` 1.5; `PixelatedFactor` (the old factor times 1.5, rounded up: 3 on a 2x phone, 5 on a 3x one) and `PixelatedUnit` (the art's pixels a unit that keeps the view: 27 on an iPhone 11, 24 on a 3x phone). The Pixel Perfect Camera gets them in place of `Factor` and 40. Checked: on the iPhone 11 size the camera renders 276 x 597 at 27 a unit.
+- `Core/GrimGrade.cs`: on every scene load the main camera renders post-processing and a global `Volume` (one profile made in code, `GradeRules`: ColorAdjustments, SplitToning, Vignette). The 2D renderer already had its post-process data. Compile-check stubs gained `ColorAdjustments`, `SplitToning`, `Vignette`, `FloatParameter`, `Vector2Parameter`, `GetUniversalAdditionalCameraData`.
+- In the editor the game view falls back to landscape between commands, so a dungeon loaded then gets a landscape camera; the town was checked through the real pipeline at phone size, the dungeon by a render at 276 x 597 enlarged three times. Offline 674 passed (the 5 NavGrid failures), Unity 679 of 679.

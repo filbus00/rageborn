@@ -207,4 +207,8 @@ namespace UnityEngine.Rendering.Universal
     public class UniversalRendererData : ScriptableRendererData { }
     public class Renderer2DData : ScriptableRendererData { }
     public class ScriptableRenderer { }
+    public static class CameraExtensions { public static UniversalAdditionalCameraData GetUniversalAdditionalCameraData(this Camera camera) => null; }
+    public sealed class ColorAdjustments : VolumeComponent { public FloatParameter postExposure = new FloatParameter(0f); public ClampedFloatParameter contrast = new ClampedFloatParameter(0f, -100f, 100f); public ColorParameter colorFilter = new ColorParameter(Color.white); public ClampedFloatParameter hueShift = new ClampedFloatParameter(0f, -180f, 180f); public ClampedFloatParameter saturation = new ClampedFloatParameter(0f, -100f, 100f); }
+    public sealed class SplitToning : VolumeComponent { public ColorParameter shadows = new ColorParameter(Color.grey); public ColorParameter highlights = new ColorParameter(Color.grey); public ClampedFloatParameter balance = new ClampedFloatParameter(0f, -100f, 100f); }
+    public sealed class Vignette : VolumeComponent { public ColorParameter color = new ColorParameter(Color.black); public Vector2Parameter center = new Vector2Parameter(new Vector2(0.5f, 0.5f)); public ClampedFloatParameter intensity = new ClampedFloatParameter(0f, 0f, 1f); public ClampedFloatParameter smoothness = new ClampedFloatParameter(0.2f, 0.01f, 1f); public BoolParameter rounded = new BoolParameter(false); }
 }
