@@ -364,6 +364,7 @@ namespace ARPG
         {
             slamMarker?.Hide();
             aimMarker?.Hide();
+            manager?.Warnings?.Cancel(this);
         }
 
         /// <summary>Shows a small colored dot above the head for each active modifier (Docs/01-core-gameplay.md:
@@ -925,11 +926,9 @@ namespace ARPG
                 case EnemyArchetype.Archer:
                     var aim = playerGround - ground;
                     attackAim = aim.sqrMagnitude > 1e-4f ? aim.normalized : Vector2.down;
-                    var end = ground + attackAim * (definition.AttackRange + ArrowOvershoot);
-                    if (aimMarker == null)
-                        aimMarker = GroundMarker.Line(ground, end, AimLineWidth, stateTimer, TelegraphColor, world.transform);
-                    else
-                        aimMarker.RestartLine(ground, end, AimLineWidth, stateTimer);
+                    // A warning round her on this archer's side, in place of the aim line along the ground (the owner,
+                    // 2026-10-19).
+                    world.Warnings?.Warn(this, ground, stateTimer, IncomingWarnings.ShotColor);
                     break;
             }
         }
@@ -1065,7 +1064,7 @@ namespace ARPG
             hurt?.Heal(hurt.MaxLife * definition.HealPercent);
         }
 
-        /// <summary>A charger's wind-up: a line along the lunge, filling, aimed where the player stood.</summary>
+        /// <summary>A charger's wind-up, aimed where the player stood, shown as a warning round her.</summary>
         void BeginLunge(EnemyManager world, Vector2 playerGround)
         {
             State = EnemyState.Attack;
@@ -1073,11 +1072,8 @@ namespace ARPG
             stateTimer = EnemyRules.Telegraph(definition.LungeWindupSeconds);
             var aim = playerGround - ground;
             attackAim = aim.sqrMagnitude > 1e-4f ? aim.normalized : Vector2.down;
-            var end = ground + attackAim * definition.LungeDistance;
-            if (aimMarker == null)
-                aimMarker = GroundMarker.Line(ground, end, LungeLineWidth, stateTimer, TelegraphColor, world.transform);
-            else
-                aimMarker.RestartLine(ground, end, LungeLineWidth, stateTimer);
+            // A warning round her on its side, in place of the lunge line (2026-10-19).
+            world.Warnings?.Warn(this, ground, stateTimer, IncomingWarnings.LungeColor);
         }
 
         /// <summary>The lunge itself: fast along the aimed line, walls respected; it bites the player once if it passes

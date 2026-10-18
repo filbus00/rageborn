@@ -279,24 +279,17 @@ namespace ARPG
             return special;
         }
 
-        const float AimWidth = 0.18f;
-
         void Begin(EnemyController enemy, EnemySpecial special, Vector2 target, EnemyManager world)
         {
             var aim = target - enemy.GroundPosition;
             aim = aim.sqrMagnitude > 1e-4f ? aim.normalized : Vector2.down;
             if (special.Shape == SpecialShape.Throw)
             {
-                // A thin aim line along each throw for the wind-up, then the projectiles fly down them.
+                // A warning round her on the thrower's side for the wind-up, in the special's colour (the owner,
+                // 2026-10-19: in place of an aim line along each throw), then the projectiles fly.
                 var warning = EnemyRules.Telegraph(EnemySpecialRules.CastSeconds + special.Fill);
                 enemy.BeginCast(warning, aim);
-                var reach = EnemySpecialRules.ThrowReach(special, Vector2.Distance(enemy.GroundPosition, target));
-                for (var k = 0; k < special.Count; k++)
-                {
-                    var direction = EnemySpecialRules.LineDirection(aim, k, special.Count, special.Spread);
-                    var from = enemy.GroundPosition + direction * enemy.Definition.BodyRadius;
-                    world.Hazards.Line(from, from + direction * reach, AimWidth, warning, 0f, enemy.Level, special.Color);
-                }
+                world.Warnings?.Warn(enemy, enemy.GroundPosition, warning, special.Color);
                 Queue(enemy, special, target, aim, warning, 0);
                 return;
             }
@@ -364,6 +357,8 @@ namespace ARPG
                     break;
                 case SpecialShape.Spew:
                     Sfx.Play(SoundId.EnemySlam, 0.4f);
+                    // The lanes stay on the ground (they hurt where they lie); a warning round her says where from too.
+                    world.Warnings?.Warn(enemy, enemy.GroundPosition, EnemyRules.Telegraph(s.Fill), s.Color);
                     for (var k = 0; k < s.Count; k++)
                     {
                         var direction = EnemySpecialRules.LineDirection(p.Aim, k, s.Count, s.Spread);
@@ -373,6 +368,7 @@ namespace ARPG
                     world.Hazards.Poison(p.Target, 1.3f, EnemyRules.Telegraph(s.Fill), s.LingerSeconds, hit * s.LingerHit, level, s.Color, 0f, EnemyRules.PoolGraceSeconds);
                     break;
                 case SpecialShape.Lines:
+                    world.Warnings?.Warn(enemy, enemy.GroundPosition, EnemyRules.Telegraph(s.Fill), s.Color);
                     for (var k = 0; k < s.Count; k++)
                     {
                         var direction = EnemySpecialRules.LineDirection(p.Aim, k, s.Count, s.Spread);
