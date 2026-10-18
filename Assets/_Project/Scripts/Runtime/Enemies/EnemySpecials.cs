@@ -216,6 +216,9 @@ namespace ARPG
         }
 
         readonly Dictionary<EnemyController, float> timers = new Dictionary<EnemyController, float>();
+        // Each definition's special, looked up once: Object.name makes a new string on every read, and this runs for
+        // every awake enemy every frame.
+        readonly Dictionary<EnemyDefinition, EnemySpecial> specials = new Dictionary<EnemyDefinition, EnemySpecial>();
         readonly List<Pending> pending = new List<Pending>();
         int started;
 
@@ -224,11 +227,14 @@ namespace ARPG
             var player = world.Player;
             var alive = player != null && player.IsAlive;
             var target = world.PlayerGround;
-            foreach (var enemy in world.Active)
+            // By index: a foreach over the IReadOnlyList boxes its enumerator every frame.
+            var active = world.Active;
+            for (var e = 0; e < active.Count; e++)
             {
+                var enemy = active[e];
                 if (!alive || !enemy.IsAlive || enemy.Definition == null || enemy.Definition.Rank == EnemyRank.Boss)
                     continue;
-                var special = EnemySpecialRules.For(enemy.Definition.name);
+                var special = SpecialOf(enemy.Definition);
                 if (special.Shape == SpecialShape.None)
                     continue;
                 if (!timers.TryGetValue(enemy, out var timer))
@@ -261,6 +267,16 @@ namespace ARPG
                     continue;
                 Release(p, world);
             }
+        }
+
+        EnemySpecial SpecialOf(EnemyDefinition definition)
+        {
+            if (!specials.TryGetValue(definition, out var special))
+            {
+                special = EnemySpecialRules.For(definition.name);
+                specials[definition] = special;
+            }
+            return special;
         }
 
         const float AimWidth = 0.18f;

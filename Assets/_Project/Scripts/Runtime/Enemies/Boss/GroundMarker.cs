@@ -68,11 +68,14 @@ namespace ARPG
             return 0.45f + 0.25f * (r / edge);
         });
 
+        // Made once, not once a pixel.
+        static readonly (float x, float y, float size)[] BubbleSpots =
+            { (0.3f, 0.2f, 0.11f), (-0.35f, 0.35f, 0.08f), (-0.15f, -0.4f, 0.13f), (0.45f, -0.25f, 0.07f), (0.05f, 0.55f, 0.06f), (-0.55f, -0.05f, 0.09f) };
+
         /// <summary>Bubbles or embers in a pool: scattered bright rings, turned over the pool to look alive.</summary>
         public static Sprite Bubbles => bubbles != null ? bubbles : bubbles = MakeXY("Bubbles", (u, v) =>
         {
-            var spots = new[] { (0.3f, 0.2f, 0.11f), (-0.35f, 0.35f, 0.08f), (-0.15f, -0.4f, 0.13f), (0.45f, -0.25f, 0.07f), (0.05f, 0.55f, 0.06f), (-0.55f, -0.05f, 0.09f) };
-            foreach (var (x, y, size) in spots)
+            foreach (var (x, y, size) in BubbleSpots)
             {
                 var d = Mathf.Sqrt((u - x) * (u - x) + (v - y) * (v - y));
                 if (d < size && d > size * 0.55f)
@@ -349,8 +352,12 @@ namespace ARPG
             var t = Duration > 0f ? Mathf.Clamp01(Elapsed / Duration) : 1f;
             if (fill != null)
                 fill.localScale = IsCircle ? new Vector3(t, t, 1f) : new Vector3(t, 1f, 1f);
-            // In the last quarter the rim pulses quicker and quicker: it is about to land (2026-10-18).
-            if (rootRenderer != null && fill != null && !pooled)
+            // In the last quarter the rim pulses quicker and quicker: it is about to land (2026-10-18). Once it has
+            // landed it holds its own colour again: a lasting zone (BossFight.LastingZone) or a marker kept until its
+            // attack ends must not keep pulsing as if about to land.
+            if (rootRenderer != null && fill != null && !pooled && Done)
+                rootRenderer.color = color;
+            else if (rootRenderer != null && fill != null && !pooled)
             {
                 var pulse = t < 0.75f ? 1f : 0.7f + 0.3f * Mathf.Cos(Elapsed * (18f + 30f * (t - 0.75f)));
                 rootRenderer.color = new Color(Mathf.Min(1f, color.r * (2f - pulse)), Mathf.Min(1f, color.g * (2f - pulse)), Mathf.Min(1f, color.b * (2f - pulse)), color.a * pulse);

@@ -191,8 +191,11 @@ namespace ARPG
 
             foreach (var list in packElites.Values)
                 list.Clear();
-            foreach (var enemy in world.Active)
+            // By index: a foreach over the IReadOnlyList boxes its enumerator every frame.
+            var active = world.Active;
+            for (var e = 0; e < active.Count; e++)
             {
+                var enemy = active[e];
                 if (!enemy.IsAlive || enemy.Definition == null || enemy.Definition.Rank != EnemyRank.Elite)
                     continue;
                 var modifiers = enemy.Modifiers;
