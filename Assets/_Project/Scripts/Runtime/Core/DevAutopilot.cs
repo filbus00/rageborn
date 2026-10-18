@@ -1,4 +1,6 @@
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+// Development builds only. Unity 6.6 deprecated DEVELOPMENT_BUILD; a development build still defines
+// UNITY_INCLUDE_INSTRUMENTATION, a Release managed code variant without Development Build does not.
+#if UNITY_EDITOR || UNITY_INCLUDE_INSTRUMENTATION
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -479,7 +481,7 @@ namespace ARPG
             // 4. Loot lying around once the fight is over.
             LootDrop bestDrop = null;
             var bestDropDistance = LootRange;
-            foreach (var drop in FindObjectsByType<LootDrop>(FindObjectsSortMode.None))
+            foreach (var drop in FindObjectsByType<LootDrop>())
             {
                 if (!drop.gameObject.activeInHierarchy || unreachable.Contains(drop))
                     continue;

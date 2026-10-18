@@ -1,4 +1,6 @@
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+// Development builds only. Unity 6.6 deprecated DEVELOPMENT_BUILD; a development build still defines
+// UNITY_INCLUDE_INSTRUMENTATION, a Release managed code variant without Development Build does not.
+#if UNITY_EDITOR || UNITY_INCLUDE_INSTRUMENTATION
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;

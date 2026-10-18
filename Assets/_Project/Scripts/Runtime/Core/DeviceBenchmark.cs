@@ -108,7 +108,7 @@ namespace ARPG
             var level = FindAnyObjectByType<DungeonLevel>();
             var player = FindAnyObjectByType<PlayerController>();
             var health = FindAnyObjectByType<PlayerHealth>();
-            Step($"depth {level.Depth}, lights {FindObjectsByType<Light2D>(FindObjectsSortMode.None).Length}");
+            Step($"depth {level.Depth}, lights {FindObjectsByType<Light2D>().Length}");
             StartCoroutine(KeepAlive(health));
             yield return Measure("warm up (not counted)", 3f, false);
             yield return Measure("standing, all on", PhaseSeconds, true);
@@ -122,8 +122,8 @@ namespace ARPG
             {
                 yield return Measure($"t {snapshot * SnapshotSeconds:0} s", SnapshotSeconds, true);
                 var loot = FindAnyObjectByType<LootDirector>();
-                report.AppendLine($"  kills {kills}, level {GameSession.Current.Level}, lights {FindObjectsByType<Light2D>(FindObjectsSortMode.None).Length}, " +
-                                  $"objects {FindObjectsByType<Transform>(FindObjectsSortMode.None).Length}, drops {(loot != null ? loot.Active.Count : 0)}, " +
+                report.AppendLine($"  kills {kills}, level {GameSession.Current.Level}, lights {FindObjectsByType<Light2D>().Length}, " +
+                                  $"objects {FindObjectsByType<Transform>().Length}, drops {(loot != null ? loot.Active.Count : 0)}, " +
                                   $"managed {System.GC.GetTotalMemory(false) / 1048576f:0} MB, backpack {GameSession.Current.Inventory.Count}");
                 File.WriteAllText(Path.Combine(Application.persistentDataPath, "benchmark.txt"), report.ToString());
             }

@@ -49,7 +49,7 @@ namespace ARPG
             if (!mood.HasValue)
                 return;
 
-            foreach (var light in FindObjectsByType<Light2D>(FindObjectsSortMode.None))
+            foreach (var light in FindObjectsByType<Light2D>())
                 if (light.lightType == Light2D.LightType.Global)
                 {
                     light.color = mood.Value.Ambient;
@@ -65,7 +65,7 @@ namespace ARPG
 
             // The dungeon shades its own floor as it paints it (DungeonLevel); the town's is painted in the scene.
             if (scene.name == SceneTravel.TownScene)
-                foreach (var tilemap in FindObjectsByType<Tilemap>(FindObjectsSortMode.None))
+                foreach (var tilemap in FindObjectsByType<Tilemap>())
                     if (tilemap.name == "Ground")
                     {
                         if (!GroundPainter.PaintTown(tilemap))

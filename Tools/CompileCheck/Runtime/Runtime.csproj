@@ -5,7 +5,7 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <AssemblyName>ARPG.Runtime</AssemblyName>
-    <DefineConstants>UNITY_EDITOR;UNITY_IOS;DEVELOPMENT_BUILD;UNITY_2023_1_OR_NEWER;UNITY_6000_0_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_EDITOR;UNITY_IOS;DEVELOPMENT_BUILD;UNITY_INCLUDE_INSTRUMENTATION;UNITY_2023_1_OR_NEWER;UNITY_6000_0_OR_NEWER</DefineConstants>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <NoWarn>CS0067;CS0649;CS0169;CS0414;CS0618;CS0108;CS0114</NoWarn>

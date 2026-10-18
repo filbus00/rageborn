@@ -183,7 +183,7 @@ namespace ARPG
         // Ticks the idle and frees the canvas with the UI that shows it.
         sealed class Driver : MonoBehaviour
         {
-            public CharacterPortrait Owner;
+            [System.NonSerialized] public CharacterPortrait Owner;
 
             void Update() => Owner?.Tick();
 
