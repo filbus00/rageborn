@@ -5,20 +5,29 @@ namespace ARPG
 {
     /// <summary>
     /// The HUD's arrangement (the owner, 2026-09-28): the player's round portrait in the top-left corner, the life bar,
-    /// experience bar, potion pips and the depth (2026-10-13, in place of the level on the portrait) to its right; the
-    /// mini-map sits top right (<see cref="Minimap"/>), and under it (2026-10-18) the Bag and Settings icon buttons and
-    /// her coins (<see cref="CoinCounter"/>). Arranges the scene's HUD objects at runtime inside the safe area,
+    /// depth and potion pips and the boons in a block to its right; the mini-map top right (<see cref="Minimap"/>) at the
+    /// same margins. Since 2026-10-19 (the owner: "nothing is symetrical ... Move the bag button and option button to the
+    /// bottom left. Option button goes closest to the left"): Settings and the Bag at the bottom left, her coins
+    /// (<see cref="CoinCounter"/>) mirroring them at the bottom right. Arranges the scene's HUD objects at runtime inside the safe area,
     /// so the scenes need no rebuild, and keeps the portrait in the character's current gear.
     /// </summary>
     public class HudLayout : MonoBehaviour
     {
         public const float PortraitSize = 176f;
-        const float Margin = 24f, Top = 12f, BarsLeft = Margin + PortraitSize + 20f, BarWidth = 400f;
+        /// <summary>The space between the screen's (safe area's) edges and the HUD, the same on every side; the mini-map
+        /// uses it too.</summary>
+        public const float Margin = 24f;
+        public const float Top = 12f;
+        const float BarsLeft = Margin + PortraitSize + 20f, BarWidth = 400f;
 
-        /// <summary>The icon buttons under the mini-map (its box is 220 tall at 12 from the top): square, a gap apart,
-        /// against the right edge.</summary>
+        // The block right of the portrait, top down: the life bar, then the depth with the potion pips at its right,
+        // then the boons. With one row of boons it ends level with the portrait's foot.
+        const float LifeTop = Top + 24f, LifeHeight = 36f, RowGap = 10f;
+        const float DepthTop = LifeTop + LifeHeight + RowGap, DepthHeight = 40f, DepthWidth = 200f, BoonsTop = DepthTop + DepthHeight + RowGap;
+
+        /// <summary>The icon buttons at the bottom left: square, a gap apart.</summary>
         public const float IconButtonSize = 132f;
-        const float IconGap = 16f, RightMargin = 16f, ButtonsTop = 12f + 220f + 24f;
+        const float IconGap = 16f;
 
         CharacterPortrait portrait;
         GameSession session;
@@ -44,11 +53,13 @@ namespace ARPG
             {
                 var rect = (RectTransform)child;
                 if (child.GetComponent<LifeBar>() != null)
-                    UiStyle.Place(rect, new Vector2(0f, 1f), new Vector2(BarsLeft, -Top - 30f), new Vector2(BarWidth, 36f));
+                    UiStyle.Place(rect, new Vector2(0f, 1f), new Vector2(BarsLeft, -LifeTop), new Vector2(BarWidth, LifeHeight));
                 else if (child.GetComponent<ExperienceBar>() != null)
                     UiStyle.Place(rect, new Vector2(0f, 1f), new Vector2(BarsLeft, -Top - 74f), new Vector2(BarWidth, 14f));
                 else if (child.GetComponent<PotionPips>() != null)
-                    UiStyle.Place(rect, new Vector2(0f, 1f), new Vector2(BarsLeft, -Top - 100f), rect.sizeDelta);
+                    // On the depth's row, after its text (a pip bought later is added to the right).
+                    UiStyle.Place(rect, new Vector2(0f, 1f),
+                        new Vector2(BarsLeft + DepthWidth, -DepthTop - (DepthHeight - rect.sizeDelta.y) / 2f), rect.sizeDelta);
                 else if (child.name == "Bag Button")
                     StyleBag(rect, area);
                 else if (child.name == "Level")
@@ -56,10 +67,10 @@ namespace ARPG
                     // indicator in the profile picture"); the depth is shown instead.
                     child.gameObject.SetActive(false);
             }
-            DepthLabel.Create(area, new Vector2(BarsLeft, -Top - 138f));
+            DepthLabel.Create(area, new Vector2(BarsLeft, -DepthTop), new Vector2(DepthWidth, DepthHeight));
             // The boons taken, as icons under the depth (2026-10-15).
             if (Features.Roguelite)
-                BoonBar.Create(area, new Vector2(BarsLeft, -Top - 192f));
+                BoonBar.Create(area, new Vector2(BarsLeft, -BoonsTop));
 
             layout.session = GameSession.Current;
             layout.session.Changed += layout.RefreshPortrait;
@@ -91,9 +102,9 @@ namespace ARPG
             return portrait;
         }
 
-        // The Bag button under the mini-map as a framed bag icon (the owner, 2026-10-18: "the bag button looks wierd.
-        // Make an icon with a bag, an icon for settings and place them under the map"), Settings beside it on the
-        // right, and her coins under them.
+        // The Bag button as a framed bag icon (the owner, 2026-10-18: "the bag button looks wierd. Make an icon with a
+        // bag, an icon for settings"), at the bottom left with Settings left of it (2026-10-19), and her coins at the
+        // bottom right.
         static void StyleBag(RectTransform rect, Transform area)
         {
             var label = rect.GetComponentInChildren<Text>();
@@ -106,15 +117,15 @@ namespace ARPG
             settings.gameObject.AddComponent<Button>().onClick.AddListener(SettingsScreen.OpenPaused);
             IconButton(settings, HudIcons.Kind.Settings, 0);
 
-            // Left of the two buttons, on their row: under them the development builds' frame readout would cover it.
-            CoinCounter.Create(area, new Vector2(-RightMargin - 2f * (IconButtonSize + IconGap),
-                -ButtonsTop - (IconButtonSize - CoinCounter.Height) / 2f));
+            // Mirroring the buttons: the bottom right, level with their middle.
+            CoinCounter.Create(area, new Vector2(-Margin, Margin + (IconButtonSize - CoinCounter.Height) / 2f));
         }
 
-        // Places a button at its place from the right (0 the rightmost) and dresses it: an iron frame, the icon inside.
-        static void IconButton(RectTransform rect, HudIcons.Kind kind, int fromRight)
+        // Places a button at its place from the left (0 the leftmost) along the bottom and dresses it: an iron frame,
+        // the icon inside.
+        static void IconButton(RectTransform rect, HudIcons.Kind kind, int fromLeft)
         {
-            UiStyle.Place(rect, new Vector2(1f, 1f), new Vector2(-RightMargin - fromRight * (IconButtonSize + IconGap), -ButtonsTop),
+            UiStyle.Place(rect, new Vector2(0f, 0f), new Vector2(Margin + fromLeft * (IconButtonSize + IconGap), Margin),
                 new Vector2(IconButtonSize, IconButtonSize));
             var image = rect.GetComponent<Image>();
             if (image != null)
@@ -139,7 +150,7 @@ namespace ARPG
 
     /// <summary>
     /// Her coins on the HUD (the owner, 2026-10-18: "Display the amount of coins somewhere on the hud. No need to open the
-    /// inventory to see money"): a coin icon and the count, right-aligned left of the icon buttons. The text is rebuilt
+    /// inventory to see money"): a coin icon and the count, at the bottom right, mirroring the icon buttons. The text is rebuilt
     /// only when the count changes.
     /// </summary>
     public class CoinCounter : MonoBehaviour
@@ -149,9 +160,9 @@ namespace ARPG
         Text text;
         int shown = -1;
 
-        public static CoinCounter Create(Transform parent, Vector2 topRight)
+        public static CoinCounter Create(Transform parent, Vector2 bottomRight)
         {
-            var rect = UiStyle.Place(UiStyle.Rect(parent, "Coins"), new Vector2(1f, 1f), topRight, new Vector2(320f, Height));
+            var rect = UiStyle.Place(UiStyle.Rect(parent, "Coins"), new Vector2(1f, 0f), bottomRight, new Vector2(320f, Height));
             var counter = rect.gameObject.AddComponent<CoinCounter>();
             var icon = UiStyle.Image(rect, "Coin", Color.white);
             icon.sprite = HudIcons.For(HudIcons.Kind.Coin);
@@ -191,9 +202,9 @@ namespace ARPG
     {
         Text text;
 
-        public static DepthLabel Create(Transform parent, Vector2 topLeft)
+        public static DepthLabel Create(Transform parent, Vector2 topLeft, Vector2 size)
         {
-            var rect = UiStyle.Place(UiStyle.Rect(parent, "Depth"), new Vector2(0f, 1f), topLeft, new Vector2(400f, 48f));
+            var rect = UiStyle.Place(UiStyle.Rect(parent, "Depth"), new Vector2(0f, 1f), topLeft, size);
             var label = rect.gameObject.AddComponent<DepthLabel>();
             label.text = rect.gameObject.AddComponent<Text>();
             label.text.font = UiStyle.Title;

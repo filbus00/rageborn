@@ -281,7 +281,8 @@ namespace ARPG
             box.transform.SetParent(safe.transform, false);
             var boxRect = (RectTransform)box.transform;
             boxRect.anchorMin = boxRect.anchorMax = boxRect.pivot = new Vector2(1f, 1f);
-            boxRect.anchoredPosition = new Vector2(-16f, -12f);
+            // The HUD's margins, so it mirrors the portrait (2026-10-19).
+            boxRect.anchoredPosition = new Vector2(-HudLayout.Margin, -HudLayout.Top);
             boxRect.sizeDelta = new Vector2(SmallWidth, SmallWidth / 2f);
             box.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
             box.GetComponent<Button>().onClick.AddListener(Toggle);
@@ -309,7 +310,10 @@ namespace ARPG
             // High enough that its bottom tip clears the player, who stands just under the middle of the screen.
             largeRect.anchoredPosition = new Vector2(0f, 330f);
             largeRect.sizeDelta = new Vector2(LargeWidth, LargeWidth / 2f);
-            largeMap = BuildDiamond(largeRect, LargeWidth, 0.7f, out _);
+            // No backdrop: the level shows through around the explored cells (the owner, 2026-10-19: "a 100%
+            // transparent background").
+            largeMap = BuildDiamond(largeRect, LargeWidth, 0f, out _);
+            CloseButton(largeRect);
 
             // The whole level in one square view, whichever side is longer.
             var b = layout.Bounds;
@@ -350,6 +354,31 @@ namespace ARPG
             image.texture = texture;
             image.raycastTarget = false;
             return image;
+        }
+
+        // A framed X at the expanded map's top right that closes it (the owner, 2026-10-19: "Make an x button on the map
+        // to show that you can close the big map by clicking there"). The only tap target on the expanded map, so the
+        // stick still works everywhere else under it.
+        void CloseButton(RectTransform parent)
+        {
+            const float size = 110f;
+            var button = new GameObject("Close", typeof(RectTransform), typeof(Image), typeof(Button));
+            button.transform.SetParent(parent, false);
+            var rect = (RectTransform)button.transform;
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(1f, 1f);
+            // Its right edge at the HUD's right margin (the expanded map is 1100 wide on the 1170 canvas), its top at
+            // the map's.
+            rect.anchoredPosition = new Vector2((1170f - LargeWidth) / 2f - HudLayout.Margin, 0f);
+            rect.sizeDelta = new Vector2(size, size);
+            var target = button.GetComponent<Image>();
+            target.color = new Color(0f, 0f, 0f, 0f);
+            button.GetComponent<Button>().onClick.AddListener(Toggle);
+            var frame = UiStyle.Framed(rect, "Frame", UiStyle.Panel, 3f);
+            UiStyle.Stretch(frame.rectTransform);
+            var label = UiStyle.Text(rect, "X", 56, UiStyle.Gold, TextAnchor.MiddleCenter);
+            label.font = UiStyle.Title;
+            label.raycastTarget = false;
+            UiStyle.Stretch(label.rectTransform);
         }
 
         static RectTransform NewDot(RectTransform parent, float size)

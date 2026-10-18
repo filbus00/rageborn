@@ -105,10 +105,10 @@ namespace ARPG
                 $"{GC.GetTotalMemory(false) / (1024f * 1024f):0.0} MB  {(enemies != null ? enemies.ActiveCount : 0)} en";
         }
 
-        // Under the HUD's Bag button, inside the safe area (the owner, 2026-09-29). The band above the safe area was
-        // tried first: beside the Dynamic Island the rounded corner cut the text's left edge, and on the owner's
-        // iPhone 11 the notch leaves too little room either side for two lines. Without a Bag button (a scene with no
-        // HUD) it sits at the safe area's top left.
+        // Under the mini-map, inside the safe area (under the Bag button until 2026-10-19, when the Bag moved to the
+        // bottom left). The band above the safe area was tried first: beside the Dynamic Island the rounded corner cut
+        // the text's left edge, and on the owner's iPhone 11 the notch leaves too little room either side for two
+        // lines. Without a mini-map (the town) it sits at the safe area's top right.
         void PlaceBelowSafeAreaTop()
         {
             var canvasRect = (RectTransform)transform;
@@ -116,12 +116,12 @@ namespace ARPG
                 return;
             var unitsPerPixel = canvasRect.rect.height / Screen.height;
             var safe = Screen.safeArea;
-            var left = safe.xMin * unitsPerPixel + 24f;
+            var left = safe.xMax * unitsPerPixel - panel.sizeDelta.x - 24f;
             var top = (Screen.height - safe.yMax) * unitsPerPixel + 8f;
 
             if (bag == null)
             {
-                var found = GameObject.Find(BagButtonName);
+                var found = GameObject.Find(AnchorName);
                 bag = found != null ? found.GetComponent<RectTransform>() : null;
             }
             if (bag != null && bag.gameObject.activeInHierarchy)
@@ -134,7 +134,7 @@ namespace ARPG
             panel.anchoredPosition = new Vector2(left, -top);
         }
 
-        const string BagButtonName = "Bag Button";
+        const string AnchorName = "Minimap";
         RectTransform bag;
         readonly Vector3[] corners = new Vector3[4];
     }
