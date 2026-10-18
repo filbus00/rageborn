@@ -10,13 +10,16 @@ namespace ARPG
     public static class AimRules
     {
         /// <summary>Up to this much push (0 at the middle, 1 at the ring's edge) the aim is perfect.</summary>
-        public const float SteadyPush = 1f / 3f;
+        // 2026-10-18 (the owner: "increase the arrow spread when she is moving the fastest but increase the speed at which
+        // the arrow spread is minimal"): perfect aim up to half a push (was a third), 80 percent to four fifths (was two
+        // thirds), and running aim 50 percent (was 60: a wider spread).
+        public const float SteadyPush = 0.5f;
 
         /// <summary>Up to this much push the aim is <see cref="WalkingAim"/>; past it <see cref="RunningAim"/>.</summary>
-        public const float WalkingPush = 2f / 3f;
+        public const float WalkingPush = 0.8f;
 
         public const float WalkingAim = 0.8f;
-        public const float RunningAim = 0.6f;
+        public const float RunningAim = 0.5f;
 
         /// <summary>The widest angle that still hits an ordinary enemy (body 0.3, arrow 0.3) 5 units away. An arrow
         /// strays evenly up to this divided by the aim either side, so at that distance it hits about aim percent of the

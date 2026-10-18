@@ -18,6 +18,9 @@ namespace ARPG
         [Tooltip("Seconds to go between standing and full speed. Docs/01-core-gameplay.md gives 80 ms for stopping.")]
         [SerializeField] float accelerationTime = 0.08f;
 
+        /// <summary>The owner, 2026-10-18: "I want her to move a bit faster": 10 percent on top of her move speed.</summary>
+        public const float QuickerPace = 1.1f;
+
         // Below this speed, in ground units per second, the character counts as standing for Stillness and Momentum.
         const float MovingThreshold = 0.5f;
 
@@ -81,6 +84,7 @@ namespace ARPG
             if (IsDashing || groundDirection.sqrMagnitude < 1e-6f || !dodgeCharges.TryUse())
                 return false;
             Dash(groundDirection, DodgeRules.Distance, DodgeRules.Speed);
+            diveEase = true;
             dodgeSeconds = DodgeRules.AnimationSeconds;
             DodgeCount++;
             untouchableSeconds = DodgeRules.UntouchableSeconds;
@@ -157,7 +161,13 @@ namespace ARPG
                 return;
             dashVelocity = direction.normalized * speed;
             dashSeconds = distance / speed;
+            dashTotal = dashSeconds;
+            diveEase = false;
         }
+
+        // A dive bursts and eases out (DodgeRules.DiveSpeed); other dashes keep an even speed.
+        float dashTotal;
+        bool diveEase;
 
         void FixedUpdate()
         {
@@ -187,17 +197,18 @@ namespace ARPG
 
             if (dashSeconds > 0f)
             {
+                var through = dashTotal > 0f ? 1f - dashSeconds / dashTotal : 1f;
                 dashSeconds -= deltaTime;
-                groundVelocity = dashVelocity;
+                groundVelocity = diveEase ? dashVelocity * DodgeRules.DiveSpeed(through) : dashVelocity;
                 body.linearVelocity = IsoMath.GroundToWorld(groundVelocity);
                 stance.Tick(deltaTime, true);
                 if (dashSeconds <= 0f)
-                    groundVelocity = dashVelocity.normalized * moveSpeed;
+                    groundVelocity = dashVelocity.normalized * moveSpeed * QuickerPace;
                 return;
             }
 
             // Momentum is worth its speed: Docs/01, 5 percent movement speed per stack.
-            var effectiveMoveSpeed = moveSpeed * slow.Multiplier * firing.Multiplier * stance.MoveSpeedMultiplier *
+            var effectiveMoveSpeed = moveSpeed * QuickerPace * slow.Multiplier * firing.Multiplier * stance.MoveSpeedMultiplier *
                                      (1f + tree.MoveSpeed + GameSession.Current.AttributeBonuses.MoveSpeed +
                                       GameSession.Current.Equipment.MovementSpeedPercent / 100f);
 

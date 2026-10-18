@@ -1327,3 +1327,11 @@ The owner's answers are in Docs/08. How it is built:
 ## 2026-10-18: Sylthara moved into view
 
 - `Newcomers.Cell(Gambler)` (2, -8), in `TownLayout.KeptClear` too. At (-4, -9) and at (-8, -7) house_1, which stands before the dice stall on the camera's side, covered her (checked by a render of the town in the editor); the dice stall itself is mostly hidden by that house too.
+
+## 2026-10-18: three rolls, a snappier roll, faster with a new aim curve
+
+- `DodgeRules`: `MaxCharges` 3; `Distance` 3.2, `Seconds` 0.24, `StartBurst` 1.6 with `DiveSpeed(t)` (falls evenly to 0.4, average 1); `AnimationSeconds` 0.38 (was 0.65, the time she held her fire); `UntouchableSeconds` 0.24. `PlayerController.Dash` keeps an even speed for other dashes; `TryDodge` marks the dive to ease out. Her body is interpolated in both scenes (checked at runtime). Measured in the editor: 3.07 units 0.21 s after the dive began.
+- `PlayerController.QuickerPace` 1.1 on her move speed (and on the speed she leaves a dash with).
+- `AimRules`: `SteadyPush` 0.5, `WalkingPush` 0.8, `RunningAim` 0.5. The aim arc follows them.
+- `RageArc`: charge diamonds alternate between the arc's ends, a third outside the first.
+- Tests: `DodgeTests` (three charges), `UniqueBoonTests.TheDive_BurstsAndEasesOut_OverItsDistance_WithThreeCharges`, `AimRulesTests`. Offline 673 passed (the 5 NavGrid failures), Unity 678 of 678.

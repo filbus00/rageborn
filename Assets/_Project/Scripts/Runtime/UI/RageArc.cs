@@ -168,7 +168,10 @@ namespace ARPG
             {
                 var rect = (RectTransform)dodgeBacks[i].transform;
                 rect.sizeDelta = new Vector2(dodgeSize, dodgeSize);
-                rect.anchoredPosition = new Vector2((i == 0 ? -1f : 1f) * radius * 1.08f, -radius * 0.14f);
+                // Past the arc's two ends, alternating; a third (2026-10-18) sits just outside the first, on the left.
+                var side = i % 2 == 0 ? -1f : 1f;
+                var outward = i / 2 * dodgeSize * 1.4f;
+                rect.anchoredPosition = new Vector2(side * (radius * 1.08f + outward), -radius * 0.14f + i / 2 * dodgeSize * 0.35f);
                 dodgeFills[i].fillAmount = i < charges.Charges ? 1f : i == charges.Charges ? charges.Refill * 0.8f : 0f;
             }
         }

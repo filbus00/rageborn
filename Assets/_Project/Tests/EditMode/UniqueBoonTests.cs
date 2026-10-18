@@ -106,5 +106,23 @@ namespace ARPG.Tests
             Assert.AreEqual(8, settings.MinPackSize);
             Assert.AreEqual(15, settings.MaxPackSize);
         }
+
+        [Test]
+        public void TheDive_BurstsAndEasesOut_OverItsDistance_WithThreeCharges()
+        {
+            // The owner, 2026-10-18: a third roll from the start, and snappier.
+            Assert.AreEqual(3, DodgeRules.MaxCharges);
+            Assert.AreEqual(3, new DodgeCharges().Charges);
+            Assert.Greater(DodgeRules.DiveSpeed(0f), 1f);
+            Assert.Less(DodgeRules.DiveSpeed(1f), 1f);
+            // The burst covers the dive's distance: the average share across it is 1.
+            var sum = 0f;
+            const int steps = 1000;
+            for (var k = 0; k < steps; k++)
+                sum += DodgeRules.DiveSpeed((k + 0.5f) / steps);
+            Assert.AreEqual(1f, sum / steps, 1e-3f);
+            Assert.LessOrEqual(DodgeRules.UntouchableSeconds, DodgeRules.Seconds);
+            Assert.GreaterOrEqual(DodgeRules.AnimationSeconds, DodgeRules.Seconds);
+        }
     }
 }

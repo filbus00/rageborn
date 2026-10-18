@@ -6,12 +6,13 @@ namespace ARPG.Tests
     public class DodgeTests
     {
         [Test]
-        public void Charges_TwoThenEmpty_OneBackEveryThreeSeconds()
+        public void Charges_ThreeThenEmpty_OneBackEveryThreeSeconds()
         {
             var charges = new DodgeCharges();
             Assert.IsTrue(charges.TryUse());
             Assert.IsTrue(charges.TryUse());
-            Assert.IsFalse(charges.TryUse(), "two charges");
+            Assert.IsTrue(charges.TryUse());
+            Assert.IsFalse(charges.TryUse(), "three charges (2026-10-18)");
             charges.Tick(DodgeRules.RechargeSeconds - 0.1f);
             Assert.AreEqual(0, charges.Charges);
             charges.Tick(0.2f);

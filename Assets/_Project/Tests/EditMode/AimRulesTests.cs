@@ -8,12 +8,14 @@ namespace ARPG.Tests
         [Test]
         public void Aim_FallsWithThePush()
         {
+            // 2026-10-18: perfect to half a push, 80 percent to four fifths, 50 percent past it.
             Assert.AreEqual(1f, AimRules.Aim(0f));
-            Assert.AreEqual(1f, AimRules.Aim(0.3f));
-            Assert.AreEqual(0.8f, AimRules.Aim(0.5f));
-            Assert.AreEqual(0.8f, AimRules.Aim(0.66f));
-            Assert.AreEqual(0.6f, AimRules.Aim(0.8f));
-            Assert.AreEqual(0.6f, AimRules.Aim(1f));
+            Assert.AreEqual(1f, AimRules.Aim(0.45f));
+            Assert.AreEqual(1f, AimRules.Aim(0.5f));
+            Assert.AreEqual(0.8f, AimRules.Aim(0.6f));
+            Assert.AreEqual(0.8f, AimRules.Aim(0.8f));
+            Assert.AreEqual(0.5f, AimRules.Aim(0.9f));
+            Assert.AreEqual(0.5f, AimRules.Aim(1f));
         }
 
         [Test]
@@ -53,7 +55,7 @@ namespace ARPG.Tests
         {
             // The owner, 2026-10-17: the partial circle shows the firing radius for the current movement speed.
             var standing = AimCone.FiringHalfDegrees(AimRules.Aim(0f));
-            var walking = AimCone.FiringHalfDegrees(AimRules.Aim(0.5f));
+            var walking = AimCone.FiringHalfDegrees(AimRules.Aim(0.7f));
             var running = AimCone.FiringHalfDegrees(AimRules.Aim(1f));
             Assert.AreEqual(AimCone.MinimumHalfDegrees, standing, 1e-4f);
             Assert.Greater(walking, standing);
