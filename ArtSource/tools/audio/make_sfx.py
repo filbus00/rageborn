@@ -334,7 +334,67 @@ def bull_rush():
     return finish(mix(w, sweep(0.4, 70, 45, 0.2) * 0.5), 0.75)
 
 
+# ---------------------------------------------------------------- the elemental arrows (2026-10-18, the owner: "make the
+# various boons like lightning arrow, ice arrow, fire arrow etc have more distinct visual effects and sounds")
+
+def crackles(seconds, count, start=0.0):
+    """Sparse sharp clicks, as wood or embers crackling."""
+    y = np.zeros(n(seconds))
+    for _ in range(count):
+        i = n(rng.uniform(start, seconds * 0.9))
+        k = n(rng.uniform(0.002, 0.006))
+        y[i:i + k] += rng.uniform(-1, 1, len(y[i:i + k])) * np.exp(-np.arange(len(y[i:i + k])) / max(1, k / 4)) * rng.uniform(0.4, 1.0)
+    return highpass(y, 1500)
+
+
+def fire_hit():
+    # Catching fire: a soft rising whoosh of flame and a few crackles.
+    whoosh = bandpass(noise(0.45), 900, 0.7) * env(0.45, 0.16, 0.03)
+    body = onepole(noise(0.45), 500) * env(0.45, 0.12, 0.01) * 0.6
+    return finish(reverb(mix(whoosh, body, crackles(0.45, 7, 0.03) * 0.5), 0.6, 0.15, 3500), 0.55)
+
+
+def frost_hit():
+    # Ice taking hold: a brittle crack and a short high tinkle of crystal.
+    crack = highpass(noise(0.05), 3000) * env(0.05, 0.008)
+    tinkle = modes(0.4, [(2850, 0.6, 0.09), (3910, 0.45, 0.07), (5230, 0.3, 0.05), (6900, 0.2, 0.035)])
+    return finish(reverb(mix(crack, at(tinkle, 0.008)), 0.5, 0.2, 7000), 0.45)
+
+
+def freeze():
+    # Frozen solid: a sharp ice crack and crystals ringing down.
+    crack = highpass(noise(0.08), 2200) * env(0.08, 0.015)
+    thud = sweep(0.2, 260, 120, 0.05) * 0.4
+    rings = mix(*[at(bell(f, 0.7, 0.18) * 0.35, d) for f, d in ((3100, 0.01), (2600, 0.05), (2200, 0.1), (1850, 0.15))])
+    return finish(reverb(mix(crack, thud, rings), 0.9, 0.3, 6000), 0.6)
+
+
+def zap():
+    # An electric arc: a buzzing, jittering square wave over hiss, cut short.
+    x = t(0.2)
+    freq = 110 * (1 + 0.35 * rng.uniform(-1, 1, len(x)))
+    phase = 2 * np.pi * np.cumsum(onepole(freq, 400)) / RATE
+    buzz = np.sign(np.sin(phase)) * 0.5 + np.sign(np.sin(phase * 3.01)) * 0.25
+    hiss = highpass(noise(0.2), 4000) * 0.6
+    gate = (rng.uniform(0, 1, len(x)) > 0.25).astype(float)
+    gate = onepole(gate, 900)
+    return finish(highpass((buzz + hiss) * gate * env(0.2, 0.07, 0.002), 300), 0.42)
+
+
+def thunder():
+    # A thunderbolt striking close: a sharp splitting crack and a low rolling rumble.
+    crack = highpass(noise(0.12), 1500) * env(0.12, 0.025)
+    snap = zap() * 0.6
+    rumble = onepole(noise(1.4), 180) * env(1.4, 0.45, 0.05) * 3.0
+    return finish(reverb(mix(crack, snap, at(rumble, 0.03)), 1.4, 0.35, 2500), 0.8)
+
+
 SOUNDS = {
+    "FireHit": fire_hit,
+    "FrostHit": frost_hit,
+    "Freeze": freeze,
+    "Zap": zap,
+    "Thunder": thunder,
     "ArrowShot": arrow_shot,
     "AxeThrow": heavy_shot,
     "Hit": hit,

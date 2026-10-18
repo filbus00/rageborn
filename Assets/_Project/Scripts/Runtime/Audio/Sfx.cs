@@ -189,6 +189,15 @@ namespace ARPG
                 case SoundId.Hurt:
                 case SoundId.ArrowShot:
                     return 0.08f;
+                // The elemental arrows (2026-10-18) hit many enemies at once: one sound a moment.
+                case SoundId.FireHit:
+                case SoundId.FrostHit:
+                case SoundId.Zap:
+                    return 0.12f;
+                case SoundId.Freeze:
+                    return 0.18f;
+                case SoundId.Thunder:
+                    return 0.3f;
                 // Gold piles are picked up in bursts; the owner found every pile's sound annoying (2026-10-05).
                 case SoundId.Gold:
                     return 0.3f;

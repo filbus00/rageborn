@@ -214,6 +214,32 @@ namespace ARPG
                     return Finish(s, 0.9f);
                 case SoundId.FrostNova:
                     return Make(SoundId.Explosion);
+                // The elemental arrows' stand-ins (2026-10-18; the files from make_sfx.py are what plays).
+                case SoundId.FireHit:
+                    s = new float[Samples(0.3f)];
+                    AddNoise(s, 600f, 1400f, 0.9f, 0.1f, false, 12);
+                    return Finish(s, 0.5f);
+                case SoundId.FrostHit:
+                    s = new float[Samples(0.3f)];
+                    AddBell(s, 2800f, 0.7f, 0.08f, 0f);
+                    AddBell(s, 3900f, 0.5f, 0.06f, 0.01f);
+                    return Finish(s, 0.4f);
+                case SoundId.Freeze:
+                    s = new float[Samples(0.5f)];
+                    AddNoise(s, 4000f, 2500f, 0.8f, 0.02f, false, 13);
+                    AddBell(s, 2600f, 0.7f, 0.15f, 0.02f);
+                    AddBell(s, 2000f, 0.6f, 0.18f, 0.08f);
+                    return Finish(s, 0.5f);
+                case SoundId.Zap:
+                    s = new float[Samples(0.18f)];
+                    AddNoise(s, 5000f, 3000f, 1f, 0.06f, false, 14);
+                    AddSweep(s, 220f, 90f, 0.5f, 0.06f);
+                    return Finish(s, 0.4f);
+                case SoundId.Thunder:
+                    s = new float[Samples(1f)];
+                    AddNoise(s, 3000f, 300f, 1f, 0.35f, false, 15);
+                    AddSweep(s, 70f, 30f, 0.8f, 0.4f);
+                    return Finish(s, 0.8f);
                 default:
                     return new float[1];
             }
@@ -253,5 +279,13 @@ namespace ARPG
 
         /// <summary>An elite's Frost Nova bursting (2026-10-12, the owner's sound; the synth stands in with the explosion).</summary>
         FrostNova,
+
+        // The elemental arrows (2026-10-18; files only, from make_sfx.py): a fire arrow setting one burning, a frost arrow
+        // chilling, an enemy frozen solid, a lightning arc, a thunderbolt.
+        FireHit,
+        FrostHit,
+        Freeze,
+        Zap,
+        Thunder,
     }
 }

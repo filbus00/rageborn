@@ -126,10 +126,14 @@ namespace ARPG
             if (death.Frozen)
             {
                 fx.Burst(world, UniqueBoonRules.DeathRadius * 0.5f, ChillColor);
-                Sfx.Play(SoundId.Crit, 0.4f);
+                fx.FrostShards(world, Vector2.up, ArrowHeight, 2.2f);
+                Sfx.Play(SoundId.Freeze, 0.6f);
             }
             if (death.Burning)
-                fx.Sparks(world, Vector2.up, ArrowHeight, BurnColor, 8);
+            {
+                fx.Flames(world, ArrowHeight);
+                Sfx.Play(SoundId.FireHit, 0.5f);
+            }
             for (var n = 0; n < boonNearby.Count; n++)
             {
                 var enemy = boonNearby[n];
@@ -139,7 +143,7 @@ namespace ARPG
                 if (death.Burning)
                 {
                     enemy.ApplyBurn(Damage(enemy, BurnShare / BurnStacks.Seconds, false) * BurnFactor);
-                    fx.Sparks(IsoMath.GroundToWorld(enemy.GroundPosition), Vector2.up, ArrowHeight, BurnColor, 3);
+                    fx.Flames(IsoMath.GroundToWorld(enemy.GroundPosition), ArrowHeight * 0.8f);
                 }
                 if (death.Frozen && enemy.IsAlive)
                 {
@@ -228,16 +232,16 @@ namespace ARPG
         {
             var at = struck.GroundPosition;
             enemies.QueryEnemies(at, UniqueBoonRules.ThunderRadius + QueryMargin, boonNearby);
-            Bolt(at + new Vector2(-0.8f, 0.8f), at);
+            Thunderbolt(at);
             fx.Burst(IsoMath.GroundToWorld(at), UniqueBoonRules.ThunderRadius * 0.4f, ThunderColor);
-            Sfx.Play(SoundId.Crit, 0.5f);
+            Sfx.Play(SoundId.Thunder, 0.6f);
             for (var n = 0; n < boonNearby.Count; n++)
             {
                 var enemy = boonNearby[n];
                 if (enemy == struck || !enemy.IsAlive ||
                     Vector2.Distance(at, enemy.GroundPosition) > UniqueBoonRules.ThunderRadius + enemy.Definition.BodyRadius)
                     continue;
-                Bolt(enemy.GroundPosition + new Vector2(-0.6f, 0.6f), enemy.GroundPosition);
+                Thunderbolt(enemy.GroundPosition);
                 Strike(enemy, multiplier * UniqueBoonRules.ThunderShare, projectile: true);
             }
         }

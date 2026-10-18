@@ -166,6 +166,8 @@ namespace ARPG
             public float ExecuteMultiplier;
             // Thunder Arrow (a boon): lightning where it strikes, once.
             public bool Thunder;
+            // What it looks like it carries (2026-10-18): fire, frost, lightning, each with its trail and its hit.
+            public bool Fiery, Frosty, Charged;
         }
 
         // Boons (2026-10-13): Extra Shot's loosings still to come after a basic attack, and the time to the next.
@@ -582,6 +584,7 @@ namespace ARPG
             if (tree.ThunderArrow && UniqueBoonRules.IsThunderShot(basicShotCount))
             {
                 first.Thunder = true;
+                first.Charged = true;
                 first.Glow = LightningColor;
             }
             shots.Add(first);
@@ -1476,7 +1479,19 @@ namespace ARPG
             }
             if (shot.PierceLeft > 0 || shot.Bounces > 0)
                 EnsurePierceSet(ref shot);
+            // The elements it shows (2026-10-18, the owner: "more distinct visual effects and sounds"): a sure or likely
+            // burn, chill or arc. A basic arrow takes the first one's glow; every one adds its trail.
+            shot.Fiery = shot.IgniteChance >= ElementShowsAt;
+            shot.Frosty = shot.Freezing || shot.ChillChance >= ElementShowsAt;
+            shot.Charged = boons.ChainLightning > 0f || boons.ThunderArrow;
+            if (shot.Style == ShotStyle.Basic)
+                shot.Glow = shot.Fiery ? FireGlow : shot.Frosty ? FrostGlow : shot.Charged ? LightningColor : shot.Glow;
         }
+
+        // An arrow shows an element from this chance on (a gear affix of a few percent leaves it plain).
+        const float ElementShowsAt = 0.25f;
+        static readonly Color FireGlow = new Color(1f, 0.55f, 0.15f, 1f);
+        static readonly Color FrostGlow = new Color(0.6f, 0.88f, 1f, 1f);
 
         // Seeking Arrows: how fast a seeking arrow bends toward its target (radians a second); Homing Arrow turns faster.
         const float SeekingTurnRadians = 2.5f;
@@ -1646,7 +1661,15 @@ namespace ARPG
             {
                 shot.TrailTimer += TrailSeconds;
                 var size = shot.Style == ShotStyle.Basic ? 0.07f : 0.13f;
-                fx.Trail(world, IsoMath.GroundToWorld(direction), ArrowHeight, shot.Glow, size);
+                var along = IsoMath.GroundToWorld(direction);
+                fx.Trail(world, along, ArrowHeight, shot.Glow, size);
+                // The elements' own trails: embers rising, frost glinting, sparks jumping off.
+                if (shot.Fiery)
+                    fx.FireMote(world, along, ArrowHeight);
+                if (shot.Frosty && Random.value < 0.7f)
+                    fx.FrostMote(world, along, ArrowHeight);
+                if (shot.Charged && Random.value < 0.6f)
+                    fx.ArcMote(world, along, ArrowHeight);
             }
             if (!shot.Bloodied)
                 return;
@@ -1860,17 +1883,21 @@ namespace ARPG
                 Strike(enemy, multiplier * ChainShare, projectile: true);
             }
             if (chainTargets.Count > 0)
-                Sfx.Play(SoundId.Crit, 0.35f);
+                Sfx.Play(SoundId.Zap, 0.45f);
         }
 
         // A bolt drawn as sparks along the line between two ground points (the raven's Storm Wings too).
-        public void Bolt(Vector2 from, Vector2 to)
+        public void Bolt(Vector2 from, Vector2 to) =>
+            fx.Lightning(IsoMath.GroundToWorld(from), IsoMath.GroundToWorld(to), ArrowHeight, ArrowHeight * 0.7f);
+
+        /// <summary>A thunderbolt from high above onto a point of ground (Thunder Arrow, 2026-10-18).</summary>
+        public void Thunderbolt(Vector2 at)
         {
-            var steps = Mathf.Max(2, Mathf.CeilToInt(Vector2.Distance(from, to) / 0.6f));
-            var along = IsoMath.GroundToWorld((to - from).normalized);
-            for (var k = 0; k <= steps; k++)
-                fx.Sparks(IsoMath.GroundToWorld(Vector2.Lerp(from, to, (float)k / steps)), along, ArrowHeight, LightningColor, 1);
+            var world = IsoMath.GroundToWorld(at);
+            fx.Lightning(world + new Vector2(0.15f, 0f), world, ThunderHeight, 0.05f);
         }
+
+        const float ThunderHeight = 3.5f;
 
         // Corpse Burst (a boon): the enemy an arrow killed bursts, striking those around it with a share of that arrow.
         void CorpseBurst(EnemyController dead, float multiplier)
@@ -1984,17 +2011,30 @@ namespace ARPG
             if (shot.IgniteChance > 0f && Random.value < shot.IgniteChance)
             {
                 enemy.ApplyBurn(Damage(enemy, BurnShare / BurnStacks.Seconds, false) * BurnFactor);
-                fx.Sparks(world, Vector2.up, ArrowHeight, BurnColor, 3);
+                fx.Flames(world, ArrowHeight);
+                Sfx.Play(SoundId.FireHit, 0.45f);
             }
             // Bleeding Arrows (a boon): every hit bleeds, 30 percent of weapon damage a second for 3 s.
             if (session.Talents.Bonuses.BleedingArrows)
                 enemy.ApplyBleed(Damage(enemy, BleedingArrowShare, false), BleedingArrowSeconds);
             if (shot.ChillChance > 0f && Random.value < shot.ChillChance)
             {
+                var wasFrozen = enemy.IsFrozen;
                 enemy.ApplyChill();
                 if (shot.Freezing)
                     enemy.ApplyChill();
-                fx.Sparks(world, Vector2.up, ArrowHeight, ChillColor, 3);
+                var direction = IsoMath.GroundToWorld(shot.Velocity.sqrMagnitude > 1e-6f ? shot.Velocity.normalized : Vector2.up);
+                // Frozen solid by this hit: a bigger burst of ice and its crack; else a few shards and a tinkle.
+                if (!wasFrozen && enemy.IsFrozen)
+                {
+                    fx.FrostShards(world, direction, ArrowHeight, 1.8f);
+                    Sfx.Play(SoundId.Freeze, 0.55f);
+                }
+                else
+                {
+                    fx.FrostShards(world, direction, ArrowHeight, 0.7f);
+                    Sfx.Play(SoundId.FrostHit, 0.35f);
+                }
             }
         }
 

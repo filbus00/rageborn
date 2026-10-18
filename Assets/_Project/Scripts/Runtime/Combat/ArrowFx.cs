@@ -30,7 +30,8 @@ namespace ARPG
         const float StainFadeSeconds = 6f;
 
         // More than this many particles at once and new ones are skipped: effects must never cost the frame.
-        const int MaxParticles = 450;
+        // 600 since 2026-10-18: a lightning bolt draws its strokes from the same pool.
+        const int MaxParticles = 600;
 
         // A droplet's fall, world units a second squared; and how long a scorch lies on the floor.
         const float Gravity = 9f;
@@ -96,6 +97,109 @@ namespace ARPG
         public void Trail(Vector2 ground, Vector2 direction, float height, Color color, float size)
         {
             Emit(ground, -direction * 0.3f, height, 0f, 0.22f, size, size * 0.3f, 1.8f, color, Faded(color), false, false);
+        }
+
+        // --- The elemental arrows (2026-10-18) --------------------------------------------------------------------
+
+        static readonly Color FlameHot = new Color(1f, 0.85f, 0.35f, 1f);
+        static readonly Color FlameRed = new Color(0.9f, 0.25f, 0.05f, 0f);
+        static readonly Color FrostWhite = new Color(0.9f, 0.97f, 1f, 1f);
+        static readonly Color FrostBlue = new Color(0.45f, 0.75f, 1f, 0f);
+        static readonly Color ArcWhite = new Color(0.95f, 0.97f, 1f, 1f);
+        static readonly Color ArcBlue = new Color(0.45f, 0.6f, 1f, 0f);
+
+        /// <summary>A fire arrow's trail: an ember shaken off that rises and goes out.</summary>
+        public void FireMote(Vector2 ground, Vector2 direction, float height)
+        {
+            Emit(ground + Random.insideUnitCircle * 0.05f, -direction * 0.4f + Random.insideUnitCircle * 0.3f, height, Random.Range(0.6f, 1.4f),
+                Random.Range(0.25f, 0.45f), Random.Range(0.06f, 0.1f), 0.02f, 1f, FlameHot, FlameRed, false, false);
+        }
+
+        /// <summary>An ice arrow's trail: a glint of frost hanging in the air a moment.</summary>
+        public void FrostMote(Vector2 ground, Vector2 direction, float height)
+        {
+            Emit(ground + Random.insideUnitCircle * 0.08f, -direction * 0.15f, height + Random.Range(-0.05f, 0.05f), -0.2f,
+                Random.Range(0.3f, 0.5f), 0.05f, Random.Range(0.08f, 0.12f), 1f, FrostWhite, FrostBlue, false, false);
+        }
+
+        /// <summary>A lightning arrow's trail: a crackling spark jumping off it.</summary>
+        public void ArcMote(Vector2 ground, Vector2 direction, float height)
+        {
+            var jump = Rotate(direction, Random.Range(60f, 120f) * (Random.value < 0.5f ? 1f : -1f)) * Random.Range(1.5f, 3f);
+            Emit(ground, jump, height, Random.Range(-0.5f, 0.5f), Random.Range(0.06f, 0.12f), 0.07f, 0.02f, 3f, ArcWhite, ArcBlue, false, false);
+        }
+
+        /// <summary>A fire arrow setting one burning: a flare of flame and embers rising round it.</summary>
+        public void Flames(Vector2 ground, float height)
+        {
+            Emit(ground, Vector2.zero, height, 0.6f, 0.3f, 0.25f, 0.55f, 1f, new Color(1f, 0.6f, 0.15f, 0.85f), FlameRed, false, false);
+            for (var i = 0; i < 9; i++)
+            {
+                var drift = Rotate(Vector2.right, Random.Range(0f, 360f)) * Random.Range(0.3f, 1.2f);
+                drift.y *= IsoMath.GroundSquash;
+                Emit(ground, drift, height * Random.Range(0.4f, 1f), Random.Range(1.2f, 2.6f), Random.Range(0.35f, 0.7f),
+                    Random.Range(0.06f, 0.11f), 0.02f, 1f, Color.Lerp(FlameHot, new Color(1f, 0.45f, 0.1f, 1f), Random.value), FlameRed, false, false);
+            }
+        }
+
+        /// <summary>A frost arrow chilling one: shards of ice thrown out and a pale breath of cold.</summary>
+        public void FrostShards(Vector2 ground, Vector2 direction, float height, float amount)
+        {
+            Emit(ground, Vector2.zero, height, 0f, 0.3f, 0.2f * amount, 0.5f * amount, 1f, new Color(0.75f, 0.9f, 1f, 0.6f), FrostBlue, false, false);
+            var count = Mathf.RoundToInt(7f * amount);
+            for (var i = 0; i < count; i++)
+            {
+                var spray = Rotate(-direction, Random.Range(-80f, 80f)) * Random.Range(1.5f, 3.5f) * Mathf.Sqrt(amount);
+                Emit(ground, spray, height, Random.Range(0.5f, 2f), Random.Range(0.25f, 0.45f), Random.Range(0.06f, 0.1f), 0.02f, 3f,
+                    FrostWhite, FrostBlue, true, false);
+            }
+        }
+
+        /// <summary>
+        /// A bolt of lightning between two points of ground at two heights: a jagged white-blue line of sparks, bright
+        /// where it starts and ends. <paramref name="fromHeight"/> high above for a thunderbolt from the sky.
+        /// </summary>
+        public void Lightning(Vector2 from, Vector2 to, float fromHeight, float toHeight)
+        {
+            // Sharp corners every 0.4 units or so, each knocked sideways at random (never the ends), drawn as solid
+            // strokes of close sparks with a soft glow round them; now and then a short fork off a corner.
+            var length = Vector2.Distance(from, to) + Mathf.Abs(fromHeight - toHeight);
+            var corners = Mathf.Clamp(Mathf.CeilToInt(length / 0.4f), 2, 14);
+            var across = (to - from).sqrMagnitude > 1e-6f ? new Vector2(-(to - from).y, (to - from).x).normalized : Vector2.right;
+            var previous = from;
+            var previousHeight = fromHeight;
+            for (var c = 1; c <= corners; c++)
+            {
+                var t = (float)c / corners;
+                var kick = c == corners ? 0f : Random.Range(-0.28f, 0.28f);
+                var point = Vector2.Lerp(from, to, t) + across * kick;
+                var height = Mathf.Lerp(fromHeight, toHeight, t) + (fromHeight != toHeight ? kick * 0.8f : 0f);
+                Stroke(previous, previousHeight, point, height, 0.075f, ArcWhite);
+                if (c < corners && Random.value < 0.25f)
+                {
+                    var fork = point + Rotate(to - from, Random.Range(-60f, 60f)).normalized * Random.Range(0.25f, 0.5f);
+                    Stroke(point, height, fork, height - Random.Range(0f, 0.3f), 0.05f, new Color(0.8f, 0.88f, 1f, 0.8f));
+                }
+                previous = point;
+                previousHeight = height;
+            }
+            Emit(to, Vector2.zero, toHeight, 0f, 0.15f, 0.3f, 0.6f, 1f, new Color(0.85f, 0.92f, 1f, 0.9f), ArcBlue, false, false);
+        }
+
+        // One straight stroke of a bolt: sparks close enough to read as a line, and a faint glow along it.
+        void Stroke(Vector2 from, float fromHeight, Vector2 to, float toHeight, float size, Color color)
+        {
+            var length = Vector2.Distance(from, to) + Mathf.Abs(fromHeight - toHeight);
+            var steps = Mathf.Max(2, Mathf.CeilToInt(length / 0.075f));
+            for (var k = 0; k <= steps; k++)
+            {
+                var t = (float)k / steps;
+                var point = Vector2.Lerp(from, to, t);
+                var height = Mathf.Lerp(fromHeight, toHeight, t);
+                Emit(point, Vector2.zero, height, 0f, Random.Range(0.09f, 0.15f), size, size * 0.5f, 1f, color, ArcBlue, false, false);
+                if (k % 4 == 0)
+                    Emit(point, Vector2.zero, height, 0f, 0.12f, size * 3.2f, size * 2f, 1f, new Color(0.5f, 0.65f, 1f, 0.22f), ArcBlue, false, false);
+            }
         }
 
         /// <summary>Sparks and splinters where an arrow strikes a wall or armour.</summary>
