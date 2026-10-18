@@ -1,3 +1,7 @@
+// Unity 6.6 marks DEVELOPMENT_BUILD as deprecated (UAC0009), but its replacement, UNITY_INCLUDE_INSTRUMENTATION, is not
+// set in this project's development builds (2026-10-18: the dev tools dropped out of the phone build), so the old symbol
+// stays and its warning is silenced here.
+#pragma warning disable UAC0009
 using UnityEngine;
 
 namespace ARPG
@@ -93,12 +97,12 @@ namespace ARPG
         {
             if (instance != null)
                 instance.PlayInternal(id, volume);
-#if UNITY_EDITOR || UNITY_INCLUDE_INSTRUMENTATION
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             Played?.Invoke(id, volume);
 #endif
         }
 
-#if UNITY_EDITOR || UNITY_INCLUDE_INSTRUMENTATION
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         /// <summary>Every request to play a sound, played or not (for <see cref="AudioCapture"/>). Development only.</summary>
         public static event System.Action<SoundId, float> Played;
 #endif

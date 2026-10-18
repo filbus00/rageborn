@@ -1316,3 +1316,10 @@ The owner's answers are in Docs/08. How it is built:
 - `EnemyHazards`: a pooled `Shock` ring (0.3 s) where a damaging circle lands and along a striking lane; a hazard with time left after landing calls `SetPool` once and `Animate` each tick.
 - `EnemyProjectiles`: each pooled projectile is a `Visual` (root, glow, trail, body); the body turns or spins, the trail follows the flight; fireballs flicker.
 - Checked in the editor at depth 1 (a filling circle, a lane, fire, poison and void pools, each projectile). Offline 663 passed (the 5 NavGrid failures), Unity 668 of 668.
+
+## 2026-10-18: the overnight agent's work merged
+
+- Merged `overnight-2026-10-18` (its report: `Docs/overnight-2026-10-18.md`; the decisions waiting for review: `Docs/review-list-2026-10-18.md`): FindObjectsByType without a sort mode, the portrait's owner not serialized, landed telegraphs stop pulsing (boss lasting zones pulsed all their life), shock rings sized from their first frame, enemy specials and elite affixes allocation free per frame, edge-case tests, an offline balance model in `Tools/BalanceModel`.
+- Its switch from `DEVELOPMENT_BUILD` to `UNITY_INCLUDE_INSTRUMENTATION` was wrong for this project: the phone's development build does not define it, and `DevAutopilot` and `AudioCapture` dropped out of the IL2CPP output. Back to `DEVELOPMENT_BUILD`, with `#pragma warning disable UAC0009` in the three files; checked in Builds/iOS's il2cppOutput that both are compiled in again.
+- "More than one global light" during the build stays: each scene has one global light, and the error comes from both build scenes being processed by the editor; harmless in the game (one scene at a time).
+- Offline 672 passed (the 5 NavGrid failures), Unity 677 of 677.

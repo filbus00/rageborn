@@ -1,6 +1,8 @@
-// Development builds only. Unity 6.6 deprecated DEVELOPMENT_BUILD; a development build still defines
-// UNITY_INCLUDE_INSTRUMENTATION, a Release managed code variant without Development Build does not.
-#if UNITY_EDITOR || UNITY_INCLUDE_INSTRUMENTATION
+// Unity 6.6 marks DEVELOPMENT_BUILD as deprecated (UAC0009), but its replacement, UNITY_INCLUDE_INSTRUMENTATION, is not
+// set in this project's development builds (2026-10-18: the dev tools dropped out of the phone build), so the old symbol
+// stays and its warning is silenced here.
+#pragma warning disable UAC0009
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
