@@ -1361,3 +1361,8 @@ The owner's answers are in Docs/08. How it is built:
 - `Inventory.TryMove`, `TryAddAt`, `Sort` (rarity first, then `Pack`), `Fits`; `GameSession.MoveInBackpack`, `SortBackpack`. The Bag: a backpack item dropped on the backpack moves to the cell under the finger (`CellUnder`), centred; the backpack's rim lights for every drag; a Sort button in the row under the stats.
 - Save format 21: `SaveData.backpackCells` beside `backpack`; restored with `TryAddAt`, else `TryAdd`. `MigrateFrom20`.
 - Tests: `InventoryTests` (move, sort, saved places). Offline 677 passed (the 5 NavGrid failures), Unity 682 of 682; the Bag checked at phone size.
+
+## 2026-10-18: a grace before regular enemies' pools hurt
+
+- `EnemyHazards.Hazard.GraceLeft` (set by `Delay`): once a hazard turns into a pool it is drawn and animated but neither pulses nor counts down its time until the grace is over. `Fire`, `Strike` (only when it lingers) and the coloured `Poison` take `poolDelay`; `EnemySpecials.Release` (lobs, rings, the Retcher's spew pool) and the caster's burning circle in `EnemyController` pass `EnemyRules.PoolGraceSeconds` (0.7). Elite affixes and bosses pass nothing.
+- Checked in play mode at depth 2 by ticking `Hazards` by hand under her: a pool with a 0.3 s fill first hurt at 0.30 s without the grace, 1.00 s with it. Offline 677 passed (the 5 NavGrid failures), Unity 682 of 682.

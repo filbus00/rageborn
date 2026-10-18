@@ -36,6 +36,14 @@ namespace ARPG
             public SoundId? Sound;
             public Color Color;
             public bool Pooled;
+            /// <summary>How long the pool lies before it starts to hurt (regular enemies' pools, 2026-10-18).</summary>
+            public float GraceLeft;
+
+            public Hazard Delay(float seconds)
+            {
+                GraceLeft = Mathf.Max(0f, seconds);
+                return this;
+            }
         }
 
         // A thin bright ring that flies out where an attack lands and fades (2026-10-18).
@@ -127,17 +135,19 @@ namespace ARPG
 
         /// <summary>Burning ground for <paramref name="seconds"/>, dealing this much a second in pulses while the player
         /// stands in it.</summary>
-        public void Fire(Vector2 center, float radius, float seconds, float damagePerSecond, int level) =>
-            Add(center, radius, 0f, seconds, 0f, damagePerSecond, level, FireColor);
+        public void Fire(Vector2 center, float radius, float seconds, float damagePerSecond, int level, float poolDelay = 0f) =>
+            Add(center, radius, 0f, seconds, 0f, damagePerSecond, level, FireColor).Delay(poolDelay);
 
         /// <summary>
         /// A circle that fills, strikes once (slowing her when <paramref name="slowMultiplier"/> is set), then burns on
         /// for <paramref name="burnSeconds"/> (elite affixes, 2026-10-08: Desecrator, Frost Nova).
         /// </summary>
         public void Strike(Vector2 center, float radius, float fillSeconds, float damage, float burnSeconds, float burnPerSecond, int level,
-            Color color, float slowMultiplier = 0f, float slowSeconds = 0f, SoundId? sound = null)
+            Color color, float slowMultiplier = 0f, float slowSeconds = 0f, SoundId? sound = null, float poolDelay = 0f)
         {
             var hazard = Add(center, radius, fillSeconds, burnSeconds, damage, burnPerSecond, level, color);
+            if (burnSeconds > 0f)
+                hazard.Delay(poolDelay);
             hazard.SlowMultiplier = slowMultiplier;
             hazard.SlowSeconds = slowSeconds;
             hazard.Sound = sound;
@@ -149,8 +159,9 @@ namespace ARPG
             Add(center, radius, fillSeconds, seconds, 0f, damagePerSecond, level, PoisonColor);
 
         /// <summary>A poison pool in a colour that also strikes when it lands (the enemies' specials, 2026-10-11).</summary>
-        public void Poison(Vector2 center, float radius, float fillSeconds, float seconds, float damagePerSecond, int level, Color color, float landDamage) =>
-            Add(center, radius, fillSeconds, seconds, landDamage, damagePerSecond, level, color);
+        public void Poison(Vector2 center, float radius, float fillSeconds, float seconds, float damagePerSecond, int level, Color color, float landDamage,
+            float poolDelay = 0f) =>
+            Add(center, radius, fillSeconds, seconds, landDamage, damagePerSecond, level, color).Delay(poolDelay);
 
         /// <summary>
         /// A lane from <paramref name="from"/> to <paramref name="to"/>, <paramref name="width"/> wide, that fills and
@@ -243,6 +254,7 @@ namespace ARPG
             hazard.SlowSeconds = 0f;
             hazard.Color = color;
             hazard.Pooled = false;
+            hazard.GraceLeft = 0f;
             return hazard;
         }
 
@@ -287,6 +299,12 @@ namespace ARPG
                     h.Marker.SetPool();
                 }
                 h.Marker.Animate(deltaTime);
+                // The pool lies harmless for its grace, then hurts for its full time.
+                if (h.GraceLeft > 0f)
+                {
+                    h.GraceLeft -= deltaTime;
+                    continue;
+                }
                 h.BurnLeft -= deltaTime;
                 h.PulseTimer -= deltaTime;
                 if (inside && h.PulseTimer <= 0f)

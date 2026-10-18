@@ -53,6 +53,11 @@ namespace ARPG
 
         public static float Telegraph(float seconds) => seconds / TelegraphSpeed;
 
+        /// <summary>Regular enemies' pools lie this long before they start to hurt (the owner, 2026-10-18: "increase the
+        /// time it takes for regular enemies pools to start hurting. Increase it by 0.7 sec"): the burning or poisoned
+        /// ground left by their specials and casters, not elite affixes or bosses. A hit on landing is not delayed.</summary>
+        public const float PoolGraceSeconds = 0.7f;
+
         static bool Ranged(EnemyArchetype archetype) => archetype == EnemyArchetype.Archer || archetype == EnemyArchetype.Caster;
 
         public static float AttackSpeedFactor(EnemyRank rank, EnemyArchetype archetype) =>

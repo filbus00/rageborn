@@ -939,7 +939,8 @@ namespace ARPG
                             world.Hazards.Blast(attackCenter, definition.SlamRadius, EnemyRules.Telegraph(definition.CastPulseGap * pulse), damage, Level, EnemyHazards.VoidColor);
                     }
                     else
-                        world.Hazards.Fire(attackCenter, definition.SlamRadius, definition.BurnSeconds, damage * definition.BurnHitsPerSecond, Level);
+                        world.Hazards.Fire(attackCenter, definition.SlamRadius, definition.BurnSeconds, damage * definition.BurnHitsPerSecond, Level,
+                            EnemyRules.PoolGraceSeconds);
                     return;
 
                 case EnemyArchetype.Brute:

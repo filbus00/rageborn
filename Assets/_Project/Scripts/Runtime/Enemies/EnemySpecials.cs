@@ -343,12 +343,14 @@ namespace ARPG
             {
                 case SpecialShape.Lob:
                     if (s.Poison)
-                        world.Hazards.Poison(p.Target, s.Size, EnemyRules.Telegraph(s.Fill), s.LingerSeconds, hit * s.LingerHit, level, s.Color, hit * s.Hit);
+                        world.Hazards.Poison(p.Target, s.Size, EnemyRules.Telegraph(s.Fill), s.LingerSeconds, hit * s.LingerHit, level, s.Color, hit * s.Hit, EnemyRules.PoolGraceSeconds);
                     else
-                        world.Hazards.Strike(p.Target, s.Size, EnemyRules.Telegraph(s.Fill), hit * s.Hit, s.LingerSeconds, hit * s.LingerHit, level, s.Color, s.Slow, s.SlowSeconds);
+                        world.Hazards.Strike(p.Target, s.Size, EnemyRules.Telegraph(s.Fill), hit * s.Hit, s.LingerSeconds, hit * s.LingerHit, level, s.Color, s.Slow, s.SlowSeconds,
+                            poolDelay: EnemyRules.PoolGraceSeconds);
                     break;
                 case SpecialShape.Ring:
-                    world.Hazards.Strike(enemy.GroundPosition, s.Size, EnemyRules.Telegraph(s.Fill), hit * s.Hit, s.LingerSeconds, hit * s.LingerHit, level, s.Color, s.Slow, s.SlowSeconds);
+                    world.Hazards.Strike(enemy.GroundPosition, s.Size, EnemyRules.Telegraph(s.Fill), hit * s.Hit, s.LingerSeconds, hit * s.LingerHit, level, s.Color, s.Slow, s.SlowSeconds,
+                        poolDelay: EnemyRules.PoolGraceSeconds);
                     break;
                 case SpecialShape.Throw:
                     Sfx.Play(SoundId.ArrowShot, 0.6f);
@@ -368,7 +370,7 @@ namespace ARPG
                         var from = enemy.GroundPosition + direction * enemy.Definition.BodyRadius;
                         world.Hazards.Line(from, from + direction * s.Length, s.Size, EnemyRules.Telegraph(s.Fill), hit * s.Hit, level, s.Color, s.Slow, s.SlowSeconds);
                     }
-                    world.Hazards.Poison(p.Target, 1.3f, EnemyRules.Telegraph(s.Fill), s.LingerSeconds, hit * s.LingerHit, level, s.Color, 0f);
+                    world.Hazards.Poison(p.Target, 1.3f, EnemyRules.Telegraph(s.Fill), s.LingerSeconds, hit * s.LingerHit, level, s.Color, 0f, EnemyRules.PoolGraceSeconds);
                     break;
                 case SpecialShape.Lines:
                     for (var k = 0; k < s.Count; k++)
