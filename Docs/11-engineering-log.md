@@ -1384,3 +1384,10 @@ The owner's answers are in Docs/08. How it is built:
 ## 2026-10-18: deferred edge gestures
 
 - `ProjectSetup` sets `PlayerSettings.iOS.deferSystemGesturesMode = SystemGestureDeferMode.All` (ProjectSettings `deferSystemGesturesMode: 15`, set through the API in the open editor): a swipe from any edge reaches the game first and the system gesture needs a second swipe. The home bar stays hidden (`hideHomeButton`). Stubs added for the member and the enum. Reachability (a swipe down on the home bar that pulls the screen down) is a phone setting an app cannot block.
+
+## 2026-10-18: the owner's dungeon music
+
+- "Liturgy of the Deep" (120.1 s, 44.1 kHz stereo mp3) copied to `ArtSource/audio/owner`. Measured: a quiet build-up to about 25 s, then one section played twice, 64.000 s apart (found by matching 3 s windows of 24 log bands, then by waveform correlation to the sample at six points), and a fade from about 112.5 s to silence at 117.3 s. The two passes are alike but not identical (correlation 0.55 to 0.77), best matched 2 s at 43.75 to 44.25 s.
+- `ArtSource/tools/audio/import_owner_music.py` (numpy, afconvert) writes `Resources/Audio/Music/dungeon.wav`: 44.0 s to 108.0 s, the first 1.5 s equal-power crossfaded with 108.0 to 109.5 s, so the loop's last sample runs into the second pass's own next one. Exactly 64.0 s, so the beat carries over the seam. Levelled to -15 dB RMS (the generated loop was -14.7), peak capped at -1 dB. The step across the seam is 0.015, below the music's own 99th percentile sample step (0.046); 100 ms loudness across it runs -14.4 to -17.6 to -12 with no dip to silence. The import settings stay (streamed Vorbis, `MusicDirector` loops the clip).
+- `make_music.py` no longer writes `dungeon` unless it is named (`OWNER_TRACKS`); its generated dungeon piece is kept in the script.
+- Play check: at depth 1 the dungeon source plays the 64 s clip, looping, at volume 0.3.

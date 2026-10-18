@@ -548,6 +548,8 @@ def boss():
 
 
 argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+# The dungeon plays the owner's own track since 2026-10-18 (import_owner_music.py): made here only when named.
+OWNER_TRACKS = {"dungeon"}
 for name, make in (("town", town), ("dungeon", dungeon), ("boss", boss)):
-    if not argv or name in argv:
+    if (not argv and name not in OWNER_TRACKS) or name in argv:
         make()
