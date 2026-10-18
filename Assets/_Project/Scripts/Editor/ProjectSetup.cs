@@ -49,6 +49,10 @@ namespace ARPG.Editor
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.iOS, ScriptingImplementation.IL2CPP);
 
             PlayerSettings.iOS.hideHomeButton = true;
+            // A stray swipe at a screen edge goes to the game first; iOS acts only on a second swipe there (the owner,
+            // 2026-10-18: "a miss swipe pushes the game window down"). Covers the home bar, Control Center and the
+            // notification shade.
+            PlayerSettings.iOS.deferSystemGesturesMode = UnityEngine.iOS.SystemGestureDeferMode.All;
 
             // Signing for the owner's phone: Xcode signs automatically with his personal team (free provisioning, so a
             // build runs 7 days before it needs installing again).

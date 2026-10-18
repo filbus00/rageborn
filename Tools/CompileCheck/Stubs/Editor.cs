@@ -120,7 +120,7 @@ namespace UnityEditor
         public static void SetApplicationIdentifier(BuildTargetGroup g, string id) { } public static void SetApplicationIdentifier(Build.NamedBuildTarget t, string id) { } public static string GetApplicationIdentifier(Build.NamedBuildTarget t) => "";
         public static void SetScriptingBackend(BuildTargetGroup g, ScriptingImplementation s) { } public static void SetScriptingBackend(Build.NamedBuildTarget t, ScriptingImplementation s) { }
         public static void SetIcons(BuildTargetGroup g, Texture2D[] i, IconKind k) { } public static void SetIcons(Build.NamedBuildTarget t, Texture2D[] i, IconKind k) { } public static void SetIcons(Build.NamedBuildTarget t, Texture2D[] i) { } public static int[] GetIconSizes(Build.NamedBuildTarget t, IconKind k) => new int[0]; public static int[] GetIconSizesForTargetGroup(BuildTargetGroup g) => new int[0];
-        public static class iOS { public static iOSSdkVersion sdkVersion { get; set; } public static string targetOSVersionString { get; set; } public static iOSTargetDevice targetDevice { get; set; } public static bool hideHomeButton { get; set; } public static bool appleEnableAutomaticSigning { get; set; } public static string appleDeveloperTeamID { get; set; } public static string buildNumber { get; set; } public static bool requiresFullScreen { get; set; } }
+        public static class iOS { public static iOSSdkVersion sdkVersion { get; set; } public static string targetOSVersionString { get; set; } public static iOSTargetDevice targetDevice { get; set; } public static bool hideHomeButton { get; set; } public static UnityEngine.iOS.SystemGestureDeferMode deferSystemGesturesMode { get; set; } public static bool appleEnableAutomaticSigning { get; set; } public static string appleDeveloperTeamID { get; set; } public static string buildNumber { get; set; } public static bool requiresFullScreen { get; set; } }
     }
     public static class AnimationUtility { public static EditorCurveBinding[] GetCurveBindings(AnimationClip c) => new EditorCurveBinding[0]; public static AnimationCurve GetEditorCurve(AnimationClip c, EditorCurveBinding b) => null; public static void SetEditorCurve(AnimationClip c, EditorCurveBinding b, AnimationCurve a) { } public static AnimationClipSettings GetAnimationClipSettings(AnimationClip c) => new AnimationClipSettings(); public static void SetAnimationClipSettings(AnimationClip c, AnimationClipSettings s) { } }
     public sealed class AnimationClipSettings { public bool loopTime { get; set; } public float startTime { get; set; } public float stopTime { get; set; } }
@@ -201,4 +201,10 @@ namespace UnityEditor.iOS.Xcode
         public void ReadFromFile(string path) { }
         public void WriteToFile(string path) { }
     }
+}
+
+namespace UnityEngine.iOS
+{
+    [System.Flags]
+    public enum SystemGestureDeferMode { None = 0, TopEdge = 1, LeftEdge = 2, BottomEdge = 4, RightEdge = 8, All = 15 }
 }

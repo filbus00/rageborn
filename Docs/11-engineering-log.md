@@ -1380,3 +1380,7 @@ The owner's answers are in Docs/08. How it is built:
 - `EnemyController.Engage` (used by the sight wake in `Tick`, the hit wake in `TakeDamage` and the pack's `Wake`) sets `reactTimer` to `EnemyRules.ReactionFor(rank)`: 1.5 s, 0 for bosses. While it runs, the Approach state only holds (`Hold`: spreading and keeping off her) and returns; `CanCast` and the elite affixes' `awake` check read `Reacting`, so specials and affix attacks wait too. Spawned-awake enemies (`Activate(aggroed: true)`) skip it.
 - `EnemyRulesTests.AWokenEnemy_TakesASecondAndAHalf_ABossNone`. Offline 679 passed (the 5 NavGrid failures), Unity 684 of 684.
 - Play check at depth 1, her bow switched off, placed 3 units from a sleeping pack of 16 zombies: all 16 woke together and were still reacting at 0.3 and 0.5 s, then chased and killed her within 10 s. Speeding up time to 6x for the check had killed her earlier and ended the run; 1x and a lone Normal enemy's pack worked.
+
+## 2026-10-18: deferred edge gestures
+
+- `ProjectSetup` sets `PlayerSettings.iOS.deferSystemGesturesMode = SystemGestureDeferMode.All` (ProjectSettings `deferSystemGesturesMode: 15`, set through the API in the open editor): a swipe from any edge reaches the game first and the system gesture needs a second swipe. The home bar stays hidden (`hideHomeButton`). Stubs added for the member and the enum. Reachability (a swipe down on the home bar that pulls the screen down) is a phone setting an app cannot block.
