@@ -5,15 +5,20 @@ namespace ARPG
 {
     /// <summary>
     /// The HUD's arrangement (the owner, 2026-09-28): the player's round portrait in the top-left corner, the life bar,
-    /// experience bar, potion pips and the depth (2026-10-13, in place of the level on the portrait) to its right, and
-    /// the Bag button under the portrait; the
-    /// mini-map sits top right (<see cref="Minimap"/>). Arranges the scene's HUD objects at runtime inside the safe area,
+    /// experience bar, potion pips and the depth (2026-10-13, in place of the level on the portrait) to its right; the
+    /// mini-map sits top right (<see cref="Minimap"/>), and under it (2026-10-18) the Bag and Settings icon buttons and
+    /// her coins (<see cref="CoinCounter"/>). Arranges the scene's HUD objects at runtime inside the safe area,
     /// so the scenes need no rebuild, and keeps the portrait in the character's current gear.
     /// </summary>
     public class HudLayout : MonoBehaviour
     {
         public const float PortraitSize = 176f;
         const float Margin = 24f, Top = 12f, BarsLeft = Margin + PortraitSize + 20f, BarWidth = 400f;
+
+        /// <summary>The icon buttons under the mini-map (its box is 220 tall at 12 from the top): square, a gap apart,
+        /// against the right edge.</summary>
+        public const float IconButtonSize = 132f;
+        const float IconGap = 16f, RightMargin = 16f, ButtonsTop = 12f + 220f + 24f;
 
         CharacterPortrait portrait;
         GameSession session;
@@ -45,7 +50,7 @@ namespace ARPG
                 else if (child.GetComponent<PotionPips>() != null)
                     UiStyle.Place(rect, new Vector2(0f, 1f), new Vector2(BarsLeft, -Top - 100f), rect.sizeDelta);
                 else if (child.name == "Bag Button")
-                    StyleBag(rect);
+                    StyleBag(rect, area);
                 else if (child.name == "Level")
                     // The roguelite has no character levels to show (the owner, 2026-10-13: "remove the level
                     // indicator in the profile picture"); the depth is shown instead.
@@ -86,23 +91,95 @@ namespace ARPG
             return portrait;
         }
 
-        // The Bag button under the portrait, in the dark iron style.
-        static void StyleBag(RectTransform rect)
+        // The Bag button under the mini-map as a framed bag icon (the owner, 2026-10-18: "the bag button looks wierd.
+        // Make an icon with a bag, an icon for settings and place them under the map"), Settings beside it on the
+        // right, and her coins under them.
+        static void StyleBag(RectTransform rect, Transform area)
         {
-            UiStyle.Place(rect, new Vector2(0f, 1f), new Vector2(Margin, -Top - PortraitSize - 16f), new Vector2(PortraitSize, 100f));
-            var image = rect.GetComponent<Image>();
-            if (image != null)
-                image.color = UiStyle.Panel;
-            var outline = rect.gameObject.AddComponent<Outline>();
-            outline.effectColor = UiStyle.Frame;
-            outline.effectDistance = new Vector2(3f, -3f);
             var label = rect.GetComponentInChildren<Text>();
             if (label != null)
+                label.gameObject.SetActive(false);
+            IconButton(rect, HudIcons.Kind.Bag, 1);
+
+            var settings = UiStyle.Rect(area, "Settings Button");
+            settings.gameObject.AddComponent<Image>();
+            settings.gameObject.AddComponent<Button>().onClick.AddListener(SettingsScreen.OpenPaused);
+            IconButton(settings, HudIcons.Kind.Settings, 0);
+
+            // Left of the two buttons, on their row: under them the development builds' frame readout would cover it.
+            CoinCounter.Create(area, new Vector2(-RightMargin - 2f * (IconButtonSize + IconGap),
+                -ButtonsTop - (IconButtonSize - CoinCounter.Height) / 2f));
+        }
+
+        // Places a button at its place from the right (0 the rightmost) and dresses it: an iron frame, the icon inside.
+        static void IconButton(RectTransform rect, HudIcons.Kind kind, int fromRight)
+        {
+            UiStyle.Place(rect, new Vector2(1f, 1f), new Vector2(-RightMargin - fromRight * (IconButtonSize + IconGap), -ButtonsTop),
+                new Vector2(IconButtonSize, IconButtonSize));
+            var image = rect.GetComponent<Image>();
+            if (image != null)
             {
-                label.font = UiStyle.Title;
-                label.color = UiStyle.Gold;
-                label.fontSize = 36;
+                // The tap target only; the frame below draws the button.
+                image.sprite = null;
+                image.color = new Color(0f, 0f, 0f, 0f);
+                image.raycastTarget = true;
             }
+            var outline = rect.GetComponent<Outline>();
+            if (outline != null)
+                Object.Destroy(outline);
+            var frame = UiStyle.Framed(rect, "Frame", UiStyle.Panel, 3f);
+            UiStyle.Stretch(frame.rectTransform);
+            frame.transform.SetAsFirstSibling();
+            var icon = UiStyle.Image(rect, "Icon", Color.white);
+            icon.sprite = HudIcons.For(kind);
+            icon.preserveAspect = true;
+            UiStyle.Stretch(icon.rectTransform, IconButtonSize * 0.16f);
+        }
+    }
+
+    /// <summary>
+    /// Her coins on the HUD (the owner, 2026-10-18: "Display the amount of coins somewhere on the hud. No need to open the
+    /// inventory to see money"): a coin icon and the count, right-aligned left of the icon buttons. The text is rebuilt
+    /// only when the count changes.
+    /// </summary>
+    public class CoinCounter : MonoBehaviour
+    {
+        public const float Height = 56f;
+
+        Text text;
+        int shown = -1;
+
+        public static CoinCounter Create(Transform parent, Vector2 topRight)
+        {
+            var rect = UiStyle.Place(UiStyle.Rect(parent, "Coins"), new Vector2(1f, 1f), topRight, new Vector2(320f, Height));
+            var counter = rect.gameObject.AddComponent<CoinCounter>();
+            var icon = UiStyle.Image(rect, "Coin", Color.white);
+            icon.sprite = HudIcons.For(HudIcons.Kind.Coin);
+            icon.preserveAspect = true;
+            UiStyle.Place(icon.rectTransform, new Vector2(1f, 0.5f), Vector2.zero, new Vector2(54f, 48f));
+            icon.rectTransform.pivot = new Vector2(1f, 0.5f);
+            counter.text = UiStyle.Text(rect, "", 38, UiStyle.Gold, TextAnchor.MiddleRight);
+            counter.text.font = UiStyle.Title;
+            counter.text.raycastTarget = false;
+            var textRect = counter.text.rectTransform;
+            textRect.anchorMin = Vector2.zero;
+            textRect.anchorMax = Vector2.one;
+            textRect.offsetMin = Vector2.zero;
+            textRect.offsetMax = new Vector2(-64f, 0f);
+            var shadow = counter.text.gameObject.AddComponent<Outline>();
+            shadow.effectColor = new Color(0f, 0f, 0f, 0.85f);
+            shadow.effectDistance = new Vector2(2f, -2f);
+            return counter;
+        }
+
+        void LateUpdate()
+        {
+            var session = GameSession.Current;
+            var gold = session != null ? session.Gold : 0;
+            if (gold == shown)
+                return;
+            shown = gold;
+            text.text = gold.ToString("N0", System.Globalization.CultureInfo.InvariantCulture);
         }
     }
 

@@ -1366,3 +1366,11 @@ The owner's answers are in Docs/08. How it is built:
 
 - `EnemyHazards.Hazard.GraceLeft` (set by `Delay`): once a hazard turns into a pool it is drawn and animated but neither pulses nor counts down its time until the grace is over. `Fire`, `Strike` (only when it lingers) and the coloured `Poison` take `poolDelay`; `EnemySpecials.Release` (lobs, rings, the Retcher's spew pool) and the caster's burning circle in `EnemyController` pass `EnemyRules.PoolGraceSeconds` (0.7). Elite affixes and bosses pass nothing.
 - Checked in play mode at depth 2 by ticking `Hazards` by hand under her: a pool with a 0.3 s fill first hurt at 0.30 s without the grace, 1.00 s with it. Offline 677 passed (the 5 NavGrid failures), Unity 682 of 682.
+
+## 2026-10-18: HUD icon buttons and coins
+
+- `UI/HudIcons.cs`: three pixel glyphs (bag, cog, coin) made into point-filtered sprites, cached; `HudIconTests` checks each is drawn and not cut at its edges.
+- `HudLayout.StyleBag`: the scene's Bag Button keeps its name (the onboarding pulse and the upgrade badge find it), loses its label and becomes a clear tap target over a `UiStyle.Framed` plate with the bag icon, 132 square at 256 from the top on the right (the mini-map's box ends at 232). A "Settings Button" made beside it, to the right. `CoinCounter` (in `HudLayout.cs`) left of them on the same row, its text redone only when `GameSession.Gold` changes. The first try put the coins under the buttons, where `PerfOverlay` draws in development builds.
+- `SettingsScreen.OpenPaused`: sets the time scale to 0 unless the Bag already did, and `Close` puts it back only then (checked in play mode: alone 0 then 1; over the Bag the Bag's pause stays).
+- A slip: the glyph and coin-row edits were saved while play mode was running; play was stopped at once, before the recompile, and everything was rechecked after it.
+- Offline 678 passed (the 5 NavGrid failures), Unity 683 of 683; the HUD captured at phone size in the editor.

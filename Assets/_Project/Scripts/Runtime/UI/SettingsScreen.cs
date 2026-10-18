@@ -36,7 +36,32 @@ namespace ARPG
             current.Render();
         }
 
-        public void Close() => gameObject.SetActive(false);
+        // Opened from the HUD's button the page pauses the game itself, as the Bag does (2026-10-18).
+        static bool pausedHere;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => pausedHere = false;
+
+        /// <summary>Opens the page from the HUD: the game pauses until it closes, unless the Bag already paused it.</summary>
+        public static void OpenPaused()
+        {
+            if (InventoryScreen.Current == null || !InventoryScreen.Current.IsOpen)
+            {
+                pausedHere = true;
+                Time.timeScale = 0f;
+            }
+            Open();
+        }
+
+        public void Close()
+        {
+            gameObject.SetActive(false);
+            if (!pausedHere)
+                return;
+            pausedHere = false;
+            if (InventoryScreen.Current == null || !InventoryScreen.Current.IsOpen)
+                Time.timeScale = 1f;
+        }
 
         /// <summary>Closes the page if it is open (the Bag closing takes it along).</summary>
         public static void CloseIfOpen()
