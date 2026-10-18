@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Offline balance model (2026-10-18): prints a table from the game's pure formulas. Not part of the game.
+       Run: DOTNET_ROLL_FORWARD=Major dotnet run -p:TF=net8.0 project Tools/BalanceModel/BalanceModel.csproj -->
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><LangVersion>9.0</LangVersion><Nullable>disable</Nullable><ImplicitUsings>disable</ImplicitUsings></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../CompileCheck/Runtime/Runtime.csproj" /></ItemGroup>
+</Project>
