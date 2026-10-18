@@ -207,7 +207,7 @@ namespace ARPG
                 }
                 if (!alive || (modifiers & EliteAffixRules.Attacks) == 0)
                     continue;
-                var awake = enemy.State == EnemyState.Approach || enemy.State == EnemyState.Attack || enemy.State == EnemyState.Recover;
+                var awake = (enemy.State == EnemyState.Approach && !enemy.Reacting) || enemy.State == EnemyState.Attack || enemy.State == EnemyState.Recover;
                 if (!awake || Vector2.Distance(enemy.GroundPosition, target) > EliteAffixRules.Reach)
                     continue;
                 if (!timers.TryGetValue(enemy, out var t))

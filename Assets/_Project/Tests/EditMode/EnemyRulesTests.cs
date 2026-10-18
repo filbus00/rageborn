@@ -38,5 +38,15 @@ namespace ARPG.Tests
             Assert.AreEqual(1f, EnemyRules.AuraMultiplier(0f), 1e-6f);
             Assert.AreEqual(1.2f, EnemyRules.AuraMultiplier(0.2f), 1e-6f);
         }
+
+        [Test]
+        public void AWokenEnemy_TakesASecondAndAHalf_ABossNone()
+        {
+            // The owner, 2026-10-18: "give the a reaction-time of 1.5 seconds".
+            Assert.AreEqual(1.5f, EnemyRules.ReactionFor(EnemyRank.Normal));
+            Assert.AreEqual(1.5f, EnemyRules.ReactionFor(EnemyRank.Champion));
+            Assert.AreEqual(1.5f, EnemyRules.ReactionFor(EnemyRank.Elite));
+            Assert.AreEqual(0f, EnemyRules.ReactionFor(EnemyRank.Boss));
+        }
     }
 }

@@ -124,6 +124,7 @@ namespace ARPG
         Vector2 ground;
         Vector2 home;
         float leashTimer;
+        float reactTimer;
         float stateTimer;
         float life;
         float punchTimer;
@@ -216,7 +217,7 @@ namespace ARPG
         float castSeconds;
 
         /// <summary>Free to throw a special (<see cref="EnemySpecials"/>): alive, chasing, not mid-attack, dash or cast.</summary>
-        public bool CanCast => IsAlive && State == EnemyState.Approach && dashLeft <= 0f && castTimer <= 0f && !chill.IsFrozen && !Scripted;
+        public bool CanCast => IsAlive && State == EnemyState.Approach && !Reacting && dashLeft <= 0f && castTimer <= 0f && !chill.IsFrozen && !Scripted;
 
         /// <summary>Stands and shows its attack for this long, facing the given way, while its special's telegraph starts.</summary>
         public void BeginCast(float seconds, Vector2 toward)
@@ -304,6 +305,7 @@ namespace ARPG
             ground = groundPosition;
             home = groundPosition;
             leashTimer = 0f;
+            reactTimer = 0f;
             slow.Clear();
             bleedTimer = 0f;
             bleedPending = 0f;
@@ -462,12 +464,18 @@ namespace ARPG
                     if (distance > definition.AggroRange ||
                         !EnemyRules.Wakes(distance, world.RouteLength(ground, playerGround), definition.AggroRange))
                         return;
-                    State = EnemyState.Approach;
-                    leashTimer = 0f;
+                    Engage();
                     pack?.Alert();
                     break;
 
                 case EnemyState.Approach:
+                    // Just woken: it stands its reaction time before it chases, attacks or casts.
+                    if (reactTimer > 0f)
+                    {
+                        reactTimer -= deltaTime;
+                        Hold(world, playerGround, deltaTime);
+                        return;
+                    }
                     // Too far, or with no route to her (cut off by walls): after the leash time it walks home instead of
                     // pressing into the wall.
                     if (distance > definition.LeashRange || !world.TryChaseDirection(ground, playerGround, out _))
@@ -641,8 +649,7 @@ namespace ARPG
             // A hit wakes an idle or returning enemy, and its pack with it. One that is mid-attack keeps attacking.
             if (State == EnemyState.Idle || State == EnemyState.Return)
             {
-                State = EnemyState.Approach;
-                leashTimer = 0f;
+                Engage();
                 pack?.Alert();
             }
             return false;
@@ -764,8 +771,18 @@ namespace ARPG
         {
             if (State != EnemyState.Idle)
                 return;
+            Engage();
+        }
+
+        /// <summary>Whether it is still taking in that it was woken (<see cref="EnemyRules.ReactionSeconds"/>).</summary>
+        public bool Reacting => reactTimer > 0f && State == EnemyState.Approach;
+
+        // Woken by sight, a hit or its pack: on to the chase after its reaction time.
+        void Engage()
+        {
             State = EnemyState.Approach;
             leashTimer = 0f;
+            reactTimer = EnemyRules.ReactionFor(definition.Rank);
         }
 
         /// <summary>Advances the death fade. Returns true once the enemy is finished and can return to the pool.</summary>

@@ -12,6 +12,13 @@ namespace ARPG
         /// </summary>
         public const float RouteAggroFactor = 1.75f;
 
+        /// <summary>How long a woken enemy stands before it chases, attacks or casts (the owner, 2026-10-18: "the enemies
+        /// react too quick, give the a reaction-time of 1.5 seconds"): from sight, a hit or its pack's alarm. Enemies
+        /// that spawn awake (a boss's adds) and bosses have none.</summary>
+        public const float ReactionSeconds = 1.5f;
+
+        public static float ReactionFor(EnemyRank rank) => rank == EnemyRank.Boss ? 0f : ReactionSeconds;
+
         /// <summary>Whether an idle enemy wakes: straight-line distance within aggro range and a route short enough
         /// (the route is the straight distance when in sight, infinity when there is none).</summary>
         public static bool Wakes(float distance, float route, float aggroRange) =>
