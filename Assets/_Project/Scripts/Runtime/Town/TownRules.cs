@@ -46,7 +46,9 @@ namespace ARPG
             // close"): Elara by her chest, Miranda at the herb stall, Brunhilde at the yard's far side.
             Newcomer.StashKeeper => new Vector2Int(1, 10),
             Newcomer.Healer => new Vector2Int(8, 12),
-            Newcomer.Gambler => new Vector2Int(-4, -9),
+            // In the open plaza right of the house before her dice stall (2026-10-18, the owner: "hidden behind a house": at
+            // (-4, -9) and all round her stall the house in front of it covers her).
+            Newcomer.Gambler => new Vector2Int(2, -8),
             _ => new Vector2Int(-12, -3),
         };
 

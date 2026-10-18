@@ -60,7 +60,7 @@ namespace ARPG
         {
             new Vector2Int(0, 0), StairsCell, new Vector2Int(8, -12), new Vector2Int(5, -15),
             new Vector2Int(-6, 12), new Vector2Int(-7, 1), new Vector2Int(-13, -8), new Vector2Int(-17, -8),
-            new Vector2Int(1, 10), new Vector2Int(8, 12), new Vector2Int(-4, -9), new Vector2Int(-12, -3),
+            new Vector2Int(1, 10), new Vector2Int(8, 12), new Vector2Int(2, -8), new Vector2Int(-12, -3),
             new Vector2Int(8, 4), new Vector2Int(-10, 10), new Vector2Int(6, -8), new Vector2Int(-18, -3), new Vector2Int(8, 11),
             new Vector2Int(0, 3),
         };

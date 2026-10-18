@@ -1323,3 +1323,7 @@ The owner's answers are in Docs/08. How it is built:
 - Its switch from `DEVELOPMENT_BUILD` to `UNITY_INCLUDE_INSTRUMENTATION` was wrong for this project: the phone's development build does not define it, and `DevAutopilot` and `AudioCapture` dropped out of the IL2CPP output. Back to `DEVELOPMENT_BUILD`, with `#pragma warning disable UAC0009` in the three files; checked in Builds/iOS's il2cppOutput that both are compiled in again.
 - "More than one global light" during the build stays: each scene has one global light, and the error comes from both build scenes being processed by the editor; harmless in the game (one scene at a time).
 - Offline 672 passed (the 5 NavGrid failures), Unity 677 of 677.
+
+## 2026-10-18: Sylthara moved into view
+
+- `Newcomers.Cell(Gambler)` (2, -8), in `TownLayout.KeptClear` too. At (-4, -9) and at (-8, -7) house_1, which stands before the dice stall on the camera's side, covered her (checked by a render of the town in the editor); the dice stall itself is mostly hidden by that house too.
