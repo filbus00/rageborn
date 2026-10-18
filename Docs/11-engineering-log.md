@@ -1395,3 +1395,9 @@ The owner's answers are in Docs/08. How it is built:
 ## 2026-10-19: the edge deferral made to work
 
 - The 2026-10-18 build already returned all edges from `preferredScreenEdgesDeferringSystemGestures` (Unity's `UnityViewControllerBase+iOS.mm` reads the player setting), but also `prefersHomeIndicatorAutoHidden` YES, and iOS does not defer edge gestures while the home indicator auto-hides. `hideHomeButton` is now false (ProjectSetup and the saved settings), and `Core/EdgeGestures.cs` sets `Device.hideHomeButton = false` and `deferSystemGesturesMode = All` before the first scene on iOS builds. The home bar now shows, dimmed by iOS. Offline 679 passed (the 5 NavGrid failures), Unity 684 of 684; on the phone it is for the owner to try.
+
+## 2026-10-19: the owner's town music
+
+- "Buried Sanctum" (120.0 s, 44.1 kHz stereo mp3) copied to `ArtSource/audio/owner`. Measured: quiet to about 10 s, steady near -15 dB, a fade from about 113 s. The music repeats at multiples of 12.8 s (self-similarity of 24 log bands peaked at 25.6, 51.2, 76.8 and 89.6 s). 89.6 s was taken, the longest that fits before the fade: waveform correlation one loop apart is best at 17.5 s (0.77; 76.8 s matched a little better, 0.84, but drops 13 s of music), the period measured as 89.6001 s.
+- `import_owner_music.py` now takes a table of tracks (`TRACKS`) and writes both loops; the dungeon one came out byte for byte as before. Town: 17.5 to 107.1 s, 1.5 s equal-power crossfade, -15 dB RMS, peak -1.5 dB. The step across the seam is 0.003 (the music's 99th percentile step is 0.031). The loudness dips to -21 dB just after the seam; the source has the same dip at both cut points (-19 and -20 dB), a gap in the music. `make_music.py` leaves `town` alone too (`OWNER_TRACKS`).
+- Play check: the town source plays the 89.6 s clip, looping, at volume 0.3. `Logs/town_seam_preview.wav` (not in git) is the 10 s either side of the seam.
