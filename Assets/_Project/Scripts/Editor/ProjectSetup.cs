@@ -48,10 +48,11 @@ namespace ARPG.Editor
 
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.iOS, ScriptingImplementation.IL2CPP);
 
-            PlayerSettings.iOS.hideHomeButton = true;
             // A stray swipe at a screen edge goes to the game first; iOS acts only on a second swipe there (the owner,
-            // 2026-10-18: "a miss swipe pushes the game window down"). Covers the home bar, Control Center and the
-            // notification shade.
+            // 2026-10-18: "a miss swipe pushes the game window down"; 2026-10-19: "make it so that swipe downwards on the
+            // bottom edge is blocked"). Covers the home bar, Control Center and the notification shade. The home bar is
+            // shown: iOS ignores the deferral while it hides itself (EdgeGestures sets both again at start).
+            PlayerSettings.iOS.hideHomeButton = false;
             PlayerSettings.iOS.deferSystemGesturesMode = UnityEngine.iOS.SystemGestureDeferMode.All;
 
             // Signing for the owner's phone: Xcode signs automatically with his personal team (free provisioning, so a
