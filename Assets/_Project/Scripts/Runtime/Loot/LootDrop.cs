@@ -220,9 +220,9 @@ namespace ARPG
         // keeps its size against the world when the view changes.
         float pixelsPerUnit;
 
-        /// <summary>The name's height against the world, in world units: about twice the old world label's, so it reads on
-        /// a phone (22 pixels on the iPhone 11, 11 points).</summary>
-        public const float NameHeight = 0.42f;
+        /// <summary>The name's height against the world, in world units (the owner, 2026-10-19: the first sharp names, at
+        /// 20 pixels, were "too big"): 16 pixels on the iPhone 11.</summary>
+        public const float NameHeight = 0.3f;
 
         void LateUpdate()
         {
@@ -234,7 +234,7 @@ namespace ARPG
             var at = label.position;
             var screen = cam.WorldToScreenPoint(at);
             pixelsPerUnit = Mathf.Abs(cam.WorldToScreenPoint(at + Vector3.right).x - screen.x);
-            var size = Mathf.Max(20, Mathf.RoundToInt(pixelsPerUnit * NameHeight));
+            var size = Mathf.Max(15, Mathf.RoundToInt(pixelsPerUnit * NameHeight));
             if (text.fontSize != size)
                 text.fontSize = size;
             text.rectTransform.position = new Vector3(Mathf.Round(screen.x), Mathf.Round(screen.y), 0f);

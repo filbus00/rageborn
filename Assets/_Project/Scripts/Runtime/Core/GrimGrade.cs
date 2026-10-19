@@ -72,17 +72,24 @@ namespace ARPG
         }
     }
 
-    /// <summary>The grim grade's numbers (URP's units). Claude's, after the mock-up, to review on the phone.</summary>
+    /// <summary>The grim grade's numbers (URP's units). Claude's, after the mock-up, to review on the phone. Raised
+    /// 2026-10-19 (the owner: "The game lacks contrast now. It is somewhat visually cluttered"): more contrast and
+    /// light, less of the colour taken out, and the floor darker (<see cref="FloorTint"/>), so the figures and the
+    /// effects read against it.</summary>
     public static class GradeRules
     {
-        /// <summary>-100 is grey, 0 untouched: about half the colour, as the mock-up's 55 percent.</summary>
-        public const float Saturation = -40f;
+        /// <summary>-100 is grey, 0 untouched (was -40).</summary>
+        public const float Saturation = -18f;
 
-        /// <summary>-100 to 100: the mock-up's 1.25 times contrast.</summary>
-        public const float Contrast = 18f;
+        /// <summary>-100 to 100 (was 18).</summary>
+        public const float Contrast = 38f;
 
-        /// <summary>In stops: a touch brighter, since the contrast and the vignette darken a dark game.</summary>
-        public const float Exposure = 0.15f;
+        /// <summary>In stops: brighter, since the contrast and the vignette darken a dark game (was 0.15).</summary>
+        public const float Exposure = 0.3f;
+
+        /// <summary>The floor's tint over its textures: darker and a little cold, calming the cobbles under the fight.
+        /// </summary>
+        public static readonly Color FloorTint = new Color(0.68f, 0.68f, 0.7f, 1f);
 
         public static readonly Color ShadowTint = new Color(0.42f, 0.5f, 0.62f);
         public static readonly Color HighlightTint = new Color(0.78f, 0.62f, 0.42f);
@@ -90,7 +97,7 @@ namespace ARPG
         /// <summary>-100 to 100: which of the two tints reaches further; even.</summary>
         public const float Balance = 0f;
 
-        public const float VignetteIntensity = 0.32f;
+        public const float VignetteIntensity = 0.26f;
         public const float VignetteSmoothness = 0.45f;
     }
 }

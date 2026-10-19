@@ -25,8 +25,9 @@ namespace ARPG
         static void ResetStatics() => Current = null;
 
         // Blood on the floor: at most this many splats, each lying this long and fading over its last seconds.
-        const int MaxStains = 260;
-        const float StainSeconds = 30f;
+        // Fewer and shorter-lived since 2026-10-19 (the owner: "visually cluttered"; 260 for 30 s before).
+        const int MaxStains = 140;
+        const float StainSeconds = 16f;
         const float StainFadeSeconds = 6f;
 
         // More than this many particles at once and new ones are skipped: effects must never cost the frame.

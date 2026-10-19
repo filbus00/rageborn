@@ -15,9 +15,10 @@ namespace ARPG
     {
         const int PoolSize = 20;
         const float RiseScreenPixels = 90f;
-        const float DurationSeconds = 0.7f;
-        const int NormalFontSize = 40;
-        const int CriticalFontSize = 58;
+        // Smaller and shorter since 2026-10-19 (the owner: "visually cluttered"; 40 and 58 points, 0.7 s before).
+        const float DurationSeconds = 0.55f;
+        const int NormalFontSize = 28;
+        const int CriticalFontSize = 42;
 
         static readonly Color NormalColor = Color.white;
         static readonly Color CriticalColor = new Color(1f, 0.65f, 0.15f);
