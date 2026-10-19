@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ARPG
 {
@@ -23,8 +24,11 @@ namespace ARPG
 
         SpriteRenderer marker;
         SpriteRenderer beam;
-        TextMesh label;
-        MeshRenderer labelRenderer;
+        // Where the name sits (it slides up when lifted), and the name itself: sharp text on an overlay over the
+        // world, since a world label is pixelated with it and could not be read (the owner, 2026-10-19).
+        Transform label;
+        Text text;
+        Color labelColor;
         float labelLift;
         float labelLiftTarget;
         float beamHeight;
@@ -56,17 +60,27 @@ namespace ARPG
             beam = NewRenderer("Beam", beamSprite, GameSortingLayers.Effects, material);
 
             // The item's name over it in its rarity's color (the owner, 2026-10-02), so a drop is read before it is
-            // picked up. A world label: it is pixelated with the world, like the NPC names.
-            var labelObject = new GameObject("Name", typeof(TextMesh));
-            labelObject.transform.SetParent(transform, false);
-            labelObject.transform.localPosition = new Vector3(0f, LabelHeight, 0f);
-            label = labelObject.GetComponent<TextMesh>();
-            label.anchor = TextAnchor.LowerCenter;
-            label.alignment = TextAlignment.Center;
-            label.characterSize = 0.055f;
-            label.fontSize = 48;
-            labelRenderer = labelObject.GetComponent<MeshRenderer>();
-            labelRenderer.sortingLayerName = GameSortingLayers.WorldUI;
+            // picked up: on the overlay (LabelCanvas), placed over this point every frame.
+            label = new GameObject("Name").transform;
+            label.SetParent(transform, false);
+            label.localPosition = new Vector3(0f, LabelHeight, 0f);
+            var textObject = new GameObject("Loot Name", typeof(RectTransform), typeof(Text), typeof(Outline));
+            textObject.transform.SetParent(LabelCanvas, false);
+            text = textObject.GetComponent<Text>();
+            text.font = UiStyle.Body;
+            text.fontStyle = FontStyle.Bold;
+            text.alignment = TextAnchor.LowerCenter;
+            text.horizontalOverflow = HorizontalWrapMode.Overflow;
+            text.verticalOverflow = VerticalWrapMode.Overflow;
+            text.raycastTarget = false;
+            text.supportRichText = true;
+            var outline = textObject.GetComponent<Outline>();
+            outline.effectColor = new Color(0f, 0f, 0f, 0.9f);
+            outline.effectDistance = new Vector2(2f, -2f);
+            var rect = (RectTransform)textObject.transform;
+            rect.pivot = new Vector2(0.5f, 0f);
+            rect.sizeDelta = new Vector2(10f, 10f);
+            text.enabled = false;
             gameObject.SetActive(false);
         }
 
@@ -91,11 +105,12 @@ namespace ARPG
             beam.color = color;
             beamHeight = LootColors.BeamHeight(item.Rarity);
             beam.transform.localScale = new Vector3(BeamWidth / BeamSpriteWidth, 0f, 1f);
-            label.gameObject.SetActive(true);
             labelLift = labelLiftTarget = 0f;
-            label.transform.localPosition = new Vector3(0f, LabelHeight, 0f);
-            label.text = ItemComparison.Name(item);
-            label.color = color;
+            label.localPosition = new Vector3(0f, LabelHeight, 0f);
+            text.text = ItemComparison.Name(item);
+            labelColor = color;
+            text.color = color;
+            text.enabled = true;
             shownAt = Time.time;
             wantedCheckedAt = float.NegativeInfinity;
             wanted = AutoLootRules.Wants(SettingsDirector.Current.PickupRule, item.Rarity, false);
@@ -114,7 +129,7 @@ namespace ARPG
             marker.color = LootColors.Gold;
             marker.transform.localScale = new Vector3(GoldScale, GoldScale, 1f);
             beam.enabled = false;
-            label.gameObject.SetActive(false);
+            text.enabled = false;
             popTime = PopSeconds;
             shownAt = Time.time;
             gameObject.SetActive(true);
@@ -126,6 +141,19 @@ namespace ARPG
             Item = null;
             GoldAmount = 0;
             gameObject.SetActive(false);
+        }
+
+        // The name goes with the drop (picked up, or pooled away).
+        void OnDisable()
+        {
+            if (text != null)
+                text.enabled = false;
+        }
+
+        void OnDestroy()
+        {
+            if (text != null)
+                Destroy(text.gameObject);
         }
 
         /// <summary>Seconds this drop has lain on the ground (scaled time, so the Bag's pause does not count).</summary>
@@ -153,7 +181,8 @@ namespace ARPG
             wanted = Item.IsBlueprint || AutoLootRules.Wants(SettingsDirector.Current.PickupRule, Item.Rarity, upgrade);
             // A drop the rule leaves behind shows its name dimmed.
             var color = LootColors.Of(Item.Rarity);
-            label.color = wanted ? color : new Color(color.r, color.g, color.b, 0.45f);
+            labelColor = wanted ? color : new Color(color.r, color.g, color.b, 0.45f);
+            text.color = labelColor;
             return wanted;
         }
 
@@ -183,7 +212,55 @@ namespace ARPG
         }
 
         /// <summary>The name's size in world units, as last drawn.</summary>
-        public Vector2 LabelSize => IsGold || labelRenderer == null ? Vector2.zero : (Vector2)labelRenderer.bounds.size;
+        public Vector2 LabelSize => IsGold || text == null || pixelsPerUnit <= 0f
+            ? Vector2.zero
+            : new Vector2(text.preferredWidth / pixelsPerUnit, text.preferredHeight / pixelsPerUnit);
+
+        // Screen pixels a world unit spans, measured each frame from the camera; the name's size follows it, so it
+        // keeps its size against the world when the view changes.
+        float pixelsPerUnit;
+
+        /// <summary>The name's height against the world, in world units: about twice the old world label's, so it reads on
+        /// a phone (22 pixels on the iPhone 11, 11 points).</summary>
+        public const float NameHeight = 0.42f;
+
+        void LateUpdate()
+        {
+            if (IsGold || text == null || !text.enabled)
+                return;
+            var cam = Camera.main;
+            if (cam == null)
+                return;
+            var at = label.position;
+            var screen = cam.WorldToScreenPoint(at);
+            pixelsPerUnit = Mathf.Abs(cam.WorldToScreenPoint(at + Vector3.right).x - screen.x);
+            var size = Mathf.Max(20, Mathf.RoundToInt(pixelsPerUnit * NameHeight));
+            if (text.fontSize != size)
+                text.fontSize = size;
+            text.rectTransform.position = new Vector3(Mathf.Round(screen.x), Mathf.Round(screen.y), 0f);
+        }
+
+        static Transform labelCanvas;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => labelCanvas = null;
+
+        // One overlay for every drop's name, under the HUD and the menus (sorting 5), kept across scenes as the drops
+        // are.
+        static Transform LabelCanvas
+        {
+            get
+            {
+                if (labelCanvas != null)
+                    return labelCanvas;
+                var go = new GameObject("Loot Names", typeof(Canvas));
+                DontDestroyOnLoad(go);
+                var canvas = go.GetComponent<Canvas>();
+                canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                canvas.sortingOrder = 5;
+                return labelCanvas = go.transform;
+            }
+        }
 
         /// <summary>Lifts the name this far above its anchor, so it clears the names around it; it slides there.</summary>
         public void SetLabelLift(float lift) => labelLiftTarget = lift;
@@ -224,7 +301,7 @@ namespace ARPG
             if (!Mathf.Approximately(labelLift, labelLiftTarget))
             {
                 labelLift = Mathf.MoveTowards(labelLift, labelLiftTarget, LabelSlideSpeed * dt);
-                label.transform.localPosition = new Vector3(0f, LabelHeight + labelLift, 0f);
+                label.localPosition = new Vector3(0f, LabelHeight + labelLift, 0f);
             }
         }
 

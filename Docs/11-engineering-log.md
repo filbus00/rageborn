@@ -1429,3 +1429,9 @@ The owner's answers are in Docs/08. How it is built:
 - `TownSheets.FullPage` (Boons sets it): the sheet's parts go in a `MenuChrome.Page` body and the canvas draws at 55, over the Bag; the town's shops keep the bottom sheet. `CodexScreen` built the same way.
 - A slip, twice: edits made while play mode was still running from screenshots; play was stopped before Unity recompiled each time. The memory note now says to stop play in the capture command itself.
 - Checked at phone size in the editor: the Bag, Settings, Boons and Codex pages. Offline 683 passed (the 5 NavGrid failures), Unity 688 of 688.
+
+## 2026-10-19: sharp loot names, and a pause when iOS takes the screen
+
+- `LootDrop`: the `TextMesh` name (drawn into the Pixel Perfect Camera's low-resolution target since the 1.5 pixelation, so unreadable) is replaced by a `Text` on one shared overlay canvas (`LabelCanvas`, "Loot Names", sorting 5, kept across scenes), placed each `LateUpdate` over an anchor transform that keeps the old lift and slide. Its font size follows the camera (`NameHeight` 0.42 world units, at least 20 pixels), so it holds its size against the world; `LabelSize` (for `LabelLayout`) is its preferred size in world units. Hidden with the drop (`OnDisable`), destroyed with it. Checked at phone size with six drops of four rarities: sharp, in their colours, stacked apart. The NPC and quest names in town are still world labels.
+- `Core/FocusPause.cs`: a component made before the first scene (not in the editor, where the game loses focus at every click elsewhere) opens the Bag on `OnApplicationFocus(false)` or `OnApplicationPause(true)` when `FocusPauseRules.OpensBag` allows: a Bag there and closed, the time scale above 0, her alive, Settings not open. Tested in `FocusPauseTests`; it only runs on the phone, not tried there yet.
+- Offline 684 passed (the 5 NavGrid failures), Unity 689 of 689.
