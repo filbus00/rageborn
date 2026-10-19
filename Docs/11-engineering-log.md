@@ -1446,7 +1446,6 @@ The owner's answers are in Docs/08. How it is built:
 
 - The darker floor and strong grade were "too dark". `GradeRules.FloorTint` is white again (kept as the place to tint the floor), contrast 28, saturation -32, exposure 0.28, vignette 0.28. Compared on a frozen fight at depth 3 with the first grade at contrast 28; this one a touch lighter and warmer. Offline 684 passed, Unity 689 of 689.
 
-## 2026-10-19: the camera keeps the fight in sight
+## 2026-10-19: the fight-leaning camera, undone
 
-- `FollowCamera`: each frame it gathers the offsets of the enemies near her (`EnemyManager.Active`, alive, not Idle or Return, within `CameraRules.ThreatRadius` 10) into a reused list; with any, the lead is `CameraRules.ThreatLead` (their mean offset times 0.45, capped at 2 ground units), smoothed as before; with none, the movement lead (1.5). The enemy manager is looked for at most once a second (the town has none). Tests in `CameraLeadTests`.
-- Checked in play mode only without awake enemies (she outran the pack before it woke): the lead was the movement lead, 1.5 toward her run. The fight case was not caught live: the second placement found no sleeping pack in sight. Offline 686 passed (the 5 NavGrid failures), Unity 691 of 691.
+- `FollowCamera` leaned toward the mean of the awake enemies within 10 units (45 percent, at most 2 units) in a fight (commit ba015415). On the phone it "feels wierd"; reverted (e221f326 and this note), so the view leads her movement again. Kiting still pans the view away from enemies behind her; other ideas, untried: a smaller lead in a fight, or a lead toward the aim, not the run.
