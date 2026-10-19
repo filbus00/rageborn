@@ -78,7 +78,7 @@ namespace ARPG
         {
             if (ground == null || !Load())
                 return false;
-            // The floor a step darker and colder than its textures, so the figures on it stand off it (2026-10-19).
+            // The floor's tint (GradeRules.FloorTint; none since the darker floor of 2026-10-19 was too dark).
             ground.color = GradeRules.FloorTint;
             LoadTimer.Mark("ground: textures");
             Release();

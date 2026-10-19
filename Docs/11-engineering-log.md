@@ -1441,3 +1441,7 @@ The owner's answers are in Docs/08. How it is built:
 - Tried live on one frozen fight at depth 3 (the grade volume's profile and the ground tilemap's colour changed from a command): the old grade, a stronger one, and the stronger one with the floor darkened. The last kept the figures, arrows and fire readable against the cobbles; the old one let red-brown enemies sink into a busy mid-grey floor.
 - `GradeRules`: contrast 38, saturation -18, exposure 0.3, vignette 0.26, and `FloorTint` (0.68, 0.68, 0.70), set on the ground tilemap by `GroundPainter.Paint` (the town and the dungeon). `DamageNumbers` 28 and 42 points for 0.55 s. `ArrowFx` stains at most 140 for 16 s. `LootDrop.NameHeight` 0.3 world units, at least 15 pixels.
 - Offline 684 passed (the 5 NavGrid failures), Unity 689 of 689; the fight checked again at phone size.
+
+## 2026-10-19: the grade, again
+
+- The darker floor and strong grade were "too dark". `GradeRules.FloorTint` is white again (kept as the place to tint the floor), contrast 28, saturation -32, exposure 0.28, vignette 0.28. Compared on a frozen fight at depth 3 with the first grade at contrast 28; this one a touch lighter and warmer. Offline 684 passed, Unity 689 of 689.

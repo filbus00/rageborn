@@ -72,24 +72,24 @@ namespace ARPG
         }
     }
 
-    /// <summary>The grim grade's numbers (URP's units). Claude's, after the mock-up, to review on the phone. Raised
-    /// 2026-10-19 (the owner: "The game lacks contrast now. It is somewhat visually cluttered"): more contrast and
-    /// light, less of the colour taken out, and the floor darker (<see cref="FloorTint"/>), so the figures and the
-    /// effects read against it.</summary>
+    /// <summary>The grim grade's numbers (URP's units). Claude's, after the mock-up, to review on the phone. On
+    /// 2026-10-19 the owner found the game lacking contrast; a stronger grade with a darker floor was "too dark. It
+    /// looked better before. Just raise contrast somewhat", so it is the first grade with the contrast raised and a touch more light and colour (chosen from two looks of one fight).
+    /// </summary>
     public static class GradeRules
     {
-        /// <summary>-100 is grey, 0 untouched (was -40).</summary>
-        public const float Saturation = -18f;
+        /// <summary>-100 is grey, 0 untouched: a little more colour than the mock-up's half (-40 until 2026-10-19).</summary>
+        public const float Saturation = -32f;
 
-        /// <summary>-100 to 100 (was 18).</summary>
-        public const float Contrast = 38f;
+        /// <summary>-100 to 100: 28 since 2026-10-19 (18, the mock-up's 1.25 times, before).</summary>
+        public const float Contrast = 28f;
 
-        /// <summary>In stops: brighter, since the contrast and the vignette darken a dark game (was 0.15).</summary>
-        public const float Exposure = 0.3f;
+        /// <summary>In stops: brighter, since the contrast and the vignette darken a dark game (0.15 until 2026-10-19).</summary>
+        public const float Exposure = 0.28f;
 
-        /// <summary>The floor's tint over its textures: darker and a little cold, calming the cobbles under the fight.
+        /// <summary>The floor's tint over its textures: none (a darker floor was tried on 2026-10-19 and was too dark).
         /// </summary>
-        public static readonly Color FloorTint = new Color(0.68f, 0.68f, 0.7f, 1f);
+        public static readonly Color FloorTint = Color.white;
 
         public static readonly Color ShadowTint = new Color(0.42f, 0.5f, 0.62f);
         public static readonly Color HighlightTint = new Color(0.78f, 0.62f, 0.42f);
@@ -97,7 +97,7 @@ namespace ARPG
         /// <summary>-100 to 100: which of the two tints reaches further; even.</summary>
         public const float Balance = 0f;
 
-        public const float VignetteIntensity = 0.26f;
+        public const float VignetteIntensity = 0.28f;
         public const float VignetteSmoothness = 0.45f;
     }
 }
