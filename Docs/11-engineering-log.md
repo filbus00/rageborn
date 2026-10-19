@@ -1450,7 +1450,6 @@ The owner's answers are in Docs/08. How it is built:
 
 - `FollowCamera` leaned toward the mean of the awake enemies within 10 units (45 percent, at most 2 units) in a fight (commit ba015415). On the phone it "feels wierd"; reverted (e221f326 and this note), so the view leads her movement again. Kiting still pans the view away from enemies behind her; other ideas, untried: a smaller lead in a fight, or a lead toward the aim, not the run.
 
-## 2026-10-19: the camera leads toward her target in a fight
+## 2026-10-19: the camera as it was
 
-- `FollowCamera`: with a living `PlayerCombat.Target`, the lead is `CameraRules.AimLead` (a third of the way to the target, at most `AimLeadDistance` 0.8 ground units) smoothed over `FightSmoothSeconds` 0.5; otherwise the movement lead (1.5, 0.25 s). Test in `CameraLeadTests`.
-- Checked in play mode at depth 1: running left and down, away from her target on her right, the camera's lead stayed +0.15 toward the target (the old lead would have swung about 1.2 the other way). Offline 685 passed (the 5 NavGrid failures), Unity 690 of 690.
+- The lead toward her target while shooting (edb6cbe0) "Still feels wrong"; reverted like the fight-leaning one before it. `FollowCamera` is back to the movement lead alone (1.5 units, 0.25 s). Both tries changed where the view looks during a fight, and both felt wrong on the phone; if kiting comes up again, a wider view (a little more zoom out) in a fight would leave the lead alone.
