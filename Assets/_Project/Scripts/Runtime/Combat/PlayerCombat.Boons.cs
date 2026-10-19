@@ -246,4 +246,25 @@ namespace ARPG
             }
         }
     }
+
+    /// <summary>The boons of 2026-10-19 (the owner: "The game is too hard as it is now. Add 3 more powerfull boons"):
+    /// numbers Claude's, to review. Pure, tested.</summary>
+    public static class SurvivalBoonRules
+    {
+        /// <summary>Executioner: a hit that leaves an enemy below this share of its life kills it (not a boss).</summary>
+        public const float ExecuteBelow = 0.2f;
+
+        /// <summary>Thick Hide: the share of every hit she is spared.</summary>
+        public const float ThickHideReduction = 0.25f;
+
+        /// <summary>Blood Drinker: the share of the damage her arrows deal that heals her.</summary>
+        public const float LifeStolen = 0.04f;
+
+        public static bool Executes(float lifeAfter, float maxLife, EnemyRank rank) =>
+            rank != EnemyRank.Boss && maxLife > 0f && lifeAfter > 0f && lifeAfter < maxLife * ExecuteBelow;
+
+        public static float Healed(float damageDealt) => Mathf.Max(0f, damageDealt) * LifeStolen;
+
+        public static float Taken(float damage) => damage * (1f - ThickHideReduction);
+    }
 }

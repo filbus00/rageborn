@@ -27,6 +27,9 @@ namespace ARPG
         // Boons (2026-10-15): arrows that pierce, split, bounce, seek, bleed, arc lightning, burst corpses, ring out.
         PiercingArrows, SplittingArrows, Ricochet, SeekingArrows, BleedingArrows, ChainLightning, CorpseBurst, ArrowNova,
         MarkedPrey, DiveVolley, VengefulQuiver, ThunderArrow, Wildfire, Shatter,
+
+        // Boons (2026-10-19, the owner: "The game is too hard ... Add 3 more powerfull boons").
+        Executioner, ThickHide, BloodDrinker,
     }
 
     public sealed class PassiveNode
@@ -329,6 +332,10 @@ namespace ARPG
         /// <summary>Boons (2026-10-17, the owner: "Add more unique boons"): each on or off.</summary>
         public bool MarkedPrey, DiveVolley, VengefulQuiver, ThunderArrow, Wildfire, Shatter;
 
+        /// <summary>Boons (2026-10-19): her arrows finish the badly hurt, she takes less damage, her arrows heal her
+        /// (<see cref="SurvivalBoonRules"/>).</summary>
+        public bool Executioner, ThickHide, BloodDrinker;
+
         public void Add(PassiveEffect effect, float value)
         {
             switch (effect)
@@ -384,6 +391,9 @@ namespace ARPG
                 case PassiveEffect.ThunderArrow: ThunderArrow = true; break;
                 case PassiveEffect.Wildfire: Wildfire = true; break;
                 case PassiveEffect.Shatter: Shatter = true; break;
+                case PassiveEffect.Executioner: Executioner = true; break;
+                case PassiveEffect.ThickHide: ThickHide = true; break;
+                case PassiveEffect.BloodDrinker: BloodDrinker = true; break;
             }
         }
     }

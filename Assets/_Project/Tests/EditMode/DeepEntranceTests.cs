@@ -56,10 +56,11 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void EveryEnemy_HasAFifthMoreLife()
+        public void EveryEnemy_HasAFewPercentMoreLife()
         {
-            Assert.AreEqual(1.2f, CombatFormulas.EnemyLifeScale);
-            Assert.AreEqual(9.6f, CombatFormulas.EnemyLife(1), 1e-4f);
+            // A fifth more from 2026-10-17, 5 percent since 2026-10-19 ("The game is too hard as it is now").
+            Assert.AreEqual(1.05f, CombatFormulas.EnemyLifeScale);
+            Assert.AreEqual(8.4f, CombatFormulas.EnemyLife(1), 1e-4f);
         }
     }
 }

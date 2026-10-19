@@ -137,6 +137,7 @@ namespace ARPG
             Affixes = new EliteAffixes(transform);
             Specials = new EnemySpecials();
             Warnings = gameObject.AddComponent<IncomingWarnings>();
+            Hazards.Warnings = Warnings;
 
             for (var i = 0; i < poolSize; i++)
                 pool.Push(CreateInstance());

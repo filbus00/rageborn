@@ -118,6 +118,9 @@ namespace ARPG
                 damage *= 1f - tree.LowLifeReduction;
             if (tree.Juggernaut && stance != null)
                 damage *= 1f - Mathf.Min(0.5f, 0.03f * stance.Momentum);
+            // Thick Hide (a boon, 2026-10-19).
+            if (tree.ThickHide)
+                damage = SurvivalBoonRules.Taken(damage);
             DamageTaken += damage;
             HitsTaken++;
             lastHitTime = Time.time;

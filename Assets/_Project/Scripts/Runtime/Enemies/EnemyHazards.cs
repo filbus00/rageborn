@@ -221,8 +221,16 @@ namespace ARPG
             }
         }
 
+        /// <summary>The warning symbols round her (set by the manager): every circle shows one while she is near it
+        /// (2026-10-19).</summary>
+        public IncomingWarnings Warnings { get; set; }
+
+        /// <summary>How long a pool that hurts at once still warns (burning ground, which has no fill).</summary>
+        const float LeastWarningSeconds = 0.6f;
+
         Hazard Add(Vector2 center, float radius, float fill, float burn, float damage, float burnPerSecond, int level, Color color)
         {
+            Warnings?.WarnPool(center, radius, Mathf.Max(fill, LeastWarningSeconds), color);
             Hazard hazard = null;
             foreach (var h in hazards)
                 if (!h.Active && h.Marker != null)

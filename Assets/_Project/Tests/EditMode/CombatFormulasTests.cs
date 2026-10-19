@@ -18,7 +18,7 @@ namespace ARPG.Tests
         public void EnemyAndCharacterCurves_AtLevelOne()
         {
             Assert.AreEqual(8f * CombatFormulas.EnemyLifeScale, CombatFormulas.EnemyLife(1), 1e-4f);
-            Assert.AreEqual(4.5f, CombatFormulas.EnemyHitDamage(1), 1e-4f);
+            Assert.AreEqual(CombatFormulas.EnemyHitScale, CombatFormulas.EnemyHitDamage(1), 1e-4f);
             Assert.AreEqual(100f, CombatFormulas.CharacterBaseLife(1), 1e-4f);
             // The stand-in Vitality starts at level 2: 8 points a level, 8 life a point.
             Assert.AreEqual(100f, CombatFormulas.CharacterLife(1), 1e-4f);
@@ -109,15 +109,15 @@ namespace ARPG.Tests
         [Test]
         public void EnemyHitOnPlayer_IsTheLevelCurve_WithoutArmor()
         {
-            Assert.AreEqual(4.5f, CombatFormulas.EnemyHitOnPlayer(1, 1f, 0f), 1e-5f);
-            Assert.AreEqual(6.75f, CombatFormulas.EnemyHitOnPlayer(1, 1.5f, 0f), 1e-5f, "an archetype multiplier scales it");
+            Assert.AreEqual(CombatFormulas.EnemyHitScale, CombatFormulas.EnemyHitOnPlayer(1, 1f, 0f), 1e-5f);
+            Assert.AreEqual(CombatFormulas.EnemyHitScale * 1.5f, CombatFormulas.EnemyHitOnPlayer(1, 1.5f, 0f), 1e-5f, "an archetype multiplier scales it");
         }
 
         [Test]
         public void EnemyHitOnPlayer_IsReducedByArmorAgainstTheAttackersLevel()
         {
             // At level 1, 450 armor blocks 450 / (450 + 450) = half of the hit.
-            Assert.AreEqual(2.25f, CombatFormulas.EnemyHitOnPlayer(1, 1f, 450f), 1e-4f);
+            Assert.AreEqual(CombatFormulas.EnemyHitScale / 2f, CombatFormulas.EnemyHitOnPlayer(1, 1f, 450f), 1e-4f);
         }
 
         [Test]
@@ -129,14 +129,14 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void LevelOneBasicHits_KillALevelOneEnemyInTwoHits()
+        public void LevelOneBasicHits_KillALevelOneEnemyInOneHit()
         {
-            // The docs aim for a normal enemy to die in 0.6 to 1.2 seconds; at 1.4 attacks a second, two hits do it
-            // (one until enemy life went up a fifth, 2026-10-17).
+            // The docs aim for a normal enemy to die in 0.6 to 1.2 seconds. One hit until enemy life went up a fifth
+            // (2026-10-17), two then, one again since it came down to 5 percent more (2026-10-19, "too hard").
             var hit = CombatFormulas.HitDamage(CombatFormulas.WeaponAverageDamage(1), 1f, 0f, 0f, 1f, false, 0f, 0f, 1);
 
-            Assert.Less(hit, CombatFormulas.EnemyLife(1));
-            Assert.GreaterOrEqual(2f * hit, CombatFormulas.EnemyLife(1));
+            Assert.GreaterOrEqual(hit, CombatFormulas.EnemyLife(1));
+            Assert.Less(hit, 1.2f * CombatFormulas.EnemyLife(1));
         }
     }
 }

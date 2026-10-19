@@ -2251,6 +2251,11 @@ namespace ARPG
             var critical = forceCrit || Random.value < (GameSession.Current.Equipment.CriticalChancePercent + tree.CriticalChance + attributes.CriticalChance) / 100f;
             lastCritical = critical;
             var damage = Damage(enemy, multiplier, critical, movementSkill, projectile);
+            // Executioner and Blood Drinker (2026-10-19, SurvivalBoonRules).
+            if (tree.Executioner && SurvivalBoonRules.Executes(enemy.Life - damage, enemy.MaxLife, enemy.Definition.Rank))
+                damage = Mathf.Max(damage, enemy.Life);
+            if (tree.BloodDrinker && health != null)
+                health.Heal(SurvivalBoonRules.Healed(Mathf.Min(damage, enemy.Life)));
 
             var world = IsoMath.GroundToWorld(enemy.GroundPosition);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);

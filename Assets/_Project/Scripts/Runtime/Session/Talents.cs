@@ -149,6 +149,10 @@ namespace ARPG
                 // The owner, 2026-10-17: "Add more unique boons". Claude's, to review (Docs/08).
                 Passive(M, 0, 3, "thunder_arrow", "Thunder Arrow", 1, PassiveEffect.ThunderArrow, 1f,
                     "Every eighth shot is a thunder arrow: where it strikes, lightning hits every enemy within 2.5."),
+                // The owner, 2026-10-19: "The game is too hard as it is now. Add 3 more powerfull boons". Claude's, to
+                // review (Docs/08): one a tree, offered from the first depth.
+                Passive(M, 1, 3, "executioner", "Executioner", 1, PassiveEffect.Executioner, 1f,
+                    "An arrow that leaves an enemy (not a boss) below 20 percent life kills it outright."),
                 Skill(M, 2, 1, "split_arrow", "Split Arrow", "SplitArrow", "Learn Split Arrow: five arrows in a fan."),
                 Passive(M, 2, 2, "seeking_arrows", "Seeking Arrows", 1, PassiveEffect.SeekingArrows, 1f, "Every arrow bends in flight toward its target."),
                 Skill(M, 3, 0, "kill_shot", "Kill Shot", "KillShot", "Learn Kill Shot: a fast arrow that executes the wounded."),
@@ -165,6 +169,8 @@ namespace ARPG
                     "Every 8 seconds the toughest enemy in reach becomes her prey: her arrows deal 50 percent more to it, and its death gives back a dive."),
                 Passive(B, 1, 0, "dive_volley", "Dive Volley", 1, PassiveEffect.DiveVolley, 1f,
                     "Every dive looses an arrow at each of the four nearest enemies."),
+                Passive(B, 1, 3, "thick_hide", "Thick Hide", 1, PassiveEffect.ThickHide, 1f,
+                    "She takes 25 percent less damage from everything."),
                 Improved(B, 2, 0, "homing_arrow", "HomingArrow", "Homing Arrow"),
                 Skill(B, 2, 1, "hunters_breath", "Hunter's Breath", "HuntersBreath", "Learn Hunter's Breath: refills Focus when it runs low."),
                 Passive(B, 2, 2, "corpse_burst", "Corpse Burst", 1, PassiveEffect.CorpseBurst, 1f, "An enemy her arrow kills bursts, striking those around it."),
@@ -184,6 +190,8 @@ namespace ARPG
                     "A burning enemy that dies spreads its fire to every enemy within 2.5.", "fire_arrow"),
                 Passive(S, 1, 2, "shatter", "Shatter", 1, PassiveEffect.Shatter, 1f,
                     "A frozen enemy that dies shatters, striking and chilling every enemy within 2.5.", "freezing_arrow"),
+                Passive(S, 1, 3, "blood_drinker", "Blood Drinker", 1, PassiveEffect.BloodDrinker, 1f,
+                    "Her arrows heal her for 4 percent of the damage they deal."),
                 Skill(S, 2, 0, "explosive_arrow", "Explosive Arrow", "ExplosiveArrow", "Learn Explosive Arrow: an arrow that bursts among a crowd."),
                 Improved(S, 3, 0, "explosive_arrow", "ExplosiveArrow", "Explosive Arrow"),
                 Improved(S, 4, 0, "knockback_shot", "KnockbackShot", "Knockback Shot"),

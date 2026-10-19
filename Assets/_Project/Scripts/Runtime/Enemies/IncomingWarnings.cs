@@ -10,7 +10,7 @@ namespace ARPG
     /// warning symbols around the character. So if an attack is about to come from the to left, a warning symbol (color
     /// coded according to attack) show up top left above the character"). Each wind-up aimed at her (an archer's shot, a
     /// charger's lunge, a thrown special, and as well as their lanes the specials that strike along a lane) puts a
-    /// warning triangle on a ring round her chest, on the side of its enemy as seen on screen, in its attack's colour,
+    /// round warning on a ring round her chest, on the side of its enemy as seen on screen, in its attack's colour,
     /// throbbing faster as the attack nears. It goes when the attack is let loose, is cancelled or its enemy dies.
     /// Drawn on an overlay like <see cref="AimCone"/>, so walls and bodies never hide it. Owned by
     /// <see cref="EnemyManager"/>; pooled, so a fight makes no objects after its first warnings.
@@ -19,7 +19,7 @@ namespace ARPG
     {
         /// <summary>The ring's radius and the symbol's size, in world units; the ring's centre this far above her feet.
         /// </summary>
-        public const float Radius = 2.1f, Size = 1.05f, ChestHeight = 0.6f;
+        public const float Radius = 2.1f, Size = 0.84f, ChestHeight = 0.6f;
 
         /// <summary>Colours by attack: arrows and bolts red, lunges amber; a special shows its own colour.</summary>
         public static readonly Color ShotColor = new Color(1f, 0.25f, 0.18f, 1f);
@@ -33,7 +33,25 @@ namespace ARPG
             public float Seconds;
             public float Elapsed;
             public bool Active;
+            // A pool's warning shows only while she is within this of its edge (0: always).
+            public float Near;
+            public float PoolRadius;
         }
+
+        /// <summary>A pool (a ground hazard) is near, shown while she is within this many units of its edge.</summary>
+        public const float PoolNear = 3f;
+
+        /// <summary>Shows a warning for a pool about to hurt (the owner, 2026-10-19: "Add warnings for pools also"),
+        /// on its side of her, while she is near it.</summary>
+        public void WarnPool(Vector2 center, float radius, float seconds, Color color)
+        {
+            Warn(null, center, seconds, color);
+            var w = last;
+            w.Near = PoolNear;
+            w.PoolRadius = radius;
+        }
+
+        Warning last;
 
         readonly List<Warning> warnings = new List<Warning>();
         readonly List<float> placedAngles = new List<float>(16);
@@ -88,6 +106,9 @@ namespace ARPG
             warning.Active = true;
             warning.Image.color = color;
             warning.Image.enabled = false;
+            warning.Near = 0f;
+            warning.PoolRadius = 0f;
+            last = warning;
         }
 
         /// <summary>Takes down every warning from this enemy (its attack was let loose or broken off).</summary>
@@ -139,6 +160,12 @@ namespace ARPG
                 var chest = (Vector2)cam.WorldToScreenPoint(chestWorld);
                 var unit = Mathf.Abs(cam.WorldToScreenPoint(chestWorld + Vector3.right).x - chest.x);
                 var from = w.Source != null ? w.Source.GroundPosition : w.From;
+                if (w.Near > 0f &&
+                    Vector2.Distance(IsoMath.WorldToGround(player.transform.position), from) - w.PoolRadius > w.Near)
+                {
+                    w.Image.enabled = false;
+                    continue;
+                }
                 var toward = (Vector2)cam.WorldToScreenPoint(IsoMath.GroundToWorld(from)) - chest;
                 var angle = toward.sqrMagnitude > 1f ? Mathf.Atan2(toward.y, toward.x) * Mathf.Rad2Deg : 90f;
                 var ring = WarningRules.RingFor(angle, placedAngles);
@@ -152,50 +179,43 @@ namespace ARPG
             }
         }
 
-        // A warning triangle with an "!", outlined: white so the colour tints it, the mark and the outline dark.
+        // A round warning (the owner, 2026-10-19: "Make them circular"): a disc with an "!", outlined; white so the
+        // colour tints it, the mark and the outline dark.
         static Sprite Symbol
         {
             get
             {
                 if (symbol != null)
                     return symbol;
-                string[] rows =
-                {
-                    "......oo......",
-                    ".....o##o.....",
-                    ".....o##o.....",
-                    "....o####o....",
-                    "....o#++#o....",
-                    "...o##++##o...",
-                    "...o##++##o...",
-                    "..o###++###o..",
-                    "..o###++###o..",
-                    ".o##########o.",
-                    ".o####++####o.",
-                    "o############o",
-                    "oooooooooooooo",
-                };
-                int h = rows.Length, w = rows[0].Length;
-                var texture = new Texture2D(w, h, TextureFormat.RGBA32, false)
+                const int n = 15;
+                var texture = new Texture2D(n, n, TextureFormat.RGBA32, false)
                 {
                     name = "Warning Symbol",
                     filterMode = FilterMode.Point,
                     wrapMode = TextureWrapMode.Clamp,
                 };
-                var pixels = new Color32[w * h];
-                for (var row = 0; row < h; row++)
-                    for (var x = 0; x < w; x++)
-                        pixels[(h - 1 - row) * w + x] = rows[row][x] switch
-                        {
-                            '#' => new Color32(255, 255, 255, 255),
-                            '+' => new Color32(24, 14, 10, 255),
-                            'o' => new Color32(20, 12, 10, 255),
-                            _ => new Color32(0, 0, 0, 0),
-                        };
+                var pixels = new Color32[n * n];
+                var dark = new Color32(20, 12, 10, 255);
+                var white = new Color32(255, 255, 255, 255);
+                for (var row = 0; row < n; row++)
+                    for (var x = 0; x < n; x++)
+                    {
+                        var dx = x + 0.5f - n / 2f;
+                        var dy = row + 0.5f - n / 2f;
+                        var r = Mathf.Sqrt(dx * dx + dy * dy);
+                        Color32 c = new Color32(0, 0, 0, 0);
+                        if (r <= n / 2f)
+                            c = r > n / 2f - 1.3f ? dark : white;
+                        // The "!": a bar down the middle and a dot below it.
+                        var bar = x >= 6 && x <= 8 && ((row >= 3 && row <= 8) || (row >= 10 && row <= 11));
+                        if (bar && r <= n / 2f - 1.3f)
+                            c = dark;
+                        pixels[(n - 1 - row) * n + x] = c;
+                    }
                 texture.SetPixels32(pixels);
                 texture.Apply(false, true);
                 // Full rect, no physics shape: the texture is no longer readable (CLAUDE.md, pixel art).
-                symbol = Sprite.Create(texture, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect,
+                symbol = Sprite.Create(texture, new Rect(0, 0, n, n), new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect,
                     Vector4.zero, false);
                 return symbol;
             }
