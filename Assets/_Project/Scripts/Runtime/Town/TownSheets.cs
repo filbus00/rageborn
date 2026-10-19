@@ -32,6 +32,13 @@ namespace ARPG
         /// <summary>A sheet that cannot be put away without a choice (no Close, the backdrop does nothing).</summary>
         protected virtual bool MustChoose => false;
 
+        /// <summary>A whole page under the menus' header and title (<see cref="MenuChrome"/>, the owner's concept art,
+        /// 2026-10-19) rather than a sheet over the game: the Bag's own tabs.</summary>
+        protected virtual bool FullPage => false;
+
+        RectTransform chrome;
+        string pageTitle;
+
         void CloseByTap()
         {
             if (!MustChoose)
@@ -59,7 +66,9 @@ namespace ARPG
                 Destroy(child.gameObject);
             }
             Render();
-            if (sheetRect != null)
+            if (chrome != null)
+                MenuChrome.Redraw(chrome, pageTitle, Close);
+            else if (sheetRect != null)
                 SheetKit.FitSheet(sheetRect, content);
         }
 
@@ -84,33 +93,52 @@ namespace ARPG
             root.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
             var screen = root.AddComponent<T>();
             root.GetComponent<Button>().onClick.AddListener(screen.CloseByTap);
+            // A page of the Bag draws over the Bag (50), as the Codex and Settings do.
+            if (screen.FullPage)
+                canvas.sortingOrder = 55;
 
             var sheet = new GameObject("Sheet", typeof(RectTransform), typeof(Image), typeof(VerticalLayoutGroup), typeof(Button));
-            sheet.transform.SetParent(root.transform, false);
             sheet.GetComponent<Button>().transition = Selectable.Transition.None;
             var sheetRect = (RectTransform)sheet.transform;
-            screen.sheetRect = sheetRect;
-            sheetRect.anchorMin = new Vector2(0f, 0f);
-            sheetRect.anchorMax = new Vector2(1f, 0f);
-            sheetRect.pivot = new Vector2(0.5f, 0f);
-            sheetRect.sizeDelta = new Vector2(0f, 2060f);
-            sheet.GetComponent<Image>().color = UiStyle.Sheet;
-            UiStyle.Leather(sheet.GetComponent<Image>());
+            if (screen.FullPage)
+            {
+                // The page: the header and title over a body that holds the sheet's parts, on no sheet of its own.
+                root.GetComponent<Button>().enabled = false;
+                var body = MenuChrome.Page(root, out screen.chrome);
+                screen.pageTitle = title;
+                sheet.transform.SetParent(body, false);
+                UiStyle.Stretch(sheetRect);
+                sheet.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
+            }
+            else
+            {
+                sheet.transform.SetParent(root.transform, false);
+                screen.sheetRect = sheetRect;
+                sheetRect.anchorMin = new Vector2(0f, 0f);
+                sheetRect.anchorMax = new Vector2(1f, 0f);
+                sheetRect.pivot = new Vector2(0.5f, 0f);
+                sheetRect.sizeDelta = new Vector2(0f, 2060f);
+                sheet.GetComponent<Image>().color = UiStyle.Sheet;
+                UiStyle.Leather(sheet.GetComponent<Image>());
+            }
             var layout = sheet.GetComponent<VerticalLayoutGroup>();
-            layout.padding = new RectOffset(40, 40, 40, 48);
+            layout.padding = screen.FullPage ? new RectOffset(8, 8, 8, 8) : new RectOffset(40, 40, 40, 48);
             layout.spacing = 12f;
             layout.childControlHeight = true;
             layout.childControlWidth = true;
             layout.childForceExpandHeight = false;
             layout.childForceExpandWidth = true;
 
-            var heading = Label(sheet.transform, title, 58, FontStyle.Bold, TextAnchor.MiddleCenter);
-            heading.color = UiStyle.Gold;
-            var headingShadow = heading.gameObject.AddComponent<Shadow>();
-            headingShadow.effectColor = new Color(0f, 0f, 0f, 0.85f);
-            headingShadow.effectDistance = new Vector2(2f, -3f);
-            Height(heading.gameObject, 84f);
-            SheetKit.Rule(sheet.transform, 4f);
+            if (!screen.FullPage)
+            {
+                var heading = Label(sheet.transform, title, 58, FontStyle.Bold, TextAnchor.MiddleCenter);
+                heading.color = UiStyle.Gold;
+                var headingShadow = heading.gameObject.AddComponent<Shadow>();
+                headingShadow.effectColor = new Color(0f, 0f, 0f, 0.85f);
+                headingShadow.effectDistance = new Vector2(2f, -3f);
+                Height(heading.gameObject, 84f);
+                SheetKit.Rule(sheet.transform, 4f);
+            }
             screen.subtitle = Label(sheet.transform, "", 30, FontStyle.Normal, TextAnchor.MiddleCenter);
             screen.subtitle.color = UiStyle.TextDim;
             screen.subtitle.gameObject.AddComponent<LayoutElement>().minHeight = 64f;

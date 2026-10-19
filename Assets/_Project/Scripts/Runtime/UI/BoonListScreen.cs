@@ -12,6 +12,8 @@ namespace ARPG
 
         public static bool IsOpen => current != null && current.gameObject.activeSelf;
 
+        protected override bool FullPage => true;
+
         public static void Open()
         {
             if (current == null)

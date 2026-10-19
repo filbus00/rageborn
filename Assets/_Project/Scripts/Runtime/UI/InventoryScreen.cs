@@ -83,6 +83,10 @@ namespace ARPG
                 {
                     background.color = UiStyle.Backdrop;
                     UiStyle.Leather(background);
+                    // Opaque, so the town's labels and the HUD do not show through the gaps (2026-10-19).
+                    var opaque = background.color;
+                    opaque.a = 1f;
+                    background.color = opaque;
                 }
                 var safe = UiStyle.Rect(panelRoot.transform, "Safe Area");
                 SafeArea.Fit(safe);
@@ -181,6 +185,7 @@ namespace ARPG
             EndDrag();
             slotRims.Clear();
             var current = GameSession.Current;
+            LayOut();
             BuildHeader(current);
             BuildDoll(current);
             BuildStats(current);
@@ -195,44 +200,15 @@ namespace ARPG
 
         // --- Header -------------------------------------------------------------------------------------------------
 
-        const float HeaderHeight = 200f;
+        const float HeaderHeight = MenuChrome.HeaderHeight;
 
         void BuildHeader(GameSession current)
         {
-            var header = UiStyle.Place(UiStyle.Rect(content, "Header"), new Vector2(0.5f, 1f), new Vector2(0f, 0f), new Vector2(0f, HeaderHeight));
-            header.anchorMin = new Vector2(0f, 1f);
-            header.anchorMax = new Vector2(1f, 1f);
-            // An opaque band behind the header, so the HUD under the Bag does not show through (2026-10-17).
-            var band = UiStyle.Image(header, "Band", UiStyle.Sheet);
-            UiStyle.Stretch(band.rectTransform);
-            UiStyle.Leather(band);
-            band.color = new Color(0.12f, 0.1f, 0.09f, 1f);
-
-            HudLayout.Portrait(header, new Vector2(24f, -12f), 176f, current.Equipment);
-
-            var name = UiStyle.Text(header, "Wild Arrow", 52, UiStyle.Gold, TextAnchor.MiddleLeft, true);
-            UiStyle.Place(name.rectTransform, new Vector2(0f, 1f), new Vector2(222f, -24f), new Vector2(480f, 66f));
-            // The roguelite has no levels to show (the owner, 2026-10-13): where she is instead (2026-10-17).
-            var where = Features.Roguelite ? (FindAnyObjectByType<DungeonLevel>() is DungeonLevel dungeon ? $"Depth {dungeon.Depth}" : "In town") : $"Level {current.Level}";
-            var level = UiStyle.Text(header, atMerchant ? $"{where}   ·   <color=#E0C040>At the merchant</color>" : where, 32, UiStyle.TextDim, TextAnchor.MiddleLeft, true);
-            UiStyle.Place(level.rectTransform, new Vector2(0f, 1f), new Vector2(224f, -92f), new Vector2(560f, 44f));
-
-            // A thin life bar under the name, as the reference has it.
-            var fraction = health != null ? Mathf.Clamp01(health.Fraction) : 1f;
-            var bar = UiStyle.Framed(header, "Life", UiStyle.FrameDark, 2f);
-            UiStyle.Place(bar.rectTransform, new Vector2(0f, 1f), new Vector2(222f, -148f), new Vector2(430f, 20f));
-            var fill = UiStyle.Image(UiStyle.FillOf(bar).transform, "Amount", UiStyle.BloodBright);
-            fill.rectTransform.anchorMin = Vector2.zero;
-            fill.rectTransform.anchorMax = new Vector2(fraction, 1f);
-            fill.rectTransform.offsetMin = fill.rectTransform.offsetMax = Vector2.zero;
-
-            var gold = UiStyle.Framed(header, "Gold", UiStyle.Panel, 3f);
-            UiStyle.Place(gold.rectTransform, new Vector2(1f, 1f), new Vector2(-190f, -40f), new Vector2(250f, 96f));
-            var goldText = UiStyle.Text(gold.transform, $"<color=#D9B77A>●</color> {current.Gold:N0}", 34, UiStyle.Gold, TextAnchor.MiddleCenter, true);
-            UiStyle.Stretch(goldText.rectTransform, 8f);
-
-            var close = UiStyle.Button(header, "Close", Close, 34);
-            UiStyle.Place((RectTransform)close.transform, new Vector2(1f, 1f), new Vector2(-24f, -32f), new Vector2(144f, 112f));
+            // The header and the page's title as the owner's concept art has them (2026-10-19, MenuChrome).
+            var where = Features.Roguelite ? MenuChrome.Where() : $"Level {current.Level}";
+            var subtitle = atMerchant ? $"{where}   ·   <color=#E0C040>At the merchant</color>" : where;
+            var header = MenuChrome.Header(content, current, health != null ? health.Fraction : 1f, subtitle, Close);
+            MenuChrome.Title(content, "Inventory", HeaderHeight);
 
             // The portal home (2026-10-15): in the dungeon, ends the run keeping what she carries, after a short channel.
             if (PortalChannel.CanOpen)
@@ -250,7 +226,22 @@ namespace ARPG
 
         // Only the gear slots since 2026-10-18 (the owner: "Remove the character display in the inventory screen, just put
         // the gear slots there"): two rows of five, so the backpack has more room.
-        const float DollTop = -HeaderHeight - 8f, DollHeight = 520f;
+        const float DollHeight = 520f;
+
+        // Where each block starts (negative, from the top), set by LayOut for the screen's height: the spare height
+        // is shared out between the blocks, so the page fills the screen as the concept's does.
+        float dollTop, statsTop, materialsTop, gridTop, gap;
+
+        void LayOut()
+        {
+            var used = HeaderHeight + MenuChrome.TitleHeight + DollHeight + StatsHeight + MaterialsHeight + GridFrameHeight + TabsHeight + 16f;
+            var available = content != null ? content.rect.height : 0f;
+            gap = Mathf.Clamp((available - used) / 5f, 12f, 120f);
+            dollTop = -HeaderHeight - MenuChrome.TitleHeight;
+            statsTop = dollTop - DollHeight - gap;
+            materialsTop = statsTop - StatsHeight - gap;
+            gridTop = materialsTop - MaterialsHeight - gap;
+        }
         const float SlotRowHeight = 230f, SlotGap = 16f;
 
         void BuildDoll(GameSession current)
@@ -260,8 +251,8 @@ namespace ARPG
             rect.anchorMin = new Vector2(0f, 1f);
             rect.anchorMax = new Vector2(1f, 1f);
             rect.pivot = new Vector2(0.5f, 1f);
-            rect.offsetMin = new Vector2(16f, DollTop - DollHeight);
-            rect.offsetMax = new Vector2(-16f, DollTop);
+            rect.offsetMin = new Vector2(16f, dollTop - DollHeight);
+            rect.offsetMax = new Vector2(-16f, dollTop);
             var inside = UiStyle.FillOf(doll).transform;
 
             // Weapons and the head on the top row, the body below: bow, helm, amulet, ring, quiver; gloves, chest,
@@ -440,9 +431,12 @@ namespace ARPG
             }
         }
 
+        static readonly Color WornFill = new Color(0.1f, 0.075f, 0.065f, 1f);
+
         static Image ItemTile(Transform parent, Item item, string emptyLabel, int size)
         {
-            var tile = UiStyle.Framed(parent, item != null ? item.Slot + " Tile" : "Empty Tile", item != null ? UiStyle.SlotFill : UiStyle.EmptySlotFill, 4f);
+            // A dark fill, the rarity in the frame (the concept art, 2026-10-19; a blood-red fill before).
+            var tile = UiStyle.Framed(parent, item != null ? item.Slot + " Tile" : "Empty Tile", item != null ? WornFill : UiStyle.EmptySlotFill, 4f);
             tile.raycastTarget = true;
             var rim = tile.transform.GetChild(0).GetComponent<Image>();
             if (item == null)
@@ -452,7 +446,7 @@ namespace ARPG
                 return tile;
             }
 
-            rim.color = Color.Lerp(LootColors.Of(item.Rarity), UiStyle.Frame, item.Rarity == ItemRarity.Common ? 0.5f : 0.15f);
+            rim.color = Color.Lerp(LootColors.Of(item.Rarity), UiStyle.Frame, item.Rarity == ItemRarity.Common ? 0.35f : 0f);
             var icon = UiStyle.Image(tile.transform, "Icon", Color.white);
             icon.sprite = ItemIcons.For(item);
             icon.preserveAspect = true;
@@ -468,7 +462,7 @@ namespace ARPG
 
         // --- Stats and materials ------------------------------------------------------------------------------------
 
-        const float StatsTop = DollTop - DollHeight - 12f, StatsHeight = 200f;
+        const float StatsHeight = 200f;
 
         void BuildStats(GameSession current)
         {
@@ -477,8 +471,8 @@ namespace ARPG
             rect.anchorMin = new Vector2(0f, 1f);
             rect.anchorMax = new Vector2(1f, 1f);
             rect.pivot = new Vector2(0.5f, 1f);
-            rect.offsetMin = new Vector2(16f, StatsTop - StatsHeight);
-            rect.offsetMax = new Vector2(-16f, StatsTop);
+            rect.offsetMin = new Vector2(16f, statsTop - StatsHeight);
+            rect.offsetMax = new Vector2(-16f, statsTop);
             var inside = UiStyle.FillOf(panel).transform;
 
             var equipment = current.Equipment;
@@ -491,12 +485,12 @@ namespace ARPG
             var crit = equipment.CriticalChancePercent + tree.CriticalChance + attributes.CriticalChance;
             var speed = (equipment.AttackSpeedPercent / 100f + tree.AttackSpeed + attributes.AttackSpeed) * 100f;
 
-            StatLine(inside, 0, 0, "Life", $"{life:0} / {maxLife:0}");
-            StatLine(inside, 1, 0, "Defense", $"{armor:0}");
-            StatLine(inside, 0, 1, "Damage / s", $"{power.DamagePerSecond:0}");
-            StatLine(inside, 1, 1, "Move speed", $"+{equipment.MovementSpeedPercent + (tree.MoveSpeed + attributes.MoveSpeed) * 100f:0}%");
-            StatLine(inside, 0, 2, "Attack speed", $"+{speed:0}%");
-            StatLine(inside, 1, 2, "Critical", $"{crit:0.#}%");
+            StatLine(inside, 0, 0, MenuIcons.Kind.Heart, "Life", $"{life:0} / {maxLife:0}");
+            StatLine(inside, 1, 0, MenuIcons.Kind.Shield, "Defense", $"{armor:0}");
+            StatLine(inside, 0, 1, MenuIcons.Kind.Sword, "Damage / s", $"{power.DamagePerSecond:0}");
+            StatLine(inside, 1, 1, MenuIcons.Kind.Boot, "Move speed", $"+{equipment.MovementSpeedPercent + (tree.MoveSpeed + attributes.MoveSpeed) * 100f:0}%");
+            StatLine(inside, 0, 2, MenuIcons.Kind.Speed, "Attack speed", $"+{speed:0}%");
+            StatLine(inside, 1, 2, MenuIcons.Kind.Star, "Critical", $"{crit:0.#}%");
 
             var divider = UiStyle.Image(inside, "Divider", UiStyle.Frame);
             divider.rectTransform.anchorMin = new Vector2(0.5f, 0f);
@@ -504,7 +498,7 @@ namespace ARPG
             divider.rectTransform.sizeDelta = new Vector2(2f, -24f);
         }
 
-        static void StatLine(Transform parent, int column, int row, string name, string value)
+        static void StatLine(Transform parent, int column, int row, MenuIcons.Kind kind, string name, string value)
         {
             var line = UiStyle.Rect(parent, name);
             line.anchorMin = new Vector2(column * 0.5f, 1f);
@@ -512,13 +506,18 @@ namespace ARPG
             line.pivot = new Vector2(0.5f, 1f);
             line.offsetMin = new Vector2(28f, -14f - 58f * (row + 1));
             line.offsetMax = new Vector2(-28f, -14f - 58f * row);
+            // Each stat's icon at its left, as the concept art has it.
+            var icon = MenuChrome.Icon(line, kind, 40f);
+            icon.rectTransform.anchorMin = icon.rectTransform.anchorMax = new Vector2(0f, 0.5f);
+            icon.rectTransform.anchoredPosition = new Vector2(20f, 0f);
             var label = UiStyle.Text(line, name, 30, UiStyle.TextDim, TextAnchor.MiddleLeft, true);
             UiStyle.Stretch(label.rectTransform);
+            label.rectTransform.offsetMin = new Vector2(62f, 0f);
             var number = UiStyle.Text(line, value, 32, UiStyle.TextMain, TextAnchor.MiddleRight, true);
             UiStyle.Stretch(number.rectTransform);
         }
 
-        const float MaterialsTop = StatsTop - StatsHeight - 12f, MaterialsHeight = 96f;
+        const float MaterialsHeight = 96f;
 
         void BuildMaterials(GameSession current)
         {
@@ -527,8 +526,8 @@ namespace ARPG
             rect.anchorMin = new Vector2(0f, 1f);
             rect.anchorMax = new Vector2(1f, 1f);
             rect.pivot = new Vector2(0.5f, 1f);
-            rect.offsetMin = new Vector2(16f, MaterialsTop - MaterialsHeight);
-            rect.offsetMax = new Vector2(-16f, MaterialsTop);
+            rect.offsetMin = new Vector2(16f, materialsTop - MaterialsHeight);
+            rect.offsetMax = new Vector2(-16f, materialsTop);
             var inside = UiStyle.FillOf(panel).transform;
 
             // With the Forge switched off (Features.Forge) the row shows only the backpack count.
@@ -550,6 +549,10 @@ namespace ARPG
             }, 30);
             UiStyle.Place((RectTransform)sort.transform, new Vector2(1f, 0.5f), new Vector2(-10f, 0f), new Vector2(220f, 72f));
             ((RectTransform)sort.transform).pivot = new Vector2(1f, 0.5f);
+            var sortIcon = MenuChrome.Icon(sort.transform, MenuIcons.Kind.Sort, 34f, UiStyle.TextMain);
+            sortIcon.rectTransform.anchorMin = sortIcon.rectTransform.anchorMax = new Vector2(0f, 0.5f);
+            sortIcon.rectTransform.anchoredPosition = new Vector2(44f, 0f);
+            sort.GetComponentInChildren<Text>().rectTransform.offsetMin = new Vector2(58f, 8f);
             for (var i = 0; i < entries.Count; i++)
             {
                 var (name, color, count) = entries[i];
@@ -562,10 +565,16 @@ namespace ARPG
                     var dot = UiStyle.Disc(cell, "Dot", color);
                     UiStyle.Place(dot.rectTransform, new Vector2(0f, 0.5f), new Vector2(18f, 0f), new Vector2(30f, 30f));
                 }
+                else
+                {
+                    var pack = MenuChrome.Icon(cell, MenuIcons.Kind.Backpack, 46f);
+                    pack.rectTransform.anchorMin = pack.rectTransform.anchorMax = new Vector2(0f, 0.5f);
+                    pack.rectTransform.anchoredPosition = new Vector2(38f, 0f);
+                }
                 var text = UiStyle.Text(cell, $"{count} <size=22><color=#9E948A>{name}</color></size>", 30, UiStyle.TextMain, TextAnchor.MiddleLeft, true);
                 text.rectTransform.anchorMin = Vector2.zero;
                 text.rectTransform.anchorMax = Vector2.one;
-                text.rectTransform.offsetMin = new Vector2(name != "Backpack" ? 56f : 16f, 0f);
+                text.rectTransform.offsetMin = new Vector2(name != "Backpack" ? 56f : 78f, 0f);
                 text.rectTransform.offsetMax = Vector2.zero;
             }
         }
@@ -578,8 +587,8 @@ namespace ARPG
             row.anchorMin = new Vector2(0f, 1f);
             row.anchorMax = new Vector2(1f, 1f);
             row.pivot = new Vector2(0.5f, 1f);
-            row.offsetMin = new Vector2(16f, MaterialsTop - MaterialsHeight);
-            row.offsetMax = new Vector2(-16f, MaterialsTop);
+            row.offsetMin = new Vector2(16f, materialsTop - MaterialsHeight);
+            row.offsetMax = new Vector2(-16f, materialsTop);
 
             var rarities = SellRules.BulkRarities;
             var columns = rarities.Length + 1;
@@ -626,7 +635,10 @@ namespace ARPG
 
         // --- Backpack grid ------------------------------------------------------------------------------------------
 
-        const float GridTop = MaterialsTop - MaterialsHeight - 12f, TabsHeight = 150f;
+        const float TabsHeight = 150f;
+
+        // The backpack's frame hugs its grid (6 rows of cells, the padding, the frame's rim).
+        const float GridFrameHeight = 6 * Cell + 5 * CellGap + 2 * GridPadding + 30f;
 
         void BuildGrid(GameSession current)
         {
@@ -635,10 +647,11 @@ namespace ARPG
             backpackRim = frame.transform.GetChild(0).GetComponent<Image>();
             backpackRimColor = backpackRim.color;
             var rect = frame.rectTransform;
-            rect.anchorMin = new Vector2(0f, 0f);
+            rect.anchorMin = new Vector2(0f, 1f);
             rect.anchorMax = new Vector2(1f, 1f);
-            rect.offsetMin = new Vector2(16f, TabsHeight + 16f);
-            rect.offsetMax = new Vector2(-16f, GridTop);
+            rect.pivot = new Vector2(0.5f, 1f);
+            rect.offsetMin = new Vector2(16f, gridTop - GridFrameHeight);
+            rect.offsetMax = new Vector2(-16f, gridTop);
             var inside = (RectTransform)UiStyle.FillOf(frame).transform;
 
             var scroll = inside.gameObject.AddComponent<ScrollRect>();
@@ -753,6 +766,19 @@ namespace ARPG
                 rect.offsetMax = new Vector2(-4f, 0f);
                 button.interactable = enabled;
                 var text = button.GetComponentInChildren<Text>();
+                // An icon over each tab's name, and a diamond under the open one (the concept art, 2026-10-19).
+                text.fontSize = 28;
+                text.alignment = TextAnchor.LowerCenter;
+                text.rectTransform.offsetMin = new Vector2(8f, 26f);
+                var icon = MenuChrome.Icon(button.transform, TabIcon(label), 54f, active ? UiStyle.Gold : MenuIcons.Tint);
+                icon.rectTransform.anchorMin = icon.rectTransform.anchorMax = new Vector2(0.5f, 1f);
+                icon.rectTransform.anchoredPosition = new Vector2(0f, -46f);
+                if (active)
+                {
+                    var mark = MenuChrome.Diamond(button.transform, 12f, UiStyle.Gold);
+                    mark.rectTransform.anchorMin = mark.rectTransform.anchorMax = new Vector2(0.5f, 0f);
+                    mark.rectTransform.anchoredPosition = new Vector2(0f, 16f);
+                }
                 if (active)
                     text.color = UiStyle.Gold;
                 else if (!enabled)
@@ -761,6 +787,12 @@ namespace ARPG
                     text.color = new Color(1f, 0.71f, 0.35f);
             }
         }
+
+        static MenuIcons.Kind TabIcon(string label) =>
+            label.StartsWith("Inventory") ? MenuIcons.Kind.Backpack :
+            label.StartsWith("Boons") || label.StartsWith("Talents") ? MenuIcons.Kind.Star :
+            label.StartsWith("Stats") ? MenuIcons.Kind.Heart :
+            label.StartsWith("Settings") ? MenuIcons.Kind.Cog : MenuIcons.Kind.Book;
 
         // --- Upgrade badge on the Bag button ------------------------------------------------------------------------
 

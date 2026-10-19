@@ -17,6 +17,7 @@ namespace ARPG
         static CodexScreen current;
 
         RectTransform content;
+        RectTransform chrome;
         Text count;
         ScrollRect scroll;
 
@@ -50,39 +51,27 @@ namespace ARPG
             scaler.referenceResolution = new Vector2(1170f, 2532f);
             scaler.matchWidthOrHeight = 0.5f;
 
-            // A dimmed backdrop that closes the sheet when tapped above it.
-            var root = new GameObject("Codex", typeof(RectTransform), typeof(Image), typeof(Button));
+            // A whole page under the menus' header and title (the owner's concept art, 2026-10-19; a sheet before).
+            var root = new GameObject("Codex", typeof(RectTransform), typeof(Image));
             root.transform.SetParent(canvasObject.transform, false);
             var rootRect = (RectTransform)root.transform;
             rootRect.anchorMin = Vector2.zero;
             rootRect.anchorMax = Vector2.one;
             rootRect.offsetMin = rootRect.offsetMax = Vector2.zero;
-            root.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
             var screen = root.AddComponent<CodexScreen>();
-            root.GetComponent<Button>().onClick.AddListener(screen.Close);
+            var body = MenuChrome.Page(root, out screen.chrome);
 
-            var sheet = new GameObject("Sheet", typeof(RectTransform), typeof(Image), typeof(VerticalLayoutGroup), typeof(Button));
-            sheet.transform.SetParent(root.transform, false);
-            sheet.GetComponent<Button>().transition = Selectable.Transition.None;
-            var sheetRect = (RectTransform)sheet.transform;
-            sheetRect.anchorMin = new Vector2(0f, 0f);
-            sheetRect.anchorMax = new Vector2(1f, 0f);
-            sheetRect.pivot = new Vector2(0.5f, 0f);
-            sheetRect.sizeDelta = new Vector2(0f, 2060f);
-            sheet.GetComponent<Image>().color = UiStyle.Sheet;
-            UiStyle.Leather(sheet.GetComponent<Image>());
+            var sheet = new GameObject("Sheet", typeof(RectTransform), typeof(VerticalLayoutGroup));
+            sheet.transform.SetParent(body, false);
+            UiStyle.Stretch((RectTransform)sheet.transform);
             var layout = sheet.GetComponent<VerticalLayoutGroup>();
-            layout.padding = new RectOffset(40, 40, 40, 48);
+            layout.padding = new RectOffset(8, 8, 8, 8);
             layout.spacing = 16f;
             layout.childControlHeight = true;
             layout.childControlWidth = true;
             layout.childForceExpandHeight = false;
             layout.childForceExpandWidth = true;
 
-            var title = NewText(sheet.transform, "Codex", 56, FontStyle.Bold, TextAnchor.MiddleCenter);
-            title.color = UiStyle.Gold;
-            Height(title.gameObject, 84f);
-            SheetKit.Rule(sheet.transform, 4f);
             screen.count = NewText(sheet.transform, "", 32, FontStyle.Normal, TextAnchor.MiddleCenter);
             Height(screen.count.gameObject, 64f);
 
@@ -97,6 +86,7 @@ namespace ARPG
 
         void Render()
         {
+            MenuChrome.Redraw(chrome, "Codex", Close);
             var session = GameSession.Current;
             var total = 0;
             var found = 0;

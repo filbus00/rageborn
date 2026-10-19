@@ -1419,3 +1419,13 @@ The owner's answers are in Docs/08. How it is built:
 ## 2026-10-19: the life bar's background
 
 - `HudLayout.StyleLifeBar`: the scene's Life Bar image (the fill is its child) is set to `LifeBarBack`, dark grey, with no sprite and a 3 unit black `Outline`; a bar without its own image would get a background child first. Checked at phone size after a hit of 45 percent: the lost part shows grey against the dark dungeon. Offline 681 passed (the 5 NavGrid failures).
+
+## 2026-10-19: the menus after the concept art
+
+- `UI/MenuChrome.cs`: `Header` (the Bag's header moved here: portrait, name, where (`Where`: "Depth N" or "In town"), life bar on `HudLayout.LifeBarBack`, the coin from `HudIcons` and `Coins` ("1 890", tested), Close), `Title` (64 point gold word, a diamond and a 130 unit rule either side, a thin edge line on top), `Diamond`, `Icon`, and for the tab pages `Page` (opaque leather, the safe area, a chrome layer, the body under header and title) and `Redraw`.
+- `UI/MenuIcons.cs`: twenty one-colour icons (glyphs, and shapes for the dead zone ring, the portal spiral, the eye and the waves), white, tinted `MenuIcons.Tint`. `MenuLookTests` checks each draws a shape.
+- `InventoryScreen`: the header from `MenuChrome`, the "Inventory" title, block tops computed per refresh (`LayOut`: the spare height over 5 gaps, 12 to 120), worn and backpack tiles on `WornFill` with the rarity's own colour in the frame, `StatLine` with an icon, the backpack row's icons, the backpack frame `GridFrameHeight` tall instead of stretching to the tabs, tab icons (`TabIcon`) and a diamond under the open tab. The Bag's backdrop opaque (the town's name labels showed through at 0.98).
+- `SettingsScreen` rebuilt: a full page (no tap-outside close), the header and title redrawn on every render, cards (`Group`: a layout group with the frame as an ignored child), `Row` (icon, name, description, a 400 x 90 control), `Stepper`, `Choice`, `Volume` (a `Slider` applying as it moves without rebuilding the page, in steps of 5), Close and a red Reset save.
+- `TownSheets.FullPage` (Boons sets it): the sheet's parts go in a `MenuChrome.Page` body and the canvas draws at 55, over the Bag; the town's shops keep the bottom sheet. `CodexScreen` built the same way.
+- A slip, twice: edits made while play mode was still running from screenshots; play was stopped before Unity recompiled each time. The memory note now says to stop play in the capture command itself.
+- Checked at phone size in the editor: the Bag, Settings, Boons and Codex pages. Offline 683 passed (the 5 NavGrid failures), Unity 688 of 688.
