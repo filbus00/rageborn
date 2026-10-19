@@ -4,7 +4,7 @@
 # magenta background (and the legendaries' pink glow) keyed out, the legendary bows stood upright (they were drawn
 # diagonally), then sampled down to clean pixels at 24 a backpack cell (a bow's 2 x 4 cells are 48 x 96) with hard
 # alpha, and written as Assets/_Project/Resources/UI/ItemArt/<name>.png, where ItemIcons loads them by ItemArtNames.
-# Belts and the Quiver of the Hollow Hound have no picture yet and keep the drawn icons.
+# The belts and the Quiver of the Hollow Hound came later (the hound quiver a screenshot, a stray red dot painted out).
 #   python3 ArtSource/tools/ui/import_item_art.py
 import os, struct, subprocess, tempfile, zlib
 import numpy as np
@@ -152,6 +152,17 @@ def main():
         boxes = [(0, 0, 341, split), (341, 0, 683, split), (683, 0, 1024, split), (0, split, 512, 1024), (512, split, 1024, 1024)]
         for box, name in zip(boxes, names):
             made.append(item(s, box, name, kind))
+
+    s = load("sheet_belts.jpeg")
+    for box, name in zip([(0, 0, 480, 330), (480, 0, 970, 330), (970, 0, 1456, 330), (0, 330, 480, 720), (480, 330, 1000, 720)],
+                         ["rope", "pouch_belt", "studded", "tassets", "war_girdle"]):
+        made.append(item(s, box, name, "belt", inset=4))
+
+    s = load("quiver_of_the_hollow_hound.png").copy()
+    # A red dot from the screenshot on the strap, painted the strap's brown.
+    r, g, b = s[..., 0].astype(int), s[..., 1].astype(int), s[..., 2].astype(int)
+    s[(r > 180) & (g < 110) & (b < 110)] = (112, 96, 70)
+    made.append(item(s, (0, 0, s.shape[1], s.shape[0]), "quiver_of_the_hollow_hound", "quiver", inset=2, stand=True, glow=True))
 
     s = load("blueprint.jpeg")
     made.append(item(s, (0, 0, 1024, 1024), "blueprint", "blueprint"))

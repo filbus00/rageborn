@@ -5,7 +5,7 @@ namespace ARPG
     /// own, a blueprint the scroll, any other item the look of its kind at its level (as she wears it,
     /// <see cref="ItemNames.LookIndex"/>), jewellery by the same five tiers. The pictures are in Resources/UI/ItemArt,
     /// made by ArtSource/tools/ui/import_item_art.py; <see cref="ItemIcons"/> falls back to the drawn icon where one is
-    /// missing (the belts, the Quiver of the Hollow Hound). Pure, tested.
+    /// missing (none since the belts and the Quiver of the Hollow Hound came, 2026-10-19). Pure, tested.
     /// </summary>
     public static class ItemArtNames
     {
