@@ -129,7 +129,7 @@ namespace ARPG
                 : $"<color=#8A8078><b>Not yet found</b></color>\n<size=25><color=#6E665E>{kind}</color></size>";
             // Development builds and the editor: a small Give button on the card's right.
             SheetKit.Card(content, label, DevGive ? "DEV give" : null, true, DevGive ? () => Give(legendary) : (Action)null,
-                seen ? 130f : 96f, 170f, false, ItemIcons.For(legendary.Slot, seen ? ItemRarity.Legendary : ItemRarity.Common),
+                seen ? 130f : 96f, 170f, false, (seen ? ItemIcons.ForLegendary(legendary, ItemRarity.Legendary) : ItemIcons.For(legendary.Slot, ItemRarity.Common)),
                 seen ? LootColors.Of(ItemRarity.Legendary) : SheetKit.CardEdge);
         }
 

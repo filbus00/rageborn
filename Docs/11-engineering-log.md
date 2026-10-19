@@ -1453,3 +1453,9 @@ The owner's answers are in Docs/08. How it is built:
 ## 2026-10-19: the camera as it was
 
 - The lead toward her target while shooting (edb6cbe0) "Still feels wrong"; reverted like the fight-leaning one before it. `FollowCamera` is back to the movement lead alone (1.5 units, 0.25 s). Both tries changed where the view looks during a fight, and both felt wrong on the phone; if kiting comes up again, a wider view (a little more zoom out) in a fight would leave the lead alone.
+
+## 2026-10-19: item pictures
+
+- Fifteen Gemini images (single bows, sheets in cells) copied to `ArtSource/pixel/items_src` with names. `ArtSource/tools/ui/import_item_art.py` (numpy, sips to decode): cuts each cell (inset past the grid lines), keys magenta out (and on the legendary sheet the pink glow: red and blue above green), stands the diagonal legendary bows upright by their main axis, then samples each item into its kind's canvas at 24 pixels a cell (a target pixel drawn when most of its footprint is the item, coloured by the footprint's middle) and writes `Resources/UI/ItemArt/<name>.png`. 63 pictures; a contact sheet was checked before and after the glow fix.
+- `ItemArtNames` (pure, `ItemArtTests`): a legendary its look (`AppearanceRules.LegendaryLook`, or `pack_leaders_signet`, `eye_of_the_storm`), a blueprint `blueprint`, else the kind's look at `ItemNames.LookIndex`, rings and amulets by the same tiers. `ItemIcons.For(item)` and `ForLegendary` (the Codex) load `Picture(name)` once and fall back to `ItemIconArt`; empty slots keep the drawn silhouette. `Editor/ItemArtImportSettings` imports the folder as point-filtered, uncompressed full-rect sprites at 24 pixels a unit.
+- Missing: the five belts, the Quiver of the Hollow Hound. Checked in the Bag at phone size with worn legendaries and a backpack of rares. Offline 686 passed (the 5 NavGrid failures), Unity 691 of 691.
