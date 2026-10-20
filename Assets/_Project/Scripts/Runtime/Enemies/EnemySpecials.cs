@@ -290,7 +290,7 @@ namespace ARPG
                 // 2026-10-19: in place of an aim line along each throw), then the projectiles fly.
                 var warning = EnemyRules.Telegraph(EnemySpecialRules.CastSeconds + special.Fill);
                 enemy.BeginCast(warning, aim);
-                world.Warnings?.Warn(enemy, enemy.GroundPosition, warning, special.Color);
+                world.Warnings?.Warn(enemy, enemy.GroundPosition, warning, special.Color, IncomingWarnings.Shape.Triangle);
                 Queue(enemy, special, target, aim, warning, 0);
                 return;
             }
@@ -359,7 +359,7 @@ namespace ARPG
                 case SpecialShape.Spew:
                     Sfx.Play(SoundId.EnemySlam, 0.4f);
                     // The lanes stay on the ground (they hurt where they lie); a warning round her says where from too.
-                    world.Warnings?.Warn(enemy, enemy.GroundPosition, EnemyRules.Telegraph(s.Fill), s.Color);
+                    world.Warnings?.Warn(enemy, enemy.GroundPosition, EnemyRules.Telegraph(s.Fill), s.Color, IncomingWarnings.Shape.Diamond);
                     for (var k = 0; k < s.Count; k++)
                     {
                         var direction = EnemySpecialRules.LineDirection(p.Aim, k, s.Count, s.Spread);
@@ -369,7 +369,7 @@ namespace ARPG
                     world.Hazards.Poison(p.Target, 1.3f, EnemyRules.Telegraph(s.Fill), s.LingerSeconds, hit * s.LingerHit, level, s.Color, 0f, EnemyRules.PoolGraceSeconds);
                     break;
                 case SpecialShape.Lines:
-                    world.Warnings?.Warn(enemy, enemy.GroundPosition, EnemyRules.Telegraph(s.Fill), s.Color);
+                    world.Warnings?.Warn(enemy, enemy.GroundPosition, EnemyRules.Telegraph(s.Fill), s.Color, IncomingWarnings.Shape.Diamond);
                     for (var k = 0; k < s.Count; k++)
                     {
                         var direction = EnemySpecialRules.LineDirection(p.Aim, k, s.Count, s.Spread);

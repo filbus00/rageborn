@@ -930,7 +930,7 @@ namespace ARPG
                     attackAim = aim.sqrMagnitude > 1e-4f ? aim.normalized : Vector2.down;
                     // A warning round her on this archer's side, in place of the aim line along the ground (the owner,
                     // 2026-10-19).
-                    world.Warnings?.Warn(this, ground, stateTimer, IncomingWarnings.ShotColor);
+                    world.Warnings?.Warn(this, ground, stateTimer, IncomingWarnings.ShotColor, IncomingWarnings.Shape.Triangle);
                     break;
             }
         }
@@ -1075,7 +1075,7 @@ namespace ARPG
             var aim = playerGround - ground;
             attackAim = aim.sqrMagnitude > 1e-4f ? aim.normalized : Vector2.down;
             // A warning round her on its side, in place of the lunge line (2026-10-19).
-            world.Warnings?.Warn(this, ground, stateTimer, IncomingWarnings.LungeColor);
+            world.Warnings?.Warn(this, ground, stateTimer, IncomingWarnings.LungeColor, IncomingWarnings.Shape.Diamond);
         }
 
         /// <summary>The lunge itself: fast along the aimed line, walls respected; it bites the player once if it passes

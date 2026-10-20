@@ -1481,3 +1481,8 @@ The owner's answers are in Docs/08. How it is built:
 - `EnemyRules.InView(offset, halfView)` (pure, `EnemyRulesTests`): inside the view by `ViewMarginSide` 0.6, `ViewMarginBottom` 0.4, `ViewMarginTop` 1.4 world units. `EnemyManager` reads `Camera.main` each frame (centre and half size, orthographic only) and offers `InView(ground)` (true without a camera). Gated on it: `EnemyController`'s attack and lunge (a ranged enemy out of view counts as without sight, so `ArcherSteering` walks it in), `EnemySpecials` (a special waits and retries in 0.4 s), `EliteAffixes` (its timers pause out of view). Bosses are exempt.
 - Offline 690 passed (the 5 NavGrid failures), Unity 695 of 695. Not checked: a fight with enemies coming in from the side.
 
+## 2026-10-20: warnings on one ring, three shapes
+
+- `IncomingWarnings.Radius` 1.5 (2.1). `WarningRules.Place(angle, placed)` replaces `RingFor`: a warning within `CrowdDegrees` (26) of one already placed takes the nearest free angle, its own side first (+26, -26, +52, ...), so all stay on the ring. `IncomingWarnings.Shape` Round, Triangle, Diamond, one 15 px sprite each (`WarningRules.Inside`, outline where a neighbour is outside, the "!" lower in the triangle); `Warn` takes the shape: archer shots and thrown specials Triangle, lunges, spews and line specials Diamond, pools (`WarnPool`) Round.
+- Checked at phone size at depth 1 with six warnings set by hand (two crowded on the left). Offline 691 passed (the 5 NavGrid failures), Unity 696 of 696.
+

@@ -17,9 +17,20 @@ namespace ARPG
     /// </summary>
     public class IncomingWarnings : MonoBehaviour
     {
+        /// <summary>The symbol's outline by kind of attack (the owner, 2026-10-20: "Make pools show as circular warnings,
+        /// make projectiles show as triangular warnings"): pools round, projectiles (arrows, bolts, throws) a triangle,
+        /// lunges and lanes a diamond.</summary>
+        public enum Shape
+        {
+            Round,
+            Triangle,
+            Diamond,
+        }
+
         /// <summary>The ring's radius and the symbol's size, in world units; the ring's centre this far above her feet.
-        /// </summary>
-        public const float Radius = 2.1f, Size = 0.84f, ChestHeight = 0.6f;
+        /// Every warning sits on this one ring, close round her (the owner, 2026-10-20: "make the warnings cluster in a
+        /// circle around the player character"; was 2.1, crowded ones stacking outward).</summary>
+        public const float Radius = 1.5f, Size = 0.84f, ChestHeight = 0.6f;
 
         /// <summary>Colours by attack: arrows and bolts red, lunges amber; a special shows its own colour.</summary>
         public static readonly Color ShotColor = new Color(1f, 0.25f, 0.18f, 1f);
@@ -45,7 +56,7 @@ namespace ARPG
         /// on its side of her, while she is near it.</summary>
         public void WarnPool(Vector2 center, float radius, float seconds, Color color)
         {
-            Warn(null, center, seconds, color);
+            Warn(null, center, seconds, color, Shape.Round);
             var w = last;
             w.Near = PoolNear;
             w.PoolRadius = radius;
@@ -58,10 +69,10 @@ namespace ARPG
         RectTransform root;
         Canvas canvas;
         PlayerController player;
-        static Sprite symbol;
+        static readonly Sprite[] symbols = new Sprite[3];
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics() => symbol = null;
+        static void ResetStatics() => System.Array.Clear(symbols, 0, symbols.Length);
 
         void Awake()
         {
@@ -82,7 +93,7 @@ namespace ARPG
 
         /// <summary>Shows a warning for <paramref name="seconds"/>: from its enemy while it lives (it follows the enemy),
         /// or from a fixed place when <paramref name="source"/> is null.</summary>
-        public void Warn(EnemyController source, Vector2 from, float seconds, Color color)
+        public void Warn(EnemyController source, Vector2 from, float seconds, Color color, Shape shape)
         {
             Warning warning = null;
             foreach (var w in warnings)
@@ -94,7 +105,6 @@ namespace ARPG
             if (warning == null)
             {
                 var image = UiStyle.Image(root, "Warning", Color.white);
-                image.sprite = Symbol;
                 image.preserveAspect = true;
                 warning = new Warning { Image = image };
                 warnings.Add(warning);
@@ -104,6 +114,7 @@ namespace ARPG
             warning.Seconds = Mathf.Max(seconds, 0.05f);
             warning.Elapsed = 0f;
             warning.Active = true;
+            warning.Image.sprite = SymbolOf(shape);
             warning.Image.color = color;
             warning.Image.enabled = false;
             warning.Near = 0f;
@@ -168,57 +179,53 @@ namespace ARPG
                 }
                 var toward = (Vector2)cam.WorldToScreenPoint(IsoMath.GroundToWorld(from)) - chest;
                 var angle = toward.sqrMagnitude > 1f ? Mathf.Atan2(toward.y, toward.x) * Mathf.Rad2Deg : 90f;
-                var ring = WarningRules.RingFor(angle, placedAngles);
+                // Crowded warnings move along the ring, not out from it.
+                angle = WarningRules.Place(angle, placedAngles);
                 placedAngles.Add(angle);
                 var radians = angle * Mathf.Deg2Rad;
                 var rect = w.Image.rectTransform;
-                rect.position = chest + new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * (unit * (Radius + ring * Size * 0.9f));
+                rect.position = chest + new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * (unit * Radius);
                 rect.sizeDelta = Vector2.one * (unit * Size);
                 rect.localScale = Vector3.one * WarningRules.Scale(w.Elapsed, w.Seconds);
                 w.Image.enabled = true;
             }
         }
 
-        // A round warning (the owner, 2026-10-19: "Make them circular"): a disc with an "!", outlined; white so the
-        // colour tints it, the mark and the outline dark.
-        static Sprite Symbol
+        // The symbols: white so the colour tints them, the outline and the "!" dark. 15 pixels square.
+        static Sprite SymbolOf(Shape shape)
         {
-            get
+            var index = (int)shape;
+            if (symbols[index] != null)
+                return symbols[index];
+            const int n = 15;
+            var texture = new Texture2D(n, n, TextureFormat.RGBA32, false)
             {
-                if (symbol != null)
-                    return symbol;
-                const int n = 15;
-                var texture = new Texture2D(n, n, TextureFormat.RGBA32, false)
+                name = "Warning Symbol " + shape,
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp,
+            };
+            var pixels = new Color32[n * n];
+            var dark = new Color32(20, 12, 10, 255);
+            var white = new Color32(255, 255, 255, 255);
+            for (var row = 0; row < n; row++)
+                for (var x = 0; x < n; x++)
                 {
-                    name = "Warning Symbol",
-                    filterMode = FilterMode.Point,
-                    wrapMode = TextureWrapMode.Clamp,
-                };
-                var pixels = new Color32[n * n];
-                var dark = new Color32(20, 12, 10, 255);
-                var white = new Color32(255, 255, 255, 255);
-                for (var row = 0; row < n; row++)
-                    for (var x = 0; x < n; x++)
-                    {
-                        var dx = x + 0.5f - n / 2f;
-                        var dy = row + 0.5f - n / 2f;
-                        var r = Mathf.Sqrt(dx * dx + dy * dy);
-                        Color32 c = new Color32(0, 0, 0, 0);
-                        if (r <= n / 2f)
-                            c = r > n / 2f - 1.3f ? dark : white;
-                        // The "!": a bar down the middle and a dot below it.
-                        var bar = x >= 6 && x <= 8 && ((row >= 3 && row <= 8) || (row >= 10 && row <= 11));
-                        if (bar && r <= n / 2f - 1.3f)
-                            c = dark;
-                        pixels[(n - 1 - row) * n + x] = c;
-                    }
-                texture.SetPixels32(pixels);
-                texture.Apply(false, true);
-                // Full rect, no physics shape: the texture is no longer readable (CLAUDE.md, pixel art).
-                symbol = Sprite.Create(texture, new Rect(0, 0, n, n), new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect,
-                    Vector4.zero, false);
-                return symbol;
-            }
+                    if (!WarningRules.Inside(shape, x, row, n))
+                        continue;
+                    // The outline: a cell inside with a neighbour outside.
+                    var edge = !WarningRules.Inside(shape, x - 1, row, n) || !WarningRules.Inside(shape, x + 1, row, n) ||
+                        !WarningRules.Inside(shape, x, row - 1, n) || !WarningRules.Inside(shape, x, row + 1, n);
+                    // The "!": a bar down the middle and a dot below it (lower in the triangle, where it is wide).
+                    var top = shape == Shape.Triangle ? 5 : 3;
+                    var bar = x >= 6 && x <= 8 && ((row >= top && row <= top + 5) || (row >= top + 7 && row <= top + 8));
+                    pixels[(n - 1 - row) * n + x] = edge || bar ? dark : white;
+                }
+            texture.SetPixels32(pixels);
+            texture.Apply(false, true);
+            // Full rect, no physics shape: the texture is no longer readable (CLAUDE.md, pixel art).
+            symbols[index] = Sprite.Create(texture, new Rect(0, 0, n, n), new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect,
+                Vector4.zero, false);
+            return symbols[index];
         }
     }
 
@@ -228,14 +235,41 @@ namespace ARPG
         /// <summary>Warnings closer together than this (degrees round her) stack outward rather than overlap.</summary>
         public const float CrowdDegrees = 26f;
 
-        /// <summary>How many rings out a warning goes: one more for each warning already placed near its angle.</summary>
-        public static int RingFor(float angle, IReadOnlyList<float> placed)
+        /// <summary>Where a warning goes on the ring: at its own angle, or when that is within <see cref="CrowdDegrees"/>
+        /// of one already placed, the nearest free angle either side (its own side first), so they cluster round her.
+        /// </summary>
+        public static float Place(float angle, IReadOnlyList<float> placed)
         {
-            var ring = 0;
-            for (var i = 0; i < placed.Count; i++)
-                if (Mathf.Abs(Mathf.DeltaAngle(angle, placed[i])) < CrowdDegrees)
-                    ring++;
-            return ring;
+            for (var step = 0; step < 14; step++)
+            {
+                var offset = (step + 1) / 2 * CrowdDegrees * (step % 2 == 1 ? 1f : -1f);
+                var candidate = Mathf.Repeat(angle + offset + 180f, 360f) - 180f;
+                var free = true;
+                for (var i = 0; i < placed.Count && free; i++)
+                    free = Mathf.Abs(Mathf.DeltaAngle(candidate, placed[i])) >= CrowdDegrees;
+                if (free)
+                    return candidate;
+            }
+            return angle;
+        }
+
+        /// <summary>Whether pixel (x, row from the top) of an n-pixel symbol is inside its shape.</summary>
+        public static bool Inside(IncomingWarnings.Shape shape, int x, int row, int n)
+        {
+            if (x < 0 || row < 0 || x >= n || row >= n)
+                return false;
+            var dx = x + 0.5f - n / 2f;
+            var dy = row + 0.5f - n / 2f;
+            switch (shape)
+            {
+                case IncomingWarnings.Shape.Triangle:
+                    // Point up, base along the bottom row.
+                    return row >= 1 && Mathf.Abs(dx) <= (row + 0.5f) * (n / 2f) / (n - 1);
+                case IncomingWarnings.Shape.Diamond:
+                    return Mathf.Abs(dx) + Mathf.Abs(dy) <= n / 2f;
+                default:
+                    return dx * dx + dy * dy <= n * n / 4f;
+            }
         }
 
         /// <summary>The symbol's scale: it pops in over its first tenth of a second, then throbs, faster as the attack
