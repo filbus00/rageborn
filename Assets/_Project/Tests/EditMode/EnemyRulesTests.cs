@@ -1,3 +1,4 @@
+using UnityEngine;
 using NUnit.Framework;
 
 namespace ARPG.Tests
@@ -47,6 +48,20 @@ namespace ARPG.Tests
             Assert.AreEqual(1.5f, EnemyRules.ReactionFor(EnemyRank.Champion));
             Assert.AreEqual(1.5f, EnemyRules.ReactionFor(EnemyRank.Elite));
             Assert.AreEqual(0f, EnemyRules.ReactionFor(EnemyRank.Boss));
+        }
+
+        [Test]
+        public void InView_ThePortraitViewShape_SidesCloserThanAggro()
+        {
+            // The phone's view: about 5.2 world units either side, 11.2 up and down from its centre.
+            var half = new Vector2(5.2f, 11.2f);
+            Assert.IsTrue(EnemyRules.InView(new Vector2(4f, 0f), half));
+            Assert.IsFalse(EnemyRules.InView(new Vector2(5f, 0f), half), "an enemy at the side edge is not yet in");
+            Assert.IsFalse(EnemyRules.InView(new Vector2(-7f, 0f), half), "aggro range to the side is off screen");
+            Assert.IsTrue(EnemyRules.InView(new Vector2(0f, 9.5f), half));
+            Assert.IsFalse(EnemyRules.InView(new Vector2(0f, 10.2f), half), "its body must show under the top edge");
+            Assert.IsTrue(EnemyRules.InView(new Vector2(0f, -10.6f), half));
+            Assert.IsFalse(EnemyRules.InView(new Vector2(0f, -11f), half));
         }
     }
 }

@@ -208,7 +208,8 @@ namespace ARPG
                 if (!alive || (modifiers & EliteAffixRules.Attacks) == 0)
                     continue;
                 var awake = (enemy.State == EnemyState.Approach && !enemy.Reacting) || enemy.State == EnemyState.Attack || enemy.State == EnemyState.Recover;
-                if (!awake || Vector2.Distance(enemy.GroundPosition, target) > EliteAffixRules.Reach)
+                // Only from inside the view (EnemyRules.InView, 2026-10-20).
+                if (!awake || Vector2.Distance(enemy.GroundPosition, target) > EliteAffixRules.Reach || !world.InView(enemy.GroundPosition))
                     continue;
                 if (!timers.TryGetValue(enemy, out var t))
                     timers[enemy] = t = NewTimers(enemy);

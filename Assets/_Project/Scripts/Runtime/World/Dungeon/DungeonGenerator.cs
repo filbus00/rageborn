@@ -112,9 +112,9 @@ namespace ARPG
 
         /// <summary>Solid rock between neighbouring rooms, in cells: each column and row boundary its own thickness, so
         /// rooms are joined by short rough passages through the rock rather than sharing one thin wall (2026-10-08: "no
-        /// real feel of traveling underground").</summary>
-        public int MinRock = 3;
-        public int MaxRock = 7;
+        /// real feel of traveling underground"). Thinned to 1 to 2 on 2026-10-20 for open levels (below).</summary>
+        public int MinRock = 1;
+        public int MaxRock = 2;
 
         /// <summary>Solid rock around the whole level, in cells, so its edge is rock, not black.</summary>
         public int OuterRock = 8;
@@ -122,18 +122,21 @@ namespace ARPG
         /// <summary>A room's inside is this many cells wide or tall at least and at most (the boss arena's row and column
         /// excepted). Rooms sit wall to wall on a grid of columns and rows, each with its own width, so neighbours
         /// differ in size.</summary>
-        public int MinRoomSpan = 18;
-        public int MaxRoomSpan = 32;
+        public int MinRoomSpan = 24;
+        public int MaxRoomSpan = 36;
 
         /// <summary>The largest hand-authored pillar layout a room may use (a room shape wider than this is refused).</summary>
         public int MaxRoomSize => 36;
 
         /// <summary>Chance a join along the room tree opens the whole shared wall (bar a pier at each end) into one hall,
-        /// rather than an arch.</summary>
-        public float HallJoinChance = 0.3f;
+        /// rather than an arch. Open levels (the owner, 2026-10-20, picking "Open field" from four example maps: "Would
+        /// be better if the dungeon was more open? More like the diablo 2 dungens"): every join a hall, every neighbour
+        /// joined, so a level reads as one big area with pillars and pockets (was 0.3 and 0.45; rooms 18 to 32, rock 3
+        /// to 7).</summary>
+        public float HallJoinChance = 1f;
 
         /// <summary>Chance two neighbouring rooms not joined by the tree get an arch anyway, so the level has loops.</summary>
-        public float LoopChance = 0.45f;
+        public float LoopChance = 1f;
 
         // Docs: combat 60, elite 15, treasure 10, shrine 10, ambush 5. Shrine and ambush rooms are not built, so their
         // 15 goes to combat.
@@ -196,8 +199,9 @@ namespace ARPG
         /// 11: 48 depths, the prison from 13 with its cages, the library from 25, the caves from 37 (2026-10-12).
         /// 12: no stubs of wall reaching into rooms, no walls one cell thin between halls and passages (2026-10-13).
         /// 13: bigger packs, 8 to 15, and elite packs of 4 to 6 (2026-10-17).
+        /// 14: open levels, D2-like: bigger rooms, thin rock, every neighbour joined by a wide hall (2026-10-20).
         /// </summary>
-        public const int Version = 13;
+        public const int Version = 14;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>

@@ -79,6 +79,15 @@ namespace ARPG
         /// <summary>The player's position on the ground plane this frame.</summary>
         public Vector2 PlayerGround { get; private set; }
 
+        Camera view;
+        Vector2 viewCentre, viewHalf;
+        bool hasView;
+
+        /// <summary>Whether an enemy at <paramref name="ground"/> stands inside the camera's view, where it may start an
+        /// attack (<see cref="EnemyRules.InView"/>). True when there is no camera.</summary>
+        public bool InView(Vector2 ground) =>
+            !hasView || EnemyRules.InView((Vector2)IsoMath.GroundToWorld(ground) - viewCentre, viewHalf);
+
         internal SpatialHash Hash { get; private set; }
 
         /// <summary>Archer arrows in flight, ticked after the enemies each frame.</summary>
@@ -153,6 +162,14 @@ namespace ARPG
 
             var deltaTime = Time.deltaTime;
             PlayerGround = IsoMath.WorldToGround(player.transform.position);
+            if (view == null)
+                view = Camera.main;
+            hasView = view != null && view.orthographic;
+            if (hasView)
+            {
+                viewCentre = view.transform.position;
+                viewHalf = new Vector2(view.orthographicSize * view.aspect, view.orthographicSize);
+            }
             RefreshFlow(deltaTime);
 
             // Dead enemies are left out of the hash so they are neither targeted nor pushed against.

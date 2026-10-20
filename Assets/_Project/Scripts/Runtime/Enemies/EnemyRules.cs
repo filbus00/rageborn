@@ -19,6 +19,22 @@ namespace ARPG
 
         public static float ReactionFor(EnemyRank rank) => rank == EnemyRank.Boss ? 0f : ReactionSeconds;
 
+        /// <summary>
+        /// Screen-shaped reach (2026-10-20, the owner: enemies at her sides "attacking from the side being way too close
+        /// before they are even on screen"; the portrait view is only about 5 units to either side of her, while aggro
+        /// and an archer's range are about 7): an enemy starts an attack, a shot, a lunge or a special only while it
+        /// stands inside the camera's view, its feet this far in from the sides and the bottom, and its whole body (about
+        /// <see cref="ViewMarginTop"/>) in from the top. Out of view a ranged enemy walks in as if it could not see her.
+        /// Bosses are exempt (their arenas are built round them). World units.
+        /// </summary>
+        public const float ViewMarginSide = 0.6f, ViewMarginBottom = 0.4f, ViewMarginTop = 1.4f;
+
+        /// <summary>Whether a point in world space at <paramref name="offset"/> from the view's centre stands inside a
+        /// view of half size <paramref name="halfView"/>, by the margins above.</summary>
+        public static bool InView(Vector2 offset, Vector2 halfView) =>
+            Mathf.Abs(offset.x) <= halfView.x - ViewMarginSide &&
+            offset.y <= halfView.y - ViewMarginTop && offset.y >= -halfView.y + ViewMarginBottom;
+
         /// <summary>Whether an idle enemy wakes: straight-line distance within aggro range and a route short enough
         /// (the route is the straight distance when in sight, infinity when there is none).</summary>
         public static bool Wakes(float distance, float route, float aggroRange) =>

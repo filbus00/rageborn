@@ -243,7 +243,8 @@ namespace ARPG
                 if (timer <= 0f && enemy.CanCast)
                 {
                     var distance = Vector2.Distance(enemy.GroundPosition, target);
-                    if (distance >= special.MinRange && distance <= special.MaxRange && world.Nav.HasLineOfSight(enemy.GroundPosition, target))
+                    if (distance >= special.MinRange && distance <= special.MaxRange && world.InView(enemy.GroundPosition) &&
+                        world.Nav.HasLineOfSight(enemy.GroundPosition, target))
                     {
                         timer = special.Every * Random.Range(0.85f, 1.15f);
                         Begin(enemy, special, target, world);

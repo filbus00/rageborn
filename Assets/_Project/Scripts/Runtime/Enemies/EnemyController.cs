@@ -495,15 +495,17 @@ namespace ARPG
 
                     // Archers and casters only shoot what they can see; the check is skipped for everyone else.
                     var ranged = definition.Archetype == EnemyArchetype.Archer || definition.Archetype == EnemyArchetype.Caster;
-                    var lineOfSight = !ranged || world.Nav.HasLineOfSight(ground, playerGround);
-                    if (definition.Archetype == EnemyArchetype.Charger && world.Player != null && world.Player.IsAlive &&
+                    // Only in view does it start an attack (EnemyRules.InView); out of view a ranged one walks in.
+                    var inView = definition.Rank == EnemyRank.Boss || world.InView(ground);
+                    var lineOfSight = !ranged || inView && world.Nav.HasLineOfSight(ground, playerGround);
+                    if (inView && definition.Archetype == EnemyArchetype.Charger && world.Player != null && world.Player.IsAlive &&
                         EnemyRules.ShouldLunge(distance, definition.LungeMinRange, definition.LungeDistance,
                             world.Nav.HasLineOfSight(ground, playerGround), lungeCooldown))
                     {
                         BeginLunge(world, playerGround);
                         return;
                     }
-                    if (CanAttack(world, distance) && lineOfSight)
+                    if (CanAttack(world, distance) && lineOfSight && inView)
                     {
                         BeginAttack(world, playerGround);
                         return;
