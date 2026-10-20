@@ -1524,3 +1524,9 @@ The owner's answers are in Docs/08. How it is built:
 - Pits are rectangles (`DungeonGenerator.Version` 16): round cut corners their railings zig-zagged. The ground under a pit's steps moves down with the pit (it had been removed, leaving black wedges beside the steps).
 - Checked in the editor: before a dais at depth 4, in a pit at depth 7 (before the square pits). Offline 699 passed (the 5 NavGrid failures), Unity 704 of 704.
 
+## 2026-10-20: whole flights
+
+- The owner: the steps still looked wrong and she seemed to float when climbing. Zoomed in: the three one-cell `crypt_stairs` pieces of a flight each drew the triangular side of their step stack over the neighbouring cell's treads (a sawtooth). Measured in play: the raised floor tilemap 0.6 up, her scale 1, her lift 0.6 on a dais, 0.3 half way up a flight; on the dais she stood on its floor.
+- `themes.py` `crypt_flight_<d>`: the six steps three cells wide; `ThemePieces.Flight`. `DungeonLevel` draws it at a flight's middle cell (both neighbours across it steps going the same way) and nothing at the side cells, in the crypt; the caves keep their one-cell pieces. Every pit step cell's ground goes down with the pit (`pitStepCells`), not only the middle one.
+- Checked in the editor at depth 4, standing half way up a flight. Offline 699 passed (the 5 NavGrid failures), Unity 704 of 704.
+

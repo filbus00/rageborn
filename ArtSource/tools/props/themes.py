@@ -430,6 +430,30 @@ def crypt_dais_edge(faces, rail):
             _balustrade(side, DAIS_H)
 
 
+def crypt_flight(direction):
+    """A whole flight of dressed steps, three cells wide, centred on its middle cell (2026-10-20, the owner: "the stairs
+    are still messed up": three one-cell pieces each showed its side, a sawtooth of triangles across the flight). Six
+    pale treads with dark risers climbing a level toward the dais (or out of a pit), the way down toward direction."""
+    rng = _rng("crypt_flight", direction)
+    dx, dy = STAIRS[direction]
+    tread = [mat(STONE[4], 0.3, STONE[3], scale=12), mat(STONE[5], 0.3, STONE[3], scale=12)]
+    riser = mat(STONE[2], 0.3, STONE[1], scale=10)
+    count = 6
+    depth = CELL / count
+    rise = DAIS_H / count
+    across = CELL * 3
+    for k in range(count):
+        front = HALF - depth * k
+        mid = (front - HALF) / 2
+        top = rise * (k + 1)
+        length = front + HALF
+        size = (length, across, top) if dx else (across, length, top)
+        box(size, (dx * mid, dy * mid, 0), riser, bevel=0.004)
+        t = front - depth / 2 + 0.006
+        size = (depth + 0.012, across, 0.025) if dx else (across, depth + 0.012, 0.025)
+        box(size, (dx * t, dy * t, top - 0.025), rng.choice(tread), bevel=0.006)
+
+
 def crypt_pit_rim(sides):
     """A burial pit's edge (2026-10-20): the floor stays at its level; a balustrade runs along the edges that face the
     pit (any of the four), and on those the camera sees (nx, ny) dressed stone drops a level into the pit."""
@@ -512,6 +536,8 @@ def register(all_pieces):
         all_pieces["crypt_stairs_" + d] = ("world", (lambda d=d: crypt_stairs(d)), WORLD)
     for n in range(1, 4):
         all_pieces["crypt_ledge_%d" % n] = ("world", (lambda n=n: crypt_ledge(n)), WORLD)
+    for d in STAIRS:
+        all_pieces["crypt_flight_" + d] = ("world", (lambda d=d: crypt_flight(d)), WORLD)
     for faces in (("nx",), ("ny",), ("nx", "ny")):
         key = "".join(f[1] for f in faces)
         for rail in (False, True):

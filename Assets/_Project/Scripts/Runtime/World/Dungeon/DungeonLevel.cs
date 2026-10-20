@@ -370,8 +370,17 @@ namespace ARPG
                     if (Layout.TerraceStairs.TryGetValue(at, out var down))
                     {
                         Elevation.Current.StepLevels(at, down, out _, out var foot);
-                        (foot < 0 ? sunkenSteps : steps).Add(new TileChangeData(new Vector3Int(at.x, at.y, 0),
-                            DungeonArt.Piece(ThemePieces.Stairs(theme, down)), Color.white, Matrix4x4.identity));
+                        // In the crypt a flight is one piece three cells wide, drawn at its middle cell (2026-10-20: three
+                        // pieces showed their sides across the flight).
+                        var across = new Vector2Int(down.y, down.x);
+                        var middle = Layout.TerraceStairs.TryGetValue(at + across, out var a) && a == down &&
+                                     Layout.TerraceStairs.TryGetValue(at - across, out var b) && b == down;
+                        var stepPiece = theme == DungeonTheme.Cave ? DungeonArt.Piece(ThemePieces.Stairs(theme, down))
+                            : middle ? DungeonArt.Piece(ThemePieces.Flight(down)) : null;
+                        if (foot < 0)
+                            pitStepCells.Add(at);
+                        if (stepPiece != null)
+                            (foot < 0 ? sunkenSteps : steps).Add(new TileChangeData(new Vector3Int(at.x, at.y, 0), stepPiece, Color.white, Matrix4x4.identity));
                     }
                     // The crypt's rims (2026-10-20): a pit's edge, a balustrade at floor level with stone dropping into it; a
                     // dais's front, the stone face dropping from the raised floor (drawn over the rim, LiftFloors), with a
@@ -699,6 +708,7 @@ namespace ARPG
 
         ElevationMap elevation;
         readonly List<Vector2Int> daisRims = new List<Vector2Int>();
+        readonly List<Vector2Int> pitStepCells = new List<Vector2Int>();
         readonly HashSet<Vector2Int> shadowed = new HashSet<Vector2Int>();
 
         /// <summary>The shade of the floor right before a dais's face (2026-10-20).</summary>
@@ -744,10 +754,7 @@ namespace ARPG
             GroundCopy("Steps", 0f, 2).SetTiles(steps.ToArray(), true);
             GroundCopy("Steps Sunken", -h, -1).SetTiles(sunkenSteps.ToArray(), true);
             // The ground under a pit's steps goes down with the pit, filling the corners the steps leave.
-            var pitSteps = new List<Vector2Int>(sunkenSteps.Count);
-            foreach (var step in sunkenSteps)
-                pitSteps.Add(new Vector2Int(step.position.x, step.position.y));
-            MoveTiles(ground, sunkenGround, pitSteps);
+            MoveTiles(ground, sunkenGround, pitStepCells);
 
             var raisedProps = Overlay("Props Raised");
             raisedProps.transform.localPosition += new Vector3(0f, h, 0f);

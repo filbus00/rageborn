@@ -123,6 +123,10 @@ namespace ARPG
             theme == DungeonTheme.Cave ? "cave_wall_" + (1 + Mathf.Abs(hash) % 6) : theme == DungeonTheme.Library ? "library_wall_4" :
             theme == DungeonTheme.Prison ? "prison_wall_1" : "crypt_wall_1";
 
+        /// <summary>A whole flight of crypt steps, three cells wide, by the way down (2026-10-20).</summary>
+        public static string Flight(Vector2Int down) =>
+            down.x > 0 ? "crypt_flight_px" : down.x < 0 ? "crypt_flight_nx" : down.y > 0 ? "crypt_flight_py" : "crypt_flight_ny";
+
         /// <summary>A burial pit's edge (2026-10-20): a balustrade along each side the pit lies on (bits: 1 at -x, 2 at -y,
         /// 4 at +x, 8 at +y), stone dropping into it on the sides the camera sees. Null when none (a corner cell).</summary>
         public static string PitRim(int sides) => sides == 0 ? null : "crypt_pit_rim_" + sides;
