@@ -293,6 +293,14 @@ namespace ARPG
                 aim = toTarget.normalized;
         }
 
+        // Her picture stands at the floor's height (a dais, a pit, the steps between; 2026-10-20); her body stays on the
+        // ground plane.
+        void LateUpdate()
+        {
+            if (sprite != null && player != null)
+                sprite.transform.localPosition = new Vector3(0f, Elevation.HeightAt(IsoMath.WorldToGround(player.transform.position)), 0f);
+        }
+
         void Update()
         {
             if (!showing || dead || player == null)

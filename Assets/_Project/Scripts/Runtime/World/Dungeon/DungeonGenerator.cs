@@ -1034,7 +1034,6 @@ namespace ARPG
             var thick = random.Next(4, 7);
             var from = (acrossX ? r.xMin + r.width / 2 : r.yMin + r.height / 2) - thick / 2 + random.Next(-2, 3);
             int Along(Vector2Int c) => acrossX ? c.x : c.y;
-            int Across(Vector2Int c) => acrossX ? c.y : c.x;
             Vector2Int Cell(int along, int across) => acrossX ? new Vector2Int(along, across) : new Vector2Int(across, along);
             var band = new HashSet<Vector2Int>();
             for (var x = r.xMin; x < r.xMax; x++)

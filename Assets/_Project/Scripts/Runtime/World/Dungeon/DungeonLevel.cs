@@ -116,6 +116,8 @@ namespace ARPG
 
             levelSeed = DungeonRules.LevelSeed(session.DungeonSeed, depth);
             Layout = DungeonGenerator.Generate(levelSeed, depth, shapes, settings);
+            // Raised and sunken floors are drawn at their height, and what stands on them lifted with them (2026-10-20).
+            Elevation.Current = ElevationMap.From(Layout);
             LoadTimer.Mark("generate");
 
             Paint();
@@ -287,6 +289,8 @@ namespace ARPG
             // The next level may already have named itself; only clear our own name.
             if (LevelContext.CurrentId == levelId)
                 LevelContext.Clear();
+            if (Layout != null && Elevation.Current != null && Elevation.Current == elevation)
+                Elevation.Current = null;
         }
 
         void Paint()
@@ -297,7 +301,10 @@ namespace ARPG
             var wallTiles = new TileBase[groundTiles.Length];
             var propTiles = new TileBase[groundTiles.Length];
             var artTiles = new TileBase[groundTiles.Length];
+            var steps = new List<TileChangeData>();
+            var sunkenSteps = new List<TileChangeData>();
             var theme = Layout.Theme;
+            elevation = Elevation.Current;
             MeasureRock();
 
             for (var y = 0; y < bounds.height; y++)
@@ -359,8 +366,20 @@ namespace ARPG
                             TouchesOpen(at));
                     else if (cell == DungeonCell.Prop && Layout.Props.TryGetValue(at, out var prop))
                         propTiles[index] = DungeonArt.Prop(prop);
+                    // Steps go on the floor's own layers, under whoever walks them (2026-10-20); a pit's sunk with it.
                     if (Layout.TerraceStairs.TryGetValue(at, out var down))
-                        propTiles[index] = DungeonArt.Piece(ThemePieces.Stairs(theme, down));
+                    {
+                        Elevation.Current.StepLevels(at, down, out _, out var foot);
+                        (foot < 0 ? sunkenSteps : steps).Add(new TileChangeData(new Vector3Int(at.x, at.y, 0),
+                            DungeonArt.Piece(ThemePieces.Stairs(theme, down)), Color.white, Matrix4x4.identity));
+                    }
+                    // A pit's parapet: a balustrade at floor level, its stone going down on the sides toward the pit.
+                    if (artTiles[index] != null && Layout.Ledges.Contains(at) && NextToPit(at))
+                    {
+                        var rim = DungeonArt.Piece(ThemePieces.PitRim(Layout.Sunken.Contains(at + Vector2Int.left), Layout.Sunken.Contains(at + Vector2Int.down)));
+                        if (rim != null)
+                            artTiles[index] = rim;
+                    }
                 }
 
             ground.ClearAllTiles();
@@ -387,6 +406,7 @@ namespace ARPG
             wallArt ??= Overlay("Wall Art");
             wallArt.ClearAllTiles();
             SetShaded(wallArt, area, artTiles);
+            LiftFloors(steps, sunkenSteps);
             LoadTimer.Mark("paint: walls");
 
             // Braziers and candles light their corner of a dark level.
@@ -659,6 +679,106 @@ namespace ARPG
         // Floor for the low-wall rule: a prop stands on floor, so a wall in front of it is still a camera-side wall.
         bool IsOpenCell(int x, int y) => Layout.Get(x, y) == DungeonCell.Floor || Layout.Get(x, y) == DungeonCell.Prop;
 
+        ElevationMap elevation;
+
+        bool NextToPit(Vector2Int cell)
+        {
+            for (var dx = -1; dx <= 1; dx++)
+                for (var dy = -1; dy <= 1; dy++)
+                    if (Layout.Sunken.Contains(new Vector2Int(cell.x + dx, cell.y + dy)))
+                        return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Draws raised and sunken floors at their height (2026-10-20): their ground tiles move from the ground to a
+        /// copy of it lifted (or lowered) by <see cref="ElevationMap.LevelHeight"/>, drawn over the ground (a pit's under
+        /// it, so the near floor hides its near rows); props on them and pillars standing on a dais go to lifted copies of
+        /// the props and wall art; steps are drawn on the floor's layers, a pit's lowered, with no ground under them.
+        /// </summary>
+        void LiftFloors(List<TileChangeData> steps, List<TileChangeData> sunkenSteps)
+        {
+            var h = ElevationMap.LevelHeight;
+            var raisedGround = GroundCopy("Ground Raised", h, 1);
+            var sunkenGround = GroundCopy("Ground Sunken", -h, -2);
+            MoveTiles(ground, raisedGround, Layout.Raised);
+            MoveTiles(ground, sunkenGround, Layout.Sunken);
+            GroundCopy("Steps", 0f, 2).SetTiles(steps.ToArray(), true);
+            GroundCopy("Steps Sunken", -h, -1).SetTiles(sunkenSteps.ToArray(), true);
+            var cleared = new Vector3Int[sunkenSteps.Count];
+            for (var i = 0; i < cleared.Length; i++)
+                cleared[i] = sunkenSteps[i].position;
+            ground.SetTiles(cleared, new TileBase[cleared.Length]);
+
+            var raisedProps = Overlay("Props Raised");
+            raisedProps.transform.localPosition += new Vector3(0f, h, 0f);
+            var sunkenProps = Overlay("Props Sunken");
+            sunkenProps.transform.localPosition += new Vector3(0f, -h, 0f);
+            MoveTiles(PropTilemap(), raisedProps, Layout.Raised);
+            MoveTiles(PropTilemap(), sunkenProps, Layout.Sunken);
+            // Pillars standing on a dais: walls (not rims) whose every open side is raised.
+            var pillars = new List<Vector2Int>();
+            foreach (var cell in Layout.FreeStanding)
+            {
+                if (Layout.Ledges.Contains(cell) || Layout.Chasm.Contains(cell))
+                    continue;
+                var open = 0;
+                var up = 0;
+                foreach (var side in RoomShape.Sides)
+                    if (Layout.IsFloor(cell + side))
+                    {
+                        open++;
+                        if (Layout.Raised.Contains(cell + side))
+                            up++;
+                    }
+                if (open > 0 && up == open)
+                    pillars.Add(cell);
+            }
+            if (pillars.Count > 0)
+            {
+                var raisedArt = Overlay("Wall Art Raised");
+                raisedArt.transform.localPosition += new Vector3(0f, h, 0f);
+                MoveTiles(wallArt, raisedArt, pillars);
+            }
+        }
+
+        static void MoveTiles(Tilemap from, Tilemap to, IEnumerable<Vector2Int> cells)
+        {
+            var moved = new List<TileChangeData>();
+            foreach (var cell in cells)
+            {
+                var at = new Vector3Int(cell.x, cell.y, 0);
+                var tile = from.GetTile(at);
+                if (tile != null)
+                    moved.Add(new TileChangeData(at, tile, from.GetColor(at), from.GetTransformMatrix(at)));
+            }
+            if (moved.Count == 0)
+                return;
+            to.SetTiles(moved.ToArray(), true);
+            var cleared = new Vector3Int[moved.Count];
+            for (var i = 0; i < cleared.Length; i++)
+                cleared[i] = moved[i].position;
+            from.SetTiles(cleared, new TileBase[cleared.Length]);
+        }
+
+        // A drawn-only copy of the ground tilemap, moved up the screen by lift and drawn order steps over it.
+        Tilemap GroundCopy(string name, float lift, int order)
+        {
+            var go = new GameObject(name, typeof(Tilemap), typeof(TilemapRenderer), typeof(DecorTilemap));
+            go.transform.SetParent(ground.transform.parent, false);
+            go.transform.localPosition = ground.transform.localPosition + new Vector3(0f, lift, 0f);
+            var map = go.GetComponent<Tilemap>();
+            map.tileAnchor = ground.tileAnchor;
+            map.orientation = ground.orientation;
+            var from = ground.GetComponent<TilemapRenderer>();
+            var to = go.GetComponent<TilemapRenderer>();
+            to.sortingLayerID = from.sortingLayerID;
+            to.sortingOrder = from.sortingOrder + order;
+            to.mode = from.mode;
+            to.sharedMaterial = from.sharedMaterial;
+            return map;
+        }
+
         static Vector3 CellWorld(Vector2Int cell)
         {
             var world = IsoMath.GroundToWorld(IsoMath.CellToGround(cell));
@@ -738,7 +858,7 @@ namespace ARPG
         {
             var go = new GameObject("Chest " + index, typeof(SpriteRenderer), typeof(CircleCollider2D));
             go.transform.SetParent(parent, false);
-            go.transform.position = CellWorld(cell);
+            go.transform.position = Elevation.World(IsoMath.CellToGround(cell));
             SetLayer(go, GameLayers.Interactable);
 
             var spriteRenderer = go.GetComponent<SpriteRenderer>();

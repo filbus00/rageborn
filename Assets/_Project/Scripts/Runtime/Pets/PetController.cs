@@ -661,12 +661,12 @@ namespace ARPG
                 ground = playerGround;
             lastGround = ground;
             stuckTimer = 0f;
-            transform.position = IsoMath.GroundToWorld(ground);
+            transform.position = Elevation.World(ground);
         }
 
         void Draw(Vector2 goal)
         {
-            transform.position = IsoMath.GroundToWorld(ground);
+            transform.position = Elevation.World(ground);
             // The placeholder faces where it is going by flipping the figure; the sheets turn by their rows (Animate).
             var dx = goal.x - ground.x;
             if (animationSet == null && Mathf.Abs(dx) > 0.05f && model != null)

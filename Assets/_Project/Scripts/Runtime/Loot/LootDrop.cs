@@ -278,8 +278,7 @@ namespace ARPG
             {
                 popTime = Mathf.Min(PopSeconds, popTime + dt);
                 var t = popTime / PopSeconds;
-                var world = IsoMath.GroundToWorld(GroundPosition);
-                var end = new Vector3(world.x, world.y, 0f);
+                var end = Elevation.World(GroundPosition);
                 var position = Vector3.Lerp(popFrom, end, t);
                 position.y += PopHeight * Mathf.Sin(t * Mathf.PI);
                 transform.position = position;
@@ -311,8 +310,7 @@ namespace ARPG
         void Place(Vector2 ground)
         {
             GroundPosition = ground;
-            var world = IsoMath.GroundToWorld(ground);
-            transform.position = new Vector3(world.x, world.y, 0f);
+            transform.position = Elevation.World(ground);
         }
 
         SpriteRenderer NewRenderer(string objectName, Sprite sprite, string sortingLayer, Material material)

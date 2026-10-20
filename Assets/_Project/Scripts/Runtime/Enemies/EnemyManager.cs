@@ -146,6 +146,16 @@ namespace ARPG
                     Nav.SetLow(cell, true);
                 foreach (var cell in level.Layout.Chasm)
                     Nav.SetLow(cell, true);
+                // Raised and sunken floors, and a pit's steps, are drawn on their own tilemaps, not the ground the grid is
+                // baked from (2026-10-20).
+                foreach (var cell in level.Layout.Raised)
+                    if (level.Layout.Get(cell) != DungeonCell.Wall)
+                        Nav.SetWalkable(cell, true);
+                foreach (var cell in level.Layout.Sunken)
+                    if (level.Layout.Get(cell) != DungeonCell.Wall)
+                        Nav.SetWalkable(cell, true);
+                foreach (var cell in level.Layout.TerraceStairs.Keys)
+                    Nav.SetWalkable(cell, true);
             }
             flow = new FlowField(Nav);
             Hash = CreateHash(Nav);

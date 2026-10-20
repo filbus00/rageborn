@@ -1245,8 +1245,8 @@ namespace ARPG
 
         void SyncTransform()
         {
-            var world = IsoMath.GroundToWorld(ground);
-            transform.position = new Vector3(world.x, world.y, 0f);
+            // Drawn at the floor's height (a dais, a pit, steps; 2026-10-20).
+            transform.position = Elevation.World(ground);
         }
     }
 }
