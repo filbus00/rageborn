@@ -62,6 +62,14 @@ namespace ARPG
             if (camera == null || !camera.orthographic || camera.GetComponent<PixelPerfectCamera>() != null)
                 return;
             var longSide = Mathf.Max(Screen.width, Screen.height);
+            if (!Features.PixelFilter)
+            {
+                // The look reset (Features.PixelFilter, 2026-10-20): the screen's own resolution, the view the filter
+                // gave (an art pixel Factor screen pixels).
+                // The long side: the game is portrait only, and the editor sometimes reports a landscape screen at load.
+                camera.orthographicSize = longSide / (2f * PixelArt.PixelsPerUnit * Factor(longSide));
+                return;
+            }
             var factor = PixelatedFactor(longSide);
             // The component renders into a texture of the screen over the factor (rounded down to even) and sets the
             // camera's orthographic size from its height and the pixels per unit.

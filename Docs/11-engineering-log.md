@@ -1467,3 +1467,9 @@ The owner's answers are in Docs/08. How it is built:
 - Balance: `CombatFormulas.EnemyHitScale` 3.8 (4.5), `EnemyLifeScale` 1.05 (1.2): a level-1 basic arrow kills a level-1 enemy again. Tests updated to read the constants.
 - Boons (`Talents.cs`, row 1 column 3 of each tree): `executioner`, `thick_hide`, `blood_drinker`; `PassiveEffect.Executioner`, `ThickHide`, `BloodDrinker`; `SurvivalBoonRules` (pure, `SurvivalBoonTests`): `Executes` (not a boss, below 20 percent after the hit), `Taken` (75 percent), `Healed` (4 percent of the damage dealt). Applied in `PlayerCombat.Strike` (the execute raises the hit to the enemy's life; the heal counts the damage up to its life) and `PlayerHealth.TakeHit`. Icons: a red skull, a shield, a red drop.
 - Offline 689 passed (the 5 NavGrid failures), Unity 694 of 694. No balance probe was run for the new numbers.
+
+## 2026-10-20: the look reset
+
+- `Features.ColourGrade`, `PixelFilter`, `MoodLighting`, all false. `GrimGrade` turns the camera's post-processing off and adds no volume. `RenderResolution` adds no Pixel Perfect Camera and sets the orthographic size to the long side over 2 x 40 x `Factor` (11.2 on an iPhone 11, the filter's view was 11.06); the long side because the editor sometimes reports a landscape screen at load (the first try used the height and zoomed the editor's dungeon in to 8.3). `WorldLights.MoodOf` returns none, so no point lights are made and characters are unshaded; `LightingDirector` sets the global lights white at 1.
+- Found by the first look: the town's ground was painted inside the lighting setup after the mood check, so with the moods off the town showed the green placeholder grid; `PaintTownGround` now runs first, whatever the light.
+- Checked at phone size in the editor in the town and at depth 3. Offline 689 passed (the 5 NavGrid failures), Unity 694 of 694.

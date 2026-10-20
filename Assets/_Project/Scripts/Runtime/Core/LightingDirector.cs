@@ -44,10 +44,23 @@ namespace ARPG
             flickering.Clear();
             baseIntensity.Clear();
 
+            // The town's ground is painted here whatever the light (it was skipped with the moods off, 2026-10-20).
+            PaintTownGround(scene);
+
             var mood = WorldLights.MoodOf(scene);
             characterShade = mood.HasValue ? mood.Value.CharacterShade : 1f;
             if (!mood.HasValue)
+            {
+                // Plain white light at full strength, whatever the scene was saved with.
+                if (!Features.MoodLighting)
+                    foreach (var light in FindObjectsByType<Light2D>())
+                        if (light.lightType == Light2D.LightType.Global)
+                        {
+                            light.color = Color.white;
+                            light.intensity = 1f;
+                        }
                 return;
+            }
 
             foreach (var light in FindObjectsByType<Light2D>())
                 if (light.lightType == Light2D.LightType.Global)
@@ -63,6 +76,15 @@ namespace ARPG
                 Flicker(WorldLights.Add(player.transform, LightingRules.EmberColor, LightingRules.EmberIntensity,
                     LightingRules.EmberInnerRadius * reach, LightingRules.EmberOuterRadius * reach, 0.4f));
 
+
+            // The smith's fire: the one warm prop in town besides the character.
+            var forge = FindAnyObjectByType<ForgeNpc>();
+            if (forge != null)
+                Flicker(WorldLights.Add(forge.transform, new Color(1f, 0.5f, 0.2f), 1.2f, 0.5f, 4f));
+        }
+
+        static void PaintTownGround(Scene scene)
+        {
             // The dungeon shades its own floor as it paints it (DungeonLevel); the town's is painted in the scene.
             if (scene.name == SceneTravel.TownScene)
                 foreach (var tilemap in FindObjectsByType<Tilemap>())
@@ -72,11 +94,6 @@ namespace ARPG
                             DungeonArt.PaveTown(tilemap);
                         WorldLights.ShadeGround(tilemap);
                     }
-
-            // The smith's fire: the one warm prop in town besides the character.
-            var forge = FindAnyObjectByType<ForgeNpc>();
-            if (forge != null)
-                Flicker(WorldLights.Add(forge.transform, new Color(1f, 0.5f, 0.2f), 1.2f, 0.5f, 4f));
         }
 
         void Flicker(Light2D light)
@@ -108,6 +125,9 @@ namespace ARPG
         /// <summary>The scene's mood, or none for a scene that stays fully lit.</summary>
         public static LightingRules.Mood? MoodOf(Scene scene)
         {
+            // The look reset (Features.MoodLighting, 2026-10-20): every scene fully lit.
+            if (!Features.MoodLighting)
+                return null;
             var level = Object.FindAnyObjectByType<DungeonLevel>();
             if (level != null)
                 return LightingRules.DungeonAt(level.Depth);

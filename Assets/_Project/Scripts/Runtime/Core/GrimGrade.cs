@@ -31,7 +31,10 @@ namespace ARPG
             var camera = Camera.main;
             if (camera == null)
                 return;
-            camera.GetUniversalAdditionalCameraData().renderPostProcessing = true;
+            // Switched off by the look reset (Features.ColourGrade, 2026-10-20): no post-processing at all.
+            camera.GetUniversalAdditionalCameraData().renderPostProcessing = Features.ColourGrade;
+            if (!Features.ColourGrade)
+                return;
             foreach (var existing in Object.FindObjectsByType<Volume>())
                 if (existing.sharedProfile == Profile)
                     return;
