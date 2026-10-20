@@ -12,6 +12,8 @@
 #   crypt_ledge_1..3     a dais's rim (2026-10-20): dressed stone half a man high, paved on top; 2 a balustrade, 3 a
 #                        candle stand on the lip
 #   crypt_stairs_<d>     dressed steps through a dais's rim, down toward d: "px", "nx", "py", "ny"
+#   crypt_chasm[_x|_y|_xy] a cell of a chasm (2026-10-20): a black drop; _x, _y show the masonry of its far side (+x, +y)
+#                        going down into the dark
 #   cave_wall_1..6       boulders heaped higher than a man, pale spikes on some
 #   cave_wall_low_1..3   a low heap of boulders
 #   cave_ledge_1..3      a terrace's rim: a lip of rock
@@ -369,6 +371,43 @@ def crypt_stairs(direction):
         box(size, (dx * t, dy * t, top - 0.025), rng.choice(tread), bevel=0.006)
 
 
+CHASM_DROP = 1.3
+
+
+def crypt_chasm(faces):
+    """A cell of a chasm across a crypt hall (the owner, 2026-10-20, okayed: "Bridges over chasms"): the ground opens on
+    a drop into the dark. The far sides (+x, +y) are the ones the camera sees: on those, dressed stone goes down from the
+    floor's edge, lit at the top and darkening into the depth; below, a black floor with a few fallen stones. A holdout
+    at ground level hides everything below ground outside the cell."""
+    rng = _rng("chasm", faces)
+    holdout(HALF, 6.0, 0.0)
+    black = mat((8, 6, 6), 0.0)
+    # The camera looks down at 30 degrees, so through the hole it sees the floor of the drop well past the cell, toward
+    # +x and +y: the black floor runs out that way.
+    box((6.0, 6.0, 0.02), (2.5, 2.5, -CHASM_DROP - 0.02), black)
+    rocks = [mat(STONE[0], 0.2, (8, 6, 6), scale=8), mat(STONE[1], 0.2, STONE[0], scale=8)]
+    for k in range(3):
+        _rock((rng.uniform(-HALF * 0.7, HALF * 0.7), rng.uniform(-HALF * 0.7, HALF * 0.7), -CHASM_DROP), rng.uniform(0.05, 0.1), rng.choice(rocks), rng, squash=0.5)
+    upper = _crypt_stones()
+    lower = [mat(STONE[1], 0.3, STONE[0], scale=14), mat(STONE[2], 0.3, STONE[0], scale=14)]
+    deepest = [mat(STONE[0], 0.2, (8, 6, 6), scale=14)]
+    coping = mat(STONE[4], 0.2, STONE[2], scale=10)
+    for face in faces:
+        if face == "x":
+            a, b, normal = (HALF, -HALF), (HALF, HALF), (-1, 0)
+            back = ((0.06, CELL + 0.02, CHASM_DROP), (HALF + 0.03, 0, -CHASM_DROP))
+            lip = ((0.08, CELL, 0.05), (HALF - 0.02, 0, -0.05))
+        else:
+            a, b, normal = (-HALF, HALF), (HALF, HALF), (0, -1)
+            back = ((CELL + 0.02, 0.06, CHASM_DROP), (0, HALF + 0.03, -CHASM_DROP))
+            lip = ((CELL, 0.08, 0.05), (0, HALF - 0.02, -0.05))
+        box(back[0], back[1], black)
+        _ashlar_line(a, b, normal, -0.06, rng, upper, z0=-0.45)
+        _ashlar_line(a, b, normal, -0.45, rng, lower, z0=-0.9)
+        _ashlar_line(a, b, normal, -0.9, rng, deepest, z0=-CHASM_DROP)
+        box(lip[0], lip[1], coping, bevel=0.006)
+
+
 def stalagmite(variant):
     rng = _rng("stalagmite", variant)
     rocks = _cave_rocks()
@@ -404,6 +443,8 @@ def register(all_pieces):
         all_pieces["crypt_stairs_" + d] = ("world", (lambda d=d: crypt_stairs(d)), WORLD)
     for n in range(1, 4):
         all_pieces["crypt_ledge_%d" % n] = ("world", (lambda n=n: crypt_ledge(n)), WORLD)
+    for name, faces in (("crypt_chasm", ""), ("crypt_chasm_x", "x"), ("crypt_chasm_y", "y"), ("crypt_chasm_xy", "xy")):
+        all_pieces[name] = ("world", (lambda faces=faces: crypt_chasm(faces)), WORLD)
 
 
 # ---------------------------------------------------------------- the burnt library (2026-10-11)

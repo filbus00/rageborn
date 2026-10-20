@@ -159,6 +159,9 @@ namespace ARPG.Tests
             Assert.AreEqual("cave_wall_low_1", ThemePieces.Wall(DungeonTheme.Cave, Nothing, 0, 0, true, false, false, 0));
             Assert.AreEqual("cave_stairs_ny", ThemePieces.Stairs(DungeonTheme.Cave, Vector2Int.down));
             Assert.AreEqual("crypt_stairs_nx", ThemePieces.Stairs(DungeonTheme.Crypt, Vector2Int.left));
+            Assert.AreEqual("crypt_chasm", ThemePieces.Chasm(false, false));
+            Assert.AreEqual("crypt_chasm_xy", ThemePieces.Chasm(true, true));
+            Assert.AreEqual("crypt_chasm_y", ThemePieces.Chasm(false, true));
             Assert.AreEqual("crypt_ledge_1", ThemePieces.Wall(DungeonTheme.Crypt, Nothing, 0, 0, false, true, true, 0));
             // Floor toward -x and -y: the wall fills the far half, facing the camera.
             Assert.AreEqual("b", ThemePieces.Diagonal((x, y) => x < 0 && y == 0 || y < 0 && x == 0, 0, 0));
@@ -183,7 +186,7 @@ namespace ARPG.Tests
                         for (var y = b.yMin; y < b.yMax; y++)
                             // A dais's rim (2026-10-20) is one cell thin by design, drawn as its own low piece.
                             if (layout.Get(x, y) == DungeonCell.Wall && !layout.FreeStanding.Contains(new UnityEngine.Vector2Int(x, y)) &&
-                                !layout.Ledges.Contains(new UnityEngine.Vector2Int(x, y)) &&
+                                !layout.Ledges.Contains(new UnityEngine.Vector2Int(x, y)) && !layout.Chasm.Contains(new UnityEngine.Vector2Int(x, y)) &&
                                 ((Open(x - 1, y) && Open(x + 1, y)) || (Open(x, y - 1) && Open(x, y + 1))))
                                 count++;
                     if (count > 0)
@@ -237,6 +240,24 @@ namespace ARPG.Tests
                     }
                 }
             Assert.Greater(balconies, 5);
+        }
+
+        [Test]
+        public void SomeCryptHalls_AreSplitByAChasm_WithABridge()
+        {
+            // The owner, 2026-10-20: "Bridges over chasms". Every level stays one piece (KeepReachable is checked by the
+            // generator's own tests); here: chasms exist and are wall to walking.
+            var chasms = 0;
+            foreach (var seed in new[] { 7919, 31, 4242 })
+                for (var depth = 1; depth <= 12; depth++)
+                {
+                    var layout = DungeonGenerator.Generate(seed, depth, Library());
+                    if (layout.Chasm.Count > 0)
+                        chasms++;
+                    foreach (var cell in layout.Chasm)
+                        Assert.AreEqual(DungeonCell.Wall, layout.Get(cell));
+                }
+            Assert.Greater(chasms, 3);
         }
 
         [Test]

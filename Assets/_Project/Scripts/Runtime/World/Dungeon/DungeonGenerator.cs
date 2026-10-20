@@ -200,7 +200,7 @@ namespace ARPG
         /// 12: no stubs of wall reaching into rooms, no walls one cell thin between halls and passages (2026-10-13).
         /// 13: bigger packs, 8 to 15, and elite packs of 4 to 6 (2026-10-17).
         /// 14: open levels, D2-like: bigger rooms, thin rock, every neighbour joined by a wide hall (2026-10-20).
-        /// 15: raised daises in crypt halls, sunken burial pits (2026-10-20).
+        /// 15: raised daises and balconies in crypt halls, sunken burial pits, chasms with bridges (2026-10-20).
         /// </summary>
         public const int Version = 15;
 
@@ -463,6 +463,8 @@ namespace ARPG
                     {
                         // A combat hall may hold a sunken burial pit or a balcony for its archers instead (2026-10-20).
                         if (kinds[i] == RoomKind.Combat && Pit(layout, mains[i], random))
+                            continue;
+                        if (kinds[i] == RoomKind.Combat && Chasm(layout, mains[i], random))
                             continue;
                         if (kinds[i] == RoomKind.Combat && random.Next(100) < BalconyPercent)
                         {
@@ -1015,6 +1017,80 @@ namespace ARPG
             }
         }
 
+        /// <summary>The share of crypt combat halls (with no pit) split by a chasm (2026-10-20).</summary>
+        public const int ChasmPercent = 25;
+
+        /// <summary>
+        /// A chasm across a crypt hall (the owner, 2026-10-20, okayed: "Bridges over chasms"): a band 4 to 6 cells wide
+        /// through the hall's middle drops into the dark (<see cref="DungeonLayout.Chasm"/>, wall to walking, low to
+        /// sight and shots), crossed by a bridge three cells wide, two in a long band. Whether one was built; never when it
+        /// would cut a way.
+        /// </summary>
+        static bool Chasm(DungeonLayout layout, RectInt r, System.Random random)
+        {
+            if (r.width < 18 || r.height < 18 || random.Next(100) >= ChasmPercent)
+                return false;
+            var acrossX = random.Next(2) == 0;
+            var thick = random.Next(4, 7);
+            var from = (acrossX ? r.xMin + r.width / 2 : r.yMin + r.height / 2) - thick / 2 + random.Next(-2, 3);
+            int Along(Vector2Int c) => acrossX ? c.x : c.y;
+            int Across(Vector2Int c) => acrossX ? c.y : c.x;
+            Vector2Int Cell(int along, int across) => acrossX ? new Vector2Int(along, across) : new Vector2Int(across, along);
+            var band = new HashSet<Vector2Int>();
+            for (var x = r.xMin; x < r.xMax; x++)
+                for (var y = r.yMin; y < r.yMax; y++)
+                {
+                    var cell = new Vector2Int(x, y);
+                    if (Along(cell) >= from && Along(cell) < from + thick && layout.Get(cell) == DungeonCell.Floor)
+                        band.Add(cell);
+                }
+            // Where a bridge fits: three cells wide, floor all the way across and on both banks.
+            var spans = new List<int>();
+            var lo = acrossX ? r.yMin : r.xMin;
+            var hi = acrossX ? r.yMax : r.xMax;
+            for (var across = lo + 1; across < hi - 1; across++)
+            {
+                var fits = true;
+                for (var k = -1; k <= 1 && fits; k++)
+                    for (var along = from - 1; along <= from + thick && fits; along++)
+                    {
+                        var cell = Cell(along, across + k);
+                        fits = along >= from && along < from + thick ? band.Contains(cell) : layout.Get(cell) == DungeonCell.Floor;
+                    }
+                if (fits)
+                    spans.Add(across);
+            }
+            if (spans.Count == 0)
+                return false;
+            var bridges = new List<int> { spans[random.Next(spans.Count)] };
+            foreach (var across in spans)
+                if (Mathf.Abs(across - bridges[0]) >= 12)
+                {
+                    bridges.Add(across);
+                    break;
+                }
+            var drop = new HashSet<Vector2Int>(band);
+            foreach (var across in bridges)
+                for (var k = -1; k <= 1; k++)
+                    for (var along = from; along < from + thick; along++)
+                        drop.Remove(Cell(along, across + k));
+            if (drop.Count < 20)
+                return false;
+            var region = new RectInt(r.xMin - 6, r.yMin - 6, r.width + 12, r.height + 12);
+            var start = Cell(from - 1, bridges[0]);
+            var before = Reach(layout, region, start, null);
+            var after = Reach(layout, region, start, drop);
+            before.ExceptWith(drop);
+            if (!after.IsSupersetOf(before))
+                return false;
+            foreach (var cell in drop)
+            {
+                layout.Set(cell.x, cell.y, DungeonCell.Wall);
+                layout.Chasm.Add(cell);
+            }
+            return true;
+        }
+
         /// <summary>The share of crypt combat halls with a sunken burial pit (2026-10-20).</summary>
         public const int PitPercent = 30;
 
@@ -1367,7 +1443,7 @@ namespace ARPG
                         var next = new Vector2Int(cell.x + dx, cell.y + dy);
                         // A dais's or pit's rim is not rock (2026-10-20): a pillar it touches still stands free.
                         if (!b.Contains(next) || seen[next.x - b.xMin, next.y - b.yMin] || layout.Get(next) != DungeonCell.Wall ||
-                            layout.Ledges.Contains(next))
+                            layout.Ledges.Contains(next) || layout.Chasm.Contains(next))
                             continue;
                         seen[next.x - b.xMin, next.y - b.yMin] = true;
                         queue.Enqueue(next);
@@ -1381,7 +1457,7 @@ namespace ARPG
                     if (layout.Get(x, y) != DungeonCell.Wall || seen[x - b.xMin, y - b.yMin])
                         continue;
                     var clump = new List<Vector2Int>();
-                    var rim = layout.Ledges.Contains(new Vector2Int(x, y));
+                    var rim = layout.Ledges.Contains(new Vector2Int(x, y)) || layout.Chasm.Contains(new Vector2Int(x, y));
                     seen[x - b.xMin, y - b.yMin] = true;
                     queue.Enqueue(new Vector2Int(x, y));
                     while (queue.Count > 0)
@@ -1394,7 +1470,7 @@ namespace ARPG
                                 var next = new Vector2Int(cell.x + dx, cell.y + dy);
                                 // Rims and other walls are told apart, so neither joins the other's clump.
                                 if (!b.Contains(next) || seen[next.x - b.xMin, next.y - b.yMin] || layout.Get(next) != DungeonCell.Wall ||
-                                    layout.Ledges.Contains(next) != rim)
+                                    (layout.Ledges.Contains(next) || layout.Chasm.Contains(next)) != rim)
                                     continue;
                                 seen[next.x - b.xMin, next.y - b.yMin] = true;
                                 queue.Enqueue(next);

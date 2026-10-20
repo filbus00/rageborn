@@ -123,6 +123,11 @@ namespace ARPG
             theme == DungeonTheme.Cave ? "cave_wall_" + (1 + Mathf.Abs(hash) % 6) : theme == DungeonTheme.Library ? "library_wall_4" :
             theme == DungeonTheme.Prison ? "prison_wall_1" : "crypt_wall_1";
 
+        /// <summary>A chasm's cell (2026-10-20), with the masonry of its far sides where the ground goes on: "x" when the
+        /// cell at +x is not chasm, "y" for +y.</summary>
+        public static string Chasm(bool faceX, bool faceY) =>
+            "crypt_chasm" + (faceX || faceY ? "_" : "") + (faceX ? "x" : "") + (faceY ? "y" : "");
+
         /// <summary>The steps through a terrace's or a dais's rim, by the way down: rough in the caves, dressed stone
         /// elsewhere.</summary>
         public static string Stairs(DungeonTheme theme, Vector2Int down) =>

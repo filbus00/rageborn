@@ -1501,3 +1501,9 @@ The owner's answers are in Docs/08. How it is built:
 - `MarkFreeStanding` keeps rims and other walls in separate clumps (a pillar touching a rim had turned into a "thin wall" and lost its free-standing look).
 - Seeds 977k + d, depths 1 to 12, real rooms: 120 levels, 103 balconies, 101 with a pit, 112 with something raised. Checked in the editor: a pit at depth 3, a balcony with eight archers at depth 10 (they stood their places; the wake fix came after, not seen in play). Offline 697 passed (the 5 NavGrid failures), Unity 702 of 702.
 
+## 2026-10-20: life in the crypt, 3: chasms and bridges
+
+- `DungeonGenerator.Chasm` (crypt combat halls at least 18 x 18 with no pit, `ChasmPercent` 25): a band 4 to 6 cells thick through the hall's middle (across x or y) becomes `DungeonLayout.Chasm` (wall cells), but for a bridge three cells wide where floor runs across the band and on both banks, a second at least 12 cells from the first when one fits; dropped when the band would cut a way. Chasm cells are low in the `NavGrid` (sight and shots pass) and kept out of rock and pillar clumps in `MarkFreeStanding`.
+- `DungeonLevel` draws a chasm cell with no ground under it, an invisible blocker, and `crypt_chasm[_x|_y|_xy]` (`ThemePieces.Chasm`): `themes.py` `crypt_chasm(faces)`, a holdout at ground level outside the cell, a black floor 1.3 down that runs 6 units toward +x and +y (the camera, looking down at 30 degrees, sees the floor of the drop well past the cell; a cell-sized one drew nothing), and on the far sides (+x, +y, where the ground goes on) dressed stone going down, darker by depth, under a coping. Imported without an outline (`WorldArtImporter.Flat`), which had drawn a grid over the drop.
+- Checked at depth 2 in the editor. Offline 698 passed (the 5 NavGrid failures), Unity 703 of 703.
+

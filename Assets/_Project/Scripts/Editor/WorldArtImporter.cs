@@ -23,7 +23,8 @@ namespace ARPG.Editor
         const int Shrink = 4;
 
         // Lying on the floor: no outline, which would draw a black ring around a painted circle.
-        static readonly HashSet<string> Flat = new HashSet<string> { "ritual_circle" };
+        // Chasm cells (2026-10-20) join into one drop: an outline would draw a grid over it.
+        static readonly HashSet<string> Flat = new HashSet<string> { "ritual_circle", "crypt_chasm", "crypt_chasm_x", "crypt_chasm_y", "crypt_chasm_xy" };
 
         [System.Serializable]
         class Item

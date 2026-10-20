@@ -308,6 +308,15 @@ namespace ARPG
                         continue;
                     var index = x + y * bounds.width;
                     var at = new Vector2Int(bounds.xMin + x, bounds.yMin + y);
+                    // A chasm (2026-10-20): the drop, no ground under it, an invisible blocker to stop her walking in.
+                    if (Layout.Chasm.Contains(at))
+                    {
+                        var drop = DungeonArt.Piece(ThemePieces.Chasm(!Layout.Chasm.Contains(at + Vector2Int.right), !Layout.Chasm.Contains(at + Vector2Int.up)));
+                        if (drop != null)
+                            artTiles[index] = drop;
+                        wallTiles[index] = DungeonArt.Blocker;
+                        continue;
+                    }
                     // Rock further from the open floor than this is left out: darkness, the earth around the rooms.
                     var rock = RockDistance(at);
                     if (rock > RockShown)

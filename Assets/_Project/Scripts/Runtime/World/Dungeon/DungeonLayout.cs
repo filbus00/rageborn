@@ -199,6 +199,10 @@ namespace ARPG
         /// nearest its rim first. The room's first pack stands its archers and casters there.</summary>
         public Dictionary<int, List<Vector2Int>> Balconies { get; } = new Dictionary<int, List<Vector2Int>>();
 
+        /// <summary>A chasm's cells (2026-10-20): wall to walking, drawn as a drop into the dark, low (sight and shots
+        /// pass over).</summary>
+        public HashSet<Vector2Int> Chasm { get; } = new HashSet<Vector2Int>();
+
         /// <summary>Floor cells in a sunken burial pit (2026-10-20), drawn darker.</summary>
         public HashSet<Vector2Int> Sunken { get; } = new HashSet<Vector2Int>();
 

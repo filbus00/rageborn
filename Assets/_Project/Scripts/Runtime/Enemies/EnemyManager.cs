@@ -141,8 +141,12 @@ namespace ARPG
             // Rims of daises, pits and terraces are low: sight and shots pass over them (2026-10-20).
             var level = FindAnyObjectByType<DungeonLevel>();
             if (level != null && level.Layout != null)
+            {
                 foreach (var cell in level.Layout.Ledges)
                     Nav.SetLow(cell, true);
+                foreach (var cell in level.Layout.Chasm)
+                    Nav.SetLow(cell, true);
+            }
             flow = new FlowField(Nav);
             Hash = CreateHash(Nav);
             LoadTimer.Mark("nav grid");
