@@ -138,6 +138,11 @@ namespace ARPG
 
             LoadTimer.Mark("before enemy manager");
             Nav = NavGridBaker.Bake(groundTilemap, obstacleTilemaps);
+            // Rims of daises, pits and terraces are low: sight and shots pass over them (2026-10-20).
+            var level = FindAnyObjectByType<DungeonLevel>();
+            if (level != null && level.Layout != null)
+                foreach (var cell in level.Layout.Ledges)
+                    Nav.SetLow(cell, true);
             flow = new FlowField(Nav);
             Hash = CreateHash(Nav);
             LoadTimer.Mark("nav grid");
@@ -311,7 +316,7 @@ namespace ARPG
         internal bool TryChaseDirection(Vector2 from, Vector2 target, out Vector2 direction)
         {
             // With a clear line the straight route is best; the lattice route would zig-zag across open ground.
-            if (Nav.HasLineOfSight(from, target))
+            if (Nav.HasClearWalk(from, target))
             {
                 direction = (target - from).normalized;
                 return true;
@@ -323,7 +328,7 @@ namespace ARPG
         /// flow field; infinity without a route.</summary>
         internal float RouteLength(Vector2 from, Vector2 target)
         {
-            if (Nav.HasLineOfSight(from, target))
+            if (Nav.HasClearWalk(from, target))
                 return Vector2.Distance(from, target);
             return flow.CostAt(IsoMath.GroundToCell(from));
         }

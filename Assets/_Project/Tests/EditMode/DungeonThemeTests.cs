@@ -207,10 +207,58 @@ namespace ARPG.Tests
                     {
                         Assert.IsTrue(pair.Value.x < 0 || pair.Value.y < 0, "steps come down toward the camera");
                         Assert.IsTrue(layout.IsFloor(pair.Key + pair.Value), "floor at the foot");
-                        Assert.IsTrue(layout.Raised.Contains(pair.Key - pair.Value), "the dais at the head");
+                        Assert.IsTrue(layout.Raised.Contains(pair.Key - pair.Value) || layout.Sunken.Contains(pair.Key + pair.Value),
+                            "a dais at the head, or a pit at the foot");
                     }
                 }
             Assert.Greater(daises, 30, "most crypt levels have one");
+        }
+
+        [Test]
+        public void SomeCryptHalls_HaveABalcony_RaisedAlongTheFarWall()
+        {
+            // The owner, 2026-10-20: balconies with a pack's archers shooting down, reached by stairs.
+            var balconies = 0;
+            foreach (var seed in new[] { 7919, 31, 4242 })
+                for (var depth = 1; depth <= 12; depth++)
+                {
+                    var layout = DungeonGenerator.Generate(seed, depth, Library());
+                    foreach (var pair in layout.Balconies)
+                    {
+                        balconies++;
+                        var open = 0;
+                        foreach (var cell in pair.Value)
+                        {
+                            Assert.IsTrue(layout.Raised.Contains(cell));
+                            if (layout.IsFloor(cell))
+                                open++;
+                        }
+                        Assert.Greater(open, 8, "room for the archers");
+                    }
+                }
+            Assert.Greater(balconies, 5);
+        }
+
+        [Test]
+        public void SomeCryptLevels_HaveABurialPit_WithBonesAndStepsIn()
+        {
+            // The owner, 2026-10-20: "a lowered floor with steps down on every side, full of bones and broken coffins".
+            var pits = 0;
+            foreach (var seed in new[] { 7919, 31, 4242 })
+                for (var depth = 1; depth <= 12; depth++)
+                {
+                    var layout = DungeonGenerator.Generate(seed, depth, Library());
+                    if (layout.Sunken.Count == 0)
+                        continue;
+                    pits++;
+                    Assert.IsFalse(layout.Sunken.Overlaps(layout.Raised));
+                    var bones = 0;
+                    foreach (var cell in layout.Sunken)
+                        if (layout.Decals.ContainsKey(cell) || layout.Props.ContainsKey(cell))
+                            bones++;
+                    Assert.Greater(bones, 4, $"seed {seed} depth {depth}: bones in the pit");
+                }
+            Assert.Greater(pits, 5);
         }
     }
 }

@@ -45,21 +45,26 @@ namespace ARPG
         /// <summary>The dungeon: dirt with cobbles, every listed cell, decals stamped on, each cell's shade
         /// (<see cref="LightingRules.GroundShade"/>) painted in, so the caller need not tint the tiles one by one.</summary>
         public static bool PaintDungeon(Tilemap ground, List<Vector2Int> cells, IReadOnlyDictionary<Vector2Int, DecalKind> decals) =>
-            PaintDungeon(ground, cells, decals, DungeonTheme.Crypt, null);
+            PaintDungeon(ground, cells, decals, DungeonTheme.Crypt, null, null);
 
         /// <summary>The dungeon in its theme (2026-10-10): the crypt paved, the caves bare earth; raised terrace cells
-        /// painted lighter, so the terrace reads as higher ground.</summary>
+        /// painted lighter, so the terrace reads as higher ground, and a burial pit's darker (2026-10-20).</summary>
         public static bool PaintDungeon(Tilemap ground, List<Vector2Int> cells, IReadOnlyDictionary<Vector2Int, DecalKind> decals,
-            DungeonTheme theme, HashSet<Vector2Int> raised)
+            DungeonTheme theme, HashSet<Vector2Int> raised, HashSet<Vector2Int> sunken)
         {
             dungeonTheme = theme;
             raisedCells = raised;
+            sunkenCells = sunken;
             return Paint(ground, cells, false, decals, true);
         }
 
         // Read by the worker threads while a dungeon paints; set before and never changed during.
         static DungeonTheme dungeonTheme;
         static HashSet<Vector2Int> raisedCells;
+        static HashSet<Vector2Int> sunkenCells;
+
+        /// <summary>How much darker a burial pit's floor is drawn (2026-10-20).</summary>
+        public const float SunkenShade = 0.62f;
 
         /// <summary>The town: every cell the scene's ground has, a paved square and roads, mud and puddles.</summary>
         public static bool PaintTown(Tilemap ground)
@@ -180,6 +185,8 @@ namespace ARPG
             var tint = LightingRules.GroundShade(cell);
             if (raisedCells != null && raisedCells.Contains(cell))
                 tint *= 1.25f;
+            else if (sunkenCells != null && sunkenCells.Contains(cell))
+                tint *= SunkenShade;
             for (var i = 0; i < pixels.Length; i++)
             {
                 var c = pixels[i];

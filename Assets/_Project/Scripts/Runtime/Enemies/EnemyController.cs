@@ -293,6 +293,9 @@ namespace ARPG
         /// <param name="owningManager">The manager, told when the enemy dies.</param>
         /// <param name="rolledModifiers">Rolled by the caller (only for an Elite); None for everything else.</param>
         /// <param name="level">The enemy's level; 0 or less uses the definition's own.</param>
+        /// <summary>An archer or caster set on a balcony by its pack (2026-10-20): it stays there.</summary>
+        public bool Perched { get; set; }
+
         internal void Activate(EnemyDefinition data, Vector2 groundPosition, bool aggroed, EnemyPack owner, EnemyManager owningManager, EliteModifiers rolledModifiers = EliteModifiers.None, int level = 0)
         {
             definition = data;
@@ -306,6 +309,7 @@ namespace ARPG
             home = groundPosition;
             leashTimer = 0f;
             reactTimer = 0f;
+            Perched = false;
             slow.Clear();
             bleedTimer = 0f;
             bleedPending = 0f;
@@ -462,8 +466,11 @@ namespace ARPG
             {
                 case EnemyState.Idle:
                     // Seen, or close by a walkable route: an enemy in the next room no longer wakes through the wall.
+                    // In sight the route counts as the straight line (over a rim too: archers on a balcony wake to her
+                    // below, 2026-10-20), else the walk.
                     if (distance > definition.AggroRange ||
-                        !EnemyRules.Wakes(distance, world.RouteLength(ground, playerGround), definition.AggroRange))
+                        !EnemyRules.Wakes(distance, world.Nav.HasLineOfSight(ground, playerGround) ? distance : world.RouteLength(ground, playerGround),
+                            definition.AggroRange))
                         return;
                     Engage();
                     pack?.Alert();
@@ -500,7 +507,7 @@ namespace ARPG
                     var lineOfSight = !ranged || inView && world.Nav.HasLineOfSight(ground, playerGround);
                     if (inView && definition.Archetype == EnemyArchetype.Charger && world.Player != null && world.Player.IsAlive &&
                         EnemyRules.ShouldLunge(distance, definition.LungeMinRange, definition.LungeDistance,
-                            world.Nav.HasLineOfSight(ground, playerGround), lungeCooldown))
+                            world.Nav.HasClearWalk(ground, playerGround), lungeCooldown))
                     {
                         BeginLunge(world, playerGround);
                         return;
@@ -508,6 +515,12 @@ namespace ARPG
                     if (CanAttack(world, distance) && lineOfSight && inView)
                     {
                         BeginAttack(world, playerGround);
+                        return;
+                    }
+                    // On a balcony it keeps its place and shoots down (2026-10-20).
+                    if (ranged && Perched)
+                    {
+                        Hold(world, playerGround, deltaTime);
                         return;
                     }
                     if (ranged || definition.Archetype == EnemyArchetype.Support)
@@ -1139,7 +1152,7 @@ namespace ARPG
         Vector2 HomeDirection(EnemyManager world)
         {
             // With a clear line the straight route home is best; otherwise follow the pack's field to its anchor.
-            if (!world.Nav.HasLineOfSight(ground, home) && pack != null && pack.TryGetHomeDirection(ground, out var direction))
+            if (!world.Nav.HasClearWalk(ground, home) && pack != null && pack.TryGetHomeDirection(ground, out var direction))
                 return direction;
 
             return (home - ground).normalized;

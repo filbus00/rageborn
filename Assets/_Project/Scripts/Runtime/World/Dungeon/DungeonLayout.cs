@@ -195,6 +195,13 @@ namespace ARPG
         /// <summary>Floor cells on a raised terrace, drawn lighter.</summary>
         public HashSet<Vector2Int> Raised { get; } = new HashSet<Vector2Int>();
 
+        /// <summary>Balconies (2026-10-20): by room index, the raised cells of a gallery along the hall's far wall, those
+        /// nearest its rim first. The room's first pack stands its archers and casters there.</summary>
+        public Dictionary<int, List<Vector2Int>> Balconies { get; } = new Dictionary<int, List<Vector2Int>>();
+
+        /// <summary>Floor cells in a sunken burial pit (2026-10-20), drawn darker.</summary>
+        public HashSet<Vector2Int> Sunken { get; } = new HashSet<Vector2Int>();
+
         /// <summary>The steps cut through a ledge: floor cells, each with the way down (an edge step toward the lower
         /// floor), so the steps are drawn facing it.</summary>
         public Dictionary<Vector2Int, Vector2Int> TerraceStairs { get; } = new Dictionary<Vector2Int, Vector2Int>();

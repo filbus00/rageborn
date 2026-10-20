@@ -55,7 +55,8 @@ namespace ARPG
             for (var i = 0; i < pieces; i++)
             {
                 var next = position + piece;
-                if (!nav.IsWalkable(IsoMath.GroundToCell(next)))
+                // Over a rim (a low cell), not through a wall.
+                if (!nav.IsOpenToShots(IsoMath.GroundToCell(next)))
                     return Outcome.Blocked;
 
                 position = next;

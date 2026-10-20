@@ -365,7 +365,7 @@ namespace ARPG
                         floorCells.Add(new Vector2Int(bounds.xMin + x, bounds.yMin + y));
             // The painter shades its cells as it paints them (2026-10-06); the fallback floors are tinted tile by tile.
             LoadTimer.Mark("paint: cells");
-            if (!GroundPainter.PaintDungeon(ground, floorCells, Layout.Decals, theme, Layout.Raised))
+            if (!GroundPainter.PaintDungeon(ground, floorCells, Layout.Decals, theme, Layout.Raised, Layout.Sunken))
             {
                 ground.SetTilesBlock(area, groundTiles);
                 WorldLights.ShadeGround(ground);
@@ -752,6 +752,8 @@ namespace ARPG
             go.AddComponent<Chest>().Configure(levelId + "/Chest " + index, Layout.EnemyLevel, spriteRenderer, closed, opened);
         }
 
+        readonly HashSet<int> perchedRooms = new HashSet<int>();
+
         void AddPack(Transform parent, int index, PackPlacement placement)
         {
             // Pack names key the killed members, so they must be unique within the level and stable for its seed.
@@ -760,6 +762,14 @@ namespace ARPG
             go.transform.position = CellWorld(placement.Cell);
 
             var pack = go.AddComponent<EnemyPack>();
+            // A balcony's hall: its first pack stands its archers and casters up there (2026-10-20).
+            if (placement.Kind != PackKind.Elite && Layout.Balconies.TryGetValue(placement.Room, out var gallery) && perchedRooms.Add(placement.Room))
+            {
+                var spots = new List<Vector2>(gallery.Count);
+                foreach (var cell in gallery)
+                    spots.Add(IsoMath.CellToGround(cell));
+                pack.Perch(spots);
+            }
             if (placement.Kind == PackKind.Elite)
             {
                 pack.Configure(eliteEnemy, null, placement.Count, placement.Radius, Layout.EnemyLevel);

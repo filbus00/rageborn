@@ -486,7 +486,7 @@ namespace ARPG
                 trampleTimer = PetSkillRules.TrampleSeconds;
                 var direction = (target.GroundPosition - ground).normalized;
                 var length = PetSkillRules.TrampleLength;
-                while (length > 0.5f && !enemies.Nav.HasLineOfSight(ground, ground + direction * length))
+                while (length > 0.5f && !enemies.Nav.HasClearWalk(ground, ground + direction * length))
                     length -= 0.5f;
                 var end = ground + direction * length;
                 var gore = CombatFormulas.HitDamage(GameSession.Current.Equipment.WeaponDamage, definition.DamageFactor, 0f, 0f, 1f,

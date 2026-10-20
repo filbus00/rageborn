@@ -171,7 +171,7 @@ namespace ARPG
         {
             // An item never lands in or behind a wall: then it stays where it came from.
             var nav = enemies != null ? enemies.Nav : null;
-            if (from.HasValue && nav != null && !nav.HasLineOfSight(from.Value, ground))
+            if (from.HasValue && nav != null && !nav.HasClearWalk(from.Value, ground))
                 ground = from.Value;
             var drop = TakeDrop();
             drop.ShowItem(item, ground, from ?? ground);

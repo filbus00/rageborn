@@ -577,7 +577,7 @@ namespace ARPG
 
             if (distance <= stopAt)
                 return Vector2.zero;
-            if (flow == null || enemies.Nav.HasLineOfSight(me, at))
+            if (flow == null || enemies.Nav.HasClearWalk(me, at))
                 return (at - me).normalized;
 
             var cell = IsoMath.GroundToCell(at);

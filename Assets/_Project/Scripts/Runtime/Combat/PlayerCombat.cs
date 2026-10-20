@@ -1561,7 +1561,7 @@ namespace ARPG
                 for (var p = 0; p < pieces && !done; p++)
                 {
                     var next = shot.Position + piece;
-                    if (!enemies.Nav.IsWalkable(IsoMath.GroundToCell(next)))
+                    if (!enemies.Nav.IsOpenToShots(IsoMath.GroundToCell(next)))
                     {
                         // A ricochet turns it and ends this frame's flight; anything else spends it.
                         done = HitWall(ref shot, direction);

@@ -12,6 +12,9 @@ namespace ARPG
         const float LineOfSightStep = 0.25f;
 
         readonly bool[] walkable;
+        // Low cells (2026-10-20): a dais's or pit's rim, a terrace's ledge. They block walking but not sight or shots, so
+        // archers on a dais shoot down and she shoots back up.
+        readonly bool[] low;
 
         public NavGrid(Vector2Int min, int width, int height)
         {
@@ -19,6 +22,7 @@ namespace ARPG
             Width = width;
             Height = height;
             walkable = new bool[width * height];
+            low = new bool[width * height];
         }
 
         /// <summary>The lowest cell coordinate covered by the grid.</summary>
@@ -41,12 +45,36 @@ namespace ARPG
                 walkable[IndexOf(cell)] = value;
         }
 
+        /// <summary>Marks a cell low: not walkable, but open to sight and to shots.</summary>
+        public void SetLow(Vector2Int cell, bool value)
+        {
+            if (Contains(cell))
+                low[IndexOf(cell)] = value;
+        }
+
+        /// <summary>Whether sight and shots pass a cell: walkable, or low (a rim).</summary>
+        public bool IsOpenToShots(Vector2Int cell) => Contains(cell) && (walkable[IndexOf(cell)] || low[IndexOf(cell)]);
+
         public int IndexOf(Vector2Int cell) => (cell.y - Min.y) * Width + (cell.x - Min.x);
 
         public Vector2Int CellAt(int index) => new Vector2Int(Min.x + index % Width, Min.y + index / Width);
 
-        /// <summary>True when every point on the straight ground-space segment from a to b lies on a walkable cell.</summary>
+        /// <summary>True when every point on the straight ground-space segment from a to b lies on a cell open to sight
+        /// (walkable, or low: shots and sight pass over a rim).</summary>
         public bool HasLineOfSight(Vector2 a, Vector2 b)
+        {
+            var delta = b - a;
+            var steps = Mathf.Max(1, Mathf.CeilToInt(delta.magnitude / LineOfSightStep));
+
+            for (var i = 0; i <= steps; i++)
+                if (!IsOpenToShots(IsoMath.GroundToCell(a + delta * (i / (float)steps))))
+                    return false;
+            return true;
+        }
+
+        /// <summary>True when every point on the straight segment lies on a walkable cell: a straight walk from a to b
+        /// (a rim blocks it, though it does not block sight).</summary>
+        public bool HasClearWalk(Vector2 a, Vector2 b)
         {
             var delta = b - a;
             var steps = Mathf.Max(1, Mathf.CeilToInt(delta.magnitude / LineOfSightStep));

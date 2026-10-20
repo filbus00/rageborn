@@ -200,7 +200,7 @@ namespace ARPG
         /// 12: no stubs of wall reaching into rooms, no walls one cell thin between halls and passages (2026-10-13).
         /// 13: bigger packs, 8 to 15, and elite packs of 4 to 6 (2026-10-17).
         /// 14: open levels, D2-like: bigger rooms, thin rock, every neighbour joined by a wide hall (2026-10-20).
-        /// 15: raised daises in crypt halls (2026-10-20).
+        /// 15: raised daises in crypt halls, sunken burial pits (2026-10-20).
         /// </summary>
         public const int Version = 15;
 
@@ -460,7 +460,23 @@ namespace ARPG
             if (layout.Theme == DungeonTheme.Crypt)
                 for (var i = 0; i < macros.Count; i++)
                     if (kinds[i] == RoomKind.Combat || kinds[i] == RoomKind.Elite || kinds[i] == RoomKind.Treasure)
-                        Dais(layout, mains[i], random);
+                    {
+                        // A combat hall may hold a sunken burial pit or a balcony for its archers instead (2026-10-20).
+                        if (kinds[i] == RoomKind.Combat && Pit(layout, mains[i], random))
+                            continue;
+                        if (kinds[i] == RoomKind.Combat && random.Next(100) < BalconyPercent)
+                        {
+                            var gallery = Platform(layout, mains[i], random, BalconyDepth, true);
+                            if (gallery != null)
+                            {
+                                layout.Balconies[i] = gallery;
+                                continue;
+                            }
+                        }
+                        if (random.Next(100) < DaisPercent)
+                            Platform(layout, mains[i], random, Mathf.RoundToInt(Mathf.Min(mains[i].width, mains[i].height) *
+                                Mathf.Lerp(0.3f, 0.42f, (float)random.NextDouble())), false);
+                    }
             MarkFreeStanding(layout);
 
             // 5. Stairs and arrival points.
@@ -999,24 +1015,134 @@ namespace ARPG
             }
         }
 
+        /// <summary>The share of crypt combat halls with a sunken burial pit (2026-10-20).</summary>
+        public const int PitPercent = 30;
+
+        /// <summary>
+        /// A sunken burial pit in a crypt hall (the owner, 2026-10-20, okayed: "a lowered floor with steps down on every
+        /// side, full of bones and broken coffins"): a rectangle with cut corners near the hall's middle, ringed by a
+        /// parapet of dressed stone (the dais's rim, <see cref="DungeonLayout.Ledges"/>), its floor drawn darker
+        /// (<see cref="DungeonLayout.Sunken"/>), with flights of steps down into it from its far sides (toward -x and -y,
+        /// facing the camera; steps on the near sides would face away and not read as steps), and bones, skulls, bone piles
+        /// and coffins on its floor. Whether one was built.
+        /// </summary>
+        static bool Pit(DungeonLayout layout, RectInt r, System.Random random)
+        {
+            if (r.width < 18 || r.height < 18 || random.Next(100) >= PitPercent)
+                return false;
+            var w = random.Next(9, Mathf.Min(14, r.width - 8) + 1);
+            var h = random.Next(9, Mathf.Min(14, r.height - 8) + 1);
+            var x0 = r.xMin + (r.width - w) / 2 + random.Next(-2, 3);
+            var y0 = r.yMin + (r.height - h) / 2 + random.Next(-2, 3);
+            var area = new HashSet<Vector2Int>();
+            for (var x = 0; x < w; x++)
+                for (var y = 0; y < h; y++)
+                {
+                    // Corners cut by two cells.
+                    if (Mathf.Min(x, w - 1 - x) + Mathf.Min(y, h - 1 - y) < 2)
+                        continue;
+                    var cell = new Vector2Int(x0 + x, y0 + y);
+                    if (layout.Get(cell) != DungeonCell.Floor)
+                        return false;
+                    area.Add(cell);
+                }
+            var ring = new HashSet<Vector2Int>();
+            foreach (var cell in area)
+                for (var dx = -1; dx <= 1; dx++)
+                    for (var dy = -1; dy <= 1; dy++)
+                        if (!area.Contains(new Vector2Int(cell.x + dx, cell.y + dy)))
+                            ring.Add(cell);
+            var inside = new HashSet<Vector2Int>(area);
+            inside.ExceptWith(ring);
+            // A flight on each far side: down toward -x through the +x side, down toward -y through the +y side.
+            var steps = new Dictionary<Vector2Int, Vector2Int>();
+            foreach (var down in new[] { Vector2Int.left, Vector2Int.down })
+            {
+                var side = new Vector2Int(down.y, down.x);
+                var middle = down.x != 0 ? new Vector2Int(x0 + w - 1, y0 + h / 2) : new Vector2Int(x0 + w / 2, y0 + h - 1);
+                for (var k = -1; k <= 1; k++)
+                    steps[middle + side * k] = down;
+            }
+            foreach (var pair in steps)
+                if (!ring.Contains(pair.Key) || !inside.Contains(pair.Key + pair.Value) || layout.Get(pair.Key - pair.Value) != DungeonCell.Floor)
+                    return false;
+            var walls = new HashSet<Vector2Int>(ring);
+            walls.ExceptWith(steps.Keys);
+            var region = new RectInt(r.xMin - 6, r.yMin - 6, r.width + 12, r.height + 12);
+            Vector2Int start = default;
+            foreach (var pair in steps)
+            {
+                start = pair.Key - pair.Value;
+                break;
+            }
+            var before = Reach(layout, region, start, null);
+            var after = Reach(layout, region, start, walls);
+            before.ExceptWith(walls);
+            if (!after.IsSupersetOf(before))
+                return false;
+            foreach (var cell in walls)
+            {
+                layout.Set(cell.x, cell.y, DungeonCell.Wall);
+                layout.Ledges.Add(cell);
+            }
+            foreach (var pair in steps)
+                layout.TerraceStairs[pair.Key] = pair.Value;
+            layout.Sunken.UnionWith(inside);
+            // The dead: bones and skulls on the floor, bone piles and coffins standing free (all eight neighbours open,
+            // so none closes a way), away from the feet of the steps.
+            foreach (var cell in inside)
+            {
+                var nearSteps = false;
+                foreach (var pair in steps)
+                    if (Mathf.Abs(cell.x - pair.Key.x) <= 2 && Mathf.Abs(cell.y - pair.Key.y) <= 2)
+                        nearSteps = true;
+                if (nearSteps)
+                    continue;
+                var roll = random.Next(100);
+                if (roll < 7 && OpenAround(layout, cell))
+                {
+                    layout.Set(cell.x, cell.y, DungeonCell.Prop);
+                    layout.Props[cell] = random.Next(3) == 0 ? PropKind.Coffin : PropKind.BonePile;
+                }
+                else if (roll < 30)
+                    layout.Decals[cell] = random.Next(4) == 0 ? DecalKind.Skull : DecalKind.Bones;
+            }
+            return true;
+        }
+
+        static bool OpenAround(DungeonLayout layout, Vector2Int cell)
+        {
+            for (var dx = -1; dx <= 1; dx++)
+                for (var dy = -1; dy <= 1; dy++)
+                    if (layout.Get(cell.x + dx, cell.y + dy) != DungeonCell.Floor)
+                        return false;
+            return true;
+        }
+
         /// <summary>The share of crypt halls with a raised dais (2026-10-20).</summary>
         public const int DaisPercent = 45;
 
+        /// <summary>The share of crypt combat halls (with no pit) given a balcony for the pack's archers (2026-10-20), and
+        /// its depth in cells, rim included.</summary>
+        public const int BalconyPercent = 30;
+        public const int BalconyDepth = 4;
+
         /// <summary>
-        /// A raised dais in a crypt hall (the owner, 2026-10-20: "Add verticality, stairs, platforms"): the far third or so
-        /// of the hall (toward +x or +y, away from the camera) is raised, ringed on its open side by a rim of dressed stone
-        /// half a man high, with one flight of steps three cells wide coming down toward the camera, two in a wide hall.
-        /// Built as the caves' terraces (the rim is wall, <see cref="DungeonLayout.Ledges"/>; the dais floor
-        /// <see cref="DungeonLayout.Raised"/>, painted lighter). Nothing changes when it would cut a way through the level.
+        /// A raised platform across the far end of a crypt hall (toward +x or +y, away from the camera), ringed on its open
+        /// side by a rim of dressed stone half a man high (the owner, 2026-10-20: "Add verticality, stairs, platforms"):
+        /// a dais (<paramref name="deep"/> 5 to 12 cells, one flight of steps three cells wide at the middle coming down
+        /// toward the camera, two in a wide hall), or a balcony (<paramref name="atEnd"/>: 4 cells, the flight at one end).
+        /// Built as the caves' terraces (the rim is wall, <see cref="DungeonLayout.Ledges"/>, low: sight and shots pass;
+        /// the floor <see cref="DungeonLayout.Raised"/>, painted lighter). Returns the raised cells, those nearest the rim
+        /// first, or null when none fits or it would cut a way through the level.
         /// </summary>
-        static void Dais(DungeonLayout layout, RectInt r, System.Random random)
+        static List<Vector2Int> Platform(DungeonLayout layout, RectInt r, System.Random random, int deep, bool atEnd)
         {
-            if (r.width < 14 || r.height < 14 || random.Next(100) >= DaisPercent)
-                return;
+            if (r.width < 14 || r.height < 14)
+                return null;
             var alongX = random.Next(2) == 0;
-            var span = alongX ? r.width : r.height;
             var width = alongX ? r.height : r.width;
-            var deep = Mathf.Clamp(Mathf.RoundToInt(span * Mathf.Lerp(0.3f, 0.42f, (float)random.NextDouble())), 5, 12);
+            deep = atEnd ? deep : Mathf.Clamp(deep, 5, 12);
             var down = alongX ? Vector2Int.left : Vector2Int.down;
             var side = new Vector2Int(down.y, down.x);
             var edge = (alongX ? r.xMax : r.yMax) - deep;
@@ -1035,8 +1161,8 @@ namespace ARPG
                         if (!plateau.Contains(next) && layout.IsFloor(next))
                             ring.Add(cell);
                     }
-            if (plateau.Count - ring.Count < 20)
-                return;
+            if (plateau.Count - ring.Count < (atEnd ? 12 : 20))
+                return null;
             // Flights: a straight piece of the rim three cells wide, lower floor before it and dais behind it.
             var flights = new List<Vector2Int>();
             foreach (var cell in ring)
@@ -1052,12 +1178,15 @@ namespace ARPG
                     flights.Add(cell);
             }
             if (flights.Count == 0)
-                return;
-            // The flight nearest the hall's middle, and in a wide hall a second well apart from it.
+                return null;
+            // A dais: the flight nearest the hall's middle, and in a wide hall a second well apart from it. A balcony: the
+            // flight furthest from the middle, at one end.
             var middle = alongX ? r.center.y : r.center.x;
             flights.Sort((a, b) => Mathf.Abs((alongX ? a.y : a.x) - middle).CompareTo(Mathf.Abs((alongX ? b.y : b.x) - middle)));
+            if (atEnd)
+                flights.Reverse();
             var chosen = new List<Vector2Int> { flights[0] };
-            if (width >= 22)
+            if (!atEnd && width >= 22)
                 foreach (var flight in flights)
                     if (Vector2Int.Distance(flight, chosen[0]) >= width / 3f)
                     {
@@ -1077,7 +1206,7 @@ namespace ARPG
             var after = Reach(layout, region, start, walls);
             before.ExceptWith(walls);
             if (!after.IsSupersetOf(before))
-                return;
+                return null;
             foreach (var cell in walls)
             {
                 layout.Set(cell.x, cell.y, DungeonCell.Wall);
@@ -1085,9 +1214,18 @@ namespace ARPG
             }
             foreach (var pair in steps)
                 layout.TerraceStairs[pair.Key] = pair.Value;
+            var raised = new List<Vector2Int>();
             foreach (var cell in plateau)
-                if (!ring.Contains(cell))
-                    layout.Raised.Add(cell);
+                if (!ring.Contains(cell) && !steps.ContainsKey(cell))
+                    raised.Add(cell);
+            layout.Raised.UnionWith(raised);
+            // Nearest the rim first (lowest along the axis), then from the middle out.
+            raised.Sort((a, b) =>
+            {
+                var byRow = (alongX ? a.x : a.y).CompareTo(alongX ? b.x : b.y);
+                return byRow != 0 ? byRow : Mathf.Abs((alongX ? a.y : a.x) - middle).CompareTo(Mathf.Abs((alongX ? b.y : b.x) - middle));
+            });
+            return raised;
         }
 
         // The floor cells of a region reached from a start by edge steps, treating the given cells as wall.
@@ -1227,7 +1365,9 @@ namespace ARPG
                     for (var dy = -1; dy <= 1; dy++)
                     {
                         var next = new Vector2Int(cell.x + dx, cell.y + dy);
-                        if (!b.Contains(next) || seen[next.x - b.xMin, next.y - b.yMin] || layout.Get(next) != DungeonCell.Wall)
+                        // A dais's or pit's rim is not rock (2026-10-20): a pillar it touches still stands free.
+                        if (!b.Contains(next) || seen[next.x - b.xMin, next.y - b.yMin] || layout.Get(next) != DungeonCell.Wall ||
+                            layout.Ledges.Contains(next))
                             continue;
                         seen[next.x - b.xMin, next.y - b.yMin] = true;
                         queue.Enqueue(next);
@@ -1241,6 +1381,7 @@ namespace ARPG
                     if (layout.Get(x, y) != DungeonCell.Wall || seen[x - b.xMin, y - b.yMin])
                         continue;
                     var clump = new List<Vector2Int>();
+                    var rim = layout.Ledges.Contains(new Vector2Int(x, y));
                     seen[x - b.xMin, y - b.yMin] = true;
                     queue.Enqueue(new Vector2Int(x, y));
                     while (queue.Count > 0)
@@ -1251,7 +1392,9 @@ namespace ARPG
                             for (var dy = -1; dy <= 1; dy++)
                             {
                                 var next = new Vector2Int(cell.x + dx, cell.y + dy);
-                                if (!b.Contains(next) || seen[next.x - b.xMin, next.y - b.yMin] || layout.Get(next) != DungeonCell.Wall)
+                                // Rims and other walls are told apart, so neither joins the other's clump.
+                                if (!b.Contains(next) || seen[next.x - b.xMin, next.y - b.yMin] || layout.Get(next) != DungeonCell.Wall ||
+                                    layout.Ledges.Contains(next) != rim)
                                     continue;
                                 seen[next.x - b.xMin, next.y - b.yMin] = true;
                                 queue.Enqueue(next);

@@ -36,6 +36,12 @@ namespace ARPG
         [SerializeField, Min(0)] int level;
 
         readonly List<EnemyController> members = new List<EnemyController>();
+        // A balcony's spots (2026-10-20): the pack's archers and casters stand there, in this order.
+        List<Vector2> perches;
+
+        /// <summary>Gives the pack a balcony: its ranged members stand on these ground spots instead of in the disc, and
+        /// keep them (<see cref="EnemyController.Perched"/>).</summary>
+        public void Perch(List<Vector2> spots) => perches = spots;
 
         // Set from code for a mixed pack: one definition per slot, null for a slot left empty. Overrides definition,
         // championDefinition and count.
@@ -105,6 +111,7 @@ namespace ARPG
             // Killed enemies stay dead while the session lasts, so a pack that was cleared earlier comes back cleared.
             // Keyed by level, not scene: every dungeon level shares one scene.
             packKey = LevelContext.CurrentId + "/" + name;
+            var perch = 0;
             for (var i = 0; i < count; i++)
             {
                 if (GameSession.Current.IsKilled(packKey, i))
@@ -113,15 +120,27 @@ namespace ARPG
                     continue;
                 }
 
-                var position = anchor + SlotOffset(i, count, radius);
-                if (!manager.Nav.IsWalkable(IsoMath.GroundToCell(position)))
-                    continue;
-
                 var slotDefinition = slotDefinitions != null ? slotDefinitions[i]
                     : i == 0 && championDefinition != null ? championDefinition : definition;
                 if (slotDefinition == null)
                     continue;
+                var position = anchor + SlotOffset(i, count, radius);
+                var perched = false;
+                // Past spots a prop stands on.
+                while (perches != null && perch < perches.Count && !manager.Nav.IsWalkable(IsoMath.GroundToCell(perches[perch])))
+                    perch++;
+                if (perches != null && perch < perches.Count &&
+                    (slotDefinition.Archetype == EnemyArchetype.Archer || slotDefinition.Archetype == EnemyArchetype.Caster))
+                {
+                    position = perches[perch];
+                    perch++;
+                    perched = true;
+                }
+                if (!manager.Nav.IsWalkable(IsoMath.GroundToCell(position)))
+                    continue;
+
                 var member = manager.Spawn(slotDefinition, position, false, this, level);
+                member.Perched = perched;
                 member.PackSlot = i;
                 members.Add(member);
             }

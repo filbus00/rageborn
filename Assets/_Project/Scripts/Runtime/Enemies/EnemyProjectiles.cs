@@ -133,7 +133,7 @@ namespace ARPG
                 if (outcome == EnemyProjectileFlight.Outcome.Blocked && shot.Bounces > 0)
                 {
                     shot.Bounces--;
-                    walkable ??= c => world.Nav.IsWalkable(c);
+                    walkable ??= c => world.Nav.IsOpenToShots(c);
                     shot.Velocity = ProjectileKinds.Bounce(shot.Position, shot.Velocity, walkable);
                     outcome = EnemyProjectileFlight.Outcome.Flying;
                 }
