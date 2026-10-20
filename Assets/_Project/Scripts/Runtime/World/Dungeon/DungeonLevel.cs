@@ -351,7 +351,7 @@ namespace ARPG
                     else if (cell == DungeonCell.Prop && Layout.Props.TryGetValue(at, out var prop))
                         propTiles[index] = DungeonArt.Prop(prop);
                     if (Layout.TerraceStairs.TryGetValue(at, out var down))
-                        propTiles[index] = DungeonArt.Piece(ThemePieces.Stairs(down));
+                        propTiles[index] = DungeonArt.Piece(ThemePieces.Stairs(theme, down));
                 }
 
             ground.ClearAllTiles();

@@ -200,8 +200,9 @@ namespace ARPG
         /// 12: no stubs of wall reaching into rooms, no walls one cell thin between halls and passages (2026-10-13).
         /// 13: bigger packs, 8 to 15, and elite packs of 4 to 6 (2026-10-17).
         /// 14: open levels, D2-like: bigger rooms, thin rock, every neighbour joined by a wide hall (2026-10-20).
+        /// 15: raised daises in crypt halls (2026-10-20).
         /// </summary>
-        public const int Version = 14;
+        public const int Version = 15;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -454,6 +455,12 @@ namespace ARPG
             FillRock(layout);
             if (!cave)
                 OpenThinWalls(layout);
+            // The crypt: a raised dais across the far end of some halls, its rim of dressed stone with a flight of steps
+            // down toward the camera (2026-10-20). After the thin walls are opened, which would take the rim away.
+            if (layout.Theme == DungeonTheme.Crypt)
+                for (var i = 0; i < macros.Count; i++)
+                    if (kinds[i] == RoomKind.Combat || kinds[i] == RoomKind.Elite || kinds[i] == RoomKind.Treasure)
+                        Dais(layout, mains[i], random);
             MarkFreeStanding(layout);
 
             // 5. Stairs and arrival points.
@@ -990,6 +997,97 @@ namespace ARPG
                         layout.Raised.Add(cell);
                 return;
             }
+        }
+
+        /// <summary>The share of crypt halls with a raised dais (2026-10-20).</summary>
+        public const int DaisPercent = 45;
+
+        /// <summary>
+        /// A raised dais in a crypt hall (the owner, 2026-10-20: "Add verticality, stairs, platforms"): the far third or so
+        /// of the hall (toward +x or +y, away from the camera) is raised, ringed on its open side by a rim of dressed stone
+        /// half a man high, with one flight of steps three cells wide coming down toward the camera, two in a wide hall.
+        /// Built as the caves' terraces (the rim is wall, <see cref="DungeonLayout.Ledges"/>; the dais floor
+        /// <see cref="DungeonLayout.Raised"/>, painted lighter). Nothing changes when it would cut a way through the level.
+        /// </summary>
+        static void Dais(DungeonLayout layout, RectInt r, System.Random random)
+        {
+            if (r.width < 14 || r.height < 14 || random.Next(100) >= DaisPercent)
+                return;
+            var alongX = random.Next(2) == 0;
+            var span = alongX ? r.width : r.height;
+            var width = alongX ? r.height : r.width;
+            var deep = Mathf.Clamp(Mathf.RoundToInt(span * Mathf.Lerp(0.3f, 0.42f, (float)random.NextDouble())), 5, 12);
+            var down = alongX ? Vector2Int.left : Vector2Int.down;
+            var side = new Vector2Int(down.y, down.x);
+            var edge = (alongX ? r.xMax : r.yMax) - deep;
+            var plateau = new HashSet<Vector2Int>();
+            for (var x = r.xMin; x < r.xMax; x++)
+                for (var y = r.yMin; y < r.yMax; y++)
+                    if ((alongX ? x : y) >= edge && layout.Get(x, y) == DungeonCell.Floor)
+                        plateau.Add(new Vector2Int(x, y));
+            // The rim: dais floor beside lower floor.
+            var ring = new HashSet<Vector2Int>();
+            foreach (var cell in plateau)
+                for (var dx = -1; dx <= 1; dx++)
+                    for (var dy = -1; dy <= 1; dy++)
+                    {
+                        var next = new Vector2Int(cell.x + dx, cell.y + dy);
+                        if (!plateau.Contains(next) && layout.IsFloor(next))
+                            ring.Add(cell);
+                    }
+            if (plateau.Count - ring.Count < 20)
+                return;
+            // Flights: a straight piece of the rim three cells wide, lower floor before it and dais behind it.
+            var flights = new List<Vector2Int>();
+            foreach (var cell in ring)
+            {
+                var fits = true;
+                for (var k = -1; k <= 1 && fits; k++)
+                {
+                    var c = cell + side * k;
+                    fits = ring.Contains(c) && layout.Get(c + down) == DungeonCell.Floor && !plateau.Contains(c + down) &&
+                           plateau.Contains(c - down) && !ring.Contains(c - down);
+                }
+                if (fits)
+                    flights.Add(cell);
+            }
+            if (flights.Count == 0)
+                return;
+            // The flight nearest the hall's middle, and in a wide hall a second well apart from it.
+            var middle = alongX ? r.center.y : r.center.x;
+            flights.Sort((a, b) => Mathf.Abs((alongX ? a.y : a.x) - middle).CompareTo(Mathf.Abs((alongX ? b.y : b.x) - middle)));
+            var chosen = new List<Vector2Int> { flights[0] };
+            if (width >= 22)
+                foreach (var flight in flights)
+                    if (Vector2Int.Distance(flight, chosen[0]) >= width / 3f)
+                    {
+                        chosen.Add(flight);
+                        break;
+                    }
+            var steps = new Dictionary<Vector2Int, Vector2Int>();
+            foreach (var cell in chosen)
+                for (var k = -1; k <= 1; k++)
+                    steps[cell + side * k] = down;
+            // The rim must not cut the level: every floor cell reached before is reached after.
+            var walls = new HashSet<Vector2Int>(ring);
+            walls.ExceptWith(steps.Keys);
+            var region = new RectInt(r.xMin - 6, r.yMin - 6, r.width + 12, r.height + 12);
+            var start = chosen[0] + down;
+            var before = Reach(layout, region, start, null);
+            var after = Reach(layout, region, start, walls);
+            before.ExceptWith(walls);
+            if (!after.IsSupersetOf(before))
+                return;
+            foreach (var cell in walls)
+            {
+                layout.Set(cell.x, cell.y, DungeonCell.Wall);
+                layout.Ledges.Add(cell);
+            }
+            foreach (var pair in steps)
+                layout.TerraceStairs[pair.Key] = pair.Value;
+            foreach (var cell in plateau)
+                if (!ring.Contains(cell))
+                    layout.Raised.Add(cell);
         }
 
         // The floor cells of a region reached from a start by edge steps, treating the given cells as wall.

@@ -9,6 +9,9 @@
 #   crypt_diag_<o>[_low] a wall cut along the cell's diagonal, for cut corners and round rooms: o is the half the wall
 #                        fills, "b" (back, +x+y), "f" (front, -x-y), "l" (left, -x+y), "r" (right, +x-y)
 #   crypt_pillar_1..2    a column: 1 square with a capital, 2 round with rings
+#   crypt_ledge_1..3     a dais's rim (2026-10-20): dressed stone half a man high, paved on top; 2 a balustrade, 3 a
+#                        candle stand on the lip
+#   crypt_stairs_<d>     dressed steps through a dais's rim, down toward d: "px", "nx", "py", "ny"
 #   cave_wall_1..6       boulders heaped higher than a man, pale spikes on some
 #   cave_wall_low_1..3   a low heap of boulders
 #   cave_ledge_1..3      a terrace's rim: a lip of rock
@@ -306,6 +309,66 @@ def cave_stairs(direction):
         box(size, (dx * t, dy * t, top - 0.025), rng.choice(tread), bevel=0.006)
 
 
+def crypt_ledge(variant):
+    """A raised dais's rim in the crypt (the owner, 2026-10-20: "Add verticality, stairs, platforms"): a block of dressed
+    stone half a man high, as the cave's ledge, its camera faces coursed, a plinth at the foot, a moulded lip, its top
+    paved in the paler stone of the dais. 2 a balustrade of stout posts under a rail along the front, 3 a candle stand
+    on the lip."""
+    from models import candles
+    rng = _rng("crypt_ledge", variant)
+    h = LEDGE_H
+    stones = _crypt_stones()
+    box((CELL - 0.01, CELL - 0.01, h - 0.02), (0, 0, 0), mat(STONE[0], 0.0))
+    _ashlar_line((-HALF, HALF), (-HALF, -HALF), (-1, 0), h - 0.05, rng, stones, z0=0.1)
+    _ashlar_line((-HALF, -HALF), (HALF, -HALF), (0, -1), h - 0.05, rng, stones, z0=0.1)
+    _crypt_trim((-HALF, HALF), (-HALF, -HALF), (-1, 0), h, True)
+    _crypt_trim((-HALF, -HALF), (HALF, -HALF), (0, -1), h, True)
+    # The paving on top: four pale slabs with dark joints.
+    pale = [mat(STONE[4], 0.3, STONE[3], scale=12), mat(STONE[5], 0.3, STONE[3], scale=12)]
+    box((CELL - 0.01, CELL - 0.01, 0.01), (0, 0, h - 0.03), mat(STONE[1], 0.0))
+    q = CELL / 4
+    for sx in (-1, 1):
+        for sy in (-1, 1):
+            box((CELL / 2 - 0.02, CELL / 2 - 0.02, 0.025), (sx * q, sy * q, h - 0.025), rng.choice(pale), bevel=0.005)
+    if variant == 2:
+        post = mat(STONE[4], 0.25, STONE[2], scale=12)
+        rail = mat(STONE[5], 0.2, STONE[3], scale=10)
+        for k in range(3):
+            t = -HALF + 0.1 + k * (CELL - 0.2) / 2
+            cyl(0.04, 0.28, (-HALF + 0.08, t, h), post, segments=8)
+            cyl(0.04, 0.28, (t, -HALF + 0.08, h), post, segments=8)
+        box((0.09, CELL, 0.05), (-HALF + 0.08, 0, h + 0.28), rail, bevel=0.008)
+        box((CELL, 0.09, 0.05), (0, -HALF + 0.08, h + 0.28), rail, bevel=0.008)
+    elif variant == 3:
+        iron = mat(STONE[0], 0.2, STONE[1], scale=8, metal=0.4)
+        cyl(0.02, 0.5, (0, 0, h), iron, segments=6)
+        box((0.22, 0.22, 0.02), (0, 0, h + 0.5), iron)
+        candles((0, 0, h + 0.52), count=4, seed_n=91, spread=0.08)
+
+
+def crypt_stairs(direction):
+    """Dressed stone steps through a dais's rim (2026-10-20), as the cave's flights: five pale treads with dark risers
+    climbing to the rim's height across the whole cell, so three cells join into one wide stair."""
+    rng = _rng("crypt_stairs", direction)
+    dx, dy = STAIRS[direction]
+    tread = [mat(STONE[4], 0.3, STONE[3], scale=12), mat(STONE[5], 0.3, STONE[3], scale=12)]
+    riser = mat(STONE[2], 0.3, STONE[1], scale=10)
+    count = 5
+    depth = CELL / count
+    rise = LEDGE_H / count
+    across = CELL + 0.01
+    for k in range(count):
+        front = HALF - depth * k
+        mid = (front - HALF) / 2
+        top = rise * (k + 1)
+        length = front + HALF
+        size = (length, across, top) if dx else (across, length, top)
+        box(size, (dx * mid, dy * mid, 0), riser, bevel=0.004)
+        t = front - depth / 2 + 0.006
+        size = (depth + 0.012, across, 0.025) if dx else (across, depth + 0.012, 0.025)
+        box(size, (dx * t, dy * t, top - 0.025), rng.choice(tread), bevel=0.006)
+
+
 def stalagmite(variant):
     rng = _rng("stalagmite", variant)
     rocks = _cave_rocks()
@@ -338,6 +401,9 @@ def register(all_pieces):
         all_pieces["stalagmite_%d" % n] = ("world", (lambda n=n: stalagmite(n)), WORLD)
     for d in STAIRS:
         all_pieces["cave_stairs_" + d] = ("world", (lambda d=d: cave_stairs(d)), WORLD)
+        all_pieces["crypt_stairs_" + d] = ("world", (lambda d=d: crypt_stairs(d)), WORLD)
+    for n in range(1, 4):
+        all_pieces["crypt_ledge_%d" % n] = ("world", (lambda n=n: crypt_ledge(n)), WORLD)
 
 
 # ---------------------------------------------------------------- the burnt library (2026-10-11)

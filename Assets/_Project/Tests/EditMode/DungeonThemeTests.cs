@@ -157,7 +157,9 @@ namespace ARPG.Tests
             Assert.AreEqual("cave_ledge_1", ThemePieces.Wall(DungeonTheme.Cave, Nothing, 0, 0, false, true, true, 0));
             Assert.AreEqual("stalagmite_1", ThemePieces.Wall(DungeonTheme.Cave, Nothing, 0, 0, false, true, false, 0));
             Assert.AreEqual("cave_wall_low_1", ThemePieces.Wall(DungeonTheme.Cave, Nothing, 0, 0, true, false, false, 0));
-            Assert.AreEqual("cave_stairs_ny", ThemePieces.Stairs(Vector2Int.down));
+            Assert.AreEqual("cave_stairs_ny", ThemePieces.Stairs(DungeonTheme.Cave, Vector2Int.down));
+            Assert.AreEqual("crypt_stairs_nx", ThemePieces.Stairs(DungeonTheme.Crypt, Vector2Int.left));
+            Assert.AreEqual("crypt_ledge_1", ThemePieces.Wall(DungeonTheme.Crypt, Nothing, 0, 0, false, true, true, 0));
             // Floor toward -x and -y: the wall fills the far half, facing the camera.
             Assert.AreEqual("b", ThemePieces.Diagonal((x, y) => x < 0 && y == 0 || y < 0 && x == 0, 0, 0));
             Assert.AreEqual("f", ThemePieces.Diagonal((x, y) => x > 0 && y == 0 || y > 0 && x == 0, 0, 0));
@@ -179,13 +181,36 @@ namespace ARPG.Tests
                     var count = 0;
                     for (var x = b.xMin; x < b.xMax; x++)
                         for (var y = b.yMin; y < b.yMax; y++)
+                            // A dais's rim (2026-10-20) is one cell thin by design, drawn as its own low piece.
                             if (layout.Get(x, y) == DungeonCell.Wall && !layout.FreeStanding.Contains(new UnityEngine.Vector2Int(x, y)) &&
+                                !layout.Ledges.Contains(new UnityEngine.Vector2Int(x, y)) &&
                                 ((Open(x - 1, y) && Open(x + 1, y)) || (Open(x, y - 1) && Open(x, y + 1))))
                                 count++;
                     if (count > 0)
                         found.Add($"seed {seed} depth {depth}: {count}");
                 }
             Assert.IsEmpty(found, string.Join("; ", found));
+        }
+
+        [Test]
+        public void CryptHalls_SomeGetADais_WithStepsDownTowardTheCamera()
+        {
+            // The owner, 2026-10-20: "Add verticality, stairs, platforms".
+            var daises = 0;
+            foreach (var seed in new[] { 7919, 31, 4242 })
+                for (var depth = 1; depth <= 12; depth++)
+                {
+                    var layout = DungeonGenerator.Generate(seed, depth, Library());
+                    if (layout.Raised.Count > 0)
+                        daises++;
+                    foreach (var pair in layout.TerraceStairs)
+                    {
+                        Assert.IsTrue(pair.Value.x < 0 || pair.Value.y < 0, "steps come down toward the camera");
+                        Assert.IsTrue(layout.IsFloor(pair.Key + pair.Value), "floor at the foot");
+                        Assert.IsTrue(layout.Raised.Contains(pair.Key - pair.Value), "the dais at the head");
+                    }
+                }
+            Assert.Greater(daises, 30, "most crypt levels have one");
         }
     }
 }

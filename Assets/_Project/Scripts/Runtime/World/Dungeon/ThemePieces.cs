@@ -30,6 +30,12 @@ namespace ARPG
                 return LibraryWall(isOpen, x, y, cameraSide, freeStanding, hash);
             if (theme == DungeonTheme.Prison)
                 return PrisonWall(isOpen, x, y, cameraSide, freeStanding, hash);
+            // A dais's rim (2026-10-20): plain stone mostly, now and then a balustrade or a candle stand.
+            if (ledge)
+            {
+                var pick = hash % 10;
+                return "crypt_ledge_" + (pick < 6 ? 1 : pick < 9 ? 2 : 3);
+            }
             if (freeStanding)
                 return "crypt_pillar_" + (1 + hash % 2);
             var diagonal = Diagonal(isOpen, x, y);
@@ -117,8 +123,10 @@ namespace ARPG
             theme == DungeonTheme.Cave ? "cave_wall_" + (1 + Mathf.Abs(hash) % 6) : theme == DungeonTheme.Library ? "library_wall_4" :
             theme == DungeonTheme.Prison ? "prison_wall_1" : "crypt_wall_1";
 
-        /// <summary>The steps through a terrace's rim, by the way down.</summary>
-        public static string Stairs(Vector2Int down) =>
-            down.x > 0 ? "cave_stairs_px" : down.x < 0 ? "cave_stairs_nx" : down.y > 0 ? "cave_stairs_py" : "cave_stairs_ny";
+        /// <summary>The steps through a terrace's or a dais's rim, by the way down: rough in the caves, dressed stone
+        /// elsewhere.</summary>
+        public static string Stairs(DungeonTheme theme, Vector2Int down) =>
+            (theme == DungeonTheme.Cave ? "cave_stairs_" : "crypt_stairs_") +
+            (down.x > 0 ? "px" : down.x < 0 ? "nx" : down.y > 0 ? "py" : "ny");
     }
 }
