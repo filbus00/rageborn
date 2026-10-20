@@ -13,22 +13,29 @@ namespace ARPG
     /// </summary>
     public sealed class ElevationMap
     {
-        /// <summary>One level, in world units up the screen: the rims are 0.45 high in the models, seen from 30 degrees
-        /// (0.45 x 0.866), rounded to whole pixels at 40 a unit.</summary>
-        public const float LevelHeight = 0.4f;
+        /// <summary>One level, in world units up the screen, rounded to whole pixels at 40 a unit: the crypt's daises and
+        /// pits are 0.7 high in the models (2026-10-20, the owner: 0.45 did "not look elevated"), seen from 30 degrees
+        /// (0.7 x 0.866); the caves' terraces 0.45.</summary>
+        public const float CryptLevelHeight = 0.6f, CaveLevelHeight = 0.4f;
+
+        /// <summary>This level's height, in world units up the screen.</summary>
+        public float LevelHeight { get; }
 
         readonly HashSet<Vector2Int> raised;
         readonly HashSet<Vector2Int> sunken;
         readonly Dictionary<Vector2Int, Vector2Int> stairs;
 
-        public ElevationMap(HashSet<Vector2Int> raised, HashSet<Vector2Int> sunken, Dictionary<Vector2Int, Vector2Int> stairs)
+        public ElevationMap(HashSet<Vector2Int> raised, HashSet<Vector2Int> sunken, Dictionary<Vector2Int, Vector2Int> stairs,
+            float levelHeight = CryptLevelHeight)
         {
+            LevelHeight = levelHeight;
             this.raised = raised;
             this.sunken = sunken;
             this.stairs = stairs;
         }
 
-        public static ElevationMap From(DungeonLayout layout) => new ElevationMap(layout.Raised, layout.Sunken, layout.TerraceStairs);
+        public static ElevationMap From(DungeonLayout layout) => new ElevationMap(layout.Raised, layout.Sunken, layout.TerraceStairs,
+            layout.Theme == DungeonTheme.Cave ? CaveLevelHeight : CryptLevelHeight);
 
         /// <summary>The level the cell's floor stands at: 1 raised, -1 sunken, else 0.</summary>
         public int LevelOf(Vector2Int cell) => raised.Contains(cell) ? 1 : sunken.Contains(cell) ? -1 : 0;

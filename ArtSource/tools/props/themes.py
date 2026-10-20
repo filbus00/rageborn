@@ -350,16 +350,21 @@ def crypt_ledge(variant):
         candles((0, 0, h + 0.52), count=4, seed_n=91, spread=0.08)
 
 
+# A crypt level's height (2026-10-20, the owner: the floor "still does not look elevated" at 0.45): about a third of
+# her height.
+DAIS_H = 0.7
+
+
 def crypt_stairs(direction):
-    """Dressed stone steps through a dais's rim (2026-10-20), as the cave's flights: five pale treads with dark risers
-    climbing to the rim's height across the whole cell, so three cells join into one wide stair."""
+    """Dressed stone steps up a dais's front (2026-10-20): six pale treads with dark risers climbing a level across the
+    whole cell, so three cells join into one wide stair. Drawn on the floor's layer, under whoever walks them."""
     rng = _rng("crypt_stairs", direction)
     dx, dy = STAIRS[direction]
     tread = [mat(STONE[4], 0.3, STONE[3], scale=12), mat(STONE[5], 0.3, STONE[3], scale=12)]
     riser = mat(STONE[2], 0.3, STONE[1], scale=10)
-    count = 5
+    count = 6
     depth = CELL / count
-    rise = LEDGE_H / count
+    rise = DAIS_H / count
     across = CELL + 0.01
     for k in range(count):
         front = HALF - depth * k
@@ -373,37 +378,66 @@ def crypt_stairs(direction):
         box(size, (dx * t, dy * t, top - 0.025), rng.choice(tread), bevel=0.006)
 
 
-def crypt_pit_rim(faces):
-    """A burial pit's parapet (2026-10-20, the owner: the heights "do not read as hight differences"): the pit's floor is
-    drawn one level down, so its rim is paving at floor level with a balustrade along the front edges, and on the sides
-    that face the pit (seen by the camera when the pit lies toward -x or -y) dressed stone going down a level."""
-    rng = _rng("pit_rim", faces)
-    stones = _crypt_stones()
-    dark = [mat(STONE[1], 0.3, STONE[0], scale=14), mat(STONE[2], 0.3, STONE[0], scale=14)]
-    pale = [mat(STONE[4], 0.3, STONE[3], scale=12), mat(STONE[5], 0.3, STONE[3], scale=12)]
-    box((CELL - 0.01, CELL - 0.01, 0.02), (0, 0, -0.02), mat(STONE[1], 0.0))
-    q = CELL / 4
-    for sx in (-1, 1):
-        for sy in (-1, 1):
-            box((CELL / 2 - 0.02, CELL / 2 - 0.02, 0.025), (sx * q, sy * q, 0.0), rng.choice(pale), bevel=0.005)
-    for face in faces:
-        if face == "x":
-            a, b, normal = (-HALF, HALF), (-HALF, -HALF), (-1, 0)
-            back = ((0.05, CELL, LEDGE_H), (-HALF + 0.03, 0, -LEDGE_H))
-        else:
-            a, b, normal = (-HALF, -HALF), (HALF, -HALF), (0, -1)
-            back = ((CELL, 0.05, LEDGE_H), (0, -HALF + 0.03, -LEDGE_H))
-        box(back[0], back[1], mat(STONE[0], 0.0))
-        _ashlar_line(a, b, normal, -0.02, rng, stones, z0=-LEDGE_H * 0.5)
-        _ashlar_line(a, b, normal, -LEDGE_H * 0.5, rng, dark, z0=-LEDGE_H)
+SIDES = {"nx": ((-HALF, HALF), (-HALF, -HALF), (-1, 0)), "ny": ((-HALF, -HALF), (HALF, -HALF), (0, -1)),
+         "px": ((HALF, -HALF), (HALF, HALF), (1, 0)), "py": ((HALF, HALF), (-HALF, HALF), (0, 1))}
+
+
+def _balustrade(side, z):
+    """Stout posts under a rail along one edge of the cell, standing at height z, set in from the edge."""
+    a, b, normal = SIDES[side]
     post = mat(STONE[4], 0.25, STONE[2], scale=12)
     rail = mat(STONE[5], 0.2, STONE[3], scale=10)
+    nx, ny = normal
+    inset = 0.07
     for k in range(3):
-        t = -HALF + 0.1 + k * (CELL - 0.2) / 2
-        cyl(0.035, 0.26, (-HALF + 0.08, t, 0.025), post, segments=8)
-        cyl(0.035, 0.26, (t, -HALF + 0.08, 0.025), post, segments=8)
-    box((0.08, CELL, 0.045), (-HALF + 0.08, 0, 0.285), rail, bevel=0.008)
-    box((CELL, 0.08, 0.045), (0, -HALF + 0.08, 0.285), rail, bevel=0.008)
+        t = 0.12 + k * 0.38
+        x = a[0] + (b[0] - a[0]) * t - nx * inset
+        y = a[1] + (b[1] - a[1]) * t - ny * inset
+        cyl(0.035, 0.27, (x, y, z), post, segments=8)
+    mx, my = (a[0] + b[0]) / 2 - nx * inset, (a[1] + b[1]) / 2 - ny * inset
+    size = (0.08, CELL, 0.045) if nx else (CELL, 0.08, 0.045)
+    box(size, (mx, my, z + 0.27), rail, bevel=0.008)
+
+
+def _drop_face(side, top, bottom, rng):
+    """Dressed stone from height top down to bottom along one camera-facing edge (nx or ny), a plinth at its foot and a
+    coping at its lip."""
+    a, b, normal = SIDES[side]
+    stones = _crypt_stones()
+    dark = [mat(STONE[1], 0.3, STONE[0], scale=14), mat(STONE[2], 0.3, STONE[0], scale=14)]
+    nx, ny = normal
+    size = (0.06, CELL, top - bottom) if nx else (CELL, 0.06, top - bottom)
+    box(size, (-nx * 0.03 + nx * HALF, -ny * 0.03 + ny * HALF, bottom), mat(STONE[0], 0.0))
+    mid = (top + bottom) / 2
+    _ashlar_line(a, b, normal, top - 0.05, rng, stones, z0=mid)
+    _ashlar_line(a, b, normal, mid, rng, dark, z0=bottom + 0.06)
+    coping = mat(STONE[4], 0.2, STONE[2], scale=10)
+    lip = (0.1, CELL, 0.05) if nx else (CELL, 0.1, 0.05)
+    box(lip, (nx * (HALF - 0.03), ny * (HALF - 0.03), top - 0.05), coping, bevel=0.006)
+    foot = (0.07, CELL, 0.07) if nx else (CELL, 0.07, 0.07)
+    box(foot, (nx * (HALF + 0.02), ny * (HALF + 0.02), bottom), mat(STONE[2], 0.2, STONE[1], scale=10), bevel=0.006)
+
+
+def crypt_dais_edge(faces, rail):
+    """A dais's or balcony's front (2026-10-20, the owner: "it still does not look like you are stepping up or down"): the
+    raised floor is drawn up to the edge on its own layer; this is only the stone face dropping a level from it to the
+    floor in front, on the sides the camera sees (nx: the lower floor at -x, ny: at -y), and a balustrade along those
+    edges on top. Nothing on the top itself."""
+    rng = _rng("dais_edge", faces, rail)
+    for side in faces:
+        _drop_face(side, DAIS_H, 0.0, rng)
+        if rail:
+            _balustrade(side, DAIS_H)
+
+
+def crypt_pit_rim(sides):
+    """A burial pit's edge (2026-10-20): the floor stays at its level; a balustrade runs along the edges that face the
+    pit (any of the four), and on those the camera sees (nx, ny) dressed stone drops a level into the pit."""
+    rng = _rng("pit_rim", sides)
+    for side in sides:
+        if side in ("nx", "ny"):
+            _drop_face(side, 0.0, -DAIS_H, rng)
+        _balustrade(side, 0.0)
 
 
 CHASM_DROP = 1.3
@@ -478,8 +512,14 @@ def register(all_pieces):
         all_pieces["crypt_stairs_" + d] = ("world", (lambda d=d: crypt_stairs(d)), WORLD)
     for n in range(1, 4):
         all_pieces["crypt_ledge_%d" % n] = ("world", (lambda n=n: crypt_ledge(n)), WORLD)
-    for name, faces in (("crypt_pit_rim", ""), ("crypt_pit_rim_x", "x"), ("crypt_pit_rim_y", "y"), ("crypt_pit_rim_xy", "xy")):
-        all_pieces[name] = ("world", (lambda faces=faces: crypt_pit_rim(faces)), WORLD)
+    for faces in (("nx",), ("ny",), ("nx", "ny")):
+        key = "".join(f[1] for f in faces)
+        for rail in (False, True):
+            all_pieces["crypt_dais_edge_%s%s" % (key, "_rail" if rail else "")] = ("world", (lambda faces=faces, rail=rail: crypt_dais_edge(faces, rail)), WORLD)
+    order = ("nx", "ny", "px", "py")
+    for mask in range(1, 16):
+        sides = tuple(order[k] for k in range(4) if mask & (1 << k))
+        all_pieces["crypt_pit_rim_%d" % mask] = ("world", (lambda sides=sides: crypt_pit_rim(sides)), WORLD)
     for name, faces in (("crypt_chasm", ""), ("crypt_chasm_x", "x"), ("crypt_chasm_y", "y"), ("crypt_chasm_xy", "xy")):
         all_pieces[name] = ("world", (lambda faces=faces: crypt_chasm(faces)), WORLD)
 

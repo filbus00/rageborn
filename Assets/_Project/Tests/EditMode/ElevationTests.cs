@@ -27,7 +27,7 @@ namespace ARPG.Tests
             var top = (IsoMath.CellToGround(new Vector2Int(4, 5)) + IsoMath.CellToGround(new Vector2Int(5, 5))) / 2f;
             Assert.AreEqual(1f, map.LevelAt(top), 1e-3f);
             Assert.AreEqual(-0.5f, map.LevelAt(IsoMath.CellToGround(new Vector2Int(11, 10))), 1e-4f);
-            Assert.AreEqual(ElevationMap.LevelHeight, map.HeightAt(IsoMath.CellToGround(new Vector2Int(5, 5))));
+            Assert.AreEqual(ElevationMap.CryptLevelHeight, map.HeightAt(IsoMath.CellToGround(new Vector2Int(5, 5))));
         }
     }
 }

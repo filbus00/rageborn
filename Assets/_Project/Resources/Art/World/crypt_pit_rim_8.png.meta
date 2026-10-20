@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f992a57a414474754b521375a99ab1a8
+guid: e50b108856c5a43f6ad9a5b926598947
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2135667087547472363
-    second: crypt_pit_rim_0
+      213: 6132172784372280009
+    second: crypt_pit_rim_8_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -50,7 +50,7 @@ TextureImporter:
   spriteExtrude: 0
   spriteMeshType: 0
   alignment: 9
-  spritePivot: {x: 0.5, y: 0.46153846}
+  spritePivot: {x: 0.5, y: 0.083333336}
   spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crypt_pit_rim_0
+      name: crypt_pit_rim_8_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 42
-        height: 26
+        width: 25
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5166d3069169c52e0800000000000000
-      internalID: -2135667087547472363
+      spriteID: 9cae3d168aad91550800000000000000
+      internalID: 6132172784372280009
       vertices: []
       indices: 
       edges: []
@@ -163,7 +163,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      crypt_pit_rim_0: -2135667087547472363
+      crypt_pit_rim_8_0: 6132172784372280009
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -24,7 +24,12 @@ namespace ARPG.Editor
 
         // Lying on the floor: no outline, which would draw a black ring around a painted circle.
         // Chasm cells (2026-10-20) join into one drop: an outline would draw a grid over it.
-        static readonly HashSet<string> Flat = new HashSet<string> { "ritual_circle", "crypt_chasm", "crypt_chasm_x", "crypt_chasm_y", "crypt_chasm_xy" };
+        // Steps too (2026-10-20): three cells make one flight, and outlined each read as broken.
+        static readonly HashSet<string> Flat = new HashSet<string>
+        {
+            "ritual_circle", "crypt_chasm", "crypt_chasm_x", "crypt_chasm_y", "crypt_chasm_xy",
+            "crypt_stairs_px", "crypt_stairs_nx", "crypt_stairs_py", "crypt_stairs_ny",
+        };
 
         [System.Serializable]
         class Item

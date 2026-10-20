@@ -373,12 +373,30 @@ namespace ARPG
                         (foot < 0 ? sunkenSteps : steps).Add(new TileChangeData(new Vector3Int(at.x, at.y, 0),
                             DungeonArt.Piece(ThemePieces.Stairs(theme, down)), Color.white, Matrix4x4.identity));
                     }
-                    // A pit's parapet: a balustrade at floor level, its stone going down on the sides toward the pit.
-                    if (artTiles[index] != null && Layout.Ledges.Contains(at) && NextToPit(at))
+                    // The crypt's rims (2026-10-20): a pit's edge, a balustrade at floor level with stone dropping into it; a
+                    // dais's front, the stone face dropping from the raised floor (drawn over the rim, LiftFloors), with a
+                    // shadow on the floor before it.
+                    if (theme != DungeonTheme.Cave && Layout.Ledges.Contains(at))
                     {
-                        var rim = DungeonArt.Piece(ThemePieces.PitRim(Layout.Sunken.Contains(at + Vector2Int.left), Layout.Sunken.Contains(at + Vector2Int.down)));
-                        if (rim != null)
-                            artTiles[index] = rim;
+                        if (NextToPit(at))
+                        {
+                            var sides = (Layout.Sunken.Contains(at + Vector2Int.left) ? 1 : 0) | (Layout.Sunken.Contains(at + Vector2Int.down) ? 2 : 0) |
+                                        (Layout.Sunken.Contains(at + Vector2Int.right) ? 4 : 0) | (Layout.Sunken.Contains(at + Vector2Int.up) ? 8 : 0);
+                            var name = ThemePieces.PitRim(sides);
+                            artTiles[index] = name != null ? DungeonArt.Piece(name) : null;
+                        }
+                        else
+                        {
+                            var lowX = LowerBeside(at + Vector2Int.left);
+                            var lowY = LowerBeside(at + Vector2Int.down);
+                            var name = ThemePieces.DaisEdge(lowX, lowY, true);
+                            artTiles[index] = name != null ? DungeonArt.Piece(name) : null;
+                            daisRims.Add(at);
+                            if (lowX)
+                                shadowed.Add(at + Vector2Int.left);
+                            if (lowY)
+                                shadowed.Add(at + Vector2Int.down);
+                        }
                     }
                 }
 
@@ -680,6 +698,15 @@ namespace ARPG
         bool IsOpenCell(int x, int y) => Layout.Get(x, y) == DungeonCell.Floor || Layout.Get(x, y) == DungeonCell.Prop;
 
         ElevationMap elevation;
+        readonly List<Vector2Int> daisRims = new List<Vector2Int>();
+        readonly HashSet<Vector2Int> shadowed = new HashSet<Vector2Int>();
+
+        /// <summary>The shade of the floor right before a dais's face (2026-10-20).</summary>
+        const float FaceShadow = 0.62f;
+
+        // Floor lower than a dais beside it: open floor not raised (steps count as lower).
+        bool LowerBeside(Vector2Int cell) =>
+            !Layout.Raised.Contains(cell) && !Layout.Ledges.Contains(cell) && Layout.Get(cell) != DungeonCell.Wall && Layout.Get(cell) != DungeonCell.Void;
 
         bool NextToPit(Vector2Int cell)
         {
@@ -698,17 +725,29 @@ namespace ARPG
         /// </summary>
         void LiftFloors(List<TileChangeData> steps, List<TileChangeData> sunkenSteps)
         {
-            var h = ElevationMap.LevelHeight;
+            var h = elevation.LevelHeight;
             var raisedGround = GroundCopy("Ground Raised", h, 1);
             var sunkenGround = GroundCopy("Ground Sunken", -h, -2);
             MoveTiles(ground, raisedGround, Layout.Raised);
+            // A dais's rim is the edge of its raised floor: drawn up there, its face below (2026-10-20).
+            MoveTiles(ground, raisedGround, daisRims);
+            foreach (var cell in shadowed)
+            {
+                var at = new Vector3Int(cell.x, cell.y, 0);
+                if (ground.GetTile(at) == null)
+                    continue;
+                ground.SetTileFlags(at, TileFlags.None);
+                var c = ground.GetColor(at);
+                ground.SetColor(at, new Color(c.r * FaceShadow, c.g * FaceShadow, c.b * FaceShadow, c.a));
+            }
             MoveTiles(ground, sunkenGround, Layout.Sunken);
             GroundCopy("Steps", 0f, 2).SetTiles(steps.ToArray(), true);
             GroundCopy("Steps Sunken", -h, -1).SetTiles(sunkenSteps.ToArray(), true);
-            var cleared = new Vector3Int[sunkenSteps.Count];
-            for (var i = 0; i < cleared.Length; i++)
-                cleared[i] = sunkenSteps[i].position;
-            ground.SetTiles(cleared, new TileBase[cleared.Length]);
+            // The ground under a pit's steps goes down with the pit, filling the corners the steps leave.
+            var pitSteps = new List<Vector2Int>(sunkenSteps.Count);
+            foreach (var step in sunkenSteps)
+                pitSteps.Add(new Vector2Int(step.position.x, step.position.y));
+            MoveTiles(ground, sunkenGround, pitSteps);
 
             var raisedProps = Overlay("Props Raised");
             raisedProps.transform.localPosition += new Vector3(0f, h, 0f);

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1575bfcd73d98492fbf79ebbb7486bf0
+guid: 072243a82ada4462d9e8c7b5795ed69a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7348162443107311133
-    second: crypt_pit_rim_x_0
+      213: 2012287752639463372
+    second: crypt_dais_edge_y_rail_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -50,7 +50,7 @@ TextureImporter:
   spriteExtrude: 0
   spriteMeshType: 0
   alignment: 9
-  spritePivot: {x: 0.5, y: 0.6585366}
+  spritePivot: {x: 0.5, y: 0.24}
   spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crypt_pit_rim_x_0
+      name: crypt_dais_edge_y_rail_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 18
         y: 0
-        width: 44
-        height: 41
+        width: 28
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3e1e8b2b035160a90800000000000000
-      internalID: -7348162443107311133
+      spriteID: ccfb1f9ac051deb10800000000000000
+      internalID: 2012287752639463372
       vertices: []
       indices: 
       edges: []
@@ -163,7 +163,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      crypt_pit_rim_x_0: -7348162443107311133
+      crypt_dais_edge_y_rail_0: 2012287752639463372
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -201,8 +201,9 @@ namespace ARPG
         /// 13: bigger packs, 8 to 15, and elite packs of 4 to 6 (2026-10-17).
         /// 14: open levels, D2-like: bigger rooms, thin rock, every neighbour joined by a wide hall (2026-10-20).
         /// 15: raised daises and balconies in crypt halls, sunken burial pits, chasms with bridges (2026-10-20).
+        /// 16: square burial pits (their railings zig-zagged round cut corners, 2026-10-20).
         /// </summary>
-        public const int Version = 15;
+        public const int Version = 16;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -1095,7 +1096,7 @@ namespace ARPG
 
         /// <summary>
         /// A sunken burial pit in a crypt hall (the owner, 2026-10-20, okayed: "a lowered floor with steps down on every
-        /// side, full of bones and broken coffins"): a rectangle with cut corners near the hall's middle, ringed by a
+        /// side, full of bones and broken coffins"): a rectangle near the hall's middle, ringed by a
         /// parapet of dressed stone (the dais's rim, <see cref="DungeonLayout.Ledges"/>), its floor drawn darker
         /// (<see cref="DungeonLayout.Sunken"/>), with flights of steps down into it from its far sides (toward -x and -y,
         /// facing the camera; steps on the near sides would face away and not read as steps), and bones, skulls, bone piles
@@ -1113,9 +1114,6 @@ namespace ARPG
             for (var x = 0; x < w; x++)
                 for (var y = 0; y < h; y++)
                 {
-                    // Corners cut by two cells.
-                    if (Mathf.Min(x, w - 1 - x) + Mathf.Min(y, h - 1 - y) < 2)
-                        continue;
                     var cell = new Vector2Int(x0 + x, y0 + y);
                     if (layout.Get(cell) != DungeonCell.Floor)
                         return false;

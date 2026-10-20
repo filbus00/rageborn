@@ -123,10 +123,16 @@ namespace ARPG
             theme == DungeonTheme.Cave ? "cave_wall_" + (1 + Mathf.Abs(hash) % 6) : theme == DungeonTheme.Library ? "library_wall_4" :
             theme == DungeonTheme.Prison ? "prison_wall_1" : "crypt_wall_1";
 
-        /// <summary>A burial pit's parapet (2026-10-20), its stone going down into the pit on the sides that face it:
-        /// "x" when the pit lies at -x, "y" at -y (the sides the camera sees).</summary>
-        public static string PitRim(bool pitAtMinusX, bool pitAtMinusY) =>
-            "crypt_pit_rim" + (pitAtMinusX || pitAtMinusY ? "_" : "") + (pitAtMinusX ? "x" : "") + (pitAtMinusY ? "y" : "");
+        /// <summary>A burial pit's edge (2026-10-20): a balustrade along each side the pit lies on (bits: 1 at -x, 2 at -y,
+        /// 4 at +x, 8 at +y), stone dropping into it on the sides the camera sees. Null when none (a corner cell).</summary>
+        public static string PitRim(int sides) => sides == 0 ? null : "crypt_pit_rim_" + sides;
+
+        /// <summary>A dais's or balcony's front (2026-10-20): the stone face dropping from the raised floor where the lower
+        /// floor lies at -x and/or -y (the sides the camera sees), with a balustrade or without. Null with no such side
+        /// (the raised floor reaches the edge; nothing to draw).</summary>
+        public static string DaisEdge(bool lowerAtMinusX, bool lowerAtMinusY, bool rail) =>
+            !lowerAtMinusX && !lowerAtMinusY ? null
+                : "crypt_dais_edge_" + (lowerAtMinusX ? "x" : "") + (lowerAtMinusY ? "y" : "") + (rail ? "_rail" : "");
 
         /// <summary>A chasm's cell (2026-10-20), with the masonry of its far sides where the ground goes on: "x" when the
         /// cell at +x is not chasm, "y" for +y.</summary>

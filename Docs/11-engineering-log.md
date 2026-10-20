@@ -1516,3 +1516,11 @@ The owner's answers are in Docs/08. How it is built:
 - Pit parapets: `themes.py` `crypt_pit_rim[_x|_y|_xy]` (paving at floor level, a balustrade on the front edges, dressed stone going down a level on the sides toward -x, -y when the pit lies there), chosen by `DungeonLevel` for rim cells next to `Sunken` (`ThemePieces.PitRim`). Dais and terrace rims keep their pieces.
 - Checked in the editor at depth 3: standing in a pit and half way up a dais's steps. Offline 699 passed (the 5 NavGrid failures), Unity 704 of 704.
 
+## 2026-10-20: platforms with a front
+
+- The owner on the phone: steps drawn oddly, railing corners on straight runs (`crypt_ledge_2` put posts on both front edges of every cell), and the floor still did not look raised (the same cobbles both sides of a block that read as a curb, 0.4 up).
+- Crypt rims (`DungeonLevel.Paint`, not the caves): a dais's rim cell gets its ground tile on "Ground Raised" too (`daisRims`) and `crypt_dais_edge_<x|y|xy>_rail` (`ThemePieces.DaisEdge`): only the stone face dropping a level on the sides where the floor at -x or -y is lower (`LowerBeside`; steps count as lower, so a flight gets cheeks), a coping and plinth, and a balustrade along those edges. The floor cells before a face are tinted 0.62 (`FaceShadow`, `Tilemap.SetColor` with the tile flags cleared). A pit's rim gets `crypt_pit_rim_<mask>` (`ThemePieces.PitRim`: bits 1 -x, 2 -y, 4 +x, 8 +y where the pit lies): a balustrade on those sides at floor level, the stone dropping into the pit on -x and -y; none on corner cells.
+- `themes.py`: `DAIS_H` 0.7 (`ElevationMap.CryptLevelHeight` 0.6 on screen; the caves keep `CaveLevelHeight` 0.4 and their pieces), `_balustrade`, `_drop_face`, `crypt_dais_edge`, `crypt_pit_rim(sides)`; `crypt_stairs` six treads up 0.7, imported without outlines (`WorldArtImporter.Flat`). The old `crypt_pit_rim[_x|_y|_xy]` files are deleted.
+- Pits are rectangles (`DungeonGenerator.Version` 16): round cut corners their railings zig-zagged. The ground under a pit's steps moves down with the pit (it had been removed, leaving black wedges beside the steps).
+- Checked in the editor: before a dais at depth 4, in a pit at depth 7 (before the square pits). Offline 699 passed (the 5 NavGrid failures), Unity 704 of 704.
+
