@@ -202,8 +202,9 @@ namespace ARPG
         /// 14: open levels, D2-like: bigger rooms, thin rock, every neighbour joined by a wide hall (2026-10-20).
         /// 15: raised daises and balconies in crypt halls, sunken burial pits, chasms with bridges (2026-10-20).
         /// 16: square burial pits (their railings zig-zagged round cut corners, 2026-10-20).
+        /// 17: no pits; dining halls, chapels, sarcophagus halls, the throne room at depth 5, long carpets (2026-10-21).
         /// </summary>
-        public const int Version = 16;
+        public const int Version = 17;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -411,7 +412,11 @@ namespace ARPG
                     // A crypt: a built hall, octagonal, round, a cross, with an apse, or with its corners cut; clean edges.
                     // The burnt library is built the same, most of its halls filled with rows of shelves (2026-10-11).
                     CarveCrypt(layout, mains[i], random);
-                    if (kinds[i] != RoomKind.Start && kinds[i] != RoomKind.Exit)
+                    // A hall with a purpose (2026-10-20): furnished later, so no pillar layout.
+                    var hall = PickHall(layout, kinds[i], mains[i], depth, random);
+                    if (hall != HallTheme.None)
+                        layout.Halls[i] = hall;
+                    else if (kinds[i] != RoomKind.Start && kinds[i] != RoomKind.Exit)
                     {
                         if (layout.Theme == DungeonTheme.Library && random.Next(100) < LibraryAislePercent)
                             Aisles(layout, mains[i], random);
@@ -460,8 +465,13 @@ namespace ARPG
             // down toward the camera (2026-10-20). After the thin walls are opened, which would take the rim away.
             if (layout.Theme == DungeonTheme.Crypt)
                 for (var i = 0; i < macros.Count; i++)
-                    if (kinds[i] == RoomKind.Combat || kinds[i] == RoomKind.Elite || kinds[i] == RoomKind.Treasure)
+                    if (layout.Halls.TryGetValue(i, out var hallTheme))
+                        Furnish(layout, i, hallTheme, mains[i], random);
+                    else if (kinds[i] == RoomKind.Combat || kinds[i] == RoomKind.Elite || kinds[i] == RoomKind.Treasure)
                     {
+                        // A long carpet down some halls (2026-10-20), laid before anything stands on it.
+                        if (random.Next(100) < CarpetPercent)
+                            Runner(layout, mains[i], mains[i].width >= mains[i].height);
                         // A combat hall may hold a sunken burial pit or a balcony for its archers instead (2026-10-20).
                         if (kinds[i] == RoomKind.Combat && Pit(layout, mains[i], random))
                             continue;
@@ -557,6 +567,14 @@ namespace ARPG
                     if (TryPlacePack(layout, i, PackKind.Elite, random.Next(settings.MinElitePackSize, settings.MaxElitePackSize + 1), random, settings))
                         break;
             }
+
+            // A carpet laid before a dais rose under it keeps no cell of the rim (2026-10-20).
+            var onWalls = new List<Vector2Int>();
+            foreach (var pair in layout.Decals)
+                if (layout.Get(pair.Key) == DungeonCell.Wall)
+                    onWalls.Add(pair.Key);
+            foreach (var cell in onWalls)
+                layout.Decals.Remove(cell);
 
             // 7. Props against the walls and decals on the floor, last, clear of everything placed above.
             DungeonDressing.Place(layout, doors, random, seed);
@@ -1018,6 +1036,225 @@ namespace ARPG
             }
         }
 
+        // ---------------------------------------------------------------- halls with a purpose (2026-10-20)
+
+        /// <summary>The depth whose elite hall is the throne room (the owner, 2026-10-20: "Not a throne room in every
+        /// level, maybe just one such"): the hall before the Cinder Warden.</summary>
+        public const int ThroneDepth = 5;
+
+        /// <summary>Of the crypt's combat halls big enough: dining halls, chapels and sarcophagus halls, in percent.</summary>
+        public const int DiningPercent = 14, ChapelPercent = 12, SarcophagiPercent = 14;
+
+        /// <summary>The share of other crypt halls with a long carpet down their middle.</summary>
+        public const int CarpetPercent = 30;
+
+        static HallTheme PickHall(DungeonLayout layout, RoomKind kind, RectInt r, int depth, System.Random random)
+        {
+            if (layout.Theme != DungeonTheme.Crypt || r.width < 16 || r.height < 16)
+                return HallTheme.None;
+            if (depth == ThroneDepth && kind == RoomKind.Elite && !layout.Halls.ContainsValue(HallTheme.Throne))
+                return HallTheme.Throne;
+            if (kind != RoomKind.Combat)
+                return HallTheme.None;
+            var roll = random.Next(100);
+            return roll < DiningPercent ? HallTheme.Dining
+                : roll < DiningPercent + ChapelPercent ? HallTheme.Chapel
+                : roll < DiningPercent + ChapelPercent + SarcophagiPercent ? HallTheme.Sarcophagi
+                : HallTheme.None;
+        }
+
+        static void Furnish(DungeonLayout layout, int room, HallTheme theme, RectInt r, System.Random random)
+        {
+            var done = theme switch
+            {
+                HallTheme.Dining => Dining(layout, r, random),
+                HallTheme.Chapel => Chapel(layout, r, random),
+                HallTheme.Sarcophagi => Sarcophagi(layout, r, random),
+                HallTheme.Throne => Throne(layout, r, random),
+                _ => false,
+            };
+            if (!done)
+                layout.Halls.Remove(room);
+        }
+
+        /// <summary>
+        /// Long tables down a hall with benches along both sides, a gap half way so the hall can be crossed, toppled
+        /// chairs about, candles at the tables' ends (the owner, 2026-10-20, okayed: a dining hall "long tables with
+        /// benches, toppled chairs, plates, goblets and candles").
+        /// </summary>
+        static bool Dining(DungeonLayout layout, RectInt r, System.Random random)
+        {
+            var alongX = r.width >= r.height;
+            var from = (alongX ? r.xMin : r.yMin) + 4;
+            var to = (alongX ? r.xMax : r.yMax) - 5;
+            var lo = alongX ? r.yMin : r.xMin;
+            var hi = alongX ? r.yMax : r.xMax;
+            var middle = (lo + hi) / 2;
+            var rows = hi - lo >= 20 ? new[] { middle - 4, middle + 4 } : new[] { middle };
+            var gap = (from + to) / 2;
+            var items = new List<(Vector2Int, PropKind)>();
+            Vector2Int Cell(int along, int across) => alongX ? new Vector2Int(along, across) : new Vector2Int(across, along);
+            foreach (var row in rows)
+                for (var along = from; along <= to; along++)
+                {
+                    if (to - from > 14 && Mathf.Abs(along - gap) <= 1)
+                        continue;
+                    items.Add((Cell(along, row), alongX ? PropKind.TableX : PropKind.TableY));
+                    if ((along - from) % 5 != 4)
+                    {
+                        items.Add((Cell(along, row - 1), alongX ? PropKind.BenchX : PropKind.BenchY));
+                        items.Add((Cell(along, row + 1), alongX ? PropKind.BenchX : PropKind.BenchY));
+                    }
+                }
+            foreach (var row in rows)
+            {
+                items.Add((Cell(from - 1, row), PropKind.Candles));
+                items.Add((Cell(to + 1, row), PropKind.Candles));
+            }
+            for (var k = 0; k < 5; k++)
+            {
+                var row = rows[random.Next(rows.Length)];
+                var cell = Cell(random.Next(from, to + 1), row + (random.Next(2) == 0 ? -3 : 3));
+                items.Add((cell, PropKind.ChairFallen));
+            }
+            return PlaceAll(layout, r, items);
+        }
+
+        /// <summary>
+        /// A chapel (okayed: "rows of pews, an altar on a dais, candles"): a dais at the far end with the altar and
+        /// candles on it, rows of pews facing it either side of an aisle, a carpet up the aisle to the steps.
+        /// </summary>
+        static bool Chapel(DungeonLayout layout, RectInt r, System.Random random)
+        {
+            var raised = Platform(layout, r, random, 5, false, out var alongX, out var edge);
+            if (raised == null)
+                return false;
+            var lo = alongX ? r.yMin : r.xMin;
+            var hi = alongX ? r.yMax : r.xMax;
+            var middle = (lo + hi) / 2;
+            Vector2Int Cell(int along, int across) => alongX ? new Vector2Int(along, across) : new Vector2Int(across, along);
+            var items = new List<(Vector2Int, PropKind)>
+            {
+                (Cell(edge + 2, middle), PropKind.Altar),
+                (Cell(edge + 2, middle - 2), PropKind.Candles),
+                (Cell(edge + 2, middle + 2), PropKind.Candles),
+            };
+            var start = alongX ? r.xMin : r.yMin;
+            for (var along = edge - 3; along >= start + 3; along -= 2)
+                for (var across = lo + 2; across < hi - 2; across++)
+                    if (Mathf.Abs(across - middle) > 2)
+                        items.Add((Cell(along, across), alongX ? PropKind.PewY : PropKind.PewX));
+            PlaceAll(layout, r, items);
+            Runner(layout, alongX, start + 1, edge - 1, middle - 1);
+            return true;
+        }
+
+        /// <summary>Rows of stone sarcophagi, some with their lids pushed off (okayed: "rows of stone coffins on plinths,
+        /// some lids pushed off"), candles here and there.</summary>
+        static bool Sarcophagi(DungeonLayout layout, RectInt r, System.Random random)
+        {
+            var items = new List<(Vector2Int, PropKind)>();
+            for (var x = r.xMin + 3; x < r.xMax - 3; x += 3)
+                for (var y = r.yMin + 3; y < r.yMax - 3; y += 4)
+                {
+                    var roll = random.Next(100);
+                    items.Add((new Vector2Int(x, y), roll < 40 ? PropKind.SarcophagusOpen : roll < 92 ? PropKind.Sarcophagus : PropKind.Candles));
+                }
+            return PlaceAll(layout, r, items);
+        }
+
+        /// <summary>
+        /// The throne room (one, at <see cref="ThroneDepth"/>; the owner: "Not a throne room in every level, maybe just one
+        /// such. But do add long carpets"): a dais across the far end with the throne at its back facing down the hall,
+        /// braziers either side, a long carpet from the far wall to the steps.
+        /// </summary>
+        static bool Throne(DungeonLayout layout, RectInt r, System.Random random)
+        {
+            var raised = Platform(layout, r, random, 6, false, out var alongX, out var edge);
+            if (raised == null)
+                return false;
+            var lo = alongX ? r.yMin : r.xMin;
+            var hi = alongX ? r.yMax : r.xMax;
+            var middle = (lo + hi) / 2;
+            var back = (alongX ? r.xMax : r.yMax) - 2;
+            Vector2Int Cell(int along, int across) => alongX ? new Vector2Int(along, across) : new Vector2Int(across, along);
+            // Walk the throne forward until it stands on the dais.
+            var seat = Cell(back, middle);
+            while (!layout.Raised.Contains(seat) && (alongX ? seat.x : seat.y) > edge + 1)
+                seat = Cell((alongX ? seat.x : seat.y) - 1, middle);
+            var at = alongX ? seat.x : seat.y;
+            var items = new List<(Vector2Int, PropKind)>
+            {
+                (seat, alongX ? PropKind.ThroneX : PropKind.ThroneY),
+                (Cell(at, middle - 3), PropKind.Brazier),
+                (Cell(at, middle + 3), PropKind.Brazier),
+                (Cell(edge + 1, middle - 3), PropKind.Candles),
+                (Cell(edge + 1, middle + 3), PropKind.Candles),
+            };
+            PlaceAll(layout, r, items);
+            Runner(layout, alongX, (alongX ? r.xMin : r.yMin) + 1, edge - 1, middle - 1);
+            Runner(layout, alongX, edge + 1, at - 1, middle - 1);
+            return true;
+        }
+
+        /// <summary>A long carpet down the middle of a hall, two cells wide, along its long side.</summary>
+        static void Runner(DungeonLayout layout, RectInt r, bool alongX)
+        {
+            var middle = alongX ? r.yMin + r.height / 2 : r.xMin + r.width / 2;
+            Runner(layout, alongX, (alongX ? r.xMin : r.yMin) + 2, (alongX ? r.xMax : r.yMax) - 3, middle - 1);
+        }
+
+        /// <summary>A carpet two cells wide (across, across + 1) from along = from to to, on open floor only.</summary>
+        static void Runner(DungeonLayout layout, bool alongX, int from, int to, int across)
+        {
+            for (var along = from; along <= to; along++)
+                for (var k = 0; k <= 1; k++)
+                {
+                    var cell = alongX ? new Vector2Int(along, across + k) : new Vector2Int(across + k, along);
+                    if (layout.Get(cell) == DungeonCell.Floor && !layout.TerraceStairs.ContainsKey(cell))
+                        layout.Decals[cell] = RugRules.Kind(alongX, k == 1);
+                }
+        }
+
+        /// <summary>
+        /// Stands props on open floor, all of them, or none if together they would cut a way through the level (every
+        /// floor cell around reached before must be reached after). Whether they went down.
+        /// </summary>
+        static bool PlaceAll(DungeonLayout layout, RectInt r, List<(Vector2Int cell, PropKind kind)> items)
+        {
+            var cells = new HashSet<Vector2Int>();
+            foreach (var (cell, _) in items)
+                if (layout.Get(cell) == DungeonCell.Floor && !layout.TerraceStairs.ContainsKey(cell))
+                    cells.Add(cell);
+            if (cells.Count == 0)
+                return false;
+            var region = new RectInt(r.xMin - 6, r.yMin - 6, r.width + 12, r.height + 12);
+            // Start from open floor on the hall's edge, which the furniture never takes.
+            var start = new Vector2Int(int.MinValue, 0);
+            for (var x = r.xMin; x < r.xMax && start.x == int.MinValue; x++)
+                for (var y = r.yMin; y < r.yMax && start.x == int.MinValue; y++)
+                {
+                    var c = new Vector2Int(x, y);
+                    if (layout.IsFloor(c) && !cells.Contains(c))
+                        start = c;
+                }
+            if (start.x == int.MinValue)
+                return false;
+            var before = Reach(layout, region, start, null);
+            var after = Reach(layout, region, start, cells);
+            before.ExceptWith(cells);
+            if (!after.IsSupersetOf(before))
+                return false;
+            foreach (var (cell, kind) in items)
+                if (cells.Contains(cell))
+                {
+                    layout.Set(cell.x, cell.y, DungeonCell.Prop);
+                    layout.Props[cell] = kind;
+                    cells.Remove(cell);
+                }
+            return true;
+        }
+
         /// <summary>The share of crypt combat halls (with no pit) split by a chasm (2026-10-20).</summary>
         public const int ChasmPercent = 25;
 
@@ -1091,8 +1328,9 @@ namespace ARPG
             return true;
         }
 
-        /// <summary>The share of crypt combat halls with a sunken burial pit (2026-10-20).</summary>
-        public const int PitPercent = 30;
+        /// <summary>The share of crypt combat halls with a sunken burial pit (2026-10-20; none since 2026-10-21, the
+        /// owner: "remove the pits". The code is kept).</summary>
+        public const int PitPercent = 0;
 
         /// <summary>
         /// A sunken burial pit in a crypt hall (the owner, 2026-10-20, okayed: "a lowered floor with steps down on every
@@ -1209,16 +1447,23 @@ namespace ARPG
         /// the floor <see cref="DungeonLayout.Raised"/>, painted lighter). Returns the raised cells, those nearest the rim
         /// first, or null when none fits or it would cut a way through the level.
         /// </summary>
-        static List<Vector2Int> Platform(DungeonLayout layout, RectInt r, System.Random random, int deep, bool atEnd)
+        static List<Vector2Int> Platform(DungeonLayout layout, RectInt r, System.Random random, int deep, bool atEnd) =>
+            Platform(layout, r, random, deep, atEnd, out _, out _);
+
+        /// <summary>A platform (above), and which way it lies: raised toward +x (else +y), its front row at edge (the
+        /// first row of the platform, its rim).</summary>
+        static List<Vector2Int> Platform(DungeonLayout layout, RectInt r, System.Random random, int deep, bool atEnd, out bool alongX, out int edge)
         {
+            alongX = random.Next(2) == 0;
+            edge = 0;
+            var ax = alongX;
             if (r.width < 14 || r.height < 14)
                 return null;
-            var alongX = random.Next(2) == 0;
             var width = alongX ? r.height : r.width;
             deep = atEnd ? deep : Mathf.Clamp(deep, 5, 12);
             var down = alongX ? Vector2Int.left : Vector2Int.down;
             var side = new Vector2Int(down.y, down.x);
-            var edge = (alongX ? r.xMax : r.yMax) - deep;
+            edge = (alongX ? r.xMax : r.yMax) - deep;
             var plateau = new HashSet<Vector2Int>();
             for (var x = r.xMin; x < r.xMax; x++)
                 for (var y = r.yMin; y < r.yMax; y++)
@@ -1255,7 +1500,7 @@ namespace ARPG
             // A dais: the flight nearest the hall's middle, and in a wide hall a second well apart from it. A balcony: the
             // flight furthest from the middle, at one end.
             var middle = alongX ? r.center.y : r.center.x;
-            flights.Sort((a, b) => Mathf.Abs((alongX ? a.y : a.x) - middle).CompareTo(Mathf.Abs((alongX ? b.y : b.x) - middle)));
+            flights.Sort((a, b) => Mathf.Abs((ax ? a.y : a.x) - middle).CompareTo(Mathf.Abs((ax ? b.y : b.x) - middle)));
             if (atEnd)
                 flights.Reverse();
             var chosen = new List<Vector2Int> { flights[0] };
@@ -1295,8 +1540,8 @@ namespace ARPG
             // Nearest the rim first (lowest along the axis), then from the middle out.
             raised.Sort((a, b) =>
             {
-                var byRow = (alongX ? a.x : a.y).CompareTo(alongX ? b.x : b.y);
-                return byRow != 0 ? byRow : Mathf.Abs((alongX ? a.y : a.x) - middle).CompareTo(Mathf.Abs((alongX ? b.y : b.x) - middle));
+                var byRow = (ax ? a.x : a.y).CompareTo(ax ? b.x : b.y);
+                return byRow != 0 ? byRow : Mathf.Abs((ax ? a.y : a.x) - middle).CompareTo(Mathf.Abs((ax ? b.y : b.x) - middle));
             });
             return raised;
         }

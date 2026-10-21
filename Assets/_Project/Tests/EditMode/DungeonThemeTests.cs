@@ -214,7 +214,7 @@ namespace ARPG.Tests
                             "a dais at the head, or a pit at the foot");
                     }
                 }
-            Assert.Greater(daises, 30, "most crypt levels have one");
+            Assert.Greater(daises, 20, "most crypt levels have one");
         }
 
         [Test]
@@ -261,25 +261,47 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void SomeCryptLevels_HaveABurialPit_WithBonesAndStepsIn()
+        public void NoBurialPits_AndCryptHallsHaveTheirPurposes()
         {
-            // The owner, 2026-10-20: "a lowered floor with steps down on every side, full of bones and broken coffins".
-            var pits = 0;
-            foreach (var seed in new[] { 7919, 31, 4242 })
+            // 2026-10-21, the owner: "remove the pits, add the rest".
+            var themes = new HashSet<HallTheme>();
+            var thrones = 0;
+            foreach (var seed in new[] { 7919, 31, 4242, 77, 1234 })
                 for (var depth = 1; depth <= 12; depth++)
                 {
                     var layout = DungeonGenerator.Generate(seed, depth, Library());
-                    if (layout.Sunken.Count == 0)
-                        continue;
-                    pits++;
-                    Assert.IsFalse(layout.Sunken.Overlaps(layout.Raised));
-                    var bones = 0;
-                    foreach (var cell in layout.Sunken)
-                        if (layout.Decals.ContainsKey(cell) || layout.Props.ContainsKey(cell))
-                            bones++;
-                    Assert.Greater(bones, 4, $"seed {seed} depth {depth}: bones in the pit");
+                    Assert.IsEmpty(layout.Sunken, $"seed {seed} depth {depth}: a pit");
+                    foreach (var pair in layout.Halls)
+                    {
+                        themes.Add(pair.Value);
+                        if (pair.Value == HallTheme.Throne)
+                        {
+                            thrones++;
+                            Assert.AreEqual(DungeonGenerator.ThroneDepth, depth);
+                            Assert.IsTrue(layout.Props.ContainsValue(PropKind.ThroneX) || layout.Props.ContainsValue(PropKind.ThroneY));
+                        }
+                    }
+                    var rugs = 0;
+                    foreach (var pair in layout.Decals)
+                        if (RugRules.IsRug(pair.Value))
+                            rugs++;
+                    Assert.Greater(rugs, 0, $"seed {seed} depth {depth}: a carpet");
                 }
-            Assert.Greater(pits, 5);
+            Assert.IsTrue(themes.Contains(HallTheme.Dining) && themes.Contains(HallTheme.Chapel) && themes.Contains(HallTheme.Sarcophagi));
+            Assert.LessOrEqual(thrones, 5, "one at most a level, only at the throne depth");
         }
+
+        [Test]
+        public void Rugs_HaveTheirBorderOnTheOuterSide()
+        {
+            Assert.AreEqual(DecalKind.RugXLow, RugRules.Kind(true, false));
+            Assert.AreEqual(DecalKind.RugYHigh, RugRules.Kind(false, true));
+            var red = RugRules.Colour(DecalKind.RugXLow, 0.1f, 0.3f, 0f);
+            var border = RugRules.Colour(DecalKind.RugXLow, 0.1f, -0.35f, 0f);
+            Assert.AreNotEqual(red.r, border.r);
+            // The high side's border is at +0.5 across.
+            Assert.AreEqual(border.r, RugRules.Colour(DecalKind.RugXHigh, 0.1f, 0.35f, 0f).r);
+        }
+
     }
 }

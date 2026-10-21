@@ -350,8 +350,32 @@ namespace ARPG
         /// <summary>Stamps an imported decal of a kind onto a 40 x 20 floor tile's pixels, if one was imported.</summary>
         public static bool StampDecal(Color32[] floor, int decal, int seed)
         {
+            if (RugRules.IsRug((DecalKind)decal))
+            {
+                StampRug(floor, (DecalKind)decal, seed);
+                return true;
+            }
             LoadImported();
             return StampImportedDecal(floor, decal, seed);
+        }
+
+        // A cell of a long carpet (2026-10-20), drawn in code: deep red, a gold border along its outer long side, dark
+        // bands across it every half cell, worn here and there.
+        static void StampRug(Color32[] floor, DecalKind kind, int seed)
+        {
+            var h = Unit / 2;
+            for (var y = 0; y < h; y++)
+                for (var x = 0; x < Unit; x++)
+                {
+                    var i = x + y * Unit;
+                    if (floor[i].a == 0)
+                        continue;
+                    var dx = (x + 0.5f - Unit * 0.5f) / Unit;
+                    var dy = (y + 0.5f - h * 0.5f) / Unit;
+                    var c = RugRules.Colour(kind, dx + 2f * dy, 2f * dy - dx, Hash(x + seed, y, 11));
+                    if (c.a > 0)
+                        floor[i] = c;
+                }
         }
 
         static bool StampImportedDecal(Color32[] floor, int decal, int seed)

@@ -55,6 +55,30 @@ namespace ARPG
         Stocks,
         FloorGrate,
         StrawPile,
+
+        // The crypt's halls (2026-10-20): dining halls, chapels, the throne room, sarcophagus halls, and the dead.
+        TableX,
+        TableY,
+        BenchX,
+        BenchY,
+        PewX,
+        PewY,
+        ChairFallen,
+        ThroneX,
+        ThroneY,
+        SarcophagusOpen,
+        DeadAdventurer,
+        ColdCamp,
+    }
+
+    /// <summary>What a crypt hall is furnished as (2026-10-20, the owner's okayed list).</summary>
+    public enum HallTheme
+    {
+        None,
+        Dining,
+        Chapel,
+        Sarcophagi,
+        Throne,
     }
 
     /// <summary>Marks on a dungeon floor, walked over.</summary>
@@ -76,6 +100,13 @@ namespace ARPG
         Sigil,
         Ash,
         Net,
+
+        // Long carpets (2026-10-20, the owner: "do add long carpets"): a runner two cells wide along x or y, each cell
+        // with its gold border on one long side (Low: toward -y for a runner along x, -x along y; High: the other).
+        RugXLow,
+        RugXHigh,
+        RugYLow,
+        RugYHigh,
     }
 
     /// <summary>Room types from Docs/05-world-and-content.md. Shrine and ambush rooms are not built; until they are,
@@ -202,6 +233,9 @@ namespace ARPG
         /// <summary>A chasm's cells (2026-10-20): wall to walking, drawn as a drop into the dark, low (sight and shots
         /// pass over).</summary>
         public HashSet<Vector2Int> Chasm { get; } = new HashSet<Vector2Int>();
+
+        /// <summary>The crypt's halls with a purpose (2026-10-20), by room index.</summary>
+        public Dictionary<int, HallTheme> Halls { get; } = new Dictionary<int, HallTheme>();
 
         /// <summary>Floor cells in a sunken burial pit (2026-10-20), drawn darker.</summary>
         public HashSet<Vector2Int> Sunken { get; } = new HashSet<Vector2Int>();

@@ -17,6 +17,13 @@ namespace ARPG
         /// <summary>One decal per this many floor cells.</summary>
         const int CellsPerDecal = 30;
 
+        /// <summary>The crypt's floors carry about twice the marks (2026-10-20, okayed: "carpets, rubble, broken flagstones,
+        /// old blood trails and scattered bones, so open floor is not bare cobbles").</summary>
+        const int CryptCellsPerDecal = 16;
+
+        /// <summary>Old blood trails dragged across a crypt level, and their length in cells.</summary>
+        const int BloodTrails = 7, MinTrail = 7, MaxTrail = 15;
+
         /// <summary>Cells (Chebyshev) kept clear around a doorway's middle and around the stairs and similar spots.</summary>
         const int DoorClearance = 4;
         const int SpotClearance = 2;
@@ -27,6 +34,9 @@ namespace ARPG
         {
             (PropKind.Urn, 18), (PropKind.BonePile, 12), (PropKind.Rubble, 8), (PropKind.BrokenColumn, 14), (PropKind.Sarcophagus, 12),
             (PropKind.Brazier, 8), (PropKind.Candles, 12), (PropKind.Barrel, 6), (PropKind.Crate, 4), (PropKind.Torch, 6),
+            // The dead (the owner, 2026-10-20, okayed: "fallen adventurers with their packs, a burnt-out camp, hanging cages
+            // with skeletons").
+            (PropKind.DeadAdventurer, 8), (PropKind.ColdCamp, 4), (PropKind.HangingCage, 5), (PropKind.Coffin, 4),
         };
 
         static readonly (PropKind kind, int weight)[] CavePropWeights =
@@ -118,6 +128,34 @@ namespace ARPG
                 PlaceDecals(layout, floor, room.Style, random);
                 if ((room.Kind == RoomKind.Combat || room.Kind == RoomKind.Elite) && random.Next(RitualOneIn) == 0)
                     PlaceRitual(layout, room.Interior);
+            }
+            if (layout.Theme == DungeonTheme.Crypt)
+                PlaceBloodTrails(layout, random);
+        }
+
+        // Trails of old blood (2026-10-20): from a cell of a hall, a few steps at a time, turning now and then, over open
+        // floor that has no mark yet.
+        static void PlaceBloodTrails(DungeonLayout layout, System.Random random)
+        {
+            for (var t = 0; t < BloodTrails; t++)
+            {
+                var room = layout.Rooms[random.Next(layout.Rooms.Count)];
+                if (room.Kind == RoomKind.Boss)
+                    continue;
+                var r = room.Interior;
+                var cell = new Vector2Int(random.Next(r.xMin, r.xMax), random.Next(r.yMin, r.yMax));
+                var step = RoomShape.Sides[random.Next(RoomShape.Sides.Length)];
+                var length = random.Next(MinTrail, MaxTrail + 1);
+                for (var k = 0; k < length; k++)
+                {
+                    if (layout.IsFloor(cell) && !layout.Decals.ContainsKey(cell))
+                        layout.Decals[cell] = DecalKind.Blood;
+                    if (random.Next(4) == 0)
+                        step = new Vector2Int(step.y, step.x) * (random.Next(2) == 0 ? 1 : -1);
+                    if (!layout.IsFloor(cell + step))
+                        step = -step;
+                    cell += step;
+                }
             }
         }
 
@@ -257,6 +295,14 @@ namespace ARPG
                 layout.Set(cell.x, cell.y, DungeonCell.Prop);
                 layout.Props[cell] = kind;
                 placed++;
+                // A cold camp keeps the bedroll someone slept on.
+                if (kind == PropKind.ColdCamp)
+                    foreach (var side in RoomShape.Sides)
+                        if (layout.IsFloor(cell + side) && !layout.Decals.ContainsKey(cell + side))
+                        {
+                            layout.Decals[cell + side] = DecalKind.Bedroll;
+                            break;
+                        }
 
                 // Barrels and crates come in twos and threes, as stores do.
                 if (kind != PropKind.Barrel && kind != PropKind.Crate)
@@ -279,7 +325,7 @@ namespace ARPG
 
         static void PlaceDecals(DungeonLayout layout, List<Vector2Int> floor, int style, System.Random random)
         {
-            var wanted = floor.Count / CellsPerDecal;
+            var wanted = floor.Count / (layout.Theme == DungeonTheme.Crypt ? CryptCellsPerDecal : CellsPerDecal);
             for (var k = 0; k < wanted; k++)
             {
                 var cell = floor[random.Next(floor.Count)];

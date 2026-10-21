@@ -1736,6 +1736,186 @@ def fallen_shelf():
 
 
 
+# ---------------------------------------------------------------- the crypt's halls (2026-10-20)
+#
+# The owner okayed rooms with a purpose ("throne rooms, dining halls etc"): long tables with benches and toppled chairs,
+# chapel pews, a throne, sarcophagi with their lids pushed off, and the dead: a fallen adventurer, a cold camp. Pieces
+# that run along an axis come in two, _x and _y, and join end to end across cells.
+
+def _along(axis, length, width, height):
+    return (length, width, height) if axis == "x" else (width, length, height)
+
+
+def _at(axis, t, s, z=0.0):
+    return (t, s, z) if axis == "x" else (s, t, z)
+
+
+def _table(axis):
+    rng = seed(510 if axis == "x" else 511)
+    wood = mat(WOOD[2], 0.35, WOOD[1], scale=14)
+    dark = mat(WOOD[1], 0.3, WOOD[0], scale=14)
+    plate = mat(STONE[4], 0.2, STONE[3], scale=8)
+    brass = mat(EMBER[1], 0.25, STONE[2], metal=0.6, rough=0.45)
+    food = [mat(WOOD[4], 0.4, WOOD[3], scale=12), mat(BLOOD[2], 0.3, BLOOD[1], scale=12)]
+    top = 0.72 * M
+    width = CELL * 0.8
+    box(_along(axis, CELL + 0.004, width, 0.06 * M), (0, 0, top - 0.06 * M), wood, bevel=0.008)
+    box(_along(axis, 0.07, width * 0.7, top - 0.06 * M), (0, 0, 0), dark)
+    box(_along(axis, CELL + 0.004, 0.05, 0.05), _at(axis, 0, 0, 0.12 * M), dark)
+    for t in (-0.17, 0.17):
+        s = rng.choice((-1, 1)) * width * 0.24
+        x, y, _ = _at(axis, t, s)
+        cyl(0.075, 0.012, (x, y, top), plate, 10)
+        if rng.random() < 0.7:
+            sphere(0.038, (x + 0.01, y, top + 0.02), rng.choice(food), scale=(1.2, 1, 0.6), segments=8)
+    x, y, _ = _at(axis, 0.02, -rng.choice((-1, 1)) * width * 0.22)
+    cyl(0.022, 0.05 * M, (x, y, top), brass, 8)
+    cyl(0.035, 0.03 * M, (x, y, top + 0.05 * M), brass, 8)
+
+
+def table_x():
+    _table("x")
+
+
+def table_y():
+    _table("y")
+
+
+def _bench(axis, back):
+    wood = mat(WOOD[2], 0.35, WOOD[1], scale=14)
+    dark = mat(WOOD[1], 0.3, WOOD[0], scale=14)
+    seat = 0.42 * M
+    width = CELL * 0.42
+    box(_along(axis, CELL + 0.004, width, 0.05 * M), (0, 0, seat - 0.05 * M), wood, bevel=0.006)
+    for t in (-CELL * 0.35, CELL * 0.35):
+        box(_along(axis, 0.05, width * 0.8, seat - 0.05 * M), _at(axis, t, 0), dark)
+    if back:
+        # A pew's back, on the camera's side (-y for a pew along x, -x along y): rows of pews face the altar behind them.
+        # Low and open (2026-10-21: a solid tall back read as a wall): a rail on posts over a low board.
+        s = -width / 2 - 0.02
+        light = mat(WOOD[3], 0.35, WOOD[2], scale=14)
+        top = 0.74 * M
+        box(_along(axis, CELL + 0.004, 0.05, 0.16 * M), _at(axis, 0, s, seat), light, bevel=0.006)
+        for t in (-CELL * 0.3, 0.0, CELL * 0.3):
+            box(_along(axis, 0.04, 0.04, top - seat), _at(axis, t, s, seat), dark)
+        box(_along(axis, CELL + 0.004, 0.07, 0.05 * M), _at(axis, 0, s, top - 0.02), light, bevel=0.006)
+
+
+def bench_x():
+    _bench("x", False)
+
+
+def bench_y():
+    _bench("y", False)
+
+
+def pew_x():
+    _bench("x", True)
+
+
+def pew_y():
+    _bench("y", True)
+
+
+def chair_fallen():
+    wood = mat(WOOD[2], 0.35, WOOD[1], scale=14)
+    dark = mat(WOOD[1], 0.3, WOOD[0], scale=14)
+    # A chair knocked on its back: the seat stands on edge, the back lies flat, the legs point at the room.
+    box((0.34, 0.05, 0.34), (0.0, 0.05, 0.0), wood, rot=(0, 0, -30), bevel=0.005)
+    box((0.34, 0.5, 0.04), (-0.05, -0.2, 0.0), wood, rot=(0, 0, -30), bevel=0.005)
+    for k, (x, y) in enumerate([(-0.14, 0.05), (0.14, 0.05)]):
+        box((0.04, 0.32, 0.04), (x, y + 0.2, 0.08 + 0.18 * (k % 2)), dark, rot=(0, 0, -30))
+    box((0.04, 0.04, 0.3), (0.12, -0.12, 0.0), dark, rot=(20, 0, -30))
+
+
+def _throne(face):
+    stone = mat(STONE[3], 0.3, STONE[2], scale=10)
+    dark = mat(STONE[1], 0.3, STONE[0], scale=10)
+    red = mat(BLOOD[2], 0.35, BLOOD[1], scale=14)
+    gold = mat(EMBER[2], 0.25, EMBER[1], metal=0.6, rough=0.4)
+    bone = mat(BONE[1], 0.3, BONE[0], scale=15)
+    axis = "x" if face == "x" else "y"
+    # The throne faces -x (or -y), down the hall toward the camera; its back stands on the far side.
+    w = CELL * 0.9
+    box((w, w, 0.25 * M), (0, 0, 0), dark, bevel=0.01)
+    box((w * 0.8, w * 0.8, 0.22 * M), (0, 0, 0.25 * M), stone, bevel=0.01)
+    box((w * 0.7, w * 0.7, 0.05 * M), (0, 0, 0.47 * M), red, bevel=0.01)
+    back_at = _at(axis, w * 0.35, 0)
+    box(_along(axis, 0.12, w * 0.85, 1.25 * M), (back_at[0], back_at[1], 0.47 * M), stone, bevel=0.01)
+    box(_along(axis, 0.05, w * 0.55, 0.9 * M), (back_at[0] - (0.065 if axis == "x" else 0), back_at[1] - (0.065 if axis == "y" else 0), 0.55 * M), red)
+    for side in (-1, 1):
+        x, y, _ = _at(axis, -0.02, side * w * 0.38)
+        box(_along(axis, w * 0.75, 0.09, 0.28 * M), (x, y, 0.47 * M), stone, bevel=0.01)
+        x, y, _ = _at(axis, w * 0.35, side * w * 0.36)
+        cone(0.05, 0.3 * M, (x, y, 1.72 * M), gold, 6)
+    x, y, _ = _at(axis, w * 0.35, 0)
+    cone(0.07, 0.42 * M, (x, y, 1.72 * M), gold, 6)
+    skull((x - (0.08 if axis == "x" else 0), y - (0.08 if axis == "y" else 0), 1.45 * M), 0.07, bone, turn=-135 if axis == "x" else -45)
+
+
+def throne_x():
+    _throne("x")
+
+
+def throne_y():
+    _throne("y")
+
+
+def sarcophagus_open():
+    rng = seed(530)
+    stone = mat(STONE[3], 0.3, STONE[2], scale=8)
+    lid = mat(STONE[4], 0.3, STONE[3], scale=8)
+    dark = mat(STONE[0], 0.0)
+    bonec = mat(BONE[1], 0.3, BONE[0], scale=15)
+    L, W = 0.95, 0.44
+    box((L, W, 0.3 * M), (0, 0, 0), stone, rot=(0, 0, -45))
+    box((L * 0.88, W * 0.7, 0.01), (0, 0, 0.3 * M - 0.005), dark, rot=(0, 0, -45))
+    skull((-0.13, 0.13, 0.22 * M), 0.055, bonec, turn=45)
+    for k in range(3):
+        cyl(0.016, 0.22, (rng.uniform(-0.08, 0.1), rng.uniform(-0.1, 0.08), 0.26 * M), bonec, 6, rot=(0, 90, rng.uniform(20, 70)))
+    # The lid, pushed half off and leaning on the floor.
+    box((L + 0.04, W + 0.04, 0.07 * M), (0.12, -0.2, 0.12 * M), lid, rot=(14, 0, -60))
+
+
+def dead_adventurer():
+    rng = seed(540)
+    bonec = mat(BONE[1], 0.3, BONE[0], scale=15)
+    leather = mat(EARTH[3], 0.35, EARTH[2], scale=14)
+    cloth = mat(MOSS[2], 0.35, MOSS[1], scale=14)
+    iron = mat(STONE[2], 0.25, STONE[1], metal=0.6, rough=0.5)
+    rust = mat(EMBER[0], 0.4, STONE[1], scale=12)
+    # Slumped against nothing, fallen back: a skull, a ribcage under a rotted cloak, the long bones splayed.
+    sphere(0.16, (0.02, 0.04, 0.06), cloth, scale=(1.4, 1.0, 0.35), segments=10)
+    skull((-0.12, 0.14, 0.08), 0.055, bonec, turn=-100)
+    for k in range(4):
+        cyl(0.012, 0.15, (0.02 + 0.03 * k, 0.0, 0.08), bonec, 6, rot=(90, 0, 40 + 8 * k))
+    for (x, y, a) in [(0.18, -0.08, 20), (0.2, 0.05, -10), (-0.02, -0.18, 70), (0.1, 0.2, 110)]:
+        cyl(0.017, 0.24, (x, y, 0.02), bonec, 6, rot=(0, 90, a))
+    # His pack, a sword gone to rust and a round shield.
+    sphere(0.1, (-0.2, -0.05, 0.1), leather, scale=(1, 0.9, 1.1), segments=10)
+    box((0.42, 0.035, 0.012), (0.05, -0.24, 0.02), rust, rot=(0, 0, -20))
+    box((0.04, 0.1, 0.02), (-0.15, -0.17, 0.02), iron, rot=(0, 0, -20))
+    cyl(0.13, 0.025, (0.22, 0.2, 0.0), mat(WOOD[2], 0.35, WOOD[1], scale=12), 12, rot=(12, 0, 0))
+    cyl(0.04, 0.03, (0.22, 0.2, 0.02), iron, 8, rot=(12, 0, 0))
+
+
+def cold_camp():
+    rng = seed(550)
+    stones = [mat(STONE[3], 0.35, STONE[2]), mat(STONE[2], 0.35, STONE[1])]
+    for k in range(8):
+        a = 2 * math.pi * k / 8
+        rock((0.22 * math.cos(a), 0.22 * math.sin(a), 0.02), 0.07, rng.choice(stones), rng, 0.7)
+    ash = mat(STONE[4], 0.4, STONE[2], scale=20)
+    sphere(0.17, (0, 0, 0.0), ash, scale=(1, 1, 0.15), segments=10)
+    char = mat(STONE[0], 0.3, WOOD[0], scale=14)
+    for k in range(3):
+        a = 2 * math.pi * k / 3 + 0.5
+        cyl(0.035, 0.28, (0.1 * math.cos(a), 0.1 * math.sin(a), 0.02), char, 6, rot=(0, -80, math.degrees(a)))
+    # A rolled blanket left behind, and a pot on its side.
+    cyl(0.07, 0.3, (-0.2, 0.22, 0.07), mat(BLOOD[1], 0.35, EARTH[2], scale=12), 10, rot=(0, 90, -45))
+    cyl(0.07, 0.09, (0.25, -0.2, 0.07), mat(STONE[1], 0.2, STONE[0], metal=0.5), 10, rot=(90, 0, 30))
+
+
 ALL = {
     "ritual_circle": ("world", ritual_circle, WORLD),
     "prop_barrel": ("dungeon", barrel, PROP),
@@ -1813,6 +1993,12 @@ for name, build, frame in [("campfire", lair_campfire, PROP), ("sack", lair_sack
                            ("carcass", lair_carcass, PROP), ("altar", lair_altar, PROP), ("coffin", lair_coffin, PROP),
                            ("flesh_pod", lair_flesh_pod, PROP), ("spikes", lair_spikes, PROP), ("hellfire", lair_hellfire, PROP),
                            ("cage", lair_cage, PROP), ("stake", lair_stake, TALL)]:
+    ALL["prop_" + name] = ("dungeon", build, frame)
+for name, build, frame in [("table_x", table_x, PROP), ("table_y", table_y, PROP), ("bench_x", bench_x, PROP),
+                           ("bench_y", bench_y, PROP), ("pew_x", pew_x, PROP), ("pew_y", pew_y, PROP),
+                           ("chair_fallen", chair_fallen, PROP), ("throne_x", throne_x, TALL), ("throne_y", throne_y, TALL),
+                           ("sarcophagus_open", sarcophagus_open, PROP), ("dead_adventurer", dead_adventurer, PROP),
+                           ("cold_camp", cold_camp, PROP)]:
     ALL["prop_" + name] = ("dungeon", build, frame)
 for n in range(1, 4):
     ALL["decal_bedroll_%d" % n] = ("dungeon", (lambda n=n: _bedroll(n)), DECAL)

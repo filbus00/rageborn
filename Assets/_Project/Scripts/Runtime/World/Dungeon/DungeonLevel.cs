@@ -121,6 +121,9 @@ namespace ARPG
             LoadTimer.Mark("generate");
 
             Paint();
+            // Dust, rats, bats, drips and flickering candles in the crypt (2026-10-20).
+            if (Layout.Theme == DungeonTheme.Crypt)
+                Ambience.Begin(transform, Layout, levelSeed);
             LoadTimer.Mark("paint");
             RescueCorpses(session);
             if (arrival == Arrival.AtPortal && session.PortalDepth == depth)
