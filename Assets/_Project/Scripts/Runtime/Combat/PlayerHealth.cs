@@ -93,7 +93,7 @@ namespace ARPG
             if (dodgeable && stance != null && dodgeRandom.NextDouble() < dodge)
             {
                 if (player != null)
-                    DamageNumbers.Current?.ShowText(player.transform.position + Vector3.up * 1.2f, "DODGE", DodgeColor, 34);
+                    DamageNumbers.Current?.ShowText(Elevation.Lifted(player.transform.position) + Vector3.up * 1.2f, "DODGE", DodgeColor, 34);
                 return;
             }
             // A shield blocks a melee hit or a projectile completely, rolled apart from dodge (Docs/03, Q10).
@@ -101,7 +101,7 @@ namespace ARPG
             if (dodgeable && block > 0f && dodgeRandom.NextDouble() < block)
             {
                 if (player != null)
-                    DamageNumbers.Current?.ShowText(player.transform.position + Vector3.up * 1.2f, "BLOCK", DodgeColor, 34);
+                    DamageNumbers.Current?.ShowText(Elevation.Lifted(player.transform.position) + Vector3.up * 1.2f, "BLOCK", DodgeColor, 34);
                 Sfx.Play(SoundId.Hit, 0.5f);
                 return;
             }
@@ -127,7 +127,7 @@ namespace ARPG
 
             if (player != null)
             {
-                DamageNumbers.Current?.Show(player.transform.position, damage, critical: false, isDamageToPlayer: true);
+                DamageNumbers.Current?.Show(Elevation.Lifted(player.transform.position), damage, critical: false, isDamageToPlayer: true);
                 player.Flash(HurtFlashColor, 0.14f);
             }
 

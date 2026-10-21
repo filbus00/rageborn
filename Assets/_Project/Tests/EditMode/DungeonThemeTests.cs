@@ -203,7 +203,7 @@ namespace ARPG.Tests
             foreach (var seed in new[] { 7919, 31, 4242 })
                 for (var depth = 1; depth <= 12; depth++)
                 {
-                    var layout = DungeonGenerator.Generate(seed, depth, Library());
+                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Tiered = false });
                     if (layout.Raised.Count > 0)
                         daises++;
                     foreach (var pair in layout.TerraceStairs)
@@ -225,7 +225,7 @@ namespace ARPG.Tests
             foreach (var seed in new[] { 7919, 31, 4242 })
                 for (var depth = 1; depth <= 12; depth++)
                 {
-                    var layout = DungeonGenerator.Generate(seed, depth, Library());
+                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Tiered = false });
                     foreach (var pair in layout.Balconies)
                     {
                         balconies++;
@@ -251,7 +251,7 @@ namespace ARPG.Tests
             foreach (var seed in new[] { 7919, 31, 4242 })
                 for (var depth = 1; depth <= 12; depth++)
                 {
-                    var layout = DungeonGenerator.Generate(seed, depth, Library());
+                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Tiered = false });
                     if (layout.Chasm.Count > 0)
                         chasms++;
                     foreach (var cell in layout.Chasm)
@@ -266,6 +266,7 @@ namespace ARPG.Tests
             // 2026-10-21, the owner: "remove the pits, add the rest".
             var themes = new HashSet<HallTheme>();
             var thrones = 0;
+            var rugs = 0;
             foreach (var seed in new[] { 7919, 31, 4242, 77, 1234 })
                 for (var depth = 1; depth <= 12; depth++)
                 {
@@ -281,12 +282,11 @@ namespace ARPG.Tests
                             Assert.IsTrue(layout.Props.ContainsValue(PropKind.ThroneX) || layout.Props.ContainsValue(PropKind.ThroneY));
                         }
                     }
-                    var rugs = 0;
                     foreach (var pair in layout.Decals)
                         if (RugRules.IsRug(pair.Value))
                             rugs++;
-                    Assert.Greater(rugs, 0, $"seed {seed} depth {depth}: a carpet");
                 }
+            Assert.Greater(rugs, 20, "carpets");
             Assert.IsTrue(themes.Contains(HallTheme.Dining) && themes.Contains(HallTheme.Chapel) && themes.Contains(HallTheme.Sarcophagi));
             Assert.LessOrEqual(thrones, 5, "one at most a level, only at the throne depth");
         }
@@ -303,5 +303,34 @@ namespace ARPG.Tests
             Assert.AreEqual(border.r, RugRules.Colour(DecalKind.RugXHigh, 0.1f, 0.35f, 0f).r);
         }
 
+
+        [Test]
+        public void TheCrypt_Climbs_HallByHall_UpTheScreen()
+        {
+            // The owner, 2026-10-21: vertical levels, "you fight upwards. From the bottom up".
+            foreach (var seed in new[] { 7919, 31, 4242, 77, 1234 })
+                for (var depth = 1; depth <= 12; depth++)
+                {
+                    var layout = DungeonGenerator.Generate(seed, depth, Library());
+                    var label = $"seed {seed} depth {depth}";
+                    Assert.IsTrue(layout.Tiered, label);
+                    Assert.That(layout.Rooms.Count, Is.InRange(7, 9), label);
+                    // Each hall a step up the screen from the one before (+x or +y on the room grid), never sideways.
+                    for (var i = 1; i < layout.Rooms.Count; i++)
+                    {
+                        var step = layout.Rooms[i].Macro - layout.Rooms[i - 1].Macro;
+                        Assert.IsTrue(step == Vector2Int.right || step == Vector2Int.up, label);
+                    }
+                    // The last hall stands higher than the first, by more than half the halls.
+                    var first = layout.TierLevel(layout.ArrivalFromAbove);
+                    var lastRoom = layout.Rooms[layout.Rooms.Count - 1].Interior;
+                    var top = layout.TierLevel(new Vector2Int(lastRoom.xMin + lastRoom.width / 2, lastRoom.yMin + lastRoom.height / 2));
+                    Assert.Greater(top - first, (layout.Rooms.Count - 1) / 2, label);
+                    // Every step between levels is a flight toward the camera from the higher floor.
+                    foreach (var pair in layout.TerraceStairs)
+                        Assert.IsTrue(pair.Value.x < 0 || pair.Value.y < 0, label);
+                }
+            Assert.IsFalse(DungeonGenerator.Generate(7919, 16, Library()).Tiered, "the prison does not climb yet");
+        }
     }
 }

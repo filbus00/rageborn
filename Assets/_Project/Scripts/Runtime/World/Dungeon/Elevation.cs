@@ -24,21 +24,25 @@ namespace ARPG
         readonly HashSet<Vector2Int> raised;
         readonly HashSet<Vector2Int> sunken;
         readonly Dictionary<Vector2Int, Vector2Int> stairs;
+        readonly System.Func<Vector2Int, int> tier;
 
         public ElevationMap(HashSet<Vector2Int> raised, HashSet<Vector2Int> sunken, Dictionary<Vector2Int, Vector2Int> stairs,
-            float levelHeight = CryptLevelHeight)
+            float levelHeight = CryptLevelHeight, System.Func<Vector2Int, int> tier = null)
         {
             LevelHeight = levelHeight;
+            this.tier = tier;
             this.raised = raised;
             this.sunken = sunken;
             this.stairs = stairs;
         }
 
         public static ElevationMap From(DungeonLayout layout) => new ElevationMap(layout.Raised, layout.Sunken, layout.TerraceStairs,
-            layout.Theme == DungeonTheme.Cave ? CaveLevelHeight : CryptLevelHeight);
+            layout.Theme == DungeonTheme.Cave ? CaveLevelHeight : CryptLevelHeight, layout.Tiered ? layout.TierLevel : null);
 
-        /// <summary>The level the cell's floor stands at: 1 raised, -1 sunken, else 0.</summary>
-        public int LevelOf(Vector2Int cell) => raised.Contains(cell) ? 1 : sunken.Contains(cell) ? -1 : 0;
+        /// <summary>The level the cell's floor stands at: its hall's in a climbing level (2026-10-21), one more on a
+        /// dais, one less in a pit.</summary>
+        public int LevelOf(Vector2Int cell) =>
+            (tier != null ? tier(cell) : 0) + (raised.Contains(cell) ? 1 : sunken.Contains(cell) ? -1 : 0);
 
         /// <summary>The level at a ground point, in levels: on steps, from the top step's level at their upper edge to
         /// the bottom one's at their lower edge.</summary>
@@ -80,6 +84,16 @@ namespace ARPG
 
         /// <summary>The lift up the screen at a ground point, 0 off any level.</summary>
         public static float HeightAt(Vector2 ground) => Current != null ? Current.HeightAt(ground) : 0f;
+
+        /// <summary>The same as a Vector2 (where effects and shots are drawn).</summary>
+        public static Vector2 World2(Vector2 ground)
+        {
+            var world = IsoMath.GroundToWorld(ground);
+            return new Vector2(world.x, world.y + HeightAt(ground));
+        }
+
+        /// <summary>Where her picture stands: her body's place lifted by the floor under it.</summary>
+        public static Vector3 Lifted(Vector3 world) => new Vector3(world.x, world.y + HeightAt(IsoMath.WorldToGround(world)), world.z);
 
         /// <summary>Where a thing standing at a ground point is drawn: on the ground, lifted by the floor's height.</summary>
         public static Vector3 World(Vector2 ground)

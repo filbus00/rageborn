@@ -234,6 +234,25 @@ namespace ARPG
         /// pass over).</summary>
         public HashSet<Vector2Int> Chasm { get; } = new HashSet<Vector2Int>();
 
+        int[] tierLevels;
+
+        /// <summary>
+        /// The level a cell's floor stands at in a climbing level (2026-10-21, the owner: "The first options but you fight
+        /// upwards. From the bottom up"): each hall one higher than the one below it; passages at the lower hall's level;
+        /// walls and rock at the highest level beside them. 0 everywhere in a level that does not climb.
+        /// </summary>
+        public int TierLevel(Vector2Int cell)
+        {
+            if (tierLevels == null || !Bounds.Contains(cell))
+                return 0;
+            return tierLevels[(cell.x - Bounds.xMin) + (cell.y - Bounds.yMin) * Bounds.width];
+        }
+
+        /// <summary>Whether the level climbs, hall by hall.</summary>
+        public bool Tiered => tierLevels != null;
+
+        internal void SetTierLevels(int[] levels) => tierLevels = levels;
+
         /// <summary>The crypt's halls with a purpose (2026-10-20), by room index.</summary>
         public Dictionary<int, HallTheme> Halls { get; } = new Dictionary<int, HallTheme>();
 

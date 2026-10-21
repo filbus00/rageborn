@@ -99,7 +99,7 @@ namespace ARPG
             look.Glow.transform.localScale = new Vector3(glowSize, glowSize * 0.75f, 1f);
             look.Trail.color = new Color(tint.r, tint.g, tint.b, art != null ? 0.45f : 0.8f);
             look.Trail.transform.localScale = new Vector3(trailLength, trailWidth, 1f);
-            look.Root.position = IsoMath.GroundToWorld(origin);
+            look.Root.position = Elevation.World2(origin);
             var world = IsoMath.GroundToWorld(velocity);
             var heading = Quaternion.Euler(0f, 0f, Mathf.Atan2(world.y, world.x) * Mathf.Rad2Deg);
             look.Body.transform.rotation = heading;
@@ -140,7 +140,7 @@ namespace ARPG
 
                 if (outcome == EnemyProjectileFlight.Outcome.Flying)
                 {
-                    shot.Look.Root.position = IsoMath.GroundToWorld(shot.Position);
+                    shot.Look.Root.position = Elevation.World2(shot.Position);
                     var heading = IsoMath.GroundToWorld(shot.Velocity);
                     var turn = Quaternion.Euler(0f, 0f, Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg);
                     shot.Look.Trail.transform.rotation = turn;

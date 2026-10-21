@@ -86,7 +86,7 @@ namespace ARPG
         /// <summary>Whether an enemy at <paramref name="ground"/> stands inside the camera's view, where it may start an
         /// attack (<see cref="EnemyRules.InView"/>). True when there is no camera.</summary>
         public bool InView(Vector2 ground) =>
-            !hasView || EnemyRules.InView((Vector2)IsoMath.GroundToWorld(ground) - viewCentre, viewHalf);
+            !hasView || EnemyRules.InView((Vector2)Elevation.World2(ground) - viewCentre, viewHalf);
 
         internal SpatialHash Hash { get; private set; }
 

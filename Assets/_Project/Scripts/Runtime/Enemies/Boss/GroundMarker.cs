@@ -373,8 +373,8 @@ namespace ARPG
 
         static void PlaceLine(Transform transform, Vector2 from, Vector2 to, float width)
         {
-            var a = IsoMath.GroundToWorld(from);
-            var b = IsoMath.GroundToWorld(to);
+            var a = Elevation.World2(from);
+            var b = Elevation.World2(to);
             var delta = b - a;
             transform.position = (a + b) / 2f;
             transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg);
@@ -384,7 +384,7 @@ namespace ARPG
         // A ground circle of radius r is an ellipse r wide and r/2 tall on screen.
         static void Place(Transform transform, Vector2 ground, float radius)
         {
-            transform.position = IsoMath.GroundToWorld(ground);
+            transform.position = Elevation.World2(ground);
             transform.localScale = new Vector3(radius * 2f, radius * 2f * IsoMath.GroundSquash, 1f);
         }
 

@@ -110,6 +110,15 @@ namespace ARPG
         public int MinMiddleRooms = 10;
         public int MaxMiddleRooms = 15;
 
+        /// <summary>
+        /// Climbing levels (the owner, 2026-10-21, picking "descending tiers" but "you fight upwards. From the bottom up"):
+        /// in the crypt the halls form one chain up the screen, each a level higher than the last, joined by wide stairs;
+        /// enemies come from above and below, not the sides. This many halls between the first and the last.
+        /// </summary>
+        public bool Tiered = true;
+        public int MinTierRooms = 5;
+        public int MaxTierRooms = 7;
+
         /// <summary>Solid rock between neighbouring rooms, in cells: each column and row boundary its own thickness, so
         /// rooms are joined by short rough passages through the rock rather than sharing one thin wall (2026-10-08: "no
         /// real feel of traveling underground"). Thinned to 1 to 2 on 2026-10-20 for open levels (below).</summary>
@@ -203,8 +212,9 @@ namespace ARPG
         /// 15: raised daises and balconies in crypt halls, sunken burial pits, chasms with bridges (2026-10-20).
         /// 16: square burial pits (their railings zig-zagged round cut corners, 2026-10-20).
         /// 17: no pits; dining halls, chapels, sarcophagus halls, the throne room at depth 5, long carpets (2026-10-21).
+        /// 18: the crypt climbs: one chain of halls up the screen, each a level higher (2026-10-21).
         /// </summary>
-        public const int Version = 17;
+        public const int Version = 18;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -253,11 +263,26 @@ namespace ARPG
             var random = new System.Random(seed);
 
             // 1. Grow the room tree on the coarse grid.
-            var roomCount = random.Next(settings.MinMiddleRooms, settings.MaxMiddleRooms + 1) + 2;
+            var tiered = settings.Tiered && DungeonRules.ThemeAt(depth) == DungeonTheme.Crypt;
+            var roomCount = tiered
+                ? random.Next(settings.MinTierRooms, settings.MaxTierRooms + 1) + 2
+                : random.Next(settings.MinMiddleRooms, settings.MaxMiddleRooms + 1) + 2;
             var macros = new List<Vector2Int> { Vector2Int.zero };
             var parents = new List<int> { -1 };
             var treeDepth = new List<int> { 0 };
             var taken = new HashSet<Vector2Int> { Vector2Int.zero };
+            // A climbing level: one chain of halls, each a step up the screen (+x and +y in turn, so the chain zig-zags
+            // up a band about a hall and a half wide).
+            var stepX = random.Next(2) == 0;
+            while (tiered && macros.Count < roomCount)
+            {
+                var next = macros[macros.Count - 1] + (stepX ? Vector2Int.right : Vector2Int.up);
+                stepX = !stepX;
+                parents.Add(macros.Count - 1);
+                treeDepth.Add(treeDepth[treeDepth.Count - 1] + 1);
+                macros.Add(next);
+                taken.Add(next);
+            }
             while (macros.Count < roomCount)
             {
                 var from = random.NextDouble() < GrowFromNewestChance ? macros.Count - 1 : random.Next(macros.Count);
@@ -461,6 +486,8 @@ namespace ARPG
             FillRock(layout);
             if (!cave)
                 OpenThinWalls(layout);
+            if (tiered)
+                Tiers(layout, slots, macros, random);
             // The crypt: a raised dais across the far end of some halls, its rim of dressed stone with a flight of steps
             // down toward the camera (2026-10-20). After the thin walls are opened, which would take the rim away.
             if (layout.Theme == DungeonTheme.Crypt)
@@ -472,6 +499,9 @@ namespace ARPG
                         // A long carpet down some halls (2026-10-20), laid before anything stands on it.
                         if (random.Next(100) < CarpetPercent)
                             Runner(layout, mains[i], mains[i].width >= mains[i].height);
+                        // A climbing level's height is its tiers; no daises, balconies or chasms inside the halls.
+                        if (tiered)
+                            continue;
                         // A combat hall may hold a sunken burial pit or a balcony for its archers instead (2026-10-20).
                         if (kinds[i] == RoomKind.Combat && Pit(layout, mains[i], random))
                             continue;
@@ -1034,6 +1064,181 @@ namespace ARPG
                         layout.Raised.Add(cell);
                 return;
             }
+        }
+
+        // ---------------------------------------------------------------- climbing levels (2026-10-21)
+
+        /// <summary>
+        /// Raises each hall of a climbing level a level over the one below it: every open cell takes its hall's index
+        /// (passages the lower hall's), then each hall's edge toward the lower floor becomes a rim (wall, low, a stone face
+        /// drawn under it) but for a flight of steps three cells wide where the passage meets it, down toward the camera.
+        /// A hall whose steps do not fit stays at the level below. Walls and rock take the highest level beside them.
+        /// </summary>
+        static void Tiers(DungeonLayout layout, RectInt[] slots, List<Vector2Int> macros, System.Random random)
+        {
+            var b = layout.Bounds;
+            var index = new int[b.width * b.height];
+            for (var k = 0; k < index.Length; k++)
+                index[k] = -1;
+            int At(Vector2Int c) => (c.x - b.xMin) + (c.y - b.yMin) * b.width;
+            bool Open(Vector2Int c) => b.Contains(c) && layout.Get(c) != DungeonCell.Wall && layout.Get(c) != DungeonCell.Void;
+
+            // Halls' own cells, then passages flooded from them, each taking the lowest hall it touches.
+            var queue = new Queue<Vector2Int>();
+            for (var i = 0; i < slots.Length; i++)
+                for (var x = slots[i].xMin; x < slots[i].xMax; x++)
+                    for (var y = slots[i].yMin; y < slots[i].yMax; y++)
+                    {
+                        var c = new Vector2Int(x, y);
+                        if (Open(c))
+                        {
+                            index[At(c)] = i;
+                            queue.Enqueue(c);
+                        }
+                    }
+            while (queue.Count > 0)
+            {
+                var c = queue.Dequeue();
+                foreach (var side in RoomShape.Sides)
+                {
+                    var n = c + side;
+                    if (!Open(n))
+                        continue;
+                    var inSlot = false;
+                    foreach (var slot in slots)
+                        if (slot.Contains(n))
+                            inSlot = true;
+                    if (inSlot)
+                        continue;
+                    if (index[At(n)] == -1 || index[At(c)] < index[At(n)])
+                    {
+                        index[At(n)] = index[At(c)];
+                        queue.Enqueue(n);
+                    }
+                }
+            }
+
+            var level = new int[slots.Length];
+            for (var i = 1; i < slots.Length; i++)
+            {
+                var stepped = macros[i] - macros[i - 1];
+                var down = stepped.x > 0 ? Vector2Int.left : Vector2Int.down;
+                level[i] = level[i - 1] + (RaiseHall(layout, slots, i, down, index, b, random) ? 1 : 0);
+            }
+
+            // Levels: open cells their hall's; the rest the highest of their neighbours', spreading outward.
+            var levels = new int[index.Length];
+            var known = new bool[index.Length];
+            var front = new List<Vector2Int>();
+            for (var x = b.xMin; x < b.xMax; x++)
+                for (var y = b.yMin; y < b.yMax; y++)
+                {
+                    var c = new Vector2Int(x, y);
+                    var i = index[At(c)];
+                    if (i < 0)
+                        continue;
+                    levels[At(c)] = level[i];
+                    known[At(c)] = true;
+                    front.Add(c);
+                }
+            var nextFront = new List<Vector2Int>();
+            while (front.Count > 0)
+            {
+                nextFront.Clear();
+                var best = new Dictionary<Vector2Int, int>();
+                foreach (var c in front)
+                    for (var dx = -1; dx <= 1; dx++)
+                        for (var dy = -1; dy <= 1; dy++)
+                        {
+                            var n = new Vector2Int(c.x + dx, c.y + dy);
+                            if (!b.Contains(n) || known[At(n)])
+                                continue;
+                            var l = levels[At(c)];
+                            if (!best.TryGetValue(n, out var have) || l > have)
+                                best[n] = l;
+                        }
+                foreach (var pair in best)
+                {
+                    levels[At(pair.Key)] = pair.Value;
+                    known[At(pair.Key)] = true;
+                    nextFront.Add(pair.Key);
+                }
+                (front, nextFront) = (nextFront, front);
+            }
+            layout.SetTierLevels(levels);
+        }
+
+        // Makes hall i's edge toward the lower floor a rim with a flight of steps; false (and nothing changed) when no flight
+        // fits or the rim would cut the way.
+        static bool RaiseHall(DungeonLayout layout, RectInt[] slots, int i, Vector2Int down, int[] index, RectInt b, System.Random random)
+        {
+            int At(Vector2Int c) => (c.x - b.xMin) + (c.y - b.yMin) * b.width;
+            bool Lower(Vector2Int c) => b.Contains(c) && index[At(c)] >= 0 && index[At(c)] < i && layout.Get(c) == DungeonCell.Floor;
+            var slot = slots[i];
+            var plateau = new HashSet<Vector2Int>();
+            for (var x = slot.xMin; x < slot.xMax; x++)
+                for (var y = slot.yMin; y < slot.yMax; y++)
+                {
+                    var c = new Vector2Int(x, y);
+                    if (layout.Get(c) == DungeonCell.Floor && index[At(c)] == i)
+                        plateau.Add(c);
+                }
+            var ring = new HashSet<Vector2Int>();
+            foreach (var c in plateau)
+                for (var dx = -1; dx <= 1; dx++)
+                    for (var dy = -1; dy <= 1; dy++)
+                        if (Lower(new Vector2Int(c.x + dx, c.y + dy)))
+                            ring.Add(c);
+            if (ring.Count == 0)
+                return false;
+            var side = new Vector2Int(down.y, down.x);
+            var flights = new List<Vector2Int>();
+            foreach (var c in ring)
+            {
+                var fits = true;
+                for (var k = -1; k <= 1 && fits; k++)
+                {
+                    var f = c + side * k;
+                    fits = ring.Contains(f) && Lower(f + down) && plateau.Contains(f - down) && !ring.Contains(f - down);
+                }
+                if (fits)
+                    flights.Add(c);
+            }
+            if (flights.Count == 0)
+                return false;
+            // The flight in the middle of where the passage meets the hall.
+            var meet = Vector2.zero;
+            var count = 0;
+            foreach (var c in ring)
+                if (Lower(c + down))
+                {
+                    meet += (Vector2)c;
+                    count++;
+                }
+            meet /= Mathf.Max(1, count);
+            flights.Sort((p, q) => Vector2.Distance(p, meet).CompareTo(Vector2.Distance(q, meet)));
+            var steps = new Dictionary<Vector2Int, Vector2Int>();
+            for (var k = -1; k <= 1; k++)
+                steps[flights[0] + side * k] = down;
+            var walls = new HashSet<Vector2Int>(ring);
+            walls.ExceptWith(steps.Keys);
+            var region = new RectInt(Mathf.Min(slot.xMin, slots[i - 1].xMin) - 4, Mathf.Min(slot.yMin, slots[i - 1].yMin) - 4,
+                Mathf.Max(slot.xMax, slots[i - 1].xMax) - Mathf.Min(slot.xMin, slots[i - 1].xMin) + 8,
+                Mathf.Max(slot.yMax, slots[i - 1].yMax) - Mathf.Min(slot.yMin, slots[i - 1].yMin) + 8);
+            var start = flights[0] + down;
+            var before = Reach(layout, region, start, null);
+            var after = Reach(layout, region, start, walls);
+            before.ExceptWith(walls);
+            if (!after.IsSupersetOf(before))
+                return false;
+            foreach (var c in walls)
+            {
+                layout.Set(c.x, c.y, DungeonCell.Wall);
+                layout.Ledges.Add(c);
+            }
+            foreach (var pair in steps)
+                layout.TerraceStairs[pair.Key] = pair.Value;
+            return true;
         }
 
         // ---------------------------------------------------------------- halls with a purpose (2026-10-20)

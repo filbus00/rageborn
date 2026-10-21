@@ -169,7 +169,7 @@ namespace ARPG
 
             life -= damage * (1f - 0.1f * bristle);
             hitAnimation = EnemyAnimationRules.HitSeconds;
-            var world = IsoMath.GroundToWorld(ground);
+            var world = Elevation.World2(ground);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y + 0.6f, 0f), damage, false, isDamageToPlayer: true);
             if (life <= 0f)
                 KnockOut();
@@ -181,7 +181,7 @@ namespace ARPG
             life = 0f;
             knockedOut = PetRules.KnockedOutSeconds;
             DropCarried();
-            var world = IsoMath.GroundToWorld(ground);
+            var world = Elevation.World2(ground);
             DamageNumbers.Current?.ShowText(new Vector3(world.x, world.y + 1f, 0f), definition.Name.ToUpperInvariant() + " IS DOWN", definition.Color, 32);
             // With sheets it falls first (ShowKnockedOut); the placeholder just goes.
             if (animationSet == null || animationSet.Death == null)
@@ -375,7 +375,7 @@ namespace ARPG
             var pets = session.Pets;
             if (target.IsBurning)
                 damage *= 1f + pets.ActiveRank(PetSkillId.EmberTusks) * PetSkillRules.Get(PetSkillId.EmberTusks).PerRank;
-            var world = IsoMath.GroundToWorld(target.GroundPosition);
+            var world = Elevation.World2(target.GroundPosition);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);
             // Quiver of the Hollow Hound (Docs/03): what the pet bites is marked for the arrows.
             if (equipment.Wears(LegendaryId.QuiverOfTheHollowHound))
@@ -449,7 +449,7 @@ namespace ARPG
                 foreach (var enemy in near)
                     if (enemy != target && enemy.IsAlive && Vector2.Distance(enemy.GroundPosition, target.GroundPosition) <= radius + enemy.Definition.BodyRadius)
                         enemy.TakeDamage(damage * PetSkillRules.Get(PetSkillId.GoreBurst).PerRank * burst);
-                var world = IsoMath.GroundToWorld(target.GroundPosition);
+                var world = Elevation.World2(target.GroundPosition);
                 DamageNumbers.Current?.ShowText(new Vector3(world.x, world.y + 1f, 0f), "GORE BURST", definition.Color, 30);
             }
         }
@@ -517,7 +517,7 @@ namespace ARPG
 
         void Callout(string text)
         {
-            var world = IsoMath.GroundToWorld(ground);
+            var world = Elevation.World2(ground);
             DamageNumbers.Current?.ShowText(new Vector3(world.x, world.y + 1.1f, 0f), text, definition.Color, 28);
         }
 

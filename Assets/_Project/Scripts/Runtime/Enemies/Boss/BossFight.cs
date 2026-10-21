@@ -356,7 +356,7 @@ namespace ARPG
             var go = GroundMarker.NewSprite("Shot", TelegraphArt.Ember, color, transform, 60);
             go.GetComponent<SpriteRenderer>().sortingLayerName = GameSortingLayers.Effects;
             go.transform.localScale = new Vector3(radius * 2f, radius * 2f, 1f);
-            go.transform.position = IsoMath.GroundToWorld(origin);
+            go.transform.position = Elevation.World2(origin);
             shots.Add(new Shot { Transform = go.transform, Position = origin, Velocity = velocity, Radius = radius, Multiplier = multiplier, SlowFraction = slowFraction });
         }
 
@@ -366,7 +366,7 @@ namespace ARPG
             {
                 var shot = shots[i];
                 shot.Position += shot.Velocity * frameDelta;
-                shot.Transform.position = IsoMath.GroundToWorld(shot.Position);
+                shot.Transform.position = Elevation.World2(shot.Position);
                 var hitPlayer = manager != null && Vector2.Distance(shot.Position, manager.PlayerGround) <= shot.Radius;
                 var gone = manager == null || Vector2.Distance(shot.Position, center) > arenaRadius + 1f ||
                            !manager.Nav.IsWalkable(IsoMath.GroundToCell(shot.Position));

@@ -304,8 +304,7 @@ namespace ARPG
             var wallTiles = new TileBase[groundTiles.Length];
             var propTiles = new TileBase[groundTiles.Length];
             var artTiles = new TileBase[groundTiles.Length];
-            var steps = new List<TileChangeData>();
-            var sunkenSteps = new List<TileChangeData>();
+            var steps = new List<(TileChangeData tile, int level)>();
             var theme = Layout.Theme;
             elevation = Elevation.Current;
             MeasureRock();
@@ -380,10 +379,8 @@ namespace ARPG
                                      Layout.TerraceStairs.TryGetValue(at - across, out var b) && b == down;
                         var stepPiece = theme == DungeonTheme.Cave ? DungeonArt.Piece(ThemePieces.Stairs(theme, down))
                             : middle ? DungeonArt.Piece(ThemePieces.Flight(down)) : null;
-                        if (foot < 0)
-                            pitStepCells.Add(at);
                         if (stepPiece != null)
-                            (foot < 0 ? sunkenSteps : steps).Add(new TileChangeData(new Vector3Int(at.x, at.y, 0), stepPiece, Color.white, Matrix4x4.identity));
+                            steps.Add((new TileChangeData(new Vector3Int(at.x, at.y, 0), stepPiece, Color.white, Matrix4x4.identity), foot));
                     }
                     // The crypt's rims (2026-10-20): a pit's edge, a balustrade at floor level with stone dropping into it; a
                     // dais's front, the stone face dropping from the raised floor (drawn over the rim, LiftFloors), with a
@@ -398,17 +395,8 @@ namespace ARPG
                             artTiles[index] = name != null ? DungeonArt.Piece(name) : null;
                         }
                         else
-                        {
-                            var lowX = LowerBeside(at + Vector2Int.left);
-                            var lowY = LowerBeside(at + Vector2Int.down);
-                            var name = ThemePieces.DaisEdge(lowX, lowY, true);
-                            artTiles[index] = name != null ? DungeonArt.Piece(name) : null;
-                            daisRims.Add(at);
-                            if (lowX)
-                                shadowed.Add(at + Vector2Int.left);
-                            if (lowY)
-                                shadowed.Add(at + Vector2Int.down);
-                        }
+                            artTiles[index] = null; // its face is drawn by Layer, a level down
+
                     }
                 }
 
@@ -436,7 +424,7 @@ namespace ARPG
             wallArt ??= Overlay("Wall Art");
             wallArt.ClearAllTiles();
             SetShaded(wallArt, area, artTiles);
-            LiftFloors(steps, sunkenSteps);
+            Layer(steps);
             LoadTimer.Mark("paint: walls");
 
             // Braziers and candles light their corner of a dark level.
@@ -475,7 +463,7 @@ namespace ARPG
             // Summoning circles on some rooms' floors, their candles lighting them a dim red.
             foreach (var cell in Layout.Rituals)
             {
-                var circle = WorldArt.Place("ritual_circle", lights, CellWorld(cell), true);
+                var circle = WorldArt.Place("ritual_circle", lights, Elevation.World(IsoMath.CellToGround(cell)), true);
                 if (circle == null)
                     break;
                 var glow = WorldLights.Add(circle.transform, new Color(1f, 0.35f, 0.25f), 0.9f, 0.4f, 3.5f, 0.3f);
@@ -528,7 +516,7 @@ namespace ARPG
                         name = "wall_chains";
                     name += faceX && (!faceY || WallHash(x, y, 4) < 0.5f) ? "_x" : "_y";
                     // A hair in front of its own block, so it draws over the wall and under anyone standing before it.
-                    var detail = WorldArt.Place(name, parent, CellWorld(at) + new Vector3(0f, -0.01f, 0f));
+                    var detail = WorldArt.Place(name, parent, CellWorld(at) + new Vector3(0f, DrawLevel(at) * elevation.LevelHeight - 0.01f, 0f));
                     if (detail == null || !torch || name == "wall_chains_x" || name == "wall_chains_y")
                         continue;
                     torches++;
@@ -710,16 +698,10 @@ namespace ARPG
         bool IsOpenCell(int x, int y) => Layout.Get(x, y) == DungeonCell.Floor || Layout.Get(x, y) == DungeonCell.Prop;
 
         ElevationMap elevation;
-        readonly List<Vector2Int> daisRims = new List<Vector2Int>();
-        readonly List<Vector2Int> pitStepCells = new List<Vector2Int>();
         readonly HashSet<Vector2Int> shadowed = new HashSet<Vector2Int>();
 
         /// <summary>The shade of the floor right before a dais's face (2026-10-20).</summary>
         const float FaceShadow = 0.62f;
-
-        // Floor lower than a dais beside it: open floor not raised (steps count as lower).
-        bool LowerBeside(Vector2Int cell) =>
-            !Layout.Raised.Contains(cell) && !Layout.Ledges.Contains(cell) && Layout.Get(cell) != DungeonCell.Wall && Layout.Get(cell) != DungeonCell.Void;
 
         bool NextToPit(Vector2Int cell)
         {
@@ -731,46 +713,136 @@ namespace ARPG
         }
 
         /// <summary>
-        /// Draws raised and sunken floors at their height (2026-10-20): their ground tiles move from the ground to a
-        /// copy of it lifted (or lowered) by <see cref="ElevationMap.LevelHeight"/>, drawn over the ground (a pit's under
-        /// it, so the near floor hides its near rows); props on them and pillars standing on a dais go to lifted copies of
-        /// the props and wall art; steps are drawn on the floor's layers, a pit's lowered, with no ground under them.
+        /// Draws every cell at its floor's height (2026-10-20: daises and pits; 2026-10-21: climbing levels, each hall a
+        /// level up): ground, props and wall art go to copies of their tilemaps lifted <see cref="ElevationMap.LevelHeight"/>
+        /// a level, a higher level's ground drawn over a lower one's; steps on the ground layers at their foot's level.
+        /// Outside the caves every drop the camera sees (a cell higher than the cell at its -x or -y) gets dressed stone
+        /// faces down to the lower one, a balustrade on top where a rim stands, and a shadow on the floor before it. The
+        /// ground tilemap keeps its tiles for the nav grid but is no longer drawn.
         /// </summary>
-        void LiftFloors(List<TileChangeData> steps, List<TileChangeData> sunkenSteps)
+        void Layer(List<(TileChangeData tile, int level)> steps)
         {
             var h = elevation.LevelHeight;
-            var raisedGround = GroundCopy("Ground Raised", h, 1);
-            var sunkenGround = GroundCopy("Ground Sunken", -h, -2);
-            MoveTiles(ground, raisedGround, Layout.Raised);
-            // A dais's rim is the edge of its raised floor: drawn up there, its face below (2026-10-20).
-            MoveTiles(ground, raisedGround, daisRims);
-            foreach (var cell in shadowed)
+            var b = Layout.Bounds;
+            var faces = Layout.Theme != DungeonTheme.Cave;
+            var grounds = new Dictionary<int, List<TileChangeData>>();
+            var props = new Dictionary<int, List<TileChangeData>>();
+            var arts = new Dictionary<int, List<TileChangeData>>();
+            var stepsByLevel = new Dictionary<int, List<TileChangeData>>();
+            var propMap = PropTilemap();
+            void Add(Dictionary<int, List<TileChangeData>> into, int level, TileChangeData tile)
             {
-                var at = new Vector3Int(cell.x, cell.y, 0);
-                if (ground.GetTile(at) == null)
-                    continue;
-                ground.SetTileFlags(at, TileFlags.None);
-                var c = ground.GetColor(at);
-                ground.SetColor(at, new Color(c.r * FaceShadow, c.g * FaceShadow, c.b * FaceShadow, c.a));
+                if (!into.TryGetValue(level, out var list))
+                    into[level] = list = new List<TileChangeData>();
+                list.Add(tile);
             }
-            MoveTiles(ground, sunkenGround, Layout.Sunken);
-            GroundCopy("Steps", 0f, 2).SetTiles(steps.ToArray(), true);
-            GroundCopy("Steps Sunken", -h, -1).SetTiles(sunkenSteps.ToArray(), true);
-            // The ground under a pit's steps goes down with the pit, filling the corners the steps leave.
-            MoveTiles(ground, sunkenGround, pitStepCells);
+            bool Drawn(Vector3Int at) => ground.GetTile(at) != null || wallArt.GetTile(at) != null;
 
-            var raisedProps = Overlay("Props Raised");
-            raisedProps.transform.localPosition += new Vector3(0f, h, 0f);
-            var sunkenProps = Overlay("Props Sunken");
-            sunkenProps.transform.localPosition += new Vector3(0f, -h, 0f);
-            MoveTiles(PropTilemap(), raisedProps, Layout.Raised);
-            MoveTiles(PropTilemap(), sunkenProps, Layout.Sunken);
-            // Pillars standing on a dais: walls (not rims) whose every open side is raised.
-            var pillars = new List<Vector2Int>();
-            foreach (var cell in Layout.FreeStanding)
+            // Faces first, so the floor before them can be shaded as it is laid.
+            for (var x = b.xMin; x < b.xMax && faces; x++)
+                for (var y = b.yMin; y < b.yMax; y++)
+                {
+                    var cell = new Vector2Int(x, y);
+                    var at = new Vector3Int(x, y, 0);
+                    if (!Drawn(at) || Layout.Chasm.Contains(cell) || Layout.TerraceStairs.ContainsKey(cell))
+                        continue;
+                    var level = DrawLevel(cell);
+                    var left = new Vector3Int(x - 1, y, 0);
+                    var below = new Vector3Int(x, y - 1, 0);
+                    var levelX = Drawn(left) ? DrawLevel(cell + Vector2Int.left) : level;
+                    var levelY = Drawn(below) ? DrawLevel(cell + Vector2Int.down) : level;
+                    var lowest = Mathf.Min(levelX, levelY);
+                    if (lowest >= level)
+                        continue;
+                    var rim = Layout.Ledges.Contains(cell) && !NextToPit(cell);
+                    for (var k = lowest; k < level; k++)
+                    {
+                        var name = ThemePieces.DaisEdge(levelX <= k, levelY <= k, rim && k == level - 1);
+                        var piece = name != null ? DungeonArt.Piece(name) : null;
+                        if (piece != null)
+                            Add(arts, k, new TileChangeData(at, piece, Color.white, Matrix4x4.identity));
+                    }
+                    if (levelX < level)
+                        shadowed.Add(cell + Vector2Int.left);
+                    if (levelY < level)
+                        shadowed.Add(cell + Vector2Int.down);
+                }
+
+            for (var x = b.xMin; x < b.xMax; x++)
+                for (var y = b.yMin; y < b.yMax; y++)
+                {
+                    var cell = new Vector2Int(x, y);
+                    var at = new Vector3Int(x, y, 0);
+                    var level = DrawLevel(cell);
+                    var tile = ground.GetTile(at);
+                    if (tile != null)
+                    {
+                        var c = ground.GetColor(at);
+                        if (shadowed.Contains(cell))
+                            c = new Color(c.r * FaceShadow, c.g * FaceShadow, c.b * FaceShadow, c.a);
+                        Add(grounds, level, new TileChangeData(at, tile, c, ground.GetTransformMatrix(at)));
+                    }
+                    tile = propMap.GetTile(at);
+                    if (tile != null)
+                        Add(props, level, new TileChangeData(at, tile, propMap.GetColor(at), propMap.GetTransformMatrix(at)));
+                    tile = wallArt.GetTile(at);
+                    if (tile != null)
+                        Add(arts, level, new TileChangeData(at, tile, wallArt.GetColor(at), wallArt.GetTransformMatrix(at)));
+                }
+            foreach (var (tile, level) in steps)
+                Add(stepsByLevel, level, tile);
+
+            // The ground stays for the nav grid, undrawn; props and wall art move to their levels.
+            ground.GetComponent<TilemapRenderer>().enabled = false;
+            propMap.ClearAllTiles();
+            wallArt.ClearAllTiles();
+            foreach (var pair in grounds)
+                GroundCopy("Ground " + pair.Key, pair.Key * h, pair.Key * 3).SetTiles(pair.Value.ToArray(), true);
+            foreach (var pair in stepsByLevel)
+                GroundCopy("Steps " + pair.Key, pair.Key * h, pair.Key * 3 + 2).SetTiles(pair.Value.ToArray(), true);
+            foreach (var pair in props)
             {
-                if (Layout.Ledges.Contains(cell) || Layout.Chasm.Contains(cell))
-                    continue;
+                var map = pair.Key == 0 ? propMap : Overlay("Props " + pair.Key);
+                if (pair.Key != 0)
+                    map.transform.localPosition += new Vector3(0f, pair.Key * h, 0f);
+                map.SetTiles(pair.Value.ToArray(), true);
+            }
+            foreach (var pair in arts)
+            {
+                var map = pair.Key == 0 ? wallArt : Overlay("Wall Art " + pair.Key);
+                if (pair.Key != 0)
+                    map.transform.localPosition += new Vector3(0f, pair.Key * h, 0f);
+                map.SetTiles(pair.Value.ToArray(), true);
+            }
+        }
+
+        /// <summary>The level a cell is drawn at: its floor's; steps at their foot's; a rim at the highest floor beside it
+        /// (outside the caves, whose ledges stand on the lower floor); a pillar standing on a dais one up.</summary>
+        int DrawLevel(Vector2Int cell)
+        {
+            if (Layout.TerraceStairs.TryGetValue(cell, out var down))
+            {
+                elevation.StepLevels(cell, down, out _, out var foot);
+                return foot;
+            }
+            var level = elevation.LevelOf(cell);
+            if (Layout.Theme == DungeonTheme.Cave)
+                return level;
+            if (Layout.Ledges.Contains(cell))
+            {
+                var best = int.MinValue;
+                for (var dx = -1; dx <= 1; dx++)
+                    for (var dy = -1; dy <= 1; dy++)
+                    {
+                        var n = new Vector2Int(cell.x + dx, cell.y + dy);
+                        var kind = Layout.Get(n);
+                        if (kind != DungeonCell.Wall && kind != DungeonCell.Void)
+                            best = Mathf.Max(best, elevation.LevelOf(n));
+                    }
+                return best == int.MinValue ? level : best;
+            }
+            if (Layout.FreeStanding.Contains(cell) && !Layout.Chasm.Contains(cell))
+            {
                 var open = 0;
                 var up = 0;
                 foreach (var side in RoomShape.Sides)
@@ -781,14 +853,9 @@ namespace ARPG
                             up++;
                     }
                 if (open > 0 && up == open)
-                    pillars.Add(cell);
+                    return level + 1;
             }
-            if (pillars.Count > 0)
-            {
-                var raisedArt = Overlay("Wall Art Raised");
-                raisedArt.transform.localPosition += new Vector3(0f, h, 0f);
-                MoveTiles(wallArt, raisedArt, pillars);
-            }
+            return level;
         }
 
         static void MoveTiles(Tilemap from, Tilemap to, IEnumerable<Vector2Int> cells)
@@ -874,7 +941,8 @@ namespace ARPG
             {
                 var doorway = new GameObject("Doorway", typeof(SpriteRenderer));
                 doorway.transform.SetParent(go.transform, false);
-                doorway.transform.position = CellWorld(cell + into);
+                // Drawn at its wall's height in a climbing level (2026-10-21); the trigger stays on the ground plane.
+                doorway.transform.position = CellWorld(cell + into) + new Vector3(0f, DrawLevel(cell + into) * elevation.LevelHeight, 0f);
                 var doorwayRenderer = doorway.GetComponent<SpriteRenderer>();
                 doorwayRenderer.sprite = wallPiece;
                 doorwayRenderer.sortingLayerName = GameSortingLayers.Entities;
@@ -899,6 +967,10 @@ namespace ARPG
             var collider = go.GetComponent<CircleCollider2D>();
             collider.isTrigger = true;
             collider.radius = 0.4f;
+            // Drawn at the floor's height; the trigger kept on the ground plane where she walks.
+            var lift = Elevation.HeightAt(IsoMath.CellToGround(cell));
+            go.transform.position += new Vector3(0f, lift, 0f);
+            collider.offset = new Vector2(0f, -lift);
 
             go.AddComponent<SceneExit>().Configure(scene, depth, arriveBy);
         }

@@ -85,7 +85,7 @@ namespace ARPG
                     else
                         session.Run.Items++;
                     // Its name over the character in its rarity's color.
-                    DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 2f, 0f),
+                    DamageNumbers.Current?.ShowText(Elevation.Lifted(player.transform.position) + new Vector3(0f, 2f, 0f),
                         ItemComparison.Name(drop.Item), LootColors.Of(drop.Item.Rarity), 38);
                     loot.Release(drop);
                 }
@@ -93,7 +93,7 @@ namespace ARPG
                 {
                     // The grid has no room for this item's size: say so, at most every few seconds.
                     nextNoRoomCallout = Time.unscaledTime + NoRoomCalloutSeconds;
-                    DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 2f, 0f), "NO ROOM", NoRoomColor, 40);
+                    DamageNumbers.Current?.ShowText(Elevation.Lifted(player.transform.position) + new Vector3(0f, 2f, 0f), "NO ROOM", NoRoomColor, 40);
                 }
             }
         }

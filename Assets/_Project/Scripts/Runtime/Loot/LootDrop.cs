@@ -91,7 +91,7 @@ namespace ARPG
             Item = item;
             GoldAmount = 0;
             Place(ground);
-            var start = IsoMath.GroundToWorld(from);
+            var start = Elevation.World2(from);
             popFrom = new Vector3(start.x, start.y, 0f);
             popTime = 0f;
 
@@ -206,7 +206,7 @@ namespace ARPG
         {
             get
             {
-                var world = IsoMath.GroundToWorld(GroundPosition);
+                var world = Elevation.World2(GroundPosition);
                 return new Vector2(world.x, world.y + LabelHeight);
             }
         }

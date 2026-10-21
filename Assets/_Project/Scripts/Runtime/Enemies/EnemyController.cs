@@ -630,11 +630,11 @@ namespace ARPG
             var gore = ArrowFx.Current;
             var maxLife = MaxLife;
             if (gore != null && maxLife > 0f)
-                gore.Wound(IsoMath.GroundToWorld(ground), BodyHeight, Mathf.Clamp(amount / maxLife * 4f, 0.3f, 1.5f));
+                gore.Wound(Elevation.World2(ground), BodyHeight, Mathf.Clamp(amount / maxLife * 4f, 0.3f, 1.5f));
             if (life <= 0f)
             {
                 life = 0f;
-                gore?.Gore(IsoMath.GroundToWorld(ground), BodyHeight, definition.VisualScale);
+                gore?.Gore(Elevation.World2(ground), BodyHeight, definition.VisualScale);
                 State = EnemyState.Dead;
                 deathTimer = definition.DeathSeconds;
                 HideModifierIcons();
@@ -686,7 +686,7 @@ namespace ARPG
             if (dripTimer > 0f)
                 return;
             dripTimer = bleedTimer > 0f ? Random.Range(0.12f, 0.25f) : Random.Range(0.35f, 0.7f);
-            ArrowFx.Current?.Drip(IsoMath.GroundToWorld(ground), BodyHeight);
+            ArrowFx.Current?.Drip(Elevation.World2(ground), BodyHeight);
         }
 
         /// <summary>Starts or replaces a bleed: this much damage a second, already through the hit formula, for this long.</summary>
@@ -756,7 +756,7 @@ namespace ARPG
             burnPending = 0f;
             if (damage <= 0f || !IsAlive)
                 return;
-            var world = IsoMath.GroundToWorld(ground);
+            var world = Elevation.World2(ground);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, false, isDamageToPlayer: false);
             TakeDamage(damage);
         }
@@ -776,7 +776,7 @@ namespace ARPG
             bleedPending = 0f;
             if (damage <= 0f)
                 return;
-            var world = IsoMath.GroundToWorld(ground);
+            var world = Elevation.World2(ground);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, false, isDamageToPlayer: false);
             TakeDamage(damage);
         }

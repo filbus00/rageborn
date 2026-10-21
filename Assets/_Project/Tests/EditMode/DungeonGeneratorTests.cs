@@ -85,7 +85,11 @@ namespace ARPG.Tests
                 var layout = DungeonGenerator.Generate(seed, depth, Library());
                 var label = $"seed {seed}, depth {depth}";
 
-                Assert.That(layout.Rooms.Count, Is.InRange(12, 17), label + ": 10 to 15 rooms between start and exit (2026-10-08: twice the levels)");
+                // The crypt climbs (2026-10-21): 5 to 7 halls between the first and the last; elsewhere 10 to 15 (2026-10-08).
+                if (layout.Tiered)
+                    Assert.That(layout.Rooms.Count, Is.InRange(7, 9), label);
+                else
+                    Assert.That(layout.Rooms.Count, Is.InRange(12, 17), label + ": 10 to 15 rooms between start and exit (2026-10-08: twice the levels)");
                 Assert.AreEqual(1, layout.Rooms.Count(r => r.Kind == RoomKind.Start), label);
                 var lastLevel = DungeonRules.IsBossDepth(depth);
                 Assert.AreEqual(lastLevel ? 0 : 1, layout.Rooms.Count(r => r.Kind == RoomKind.Exit), label);
@@ -372,7 +376,7 @@ namespace ARPG.Tests
         public void SafeToBlock_RefusesACellThatWouldCutAPassage()
         {
             // A one-cell gap in a wall: blocking it would cut the level in two; a cell against a straight wall would not.
-            var layout = DungeonGenerator.Generate(5, 1, Library());
+            var layout = DungeonGenerator.Generate(5, 1, Library(), new DungeonSettings { Tiered = false });
             var room = layout.Rooms[0].Interior;
             var gap = new Vector2Int(room.xMin + 3, room.yMin + 3);
             for (var x = room.xMin; x < room.xMax; x++)

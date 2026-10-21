@@ -137,7 +137,7 @@ namespace ARPG
                 return;
             }
             // Sized from the camera each frame, so the arc keeps its size on the ground whatever the zoom.
-            var feet = player.transform.position;
+            var feet = Elevation.Lifted(player.transform.position);
             var center = cam.WorldToScreenPoint(feet);
             var unit = Mathf.Abs(cam.WorldToScreenPoint(feet + Vector3.right).x - center.x);
             root.position = center;

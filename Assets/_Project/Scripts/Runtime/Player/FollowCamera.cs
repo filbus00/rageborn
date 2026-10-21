@@ -62,6 +62,8 @@ namespace ARPG
             var framing = (0.5f - playerScreenHeight) * 2f * cam.orthographicSize;
 
             var position = player.transform.position;
+            // Her picture stands at the floor's height (a dais, a climbing level's halls; 2026-10-21): the view follows it.
+            position.y += Elevation.HeightAt(IsoMath.WorldToGround(position));
             transform.position = new Vector3(position.x + lead.x, position.y + framing + lead.y, transform.position.z);
         }
     }

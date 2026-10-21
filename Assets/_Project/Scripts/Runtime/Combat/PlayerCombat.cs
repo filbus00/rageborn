@@ -397,7 +397,7 @@ namespace ARPG
             knownLevel = level;
             if (player == null)
                 return;
-            DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 2.3f, 0f),
+            DamageNumbers.Current?.ShowText(Elevation.Lifted(player.transform.position) + new Vector3(0f, 2.3f, 0f),
                 "+1 TALENT POINT (Bag > Talents)", NewSkillColor, 46);
         }
 
@@ -1123,7 +1123,7 @@ namespace ARPG
             else
                 slamMarker.RestartCircle(origin, skill.Range, 0.08f);
             slamMarkerTimer = SlamEffectSeconds;
-            DamageNumbers.Current?.ShowText(player.transform.position + new Vector3(0f, 1.8f, 0f),
+            DamageNumbers.Current?.ShowText(Elevation.Lifted(player.transform.position) + new Vector3(0f, 1.8f, 0f),
                 skill.DisplayName.ToUpperInvariant(), new Color(skill.EffectColor.r, skill.EffectColor.g, skill.EffectColor.b, 1f), 40);
         }
 
@@ -1263,7 +1263,7 @@ namespace ARPG
             var direction = toTarget.sqrMagnitude > 1e-6f ? toTarget.normalized : facing;
             var axe = spareAxes.Count > 0 ? spareAxes.Pop() : CreateAxe(skill);
             axe.gameObject.SetActive(true);
-            axe.position = IsoMath.GroundToWorld(origin);
+            axe.position = Elevation.World2(origin);
             shots.Add(new Shot
             {
                 Transform = axe,
@@ -1520,7 +1520,7 @@ namespace ARPG
         // An arrow is drawn at chest height over its ground point, pointing along its flight as seen on screen.
         static void PlaceArrow(Transform arrow, Vector2 ground, Vector2 velocity)
         {
-            var world = IsoMath.GroundToWorld(ground);
+            var world = Elevation.World2(ground);
             arrow.position = new Vector3(world.x, world.y + ArrowHeight, 0f);
             var screen = IsoMath.GroundToWorld(velocity);
             arrow.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(screen.y, screen.x) * Mathf.Rad2Deg);
@@ -1594,7 +1594,7 @@ namespace ARPG
 
                 if (shot.Style == ShotStyle.Axe)
                 {
-                    shot.Transform.position = IsoMath.GroundToWorld(shot.Position);
+                    shot.Transform.position = Elevation.World2(shot.Position);
                     shot.Transform.Rotate(0f, 0f, -AxeSpinDegreesPerSecond * deltaTime);
                 }
                 else
@@ -1655,7 +1655,7 @@ namespace ARPG
         // Gallowsreach pools on the floor that make enemies bleed.
         void Trail(ref Shot shot, Vector2 direction, float deltaTime)
         {
-            var world = IsoMath.GroundToWorld(shot.Position);
+            var world = Elevation.World2(shot.Position);
             shot.TrailTimer -= deltaTime;
             if (shot.TrailTimer <= 0f)
             {
@@ -1713,7 +1713,7 @@ namespace ARPG
                 {
                     mark.Pulse += MarkPulseSeconds;
                     if (mark.Burning)
-                        fx.Embers(IsoMath.GroundToWorld(mark.Center), mark.Radius * 2f, 2);
+                        fx.Embers(Elevation.World2(mark.Center), mark.Radius * 2f, 2);
                     enemies.QueryEnemies(mark.Center, mark.Radius + QueryMargin, nearby);
                     for (var n = 0; n < nearby.Count; n++)
                     {
@@ -1728,7 +1728,7 @@ namespace ARPG
                         // Burning ground: 60 percent weapon damage a second, dealt each pulse, and a slow.
                         enemy.ApplySlow(1f - Legendaries.CinderGroundSlow, MarkPulseSeconds * 2f);
                         var damage = Damage(enemy, Legendaries.CinderGroundPerSecond * MarkPulseSeconds, false) * BurnFactor;
-                        var world = IsoMath.GroundToWorld(enemy.GroundPosition);
+                        var world = Elevation.World2(enemy.GroundPosition);
                         DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, false, isDamageToPlayer: false);
                         if (enemy.TakeDamage(damage))
                             Kills++;
@@ -1741,7 +1741,7 @@ namespace ARPG
         // Returns whether the shot is spent.
         bool HitEnemy(ref Shot shot, EnemyController enemy, Vector2 direction)
         {
-            var world = IsoMath.GroundToWorld(enemy.GroundPosition);
+            var world = Elevation.World2(enemy.GroundPosition);
             var screenDirection = IsoMath.GroundToWorld(direction);
             if (shot.Style == ShotStyle.Explosive)
             {
@@ -1888,12 +1888,12 @@ namespace ARPG
 
         // A bolt drawn as sparks along the line between two ground points (the raven's Storm Wings too).
         public void Bolt(Vector2 from, Vector2 to) =>
-            fx.Lightning(IsoMath.GroundToWorld(from), IsoMath.GroundToWorld(to), ArrowHeight, ArrowHeight * 0.7f);
+            fx.Lightning(Elevation.World2(from), Elevation.World2(to), ArrowHeight, ArrowHeight * 0.7f);
 
         /// <summary>A thunderbolt from high above onto a point of ground (Thunder Arrow, 2026-10-18).</summary>
         public void Thunderbolt(Vector2 at)
         {
-            var world = IsoMath.GroundToWorld(at);
+            var world = Elevation.World2(at);
             fx.Lightning(world + new Vector2(0.15f, 0f), world, ThunderHeight, 0.05f);
         }
 
@@ -1903,8 +1903,8 @@ namespace ARPG
         void CorpseBurst(EnemyController dead, float multiplier)
         {
             var at = dead.GroundPosition;
-            fx.Burst(IsoMath.GroundToWorld(at), CorpseBurstRadius * 0.5f, CorpseBurstColor);
-            fx.Gore(IsoMath.GroundToWorld(at), ArrowHeight, 1.2f);
+            fx.Burst(Elevation.World2(at), CorpseBurstRadius * 0.5f, CorpseBurstColor);
+            fx.Gore(Elevation.World2(at), ArrowHeight, 1.2f);
             enemies.QueryEnemies(at, CorpseBurstRadius + QueryMargin, spreadNearby);
             for (var n = 0; n < spreadNearby.Count; n++)
             {
@@ -1929,7 +1929,7 @@ namespace ARPG
                     if (next != null)
                     {
                         next.ApplyBleed(bleedPerSecond, Legendaries.WidowBleedSeconds);
-                        fx.Blood(IsoMath.GroundToWorld(next.GroundPosition), Vector2.up, ArrowHeight, 0.8f);
+                        fx.Blood(Elevation.World2(next.GroundPosition), Vector2.up, ArrowHeight, 0.8f);
                     }
                 }
                 if (lastCritical && enemy.IsAlive)
@@ -1999,7 +1999,7 @@ namespace ARPG
                 fork.Pierced.Add(struck);
                 shots.Add(fork);
             }
-            fx.Sparks(IsoMath.GroundToWorld(parent.Position), IsoMath.GroundToWorld(direction), ArrowHeight, parent.Glow, 4);
+            fx.Sparks(Elevation.World2(parent.Position), IsoMath.GroundToWorld(direction), ArrowHeight, parent.Glow, 4);
         }
 
         // Burn and chill on a hit, by the arrow's chances (Docs/03: burn is 60 percent weapon damage over 3 s a stack).
@@ -2007,7 +2007,7 @@ namespace ARPG
         {
             if (!enemy.IsAlive)
                 return;
-            var world = IsoMath.GroundToWorld(enemy.GroundPosition);
+            var world = Elevation.World2(enemy.GroundPosition);
             if (shot.IgniteChance > 0f && Random.value < shot.IgniteChance)
             {
                 enemy.ApplyBurn(Damage(enemy, BurnShare / BurnStacks.Seconds, false) * BurnFactor);
@@ -2058,7 +2058,7 @@ namespace ARPG
             }
             if (shot.Style == ShotStyle.Axe)
                 return true;
-            var world = IsoMath.GroundToWorld(shot.Position);
+            var world = Elevation.World2(shot.Position);
             var screenDirection = IsoMath.GroundToWorld(direction);
             if (shot.Ricochets > 0)
             {
@@ -2095,7 +2095,7 @@ namespace ARPG
                 hits++;
                 var multiplier = shot.Multiplier * (emberTongue && enemy.IsBurning ? 1f + Legendaries.EmberTongueBurstBonus : 1f);
                 if (Strike(enemy, multiplier, projectile: true))
-                    fx.Blood(IsoMath.GroundToWorld(enemy.GroundPosition), IsoMath.GroundToWorld((enemy.GroundPosition - at).normalized), ArrowHeight, 1.4f);
+                    fx.Blood(Elevation.World2(enemy.GroundPosition), IsoMath.GroundToWorld((enemy.GroundPosition - at).normalized), ArrowHeight, 1.4f);
                 else
                     Afflict(enemy, shot);
             }
@@ -2105,13 +2105,13 @@ namespace ARPG
                 focus.MarkCombat();
             }
             Sfx.Play(SoundId.Explosion, 0.9f);
-            fx.Burst(IsoMath.GroundToWorld(at), shot.BurstRadius, shot.Glow);
+            fx.Burst(Elevation.World2(at), shot.BurstRadius, shot.Glow);
             // Cinder-Stitched Jerkin: the burst leaves burning ground that burns and slows.
             if (session.Equipment.Wears(LegendaryId.CinderStitchedJerkin))
             {
                 var radius = shot.BurstRadius * 0.8f;
                 marks.Add(new GroundMark { Center = at, Radius = radius, Left = Legendaries.CinderGroundSeconds, Burning = true });
-                fx.Fire(IsoMath.GroundToWorld(at), radius * 2f, Legendaries.CinderGroundSeconds);
+                fx.Fire(Elevation.World2(at), radius * 2f, Legendaries.CinderGroundSeconds);
             }
         }
 
@@ -2131,7 +2131,7 @@ namespace ARPG
                 var away = enemy == struck ? direction : (enemy.GroundPosition - impact + direction * 0.5f).normalized;
                 enemy.Push(away * shot.KnockDistance);
             }
-            fx.Burst(IsoMath.GroundToWorld(impact), shot.KnockRadius, shot.Glow);
+            fx.Burst(Elevation.World2(impact), shot.KnockRadius, shot.Glow);
             Sfx.Play(SoundId.GroundBreaker, 0.6f);
         }
 
@@ -2257,7 +2257,7 @@ namespace ARPG
             if (tree.BloodDrinker && health != null)
                 health.Heal(SurvivalBoonRules.Healed(Mathf.Min(damage, enemy.Life)));
 
-            var world = IsoMath.GroundToWorld(enemy.GroundPosition);
+            var world = Elevation.World2(enemy.GroundPosition);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);
 
             if (enemy.TakeDamage(damage))

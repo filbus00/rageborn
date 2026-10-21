@@ -167,7 +167,7 @@ namespace ARPG
                     w.Image.enabled = false;
                     continue;
                 }
-                var chestWorld = player.transform.position + Vector3.up * ChestHeight;
+                var chestWorld = Elevation.Lifted(player.transform.position) + Vector3.up * ChestHeight;
                 var chest = (Vector2)cam.WorldToScreenPoint(chestWorld);
                 var unit = Mathf.Abs(cam.WorldToScreenPoint(chestWorld + Vector3.right).x - chest.x);
                 var from = w.Source != null ? w.Source.GroundPosition : w.From;
@@ -177,7 +177,7 @@ namespace ARPG
                     w.Image.enabled = false;
                     continue;
                 }
-                var toward = (Vector2)cam.WorldToScreenPoint(IsoMath.GroundToWorld(from)) - chest;
+                var toward = (Vector2)cam.WorldToScreenPoint(Elevation.World2(from)) - chest;
                 var angle = toward.sqrMagnitude > 1f ? Mathf.Atan2(toward.y, toward.x) * Mathf.Rad2Deg : 90f;
                 // Crowded warnings move along the ring, not out from it.
                 angle = WarningRules.Place(angle, placedAngles);

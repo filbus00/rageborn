@@ -78,7 +78,7 @@ namespace ARPG
             shock.Time = 0f;
             shock.Color = Color.Lerp(color, Color.white, 0.5f);
             shock.Renderer.gameObject.SetActive(true);
-            shock.Renderer.transform.position = IsoMath.GroundToWorld(center);
+            shock.Renderer.transform.position = Elevation.World2(center);
             // Sized and coloured now: a shock made during a tick is first ticked next frame, and until then a new one
             // drew one unit across at full colour, a reused one at its last size.
             var r = radius * 0.85f;

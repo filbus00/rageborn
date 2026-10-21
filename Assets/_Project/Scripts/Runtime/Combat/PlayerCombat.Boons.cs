@@ -122,7 +122,7 @@ namespace ARPG
         void SpreadDeath(BoonDeath death)
         {
             enemies.QueryEnemies(death.At, UniqueBoonRules.DeathRadius + QueryMargin, boonNearby);
-            var world = IsoMath.GroundToWorld(death.At);
+            var world = Elevation.World2(death.At);
             if (death.Frozen)
             {
                 fx.Burst(world, UniqueBoonRules.DeathRadius * 0.5f, ChillColor);
@@ -143,7 +143,7 @@ namespace ARPG
                 if (death.Burning)
                 {
                     enemy.ApplyBurn(Damage(enemy, BurnShare / BurnStacks.Seconds, false) * BurnFactor);
-                    fx.Flames(IsoMath.GroundToWorld(enemy.GroundPosition), ArrowHeight * 0.8f);
+                    fx.Flames(Elevation.World2(enemy.GroundPosition), ArrowHeight * 0.8f);
                 }
                 if (death.Frozen && enemy.IsAlive)
                 {
@@ -170,7 +170,7 @@ namespace ARPG
                 {
                     preyTimer = UniqueBoonRules.PreySeconds;
                     if (next != prey)
-                        DamageNumbers.Current?.ShowText(IsoMath.GroundToWorld(next.GroundPosition) + new Vector2(0f, 1.6f), "PREY", PreyColor, 30);
+                        DamageNumbers.Current?.ShowText(Elevation.World2(next.GroundPosition) + new Vector2(0f, 1.6f), "PREY", PreyColor, 30);
                     prey = next;
                 }
             }
@@ -180,7 +180,7 @@ namespace ARPG
             if (preySparkTimer > 0f)
                 return;
             preySparkTimer = 0.2f;
-            fx.Sparks(IsoMath.GroundToWorld(prey.GroundPosition) + new Vector2(0f, 1.1f), Vector2.up, 0f, PreyColor, 1);
+            fx.Sparks(Elevation.World2(prey.GroundPosition) + new Vector2(0f, 1.1f), Vector2.up, 0f, PreyColor, 1);
         }
 
         // Vengeful Quiver: hurt, she shoots back at those around her.
@@ -233,7 +233,7 @@ namespace ARPG
             var at = struck.GroundPosition;
             enemies.QueryEnemies(at, UniqueBoonRules.ThunderRadius + QueryMargin, boonNearby);
             Thunderbolt(at);
-            fx.Burst(IsoMath.GroundToWorld(at), UniqueBoonRules.ThunderRadius * 0.4f, ThunderColor);
+            fx.Burst(Elevation.World2(at), UniqueBoonRules.ThunderRadius * 0.4f, ThunderColor);
             Sfx.Play(SoundId.Thunder, 0.6f);
             for (var n = 0; n < boonNearby.Count; n++)
             {

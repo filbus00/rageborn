@@ -116,7 +116,7 @@ namespace ARPG
                 return;
 
             GameSession.Current.AddMaterial(material, amount);
-            var world = IsoMath.GroundToWorld(at);
+            var world = Elevation.World2(at);
             DamageNumbers.Current?.ShowText(new Vector3(world.x, world.y + 1.2f, 0f), $"+{amount} {material}", MaterialCalloutColor, 40);
         }
 
