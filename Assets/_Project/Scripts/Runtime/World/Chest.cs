@@ -38,8 +38,11 @@ namespace ARPG
             GameSession.Current.RecordOpened(key);
 
             var loot = FindAnyObjectByType<LootDirector>();
-            if (loot != null)
-                loot.DropChest(itemLevel, IsoMath.WorldToGround(transform.position));
+            if (loot == null)
+                return;
+            // From its place on the ground plane (its trigger's), not where it is drawn, lifted (2026-10-21).
+            var trigger = GetComponent<Collider2D>();
+            loot.DropChest(itemLevel, IsoMath.WorldToGround((Vector2)transform.position + (trigger != null ? trigger.offset : Vector2.zero)));
         }
 
         void SetOpen(bool value)

@@ -989,6 +989,9 @@ namespace ARPG
             var collider = go.GetComponent<CircleCollider2D>();
             collider.isTrigger = true;
             collider.radius = 0.5f;
+            // Drawn at its floor's height; the trigger stays on the ground plane where she walks (2026-10-21, the owner:
+            // "Can not interact with chest anymore").
+            collider.offset = new Vector2(0f, -Elevation.HeightAt(IsoMath.CellToGround(cell)));
 
             var closed = WorldArt.Get("chest_closed");
             var opened = WorldArt.Get("chest_open");

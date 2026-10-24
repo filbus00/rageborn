@@ -1548,3 +1548,9 @@ The owner's answers are in Docs/08. How it is built:
 - Visuals lifted by `Elevation.World2`/`Lifted` in place of `IsoMath.GroundToWorld` for positions (directions unchanged): her shots and every effect in `PlayerCombat` and its boons, enemy projectiles, hazards, `GroundMarker`, boss shots, wounds and gore, loot, pets, damage numbers and callouts over her, the warning ring, the aim arc, `EnemyManager.InView`. `FollowCamera` follows her lifted picture. Not lifted: waypoints and portals (off in the roguelite), quest objects (off). Her arrows take the height of the cell under them, so one crossing a rim jumps a level in a frame.
 - Checked in the editor at depth 2: below the first flight and below a flight three levels up. Offline 704 passed (the 5 NavGrid failures), Unity 709 of 709.
 
+## 2026-10-24: her shadow, and chests on raised halls
+
+- The owner: "the player shadow is far below her", "she gets higher and higher up for every staircaise she climbs", "Can not interact with chest anymore". Her shadow is a child of her body ("Shadow", made by `PlayerSceneBuilder`) and stayed on the ground plane while her picture rose a level a hall, so the gap grew with every flight. `PlayerSpriteAnimator.LateUpdate` now lifts it with her picture.
+- Chests were lifted whole, their trigger too, out of reach of her body on the ground plane. The trigger is offset back down by the lift (as the stairs'), and `Chest` drops its loot from the trigger's place.
+- Checked in the editor at depth 2: walking into a chest one level up opens it; her shadow and picture both 0.6 up there. Offline 704 passed (the 5 NavGrid failures), Unity 709 of 709.
+

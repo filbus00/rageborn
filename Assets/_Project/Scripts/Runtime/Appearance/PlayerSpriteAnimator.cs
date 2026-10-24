@@ -297,9 +297,18 @@ namespace ARPG
         // ground plane.
         void LateUpdate()
         {
-            if (sprite != null && player != null)
-                sprite.transform.localPosition = new Vector3(0f, Elevation.HeightAt(IsoMath.WorldToGround(player.transform.position)), 0f);
+            if (sprite == null || player == null)
+                return;
+            var lift = new Vector3(0f, Elevation.HeightAt(IsoMath.WorldToGround(player.transform.position)), 0f);
+            sprite.transform.localPosition = lift;
+            // Her shadow goes up with her (2026-10-21, the owner: "the player shadow is far below her").
+            if (shadow == null)
+                shadow = player.transform.Find("Shadow");
+            if (shadow != null)
+                shadow.localPosition = lift;
         }
+
+        Transform shadow;
 
         void Update()
         {
