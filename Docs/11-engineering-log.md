@@ -1554,3 +1554,7 @@ The owner's answers are in Docs/08. How it is built:
 - Chests were lifted whole, their trigger too, out of reach of her body on the ground plane. The trigger is offset back down by the lift (as the stairs'), and `Chest` drops its loot from the trigger's place.
 - Checked in the editor at depth 2: walking into a chest one level up opens it; her shadow and picture both 0.6 up there. Offline 704 passed (the 5 NavGrid failures), Unity 709 of 709.
 
+## 2026-10-25: no wall across the top of a flight
+
+- The owner (a phone screenshot): "The stairs now render with a wall". `DungeonLevel.Layer` drew a face on the floor behind every flight, since it read a step at its foot's level, lower. Drops are now measured to `FaceLevel`: a step counts at its top. Checked at depth 2 in the editor: the flight rises into the hall above with nothing across it (a small dark notch remains at one end of the top step). Offline 704 passed.
+

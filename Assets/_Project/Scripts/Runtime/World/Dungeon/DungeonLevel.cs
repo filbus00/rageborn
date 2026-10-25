@@ -749,8 +749,10 @@ namespace ARPG
                     var level = DrawLevel(cell);
                     var left = new Vector3Int(x - 1, y, 0);
                     var below = new Vector3Int(x, y - 1, 0);
-                    var levelX = Drawn(left) ? DrawLevel(cell + Vector2Int.left) : level;
-                    var levelY = Drawn(below) ? DrawLevel(cell + Vector2Int.down) : level;
+                    // Steps before a cell rise to it: no drop there (2026-10-25, the owner: "The stairs now render with a
+                    // wall"; a step counted at its foot put a face across the top of the flight).
+                    var levelX = Drawn(left) ? FaceLevel(cell + Vector2Int.left) : level;
+                    var levelY = Drawn(below) ? FaceLevel(cell + Vector2Int.down) : level;
                     var lowest = Mathf.Min(levelX, levelY);
                     if (lowest >= level)
                         continue;
@@ -814,6 +816,17 @@ namespace ARPG
                     map.transform.localPosition += new Vector3(0f, pair.Key * h, 0f);
                 map.SetTiles(pair.Value.ToArray(), true);
             }
+        }
+
+        // The level a neighbour shows a drop down to: a step's top (it climbs to the floor behind it), else its drawn level.
+        int FaceLevel(Vector2Int cell)
+        {
+            if (Layout.TerraceStairs.TryGetValue(cell, out var down))
+            {
+                elevation.StepLevels(cell, down, out var top, out _);
+                return top;
+            }
+            return DrawLevel(cell);
         }
 
         /// <summary>The level a cell is drawn at: its floor's; steps at their foot's; a rim at the highest floor beside it
