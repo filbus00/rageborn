@@ -1558,3 +1558,9 @@ The owner's answers are in Docs/08. How it is built:
 
 - The owner (a phone screenshot): "The stairs now render with a wall". `DungeonLevel.Layer` drew a face on the floor behind every flight, since it read a step at its foot's level, lower. Drops are now measured to `FaceLevel`: a step counts at its top. Checked at depth 2 in the editor: the flight rises into the hall above with nothing across it (a small dark notch remains at one end of the top step). Offline 704 passed.
 
+## 2026-10-25: an Android build for a playtester
+
+- The owner: "lets do an android build now so that my friend can playtest". Android Build Support with OpenJDK 17, NDK r27c and SDK platforms 34 to 37 was installed with the Hub's new CLI (`/Applications/Unity Hub.app/Contents/Resources/unity install-modules -e 6000.6.2f1 -m android --cm --accept-eula --non-interactive`; the old `Unity Hub -- --headless install-modules` hung while the Hub window was open) and Unity restarted.
+- `Tools > ARPG > Build Android APK` (`Editor/AndroidBuild.cs`): a release build (no performance overlay, no DEV buttons), IL2CPP, ARM64, minimum API 26, an APK (not a bundle) signed with Unity's debug key, application id `com.filipbusic.rageborn`, shown as "Wild Arrow" (the product name set for the build and put back), to `Builds/Android/WildArrow.apk`. It switches the editor to Android (a full reimport); `Tools > ARPG > Switch Editor Back To iOS` switches back. Stand-ins for `PlayerSettings.Android`, `AndroidArchitecture`, `AndroidSdkVersions` and `EditorUserBuildSettings` added to the compile check.
+- First build: succeeded in 441 s, 159 MB (the 12 errors it counts are the usual duplicate global light messages). Not run on an Android device here.
+
