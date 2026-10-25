@@ -305,13 +305,13 @@ namespace ARPG.Tests
 
 
         [Test]
-        public void TheCrypt_Climbs_HallByHall_UpTheScreen()
+        public void TheCrypt_Climbs_HallByHall_UpTheScreen_WhenTiered()
         {
             // The owner, 2026-10-21: vertical levels, "you fight upwards. From the bottom up".
             foreach (var seed in new[] { 7919, 31, 4242, 77, 1234 })
                 for (var depth = 1; depth <= 12; depth++)
                 {
-                    var layout = DungeonGenerator.Generate(seed, depth, Library());
+                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Tiered = true });
                     var label = $"seed {seed} depth {depth}";
                     Assert.IsTrue(layout.Tiered, label);
                     Assert.That(layout.Rooms.Count, Is.InRange(7, 9), label);
@@ -330,7 +330,9 @@ namespace ARPG.Tests
                     foreach (var pair in layout.TerraceStairs)
                         Assert.IsTrue(pair.Value.x < 0 || pair.Value.y < 0, label);
                 }
-            Assert.IsFalse(DungeonGenerator.Generate(7919, 16, Library()).Tiered, "the prison does not climb yet");
+            Assert.IsFalse(DungeonGenerator.Generate(7919, 16, Library(), new DungeonSettings { Tiered = true }).Tiered, "the prison does not climb");
+            // Off by default since 2026-10-25 (the owner: "remove the vertical dungeon design").
+            Assert.IsFalse(DungeonGenerator.Generate(7919, 4, Library()).Tiered);
         }
     }
 }

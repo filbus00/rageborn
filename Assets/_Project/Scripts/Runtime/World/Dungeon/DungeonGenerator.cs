@@ -115,7 +115,8 @@ namespace ARPG
         /// in the crypt the halls form one chain up the screen, each a level higher than the last, joined by wide stairs;
         /// enemies come from above and below, not the sides. This many halls between the first and the last.
         /// </summary>
-        public bool Tiered = true;
+        // Off since 2026-10-25 (the owner: "remove the vertical dungeon design"); the code is kept.
+        public bool Tiered = false;
         public int MinTierRooms = 5;
         public int MaxTierRooms = 7;
 
@@ -213,8 +214,9 @@ namespace ARPG
         /// 16: square burial pits (their railings zig-zagged round cut corners, 2026-10-20).
         /// 17: no pits; dining halls, chapels, sarcophagus halls, the throne room at depth 5, long carpets (2026-10-21).
         /// 18: the crypt climbs: one chain of halls up the screen, each a level higher (2026-10-21).
+        /// 19: the crypt no longer climbs (2026-10-25).
         /// </summary>
-        public const int Version = 18;
+        public const int Version = 19;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
