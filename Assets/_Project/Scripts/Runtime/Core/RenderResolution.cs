@@ -56,6 +56,10 @@ namespace ARPG
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
+        /// <summary>The camera stands this much further back (2026-10-25, the owner: "move the game camera back 20%"):
+        /// the view shows 20 percent more each way.</summary>
+        public const float ViewScale = 1.2f;
+
         static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             var camera = Camera.main;
@@ -67,7 +71,7 @@ namespace ARPG
                 // The look reset (Features.PixelFilter, 2026-10-20): the screen's own resolution, the view the filter
                 // gave (an art pixel Factor screen pixels).
                 // The long side: the game is portrait only, and the editor sometimes reports a landscape screen at load.
-                camera.orthographicSize = longSide / (2f * PixelArt.PixelsPerUnit * Factor(longSide));
+                camera.orthographicSize = longSide / (2f * PixelArt.PixelsPerUnit * Factor(longSide)) * ViewScale;
                 return;
             }
             var factor = PixelatedFactor(longSide);
