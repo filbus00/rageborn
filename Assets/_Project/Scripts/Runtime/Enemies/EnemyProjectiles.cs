@@ -69,10 +69,12 @@ namespace ARPG
                 // A drawn thing (a knife, an axe, a bomb, a blade) in its own colours.
                 renderer.sprite = art;
                 renderer.color = Color.white;
-                look.Body.transform.localScale = kind == ProjectileKind.Axe || kind == ProjectileKind.Bomb ? new Vector3(1.9f, 1.9f, 1f) : new Vector3(1.5f, 1.5f, 1f);
-                glowSize = 0.7f;
-                trailLength = kind == ProjectileKind.Knife ? 0.9f : 0.6f;
-                trailWidth = kind == ProjectileKind.Knife ? 0.08f : 0.18f;
+                // About the size of the coloured bolts (2026-10-25, the owner: "make sure that all enemie projectiles are
+                // about the size as the green attacks of the first enemies"; were 1.5 and 1.9, a knife hardly seen).
+                look.Body.transform.localScale = kind == ProjectileKind.Axe || kind == ProjectileKind.Bomb ? new Vector3(2.6f, 2.6f, 1f) : new Vector3(2.4f, 2.4f, 1f);
+                glowSize = 0.9f;
+                trailLength = kind == ProjectileKind.Knife ? 1.0f : 0.8f;
+                trailWidth = kind == ProjectileKind.Knife ? 0.16f : 0.22f;
             }
             else if (kind == ProjectileKind.Fireball)
             {
@@ -90,12 +92,13 @@ namespace ARPG
                 var bolt = color.a > 0f;
                 renderer.sprite = TelegraphArt.Ember;
                 renderer.color = Color.Lerp(tint, Color.white, 0.4f);
-                look.Body.transform.localScale = bolt ? new Vector3(0.6f, 0.3f, 1f) : new Vector3(0.7f, 0.14f, 1f);
-                glowSize = bolt ? 0.9f : 0.45f;
+                // An arrow as big as a bolt (2026-10-25: arrows were thin and hard to see).
+                look.Body.transform.localScale = bolt ? new Vector3(0.6f, 0.3f, 1f) : new Vector3(0.75f, 0.26f, 1f);
+                glowSize = 0.9f;
                 trailLength = bolt ? 1.0f : 1.1f;
-                trailWidth = bolt ? 0.22f : 0.08f;
+                trailWidth = bolt ? 0.22f : 0.2f;
             }
-            look.Glow.color = new Color(tint.r, tint.g, tint.b, art != null ? 0.25f : 0.55f);
+            look.Glow.color = new Color(tint.r, tint.g, tint.b, art != null ? 0.4f : 0.55f);
             look.Glow.transform.localScale = new Vector3(glowSize, glowSize * 0.75f, 1f);
             look.Trail.color = new Color(tint.r, tint.g, tint.b, art != null ? 0.45f : 0.8f);
             look.Trail.transform.localScale = new Vector3(trailLength, trailWidth, 1f);

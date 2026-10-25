@@ -30,7 +30,7 @@ namespace ARPG
         /// <summary>The ring's radius and the symbol's size, in world units; the ring's centre this far above her feet.
         /// Every warning sits on this one ring, close round her (the owner, 2026-10-20: "make the warnings cluster in a
         /// circle around the player character"; was 2.1, crowded ones stacking outward).</summary>
-        public const float Radius = 1.5f, Size = 0.84f, ChestHeight = 0.6f;
+        public const float Radius = 1.5f, Size = 0.672f, ChestHeight = 0.6f;
 
         /// <summary>Colours by attack: arrows and bolts red, lunges amber; a special shows its own colour.</summary>
         public static readonly Color ShotColor = new Color(1f, 0.25f, 0.18f, 1f);
@@ -65,7 +65,6 @@ namespace ARPG
         Warning last;
 
         readonly List<Warning> warnings = new List<Warning>();
-        readonly List<float> placedAngles = new List<float>(16);
         RectTransform root;
         Canvas canvas;
         PlayerController player;
@@ -150,7 +149,6 @@ namespace ARPG
             if (player == null)
                 player = FindAnyObjectByType<PlayerController>();
             var cam = Camera.main;
-            placedAngles.Clear();
             for (var i = 0; i < warnings.Count; i++)
             {
                 var w = warnings[i];
@@ -179,9 +177,8 @@ namespace ARPG
                 }
                 var toward = (Vector2)cam.WorldToScreenPoint(Elevation.World2(from)) - chest;
                 var angle = toward.sqrMagnitude > 1f ? Mathf.Atan2(toward.y, toward.x) * Mathf.Rad2Deg : 90f;
-                // Crowded warnings move along the ring, not out from it.
-                angle = WarningRules.Place(angle, placedAngles);
-                placedAngles.Add(angle);
+                // Each at its attack's own angle, overlapping when they crowd (2026-10-25, the owner: "The attack warnings
+                // need to overlap otherwise you do not see where the attacks are coming from"; they had moved aside).
                 var radians = angle * Mathf.Deg2Rad;
                 var rect = w.Image.rectTransform;
                 rect.position = chest + new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * (unit * Radius);
