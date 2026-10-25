@@ -190,6 +190,49 @@ def crypt_diag(orient, low=False):
     _crypt_top(tri, h)
 
 
+# A wall cell cut along a smoothed outline (2026-10-25, the owner: "is it possible to make the map edges more curved or
+# does it att need to be in 45 degrees?"). The cell's eight points, counterclockwise from its -x -y corner: corners at even
+# numbers, the middles of its sides at odd ones. A cut piece is the wall from point a counterclockwise to point b; the
+# chord from b back to a is its face toward the open floor.
+CUT_POINTS = [(-HALF, -HALF), (0.0, -HALF), (HALF, -HALF), (HALF, 0.0), (HALF, HALF), (0.0, HALF), (-HALF, HALF), (-HALF, 0.0)]
+
+
+def cut_shapes():
+    """Every (a, b) the game uses: spans of 3 to 5 points from any point; 2 and 6 from a side's middle."""
+    shapes = []
+    for a in range(8):
+        for d in range(2, 7):
+            if d in (2, 6) and a % 2 == 0:
+                continue
+            shapes.append((a, (a + d) % 8))
+    return shapes
+
+
+def crypt_cut(a, b, low=False):
+    rng = _rng("cut", a, b, low)
+    h = LOW_H if low else WALL_H
+    d = (b - a) % 8
+    poly = [CUT_POINTS[(a + k) % 8] for k in range(d + 1)]
+    prism(poly, h - 0.02, (0, 0, 0), mat(STONE[0], 0.0))
+    stones = _crypt_stones()
+    pa, pb = CUT_POINTS[a], CUT_POINTS[b]
+    dx, dy = pa[0] - pb[0], pa[1] - pb[1]
+    length = math.hypot(dx, dy)
+    normal = (dy / length, -dx / length)
+    _ashlar_line(pb, pa, normal, h - (0.03 if low else 0.12), rng, stones, z0=0.1)
+    _crypt_trim(pb, pa, normal, h, low)
+    # The cell's own straight faces toward the camera (-x, -y) where the wall reaches them.
+    for k in range(d):
+        p, q = poly[k], poly[k + 1]
+        if abs(p[0] + HALF) < 1e-6 and abs(q[0] + HALF) < 1e-6:
+            _ashlar_line(p, q, (-1, 0), h - (0.03 if low else 0.12), rng, stones, z0=0.1)
+            _crypt_trim(p, q, (-1, 0), h, low)
+        elif abs(p[1] + HALF) < 1e-6 and abs(q[1] + HALF) < 1e-6:
+            _ashlar_line(p, q, (0, -1), h - (0.03 if low else 0.12), rng, stones, z0=0.1)
+            _crypt_trim(p, q, (0, -1), h, low)
+    _crypt_top(poly, h)
+
+
 def crypt_pillar(variant):
     rng = _rng("pillar", variant)
     h = WALL_H * 1.05
@@ -522,6 +565,9 @@ def register(all_pieces):
     for n in range(1, 3):
         all_pieces["crypt_wall_low_%d" % n] = ("world", (lambda n=n: crypt_wall(n, True)), WORLD)
         all_pieces["crypt_pillar_%d" % n] = ("world", (lambda n=n: crypt_pillar(n)), WORLD)
+    for (a, b) in cut_shapes():
+        all_pieces["crypt_cut_%d%d" % (a, b)] = ("world", (lambda a=a, b=b: crypt_cut(a, b)), WORLD)
+        all_pieces["crypt_cut_%d%d_low" % (a, b)] = ("world", (lambda a=a, b=b: crypt_cut(a, b, True)), WORLD)
     for o in "bflr":
         all_pieces["crypt_diag_" + o] = ("world", (lambda o=o: crypt_diag(o)), WORLD)
         all_pieces["crypt_diag_%s_low" % o] = ("world", (lambda o=o: crypt_diag(o, True)), WORLD)

@@ -308,6 +308,8 @@ namespace ARPG
             var theme = Layout.Theme;
             elevation = Elevation.Current;
             MeasureRock();
+            if (theme == DungeonTheme.Crypt)
+                MeasureCorners();
 
             for (var y = 0; y < bounds.height; y++)
                 for (var x = 0; x < bounds.width; x++)
@@ -353,7 +355,8 @@ namespace ARPG
                     // around the rooms is many thousand cells; colliders only where she can reach).
                     // The crypt or cave piece when imported (2026-10-10), over an invisible blocker; else the older walls.
                     var piece = cell == DungeonCell.Wall && !IsStairsWall(at)
-                        ? DungeonArt.Piece(ThemePieces.Wall(theme, IsOpenCell, at.x, at.y, cameraSide, freeStanding, Layout.Ledges.Contains(at), PieceHash(at)))
+                        ? DungeonArt.Piece(CutWall(at, cameraSide, freeStanding) ??
+                                           ThemePieces.Wall(theme, IsOpenCell, at.x, at.y, cameraSide, freeStanding, Layout.Ledges.Contains(at), PieceHash(at)))
                         : null;
                     if (piece != null)
                     {
@@ -583,6 +586,63 @@ namespace ARPG
         int[,] rockDistance;
 
         // Chebyshev distance from each wall cell to the nearest open cell, up to RockShown + 1.
+        // How open each grid corner is, smoothed (WallCutRules), for the crypt's curved walls (2026-10-25). Corner (i, j)
+        // is the -x -y corner of cell (i, j).
+        float[] corners;
+
+        void MeasureCorners()
+        {
+            var b = Layout.Bounds;
+            var w = b.width + 1;
+            var h = b.height + 1;
+            var raw = new float[w * h];
+            for (var j = 0; j < h; j++)
+                for (var i = 0; i < w; i++)
+                {
+                    var x = b.xMin + i;
+                    var y = b.yMin + j;
+                    raw[i + j * w] = WallCutRules.CornerOpen(IsOpenCell(x - 1, y - 1), IsOpenCell(x, y - 1), IsOpenCell(x - 1, y), IsOpenCell(x, y));
+                }
+            corners = new float[w * h];
+            for (var j = 0; j < h; j++)
+                for (var i = 0; i < w; i++)
+                {
+                    float sum = 0f, weight = 0f;
+                    for (var dj = -1; dj <= 1; dj++)
+                        for (var di = -1; di <= 1; di++)
+                        {
+                            var ii = i + di;
+                            var jj = j + dj;
+                            if (ii < 0 || jj < 0 || ii >= w || jj >= h)
+                                continue;
+                            var k = (di == 0 ? 2f : 1f) * (dj == 0 ? 2f : 1f);
+                            sum += raw[ii + jj * w] * k;
+                            weight += k;
+                        }
+                    corners[i + j * w] = sum / weight;
+                }
+        }
+
+        float Corner(int x, int y)
+        {
+            var b = Layout.Bounds;
+            var i = x - b.xMin;
+            var j = y - b.yMin;
+            if (corners == null || i < 0 || j < 0 || i > b.width || j > b.height)
+                return 0f;
+            return corners[i + j * (b.width + 1)];
+        }
+
+        // A crypt wall beside the floor cut along the smoothed outline, or null for its usual piece.
+        string CutWall(Vector2Int at, bool cameraSide, bool freeStanding)
+        {
+            if (corners == null || freeStanding || Layout.Ledges.Contains(at) || Layout.Chasm.Contains(at))
+                return null;
+            if (!WallCutRules.TryCut(Corner(at.x, at.y), Corner(at.x + 1, at.y), Corner(at.x + 1, at.y + 1), Corner(at.x, at.y + 1), out var a, out var b))
+                return null;
+            return "crypt_cut_" + a + b + (cameraSide ? "_low" : "");
+        }
+
         void MeasureRock()
         {
             var b = Layout.Bounds;
