@@ -47,6 +47,7 @@ namespace ARPG
                 return;
 
             var origin = IsoMath.WorldToGround(player.transform.position);
+            var engaged = enemies != null ? enemies.EngagedCount : 0;
             var quiet = AutoLootRules.CanPickUpItems(
                 health != null ? health.SecondsSinceLastHit : float.MaxValue,
                 enemies != null ? enemies.EngagedCount : 0);
@@ -56,6 +57,9 @@ namespace ARPG
             for (var i = drops.Count - 1; i >= 0; i--)
             {
                 var drop = drops[i];
+                // The fight over, coins fly to her (2026-10-25).
+                if (drop.IsGold && AutoLootRules.CoinsPulled(origin, drop.GroundPosition, engaged))
+                    drop.MoveTo(AutoLootRules.CoinPullStep(drop.GroundPosition, origin, Time.deltaTime));
                 if (!AutoLootRules.InRange(origin, drop.GroundPosition))
                     continue;
 

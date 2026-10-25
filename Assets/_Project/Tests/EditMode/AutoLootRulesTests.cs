@@ -92,5 +92,19 @@ namespace ARPG.Tests
                 Assert.IsFalse(string.IsNullOrEmpty(AutoLootRules.Describe(rule)), rule + " has a name");
             }
         }
+
+        [Test]
+        public void Coins_FlyToHer_OnlyWhenTheFightIsOver()
+        {
+            // 2026-10-25, the owner: money pulled in "at the end of combat".
+            var her = Vector2.zero;
+            var coins = new Vector2(10f, 0f);
+            Assert.IsFalse(AutoLootRules.CoinsPulled(her, coins, 2), "not while enemies are engaged");
+            Assert.IsTrue(AutoLootRules.CoinsPulled(her, coins, 0));
+            Assert.IsFalse(AutoLootRules.CoinsPulled(her, new Vector2(30f, 0f), 0), "too far");
+            var next = AutoLootRules.CoinPullStep(coins, her, 0.5f);
+            Assert.AreEqual(10f - AutoLootRules.CoinPullSpeed * 0.5f, next.x, 1e-4f);
+            Assert.AreEqual(her, AutoLootRules.CoinPullStep(new Vector2(0.1f, 0f), her, 0.5f), "never past her");
+        }
     }
 }

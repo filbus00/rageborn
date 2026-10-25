@@ -61,6 +61,21 @@ namespace ARPG
 
         public static bool InRange(Vector2 character, Vector2 drop) => Vector2.Distance(character, drop) <= PickupRadius;
 
+        /// <summary>
+        /// When a fight is over (nobody engaged with her), every pile of coins within this many ground units flies to her
+        /// at this speed and is picked up (2026-10-25, the owner: "make it so that all the money dropped by mobs in pulled
+        /// into and picked up by the character at the end of combat").
+        /// </summary>
+        public const float CoinPullRange = 20f, CoinPullSpeed = 12f;
+
+        /// <summary>Whether coins at <paramref name="drop"/> fly to her now.</summary>
+        public static bool CoinsPulled(Vector2 character, Vector2 drop, int engaged) =>
+            engaged == 0 && Vector2.Distance(character, drop) <= CoinPullRange;
+
+        /// <summary>Where flying coins are after this frame: toward her at <see cref="CoinPullSpeed"/>.</summary>
+        public static Vector2 CoinPullStep(Vector2 drop, Vector2 character, float deltaTime) =>
+            Vector2.MoveTowards(drop, character, CoinPullSpeed * deltaTime);
+
         /// <summary>Whether items (not gold) may be picked up right now.</summary>
         /// <param name="secondsSinceLastHit">Seconds since the character last took a hit.</param>
         /// <param name="engagedEnemies">Living enemies that are approaching, attacking or recovering.</param>

@@ -215,8 +215,9 @@ namespace ARPG
         /// 17: no pits; dining halls, chapels, sarcophagus halls, the throne room at depth 5, long carpets (2026-10-21).
         /// 18: the crypt climbs: one chain of halls up the screen, each a level higher (2026-10-21).
         /// 19: the crypt no longer climbs (2026-10-25).
+        /// 20: no chasms (2026-10-25).
         /// </summary>
-        public const int Version = 19;
+        public const int Version = 20;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -1463,7 +1464,8 @@ namespace ARPG
         }
 
         /// <summary>The share of crypt combat halls (with no pit) split by a chasm (2026-10-20).</summary>
-        public const int ChasmPercent = 25;
+        // None since 2026-10-25 (the owner: "Remove the pits/chasms"); the code is kept.
+        public const int ChasmPercent = 0;
 
         /// <summary>
         /// A chasm across a crypt hall (the owner, 2026-10-20, okayed: "Bridges over chasms"): a band 4 to 6 cells wide

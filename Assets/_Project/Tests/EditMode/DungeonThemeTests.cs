@@ -243,7 +243,7 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void SomeCryptHalls_AreSplitByAChasm_WithABridge()
+        public void NoCryptHall_IsSplitByAChasm()
         {
             // The owner, 2026-10-20: "Bridges over chasms". Every level stays one piece (KeepReachable is checked by the
             // generator's own tests); here: chasms exist and are wall to walking.
@@ -257,7 +257,8 @@ namespace ARPG.Tests
                     foreach (var cell in layout.Chasm)
                         Assert.AreEqual(DungeonCell.Wall, layout.Get(cell));
                 }
-            Assert.Greater(chasms, 3);
+            // Switched off on 2026-10-25 (the owner: "Remove the pits/chasms").
+            Assert.AreEqual(0, chasms);
         }
 
         [Test]
