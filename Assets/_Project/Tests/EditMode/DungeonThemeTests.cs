@@ -262,17 +262,19 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void NoBurialPits_AndCryptHallsHaveTheirPurposes()
+        public void BurialPits_AndCryptHallsWithTheirPurposes()
         {
             // 2026-10-21, the owner: "remove the pits, add the rest".
             var themes = new HashSet<HallTheme>();
             var thrones = 0;
+            var pits = 0;
             var rugs = 0;
             foreach (var seed in new[] { 7919, 31, 4242, 77, 1234 })
                 for (var depth = 1; depth <= 12; depth++)
                 {
                     var layout = DungeonGenerator.Generate(seed, depth, Library());
-                    Assert.IsEmpty(layout.Sunken, $"seed {seed} depth {depth}: a pit");
+                    if (layout.Sunken.Count > 0)
+                        pits++;
                     foreach (var pair in layout.Halls)
                     {
                         themes.Add(pair.Value);
@@ -288,6 +290,8 @@ namespace ARPG.Tests
                             rugs++;
                 }
             Assert.Greater(rugs, 20, "carpets");
+            // Pits back since 2026-10-25 (the owner: "re insert the pits").
+            Assert.Greater(pits, 5, "burial pits");
             Assert.IsTrue(themes.Contains(HallTheme.Dining) && themes.Contains(HallTheme.Chapel) && themes.Contains(HallTheme.Sarcophagi));
             Assert.LessOrEqual(thrones, 5, "one at most a level, only at the throne depth");
         }

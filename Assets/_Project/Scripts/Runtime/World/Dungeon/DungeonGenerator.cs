@@ -216,8 +216,9 @@ namespace ARPG
         /// 18: the crypt climbs: one chain of halls up the screen, each a level higher (2026-10-21).
         /// 19: the crypt no longer climbs (2026-10-25).
         /// 20: no chasms (2026-10-25).
+        /// 21: burial pits back (2026-10-25).
         /// </summary>
-        public const int Version = 20;
+        public const int Version = 21;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -1539,7 +1540,8 @@ namespace ARPG
 
         /// <summary>The share of crypt combat halls with a sunken burial pit (2026-10-20; none since 2026-10-21, the
         /// owner: "remove the pits". The code is kept).</summary>
-        public const int PitPercent = 0;
+        // Back on 2026-10-25 (the owner: "re insert the pits").
+        public const int PitPercent = 30;
 
         /// <summary>
         /// A sunken burial pit in a crypt hall (the owner, 2026-10-20, okayed: "a lowered floor with steps down on every
