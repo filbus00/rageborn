@@ -37,6 +37,12 @@ namespace ARPG
 
         /// <summary>The Retcher (2026-10-17, the owner: "Make a puking enemy that spews bile at the character").</summary>
         Retcher,
+
+        // The start of the game's critters (2026-10-25, the owner: "add enemies: rats, bats that can swipe (close distance
+        // quickly and blobs that split when killed", "add them at the start of the game").
+        Rat,
+        Bat,
+        Blob,
     }
 
     /// <summary>Where a kind stands in a pack: in front, at the back, one behind the rest helping them, or in a pack
@@ -56,7 +62,8 @@ namespace ARPG
     /// golems and mages from 13, the library's demons from 25, the caves' beasts from 37; each fades in over three
     /// levels from its first depth and is gone after its last, so neighbouring bands mix at their seam. A pack is one
     /// kind of swarm (20 percent, 4 or more slots), or front fighters with 2 or 3 at the back (60 percent of the rest)
-    /// and a support behind them (30 percent of packs of 4 or more). Depth 1 is zombies only. A Champion keeps slot 0;
+    /// and a support behind them (30 percent of packs of 4 or more). Depth 1 has no back row or support: zombies and blobs, or
+    /// a swarm of rats or bats (2026-10-25). A Champion keeps slot 0;
     /// elite packs are made elsewhere. Pure.
     /// </summary>
     public static class PackComposition
@@ -91,6 +98,10 @@ namespace ARPG
             new Entry(PackMember.QuillRat, PackRole.Swarm, 3, 15, 5),
             // The Retcher (2026-10-17): at the back, spewing; from the crypt's middle into the prison.
             new Entry(PackMember.Retcher, PackRole.Back, 4, 20, 5),
+            // The critters (2026-10-25): from the first level. Claude's numbers, to review.
+            new Entry(PackMember.Blob, PackRole.Front, 1, 14, 6),
+            new Entry(PackMember.Rat, PackRole.Swarm, 1, 14, 8),
+            new Entry(PackMember.Bat, PackRole.Swarm, 1, 16, 6),
             // The prison (13 to 24).
             new Entry(PackMember.Mummy, PackRole.Front, 13, 28, 8),
             new Entry(PackMember.FleshGolem, PackRole.Front, 14, 30, 5),
@@ -143,7 +154,7 @@ namespace ARPG
             var front = Pick(PackRole.Front, depth, hash);
             for (var i = 0; i < count; i++)
                 members[i] = front;
-            if (depth < 2 || kind == PackKind.Elite || count < 3)
+            if (kind == PackKind.Elite || count < 3)
                 return members;
 
             if (kind == PackKind.Normal && count >= MinSwarm && hash / 7 % 100 < SwarmPercent && Has(PackRole.Swarm, depth))
@@ -153,6 +164,8 @@ namespace ARPG
                     members[i] = i < MaxSwarm ? swarm : PackMember.None;
                 return members;
             }
+            if (depth < 2)
+                return members;
             var end = count;
             if (count >= 4 && hash / 13 % 100 < SupportPercent && Has(PackRole.Support, depth))
             {

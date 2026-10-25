@@ -165,6 +165,15 @@ namespace ARPG
         [SerializeField] bool diesOnAttack;
         [SerializeField, Min(0f)] float burstFillSeconds = 0.8f;
 
+        // The start of the game's critters (2026-10-25, the owner: "add enemies: rats, bats that can swipe (close distance
+        // quickly and blobs that split when killed").
+        [Header("Flies this high over its shadow (the Bat; 0 walks)")]
+        [SerializeField, Min(0f)] float hoverHeight;
+
+        [Header("Splits into smaller ones when killed (the Blob)")]
+        [SerializeField] EnemyDefinition splitInto;
+        [SerializeField, Min(0)] int splitCount;
+
         [Tooltip("The baked character whose sheets animate this enemy (Resources/Characters/<name>: <name>_idle, _run, " +
                  "_attack, _hit, _death, from the sprite bake). While they do not exist the placeholder body shows. A " +
                  "Champion or Elite may name its own rank look (husk_champion) or share the base one.")]
@@ -220,6 +229,9 @@ namespace ARPG
         public float HealRadius => healRadius;
         public int CastPulses => castPulses;
         public float CastPulseGap => castPulseGap;
+        public float HoverHeight => hoverHeight;
+        public EnemyDefinition SplitInto => splitInto;
+        public int SplitCount => splitInto != null && splitInto != this ? splitCount : 0;
 
         /// <summary>Null for a Normal enemy, which keeps the prefab's own body sprite.</summary>
         public Sprite BodySprite => bodySprite;

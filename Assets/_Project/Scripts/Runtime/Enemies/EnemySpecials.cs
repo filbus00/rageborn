@@ -117,6 +117,12 @@ namespace ARPG
             ("Fallen", new EnemySpecial("Hand Axe", SpecialShape.Throw, 6f, 2f, 8f, 0.3f, 0.5f, 1.0f, Steel, length: 9f, speed: 11f, kind: ProjectileKind.Axe)),
             ("QuillRat", new EnemySpecial("Quill Shot", SpecialShape.Throw, 5.5f, 2f, 8f, 0.2f, 0.45f, 0.7f, Bone, count: 3, spread: 14f, length: 9f, speed: 16f, kind: ProjectileKind.Knife)),
             ("Ghoul", new EnemySpecial("Skull Ricochet", SpecialShape.Throw, 6.5f, 2.5f, 8f, 0.3f, 0.5f, 1.0f, Bone, length: ProjectileKinds.BouncingReach, speed: 11f, kind: ProjectileKind.Bouncing)),
+            // The critters (2026-10-25): the blob spits a glob of itself; rats, bats and the blob's pieces have only their
+            // bite, swipe and slam (the bat's swipe is its lunge). Claude's choice, to review.
+            ("Blob", new EnemySpecial("Slime Glob", SpecialShape.Throw, 7f, 2f, 7f, 0.3f, 0.55f, 0.8f, Bile, length: 7f, speed: 8f, kind: ProjectileKind.Fireball)),
+            ("BlobSmall", default),
+            ("Rat", default),
+            ("Bat", default),
             ("DarkCultist", new EnemySpecial("Fireball", SpecialShape.Throw, 7f, 2f, 9f, 0.35f, 0.55f, 1.0f, Fire, length: 10f, speed: 9f, kind: ProjectileKind.Fireball)),
             // The Retcher (2026-10-17): three lanes of bile in a narrow fan, and a puddle that poisons for 4 s.
             ("Retcher", new EnemySpecial("Spew", SpecialShape.Spew, 5f, 1.5f, 6.5f, 0.8f, 1.1f, 0.7f, Bile, count: 3, spread: 16f, length: 7f,
@@ -159,7 +165,10 @@ namespace ARPG
             return default;
         }
 
-        /// <summary>Every kind that has a special, for tests.</summary>
+        /// <summary>The kinds that throw nothing (2026-10-25): rats, bats and a blob's pieces.</summary>
+        public static bool HasNone(string definitionName) => For(definitionName).Shape == SpecialShape.None;
+
+        /// <summary>Every kind in the table (some with no special), for tests.</summary>
         public static IEnumerable<string> Kinds
         {
             get

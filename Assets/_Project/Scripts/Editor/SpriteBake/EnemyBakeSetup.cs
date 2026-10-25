@@ -53,6 +53,9 @@ namespace ARPG.Editor
             { "arachnid", 52f }, { "sand_worm", 70f }, { "giant", 120f }, { "nightmare", 80f }, { "balrog_lite", 112f },
             // The Retcher (2026-10-17), hunched.
             { "retcher", 78f },
+            // The critters (2026-10-25): the bat measured with its wings spread; the blob's piece before the blob, so
+            // "blob_small" is not measured as a "blob" rank.
+            { "rat", 34f }, { "bat", 40f }, { "blob_small", 30f }, { "blob", 46f },
             // The pets (2026-10-06, ArtSource/tools/props/pets.py): the wolf a little over the Ash Wolf (seen from behind it is narrow), the raven measured with
             // its wings spread.
             { "pet_wolf", 68f }, { "pet_boar", 58f }, { "pet_raven", 34f },
@@ -118,12 +121,13 @@ namespace ARPG.Editor
             ("Arachnid", "arachnid", null), ("SandWorm", "sand_worm", null), ("Giant", "giant", null), ("Nightmare", "nightmare", null),
             ("BalrogLite", "balrog_lite", null),
             ("Retcher", "retcher", null),
+            ("Rat", "rat", null), ("Bat", "bat", null), ("Blob", "blob", null), ("BlobSmall", "blob_small", "blob"),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the
         /// animation (wolf.py exports idle, run, attack, hit and death as takes).</summary>
         static readonly HashSet<string> GenericBodies = new HashSet<string> { "ash_wolf", "pet_wolf", "pet_boar", "pet_raven",
-            "hell_hound", "nightmare", "quill_rat", "arachnid", "sand_worm" };
+            "hell_hound", "nightmare", "quill_rat", "arachnid", "sand_worm", "rat", "bat", "blob", "blob_small" };
 
         const string PetsRoot = "Assets/_Project/Art/Models/Pets";
 

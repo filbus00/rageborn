@@ -66,12 +66,15 @@ namespace ARPG
                 case PackMember.Retcher:
                 case PackMember.FleshGolem:
                 case PackMember.QuillRat:
+                case PackMember.Rat:
+                case PackMember.Blob:
                     return LairTheme.Feeding;
                 case PackMember.HellHound:
                 case PackMember.Nightmare:
                 case PackMember.Harpy:
                 case PackMember.Arachnid:
                 case PackMember.SandWorm:
+                case PackMember.Bat:
                     return LairTheme.Den;
                 case PackMember.DarkCultist:
                 case PackMember.BoneMage:

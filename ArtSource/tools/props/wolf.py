@@ -12,7 +12,7 @@ import numpy as np
 from kit import STONE, EMBER, BLOOD, BONE
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
-# The concept roster's beasts (2026-10-13) are built on the same rig and clips: hell_hound, nightmare, quill_rat,
+# The concept roster's beasts (2026-10-13) are built on the same rig and clips: hell_hound, nightmare, quill_rat, rat,
 # arachnid, sand_worm (Blender -b -P wolf.py -- <name>).
 NAME = sys.argv[sys.argv.index("--") + 1] if "--" in sys.argv and len(sys.argv) > sys.argv.index("--") + 1 else "ash_wolf"
 OUT = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "Enemies", NAME)
@@ -69,6 +69,9 @@ PALETTES = {
                   "teeth": BONE[1], "ember": EMBER[3], "nose": STONE[0]},
     "quill_rat": {"fur": (110, 84, 56), "fur_dark": (70, 52, 34), "belly": (150, 120, 90), "eye": BLOOD[3], "mouth": BLOOD[1],
                   "teeth": BONE[2], "ember": BONE[1], "nose": (170, 110, 100)},
+    # The rat (2026-10-25, the owner: "add enemies: rats"): a plain sewer rat, grey-brown with pink ears, feet and tail.
+    "rat": {"fur": (88, 78, 70), "fur_dark": (52, 46, 42), "belly": (130, 118, 104), "eye": BLOOD[3], "mouth": BLOOD[1],
+            "teeth": BONE[2], "ember": (60, 54, 50), "nose": (176, 116, 112)},
     "arachnid": {"fur": (80, 26, 34), "fur_dark": (46, 16, 30), "belly": (110, 50, 70), "eye": BLOOD[4], "mouth": BLOOD[0],
                  "teeth": BONE[1], "ember": (90, 40, 110), "nose": STONE[0]},
     "sand_worm": {"fur": (120, 88, 56), "fur_dark": (84, 60, 38), "belly": (160, 120, 84), "eye": BLOOD[3], "mouth": (50, 14, 12),
@@ -241,6 +244,31 @@ def quill_rat():
         block((x, 0.27, 0.03), (0.05, 0.08, 0.04), "hind_paw_" + side, "nose")
 
 
+def rat():
+    # A rat: a low pear-shaped body, a long pointed head with round pink ears, whiskers, a long bare tail.
+    blob((0, -0.02, 0.42), (0.15, 0.3, 0.14), "chest", "fur")
+    blob((0, 0.2, 0.42), (0.16, 0.2, 0.15), "hips", "fur")
+    blob((0, -0.02, 0.35), (0.11, 0.24, 0.07), "chest", "belly")
+    blob((0, 0.05, 0.53), (0.07, 0.3, 0.04), "chest", "fur_dark")
+    blob((0, -0.4, 0.48), (0.09, 0.12, 0.08), "head", "fur")
+    block((0, -0.54, 0.45), (0.05, 0.13, 0.05), "head", "fur")
+    block((0, -0.615, 0.455), (0.03, 0.02, 0.03), "head", "nose")
+    block((0, -0.58, 0.42), (0.03, 0.03, 0.02), "jaw", "teeth")
+    for x in (-0.045, 0.045):
+        block((x, -0.49, 0.52), (0.02, 0.012, 0.02), "head", "eye")
+        blob((x * 1.6, -0.37, 0.57), (0.04, 0.012, 0.04), "head", "nose")
+        limb((x * 0.6, -0.58, 0.46), (x * 3.0, -0.6, 0.47), 0.004, 0.002, "head", "ember", 3)
+    limb((0, 0.38, 0.42), (0, 0.6, 0.34), 0.03, 0.02, "tail1", "nose")
+    limb((0, 0.6, 0.34), (0, 0.84, 0.2), 0.02, 0.006, "tail2", "nose")
+    for side, x in (("L", 0.11), ("R", -0.11)):
+        limb((x, -0.22, 0.38), (x, -0.25, 0.25), 0.045, 0.03, "front_upper_" + side, "fur")
+        limb((x, -0.25, 0.25), (x, -0.23, 0.06), 0.024, 0.018, "front_lower_" + side, "fur_dark")
+        block((x, -0.26, 0.03), (0.05, 0.07, 0.035), "front_paw_" + side, "nose")
+        limb((x, 0.25, 0.42), (x, 0.36, 0.28), 0.06, 0.04, "hind_upper_" + side, "fur")
+        limb((x, 0.36, 0.28), (x, 0.3, 0.07), 0.028, 0.02, "hind_lower_" + side, "fur_dark")
+        block((x, 0.27, 0.03), (0.05, 0.08, 0.035), "hind_paw_" + side, "nose")
+
+
 def arachnid():
     # An arachnid: a small head and thorax, a big swollen abdomen behind, eight long jointed legs (two on each of the
     # rig's legs, the second splayed further), red eyes, fangs.
@@ -277,7 +305,7 @@ def sand_worm():
              "jaw" if math.sin(a) < 0 else "head", "teeth", 4)
 
 
-{"ash_wolf": ash_wolf, "hell_hound": hell_hound, "nightmare": nightmare, "quill_rat": quill_rat,
+{"ash_wolf": ash_wolf, "hell_hound": hell_hound, "nightmare": nightmare, "quill_rat": quill_rat, "rat": rat,
  "arachnid": arachnid, "sand_worm": sand_worm}[NAME]()
 
 mesh = bpy.data.meshes.new(NAME)
@@ -456,10 +484,10 @@ scene.render.film_transparent = True
 scene.render.resolution_x = scene.render.resolution_y = 320
 arm.animation_data.action = bpy.data.actions["attack"]
 scene.frame_set(int(0.55 * FPS))
-scene.render.filepath = os.path.join(ROOT, "ArtSource", "pixel", "gear_preview", "ash_wolf_attack.png")
+scene.render.filepath = os.path.join(ROOT, "ArtSource", "pixel", "gear_preview", NAME + "_attack.png")
 bpy.ops.render.render(write_still=True)
 arm.animation_data.action = bpy.data.actions["run"]
 scene.frame_set(3)
-scene.render.filepath = os.path.join(ROOT, "ArtSource", "pixel", "gear_preview", "ash_wolf_run.png")
+scene.render.filepath = os.path.join(ROOT, "ArtSource", "pixel", "gear_preview", NAME + "_run.png")
 bpy.ops.render.render(write_still=True)
 print("REPORT wrote", OUT, len(mesh.polygons), "faces,", len(groups), "bones")

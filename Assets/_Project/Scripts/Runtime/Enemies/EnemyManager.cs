@@ -190,6 +190,7 @@ namespace ARPG
                 viewHalf = new Vector2(view.orthographicSize * view.aspect, view.orthographicSize);
             }
             RefreshFlow(deltaTime);
+            SpawnSplits();
 
             // Dead enemies are left out of the hash so they are neither targeted nor pushed against.
             Hash.Clear();
@@ -231,6 +232,34 @@ namespace ARPG
             Hazards.Tick(deltaTime, this);
             Affixes.Tick(deltaTime, this);
             Specials.Tick(deltaTime, this);
+        }
+
+        // Pieces of split enemies, spawned at the start of the next frame (a kill can land while the active list is
+        // being walked).
+        readonly List<(EnemyDefinition definition, Vector2 ground, int level)> splits =
+            new List<(EnemyDefinition, Vector2, int)>();
+
+        /// <summary>A killed Blob's pieces (2026-10-25): <paramref name="count"/> of <paramref name="piece"/> round
+        /// where it fell, awake.</summary>
+        internal void QueueSplit(EnemyDefinition piece, int count, Vector2 ground, int level)
+        {
+            if (piece == null)
+                return;
+            var turn = Random.value;
+            for (var i = 0; i < count; i++)
+            {
+                var spot = ground + EnemyRules.SplitOffset(i, count, turn);
+                if (Nav != null && !Nav.HasClearWalk(ground, spot))
+                    spot = ground;
+                splits.Add((piece, spot, level));
+            }
+        }
+
+        void SpawnSplits()
+        {
+            for (var i = 0; i < splits.Count; i++)
+                Spawn(splits[i].definition, splits[i].ground, true, null, splits[i].level);
+            splits.Clear();
         }
 
         internal void NotifyKilled(EnemyController enemy)

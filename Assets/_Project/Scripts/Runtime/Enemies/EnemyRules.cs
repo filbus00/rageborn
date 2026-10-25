@@ -81,6 +81,22 @@ namespace ARPG
         /// ground left by their specials and casters, not elite affixes or bosses. A hit on landing is not delayed.</summary>
         public const float PoolGraceSeconds = 0.7f;
 
+        /// <summary>A flier's height over its shadow at a time (the Bat, 2026-10-25): a slow rise and fall, lowered to the
+        /// ground as it dies (<paramref name="down"/> 0 flying, 1 on the ground).</summary>
+        public static float Hover(float height, float time, float down) =>
+            height * (1f - Mathf.Clamp01(down)) * (1f + 0.08f * Mathf.Sin(time * 3.1f));
+
+        /// <summary>How far from where a splitting enemy fell its pieces land (the Blob, 2026-10-25).</summary>
+        public const float SplitSpread = 0.45f;
+
+        /// <summary>Where piece <paramref name="index"/> of <paramref name="count"/> lands round the spot it split
+        /// from, evenly turned from <paramref name="turn"/> (0 to 1).</summary>
+        public static Vector2 SplitOffset(int index, int count, float turn)
+        {
+            var angle = (turn + index / (float)Mathf.Max(1, count)) * Mathf.PI * 2f;
+            return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * SplitSpread;
+        }
+
         static bool Ranged(EnemyArchetype archetype) => archetype == EnemyArchetype.Archer || archetype == EnemyArchetype.Caster;
 
         public static float AttackSpeedFactor(EnemyRank rank, EnemyArchetype archetype) =>

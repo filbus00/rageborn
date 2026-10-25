@@ -7,7 +7,10 @@ namespace ARPG.Tests
     public class EnemySpecialsTests
     {
         // Every enemy the packs are made of (Data/Enemies), bosses and break targets aside.
-        static readonly string[] Roster = System.Enum.GetNames(typeof(PackMember)).Where(n => n != "None")
+        // The critters (2026-10-25) have only their bite and swipe.
+        static readonly string[] Critters = { "Rat", "Bat" };
+
+        static readonly string[] Roster = System.Enum.GetNames(typeof(PackMember)).Where(n => n != "None" && !Critters.Contains(n))
             .Concat(new[] { "Swarmer", "SwarmerChampion", "SwarmerElite" }).ToArray();
 
         [Test]
@@ -27,6 +30,9 @@ namespace ARPG.Tests
                     Assert.Greater(special.Length, 0f, name);
             }
             Assert.AreEqual(SpecialShape.None, EnemySpecialRules.For("CinderWarden").Shape, "bosses keep their own fights");
+            foreach (var critter in Critters.Append("BlobSmall"))
+                Assert.IsTrue(EnemySpecialRules.HasNone(critter), critter);
+            Assert.AreEqual("Slime Glob", EnemySpecialRules.For("Blob").Name);
         }
 
         [Test]

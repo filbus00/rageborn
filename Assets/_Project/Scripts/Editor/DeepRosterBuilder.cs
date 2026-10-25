@@ -26,6 +26,8 @@ namespace ARPG.Editor
             "Gaoler", "HangedMagistrate",
             // Quest targets to break (2026-10-08): standing, no attack, drawn with a world sprite.
             "RiftHeart", "BonePyre",
+            // A blob's pieces (2026-10-25).
+            "BlobSmall",
         }, ConceptNames));
 
         /// <summary>The concept roster (2026-10-13): one definition per <see cref="PackMember"/>, by its name.</summary>
@@ -76,6 +78,27 @@ namespace ARPG.Editor
             Concept("BalrogLite", "PyreKeeper", 2.6f, 0f, 1.3f);
             // The Retcher (2026-10-17): the harpooner's thrown attack as a glob of bile that slows, and its Spew.
             Concept("Retcher", "Harpooner", 1.3f, 2.4f, 1f, so => so.FindProperty("projectileColor").colorValue = new Color(0.55f, 0.85f, 0.25f, 1f));
+            // The critters (2026-10-25, the owner: "add enemies: rats, bats that can swipe (close distance quickly and blobs
+            // that split when killed"): rats quick and frail in swarms; bats chargers that fly and dart in often from
+            // further off; the blob slow and tough, splitting into two small ones (which do not split again).
+            Concept("Rat", "Swarmer", 0.35f, 4.4f, 0.6f, so => F(so, "bodyRadius", 0.22f));
+            Concept("Bat", "AshWolf", 0.45f, 4f, 0.7f, so =>
+            {
+                F(so, "bodyRadius", 0.25f);
+                F(so, "hoverHeight", 0.7f);
+                F(so, "lungeDistance", 4.5f);
+                F(so, "lungeMinRange", 1.5f);
+                F(so, "lungeSpeed", 16f);
+                F(so, "lungeWindupSeconds", 0.4f);
+                F(so, "lungeCooldownSeconds", 2.5f);
+            });
+            Concept("BlobSmall", "Swarmer", 0.35f, 3.2f, 0.6f, so => F(so, "bodyRadius", 0.22f));
+            Concept("Blob", "Swarmer", 1.3f, 2.4f, 1f, so =>
+            {
+                F(so, "bodyRadius", 0.4f);
+                so.FindProperty("splitInto").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(Folder + "BlobSmall.asset");
+                so.FindProperty("splitCount").intValue = 2;
+            });
         }
 
         [MenuItem("Tools/ARPG/Add Deep Roster")]

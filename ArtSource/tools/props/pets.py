@@ -15,7 +15,10 @@ from kit import STONE, EMBER, BLOOD, BONE, WOOD, EARTH, COLD, SKIN
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
 NAME = sys.argv[sys.argv.index("--") + 1] if "--" in sys.argv else "pet_wolf"
-OUT = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "Pets", NAME)
+# The bat and the blob (2026-10-25, the owner: "add enemies: rats, bats that can swipe (close distance quickly and blobs
+# that split when killed") are enemies built here on rigs of their own: the bat on the raven's, the blob on a squash rig.
+ENEMY = not NAME.startswith("pet_")
+OUT = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "Enemies" if ENEMY else "Pets", NAME)
 PREVIEW = os.path.join(ROOT, "ArtSource", "pixel", "gear_preview")
 FPS = 24
 V = mathutils.Vector
@@ -70,6 +73,14 @@ RIGS = {
         "leg_R": ((-0.025, 0.02, 0.08), (-0.025, 0.03, 0.0), "body"),
     },
 }
+# The bat flies on the raven's rig; the blob is a dome on a stack of bones that squash and stretch it.
+RIGS["bat"] = dict(RIGS["pet_raven"])
+RIGS["blob"] = {
+    "root": ((0, 0, 0), (0, 0, 0.2), None),
+    "base": ((0, 0, 0.0), (0, 0, 0.2), "root"),
+    "dome": ((0, 0, 0.2), (0, 0, 0.45), "base"),
+    "face": ((0, -0.2, 0.25), (0, -0.3, 0.25), "dome"),
+}
 BONES = RIGS[NAME]
 
 arm_data = bpy.data.armatures.new("Armature")
@@ -97,6 +108,10 @@ COLORS = {
                  "mouth": BLOOD[1]},
     "pet_raven": {"black": COLD[0], "sheen": COLD[1], "feather": STONE[0], "edge": COLD[2], "beak": STONE[1],
                   "eye": EMBER[3], "foot": STONE[1], "ring": BONE[2]},
+    "bat": {"black": (46, 36, 40), "sheen": (70, 52, 54), "feather": (92, 54, 58), "edge": (120, 74, 76), "beak": BONE[2],
+            "eye": BLOOD[4], "foot": (40, 30, 32), "ring": (150, 96, 98)},
+    "blob": {"slime": (86, 118, 50), "slime_dark": (46, 70, 32), "shine": (150, 176, 96), "core": (40, 58, 28),
+             "eye": BLOOD[4], "pupil": (20, 10, 8), "bone": BONE[1], "mouth": (26, 20, 16)},
 }[NAME]
 color_list = list(COLORS)
 bm = bmesh.new()
@@ -290,7 +305,49 @@ def raven():
     limb((0.025, 0.024, 0.04), (0.025, 0.026, 0.055), 0.013, 0.013, "leg_L", "ring", 6)
 
 
-{"pet_wolf": wolf, "pet_boar": boar, "pet_raven": raven}[NAME]()
+def bat():
+    # A bat: a furry body and a big-eared head with fangs, wings of thin skin stretched over long finger bones.
+    blob((0, 0.0, 0.14), (0.07, 0.12, 0.07), "body", "sheen")
+    blob((0, 0.04, 0.15), (0.06, 0.1, 0.06), "body", "black")
+    blob((0, -0.15, 0.17), (0.055, 0.055, 0.055), "head", "black")
+    block((0, -0.205, 0.16), (0.04, 0.04, 0.03), "head", "sheen")
+    for x in (-0.03, 0.03):
+        block((x, -0.205, 0.19), (0.016, 0.014, 0.016), "head", "eye")
+        limb((x, -0.14, 0.21), (x * 2.6, -0.13, 0.32), 0.03, 0.004, "head", "feather", 4)
+        limb((x * 0.5, -0.215, 0.145), (x * 0.5, -0.22, 0.115), 0.006, 0.001, "head", "beak", 3)
+    limb((0, 0.1, 0.13), (0, 0.2, 0.11), 0.02, 0.004, "tail", "black", 4)
+    for side, s in (("L", 1), ("R", -1)):
+        # The arm's membrane, then the hand's in scallops between the fingers, a pale bone along each finger.
+        slab([(s * 0.04, -0.05), (s * 0.26, -0.04), (s * 0.26, 0.08), (s * 0.04, 0.1)], 0.15, 0.012, "wing_" + side, "feather")
+        limb((s * 0.04, -0.045, 0.16), (s * 0.26, -0.04, 0.16), 0.012, 0.009, "wing_" + side, "black", 4)
+        slab([(s * 0.25, -0.04), (s * 0.46, -0.02), (s * 0.4, 0.04), (s * 0.44, 0.1), (s * 0.34, 0.08), (s * 0.3, 0.13),
+              (s * 0.25, 0.08)], 0.15, 0.012, "wing_tip_" + side, "feather")
+        for tip in ((0.46, -0.02), (0.44, 0.1), (0.3, 0.13)):
+            limb((s * 0.25, -0.035, 0.16), (s * tip[0], tip[1], 0.16), 0.007, 0.004, "wing_tip_" + side, "edge", 3)
+        limb((s * 0.025, 0.04, 0.09), (s * 0.025, 0.05, 0.02), 0.008, 0.005, "leg_" + side, "foot", 4)
+
+
+def blob_monster():
+    # A blob: a lumpy dome of green slime, darker underneath, a shine on top, a skull and bones half digested inside,
+    # two glaring eyes and a wide mouth.
+    blob((0, 0, 0.16), (0.3, 0.3, 0.16), "base", "slime_dark")
+    blob((0, 0, 0.26), (0.27, 0.27, 0.22), "dome", "slime")
+    blob((0.1, 0.08, 0.36), (0.12, 0.12, 0.12), "dome", "slime")
+    blob((-0.12, 0.05, 0.32), (0.1, 0.1, 0.1), "dome", "slime")
+    blob((-0.06, 0.02, 0.45), (0.07, 0.06, 0.04), "dome", "shine")
+    blob((0.05, 0.12, 0.16), (0.07, 0.06, 0.06), "base", "core")
+    blob((0.09, 0.1, 0.2), (0.045, 0.045, 0.045), "base", "bone")
+    limb((-0.12, 0.08, 0.12), (0.02, 0.14, 0.1), 0.015, 0.015, "base", "bone", 4)
+    for x in (-0.08, 0.08):
+        blob((x, -0.22, 0.33), (0.05, 0.03, 0.055), "face", "eye")
+        block((x, -0.25, 0.33), (0.022, 0.012, 0.035), "face", "pupil")
+    blob((0, -0.25, 0.2), (0.12, 0.03, 0.045), "face", "mouth")
+    for k in range(5):
+        x = (k - 2) * 0.045
+        limb((x, -0.275, 0.235), (x, -0.28, 0.2), 0.012, 0.002, "face", "bone", 3)
+
+
+{"pet_wolf": wolf, "pet_boar": boar, "pet_raven": raven, "bat": bat, "blob": blob_monster}[NAME]()
 
 mesh = bpy.data.meshes.new(NAME)
 bm.normal_update()
@@ -351,10 +408,14 @@ def key(action_name, seconds, pose):
     for f in range(frames + 1):
         t = f / FPS
         values = pose(t)
+        scales = values.get("_scale", {})
         for pb in arm.pose.bones:
             r = values.get(pb.name, (0, 0, 0))
             pb.rotation_euler = [math.radians(a) for a in r]
             pb.keyframe_insert("rotation_euler", frame=f)
+            if NAME == "blob":
+                pb.scale = scales.get(pb.name, (1, 1, 1))
+                pb.keyframe_insert("scale", frame=f)
         root = arm.pose.bones["root"]
         root.location = values.get("root_loc", (0, 0, 0))
         root.keyframe_insert("location", frame=f)
@@ -522,7 +583,70 @@ def raven_death(t):
     return values
 
 
-if NAME == "pet_raven":
+def bat_attack(t):
+    # The swipe: wings thrown back, a dart forward low and fast, the claws raking, then a beat back up.
+    dart = ease(t / 0.25) * (1 - ease((t - 0.5) / 0.3))
+    rake = math.sin(min(1.0, max(0.0, (t - 0.2) / 0.2)) * math.pi)
+    back = ease(t / 0.15) * (1 - ease((t - 0.4) / 0.2))
+    values = {"root_loc": (0, -0.3 * dart, -0.08 * dart), "body": (-25 * dart, 0, 0), "head": (15 * dart - 20 * rake, 0, 0),
+              "leg_L": (-80 * rake - 30, 0, 0), "leg_R": (-80 * rake - 30, 0, 0)}
+    flap = wave(t, 0.25) * (1 - back)
+    for side in ("L", "R"):
+        values["wing_" + side] = (60 * back + 45 * flap, 0, 0)
+        values["wing_tip_" + side] = (-50 * back + 30 * flap, 0, 0)
+    return values
+
+
+def squash(z, base=1.0):
+    """Keeps a blob's volume: taller is narrower."""
+    w = 1.0 / math.sqrt(max(0.2, z))
+    return (w * base, w * base, z * base)
+
+
+def blob_idle(t):
+    k = wave(t, 1.6)
+    return {"_scale": {"base": squash(1 + 0.05 * k), "dome": squash(1 + 0.06 * wave(t, 1.6, -0.1))},
+            "face": (3 * k, 0, 0)}
+
+
+def blob_run(t):
+    # Hops: squashed at the landing, stretched as it leaves the ground.
+    p = (t / 0.5) % 1.0
+    air = math.sin(p * math.pi)
+    land = max(0.0, 1 - p * 5) + max(0.0, (p - 0.85) * 6.6)
+    return {"root_loc": (0, 0, 0.12 * air), "_scale": {"base": squash(1 + 0.18 * air - 0.22 * land)},
+            "dome": (-6 * air, 0, 0), "face": (6 * air, 0, 0)}
+
+
+def blob_attack(t):
+    # Rears up tall, then slams down flat over the spot in front of it.
+    rear = ease(t / 0.4) * (1 - ease((t - 0.42) / 0.1))
+    slam = ease((t - 0.42) / 0.1) * (1 - ease((t - 0.62) / 0.3))
+    return {"root_loc": (0, -0.12 * slam, 0.05 * rear), "_scale": {"base": squash(1 + 0.35 * rear - 0.4 * slam)},
+            "dome": (-14 * rear + 22 * slam, 0, 0), "face": (-10 * rear + 10 * slam, 0, 0)}
+
+
+def blob_hit(t):
+    k = math.sin(min(1.0, t / 0.35) * math.pi)
+    return {"_scale": {"base": squash(1 - 0.22 * k * math.cos(t * 30))}, "dome": (-10 * k, 0, 8 * k)}
+
+
+def blob_death(t):
+    # It sags and spreads into a puddle.
+    k = ease(t / 0.8)
+    return {"_scale": {"base": (1 + 0.6 * k, 1 + 0.6 * k, 1 - 0.85 * k)}, "face": (40 * k, 0, 0)}
+
+
+if NAME == "blob":
+    clips = (("idle", 1.6, blob_idle), ("run", 0.5, blob_run), ("attack", 0.9, blob_attack), ("hit", 0.35, blob_hit),
+             ("death", 1.0, blob_death))
+elif NAME == "bat":
+    def wrap(f):
+        return lambda t: raven_pose(f(t))
+    # Quick shallow beats: a bat flutters.
+    clips = (("idle", 0.3, wrap(raven_flap(0.3, 50, -6, 0.02))), ("run", 0.24, wrap(raven_flap(0.24, 55, -18, 0.02))),
+             ("attack", 0.8, bat_attack), ("hit", 0.35, raven_hit), ("death", 1.0, raven_death))
+elif NAME == "pet_raven":
     def wrap(f):
         return lambda t: raven_pose(f(t))
     clips = (("idle", 0.6, wrap(raven_flap(0.6, 38, -6, 0.015))), ("run", 0.4, wrap(raven_flap(0.4, 46, -18, 0.02))),
@@ -547,15 +671,15 @@ bpy.ops.export_scene.fbx(filepath=os.path.join(OUT, NAME + ".fbx"), use_selectio
 # Looks from the game's camera, for checking without Unity: a strip of each clip.
 cam = bpy.data.objects.new("Cam", bpy.data.cameras.new("Cam"))
 cam.data.type = "ORTHO"
-cam.data.ortho_scale = 1.8 if NAME != "pet_raven" else 1.2
+cam.data.ortho_scale = 1.2 if NAME in ("pet_raven", "bat") else 1.8
 cam.rotation_euler = (math.radians(60), 0, math.radians(-45 + 30))
 cam.location = V((-2.2, -2.2, 2.4))
-if NAME == "pet_raven":
+if NAME in ("pet_raven", "bat"):
     cam.location = V((-2.2, -2.2, 2.2))
 scene.collection.objects.link(cam)
 scene.camera = cam
 direction = cam.rotation_euler.to_matrix() @ V((0, 0, -1))
-target = V((0, -0.1, 0.4 if NAME != "pet_raven" else 0.12))
+target = V((0, -0.1, 0.12 if NAME in ("pet_raven", "bat") else 0.25 if NAME == "blob" else 0.4))
 cam.location = target - direction * 4
 sun = bpy.data.objects.new("Sun", bpy.data.lights.new("Sun", "SUN"))
 sun.data.energy = 4

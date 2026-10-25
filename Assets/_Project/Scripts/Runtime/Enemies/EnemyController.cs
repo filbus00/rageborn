@@ -648,6 +648,9 @@ namespace ARPG
                     manager.Hazards.Blast(ground, definition.SlamRadius, EnemyRules.Telegraph(definition.BurstFillSeconds),
                         CombatFormulas.EnemyHitDamage(Level) * definition.DamageMultiplier, Level);
                 }
+                // The Blob (2026-10-25) splits into smaller ones that come straight for her.
+                if (definition.SplitCount > 0 && manager != null)
+                    manager.QueueSplit(definition.SplitInto, definition.SplitCount, ground, Level);
                 pack?.NotifyDeath(this);
                 manager?.NotifyKilled(this);
                 return true;
@@ -672,7 +675,7 @@ namespace ARPG
         }
 
         // Where blood leaves the body: about the middle of the figure, higher for a bigger one.
-        float BodyHeight => 0.45f * definition.VisualScale;
+        float BodyHeight => 0.45f * definition.VisualScale + definition.HoverHeight;
 
         // Wounded (under half life) or bleeding, it drips as it goes, faster while bleeding (2026-10-11).
         const float WoundedFraction = 0.5f;
@@ -810,7 +813,10 @@ namespace ARPG
             // The body burns away (SpriteEffects) while the shadow fades under it, and falls if it has a death animation.
             SetVisuals(1f, Mathf.Lerp(DeathEndScale, 1f, remaining));
             if (animationSet?.Death != null)
+            {
                 ShowFrame(animationSet.Death, EnemyAnimationRules.OneShotFrame(1f - remaining, animationSet.Death.Frames));
+                Lift(Mathf.Clamp01((1f - remaining) * 2f));
+            }
             if (shadowRenderer != null)
                 shadowRenderer.color = new Color(1f, 1f, 1f, remaining);
             effects.Tick(deltaTime);
@@ -850,6 +856,7 @@ namespace ARPG
         {
             if (animationSet == null)
                 return;
+            Lift(0f);
             var velocity = deltaTime > 0f ? (ground - lastGround) / deltaTime : Vector2.zero;
             lastGround = ground;
             hitAnimationTimer = Mathf.Max(0f, hitAnimationTimer - deltaTime);
@@ -891,6 +898,13 @@ namespace ARPG
                 return;
             }
             ShowFrame(animationSet.Idle, EnemyAnimationRules.LoopFrame(animationTime, animationSet.IdleSeconds, animationSet.Idle.Frames));
+        }
+
+        // A flier (the Bat) is drawn over its shadow, bobbing; it drops to the ground as it dies.
+        void Lift(float down)
+        {
+            if (definition.HoverHeight > 0f)
+                bodyRenderer.transform.localPosition = new Vector3(0f, EnemyRules.Hover(definition.HoverHeight, animationTime, down), 0f);
         }
 
         void Face(Vector2 direction, int count) => animationRow = LocomotionRules.ChooseRow(animationRow, direction, count);

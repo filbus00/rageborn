@@ -95,10 +95,38 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void TheFirstLevel_IsZombiesOnly()
+        public void TheFirstLevel_HasZombiesBlobsRatsAndBats_AndNoBackRow()
         {
-            for (var pack = 0; pack < 200; pack++)
-                Assert.IsTrue(PackComposition.Roll(1, PackKind.Normal, 10, 12345, pack).All(m => m == PackMember.Zombie));
+            // The owner, 2026-10-25: "add them at the start of the game".
+            var met = new System.Collections.Generic.HashSet<PackMember>();
+            for (var pack = 0; pack < 400; pack++)
+            {
+                var members = PackComposition.Roll(1, PackKind.Normal, 10, 12345, pack);
+                foreach (var m in members)
+                    met.Add(m);
+                var kinds = members.Where(m => m != PackMember.None).Distinct().ToArray();
+                Assert.AreEqual(1, kinds.Length, "one kind a pack at depth 1");
+            }
+            met.Remove(PackMember.None);
+            CollectionAssert.AreEquivalent(new[] { PackMember.Zombie, PackMember.Blob, PackMember.Rat, PackMember.Bat }, met);
+        }
+
+        [Test]
+        public void SplitPieces_LandRoundWhereItFell_EvenlyTurned()
+        {
+            var a = EnemyRules.SplitOffset(0, 2, 0.1f);
+            var b = EnemyRules.SplitOffset(1, 2, 0.1f);
+            Assert.AreEqual(EnemyRules.SplitSpread, a.magnitude, 1e-4f);
+            Assert.AreEqual(-a.x, b.x, 1e-4f);
+            Assert.AreEqual(-a.y, b.y, 1e-4f);
+        }
+
+        [Test]
+        public void AFlier_HoversOverItsShadow_AndComesDownAsItDies()
+        {
+            Assert.Greater(EnemyRules.Hover(0.7f, 1f, 0f), 0.6f);
+            Assert.AreEqual(0f, EnemyRules.Hover(0.7f, 1f, 1f), 1e-5f);
+            Assert.AreEqual(0f, EnemyRules.Hover(0f, 1f, 0f), 1e-5f);
         }
 
         [Test]
