@@ -70,8 +70,10 @@ PALETTES = {
     "quill_rat": {"fur": (110, 84, 56), "fur_dark": (70, 52, 34), "belly": (150, 120, 90), "eye": BLOOD[3], "mouth": BLOOD[1],
                   "teeth": BONE[2], "ember": BONE[1], "nose": (170, 110, 100)},
     # The rat (2026-10-25, the owner: "add enemies: rats"): a plain sewer rat, grey-brown with pink ears, feet and tail.
-    "rat": {"fur": (88, 78, 70), "fur_dark": (52, 46, 42), "belly": (130, 118, 104), "eye": BLOOD[3], "mouth": BLOOD[1],
-            "teeth": BONE[2], "ember": (60, 54, 50), "nose": (176, 116, 112)},
+    # Dark, so it stands out on the crypt's grey-brown cobbles (2026-10-25); bright pink skin.
+    "rat": {"fur": (54, 44, 42), "fur_dark": (28, 22, 22), "belly": (110, 96, 86), "eye": BLOOD[4], "mouth": BLOOD[1],
+            "teeth": (232, 200, 120), "ember": (70, 62, 56), "nose": (214, 128, 122), "ear": (232, 150, 140),
+            "claw": BONE[2], "mid": (42, 34, 32)},
     "arachnid": {"fur": (80, 26, 34), "fur_dark": (46, 16, 30), "belly": (110, 50, 70), "eye": BLOOD[4], "mouth": BLOOD[0],
                  "teeth": BONE[1], "ember": (90, 40, 110), "nose": STONE[0]},
     "sand_worm": {"fur": (120, 88, 56), "fur_dark": (84, 60, 38), "belly": (160, 120, 84), "eye": BLOOD[3], "mouth": (50, 14, 12),
@@ -245,28 +247,51 @@ def quill_rat():
 
 
 def rat():
-    # A rat: a low pear-shaped body, a long pointed head with round pink ears, whiskers, a long bare tail.
-    blob((0, -0.02, 0.42), (0.15, 0.3, 0.14), "chest", "fur")
-    blob((0, 0.2, 0.42), (0.16, 0.2, 0.15), "hips", "fur")
-    blob((0, -0.02, 0.35), (0.11, 0.24, 0.07), "chest", "belly")
-    blob((0, 0.05, 0.53), (0.07, 0.3, 0.04), "chest", "fur_dark")
-    blob((0, -0.4, 0.48), (0.09, 0.12, 0.08), "head", "fur")
-    block((0, -0.54, 0.45), (0.05, 0.13, 0.05), "head", "fur")
-    block((0, -0.615, 0.455), (0.03, 0.02, 0.03), "head", "nose")
-    block((0, -0.58, 0.42), (0.03, 0.03, 0.02), "jaw", "teeth")
-    for x in (-0.045, 0.045):
-        block((x, -0.49, 0.52), (0.02, 0.012, 0.02), "head", "eye")
-        blob((x * 1.6, -0.37, 0.57), (0.04, 0.012, 0.04), "head", "nose")
-        limb((x * 0.6, -0.58, 0.46), (x * 3.0, -0.6, 0.47), 0.004, 0.002, "head", "ember", 3)
-    limb((0, 0.38, 0.42), (0, 0.6, 0.34), 0.03, 0.02, "tail1", "nose")
-    limb((0, 0.6, 0.34), (0, 0.84, 0.2), 0.02, 0.006, "tail2", "nose")
-    for side, x in (("L", 0.11), ("R", -0.11)):
-        limb((x, -0.22, 0.38), (x, -0.25, 0.25), 0.045, 0.03, "front_upper_" + side, "fur")
-        limb((x, -0.25, 0.25), (x, -0.23, 0.06), 0.024, 0.018, "front_lower_" + side, "fur_dark")
-        block((x, -0.26, 0.03), (0.05, 0.07, 0.035), "front_paw_" + side, "nose")
-        limb((x, 0.25, 0.42), (x, 0.36, 0.28), 0.06, 0.04, "hind_upper_" + side, "fur")
-        limb((x, 0.36, 0.28), (x, 0.3, 0.07), 0.028, 0.02, "hind_lower_" + side, "fur_dark")
-        block((x, 0.27, 0.03), (0.05, 0.08, 0.035), "hind_paw_" + side, "nose")
+    # A big sewer rat (made nicer 2026-10-25): heavy haunches and a hunched back with a ragged dark stripe of fur, a
+    # narrow chest, a long tapering head with yellow incisors, beady red eyes, round pink ears, a thick ringed tail.
+    blob((0, 0.16, 0.42), (0.17, 0.23, 0.17), "hips", "fur", 16)
+    blob((0, -0.1, 0.4), (0.13, 0.22, 0.14), "chest", "fur", 16)
+    blob((0, 0.06, 0.34), (0.12, 0.3, 0.09), "chest", "belly", 14)
+    blob((0, 0.04, 0.5), (0.1, 0.32, 0.09), "chest", "mid", 14)
+    blob((0, 0.12, 0.555), (0.055, 0.22, 0.04), "hips", "fur_dark", 12)
+    # Ragged tufts along the spine, swept back.
+    for k in range(7):
+        y = -0.22 + k * 0.07
+        x = 0.025 if k % 2 else -0.025
+        limb((x, y, 0.53 + 0.03 * math.sin(k * 0.9)), (x * 2, y + 0.11, 0.6 - abs(k - 3) * 0.012), 0.022, 0.003,
+             "chest" if y < 0.05 else "hips", "fur_dark", 4)
+    # The head: a rounded skull narrowing to a long snout, a pink nose, the incisors showing.
+    blob((0, -0.34, 0.47), (0.095, 0.11, 0.09), "neck", "fur", 14)
+    blob((0, -0.42, 0.48), (0.085, 0.1, 0.08), "head", "fur", 14)
+    blob((0, -0.53, 0.45), (0.055, 0.1, 0.05), "head", "mid", 12)
+    blob((0, -0.62, 0.45), (0.024, 0.024, 0.022), "head", "nose", 8)
+    for x in (-0.012, 0.012):
+        block((x, -0.6, 0.41), (0.016, 0.012, 0.04), "jaw", "teeth")
+    blob((0, -0.54, 0.41), (0.04, 0.07, 0.022), "jaw", "belly", 10)
+    for x in (-0.048, 0.048):
+        blob((x, -0.47, 0.51), (0.02, 0.018, 0.02), "head", "eye", 8)
+        blob((x * 1.45, -0.38, 0.575), (0.05, 0.014, 0.05), "head", "fur_dark", 10)
+        blob((x * 1.45, -0.392, 0.575), (0.036, 0.008, 0.036), "head", "ear", 10)
+        for k in range(3):
+            limb((x * 0.5, -0.585, 0.45), (x * 3.4, -0.6 + 0.03 * k, 0.48 - 0.03 * k), 0.003, 0.0015, "head", "claw", 3)
+    # A thick tail, pink and ringed, curling down behind.
+    limb((0, 0.36, 0.42), (0, 0.6, 0.33), 0.04, 0.028, "tail1", "nose", 8)
+    limb((0, 0.6, 0.33), (0.04, 0.84, 0.18), 0.028, 0.007, "tail2", "nose", 8)
+    for k in range(4):
+        t = (k + 1) / 5.0
+        limb((0, 0.36 + 0.24 * t, 0.42 - 0.09 * t), (0, 0.37 + 0.24 * t, 0.42 - 0.09 * t), 0.042 - 0.012 * t, 0.042 - 0.012 * t,
+             "tail1", "ear", 8)
+    # Thin forelegs, big haunches, pink feet with pale claws.
+    for side, x in (("L", 0.1), ("R", -0.1)):
+        limb((x, -0.2, 0.38), (x, -0.25, 0.24), 0.045, 0.03, "front_upper_" + side, "fur", 8)
+        limb((x, -0.25, 0.24), (x, -0.23, 0.05), 0.022, 0.016, "front_lower_" + side, "mid", 6)
+        blob((x, -0.27, 0.025), (0.03, 0.045, 0.02), "front_paw_" + side, "nose", 8)
+        blob((x * 1.15, 0.22, 0.38), (0.07, 0.12, 0.12), "hind_upper_" + side, "fur", 12)
+        limb((x, 0.32, 0.3), (x, 0.3, 0.07), 0.03, 0.02, "hind_lower_" + side, "mid", 6)
+        blob((x, 0.26, 0.025), (0.032, 0.065, 0.02), "hind_paw_" + side, "nose", 8)
+        for paw, y in (("front_paw_", -0.31), ("hind_paw_", 0.2)):
+            for dx in (-0.015, 0.015):
+                limb((x + dx, y, 0.02), (x + dx, y - 0.02, 0.005), 0.005, 0.001, paw + side, "claw", 3)
 
 
 def arachnid():

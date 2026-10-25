@@ -55,7 +55,7 @@ namespace ARPG.Editor
             { "retcher", 78f },
             // The critters (2026-10-25): the bat measured with its wings spread; the blob's piece before the blob, so
             // "blob_small" is not measured as a "blob" rank.
-            { "rat", 34f }, { "bat", 40f }, { "blob_small", 30f }, { "blob", 46f },
+            { "rat", 44f }, { "bat", 40f }, { "blob_small", 30f }, { "blob", 46f },
             // The pets (2026-10-06, ArtSource/tools/props/pets.py): the wolf a little over the Ash Wolf (seen from behind it is narrow), the raven measured with
             // its wings spread.
             { "pet_wolf", 68f }, { "pet_boar", 58f }, { "pet_raven", 34f },

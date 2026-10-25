@@ -108,10 +108,11 @@ COLORS = {
                  "mouth": BLOOD[1]},
     "pet_raven": {"black": COLD[0], "sheen": COLD[1], "feather": STONE[0], "edge": COLD[2], "beak": STONE[1],
                   "eye": EMBER[3], "foot": STONE[1], "ring": BONE[2]},
-    "bat": {"black": (46, 36, 40), "sheen": (70, 52, 54), "feather": (92, 54, 58), "edge": (120, 74, 76), "beak": BONE[2],
-            "eye": BLOOD[4], "foot": (40, 30, 32), "ring": (150, 96, 98)},
-    "blob": {"slime": (86, 118, 50), "slime_dark": (46, 70, 32), "shine": (150, 176, 96), "core": (40, 58, 28),
-             "eye": BLOOD[4], "pupil": (20, 10, 8), "bone": BONE[1], "mouth": (26, 20, 16)},
+    "bat": {"black": (40, 30, 32), "sheen": (88, 66, 58), "feather": (74, 40, 46), "edge": (136, 104, 96), "beak": BONE[2],
+            "eye": BLOOD[4], "foot": (34, 26, 28), "ring": (178, 110, 110), "ruff": (118, 92, 76)},
+    "blob": {"slime": (92, 128, 52), "slime_dark": (50, 76, 34), "shine": (170, 200, 110), "core": (36, 54, 26),
+             "eye": BLOOD[4], "pupil": (20, 10, 8), "bone": BONE[1], "mouth": (26, 20, 16), "glow": (224, 236, 150),
+             "socket": (30, 26, 20)},
 }[NAME]
 color_list = list(COLORS)
 bm = bmesh.new()
@@ -306,45 +307,70 @@ def raven():
 
 
 def bat():
-    # A bat: a furry body and a big-eared head with fangs, wings of thin skin stretched over long finger bones.
-    blob((0, 0.0, 0.14), (0.07, 0.12, 0.07), "body", "sheen")
-    blob((0, 0.04, 0.15), (0.06, 0.1, 0.06), "body", "black")
-    blob((0, -0.15, 0.17), (0.055, 0.055, 0.055), "head", "black")
-    block((0, -0.205, 0.16), (0.04, 0.04, 0.03), "head", "sheen")
-    for x in (-0.03, 0.03):
-        block((x, -0.205, 0.19), (0.016, 0.014, 0.016), "head", "eye")
-        limb((x, -0.14, 0.21), (x * 2.6, -0.13, 0.32), 0.03, 0.004, "head", "feather", 4)
-        limb((x * 0.5, -0.215, 0.145), (x * 0.5, -0.22, 0.115), 0.006, 0.001, "head", "beak", 3)
-    limb((0, 0.1, 0.13), (0, 0.2, 0.11), 0.02, 0.004, "tail", "black", 4)
+    # A giant bat (made nicer 2026-10-25): a furry body with a pale ruff, a pug snout, tall pointed ears pink inside, red
+    # eyes and fangs; leather wings stretched over long pale finger bones with a hooked thumb claw, a scalloped edge.
+    blob((0, 0.02, 0.14), (0.075, 0.12, 0.075), "body", "black", 14)
+    blob((0, -0.06, 0.15), (0.07, 0.06, 0.07), "body", "ruff", 12)
+    blob((0, -0.15, 0.175), (0.06, 0.06, 0.058), "head", "black", 14)
+    blob((0, -0.205, 0.165), (0.03, 0.025, 0.022), "head", "ring", 10)
+    blob((0, -0.222, 0.168), (0.014, 0.008, 0.01), "head", "foot", 6)
+    for x in (-0.032, 0.032):
+        blob((x, -0.2, 0.195), (0.014, 0.01, 0.014), "head", "eye", 8)
+        limb((x, -0.14, 0.22), (x * 2.4, -0.125, 0.35), 0.034, 0.003, "head", "black", 5)
+        limb((x * 1.05, -0.152, 0.225), (x * 2.25, -0.14, 0.33), 0.02, 0.002, "head", "ring", 5)
+        limb((x * 0.45, -0.215, 0.15), (x * 0.45, -0.222, 0.11), 0.007, 0.001, "head", "beak", 4)
+    limb((0, 0.12, 0.13), (0, 0.2, 0.11), 0.018, 0.004, "tail", "black", 4)
     for side, s in (("L", 1), ("R", -1)):
-        # The arm's membrane, then the hand's in scallops between the fingers, a pale bone along each finger.
-        slab([(s * 0.04, -0.05), (s * 0.26, -0.04), (s * 0.26, 0.08), (s * 0.04, 0.1)], 0.15, 0.012, "wing_" + side, "feather")
-        limb((s * 0.04, -0.045, 0.16), (s * 0.26, -0.04, 0.16), 0.012, 0.009, "wing_" + side, "black", 4)
-        slab([(s * 0.25, -0.04), (s * 0.46, -0.02), (s * 0.4, 0.04), (s * 0.44, 0.1), (s * 0.34, 0.08), (s * 0.3, 0.13),
-              (s * 0.25, 0.08)], 0.15, 0.012, "wing_tip_" + side, "feather")
-        for tip in ((0.46, -0.02), (0.44, 0.1), (0.3, 0.13)):
-            limb((s * 0.25, -0.035, 0.16), (s * tip[0], tip[1], 0.16), 0.007, 0.004, "wing_tip_" + side, "edge", 3)
-        limb((s * 0.025, 0.04, 0.09), (s * 0.025, 0.05, 0.02), 0.008, 0.005, "leg_" + side, "foot", 4)
+        # The arm's membrane and bone, a thumb claw at the wrist, then the hand's membrane in three scallops.
+        slab([(s * 0.04, -0.05), (s * 0.27, -0.045), (s * 0.27, 0.09), (s * 0.15, 0.06), (s * 0.04, 0.11)], 0.15, 0.01,
+             "wing_" + side, "feather")
+        limb((s * 0.04, -0.045, 0.16), (s * 0.27, -0.045, 0.16), 0.014, 0.01, "wing_" + side, "edge", 5)
+        limb((s * 0.27, -0.045, 0.16), (s * 0.29, -0.09, 0.17), 0.009, 0.002, "wing_tip_" + side, "beak", 4)
+        slab([(s * 0.26, -0.045), (s * 0.52, -0.03), (s * 0.45, 0.03), (s * 0.48, 0.1), (s * 0.38, 0.08), (s * 0.35, 0.15),
+              (s * 0.29, 0.1), (s * 0.26, 0.09)], 0.15, 0.01, "wing_tip_" + side, "feather")
+        for tip in ((0.52, -0.03), (0.48, 0.1), (0.35, 0.15)):
+            limb((s * 0.26, -0.04, 0.16), (s * tip[0], tip[1], 0.16), 0.008, 0.004, "wing_tip_" + side, "edge", 4)
+        limb((s * 0.025, 0.04, 0.09), (s * 0.03, 0.05, 0.02), 0.009, 0.005, "leg_" + side, "foot", 4)
+        for dx in (-0.008, 0.008):
+            limb((s * 0.03 + dx, 0.05, 0.02), (s * 0.03 + dx, 0.035, 0.0), 0.004, 0.001, "leg_" + side, "beak", 3)
 
 
 def blob_monster():
-    # A blob: a lumpy dome of green slime, darker underneath, a shine on top, a skull and bones half digested inside,
-    # two glaring eyes and a wide mouth.
-    blob((0, 0, 0.16), (0.3, 0.3, 0.16), "base", "slime_dark")
-    blob((0, 0, 0.26), (0.27, 0.27, 0.22), "dome", "slime")
-    blob((0.1, 0.08, 0.36), (0.12, 0.12, 0.12), "dome", "slime")
-    blob((-0.12, 0.05, 0.32), (0.1, 0.1, 0.1), "dome", "slime")
-    blob((-0.06, 0.02, 0.45), (0.07, 0.06, 0.04), "dome", "shine")
-    blob((0.05, 0.12, 0.16), (0.07, 0.06, 0.06), "base", "core")
-    blob((0.09, 0.1, 0.2), (0.045, 0.045, 0.045), "base", "bone")
-    limb((-0.12, 0.08, 0.12), (0.02, 0.14, 0.1), 0.015, 0.015, "base", "bone", 4)
-    for x in (-0.08, 0.08):
-        blob((x, -0.22, 0.33), (0.05, 0.03, 0.055), "face", "eye")
-        block((x, -0.25, 0.33), (0.022, 0.012, 0.035), "face", "pupil")
-    blob((0, -0.25, 0.2), (0.12, 0.03, 0.045), "face", "mouth")
-    for k in range(5):
-        x = (k - 2) * 0.045
-        limb((x, -0.275, 0.235), (x, -0.28, 0.2), 0.012, 0.002, "face", "bone", 3)
+    # A blob (made nicer 2026-10-25): a sagging dome of slime with drips running down to the ground, a glossy shine and
+    # bubbles, the skull and ribs of something it ate breaking its back, two glaring eyes, a wide ragged mouth.
+    blob((0, 0.0, 0.14), (0.31, 0.31, 0.14), "base", "slime_dark", 18)
+    blob((0, 0.0, 0.25), (0.28, 0.28, 0.21), "dome", "slime", 18)
+    blob((0.11, 0.09, 0.33), (0.14, 0.13, 0.13), "dome", "slime", 14)
+    blob((-0.13, 0.06, 0.3), (0.12, 0.12, 0.11), "dome", "slime", 14)
+    for k in range(9):
+        a = 2 * math.pi * (k + 0.3) / 9
+        r = 0.27 + 0.02 * math.sin(k * 2.1)
+        blob((math.cos(a) * r, math.sin(a) * r, 0.045), (0.1, 0.1, 0.045), "base", "slime_dark", 10)
+        if k % 3 == 0:
+            blob((math.cos(a) * 0.26, math.sin(a) * 0.26, 0.2), (0.035, 0.035, 0.08), "dome", "slime", 8)
+    blob((-0.08, -0.06, 0.43), (0.08, 0.06, 0.035), "dome", "shine", 12)
+    blob((0.12, 0.0, 0.42), (0.035, 0.03, 0.02), "dome", "shine", 8)
+    for (x, y, z, r) in ((0.18, -0.12, 0.3, 0.025), (-0.2, -0.05, 0.22, 0.02), (0.05, -0.2, 0.42, 0.018), (-0.15, 0.15, 0.38, 0.022)):
+        blob((x, y, z), (r, r, r), "dome", "glow", 8)
+    # The skull and ribs, half out of its back.
+    blob((0.06, 0.16, 0.44), (0.075, 0.07, 0.065), "dome", "bone", 12)
+    for x in (0.035, 0.085):
+        blob((x, 0.1, 0.45), (0.017, 0.01, 0.02), "dome", "socket", 6)
+    for k in range(4):
+        y = 0.04 + k * 0.05
+        limb((-0.17, y, 0.28), (-0.07, y + 0.03, 0.47 - k * 0.02), 0.012, 0.008, "dome", "bone", 4)
+    blob((0.02, 0.08, 0.16), (0.08, 0.07, 0.06), "base", "core", 10)
+    # The face: eyes and a wide mouth with uneven teeth.
+    for x in (-0.09, 0.09):
+        blob((x, -0.23, 0.33), (0.055, 0.03, 0.06), "face", "eye", 10)
+        blob((x * 1.05, -0.255, 0.33), (0.022, 0.012, 0.03), "face", "pupil", 6)
+        limb((x * 0.6, -0.25, 0.4), (x * 1.5, -0.24, 0.38), 0.012, 0.008, "face", "slime_dark", 4)
+    blob((0, -0.255, 0.2), (0.14, 0.035, 0.05), "face", "mouth", 12)
+    for k in range(7):
+        x = (k - 3) * 0.038
+        long = 0.03 + 0.015 * ((k * 5) % 3)
+        limb((x, -0.282, 0.24), (x, -0.287, 0.24 - long), 0.011, 0.002, "face", "bone", 3)
+        limb((x + 0.019, -0.282, 0.16), (x + 0.019, -0.287, 0.16 + long * 0.7), 0.009, 0.002, "face", "bone", 3)
 
 
 {"pet_wolf": wolf, "pet_boar": boar, "pet_raven": raven, "bat": bat, "blob": blob_monster}[NAME]()
