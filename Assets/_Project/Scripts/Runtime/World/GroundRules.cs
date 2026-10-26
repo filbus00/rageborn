@@ -112,6 +112,11 @@ namespace ARPG
         }
 
         // Value noise: the lattice's hashed corners blended with a smoothstep.
+        /// <summary>The drawn crypt floor's brightness at a point (2026-10-26): a slow light and dark drift over about 7
+        /// cells that never repeats, so the picture's repeats do not look alike. 0.84 to 1.12.</summary>
+        public static float CryptFloorShade(Vector2 ground) =>
+            0.84f + 0.28f * (Smooth(ground.x / 7f, ground.y / 7f, 23) * 0.7f + Smooth(ground.x / 2.3f, ground.y / 2.3f, 29) * 0.3f);
+
         static float Smooth(float x, float y, int salt)
         {
             int x0 = Mathf.FloorToInt(x), y0 = Mathf.FloorToInt(y);

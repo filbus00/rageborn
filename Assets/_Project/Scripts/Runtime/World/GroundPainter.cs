@@ -226,7 +226,8 @@ namespace ARPG
                     if (!town && dungeonTheme == DungeonTheme.Crypt && cryptFloor != null)
                     {
                         var f = cryptFloor[Wrap(Mathf.FloorToInt(g.x * Unit), cryptFloorSize) + Wrap(Mathf.FloorToInt(g.y * Unit), cryptFloorSize) * cryptFloorSize];
-                        cellPixels[i] = new Color32(f.r, f.g, f.b, 255);
+                        var k = GroundRules.CryptFloorShade(g);
+                        cellPixels[i] = new Color32((byte)Mathf.Min(255f, f.r * k), (byte)Mathf.Min(255f, f.g * k), (byte)Mathf.Min(255f, f.b * k), 255);
                         continue;
                     }
                     var s = Wrap(Mathf.FloorToInt(g.x * Unit)) + Wrap(Mathf.FloorToInt(g.y * Unit)) * SourceSize;
