@@ -310,6 +310,7 @@ namespace ARPG
             leashTimer = 0f;
             reactTimer = 0f;
             Perched = false;
+            strollPace = Random.Range(WanderRules.MinStroll, WanderRules.MaxStroll);
             slow.Clear();
             bleedTimer = 0f;
             bleedPending = 0f;
@@ -1169,6 +1170,12 @@ namespace ARPG
         /// <summary>Moves this idle member's place as its pack wanders (WanderRules).</summary>
         internal void SetHome(Vector2 place) => home = place;
 
+        /// <summary>Whether it stands at its place (within WanderRules.Slack).</summary>
+        internal bool AtHome => (home - ground).sqrMagnitude <= WanderRules.Slack * WanderRules.Slack;
+
+        /// <summary>This enemy's own strolling pace, a share of its speed (rolled when it appears).</summary>
+        float strollPace = 0.45f;
+
         // An idle member walks after its place in a wandering pack, at a stroll.
         void Stroll(float deltaTime, EnemyManager world)
         {
@@ -1180,7 +1187,7 @@ namespace ARPG
             var step = to.normalized + Separation(world);
             if (step.sqrMagnitude > 1f)
                 step.Normalize();
-            Move(step * (EffectiveMoveSpeed * WanderRules.StrollFactor * deltaTime), world);
+            Move(step * (EffectiveMoveSpeed * strollPace * deltaTime), world);
         }
 
         Vector2 HomeDirection(EnemyManager world)

@@ -54,6 +54,7 @@ namespace ARPG
         Vector2 wanderTarget;
         float wanderPause;
         readonly List<Vector2> places = new List<Vector2>();
+        readonly List<float> memberPause = new List<float>();
 
         /// <summary>How far the pack's middle drifts from where it was placed, in ground units; 0 stands still.</summary>
         public float WanderRadius { get; set; }
@@ -157,6 +158,8 @@ namespace ARPG
                 member.PackSlot = i;
                 members.Add(member);
                 places.Add(position - anchor);
+                // Staggered, so the members do not all set off together.
+                memberPause.Add(Random.Range(0f, WanderRules.MaxPause * 1.5f));
             }
         }
 
@@ -168,22 +171,54 @@ namespace ARPG
             for (var i = 0; i < members.Count; i++)
                 if (members[i].IsAlive && members[i].State != EnemyState.Idle)
                     return;
-            if (wanderPause > 0f)
+            var dt = Time.deltaTime;
+            // A roaming duo or trio's middle drifts over its wide area; a big pack's stays where it was placed.
+            var roams = WanderRadius >= WanderRules.RoamRadius;
+            if (roams)
             {
-                wanderPause -= Time.deltaTime;
-                if (wanderPause <= 0f)
-                    PickWanderTarget();
-                return;
+                if (wanderPause > 0f)
+                {
+                    wanderPause -= dt;
+                    if (wanderPause <= 0f)
+                        PickWanderTarget();
+                }
+                else if (WanderRules.Step(ref anchor, wanderTarget, dt))
+                    wanderPause = Random.Range(WanderRules.MinPause, WanderRules.MaxPause);
             }
-            if (WanderRules.Step(ref anchor, wanderTarget, Time.deltaTime))
-                wanderPause = Random.Range(WanderRules.MinPause, WanderRules.MaxPause);
+            // Each member on its own (2026-10-26, the owner: the pack moved "like synkronised swimmers"): its own spot
+            // to walk to, its own pause there, its own pace (EnemyController.StrollPace).
+            var reach = roams ? WanderRules.RoamMemberRadius : WanderRadius + radius;
             for (var i = 0; i < members.Count; i++)
-                if (members[i].IsAlive && !members[i].Perched)
-                    members[i].SetHome(anchor + places[i]);
+            {
+                var member = members[i];
+                if (!member.IsAlive || member.Perched)
+                    continue;
+                if (memberPause[i] > 0f)
+                {
+                    memberPause[i] -= dt;
+                    if (memberPause[i] <= 0f)
+                        member.SetHome(PickMemberSpot(member, roams ? anchor : origin, reach));
+                    continue;
+                }
+                if (member.AtHome)
+                    memberPause[i] = Random.Range(WanderRules.MinPause, WanderRules.MaxPause * 1.5f);
+            }
         }
 
-        // A point within the radius that can be walked to in a straight line from where the middle is; stays put when
-        // a few tries find none.
+        // A spot for one member within reach of the middle, walkable and in a straight line from where it stands;
+        // where it stands when a few tries find none.
+        Vector2 PickMemberSpot(EnemyController member, Vector2 middle, float reach)
+        {
+            for (var tries = 0; tries < 5; tries++)
+            {
+                var spot = WanderRules.Target(middle, reach, Random.value, Random.value);
+                if (manager.Nav.IsWalkable(IsoMath.GroundToCell(spot)) && manager.Nav.HasClearWalk(member.GroundPosition, spot))
+                    return spot;
+            }
+            return member.GroundPosition;
+        }
+
+        // The roaming middle's next point: within the radius of where it was placed, in a straight line from where it is.
         void PickWanderTarget()
         {
             for (var tries = 0; tries < 6; tries++)

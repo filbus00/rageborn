@@ -23,8 +23,12 @@ namespace ARPG
         /// <summary>How long a pack stands at each point before it moves on, in seconds.</summary>
         public const float MinPause = 2f, MaxPause = 6f;
 
-        /// <summary>The share of its speed an idle member strolls at.</summary>
-        public const float StrollFactor = 0.45f;
+        /// <summary>The share of its speed an idle member strolls at: each its own, between these (2026-10-26: one pace for all
+        /// moved the pack in step).</summary>
+        public const float MinStroll = 0.3f, MaxStroll = 0.55f;
+
+        /// <summary>How far from a roaming duo's or trio's drifting middle each member wanders on its own.</summary>
+        public const float RoamMemberRadius = 2.5f;
 
         /// <summary>How far from its place in the pack a member stands before it walks back to it.</summary>
         public const float Slack = 0.35f;
