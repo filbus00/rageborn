@@ -43,9 +43,10 @@ namespace ARPG
                 return "crypt_diag_" + diagonal + (cameraSide ? "_low" : "");
             if (cameraSide)
                 return "crypt_wall_low_" + (1 + hash % 2);
-            // Plain stone about half the time, else a pilaster, a niche on either face or cobwebs.
-            var roll = hash % 10;
-            return "crypt_wall_" + (roll < 6 ? 1 : roll - 4);
+            // The owner's AI-drawn wall (2026-10-26), painted on both faces the camera sees: the -x face shows third
+            // (-y) mod 3 of the picture, the -y face third x mod 3, so the stone runs on along a wall either way. The
+            // modelled walls (crypt_wall_1..5: plain, a pilaster, niches, cobwebs) are kept for the cut-low walls.
+            return "crypt_wall_f" + Mod(-y, 3) + Mod(x, 3);
         }
 
         /// <summary>
@@ -117,6 +118,8 @@ namespace ARPG
                 return "r";
             return null;
         }
+
+        static int Mod(int v, int n) => ((v % n) + n) % n;
 
         /// <summary>Rock further from the floor, darkened by the level: the theme's plain wall.</summary>
         public static string Rock(DungeonTheme theme, int hash) =>

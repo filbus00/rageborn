@@ -167,8 +167,12 @@ namespace ARPG.Tests
             // Floor toward -x and -y: the wall fills the far half, facing the camera.
             Assert.AreEqual("b", ThemePieces.Diagonal((x, y) => x < 0 && y == 0 || y < 0 && x == 0, 0, 0));
             Assert.AreEqual("f", ThemePieces.Diagonal((x, y) => x > 0 && y == 0 || y > 0 && x == 0, 0, 0));
-            for (var hash = 0; hash < 40; hash++)
-                Assert.IsTrue(System.Text.RegularExpressions.Regex.IsMatch(ThemePieces.Wall(DungeonTheme.Crypt, Nothing, 0, 0, false, false, false, hash), "^crypt_wall_[1-5]$"));
+            // The drawn wall (2026-10-26): the thirds of the picture by the cell, running on along x and along y.
+            Assert.AreEqual("crypt_wall_f00", ThemePieces.Wall(DungeonTheme.Crypt, Nothing, 0, 0, false, false, false, 7));
+            Assert.AreEqual("crypt_wall_f01", ThemePieces.Wall(DungeonTheme.Crypt, Nothing, 1, 0, false, false, false, 7));
+            Assert.AreEqual("crypt_wall_f02", ThemePieces.Wall(DungeonTheme.Crypt, Nothing, -1, 0, false, false, false, 7));
+            Assert.AreEqual("crypt_wall_f20", ThemePieces.Wall(DungeonTheme.Crypt, Nothing, 0, 1, false, false, false, 7));
+            Assert.AreEqual("crypt_wall_f10", ThemePieces.Wall(DungeonTheme.Crypt, Nothing, 0, -1, false, false, false, 7));
         }
         [Test]
         public void NoThinWall_ReachesIntoARoom_OutsideTheCaves()

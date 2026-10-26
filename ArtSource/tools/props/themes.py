@@ -21,7 +21,7 @@
 #   cave_ledge_1..3      a terrace's rim: a lip of rock
 #   cave_stairs_<d>      rough steps through a rim, down toward d: "px", "nx", "py", "ny"
 #   stalagmite_1..3      a clump of pale spikes on a rock foot
-import math
+import math, os
 from kit import *
 
 HALF = CELL / 2
@@ -161,6 +161,78 @@ def crypt_wall(variant, low=False):
         for k in range(3):
             loc = (rng.uniform(-HALF + 0.1, HALF - 0.1), -HALF - 0.02, h - 0.1)
             box((0.03, 0.02, rng.uniform(0.08, 0.2)), (loc[0], loc[1], h - 0.12 - 0.1), wax)
+
+
+# ---------------------------------------------------------------- the drawn crypt wall (2026-10-26)
+#
+# The owner's AI-drawn wall (ArtSource/pixel/ai_exchange/crypt_wall_gemini_1.jpeg: a wall seen face on, three blocks
+# wide, floor to cornice) painted onto the two faces the camera sees. crypt_wall_f<a><b>: the -x face shows third a of
+# the picture, the -y face third b; the game picks a = (-y) mod 3, b = x mod 3 (ThemePieces), so the stone runs on along
+# a wall in either direction.
+
+FACE_SOURCE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "pixel", "ai_exchange", "crypt_wall_gemini_1.jpeg")
+# The wall's part of the picture (its margins left out) and the light seams Gemini drew between the blocks, painted out.
+FACE_CROP = (44, 980)
+FACE_SEAMS = ((351, 359), (664, 672))
+def _face_texture():
+    # Looked up by name: kit.reset() clears Blender's data between pieces.
+    found = bpy.data.images.get("crypt_wall_face")
+    if found is not None:
+        return found
+    import numpy as np
+    src = bpy.data.images.load(os.path.abspath(FACE_SOURCE))
+    w, h = src.size
+    a = np.array(src.pixels[:], dtype=np.float32).reshape(h, w, 4)
+    for x0, x1 in FACE_SEAMS:
+        for x in range(x0, x1):
+            a[:, x] = a[:, x0 - 1 - (x - x0) % 4]
+    a = a[:, FACE_CROP[0]:FACE_CROP[1]].copy()
+    img = bpy.data.images.new("crypt_wall_face", a.shape[1], a.shape[0])
+    img.pixels = a.ravel()
+    img.pack()
+    return img
+
+
+def _face_material():
+    m = bpy.data.materials.get("crypt_wall_face")
+    if m:
+        return m
+    m = bpy.data.materials.new("crypt_wall_face")
+    m.use_nodes = True
+    nodes, links = m.node_tree.nodes, m.node_tree.links
+    tex = nodes.new("ShaderNodeTexImage")
+    tex.image = _face_texture()
+    tex.interpolation = "Linear"
+    bsdf = nodes["Principled BSDF"]
+    bsdf.inputs["Roughness"].default_value = 0.95
+    links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
+    return m
+
+
+def _face_quad(corners, u0, u1, h):
+    """A quad standing on two ground points (left, right as the camera sees them), h high, mapped to the picture from u0
+    to u1 across and its full height."""
+    (lx, ly), (rx, ry) = corners
+    mesh = bpy.data.meshes.new("face")
+    mesh.from_pydata([(lx, ly, 0), (rx, ry, 0), (rx, ry, h), (lx, ly, h)], [], [(0, 1, 2, 3)])
+    uv = mesh.uv_layers.new(name="UV")
+    for loop, (u, v) in zip(mesh.loops, ((u0, 0), (u1, 0), (u1, 1), (u0, 1))):
+        uv.data[loop.index].uv = (u, v)
+    mesh.materials.append(_face_material())
+    obj = bpy.data.objects.new("face", mesh)
+    bpy.context.scene.collection.objects.link(obj)
+    return obj
+
+
+def crypt_wall_face(a, b):
+    h = WALL_H
+    box((CELL - 0.01, CELL - 0.01, h - 0.02), (0, 0, 0), mat(STONE[0], 0.0))
+    out = 0.004
+    # The -x face, seen on the left: its left end at +y, its right end at the front corner (-y).
+    _face_quad(((-HALF - out, HALF), (-HALF - out, -HALF)), a / 3.0, (a + 1) / 3.0, h)
+    # The -y face, seen on the right: its left end at the front corner (-x).
+    _face_quad(((-HALF, -HALF - out), (HALF, -HALF - out)), b / 3.0, (b + 1) / 3.0, h)
+    _crypt_top([(-HALF, -HALF), (HALF, -HALF), (HALF, HALF), (-HALF, HALF)], h)
 
 
 DIAG = {
@@ -562,6 +634,9 @@ WORLD = (1600, 1600, 800, 500)
 def register(all_pieces):
     for n in range(1, 6):
         all_pieces["crypt_wall_%d" % n] = ("world", (lambda n=n: crypt_wall(n)), WORLD)
+    for a in range(3):
+        for b in range(3):
+            all_pieces["crypt_wall_f%d%d" % (a, b)] = ("world", (lambda a=a, b=b: crypt_wall_face(a, b)), WORLD)
     for n in range(1, 3):
         all_pieces["crypt_wall_low_%d" % n] = ("world", (lambda n=n: crypt_wall(n, True)), WORLD)
         all_pieces["crypt_pillar_%d" % n] = ("world", (lambda n=n: crypt_pillar(n)), WORLD)
