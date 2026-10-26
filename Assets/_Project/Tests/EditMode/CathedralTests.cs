@@ -84,11 +84,50 @@ namespace ARPG.Tests
         public void SharedWalls_AreFoundBetweenNeighboursOnly()
         {
             var a = new RectInt(10, 10, 8, 8);
-            Assert.IsTrue(DungeonGenerator.Shared(a, new RectInt(20, 12, 6, 6), out var x0, out var x1, out var y0, out var y1));
-            Assert.AreEqual((18, 20, 12, 18), (x0, x1, y0, y1));
-            Assert.IsTrue(DungeonGenerator.Shared(a, new RectInt(12, 0, 6, 8), out _, out _, out _, out _));
-            Assert.IsFalse(DungeonGenerator.Shared(a, new RectInt(21, 12, 6, 6), out _, out _, out _, out _), "too far");
-            Assert.IsFalse(DungeonGenerator.Shared(a, new RectInt(20, 16, 6, 6), out _, out _, out _, out _), "two cells in common only");
+            Assert.IsTrue(DungeonGenerator.Shared(a, new RectInt(19, 12, 6, 6), out var x0, out var x1, out var y0, out var y1));
+            Assert.AreEqual((18, 19, 12, 18), (x0, x1, y0, y1));
+            Assert.IsTrue(DungeonGenerator.Shared(a, new RectInt(12, 1, 6, 8), out _, out _, out _, out _));
+            Assert.IsFalse(DungeonGenerator.Shared(a, new RectInt(20, 12, 6, 6), out _, out _, out _, out _), "too far");
+            Assert.IsFalse(DungeonGenerator.Shared(a, new RectInt(19, 16, 6, 6), out _, out _, out _, out _), "two cells in common only");
+        }
+
+        [Test]
+        public void Rooms_ShareAWall_OrStandWellApart_NeverBackToBack()
+        {
+            // The owner, 2026-10-26: "avoid making more than one block wide walls".
+            var a = new RectInt(10, 10, 8, 8);
+            Assert.IsTrue(DungeonGenerator.GapAllowed(a, new RectInt(19, 10, 6, 6)), "one cell: a shared wall");
+            Assert.IsFalse(DungeonGenerator.GapAllowed(a, new RectInt(20, 10, 6, 6)), "two walls back to back");
+            Assert.IsFalse(DungeonGenerator.GapAllowed(a, new RectInt(21, 10, 6, 6)), "a slit of dark between two walls");
+            Assert.IsTrue(DungeonGenerator.GapAllowed(a, new RectInt(22, 10, 6, 6)));
+            Assert.IsFalse(DungeonGenerator.GapAllowed(a, new RectInt(18, 10, 6, 6)), "touching");
+        }
+
+        [Test]
+        public void NoWall_IsTwoCellsThickBetweenFloors()
+        {
+            foreach (var (seed, depth) in Cases())
+            {
+                var layout = DungeonGenerator.Generate(seed, depth, Library());
+                // Measured between rooms' floors: a doorway beside a corner where three rooms meet has the corner's two
+                // wall cells in line with it, which is no thick wall.
+                bool Open(int x, int y) => layout.Get(x, y) == DungeonCell.Floor &&
+                                           layout.Rooms.Any(r => r.Interior.Contains(new Vector2Int(x, y)));
+                // A wall, not furniture or a column standing inside a room.
+                bool Wall(int x, int y) => layout.Get(x, y) == DungeonCell.Wall &&
+                                           !layout.Rooms.Any(r => r.Interior.Contains(new Vector2Int(x, y)));
+                var b = layout.Bounds;
+                var where = "";
+                for (var x = b.xMin + 1; x < b.xMax - 3; x++)
+                    for (var y = b.yMin + 1; y < b.yMax - 3; y++)
+                    {
+                        if (Open(x, y) && Wall(x + 1, y) && Wall(x + 2, y) && Open(x + 3, y))
+                            where += $" x-run at {x},{y}";
+                        if (Open(x, y) && Wall(x, y + 1) && Wall(x, y + 2) && Open(x, y + 3))
+                            where += $" y-run at {x},{y}";
+                    }
+                Assert.AreEqual("", where, $"seed {seed}, depth {depth}: " + string.Join(" ", layout.Rooms.Select(r => r.Interior)));
+            }
         }
     }
 }

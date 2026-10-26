@@ -334,7 +334,9 @@ namespace ARPG
                     }
                     // Rock further from the open floor than this is left out: darkness, the earth around the rooms.
                     var rock = RockDistance(at);
-                    if (rock > RockShown)
+                    // The cathedral shows only the walls; beyond them is dark, as in Diablo 1 (2026-10-26: rock drawn behind
+                    // the walls made them look several blocks thick).
+                    if (rock > (Layout.Cathedral ? 1 : RockShown))
                         continue;
                     if (rock > 1)
                     {

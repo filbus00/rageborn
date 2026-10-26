@@ -12,9 +12,9 @@ namespace ARPG
     /// </summary>
     public static partial class DungeonGenerator
     {
-        /// <summary>The wall between two neighbouring rooms, in cells (two, so it has a front and a back face, and is never
-        /// taken for a thin wall).</summary>
-        public const int CathedralWall = 2;
+        /// <summary>The wall between two neighbouring rooms, in cells: one, as Diablo 1's (2026-10-26, the owner: "avoid
+        /// making more than one block wide walls"; it was two).</summary>
+        public const int CathedralWall = 1;
 
         /// <summary>The level's rooms are grown inside a square this many cells wide.</summary>
         public const int CathedralSpan = 140;
@@ -211,11 +211,23 @@ namespace ARPG
             room = new RectInt(x, y, w, h);
             if (room.xMin < area.xMin || room.yMin < area.yMin || room.xMax > area.xMax || room.yMax > area.yMax)
                 return false;
-            var clear = new RectInt(room.xMin - CathedralWall, room.yMin - CathedralWall, room.width + 2 * CathedralWall, room.height + 2 * CathedralWall);
             foreach (var other in rooms)
-                if (clear.Overlaps(other))
+                if (!GapAllowed(room, other))
                     return false;
             return true;
+        }
+
+        /// <summary>
+        /// Whether two rooms may stand this far apart: never touching or overlapping, and never 2 or 3 cells apart, where
+        /// their walls would stand back to back as one thick wall (2026-10-26). One cell apart they share a wall; four or
+        /// more, the dark is between them.
+        /// </summary>
+        public static bool GapAllowed(RectInt a, RectInt b)
+        {
+            var gx = Mathf.Max(b.xMin - a.xMax, a.xMin - b.xMax);
+            var gy = Mathf.Max(b.yMin - a.yMax, a.yMin - b.yMax);
+            var gap = Mathf.Max(gx, gy);
+            return gap >= 1 && gap != 2 && gap != 3;
         }
 
         /// <summary>
@@ -276,7 +288,7 @@ namespace ARPG
                 if (open)
                     OpenAcross(layout, acrossX, t, acrossX ? x0 : y0);
                 // An arcade's pillars between its ends stand one cell deep (two deep, each drew as a pair).
-                else if (how == Opening.Arcade && t != from && t != to - 1)
+                else if (CathedralWall > 1 && how == Opening.Arcade && t != from && t != to - 1)
                     layout.Set(acrossX ? x0 + 1 : t, acrossX ? t : y0 + 1, DungeonCell.Floor);
             }
             var middle = from + length / 2;

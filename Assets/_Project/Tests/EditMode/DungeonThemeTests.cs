@@ -60,7 +60,8 @@ namespace ARPG.Tests
             // Cut corners and round rooms leave wall cells that the floor meets on two touching sides.
             for (var seed = 1; seed <= 10; seed++)
             {
-                var layout = DungeonGenerator.Generate(seed * 7919, 5, Library());
+                // The open halls' crypt; the cathedral's walls are all right angles (2026-10-26).
+                var layout = DungeonGenerator.Generate(seed * 7919, 5, Library(), new DungeonSettings { Cathedral = false });
                 bool Open(int x, int y) => layout.Get(x, y) == DungeonCell.Floor;
                 var diagonals = 0;
                 for (var x = layout.Bounds.xMin; x < layout.Bounds.xMax; x++)
@@ -179,6 +180,9 @@ namespace ARPG.Tests
                 for (var depth = 1; depth <= 36; depth++)
                 {
                     var layout = DungeonGenerator.Generate(seed, depth, Library());
+                    // Diablo 1's cathedral is built of walls one cell thin, at full height (2026-10-26).
+                    if (layout.Cathedral)
+                        continue;
                     bool Open(int x, int y) => layout.Get(x, y) == DungeonCell.Floor;
                     var b = layout.Bounds;
                     var count = 0;
