@@ -219,6 +219,9 @@ namespace ARPG
         /// <summary>Crypt, prison, burnt library or cave (<see cref="DungeonRules.ThemeAt"/>).</summary>
         public DungeonTheme Theme { get; internal set; }
 
+        /// <summary>Laid out as Diablo 1's cathedral (2026-10-26): straight walls only, so no curved wall cuts.</summary>
+        public bool Cathedral { get; internal set; }
+
         /// <summary>Caves (2026-10-10, the owner's terraces): the rim of a raised terrace, wall cells drawn as a rock
         /// ledge rather than a wall.</summary>
         public HashSet<Vector2Int> Ledges { get; } = new HashSet<Vector2Int>();

@@ -203,7 +203,7 @@ namespace ARPG.Tests
             foreach (var seed in new[] { 7919, 31, 4242 })
                 for (var depth = 1; depth <= 12; depth++)
                 {
-                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Tiered = false });
+                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Tiered = false, Cathedral = false });
                     if (layout.Raised.Count > 0)
                         daises++;
                     foreach (var pair in layout.TerraceStairs)
@@ -225,7 +225,7 @@ namespace ARPG.Tests
             foreach (var seed in new[] { 7919, 31, 4242 })
                 for (var depth = 1; depth <= 12; depth++)
                 {
-                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Tiered = false });
+                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Tiered = false, Cathedral = false });
                     foreach (var pair in layout.Balconies)
                     {
                         balconies++;
@@ -251,7 +251,7 @@ namespace ARPG.Tests
             foreach (var seed in new[] { 7919, 31, 4242 })
                 for (var depth = 1; depth <= 12; depth++)
                 {
-                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Tiered = false });
+                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Tiered = false, Cathedral = false });
                     if (layout.Chasm.Count > 0)
                         chasms++;
                     foreach (var cell in layout.Chasm)
@@ -272,7 +272,7 @@ namespace ARPG.Tests
             foreach (var seed in new[] { 7919, 31, 4242, 77, 1234 })
                 for (var depth = 1; depth <= 12; depth++)
                 {
-                    var layout = DungeonGenerator.Generate(seed, depth, Library());
+                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Cathedral = false });
                     if (layout.Sunken.Count > 0)
                         pits++;
                     foreach (var pair in layout.Halls)
@@ -332,7 +332,7 @@ namespace ARPG.Tests
             foreach (var seed in new[] { 7919, 31, 4242, 77, 1234 })
                 for (var depth = 1; depth <= 12; depth++)
                 {
-                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Tiered = true });
+                    var layout = DungeonGenerator.Generate(seed, depth, Library(), new DungeonSettings { Tiered = true, Cathedral = false });
                     var label = $"seed {seed} depth {depth}";
                     Assert.IsTrue(layout.Tiered, label);
                     Assert.That(layout.Rooms.Count, Is.InRange(7, 9), label);
@@ -351,7 +351,7 @@ namespace ARPG.Tests
                     foreach (var pair in layout.TerraceStairs)
                         Assert.IsTrue(pair.Value.x < 0 || pair.Value.y < 0, label);
                 }
-            Assert.IsFalse(DungeonGenerator.Generate(7919, 16, Library(), new DungeonSettings { Tiered = true }).Tiered, "the prison does not climb");
+            Assert.IsFalse(DungeonGenerator.Generate(7919, 16, Library(), new DungeonSettings { Tiered = true, Cathedral = false }).Tiered, "the prison does not climb");
             // Off by default since 2026-10-25 (the owner: "remove the vertical dungeon design").
             Assert.IsFalse(DungeonGenerator.Generate(7919, 4, Library()).Tiered);
         }

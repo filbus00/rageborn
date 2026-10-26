@@ -23,6 +23,10 @@ namespace ARPG
         // The crypt and cave pieces (2026-10-10) drawn on their own tilemap; the walls tilemap keeps only invisible
         // blockers under them.
         Tilemap wallArt;
+
+        /// <summary>Walls at full height everywhere, those in front of her faded (2026-10-26); false cuts the camera-side
+        /// walls low as before.</summary>
+        public const bool TallWalls = true;
         [Tooltip("No longer painted: the floors come from DungeonArt (2026-09-30). Kept so the scene's reference stays valid.")]
         [SerializeField] TileBase[] floorTiles;
         [SerializeField] TileBase wallTile;
@@ -308,7 +312,7 @@ namespace ARPG
             var theme = Layout.Theme;
             elevation = Elevation.Current;
             MeasureRock();
-            if (theme == DungeonTheme.Crypt)
+            if (theme == DungeonTheme.Crypt && !Layout.Cathedral)
                 MeasureCorners();
 
             for (var y = 0; y < bounds.height; y++)
@@ -342,7 +346,10 @@ namespace ARPG
                         continue;
                     }
                     var freeStanding = Layout.FreeStanding.Contains(at);
-                    var cameraSide = !freeStanding && WallRules.IsCameraSide(IsOpenCell, at.x, at.y);
+                    // Every wall at full height since 2026-10-26 (the owner: "in diablo 1, the walls are higher and become see
+                    // trough when you are behind them"); the ones in front of her fade (WallFade). Before, the walls on the
+                    // camera side of the floor were cut low.
+                    var cameraSide = !TallWalls && !freeStanding && WallRules.IsCameraSide(IsOpenCell, at.x, at.y);
                     // The room's floor style in one of its variants, with any decal drawn on; under walls too, so a wall
                     // never shows the void behind it.
                     var style = Layout.StyleAt(at);
@@ -428,6 +435,17 @@ namespace ARPG
             wallArt.ClearAllTiles();
             SetShaded(wallArt, area, artTiles);
             Layer(steps);
+            if (TallWalls)
+            {
+                var fade = GetComponent<WallFade>();
+                if (fade == null)
+                    fade = gameObject.AddComponent<WallFade>();
+                var wallMaps = new List<Tilemap> { walls };
+                foreach (Transform child in walls.transform.parent)
+                    if (child.name.StartsWith("Wall Art", System.StringComparison.Ordinal) && child.TryGetComponent<Tilemap>(out var map))
+                        wallMaps.Add(map);
+                fade.Watch(wallMaps);
+            }
             LoadTimer.Mark("paint: walls");
 
             // Braziers and candles light their corner of a dark level.

@@ -124,6 +124,10 @@ namespace ARPG
         /// rooms are joined by short rough passages through the rock rather than sharing one thin wall (2026-10-08: "no
         /// real feel of traveling underground"). Thinned to 1 to 2 on 2026-10-20 for open levels (below).</summary>
         public int MinRock = 1;
+
+        /// <summary>The crypt laid out as Diablo 1's cathedral (2026-10-26, the owner: "Can you make dungeons in the same
+        /// style as diablo 1?"): <see cref="DungeonGenerator"/>'s Cathedral. False builds the open halls as before.</summary>
+        public bool Cathedral = true;
         public int MaxRock = 2;
 
         /// <summary>Solid rock around the whole level, in cells, so its edge is rock, not black.</summary>
@@ -193,7 +197,7 @@ namespace ARPG
     /// rows, pillar grids or a hand-authored pillar layout, and get a floor style, props against the walls
     /// and floor decals. Every empty cell touching floor becomes wall. Same seed, same level. Pure.
     /// </summary>
-    public static class DungeonGenerator
+    public static partial class DungeonGenerator
     {
         /// <summary>
         /// Which generator built the saved dungeon. Bump it whenever the same seed would build a different level (room
@@ -217,8 +221,9 @@ namespace ARPG
         /// 19: the crypt no longer climbs (2026-10-25).
         /// 20: no chasms (2026-10-25).
         /// 21: burial pits back (2026-10-25).
+        /// 22: the crypt laid out as Diablo 1's cathedral: rectangular rooms grown off each other, doorways and arcades (2026-10-26).
         /// </summary>
-        public const int Version = 21;
+        public const int Version = 22;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -265,6 +270,8 @@ namespace ARPG
                     throw new ArgumentException($"Room {shape.Name} is {shape.Size} cells; the largest that fits is {settings.MaxRoomSize}.", nameof(shapes));
 
             var random = new System.Random(seed);
+            if (settings.Cathedral && DungeonRules.ThemeAt(depth) == DungeonTheme.Crypt && !DungeonRules.IsBossDepth(depth))
+                return Cathedral(seed, depth, settings, random);
 
             // 1. Grow the room tree on the coarse grid.
             var tiered = settings.Tiered && DungeonRules.ThemeAt(depth) == DungeonTheme.Crypt;
@@ -526,6 +533,14 @@ namespace ARPG
                     }
             MarkFreeStanding(layout);
 
+            return Finish(layout, doors, exit, treeDepth, random, settings, seed, depth);
+        }
+
+        /// <summary>The steps every layout ends with: stairs and arrival points, chests, packs, then props and decals. Room 0
+        /// is the start room, <paramref name="exit"/> the exit or the boss arena.</summary>
+        static DungeonLayout Finish(DungeonLayout layout, List<Vector2Int>[] doors, int exit, List<int> treeDepth, System.Random random,
+            DungeonSettings settings, int seed, int depth)
+        {
             // 5. Stairs and arrival points.
             // The stairs up go in the start room's corner furthest from its doorways, and the player arrives on the room's
             // side of them, so heading off into the level never walks back over the stairs (the first build put them in

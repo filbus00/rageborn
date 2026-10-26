@@ -88,6 +88,9 @@ namespace ARPG.Tests
                 // The crypt climbs (2026-10-21): 5 to 7 halls between the first and the last; elsewhere 10 to 15 (2026-10-08).
                 if (layout.Tiered)
                     Assert.That(layout.Rooms.Count, Is.InRange(7, 9), label);
+                // The cathedral (2026-10-26): up to 26 rooms, most of them small.
+                else if (layout.Cathedral)
+                    Assert.That(layout.Rooms.Count, Is.InRange(12, DungeonGenerator.MaxCathedralRooms), label);
                 else
                     Assert.That(layout.Rooms.Count, Is.InRange(12, 17), label + ": 10 to 15 rooms between start and exit (2026-10-08: twice the levels)");
                 Assert.AreEqual(1, layout.Rooms.Count(r => r.Kind == RoomKind.Start), label);
@@ -276,10 +279,10 @@ namespace ARPG.Tests
         [Test]
         public void NeighbouringRooms_HaveRockBetween_AndRoughWalls()
         {
-            var settings = new DungeonSettings();
+            var settings = new DungeonSettings { Cathedral = false };
             foreach (var (seed, depth) in Cases())
             {
-                var layout = DungeonGenerator.Generate(seed, depth, Library());
+                var layout = DungeonGenerator.Generate(seed, depth, Library(), settings);
                 var label = $"seed {seed}, depth {depth}";
                 foreach (var a in layout.Rooms)
                     foreach (var b in layout.Rooms)
