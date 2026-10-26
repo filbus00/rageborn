@@ -18,6 +18,9 @@ namespace ARPG
         public static string Wall(DungeonTheme theme, System.Func<int, int, bool> isOpen, int x, int y, bool cameraSide, bool freeStanding, bool ledge, int hash)
         {
             hash = Mathf.Abs(hash);
+            // The forest (2026-10-26): trees for walls, bushes for the clumps standing free.
+            if (theme == DungeonTheme.Cave && DungeonRules.Forest)
+                return freeStanding ? "forest_bush_" + (1 + hash % 3) : "forest_tree_" + (1 + hash % 6);
             if (theme == DungeonTheme.Cave)
             {
                 if (ledge)
@@ -123,7 +126,7 @@ namespace ARPG
 
         /// <summary>Rock further from the floor, darkened by the level: the theme's plain wall.</summary>
         public static string Rock(DungeonTheme theme, int hash) =>
-            theme == DungeonTheme.Cave ? "cave_wall_" + (1 + Mathf.Abs(hash) % 6) : theme == DungeonTheme.Library ? "library_wall_4" :
+            theme == DungeonTheme.Cave ? (DungeonRules.Forest ? "forest_tree_" : "cave_wall_") + (1 + Mathf.Abs(hash) % 6) : theme == DungeonTheme.Library ? "library_wall_4" :
             theme == DungeonTheme.Prison ? "prison_wall_1" : "crypt_wall_1";
 
         /// <summary>A whole flight of crypt steps, three cells wide, by the way down (2026-10-20).</summary>

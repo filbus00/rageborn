@@ -8,6 +8,13 @@ namespace ARPG.Tests
     /// <summary>The crypt laid out as Diablo 1's cathedral (2026-10-26).</summary>
     public class CathedralTests
     {
+        // The dungeon's themes, as before the forest (2026-10-26).
+        [SetUp]
+        public void ThemesBack() => DungeonRules.Forest = false;
+
+        [TearDown]
+        public void ForestAgain() => DungeonRules.Forest = true;
+
         static List<RoomShape> Library() => PlaceholderRooms.All.Select(r => RoomShape.Parse(r.name, r.layout)).ToList();
 
         static IEnumerable<(int seed, int depth)> Cases()

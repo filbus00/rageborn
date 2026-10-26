@@ -2032,6 +2032,7 @@ import themes
 themes.register(ALL)
 themes.register_stairs(ALL)
 themes.register_library(ALL)
+themes.register_forest(ALL)
 # The prison (2026-10-12).
 import prison
 prison.register(ALL)

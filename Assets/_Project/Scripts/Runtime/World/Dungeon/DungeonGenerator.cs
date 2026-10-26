@@ -66,7 +66,17 @@ namespace ARPG
         /// since the prison, 2026-10-12).</summary>
         public const int CaveFrom = 37;
 
+        /// <summary>
+        /// Every level a forest above ground (2026-10-26, the owner: "Lets drop the dungeon theme and try to keep above
+        /// ground. Make some quick assets and generate a forest map"): laid out as the caves (clearings joined by winding
+        /// ways, no terraces), drawn with trees for walls, bushes for the free-standing clumps, grass and dirt for ground
+        /// (<see cref="ThemePieces"/>, <see cref="GroundRules.ForestPick"/>). False brings back the crypt, prison, library
+        /// and caves. Not a constant only so the tests of those themes can turn it off.
+        /// </summary>
+        public static bool Forest = true;
+
         public static DungeonTheme ThemeAt(int depth) =>
+            Forest ? DungeonTheme.Cave :
             depth >= CaveFrom ? DungeonTheme.Cave : depth >= LibraryFrom ? DungeonTheme.Library :
             depth >= PrisonFrom ? DungeonTheme.Prison : DungeonTheme.Crypt;
 
@@ -224,8 +234,9 @@ namespace ARPG
         /// 22: the crypt laid out as Diablo 1's cathedral: rectangular rooms grown off each other, doorways and arcades (2026-10-26).
         /// 23: the cathedral's rooms bigger and more open (2026-10-26).
         /// 24: the cathedral's walls one cell thin, rooms never two or three cells apart (2026-10-26).
+        /// 25: every level a forest, laid out as the caves without terraces (2026-10-26).
         /// </summary>
-        public const int Version = 24;
+        public const int Version = 25;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -493,7 +504,8 @@ namespace ARPG
             if (cave)
                 for (var i = 0; i < macros.Count; i++)
                     if (kinds[i] == RoomKind.Combat || kinds[i] == RoomKind.Elite || kinds[i] == RoomKind.Treasure)
-                        Terrace(layout, mains[i], doors[i], random);
+                        if (!DungeonRules.Forest)
+                            Terrace(layout, mains[i], doors[i], random);
 
             KeepReachable(layout, mains[0]);
             FillRock(layout);

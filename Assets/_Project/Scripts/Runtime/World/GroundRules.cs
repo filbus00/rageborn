@@ -86,6 +86,11 @@ namespace ARPG
                     ? cobbleHeight > 0.05f + 1.1f * Smooth(ground.x / 3f, ground.y / 3f, 16) ? GroundLayer.Cobble : GroundLayer.Dirt
                     : cobbleHeight > 1.25f - CobbleCover(ground) * 0.6f ? GroundLayer.Cobble : GroundLayer.Dirt;
 
+        /// <summary>The forest's ground (2026-10-26): grass, worn to dirt in winding patches.</summary>
+        public static GroundLayer ForestPick(Vector2 ground) =>
+            Smooth(ground.x / 4f, ground.y / 4f, 41) * 0.7f + Smooth(ground.x / 1.3f, ground.y / 1.3f, 43) * 0.3f < 0.38f
+                ? GroundLayer.Path : GroundLayer.Grass;
+
         /// <summary>
         /// The layer at a town point (remade dark 2026-10-11, the owner's concept art: wet cobbles and mud): cobbles where
         /// the square or a road is paved, their tops first, mud between and beyond, puddles where the ground dips

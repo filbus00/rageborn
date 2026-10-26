@@ -237,6 +237,8 @@ namespace ARPG
                         var cover = nearPath ? GroundRules.PathCover(g, GroundRules.TownPaths) : 0f;
                         layer = GroundRules.TownPick(g, cover, cobble[s].a / 255f);
                     }
+                    else if (DungeonRules.Forest && dungeonTheme == DungeonTheme.Cave)
+                        layer = GroundRules.ForestPick(g);
                     else
                         layer = GroundRules.DungeonPick(g, cobble[s].a / 255f, dungeonTheme);
                     var c = layer switch
@@ -263,6 +265,13 @@ namespace ARPG
                         }
                         else
                             c = new Color32((byte)(c.r * 0.8f), (byte)(c.g * 0.76f), (byte)(c.b * 0.74f), 255);
+                    }
+                    if (!town && DungeonRules.Forest && dungeonTheme == DungeonTheme.Cave)
+                    {
+                        // The forest floor (2026-10-26): dark grass and trodden earth.
+                        c = layer == GroundLayer.Grass
+                            ? new Color32((byte)(c.r * 0.55f + 6), (byte)(c.g * 0.6f + 6), (byte)(c.b * 0.5f + 4), 255)
+                            : new Color32((byte)(c.r * 0.7f), (byte)(c.g * 0.66f), (byte)(c.b * 0.6f), 255);
                     }
                     if (town)
                     {

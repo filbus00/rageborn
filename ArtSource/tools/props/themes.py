@@ -628,6 +628,58 @@ def stalagmite(variant):
         cone(r, ht, (rng.uniform(-0.2, 0.2), rng.uniform(-0.2, 0.2), 0.0), rng.choice(pale), 7, rot=(rng.uniform(-6, 6), rng.uniform(-6, 6), 0))
 
 
+# ---------------------------------------------------------------- the forest (2026-10-26)
+#
+# The owner: "Lets drop the dungeon theme and try to keep above ground. Make some quick assets and generate a forest
+# map ... do not bother with their looks too much." Quick pieces for the cave layout drawn as a forest:
+#   forest_tree_1..6   1-3 dark pines (stacked cones), 4-6 leafy trees (a lumpy crown of spheres), on a trunk
+#   forest_bush_1..3   a low clump of leaves, 3 with a mossy rock
+
+def _leaves():
+    return [mat(MOSS[1], 0.35, MOSS[0], scale=9), mat(MOSS[2], 0.35, MOSS[1], scale=9), mat(MOSS[3], 0.3, MOSS[2], scale=9)]
+
+
+def forest_tree(variant):
+    rng = _rng("tree", variant)
+    bark = mat(WOOD[1], 0.3, WOOD[0], scale=12)
+    leaves = _leaves()
+    h = WALL_H * rng.uniform(1.05, 1.35)
+    x, y = rng.uniform(-0.06, 0.06), rng.uniform(-0.06, 0.06)
+    if variant <= 3:
+        cyl(0.06, h * 0.35, (x, y, 0), bark, 8)
+        tiers = rng.randint(3, 4)
+        for k in range(tiers):
+            t = k / tiers
+            r = 0.42 * (1 - t * 0.7) * rng.uniform(0.9, 1.1)
+            cone(r, h * 0.38, (x, y, h * (0.18 + 0.2 * k)), leaves[min(2, k)], 9, rot=(rng.uniform(-5, 5), rng.uniform(-5, 5), rng.uniform(0, 90)))
+    else:
+        cyl(0.07, h * 0.4, (x, y, 0), bark, 8)
+        for k in range(rng.randint(8, 11)):
+            cx = x + rng.uniform(-0.3, 0.3)
+            cy = y + rng.uniform(-0.3, 0.3)
+            cz = h * rng.uniform(0.32, 0.78)
+            sphere(rng.uniform(0.22, 0.34), (cx, cy, cz), rng.choice(leaves), scale=(1, 1, 0.85), segments=8, smooth=False)
+    # Roots and a little undergrowth round the foot.
+    for k in range(rng.randint(1, 3)):
+        sphere(rng.uniform(0.07, 0.12), (rng.uniform(-HALF, HALF), rng.uniform(-HALF, HALF), 0.03), rng.choice(leaves), scale=(1, 1, 0.6), segments=6, smooth=False)
+
+
+def forest_bush(variant):
+    rng = _rng("bush", variant)
+    leaves = _leaves()
+    for k in range(rng.randint(4, 6)):
+        sphere(rng.uniform(0.1, 0.18), (rng.uniform(-0.18, 0.18), rng.uniform(-0.18, 0.18), rng.uniform(0.06, 0.18)), rng.choice(leaves), scale=(1, 1, 0.75), segments=7, smooth=False)
+    if variant == 3:
+        _rock((0.12, -0.1, 0.05), 0.16, mat(STONE[2], 0.4, MOSS[1], scale=10), rng, squash=0.6)
+
+
+def register_forest(all_pieces):
+    for n in range(1, 7):
+        all_pieces["forest_tree_%d" % n] = ("world", (lambda n=n: forest_tree(n)), WORLD)
+    for n in range(1, 4):
+        all_pieces["forest_bush_%d" % n] = ("world", (lambda n=n: forest_bush(n)), WORLD)
+
+
 WORLD = (1600, 1600, 800, 500)
 
 

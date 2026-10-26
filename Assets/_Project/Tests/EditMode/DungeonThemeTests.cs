@@ -7,6 +7,13 @@ namespace ARPG.Tests
 {
     public class DungeonThemeTests
     {
+        // The dungeon's themes, as before the forest (2026-10-26).
+        [SetUp]
+        public void ThemesBack() => DungeonRules.Forest = false;
+
+        [TearDown]
+        public void ForestAgain() => DungeonRules.Forest = true;
+
         static List<RoomShape> Library() => PlaceholderRooms.All.Select(r => RoomShape.Parse(r.name, r.layout)).ToList();
 
         [Test]
