@@ -222,8 +222,9 @@ namespace ARPG
         /// 20: no chasms (2026-10-25).
         /// 21: burial pits back (2026-10-25).
         /// 22: the crypt laid out as Diablo 1's cathedral: rectangular rooms grown off each other, doorways and arcades (2026-10-26).
+        /// 23: the cathedral's rooms bigger and more open (2026-10-26).
         /// </summary>
-        public const int Version = 22;
+        public const int Version = 23;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>

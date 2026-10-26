@@ -26,7 +26,8 @@ namespace ARPG.Tests
         [Test]
         public void TheFadedPatch_FadesBackInAtItsSides()
         {
-            var edge = WallFadeRules.Alpha(new Vector2Int(19 - WallFadeRules.Width / 2 - 1, 19 + WallFadeRules.Width / 2), Her);
+            // Four steps in front and six to the side: one past the fully faded patch.
+            var edge = WallFadeRules.Alpha(new Vector2Int(15, 21), Her);
             Assert.Greater(edge, WallFadeRules.Faded);
             Assert.Less(edge, 1f);
         }

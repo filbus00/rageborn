@@ -17,19 +17,22 @@ namespace ARPG
         public const int CathedralWall = 2;
 
         /// <summary>The level's rooms are grown inside a square this many cells wide.</summary>
-        public const int CathedralSpan = 110;
+        public const int CathedralSpan = 140;
 
         /// <summary>Rooms on a level, all told.</summary>
-        public const int MinCathedralRooms = 18, MaxCathedralRooms = 26;
+        public const int MinCathedralRooms = 16, MaxCathedralRooms = 22;
 
-        /// <summary>The first three halls (the chain the rest grows off) and the rest: inside sizes in cells, even.</summary>
-        static readonly int[] HallSizes = { 14, 16, 16, 18, 20 };
-        static readonly int[] RoomSizes = { 6, 8, 8, 10, 10, 12, 12, 14 };
+        /// <summary>The first three halls (the chain the rest grows off) and the rest: inside sizes in cells, even. Bigger
+        /// since 2026-10-26 (the owner: "Make the rooms bigger and add more open rooms"; were 14 to 20 and 6 to 14).</summary>
+        static readonly int[] HallSizes = { 18, 20, 22, 24, 26 };
+        static readonly int[] RoomSizes = { 8, 10, 12, 12, 14, 14, 16, 18 };
 
-        /// <summary>How a room opens into its parent, in percent: a doorway, an arcade, or the shared wall taken away.</summary>
-        public const int DoorwayPercent = 50, ArcadePercent = 30;
+        /// <summary>How a room opens into its parent, in percent: a doorway, an arcade, or the shared wall taken away (the
+        /// rest; 40 since 2026-10-26, was 20).</summary>
+        public const int DoorwayPercent = 30, ArcadePercent = 30;
 
-        /// <summary>The chance two neighbours the tree did not join get a doorway anyway, for loops.</summary>
+        /// <summary>The chance two neighbours the tree did not join are joined anyway, for loops (any opening since
+        /// 2026-10-26, doorways only before).</summary>
         public const int CathedralLoopPercent = 35;
 
         /// <summary>The chance a big hall (12 cells or more across) holds two rows of columns.</summary>
@@ -85,14 +88,13 @@ namespace ARPG
             var links = new List<(int a, int b, Opening how)>();
             for (var i = 1; i < rooms.Count; i++)
             {
-                var roll = random.Next(100);
-                links.Add((parents[i], i, roll < DoorwayPercent ? Opening.Doorway : roll < DoorwayPercent + ArcadePercent ? Opening.Arcade : Opening.Open));
+                links.Add((parents[i], i, RollOpening(random)));
             }
             for (var i = 0; i < rooms.Count; i++)
                 for (var j = i + 1; j < rooms.Count; j++)
                     if (parents[j] != i && parents[i] != j && Shared(rooms[i], rooms[j], out _, out _, out _, out _) &&
                         random.Next(100) < CathedralLoopPercent)
-                        links.Add((i, j, Opening.Doorway));
+                        links.Add((i, j, RollOpening(random)));
             var next = new List<int>[rooms.Count];
             for (var i = 0; i < rooms.Count; i++)
                 next[i] = new List<int>();
@@ -168,6 +170,12 @@ namespace ARPG
         }
 
         static int Pick(int[] sizes, System.Random random) => sizes[random.Next(sizes.Length)];
+
+        static Opening RollOpening(System.Random random)
+        {
+            var roll = random.Next(100);
+            return roll < DoorwayPercent ? Opening.Doorway : roll < DoorwayPercent + ArcadePercent ? Opening.Arcade : Opening.Open;
+        }
 
         /// <summary>
         /// A room of the size asked on one side of room <paramref name="from"/>, a wall's thickness away, lined up with

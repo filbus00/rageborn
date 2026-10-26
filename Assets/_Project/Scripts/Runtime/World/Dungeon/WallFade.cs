@@ -17,11 +17,12 @@ namespace ARPG
 
         /// <summary>How far to either side (in steps of x - y, half a world unit each) walls fade fully; they fade back
         /// in over <see cref="Feather"/> more.</summary>
-        public const int Width = 4;
+        public const int Width = 5;
         public const int Feather = 3;
 
-        /// <summary>A faded wall's opacity.</summary>
-        public const float Faded = 0.3f;
+        /// <summary>A faded wall's opacity (0.12 since 2026-10-26, the owner: "Make the see trough effect stronger"; was
+        /// 0.3).</summary>
+        public const float Faded = 0.12f;
 
         /// <summary>How opaque the wall in a cell is drawn with her standing in another: 1 when it is not in front of her.</summary>
         public static float Alpha(Vector2Int wall, Vector2Int her)
