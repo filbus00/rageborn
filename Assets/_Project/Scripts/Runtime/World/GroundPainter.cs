@@ -26,6 +26,11 @@ namespace ARPG
 
         static Color32[][] sources;
         static bool triedLoading;
+        // The crypt's floor as one drawn picture (2026-10-26, the owner's drawn assets), any square size, repeating at
+        // 40 pixels a cell; null without it, and the crypt mixes cobble and dirt as before.
+        public const string CryptFloorName = "crypt_floor";
+        static Color32[] cryptFloor;
+        static int cryptFloorSize;
         static readonly List<Object> made = new List<Object>();
         static readonly List<Vector3Int> positions = new List<Vector3Int>();
         static readonly List<TileBase> tiles = new List<TileBase>();
@@ -36,6 +41,7 @@ namespace ARPG
         {
             sources = null;
             triedLoading = false;
+            cryptFloor = null;
             made.Clear();
         }
 
@@ -217,6 +223,12 @@ namespace ARPG
                     }
                     // The pixel's world offset from the cell's middle, then ground space (y doubled).
                     var g = new Vector2(centre.x + (x + 0.5f - Unit * 0.5f) / Unit, centre.y + 2f * (y + 0.5f - TileH * 0.5f) / Unit);
+                    if (!town && dungeonTheme == DungeonTheme.Crypt && cryptFloor != null)
+                    {
+                        var f = cryptFloor[Wrap(Mathf.FloorToInt(g.x * Unit), cryptFloorSize) + Wrap(Mathf.FloorToInt(g.y * Unit), cryptFloorSize) * cryptFloorSize];
+                        cellPixels[i] = new Color32(f.r, f.g, f.b, 255);
+                        continue;
+                    }
                     var s = Wrap(Mathf.FloorToInt(g.x * Unit)) + Wrap(Mathf.FloorToInt(g.y * Unit)) * SourceSize;
                     GroundLayer layer;
                     if (town)
@@ -276,7 +288,9 @@ namespace ARPG
             return best;
         }
 
-        static int Wrap(int v) => ((v % SourceSize) + SourceSize) % SourceSize;
+        static int Wrap(int v) => Wrap(v, SourceSize);
+
+        static int Wrap(int v, int size) => ((v % size) + size) % size;
 
         static bool Load()
         {
@@ -299,6 +313,13 @@ namespace ARPG
                 Resources.UnloadAsset(texture);
             }
             sources = loaded;
+            var floor = Resources.Load<Texture2D>(Folder + "/" + CryptFloorName);
+            if (floor != null && floor.isReadable && floor.width == floor.height)
+            {
+                cryptFloor = floor.GetPixels32();
+                cryptFloorSize = floor.width;
+                Resources.UnloadAsset(floor);
+            }
             return true;
         }
 
