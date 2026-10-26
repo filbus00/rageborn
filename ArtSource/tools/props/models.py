@@ -2033,6 +2033,9 @@ themes.register(ALL)
 themes.register_stairs(ALL)
 themes.register_library(ALL)
 themes.register_forest(ALL)
+# The forest's props and floor marks (2026-10-26).
+import forest
+forest.register(ALL)
 # The prison (2026-10-12).
 import prison
 prison.register(ALL)

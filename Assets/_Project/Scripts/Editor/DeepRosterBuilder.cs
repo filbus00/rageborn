@@ -92,6 +92,11 @@ namespace ARPG.Editor
                 F(so, "lungeWindupSeconds", 0.4f);
                 F(so, "lungeCooldownSeconds", 2.5f);
             });
+            // The forest's (2026-10-26): wolves lunge like the Ash Wolf, spiders swarm fast and frail, bandits strike twice
+            // and back off like the cutthroat; the bowman is the old BanditArcher.
+            Concept("Wolf", "AshWolf", 0.8f, 4.6f, 0.9f);
+            Concept("Spider", "Swarmer", 0.5f, 4.2f, 0.7f, so => F(so, "bodyRadius", 0.25f));
+            Concept("Bandit", "Cutthroat", 1f, 3.8f, 1f);
             Concept("BlobSmall", "Swarmer", 0.35f, 3.2f, 0.6f, so => F(so, "bodyRadius", 0.22f));
             Concept("Blob", "Swarmer", 1.3f, 2.4f, 1f, so =>
             {

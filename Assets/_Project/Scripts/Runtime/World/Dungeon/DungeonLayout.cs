@@ -69,6 +69,16 @@ namespace ARPG
         SarcophagusOpen,
         DeadAdventurer,
         ColdCamp,
+
+        // The forest (2026-10-26): its props, and the bandits' tents and the spiders' egg sacs for their lairs.
+        FallenLog,
+        Stump,
+        Mushrooms,
+        Ferns,
+        StandingStone,
+        AxeStump,
+        BanditTent,
+        WebSac,
     }
 
     /// <summary>What a crypt hall is furnished as (2026-10-20, the owner's okayed list).</summary>
@@ -107,6 +117,11 @@ namespace ARPG
         RugXHigh,
         RugYLow,
         RugYHigh,
+
+        // The forest's ground (2026-10-26).
+        Leaves,
+        Flowers,
+        Pebbles,
     }
 
     /// <summary>Room types from Docs/05-world-and-content.md. Shrine and ambush rooms are not built; until they are,
@@ -162,14 +177,21 @@ namespace ARPG
 
     public readonly struct PackPlacement
     {
-        public PackPlacement(Vector2Int cell, int count, float radius, PackKind kind, int room)
+        public PackPlacement(Vector2Int cell, int count, float radius, PackKind kind, int room, float wander = 0f)
         {
             Cell = cell;
             Count = count;
             Radius = radius;
             Kind = kind;
             Room = room;
+            Wander = wander;
         }
+
+        /// <summary>How far the pack wanders from its cell, in ground units (2026-10-26, <see cref="WanderRules"/>).</summary>
+        public float Wander { get; }
+
+        /// <summary>A small pack roaming a wide area (a duo or trio), with no lair.</summary>
+        public bool Roams => Wander >= WanderRules.RoamRadius;
 
         public Vector2Int Cell { get; }
         public int Count { get; }

@@ -664,6 +664,31 @@ def forest_tree(variant):
         sphere(rng.uniform(0.07, 0.12), (rng.uniform(-HALF, HALF), rng.uniform(-HALF, HALF), 0.03), rng.choice(leaves), scale=(1, 1, 0.6), segments=6, smooth=False)
 
 
+def forest_tree_extra(variant):
+    """7 a dead bare tree, 8 a big old oak, 9 a pale birch."""
+    rng = _rng("tree", variant)
+    h = WALL_H * rng.uniform(1.05, 1.3)
+    if variant == 7:
+        dead = mat(STONE[2], 0.35, WOOD[0], scale=12)
+        cyl(0.06, h * 0.75, (0, 0, 0), dead, 7)
+        for k in range(5):
+            a = rng.uniform(0, 360)
+            cyl(0.02, h * rng.uniform(0.2, 0.35), (0, 0, h * rng.uniform(0.35, 0.7)), dead, 5, rot=(rng.uniform(30, 60), 0, a))
+    elif variant == 8:
+        cyl(0.13, h * 0.45, (0, 0, 0), mat(WOOD[1], 0.35, WOOD[0], scale=12), 9)
+        leaves = _leaves()
+        for k in range(12):
+            sphere(rng.uniform(0.26, 0.38), (rng.uniform(-0.35, 0.35), rng.uniform(-0.35, 0.35), h * rng.uniform(0.45, 0.8)),
+                   rng.choice(leaves), scale=(1, 1, 0.8), segments=8, smooth=False)
+    else:
+        birch = mat(BONE[1], 0.3, STONE[1], scale=18)
+        cyl(0.05, h * 0.7, (0, 0, 0), birch, 8)
+        light_leaves = [mat(MOSS[3], 0.3, MOSS[2], scale=9), mat(MOSS[4], 0.3, MOSS[3], scale=9)]
+        for k in range(8):
+            sphere(rng.uniform(0.14, 0.22), (rng.uniform(-0.2, 0.2), rng.uniform(-0.2, 0.2), h * rng.uniform(0.5, 0.95)),
+                   rng.choice(light_leaves), scale=(1, 1, 0.9), segments=8, smooth=False)
+
+
 def forest_bush(variant):
     rng = _rng("bush", variant)
     leaves = _leaves()
@@ -676,6 +701,8 @@ def forest_bush(variant):
 def register_forest(all_pieces):
     for n in range(1, 7):
         all_pieces["forest_tree_%d" % n] = ("world", (lambda n=n: forest_tree(n)), WORLD)
+    for n in range(7, 10):
+        all_pieces["forest_tree_%d" % n] = ("world", (lambda n=n: forest_tree_extra(n)), WORLD)
     for n in range(1, 4):
         all_pieces["forest_bush_%d" % n] = ("world", (lambda n=n: forest_bush(n)), WORLD)
 
@@ -1016,6 +1043,9 @@ def _doorway(f, theme, rng):
         _crypt_top(top, h)
     else:
         rocks = _cave_rocks()
+        if theme == "forest":
+            # A cave mouth in a mossy outcrop in the woods (2026-10-26).
+            rocks = [mat(STONE[2], 0.4, MOSS[1], scale=8), mat(STONE[3], 0.35, MOSS[2], scale=8), mat(STONE[2], 0.3, STONE[1], scale=8)]
         core = mat(EARTH[0], 0.2, STONE[0], scale=6)
         f.box(0.0, CELL, -SPAN, -OPEN_W, 0, h * 0.8, core)
         f.box(0.0, CELL, OPEN_W, SPAN, 0, h * 0.8, core)
@@ -1037,6 +1067,11 @@ def _doorway(f, theme, rng):
                     _rock(f.at(rng.uniform(0.0, CELL * 0.8), rng.uniform(-OPEN_W, OPEN_W), z + r * 0.4), r, rng.choice(rocks), rng, squash=0.75)
         # A lintel of one long slab over the opening.
         f.box(-0.05, 0.25, -OPEN_W - 0.08, OPEN_W + 0.08, OPEN_H - 0.05, OPEN_H + 0.1, rng.choice(rocks), bevel=0.03)
+        if theme == "forest":
+            leaves = _leaves()
+            for k in range(14):
+                sphere(rng.uniform(0.12, 0.22), f.at(rng.uniform(0.0, CELL), rng.uniform(-SPAN, SPAN), h * rng.uniform(0.75, 0.95)),
+                       rng.choice(leaves), scale=(1, 1, 0.75), segments=7, smooth=False)
 
 
 def _marker(f, theme, down):
@@ -1101,6 +1136,6 @@ def stairs_down(axis, theme):
 
 def register_stairs(all_pieces):
     for axis in "xy":
-        for theme in ("crypt", "cave"):
+        for theme in ("crypt", "cave", "forest"):
             all_pieces["stairs_up_%s_%s" % (axis, theme)] = ("world", (lambda a=axis, t=theme: stairs_up(a, t)), WORLD)
             all_pieces["stairs_down_%s_%s" % (axis, theme)] = ("world", (lambda a=axis, t=theme: stairs_down(a, t)), WORLD)

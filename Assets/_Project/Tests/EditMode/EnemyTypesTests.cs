@@ -95,7 +95,7 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void TheFirstLevel_HasZombiesBlobsRatsAndBats_AndNoBackRow()
+        public void TheFirstLevel_HasItsCrittersAndForestFolk_AndNoBackRow()
         {
             // The owner, 2026-10-25: "add them at the start of the game".
             var met = new System.Collections.Generic.HashSet<PackMember>();
@@ -108,7 +108,9 @@ namespace ARPG.Tests
                 Assert.AreEqual(1, kinds.Length, "one kind a pack at depth 1");
             }
             met.Remove(PackMember.None);
-            CollectionAssert.AreEquivalent(new[] { PackMember.Zombie, PackMember.Blob, PackMember.Rat, PackMember.Bat }, met);
+            // And the forest's (2026-10-26): bandits up front, wolves and spiders in swarms.
+            CollectionAssert.AreEquivalent(new[] { PackMember.Zombie, PackMember.Blob, PackMember.Rat, PackMember.Bat,
+                PackMember.Bandit, PackMember.Wolf, PackMember.Spider }, met);
         }
 
         [Test]

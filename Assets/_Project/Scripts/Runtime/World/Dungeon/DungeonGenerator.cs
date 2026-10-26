@@ -193,6 +193,10 @@ namespace ARPG
 
         public float ElitePackRadius = 1.1f;
 
+        /// <summary>Small packs (two or three) roaming a wide area on each level (2026-10-26). Claude's numbers, to review.</summary>
+        public int MinRoamingPacks = 4;
+        public int MaxRoamingPacks = 7;
+
         /// <summary>A pack of 12 at 2.2 keeps its members clear of each other, as the test room found.</summary>
         public float PackRadius(int count) => 1.2f + 0.08f * count;
     }
@@ -235,8 +239,9 @@ namespace ARPG
         /// 23: the cathedral's rooms bigger and more open (2026-10-26).
         /// 24: the cathedral's walls one cell thin, rooms never two or three cells apart (2026-10-26).
         /// 25: every level a forest, laid out as the caves without terraces (2026-10-26).
+        /// 26: roaming duos and trios, forest props and ground scatter (2026-10-26).
         /// </summary>
-        public const int Version = 25;
+        public const int Version = 26;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -629,6 +634,17 @@ namespace ARPG
                 foreach (var i in order)
                     if (TryPlacePack(layout, i, PackKind.Elite, random.Next(settings.MinElitePackSize, settings.MaxElitePackSize + 1), random, settings))
                         break;
+            }
+
+            // Duos and trios roaming a wide area (2026-10-26, WanderRules), in rooms other than the start and the arena.
+            var roamers = random.Next(settings.MinRoamingPacks, settings.MaxRoamingPacks + 1);
+            for (var k = 0; k < roamers * 3 && roamers > 0; k++)
+            {
+                var room = 1 + random.Next(Mathf.Max(1, layout.Rooms.Count - 1));
+                if (room >= layout.Rooms.Count || layout.Rooms[room].Kind == RoomKind.Boss)
+                    continue;
+                if (TryPlacePack(layout, room, PackKind.Normal, random.Next(2, 4), random, settings, WanderRules.RoamRadius))
+                    roamers--;
             }
 
             // A carpet laid before a dais rose under it keeps no cell of the rim (2026-10-20).
@@ -2258,7 +2274,8 @@ namespace ARPG
         /// Puts a pack on a random floor spot in the room where most of its disc is floor, it is clear of the other
         /// packs, and it cannot see the player arrive. Returns false, leaving it out, when the room has no such spot.
         /// </summary>
-        static bool TryPlacePack(DungeonLayout layout, int roomIndex, PackKind kind, int count, System.Random random, DungeonSettings settings)
+        static bool TryPlacePack(DungeonLayout layout, int roomIndex, PackKind kind, int count, System.Random random, DungeonSettings settings,
+            float wander = WanderRules.PackRadius)
         {
             var room = layout.Rooms[roomIndex];
             var radius = kind == PackKind.Elite ? settings.ElitePackRadius : settings.PackRadius(count);
@@ -2288,7 +2305,7 @@ namespace ARPG
             if (candidates.Count == 0)
                 return false;
 
-            layout.Packs.Add(new PackPlacement(candidates[random.Next(candidates.Count)], count, radius, kind, roomIndex));
+            layout.Packs.Add(new PackPlacement(candidates[random.Next(candidates.Count)], count, radius, kind, roomIndex, wander));
             return true;
         }
 

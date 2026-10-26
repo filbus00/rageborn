@@ -43,6 +43,12 @@ namespace ARPG
         Rat,
         Bat,
         Blob,
+
+        // The forest's own (2026-10-26, the owner: "generate new enemy types, wolfes, spiders and bandits").
+        Wolf,
+        Spider,
+        Bandit,
+        BanditArcher,
     }
 
     /// <summary>Where a kind stands in a pack: in front, at the back, one behind the rest helping them, or in a pack
@@ -102,6 +108,12 @@ namespace ARPG
             new Entry(PackMember.Blob, PackRole.Front, 1, 14, 6),
             new Entry(PackMember.Rat, PackRole.Swarm, 1, 14, 8),
             new Entry(PackMember.Bat, PackRole.Swarm, 1, 16, 6),
+            // The forest's (2026-10-26): wolves and spiders in swarms, bandits up front with their bowmen behind,
+            // through the whole forest. Claude's numbers, to review.
+            new Entry(PackMember.Wolf, PackRole.Swarm, 1, 48, 8),
+            new Entry(PackMember.Spider, PackRole.Swarm, 1, 48, 7),
+            new Entry(PackMember.Bandit, PackRole.Front, 1, 30, 9),
+            new Entry(PackMember.BanditArcher, PackRole.Back, 2, 30, 8),
             // The prison (13 to 24).
             new Entry(PackMember.Mummy, PackRole.Front, 13, 28, 8),
             new Entry(PackMember.FleshGolem, PackRole.Front, 14, 30, 5),

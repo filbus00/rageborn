@@ -74,6 +74,11 @@ PALETTES = {
     "rat": {"fur": (54, 44, 42), "fur_dark": (28, 22, 22), "belly": (110, 96, 86), "eye": BLOOD[4], "mouth": BLOOD[1],
             "teeth": (232, 200, 120), "ember": (70, 62, 56), "nose": (214, 128, 122), "ear": (232, 150, 140),
             "claw": BONE[2], "mid": (42, 34, 32)},
+    # The forest (2026-10-26): a grey timber wolf, and a big black-brown forest spider with red eyes.
+    "wolf": {"fur": (104, 98, 90), "fur_dark": (58, 54, 50), "belly": (150, 142, 128), "eye": EMBER[3], "mouth": BLOOD[1],
+             "teeth": BONE[2], "ember": (80, 74, 68), "nose": STONE[0]},
+    "spider": {"fur": (54, 40, 34), "fur_dark": (30, 22, 20), "belly": (90, 64, 50), "eye": BLOOD[4], "mouth": BLOOD[0],
+               "teeth": BONE[1], "ember": (120, 40, 30), "nose": STONE[0]},
     "arachnid": {"fur": (80, 26, 34), "fur_dark": (46, 16, 30), "belly": (110, 50, 70), "eye": BLOOD[4], "mouth": BLOOD[0],
                  "teeth": BONE[1], "ember": (90, 40, 110), "nose": STONE[0]},
     "sand_worm": {"fur": (120, 88, 56), "fur_dark": (84, 60, 38), "belly": (160, 120, 84), "eye": BLOOD[3], "mouth": (50, 14, 12),
@@ -330,7 +335,7 @@ def sand_worm():
              "jaw" if math.sin(a) < 0 else "head", "teeth", 4)
 
 
-{"ash_wolf": ash_wolf, "hell_hound": hell_hound, "nightmare": nightmare, "quill_rat": quill_rat, "rat": rat,
+{"ash_wolf": ash_wolf, "hell_hound": hell_hound, "nightmare": nightmare, "quill_rat": quill_rat, "rat": rat, "wolf": ash_wolf, "spider": arachnid,
  "arachnid": arachnid, "sand_worm": sand_worm}[NAME]()
 
 mesh = bpy.data.meshes.new(NAME)

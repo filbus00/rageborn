@@ -29,6 +29,9 @@ namespace ARPG
 
         /// <summary>The hollowed, rift callers, void wraiths: flesh pods, spikes, hellfire, gore.</summary>
         Nest,
+
+        /// <summary>Spiders (2026-10-26): egg sacs, webs, bones.</summary>
+        Web,
     }
 
     /// <summary>A pack's lair: which theme its members make, and what it holds. Pure.</summary>
@@ -37,7 +40,7 @@ namespace ARPG
         /// <summary>The theme most of a pack's members make (ties to the first in the list's order).</summary>
         public static LairTheme Theme(IReadOnlyList<PackMember> members)
         {
-            var counts = new int[8];
+            var counts = new int[System.Enum.GetValues(typeof(LairTheme)).Length];
             foreach (var member in members)
                 counts[(int)ThemeOf(member)]++;
             var best = LairTheme.None;
@@ -56,6 +59,13 @@ namespace ARPG
             {
                 // The concept roster (2026-10-13): raiders camp, the hungry feed, beasts den, casters keep shrines,
                 // the dead keep tombs, demons nest.
+                case PackMember.Bandit:
+                case PackMember.BanditArcher:
+                    return LairTheme.Camp;
+                case PackMember.Wolf:
+                    return LairTheme.Den;
+                case PackMember.Spider:
+                    return LairTheme.Web;
                 case PackMember.Fallen:
                 case PackMember.Ogre:
                 case PackMember.Giant:
@@ -114,7 +124,7 @@ namespace ARPG
             switch (theme)
             {
                 case LairTheme.Camp:
-                    return new[] { (PropKind.Sack, 2, 4), (PropKind.Crate, 1, 3), (PropKind.Barrel, 1, 2), (PropKind.WeaponRack, 1, 1), (PropKind.Cage, 0, 1) };
+                    return new[] { (PropKind.BanditTent, 1, 2), (PropKind.Sack, 2, 4), (PropKind.Crate, 1, 3), (PropKind.Barrel, 1, 2), (PropKind.WeaponRack, 1, 1), (PropKind.Cage, 0, 1) };
                 case LairTheme.Feeding:
                     return new[] { (PropKind.Carcass, 1, 3), (PropKind.BonePile, 2, 4), (PropKind.Stake, 0, 2) };
                 case LairTheme.Den:
@@ -127,6 +137,8 @@ namespace ARPG
                     return new[] { (PropKind.Carcass, 1, 2), (PropKind.Bucket, 1, 2), (PropKind.Barrel, 0, 2) };
                 case LairTheme.Nest:
                     return new[] { (PropKind.FleshPod, 2, 5), (PropKind.Spikes, 2, 4), (PropKind.Stake, 0, 2) };
+                case LairTheme.Web:
+                    return new[] { (PropKind.WebSac, 2, 4), (PropKind.BonePile, 1, 2) };
                 default:
                     return new (PropKind, int, int)[0];
             }
@@ -151,6 +163,8 @@ namespace ARPG
                     return new[] { (DecalKind.Puddle, 4, 8), (DecalKind.Net, 2, 3), (DecalKind.Moss, 1, 3) };
                 case LairTheme.Nest:
                     return new[] { (DecalKind.Gore, 4, 7), (DecalKind.Sigil, 1, 3), (DecalKind.Blood, 2, 4) };
+                case LairTheme.Web:
+                    return new[] { (DecalKind.Net, 3, 6), (DecalKind.Bones, 2, 4), (DecalKind.Blood, 1, 2) };
                 default:
                     return new (DecalKind, int, int)[0];
             }

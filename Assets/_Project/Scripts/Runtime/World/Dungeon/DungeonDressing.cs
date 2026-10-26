@@ -45,6 +45,19 @@ namespace ARPG
             (PropKind.Barrel, 6), (PropKind.Brazier, 4),
         };
 
+        // The forest (2026-10-26): logs, stumps, mushrooms, ferns, a standing stone now and then.
+        static readonly (PropKind kind, int weight)[] ForestPropWeights =
+        {
+            (PropKind.Ferns, 26), (PropKind.Mushrooms, 18), (PropKind.Stump, 16), (PropKind.FallenLog, 16), (PropKind.StandingStone, 6),
+            (PropKind.AxeStump, 4), (PropKind.BonePile, 4),
+        };
+
+        static readonly (DecalKind kind, int weight)[] ForestDecalWeights =
+        {
+            (DecalKind.Leaves, 36), (DecalKind.Flowers, 22), (DecalKind.Pebbles, 20), (DecalKind.Puddle, 10), (DecalKind.Bones, 6),
+            (DecalKind.Blood, 6),
+        };
+
         // The burnt library (2026-10-11): books heaped and burnt, ash, lecterns and desks, smouldering piles for light.
         static readonly (PropKind kind, int weight)[] LibraryPropWeights =
         {
@@ -183,7 +196,8 @@ namespace ARPG
             for (var p = 0; p < layout.Packs.Count; p++)
             {
                 var pack = layout.Packs[p];
-                var theme = pack.Kind == PackKind.Elite
+                // A roaming duo or trio keeps no lair (2026-10-26).
+                var theme = pack.Roams ? LairTheme.None : pack.Kind == PackKind.Elite
                     ? Lairs.EliteTheme(layout.Depth)
                     : Lairs.Theme(PackComposition.Roll(layout.Depth, pack.Kind, pack.Count, levelSeed, p));
                 // One entry a pack, in the packs' order, even for a pack with no lair.
@@ -254,7 +268,7 @@ namespace ARPG
         {
             var demonic = Mathf.Clamp01((depth - 8) / 16f);
             var theme = DungeonRules.ThemeAt(depth);
-            var list = new List<(PropKind, int)>(theme == DungeonTheme.Cave ? CavePropWeights : theme == DungeonTheme.Library ? LibraryPropWeights :
+            var list = new List<(PropKind, int)>(theme == DungeonTheme.Cave && DungeonRules.Forest ? ForestPropWeights : theme == DungeonTheme.Cave ? CavePropWeights : theme == DungeonTheme.Library ? LibraryPropWeights :
                 theme == DungeonTheme.Prison ? PrisonPropWeights : CryptPropWeights);
             var extra = Mathf.RoundToInt(demonic * 120);
             if (extra > 0)
@@ -331,7 +345,7 @@ namespace ARPG
                 var cell = floor[random.Next(floor.Count)];
                 if (!layout.IsFloor(cell) || layout.Decals.ContainsKey(cell))
                     continue;
-                var kind = Pick(layout.Theme == DungeonTheme.Cave ? CaveDecalWeights : layout.Theme == DungeonTheme.Library ? LibraryDecalWeights :
+                var kind = Pick(layout.Theme == DungeonTheme.Cave && DungeonRules.Forest ? ForestDecalWeights : layout.Theme == DungeonTheme.Cave ? CaveDecalWeights : layout.Theme == DungeonTheme.Library ? LibraryDecalWeights :
                     layout.Theme == DungeonTheme.Prison ? PrisonDecalWeights : DecalWeights, random);
                 // Moss grows in the damp rooms (style 3) and hardly elsewhere.
                 if (kind == DecalKind.Moss && style != 3 && random.Next(3) > 0)

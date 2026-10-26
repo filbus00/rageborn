@@ -8,7 +8,7 @@ namespace ARPG.Tests
     {
         // Every enemy the packs are made of (Data/Enemies), bosses and break targets aside.
         // The critters (2026-10-25) have only their bite and swipe.
-        static readonly string[] Critters = { "Rat", "Bat" };
+        static readonly string[] Critters = { "Rat", "Bat", "Wolf" };
 
         static readonly string[] Roster = System.Enum.GetNames(typeof(PackMember)).Where(n => n != "None" && !Critters.Contains(n))
             .Concat(new[] { "Swarmer", "SwarmerChampion", "SwarmerElite" }).ToArray();

@@ -471,7 +471,10 @@ namespace ARPG
                     if (distance > definition.AggroRange ||
                         !EnemyRules.Wakes(distance, world.Nav.HasLineOfSight(ground, playerGround) ? distance : world.RouteLength(ground, playerGround),
                             definition.AggroRange))
+                    {
+                        Stroll(deltaTime, world);
                         return;
+                    }
                     Engage();
                     pack?.Alert();
                     break;
@@ -1161,6 +1164,23 @@ namespace ARPG
                 desired.Normalize();
 
             Move(desired * (EffectiveMoveSpeed * deltaTime), world);
+        }
+
+        /// <summary>Moves this idle member's place as its pack wanders (WanderRules).</summary>
+        internal void SetHome(Vector2 place) => home = place;
+
+        // An idle member walks after its place in a wandering pack, at a stroll.
+        void Stroll(float deltaTime, EnemyManager world)
+        {
+            if (Perched)
+                return;
+            var to = home - ground;
+            if (to.sqrMagnitude <= WanderRules.Slack * WanderRules.Slack)
+                return;
+            var step = to.normalized + Separation(world);
+            if (step.sqrMagnitude > 1f)
+                step.Normalize();
+            Move(step * (EffectiveMoveSpeed * WanderRules.StrollFactor * deltaTime), world);
         }
 
         Vector2 HomeDirection(EnemyManager world)

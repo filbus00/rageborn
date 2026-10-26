@@ -1029,7 +1029,7 @@ namespace ARPG
             // the walls; walking into the cell before it takes her through.
             var down = objectName == "Stairs Down";
             var wallPiece = into == Vector2Int.zero ? null
-                : WorldArt.Get($"stairs_{(down ? "down" : "up")}_{(into.x != 0 ? "x" : "y")}_{(Layout.Theme == DungeonTheme.Cave ? "cave" : "crypt")}");
+                : WorldArt.Get($"stairs_{(down ? "down" : "up")}_{(into.x != 0 ? "x" : "y")}_{(Layout.Theme == DungeonTheme.Cave ? (DungeonRules.Forest ? "forest" : "cave") : "crypt")}");
             if (wallPiece != null)
             {
                 var doorway = new GameObject("Doorway", typeof(SpriteRenderer));
@@ -1108,6 +1108,7 @@ namespace ARPG
             go.transform.position = CellWorld(placement.Cell);
 
             var pack = go.AddComponent<EnemyPack>();
+            pack.WanderRadius = placement.Wander;
             // A balcony's hall: its first pack stands its archers and casters up there (2026-10-20).
             if (placement.Kind != PackKind.Elite && Layout.Balconies.TryGetValue(placement.Room, out var gallery) && perchedRooms.Add(placement.Room))
             {

@@ -48,6 +48,16 @@ namespace ARPG
         EnemyDefinition[] slotDefinitions;
 
         Vector2 anchor;
+        // Wandering (2026-10-26, WanderRules): where the pack was placed, where its middle drifts to, how long it stands,
+        // and each member's place relative to the middle.
+        Vector2 origin;
+        Vector2 wanderTarget;
+        float wanderPause;
+        readonly List<Vector2> places = new List<Vector2>();
+
+        /// <summary>How far the pack's middle drifts from where it was placed, in ground units; 0 stands still.</summary>
+        public float WanderRadius { get; set; }
+
         FlowField homeField;
         string packKey;
 
@@ -107,6 +117,9 @@ namespace ARPG
             }
 
             anchor = IsoMath.WorldToGround(transform.position);
+            origin = anchor;
+            wanderTarget = anchor;
+            wanderPause = Random.Range(0f, WanderRules.MaxPause);
 
             // Killed enemies stay dead while the session lasts, so a pack that was cleared earlier comes back cleared.
             // Keyed by level, not scene: every dungeon level shares one scene.
@@ -143,7 +156,47 @@ namespace ARPG
                 member.Perched = perched;
                 member.PackSlot = i;
                 members.Add(member);
+                places.Add(position - anchor);
             }
+        }
+
+        void Update()
+        {
+            if (WanderRadius <= 0f || manager == null || members.Count == 0)
+                return;
+            // Only a calm pack wanders: once any member is awake, the pack stays where the fight is.
+            for (var i = 0; i < members.Count; i++)
+                if (members[i].IsAlive && members[i].State != EnemyState.Idle)
+                    return;
+            if (wanderPause > 0f)
+            {
+                wanderPause -= Time.deltaTime;
+                if (wanderPause <= 0f)
+                    PickWanderTarget();
+                return;
+            }
+            if (WanderRules.Step(ref anchor, wanderTarget, Time.deltaTime))
+                wanderPause = Random.Range(WanderRules.MinPause, WanderRules.MaxPause);
+            for (var i = 0; i < members.Count; i++)
+                if (members[i].IsAlive && !members[i].Perched)
+                    members[i].SetHome(anchor + places[i]);
+        }
+
+        // A point within the radius that can be walked to in a straight line from where the middle is; stays put when
+        // a few tries find none.
+        void PickWanderTarget()
+        {
+            for (var tries = 0; tries < 6; tries++)
+            {
+                var target = WanderRules.Target(origin, WanderRadius, Random.value, Random.value);
+                if (manager.Nav.IsWalkable(IsoMath.GroundToCell(target)) && manager.Nav.HasClearWalk(anchor, target))
+                {
+                    wanderTarget = target;
+                    return;
+                }
+            }
+            wanderTarget = anchor;
+            wanderPause = Random.Range(WanderRules.MinPause, WanderRules.MaxPause);
         }
 
         /// <summary>

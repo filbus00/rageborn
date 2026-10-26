@@ -1,0 +1,990 @@
+fileFormatVersion: 2
+guid: a395efbca241d4a989375b3db030ffc1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2385591359512014999
+    second: spider_hit_0
+  - first:
+      213: 5172214528045187129
+    second: spider_hit_1
+  - first:
+      213: -2937239226229901761
+    second: spider_hit_2
+  - first:
+      213: 6127264538038305345
+    second: spider_hit_3
+  - first:
+      213: 2961803499833012121
+    second: spider_hit_4
+  - first:
+      213: 1160392131814998350
+    second: spider_hit_5
+  - first:
+      213: -172985291142615231
+    second: spider_hit_6
+  - first:
+      213: 4331284110106936028
+    second: spider_hit_7
+  - first:
+      213: 4248312761806442139
+    second: spider_hit_8
+  - first:
+      213: -780923635099894539
+    second: spider_hit_9
+  - first:
+      213: -7376539520185134672
+    second: spider_hit_10
+  - first:
+      213: 4021339039613613573
+    second: spider_hit_11
+  - first:
+      213: -1245236953746648275
+    second: spider_hit_12
+  - first:
+      213: 4711416256635451955
+    second: spider_hit_13
+  - first:
+      213: 982426879749728038
+    second: spider_hit_14
+  - first:
+      213: 7117383155708333868
+    second: spider_hit_15
+  - first:
+      213: 4919963474093117961
+    second: spider_hit_16
+  - first:
+      213: -960626055568794083
+    second: spider_hit_17
+  - first:
+      213: -4002374468267581828
+    second: spider_hit_18
+  - first:
+      213: -3907878201335834851
+    second: spider_hit_19
+  - first:
+      213: 1958437605151315011
+    second: spider_hit_20
+  - first:
+      213: 7734878182346639367
+    second: spider_hit_21
+  - first:
+      213: 226885945546478304
+    second: spider_hit_22
+  - first:
+      213: 2130022074165749860
+    second: spider_hit_23
+  - first:
+      213: 8235608437752219383
+    second: spider_hit_24
+  - first:
+      213: 459624387443756449
+    second: spider_hit_25
+  - first:
+      213: 6246945186829750929
+    second: spider_hit_26
+  - first:
+      213: 8050527814356133360
+    second: spider_hit_27
+  - first:
+      213: -1786366587479584672
+    second: spider_hit_28
+  - first:
+      213: 4785733319838809607
+    second: spider_hit_29
+  - first:
+      213: -9174939004031459835
+    second: spider_hit_30
+  - first:
+      213: 51727324074290956
+    second: spider_hit_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spider_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 245
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62bd90899e9864ab4b64e66a861be6aa
+      internalID: 1851124043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 245
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02e1a7dcb65154622a6f459dab6c2da1
+      internalID: -1888647757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_s_02
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 245
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3cf2935e1077466a919c61d39944a4c
+      internalID: -1613281091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_s_03
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 245
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba4efebc4eb804d23ade4d4618fca869
+      internalID: -2134665219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 210
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75f2a0d070b8e4d63b35f4bb62f47ab6
+      internalID: 958255525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 210
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f4c2f1ade63b4ac6b7589f9132e24af
+      internalID: -678329230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_sw_02
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 210
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09b63cd47ba904d05a3179b0975c35b6
+      internalID: -1920131201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_sw_03
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 210
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e86fe42cae86a4de4827fb9edee89172
+      internalID: -792345755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 175
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 273b9887617924ee6988e1561259af7c
+      internalID: 279100499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 175
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5584843a85d964f2691ad0fe5ed3e3a1
+      internalID: -903034142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_w_02
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 175
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f4377ce0be1c4a168532edaaf8900d3
+      internalID: -604721484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_w_03
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 175
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb7ba590365b14e07b468cf81118f4a4
+      internalID: 2129402346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6137fad6a622d46d0b1d0c61c6ec3796
+      internalID: 1794500392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 140
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 076355d918388446084e6e02c483e555
+      internalID: -1141574507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_nw_02
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 140
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7960a70f3eb7048c69c314b0b25893f3
+      internalID: -1549674867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_nw_03
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 140
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59490ba203a474c0f9e9162b95d1216d
+      internalID: 1221977939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 105
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0791d99bb5c1e4cdeadac1e4a76e6dde
+      internalID: 629172279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 105
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1167f89bf7cb644bb8f46ba8e702afa2
+      internalID: -2126854525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_n_02
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 105
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79bcc9ac8b49b4c76a0738b97f96e130
+      internalID: -2109947798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_n_03
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 105
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1839eadcb531449a4acaf3661e900006
+      internalID: -1629026989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 70
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9113c54a0f765465f955f9830eab4e41
+      internalID: 2117778998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 70
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77c9339b9df834694997cd7e52c7a73d
+      internalID: -646484605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_ne_02
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 70
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a419c30c32804a1cbfd8816e4e18bd9
+      internalID: -1949124656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_ne_03
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 70
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46118ac0d4cce47e6ab80580afb00e1e
+      internalID: -619063747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 35
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45103b5b5217348bbb3dc91f0fc9195c
+      internalID: 1676587566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 35
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4243c08b35c8e4d468d805540b5bf6c7
+      internalID: -2075793911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_e_02
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 35
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca195ea078275444bb6661e00326fc45
+      internalID: 1323029444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_e_03
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 35
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 125d53c96d6db44908892e6edd134133
+      internalID: -1672199442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b029bb125b08243a386d491ba79f26ab
+      internalID: 439882695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 0
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67519cd66f1124fc696332e6466616f3
+      internalID: -472689790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_se_02
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 0
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e90d9445784f24561b3b6f80fcf36cdd
+      internalID: 362372675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spider_hit_se_03
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 0
+        width: 38
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ca2534629cf24df48ddcba04488aa10
+      internalID: 2062356600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a4096bf7a78714d049df2555a4701bb6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      spider_hit_e_00: 1676587566
+      spider_hit_e_01: -2075793911
+      spider_hit_e_02: 1323029444
+      spider_hit_e_03: -1672199442
+      spider_hit_n_00: 629172279
+      spider_hit_n_01: -2126854525
+      spider_hit_n_02: -2109947798
+      spider_hit_n_03: -1629026989
+      spider_hit_ne_00: 2117778998
+      spider_hit_ne_01: -646484605
+      spider_hit_ne_02: -1949124656
+      spider_hit_ne_03: -619063747
+      spider_hit_nw_00: 1794500392
+      spider_hit_nw_01: -1141574507
+      spider_hit_nw_02: -1549674867
+      spider_hit_nw_03: 1221977939
+      spider_hit_s_00: 1851124043
+      spider_hit_s_01: -1888647757
+      spider_hit_s_02: -1613281091
+      spider_hit_s_03: -2134665219
+      spider_hit_se_00: 439882695
+      spider_hit_se_01: -472689790
+      spider_hit_se_02: 362372675
+      spider_hit_se_03: 2062356600
+      spider_hit_sw_00: 958255525
+      spider_hit_sw_01: -678329230
+      spider_hit_sw_02: -1920131201
+      spider_hit_sw_03: -792345755
+      spider_hit_w_00: 279100499
+      spider_hit_w_01: -903034142
+      spider_hit_w_02: -604721484
+      spider_hit_w_03: 2129402346
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

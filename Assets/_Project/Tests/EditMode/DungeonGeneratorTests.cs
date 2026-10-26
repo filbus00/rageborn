@@ -329,7 +329,7 @@ namespace ARPG.Tests
                 for (var p = 0; p < layout.Packs.Count; p++)
                 {
                     var pack = layout.Packs[p];
-                    var expected = pack.Kind == PackKind.Elite
+                    var expected = pack.Roams ? LairTheme.None : pack.Kind == PackKind.Elite
                         ? Lairs.EliteTheme(depth)
                         : Lairs.Theme(PackComposition.Roll(depth, pack.Kind, pack.Count, seed, p));
                     Assert.AreEqual(expected, layout.Lairs[p].theme, $"seed {seed}, depth {depth}, pack {p}");
@@ -379,7 +379,17 @@ namespace ARPG.Tests
         public void SafeToBlock_RefusesACellThatWouldCutAPassage()
         {
             // A one-cell gap in a wall: blocking it would cut the level in two; a cell against a straight wall would not.
-            var layout = DungeonGenerator.Generate(5, 1, Library(), new DungeonSettings { Tiered = false });
+            // On the crypt's rectangular rooms (the forest's clearings are ragged).
+            DungeonRules.Forest = false;
+            DungeonLayout layout;
+            try
+            {
+                layout = DungeonGenerator.Generate(5, 1, Library(), new DungeonSettings { Tiered = false });
+            }
+            finally
+            {
+                DungeonRules.Forest = true;
+            }
             var room = layout.Rooms[0].Interior;
             var gap = new Vector2Int(room.xMin + 3, room.yMin + 3);
             for (var x = room.xMin; x < room.xMax; x++)

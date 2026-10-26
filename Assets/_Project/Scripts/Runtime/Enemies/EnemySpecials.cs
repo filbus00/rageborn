@@ -120,6 +120,12 @@ namespace ARPG
             // The critters (2026-10-25): the blob spits a glob of itself; rats, bats and the blob's pieces have only their
             // bite, swipe and slam (the bat's swipe is its lunge). Claude's choice, to review.
             ("Blob", new EnemySpecial("Slime Glob", SpecialShape.Throw, 7f, 2f, 7f, 0.3f, 0.55f, 0.8f, Bile, length: 7f, speed: 8f, kind: ProjectileKind.Fireball)),
+            // The forest's (2026-10-26): a spider spits a web that slows, a bandit throws a knife, a bowman looses a spread
+            // of arrows; wolves only bite and lunge. Claude's choice, to review.
+            ("Spider", new EnemySpecial("Web", SpecialShape.Throw, 6.5f, 2f, 7f, 0.25f, 0.5f, 0.4f, Bone, length: 8f, speed: 11f, slow: 0.5f, slowSeconds: 2f)),
+            ("Bandit", new EnemySpecial("Thrown Knife", SpecialShape.Throw, 6f, 2f, 8f, 0.2f, 0.45f, 0.8f, Steel, length: 9f, speed: 16f, kind: ProjectileKind.Knife)),
+            ("BanditArcher", new EnemySpecial("Volley", SpecialShape.Throw, 7f, 2.5f, 10f, 0.2f, 0.5f, 0.8f, Steel, count: 3, spread: 12f, length: 11f, speed: 15f)),
+            ("Wolf", default),
             ("BlobSmall", default),
             ("Rat", default),
             ("Bat", default),
