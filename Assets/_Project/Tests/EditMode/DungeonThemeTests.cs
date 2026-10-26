@@ -308,6 +308,22 @@ namespace ARPG.Tests
             Assert.AreEqual(border.r, RugRules.Colour(DecalKind.RugXHigh, 0.1f, 0.35f, 0f).r);
         }
 
+        [Test]
+        public void TheCarpetPicture_SpansBothCellsAcross_AndRepeatsAlong()
+        {
+            // The low cell's outer side is the picture's left edge, the high cell's its right edge; they meet in the middle.
+            Assert.AreEqual(0f, RugRules.ImagePoint(DecalKind.RugXLow, new Vector2Int(4, 7), 0f, -0.5f).x, 1e-5f);
+            Assert.AreEqual(0.5f, RugRules.ImagePoint(DecalKind.RugXLow, new Vector2Int(4, 7), 0f, 0.5f).x, 1e-5f);
+            Assert.AreEqual(0.5f, RugRules.ImagePoint(DecalKind.RugXHigh, new Vector2Int(4, 8), 0f, -0.5f).x, 1e-5f);
+            Assert.AreEqual(1f, RugRules.ImagePoint(DecalKind.RugYHigh, new Vector2Int(9, 3), 0.5f, 0f).x, 1e-5f);
+            // Along, it runs on from cell to cell and repeats every CellsPerImage cells.
+            var a = RugRules.ImagePoint(DecalKind.RugXLow, new Vector2Int(4, 7), 0.5f, 0f).y;
+            var b = RugRules.ImagePoint(DecalKind.RugXLow, new Vector2Int(5, 7), -0.5f, 0f).y;
+            Assert.AreEqual(a, b, 1e-5f);
+            Assert.AreEqual(RugRules.ImagePoint(DecalKind.RugYLow, new Vector2Int(1, 3), 0.2f, 0.1f).y,
+                RugRules.ImagePoint(DecalKind.RugYLow, new Vector2Int(1, 3 + (int)RugRules.CellsPerImage), 0.2f, 0.1f).y, 1e-5f);
+        }
+
 
         [Test]
         public void TheCrypt_Climbs_HallByHall_UpTheScreen_WhenTiered()

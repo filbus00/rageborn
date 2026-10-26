@@ -120,7 +120,7 @@ namespace ARPG
                     if (!decals.TryGetValue(cells[n], out var decal))
                         continue;
                     DrawCell(cells[n], town, cellPixels);
-                    DungeonArt.StampDecal(cellPixels, (int)decal, cells[n].x * 31 + cells[n].y * 7);
+                    DungeonArt.StampDecal(cellPixels, (int)decal, cells[n].x * 31 + cells[n].y * 7, cells[n]);
                     if (shade)
                         Shade(cellPixels, cells[n]);
                     Put(cellPixels, atlases[n / perAtlas], n % perAtlas, columns);

@@ -56,6 +56,8 @@ namespace ARPG
             loaded = false;
             pieces.Clear();
             blocker = null;
+            rugLoaded = false;
+            rugTexels = null;
         }
 
         static void LoadImported()
@@ -347,12 +349,15 @@ namespace ARPG
 
         /// <summary>Lays an imported decal of the kind (a variant picked by the seed) over a floor's opaque pixels;
         /// false when none of that kind was imported.</summary>
-        /// <summary>Stamps an imported decal of a kind onto a 40 x 20 floor tile's pixels, if one was imported.</summary>
-        public static bool StampDecal(Color32[] floor, int decal, int seed)
+        /// <summary>Stamps an imported decal of a kind onto a 40 x 20 floor tile's pixels, if one was imported. A carpet
+        /// cell is drawn from the carpet picture when there is one (its place on the picture from the cell), else in
+        /// code.</summary>
+        public static bool StampDecal(Color32[] floor, int decal, int seed, Vector2Int cell = default)
         {
             if (RugRules.IsRug((DecalKind)decal))
             {
-                StampRug(floor, (DecalKind)decal, seed);
+                if (!StampRugImage(floor, (DecalKind)decal, cell))
+                    StampRug(floor, (DecalKind)decal, seed);
                 return true;
             }
             LoadImported();
@@ -376,6 +381,45 @@ namespace ARPG
                     if (c.a > 0)
                         floor[i] = c;
                 }
+        }
+
+        // The carpet picture (2026-10-26, the owner's first AI-drawn asset): Resources/Art/Ground/rug_runner, the runner
+        // seen from above, two cells across and RugRules.CellsPerImage long, read once.
+        static bool rugLoaded;
+        static Color32[] rugTexels;
+        static int rugWidth, rugHeight;
+
+        static bool StampRugImage(Color32[] floor, DecalKind kind, Vector2Int cell)
+        {
+            if (!rugLoaded)
+            {
+                rugLoaded = true;
+                var texture = Resources.Load<Texture2D>(GroundPainter.Folder + "/" + RugRules.ImageName);
+                if (texture != null && texture.isReadable)
+                {
+                    rugTexels = texture.GetPixels32();
+                    rugWidth = texture.width;
+                    rugHeight = texture.height;
+                }
+            }
+            if (rugTexels == null)
+                return false;
+            var h = Unit / 2;
+            for (var y = 0; y < h; y++)
+                for (var x = 0; x < Unit; x++)
+                {
+                    var i = x + y * Unit;
+                    if (floor[i].a == 0)
+                        continue;
+                    var dx = (x + 0.5f - Unit * 0.5f) / Unit;
+                    var dy = (y + 0.5f - h * 0.5f) / Unit;
+                    var at = RugRules.ImagePoint(kind, cell, dx + 2f * dy, 2f * dy - dx);
+                    var tx = Mathf.Clamp((int)(at.x * rugWidth), 0, rugWidth - 1);
+                    var ty = Mathf.Clamp((int)(at.y * rugHeight), 0, rugHeight - 1);
+                    var c = rugTexels[tx + ty * rugWidth];
+                    floor[i] = new Color32(c.r, c.g, c.b, 255);
+                }
+            return true;
         }
 
         static bool StampImportedDecal(Color32[] floor, int decal, int seed)
