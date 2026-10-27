@@ -31,6 +31,12 @@ namespace ARPG
         public const string CryptFloorName = "crypt_floor";
         static Color32[] cryptFloor;
         static int cryptFloorSize;
+        // The forest's grass and worn paths as drawn pictures (2026-10-27, the owner's Gemini ground), the same way; null
+        // without them, and the forest darkens the grass and path textures as before.
+        public const string ForestGrassName = "forest_grass";
+        public const string ForestPathName = "forest_path";
+        static Color32[] forestGrass, forestPath;
+        static int forestGrassSize, forestPathSize;
         static readonly List<Object> made = new List<Object>();
         static readonly List<Vector3Int> positions = new List<Vector3Int>();
         static readonly List<TileBase> tiles = new List<TileBase>();
@@ -42,6 +48,8 @@ namespace ARPG
             sources = null;
             triedLoading = false;
             cryptFloor = null;
+            forestGrass = null;
+            forestPath = null;
             made.Clear();
         }
 
@@ -266,7 +274,15 @@ namespace ARPG
                         else
                             c = new Color32((byte)(c.r * 0.8f), (byte)(c.g * 0.76f), (byte)(c.b * 0.74f), 255);
                     }
-                    if (!town && DungeonRules.Forest && dungeonTheme == DungeonTheme.Cave)
+                    var forest = !town && DungeonRules.Forest && dungeonTheme == DungeonTheme.Cave;
+                    var picture = !forest ? null : layer == GroundLayer.Grass ? forestGrass : forestPath;
+                    if (picture != null)
+                    {
+                        var size = layer == GroundLayer.Grass ? forestGrassSize : forestPathSize;
+                        cellPixels[i] = picture[Wrap(Mathf.FloorToInt(g.x * Unit), size) + Wrap(Mathf.FloorToInt(g.y * Unit), size) * size];
+                        continue;
+                    }
+                    if (forest)
                     {
                         // The forest floor (2026-10-26): dark grass and trodden earth.
                         c = layer == GroundLayer.Grass
@@ -323,14 +339,23 @@ namespace ARPG
                 Resources.UnloadAsset(texture);
             }
             sources = loaded;
-            var floor = Resources.Load<Texture2D>(Folder + "/" + CryptFloorName);
-            if (floor != null && floor.isReadable && floor.width == floor.height)
-            {
-                cryptFloor = floor.GetPixels32();
-                cryptFloorSize = floor.width;
-                Resources.UnloadAsset(floor);
-            }
+            cryptFloor = Picture(CryptFloorName, out cryptFloorSize);
+            forestGrass = Picture(ForestGrassName, out forestGrassSize);
+            forestPath = Picture(ForestPathName, out forestPathSize);
             return true;
+        }
+
+        /// <summary>A drawn ground picture's pixels and size when it is in, readable and square, else null.</summary>
+        static Color32[] Picture(string name, out int size)
+        {
+            size = 0;
+            var texture = Resources.Load<Texture2D>(Folder + "/" + name);
+            if (texture == null || !texture.isReadable || texture.width != texture.height)
+                return null;
+            var pixels = texture.GetPixels32();
+            size = texture.width;
+            Resources.UnloadAsset(texture);
+            return pixels;
         }
 
         /// <summary>Frees the last scene's atlases, sprites and tiles.</summary>
