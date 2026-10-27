@@ -1624,3 +1624,7 @@ The owner's answers are in Docs/08. How it is built:
 ### The forest's way on (2026-10-27)
 
 The owner: "You are not really going down any more, just to a different section of the forest", and chose "Path into dark trees". The stairs pieces `stairs_{down|up}_{x|y}_forest` are now the owner's Gemini picture (`ArtSource/pixel/ai_exchange/exit_gemini_new_1.jpeg`: two trees arching over a dark tunnel, a lantern post), cut by `cutout.py` at 470 render pixels tall. `cutout.py` gained two options: `pivot=fx,fy` (the pivot at that share of the object across and up, here 0.64, 0.35: the tunnel's mouth a little toward the wall, not the picture's bottom) and `mirror` (the y pieces are the x ones flipped). The up pieces are the same picture (stairs up are off in the roguelite).
+
+### Wider props, the tent and the campfire (2026-10-27)
+
+The owner, of the Gemini bandit tent: "the tents are comically small". Every prop was one cell wide (40 game pixels) because Import Pixel Art set every prop to `ArtNames.Width`. A prop source that is a whole multiple of 160 render pixels across (4 cells at 4x) now keeps its width (`PixelArtImporter.Convert`), and `cutout.py` takes `cells=N` for a prop frame N cells wide. The tent is 2 cells wide and about her height (`cells=2`, 280 render pixels tall); the props load as plain sprites, so nothing else needed changing. The tent still blocks only its own cell. The campfire is the owner's Gemini campfire, one cell wide.

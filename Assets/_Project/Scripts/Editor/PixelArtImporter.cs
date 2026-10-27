@@ -112,6 +112,10 @@ namespace ARPG.Editor
             int sw = source.width, sh = source.height;
             var src = source.GetPixels32();
             width = ArtNames.Width;
+            // A prop drawn at 4x may be several cells wide (2026-10-27, the owner: "the tents are comically small"): a
+            // source a whole multiple of 4 cells across keeps its width.
+            if (kind == ArtKind.Prop && sw > width * 4 && sw % (width * 4) == 0)
+                width = sw / 4;
             var factor = sw / (float)width;
             if (Mathf.Abs(factor - Mathf.Round(factor)) > 0.001f)
                 notes.Add($"{sw} px wide is not a whole multiple of {width}: shrunk by {factor:0.##}, edges may blur");
@@ -129,7 +133,7 @@ namespace ARPG.Editor
                 height = Mathf.Max(1, Mathf.RoundToInt(sh / factor));
                 if (height < ArtNames.PivotY * 2)
                     notes.Add($"WARNING: only {height} px tall; the footprint alone is {ArtNames.PivotY * 2}");
-                if (height > width * 3)
+                if (height > ArtNames.Width * 3)
                     notes.Add($"WARNING: {height} px tall, more than 3 cells; check the size");
             }
 

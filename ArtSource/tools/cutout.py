@@ -11,13 +11,17 @@ import numpy as np
 args = sys.argv[sys.argv.index("--") + 1:]
 # Options among the names: pivot=fx,fy puts the pivot at that share of the object across (from the left) and up (from
 # the bottom) instead of the base's middle; mirror flips it left to right (2026-10-27, the forest's way on).
+# cells=N gives a prop a frame N cells wide (2026-10-27, the tents; Import Pixel Art keeps the width).
 options = [a for a in args[2:] if "=" in a or a == "mirror"]
 source, height, names = args[0], int(args[1]), [a for a in args[2:] if a not in options]
 pivot_override = None
+cells = 1
 mirror = "mirror" in options
 for o in options:
     if o.startswith("pivot="):
         pivot_override = tuple(float(v) for v in o[6:].split(","))
+    if o.startswith("cells="):
+        cells = int(o[6:])
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "pixel", "world"))
 MARGIN = 8
 
@@ -52,7 +56,7 @@ ch, cw = crop.shape[:2]
 # A dungeon prop (prop_<name>, 2026-10-27) goes in the fixed frame Import Pixel Art reads: 160 x 260 render pixels (400
 # tall over 180), the ground origin at (80, 40), and no wider than the cell.
 PROP = names[0].startswith("prop_")
-FRAME = (160, 400 if height > 180 else 260, 80, 40)
+FRAME = (160 * cells, 400 if height > 180 else 260, 80 * cells, 40)
 scale = height / ch
 if PROP:
     scale = min(scale, (FRAME[0] - 12) / cw)
