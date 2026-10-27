@@ -22,7 +22,9 @@ alpha = np.clip((0.42 - pink) / 0.2, 0.0, 1.0)
 # Pull the pink fringe toward the object's own colour: red and blue down to green's level wherever red and blue both
 # stand over green (magenta mixed into the edge; the objects' own colours never do: greens, browns and greys have one of
 # red or blue at or under green). 2026-10-27: limiting this to half-keyed pixels left pink edges on the birch's leaves.
-spill = pink > 0.03
+# Only where red and blue are about equal, as in magenta: red berries and purple flowers have one far over the other
+# (2026-10-27, the bramble's berries).
+spill = (pink > 0.03) & (np.abs(r - b) < 0.12)
 a[..., 0] = np.where(spill, np.minimum(r, g), r)
 a[..., 2] = np.where(spill, np.minimum(b, g), b)
 # The JPEG's halo sits in the outermost pixels: shave one off the outline (each pixel takes its darkest neighbour's
@@ -59,10 +61,11 @@ def resize(src, nh, nw):
 small = resize(crop, nh, nw)
 # Blender's rows run bottom up: the object's base is row 0 of the crop's flipped view.
 small = small  # pixels from bpy are already bottom-up
-# The base: the middle of the object's lowest rows.
-base_rows = small[:max(2, nh // 25)]
-cols = np.nonzero(base_rows[..., 3].max(axis=0) > 0.5)[0]
-base_x = int(round(cols.mean())) if len(cols) else nw // 2
+# The base: the middle of the object's lowest part (its bottom 15 percent, weighted by how solid each pixel is), so a
+# few stray blades of grass at the very bottom do not pull it aside (2026-10-27, the first bush).
+base_rows = small[:max(2, nh * 15 // 100), :, 3]
+weights = base_rows.sum(axis=0)
+base_x = int(round((weights * np.arange(nw)).sum() / weights.sum())) if weights.sum() > 0 else nw // 2
 
 W, H = nw + 2 * MARGIN, nh + 2 * MARGIN
 canvas = np.zeros((H, W, 4), dtype=np.float32)
