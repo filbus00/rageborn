@@ -3,6 +3,7 @@
 # in render pixels (4 times the game's), stands it on a small margin with its base at the bottom middle, and writes the
 # PNG to ArtSource/pixel/world under each name given, with their entries in manifest.json (pivot at the base of the
 # object). Then Tools > ARPG > Import World Art.
+# A name prop_<name> instead goes to ArtSource/pixel/dungeon in the props' fixed frame (Import Pixel Art).
 #   Blender -b -P ArtSource/tools/cutout.py -- <source image> <height> <name> [<name>...]
 import bpy, sys, os, json
 import numpy as np
@@ -40,8 +41,14 @@ ys, xs = np.nonzero(alpha > 0.5)
 y0, y1, x0, x1 = ys.min(), ys.max() + 1, xs.min(), xs.max() + 1
 crop = a[y0:y1, x0:x1]
 ch, cw = crop.shape[:2]
+# A dungeon prop (prop_<name>, 2026-10-27) goes in the fixed frame Import Pixel Art reads: 160 x 260 render pixels (400
+# tall over 180), the ground origin at (80, 40), and no wider than the cell.
+PROP = names[0].startswith("prop_")
+FRAME = (160, 400 if height > 180 else 260, 80, 40)
 scale = height / ch
-nh, nw = height, max(1, int(round(cw * scale)))
+if PROP:
+    scale = min(scale, (FRAME[0] - 12) / cw)
+nh, nw = max(1, int(round(ch * scale))), max(1, int(round(cw * scale)))
 
 # Area-average downscale (premultiplied, so edges do not go dark or pink).
 def resize(src, nh, nw):
@@ -66,6 +73,23 @@ small = small  # pixels from bpy are already bottom-up
 base_rows = small[:max(2, nh * 15 // 100), :, 3]
 weights = base_rows.sum(axis=0)
 base_x = int(round((weights * np.arange(nw)).sum() / weights.sum())) if weights.sum() > 0 else nw // 2
+
+if PROP:
+    W, H = FRAME[0], FRAME[1]
+    canvas = np.zeros((H, W, 4), dtype=np.float32)
+    left = int(np.clip(FRAME[2] - base_x, 0, W - nw))
+    # Its base a little below the cell's middle, so it stands on the floor rather than floating on its back edge.
+    bottom = FRAME[3] - 6
+    canvas[bottom:bottom + nh, left:left + nw] = small[:H - bottom]
+    out = bpy.data.images.new("cutout", W, H, alpha=True)
+    out.pixels = canvas.ravel()
+    folder = os.path.join(ROOT, "..", "dungeon")
+    for name in names:
+        out.filepath_raw = os.path.join(folder, name + ".png")
+        out.file_format = "PNG"
+        out.save()
+        print("REPORT", name, "prop", nw, "x", nh, "in", W, "x", H)
+    sys.exit(0)
 
 W, H = nw + 2 * MARGIN, nh + 2 * MARGIN
 canvas = np.zeros((H, W, 4), dtype=np.float32)
