@@ -31,5 +31,13 @@ namespace ARPG.Tests
             Assert.Greater(edge, WallFadeRules.Faded);
             Assert.Less(edge, 1f);
         }
+
+        [Test]
+        public void LowPieces_NeverFade()
+        {
+            // A bush or boulder (about 27 pixels) cannot hide her; a tree (about 100) or a wall (about 100) can.
+            Assert.IsFalse(WallFadeRules.TallEnough(27f));
+            Assert.IsTrue(WallFadeRules.TallEnough(99f));
+        }
     }
 }

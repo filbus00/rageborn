@@ -20,6 +20,13 @@ namespace ARPG
         public const int Width = 5;
         public const int Feather = 3;
 
+        /// <summary>Pieces shorter than this, in game pixels, never fade: a bush or a boulder cannot hide her (2026-10-27,
+        /// the owner: "they should not fade to transparency as they do not cover the player").</summary>
+        public const float MinFadeHeight = 60f;
+
+        /// <summary>Whether a piece this many game pixels tall is tall enough to hide her, and so fades.</summary>
+        public static bool TallEnough(float pixels) => pixels >= MinFadeHeight;
+
         /// <summary>A faded wall's opacity (0.12 since 2026-10-26, the owner: "Make the see trough effect stronger"; was
         /// 0.3).</summary>
         public const float Faded = 0.12f;
@@ -98,6 +105,9 @@ namespace ARPG
                     foreach (var map in maps)
                     {
                         if (map == null || map.GetTile(cell) == null)
+                            continue;
+                        var sprite = map.GetSprite(cell);
+                        if (sprite != null && !WallFadeRules.TallEnough(sprite.rect.height))
                             continue;
                         var key = (map, cell);
                         if (!faded.TryGetValue(key, out var original))
