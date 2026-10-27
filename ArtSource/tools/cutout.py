@@ -19,10 +19,19 @@ r, g, b = a[..., 0], a[..., 1], a[..., 2]
 # How magenta a pixel is: red and blue well over green.
 pink = np.minimum(r, b) - g
 alpha = np.clip((0.42 - pink) / 0.2, 0.0, 1.0)
-# Pull the pink fringe toward the object's own colour: red and blue down to green's level where the key was partial.
-spill = (alpha < 1.0) & (pink > 0)
-a[..., 0] = np.where(spill, np.minimum(r, g + 0.05), r)
-a[..., 2] = np.where(spill, np.minimum(b, g + 0.05), b)
+# Pull the pink fringe toward the object's own colour: red and blue down to green's level wherever red and blue both
+# stand over green (magenta mixed into the edge; the objects' own colours never do: greens, browns and greys have one of
+# red or blue at or under green). 2026-10-27: limiting this to half-keyed pixels left pink edges on the birch's leaves.
+spill = pink > 0.03
+a[..., 0] = np.where(spill, np.minimum(r, g), r)
+a[..., 2] = np.where(spill, np.minimum(b, g), b)
+# The JPEG's halo sits in the outermost pixels: shave one off the outline (each pixel takes its darkest neighbour's
+# alpha).
+shaved = alpha.copy()
+for dy in (-1, 0, 1):
+    for dx in (-1, 0, 1):
+        shaved = np.minimum(shaved, np.roll(np.roll(alpha, dy, axis=0), dx, axis=1))
+alpha = shaved
 a[..., 3] = alpha
 
 ys, xs = np.nonzero(alpha > 0.5)
