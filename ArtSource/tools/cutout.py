@@ -9,7 +9,15 @@ import bpy, sys, os, json
 import numpy as np
 
 args = sys.argv[sys.argv.index("--") + 1:]
-source, height, names = args[0], int(args[1]), args[2:]
+# Options among the names: pivot=fx,fy puts the pivot at that share of the object across (from the left) and up (from
+# the bottom) instead of the base's middle; mirror flips it left to right (2026-10-27, the forest's way on).
+options = [a for a in args[2:] if "=" in a or a == "mirror"]
+source, height, names = args[0], int(args[1]), [a for a in args[2:] if a not in options]
+pivot_override = None
+mirror = "mirror" in options
+for o in options:
+    if o.startswith("pivot="):
+        pivot_override = tuple(float(v) for v in o[6:].split(","))
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "pixel", "world"))
 MARGIN = 8
 
@@ -91,6 +99,13 @@ if PROP:
         print("REPORT", name, "prop", nw, "x", nh, "in", W, "x", H)
     sys.exit(0)
 
+pivot_y = MARGIN
+if pivot_override:
+    base_x = int(round(pivot_override[0] * nw))
+    pivot_y = MARGIN + int(round(pivot_override[1] * nh))
+if mirror:
+    small = small[:, ::-1]
+    base_x = nw - 1 - base_x
 W, H = nw + 2 * MARGIN, nh + 2 * MARGIN
 canvas = np.zeros((H, W, 4), dtype=np.float32)
 canvas[MARGIN:MARGIN + nh, MARGIN:MARGIN + nw] = small
@@ -104,6 +119,6 @@ for name in names:
     out.filepath_raw = os.path.join(ROOT, name + ".png")
     out.file_format = "PNG"
     out.save()
-    items[name] = {"name": name, "width": W, "height": H, "pivotX": MARGIN + base_x, "pivotY": MARGIN}
-    print("REPORT", name, W, "x", H, "pivot", MARGIN + base_x, MARGIN)
+    items[name] = {"name": name, "width": W, "height": H, "pivotX": MARGIN + base_x, "pivotY": pivot_y}
+    print("REPORT", name, W, "x", H, "pivot", MARGIN + base_x, pivot_y)
 json.dump({"items": [items[k] for k in sorted(items)]}, open(manifest_path, "w"), indent=1, sort_keys=True)
