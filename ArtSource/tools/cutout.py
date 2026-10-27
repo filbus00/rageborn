@@ -89,10 +89,14 @@ base_x = int(round((weights * np.arange(nw)).sum() / weights.sum())) if weights.
 if PROP:
     W, H = FRAME[0], FRAME[1]
     canvas = np.zeros((H, W, 4), dtype=np.float32)
-    left = int(np.clip(FRAME[2] - base_x, 0, W - nw))
     # Its base a little below the cell's middle, so it stands on the floor rather than floating on its back edge.
     bottom = FRAME[3] - 6
-    canvas[bottom:bottom + nh, left:left + nw] = small[:H - bottom]
+    # pivot=fx,fy: the point standing on that spot instead (2026-10-27, the weapon rack: its lowest part is a foot).
+    if pivot_override:
+        base_x = int(round(pivot_override[0] * nw))
+        bottom = max(0, FRAME[3] - int(round(pivot_override[1] * nh)))
+    left = int(np.clip(FRAME[2] - base_x, 0, W - nw))
+    canvas[max(0, bottom):bottom + nh, left:left + nw] = small[max(0, -bottom):H - bottom]
     out = bpy.data.images.new("cutout", W, H, alpha=True)
     out.pixels = canvas.ravel()
     folder = os.path.join(ROOT, "..", "dungeon")
