@@ -18,6 +18,10 @@ namespace ARPG.Tests
             Assert.AreEqual(0, variant);
 
             Assert.AreEqual(ArtKind.Prop, ArtNames.Parse("prop_bone_pile", out index, out _));
+            // Several pictures of one kind (2026-10-27).
+            Assert.AreEqual(ArtKind.Prop, ArtNames.Parse("prop_bone_pile_3", out var pileIndex, out var pileVariant));
+            Assert.AreEqual((int)PropKind.BonePile, pileIndex);
+            Assert.AreEqual(2, pileVariant);
             Assert.AreEqual((int)PropKind.BonePile, index);
             Assert.AreEqual("prop_broken_column", ArtNames.PropName(PropKind.BrokenColumn));
 
@@ -32,7 +36,7 @@ namespace ARPG.Tests
         [Test]
         public void Names_RefuseWhatTheGameCannotPlace()
         {
-            foreach (var name in new[] { "", "floor_brick", "floor_brick_0", "floor_brick_17", "floor_marble_1", "prop_table", "decal_bones_x", "walls", "wall_0", "wall_low_x", "wall_torch_x" })
+            foreach (var name in new[] { "", "floor_brick", "floor_brick_0", "floor_brick_17", "floor_marble_1", "prop_table", "prop_bone_pile_0", "prop_bone_pile_17", "prop_tables_1", "decal_bones_x", "walls", "wall_0", "wall_low_x", "wall_torch_x" })
                 Assert.AreEqual(ArtKind.Unknown, ArtNames.Parse(name, out _, out _), name);
         }
 

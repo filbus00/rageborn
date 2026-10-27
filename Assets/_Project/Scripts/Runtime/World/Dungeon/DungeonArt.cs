@@ -29,7 +29,7 @@ namespace ARPG
         const int Unit = PixelArt.PixelsPerUnit;
 
         static readonly Dictionary<int, Tile> floors = new Dictionary<int, Tile>();
-        static readonly Dictionary<PropKind, Tile> props = new Dictionary<PropKind, Tile>();
+        static readonly Dictionary<int, Tile> props = new Dictionary<int, Tile>();
         static Tile wall;
         static Tile lowWall;
 
@@ -40,7 +40,7 @@ namespace ARPG
         static bool loaded;
         static readonly List<Sprite>[] importedFloors = new List<Sprite>[ArtNames.FloorStyles.Length];
         static readonly Dictionary<int, List<Sprite>> importedDecals = new Dictionary<int, List<Sprite>>();
-        static readonly Dictionary<int, Sprite> importedProps = new Dictionary<int, Sprite>();
+        static readonly Dictionary<int, List<Sprite>> importedProps = new Dictionary<int, List<Sprite>>();
         static readonly List<Sprite> importedWalls = new List<Sprite>();
         static readonly List<Sprite> importedLowWalls = new List<Sprite>();
         static readonly Dictionary<int, Tile> wallVariants = new Dictionary<int, Tile>();
@@ -80,6 +80,7 @@ namespace ARPG
             // Walls by their number (wall_10 after wall_9, not after wall_1), so a variant is always the same wall.
             var wallSlots = new SortedList<int, Sprite>();
             var lowWallSlots = new SortedList<int, Sprite>();
+            var propSlots = new Dictionary<int, SortedList<int, Sprite>>();
             foreach (var sprite in all)
             {
                 switch (ArtNames.Parse(sprite.name, out var index, out var variant))
@@ -99,7 +100,9 @@ namespace ARPG
                         lowWallSlots[variant] = sprite;
                         break;
                     case ArtKind.Prop:
-                        importedProps[index] = sprite;
+                        if (!propSlots.TryGetValue(index, out var pictures))
+                            propSlots[index] = pictures = new SortedList<int, Sprite>();
+                        pictures[variant] = sprite;
                         break;
                 }
             }
@@ -108,6 +111,8 @@ namespace ARPG
                     importedFloors[i].AddRange(floorSlots[i].Values);
             foreach (var pair in decalSlots)
                 importedDecals[pair.Key] = new List<Sprite>(pair.Value.Values);
+            foreach (var pair in propSlots)
+                importedProps[pair.Key] = new List<Sprite>(pair.Value.Values);
             importedWalls.AddRange(wallSlots.Values);
             importedLowWalls.AddRange(lowWallSlots.Values);
         }
@@ -251,16 +256,20 @@ namespace ARPG
             return tile;
         }
 
-        /// <summary>A prop's tile: drawn over the floor, blocking like a wall.</summary>
-        public static Tile Prop(PropKind kind)
+        /// <summary>A prop's tile: drawn over the floor, blocking like a wall. A kind with several imported pictures
+        /// (prop_&lt;kind&gt;_&lt;n&gt;) shows the one <paramref name="pick"/> chooses.</summary>
+        public static Tile Prop(PropKind kind, int pick = 0)
         {
-            if (props.TryGetValue(kind, out var tile) && tile != null && tile.sprite != null)
-                return tile;
             LoadImported();
-            if (importedProps.TryGetValue((int)kind, out var imported) && imported != null)
+            var variant = importedProps.TryGetValue((int)kind, out var imported) && imported.Count > 0
+                ? (pick & int.MaxValue) % imported.Count : 0;
+            var key = (int)kind * ArtNames.MaxVariants + variant;
+            if (props.TryGetValue(key, out var tile) && tile != null && tile.sprite != null)
+                return tile;
+            if (imported != null && imported.Count > 0 && imported[variant] != null)
             {
-                tile = SpriteTile(imported, Tile.ColliderType.Grid);
-                props[kind] = tile;
+                tile = SpriteTile(imported[variant], Tile.ColliderType.Grid);
+                props[key] = tile;
                 return tile;
             }
             var pixels = new Color32[PropSize * PropSize];
@@ -269,7 +278,7 @@ namespace ARPG
             var lo = PixelArt.Downscale(pixels, PropSize, PropSize, Unit, Unit);
             PixelArt.Process(lo, Unit, Unit, true);
             tile = MakeTile(lo, Unit, Unit, new Vector2(0.5f, 0.25f), Tile.ColliderType.Grid, "Prop " + kind);
-            props[kind] = tile;
+            props[key] = tile;
             return tile;
         }
 

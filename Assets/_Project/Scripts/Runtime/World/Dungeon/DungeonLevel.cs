@@ -379,7 +379,7 @@ namespace ARPG
                         wallTiles[index] = DungeonArt.Wall(cameraSide, cameraSide ? LowWallVariant(at.x, at.y) : freeStanding ? WallVariant(at.x, at.y) : TallWallVariant(at.x, at.y),
                             TouchesOpen(at));
                     else if (cell == DungeonCell.Prop && Layout.Props.TryGetValue(at, out var prop))
-                        propTiles[index] = DungeonArt.Prop(prop);
+                        propTiles[index] = DungeonArt.Prop(prop, (int)(WallHash(at.x, at.y, 11) * 1000f));
                     // Steps go on the floor's own layers, under whoever walks them (2026-10-20); a pit's sunk with it.
                     if (Layout.TerraceStairs.TryGetValue(at, out var down))
                     {

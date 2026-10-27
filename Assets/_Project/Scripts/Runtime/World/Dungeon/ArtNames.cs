@@ -42,7 +42,7 @@ namespace ARPG
 
         /// <summary>
         /// Reads a file name (no folder or extension). <paramref name="index"/> is the floor style, decal kind or prop
-        /// kind; <paramref name="variant"/> counts from 0 (the name's number minus 1), 0 for walls and props.
+        /// kind; <paramref name="variant"/> counts from 0 (the name's number minus 1), 0 for walls and props without a number.
         /// </summary>
         public static ArtKind Parse(string name, out int index, out int variant)
         {
@@ -75,6 +75,19 @@ namespace ARPG
                         index = i;
                         return ArtKind.Prop;
                     }
+                // prop_<kind>_<n>: one of several pictures of a kind (2026-10-27, the owner's separate bones).
+                var cut = kind.LastIndexOf('_');
+                if (cut > 0 && int.TryParse(kind.Substring(cut + 1), out var propNumber) && propNumber >= 1 && propNumber <= MaxVariants)
+                {
+                    var propKind = kind.Substring(0, cut);
+                    for (var i = 0; i < PropCount; i++)
+                        if (Snake(((PropKind)i).ToString()) == propKind)
+                        {
+                            index = i;
+                            variant = propNumber - 1;
+                            return ArtKind.Prop;
+                        }
+                }
                 return ArtKind.Unknown;
             }
 
