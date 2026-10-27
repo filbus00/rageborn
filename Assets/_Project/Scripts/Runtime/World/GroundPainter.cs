@@ -37,6 +37,7 @@ namespace ARPG
         public const string ForestPathName = "forest_path";
         static Color32[] forestGrass, forestPath;
         static int forestGrassSize, forestPathSize;
+        static float forestGrassMean;
         static readonly List<Object> made = new List<Object>();
         static readonly List<Vector3Int> positions = new List<Vector3Int>();
         static readonly List<TileBase> tiles = new List<TileBase>();
@@ -275,6 +276,17 @@ namespace ARPG
                             c = new Color32((byte)(c.r * 0.8f), (byte)(c.g * 0.76f), (byte)(c.b * 0.74f), 255);
                     }
                     var forest = !town && DungeonRules.Forest && dungeonTheme == DungeonTheme.Cave;
+                    if (forest && forestGrass != null && forestPath != null)
+                    {
+                        // The grass and the path frayed into each other along their edge (2026-10-27).
+                        int gx = Mathf.FloorToInt(g.x * Unit), gy = Mathf.FloorToInt(g.y * Unit);
+                        var blade = forestGrass[Wrap(gx, forestGrassSize) + Wrap(gy, forestGrassSize) * forestGrassSize];
+                        var earth = forestPath[Wrap(gx, forestPathSize) + Wrap(gy, forestPathSize) * forestPathSize];
+                        var share = GroundRules.ForestGrassShare(GroundRules.ForestGrassAmount(g), Light(blade), forestGrassMean,
+                            GroundRules.Hash(gx, gy, 47));
+                        cellPixels[i] = share >= 1f ? blade : share <= 0f ? earth : Color32.Lerp(earth, blade, share);
+                        continue;
+                    }
                     var picture = !forest ? null : layer == GroundLayer.Grass ? forestGrass : forestPath;
                     if (picture != null)
                     {
@@ -342,8 +354,17 @@ namespace ARPG
             cryptFloor = Picture(CryptFloorName, out cryptFloorSize);
             forestGrass = Picture(ForestGrassName, out forestGrassSize);
             forestPath = Picture(ForestPathName, out forestPathSize);
+            forestGrassMean = 0f;
+            if (forestGrass != null)
+            {
+                foreach (var c in forestGrass)
+                    forestGrassMean += Light(c);
+                forestGrassMean /= forestGrass.Length;
+            }
             return true;
         }
+
+        static float Light(Color32 c) => (c.r * 0.3f + c.g * 0.59f + c.b * 0.11f) / 255f;
 
         /// <summary>A drawn ground picture's pixels and size when it is in, readable and square, else null.</summary>
         static Color32[] Picture(string name, out int size)

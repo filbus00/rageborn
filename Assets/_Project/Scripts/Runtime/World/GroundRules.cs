@@ -87,9 +87,29 @@ namespace ARPG
                     : cobbleHeight > 1.25f - CobbleCover(ground) * 0.6f ? GroundLayer.Cobble : GroundLayer.Dirt;
 
         /// <summary>The forest's ground (2026-10-26): grass, worn to dirt in winding patches.</summary>
-        public static GroundLayer ForestPick(Vector2 ground) =>
-            Smooth(ground.x / 4f, ground.y / 4f, 41) * 0.7f + Smooth(ground.x / 1.3f, ground.y / 1.3f, 43) * 0.3f < 0.38f
-                ? GroundLayer.Path : GroundLayer.Grass;
+        public static GroundLayer ForestPick(Vector2 ground) => ForestGrassAmount(ground) < 0.5f ? GroundLayer.Path : GroundLayer.Grass;
+
+        /// <summary>How far into the grass a point is, 0 on the path to 1 in the grass, 0.5 on the edge between, across a
+        /// band of <see cref="ForestEdge"/> in the noise (2026-10-27, the owner: the edge looked "a bit too cut out").</summary>
+        public static float ForestGrassAmount(Vector2 ground)
+        {
+            var v = Smooth(ground.x / 4f, ground.y / 4f, 41) * 0.7f + Smooth(ground.x / 1.3f, ground.y / 1.3f, 43) * 0.3f;
+            return Mathf.Clamp01((v - 0.38f) / ForestEdge + 0.5f);
+        }
+
+        public const float ForestEdge = 0.07f;
+
+        /// <summary>
+        /// How much of a forest pixel is grass, 0, 0.5 or 1 (pixel art: a pure pixel or an even mix): by how far into the
+        /// grass it lies, with the grass picture's bright blades reaching out over the path and its dark gaps letting the
+        /// earth through (<paramref name="grassLight"/> against the picture's <paramref name="meanLight"/>), and a little
+        /// of <paramref name="jitter"/> (0 to 1) so the edge frays.
+        /// </summary>
+        public static float ForestGrassShare(float amount, float grassLight, float meanLight, float jitter)
+        {
+            var share = (amount - 0.5f) * 2.2f + (grassLight - meanLight) * 3f + (jitter - 0.5f) * 0.3f + 0.5f;
+            return share < 0.35f ? 0f : share > 0.65f ? 1f : 0.5f;
+        }
 
         /// <summary>
         /// The layer at a town point (remade dark 2026-10-11, the owner's concept art: wet cobbles and mud): cobbles where
@@ -132,6 +152,9 @@ namespace ARPG
             float c = Hash(x0 + salt * 1013, y0 + 1), d = Hash(x0 + 1 + salt * 1013, y0 + 1);
             return Mathf.Lerp(Mathf.Lerp(a, b, fx), Mathf.Lerp(c, d, fx), fy);
         }
+
+        /// <summary>A repeatable number 0 to 1 for a whole-number point and a salt.</summary>
+        public static float Hash(int x, int y, int salt) => Hash(x + salt * 1013, y);
 
         static float Hash(int x, int y)
         {

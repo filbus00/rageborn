@@ -52,6 +52,19 @@ namespace ARPG
             (PropKind.AxeStump, 4), (PropKind.BonePile, 4),
         };
 
+        // The props drawn anew for the forest (2026-10-27, the owner's Gemini pictures); the forest places no others (the
+        // owner: "remove the old props now").
+        static readonly HashSet<PropKind> ForestDrawn = new HashSet<PropKind>
+        {
+            PropKind.Ferns, PropKind.Mushrooms, PropKind.Stump, PropKind.FallenLog, PropKind.StandingStone, PropKind.AxeStump,
+            PropKind.BonePile, PropKind.BanditTent, PropKind.WebSac, PropKind.Campfire, PropKind.Sack, PropKind.Crate,
+            PropKind.Barrel, PropKind.WeaponRack, PropKind.Cage, PropKind.Carcass,
+        };
+
+        /// <summary>Whether a prop may stand on this level: in the forest only those drawn for it.</summary>
+        public static bool Allowed(DungeonLayout layout, PropKind kind) =>
+            !(layout.Theme == DungeonTheme.Cave && DungeonRules.Forest) || ForestDrawn.Contains(kind);
+
         static readonly (DecalKind kind, int weight)[] ForestDecalWeights =
         {
             (DecalKind.Leaves, 36), (DecalKind.Flowers, 22), (DecalKind.Pebbles, 20), (DecalKind.Puddle, 10), (DecalKind.Bones, 6),
@@ -206,6 +219,8 @@ namespace ARPG
                     continue;
                 var center = IsoMath.CellToGround(pack.Cell);
                 var heart = Lairs.Heart(theme);
+                if (heart.HasValue && !Allowed(layout, heart.Value))
+                    heart = null;
                 if (heart.HasValue && layout.IsFloor(pack.Cell) && Clear(pack.Cell, doors, DoorClearance) && Clear(pack.Cell, spots, SpotClearance) && SafeToBlock(layout, pack.Cell))
                 {
                     layout.Set(pack.Cell.x, pack.Cell.y, DungeonCell.Prop);
@@ -231,6 +246,8 @@ namespace ARPG
 
                 foreach (var (kind, min, max) in Lairs.Props(theme))
                 {
+                    if (!Allowed(layout, kind))
+                        continue;
                     var count = random.Next(min, max + 1);
                     for (var k = 0; k < count && ring.Count > 0; k++)
                     {
@@ -271,7 +288,8 @@ namespace ARPG
             var list = new List<(PropKind, int)>(theme == DungeonTheme.Cave && DungeonRules.Forest ? ForestPropWeights : theme == DungeonTheme.Cave ? CavePropWeights : theme == DungeonTheme.Library ? LibraryPropWeights :
                 theme == DungeonTheme.Prison ? PrisonPropWeights : CryptPropWeights);
             var extra = Mathf.RoundToInt(demonic * 120);
-            if (extra > 0)
+            // The forest stays a forest at every depth (2026-10-27).
+            if (extra > 0 && !(theme == DungeonTheme.Cave && DungeonRules.Forest))
             {
                 list.Add((PropKind.FleshPod, extra * 3 / 10));
                 list.Add((PropKind.Spikes, extra * 3 / 10));
