@@ -149,9 +149,18 @@ namespace ARPG
                             floor.Add(new Vector2Int(x, y));
 
                 // The arena is left bare for the fight; its floor still gets marks.
-                if (room.Kind != RoomKind.Boss)
-                    PlaceProps(layout, floor, spots, allDoors, random, layout.Depth);
-                PlaceDecals(layout, floor, room.Style, random);
+                if (IsForest(layout))
+                {
+                    if (room.Kind != RoomKind.Boss)
+                        PlaceForestProps(layout, floor, spots, allDoors, random);
+                    PlaceForestDecals(layout, floor, random);
+                }
+                else
+                {
+                    if (room.Kind != RoomKind.Boss)
+                        PlaceProps(layout, floor, spots, allDoors, random, layout.Depth);
+                    PlaceDecals(layout, floor, room.Style, random);
+                }
                 if ((room.Kind == RoomKind.Combat || room.Kind == RoomKind.Elite) && random.Next(RitualOneIn) == 0)
                     PlaceRitual(layout, room.Interior);
             }
@@ -219,7 +228,7 @@ namespace ARPG
                     continue;
                 var center = IsoMath.CellToGround(pack.Cell);
                 var heart = Lairs.Heart(theme);
-                if (heart.HasValue && !Allowed(layout, heart.Value))
+                if (heart.HasValue && (!Allowed(layout, heart.Value) || UnderCanopy(layout, pack.Cell)))
                     heart = null;
                 if (heart.HasValue && layout.IsFloor(pack.Cell) && Clear(pack.Cell, doors, DoorClearance) && Clear(pack.Cell, spots, SpotClearance) && SafeToBlock(layout, pack.Cell))
                 {
@@ -240,7 +249,8 @@ namespace ARPG
                         var d = Vector2.Distance(center, IsoMath.CellToGround(cell));
                         if (d <= pack.Radius + 3f)
                             marks.Add(cell);
-                        if (d >= pack.Radius + 0.6f && d <= pack.Radius + 3.5f && Clear(cell, doors, DoorClearance) && Clear(cell, spots, SpotClearance))
+                        if (d >= pack.Radius + 0.6f && d <= pack.Radius + 3.5f && Clear(cell, doors, DoorClearance) && Clear(cell, spots, SpotClearance) &&
+                            !UnderCanopy(layout, cell))
                             ring.Add(cell);
                     }
 
@@ -257,7 +267,7 @@ namespace ARPG
                             var index = random.Next(ring.Count);
                             var cell = ring[index];
                             ring.RemoveAt(index);
-                            if (!layout.IsFloor(cell) || !SafeToBlock(layout, cell))
+                            if (!layout.IsFloor(cell) || !SafeToBlock(layout, cell) || (IsForest(layout) && PropNear(layout, cell, 1)))
                                 continue;
                             layout.Set(cell.x, cell.y, DungeonCell.Prop);
                             layout.Props[cell] = kind;
@@ -351,6 +361,159 @@ namespace ARPG
                     layout.Set(next.x, next.y, DungeonCell.Prop);
                     layout.Props[next] = random.Next(2) == 0 ? PropKind.Barrel : PropKind.Crate;
                     extra--;
+                }
+            }
+        }
+
+        static bool IsForest(DungeonLayout layout) => layout.Theme == DungeonTheme.Cave && DungeonRules.Forest;
+
+        /// <summary>
+        /// Whether a tree or bush in front of a forest cell would hide what stands on it (2026-10-27, the owner: props with
+        /// "a forest edge below them look bad when they get covered by trees"). A wall cell nearer the camera (a smaller x
+        /// + y) covers the cells behind it as far as its picture reaches up the screen, a quarter of a world unit a step:
+        /// a tree about 2.5 units tall, 10 steps, about 3 steps to each side; a bush (a free-standing clump) 2. Never true
+        /// outside the forest.
+        /// </summary>
+        public static bool UnderCanopy(DungeonLayout layout, Vector2Int cell)
+        {
+            if (!IsForest(layout))
+                return false;
+            for (var back = 1; back <= TreeReach; back++)
+                for (var side = -TreeSide; side <= TreeSide; side++)
+                {
+                    // Steps back along x + y and aside along x - y land on a cell only when both are even or both odd.
+                    if (((back + side) & 1) != 0)
+                        continue;
+                    var wall = cell - new Vector2Int((back + side) / 2, (back - side) / 2);
+                    if (layout.Get(wall) != DungeonCell.Wall)
+                        continue;
+                    if (!layout.FreeStanding.Contains(wall) || (back <= BushReach && Mathf.Abs(side) <= BushReach))
+                        return true;
+                }
+            return false;
+        }
+
+        const int TreeReach = 10, TreeSide = 3, BushReach = 2;
+
+        static bool PropNear(DungeonLayout layout, Vector2Int cell, int distance)
+        {
+            for (var dx = -distance; dx <= distance; dx++)
+                for (var dy = -distance; dy <= distance; dy++)
+                    if (layout.Get(cell + new Vector2Int(dx, dy)) == DungeonCell.Prop)
+                        return true;
+            return false;
+        }
+
+        static bool WallNear(DungeonLayout layout, Vector2Int cell, int distance)
+        {
+            for (var dx = -distance; dx <= distance; dx++)
+                for (var dy = -distance; dy <= distance; dy++)
+                    if (layout.Get(cell + new Vector2Int(dx, dy)) == DungeonCell.Wall)
+                        return true;
+            return false;
+        }
+
+        // The forest's little scenes (2026-10-27, the owner: "the props are spawning all over the place without any
+        // thought"): one thing in the middle and what grows or lies around it.
+        static readonly (PropKind middle, PropKind[] around, int min, int max, int weight)[] ForestGroups =
+        {
+            (PropKind.FallenLog, new[] { PropKind.Mushrooms, PropKind.Mushrooms, PropKind.Ferns }, 1, 3, 26),
+            (PropKind.Stump, new[] { PropKind.Ferns, PropKind.Ferns, PropKind.AxeStump }, 1, 2, 22),
+            (PropKind.StandingStone, new[] { PropKind.Ferns, PropKind.Mushrooms }, 1, 2, 10),
+            (PropKind.Ferns, new[] { PropKind.Ferns, PropKind.Mushrooms }, 1, 2, 18),
+            (PropKind.BonePile, new[] { PropKind.BonePile }, 1, 2, 6),
+        };
+
+        /// <summary>One scene per this many floor cells of a forest clearing.</summary>
+        const int CellsPerForestGroup = 120;
+        /// <summary>Cells (Chebyshev) between two scenes' middles.</summary>
+        const int ForestGroupGap = 7;
+
+        static void PlaceForestProps(DungeonLayout layout, List<Vector2Int> floor, List<Vector2Int> spots, List<Vector2Int> doors, System.Random random)
+        {
+            // A scene stands out in the clearing, a cell off the tree line, never where a tree in front would hide it.
+            bool Fits(Vector2Int cell) => layout.IsFloor(cell) && !WallNear(layout, cell, 1) && !UnderCanopy(layout, cell) &&
+                                          Clear(cell, doors, DoorClearance) && Clear(cell, spots, SpotClearance) && !InPack(layout, cell) &&
+                                          SafeToBlock(layout, cell);
+            var middles = new List<Vector2Int>();
+            var wanted = floor.Count / CellsPerForestGroup + 1;
+            for (var tries = 0; tries < wanted * 12 && middles.Count < wanted; tries++)
+            {
+                var cell = floor[random.Next(floor.Count)];
+                if (!Fits(cell) || !Clear(cell, middles, ForestGroupGap) || PropNear(layout, cell, 2))
+                    continue;
+                var total = 0;
+                foreach (var g in ForestGroups)
+                    total += g.weight;
+                var roll = random.Next(total);
+                var group = ForestGroups[0];
+                foreach (var g in ForestGroups)
+                {
+                    if (roll < g.weight)
+                    {
+                        group = g;
+                        break;
+                    }
+                    roll -= g.weight;
+                }
+                middles.Add(cell);
+                layout.Set(cell.x, cell.y, DungeonCell.Prop);
+                layout.Props[cell] = group.middle;
+                var count = random.Next(group.min, group.max + 1);
+                for (var k = 0; k < count; k++)
+                    for (var attempt = 0; attempt < 8; attempt++)
+                    {
+                        // Within two cells, not touching another prop but the middle.
+                        var at = cell + new Vector2Int(random.Next(-2, 3), random.Next(-2, 3));
+                        if (at == cell || !Fits(at) || layout.Get(at) == DungeonCell.Prop)
+                            continue;
+                        layout.Set(at.x, at.y, DungeonCell.Prop);
+                        layout.Props[at] = group.around[random.Next(group.around.Length)];
+                        break;
+                    }
+            }
+        }
+
+        /// <summary>One floor mark per this many floor cells of a forest clearing.</summary>
+        const int CellsPerForestDecal = 45;
+
+        /// <summary>
+        /// The forest's floor marks where they would gather (2026-10-27): leaves under the trees, pebbles and puddles on
+        /// the worn earth, flowers in little patches out in the grass; no bones or blood but at the lairs.
+        /// </summary>
+        static void PlaceForestDecals(DungeonLayout layout, List<Vector2Int> floor, System.Random random)
+        {
+            var wanted = floor.Count / CellsPerForestDecal;
+            for (var k = 0; k < wanted; k++)
+            {
+                var cell = floor[random.Next(floor.Count)];
+                if (!layout.IsFloor(cell) || layout.Decals.ContainsKey(cell))
+                    continue;
+                DecalKind kind;
+                var roll = random.Next(100);
+                if (GroundRules.ForestPick(IsoMath.CellToGround(cell)) == GroundLayer.Path)
+                    kind = roll < 55 ? DecalKind.Pebbles : roll < 75 ? DecalKind.Puddle : DecalKind.Leaves;
+                else if (WallNear(layout, cell, 2))
+                    kind = roll < 80 ? DecalKind.Leaves : DecalKind.Flowers;
+                else if (roll < 45)
+                    kind = DecalKind.Flowers;
+                else
+                    continue;
+                layout.Decals[cell] = kind;
+                // Flowers grow in patches.
+                if (kind != DecalKind.Flowers)
+                    continue;
+                var more = random.Next(1, 3);
+                foreach (var step in RoomShape.Sides)
+                {
+                    var next = cell + step;
+                    if (more == 0)
+                        break;
+                    if (layout.IsFloor(next) && !layout.Decals.ContainsKey(next) && random.Next(2) == 0)
+                    {
+                        layout.Decals[next] = DecalKind.Flowers;
+                        more--;
+                    }
                 }
             }
         }

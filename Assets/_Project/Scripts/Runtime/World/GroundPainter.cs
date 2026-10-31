@@ -282,9 +282,11 @@ namespace ARPG
                         int gx = Mathf.FloorToInt(g.x * Unit), gy = Mathf.FloorToInt(g.y * Unit);
                         var blade = forestGrass[Wrap(gx, forestGrassSize) + Wrap(gy, forestGrassSize) * forestGrassSize];
                         var earth = forestPath[Wrap(gx, forestPathSize) + Wrap(gy, forestPathSize) * forestPathSize];
-                        var share = GroundRules.ForestGrassShare(GroundRules.ForestGrassAmount(g), Light(blade), forestGrassMean,
-                            GroundRules.Hash(gx, gy, 47));
-                        cellPixels[i] = share >= 1f ? blade : share <= 0f ? earth : Color32.Lerp(earth, blade, share);
+                        var amount = GroundRules.ForestGrassAmount(g);
+                        var share = GroundRules.ForestGrassShare(amount, Light(blade), forestGrassMean, GroundRules.ForestClump(gx, gy));
+                        // The grass toned to the trees' gloom, the earth darker at its trodden rim, both under a slow drift.
+                        var shade = GroundRules.ForestShade(g);
+                        cellPixels[i] = share > 0f ? Tone(blade, shade) : Scale(earth, shade * GroundRules.PathRim(amount));
                         continue;
                     }
                     var picture = !forest ? null : layer == GroundLayer.Grass ? forestGrass : forestPath;
@@ -363,6 +365,18 @@ namespace ARPG
             }
             return true;
         }
+
+        /// <summary>The drawn grass toned to the forest's gloom (2026-10-31): a quarter of its colour gone, a little darker.</summary>
+        static Color32 Tone(Color32 c, float shade)
+        {
+            var grey = (c.r * 0.3f + c.g * 0.59f + c.b * 0.11f);
+            var k = 0.86f * shade;
+            return new Color32((byte)Mathf.Min(255f, Mathf.Lerp(c.r, grey, 0.25f) * k), (byte)Mathf.Min(255f, Mathf.Lerp(c.g, grey, 0.25f) * k),
+                (byte)Mathf.Min(255f, Mathf.Lerp(c.b, grey, 0.25f) * k), 255);
+        }
+
+        static Color32 Scale(Color32 c, float k) =>
+            new Color32((byte)Mathf.Min(255f, c.r * k), (byte)Mathf.Min(255f, c.g * k), (byte)Mathf.Min(255f, c.b * k), 255);
 
         static float Light(Color32 c) => (c.r * 0.3f + c.g * 0.59f + c.b * 0.11f) / 255f;
 

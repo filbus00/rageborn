@@ -93,23 +93,39 @@ namespace ARPG
         /// band of <see cref="ForestEdge"/> in the noise (2026-10-27, the owner: the edge looked "a bit too cut out").</summary>
         public static float ForestGrassAmount(Vector2 ground)
         {
-            var v = Smooth(ground.x / 4f, ground.y / 4f, 41) * 0.7f + Smooth(ground.x / 1.3f, ground.y / 1.3f, 43) * 0.3f;
+            // Its outline roughened by a finer noise (2026-10-31: the patches looked like smooth blobs).
+            var v = Smooth(ground.x / 4f, ground.y / 4f, 41) * 0.7f + Smooth(ground.x / 1.3f, ground.y / 1.3f, 43) * 0.3f +
+                    (Smooth(ground.x / 0.45f, ground.y / 0.45f, 55) - 0.5f) * 0.07f;
             return Mathf.Clamp01((v - 0.38f) / ForestEdge + 0.5f);
         }
 
-        public const float ForestEdge = 0.07f;
+        public const float ForestEdge = 0.1f;
 
         /// <summary>
-        /// How much of a forest pixel is grass, 0, 0.5 or 1 (pixel art: a pure pixel or an even mix): by how far into the
-        /// grass it lies, with the grass picture's bright blades reaching out over the path and its dark gaps letting the
-        /// earth through (<paramref name="grassLight"/> against the picture's <paramref name="meanLight"/>), and a little
-        /// of <paramref name="jitter"/> (0 to 1) so the edge frays.
+        /// The forest floor's light at a point (2026-10-31, the owner: the ground looked bad): a slow drift of lighter and
+        /// darker ground over about 6 cells that never repeats, so the pictures' repeats do not look alike; 0.8 to 1.1.
         /// </summary>
-        public static float ForestGrassShare(float amount, float grassLight, float meanLight, float jitter)
+        public static float ForestShade(Vector2 ground) =>
+            0.8f + 0.3f * (Smooth(ground.x / 6f, ground.y / 6f, 51) * 0.65f + Smooth(ground.x / 2f, ground.y / 2f, 53) * 0.35f);
+
+        /// <summary>How dark the worn earth is beside the grass: trodden darker at its rim (0.78 on the edge), its own
+        /// colour well inside (1 from a quarter of the way in).</summary>
+        public static float PathRim(float amount) => amount >= 0.5f ? 0.78f : Mathf.Lerp(1f, 0.78f, Mathf.Clamp01((amount - 0.25f) / 0.25f));
+
+        /// <summary>
+        /// Whether a forest pixel shows grass (1) or earth (0) (2026-10-31: an even mix of the two looked like a blurry
+        /// halo): by how far into the grass it lies, in small clumps (<paramref name="clump"/>, 0 to 1, a noise a few pixels
+        /// across) so tufts break into the earth and bare spots into the grass, and with the grass picture's bright blades
+        /// reaching further (<paramref name="grassLight"/> against the picture's <paramref name="meanLight"/>).
+        /// </summary>
+        public static float ForestGrassShare(float amount, float grassLight, float meanLight, float clump)
         {
-            var share = (amount - 0.5f) * 2.2f + (grassLight - meanLight) * 3f + (jitter - 0.5f) * 0.3f + 0.5f;
-            return share < 0.35f ? 0f : share > 0.65f ? 1f : 0.5f;
+            var score = (amount - 0.5f) * 2f + (clump - 0.5f) * 1f + (grassLight - meanLight) * 4f;
+            return score > 0f ? 1f : 0f;
         }
+
+        /// <summary>The clumps the forest's grass edge frays in: a noise about 3 texture pixels across, a little grainy.</summary>
+        public static float ForestClump(int x, int y) => Smooth(x / 3f, y / 3f, 57) * 0.75f + Hash(x, y, 59) * 0.25f;
 
         /// <summary>
         /// The layer at a town point (remade dark 2026-10-11, the owner's concept art: wet cobbles and mud): cobbles where
