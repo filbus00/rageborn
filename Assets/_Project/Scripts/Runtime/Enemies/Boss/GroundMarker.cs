@@ -72,6 +72,19 @@ namespace ARPG
         static readonly (float x, float y, float size)[] BubbleSpots =
             { (0.3f, 0.2f, 0.11f), (-0.35f, 0.35f, 0.08f), (-0.15f, -0.4f, 0.13f), (0.45f, -0.25f, 0.07f), (0.05f, 0.55f, 0.06f), (-0.55f, -0.05f, 0.09f) };
 
+        /// <summary>The owner's drawn pool for a pool's colour (<see cref="PoolLooks"/>), one world unit across, or null.</summary>
+        public static Sprite DrawnPool(Color color)
+        {
+            var name = PoolLooks.For(color);
+            if (name == null)
+                return null;
+            if (drawnPools.TryGetValue(name, out var sprite))
+                return sprite;
+            return drawnPools[name] = Resources.Load<Sprite>(PoolLooks.Folder + name);
+        }
+
+        static readonly Dictionary<string, Sprite> drawnPools = new Dictionary<string, Sprite>();
+
         /// <summary>Bubbles or embers in a pool: scattered bright rings, turned over the pool to look alive.</summary>
         public static Sprite Bubbles => bubbles != null ? bubbles : bubbles = MakeXY("Bubbles", (u, v) =>
         {
@@ -271,7 +284,10 @@ namespace ARPG
             if (root == null)
                 return;
             this.color = color;
-            rootRenderer.color = color;
+            if (drawnPool == null)
+                rootRenderer.color = color;
+            if (edge != null)
+                edge.color = new Color(color.r, color.g, color.b, 0.55f);
             if (fill != null)
                 fill.GetComponent<SpriteRenderer>().color = color;
             if (bubbles != null)
@@ -289,15 +305,32 @@ namespace ARPG
             pooled = true;
             poolTime = UnityEngine.Random.value * 10f;
             poolScale = root.transform.localScale;
-            rootRenderer.sprite = TelegraphArt.Pool;
-            rootRenderer.color = new Color(color.r, color.g, color.b, Mathf.Min(0.85f, color.a));
             if (fill != null)
                 fill.gameObject.SetActive(false);
             if (bubbles == null)
                 bubbles = NewSprite("Bubbles", TelegraphArt.Bubbles, color, root.transform, 41).GetComponent<SpriteRenderer>();
+            // The owner's drawn pool for its colour (2026-10-31), under a thin rim in its colour that marks exactly where
+            // it hurts; else the tinted blob with bubbles.
+            drawnPool = TelegraphArt.DrawnPool(color);
+            if (drawnPool != null)
+            {
+                rootRenderer.sprite = drawnPool;
+                rootRenderer.color = new Color(1f, 1f, 1f, Mathf.Clamp(color.a + 0.15f, 0.7f, 0.92f));
+                bubbles.gameObject.SetActive(false);
+                if (edge == null)
+                    edge = NewSprite("Edge", TelegraphArt.Rim, color, root.transform, 42).GetComponent<SpriteRenderer>();
+                edge.color = new Color(color.r, color.g, color.b, 0.55f);
+                edge.gameObject.SetActive(true);
+                return;
+            }
+            rootRenderer.sprite = TelegraphArt.Pool;
+            rootRenderer.color = new Color(color.r, color.g, color.b, Mathf.Min(0.85f, color.a));
             bubbles.color = Color.Lerp(color, Color.white, 0.35f);
             bubbles.gameObject.SetActive(true);
         }
+
+        Sprite drawnPool;
+        SpriteRenderer edge;
 
         /// <summary>A pool's life: it breathes a little, its bubbles turn and flicker.</summary>
         public void Animate(float deltaSeconds)
@@ -307,6 +340,14 @@ namespace ARPG
             poolTime += deltaSeconds;
             var breathe = 1f + 0.035f * Mathf.Sin(poolTime * 3.1f);
             root.transform.localScale = new Vector3(poolScale.x * breathe, poolScale.y * (2f - breathe), 1f);
+            if (drawnPool != null)
+            {
+                // A drawn pool shimmers: its light rises and falls a little.
+                var shimmer = 0.88f + 0.12f * Mathf.Sin(poolTime * 4.7f) * Mathf.Sin(poolTime * 2.3f);
+                var a = rootRenderer.color.a;
+                rootRenderer.color = new Color(shimmer, shimmer, shimmer, a);
+                return;
+            }
             bubbles.transform.localRotation = Quaternion.Euler(0f, 0f, poolTime * 40f);
             var flicker = 0.55f + 0.45f * Mathf.Abs(Mathf.Sin(poolTime * 4.3f));
             var c = Color.Lerp(color, Color.white, 0.35f);
@@ -333,6 +374,9 @@ namespace ARPG
             if (pooled)
             {
                 pooled = false;
+                drawnPool = null;
+                if (edge != null)
+                    edge.gameObject.SetActive(false);
                 rootRenderer.sprite = TelegraphArt.Rim;
                 if (fill != null)
                     fill.gameObject.SetActive(true);

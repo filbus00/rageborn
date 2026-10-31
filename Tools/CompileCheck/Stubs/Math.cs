@@ -238,7 +238,19 @@ namespace UnityEngine
         public static Color LerpUnclamped(Color x, Color y, float t) => new Color(x.r + (y.r - x.r) * t, x.g + (y.g - x.g) * t, x.b + (y.b - x.b) * t, x.a + (y.a - x.a) * t);
         public static Color HSVToRGB(float h, float s, float v) => white;
         public static Color HSVToRGB(float h, float s, float v, bool hdr) => white;
-        public static void RGBToHSV(Color c, out float h, out float s, out float v) { h = s = v = 0; }
+        public static void RGBToHSV(Color c, out float h, out float s, out float v)
+        {
+            var max = Math.Max(c.r, Math.Max(c.g, c.b));
+            var min = Math.Min(c.r, Math.Min(c.g, c.b));
+            var d = max - min;
+            v = max;
+            s = max > 0f ? d / max : 0f;
+            if (d <= 0f) { h = 0f; return; }
+            if (max == c.r) h = ((c.g - c.b) / d) / 6f;
+            else if (max == c.g) h = (2f + (c.b - c.r) / d) / 6f;
+            else h = (4f + (c.r - c.g) / d) / 6f;
+            if (h < 0f) h += 1f;
+        }
         public static Color operator *(Color x, Color y) => new Color(x.r * y.r, x.g * y.g, x.b * y.b, x.a * y.a);
         public static Color operator *(Color x, float d) => new Color(x.r * d, x.g * d, x.b * d, x.a * d);
         public static Color operator *(float d, Color x) => x * d;
