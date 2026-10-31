@@ -16,12 +16,17 @@ options = [a for a in args[2:] if "=" in a or a == "mirror"]
 source, height, names = args[0], int(args[1]), [a for a in args[2:] if a not in options]
 pivot_override = None
 cells = 1
+force_width = 0
 mirror = "mirror" in options
 for o in options:
     if o.startswith("pivot="):
         pivot_override = tuple(float(v) for v in o[6:].split(","))
     if o.startswith("cells="):
         cells = int(o[6:])
+    # width=N squeezes the object to N render pixels across whatever its height (2026-10-31: her arrows, 14 times longer
+    # than tall when drawn true, a line at the game's size).
+    if o.startswith("width="):
+        force_width = int(o[6:])
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "pixel", "world"))
 MARGIN = 8
 
@@ -61,6 +66,8 @@ scale = height / ch
 if PROP:
     scale = min(scale, (FRAME[0] - 12) / cw)
 nh, nw = max(1, int(round(ch * scale))), max(1, int(round(cw * scale)))
+if force_width:
+    nw = force_width
 
 # Area-average downscale (premultiplied, so edges do not go dark or pink).
 def resize(src, nh, nw):

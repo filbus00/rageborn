@@ -655,6 +655,7 @@ namespace ARPG
                 arrow.gameObject.SetActive(true);
                 var copy = source;
                 copy.Transform = arrow;
+                Skin(copy);
                 copy.Velocity = Rotate(source.Velocity, angle);
                 copy.Pierced = null;
                 if (source.Pierced != null)
@@ -1486,6 +1487,21 @@ namespace ARPG
             shot.Charged = boons.ChainLightning > 0f || boons.ThunderArrow;
             if (shot.Style == ShotStyle.Basic)
                 shot.Glow = shot.Fiery ? FireGlow : shot.Frosty ? FrostGlow : shot.Charged ? LightningColor : shot.Glow;
+            Skin(shot);
+        }
+
+        /// <summary>
+        /// Shows the arrow's drawn look (2026-10-31, the owner's Gemini arrows): the explosive and the piercing skills their
+        /// own, else its element (fire, frost, lightning), else her hunting arrow.
+        /// </summary>
+        static void Skin(Shot shot)
+        {
+            if (shot.Transform == null || !shot.Transform.TryGetComponent<SpriteRenderer>(out var renderer))
+                return;
+            var kind = shot.Style == ShotStyle.Explosive ? ArrowLook.Explosive
+                : shot.Style == ShotStyle.Pierce || shot.Style == ShotStyle.KillShot ? ArrowLook.Pierce
+                : shot.Fiery ? ArrowLook.Fire : shot.Frosty ? ArrowLook.Frost : shot.Charged ? ArrowLook.Lightning : ArrowLook.Plain;
+            renderer.sprite = ArrowArt.For(kind);
         }
 
         // An arrow shows an element from this chance on (a gear affix of a few percent leaves it plain).
@@ -1988,6 +2004,7 @@ namespace ARPG
                 PlaceArrow(arrow, parent.Position, velocity);
                 var fork = parent;
                 fork.Transform = arrow;
+                Skin(fork);
                 fork.Velocity = velocity;
                 fork.Travelled = 0f;
                 fork.MaxDistance = left;
@@ -2076,7 +2093,8 @@ namespace ARPG
                 }
             }
             fx.Sparks(world, screenDirection, ArrowHeight, shot.Glow, shot.Style == ShotStyle.Basic ? 3 : 6);
-            fx.Stuck(world, screenDirection, ArrowHeight, ArrowArt.Arrow);
+            fx.Stuck(world, screenDirection, ArrowHeight,
+                shot.Transform != null && shot.Transform.TryGetComponent<SpriteRenderer>(out var flown) && flown.sprite != null ? flown.sprite : ArrowArt.Arrow);
             return true;
         }
 

@@ -628,8 +628,25 @@ namespace ARPG
     /// art: a dark shaft, an iron head and red fletching, pointing right (+x) with its pivot at the tip's middle, so a
     /// rotation points it along the flight.
     /// </summary>
+    /// <summary>Her arrows' drawn looks (2026-10-31).</summary>
+    public enum ArrowLook { Plain, Fire, Frost, Lightning, Explosive, Pierce }
+
     public static class ArrowArt
     {
+        static readonly Sprite[] drawn = new Sprite[6];
+
+        /// <summary>
+        /// The owner's drawn arrow of a look (Resources/Art/World/arrow_*, 2026-10-31), squeezed to a game arrow's
+        /// stoutness, pointing right with its pivot at the tip's middle like <see cref="Arrow"/>; that one without it.
+        /// </summary>
+        public static Sprite For(ArrowLook look)
+        {
+            var i = (int)look;
+            if (drawn[i] == null)
+                drawn[i] = WorldArt.Get("arrow_" + look.ToString().ToLowerInvariant());
+            return drawn[i] != null ? drawn[i] : Arrow;
+        }
+
         const int Width = 22;
         const int Height = 5;
 
