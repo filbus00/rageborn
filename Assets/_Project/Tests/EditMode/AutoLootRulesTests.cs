@@ -106,5 +106,22 @@ namespace ARPG.Tests
             Assert.AreEqual(10f - AutoLootRules.CoinPullSpeed * 0.5f, next.x, 1e-4f);
             Assert.AreEqual(her, AutoLootRules.CoinPullStep(new Vector2(0.1f, 0f), her, 0.5f), "never past her");
         }
+
+        [Test]
+        public void GoldPiles_GrowWithTheDrop_AndAFlyingCoinHopsAndSpins()
+        {
+            // The owner's Gemini coin piles (2026-10-31).
+            Assert.AreEqual(0, AutoLootRules.GoldPile(LootSource.NormalEnemy));
+            Assert.AreEqual(1, AutoLootRules.GoldPile(LootSource.Champion));
+            Assert.AreEqual(2, AutoLootRules.GoldPile(LootSource.Elite));
+            Assert.AreEqual(2, AutoLootRules.GoldPile(LootSource.Boss));
+            Assert.AreEqual(2, AutoLootRules.GoldPile(LootSource.ZoneChest));
+            var (hop0, face0) = AutoLootRules.CoinFlight(0f);
+            Assert.AreEqual(0f, hop0, 1e-4f, "it starts on the ground");
+            Assert.AreEqual(1f, face0, 1e-4f, "face on");
+            var (hop, face) = AutoLootRules.CoinFlight(1f / 6f);
+            Assert.AreEqual(AutoLootRules.CoinHop, hop, 1e-4f, "at the top of a hop");
+            Assert.Less(face, 0f, "turned over");
+        }
     }
 }

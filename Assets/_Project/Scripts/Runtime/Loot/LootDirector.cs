@@ -83,7 +83,7 @@ namespace ARPG
             var at = enemy.GroundPosition;
             var source = ToLootSource(enemy.Definition.Rank);
 
-            DropGold(loot.RollGold(source, level), at);
+            DropGold(loot.RollGold(source, level), at, AutoLootRules.GoldPile(source));
 
             var items = loot.RollDrops(source, level, MagicFind);
             for (var i = 0; i < items.Count; i++)
@@ -138,7 +138,7 @@ namespace ARPG
         public void DropChest(int itemLevel, Vector2 ground)
         {
             var loot = GameSession.Current.Loot;
-            DropGold(loot.RollGold(LootSource.ZoneChest, itemLevel), ground + Scatter(ScatterRadius));
+            DropGold(loot.RollGold(LootSource.ZoneChest, itemLevel), ground + Scatter(ScatterRadius), AutoLootRules.GoldPile(LootSource.ZoneChest));
 
             var items = loot.RollDrops(LootSource.ZoneChest, itemLevel, MagicFind);
             for (var i = 0; i < items.Count; i++)
@@ -157,10 +157,10 @@ namespace ARPG
         }
 
         /// <summary>Puts gold on the ground at a ground position. Chests, elites and bosses will use this too.</summary>
-        public void DropGold(int amount, Vector2 ground)
+        public void DropGold(int amount, Vector2 ground, int pile = 0)
         {
             var drop = TakeDrop();
-            drop.ShowGold(amount, ground);
+            drop.ShowGold(amount, ground, pile);
             active.Add(drop);
             GoldDropCount++;
         }

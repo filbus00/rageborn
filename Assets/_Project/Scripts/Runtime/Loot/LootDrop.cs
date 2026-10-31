@@ -98,6 +98,8 @@ namespace ARPG
             var color = LootColors.Of(item.Rarity);
             marker.sprite = diamondSprite;
             marker.color = color;
+            marker.sortingLayerName = GameSortingLayers.Decals;
+            flying = false;
             marker.transform.localScale = Vector3.one;
 
             // The beam fades toward its top, so it is tinted with a fully opaque color.
@@ -119,15 +121,21 @@ namespace ARPG
             Update();
         }
 
-        internal void ShowGold(int amount, Vector2 ground)
+        internal void ShowGold(int amount, Vector2 ground, int pile = 0)
         {
             Item = null;
             GoldAmount = amount;
             Place(ground);
+            flying = false;
+            marker.sortingLayerName = GameSortingLayers.Decals;
 
-            marker.sprite = coinSprite;
-            marker.color = LootColors.Gold;
-            marker.transform.localScale = new Vector3(GoldScale, GoldScale, 1f);
+            // A drawn pile of coins, bigger for richer drops (2026-10-31, the owner's Gemini art), else the gold disc.
+            var drawn = WorldArt.Get(GoldPileName + (Mathf.Clamp(pile, 0, 2) + 1));
+            marker.sprite = drawn != null ? drawn : coinSprite;
+            marker.color = drawn != null ? Color.white : LootColors.Gold;
+            var scale = drawn != null ? 1f : GoldScale;
+            marker.transform.localScale = new Vector3(scale, scale, 1f);
+            marker.transform.localPosition = Vector3.zero;
             beam.enabled = false;
             text.enabled = false;
             popTime = PopSeconds;
@@ -306,6 +314,36 @@ namespace ARPG
 
         /// <summary>Moves the drop on the ground: a pet carrying it to the character (Docs/02, Pets).</summary>
         internal void MoveTo(Vector2 ground) => Place(ground);
+
+        /// <summary>
+        /// Moves gold flying to the character (2026-10-31: a heap sliding over the grass looked like a dragged stone): the
+        /// pile becomes a single spinning coin that hops on its way, over everything on the ground.
+        /// </summary>
+        internal void Fly(Vector2 ground)
+        {
+            if (!flying)
+            {
+                flying = true;
+                flyingSince = Time.time;
+                var coin = WorldArt.Get(FlyingCoinName);
+                if (coin != null)
+                {
+                    marker.sprite = coin;
+                    marker.color = Color.white;
+                }
+                marker.sortingLayerName = GameSortingLayers.Effects;
+            }
+            Place(ground);
+            var (hop, face) = AutoLootRules.CoinFlight(Time.time - flyingSince);
+            var size = marker.sprite == coinSprite ? GoldScale : 1f;
+            marker.transform.localPosition = new Vector3(0f, hop, 0f);
+            marker.transform.localScale = new Vector3(size * Mathf.Max(0.15f, Mathf.Abs(face)), size, 1f);
+        }
+
+        const string GoldPileName = "gold_pile_";
+        const string FlyingCoinName = "gold_coin";
+        bool flying;
+        float flyingSince;
 
         void Place(Vector2 ground)
         {

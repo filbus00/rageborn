@@ -59,7 +59,7 @@ namespace ARPG
                 var drop = drops[i];
                 // The fight over, coins fly to her (2026-10-25).
                 if (drop.IsGold && AutoLootRules.CoinsPulled(origin, drop.GroundPosition, engaged))
-                    drop.MoveTo(AutoLootRules.CoinPullStep(drop.GroundPosition, origin, Time.deltaTime));
+                    drop.Fly(AutoLootRules.CoinPullStep(drop.GroundPosition, origin, Time.deltaTime));
                 if (!AutoLootRules.InRange(origin, drop.GroundPosition))
                     continue;
 

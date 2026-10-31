@@ -76,6 +76,27 @@ namespace ARPG
         public static Vector2 CoinPullStep(Vector2 drop, Vector2 character, float deltaTime) =>
             Vector2.MoveTowards(drop, character, CoinPullSpeed * deltaTime);
 
+        /// <summary>The gold pile's size by where the gold came from (2026-10-31, the owner's Gemini coin piles): 0 small
+        /// from a common kill, 1 medium from a champion, 2 large from an elite, a boss or a chest.</summary>
+        public static int GoldPile(LootSource source)
+        {
+            switch (source)
+            {
+                case LootSource.Champion: return 1;
+                case LootSource.Elite:
+                case LootSource.Boss:
+                case LootSource.ZoneChest: return 2;
+                default: return 0;
+            }
+        }
+
+        /// <summary>A flying coin's hop above the ground (world units) and how much of its face shows as it spins (-1 to
+        /// 1), this long after it began to fly: short hops, a turn about every third of a second.</summary>
+        public static (float hop, float face) CoinFlight(float seconds) =>
+            (CoinHop * Mathf.Abs(Mathf.Sin(seconds * Mathf.PI * 3f)), Mathf.Cos(seconds * Mathf.PI * 6f));
+
+        public const float CoinHop = 0.35f;
+
         /// <summary>Whether items (not gold) may be picked up right now.</summary>
         /// <param name="secondsSinceLastHit">Seconds since the character last took a hit.</param>
         /// <param name="engagedEnemies">Living enemies that are approaching, attacking or recovering.</param>
