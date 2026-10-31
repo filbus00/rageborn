@@ -113,14 +113,14 @@ namespace ARPG
         public void FireMote(Vector2 ground, Vector2 direction, float height)
         {
             Emit(ground + Random.insideUnitCircle * 0.05f, -direction * 0.4f + Random.insideUnitCircle * 0.3f, height, Random.Range(0.6f, 1.4f),
-                Random.Range(0.25f, 0.45f), Random.Range(0.06f, 0.1f), 0.02f, 1f, FlameHot, FlameRed, false, false);
+                Random.Range(0.25f, 0.45f), Random.Range(0.06f, 0.1f), 0.02f, 1f, FlameHot, FlameRed, false, false, Fx("fx_ember_small"));
         }
 
         /// <summary>An ice arrow's trail: a glint of frost hanging in the air a moment.</summary>
         public void FrostMote(Vector2 ground, Vector2 direction, float height)
         {
             Emit(ground + Random.insideUnitCircle * 0.08f, -direction * 0.15f, height + Random.Range(-0.05f, 0.05f), -0.2f,
-                Random.Range(0.3f, 0.5f), 0.05f, Random.Range(0.08f, 0.12f), 1f, FrostWhite, FrostBlue, false, false);
+                Random.Range(0.3f, 0.5f), 0.05f, Random.Range(0.08f, 0.12f), 1f, FrostWhite, FrostBlue, false, false, Fx("fx_chip"));
         }
 
         /// <summary>A lightning arrow's trail: a crackling spark jumping off it.</summary>
@@ -139,7 +139,7 @@ namespace ARPG
                 var drift = Rotate(Vector2.right, Random.Range(0f, 360f)) * Random.Range(0.3f, 1.2f);
                 drift.y *= IsoMath.GroundSquash;
                 Emit(ground, drift, height * Random.Range(0.4f, 1f), Random.Range(1.2f, 2.6f), Random.Range(0.35f, 0.7f),
-                    Random.Range(0.06f, 0.11f), 0.02f, 1f, Color.Lerp(FlameHot, new Color(1f, 0.45f, 0.1f, 1f), Random.value), FlameRed, false, false);
+                    Random.Range(0.06f, 0.11f), 0.02f, 1f, Color.Lerp(FlameHot, new Color(1f, 0.45f, 0.1f, 1f), Random.value), FlameRed, false, false, Ember());
             }
         }
 
@@ -152,7 +152,7 @@ namespace ARPG
             {
                 var spray = Rotate(-direction, Random.Range(-80f, 80f)) * Random.Range(1.5f, 3.5f) * Mathf.Sqrt(amount);
                 Emit(ground, spray, height, Random.Range(0.5f, 2f), Random.Range(0.25f, 0.45f), Random.Range(0.06f, 0.1f), 0.02f, 3f,
-                    FrostWhite, FrostBlue, true, false);
+                    FrostWhite, FrostBlue, true, false, Ice());
             }
         }
 
@@ -210,7 +210,7 @@ namespace ARPG
             {
                 var spread = Rotate(-direction, Random.Range(-70f, 70f)) * Random.Range(1.5f, 4f);
                 Emit(ground, spread, height, Random.Range(0.5f, 2.5f), Random.Range(0.12f, 0.3f), 0.09f, 0.03f, 2.5f,
-                    Color.Lerp(color, SparkColor, Random.value), Faded(SparkColor), false, false);
+                    Color.Lerp(color, SparkColor, Random.value), Faded(SparkColor), false, false, Spark());
             }
         }
 
@@ -223,7 +223,7 @@ namespace ARPG
             {
                 var spray = Rotate(direction, Random.Range(-35f, 35f)) * Random.Range(0.8f, 3.2f) * Mathf.Sqrt(amount);
                 Emit(ground, spray, height, Random.Range(0.5f, 2.2f), 1.2f, Random.Range(0.07f, 0.12f), 0.06f, 1.4f,
-                    BloodColor, BloodDark, true, false);
+                    BloodColor, BloodDark, true, false, Drop());
             }
             // A dark mist hanging a moment where the arrow went in.
             Emit(ground, direction * 0.4f, height, 0f, 0.3f, 0.18f * amount, 0.34f * amount, 1f,
@@ -240,7 +240,7 @@ namespace ARPG
                 var spray = Rotate(Vector2.right, Random.Range(0f, 360f)) * Random.Range(0.6f, 2.4f) * Mathf.Sqrt(amount);
                 spray.y *= IsoMath.GroundSquash;
                 Emit(ground, spray, height, Random.Range(0.8f, 2.6f), 1.5f, Random.Range(0.06f, 0.11f), 0.05f, 1.5f,
-                    BloodColor, BloodDark, true, false);
+                    BloodColor, BloodDark, true, false, Drop());
             }
             AddStain(ground + Random.insideUnitCircle * 0.12f, 0.35f + 0.35f * Mathf.Min(amount, 1.5f), 0.85f);
         }
@@ -249,7 +249,7 @@ namespace ARPG
         public void Drip(Vector2 ground, float height)
         {
             Emit(ground + Random.insideUnitCircle * 0.1f, Random.insideUnitCircle * 0.3f, height, Random.Range(-0.3f, 0.3f), 1f,
-                Random.Range(0.05f, 0.08f), 0.05f, 1.2f, BloodColor, BloodDark, true, false);
+                Random.Range(0.05f, 0.08f), 0.05f, 1.2f, BloodColor, BloodDark, true, false, Drop());
         }
 
         /// <summary>A kill: blood thrown all round, chunks of flesh flung out, and a wide pool where it fell.
@@ -262,7 +262,7 @@ namespace ARPG
                 var spray = Rotate(Vector2.right, Random.Range(0f, 360f)) * Random.Range(1f, 4f) * Mathf.Sqrt(size);
                 spray.y *= IsoMath.GroundSquash;
                 Emit(ground, spray, height, Random.Range(1.2f, 3.5f), 1.6f, Random.Range(0.07f, 0.14f), 0.05f, 1.6f,
-                    BloodColor, BloodDark, true, false);
+                    BloodColor, BloodDark, true, false, Drop());
             }
             var chunkCount = Mathf.RoundToInt(Random.Range(4f, 7f) * Mathf.Sqrt(size));
             for (var i = 0; i < chunkCount; i++)
@@ -286,7 +286,7 @@ namespace ARPG
                 new Color(0.7f, 0.05f, 0.05f, 0.9f), Faded(BloodDark), false, false);
             if (Random.value < 0.7f)
                 Emit(ground, direction * Random.Range(0.3f, 1.2f) + Random.insideUnitCircle * 0.4f, height,
-                    Random.Range(-0.2f, 0.4f), 1f, Random.Range(0.05f, 0.09f), 0.05f, 1.2f, BloodColor, BloodDark, true, false);
+                    Random.Range(-0.2f, 0.4f), 1f, Random.Range(0.05f, 0.09f), 0.05f, 1.2f, BloodColor, BloodDark, true, false, Drop());
         }
 
         /// <summary>The explosive arrow's burst: a flash, a ring of fire on the floor and embers flung out.</summary>
@@ -302,8 +302,19 @@ namespace ARPG
                 var fling = Rotate(Vector2.right, angle) * Random.Range(2f, 6f) * radiusWorld / 2.5f;
                 fling.y *= IsoMath.GroundSquash;
                 Emit(ground, fling, 0.2f, Random.Range(1f, 4f), Random.Range(0.3f, 0.7f), Random.Range(0.08f, 0.16f), 0.03f,
-                    2f, Color.Lerp(color, SparkColor, Random.value * 0.6f), Faded(new Color(0.3f, 0.05f, 0f, 1f)), false, false);
+                    2f, Color.Lerp(color, SparkColor, Random.value * 0.6f), Faded(new Color(0.3f, 0.05f, 0f, 1f)), false, false, Ember());
             }
+            // Smoke rolling up from it (2026-10-31).
+            var smoke = Fx("fx_smoke");
+            if (smoke != null)
+                for (var i = 0; i < 5; i++)
+                {
+                    var drift = Rotate(Vector2.right, Random.Range(0f, 360f)) * Random.Range(0.1f, 0.5f) * radiusWorld;
+                    drift.y *= IsoMath.GroundSquash;
+                    Emit(ground + drift * 0.5f, drift * 0.4f, 0.3f, Random.Range(0.5f, 0.9f), Random.Range(0.9f, 1.4f),
+                        radiusWorld * 0.18f, radiusWorld * 0.38f, 1f, new Color(1f, 1f, 1f, 0.75f), new Color(1f, 1f, 1f, 0f), false, false,
+                        Random.value < 0.6f ? smoke : Fx("fx_smoke_small"));
+                }
             // Scorch on the floor, dark and slow to fade.
             Emit(ground, Vector2.zero, 0f, 0f, SplatSeconds, radiusWorld * 1.1f, radiusWorld * 1.15f, 1f,
                 new Color(0.08f, 0.04f, 0.03f, 0.55f), new Color(0.08f, 0.04f, 0.03f, 0f), false, true);
@@ -325,7 +336,7 @@ namespace ARPG
                 var offset = Rotate(Vector2.right, Random.Range(0f, 360f)) * Random.Range(0f, size * 0.45f);
                 offset.y *= IsoMath.GroundSquash;
                 Emit(ground + offset, new Vector2(Random.Range(-0.2f, 0.2f), 0f), 0.05f, Random.Range(0.8f, 1.6f), Random.Range(0.4f, 0.8f),
-                    Random.Range(0.05f, 0.09f), 0.02f, 1f, new Color(1f, 0.7f, 0.25f, 1f), new Color(0.6f, 0.1f, 0f, 0f), false, false);
+                    Random.Range(0.05f, 0.09f), 0.02f, 1f, new Color(1f, 0.7f, 0.25f, 1f), new Color(0.6f, 0.1f, 0f, 0f), false, false, Fx("fx_ember_small"));
             }
         }
 
@@ -360,15 +371,53 @@ namespace ARPG
             });
         }
 
+        // --- The drawn particles (2026-10-31) ----------------------------------------------------------------------
+
+        const float DrawnScale = 1.6f;
+        const float DrawnTint = 0.4f;
+        const float BloodTint = 0.75f;
+        const float SoftGlowSize = 0.25f;
+        static readonly Dictionary<string, Sprite> drawn = new Dictionary<string, Sprite>();
+
+        /// <summary>The owner's drawn particle (Resources/Art/Effects/fx_*), or null: the glow is drawn instead.</summary>
+        static Sprite Fx(string name)
+        {
+            if (!drawn.TryGetValue(name, out var sprite))
+                drawn[name] = sprite = Resources.Load<Sprite>("Art/Effects/" + name);
+            return sprite;
+        }
+
+        static Sprite Ember() => Fx(Random.value < 0.5f ? "fx_ember" : "fx_ember_small");
+        static Sprite Spark() => Fx(Random.value < 0.5f ? "fx_spark" : "fx_streak");
+        static Sprite Ice() => Fx(Random.value < 0.4f ? "fx_shard" : "fx_chip");
+        static Sprite Drop() => Random.value < 0.6f ? bloodDrop ??= Fx("fx_blood") : bloodSplash ??= Fx("fx_blood_splash");
+        static Sprite bloodDrop, bloodSplash;
+
         // --- The pool ---------------------------------------------------------------------------------------------
 
         void Emit(Vector2 ground, Vector2 velocity, float height, float heightVelocity, float life, float size0, float size1,
-            float stretch, Color color0, Color color1, bool falls, bool flat)
+            float stretch, Color color0, Color color1, bool falls, bool flat, Sprite look = null)
         {
             var renderer = Take();
             if (renderer == null)
                 return;
-            renderer.sprite = flat ? TelegraphArt.Disc : TelegraphArt.Ember;
+            // A big glow (a flash, a breath of cold, a mist) fades to nothing at its edge (2026-10-31: the ember's edge
+            // showed as a hard disc).
+            renderer.sprite = look != null ? look : Mathf.Max(size0, size1) > SoftGlowSize ? TelegraphArt.Glow : flat ? TelegraphArt.Disc : TelegraphArt.Ember;
+            if (look != null)
+            {
+                // A drawn particle (2026-10-31, the owner's Gemini particles) in its own colours with a third of the
+                // effect's tint (blood stays dark), fading; a little bigger than a glow so its shape reads, and hardly
+                // stretched so it keeps it.
+                // Blood takes most of its dark tint: the drawn drops alone read as bright red confetti (2026-10-31).
+                var strength = look == bloodDrop || look == bloodSplash ? BloodTint : DrawnTint;
+                var tint = Color.Lerp(Color.white, new Color(color0.r, color0.g, color0.b, 1f), strength);
+                color0 = new Color(tint.r, tint.g, tint.b, color0.a);
+                color1 = new Color(tint.r, tint.g, tint.b, color1.a);
+                size0 *= DrawnScale;
+                size1 *= DrawnScale;
+                stretch = Mathf.Clamp(stretch, 1f, 1.4f);
+            }
             Layer(renderer, flat);
             live.Add(new Particle
             {
@@ -505,7 +554,7 @@ namespace ARPG
                         if (p.Chunk)
                             AddStain(p.Ground, 0f, 1f, p.Renderer.sprite);
                         else
-                            AddStain(p.Ground, p.Size0 * Random.Range(2.2f, 3.4f), 0.9f);
+                            AddStain(p.Ground, p.Size0 * Random.Range(2.2f, 3.4f) / (p.Renderer.sprite == TelegraphArt.Ember ? 1f : DrawnScale), 0.9f);
                         Release(p.Renderer);
                         live[i] = live[live.Count - 1];
                         live.RemoveAt(live.Count - 1);
