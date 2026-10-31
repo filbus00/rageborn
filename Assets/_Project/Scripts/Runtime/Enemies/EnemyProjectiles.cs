@@ -62,9 +62,21 @@ namespace ARPG
             look.Root.gameObject.SetActive(true);
             var tint = color.a > 0f ? color : ArrowColor;
             var renderer = look.Body;
-            var art = ProjectileArt.For(kind);
+            var drawn = ProjectileArt.Drawn(kind, color.a > 0f);
+            var art = drawn != null ? drawn : ProjectileArt.For(kind);
             float glowSize, trailLength, trailWidth;
-            if (art != null)
+            if (drawn != null)
+            {
+                // The owner's drawn projectile (2026-10-31), at its own size, its glow and trail in the shot's colour.
+                renderer.sprite = drawn;
+                renderer.color = Color.white;
+                look.Body.transform.localScale = Vector3.one;
+                var fire = kind == ProjectileKind.Fireball;
+                glowSize = fire ? 1.5f : 0.9f;
+                trailLength = fire ? 1.0f : kind == ProjectileKind.Knife || kind == ProjectileKind.Plain ? 1.0f : 0.8f;
+                trailWidth = fire ? 0.35f : kind == ProjectileKind.Knife || kind == ProjectileKind.Plain ? 0.14f : 0.22f;
+            }
+            else if (art != null)
             {
                 // A drawn thing (a knife, an axe, a bomb, a blade) in its own colours.
                 renderer.sprite = art;

@@ -61,6 +61,25 @@ namespace ARPG
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStatics() => Sprites.Clear();
 
+        /// <summary>
+        /// The kind's drawn picture (2026-10-31, the owner's Gemini projectiles, Resources/Art/World/projectile_*), at the
+        /// size it shows, pointing along +x; null without one. A plain shot is an arrow only when uncoloured: the coloured
+        /// bolts of magic stay glows.
+        /// </summary>
+        public static Sprite Drawn(ProjectileKind kind, bool coloured)
+        {
+            var name = kind switch
+            {
+                ProjectileKind.Knife => "projectile_knife",
+                ProjectileKind.Axe => "projectile_axe",
+                ProjectileKind.Bomb => "projectile_bomb",
+                ProjectileKind.Bouncing => "projectile_blade",
+                ProjectileKind.Fireball => "projectile_fireball",
+                _ => coloured ? null : "projectile_arrow",
+            };
+            return name != null ? WorldArt.Get(name) : null;
+        }
+
         /// <summary>The kind's sprite, or null for the kinds drawn as an ember (plain bolts, fireballs).</summary>
         public static Sprite For(ProjectileKind kind)
         {
