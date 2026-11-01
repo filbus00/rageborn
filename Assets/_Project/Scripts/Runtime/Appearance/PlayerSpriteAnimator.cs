@@ -252,7 +252,8 @@ namespace ARPG
             action = baseName;
             inAction = true;
             sprite.Rate = 1f;
-            sprite.Play(name, false, length > 0f ? Mathf.Min(length, maxSeconds) : 0f);
+            // Her shots and skills snap: the draw and loose quick, the follow-through slow (2026-11-01).
+            sprite.Play(name, false, length > 0f ? Mathf.Min(length, maxSeconds) : 0f, ActionShape.Snap);
             sprite.Face(aim);
             return true;
         }
@@ -331,7 +332,7 @@ namespace ARPG
                     inAction = false;
                     action = null;
                     sprite.Face(velocity);
-                    sprite.Play("dive", false, DodgeRules.AnimationSeconds);
+                    sprite.Play("dive", false, DodgeRules.AnimationSeconds, ActionShape.Burst);
                 }
                 return;
             }

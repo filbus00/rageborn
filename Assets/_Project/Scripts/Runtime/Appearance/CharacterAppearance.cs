@@ -119,6 +119,17 @@ namespace ARPG
             (LegendaryId.QuiverOfTheHollowHound, AppearanceLayer.OffHand, "quiver_of_the_hollow_hound"),
         };
 
+        /// <summary>Whether a layer's look is a legendary's own (it glows, 2026-11-01).</summary>
+        public static bool IsLegendaryLook(AppearanceLayer layer, string look)
+        {
+            if (string.IsNullOrEmpty(look))
+                return false;
+            foreach (var entry in LegendaryLooks)
+                if (entry.layer == layer && entry.look == look)
+                    return true;
+            return false;
+        }
+
         /// <summary>A legendary's own look, or null.</summary>
         public static string LegendaryLook(LegendaryId id)
         {

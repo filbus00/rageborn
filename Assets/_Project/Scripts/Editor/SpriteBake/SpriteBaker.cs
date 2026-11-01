@@ -603,7 +603,7 @@ namespace ARPG.Editor
             {
                 var definition = job.bodies[b];
                 var model = (GameObject)Object.Instantiate(definition.model);
-                SwapTextures(job, model);
+                SwapTextures(job, model, definition.look);
                 // The look id travels as the instance's name (empty for a plain character).
                 model.name = definition.look ?? "";
                 SceneManager.MoveGameObjectToScene(model, scene);
@@ -675,7 +675,7 @@ namespace ARPG.Editor
                     continue;
                 }
                 var instance = (GameObject)Object.Instantiate(piece.prefab, holder, false);
-                SwapTextures(job, instance);
+                SwapTextures(job, instance, piece.look);
                 if (piece.autoGrip && stage.Bodies[0].Animator.isHuman)
                     PlaceInFist(stage.Bodies[0], piece, instance.transform, holder);
                 else
@@ -884,9 +884,10 @@ namespace ARPG.Editor
         }
 
         /// <summary>Puts a job's swapped textures (a recoloured palette) on every material of an instance.</summary>
-        static void SwapTextures(SpriteBakeJob job, GameObject instance)
+        static void SwapTextures(SpriteBakeJob job, GameObject instance, string look)
         {
-            if (job.textureSwaps.Count == 0)
+            var swaps = job.SwapsFor(look ?? "").ToList();
+            if (swaps.Count == 0)
                 return;
             foreach (var renderer in instance.GetComponentsInChildren<Renderer>(true))
             {
@@ -900,11 +901,13 @@ namespace ARPG.Editor
                     foreach (var id in materials[m].GetTexturePropertyNameIDs())
                     {
                         var texture = materials[m].GetTexture(id);
-                        foreach (var swap in job.textureSwaps)
+                        // The first swap for a texture wins: a look's own palette before the job's.
+                        foreach (var swap in swaps)
                             if (swap.from != null && swap.to != null && texture == swap.from)
                             {
                                 copy ??= new Material(materials[m]);
                                 copy.SetTexture(id, swap.to);
+                                break;
                             }
                     }
                     if (copy == null)

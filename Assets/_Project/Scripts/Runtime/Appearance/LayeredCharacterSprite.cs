@@ -22,6 +22,12 @@ namespace ARPG
         const int LayerCount = 7;
 
         readonly SpriteRenderer[] renderers = new SpriteRenderer[LayerCount];
+        // A legendary piece's glow (2026-11-01, the owner: the gear to be "noticable"): the same frame behind the stack,
+        // larger, in the legendary colour, breathing.
+        readonly SpriteRenderer[] glows = new SpriteRenderer[LayerCount];
+        readonly bool[] legendary = new bool[LayerCount];
+        static readonly Color GlowColor = new Color(0.88f, 0.48f, 0.13f, 1f);
+        const float GlowScale = 1.14f;
         // The sheets of the playing animation, looked up when the animation or the look changes, so a frame allocates
         // nothing.
         readonly CharacterSheet[] current = new CharacterSheet[LayerCount];
@@ -79,6 +85,7 @@ namespace ARPG
         bool loop = true;
         float time;
         float duration;
+        ActionShape shape;
         int row;
         int directionCount = 8;
 
@@ -99,6 +106,13 @@ namespace ARPG
                 renderer.sortingLayerName = GameSortingLayers.Entities;
                 renderer.sortingOrder = i;
                 sprite.renderers[i] = renderer;
+                var glow = new GameObject("Glow", typeof(SpriteRenderer));
+                glow.transform.SetParent(layer.transform, false);
+                var glowRenderer = glow.GetComponent<SpriteRenderer>();
+                glowRenderer.sortingLayerName = GameSortingLayers.Entities;
+                glowRenderer.sortingOrder = -LayerCount + i;
+                glowRenderer.enabled = false;
+                sprite.glows[i] = glowRenderer;
             }
             return sprite;
         }
@@ -253,11 +267,12 @@ namespace ARPG
 
         /// <summary>Plays an animation from its start. A one-shot with a duration is stretched or squeezed to fit it (an
         /// attack fitted to the attack rate); 0 plays it at 12 frames per second.</summary>
-        public void Play(string animationName, bool looping, float seconds = 0f)
+        public void Play(string animationName, bool looping, float seconds = 0f, ActionShape shape = ActionShape.Even)
         {
             animation = animationName;
             loop = looping;
             duration = seconds;
+            this.shape = shape;
             time = 0f;
             Resolve();
             Apply();
@@ -315,7 +330,10 @@ namespace ARPG
         void Resolve()
         {
             for (var i = 0; i < LayerCount; i++)
+            {
                 current[i] = SheetFor((AppearanceLayer)i, animation);
+                legendary[i] = AppearanceRules.IsLegendaryLook((AppearanceLayer)i, appearance.LookOf((AppearanceLayer)i));
+            }
             currentSeconds = PlaybackSeconds(animation, current[0]);
             CurrentRecordedSpeed = RecordedSpeed(animation);
         }
@@ -347,7 +365,25 @@ namespace ARPG
                 }
                 renderer.enabled = true;
                 renderer.sprite = sheet.Rows[row][FrameOf(sheet.Frames)];
+                ShowGlow(i, renderer.sprite);
             }
+        }
+
+        void ShowGlow(int i, Sprite frame)
+        {
+            var glow = glows[i];
+            if (glow == null)
+                return;
+            glow.enabled = legendary[i] && frame != null;
+            if (!glow.enabled)
+                return;
+            glow.sprite = frame;
+            // Grown about the frame's middle, not its feet, so the glow rings it evenly.
+            var middle = (Vector3)frame.bounds.center;
+            glow.transform.localScale = new Vector3(GlowScale, GlowScale, 1f);
+            glow.transform.localPosition = middle * (1f - GlowScale);
+            var breathe = 0.3f + 0.15f * Mathf.Sin(Time.time * 3.2f);
+            glow.color = new Color(GlowColor.r, GlowColor.g, GlowColor.b, breathe);
         }
 
         int FrameOf(int frames)
@@ -357,7 +393,7 @@ namespace ARPG
             var length = currentSeconds > 0f ? currentSeconds : frames / FramesPerSecond;
             if (loop)
                 return Mathf.FloorToInt(time / length * frames) % frames;
-            var progress = time / (duration > 0f ? duration : length);
+            var progress = ActionTiming.Shape(shape, time / (duration > 0f ? duration : length));
             return Mathf.Clamp(Mathf.FloorToInt(progress * frames), 0, frames - 1);
         }
 

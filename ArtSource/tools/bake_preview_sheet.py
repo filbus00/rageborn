@@ -10,7 +10,7 @@ args = sys.argv[sys.argv.index("--") + 1:]
 out, clip, frame = args[0], args[1], int(args[2])
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "Assets", "_Project", "Art", "SpriteBakeTest", "WildArrowPreview"))
 CELL, DIRS, ZOOM = 80, 8, 4
-OUTFITS = [("ranger", "hood"), ("knight", "horned"), ("bare", None)]
+OUTFITS = [("bare", None), ("ranger", "hood"), ("brigand", None), ("scale", "barbute"), ("plate", "visored"), ("knight", "horned")]
 BG = np.array([0.16, 0.21, 0.13, 1.0], dtype=np.float32)
 
 

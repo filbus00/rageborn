@@ -49,7 +49,7 @@ namespace ARPG.Editor
             if (File.Exists(path))
                 foreach (var entry in JsonUtility.FromJson<Store>(File.ReadAllText(path)).entries)
                     entries[entry.sheet] = entry;
-            baseKey = CodeVersion() + "|" + Settings(job) + "|" + Body(job.bodies[0]);
+            baseKey = CodeVersion() + "|" + Settings(job) + "|" + Body(job.bodies[0]) + SwapContent(job);
         }
 
         /// <summary>The key of one sheet: the base, the layer (its body or piece) and the clip.</summary>
@@ -60,6 +60,11 @@ namespace ARPG.Editor
             text.Append('|').Append(piece != null ? Piece(piece) : Body(job.bodies[bodyIndex]));
             text.Append('|').Append(Strip(JsonUtility.ToJson(clip)));
             text.Append('|').Append(Asset(clip.clip)).Append('|').Append(Asset(clip.legs));
+            // A look's own palette (2026-11-01), by content, only when it has one.
+            var look = piece != null ? piece.look : job.bodies[bodyIndex].look;
+            foreach (var swap in job.lookSwaps)
+                if (swap.look == look)
+                    text.Append("|look=").Append(Asset(swap.from)).Append('>').Append(Asset(swap.to));
             return Hash(text.ToString());
         }
 
@@ -113,6 +118,15 @@ namespace ARPG.Editor
                 text.Append("bone=").Append(bs.bone).Append('x').Append(bs.scale.ToString(System.Globalization.CultureInfo.InvariantCulture)).Append(';');
             foreach (var swap in job.textureSwaps)
                 text.Append("swap=").Append(swap.from != null ? swap.from.name : "-").Append('>').Append(swap.to != null ? swap.to.name : "-").Append(';');
+            return text.ToString();
+        }
+
+        // The job-wide swaps' textures by content (their names alone missed a repainted palette).
+        string SwapContent(SpriteBakeJob job)
+        {
+            var text = new StringBuilder();
+            foreach (var swap in job.textureSwaps)
+                text.Append("swap=").Append(Asset(swap.from)).Append('>').Append(Asset(swap.to)).Append(';');
             return text.ToString();
         }
 

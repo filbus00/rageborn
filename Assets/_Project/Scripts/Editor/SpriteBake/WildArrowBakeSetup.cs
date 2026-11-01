@@ -442,8 +442,10 @@ namespace ARPG.Editor
         // to Art/SpriteBakeTest (git-ignored), for ArtSource/tools/bake_preview_sheet.py to lay side by side. The game's
         // sheets are not touched.
         const string PreviewFolder = SpriteBakeTestRig.Folder + "/WildArrowPreview";
-        const string CrimsonPalette = SpriteBakeTestRig.Folder + "/gear_albedo_crimson.png";
-        static readonly string[] PreviewLooks = { "bare", "ranger", "knight", "hood", "horned", "hunting_bow", "hide_quiver" };
+        static readonly string[] PreviewLooks =
+        {
+            "bare", "ranger", "brigand", "scale", "plate", "knight", "hood", "barbute", "visored", "horned", "hunting_bow", "hide_quiver",
+        };
         static readonly string[] PreviewClips = { "idle", "run", "attack" };
 
         [MenuItem("Tools/ARPG/Sprite Bake/Bake Wild Arrow Preview")]
@@ -474,8 +476,28 @@ namespace ARPG.Editor
                 grip = g.grip,
                 clips = g.clips.Where(c => PreviewClips.Contains(c.name)).ToList(),
             }).ToList();
-            if (!after)
-                return job;
+            if (after)
+                Rework(job);
+            return job;
+        }
+
+        // Her palettes by look (2026-11-01, ArtSource/tools/her_palettes.sh): the base for her own clothes and every look
+        // not listed, one per armour tier, its helm taking the same.
+        const string PaletteFolder = Folder + "/Palettes";
+        static readonly (string look, string palette)[] TierPalettes =
+        {
+            ("brigand", "brigand"), ("scale", "scale"), ("barbute", "scale"), ("plate", "plate"), ("visored", "plate"),
+            ("knight", "knight"), ("horned", "knight"),
+        };
+
+        /// <summary>
+        /// Her reworked look (2026-11-01, the owner: "I want the character to be more distinct. To have a clearer silhouette
+        /// and for the gear to be noticable"; crimson her colour): a heroic build (the head 1.3, the hands and so the bow
+        /// 1.12, the quiver 1.2), harder light, a light edge inside the outline, the crimson palette with darker trousers,
+        /// each armour tier its own metal and trims, and the hide quiver's feathers dimmed.
+        /// </summary>
+        static void Rework(SpriteBakeJob job)
+        {
             job.boneScales = new List<SpriteBakeJob.BoneScale>
             {
                 new SpriteBakeJob.BoneScale { bone = HumanBodyBones.Head, scale = 1.3f },
@@ -487,18 +509,26 @@ namespace ARPG.Editor
             job.lightContrast = 1.35f;
             job.edgeHighlight = true;
             var gear = AssetDatabase.LoadAssetAtPath<Texture2D>(GearAlbedoPath);
-            var crimson = AssetDatabase.LoadAssetAtPath<Texture2D>(CrimsonPalette);
             job.textureSwaps = new List<SpriteBakeJob.TextureSwap>();
-            if (gear != null && crimson != null)
-                job.textureSwaps.Add(new SpriteBakeJob.TextureSwap { from = gear, to = crimson });
-            else
-                Debug.LogWarning($"[ARPG] Preview: no crimson palette at {CrimsonPalette}; baked in her own colours.");
+            job.lookSwaps = new List<SpriteBakeJob.LookSwap>();
+            var basePalette = AssetDatabase.LoadAssetAtPath<Texture2D>(PaletteFolder + "/base.png");
+            if (gear == null || basePalette == null)
+            {
+                Debug.LogWarning($"[ARPG] No palettes in {PaletteFolder}: run ArtSource/tools/her_palettes.sh. Baked in her own colours.");
+                return;
+            }
+            job.textureSwaps.Add(new SpriteBakeJob.TextureSwap { from = gear, to = basePalette });
+            foreach (var (look, palette) in TierPalettes)
+            {
+                var texture = AssetDatabase.LoadAssetAtPath<Texture2D>($"{PaletteFolder}/{palette}.png");
+                if (texture != null)
+                    job.lookSwaps.Add(new SpriteBakeJob.LookSwap { look = look, from = gear, to = texture });
+            }
             // The quiver's pale feathers dimmed: they showed as a white blob on her back.
             var quiver = AssetDatabase.LoadAssetAtPath<Texture2D>(Folder + "/" + Character + "_offhand_hide_quiver_albedo.png");
-            var dimmed = AssetDatabase.LoadAssetAtPath<Texture2D>(SpriteBakeTestRig.Folder + "/hide_quiver_dim.png");
+            var dimmed = AssetDatabase.LoadAssetAtPath<Texture2D>(PaletteFolder + "/hide_quiver_dim.png");
             if (quiver != null && dimmed != null)
-                job.textureSwaps.Add(new SpriteBakeJob.TextureSwap { from = quiver, to = dimmed });
-            return job;
+                job.lookSwaps.Add(new SpriteBakeJob.LookSwap { look = "hide_quiver", from = quiver, to = dimmed });
         }
 
         /// <summary>Takes the Wild Arrow's sheets on disk as baked from the current models and clips, rendering nothing: for

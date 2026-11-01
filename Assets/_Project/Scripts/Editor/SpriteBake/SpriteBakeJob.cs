@@ -115,6 +115,28 @@ namespace ARPG.Editor
             public Texture2D to;
         }
 
+        [Serializable]
+        public class LookSwap
+        {
+            [Tooltip("The look (a body's or piece's look id) it is for.")]
+            public string look = "";
+            public Texture2D from;
+            public Texture2D to;
+        }
+
+        [Tooltip("Textures swapped on one look only (2026-11-01: each armour tier its own palette); before the job-wide swaps.")]
+        public List<LookSwap> lookSwaps = new List<LookSwap>();
+
+        /// <summary>The look's own swaps then the job's: what a body or piece of this look draws with.</summary>
+        public IEnumerable<TextureSwap> SwapsFor(string look)
+        {
+            foreach (var swap in lookSwaps)
+                if (swap.look == look)
+                    yield return new TextureSwap { from = swap.from, to = swap.to };
+            foreach (var swap in textureSwaps)
+                yield return swap;
+        }
+
         [Tooltip("A heroic build (2026-11-01, the owner: \"I want the character to be more distinct\"): bones drawn this much larger in every frame (a head, the hands and what they hold). Empty for none.")]
         public List<BoneScale> boneScales = new List<BoneScale>();
 
