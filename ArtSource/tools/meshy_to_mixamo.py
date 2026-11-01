@@ -2,7 +2,9 @@
 # Keeps only the base colour texture on a plain, non-metallic material (Meshy's metallic, roughness and normal maps made
 # the model look dark and blotchy in Mixamo's viewer), points every face's normal outward, scales the model to a
 # height in metres, stands its feet on the ground at the origin, centred, and exports FBX with the texture embedded.
-# Usage: Blender -b -P meshy_to_mixamo.py -- <input.fbx|.obj> <base_colour.png> <output.fbx> <height_metres>
+# Usage: Blender -b -P meshy_to_mixamo.py -- <input.fbx|.obj|.glb> <base_colour.png|none> <output.fbx> <height_metres>
+# "none" for the texture rigs the shape alone, its UVs kept for the texture later (2026-11-01: an OBJ downloaded without
+# its texture).
 import bpy, sys, mathutils
 
 argv = sys.argv[sys.argv.index("--") + 1:]
@@ -11,6 +13,9 @@ source, texture, target, height = argv[0], argv[1], argv[2], float(argv[3])
 bpy.ops.wm.read_factory_settings(use_empty=True)
 if source.lower().endswith(".obj"):
     bpy.ops.wm.obj_import(filepath=source)
+elif source.lower().endswith((".glb", ".gltf")):
+    # A GLB carries its texture (Hunyuan3D, 2026-11-01); the texture argument still names the PNG to use.
+    bpy.ops.import_scene.gltf(filepath=source)
 else:
     bpy.ops.import_scene.fbx(filepath=source)
 
@@ -48,9 +53,12 @@ nodes = material.node_tree.nodes
 bsdf = nodes["Principled BSDF"]
 bsdf.inputs["Metallic"].default_value = 0.0
 bsdf.inputs["Roughness"].default_value = 0.9
-image = nodes.new("ShaderNodeTexImage")
-image.image = bpy.data.images.load(texture)
-material.node_tree.links.new(image.outputs["Color"], bsdf.inputs["Base Color"])
+if texture.lower() != "none":
+    image = nodes.new("ShaderNodeTexImage")
+    image.image = bpy.data.images.load(texture)
+    material.node_tree.links.new(image.outputs["Color"], bsdf.inputs["Base Color"])
+else:
+    bsdf.inputs["Base Color"].default_value = (0.6, 0.6, 0.6, 1.0)
 for o in meshes:
     o.data.materials.clear()
     o.data.materials.append(material)
