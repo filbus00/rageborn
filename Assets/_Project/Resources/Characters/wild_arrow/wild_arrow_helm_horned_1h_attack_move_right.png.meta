@@ -931,6 +931,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -939,11 +952,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 435
-        width: 37
-        height: 29
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -960,12 +973,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 435
-        width: 37
-        height: 29
+        x: 46
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -982,12 +995,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 435
-        width: 37
-        height: 29
+        x: 92
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1004,12 +1017,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 435
-        width: 37
-        height: 29
+        x: 138
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1026,12 +1039,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 435
-        width: 37
-        height: 29
+        x: 184
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1048,12 +1061,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 435
-        width: 37
-        height: 29
+        x: 230
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1070,12 +1083,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 435
-        width: 37
-        height: 29
+        x: 276
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1092,12 +1105,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 435
-        width: 37
-        height: 29
+        x: 322
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1114,12 +1127,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 435
-        width: 37
-        height: 29
+        x: 368
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1136,12 +1149,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 435
-        width: 37
-        height: 29
+        x: 414
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1158,12 +1171,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 435
-        width: 37
-        height: 29
+        x: 460
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1180,12 +1193,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 435
-        width: 37
-        height: 29
+        x: 506
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1202,12 +1215,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 435
-        width: 37
-        height: 29
+        x: 552
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1224,12 +1237,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 435
-        width: 37
-        height: 29
+        x: 598
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1246,12 +1259,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_s_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 435
-        width: 37
-        height: 29
+        x: 644
+        y: 510
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1269,11 +1282,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 406
-        width: 37
-        height: 29
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1290,12 +1303,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 406
-        width: 37
-        height: 29
+        x: 46
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1312,12 +1325,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 406
-        width: 37
-        height: 29
+        x: 92
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1334,12 +1347,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 406
-        width: 37
-        height: 29
+        x: 138
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1356,12 +1369,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 406
-        width: 37
-        height: 29
+        x: 184
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1378,12 +1391,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 406
-        width: 37
-        height: 29
+        x: 230
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1400,12 +1413,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 406
-        width: 37
-        height: 29
+        x: 276
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1422,12 +1435,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 406
-        width: 37
-        height: 29
+        x: 322
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1444,12 +1457,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 406
-        width: 37
-        height: 29
+        x: 368
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1466,12 +1479,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 406
-        width: 37
-        height: 29
+        x: 414
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1488,12 +1501,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 406
-        width: 37
-        height: 29
+        x: 460
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1510,12 +1523,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 406
-        width: 37
-        height: 29
+        x: 506
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1532,12 +1545,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 406
-        width: 37
-        height: 29
+        x: 552
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1554,12 +1567,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 406
-        width: 37
-        height: 29
+        x: 598
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1576,12 +1589,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ssw_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 406
-        width: 37
-        height: 29
+        x: 644
+        y: 476
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1599,11 +1612,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 377
-        width: 37
-        height: 29
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1620,12 +1633,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 377
-        width: 37
-        height: 29
+        x: 46
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1642,12 +1655,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 377
-        width: 37
-        height: 29
+        x: 92
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1664,12 +1677,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 377
-        width: 37
-        height: 29
+        x: 138
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1686,12 +1699,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 377
-        width: 37
-        height: 29
+        x: 184
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1708,12 +1721,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 377
-        width: 37
-        height: 29
+        x: 230
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1730,12 +1743,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 377
-        width: 37
-        height: 29
+        x: 276
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1752,12 +1765,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 377
-        width: 37
-        height: 29
+        x: 322
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1774,12 +1787,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 377
-        width: 37
-        height: 29
+        x: 368
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1796,12 +1809,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 377
-        width: 37
-        height: 29
+        x: 414
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1818,12 +1831,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 377
-        width: 37
-        height: 29
+        x: 460
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1840,12 +1853,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 377
-        width: 37
-        height: 29
+        x: 506
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1862,12 +1875,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 377
-        width: 37
-        height: 29
+        x: 552
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1884,12 +1897,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 377
-        width: 37
-        height: 29
+        x: 598
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1906,12 +1919,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sw_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 377
-        width: 37
-        height: 29
+        x: 644
+        y: 442
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1929,11 +1942,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 348
-        width: 37
-        height: 29
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1950,12 +1963,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 348
-        width: 37
-        height: 29
+        x: 46
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1972,12 +1985,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 348
-        width: 37
-        height: 29
+        x: 92
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1994,12 +2007,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 348
-        width: 37
-        height: 29
+        x: 138
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2016,12 +2029,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 348
-        width: 37
-        height: 29
+        x: 184
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2038,12 +2051,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 348
-        width: 37
-        height: 29
+        x: 230
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2060,12 +2073,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 348
-        width: 37
-        height: 29
+        x: 276
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2082,12 +2095,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 348
-        width: 37
-        height: 29
+        x: 322
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2104,12 +2117,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 348
-        width: 37
-        height: 29
+        x: 368
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2126,12 +2139,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 348
-        width: 37
-        height: 29
+        x: 414
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2148,12 +2161,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 348
-        width: 37
-        height: 29
+        x: 460
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2170,12 +2183,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 348
-        width: 37
-        height: 29
+        x: 506
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2192,12 +2205,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 348
-        width: 37
-        height: 29
+        x: 552
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2214,12 +2227,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 348
-        width: 37
-        height: 29
+        x: 598
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2236,12 +2249,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wsw_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 348
-        width: 37
-        height: 29
+        x: 644
+        y: 408
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2259,11 +2272,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 319
-        width: 37
-        height: 29
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2280,12 +2293,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 319
-        width: 37
-        height: 29
+        x: 46
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2302,12 +2315,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 319
-        width: 37
-        height: 29
+        x: 92
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2324,12 +2337,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 319
-        width: 37
-        height: 29
+        x: 138
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2346,12 +2359,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 319
-        width: 37
-        height: 29
+        x: 184
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2368,12 +2381,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 319
-        width: 37
-        height: 29
+        x: 230
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2390,12 +2403,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 319
-        width: 37
-        height: 29
+        x: 276
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2412,12 +2425,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 319
-        width: 37
-        height: 29
+        x: 322
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2434,12 +2447,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 319
-        width: 37
-        height: 29
+        x: 368
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2456,12 +2469,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 319
-        width: 37
-        height: 29
+        x: 414
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2478,12 +2491,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 319
-        width: 37
-        height: 29
+        x: 460
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2500,12 +2513,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 319
-        width: 37
-        height: 29
+        x: 506
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2522,12 +2535,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 319
-        width: 37
-        height: 29
+        x: 552
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2544,12 +2557,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 319
-        width: 37
-        height: 29
+        x: 598
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2566,12 +2579,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_w_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 319
-        width: 37
-        height: 29
+        x: 644
+        y: 374
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2589,11 +2602,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 290
-        width: 37
-        height: 29
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2610,12 +2623,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 290
-        width: 37
-        height: 29
+        x: 46
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2632,12 +2645,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 290
-        width: 37
-        height: 29
+        x: 92
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2654,12 +2667,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 290
-        width: 37
-        height: 29
+        x: 138
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2676,12 +2689,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 290
-        width: 37
-        height: 29
+        x: 184
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2698,12 +2711,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 290
-        width: 37
-        height: 29
+        x: 230
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2720,12 +2733,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 290
-        width: 37
-        height: 29
+        x: 276
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2742,12 +2755,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 290
-        width: 37
-        height: 29
+        x: 322
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2764,12 +2777,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 290
-        width: 37
-        height: 29
+        x: 368
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2786,12 +2799,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 290
-        width: 37
-        height: 29
+        x: 414
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2808,12 +2821,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 290
-        width: 37
-        height: 29
+        x: 460
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2830,12 +2843,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 290
-        width: 37
-        height: 29
+        x: 506
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2852,12 +2865,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 290
-        width: 37
-        height: 29
+        x: 552
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2874,12 +2887,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 290
-        width: 37
-        height: 29
+        x: 598
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2896,12 +2909,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_wnw_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 290
-        width: 37
-        height: 29
+        x: 644
+        y: 340
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2919,11 +2932,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 261
-        width: 37
-        height: 29
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2940,12 +2953,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 261
-        width: 37
-        height: 29
+        x: 46
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2962,12 +2975,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 261
-        width: 37
-        height: 29
+        x: 92
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2984,12 +2997,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 261
-        width: 37
-        height: 29
+        x: 138
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3006,12 +3019,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 261
-        width: 37
-        height: 29
+        x: 184
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3028,12 +3041,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 261
-        width: 37
-        height: 29
+        x: 230
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3050,12 +3063,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 261
-        width: 37
-        height: 29
+        x: 276
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3072,12 +3085,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 261
-        width: 37
-        height: 29
+        x: 322
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3094,12 +3107,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 261
-        width: 37
-        height: 29
+        x: 368
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3116,12 +3129,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 261
-        width: 37
-        height: 29
+        x: 414
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3138,12 +3151,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 261
-        width: 37
-        height: 29
+        x: 460
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3160,12 +3173,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 261
-        width: 37
-        height: 29
+        x: 506
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3182,12 +3195,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 261
-        width: 37
-        height: 29
+        x: 552
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3204,12 +3217,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 261
-        width: 37
-        height: 29
+        x: 598
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3226,12 +3239,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nw_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 261
-        width: 37
-        height: 29
+        x: 644
+        y: 306
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3249,11 +3262,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 232
-        width: 37
-        height: 29
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3270,12 +3283,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 232
-        width: 37
-        height: 29
+        x: 46
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3292,12 +3305,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 232
-        width: 37
-        height: 29
+        x: 92
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3314,12 +3327,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 232
-        width: 37
-        height: 29
+        x: 138
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3336,12 +3349,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 232
-        width: 37
-        height: 29
+        x: 184
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3358,12 +3371,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 232
-        width: 37
-        height: 29
+        x: 230
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3380,12 +3393,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 232
-        width: 37
-        height: 29
+        x: 276
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3402,12 +3415,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 232
-        width: 37
-        height: 29
+        x: 322
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3424,12 +3437,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 232
-        width: 37
-        height: 29
+        x: 368
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3446,12 +3459,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 232
-        width: 37
-        height: 29
+        x: 414
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3468,12 +3481,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 232
-        width: 37
-        height: 29
+        x: 460
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3490,12 +3503,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 232
-        width: 37
-        height: 29
+        x: 506
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3512,12 +3525,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 232
-        width: 37
-        height: 29
+        x: 552
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3534,12 +3547,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 232
-        width: 37
-        height: 29
+        x: 598
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3556,12 +3569,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nnw_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 232
-        width: 37
-        height: 29
+        x: 644
+        y: 272
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3579,11 +3592,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 203
-        width: 37
-        height: 29
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3600,12 +3613,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 203
-        width: 37
-        height: 29
+        x: 46
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3622,12 +3635,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 203
-        width: 37
-        height: 29
+        x: 92
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3644,12 +3657,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 203
-        width: 37
-        height: 29
+        x: 138
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3666,12 +3679,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 203
-        width: 37
-        height: 29
+        x: 184
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3688,12 +3701,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 203
-        width: 37
-        height: 29
+        x: 230
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3710,12 +3723,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 203
-        width: 37
-        height: 29
+        x: 276
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3732,12 +3745,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 203
-        width: 37
-        height: 29
+        x: 322
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3754,12 +3767,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 203
-        width: 37
-        height: 29
+        x: 368
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3776,12 +3789,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 203
-        width: 37
-        height: 29
+        x: 414
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3798,12 +3811,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 203
-        width: 37
-        height: 29
+        x: 460
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3820,12 +3833,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 203
-        width: 37
-        height: 29
+        x: 506
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3842,12 +3855,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 203
-        width: 37
-        height: 29
+        x: 552
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3864,12 +3877,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 203
-        width: 37
-        height: 29
+        x: 598
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3886,12 +3899,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_n_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 203
-        width: 37
-        height: 29
+        x: 644
+        y: 238
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3909,11 +3922,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 174
-        width: 37
-        height: 29
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3930,12 +3943,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 174
-        width: 37
-        height: 29
+        x: 46
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3952,12 +3965,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 174
-        width: 37
-        height: 29
+        x: 92
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3974,12 +3987,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 174
-        width: 37
-        height: 29
+        x: 138
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3996,12 +4009,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 174
-        width: 37
-        height: 29
+        x: 184
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4018,12 +4031,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 174
-        width: 37
-        height: 29
+        x: 230
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4040,12 +4053,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 174
-        width: 37
-        height: 29
+        x: 276
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4062,12 +4075,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 174
-        width: 37
-        height: 29
+        x: 322
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4084,12 +4097,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 174
-        width: 37
-        height: 29
+        x: 368
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4106,12 +4119,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 174
-        width: 37
-        height: 29
+        x: 414
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4128,12 +4141,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 174
-        width: 37
-        height: 29
+        x: 460
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4150,12 +4163,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 174
-        width: 37
-        height: 29
+        x: 506
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4172,12 +4185,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 174
-        width: 37
-        height: 29
+        x: 552
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4194,12 +4207,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 174
-        width: 37
-        height: 29
+        x: 598
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4216,12 +4229,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_nne_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 174
-        width: 37
-        height: 29
+        x: 644
+        y: 204
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4239,11 +4252,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 145
-        width: 37
-        height: 29
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4260,12 +4273,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 145
-        width: 37
-        height: 29
+        x: 46
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4282,12 +4295,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 145
-        width: 37
-        height: 29
+        x: 92
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4304,12 +4317,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 145
-        width: 37
-        height: 29
+        x: 138
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4326,12 +4339,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 145
-        width: 37
-        height: 29
+        x: 184
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4348,12 +4361,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 145
-        width: 37
-        height: 29
+        x: 230
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4370,12 +4383,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 145
-        width: 37
-        height: 29
+        x: 276
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4392,12 +4405,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 145
-        width: 37
-        height: 29
+        x: 322
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4414,12 +4427,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 145
-        width: 37
-        height: 29
+        x: 368
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4436,12 +4449,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 145
-        width: 37
-        height: 29
+        x: 414
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4458,12 +4471,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 145
-        width: 37
-        height: 29
+        x: 460
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4480,12 +4493,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 145
-        width: 37
-        height: 29
+        x: 506
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4502,12 +4515,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 145
-        width: 37
-        height: 29
+        x: 552
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4524,12 +4537,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 145
-        width: 37
-        height: 29
+        x: 598
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4546,12 +4559,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ne_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 145
-        width: 37
-        height: 29
+        x: 644
+        y: 170
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4569,11 +4582,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 116
-        width: 37
-        height: 29
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4590,12 +4603,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 116
-        width: 37
-        height: 29
+        x: 46
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4612,12 +4625,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 116
-        width: 37
-        height: 29
+        x: 92
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4634,12 +4647,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 116
-        width: 37
-        height: 29
+        x: 138
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4656,12 +4669,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 116
-        width: 37
-        height: 29
+        x: 184
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4678,12 +4691,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 116
-        width: 37
-        height: 29
+        x: 230
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4700,12 +4713,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 116
-        width: 37
-        height: 29
+        x: 276
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4722,12 +4735,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 116
-        width: 37
-        height: 29
+        x: 322
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4744,12 +4757,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 116
-        width: 37
-        height: 29
+        x: 368
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4766,12 +4779,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 116
-        width: 37
-        height: 29
+        x: 414
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4788,12 +4801,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 116
-        width: 37
-        height: 29
+        x: 460
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4810,12 +4823,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 116
-        width: 37
-        height: 29
+        x: 506
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4832,12 +4845,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 116
-        width: 37
-        height: 29
+        x: 552
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4854,12 +4867,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 116
-        width: 37
-        height: 29
+        x: 598
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4876,12 +4889,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ene_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 116
-        width: 37
-        height: 29
+        x: 644
+        y: 136
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4899,11 +4912,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 87
-        width: 37
-        height: 29
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4920,12 +4933,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 87
-        width: 37
-        height: 29
+        x: 46
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4942,12 +4955,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 87
-        width: 37
-        height: 29
+        x: 92
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4964,12 +4977,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 87
-        width: 37
-        height: 29
+        x: 138
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4986,12 +4999,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 87
-        width: 37
-        height: 29
+        x: 184
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5008,12 +5021,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 87
-        width: 37
-        height: 29
+        x: 230
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5030,12 +5043,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 87
-        width: 37
-        height: 29
+        x: 276
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5052,12 +5065,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 87
-        width: 37
-        height: 29
+        x: 322
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5074,12 +5087,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 87
-        width: 37
-        height: 29
+        x: 368
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5096,12 +5109,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 87
-        width: 37
-        height: 29
+        x: 414
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5118,12 +5131,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 87
-        width: 37
-        height: 29
+        x: 460
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5140,12 +5153,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 87
-        width: 37
-        height: 29
+        x: 506
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5162,12 +5175,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 87
-        width: 37
-        height: 29
+        x: 552
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5184,12 +5197,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 87
-        width: 37
-        height: 29
+        x: 598
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5206,12 +5219,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_e_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 87
-        width: 37
-        height: 29
+        x: 644
+        y: 102
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5229,11 +5242,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 58
-        width: 37
-        height: 29
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5250,12 +5263,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 58
-        width: 37
-        height: 29
+        x: 46
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5272,12 +5285,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 58
-        width: 37
-        height: 29
+        x: 92
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5294,12 +5307,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 58
-        width: 37
-        height: 29
+        x: 138
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5316,12 +5329,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 58
-        width: 37
-        height: 29
+        x: 184
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5338,12 +5351,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 58
-        width: 37
-        height: 29
+        x: 230
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5360,12 +5373,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 58
-        width: 37
-        height: 29
+        x: 276
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5382,12 +5395,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 58
-        width: 37
-        height: 29
+        x: 322
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5404,12 +5417,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 58
-        width: 37
-        height: 29
+        x: 368
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5426,12 +5439,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 58
-        width: 37
-        height: 29
+        x: 414
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5448,12 +5461,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 58
-        width: 37
-        height: 29
+        x: 460
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5470,12 +5483,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 58
-        width: 37
-        height: 29
+        x: 506
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5492,12 +5505,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 58
-        width: 37
-        height: 29
+        x: 552
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5514,12 +5527,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 58
-        width: 37
-        height: 29
+        x: 598
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5536,12 +5549,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_ese_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 58
-        width: 37
-        height: 29
+        x: 644
+        y: 68
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5559,11 +5572,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 29
-        width: 37
-        height: 29
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5580,12 +5593,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_01
       rect:
         serializedVersion: 2
-        x: 37
-        y: 29
-        width: 37
-        height: 29
+        x: 46
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5602,12 +5615,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_02
       rect:
         serializedVersion: 2
-        x: 74
-        y: 29
-        width: 37
-        height: 29
+        x: 92
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5624,12 +5637,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_03
       rect:
         serializedVersion: 2
-        x: 111
-        y: 29
-        width: 37
-        height: 29
+        x: 138
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5646,12 +5659,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_04
       rect:
         serializedVersion: 2
-        x: 148
-        y: 29
-        width: 37
-        height: 29
+        x: 184
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5668,12 +5681,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_05
       rect:
         serializedVersion: 2
-        x: 185
-        y: 29
-        width: 37
-        height: 29
+        x: 230
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5690,12 +5703,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_06
       rect:
         serializedVersion: 2
-        x: 222
-        y: 29
-        width: 37
-        height: 29
+        x: 276
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5712,12 +5725,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_07
       rect:
         serializedVersion: 2
-        x: 259
-        y: 29
-        width: 37
-        height: 29
+        x: 322
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5734,12 +5747,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_08
       rect:
         serializedVersion: 2
-        x: 296
-        y: 29
-        width: 37
-        height: 29
+        x: 368
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5756,12 +5769,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 29
-        width: 37
-        height: 29
+        x: 414
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5778,12 +5791,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_10
       rect:
         serializedVersion: 2
-        x: 370
-        y: 29
-        width: 37
-        height: 29
+        x: 460
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5800,12 +5813,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_11
       rect:
         serializedVersion: 2
-        x: 407
-        y: 29
-        width: 37
-        height: 29
+        x: 506
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5822,12 +5835,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_12
       rect:
         serializedVersion: 2
-        x: 444
-        y: 29
-        width: 37
-        height: 29
+        x: 552
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5844,12 +5857,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_13
       rect:
         serializedVersion: 2
-        x: 481
-        y: 29
-        width: 37
-        height: 29
+        x: 598
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5866,12 +5879,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_se_14
       rect:
         serializedVersion: 2
-        x: 518
-        y: 29
-        width: 37
-        height: 29
+        x: 644
+        y: 34
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5890,10 +5903,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5910,12 +5923,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_01
       rect:
         serializedVersion: 2
-        x: 37
+        x: 46
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5932,12 +5945,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_02
       rect:
         serializedVersion: 2
-        x: 74
+        x: 92
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5954,12 +5967,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_03
       rect:
         serializedVersion: 2
-        x: 111
+        x: 138
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5976,12 +5989,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_04
       rect:
         serializedVersion: 2
-        x: 148
+        x: 184
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5998,12 +6011,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_05
       rect:
         serializedVersion: 2
-        x: 185
+        x: 230
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6020,12 +6033,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_06
       rect:
         serializedVersion: 2
-        x: 222
+        x: 276
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6042,12 +6055,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_07
       rect:
         serializedVersion: 2
-        x: 259
+        x: 322
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6064,12 +6077,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_08
       rect:
         serializedVersion: 2
-        x: 296
+        x: 368
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6086,12 +6099,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_09
       rect:
         serializedVersion: 2
-        x: 333
+        x: 414
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6108,12 +6121,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_10
       rect:
         serializedVersion: 2
-        x: 370
+        x: 460
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6130,12 +6143,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_11
       rect:
         serializedVersion: 2
-        x: 407
+        x: 506
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6152,12 +6165,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_12
       rect:
         serializedVersion: 2
-        x: 444
+        x: 552
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6174,12 +6187,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_13
       rect:
         serializedVersion: 2
-        x: 481
+        x: 598
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6196,12 +6209,12 @@ TextureImporter:
       name: wild_arrow_helm_horned_1h_attack_move_right_sse_14
       rect:
         serializedVersion: 2
-        x: 518
+        x: 644
         y: 0
-        width: 37
-        height: 29
+        width: 46
+        height: 34
       alignment: 9
-      pivot: {x: 0.5135135, y: -1.2068965}
+      pivot: {x: 0.5, y: -1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

@@ -853,6 +853,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -861,11 +874,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 645
-        width: 62
-        height: 43
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -882,12 +895,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 645
-        width: 62
-        height: 43
+        x: 66
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -904,12 +917,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 645
-        width: 62
-        height: 43
+        x: 132
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -926,12 +939,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 645
-        width: 62
-        height: 43
+        x: 198
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -948,12 +961,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 645
-        width: 62
-        height: 43
+        x: 264
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -970,12 +983,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 645
-        width: 62
-        height: 43
+        x: 330
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -992,12 +1005,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 645
-        width: 62
-        height: 43
+        x: 396
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1014,12 +1027,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 645
-        width: 62
-        height: 43
+        x: 462
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1036,12 +1049,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 645
-        width: 62
-        height: 43
+        x: 528
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1058,12 +1071,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 645
-        width: 62
-        height: 43
+        x: 594
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1080,12 +1093,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 645
-        width: 62
-        height: 43
+        x: 660
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1102,12 +1115,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 645
-        width: 62
-        height: 43
+        x: 726
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1124,12 +1137,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 645
-        width: 62
-        height: 43
+        x: 792
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1146,12 +1159,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 645
-        width: 62
-        height: 43
+        x: 858
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1168,12 +1181,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_s_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 645
-        width: 62
-        height: 43
+        x: 924
+        y: 690
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1191,11 +1204,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 602
-        width: 62
-        height: 43
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1212,12 +1225,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 602
-        width: 62
-        height: 43
+        x: 66
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1234,12 +1247,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 602
-        width: 62
-        height: 43
+        x: 132
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1256,12 +1269,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 602
-        width: 62
-        height: 43
+        x: 198
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1278,12 +1291,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 602
-        width: 62
-        height: 43
+        x: 264
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1300,12 +1313,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 602
-        width: 62
-        height: 43
+        x: 330
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1322,12 +1335,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 602
-        width: 62
-        height: 43
+        x: 396
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1344,12 +1357,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 602
-        width: 62
-        height: 43
+        x: 462
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1366,12 +1379,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 602
-        width: 62
-        height: 43
+        x: 528
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1388,12 +1401,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 602
-        width: 62
-        height: 43
+        x: 594
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1410,12 +1423,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 602
-        width: 62
-        height: 43
+        x: 660
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1432,12 +1445,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 602
-        width: 62
-        height: 43
+        x: 726
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1454,12 +1467,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 602
-        width: 62
-        height: 43
+        x: 792
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1476,12 +1489,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 602
-        width: 62
-        height: 43
+        x: 858
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1498,12 +1511,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ssw_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 602
-        width: 62
-        height: 43
+        x: 924
+        y: 644
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1521,11 +1534,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 559
-        width: 62
-        height: 43
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1542,12 +1555,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 559
-        width: 62
-        height: 43
+        x: 66
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1564,12 +1577,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 559
-        width: 62
-        height: 43
+        x: 132
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1586,12 +1599,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 559
-        width: 62
-        height: 43
+        x: 198
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1608,12 +1621,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 559
-        width: 62
-        height: 43
+        x: 264
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1630,12 +1643,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 559
-        width: 62
-        height: 43
+        x: 330
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1652,12 +1665,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 559
-        width: 62
-        height: 43
+        x: 396
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1674,12 +1687,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 559
-        width: 62
-        height: 43
+        x: 462
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1696,12 +1709,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 559
-        width: 62
-        height: 43
+        x: 528
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1718,12 +1731,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 559
-        width: 62
-        height: 43
+        x: 594
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1740,12 +1753,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 559
-        width: 62
-        height: 43
+        x: 660
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1762,12 +1775,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 559
-        width: 62
-        height: 43
+        x: 726
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1784,12 +1797,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 559
-        width: 62
-        height: 43
+        x: 792
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1806,12 +1819,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 559
-        width: 62
-        height: 43
+        x: 858
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1828,12 +1841,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sw_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 559
-        width: 62
-        height: 43
+        x: 924
+        y: 598
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1851,11 +1864,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 516
-        width: 62
-        height: 43
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1872,12 +1885,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 516
-        width: 62
-        height: 43
+        x: 66
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1894,12 +1907,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 516
-        width: 62
-        height: 43
+        x: 132
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1916,12 +1929,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 516
-        width: 62
-        height: 43
+        x: 198
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1938,12 +1951,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 516
-        width: 62
-        height: 43
+        x: 264
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1960,12 +1973,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 516
-        width: 62
-        height: 43
+        x: 330
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1982,12 +1995,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 516
-        width: 62
-        height: 43
+        x: 396
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2004,12 +2017,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 516
-        width: 62
-        height: 43
+        x: 462
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2026,12 +2039,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 516
-        width: 62
-        height: 43
+        x: 528
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2048,12 +2061,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 516
-        width: 62
-        height: 43
+        x: 594
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2070,12 +2083,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 516
-        width: 62
-        height: 43
+        x: 660
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2092,12 +2105,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 516
-        width: 62
-        height: 43
+        x: 726
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2114,12 +2127,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 516
-        width: 62
-        height: 43
+        x: 792
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2136,12 +2149,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 516
-        width: 62
-        height: 43
+        x: 858
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2158,12 +2171,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wsw_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 516
-        width: 62
-        height: 43
+        x: 924
+        y: 552
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2181,11 +2194,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 473
-        width: 62
-        height: 43
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2202,12 +2215,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 473
-        width: 62
-        height: 43
+        x: 66
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2224,12 +2237,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 473
-        width: 62
-        height: 43
+        x: 132
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2246,12 +2259,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 473
-        width: 62
-        height: 43
+        x: 198
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2268,12 +2281,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 473
-        width: 62
-        height: 43
+        x: 264
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2290,12 +2303,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 473
-        width: 62
-        height: 43
+        x: 330
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2312,12 +2325,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 473
-        width: 62
-        height: 43
+        x: 396
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2334,12 +2347,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 473
-        width: 62
-        height: 43
+        x: 462
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2356,12 +2369,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 473
-        width: 62
-        height: 43
+        x: 528
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2378,12 +2391,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 473
-        width: 62
-        height: 43
+        x: 594
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2400,12 +2413,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 473
-        width: 62
-        height: 43
+        x: 660
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2422,12 +2435,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 473
-        width: 62
-        height: 43
+        x: 726
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2444,12 +2457,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 473
-        width: 62
-        height: 43
+        x: 792
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2466,12 +2479,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 473
-        width: 62
-        height: 43
+        x: 858
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2488,12 +2501,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_w_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 473
-        width: 62
-        height: 43
+        x: 924
+        y: 506
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2511,11 +2524,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 430
-        width: 62
-        height: 43
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2532,12 +2545,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 430
-        width: 62
-        height: 43
+        x: 66
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2554,12 +2567,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 430
-        width: 62
-        height: 43
+        x: 132
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2576,12 +2589,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 430
-        width: 62
-        height: 43
+        x: 198
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2598,12 +2611,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 430
-        width: 62
-        height: 43
+        x: 264
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2620,12 +2633,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 430
-        width: 62
-        height: 43
+        x: 330
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2642,12 +2655,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 430
-        width: 62
-        height: 43
+        x: 396
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2664,12 +2677,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 430
-        width: 62
-        height: 43
+        x: 462
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2686,12 +2699,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 430
-        width: 62
-        height: 43
+        x: 528
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2708,12 +2721,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 430
-        width: 62
-        height: 43
+        x: 594
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2730,12 +2743,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 430
-        width: 62
-        height: 43
+        x: 660
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2752,12 +2765,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 430
-        width: 62
-        height: 43
+        x: 726
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2774,12 +2787,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 430
-        width: 62
-        height: 43
+        x: 792
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2796,12 +2809,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 430
-        width: 62
-        height: 43
+        x: 858
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2818,12 +2831,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_wnw_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 430
-        width: 62
-        height: 43
+        x: 924
+        y: 460
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2841,11 +2854,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 387
-        width: 62
-        height: 43
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2862,12 +2875,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 387
-        width: 62
-        height: 43
+        x: 66
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2884,12 +2897,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 387
-        width: 62
-        height: 43
+        x: 132
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2906,12 +2919,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 387
-        width: 62
-        height: 43
+        x: 198
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2928,12 +2941,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 387
-        width: 62
-        height: 43
+        x: 264
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2950,12 +2963,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 387
-        width: 62
-        height: 43
+        x: 330
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2972,12 +2985,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 387
-        width: 62
-        height: 43
+        x: 396
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2994,12 +3007,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 387
-        width: 62
-        height: 43
+        x: 462
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3016,12 +3029,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 387
-        width: 62
-        height: 43
+        x: 528
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3038,12 +3051,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 387
-        width: 62
-        height: 43
+        x: 594
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3060,12 +3073,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 387
-        width: 62
-        height: 43
+        x: 660
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3082,12 +3095,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 387
-        width: 62
-        height: 43
+        x: 726
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3104,12 +3117,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 387
-        width: 62
-        height: 43
+        x: 792
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3126,12 +3139,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 387
-        width: 62
-        height: 43
+        x: 858
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3148,12 +3161,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nw_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 387
-        width: 62
-        height: 43
+        x: 924
+        y: 414
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3171,11 +3184,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 344
-        width: 62
-        height: 43
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3192,12 +3205,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 344
-        width: 62
-        height: 43
+        x: 66
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3214,12 +3227,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 344
-        width: 62
-        height: 43
+        x: 132
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3236,12 +3249,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 344
-        width: 62
-        height: 43
+        x: 198
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3258,12 +3271,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 344
-        width: 62
-        height: 43
+        x: 264
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3280,12 +3293,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 344
-        width: 62
-        height: 43
+        x: 330
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3302,12 +3315,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 344
-        width: 62
-        height: 43
+        x: 396
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3324,12 +3337,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 344
-        width: 62
-        height: 43
+        x: 462
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3346,12 +3359,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 344
-        width: 62
-        height: 43
+        x: 528
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3368,12 +3381,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 344
-        width: 62
-        height: 43
+        x: 594
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3390,12 +3403,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 344
-        width: 62
-        height: 43
+        x: 660
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3412,12 +3425,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 344
-        width: 62
-        height: 43
+        x: 726
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3434,12 +3447,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 344
-        width: 62
-        height: 43
+        x: 792
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3456,12 +3469,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 344
-        width: 62
-        height: 43
+        x: 858
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3478,12 +3491,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nnw_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 344
-        width: 62
-        height: 43
+        x: 924
+        y: 368
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3501,11 +3514,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 301
-        width: 62
-        height: 43
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3522,12 +3535,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 301
-        width: 62
-        height: 43
+        x: 66
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3544,12 +3557,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 301
-        width: 62
-        height: 43
+        x: 132
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3566,12 +3579,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 301
-        width: 62
-        height: 43
+        x: 198
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3588,12 +3601,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 301
-        width: 62
-        height: 43
+        x: 264
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3610,12 +3623,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 301
-        width: 62
-        height: 43
+        x: 330
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3632,12 +3645,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 301
-        width: 62
-        height: 43
+        x: 396
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3654,12 +3667,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 301
-        width: 62
-        height: 43
+        x: 462
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3676,12 +3689,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 301
-        width: 62
-        height: 43
+        x: 528
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3698,12 +3711,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 301
-        width: 62
-        height: 43
+        x: 594
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3720,12 +3733,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 301
-        width: 62
-        height: 43
+        x: 660
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3742,12 +3755,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 301
-        width: 62
-        height: 43
+        x: 726
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3764,12 +3777,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 301
-        width: 62
-        height: 43
+        x: 792
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3786,12 +3799,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 301
-        width: 62
-        height: 43
+        x: 858
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3808,12 +3821,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_n_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 301
-        width: 62
-        height: 43
+        x: 924
+        y: 322
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3831,11 +3844,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 258
-        width: 62
-        height: 43
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3852,12 +3865,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 258
-        width: 62
-        height: 43
+        x: 66
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3874,12 +3887,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 258
-        width: 62
-        height: 43
+        x: 132
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3896,12 +3909,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 258
-        width: 62
-        height: 43
+        x: 198
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3918,12 +3931,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 258
-        width: 62
-        height: 43
+        x: 264
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3940,12 +3953,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 258
-        width: 62
-        height: 43
+        x: 330
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3962,12 +3975,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 258
-        width: 62
-        height: 43
+        x: 396
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3984,12 +3997,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 258
-        width: 62
-        height: 43
+        x: 462
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4006,12 +4019,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 258
-        width: 62
-        height: 43
+        x: 528
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4028,12 +4041,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 258
-        width: 62
-        height: 43
+        x: 594
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4050,12 +4063,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 258
-        width: 62
-        height: 43
+        x: 660
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4072,12 +4085,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 258
-        width: 62
-        height: 43
+        x: 726
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4094,12 +4107,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 258
-        width: 62
-        height: 43
+        x: 792
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4116,12 +4129,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 258
-        width: 62
-        height: 43
+        x: 858
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4138,12 +4151,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_nne_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 258
-        width: 62
-        height: 43
+        x: 924
+        y: 276
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4161,11 +4174,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 215
-        width: 62
-        height: 43
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4182,12 +4195,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 215
-        width: 62
-        height: 43
+        x: 66
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4204,12 +4217,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 215
-        width: 62
-        height: 43
+        x: 132
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4226,12 +4239,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 215
-        width: 62
-        height: 43
+        x: 198
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4248,12 +4261,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 215
-        width: 62
-        height: 43
+        x: 264
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4270,12 +4283,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 215
-        width: 62
-        height: 43
+        x: 330
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4292,12 +4305,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 215
-        width: 62
-        height: 43
+        x: 396
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4314,12 +4327,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 215
-        width: 62
-        height: 43
+        x: 462
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4336,12 +4349,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 215
-        width: 62
-        height: 43
+        x: 528
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4358,12 +4371,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 215
-        width: 62
-        height: 43
+        x: 594
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4380,12 +4393,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 215
-        width: 62
-        height: 43
+        x: 660
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4402,12 +4415,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 215
-        width: 62
-        height: 43
+        x: 726
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4424,12 +4437,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 215
-        width: 62
-        height: 43
+        x: 792
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4446,12 +4459,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 215
-        width: 62
-        height: 43
+        x: 858
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4468,12 +4481,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ne_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 215
-        width: 62
-        height: 43
+        x: 924
+        y: 230
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4491,11 +4504,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 172
-        width: 62
-        height: 43
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4512,12 +4525,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 172
-        width: 62
-        height: 43
+        x: 66
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4534,12 +4547,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 172
-        width: 62
-        height: 43
+        x: 132
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4556,12 +4569,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 172
-        width: 62
-        height: 43
+        x: 198
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4578,12 +4591,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 172
-        width: 62
-        height: 43
+        x: 264
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4600,12 +4613,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 172
-        width: 62
-        height: 43
+        x: 330
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4622,12 +4635,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 172
-        width: 62
-        height: 43
+        x: 396
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4644,12 +4657,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 172
-        width: 62
-        height: 43
+        x: 462
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4666,12 +4679,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 172
-        width: 62
-        height: 43
+        x: 528
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4688,12 +4701,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 172
-        width: 62
-        height: 43
+        x: 594
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4710,12 +4723,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 172
-        width: 62
-        height: 43
+        x: 660
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4732,12 +4745,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 172
-        width: 62
-        height: 43
+        x: 726
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4754,12 +4767,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 172
-        width: 62
-        height: 43
+        x: 792
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4776,12 +4789,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 172
-        width: 62
-        height: 43
+        x: 858
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4798,12 +4811,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ene_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 172
-        width: 62
-        height: 43
+        x: 924
+        y: 184
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4821,11 +4834,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 129
-        width: 62
-        height: 43
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4842,12 +4855,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 129
-        width: 62
-        height: 43
+        x: 66
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4864,12 +4877,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 129
-        width: 62
-        height: 43
+        x: 132
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4886,12 +4899,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 129
-        width: 62
-        height: 43
+        x: 198
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4908,12 +4921,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 129
-        width: 62
-        height: 43
+        x: 264
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4930,12 +4943,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 129
-        width: 62
-        height: 43
+        x: 330
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4952,12 +4965,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 129
-        width: 62
-        height: 43
+        x: 396
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4974,12 +4987,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 129
-        width: 62
-        height: 43
+        x: 462
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4996,12 +5009,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 129
-        width: 62
-        height: 43
+        x: 528
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5018,12 +5031,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 129
-        width: 62
-        height: 43
+        x: 594
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5040,12 +5053,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 129
-        width: 62
-        height: 43
+        x: 660
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5062,12 +5075,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 129
-        width: 62
-        height: 43
+        x: 726
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5084,12 +5097,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 129
-        width: 62
-        height: 43
+        x: 792
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5106,12 +5119,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 129
-        width: 62
-        height: 43
+        x: 858
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5128,12 +5141,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_e_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 129
-        width: 62
-        height: 43
+        x: 924
+        y: 138
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5151,11 +5164,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 86
-        width: 62
-        height: 43
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5172,12 +5185,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 86
-        width: 62
-        height: 43
+        x: 66
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5194,12 +5207,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 86
-        width: 62
-        height: 43
+        x: 132
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5216,12 +5229,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 86
-        width: 62
-        height: 43
+        x: 198
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5238,12 +5251,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 86
-        width: 62
-        height: 43
+        x: 264
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5260,12 +5273,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 86
-        width: 62
-        height: 43
+        x: 330
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5282,12 +5295,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 86
-        width: 62
-        height: 43
+        x: 396
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5304,12 +5317,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 86
-        width: 62
-        height: 43
+        x: 462
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5326,12 +5339,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 86
-        width: 62
-        height: 43
+        x: 528
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5348,12 +5361,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 86
-        width: 62
-        height: 43
+        x: 594
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5370,12 +5383,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 86
-        width: 62
-        height: 43
+        x: 660
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5392,12 +5405,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 86
-        width: 62
-        height: 43
+        x: 726
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5414,12 +5427,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 86
-        width: 62
-        height: 43
+        x: 792
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5436,12 +5449,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 86
-        width: 62
-        height: 43
+        x: 858
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5458,12 +5471,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_ese_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 86
-        width: 62
-        height: 43
+        x: 924
+        y: 92
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5481,11 +5494,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 43
-        width: 62
-        height: 43
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5502,12 +5515,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 43
-        width: 62
-        height: 43
+        x: 66
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5524,12 +5537,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 43
-        width: 62
-        height: 43
+        x: 132
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5546,12 +5559,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 43
-        width: 62
-        height: 43
+        x: 198
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5568,12 +5581,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 43
-        width: 62
-        height: 43
+        x: 264
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5590,12 +5603,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 43
-        width: 62
-        height: 43
+        x: 330
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5612,12 +5625,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 43
-        width: 62
-        height: 43
+        x: 396
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5634,12 +5647,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 43
-        width: 62
-        height: 43
+        x: 462
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5656,12 +5669,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 43
-        width: 62
-        height: 43
+        x: 528
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5678,12 +5691,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 43
-        width: 62
-        height: 43
+        x: 594
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5700,12 +5713,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 43
-        width: 62
-        height: 43
+        x: 660
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5722,12 +5735,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 43
-        width: 62
-        height: 43
+        x: 726
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5744,12 +5757,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 43
-        width: 62
-        height: 43
+        x: 792
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5766,12 +5779,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 43
-        width: 62
-        height: 43
+        x: 858
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5788,12 +5801,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_se_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 43
-        width: 62
-        height: 43
+        x: 924
+        y: 46
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5812,10 +5825,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5832,12 +5845,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_01
       rect:
         serializedVersion: 2
-        x: 62
+        x: 66
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5854,12 +5867,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_02
       rect:
         serializedVersion: 2
-        x: 124
+        x: 132
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5876,12 +5889,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_03
       rect:
         serializedVersion: 2
-        x: 186
+        x: 198
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5898,12 +5911,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_04
       rect:
         serializedVersion: 2
-        x: 248
+        x: 264
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5920,12 +5933,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_05
       rect:
         serializedVersion: 2
-        x: 310
+        x: 330
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5942,12 +5955,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_06
       rect:
         serializedVersion: 2
-        x: 372
+        x: 396
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5964,12 +5977,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_07
       rect:
         serializedVersion: 2
-        x: 434
+        x: 462
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5986,12 +5999,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_08
       rect:
         serializedVersion: 2
-        x: 496
+        x: 528
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6008,12 +6021,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_09
       rect:
         serializedVersion: 2
-        x: 558
+        x: 594
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6030,12 +6043,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_10
       rect:
         serializedVersion: 2
-        x: 620
+        x: 660
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6052,12 +6065,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_11
       rect:
         serializedVersion: 2
-        x: 682
+        x: 726
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6074,12 +6087,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_12
       rect:
         serializedVersion: 2
-        x: 744
+        x: 792
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6096,12 +6109,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_13
       rect:
         serializedVersion: 2
-        x: 806
+        x: 858
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6118,12 +6131,12 @@ TextureImporter:
       name: wild_arrow_weapon_recurve_bow_1h_overdraw_move_left_sse_14
       rect:
         serializedVersion: 2
-        x: 868
+        x: 924
         y: 0
-        width: 62
-        height: 43
+        width: 66
+        height: 46
       alignment: 9
-      pivot: {x: 0.5, y: -0.44186047}
+      pivot: {x: 0.5, y: -0.36956522}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

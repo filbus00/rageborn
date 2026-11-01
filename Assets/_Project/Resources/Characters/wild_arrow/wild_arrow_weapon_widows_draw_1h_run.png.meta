@@ -724,6 +724,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -732,11 +745,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 630
-        width: 58
-        height: 42
+        y: 675
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -753,12 +766,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_s_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 630
-        width: 58
-        height: 42
+        x: 62
+        y: 675
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -775,12 +788,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_s_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 630
-        width: 58
-        height: 42
+        x: 124
+        y: 675
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -797,12 +810,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_s_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 630
-        width: 58
-        height: 42
+        x: 186
+        y: 675
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -819,12 +832,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_s_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 630
-        width: 58
-        height: 42
+        x: 248
+        y: 675
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -841,12 +854,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_s_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 630
-        width: 58
-        height: 42
+        x: 310
+        y: 675
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -863,12 +876,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_s_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 630
-        width: 58
-        height: 42
+        x: 372
+        y: 675
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -885,12 +898,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_s_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 630
-        width: 58
-        height: 42
+        x: 434
+        y: 675
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -907,12 +920,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_s_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 630
-        width: 58
-        height: 42
+        x: 496
+        y: 675
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -929,12 +942,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_s_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 630
-        width: 58
-        height: 42
+        x: 558
+        y: 675
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -952,11 +965,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 588
-        width: 58
-        height: 42
+        y: 630
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -973,12 +986,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ssw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 588
-        width: 58
-        height: 42
+        x: 62
+        y: 630
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -995,12 +1008,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ssw_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 588
-        width: 58
-        height: 42
+        x: 124
+        y: 630
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1017,12 +1030,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ssw_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 588
-        width: 58
-        height: 42
+        x: 186
+        y: 630
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1039,12 +1052,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ssw_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 588
-        width: 58
-        height: 42
+        x: 248
+        y: 630
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1061,12 +1074,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ssw_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 588
-        width: 58
-        height: 42
+        x: 310
+        y: 630
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1083,12 +1096,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ssw_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 588
-        width: 58
-        height: 42
+        x: 372
+        y: 630
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1105,12 +1118,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ssw_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 588
-        width: 58
-        height: 42
+        x: 434
+        y: 630
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1127,12 +1140,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ssw_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 588
-        width: 58
-        height: 42
+        x: 496
+        y: 630
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1149,12 +1162,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ssw_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 588
-        width: 58
-        height: 42
+        x: 558
+        y: 630
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1172,11 +1185,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 546
-        width: 58
-        height: 42
+        y: 585
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1193,12 +1206,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 546
-        width: 58
-        height: 42
+        x: 62
+        y: 585
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1215,12 +1228,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sw_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 546
-        width: 58
-        height: 42
+        x: 124
+        y: 585
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1237,12 +1250,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sw_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 546
-        width: 58
-        height: 42
+        x: 186
+        y: 585
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1259,12 +1272,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sw_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 546
-        width: 58
-        height: 42
+        x: 248
+        y: 585
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1281,12 +1294,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sw_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 546
-        width: 58
-        height: 42
+        x: 310
+        y: 585
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1303,12 +1316,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sw_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 546
-        width: 58
-        height: 42
+        x: 372
+        y: 585
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1325,12 +1338,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sw_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 546
-        width: 58
-        height: 42
+        x: 434
+        y: 585
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1347,12 +1360,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sw_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 546
-        width: 58
-        height: 42
+        x: 496
+        y: 585
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1369,12 +1382,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sw_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 546
-        width: 58
-        height: 42
+        x: 558
+        y: 585
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1392,11 +1405,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 504
-        width: 58
-        height: 42
+        y: 540
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1413,12 +1426,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wsw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 504
-        width: 58
-        height: 42
+        x: 62
+        y: 540
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1435,12 +1448,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wsw_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 504
-        width: 58
-        height: 42
+        x: 124
+        y: 540
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1457,12 +1470,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wsw_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 504
-        width: 58
-        height: 42
+        x: 186
+        y: 540
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1479,12 +1492,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wsw_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 504
-        width: 58
-        height: 42
+        x: 248
+        y: 540
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1501,12 +1514,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wsw_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 504
-        width: 58
-        height: 42
+        x: 310
+        y: 540
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1523,12 +1536,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wsw_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 504
-        width: 58
-        height: 42
+        x: 372
+        y: 540
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1545,12 +1558,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wsw_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 504
-        width: 58
-        height: 42
+        x: 434
+        y: 540
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1567,12 +1580,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wsw_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 504
-        width: 58
-        height: 42
+        x: 496
+        y: 540
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1589,12 +1602,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wsw_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 504
-        width: 58
-        height: 42
+        x: 558
+        y: 540
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1612,11 +1625,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 462
-        width: 58
-        height: 42
+        y: 495
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1633,12 +1646,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_w_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 462
-        width: 58
-        height: 42
+        x: 62
+        y: 495
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1655,12 +1668,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_w_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 462
-        width: 58
-        height: 42
+        x: 124
+        y: 495
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1677,12 +1690,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_w_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 462
-        width: 58
-        height: 42
+        x: 186
+        y: 495
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1699,12 +1712,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_w_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 462
-        width: 58
-        height: 42
+        x: 248
+        y: 495
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1721,12 +1734,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_w_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 462
-        width: 58
-        height: 42
+        x: 310
+        y: 495
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1743,12 +1756,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_w_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 462
-        width: 58
-        height: 42
+        x: 372
+        y: 495
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1765,12 +1778,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_w_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 462
-        width: 58
-        height: 42
+        x: 434
+        y: 495
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1787,12 +1800,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_w_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 462
-        width: 58
-        height: 42
+        x: 496
+        y: 495
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1809,12 +1822,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_w_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 462
-        width: 58
-        height: 42
+        x: 558
+        y: 495
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1832,11 +1845,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 420
-        width: 58
-        height: 42
+        y: 450
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1853,12 +1866,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wnw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 420
-        width: 58
-        height: 42
+        x: 62
+        y: 450
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1875,12 +1888,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wnw_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 420
-        width: 58
-        height: 42
+        x: 124
+        y: 450
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1897,12 +1910,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wnw_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 420
-        width: 58
-        height: 42
+        x: 186
+        y: 450
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1919,12 +1932,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wnw_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 420
-        width: 58
-        height: 42
+        x: 248
+        y: 450
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1941,12 +1954,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wnw_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 420
-        width: 58
-        height: 42
+        x: 310
+        y: 450
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1963,12 +1976,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wnw_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 420
-        width: 58
-        height: 42
+        x: 372
+        y: 450
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1985,12 +1998,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wnw_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 420
-        width: 58
-        height: 42
+        x: 434
+        y: 450
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2007,12 +2020,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wnw_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 420
-        width: 58
-        height: 42
+        x: 496
+        y: 450
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2029,12 +2042,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_wnw_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 420
-        width: 58
-        height: 42
+        x: 558
+        y: 450
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2052,11 +2065,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 378
-        width: 58
-        height: 42
+        y: 405
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2073,12 +2086,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 378
-        width: 58
-        height: 42
+        x: 62
+        y: 405
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2095,12 +2108,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nw_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 378
-        width: 58
-        height: 42
+        x: 124
+        y: 405
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2117,12 +2130,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nw_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 378
-        width: 58
-        height: 42
+        x: 186
+        y: 405
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2139,12 +2152,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nw_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 378
-        width: 58
-        height: 42
+        x: 248
+        y: 405
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2161,12 +2174,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nw_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 378
-        width: 58
-        height: 42
+        x: 310
+        y: 405
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2183,12 +2196,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nw_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 378
-        width: 58
-        height: 42
+        x: 372
+        y: 405
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2205,12 +2218,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nw_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 378
-        width: 58
-        height: 42
+        x: 434
+        y: 405
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2227,12 +2240,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nw_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 378
-        width: 58
-        height: 42
+        x: 496
+        y: 405
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2249,12 +2262,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nw_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 378
-        width: 58
-        height: 42
+        x: 558
+        y: 405
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2272,11 +2285,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 336
-        width: 58
-        height: 42
+        y: 360
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2293,12 +2306,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nnw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 336
-        width: 58
-        height: 42
+        x: 62
+        y: 360
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2315,12 +2328,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nnw_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 336
-        width: 58
-        height: 42
+        x: 124
+        y: 360
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2337,12 +2350,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nnw_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 336
-        width: 58
-        height: 42
+        x: 186
+        y: 360
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2359,12 +2372,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nnw_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 336
-        width: 58
-        height: 42
+        x: 248
+        y: 360
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2381,12 +2394,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nnw_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 336
-        width: 58
-        height: 42
+        x: 310
+        y: 360
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2403,12 +2416,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nnw_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 336
-        width: 58
-        height: 42
+        x: 372
+        y: 360
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2425,12 +2438,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nnw_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 336
-        width: 58
-        height: 42
+        x: 434
+        y: 360
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2447,12 +2460,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nnw_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 336
-        width: 58
-        height: 42
+        x: 496
+        y: 360
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2469,12 +2482,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nnw_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 336
-        width: 58
-        height: 42
+        x: 558
+        y: 360
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2492,11 +2505,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 294
-        width: 58
-        height: 42
+        y: 315
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2513,12 +2526,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_n_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 294
-        width: 58
-        height: 42
+        x: 62
+        y: 315
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2535,12 +2548,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_n_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 294
-        width: 58
-        height: 42
+        x: 124
+        y: 315
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2557,12 +2570,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_n_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 294
-        width: 58
-        height: 42
+        x: 186
+        y: 315
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2579,12 +2592,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_n_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 294
-        width: 58
-        height: 42
+        x: 248
+        y: 315
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2601,12 +2614,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_n_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 294
-        width: 58
-        height: 42
+        x: 310
+        y: 315
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2623,12 +2636,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_n_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 294
-        width: 58
-        height: 42
+        x: 372
+        y: 315
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2645,12 +2658,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_n_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 294
-        width: 58
-        height: 42
+        x: 434
+        y: 315
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2667,12 +2680,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_n_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 294
-        width: 58
-        height: 42
+        x: 496
+        y: 315
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2689,12 +2702,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_n_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 294
-        width: 58
-        height: 42
+        x: 558
+        y: 315
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2712,11 +2725,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 252
-        width: 58
-        height: 42
+        y: 270
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2733,12 +2746,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nne_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 252
-        width: 58
-        height: 42
+        x: 62
+        y: 270
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2755,12 +2768,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nne_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 252
-        width: 58
-        height: 42
+        x: 124
+        y: 270
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2777,12 +2790,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nne_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 252
-        width: 58
-        height: 42
+        x: 186
+        y: 270
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2799,12 +2812,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nne_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 252
-        width: 58
-        height: 42
+        x: 248
+        y: 270
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2821,12 +2834,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nne_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 252
-        width: 58
-        height: 42
+        x: 310
+        y: 270
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2843,12 +2856,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nne_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 252
-        width: 58
-        height: 42
+        x: 372
+        y: 270
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2865,12 +2878,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nne_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 252
-        width: 58
-        height: 42
+        x: 434
+        y: 270
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2887,12 +2900,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nne_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 252
-        width: 58
-        height: 42
+        x: 496
+        y: 270
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2909,12 +2922,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_nne_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 252
-        width: 58
-        height: 42
+        x: 558
+        y: 270
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2932,11 +2945,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 210
-        width: 58
-        height: 42
+        y: 225
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2953,12 +2966,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ne_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 210
-        width: 58
-        height: 42
+        x: 62
+        y: 225
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2975,12 +2988,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ne_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 210
-        width: 58
-        height: 42
+        x: 124
+        y: 225
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2997,12 +3010,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ne_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 210
-        width: 58
-        height: 42
+        x: 186
+        y: 225
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3019,12 +3032,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ne_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 210
-        width: 58
-        height: 42
+        x: 248
+        y: 225
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3041,12 +3054,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ne_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 210
-        width: 58
-        height: 42
+        x: 310
+        y: 225
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3063,12 +3076,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ne_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 210
-        width: 58
-        height: 42
+        x: 372
+        y: 225
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3085,12 +3098,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ne_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 210
-        width: 58
-        height: 42
+        x: 434
+        y: 225
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3107,12 +3120,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ne_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 210
-        width: 58
-        height: 42
+        x: 496
+        y: 225
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3129,12 +3142,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ne_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 210
-        width: 58
-        height: 42
+        x: 558
+        y: 225
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3152,11 +3165,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 168
-        width: 58
-        height: 42
+        y: 180
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3173,12 +3186,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ene_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 168
-        width: 58
-        height: 42
+        x: 62
+        y: 180
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3195,12 +3208,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ene_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 168
-        width: 58
-        height: 42
+        x: 124
+        y: 180
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3217,12 +3230,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ene_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 168
-        width: 58
-        height: 42
+        x: 186
+        y: 180
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3239,12 +3252,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ene_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 168
-        width: 58
-        height: 42
+        x: 248
+        y: 180
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3261,12 +3274,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ene_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 168
-        width: 58
-        height: 42
+        x: 310
+        y: 180
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3283,12 +3296,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ene_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 168
-        width: 58
-        height: 42
+        x: 372
+        y: 180
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3305,12 +3318,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ene_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 168
-        width: 58
-        height: 42
+        x: 434
+        y: 180
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3327,12 +3340,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ene_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 168
-        width: 58
-        height: 42
+        x: 496
+        y: 180
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3349,12 +3362,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ene_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 168
-        width: 58
-        height: 42
+        x: 558
+        y: 180
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3372,11 +3385,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 126
-        width: 58
-        height: 42
+        y: 135
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3393,12 +3406,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_e_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 126
-        width: 58
-        height: 42
+        x: 62
+        y: 135
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3415,12 +3428,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_e_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 126
-        width: 58
-        height: 42
+        x: 124
+        y: 135
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3437,12 +3450,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_e_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 126
-        width: 58
-        height: 42
+        x: 186
+        y: 135
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3459,12 +3472,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_e_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 126
-        width: 58
-        height: 42
+        x: 248
+        y: 135
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3481,12 +3494,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_e_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 126
-        width: 58
-        height: 42
+        x: 310
+        y: 135
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3503,12 +3516,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_e_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 126
-        width: 58
-        height: 42
+        x: 372
+        y: 135
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3525,12 +3538,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_e_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 126
-        width: 58
-        height: 42
+        x: 434
+        y: 135
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3547,12 +3560,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_e_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 126
-        width: 58
-        height: 42
+        x: 496
+        y: 135
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3569,12 +3582,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_e_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 126
-        width: 58
-        height: 42
+        x: 558
+        y: 135
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3592,11 +3605,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 84
-        width: 58
-        height: 42
+        y: 90
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3613,12 +3626,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ese_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 84
-        width: 58
-        height: 42
+        x: 62
+        y: 90
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3635,12 +3648,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ese_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 84
-        width: 58
-        height: 42
+        x: 124
+        y: 90
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3657,12 +3670,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ese_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 84
-        width: 58
-        height: 42
+        x: 186
+        y: 90
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3679,12 +3692,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ese_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 84
-        width: 58
-        height: 42
+        x: 248
+        y: 90
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3701,12 +3714,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ese_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 84
-        width: 58
-        height: 42
+        x: 310
+        y: 90
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3723,12 +3736,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ese_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 84
-        width: 58
-        height: 42
+        x: 372
+        y: 90
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3745,12 +3758,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ese_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 84
-        width: 58
-        height: 42
+        x: 434
+        y: 90
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3767,12 +3780,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ese_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 84
-        width: 58
-        height: 42
+        x: 496
+        y: 90
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3789,12 +3802,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_ese_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 84
-        width: 58
-        height: 42
+        x: 558
+        y: 90
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3812,11 +3825,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 42
-        width: 58
-        height: 42
+        y: 45
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3833,12 +3846,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_se_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 42
-        width: 58
-        height: 42
+        x: 62
+        y: 45
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3855,12 +3868,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_se_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 42
-        width: 58
-        height: 42
+        x: 124
+        y: 45
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3877,12 +3890,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_se_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 42
-        width: 58
-        height: 42
+        x: 186
+        y: 45
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3899,12 +3912,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_se_04
       rect:
         serializedVersion: 2
-        x: 232
-        y: 42
-        width: 58
-        height: 42
+        x: 248
+        y: 45
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3921,12 +3934,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_se_05
       rect:
         serializedVersion: 2
-        x: 290
-        y: 42
-        width: 58
-        height: 42
+        x: 310
+        y: 45
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3943,12 +3956,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_se_06
       rect:
         serializedVersion: 2
-        x: 348
-        y: 42
-        width: 58
-        height: 42
+        x: 372
+        y: 45
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3965,12 +3978,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_se_07
       rect:
         serializedVersion: 2
-        x: 406
-        y: 42
-        width: 58
-        height: 42
+        x: 434
+        y: 45
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3987,12 +4000,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_se_08
       rect:
         serializedVersion: 2
-        x: 464
-        y: 42
-        width: 58
-        height: 42
+        x: 496
+        y: 45
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4009,12 +4022,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_se_09
       rect:
         serializedVersion: 2
-        x: 522
-        y: 42
-        width: 58
-        height: 42
+        x: 558
+        y: 45
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4033,10 +4046,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 58
-        height: 42
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4053,12 +4066,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sse_01
       rect:
         serializedVersion: 2
-        x: 58
+        x: 62
         y: 0
-        width: 58
-        height: 42
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4075,12 +4088,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sse_02
       rect:
         serializedVersion: 2
-        x: 116
+        x: 124
         y: 0
-        width: 58
-        height: 42
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4097,12 +4110,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sse_03
       rect:
         serializedVersion: 2
-        x: 174
+        x: 186
         y: 0
-        width: 58
-        height: 42
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4119,12 +4132,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sse_04
       rect:
         serializedVersion: 2
-        x: 232
+        x: 248
         y: 0
-        width: 58
-        height: 42
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4141,12 +4154,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sse_05
       rect:
         serializedVersion: 2
-        x: 290
+        x: 310
         y: 0
-        width: 58
-        height: 42
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4163,12 +4176,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sse_06
       rect:
         serializedVersion: 2
-        x: 348
+        x: 372
         y: 0
-        width: 58
-        height: 42
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4185,12 +4198,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sse_07
       rect:
         serializedVersion: 2
-        x: 406
+        x: 434
         y: 0
-        width: 58
-        height: 42
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4207,12 +4220,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sse_08
       rect:
         serializedVersion: 2
-        x: 464
+        x: 496
         y: 0
-        width: 58
-        height: 42
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4229,12 +4242,12 @@ TextureImporter:
       name: wild_arrow_weapon_widows_draw_1h_run_sse_09
       rect:
         serializedVersion: 2
-        x: 522
+        x: 558
         y: 0
-        width: 58
-        height: 42
+        width: 62
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: -0.23809522}
+      pivot: {x: 0.5, y: -0.17777777}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

@@ -973,6 +973,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -981,11 +994,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 690
-        width: 62
-        height: 46
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1002,12 +1015,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 690
-        width: 62
-        height: 46
+        x: 66
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1024,12 +1037,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 690
-        width: 62
-        height: 46
+        x: 132
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1046,12 +1059,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 690
-        width: 62
-        height: 46
+        x: 198
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1068,12 +1081,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 690
-        width: 62
-        height: 46
+        x: 264
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1090,12 +1103,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 690
-        width: 62
-        height: 46
+        x: 330
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1112,12 +1125,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 690
-        width: 62
-        height: 46
+        x: 396
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1134,12 +1147,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 690
-        width: 62
-        height: 46
+        x: 462
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1156,12 +1169,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 690
-        width: 62
-        height: 46
+        x: 528
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1178,12 +1191,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 690
-        width: 62
-        height: 46
+        x: 594
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1200,12 +1213,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 690
-        width: 62
-        height: 46
+        x: 660
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1222,12 +1235,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 690
-        width: 62
-        height: 46
+        x: 726
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1244,12 +1257,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 690
-        width: 62
-        height: 46
+        x: 792
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1266,12 +1279,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 690
-        width: 62
-        height: 46
+        x: 858
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1288,12 +1301,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_s_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 690
-        width: 62
-        height: 46
+        x: 924
+        y: 720
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1311,11 +1324,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 644
-        width: 62
-        height: 46
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1332,12 +1345,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 644
-        width: 62
-        height: 46
+        x: 66
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1354,12 +1367,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 644
-        width: 62
-        height: 46
+        x: 132
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1376,12 +1389,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 644
-        width: 62
-        height: 46
+        x: 198
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1398,12 +1411,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 644
-        width: 62
-        height: 46
+        x: 264
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1420,12 +1433,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 644
-        width: 62
-        height: 46
+        x: 330
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1442,12 +1455,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 644
-        width: 62
-        height: 46
+        x: 396
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1464,12 +1477,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 644
-        width: 62
-        height: 46
+        x: 462
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1486,12 +1499,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 644
-        width: 62
-        height: 46
+        x: 528
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1508,12 +1521,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 644
-        width: 62
-        height: 46
+        x: 594
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1530,12 +1543,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 644
-        width: 62
-        height: 46
+        x: 660
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1552,12 +1565,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 644
-        width: 62
-        height: 46
+        x: 726
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1574,12 +1587,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 644
-        width: 62
-        height: 46
+        x: 792
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1596,12 +1609,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 644
-        width: 62
-        height: 46
+        x: 858
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1618,12 +1631,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ssw_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 644
-        width: 62
-        height: 46
+        x: 924
+        y: 672
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1641,11 +1654,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 598
-        width: 62
-        height: 46
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1662,12 +1675,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 598
-        width: 62
-        height: 46
+        x: 66
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1684,12 +1697,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 598
-        width: 62
-        height: 46
+        x: 132
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1706,12 +1719,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 598
-        width: 62
-        height: 46
+        x: 198
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1728,12 +1741,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 598
-        width: 62
-        height: 46
+        x: 264
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1750,12 +1763,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 598
-        width: 62
-        height: 46
+        x: 330
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1772,12 +1785,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 598
-        width: 62
-        height: 46
+        x: 396
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1794,12 +1807,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 598
-        width: 62
-        height: 46
+        x: 462
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1816,12 +1829,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 598
-        width: 62
-        height: 46
+        x: 528
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1838,12 +1851,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 598
-        width: 62
-        height: 46
+        x: 594
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1860,12 +1873,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 598
-        width: 62
-        height: 46
+        x: 660
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1882,12 +1895,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 598
-        width: 62
-        height: 46
+        x: 726
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1904,12 +1917,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 598
-        width: 62
-        height: 46
+        x: 792
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1926,12 +1939,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 598
-        width: 62
-        height: 46
+        x: 858
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1948,12 +1961,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sw_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 598
-        width: 62
-        height: 46
+        x: 924
+        y: 624
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1971,11 +1984,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 552
-        width: 62
-        height: 46
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1992,12 +2005,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 552
-        width: 62
-        height: 46
+        x: 66
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2014,12 +2027,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 552
-        width: 62
-        height: 46
+        x: 132
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2036,12 +2049,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 552
-        width: 62
-        height: 46
+        x: 198
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2058,12 +2071,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 552
-        width: 62
-        height: 46
+        x: 264
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2080,12 +2093,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 552
-        width: 62
-        height: 46
+        x: 330
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2102,12 +2115,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 552
-        width: 62
-        height: 46
+        x: 396
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2124,12 +2137,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 552
-        width: 62
-        height: 46
+        x: 462
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2146,12 +2159,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 552
-        width: 62
-        height: 46
+        x: 528
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2168,12 +2181,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 552
-        width: 62
-        height: 46
+        x: 594
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2190,12 +2203,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 552
-        width: 62
-        height: 46
+        x: 660
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2212,12 +2225,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 552
-        width: 62
-        height: 46
+        x: 726
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2234,12 +2247,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 552
-        width: 62
-        height: 46
+        x: 792
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2256,12 +2269,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 552
-        width: 62
-        height: 46
+        x: 858
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2278,12 +2291,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wsw_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 552
-        width: 62
-        height: 46
+        x: 924
+        y: 576
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2301,11 +2314,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 506
-        width: 62
-        height: 46
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2322,12 +2335,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 506
-        width: 62
-        height: 46
+        x: 66
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2344,12 +2357,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 506
-        width: 62
-        height: 46
+        x: 132
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2366,12 +2379,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 506
-        width: 62
-        height: 46
+        x: 198
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2388,12 +2401,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 506
-        width: 62
-        height: 46
+        x: 264
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2410,12 +2423,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 506
-        width: 62
-        height: 46
+        x: 330
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2432,12 +2445,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 506
-        width: 62
-        height: 46
+        x: 396
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2454,12 +2467,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 506
-        width: 62
-        height: 46
+        x: 462
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2476,12 +2489,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 506
-        width: 62
-        height: 46
+        x: 528
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2498,12 +2511,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 506
-        width: 62
-        height: 46
+        x: 594
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2520,12 +2533,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 506
-        width: 62
-        height: 46
+        x: 660
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2542,12 +2555,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 506
-        width: 62
-        height: 46
+        x: 726
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2564,12 +2577,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 506
-        width: 62
-        height: 46
+        x: 792
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2586,12 +2599,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 506
-        width: 62
-        height: 46
+        x: 858
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2608,12 +2621,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_w_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 506
-        width: 62
-        height: 46
+        x: 924
+        y: 528
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2631,11 +2644,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 460
-        width: 62
-        height: 46
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2652,12 +2665,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 460
-        width: 62
-        height: 46
+        x: 66
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2674,12 +2687,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 460
-        width: 62
-        height: 46
+        x: 132
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2696,12 +2709,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 460
-        width: 62
-        height: 46
+        x: 198
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2718,12 +2731,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 460
-        width: 62
-        height: 46
+        x: 264
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2740,12 +2753,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 460
-        width: 62
-        height: 46
+        x: 330
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2762,12 +2775,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 460
-        width: 62
-        height: 46
+        x: 396
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2784,12 +2797,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 460
-        width: 62
-        height: 46
+        x: 462
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2806,12 +2819,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 460
-        width: 62
-        height: 46
+        x: 528
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2828,12 +2841,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 460
-        width: 62
-        height: 46
+        x: 594
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2850,12 +2863,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 460
-        width: 62
-        height: 46
+        x: 660
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2872,12 +2885,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 460
-        width: 62
-        height: 46
+        x: 726
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2894,12 +2907,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 460
-        width: 62
-        height: 46
+        x: 792
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2916,12 +2929,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 460
-        width: 62
-        height: 46
+        x: 858
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2938,12 +2951,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_wnw_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 460
-        width: 62
-        height: 46
+        x: 924
+        y: 480
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2961,11 +2974,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 414
-        width: 62
-        height: 46
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2982,12 +2995,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 414
-        width: 62
-        height: 46
+        x: 66
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3004,12 +3017,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 414
-        width: 62
-        height: 46
+        x: 132
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3026,12 +3039,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 414
-        width: 62
-        height: 46
+        x: 198
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3048,12 +3061,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 414
-        width: 62
-        height: 46
+        x: 264
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3070,12 +3083,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 414
-        width: 62
-        height: 46
+        x: 330
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3092,12 +3105,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 414
-        width: 62
-        height: 46
+        x: 396
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3114,12 +3127,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 414
-        width: 62
-        height: 46
+        x: 462
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3136,12 +3149,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 414
-        width: 62
-        height: 46
+        x: 528
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3158,12 +3171,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 414
-        width: 62
-        height: 46
+        x: 594
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3180,12 +3193,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 414
-        width: 62
-        height: 46
+        x: 660
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3202,12 +3215,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 414
-        width: 62
-        height: 46
+        x: 726
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3224,12 +3237,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 414
-        width: 62
-        height: 46
+        x: 792
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3246,12 +3259,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 414
-        width: 62
-        height: 46
+        x: 858
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3268,12 +3281,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nw_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 414
-        width: 62
-        height: 46
+        x: 924
+        y: 432
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3291,11 +3304,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 368
-        width: 62
-        height: 46
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3312,12 +3325,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 368
-        width: 62
-        height: 46
+        x: 66
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3334,12 +3347,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 368
-        width: 62
-        height: 46
+        x: 132
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3356,12 +3369,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 368
-        width: 62
-        height: 46
+        x: 198
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3378,12 +3391,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 368
-        width: 62
-        height: 46
+        x: 264
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3400,12 +3413,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 368
-        width: 62
-        height: 46
+        x: 330
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3422,12 +3435,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 368
-        width: 62
-        height: 46
+        x: 396
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3444,12 +3457,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 368
-        width: 62
-        height: 46
+        x: 462
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3466,12 +3479,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 368
-        width: 62
-        height: 46
+        x: 528
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3488,12 +3501,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 368
-        width: 62
-        height: 46
+        x: 594
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3510,12 +3523,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 368
-        width: 62
-        height: 46
+        x: 660
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3532,12 +3545,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 368
-        width: 62
-        height: 46
+        x: 726
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3554,12 +3567,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 368
-        width: 62
-        height: 46
+        x: 792
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3576,12 +3589,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 368
-        width: 62
-        height: 46
+        x: 858
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3598,12 +3611,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nnw_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 368
-        width: 62
-        height: 46
+        x: 924
+        y: 384
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3621,11 +3634,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 322
-        width: 62
-        height: 46
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3642,12 +3655,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 322
-        width: 62
-        height: 46
+        x: 66
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3664,12 +3677,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 322
-        width: 62
-        height: 46
+        x: 132
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3686,12 +3699,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 322
-        width: 62
-        height: 46
+        x: 198
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3708,12 +3721,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 322
-        width: 62
-        height: 46
+        x: 264
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3730,12 +3743,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 322
-        width: 62
-        height: 46
+        x: 330
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3752,12 +3765,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 322
-        width: 62
-        height: 46
+        x: 396
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3774,12 +3787,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 322
-        width: 62
-        height: 46
+        x: 462
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3796,12 +3809,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 322
-        width: 62
-        height: 46
+        x: 528
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3818,12 +3831,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 322
-        width: 62
-        height: 46
+        x: 594
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3840,12 +3853,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 322
-        width: 62
-        height: 46
+        x: 660
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3862,12 +3875,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 322
-        width: 62
-        height: 46
+        x: 726
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3884,12 +3897,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 322
-        width: 62
-        height: 46
+        x: 792
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3906,12 +3919,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 322
-        width: 62
-        height: 46
+        x: 858
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3928,12 +3941,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_n_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 322
-        width: 62
-        height: 46
+        x: 924
+        y: 336
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3951,11 +3964,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 276
-        width: 62
-        height: 46
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3972,12 +3985,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 276
-        width: 62
-        height: 46
+        x: 66
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3994,12 +4007,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 276
-        width: 62
-        height: 46
+        x: 132
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4016,12 +4029,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 276
-        width: 62
-        height: 46
+        x: 198
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4038,12 +4051,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 276
-        width: 62
-        height: 46
+        x: 264
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4060,12 +4073,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 276
-        width: 62
-        height: 46
+        x: 330
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4082,12 +4095,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 276
-        width: 62
-        height: 46
+        x: 396
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4104,12 +4117,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 276
-        width: 62
-        height: 46
+        x: 462
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4126,12 +4139,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 276
-        width: 62
-        height: 46
+        x: 528
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4148,12 +4161,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 276
-        width: 62
-        height: 46
+        x: 594
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4170,12 +4183,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 276
-        width: 62
-        height: 46
+        x: 660
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4192,12 +4205,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 276
-        width: 62
-        height: 46
+        x: 726
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4214,12 +4227,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 276
-        width: 62
-        height: 46
+        x: 792
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4236,12 +4249,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 276
-        width: 62
-        height: 46
+        x: 858
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4258,12 +4271,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_nne_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 276
-        width: 62
-        height: 46
+        x: 924
+        y: 288
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4281,11 +4294,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 230
-        width: 62
-        height: 46
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4302,12 +4315,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 230
-        width: 62
-        height: 46
+        x: 66
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4324,12 +4337,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 230
-        width: 62
-        height: 46
+        x: 132
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4346,12 +4359,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 230
-        width: 62
-        height: 46
+        x: 198
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4368,12 +4381,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 230
-        width: 62
-        height: 46
+        x: 264
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4390,12 +4403,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 230
-        width: 62
-        height: 46
+        x: 330
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4412,12 +4425,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 230
-        width: 62
-        height: 46
+        x: 396
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4434,12 +4447,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 230
-        width: 62
-        height: 46
+        x: 462
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4456,12 +4469,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 230
-        width: 62
-        height: 46
+        x: 528
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4478,12 +4491,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 230
-        width: 62
-        height: 46
+        x: 594
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4500,12 +4513,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 230
-        width: 62
-        height: 46
+        x: 660
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4522,12 +4535,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 230
-        width: 62
-        height: 46
+        x: 726
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4544,12 +4557,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 230
-        width: 62
-        height: 46
+        x: 792
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4566,12 +4579,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 230
-        width: 62
-        height: 46
+        x: 858
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4588,12 +4601,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ne_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 230
-        width: 62
-        height: 46
+        x: 924
+        y: 240
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4611,11 +4624,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 184
-        width: 62
-        height: 46
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4632,12 +4645,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 184
-        width: 62
-        height: 46
+        x: 66
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4654,12 +4667,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 184
-        width: 62
-        height: 46
+        x: 132
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4676,12 +4689,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 184
-        width: 62
-        height: 46
+        x: 198
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4698,12 +4711,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 184
-        width: 62
-        height: 46
+        x: 264
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4720,12 +4733,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 184
-        width: 62
-        height: 46
+        x: 330
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4742,12 +4755,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 184
-        width: 62
-        height: 46
+        x: 396
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4764,12 +4777,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 184
-        width: 62
-        height: 46
+        x: 462
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4786,12 +4799,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 184
-        width: 62
-        height: 46
+        x: 528
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4808,12 +4821,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 184
-        width: 62
-        height: 46
+        x: 594
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4830,12 +4843,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 184
-        width: 62
-        height: 46
+        x: 660
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4852,12 +4865,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 184
-        width: 62
-        height: 46
+        x: 726
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4874,12 +4887,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 184
-        width: 62
-        height: 46
+        x: 792
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4896,12 +4909,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 184
-        width: 62
-        height: 46
+        x: 858
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4918,12 +4931,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ene_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 184
-        width: 62
-        height: 46
+        x: 924
+        y: 192
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4941,11 +4954,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 138
-        width: 62
-        height: 46
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4962,12 +4975,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 138
-        width: 62
-        height: 46
+        x: 66
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4984,12 +4997,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 138
-        width: 62
-        height: 46
+        x: 132
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5006,12 +5019,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 138
-        width: 62
-        height: 46
+        x: 198
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5028,12 +5041,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 138
-        width: 62
-        height: 46
+        x: 264
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5050,12 +5063,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 138
-        width: 62
-        height: 46
+        x: 330
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5072,12 +5085,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 138
-        width: 62
-        height: 46
+        x: 396
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5094,12 +5107,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 138
-        width: 62
-        height: 46
+        x: 462
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5116,12 +5129,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 138
-        width: 62
-        height: 46
+        x: 528
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5138,12 +5151,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 138
-        width: 62
-        height: 46
+        x: 594
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5160,12 +5173,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 138
-        width: 62
-        height: 46
+        x: 660
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5182,12 +5195,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 138
-        width: 62
-        height: 46
+        x: 726
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5204,12 +5217,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 138
-        width: 62
-        height: 46
+        x: 792
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5226,12 +5239,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 138
-        width: 62
-        height: 46
+        x: 858
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5248,12 +5261,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_e_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 138
-        width: 62
-        height: 46
+        x: 924
+        y: 144
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5271,11 +5284,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 92
-        width: 62
-        height: 46
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5292,12 +5305,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 92
-        width: 62
-        height: 46
+        x: 66
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5314,12 +5327,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 92
-        width: 62
-        height: 46
+        x: 132
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5336,12 +5349,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 92
-        width: 62
-        height: 46
+        x: 198
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5358,12 +5371,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 92
-        width: 62
-        height: 46
+        x: 264
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5380,12 +5393,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 92
-        width: 62
-        height: 46
+        x: 330
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5402,12 +5415,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 92
-        width: 62
-        height: 46
+        x: 396
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5424,12 +5437,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 92
-        width: 62
-        height: 46
+        x: 462
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5446,12 +5459,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 92
-        width: 62
-        height: 46
+        x: 528
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5468,12 +5481,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 92
-        width: 62
-        height: 46
+        x: 594
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5490,12 +5503,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 92
-        width: 62
-        height: 46
+        x: 660
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5512,12 +5525,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 92
-        width: 62
-        height: 46
+        x: 726
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5534,12 +5547,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 92
-        width: 62
-        height: 46
+        x: 792
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5556,12 +5569,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 92
-        width: 62
-        height: 46
+        x: 858
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5578,12 +5591,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_ese_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 92
-        width: 62
-        height: 46
+        x: 924
+        y: 96
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5601,11 +5614,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 46
-        width: 62
-        height: 46
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5622,12 +5635,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_01
       rect:
         serializedVersion: 2
-        x: 62
-        y: 46
-        width: 62
-        height: 46
+        x: 66
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5644,12 +5657,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_02
       rect:
         serializedVersion: 2
-        x: 124
-        y: 46
-        width: 62
-        height: 46
+        x: 132
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5666,12 +5679,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_03
       rect:
         serializedVersion: 2
-        x: 186
-        y: 46
-        width: 62
-        height: 46
+        x: 198
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5688,12 +5701,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_04
       rect:
         serializedVersion: 2
-        x: 248
-        y: 46
-        width: 62
-        height: 46
+        x: 264
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5710,12 +5723,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_05
       rect:
         serializedVersion: 2
-        x: 310
-        y: 46
-        width: 62
-        height: 46
+        x: 330
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5732,12 +5745,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_06
       rect:
         serializedVersion: 2
-        x: 372
-        y: 46
-        width: 62
-        height: 46
+        x: 396
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5754,12 +5767,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_07
       rect:
         serializedVersion: 2
-        x: 434
-        y: 46
-        width: 62
-        height: 46
+        x: 462
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5776,12 +5789,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_08
       rect:
         serializedVersion: 2
-        x: 496
-        y: 46
-        width: 62
-        height: 46
+        x: 528
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5798,12 +5811,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_09
       rect:
         serializedVersion: 2
-        x: 558
-        y: 46
-        width: 62
-        height: 46
+        x: 594
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5820,12 +5833,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_10
       rect:
         serializedVersion: 2
-        x: 620
-        y: 46
-        width: 62
-        height: 46
+        x: 660
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5842,12 +5855,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_11
       rect:
         serializedVersion: 2
-        x: 682
-        y: 46
-        width: 62
-        height: 46
+        x: 726
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5864,12 +5877,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_12
       rect:
         serializedVersion: 2
-        x: 744
-        y: 46
-        width: 62
-        height: 46
+        x: 792
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5886,12 +5899,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_13
       rect:
         serializedVersion: 2
-        x: 806
-        y: 46
-        width: 62
-        height: 46
+        x: 858
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5908,12 +5921,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_se_14
       rect:
         serializedVersion: 2
-        x: 868
-        y: 46
-        width: 62
-        height: 46
+        x: 924
+        y: 48
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5932,10 +5945,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5952,12 +5965,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_01
       rect:
         serializedVersion: 2
-        x: 62
+        x: 66
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5974,12 +5987,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_02
       rect:
         serializedVersion: 2
-        x: 124
+        x: 132
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5996,12 +6009,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_03
       rect:
         serializedVersion: 2
-        x: 186
+        x: 198
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6018,12 +6031,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_04
       rect:
         serializedVersion: 2
-        x: 248
+        x: 264
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6040,12 +6053,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_05
       rect:
         serializedVersion: 2
-        x: 310
+        x: 330
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6062,12 +6075,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_06
       rect:
         serializedVersion: 2
-        x: 372
+        x: 396
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6084,12 +6097,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_07
       rect:
         serializedVersion: 2
-        x: 434
+        x: 462
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6106,12 +6119,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_08
       rect:
         serializedVersion: 2
-        x: 496
+        x: 528
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6128,12 +6141,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_09
       rect:
         serializedVersion: 2
-        x: 558
+        x: 594
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6150,12 +6163,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_10
       rect:
         serializedVersion: 2
-        x: 620
+        x: 660
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6172,12 +6185,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_11
       rect:
         serializedVersion: 2
-        x: 682
+        x: 726
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6194,12 +6207,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_12
       rect:
         serializedVersion: 2
-        x: 744
+        x: 792
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6216,12 +6229,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_13
       rect:
         serializedVersion: 2
-        x: 806
+        x: 858
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6238,12 +6251,12 @@ TextureImporter:
       name: wild_arrow_weapon_splinterbough_1h_attack_move_left_sse_14
       rect:
         serializedVersion: 2
-        x: 868
+        x: 924
         y: 0
-        width: 62
-        height: 46
+        width: 66
+        height: 48
       alignment: 9
-      pivot: {x: 0.5, y: -0.2826087}
+      pivot: {x: 0.5, y: -0.24999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

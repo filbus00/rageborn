@@ -922,6 +922,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -930,11 +943,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 690
-        width: 64
-        height: 46
+        y: 750
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -951,12 +964,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_s_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 690
-        width: 64
-        height: 46
+        x: 68
+        y: 750
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -973,12 +986,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_s_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 690
-        width: 64
-        height: 46
+        x: 136
+        y: 750
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -995,12 +1008,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_s_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 690
-        width: 64
-        height: 46
+        x: 204
+        y: 750
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1017,12 +1030,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_s_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 690
-        width: 64
-        height: 46
+        x: 272
+        y: 750
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1039,12 +1052,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_s_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 690
-        width: 64
-        height: 46
+        x: 340
+        y: 750
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1061,12 +1074,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_s_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 690
-        width: 64
-        height: 46
+        x: 408
+        y: 750
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1083,12 +1096,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_s_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 690
-        width: 64
-        height: 46
+        x: 476
+        y: 750
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1105,12 +1118,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_s_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 690
-        width: 64
-        height: 46
+        x: 544
+        y: 750
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1127,12 +1140,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_s_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 690
-        width: 64
-        height: 46
+        x: 612
+        y: 750
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1150,11 +1163,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 644
-        width: 64
-        height: 46
+        y: 700
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1171,12 +1184,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ssw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 644
-        width: 64
-        height: 46
+        x: 68
+        y: 700
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1193,12 +1206,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ssw_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 644
-        width: 64
-        height: 46
+        x: 136
+        y: 700
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1215,12 +1228,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ssw_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 644
-        width: 64
-        height: 46
+        x: 204
+        y: 700
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1237,12 +1250,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ssw_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 644
-        width: 64
-        height: 46
+        x: 272
+        y: 700
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1259,12 +1272,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ssw_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 644
-        width: 64
-        height: 46
+        x: 340
+        y: 700
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1281,12 +1294,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ssw_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 644
-        width: 64
-        height: 46
+        x: 408
+        y: 700
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1303,12 +1316,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ssw_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 644
-        width: 64
-        height: 46
+        x: 476
+        y: 700
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1325,12 +1338,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ssw_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 644
-        width: 64
-        height: 46
+        x: 544
+        y: 700
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1347,12 +1360,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ssw_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 644
-        width: 64
-        height: 46
+        x: 612
+        y: 700
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1370,11 +1383,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 598
-        width: 64
-        height: 46
+        y: 650
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1391,12 +1404,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 598
-        width: 64
-        height: 46
+        x: 68
+        y: 650
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1413,12 +1426,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sw_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 598
-        width: 64
-        height: 46
+        x: 136
+        y: 650
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1435,12 +1448,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sw_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 598
-        width: 64
-        height: 46
+        x: 204
+        y: 650
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1457,12 +1470,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sw_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 598
-        width: 64
-        height: 46
+        x: 272
+        y: 650
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1479,12 +1492,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sw_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 598
-        width: 64
-        height: 46
+        x: 340
+        y: 650
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1501,12 +1514,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sw_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 598
-        width: 64
-        height: 46
+        x: 408
+        y: 650
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1523,12 +1536,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sw_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 598
-        width: 64
-        height: 46
+        x: 476
+        y: 650
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1545,12 +1558,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sw_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 598
-        width: 64
-        height: 46
+        x: 544
+        y: 650
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1567,12 +1580,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sw_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 598
-        width: 64
-        height: 46
+        x: 612
+        y: 650
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1590,11 +1603,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 552
-        width: 64
-        height: 46
+        y: 600
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1611,12 +1624,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wsw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 552
-        width: 64
-        height: 46
+        x: 68
+        y: 600
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1633,12 +1646,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wsw_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 552
-        width: 64
-        height: 46
+        x: 136
+        y: 600
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1655,12 +1668,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wsw_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 552
-        width: 64
-        height: 46
+        x: 204
+        y: 600
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1677,12 +1690,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wsw_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 552
-        width: 64
-        height: 46
+        x: 272
+        y: 600
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1699,12 +1712,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wsw_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 552
-        width: 64
-        height: 46
+        x: 340
+        y: 600
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1721,12 +1734,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wsw_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 552
-        width: 64
-        height: 46
+        x: 408
+        y: 600
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1743,12 +1756,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wsw_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 552
-        width: 64
-        height: 46
+        x: 476
+        y: 600
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1765,12 +1778,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wsw_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 552
-        width: 64
-        height: 46
+        x: 544
+        y: 600
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1787,12 +1800,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wsw_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 552
-        width: 64
-        height: 46
+        x: 612
+        y: 600
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1810,11 +1823,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 506
-        width: 64
-        height: 46
+        y: 550
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1831,12 +1844,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_w_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 506
-        width: 64
-        height: 46
+        x: 68
+        y: 550
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1853,12 +1866,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_w_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 506
-        width: 64
-        height: 46
+        x: 136
+        y: 550
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1875,12 +1888,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_w_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 506
-        width: 64
-        height: 46
+        x: 204
+        y: 550
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1897,12 +1910,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_w_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 506
-        width: 64
-        height: 46
+        x: 272
+        y: 550
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1919,12 +1932,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_w_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 506
-        width: 64
-        height: 46
+        x: 340
+        y: 550
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1941,12 +1954,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_w_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 506
-        width: 64
-        height: 46
+        x: 408
+        y: 550
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1963,12 +1976,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_w_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 506
-        width: 64
-        height: 46
+        x: 476
+        y: 550
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1985,12 +1998,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_w_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 506
-        width: 64
-        height: 46
+        x: 544
+        y: 550
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2007,12 +2020,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_w_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 506
-        width: 64
-        height: 46
+        x: 612
+        y: 550
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2030,11 +2043,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 460
-        width: 64
-        height: 46
+        y: 500
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2051,12 +2064,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wnw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 460
-        width: 64
-        height: 46
+        x: 68
+        y: 500
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2073,12 +2086,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wnw_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 460
-        width: 64
-        height: 46
+        x: 136
+        y: 500
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2095,12 +2108,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wnw_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 460
-        width: 64
-        height: 46
+        x: 204
+        y: 500
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2117,12 +2130,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wnw_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 460
-        width: 64
-        height: 46
+        x: 272
+        y: 500
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2139,12 +2152,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wnw_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 460
-        width: 64
-        height: 46
+        x: 340
+        y: 500
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2161,12 +2174,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wnw_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 460
-        width: 64
-        height: 46
+        x: 408
+        y: 500
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2183,12 +2196,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wnw_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 460
-        width: 64
-        height: 46
+        x: 476
+        y: 500
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2205,12 +2218,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wnw_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 460
-        width: 64
-        height: 46
+        x: 544
+        y: 500
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2227,12 +2240,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_wnw_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 460
-        width: 64
-        height: 46
+        x: 612
+        y: 500
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2250,11 +2263,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 414
-        width: 64
-        height: 46
+        y: 450
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2271,12 +2284,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 414
-        width: 64
-        height: 46
+        x: 68
+        y: 450
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2293,12 +2306,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nw_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 414
-        width: 64
-        height: 46
+        x: 136
+        y: 450
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2315,12 +2328,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nw_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 414
-        width: 64
-        height: 46
+        x: 204
+        y: 450
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2337,12 +2350,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nw_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 414
-        width: 64
-        height: 46
+        x: 272
+        y: 450
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2359,12 +2372,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nw_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 414
-        width: 64
-        height: 46
+        x: 340
+        y: 450
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2381,12 +2394,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nw_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 414
-        width: 64
-        height: 46
+        x: 408
+        y: 450
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2403,12 +2416,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nw_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 414
-        width: 64
-        height: 46
+        x: 476
+        y: 450
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2425,12 +2438,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nw_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 414
-        width: 64
-        height: 46
+        x: 544
+        y: 450
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2447,12 +2460,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nw_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 414
-        width: 64
-        height: 46
+        x: 612
+        y: 450
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2470,11 +2483,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 368
-        width: 64
-        height: 46
+        y: 400
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2491,12 +2504,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nnw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 368
-        width: 64
-        height: 46
+        x: 68
+        y: 400
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2513,12 +2526,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nnw_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 368
-        width: 64
-        height: 46
+        x: 136
+        y: 400
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2535,12 +2548,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nnw_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 368
-        width: 64
-        height: 46
+        x: 204
+        y: 400
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2557,12 +2570,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nnw_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 368
-        width: 64
-        height: 46
+        x: 272
+        y: 400
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2579,12 +2592,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nnw_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 368
-        width: 64
-        height: 46
+        x: 340
+        y: 400
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2601,12 +2614,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nnw_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 368
-        width: 64
-        height: 46
+        x: 408
+        y: 400
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2623,12 +2636,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nnw_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 368
-        width: 64
-        height: 46
+        x: 476
+        y: 400
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2645,12 +2658,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nnw_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 368
-        width: 64
-        height: 46
+        x: 544
+        y: 400
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2667,12 +2680,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nnw_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 368
-        width: 64
-        height: 46
+        x: 612
+        y: 400
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2690,11 +2703,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 322
-        width: 64
-        height: 46
+        y: 350
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2711,12 +2724,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_n_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 322
-        width: 64
-        height: 46
+        x: 68
+        y: 350
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2733,12 +2746,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_n_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 322
-        width: 64
-        height: 46
+        x: 136
+        y: 350
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2755,12 +2768,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_n_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 322
-        width: 64
-        height: 46
+        x: 204
+        y: 350
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2777,12 +2790,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_n_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 322
-        width: 64
-        height: 46
+        x: 272
+        y: 350
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2799,12 +2812,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_n_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 322
-        width: 64
-        height: 46
+        x: 340
+        y: 350
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2821,12 +2834,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_n_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 322
-        width: 64
-        height: 46
+        x: 408
+        y: 350
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2843,12 +2856,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_n_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 322
-        width: 64
-        height: 46
+        x: 476
+        y: 350
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2865,12 +2878,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_n_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 322
-        width: 64
-        height: 46
+        x: 544
+        y: 350
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2887,12 +2900,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_n_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 322
-        width: 64
-        height: 46
+        x: 612
+        y: 350
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2910,11 +2923,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 276
-        width: 64
-        height: 46
+        y: 300
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2931,12 +2944,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nne_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 276
-        width: 64
-        height: 46
+        x: 68
+        y: 300
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2953,12 +2966,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nne_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 276
-        width: 64
-        height: 46
+        x: 136
+        y: 300
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2975,12 +2988,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nne_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 276
-        width: 64
-        height: 46
+        x: 204
+        y: 300
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2997,12 +3010,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nne_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 276
-        width: 64
-        height: 46
+        x: 272
+        y: 300
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3019,12 +3032,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nne_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 276
-        width: 64
-        height: 46
+        x: 340
+        y: 300
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3041,12 +3054,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nne_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 276
-        width: 64
-        height: 46
+        x: 408
+        y: 300
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3063,12 +3076,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nne_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 276
-        width: 64
-        height: 46
+        x: 476
+        y: 300
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3085,12 +3098,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nne_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 276
-        width: 64
-        height: 46
+        x: 544
+        y: 300
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3107,12 +3120,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_nne_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 276
-        width: 64
-        height: 46
+        x: 612
+        y: 300
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3130,11 +3143,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 230
-        width: 64
-        height: 46
+        y: 250
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3151,12 +3164,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ne_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 230
-        width: 64
-        height: 46
+        x: 68
+        y: 250
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3173,12 +3186,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ne_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 230
-        width: 64
-        height: 46
+        x: 136
+        y: 250
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3195,12 +3208,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ne_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 230
-        width: 64
-        height: 46
+        x: 204
+        y: 250
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3217,12 +3230,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ne_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 230
-        width: 64
-        height: 46
+        x: 272
+        y: 250
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3239,12 +3252,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ne_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 230
-        width: 64
-        height: 46
+        x: 340
+        y: 250
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3261,12 +3274,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ne_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 230
-        width: 64
-        height: 46
+        x: 408
+        y: 250
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3283,12 +3296,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ne_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 230
-        width: 64
-        height: 46
+        x: 476
+        y: 250
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3305,12 +3318,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ne_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 230
-        width: 64
-        height: 46
+        x: 544
+        y: 250
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3327,12 +3340,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ne_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 230
-        width: 64
-        height: 46
+        x: 612
+        y: 250
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3350,11 +3363,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 184
-        width: 64
-        height: 46
+        y: 200
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3371,12 +3384,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ene_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 184
-        width: 64
-        height: 46
+        x: 68
+        y: 200
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3393,12 +3406,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ene_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 184
-        width: 64
-        height: 46
+        x: 136
+        y: 200
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3415,12 +3428,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ene_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 184
-        width: 64
-        height: 46
+        x: 204
+        y: 200
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3437,12 +3450,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ene_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 184
-        width: 64
-        height: 46
+        x: 272
+        y: 200
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3459,12 +3472,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ene_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 184
-        width: 64
-        height: 46
+        x: 340
+        y: 200
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3481,12 +3494,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ene_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 184
-        width: 64
-        height: 46
+        x: 408
+        y: 200
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3503,12 +3516,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ene_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 184
-        width: 64
-        height: 46
+        x: 476
+        y: 200
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3525,12 +3538,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ene_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 184
-        width: 64
-        height: 46
+        x: 544
+        y: 200
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3547,12 +3560,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ene_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 184
-        width: 64
-        height: 46
+        x: 612
+        y: 200
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3570,11 +3583,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 138
-        width: 64
-        height: 46
+        y: 150
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3591,12 +3604,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_e_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 138
-        width: 64
-        height: 46
+        x: 68
+        y: 150
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3613,12 +3626,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_e_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 138
-        width: 64
-        height: 46
+        x: 136
+        y: 150
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3635,12 +3648,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_e_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 138
-        width: 64
-        height: 46
+        x: 204
+        y: 150
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3657,12 +3670,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_e_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 138
-        width: 64
-        height: 46
+        x: 272
+        y: 150
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3679,12 +3692,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_e_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 138
-        width: 64
-        height: 46
+        x: 340
+        y: 150
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3701,12 +3714,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_e_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 138
-        width: 64
-        height: 46
+        x: 408
+        y: 150
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3723,12 +3736,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_e_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 138
-        width: 64
-        height: 46
+        x: 476
+        y: 150
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3745,12 +3758,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_e_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 138
-        width: 64
-        height: 46
+        x: 544
+        y: 150
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3767,12 +3780,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_e_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 138
-        width: 64
-        height: 46
+        x: 612
+        y: 150
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3790,11 +3803,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 92
-        width: 64
-        height: 46
+        y: 100
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3811,12 +3824,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ese_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 92
-        width: 64
-        height: 46
+        x: 68
+        y: 100
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3833,12 +3846,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ese_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 92
-        width: 64
-        height: 46
+        x: 136
+        y: 100
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3855,12 +3868,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ese_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 92
-        width: 64
-        height: 46
+        x: 204
+        y: 100
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3877,12 +3890,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ese_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 92
-        width: 64
-        height: 46
+        x: 272
+        y: 100
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3899,12 +3912,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ese_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 92
-        width: 64
-        height: 46
+        x: 340
+        y: 100
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3921,12 +3934,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ese_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 92
-        width: 64
-        height: 46
+        x: 408
+        y: 100
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3943,12 +3956,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ese_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 92
-        width: 64
-        height: 46
+        x: 476
+        y: 100
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3965,12 +3978,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ese_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 92
-        width: 64
-        height: 46
+        x: 544
+        y: 100
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3987,12 +4000,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_ese_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 92
-        width: 64
-        height: 46
+        x: 612
+        y: 100
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4010,11 +4023,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 46
-        width: 64
-        height: 46
+        y: 50
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4031,12 +4044,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_se_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 46
-        width: 64
-        height: 46
+        x: 68
+        y: 50
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4053,12 +4066,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_se_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 46
-        width: 64
-        height: 46
+        x: 136
+        y: 50
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4075,12 +4088,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_se_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 46
-        width: 64
-        height: 46
+        x: 204
+        y: 50
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4097,12 +4110,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_se_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 46
-        width: 64
-        height: 46
+        x: 272
+        y: 50
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4119,12 +4132,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_se_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 46
-        width: 64
-        height: 46
+        x: 340
+        y: 50
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4141,12 +4154,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_se_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 46
-        width: 64
-        height: 46
+        x: 408
+        y: 50
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4163,12 +4176,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_se_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 46
-        width: 64
-        height: 46
+        x: 476
+        y: 50
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4185,12 +4198,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_se_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 46
-        width: 64
-        height: 46
+        x: 544
+        y: 50
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4207,12 +4220,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_se_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 46
-        width: 64
-        height: 46
+        x: 612
+        y: 50
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4231,10 +4244,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 46
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4251,12 +4264,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sse_01
       rect:
         serializedVersion: 2
-        x: 64
+        x: 68
         y: 0
-        width: 64
-        height: 46
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4273,12 +4286,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sse_02
       rect:
         serializedVersion: 2
-        x: 128
+        x: 136
         y: 0
-        width: 64
-        height: 46
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4295,12 +4308,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sse_03
       rect:
         serializedVersion: 2
-        x: 192
+        x: 204
         y: 0
-        width: 64
-        height: 46
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4317,12 +4330,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sse_04
       rect:
         serializedVersion: 2
-        x: 256
+        x: 272
         y: 0
-        width: 64
-        height: 46
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4339,12 +4352,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sse_05
       rect:
         serializedVersion: 2
-        x: 320
+        x: 340
         y: 0
-        width: 64
-        height: 46
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4361,12 +4374,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sse_06
       rect:
         serializedVersion: 2
-        x: 384
+        x: 408
         y: 0
-        width: 64
-        height: 46
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4383,12 +4396,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sse_07
       rect:
         serializedVersion: 2
-        x: 448
+        x: 476
         y: 0
-        width: 64
-        height: 46
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4405,12 +4418,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sse_08
       rect:
         serializedVersion: 2
-        x: 512
+        x: 544
         y: 0
-        width: 64
-        height: 46
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4427,12 +4440,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunting_bow_1h_run_sse_09
       rect:
         serializedVersion: 2
-        x: 576
+        x: 612
         y: 0
-        width: 64
-        height: 46
+        width: 68
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: -0.19565216}
+      pivot: {x: 0.5, y: -0.13999999}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

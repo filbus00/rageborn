@@ -1465,6 +1465,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1474,7 +1487,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1494,9 +1507,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1516,9 +1529,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1538,9 +1551,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1560,9 +1573,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1582,9 +1595,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1604,9 +1617,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1626,9 +1639,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1648,9 +1661,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1670,9 +1683,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1692,9 +1705,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1714,9 +1727,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1736,9 +1749,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1758,9 +1771,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1780,9 +1793,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_s_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 480
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1804,7 +1817,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1824,9 +1837,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1846,9 +1859,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1868,9 +1881,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1890,9 +1903,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1912,9 +1925,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1934,9 +1947,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1956,9 +1969,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -1978,9 +1991,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2000,9 +2013,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2022,9 +2035,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2044,9 +2057,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2066,9 +2079,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2088,9 +2101,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2110,9 +2123,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ssw_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 448
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2134,7 +2147,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2154,9 +2167,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2176,9 +2189,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2198,9 +2211,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2220,9 +2233,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2242,9 +2255,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2264,9 +2277,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2286,9 +2299,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2308,9 +2321,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2330,9 +2343,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2352,9 +2365,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2374,9 +2387,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2396,9 +2409,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2418,9 +2431,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2440,9 +2453,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sw_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 416
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2464,7 +2477,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2484,9 +2497,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2506,9 +2519,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2528,9 +2541,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2550,9 +2563,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2572,9 +2585,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2594,9 +2607,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2616,9 +2629,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2638,9 +2651,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2660,9 +2673,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2682,9 +2695,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2704,9 +2717,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2726,9 +2739,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2748,9 +2761,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2770,9 +2783,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wsw_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 384
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2794,7 +2807,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2814,9 +2827,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2836,9 +2849,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2858,9 +2871,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2880,9 +2893,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2902,9 +2915,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2924,9 +2937,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2946,9 +2959,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2968,9 +2981,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -2990,9 +3003,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3012,9 +3025,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3034,9 +3047,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3056,9 +3069,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3078,9 +3091,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3100,9 +3113,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_w_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 352
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3124,7 +3137,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3144,9 +3157,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3166,9 +3179,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3188,9 +3201,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3210,9 +3223,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3232,9 +3245,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3254,9 +3267,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3276,9 +3289,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3298,9 +3311,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3320,9 +3333,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3342,9 +3355,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3364,9 +3377,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3386,9 +3399,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3408,9 +3421,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3430,9 +3443,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_wnw_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 320
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3454,7 +3467,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3474,9 +3487,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3496,9 +3509,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3518,9 +3531,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3540,9 +3553,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3562,9 +3575,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3584,9 +3597,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3606,9 +3619,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3628,9 +3641,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3650,9 +3663,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3672,9 +3685,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3694,9 +3707,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3716,9 +3729,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3738,9 +3751,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3760,9 +3773,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nw_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 288
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3784,7 +3797,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3804,9 +3817,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3826,9 +3839,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3848,9 +3861,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3870,9 +3883,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3892,9 +3905,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3914,9 +3927,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3936,9 +3949,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3958,9 +3971,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -3980,9 +3993,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4002,9 +4015,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4024,9 +4037,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4046,9 +4059,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4068,9 +4081,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4090,9 +4103,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nnw_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 256
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4114,7 +4127,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4134,9 +4147,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4156,9 +4169,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4178,9 +4191,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4200,9 +4213,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4222,9 +4235,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4244,9 +4257,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4266,9 +4279,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4288,9 +4301,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4310,9 +4323,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4332,9 +4345,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4354,9 +4367,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4376,9 +4389,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4398,9 +4411,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4420,9 +4433,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_n_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 224
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4444,7 +4457,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4464,9 +4477,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4486,9 +4499,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4508,9 +4521,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4530,9 +4543,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4552,9 +4565,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4574,9 +4587,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4596,9 +4609,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4618,9 +4631,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4640,9 +4653,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4662,9 +4675,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4684,9 +4697,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4706,9 +4719,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4728,9 +4741,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4750,9 +4763,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_nne_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 192
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4774,7 +4787,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4794,9 +4807,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4816,9 +4829,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4838,9 +4851,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4860,9 +4873,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4882,9 +4895,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4904,9 +4917,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4926,9 +4939,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4948,9 +4961,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4970,9 +4983,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -4992,9 +5005,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5014,9 +5027,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5036,9 +5049,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5058,9 +5071,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5080,9 +5093,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ne_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 160
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5104,7 +5117,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5124,9 +5137,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5146,9 +5159,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5168,9 +5181,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5190,9 +5203,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5212,9 +5225,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5234,9 +5247,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5256,9 +5269,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5278,9 +5291,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5300,9 +5313,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5322,9 +5335,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5344,9 +5357,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5366,9 +5379,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5388,9 +5401,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5410,9 +5423,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ene_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 128
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5434,7 +5447,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5454,9 +5467,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5476,9 +5489,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5498,9 +5511,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5520,9 +5533,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5542,9 +5555,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5564,9 +5577,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5586,9 +5599,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5608,9 +5621,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5630,9 +5643,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5652,9 +5665,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5674,9 +5687,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5696,9 +5709,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5718,9 +5731,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5740,9 +5753,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_e_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 96
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5764,7 +5777,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5784,9 +5797,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5806,9 +5819,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5828,9 +5841,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5850,9 +5863,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5872,9 +5885,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5894,9 +5907,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5916,9 +5929,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5938,9 +5951,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5960,9 +5973,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -5982,9 +5995,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6004,9 +6017,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6026,9 +6039,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6048,9 +6061,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6070,9 +6083,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_ese_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 64
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6094,7 +6107,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6114,9 +6127,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6136,9 +6149,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6158,9 +6171,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6180,9 +6193,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6202,9 +6215,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6224,9 +6237,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6246,9 +6259,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6268,9 +6281,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6290,9 +6303,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6312,9 +6325,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6334,9 +6347,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6356,9 +6369,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6378,9 +6391,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6400,9 +6413,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_se_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 32
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6424,7 +6437,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6444,9 +6457,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6466,9 +6479,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6488,9 +6501,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6510,9 +6523,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6532,9 +6545,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6554,9 +6567,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6576,9 +6589,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6598,9 +6611,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6620,9 +6633,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6642,9 +6655,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6664,9 +6677,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6686,9 +6699,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6708,9 +6721,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}
@@ -6730,9 +6743,9 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_overdraw_move_back_sse_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 0
-        width: 54
+        width: 56
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: -0.8125}

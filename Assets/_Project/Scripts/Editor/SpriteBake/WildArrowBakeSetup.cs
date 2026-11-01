@@ -196,6 +196,9 @@ namespace ARPG.Editor
             job.grips.Clear();
             if (set.clips.Count > 0)
                 job.grips.Add(set);
+            // Her reworked look (the owner, 2026-11-01: "do it", after the third preview).
+            if (own)
+                Rework(job);
             EditorUtility.SetDirty(job);
             AssetDatabase.SaveAssets();
             Debug.Log($"[ARPG] Wild Arrow bake job ({(own ? "her own model" : "the stand-in")}): {string.Join(", ", set.clips.Select(c => c.name))}.");

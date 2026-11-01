@@ -1291,6 +1291,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1300,7 +1313,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1320,9 +1333,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1342,9 +1355,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1364,9 +1377,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1386,9 +1399,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1408,9 +1421,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1430,9 +1443,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1452,9 +1465,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1474,9 +1487,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1496,9 +1509,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1518,9 +1531,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1540,9 +1553,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1562,9 +1575,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1584,9 +1597,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1606,9 +1619,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_s_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 465
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1630,7 +1643,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1650,9 +1663,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1672,9 +1685,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1694,9 +1707,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1716,9 +1729,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1738,9 +1751,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1760,9 +1773,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1782,9 +1795,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1804,9 +1817,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1826,9 +1839,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1848,9 +1861,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1870,9 +1883,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1892,9 +1905,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1914,9 +1927,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1936,9 +1949,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ssw_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 434
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1960,7 +1973,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -1980,9 +1993,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2002,9 +2015,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2024,9 +2037,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2046,9 +2059,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2068,9 +2081,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2090,9 +2103,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2112,9 +2125,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2134,9 +2147,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2156,9 +2169,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2178,9 +2191,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2200,9 +2213,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2222,9 +2235,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2244,9 +2257,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2266,9 +2279,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sw_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 403
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2290,7 +2303,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2310,9 +2323,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2332,9 +2345,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2354,9 +2367,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2376,9 +2389,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2398,9 +2411,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2420,9 +2433,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2442,9 +2455,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2464,9 +2477,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2486,9 +2499,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2508,9 +2521,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2530,9 +2543,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2552,9 +2565,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2574,9 +2587,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2596,9 +2609,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wsw_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 372
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2620,7 +2633,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2640,9 +2653,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2662,9 +2675,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2684,9 +2697,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2706,9 +2719,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2728,9 +2741,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2750,9 +2763,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2772,9 +2785,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2794,9 +2807,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2816,9 +2829,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2838,9 +2851,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2860,9 +2873,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2882,9 +2895,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2904,9 +2917,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2926,9 +2939,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_w_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 341
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2950,7 +2963,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2970,9 +2983,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -2992,9 +3005,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3014,9 +3027,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3036,9 +3049,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3058,9 +3071,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3080,9 +3093,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3102,9 +3115,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3124,9 +3137,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3146,9 +3159,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3168,9 +3181,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3190,9 +3203,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3212,9 +3225,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3234,9 +3247,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3256,9 +3269,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_wnw_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 310
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3280,7 +3293,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3300,9 +3313,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3322,9 +3335,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3344,9 +3357,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3366,9 +3379,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3388,9 +3401,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3410,9 +3423,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3432,9 +3445,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3454,9 +3467,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3476,9 +3489,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3498,9 +3511,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3520,9 +3533,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3542,9 +3555,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3564,9 +3577,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3586,9 +3599,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nw_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 279
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3610,7 +3623,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3630,9 +3643,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3652,9 +3665,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3674,9 +3687,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3696,9 +3709,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3718,9 +3731,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3740,9 +3753,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3762,9 +3775,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3784,9 +3797,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3806,9 +3819,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3828,9 +3841,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3850,9 +3863,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3872,9 +3885,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3894,9 +3907,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3916,9 +3929,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nnw_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 248
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3940,7 +3953,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3960,9 +3973,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -3982,9 +3995,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4004,9 +4017,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4026,9 +4039,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4048,9 +4061,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4070,9 +4083,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4092,9 +4105,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4114,9 +4127,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4136,9 +4149,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4158,9 +4171,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4180,9 +4193,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4202,9 +4215,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4224,9 +4237,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4246,9 +4259,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_n_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 217
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4270,7 +4283,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4290,9 +4303,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4312,9 +4325,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4334,9 +4347,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4356,9 +4369,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4378,9 +4391,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4400,9 +4413,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4422,9 +4435,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4444,9 +4457,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4466,9 +4479,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4488,9 +4501,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4510,9 +4523,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4532,9 +4545,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4554,9 +4567,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4576,9 +4589,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_nne_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 186
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4600,7 +4613,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4620,9 +4633,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4642,9 +4655,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4664,9 +4677,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4686,9 +4699,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4708,9 +4721,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4730,9 +4743,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4752,9 +4765,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4774,9 +4787,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4796,9 +4809,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4818,9 +4831,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4840,9 +4853,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4862,9 +4875,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4884,9 +4897,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4906,9 +4919,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ne_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 155
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4930,7 +4943,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4950,9 +4963,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4972,9 +4985,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -4994,9 +5007,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5016,9 +5029,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5038,9 +5051,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5060,9 +5073,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5082,9 +5095,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5104,9 +5117,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5126,9 +5139,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5148,9 +5161,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5170,9 +5183,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5192,9 +5205,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5214,9 +5227,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5236,9 +5249,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ene_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 124
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5260,7 +5273,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5280,9 +5293,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5302,9 +5315,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5324,9 +5337,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5346,9 +5359,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5368,9 +5381,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5390,9 +5403,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5412,9 +5425,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5434,9 +5447,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5456,9 +5469,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5478,9 +5491,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5500,9 +5513,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5522,9 +5535,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5544,9 +5557,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5566,9 +5579,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_e_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 93
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5590,7 +5603,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5610,9 +5623,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5632,9 +5645,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5654,9 +5667,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5676,9 +5689,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5698,9 +5711,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5720,9 +5733,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5742,9 +5755,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5764,9 +5777,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5786,9 +5799,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5808,9 +5821,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5830,9 +5843,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5852,9 +5865,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5874,9 +5887,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5896,9 +5909,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_ese_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 62
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5920,7 +5933,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5940,9 +5953,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5962,9 +5975,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -5984,9 +5997,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6006,9 +6019,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6028,9 +6041,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6050,9 +6063,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6072,9 +6085,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6094,9 +6107,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6116,9 +6129,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6138,9 +6151,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6160,9 +6173,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6182,9 +6195,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6204,9 +6217,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6226,9 +6239,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_se_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 31
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6250,7 +6263,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6270,9 +6283,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 56
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6292,9 +6305,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 112
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6314,9 +6327,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 168
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6336,9 +6349,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 224
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6358,9 +6371,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 280
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6380,9 +6393,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 336
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6402,9 +6415,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 392
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6424,9 +6437,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 448
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6446,9 +6459,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 504
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6468,9 +6481,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_10
       rect:
         serializedVersion: 2
-        x: 540
+        x: 560
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6490,9 +6503,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_11
       rect:
         serializedVersion: 2
-        x: 594
+        x: 616
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6512,9 +6525,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_12
       rect:
         serializedVersion: 2
-        x: 648
+        x: 672
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6534,9 +6547,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_13
       rect:
         serializedVersion: 2
-        x: 702
+        x: 728
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}
@@ -6556,9 +6569,9 @@ TextureImporter:
       name: wild_arrow_gloves_gauntlets_1h_overdraw_move_sse_14
       rect:
         serializedVersion: 2
-        x: 756
+        x: 784
         y: 0
-        width: 54
+        width: 56
         height: 31
       alignment: 9
       pivot: {x: 0.5, y: -0.83870965}

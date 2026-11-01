@@ -865,6 +865,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -873,11 +886,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 750
-        width: 68
-        height: 50
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -894,12 +907,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 750
-        width: 68
-        height: 50
+        x: 72
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -916,12 +929,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 750
-        width: 68
-        height: 50
+        x: 144
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -938,12 +951,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 750
-        width: 68
-        height: 50
+        x: 216
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -960,12 +973,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 750
-        width: 68
-        height: 50
+        x: 288
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -982,12 +995,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 750
-        width: 68
-        height: 50
+        x: 360
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1004,12 +1017,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 750
-        width: 68
-        height: 50
+        x: 432
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1026,12 +1039,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 750
-        width: 68
-        height: 50
+        x: 504
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1048,12 +1061,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 750
-        width: 68
-        height: 50
+        x: 576
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1070,12 +1083,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 750
-        width: 68
-        height: 50
+        x: 648
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1092,12 +1105,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 750
-        width: 68
-        height: 50
+        x: 720
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1114,12 +1127,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 750
-        width: 68
-        height: 50
+        x: 792
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1136,12 +1149,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 750
-        width: 68
-        height: 50
+        x: 864
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1158,12 +1171,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 750
-        width: 68
-        height: 50
+        x: 936
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1180,12 +1193,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_s_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 750
-        width: 68
-        height: 50
+        x: 1008
+        y: 795
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1203,11 +1216,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 700
-        width: 68
-        height: 50
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1224,12 +1237,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 700
-        width: 68
-        height: 50
+        x: 72
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1246,12 +1259,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 700
-        width: 68
-        height: 50
+        x: 144
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1268,12 +1281,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 700
-        width: 68
-        height: 50
+        x: 216
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1290,12 +1303,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 700
-        width: 68
-        height: 50
+        x: 288
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1312,12 +1325,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 700
-        width: 68
-        height: 50
+        x: 360
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1334,12 +1347,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 700
-        width: 68
-        height: 50
+        x: 432
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1356,12 +1369,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 700
-        width: 68
-        height: 50
+        x: 504
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1378,12 +1391,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 700
-        width: 68
-        height: 50
+        x: 576
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1400,12 +1413,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 700
-        width: 68
-        height: 50
+        x: 648
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1422,12 +1435,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 700
-        width: 68
-        height: 50
+        x: 720
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1444,12 +1457,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 700
-        width: 68
-        height: 50
+        x: 792
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1466,12 +1479,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 700
-        width: 68
-        height: 50
+        x: 864
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1488,12 +1501,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 700
-        width: 68
-        height: 50
+        x: 936
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1510,12 +1523,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ssw_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 700
-        width: 68
-        height: 50
+        x: 1008
+        y: 742
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1533,11 +1546,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 650
-        width: 68
-        height: 50
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1554,12 +1567,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 650
-        width: 68
-        height: 50
+        x: 72
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1576,12 +1589,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 650
-        width: 68
-        height: 50
+        x: 144
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1598,12 +1611,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 650
-        width: 68
-        height: 50
+        x: 216
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1620,12 +1633,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 650
-        width: 68
-        height: 50
+        x: 288
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1642,12 +1655,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 650
-        width: 68
-        height: 50
+        x: 360
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1664,12 +1677,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 650
-        width: 68
-        height: 50
+        x: 432
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1686,12 +1699,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 650
-        width: 68
-        height: 50
+        x: 504
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1708,12 +1721,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 650
-        width: 68
-        height: 50
+        x: 576
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1730,12 +1743,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 650
-        width: 68
-        height: 50
+        x: 648
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1752,12 +1765,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 650
-        width: 68
-        height: 50
+        x: 720
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1774,12 +1787,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 650
-        width: 68
-        height: 50
+        x: 792
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1796,12 +1809,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 650
-        width: 68
-        height: 50
+        x: 864
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1818,12 +1831,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 650
-        width: 68
-        height: 50
+        x: 936
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1840,12 +1853,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sw_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 650
-        width: 68
-        height: 50
+        x: 1008
+        y: 689
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1863,11 +1876,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 600
-        width: 68
-        height: 50
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1884,12 +1897,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 600
-        width: 68
-        height: 50
+        x: 72
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1906,12 +1919,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 600
-        width: 68
-        height: 50
+        x: 144
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1928,12 +1941,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 600
-        width: 68
-        height: 50
+        x: 216
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1950,12 +1963,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 600
-        width: 68
-        height: 50
+        x: 288
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1972,12 +1985,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 600
-        width: 68
-        height: 50
+        x: 360
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1994,12 +2007,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 600
-        width: 68
-        height: 50
+        x: 432
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2016,12 +2029,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 600
-        width: 68
-        height: 50
+        x: 504
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2038,12 +2051,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 600
-        width: 68
-        height: 50
+        x: 576
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2060,12 +2073,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 600
-        width: 68
-        height: 50
+        x: 648
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2082,12 +2095,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 600
-        width: 68
-        height: 50
+        x: 720
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2104,12 +2117,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 600
-        width: 68
-        height: 50
+        x: 792
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2126,12 +2139,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 600
-        width: 68
-        height: 50
+        x: 864
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2148,12 +2161,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 600
-        width: 68
-        height: 50
+        x: 936
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2170,12 +2183,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wsw_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 600
-        width: 68
-        height: 50
+        x: 1008
+        y: 636
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2193,11 +2206,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 550
-        width: 68
-        height: 50
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2214,12 +2227,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 550
-        width: 68
-        height: 50
+        x: 72
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2236,12 +2249,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 550
-        width: 68
-        height: 50
+        x: 144
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2258,12 +2271,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 550
-        width: 68
-        height: 50
+        x: 216
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2280,12 +2293,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 550
-        width: 68
-        height: 50
+        x: 288
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2302,12 +2315,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 550
-        width: 68
-        height: 50
+        x: 360
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2324,12 +2337,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 550
-        width: 68
-        height: 50
+        x: 432
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2346,12 +2359,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 550
-        width: 68
-        height: 50
+        x: 504
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2368,12 +2381,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 550
-        width: 68
-        height: 50
+        x: 576
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2390,12 +2403,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 550
-        width: 68
-        height: 50
+        x: 648
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2412,12 +2425,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 550
-        width: 68
-        height: 50
+        x: 720
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2434,12 +2447,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 550
-        width: 68
-        height: 50
+        x: 792
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2456,12 +2469,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 550
-        width: 68
-        height: 50
+        x: 864
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2478,12 +2491,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 550
-        width: 68
-        height: 50
+        x: 936
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2500,12 +2513,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_w_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 550
-        width: 68
-        height: 50
+        x: 1008
+        y: 583
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2523,11 +2536,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 500
-        width: 68
-        height: 50
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2544,12 +2557,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 500
-        width: 68
-        height: 50
+        x: 72
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2566,12 +2579,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 500
-        width: 68
-        height: 50
+        x: 144
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2588,12 +2601,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 500
-        width: 68
-        height: 50
+        x: 216
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2610,12 +2623,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 500
-        width: 68
-        height: 50
+        x: 288
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2632,12 +2645,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 500
-        width: 68
-        height: 50
+        x: 360
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2654,12 +2667,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 500
-        width: 68
-        height: 50
+        x: 432
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2676,12 +2689,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 500
-        width: 68
-        height: 50
+        x: 504
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2698,12 +2711,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 500
-        width: 68
-        height: 50
+        x: 576
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2720,12 +2733,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 500
-        width: 68
-        height: 50
+        x: 648
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2742,12 +2755,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 500
-        width: 68
-        height: 50
+        x: 720
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2764,12 +2777,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 500
-        width: 68
-        height: 50
+        x: 792
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2786,12 +2799,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 500
-        width: 68
-        height: 50
+        x: 864
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2808,12 +2821,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 500
-        width: 68
-        height: 50
+        x: 936
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2830,12 +2843,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_wnw_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 500
-        width: 68
-        height: 50
+        x: 1008
+        y: 530
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2853,11 +2866,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 450
-        width: 68
-        height: 50
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2874,12 +2887,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 450
-        width: 68
-        height: 50
+        x: 72
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2896,12 +2909,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 450
-        width: 68
-        height: 50
+        x: 144
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2918,12 +2931,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 450
-        width: 68
-        height: 50
+        x: 216
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2940,12 +2953,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 450
-        width: 68
-        height: 50
+        x: 288
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2962,12 +2975,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 450
-        width: 68
-        height: 50
+        x: 360
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2984,12 +2997,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 450
-        width: 68
-        height: 50
+        x: 432
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3006,12 +3019,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 450
-        width: 68
-        height: 50
+        x: 504
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3028,12 +3041,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 450
-        width: 68
-        height: 50
+        x: 576
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3050,12 +3063,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 450
-        width: 68
-        height: 50
+        x: 648
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3072,12 +3085,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 450
-        width: 68
-        height: 50
+        x: 720
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3094,12 +3107,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 450
-        width: 68
-        height: 50
+        x: 792
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3116,12 +3129,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 450
-        width: 68
-        height: 50
+        x: 864
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3138,12 +3151,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 450
-        width: 68
-        height: 50
+        x: 936
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3160,12 +3173,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nw_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 450
-        width: 68
-        height: 50
+        x: 1008
+        y: 477
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3183,11 +3196,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 400
-        width: 68
-        height: 50
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3204,12 +3217,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 400
-        width: 68
-        height: 50
+        x: 72
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3226,12 +3239,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 400
-        width: 68
-        height: 50
+        x: 144
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3248,12 +3261,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 400
-        width: 68
-        height: 50
+        x: 216
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3270,12 +3283,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 400
-        width: 68
-        height: 50
+        x: 288
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3292,12 +3305,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 400
-        width: 68
-        height: 50
+        x: 360
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3314,12 +3327,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 400
-        width: 68
-        height: 50
+        x: 432
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3336,12 +3349,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 400
-        width: 68
-        height: 50
+        x: 504
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3358,12 +3371,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 400
-        width: 68
-        height: 50
+        x: 576
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3380,12 +3393,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 400
-        width: 68
-        height: 50
+        x: 648
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3402,12 +3415,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 400
-        width: 68
-        height: 50
+        x: 720
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3424,12 +3437,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 400
-        width: 68
-        height: 50
+        x: 792
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3446,12 +3459,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 400
-        width: 68
-        height: 50
+        x: 864
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3468,12 +3481,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 400
-        width: 68
-        height: 50
+        x: 936
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3490,12 +3503,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nnw_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 400
-        width: 68
-        height: 50
+        x: 1008
+        y: 424
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3513,11 +3526,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 350
-        width: 68
-        height: 50
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3534,12 +3547,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 350
-        width: 68
-        height: 50
+        x: 72
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3556,12 +3569,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 350
-        width: 68
-        height: 50
+        x: 144
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3578,12 +3591,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 350
-        width: 68
-        height: 50
+        x: 216
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3600,12 +3613,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 350
-        width: 68
-        height: 50
+        x: 288
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3622,12 +3635,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 350
-        width: 68
-        height: 50
+        x: 360
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3644,12 +3657,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 350
-        width: 68
-        height: 50
+        x: 432
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3666,12 +3679,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 350
-        width: 68
-        height: 50
+        x: 504
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3688,12 +3701,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 350
-        width: 68
-        height: 50
+        x: 576
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3710,12 +3723,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 350
-        width: 68
-        height: 50
+        x: 648
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3732,12 +3745,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 350
-        width: 68
-        height: 50
+        x: 720
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3754,12 +3767,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 350
-        width: 68
-        height: 50
+        x: 792
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3776,12 +3789,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 350
-        width: 68
-        height: 50
+        x: 864
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3798,12 +3811,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 350
-        width: 68
-        height: 50
+        x: 936
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3820,12 +3833,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_n_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 350
-        width: 68
-        height: 50
+        x: 1008
+        y: 371
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3843,11 +3856,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 300
-        width: 68
-        height: 50
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3864,12 +3877,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 300
-        width: 68
-        height: 50
+        x: 72
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3886,12 +3899,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 300
-        width: 68
-        height: 50
+        x: 144
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3908,12 +3921,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 300
-        width: 68
-        height: 50
+        x: 216
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3930,12 +3943,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 300
-        width: 68
-        height: 50
+        x: 288
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3952,12 +3965,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 300
-        width: 68
-        height: 50
+        x: 360
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3974,12 +3987,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 300
-        width: 68
-        height: 50
+        x: 432
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3996,12 +4009,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 300
-        width: 68
-        height: 50
+        x: 504
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4018,12 +4031,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 300
-        width: 68
-        height: 50
+        x: 576
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4040,12 +4053,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 300
-        width: 68
-        height: 50
+        x: 648
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4062,12 +4075,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 300
-        width: 68
-        height: 50
+        x: 720
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4084,12 +4097,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 300
-        width: 68
-        height: 50
+        x: 792
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4106,12 +4119,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 300
-        width: 68
-        height: 50
+        x: 864
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4128,12 +4141,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 300
-        width: 68
-        height: 50
+        x: 936
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4150,12 +4163,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_nne_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 300
-        width: 68
-        height: 50
+        x: 1008
+        y: 318
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4173,11 +4186,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 250
-        width: 68
-        height: 50
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4194,12 +4207,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 250
-        width: 68
-        height: 50
+        x: 72
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4216,12 +4229,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 250
-        width: 68
-        height: 50
+        x: 144
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4238,12 +4251,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 250
-        width: 68
-        height: 50
+        x: 216
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4260,12 +4273,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 250
-        width: 68
-        height: 50
+        x: 288
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4282,12 +4295,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 250
-        width: 68
-        height: 50
+        x: 360
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4304,12 +4317,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 250
-        width: 68
-        height: 50
+        x: 432
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4326,12 +4339,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 250
-        width: 68
-        height: 50
+        x: 504
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4348,12 +4361,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 250
-        width: 68
-        height: 50
+        x: 576
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4370,12 +4383,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 250
-        width: 68
-        height: 50
+        x: 648
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4392,12 +4405,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 250
-        width: 68
-        height: 50
+        x: 720
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4414,12 +4427,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 250
-        width: 68
-        height: 50
+        x: 792
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4436,12 +4449,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 250
-        width: 68
-        height: 50
+        x: 864
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4458,12 +4471,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 250
-        width: 68
-        height: 50
+        x: 936
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4480,12 +4493,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ne_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 250
-        width: 68
-        height: 50
+        x: 1008
+        y: 265
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4503,11 +4516,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 200
-        width: 68
-        height: 50
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4524,12 +4537,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 200
-        width: 68
-        height: 50
+        x: 72
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4546,12 +4559,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 200
-        width: 68
-        height: 50
+        x: 144
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4568,12 +4581,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 200
-        width: 68
-        height: 50
+        x: 216
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4590,12 +4603,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 200
-        width: 68
-        height: 50
+        x: 288
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4612,12 +4625,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 200
-        width: 68
-        height: 50
+        x: 360
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4634,12 +4647,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 200
-        width: 68
-        height: 50
+        x: 432
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4656,12 +4669,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 200
-        width: 68
-        height: 50
+        x: 504
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4678,12 +4691,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 200
-        width: 68
-        height: 50
+        x: 576
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4700,12 +4713,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 200
-        width: 68
-        height: 50
+        x: 648
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4722,12 +4735,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 200
-        width: 68
-        height: 50
+        x: 720
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4744,12 +4757,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 200
-        width: 68
-        height: 50
+        x: 792
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4766,12 +4779,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 200
-        width: 68
-        height: 50
+        x: 864
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4788,12 +4801,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 200
-        width: 68
-        height: 50
+        x: 936
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4810,12 +4823,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ene_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 200
-        width: 68
-        height: 50
+        x: 1008
+        y: 212
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4833,11 +4846,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 150
-        width: 68
-        height: 50
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4854,12 +4867,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 150
-        width: 68
-        height: 50
+        x: 72
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4876,12 +4889,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 150
-        width: 68
-        height: 50
+        x: 144
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4898,12 +4911,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 150
-        width: 68
-        height: 50
+        x: 216
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4920,12 +4933,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 150
-        width: 68
-        height: 50
+        x: 288
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4942,12 +4955,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 150
-        width: 68
-        height: 50
+        x: 360
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4964,12 +4977,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 150
-        width: 68
-        height: 50
+        x: 432
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4986,12 +4999,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 150
-        width: 68
-        height: 50
+        x: 504
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5008,12 +5021,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 150
-        width: 68
-        height: 50
+        x: 576
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5030,12 +5043,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 150
-        width: 68
-        height: 50
+        x: 648
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5052,12 +5065,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 150
-        width: 68
-        height: 50
+        x: 720
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5074,12 +5087,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 150
-        width: 68
-        height: 50
+        x: 792
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5096,12 +5109,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 150
-        width: 68
-        height: 50
+        x: 864
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5118,12 +5131,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 150
-        width: 68
-        height: 50
+        x: 936
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5140,12 +5153,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_e_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 150
-        width: 68
-        height: 50
+        x: 1008
+        y: 159
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5163,11 +5176,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 100
-        width: 68
-        height: 50
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5184,12 +5197,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 100
-        width: 68
-        height: 50
+        x: 72
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5206,12 +5219,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 100
-        width: 68
-        height: 50
+        x: 144
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5228,12 +5241,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 100
-        width: 68
-        height: 50
+        x: 216
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5250,12 +5263,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 100
-        width: 68
-        height: 50
+        x: 288
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5272,12 +5285,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 100
-        width: 68
-        height: 50
+        x: 360
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5294,12 +5307,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 100
-        width: 68
-        height: 50
+        x: 432
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5316,12 +5329,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 100
-        width: 68
-        height: 50
+        x: 504
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5338,12 +5351,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 100
-        width: 68
-        height: 50
+        x: 576
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5360,12 +5373,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 100
-        width: 68
-        height: 50
+        x: 648
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5382,12 +5395,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 100
-        width: 68
-        height: 50
+        x: 720
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5404,12 +5417,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 100
-        width: 68
-        height: 50
+        x: 792
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5426,12 +5439,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 100
-        width: 68
-        height: 50
+        x: 864
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5448,12 +5461,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 100
-        width: 68
-        height: 50
+        x: 936
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5470,12 +5483,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_ese_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 100
-        width: 68
-        height: 50
+        x: 1008
+        y: 106
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5493,11 +5506,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 50
-        width: 68
-        height: 50
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5514,12 +5527,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 50
-        width: 68
-        height: 50
+        x: 72
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5536,12 +5549,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 50
-        width: 68
-        height: 50
+        x: 144
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5558,12 +5571,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 50
-        width: 68
-        height: 50
+        x: 216
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5580,12 +5593,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 50
-        width: 68
-        height: 50
+        x: 288
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5602,12 +5615,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 50
-        width: 68
-        height: 50
+        x: 360
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5624,12 +5637,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 50
-        width: 68
-        height: 50
+        x: 432
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5646,12 +5659,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 50
-        width: 68
-        height: 50
+        x: 504
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5668,12 +5681,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 50
-        width: 68
-        height: 50
+        x: 576
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5690,12 +5703,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 50
-        width: 68
-        height: 50
+        x: 648
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5712,12 +5725,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 50
-        width: 68
-        height: 50
+        x: 720
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5734,12 +5747,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 50
-        width: 68
-        height: 50
+        x: 792
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5756,12 +5769,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_12
       rect:
         serializedVersion: 2
-        x: 816
-        y: 50
-        width: 68
-        height: 50
+        x: 864
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5778,12 +5791,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_13
       rect:
         serializedVersion: 2
-        x: 884
-        y: 50
-        width: 68
-        height: 50
+        x: 936
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5800,12 +5813,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_se_14
       rect:
         serializedVersion: 2
-        x: 952
-        y: 50
-        width: 68
-        height: 50
+        x: 1008
+        y: 53
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5824,10 +5837,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5844,12 +5857,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_01
       rect:
         serializedVersion: 2
-        x: 68
+        x: 72
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5866,12 +5879,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_02
       rect:
         serializedVersion: 2
-        x: 136
+        x: 144
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5888,12 +5901,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_03
       rect:
         serializedVersion: 2
-        x: 204
+        x: 216
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5910,12 +5923,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_04
       rect:
         serializedVersion: 2
-        x: 272
+        x: 288
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5932,12 +5945,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_05
       rect:
         serializedVersion: 2
-        x: 340
+        x: 360
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5954,12 +5967,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_06
       rect:
         serializedVersion: 2
-        x: 408
+        x: 432
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5976,12 +5989,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_07
       rect:
         serializedVersion: 2
-        x: 476
+        x: 504
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5998,12 +6011,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_08
       rect:
         serializedVersion: 2
-        x: 544
+        x: 576
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6020,12 +6033,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_09
       rect:
         serializedVersion: 2
-        x: 612
+        x: 648
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6042,12 +6055,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_10
       rect:
         serializedVersion: 2
-        x: 680
+        x: 720
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6064,12 +6077,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_11
       rect:
         serializedVersion: 2
-        x: 748
+        x: 792
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6086,12 +6099,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_12
       rect:
         serializedVersion: 2
-        x: 816
+        x: 864
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6108,12 +6121,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_13
       rect:
         serializedVersion: 2
-        x: 884
+        x: 936
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6130,12 +6143,12 @@ TextureImporter:
       name: wild_arrow_weapon_ember_tongue_1h_recoil_move_back_sse_14
       rect:
         serializedVersion: 2
-        x: 952
+        x: 1008
         y: 0
-        width: 68
-        height: 50
+        width: 72
+        height: 53
       alignment: 9
-      pivot: {x: 0.5, y: -0.29999998}
+      pivot: {x: 0.5, y: -0.24528301}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

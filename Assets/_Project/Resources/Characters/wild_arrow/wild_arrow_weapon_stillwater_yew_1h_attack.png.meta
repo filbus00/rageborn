@@ -709,6 +709,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -717,11 +730,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 855
-        width: 77
-        height: 57
+        y: 885
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -738,12 +751,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_s_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 855
-        width: 77
-        height: 57
+        x: 80
+        y: 885
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -760,12 +773,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_s_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 855
-        width: 77
-        height: 57
+        x: 160
+        y: 885
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -782,12 +795,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_s_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 855
-        width: 77
-        height: 57
+        x: 240
+        y: 885
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -804,12 +817,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_s_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 855
-        width: 77
-        height: 57
+        x: 320
+        y: 885
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -826,12 +839,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_s_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 855
-        width: 77
-        height: 57
+        x: 400
+        y: 885
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -848,12 +861,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_s_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 855
-        width: 77
-        height: 57
+        x: 480
+        y: 885
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -870,12 +883,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_s_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 855
-        width: 77
-        height: 57
+        x: 560
+        y: 885
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -892,12 +905,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_s_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 855
-        width: 77
-        height: 57
+        x: 640
+        y: 885
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -914,12 +927,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_s_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 855
-        width: 77
-        height: 57
+        x: 720
+        y: 885
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -937,11 +950,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 798
-        width: 77
-        height: 57
+        y: 826
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -958,12 +971,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ssw_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 798
-        width: 77
-        height: 57
+        x: 80
+        y: 826
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -980,12 +993,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ssw_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 798
-        width: 77
-        height: 57
+        x: 160
+        y: 826
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1002,12 +1015,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ssw_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 798
-        width: 77
-        height: 57
+        x: 240
+        y: 826
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1024,12 +1037,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ssw_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 798
-        width: 77
-        height: 57
+        x: 320
+        y: 826
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1046,12 +1059,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ssw_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 798
-        width: 77
-        height: 57
+        x: 400
+        y: 826
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1068,12 +1081,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ssw_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 798
-        width: 77
-        height: 57
+        x: 480
+        y: 826
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1090,12 +1103,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ssw_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 798
-        width: 77
-        height: 57
+        x: 560
+        y: 826
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1112,12 +1125,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ssw_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 798
-        width: 77
-        height: 57
+        x: 640
+        y: 826
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1134,12 +1147,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ssw_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 798
-        width: 77
-        height: 57
+        x: 720
+        y: 826
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1157,11 +1170,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 741
-        width: 77
-        height: 57
+        y: 767
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1178,12 +1191,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sw_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 741
-        width: 77
-        height: 57
+        x: 80
+        y: 767
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1200,12 +1213,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sw_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 741
-        width: 77
-        height: 57
+        x: 160
+        y: 767
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1222,12 +1235,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sw_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 741
-        width: 77
-        height: 57
+        x: 240
+        y: 767
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1244,12 +1257,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sw_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 741
-        width: 77
-        height: 57
+        x: 320
+        y: 767
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1266,12 +1279,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sw_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 741
-        width: 77
-        height: 57
+        x: 400
+        y: 767
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1288,12 +1301,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sw_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 741
-        width: 77
-        height: 57
+        x: 480
+        y: 767
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1310,12 +1323,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sw_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 741
-        width: 77
-        height: 57
+        x: 560
+        y: 767
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1332,12 +1345,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sw_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 741
-        width: 77
-        height: 57
+        x: 640
+        y: 767
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1354,12 +1367,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sw_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 741
-        width: 77
-        height: 57
+        x: 720
+        y: 767
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1377,11 +1390,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 684
-        width: 77
-        height: 57
+        y: 708
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1398,12 +1411,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wsw_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 684
-        width: 77
-        height: 57
+        x: 80
+        y: 708
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1420,12 +1433,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wsw_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 684
-        width: 77
-        height: 57
+        x: 160
+        y: 708
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1442,12 +1455,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wsw_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 684
-        width: 77
-        height: 57
+        x: 240
+        y: 708
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1464,12 +1477,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wsw_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 684
-        width: 77
-        height: 57
+        x: 320
+        y: 708
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1486,12 +1499,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wsw_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 684
-        width: 77
-        height: 57
+        x: 400
+        y: 708
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1508,12 +1521,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wsw_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 684
-        width: 77
-        height: 57
+        x: 480
+        y: 708
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1530,12 +1543,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wsw_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 684
-        width: 77
-        height: 57
+        x: 560
+        y: 708
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1552,12 +1565,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wsw_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 684
-        width: 77
-        height: 57
+        x: 640
+        y: 708
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1574,12 +1587,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wsw_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 684
-        width: 77
-        height: 57
+        x: 720
+        y: 708
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1597,11 +1610,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 627
-        width: 77
-        height: 57
+        y: 649
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1618,12 +1631,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_w_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 627
-        width: 77
-        height: 57
+        x: 80
+        y: 649
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1640,12 +1653,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_w_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 627
-        width: 77
-        height: 57
+        x: 160
+        y: 649
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1662,12 +1675,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_w_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 627
-        width: 77
-        height: 57
+        x: 240
+        y: 649
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1684,12 +1697,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_w_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 627
-        width: 77
-        height: 57
+        x: 320
+        y: 649
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1706,12 +1719,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_w_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 627
-        width: 77
-        height: 57
+        x: 400
+        y: 649
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1728,12 +1741,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_w_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 627
-        width: 77
-        height: 57
+        x: 480
+        y: 649
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1750,12 +1763,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_w_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 627
-        width: 77
-        height: 57
+        x: 560
+        y: 649
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1772,12 +1785,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_w_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 627
-        width: 77
-        height: 57
+        x: 640
+        y: 649
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1794,12 +1807,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_w_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 627
-        width: 77
-        height: 57
+        x: 720
+        y: 649
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1817,11 +1830,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 570
-        width: 77
-        height: 57
+        y: 590
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1838,12 +1851,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wnw_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 570
-        width: 77
-        height: 57
+        x: 80
+        y: 590
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1860,12 +1873,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wnw_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 570
-        width: 77
-        height: 57
+        x: 160
+        y: 590
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1882,12 +1895,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wnw_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 570
-        width: 77
-        height: 57
+        x: 240
+        y: 590
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1904,12 +1917,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wnw_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 570
-        width: 77
-        height: 57
+        x: 320
+        y: 590
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1926,12 +1939,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wnw_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 570
-        width: 77
-        height: 57
+        x: 400
+        y: 590
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1948,12 +1961,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wnw_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 570
-        width: 77
-        height: 57
+        x: 480
+        y: 590
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1970,12 +1983,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wnw_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 570
-        width: 77
-        height: 57
+        x: 560
+        y: 590
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1992,12 +2005,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wnw_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 570
-        width: 77
-        height: 57
+        x: 640
+        y: 590
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2014,12 +2027,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_wnw_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 570
-        width: 77
-        height: 57
+        x: 720
+        y: 590
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2037,11 +2050,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 513
-        width: 77
-        height: 57
+        y: 531
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2058,12 +2071,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nw_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 513
-        width: 77
-        height: 57
+        x: 80
+        y: 531
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2080,12 +2093,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nw_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 513
-        width: 77
-        height: 57
+        x: 160
+        y: 531
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2102,12 +2115,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nw_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 513
-        width: 77
-        height: 57
+        x: 240
+        y: 531
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2124,12 +2137,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nw_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 513
-        width: 77
-        height: 57
+        x: 320
+        y: 531
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2146,12 +2159,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nw_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 513
-        width: 77
-        height: 57
+        x: 400
+        y: 531
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2168,12 +2181,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nw_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 513
-        width: 77
-        height: 57
+        x: 480
+        y: 531
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2190,12 +2203,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nw_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 513
-        width: 77
-        height: 57
+        x: 560
+        y: 531
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2212,12 +2225,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nw_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 513
-        width: 77
-        height: 57
+        x: 640
+        y: 531
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2234,12 +2247,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nw_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 513
-        width: 77
-        height: 57
+        x: 720
+        y: 531
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2257,11 +2270,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 456
-        width: 77
-        height: 57
+        y: 472
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2278,12 +2291,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nnw_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 456
-        width: 77
-        height: 57
+        x: 80
+        y: 472
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2300,12 +2313,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nnw_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 456
-        width: 77
-        height: 57
+        x: 160
+        y: 472
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2322,12 +2335,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nnw_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 456
-        width: 77
-        height: 57
+        x: 240
+        y: 472
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2344,12 +2357,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nnw_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 456
-        width: 77
-        height: 57
+        x: 320
+        y: 472
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2366,12 +2379,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nnw_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 456
-        width: 77
-        height: 57
+        x: 400
+        y: 472
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2388,12 +2401,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nnw_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 456
-        width: 77
-        height: 57
+        x: 480
+        y: 472
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2410,12 +2423,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nnw_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 456
-        width: 77
-        height: 57
+        x: 560
+        y: 472
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2432,12 +2445,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nnw_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 456
-        width: 77
-        height: 57
+        x: 640
+        y: 472
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2454,12 +2467,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nnw_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 456
-        width: 77
-        height: 57
+        x: 720
+        y: 472
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2477,11 +2490,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 399
-        width: 77
-        height: 57
+        y: 413
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2498,12 +2511,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_n_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 399
-        width: 77
-        height: 57
+        x: 80
+        y: 413
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2520,12 +2533,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_n_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 399
-        width: 77
-        height: 57
+        x: 160
+        y: 413
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2542,12 +2555,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_n_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 399
-        width: 77
-        height: 57
+        x: 240
+        y: 413
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2564,12 +2577,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_n_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 399
-        width: 77
-        height: 57
+        x: 320
+        y: 413
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2586,12 +2599,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_n_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 399
-        width: 77
-        height: 57
+        x: 400
+        y: 413
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2608,12 +2621,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_n_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 399
-        width: 77
-        height: 57
+        x: 480
+        y: 413
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2630,12 +2643,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_n_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 399
-        width: 77
-        height: 57
+        x: 560
+        y: 413
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2652,12 +2665,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_n_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 399
-        width: 77
-        height: 57
+        x: 640
+        y: 413
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2674,12 +2687,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_n_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 399
-        width: 77
-        height: 57
+        x: 720
+        y: 413
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2697,11 +2710,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 342
-        width: 77
-        height: 57
+        y: 354
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2718,12 +2731,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nne_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 342
-        width: 77
-        height: 57
+        x: 80
+        y: 354
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2740,12 +2753,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nne_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 342
-        width: 77
-        height: 57
+        x: 160
+        y: 354
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2762,12 +2775,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nne_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 342
-        width: 77
-        height: 57
+        x: 240
+        y: 354
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2784,12 +2797,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nne_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 342
-        width: 77
-        height: 57
+        x: 320
+        y: 354
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2806,12 +2819,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nne_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 342
-        width: 77
-        height: 57
+        x: 400
+        y: 354
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2828,12 +2841,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nne_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 342
-        width: 77
-        height: 57
+        x: 480
+        y: 354
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2850,12 +2863,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nne_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 342
-        width: 77
-        height: 57
+        x: 560
+        y: 354
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2872,12 +2885,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nne_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 342
-        width: 77
-        height: 57
+        x: 640
+        y: 354
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2894,12 +2907,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_nne_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 342
-        width: 77
-        height: 57
+        x: 720
+        y: 354
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2917,11 +2930,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 285
-        width: 77
-        height: 57
+        y: 295
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2938,12 +2951,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ne_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 285
-        width: 77
-        height: 57
+        x: 80
+        y: 295
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2960,12 +2973,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ne_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 285
-        width: 77
-        height: 57
+        x: 160
+        y: 295
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2982,12 +2995,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ne_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 285
-        width: 77
-        height: 57
+        x: 240
+        y: 295
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3004,12 +3017,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ne_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 285
-        width: 77
-        height: 57
+        x: 320
+        y: 295
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3026,12 +3039,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ne_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 285
-        width: 77
-        height: 57
+        x: 400
+        y: 295
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3048,12 +3061,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ne_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 285
-        width: 77
-        height: 57
+        x: 480
+        y: 295
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3070,12 +3083,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ne_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 285
-        width: 77
-        height: 57
+        x: 560
+        y: 295
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3092,12 +3105,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ne_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 285
-        width: 77
-        height: 57
+        x: 640
+        y: 295
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3114,12 +3127,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ne_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 285
-        width: 77
-        height: 57
+        x: 720
+        y: 295
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3137,11 +3150,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 228
-        width: 77
-        height: 57
+        y: 236
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3158,12 +3171,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ene_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 228
-        width: 77
-        height: 57
+        x: 80
+        y: 236
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3180,12 +3193,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ene_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 228
-        width: 77
-        height: 57
+        x: 160
+        y: 236
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3202,12 +3215,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ene_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 228
-        width: 77
-        height: 57
+        x: 240
+        y: 236
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3224,12 +3237,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ene_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 228
-        width: 77
-        height: 57
+        x: 320
+        y: 236
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3246,12 +3259,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ene_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 228
-        width: 77
-        height: 57
+        x: 400
+        y: 236
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3268,12 +3281,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ene_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 228
-        width: 77
-        height: 57
+        x: 480
+        y: 236
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3290,12 +3303,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ene_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 228
-        width: 77
-        height: 57
+        x: 560
+        y: 236
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3312,12 +3325,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ene_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 228
-        width: 77
-        height: 57
+        x: 640
+        y: 236
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3334,12 +3347,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ene_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 228
-        width: 77
-        height: 57
+        x: 720
+        y: 236
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3357,11 +3370,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 171
-        width: 77
-        height: 57
+        y: 177
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3378,12 +3391,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_e_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 171
-        width: 77
-        height: 57
+        x: 80
+        y: 177
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3400,12 +3413,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_e_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 171
-        width: 77
-        height: 57
+        x: 160
+        y: 177
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3422,12 +3435,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_e_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 171
-        width: 77
-        height: 57
+        x: 240
+        y: 177
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3444,12 +3457,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_e_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 171
-        width: 77
-        height: 57
+        x: 320
+        y: 177
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3466,12 +3479,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_e_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 171
-        width: 77
-        height: 57
+        x: 400
+        y: 177
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3488,12 +3501,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_e_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 171
-        width: 77
-        height: 57
+        x: 480
+        y: 177
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3510,12 +3523,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_e_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 171
-        width: 77
-        height: 57
+        x: 560
+        y: 177
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3532,12 +3545,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_e_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 171
-        width: 77
-        height: 57
+        x: 640
+        y: 177
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3554,12 +3567,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_e_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 171
-        width: 77
-        height: 57
+        x: 720
+        y: 177
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3577,11 +3590,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 114
-        width: 77
-        height: 57
+        y: 118
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3598,12 +3611,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ese_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 114
-        width: 77
-        height: 57
+        x: 80
+        y: 118
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3620,12 +3633,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ese_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 114
-        width: 77
-        height: 57
+        x: 160
+        y: 118
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3642,12 +3655,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ese_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 114
-        width: 77
-        height: 57
+        x: 240
+        y: 118
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3664,12 +3677,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ese_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 114
-        width: 77
-        height: 57
+        x: 320
+        y: 118
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3686,12 +3699,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ese_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 114
-        width: 77
-        height: 57
+        x: 400
+        y: 118
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3708,12 +3721,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ese_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 114
-        width: 77
-        height: 57
+        x: 480
+        y: 118
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3730,12 +3743,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ese_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 114
-        width: 77
-        height: 57
+        x: 560
+        y: 118
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3752,12 +3765,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ese_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 114
-        width: 77
-        height: 57
+        x: 640
+        y: 118
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3774,12 +3787,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_ese_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 114
-        width: 77
-        height: 57
+        x: 720
+        y: 118
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3797,11 +3810,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 57
-        width: 77
-        height: 57
+        y: 59
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3818,12 +3831,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_se_01
       rect:
         serializedVersion: 2
-        x: 77
-        y: 57
-        width: 77
-        height: 57
+        x: 80
+        y: 59
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3840,12 +3853,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_se_02
       rect:
         serializedVersion: 2
-        x: 154
-        y: 57
-        width: 77
-        height: 57
+        x: 160
+        y: 59
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3862,12 +3875,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_se_03
       rect:
         serializedVersion: 2
-        x: 231
-        y: 57
-        width: 77
-        height: 57
+        x: 240
+        y: 59
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3884,12 +3897,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_se_04
       rect:
         serializedVersion: 2
-        x: 308
-        y: 57
-        width: 77
-        height: 57
+        x: 320
+        y: 59
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3906,12 +3919,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_se_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 57
-        width: 77
-        height: 57
+        x: 400
+        y: 59
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3928,12 +3941,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_se_06
       rect:
         serializedVersion: 2
-        x: 462
-        y: 57
-        width: 77
-        height: 57
+        x: 480
+        y: 59
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3950,12 +3963,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_se_07
       rect:
         serializedVersion: 2
-        x: 539
-        y: 57
-        width: 77
-        height: 57
+        x: 560
+        y: 59
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3972,12 +3985,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_se_08
       rect:
         serializedVersion: 2
-        x: 616
-        y: 57
-        width: 77
-        height: 57
+        x: 640
+        y: 59
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3994,12 +4007,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_se_09
       rect:
         serializedVersion: 2
-        x: 693
-        y: 57
-        width: 77
-        height: 57
+        x: 720
+        y: 59
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4018,10 +4031,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 77
-        height: 57
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4038,12 +4051,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sse_01
       rect:
         serializedVersion: 2
-        x: 77
+        x: 80
         y: 0
-        width: 77
-        height: 57
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4060,12 +4073,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sse_02
       rect:
         serializedVersion: 2
-        x: 154
+        x: 160
         y: 0
-        width: 77
-        height: 57
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4082,12 +4095,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sse_03
       rect:
         serializedVersion: 2
-        x: 231
+        x: 240
         y: 0
-        width: 77
-        height: 57
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4104,12 +4117,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sse_04
       rect:
         serializedVersion: 2
-        x: 308
+        x: 320
         y: 0
-        width: 77
-        height: 57
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4126,12 +4139,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sse_05
       rect:
         serializedVersion: 2
-        x: 385
+        x: 400
         y: 0
-        width: 77
-        height: 57
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4148,12 +4161,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sse_06
       rect:
         serializedVersion: 2
-        x: 462
+        x: 480
         y: 0
-        width: 77
-        height: 57
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4170,12 +4183,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sse_07
       rect:
         serializedVersion: 2
-        x: 539
+        x: 560
         y: 0
-        width: 77
-        height: 57
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4192,12 +4205,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sse_08
       rect:
         serializedVersion: 2
-        x: 616
+        x: 640
         y: 0
-        width: 77
-        height: 57
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4214,12 +4227,12 @@ TextureImporter:
       name: wild_arrow_weapon_stillwater_yew_1h_attack_sse_09
       rect:
         serializedVersion: 2
-        x: 693
+        x: 720
         y: 0
-        width: 77
-        height: 57
+        width: 80
+        height: 59
       alignment: 9
-      pivot: {x: 0.5064935, y: -0.19298245}
+      pivot: {x: 0.5, y: -0.15254237}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

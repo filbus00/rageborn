@@ -682,6 +682,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -690,11 +703,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 465
-        width: 54
-        height: 31
+        y: 510
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -711,12 +724,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_s_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 465
-        width: 54
-        height: 31
+        x: 58
+        y: 510
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -733,12 +746,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_s_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 465
-        width: 54
-        height: 31
+        x: 116
+        y: 510
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -755,12 +768,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_s_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 465
-        width: 54
-        height: 31
+        x: 174
+        y: 510
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -777,12 +790,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_s_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 465
-        width: 54
-        height: 31
+        x: 232
+        y: 510
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -799,12 +812,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_s_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 465
-        width: 54
-        height: 31
+        x: 290
+        y: 510
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -821,12 +834,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_s_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 465
-        width: 54
-        height: 31
+        x: 348
+        y: 510
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -843,12 +856,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_s_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 465
-        width: 54
-        height: 31
+        x: 406
+        y: 510
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -865,12 +878,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_s_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 465
-        width: 54
-        height: 31
+        x: 464
+        y: 510
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -887,12 +900,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_s_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 465
-        width: 54
-        height: 31
+        x: 522
+        y: 510
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -910,11 +923,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 434
-        width: 54
-        height: 31
+        y: 476
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -931,12 +944,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ssw_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 434
-        width: 54
-        height: 31
+        x: 58
+        y: 476
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -953,12 +966,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ssw_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 434
-        width: 54
-        height: 31
+        x: 116
+        y: 476
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -975,12 +988,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ssw_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 434
-        width: 54
-        height: 31
+        x: 174
+        y: 476
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -997,12 +1010,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ssw_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 434
-        width: 54
-        height: 31
+        x: 232
+        y: 476
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1019,12 +1032,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ssw_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 434
-        width: 54
-        height: 31
+        x: 290
+        y: 476
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1041,12 +1054,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ssw_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 434
-        width: 54
-        height: 31
+        x: 348
+        y: 476
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1063,12 +1076,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ssw_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 434
-        width: 54
-        height: 31
+        x: 406
+        y: 476
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1085,12 +1098,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ssw_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 434
-        width: 54
-        height: 31
+        x: 464
+        y: 476
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1107,12 +1120,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ssw_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 434
-        width: 54
-        height: 31
+        x: 522
+        y: 476
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1130,11 +1143,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 403
-        width: 54
-        height: 31
+        y: 442
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1151,12 +1164,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sw_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 403
-        width: 54
-        height: 31
+        x: 58
+        y: 442
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1173,12 +1186,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sw_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 403
-        width: 54
-        height: 31
+        x: 116
+        y: 442
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1195,12 +1208,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sw_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 403
-        width: 54
-        height: 31
+        x: 174
+        y: 442
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1217,12 +1230,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sw_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 403
-        width: 54
-        height: 31
+        x: 232
+        y: 442
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1239,12 +1252,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sw_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 403
-        width: 54
-        height: 31
+        x: 290
+        y: 442
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1261,12 +1274,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sw_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 403
-        width: 54
-        height: 31
+        x: 348
+        y: 442
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1283,12 +1296,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sw_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 403
-        width: 54
-        height: 31
+        x: 406
+        y: 442
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1305,12 +1318,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sw_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 403
-        width: 54
-        height: 31
+        x: 464
+        y: 442
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1327,12 +1340,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sw_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 403
-        width: 54
-        height: 31
+        x: 522
+        y: 442
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1350,11 +1363,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 372
-        width: 54
-        height: 31
+        y: 408
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1371,12 +1384,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wsw_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 372
-        width: 54
-        height: 31
+        x: 58
+        y: 408
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1393,12 +1406,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wsw_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 372
-        width: 54
-        height: 31
+        x: 116
+        y: 408
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1415,12 +1428,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wsw_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 372
-        width: 54
-        height: 31
+        x: 174
+        y: 408
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1437,12 +1450,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wsw_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 372
-        width: 54
-        height: 31
+        x: 232
+        y: 408
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1459,12 +1472,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wsw_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 372
-        width: 54
-        height: 31
+        x: 290
+        y: 408
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1481,12 +1494,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wsw_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 372
-        width: 54
-        height: 31
+        x: 348
+        y: 408
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1503,12 +1516,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wsw_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 372
-        width: 54
-        height: 31
+        x: 406
+        y: 408
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1525,12 +1538,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wsw_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 372
-        width: 54
-        height: 31
+        x: 464
+        y: 408
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1547,12 +1560,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wsw_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 372
-        width: 54
-        height: 31
+        x: 522
+        y: 408
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1570,11 +1583,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 341
-        width: 54
-        height: 31
+        y: 374
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1591,12 +1604,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_w_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 341
-        width: 54
-        height: 31
+        x: 58
+        y: 374
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1613,12 +1626,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_w_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 341
-        width: 54
-        height: 31
+        x: 116
+        y: 374
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1635,12 +1648,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_w_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 341
-        width: 54
-        height: 31
+        x: 174
+        y: 374
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1657,12 +1670,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_w_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 341
-        width: 54
-        height: 31
+        x: 232
+        y: 374
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1679,12 +1692,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_w_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 341
-        width: 54
-        height: 31
+        x: 290
+        y: 374
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1701,12 +1714,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_w_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 341
-        width: 54
-        height: 31
+        x: 348
+        y: 374
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1723,12 +1736,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_w_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 341
-        width: 54
-        height: 31
+        x: 406
+        y: 374
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1745,12 +1758,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_w_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 341
-        width: 54
-        height: 31
+        x: 464
+        y: 374
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1767,12 +1780,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_w_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 341
-        width: 54
-        height: 31
+        x: 522
+        y: 374
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1790,11 +1803,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 310
-        width: 54
-        height: 31
+        y: 340
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1811,12 +1824,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wnw_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 310
-        width: 54
-        height: 31
+        x: 58
+        y: 340
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1833,12 +1846,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wnw_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 310
-        width: 54
-        height: 31
+        x: 116
+        y: 340
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1855,12 +1868,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wnw_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 310
-        width: 54
-        height: 31
+        x: 174
+        y: 340
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1877,12 +1890,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wnw_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 310
-        width: 54
-        height: 31
+        x: 232
+        y: 340
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1899,12 +1912,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wnw_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 310
-        width: 54
-        height: 31
+        x: 290
+        y: 340
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1921,12 +1934,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wnw_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 310
-        width: 54
-        height: 31
+        x: 348
+        y: 340
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1943,12 +1956,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wnw_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 310
-        width: 54
-        height: 31
+        x: 406
+        y: 340
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1965,12 +1978,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wnw_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 310
-        width: 54
-        height: 31
+        x: 464
+        y: 340
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1987,12 +2000,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_wnw_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 310
-        width: 54
-        height: 31
+        x: 522
+        y: 340
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2010,11 +2023,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 279
-        width: 54
-        height: 31
+        y: 306
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2031,12 +2044,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nw_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 279
-        width: 54
-        height: 31
+        x: 58
+        y: 306
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2053,12 +2066,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nw_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 279
-        width: 54
-        height: 31
+        x: 116
+        y: 306
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2075,12 +2088,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nw_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 279
-        width: 54
-        height: 31
+        x: 174
+        y: 306
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2097,12 +2110,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nw_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 279
-        width: 54
-        height: 31
+        x: 232
+        y: 306
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2119,12 +2132,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nw_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 279
-        width: 54
-        height: 31
+        x: 290
+        y: 306
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2141,12 +2154,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nw_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 279
-        width: 54
-        height: 31
+        x: 348
+        y: 306
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2163,12 +2176,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nw_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 279
-        width: 54
-        height: 31
+        x: 406
+        y: 306
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2185,12 +2198,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nw_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 279
-        width: 54
-        height: 31
+        x: 464
+        y: 306
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2207,12 +2220,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nw_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 279
-        width: 54
-        height: 31
+        x: 522
+        y: 306
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2230,11 +2243,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 248
-        width: 54
-        height: 31
+        y: 272
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2251,12 +2264,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nnw_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 248
-        width: 54
-        height: 31
+        x: 58
+        y: 272
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2273,12 +2286,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nnw_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 248
-        width: 54
-        height: 31
+        x: 116
+        y: 272
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2295,12 +2308,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nnw_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 248
-        width: 54
-        height: 31
+        x: 174
+        y: 272
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2317,12 +2330,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nnw_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 248
-        width: 54
-        height: 31
+        x: 232
+        y: 272
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2339,12 +2352,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nnw_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 248
-        width: 54
-        height: 31
+        x: 290
+        y: 272
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2361,12 +2374,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nnw_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 248
-        width: 54
-        height: 31
+        x: 348
+        y: 272
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2383,12 +2396,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nnw_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 248
-        width: 54
-        height: 31
+        x: 406
+        y: 272
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2405,12 +2418,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nnw_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 248
-        width: 54
-        height: 31
+        x: 464
+        y: 272
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2427,12 +2440,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nnw_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 248
-        width: 54
-        height: 31
+        x: 522
+        y: 272
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2450,11 +2463,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 217
-        width: 54
-        height: 31
+        y: 238
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2471,12 +2484,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_n_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 217
-        width: 54
-        height: 31
+        x: 58
+        y: 238
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2493,12 +2506,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_n_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 217
-        width: 54
-        height: 31
+        x: 116
+        y: 238
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2515,12 +2528,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_n_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 217
-        width: 54
-        height: 31
+        x: 174
+        y: 238
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2537,12 +2550,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_n_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 217
-        width: 54
-        height: 31
+        x: 232
+        y: 238
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2559,12 +2572,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_n_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 217
-        width: 54
-        height: 31
+        x: 290
+        y: 238
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2581,12 +2594,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_n_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 217
-        width: 54
-        height: 31
+        x: 348
+        y: 238
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2603,12 +2616,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_n_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 217
-        width: 54
-        height: 31
+        x: 406
+        y: 238
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2625,12 +2638,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_n_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 217
-        width: 54
-        height: 31
+        x: 464
+        y: 238
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2647,12 +2660,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_n_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 217
-        width: 54
-        height: 31
+        x: 522
+        y: 238
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2670,11 +2683,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 186
-        width: 54
-        height: 31
+        y: 204
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2691,12 +2704,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nne_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 186
-        width: 54
-        height: 31
+        x: 58
+        y: 204
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2713,12 +2726,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nne_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 186
-        width: 54
-        height: 31
+        x: 116
+        y: 204
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2735,12 +2748,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nne_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 186
-        width: 54
-        height: 31
+        x: 174
+        y: 204
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2757,12 +2770,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nne_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 186
-        width: 54
-        height: 31
+        x: 232
+        y: 204
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2779,12 +2792,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nne_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 186
-        width: 54
-        height: 31
+        x: 290
+        y: 204
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2801,12 +2814,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nne_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 186
-        width: 54
-        height: 31
+        x: 348
+        y: 204
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2823,12 +2836,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nne_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 186
-        width: 54
-        height: 31
+        x: 406
+        y: 204
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2845,12 +2858,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nne_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 186
-        width: 54
-        height: 31
+        x: 464
+        y: 204
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2867,12 +2880,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_nne_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 186
-        width: 54
-        height: 31
+        x: 522
+        y: 204
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2890,11 +2903,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 155
-        width: 54
-        height: 31
+        y: 170
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2911,12 +2924,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ne_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 155
-        width: 54
-        height: 31
+        x: 58
+        y: 170
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2933,12 +2946,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ne_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 155
-        width: 54
-        height: 31
+        x: 116
+        y: 170
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2955,12 +2968,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ne_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 155
-        width: 54
-        height: 31
+        x: 174
+        y: 170
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2977,12 +2990,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ne_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 155
-        width: 54
-        height: 31
+        x: 232
+        y: 170
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2999,12 +3012,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ne_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 155
-        width: 54
-        height: 31
+        x: 290
+        y: 170
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3021,12 +3034,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ne_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 155
-        width: 54
-        height: 31
+        x: 348
+        y: 170
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3043,12 +3056,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ne_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 155
-        width: 54
-        height: 31
+        x: 406
+        y: 170
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3065,12 +3078,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ne_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 155
-        width: 54
-        height: 31
+        x: 464
+        y: 170
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3087,12 +3100,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ne_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 155
-        width: 54
-        height: 31
+        x: 522
+        y: 170
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3110,11 +3123,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 124
-        width: 54
-        height: 31
+        y: 136
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3131,12 +3144,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ene_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 124
-        width: 54
-        height: 31
+        x: 58
+        y: 136
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3153,12 +3166,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ene_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 124
-        width: 54
-        height: 31
+        x: 116
+        y: 136
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3175,12 +3188,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ene_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 124
-        width: 54
-        height: 31
+        x: 174
+        y: 136
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3197,12 +3210,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ene_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 124
-        width: 54
-        height: 31
+        x: 232
+        y: 136
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3219,12 +3232,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ene_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 124
-        width: 54
-        height: 31
+        x: 290
+        y: 136
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3241,12 +3254,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ene_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 124
-        width: 54
-        height: 31
+        x: 348
+        y: 136
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3263,12 +3276,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ene_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 124
-        width: 54
-        height: 31
+        x: 406
+        y: 136
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3285,12 +3298,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ene_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 124
-        width: 54
-        height: 31
+        x: 464
+        y: 136
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3307,12 +3320,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ene_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 124
-        width: 54
-        height: 31
+        x: 522
+        y: 136
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3330,11 +3343,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 93
-        width: 54
-        height: 31
+        y: 102
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3351,12 +3364,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_e_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 93
-        width: 54
-        height: 31
+        x: 58
+        y: 102
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3373,12 +3386,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_e_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 93
-        width: 54
-        height: 31
+        x: 116
+        y: 102
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3395,12 +3408,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_e_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 93
-        width: 54
-        height: 31
+        x: 174
+        y: 102
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3417,12 +3430,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_e_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 93
-        width: 54
-        height: 31
+        x: 232
+        y: 102
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3439,12 +3452,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_e_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 93
-        width: 54
-        height: 31
+        x: 290
+        y: 102
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3461,12 +3474,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_e_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 93
-        width: 54
-        height: 31
+        x: 348
+        y: 102
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3483,12 +3496,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_e_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 93
-        width: 54
-        height: 31
+        x: 406
+        y: 102
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3505,12 +3518,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_e_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 93
-        width: 54
-        height: 31
+        x: 464
+        y: 102
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3527,12 +3540,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_e_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 93
-        width: 54
-        height: 31
+        x: 522
+        y: 102
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3550,11 +3563,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 62
-        width: 54
-        height: 31
+        y: 68
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3571,12 +3584,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ese_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 62
-        width: 54
-        height: 31
+        x: 58
+        y: 68
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3593,12 +3606,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ese_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 62
-        width: 54
-        height: 31
+        x: 116
+        y: 68
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3615,12 +3628,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ese_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 62
-        width: 54
-        height: 31
+        x: 174
+        y: 68
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3637,12 +3650,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ese_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 62
-        width: 54
-        height: 31
+        x: 232
+        y: 68
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3659,12 +3672,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ese_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 62
-        width: 54
-        height: 31
+        x: 290
+        y: 68
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3681,12 +3694,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ese_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 62
-        width: 54
-        height: 31
+        x: 348
+        y: 68
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3703,12 +3716,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ese_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 62
-        width: 54
-        height: 31
+        x: 406
+        y: 68
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3725,12 +3738,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ese_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 62
-        width: 54
-        height: 31
+        x: 464
+        y: 68
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3747,12 +3760,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_ese_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 62
-        width: 54
-        height: 31
+        x: 522
+        y: 68
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3770,11 +3783,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 31
-        width: 54
-        height: 31
+        y: 34
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3791,12 +3804,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_se_01
       rect:
         serializedVersion: 2
-        x: 54
-        y: 31
-        width: 54
-        height: 31
+        x: 58
+        y: 34
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3813,12 +3826,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_se_02
       rect:
         serializedVersion: 2
-        x: 108
-        y: 31
-        width: 54
-        height: 31
+        x: 116
+        y: 34
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3835,12 +3848,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_se_03
       rect:
         serializedVersion: 2
-        x: 162
-        y: 31
-        width: 54
-        height: 31
+        x: 174
+        y: 34
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3857,12 +3870,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_se_04
       rect:
         serializedVersion: 2
-        x: 216
-        y: 31
-        width: 54
-        height: 31
+        x: 232
+        y: 34
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3879,12 +3892,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_se_05
       rect:
         serializedVersion: 2
-        x: 270
-        y: 31
-        width: 54
-        height: 31
+        x: 290
+        y: 34
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3901,12 +3914,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_se_06
       rect:
         serializedVersion: 2
-        x: 324
-        y: 31
-        width: 54
-        height: 31
+        x: 348
+        y: 34
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3923,12 +3936,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_se_07
       rect:
         serializedVersion: 2
-        x: 378
-        y: 31
-        width: 54
-        height: 31
+        x: 406
+        y: 34
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3945,12 +3958,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_se_08
       rect:
         serializedVersion: 2
-        x: 432
-        y: 31
-        width: 54
-        height: 31
+        x: 464
+        y: 34
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3967,12 +3980,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_se_09
       rect:
         serializedVersion: 2
-        x: 486
-        y: 31
-        width: 54
-        height: 31
+        x: 522
+        y: 34
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3991,10 +4004,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 54
-        height: 31
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4011,12 +4024,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sse_01
       rect:
         serializedVersion: 2
-        x: 54
+        x: 58
         y: 0
-        width: 54
-        height: 31
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4033,12 +4046,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sse_02
       rect:
         serializedVersion: 2
-        x: 108
+        x: 116
         y: 0
-        width: 54
-        height: 31
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4055,12 +4068,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sse_03
       rect:
         serializedVersion: 2
-        x: 162
+        x: 174
         y: 0
-        width: 54
-        height: 31
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4077,12 +4090,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sse_04
       rect:
         serializedVersion: 2
-        x: 216
+        x: 232
         y: 0
-        width: 54
-        height: 31
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4099,12 +4112,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sse_05
       rect:
         serializedVersion: 2
-        x: 270
+        x: 290
         y: 0
-        width: 54
-        height: 31
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4121,12 +4134,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sse_06
       rect:
         serializedVersion: 2
-        x: 324
+        x: 348
         y: 0
-        width: 54
-        height: 31
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4143,12 +4156,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sse_07
       rect:
         serializedVersion: 2
-        x: 378
+        x: 406
         y: 0
-        width: 54
-        height: 31
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4165,12 +4178,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sse_08
       rect:
         serializedVersion: 2
-        x: 432
+        x: 464
         y: 0
-        width: 54
-        height: 31
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4187,12 +4200,12 @@ TextureImporter:
       name: wild_arrow_weapon_horn_bow_1h_run_back_sse_09
       rect:
         serializedVersion: 2
-        x: 486
+        x: 522
         y: 0
-        width: 54
-        height: 31
+        width: 58
+        height: 34
       alignment: 9
-      pivot: {x: 0.5, y: -0.4516129}
+      pivot: {x: 0.5, y: -0.35294116}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

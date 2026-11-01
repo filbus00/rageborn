@@ -601,6 +601,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -609,11 +622,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 450
-        width: 26
-        height: 30
+        y: 525
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -630,12 +643,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_s_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 450
-        width: 26
-        height: 30
+        x: 30
+        y: 525
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -652,12 +665,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_s_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 450
-        width: 26
-        height: 30
+        x: 60
+        y: 525
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -674,12 +687,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_s_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 450
-        width: 26
-        height: 30
+        x: 90
+        y: 525
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -696,12 +709,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_s_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 450
-        width: 26
-        height: 30
+        x: 120
+        y: 525
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -718,12 +731,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_s_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 450
-        width: 26
-        height: 30
+        x: 150
+        y: 525
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -740,12 +753,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_s_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 450
-        width: 26
-        height: 30
+        x: 180
+        y: 525
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -762,12 +775,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_s_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 450
-        width: 26
-        height: 30
+        x: 210
+        y: 525
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -784,12 +797,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_s_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 450
-        width: 26
-        height: 30
+        x: 240
+        y: 525
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -806,12 +819,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_s_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 450
-        width: 26
-        height: 30
+        x: 270
+        y: 525
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -829,11 +842,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 420
-        width: 26
-        height: 30
+        y: 490
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -850,12 +863,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ssw_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 420
-        width: 26
-        height: 30
+        x: 30
+        y: 490
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -872,12 +885,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ssw_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 420
-        width: 26
-        height: 30
+        x: 60
+        y: 490
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -894,12 +907,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ssw_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 420
-        width: 26
-        height: 30
+        x: 90
+        y: 490
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -916,12 +929,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ssw_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 420
-        width: 26
-        height: 30
+        x: 120
+        y: 490
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -938,12 +951,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ssw_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 420
-        width: 26
-        height: 30
+        x: 150
+        y: 490
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -960,12 +973,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ssw_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 420
-        width: 26
-        height: 30
+        x: 180
+        y: 490
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -982,12 +995,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ssw_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 420
-        width: 26
-        height: 30
+        x: 210
+        y: 490
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1004,12 +1017,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ssw_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 420
-        width: 26
-        height: 30
+        x: 240
+        y: 490
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1026,12 +1039,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ssw_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 420
-        width: 26
-        height: 30
+        x: 270
+        y: 490
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1049,11 +1062,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 390
-        width: 26
-        height: 30
+        y: 455
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1070,12 +1083,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sw_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 390
-        width: 26
-        height: 30
+        x: 30
+        y: 455
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1092,12 +1105,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sw_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 390
-        width: 26
-        height: 30
+        x: 60
+        y: 455
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1114,12 +1127,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sw_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 390
-        width: 26
-        height: 30
+        x: 90
+        y: 455
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1136,12 +1149,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sw_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 390
-        width: 26
-        height: 30
+        x: 120
+        y: 455
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1158,12 +1171,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sw_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 390
-        width: 26
-        height: 30
+        x: 150
+        y: 455
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1180,12 +1193,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sw_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 390
-        width: 26
-        height: 30
+        x: 180
+        y: 455
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1202,12 +1215,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sw_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 390
-        width: 26
-        height: 30
+        x: 210
+        y: 455
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1224,12 +1237,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sw_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 390
-        width: 26
-        height: 30
+        x: 240
+        y: 455
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1246,12 +1259,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sw_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 390
-        width: 26
-        height: 30
+        x: 270
+        y: 455
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1269,11 +1282,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 360
-        width: 26
-        height: 30
+        y: 420
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1290,12 +1303,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wsw_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 360
-        width: 26
-        height: 30
+        x: 30
+        y: 420
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1312,12 +1325,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wsw_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 360
-        width: 26
-        height: 30
+        x: 60
+        y: 420
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1334,12 +1347,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wsw_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 360
-        width: 26
-        height: 30
+        x: 90
+        y: 420
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1356,12 +1369,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wsw_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 360
-        width: 26
-        height: 30
+        x: 120
+        y: 420
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1378,12 +1391,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wsw_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 360
-        width: 26
-        height: 30
+        x: 150
+        y: 420
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1400,12 +1413,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wsw_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 360
-        width: 26
-        height: 30
+        x: 180
+        y: 420
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1422,12 +1435,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wsw_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 360
-        width: 26
-        height: 30
+        x: 210
+        y: 420
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1444,12 +1457,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wsw_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 360
-        width: 26
-        height: 30
+        x: 240
+        y: 420
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1466,12 +1479,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wsw_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 360
-        width: 26
-        height: 30
+        x: 270
+        y: 420
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1489,11 +1502,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 330
-        width: 26
-        height: 30
+        y: 385
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1510,12 +1523,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_w_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 330
-        width: 26
-        height: 30
+        x: 30
+        y: 385
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1532,12 +1545,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_w_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 330
-        width: 26
-        height: 30
+        x: 60
+        y: 385
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1554,12 +1567,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_w_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 330
-        width: 26
-        height: 30
+        x: 90
+        y: 385
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1576,12 +1589,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_w_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 330
-        width: 26
-        height: 30
+        x: 120
+        y: 385
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1598,12 +1611,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_w_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 330
-        width: 26
-        height: 30
+        x: 150
+        y: 385
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1620,12 +1633,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_w_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 330
-        width: 26
-        height: 30
+        x: 180
+        y: 385
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1642,12 +1655,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_w_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 330
-        width: 26
-        height: 30
+        x: 210
+        y: 385
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1664,12 +1677,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_w_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 330
-        width: 26
-        height: 30
+        x: 240
+        y: 385
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1686,12 +1699,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_w_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 330
-        width: 26
-        height: 30
+        x: 270
+        y: 385
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1709,11 +1722,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 300
-        width: 26
-        height: 30
+        y: 350
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1730,12 +1743,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wnw_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 300
-        width: 26
-        height: 30
+        x: 30
+        y: 350
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1752,12 +1765,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wnw_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 300
-        width: 26
-        height: 30
+        x: 60
+        y: 350
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1774,12 +1787,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wnw_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 300
-        width: 26
-        height: 30
+        x: 90
+        y: 350
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1796,12 +1809,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wnw_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 300
-        width: 26
-        height: 30
+        x: 120
+        y: 350
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1818,12 +1831,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wnw_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 300
-        width: 26
-        height: 30
+        x: 150
+        y: 350
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1840,12 +1853,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wnw_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 300
-        width: 26
-        height: 30
+        x: 180
+        y: 350
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1862,12 +1875,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wnw_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 300
-        width: 26
-        height: 30
+        x: 210
+        y: 350
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1884,12 +1897,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wnw_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 300
-        width: 26
-        height: 30
+        x: 240
+        y: 350
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1906,12 +1919,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_wnw_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 300
-        width: 26
-        height: 30
+        x: 270
+        y: 350
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1929,11 +1942,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 270
-        width: 26
-        height: 30
+        y: 315
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1950,12 +1963,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nw_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 270
-        width: 26
-        height: 30
+        x: 30
+        y: 315
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1972,12 +1985,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nw_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 270
-        width: 26
-        height: 30
+        x: 60
+        y: 315
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1994,12 +2007,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nw_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 270
-        width: 26
-        height: 30
+        x: 90
+        y: 315
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2016,12 +2029,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nw_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 270
-        width: 26
-        height: 30
+        x: 120
+        y: 315
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2038,12 +2051,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nw_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 270
-        width: 26
-        height: 30
+        x: 150
+        y: 315
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2060,12 +2073,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nw_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 270
-        width: 26
-        height: 30
+        x: 180
+        y: 315
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2082,12 +2095,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nw_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 270
-        width: 26
-        height: 30
+        x: 210
+        y: 315
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2104,12 +2117,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nw_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 270
-        width: 26
-        height: 30
+        x: 240
+        y: 315
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2126,12 +2139,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nw_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 270
-        width: 26
-        height: 30
+        x: 270
+        y: 315
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2149,11 +2162,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 26
-        height: 30
+        y: 280
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2170,12 +2183,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nnw_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 240
-        width: 26
-        height: 30
+        x: 30
+        y: 280
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2192,12 +2205,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nnw_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 240
-        width: 26
-        height: 30
+        x: 60
+        y: 280
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2214,12 +2227,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nnw_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 240
-        width: 26
-        height: 30
+        x: 90
+        y: 280
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2236,12 +2249,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nnw_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 240
-        width: 26
-        height: 30
+        x: 120
+        y: 280
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2258,12 +2271,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nnw_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 240
-        width: 26
-        height: 30
+        x: 150
+        y: 280
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2280,12 +2293,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nnw_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 240
-        width: 26
-        height: 30
+        x: 180
+        y: 280
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2302,12 +2315,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nnw_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 240
-        width: 26
-        height: 30
+        x: 210
+        y: 280
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2324,12 +2337,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nnw_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 240
-        width: 26
-        height: 30
+        x: 240
+        y: 280
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2346,12 +2359,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nnw_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 240
-        width: 26
-        height: 30
+        x: 270
+        y: 280
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2369,11 +2382,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 210
-        width: 26
-        height: 30
+        y: 245
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2390,12 +2403,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_n_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 210
-        width: 26
-        height: 30
+        x: 30
+        y: 245
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2412,12 +2425,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_n_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 210
-        width: 26
-        height: 30
+        x: 60
+        y: 245
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2434,12 +2447,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_n_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 210
-        width: 26
-        height: 30
+        x: 90
+        y: 245
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2456,12 +2469,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_n_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 210
-        width: 26
-        height: 30
+        x: 120
+        y: 245
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2478,12 +2491,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_n_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 210
-        width: 26
-        height: 30
+        x: 150
+        y: 245
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2500,12 +2513,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_n_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 210
-        width: 26
-        height: 30
+        x: 180
+        y: 245
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2522,12 +2535,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_n_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 210
-        width: 26
-        height: 30
+        x: 210
+        y: 245
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2544,12 +2557,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_n_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 210
-        width: 26
-        height: 30
+        x: 240
+        y: 245
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2566,12 +2579,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_n_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 210
-        width: 26
-        height: 30
+        x: 270
+        y: 245
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2589,11 +2602,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 180
-        width: 26
-        height: 30
+        y: 210
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2610,12 +2623,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nne_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 180
-        width: 26
-        height: 30
+        x: 30
+        y: 210
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2632,12 +2645,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nne_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 180
-        width: 26
-        height: 30
+        x: 60
+        y: 210
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2654,12 +2667,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nne_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 180
-        width: 26
-        height: 30
+        x: 90
+        y: 210
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2676,12 +2689,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nne_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 180
-        width: 26
-        height: 30
+        x: 120
+        y: 210
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2698,12 +2711,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nne_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 180
-        width: 26
-        height: 30
+        x: 150
+        y: 210
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2720,12 +2733,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nne_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 180
-        width: 26
-        height: 30
+        x: 180
+        y: 210
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2742,12 +2755,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nne_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 180
-        width: 26
-        height: 30
+        x: 210
+        y: 210
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2764,12 +2777,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nne_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 180
-        width: 26
-        height: 30
+        x: 240
+        y: 210
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2786,12 +2799,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_nne_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 180
-        width: 26
-        height: 30
+        x: 270
+        y: 210
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2809,11 +2822,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 150
-        width: 26
-        height: 30
+        y: 175
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2830,12 +2843,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ne_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 150
-        width: 26
-        height: 30
+        x: 30
+        y: 175
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2852,12 +2865,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ne_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 150
-        width: 26
-        height: 30
+        x: 60
+        y: 175
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2874,12 +2887,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ne_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 150
-        width: 26
-        height: 30
+        x: 90
+        y: 175
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2896,12 +2909,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ne_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 150
-        width: 26
-        height: 30
+        x: 120
+        y: 175
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2918,12 +2931,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ne_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 150
-        width: 26
-        height: 30
+        x: 150
+        y: 175
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2940,12 +2953,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ne_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 150
-        width: 26
-        height: 30
+        x: 180
+        y: 175
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2962,12 +2975,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ne_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 150
-        width: 26
-        height: 30
+        x: 210
+        y: 175
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2984,12 +2997,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ne_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 150
-        width: 26
-        height: 30
+        x: 240
+        y: 175
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3006,12 +3019,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ne_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 150
-        width: 26
-        height: 30
+        x: 270
+        y: 175
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3029,11 +3042,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 120
-        width: 26
-        height: 30
+        y: 140
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3050,12 +3063,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ene_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 120
-        width: 26
-        height: 30
+        x: 30
+        y: 140
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3072,12 +3085,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ene_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 120
-        width: 26
-        height: 30
+        x: 60
+        y: 140
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3094,12 +3107,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ene_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 120
-        width: 26
-        height: 30
+        x: 90
+        y: 140
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3116,12 +3129,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ene_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 120
-        width: 26
-        height: 30
+        x: 120
+        y: 140
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3138,12 +3151,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ene_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 120
-        width: 26
-        height: 30
+        x: 150
+        y: 140
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3160,12 +3173,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ene_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 120
-        width: 26
-        height: 30
+        x: 180
+        y: 140
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3182,12 +3195,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ene_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 120
-        width: 26
-        height: 30
+        x: 210
+        y: 140
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3204,12 +3217,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ene_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 120
-        width: 26
-        height: 30
+        x: 240
+        y: 140
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3226,12 +3239,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ene_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 120
-        width: 26
-        height: 30
+        x: 270
+        y: 140
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3249,11 +3262,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 90
-        width: 26
-        height: 30
+        y: 105
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3270,12 +3283,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_e_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 90
-        width: 26
-        height: 30
+        x: 30
+        y: 105
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3292,12 +3305,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_e_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 90
-        width: 26
-        height: 30
+        x: 60
+        y: 105
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3314,12 +3327,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_e_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 90
-        width: 26
-        height: 30
+        x: 90
+        y: 105
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3336,12 +3349,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_e_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 90
-        width: 26
-        height: 30
+        x: 120
+        y: 105
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3358,12 +3371,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_e_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 90
-        width: 26
-        height: 30
+        x: 150
+        y: 105
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3380,12 +3393,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_e_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 90
-        width: 26
-        height: 30
+        x: 180
+        y: 105
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3402,12 +3415,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_e_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 90
-        width: 26
-        height: 30
+        x: 210
+        y: 105
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3424,12 +3437,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_e_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 90
-        width: 26
-        height: 30
+        x: 240
+        y: 105
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3446,12 +3459,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_e_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 90
-        width: 26
-        height: 30
+        x: 270
+        y: 105
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3469,11 +3482,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 60
-        width: 26
-        height: 30
+        y: 70
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3490,12 +3503,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ese_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 60
-        width: 26
-        height: 30
+        x: 30
+        y: 70
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3512,12 +3525,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ese_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 60
-        width: 26
-        height: 30
+        x: 60
+        y: 70
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3534,12 +3547,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ese_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 60
-        width: 26
-        height: 30
+        x: 90
+        y: 70
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3556,12 +3569,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ese_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 60
-        width: 26
-        height: 30
+        x: 120
+        y: 70
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3578,12 +3591,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ese_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 60
-        width: 26
-        height: 30
+        x: 150
+        y: 70
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3600,12 +3613,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ese_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 60
-        width: 26
-        height: 30
+        x: 180
+        y: 70
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3622,12 +3635,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ese_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 60
-        width: 26
-        height: 30
+        x: 210
+        y: 70
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3644,12 +3657,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ese_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 60
-        width: 26
-        height: 30
+        x: 240
+        y: 70
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3666,12 +3679,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_ese_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 60
-        width: 26
-        height: 30
+        x: 270
+        y: 70
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3689,11 +3702,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 30
-        width: 26
-        height: 30
+        y: 35
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3710,12 +3723,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_se_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 30
-        width: 26
-        height: 30
+        x: 30
+        y: 35
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3732,12 +3745,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_se_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 30
-        width: 26
-        height: 30
+        x: 60
+        y: 35
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3754,12 +3767,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_se_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 30
-        width: 26
-        height: 30
+        x: 90
+        y: 35
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3776,12 +3789,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_se_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 30
-        width: 26
-        height: 30
+        x: 120
+        y: 35
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3798,12 +3811,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_se_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 30
-        width: 26
-        height: 30
+        x: 150
+        y: 35
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3820,12 +3833,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_se_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 30
-        width: 26
-        height: 30
+        x: 180
+        y: 35
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3842,12 +3855,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_se_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 30
-        width: 26
-        height: 30
+        x: 210
+        y: 35
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3864,12 +3877,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_se_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 30
-        width: 26
-        height: 30
+        x: 240
+        y: 35
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3886,12 +3899,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_se_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 30
-        width: 26
-        height: 30
+        x: 270
+        y: 35
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3910,10 +3923,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 26
-        height: 30
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3930,12 +3943,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sse_01
       rect:
         serializedVersion: 2
-        x: 26
+        x: 30
         y: 0
-        width: 26
-        height: 30
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3952,12 +3965,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sse_02
       rect:
         serializedVersion: 2
-        x: 52
+        x: 60
         y: 0
-        width: 26
-        height: 30
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3974,12 +3987,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sse_03
       rect:
         serializedVersion: 2
-        x: 78
+        x: 90
         y: 0
-        width: 26
-        height: 30
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3996,12 +4009,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sse_04
       rect:
         serializedVersion: 2
-        x: 104
+        x: 120
         y: 0
-        width: 26
-        height: 30
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4018,12 +4031,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sse_05
       rect:
         serializedVersion: 2
-        x: 130
+        x: 150
         y: 0
-        width: 26
-        height: 30
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4040,12 +4053,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sse_06
       rect:
         serializedVersion: 2
-        x: 156
+        x: 180
         y: 0
-        width: 26
-        height: 30
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4062,12 +4075,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sse_07
       rect:
         serializedVersion: 2
-        x: 182
+        x: 210
         y: 0
-        width: 26
-        height: 30
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4084,12 +4097,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sse_08
       rect:
         serializedVersion: 2
-        x: 208
+        x: 240
         y: 0
-        width: 26
-        height: 30
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4106,12 +4119,12 @@ TextureImporter:
       name: wild_arrow_offhand_quiver_of_endless_splinters_1h_run_back_sse_09
       rect:
         serializedVersion: 2
-        x: 234
+        x: 270
         y: 0
-        width: 26
-        height: 30
+        width: 30
+        height: 35
       alignment: 9
-      pivot: {x: 0.5, y: -0.8666667}
+      pivot: {x: 0.5, y: -0.6571428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

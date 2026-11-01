@@ -685,6 +685,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -693,11 +706,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 765
-        width: 64
-        height: 51
+        y: 825
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -714,12 +727,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_s_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 765
-        width: 64
-        height: 51
+        x: 68
+        y: 825
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -736,12 +749,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_s_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 765
-        width: 64
-        height: 51
+        x: 136
+        y: 825
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -758,12 +771,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_s_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 765
-        width: 64
-        height: 51
+        x: 204
+        y: 825
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -780,12 +793,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_s_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 765
-        width: 64
-        height: 51
+        x: 272
+        y: 825
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -802,12 +815,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_s_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 765
-        width: 64
-        height: 51
+        x: 340
+        y: 825
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -824,12 +837,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_s_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 765
-        width: 64
-        height: 51
+        x: 408
+        y: 825
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -846,12 +859,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_s_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 765
-        width: 64
-        height: 51
+        x: 476
+        y: 825
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -868,12 +881,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_s_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 765
-        width: 64
-        height: 51
+        x: 544
+        y: 825
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -890,12 +903,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_s_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 765
-        width: 64
-        height: 51
+        x: 612
+        y: 825
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -913,11 +926,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 714
-        width: 64
-        height: 51
+        y: 770
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -934,12 +947,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ssw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 714
-        width: 64
-        height: 51
+        x: 68
+        y: 770
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -956,12 +969,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ssw_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 714
-        width: 64
-        height: 51
+        x: 136
+        y: 770
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -978,12 +991,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ssw_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 714
-        width: 64
-        height: 51
+        x: 204
+        y: 770
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1000,12 +1013,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ssw_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 714
-        width: 64
-        height: 51
+        x: 272
+        y: 770
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1022,12 +1035,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ssw_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 714
-        width: 64
-        height: 51
+        x: 340
+        y: 770
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1044,12 +1057,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ssw_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 714
-        width: 64
-        height: 51
+        x: 408
+        y: 770
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1066,12 +1079,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ssw_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 714
-        width: 64
-        height: 51
+        x: 476
+        y: 770
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1088,12 +1101,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ssw_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 714
-        width: 64
-        height: 51
+        x: 544
+        y: 770
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1110,12 +1123,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ssw_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 714
-        width: 64
-        height: 51
+        x: 612
+        y: 770
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1133,11 +1146,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 663
-        width: 64
-        height: 51
+        y: 715
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1154,12 +1167,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 663
-        width: 64
-        height: 51
+        x: 68
+        y: 715
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1176,12 +1189,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sw_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 663
-        width: 64
-        height: 51
+        x: 136
+        y: 715
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1198,12 +1211,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sw_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 663
-        width: 64
-        height: 51
+        x: 204
+        y: 715
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1220,12 +1233,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sw_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 663
-        width: 64
-        height: 51
+        x: 272
+        y: 715
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1242,12 +1255,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sw_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 663
-        width: 64
-        height: 51
+        x: 340
+        y: 715
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1264,12 +1277,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sw_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 663
-        width: 64
-        height: 51
+        x: 408
+        y: 715
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1286,12 +1299,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sw_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 663
-        width: 64
-        height: 51
+        x: 476
+        y: 715
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1308,12 +1321,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sw_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 663
-        width: 64
-        height: 51
+        x: 544
+        y: 715
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1330,12 +1343,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sw_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 663
-        width: 64
-        height: 51
+        x: 612
+        y: 715
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1353,11 +1366,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 612
-        width: 64
-        height: 51
+        y: 660
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1374,12 +1387,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wsw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 612
-        width: 64
-        height: 51
+        x: 68
+        y: 660
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1396,12 +1409,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wsw_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 612
-        width: 64
-        height: 51
+        x: 136
+        y: 660
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1418,12 +1431,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wsw_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 612
-        width: 64
-        height: 51
+        x: 204
+        y: 660
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1440,12 +1453,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wsw_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 612
-        width: 64
-        height: 51
+        x: 272
+        y: 660
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1462,12 +1475,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wsw_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 612
-        width: 64
-        height: 51
+        x: 340
+        y: 660
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1484,12 +1497,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wsw_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 612
-        width: 64
-        height: 51
+        x: 408
+        y: 660
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1506,12 +1519,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wsw_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 612
-        width: 64
-        height: 51
+        x: 476
+        y: 660
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1528,12 +1541,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wsw_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 612
-        width: 64
-        height: 51
+        x: 544
+        y: 660
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1550,12 +1563,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wsw_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 612
-        width: 64
-        height: 51
+        x: 612
+        y: 660
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1573,11 +1586,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 561
-        width: 64
-        height: 51
+        y: 605
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1594,12 +1607,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_w_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 561
-        width: 64
-        height: 51
+        x: 68
+        y: 605
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1616,12 +1629,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_w_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 561
-        width: 64
-        height: 51
+        x: 136
+        y: 605
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1638,12 +1651,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_w_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 561
-        width: 64
-        height: 51
+        x: 204
+        y: 605
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1660,12 +1673,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_w_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 561
-        width: 64
-        height: 51
+        x: 272
+        y: 605
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1682,12 +1695,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_w_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 561
-        width: 64
-        height: 51
+        x: 340
+        y: 605
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1704,12 +1717,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_w_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 561
-        width: 64
-        height: 51
+        x: 408
+        y: 605
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1726,12 +1739,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_w_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 561
-        width: 64
-        height: 51
+        x: 476
+        y: 605
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1748,12 +1761,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_w_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 561
-        width: 64
-        height: 51
+        x: 544
+        y: 605
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1770,12 +1783,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_w_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 561
-        width: 64
-        height: 51
+        x: 612
+        y: 605
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1793,11 +1806,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 510
-        width: 64
-        height: 51
+        y: 550
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1814,12 +1827,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wnw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 510
-        width: 64
-        height: 51
+        x: 68
+        y: 550
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1836,12 +1849,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wnw_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 510
-        width: 64
-        height: 51
+        x: 136
+        y: 550
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1858,12 +1871,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wnw_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 510
-        width: 64
-        height: 51
+        x: 204
+        y: 550
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1880,12 +1893,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wnw_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 510
-        width: 64
-        height: 51
+        x: 272
+        y: 550
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1902,12 +1915,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wnw_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 510
-        width: 64
-        height: 51
+        x: 340
+        y: 550
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1924,12 +1937,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wnw_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 510
-        width: 64
-        height: 51
+        x: 408
+        y: 550
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1946,12 +1959,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wnw_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 510
-        width: 64
-        height: 51
+        x: 476
+        y: 550
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1968,12 +1981,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wnw_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 510
-        width: 64
-        height: 51
+        x: 544
+        y: 550
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1990,12 +2003,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_wnw_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 510
-        width: 64
-        height: 51
+        x: 612
+        y: 550
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2013,11 +2026,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 459
-        width: 64
-        height: 51
+        y: 495
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2034,12 +2047,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 459
-        width: 64
-        height: 51
+        x: 68
+        y: 495
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2056,12 +2069,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nw_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 459
-        width: 64
-        height: 51
+        x: 136
+        y: 495
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2078,12 +2091,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nw_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 459
-        width: 64
-        height: 51
+        x: 204
+        y: 495
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2100,12 +2113,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nw_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 459
-        width: 64
-        height: 51
+        x: 272
+        y: 495
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2122,12 +2135,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nw_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 459
-        width: 64
-        height: 51
+        x: 340
+        y: 495
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2144,12 +2157,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nw_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 459
-        width: 64
-        height: 51
+        x: 408
+        y: 495
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2166,12 +2179,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nw_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 459
-        width: 64
-        height: 51
+        x: 476
+        y: 495
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2188,12 +2201,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nw_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 459
-        width: 64
-        height: 51
+        x: 544
+        y: 495
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2210,12 +2223,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nw_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 459
-        width: 64
-        height: 51
+        x: 612
+        y: 495
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2233,11 +2246,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 408
-        width: 64
-        height: 51
+        y: 440
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2254,12 +2267,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nnw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 408
-        width: 64
-        height: 51
+        x: 68
+        y: 440
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2276,12 +2289,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nnw_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 408
-        width: 64
-        height: 51
+        x: 136
+        y: 440
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2298,12 +2311,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nnw_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 408
-        width: 64
-        height: 51
+        x: 204
+        y: 440
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2320,12 +2333,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nnw_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 408
-        width: 64
-        height: 51
+        x: 272
+        y: 440
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2342,12 +2355,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nnw_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 408
-        width: 64
-        height: 51
+        x: 340
+        y: 440
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2364,12 +2377,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nnw_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 408
-        width: 64
-        height: 51
+        x: 408
+        y: 440
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2386,12 +2399,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nnw_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 408
-        width: 64
-        height: 51
+        x: 476
+        y: 440
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2408,12 +2421,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nnw_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 408
-        width: 64
-        height: 51
+        x: 544
+        y: 440
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2430,12 +2443,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nnw_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 408
-        width: 64
-        height: 51
+        x: 612
+        y: 440
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2453,11 +2466,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 357
-        width: 64
-        height: 51
+        y: 385
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2474,12 +2487,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_n_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 357
-        width: 64
-        height: 51
+        x: 68
+        y: 385
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2496,12 +2509,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_n_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 357
-        width: 64
-        height: 51
+        x: 136
+        y: 385
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2518,12 +2531,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_n_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 357
-        width: 64
-        height: 51
+        x: 204
+        y: 385
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2540,12 +2553,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_n_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 357
-        width: 64
-        height: 51
+        x: 272
+        y: 385
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2562,12 +2575,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_n_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 357
-        width: 64
-        height: 51
+        x: 340
+        y: 385
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2584,12 +2597,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_n_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 357
-        width: 64
-        height: 51
+        x: 408
+        y: 385
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2606,12 +2619,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_n_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 357
-        width: 64
-        height: 51
+        x: 476
+        y: 385
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2628,12 +2641,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_n_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 357
-        width: 64
-        height: 51
+        x: 544
+        y: 385
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2650,12 +2663,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_n_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 357
-        width: 64
-        height: 51
+        x: 612
+        y: 385
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2673,11 +2686,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 306
-        width: 64
-        height: 51
+        y: 330
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2694,12 +2707,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nne_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 306
-        width: 64
-        height: 51
+        x: 68
+        y: 330
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2716,12 +2729,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nne_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 306
-        width: 64
-        height: 51
+        x: 136
+        y: 330
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2738,12 +2751,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nne_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 306
-        width: 64
-        height: 51
+        x: 204
+        y: 330
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2760,12 +2773,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nne_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 306
-        width: 64
-        height: 51
+        x: 272
+        y: 330
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2782,12 +2795,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nne_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 306
-        width: 64
-        height: 51
+        x: 340
+        y: 330
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2804,12 +2817,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nne_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 306
-        width: 64
-        height: 51
+        x: 408
+        y: 330
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2826,12 +2839,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nne_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 306
-        width: 64
-        height: 51
+        x: 476
+        y: 330
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2848,12 +2861,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nne_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 306
-        width: 64
-        height: 51
+        x: 544
+        y: 330
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2870,12 +2883,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_nne_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 306
-        width: 64
-        height: 51
+        x: 612
+        y: 330
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2893,11 +2906,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 255
-        width: 64
-        height: 51
+        y: 275
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2914,12 +2927,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ne_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 255
-        width: 64
-        height: 51
+        x: 68
+        y: 275
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2936,12 +2949,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ne_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 255
-        width: 64
-        height: 51
+        x: 136
+        y: 275
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2958,12 +2971,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ne_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 255
-        width: 64
-        height: 51
+        x: 204
+        y: 275
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2980,12 +2993,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ne_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 255
-        width: 64
-        height: 51
+        x: 272
+        y: 275
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3002,12 +3015,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ne_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 255
-        width: 64
-        height: 51
+        x: 340
+        y: 275
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3024,12 +3037,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ne_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 255
-        width: 64
-        height: 51
+        x: 408
+        y: 275
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3046,12 +3059,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ne_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 255
-        width: 64
-        height: 51
+        x: 476
+        y: 275
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3068,12 +3081,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ne_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 255
-        width: 64
-        height: 51
+        x: 544
+        y: 275
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3090,12 +3103,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ne_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 255
-        width: 64
-        height: 51
+        x: 612
+        y: 275
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3113,11 +3126,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 204
-        width: 64
-        height: 51
+        y: 220
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3134,12 +3147,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ene_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 204
-        width: 64
-        height: 51
+        x: 68
+        y: 220
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3156,12 +3169,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ene_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 204
-        width: 64
-        height: 51
+        x: 136
+        y: 220
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3178,12 +3191,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ene_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 204
-        width: 64
-        height: 51
+        x: 204
+        y: 220
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3200,12 +3213,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ene_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 204
-        width: 64
-        height: 51
+        x: 272
+        y: 220
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3222,12 +3235,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ene_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 204
-        width: 64
-        height: 51
+        x: 340
+        y: 220
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3244,12 +3257,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ene_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 204
-        width: 64
-        height: 51
+        x: 408
+        y: 220
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3266,12 +3279,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ene_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 204
-        width: 64
-        height: 51
+        x: 476
+        y: 220
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3288,12 +3301,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ene_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 204
-        width: 64
-        height: 51
+        x: 544
+        y: 220
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3310,12 +3323,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ene_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 204
-        width: 64
-        height: 51
+        x: 612
+        y: 220
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3333,11 +3346,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 153
-        width: 64
-        height: 51
+        y: 165
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3354,12 +3367,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_e_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 153
-        width: 64
-        height: 51
+        x: 68
+        y: 165
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3376,12 +3389,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_e_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 153
-        width: 64
-        height: 51
+        x: 136
+        y: 165
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3398,12 +3411,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_e_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 153
-        width: 64
-        height: 51
+        x: 204
+        y: 165
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3420,12 +3433,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_e_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 153
-        width: 64
-        height: 51
+        x: 272
+        y: 165
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3442,12 +3455,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_e_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 153
-        width: 64
-        height: 51
+        x: 340
+        y: 165
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3464,12 +3477,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_e_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 153
-        width: 64
-        height: 51
+        x: 408
+        y: 165
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3486,12 +3499,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_e_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 153
-        width: 64
-        height: 51
+        x: 476
+        y: 165
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3508,12 +3521,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_e_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 153
-        width: 64
-        height: 51
+        x: 544
+        y: 165
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3530,12 +3543,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_e_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 153
-        width: 64
-        height: 51
+        x: 612
+        y: 165
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3553,11 +3566,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 102
-        width: 64
-        height: 51
+        y: 110
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3574,12 +3587,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ese_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 102
-        width: 64
-        height: 51
+        x: 68
+        y: 110
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3596,12 +3609,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ese_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 102
-        width: 64
-        height: 51
+        x: 136
+        y: 110
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3618,12 +3631,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ese_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 102
-        width: 64
-        height: 51
+        x: 204
+        y: 110
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3640,12 +3653,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ese_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 102
-        width: 64
-        height: 51
+        x: 272
+        y: 110
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3662,12 +3675,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ese_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 102
-        width: 64
-        height: 51
+        x: 340
+        y: 110
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3684,12 +3697,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ese_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 102
-        width: 64
-        height: 51
+        x: 408
+        y: 110
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3706,12 +3719,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ese_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 102
-        width: 64
-        height: 51
+        x: 476
+        y: 110
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3728,12 +3741,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ese_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 102
-        width: 64
-        height: 51
+        x: 544
+        y: 110
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3750,12 +3763,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_ese_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 102
-        width: 64
-        height: 51
+        x: 612
+        y: 110
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3773,11 +3786,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 51
-        width: 64
-        height: 51
+        y: 55
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3794,12 +3807,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_se_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 51
-        width: 64
-        height: 51
+        x: 68
+        y: 55
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3816,12 +3829,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_se_02
       rect:
         serializedVersion: 2
-        x: 128
-        y: 51
-        width: 64
-        height: 51
+        x: 136
+        y: 55
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3838,12 +3851,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_se_03
       rect:
         serializedVersion: 2
-        x: 192
-        y: 51
-        width: 64
-        height: 51
+        x: 204
+        y: 55
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3860,12 +3873,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_se_04
       rect:
         serializedVersion: 2
-        x: 256
-        y: 51
-        width: 64
-        height: 51
+        x: 272
+        y: 55
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3882,12 +3895,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_se_05
       rect:
         serializedVersion: 2
-        x: 320
-        y: 51
-        width: 64
-        height: 51
+        x: 340
+        y: 55
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3904,12 +3917,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_se_06
       rect:
         serializedVersion: 2
-        x: 384
-        y: 51
-        width: 64
-        height: 51
+        x: 408
+        y: 55
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3926,12 +3939,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_se_07
       rect:
         serializedVersion: 2
-        x: 448
-        y: 51
-        width: 64
-        height: 51
+        x: 476
+        y: 55
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3948,12 +3961,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_se_08
       rect:
         serializedVersion: 2
-        x: 512
-        y: 51
-        width: 64
-        height: 51
+        x: 544
+        y: 55
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3970,12 +3983,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_se_09
       rect:
         serializedVersion: 2
-        x: 576
-        y: 51
-        width: 64
-        height: 51
+        x: 612
+        y: 55
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3994,10 +4007,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 51
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4014,12 +4027,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sse_01
       rect:
         serializedVersion: 2
-        x: 64
+        x: 68
         y: 0
-        width: 64
-        height: 51
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4036,12 +4049,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sse_02
       rect:
         serializedVersion: 2
-        x: 128
+        x: 136
         y: 0
-        width: 64
-        height: 51
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4058,12 +4071,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sse_03
       rect:
         serializedVersion: 2
-        x: 192
+        x: 204
         y: 0
-        width: 64
-        height: 51
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4080,12 +4093,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sse_04
       rect:
         serializedVersion: 2
-        x: 256
+        x: 272
         y: 0
-        width: 64
-        height: 51
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4102,12 +4115,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sse_05
       rect:
         serializedVersion: 2
-        x: 320
+        x: 340
         y: 0
-        width: 64
-        height: 51
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4124,12 +4137,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sse_06
       rect:
         serializedVersion: 2
-        x: 384
+        x: 408
         y: 0
-        width: 64
-        height: 51
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4146,12 +4159,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sse_07
       rect:
         serializedVersion: 2
-        x: 448
+        x: 476
         y: 0
-        width: 64
-        height: 51
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4168,12 +4181,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sse_08
       rect:
         serializedVersion: 2
-        x: 512
+        x: 544
         y: 0
-        width: 64
-        height: 51
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4190,12 +4203,12 @@ TextureImporter:
       name: wild_arrow_weapon_hunters_promise_1h_attack_sse_09
       rect:
         serializedVersion: 2
-        x: 576
+        x: 612
         y: 0
-        width: 64
-        height: 51
+        width: 68
+        height: 55
       alignment: 9
-      pivot: {x: 0.5, y: -0.29411763}
+      pivot: {x: 0.5, y: -0.23636363}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

@@ -2209,6 +2209,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -2217,11 +2230,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 405
-        width: 36
-        height: 27
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2238,12 +2251,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 405
-        width: 36
-        height: 27
+        x: 38
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2260,12 +2273,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 405
-        width: 36
-        height: 27
+        x: 76
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2282,12 +2295,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 405
-        width: 36
-        height: 27
+        x: 114
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2304,12 +2317,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 405
-        width: 36
-        height: 27
+        x: 152
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2326,12 +2339,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 405
-        width: 36
-        height: 27
+        x: 190
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2348,12 +2361,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 405
-        width: 36
-        height: 27
+        x: 228
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2370,12 +2383,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 405
-        width: 36
-        height: 27
+        x: 266
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2392,12 +2405,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 405
-        width: 36
-        height: 27
+        x: 304
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2414,12 +2427,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 405
-        width: 36
-        height: 27
+        x: 342
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2436,12 +2449,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 405
-        width: 36
-        height: 27
+        x: 380
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2458,12 +2471,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 405
-        width: 36
-        height: 27
+        x: 418
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2480,12 +2493,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 405
-        width: 36
-        height: 27
+        x: 456
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2502,12 +2515,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 405
-        width: 36
-        height: 27
+        x: 494
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2524,12 +2537,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 405
-        width: 36
-        height: 27
+        x: 532
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2546,12 +2559,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 405
-        width: 36
-        height: 27
+        x: 570
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2568,12 +2581,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 405
-        width: 36
-        height: 27
+        x: 608
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2590,12 +2603,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 405
-        width: 36
-        height: 27
+        x: 646
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2612,12 +2625,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 405
-        width: 36
-        height: 27
+        x: 684
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2634,12 +2647,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 405
-        width: 36
-        height: 27
+        x: 722
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2656,12 +2669,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 405
-        width: 36
-        height: 27
+        x: 760
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2678,12 +2691,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 405
-        width: 36
-        height: 27
+        x: 798
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2700,12 +2713,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 405
-        width: 36
-        height: 27
+        x: 836
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2722,12 +2735,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_s_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 405
-        width: 36
-        height: 27
+        x: 874
+        y: 420
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2745,11 +2758,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 378
-        width: 36
-        height: 27
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2766,12 +2779,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 378
-        width: 36
-        height: 27
+        x: 38
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2788,12 +2801,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 378
-        width: 36
-        height: 27
+        x: 76
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2810,12 +2823,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 378
-        width: 36
-        height: 27
+        x: 114
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2832,12 +2845,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 378
-        width: 36
-        height: 27
+        x: 152
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2854,12 +2867,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 378
-        width: 36
-        height: 27
+        x: 190
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2876,12 +2889,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 378
-        width: 36
-        height: 27
+        x: 228
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2898,12 +2911,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 378
-        width: 36
-        height: 27
+        x: 266
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2920,12 +2933,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 378
-        width: 36
-        height: 27
+        x: 304
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2942,12 +2955,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 378
-        width: 36
-        height: 27
+        x: 342
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2964,12 +2977,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 378
-        width: 36
-        height: 27
+        x: 380
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2986,12 +2999,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 378
-        width: 36
-        height: 27
+        x: 418
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3008,12 +3021,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 378
-        width: 36
-        height: 27
+        x: 456
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3030,12 +3043,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 378
-        width: 36
-        height: 27
+        x: 494
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3052,12 +3065,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 378
-        width: 36
-        height: 27
+        x: 532
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3074,12 +3087,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 378
-        width: 36
-        height: 27
+        x: 570
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3096,12 +3109,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 378
-        width: 36
-        height: 27
+        x: 608
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3118,12 +3131,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 378
-        width: 36
-        height: 27
+        x: 646
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3140,12 +3153,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 378
-        width: 36
-        height: 27
+        x: 684
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3162,12 +3175,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 378
-        width: 36
-        height: 27
+        x: 722
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3184,12 +3197,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 378
-        width: 36
-        height: 27
+        x: 760
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3206,12 +3219,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 378
-        width: 36
-        height: 27
+        x: 798
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3228,12 +3241,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 378
-        width: 36
-        height: 27
+        x: 836
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3250,12 +3263,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ssw_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 378
-        width: 36
-        height: 27
+        x: 874
+        y: 392
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3273,11 +3286,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 351
-        width: 36
-        height: 27
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3294,12 +3307,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 351
-        width: 36
-        height: 27
+        x: 38
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3316,12 +3329,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 351
-        width: 36
-        height: 27
+        x: 76
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3338,12 +3351,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 351
-        width: 36
-        height: 27
+        x: 114
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3360,12 +3373,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 351
-        width: 36
-        height: 27
+        x: 152
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3382,12 +3395,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 351
-        width: 36
-        height: 27
+        x: 190
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3404,12 +3417,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 351
-        width: 36
-        height: 27
+        x: 228
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3426,12 +3439,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 351
-        width: 36
-        height: 27
+        x: 266
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3448,12 +3461,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 351
-        width: 36
-        height: 27
+        x: 304
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3470,12 +3483,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 351
-        width: 36
-        height: 27
+        x: 342
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3492,12 +3505,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 351
-        width: 36
-        height: 27
+        x: 380
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3514,12 +3527,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 351
-        width: 36
-        height: 27
+        x: 418
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3536,12 +3549,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 351
-        width: 36
-        height: 27
+        x: 456
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3558,12 +3571,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 351
-        width: 36
-        height: 27
+        x: 494
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3580,12 +3593,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 351
-        width: 36
-        height: 27
+        x: 532
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3602,12 +3615,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 351
-        width: 36
-        height: 27
+        x: 570
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3624,12 +3637,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 351
-        width: 36
-        height: 27
+        x: 608
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3646,12 +3659,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 351
-        width: 36
-        height: 27
+        x: 646
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3668,12 +3681,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 351
-        width: 36
-        height: 27
+        x: 684
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3690,12 +3703,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 351
-        width: 36
-        height: 27
+        x: 722
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3712,12 +3725,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 351
-        width: 36
-        height: 27
+        x: 760
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3734,12 +3747,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 351
-        width: 36
-        height: 27
+        x: 798
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3756,12 +3769,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 351
-        width: 36
-        height: 27
+        x: 836
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3778,12 +3791,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sw_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 351
-        width: 36
-        height: 27
+        x: 874
+        y: 364
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3801,11 +3814,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 324
-        width: 36
-        height: 27
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3822,12 +3835,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 324
-        width: 36
-        height: 27
+        x: 38
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3844,12 +3857,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 324
-        width: 36
-        height: 27
+        x: 76
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3866,12 +3879,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 324
-        width: 36
-        height: 27
+        x: 114
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3888,12 +3901,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 324
-        width: 36
-        height: 27
+        x: 152
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3910,12 +3923,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 324
-        width: 36
-        height: 27
+        x: 190
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3932,12 +3945,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 324
-        width: 36
-        height: 27
+        x: 228
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3954,12 +3967,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 324
-        width: 36
-        height: 27
+        x: 266
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3976,12 +3989,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 324
-        width: 36
-        height: 27
+        x: 304
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3998,12 +4011,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 324
-        width: 36
-        height: 27
+        x: 342
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4020,12 +4033,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 324
-        width: 36
-        height: 27
+        x: 380
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4042,12 +4055,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 324
-        width: 36
-        height: 27
+        x: 418
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4064,12 +4077,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 324
-        width: 36
-        height: 27
+        x: 456
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4086,12 +4099,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 324
-        width: 36
-        height: 27
+        x: 494
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4108,12 +4121,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 324
-        width: 36
-        height: 27
+        x: 532
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4130,12 +4143,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 324
-        width: 36
-        height: 27
+        x: 570
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4152,12 +4165,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 324
-        width: 36
-        height: 27
+        x: 608
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4174,12 +4187,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 324
-        width: 36
-        height: 27
+        x: 646
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4196,12 +4209,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 324
-        width: 36
-        height: 27
+        x: 684
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4218,12 +4231,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 324
-        width: 36
-        height: 27
+        x: 722
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4240,12 +4253,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 324
-        width: 36
-        height: 27
+        x: 760
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4262,12 +4275,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 324
-        width: 36
-        height: 27
+        x: 798
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4284,12 +4297,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 324
-        width: 36
-        height: 27
+        x: 836
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4306,12 +4319,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wsw_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 324
-        width: 36
-        height: 27
+        x: 874
+        y: 336
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4329,11 +4342,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 297
-        width: 36
-        height: 27
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4350,12 +4363,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 297
-        width: 36
-        height: 27
+        x: 38
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4372,12 +4385,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 297
-        width: 36
-        height: 27
+        x: 76
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4394,12 +4407,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 297
-        width: 36
-        height: 27
+        x: 114
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4416,12 +4429,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 297
-        width: 36
-        height: 27
+        x: 152
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4438,12 +4451,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 297
-        width: 36
-        height: 27
+        x: 190
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4460,12 +4473,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 297
-        width: 36
-        height: 27
+        x: 228
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4482,12 +4495,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 297
-        width: 36
-        height: 27
+        x: 266
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4504,12 +4517,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 297
-        width: 36
-        height: 27
+        x: 304
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4526,12 +4539,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 297
-        width: 36
-        height: 27
+        x: 342
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4548,12 +4561,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 297
-        width: 36
-        height: 27
+        x: 380
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4570,12 +4583,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 297
-        width: 36
-        height: 27
+        x: 418
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4592,12 +4605,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 297
-        width: 36
-        height: 27
+        x: 456
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4614,12 +4627,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 297
-        width: 36
-        height: 27
+        x: 494
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4636,12 +4649,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 297
-        width: 36
-        height: 27
+        x: 532
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4658,12 +4671,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 297
-        width: 36
-        height: 27
+        x: 570
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4680,12 +4693,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 297
-        width: 36
-        height: 27
+        x: 608
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4702,12 +4715,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 297
-        width: 36
-        height: 27
+        x: 646
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4724,12 +4737,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 297
-        width: 36
-        height: 27
+        x: 684
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4746,12 +4759,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 297
-        width: 36
-        height: 27
+        x: 722
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4768,12 +4781,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 297
-        width: 36
-        height: 27
+        x: 760
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4790,12 +4803,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 297
-        width: 36
-        height: 27
+        x: 798
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4812,12 +4825,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 297
-        width: 36
-        height: 27
+        x: 836
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4834,12 +4847,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_w_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 297
-        width: 36
-        height: 27
+        x: 874
+        y: 308
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4857,11 +4870,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 270
-        width: 36
-        height: 27
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4878,12 +4891,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 270
-        width: 36
-        height: 27
+        x: 38
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4900,12 +4913,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 270
-        width: 36
-        height: 27
+        x: 76
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4922,12 +4935,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 270
-        width: 36
-        height: 27
+        x: 114
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4944,12 +4957,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 270
-        width: 36
-        height: 27
+        x: 152
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4966,12 +4979,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 270
-        width: 36
-        height: 27
+        x: 190
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4988,12 +5001,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 270
-        width: 36
-        height: 27
+        x: 228
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5010,12 +5023,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 270
-        width: 36
-        height: 27
+        x: 266
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5032,12 +5045,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 270
-        width: 36
-        height: 27
+        x: 304
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5054,12 +5067,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 270
-        width: 36
-        height: 27
+        x: 342
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5076,12 +5089,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 270
-        width: 36
-        height: 27
+        x: 380
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5098,12 +5111,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 270
-        width: 36
-        height: 27
+        x: 418
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5120,12 +5133,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 270
-        width: 36
-        height: 27
+        x: 456
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5142,12 +5155,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 270
-        width: 36
-        height: 27
+        x: 494
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5164,12 +5177,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 270
-        width: 36
-        height: 27
+        x: 532
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5186,12 +5199,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 270
-        width: 36
-        height: 27
+        x: 570
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5208,12 +5221,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 270
-        width: 36
-        height: 27
+        x: 608
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5230,12 +5243,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 270
-        width: 36
-        height: 27
+        x: 646
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5252,12 +5265,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 270
-        width: 36
-        height: 27
+        x: 684
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5274,12 +5287,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 270
-        width: 36
-        height: 27
+        x: 722
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5296,12 +5309,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 270
-        width: 36
-        height: 27
+        x: 760
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5318,12 +5331,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 270
-        width: 36
-        height: 27
+        x: 798
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5340,12 +5353,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 270
-        width: 36
-        height: 27
+        x: 836
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5362,12 +5375,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_wnw_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 270
-        width: 36
-        height: 27
+        x: 874
+        y: 280
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5385,11 +5398,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 243
-        width: 36
-        height: 27
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5406,12 +5419,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 243
-        width: 36
-        height: 27
+        x: 38
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5428,12 +5441,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 243
-        width: 36
-        height: 27
+        x: 76
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5450,12 +5463,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 243
-        width: 36
-        height: 27
+        x: 114
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5472,12 +5485,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 243
-        width: 36
-        height: 27
+        x: 152
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5494,12 +5507,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 243
-        width: 36
-        height: 27
+        x: 190
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5516,12 +5529,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 243
-        width: 36
-        height: 27
+        x: 228
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5538,12 +5551,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 243
-        width: 36
-        height: 27
+        x: 266
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5560,12 +5573,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 243
-        width: 36
-        height: 27
+        x: 304
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5582,12 +5595,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 243
-        width: 36
-        height: 27
+        x: 342
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5604,12 +5617,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 243
-        width: 36
-        height: 27
+        x: 380
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5626,12 +5639,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 243
-        width: 36
-        height: 27
+        x: 418
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5648,12 +5661,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 243
-        width: 36
-        height: 27
+        x: 456
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5670,12 +5683,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 243
-        width: 36
-        height: 27
+        x: 494
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5692,12 +5705,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 243
-        width: 36
-        height: 27
+        x: 532
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5714,12 +5727,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 243
-        width: 36
-        height: 27
+        x: 570
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5736,12 +5749,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 243
-        width: 36
-        height: 27
+        x: 608
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5758,12 +5771,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 243
-        width: 36
-        height: 27
+        x: 646
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5780,12 +5793,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 243
-        width: 36
-        height: 27
+        x: 684
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5802,12 +5815,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 243
-        width: 36
-        height: 27
+        x: 722
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5824,12 +5837,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 243
-        width: 36
-        height: 27
+        x: 760
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5846,12 +5859,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 243
-        width: 36
-        height: 27
+        x: 798
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5868,12 +5881,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 243
-        width: 36
-        height: 27
+        x: 836
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5890,12 +5903,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nw_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 243
-        width: 36
-        height: 27
+        x: 874
+        y: 252
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5913,11 +5926,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 216
-        width: 36
-        height: 27
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5934,12 +5947,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 216
-        width: 36
-        height: 27
+        x: 38
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5956,12 +5969,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 216
-        width: 36
-        height: 27
+        x: 76
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5978,12 +5991,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 216
-        width: 36
-        height: 27
+        x: 114
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6000,12 +6013,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 216
-        width: 36
-        height: 27
+        x: 152
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6022,12 +6035,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 216
-        width: 36
-        height: 27
+        x: 190
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6044,12 +6057,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 216
-        width: 36
-        height: 27
+        x: 228
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6066,12 +6079,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 216
-        width: 36
-        height: 27
+        x: 266
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6088,12 +6101,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 216
-        width: 36
-        height: 27
+        x: 304
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6110,12 +6123,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 216
-        width: 36
-        height: 27
+        x: 342
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6132,12 +6145,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 216
-        width: 36
-        height: 27
+        x: 380
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6154,12 +6167,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 216
-        width: 36
-        height: 27
+        x: 418
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6176,12 +6189,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 216
-        width: 36
-        height: 27
+        x: 456
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6198,12 +6211,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 216
-        width: 36
-        height: 27
+        x: 494
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6220,12 +6233,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 216
-        width: 36
-        height: 27
+        x: 532
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6242,12 +6255,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 216
-        width: 36
-        height: 27
+        x: 570
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6264,12 +6277,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 216
-        width: 36
-        height: 27
+        x: 608
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6286,12 +6299,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 216
-        width: 36
-        height: 27
+        x: 646
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6308,12 +6321,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 216
-        width: 36
-        height: 27
+        x: 684
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6330,12 +6343,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 216
-        width: 36
-        height: 27
+        x: 722
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6352,12 +6365,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 216
-        width: 36
-        height: 27
+        x: 760
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6374,12 +6387,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 216
-        width: 36
-        height: 27
+        x: 798
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6396,12 +6409,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 216
-        width: 36
-        height: 27
+        x: 836
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6418,12 +6431,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nnw_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 216
-        width: 36
-        height: 27
+        x: 874
+        y: 224
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6441,11 +6454,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 189
-        width: 36
-        height: 27
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6462,12 +6475,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 189
-        width: 36
-        height: 27
+        x: 38
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6484,12 +6497,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 189
-        width: 36
-        height: 27
+        x: 76
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6506,12 +6519,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 189
-        width: 36
-        height: 27
+        x: 114
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6528,12 +6541,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 189
-        width: 36
-        height: 27
+        x: 152
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6550,12 +6563,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 189
-        width: 36
-        height: 27
+        x: 190
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6572,12 +6585,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 189
-        width: 36
-        height: 27
+        x: 228
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6594,12 +6607,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 189
-        width: 36
-        height: 27
+        x: 266
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6616,12 +6629,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 189
-        width: 36
-        height: 27
+        x: 304
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6638,12 +6651,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 189
-        width: 36
-        height: 27
+        x: 342
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6660,12 +6673,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 189
-        width: 36
-        height: 27
+        x: 380
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6682,12 +6695,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 189
-        width: 36
-        height: 27
+        x: 418
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6704,12 +6717,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 189
-        width: 36
-        height: 27
+        x: 456
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6726,12 +6739,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 189
-        width: 36
-        height: 27
+        x: 494
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6748,12 +6761,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 189
-        width: 36
-        height: 27
+        x: 532
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6770,12 +6783,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 189
-        width: 36
-        height: 27
+        x: 570
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6792,12 +6805,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 189
-        width: 36
-        height: 27
+        x: 608
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6814,12 +6827,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 189
-        width: 36
-        height: 27
+        x: 646
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6836,12 +6849,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 189
-        width: 36
-        height: 27
+        x: 684
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6858,12 +6871,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 189
-        width: 36
-        height: 27
+        x: 722
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6880,12 +6893,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 189
-        width: 36
-        height: 27
+        x: 760
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6902,12 +6915,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 189
-        width: 36
-        height: 27
+        x: 798
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6924,12 +6937,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 189
-        width: 36
-        height: 27
+        x: 836
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6946,12 +6959,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_n_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 189
-        width: 36
-        height: 27
+        x: 874
+        y: 196
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6969,11 +6982,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 162
-        width: 36
-        height: 27
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6990,12 +7003,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 162
-        width: 36
-        height: 27
+        x: 38
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7012,12 +7025,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 162
-        width: 36
-        height: 27
+        x: 76
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7034,12 +7047,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 162
-        width: 36
-        height: 27
+        x: 114
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7056,12 +7069,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 162
-        width: 36
-        height: 27
+        x: 152
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7078,12 +7091,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 162
-        width: 36
-        height: 27
+        x: 190
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7100,12 +7113,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 162
-        width: 36
-        height: 27
+        x: 228
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7122,12 +7135,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 162
-        width: 36
-        height: 27
+        x: 266
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7144,12 +7157,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 162
-        width: 36
-        height: 27
+        x: 304
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7166,12 +7179,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 162
-        width: 36
-        height: 27
+        x: 342
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7188,12 +7201,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 162
-        width: 36
-        height: 27
+        x: 380
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7210,12 +7223,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 162
-        width: 36
-        height: 27
+        x: 418
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7232,12 +7245,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 162
-        width: 36
-        height: 27
+        x: 456
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7254,12 +7267,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 162
-        width: 36
-        height: 27
+        x: 494
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7276,12 +7289,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 162
-        width: 36
-        height: 27
+        x: 532
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7298,12 +7311,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 162
-        width: 36
-        height: 27
+        x: 570
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7320,12 +7333,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 162
-        width: 36
-        height: 27
+        x: 608
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7342,12 +7355,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 162
-        width: 36
-        height: 27
+        x: 646
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7364,12 +7377,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 162
-        width: 36
-        height: 27
+        x: 684
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7386,12 +7399,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 162
-        width: 36
-        height: 27
+        x: 722
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7408,12 +7421,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 162
-        width: 36
-        height: 27
+        x: 760
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7430,12 +7443,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 162
-        width: 36
-        height: 27
+        x: 798
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7452,12 +7465,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 162
-        width: 36
-        height: 27
+        x: 836
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7474,12 +7487,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_nne_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 162
-        width: 36
-        height: 27
+        x: 874
+        y: 168
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7497,11 +7510,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 135
-        width: 36
-        height: 27
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7518,12 +7531,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 135
-        width: 36
-        height: 27
+        x: 38
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7540,12 +7553,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 135
-        width: 36
-        height: 27
+        x: 76
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7562,12 +7575,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 135
-        width: 36
-        height: 27
+        x: 114
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7584,12 +7597,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 135
-        width: 36
-        height: 27
+        x: 152
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7606,12 +7619,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 135
-        width: 36
-        height: 27
+        x: 190
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7628,12 +7641,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 135
-        width: 36
-        height: 27
+        x: 228
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7650,12 +7663,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 135
-        width: 36
-        height: 27
+        x: 266
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7672,12 +7685,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 135
-        width: 36
-        height: 27
+        x: 304
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7694,12 +7707,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 135
-        width: 36
-        height: 27
+        x: 342
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7716,12 +7729,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 135
-        width: 36
-        height: 27
+        x: 380
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7738,12 +7751,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 135
-        width: 36
-        height: 27
+        x: 418
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7760,12 +7773,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 135
-        width: 36
-        height: 27
+        x: 456
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7782,12 +7795,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 135
-        width: 36
-        height: 27
+        x: 494
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7804,12 +7817,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 135
-        width: 36
-        height: 27
+        x: 532
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7826,12 +7839,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 135
-        width: 36
-        height: 27
+        x: 570
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7848,12 +7861,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 135
-        width: 36
-        height: 27
+        x: 608
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7870,12 +7883,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 135
-        width: 36
-        height: 27
+        x: 646
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7892,12 +7905,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 135
-        width: 36
-        height: 27
+        x: 684
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7914,12 +7927,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 135
-        width: 36
-        height: 27
+        x: 722
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7936,12 +7949,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 135
-        width: 36
-        height: 27
+        x: 760
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7958,12 +7971,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 135
-        width: 36
-        height: 27
+        x: 798
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -7980,12 +7993,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 135
-        width: 36
-        height: 27
+        x: 836
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8002,12 +8015,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ne_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 135
-        width: 36
-        height: 27
+        x: 874
+        y: 140
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8025,11 +8038,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 108
-        width: 36
-        height: 27
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8046,12 +8059,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 108
-        width: 36
-        height: 27
+        x: 38
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8068,12 +8081,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 108
-        width: 36
-        height: 27
+        x: 76
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8090,12 +8103,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 108
-        width: 36
-        height: 27
+        x: 114
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8112,12 +8125,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 108
-        width: 36
-        height: 27
+        x: 152
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8134,12 +8147,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 108
-        width: 36
-        height: 27
+        x: 190
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8156,12 +8169,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 108
-        width: 36
-        height: 27
+        x: 228
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8178,12 +8191,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 108
-        width: 36
-        height: 27
+        x: 266
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8200,12 +8213,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 108
-        width: 36
-        height: 27
+        x: 304
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8222,12 +8235,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 108
-        width: 36
-        height: 27
+        x: 342
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8244,12 +8257,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 108
-        width: 36
-        height: 27
+        x: 380
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8266,12 +8279,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 108
-        width: 36
-        height: 27
+        x: 418
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8288,12 +8301,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 108
-        width: 36
-        height: 27
+        x: 456
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8310,12 +8323,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 108
-        width: 36
-        height: 27
+        x: 494
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8332,12 +8345,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 108
-        width: 36
-        height: 27
+        x: 532
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8354,12 +8367,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 108
-        width: 36
-        height: 27
+        x: 570
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8376,12 +8389,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 108
-        width: 36
-        height: 27
+        x: 608
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8398,12 +8411,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 108
-        width: 36
-        height: 27
+        x: 646
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8420,12 +8433,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 108
-        width: 36
-        height: 27
+        x: 684
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8442,12 +8455,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 108
-        width: 36
-        height: 27
+        x: 722
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8464,12 +8477,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 108
-        width: 36
-        height: 27
+        x: 760
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8486,12 +8499,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 108
-        width: 36
-        height: 27
+        x: 798
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8508,12 +8521,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 108
-        width: 36
-        height: 27
+        x: 836
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8530,12 +8543,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ene_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 108
-        width: 36
-        height: 27
+        x: 874
+        y: 112
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8553,11 +8566,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 81
-        width: 36
-        height: 27
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8574,12 +8587,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 81
-        width: 36
-        height: 27
+        x: 38
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8596,12 +8609,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 81
-        width: 36
-        height: 27
+        x: 76
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8618,12 +8631,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 81
-        width: 36
-        height: 27
+        x: 114
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8640,12 +8653,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 81
-        width: 36
-        height: 27
+        x: 152
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8662,12 +8675,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 81
-        width: 36
-        height: 27
+        x: 190
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8684,12 +8697,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 81
-        width: 36
-        height: 27
+        x: 228
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8706,12 +8719,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 81
-        width: 36
-        height: 27
+        x: 266
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8728,12 +8741,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 81
-        width: 36
-        height: 27
+        x: 304
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8750,12 +8763,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 81
-        width: 36
-        height: 27
+        x: 342
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8772,12 +8785,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 81
-        width: 36
-        height: 27
+        x: 380
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8794,12 +8807,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 81
-        width: 36
-        height: 27
+        x: 418
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8816,12 +8829,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 81
-        width: 36
-        height: 27
+        x: 456
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8838,12 +8851,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 81
-        width: 36
-        height: 27
+        x: 494
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8860,12 +8873,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 81
-        width: 36
-        height: 27
+        x: 532
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8882,12 +8895,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 81
-        width: 36
-        height: 27
+        x: 570
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8904,12 +8917,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 81
-        width: 36
-        height: 27
+        x: 608
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8926,12 +8939,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 81
-        width: 36
-        height: 27
+        x: 646
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8948,12 +8961,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 81
-        width: 36
-        height: 27
+        x: 684
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8970,12 +8983,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 81
-        width: 36
-        height: 27
+        x: 722
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -8992,12 +9005,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 81
-        width: 36
-        height: 27
+        x: 760
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9014,12 +9027,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 81
-        width: 36
-        height: 27
+        x: 798
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9036,12 +9049,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 81
-        width: 36
-        height: 27
+        x: 836
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9058,12 +9071,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_e_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 81
-        width: 36
-        height: 27
+        x: 874
+        y: 84
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9081,11 +9094,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 54
-        width: 36
-        height: 27
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9102,12 +9115,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 54
-        width: 36
-        height: 27
+        x: 38
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9124,12 +9137,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 54
-        width: 36
-        height: 27
+        x: 76
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9146,12 +9159,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 54
-        width: 36
-        height: 27
+        x: 114
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9168,12 +9181,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 54
-        width: 36
-        height: 27
+        x: 152
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9190,12 +9203,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 54
-        width: 36
-        height: 27
+        x: 190
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9212,12 +9225,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 54
-        width: 36
-        height: 27
+        x: 228
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9234,12 +9247,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 54
-        width: 36
-        height: 27
+        x: 266
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9256,12 +9269,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 54
-        width: 36
-        height: 27
+        x: 304
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9278,12 +9291,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 54
-        width: 36
-        height: 27
+        x: 342
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9300,12 +9313,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 54
-        width: 36
-        height: 27
+        x: 380
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9322,12 +9335,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 54
-        width: 36
-        height: 27
+        x: 418
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9344,12 +9357,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 54
-        width: 36
-        height: 27
+        x: 456
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9366,12 +9379,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 54
-        width: 36
-        height: 27
+        x: 494
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9388,12 +9401,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 54
-        width: 36
-        height: 27
+        x: 532
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9410,12 +9423,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 54
-        width: 36
-        height: 27
+        x: 570
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9432,12 +9445,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 54
-        width: 36
-        height: 27
+        x: 608
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9454,12 +9467,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 54
-        width: 36
-        height: 27
+        x: 646
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9476,12 +9489,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 54
-        width: 36
-        height: 27
+        x: 684
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9498,12 +9511,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 54
-        width: 36
-        height: 27
+        x: 722
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9520,12 +9533,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 54
-        width: 36
-        height: 27
+        x: 760
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9542,12 +9555,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 54
-        width: 36
-        height: 27
+        x: 798
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9564,12 +9577,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 54
-        width: 36
-        height: 27
+        x: 836
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9586,12 +9599,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_ese_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 54
-        width: 36
-        height: 27
+        x: 874
+        y: 56
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9609,11 +9622,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 27
-        width: 36
-        height: 27
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9630,12 +9643,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_01
       rect:
         serializedVersion: 2
-        x: 36
-        y: 27
-        width: 36
-        height: 27
+        x: 38
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9652,12 +9665,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_02
       rect:
         serializedVersion: 2
-        x: 72
-        y: 27
-        width: 36
-        height: 27
+        x: 76
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9674,12 +9687,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_03
       rect:
         serializedVersion: 2
-        x: 108
-        y: 27
-        width: 36
-        height: 27
+        x: 114
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9696,12 +9709,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_04
       rect:
         serializedVersion: 2
-        x: 144
-        y: 27
-        width: 36
-        height: 27
+        x: 152
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9718,12 +9731,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_05
       rect:
         serializedVersion: 2
-        x: 180
-        y: 27
-        width: 36
-        height: 27
+        x: 190
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9740,12 +9753,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_06
       rect:
         serializedVersion: 2
-        x: 216
-        y: 27
-        width: 36
-        height: 27
+        x: 228
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9762,12 +9775,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_07
       rect:
         serializedVersion: 2
-        x: 252
-        y: 27
-        width: 36
-        height: 27
+        x: 266
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9784,12 +9797,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_08
       rect:
         serializedVersion: 2
-        x: 288
-        y: 27
-        width: 36
-        height: 27
+        x: 304
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9806,12 +9819,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_09
       rect:
         serializedVersion: 2
-        x: 324
-        y: 27
-        width: 36
-        height: 27
+        x: 342
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9828,12 +9841,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_10
       rect:
         serializedVersion: 2
-        x: 360
-        y: 27
-        width: 36
-        height: 27
+        x: 380
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9850,12 +9863,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_11
       rect:
         serializedVersion: 2
-        x: 396
-        y: 27
-        width: 36
-        height: 27
+        x: 418
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9872,12 +9885,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 27
-        width: 36
-        height: 27
+        x: 456
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9894,12 +9907,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_13
       rect:
         serializedVersion: 2
-        x: 468
-        y: 27
-        width: 36
-        height: 27
+        x: 494
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9916,12 +9929,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_14
       rect:
         serializedVersion: 2
-        x: 504
-        y: 27
-        width: 36
-        height: 27
+        x: 532
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9938,12 +9951,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_15
       rect:
         serializedVersion: 2
-        x: 540
-        y: 27
-        width: 36
-        height: 27
+        x: 570
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9960,12 +9973,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 27
-        width: 36
-        height: 27
+        x: 608
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9982,12 +9995,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_17
       rect:
         serializedVersion: 2
-        x: 612
-        y: 27
-        width: 36
-        height: 27
+        x: 646
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10004,12 +10017,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_18
       rect:
         serializedVersion: 2
-        x: 648
-        y: 27
-        width: 36
-        height: 27
+        x: 684
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10026,12 +10039,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_19
       rect:
         serializedVersion: 2
-        x: 684
-        y: 27
-        width: 36
-        height: 27
+        x: 722
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10048,12 +10061,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_20
       rect:
         serializedVersion: 2
-        x: 720
-        y: 27
-        width: 36
-        height: 27
+        x: 760
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10070,12 +10083,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_21
       rect:
         serializedVersion: 2
-        x: 756
-        y: 27
-        width: 36
-        height: 27
+        x: 798
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10092,12 +10105,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_22
       rect:
         serializedVersion: 2
-        x: 792
-        y: 27
-        width: 36
-        height: 27
+        x: 836
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10114,12 +10127,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_se_23
       rect:
         serializedVersion: 2
-        x: 828
-        y: 27
-        width: 36
-        height: 27
+        x: 874
+        y: 28
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10138,10 +10151,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10158,12 +10171,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_01
       rect:
         serializedVersion: 2
-        x: 36
+        x: 38
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10180,12 +10193,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_02
       rect:
         serializedVersion: 2
-        x: 72
+        x: 76
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10202,12 +10215,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_03
       rect:
         serializedVersion: 2
-        x: 108
+        x: 114
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10224,12 +10237,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_04
       rect:
         serializedVersion: 2
-        x: 144
+        x: 152
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10246,12 +10259,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_05
       rect:
         serializedVersion: 2
-        x: 180
+        x: 190
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10268,12 +10281,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_06
       rect:
         serializedVersion: 2
-        x: 216
+        x: 228
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10290,12 +10303,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_07
       rect:
         serializedVersion: 2
-        x: 252
+        x: 266
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10312,12 +10325,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_08
       rect:
         serializedVersion: 2
-        x: 288
+        x: 304
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10334,12 +10347,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_09
       rect:
         serializedVersion: 2
-        x: 324
+        x: 342
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10356,12 +10369,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_10
       rect:
         serializedVersion: 2
-        x: 360
+        x: 380
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10378,12 +10391,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_11
       rect:
         serializedVersion: 2
-        x: 396
+        x: 418
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10400,12 +10413,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_12
       rect:
         serializedVersion: 2
-        x: 432
+        x: 456
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10422,12 +10435,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_13
       rect:
         serializedVersion: 2
-        x: 468
+        x: 494
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10444,12 +10457,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_14
       rect:
         serializedVersion: 2
-        x: 504
+        x: 532
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10466,12 +10479,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_15
       rect:
         serializedVersion: 2
-        x: 540
+        x: 570
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10488,12 +10501,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_16
       rect:
         serializedVersion: 2
-        x: 576
+        x: 608
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10510,12 +10523,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_17
       rect:
         serializedVersion: 2
-        x: 612
+        x: 646
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10532,12 +10545,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_18
       rect:
         serializedVersion: 2
-        x: 648
+        x: 684
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10554,12 +10567,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_19
       rect:
         serializedVersion: 2
-        x: 684
+        x: 722
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10576,12 +10589,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_20
       rect:
         serializedVersion: 2
-        x: 720
+        x: 760
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10598,12 +10611,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_21
       rect:
         serializedVersion: 2
-        x: 756
+        x: 798
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10620,12 +10633,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_22
       rect:
         serializedVersion: 2
-        x: 792
+        x: 836
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -10642,12 +10655,12 @@ TextureImporter:
       name: wild_arrow_gloves_fletcher_1h_idle_sse_23
       rect:
         serializedVersion: 2
-        x: 828
+        x: 874
         y: 0
-        width: 36
-        height: 27
+        width: 38
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: -0.7037037}
+      pivot: {x: 0.5, y: -0.64285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

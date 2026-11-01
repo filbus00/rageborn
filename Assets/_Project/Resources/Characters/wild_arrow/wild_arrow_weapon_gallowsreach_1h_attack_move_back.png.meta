@@ -1015,6 +1015,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1023,11 +1036,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 900
-        width: 76
-        height: 60
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1044,12 +1057,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 900
-        width: 76
-        height: 60
+        x: 80
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1066,12 +1079,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 900
-        width: 76
-        height: 60
+        x: 160
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1088,12 +1101,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 900
-        width: 76
-        height: 60
+        x: 240
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1110,12 +1123,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 900
-        width: 76
-        height: 60
+        x: 320
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1132,12 +1145,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 900
-        width: 76
-        height: 60
+        x: 400
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1154,12 +1167,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 900
-        width: 76
-        height: 60
+        x: 480
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1176,12 +1189,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 900
-        width: 76
-        height: 60
+        x: 560
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1198,12 +1211,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 900
-        width: 76
-        height: 60
+        x: 640
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1220,12 +1233,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 900
-        width: 76
-        height: 60
+        x: 720
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1242,12 +1255,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 900
-        width: 76
-        height: 60
+        x: 800
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1264,12 +1277,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 900
-        width: 76
-        height: 60
+        x: 880
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1286,12 +1299,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 900
-        width: 76
-        height: 60
+        x: 960
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1308,12 +1321,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 900
-        width: 76
-        height: 60
+        x: 1040
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1330,12 +1343,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_s_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 900
-        width: 76
-        height: 60
+        x: 1120
+        y: 930
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1353,11 +1366,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 840
-        width: 76
-        height: 60
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1374,12 +1387,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 840
-        width: 76
-        height: 60
+        x: 80
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1396,12 +1409,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 840
-        width: 76
-        height: 60
+        x: 160
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1418,12 +1431,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 840
-        width: 76
-        height: 60
+        x: 240
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1440,12 +1453,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 840
-        width: 76
-        height: 60
+        x: 320
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1462,12 +1475,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 840
-        width: 76
-        height: 60
+        x: 400
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1484,12 +1497,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 840
-        width: 76
-        height: 60
+        x: 480
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1506,12 +1519,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 840
-        width: 76
-        height: 60
+        x: 560
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1528,12 +1541,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 840
-        width: 76
-        height: 60
+        x: 640
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1550,12 +1563,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 840
-        width: 76
-        height: 60
+        x: 720
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1572,12 +1585,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 840
-        width: 76
-        height: 60
+        x: 800
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1594,12 +1607,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 840
-        width: 76
-        height: 60
+        x: 880
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1616,12 +1629,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 840
-        width: 76
-        height: 60
+        x: 960
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1638,12 +1651,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 840
-        width: 76
-        height: 60
+        x: 1040
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1660,12 +1673,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ssw_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 840
-        width: 76
-        height: 60
+        x: 1120
+        y: 868
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1683,11 +1696,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 780
-        width: 76
-        height: 60
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1704,12 +1717,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 780
-        width: 76
-        height: 60
+        x: 80
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1726,12 +1739,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 780
-        width: 76
-        height: 60
+        x: 160
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1748,12 +1761,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 780
-        width: 76
-        height: 60
+        x: 240
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1770,12 +1783,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 780
-        width: 76
-        height: 60
+        x: 320
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1792,12 +1805,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 780
-        width: 76
-        height: 60
+        x: 400
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1814,12 +1827,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 780
-        width: 76
-        height: 60
+        x: 480
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1836,12 +1849,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 780
-        width: 76
-        height: 60
+        x: 560
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1858,12 +1871,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 780
-        width: 76
-        height: 60
+        x: 640
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1880,12 +1893,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 780
-        width: 76
-        height: 60
+        x: 720
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1902,12 +1915,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 780
-        width: 76
-        height: 60
+        x: 800
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1924,12 +1937,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 780
-        width: 76
-        height: 60
+        x: 880
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1946,12 +1959,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 780
-        width: 76
-        height: 60
+        x: 960
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1968,12 +1981,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 780
-        width: 76
-        height: 60
+        x: 1040
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1990,12 +2003,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sw_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 780
-        width: 76
-        height: 60
+        x: 1120
+        y: 806
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2013,11 +2026,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 720
-        width: 76
-        height: 60
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2034,12 +2047,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 720
-        width: 76
-        height: 60
+        x: 80
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2056,12 +2069,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 720
-        width: 76
-        height: 60
+        x: 160
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2078,12 +2091,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 720
-        width: 76
-        height: 60
+        x: 240
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2100,12 +2113,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 720
-        width: 76
-        height: 60
+        x: 320
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2122,12 +2135,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 720
-        width: 76
-        height: 60
+        x: 400
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2144,12 +2157,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 720
-        width: 76
-        height: 60
+        x: 480
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2166,12 +2179,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 720
-        width: 76
-        height: 60
+        x: 560
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2188,12 +2201,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 720
-        width: 76
-        height: 60
+        x: 640
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2210,12 +2223,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 720
-        width: 76
-        height: 60
+        x: 720
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2232,12 +2245,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 720
-        width: 76
-        height: 60
+        x: 800
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2254,12 +2267,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 720
-        width: 76
-        height: 60
+        x: 880
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2276,12 +2289,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 720
-        width: 76
-        height: 60
+        x: 960
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2298,12 +2311,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 720
-        width: 76
-        height: 60
+        x: 1040
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2320,12 +2333,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wsw_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 720
-        width: 76
-        height: 60
+        x: 1120
+        y: 744
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2343,11 +2356,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 660
-        width: 76
-        height: 60
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2364,12 +2377,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 660
-        width: 76
-        height: 60
+        x: 80
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2386,12 +2399,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 660
-        width: 76
-        height: 60
+        x: 160
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2408,12 +2421,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 660
-        width: 76
-        height: 60
+        x: 240
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2430,12 +2443,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 660
-        width: 76
-        height: 60
+        x: 320
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2452,12 +2465,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 660
-        width: 76
-        height: 60
+        x: 400
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2474,12 +2487,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 660
-        width: 76
-        height: 60
+        x: 480
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2496,12 +2509,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 660
-        width: 76
-        height: 60
+        x: 560
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2518,12 +2531,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 660
-        width: 76
-        height: 60
+        x: 640
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2540,12 +2553,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 660
-        width: 76
-        height: 60
+        x: 720
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2562,12 +2575,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 660
-        width: 76
-        height: 60
+        x: 800
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2584,12 +2597,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 660
-        width: 76
-        height: 60
+        x: 880
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2606,12 +2619,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 660
-        width: 76
-        height: 60
+        x: 960
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2628,12 +2641,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 660
-        width: 76
-        height: 60
+        x: 1040
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2650,12 +2663,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_w_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 660
-        width: 76
-        height: 60
+        x: 1120
+        y: 682
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2673,11 +2686,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 600
-        width: 76
-        height: 60
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2694,12 +2707,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 600
-        width: 76
-        height: 60
+        x: 80
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2716,12 +2729,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 600
-        width: 76
-        height: 60
+        x: 160
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2738,12 +2751,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 600
-        width: 76
-        height: 60
+        x: 240
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2760,12 +2773,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 600
-        width: 76
-        height: 60
+        x: 320
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2782,12 +2795,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 600
-        width: 76
-        height: 60
+        x: 400
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2804,12 +2817,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 600
-        width: 76
-        height: 60
+        x: 480
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2826,12 +2839,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 600
-        width: 76
-        height: 60
+        x: 560
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2848,12 +2861,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 600
-        width: 76
-        height: 60
+        x: 640
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2870,12 +2883,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 600
-        width: 76
-        height: 60
+        x: 720
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2892,12 +2905,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 600
-        width: 76
-        height: 60
+        x: 800
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2914,12 +2927,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 600
-        width: 76
-        height: 60
+        x: 880
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2936,12 +2949,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 600
-        width: 76
-        height: 60
+        x: 960
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2958,12 +2971,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 600
-        width: 76
-        height: 60
+        x: 1040
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2980,12 +2993,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_wnw_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 600
-        width: 76
-        height: 60
+        x: 1120
+        y: 620
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3003,11 +3016,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 540
-        width: 76
-        height: 60
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3024,12 +3037,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 540
-        width: 76
-        height: 60
+        x: 80
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3046,12 +3059,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 540
-        width: 76
-        height: 60
+        x: 160
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3068,12 +3081,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 540
-        width: 76
-        height: 60
+        x: 240
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3090,12 +3103,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 540
-        width: 76
-        height: 60
+        x: 320
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3112,12 +3125,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 540
-        width: 76
-        height: 60
+        x: 400
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3134,12 +3147,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 540
-        width: 76
-        height: 60
+        x: 480
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3156,12 +3169,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 540
-        width: 76
-        height: 60
+        x: 560
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3178,12 +3191,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 540
-        width: 76
-        height: 60
+        x: 640
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3200,12 +3213,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 540
-        width: 76
-        height: 60
+        x: 720
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3222,12 +3235,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 540
-        width: 76
-        height: 60
+        x: 800
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3244,12 +3257,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 540
-        width: 76
-        height: 60
+        x: 880
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3266,12 +3279,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 540
-        width: 76
-        height: 60
+        x: 960
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3288,12 +3301,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 540
-        width: 76
-        height: 60
+        x: 1040
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3310,12 +3323,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nw_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 540
-        width: 76
-        height: 60
+        x: 1120
+        y: 558
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3333,11 +3346,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 76
-        height: 60
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3354,12 +3367,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 480
-        width: 76
-        height: 60
+        x: 80
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3376,12 +3389,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 480
-        width: 76
-        height: 60
+        x: 160
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3398,12 +3411,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 480
-        width: 76
-        height: 60
+        x: 240
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3420,12 +3433,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 480
-        width: 76
-        height: 60
+        x: 320
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3442,12 +3455,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 480
-        width: 76
-        height: 60
+        x: 400
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3464,12 +3477,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 480
-        width: 76
-        height: 60
+        x: 480
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3486,12 +3499,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 480
-        width: 76
-        height: 60
+        x: 560
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3508,12 +3521,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 480
-        width: 76
-        height: 60
+        x: 640
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3530,12 +3543,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 480
-        width: 76
-        height: 60
+        x: 720
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3552,12 +3565,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 480
-        width: 76
-        height: 60
+        x: 800
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3574,12 +3587,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 480
-        width: 76
-        height: 60
+        x: 880
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3596,12 +3609,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 480
-        width: 76
-        height: 60
+        x: 960
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3618,12 +3631,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 480
-        width: 76
-        height: 60
+        x: 1040
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3640,12 +3653,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nnw_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 480
-        width: 76
-        height: 60
+        x: 1120
+        y: 496
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3663,11 +3676,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 420
-        width: 76
-        height: 60
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3684,12 +3697,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 420
-        width: 76
-        height: 60
+        x: 80
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3706,12 +3719,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 420
-        width: 76
-        height: 60
+        x: 160
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3728,12 +3741,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 420
-        width: 76
-        height: 60
+        x: 240
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3750,12 +3763,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 420
-        width: 76
-        height: 60
+        x: 320
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3772,12 +3785,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 420
-        width: 76
-        height: 60
+        x: 400
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3794,12 +3807,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 420
-        width: 76
-        height: 60
+        x: 480
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3816,12 +3829,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 420
-        width: 76
-        height: 60
+        x: 560
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3838,12 +3851,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 420
-        width: 76
-        height: 60
+        x: 640
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3860,12 +3873,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 420
-        width: 76
-        height: 60
+        x: 720
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3882,12 +3895,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 420
-        width: 76
-        height: 60
+        x: 800
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3904,12 +3917,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 420
-        width: 76
-        height: 60
+        x: 880
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3926,12 +3939,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 420
-        width: 76
-        height: 60
+        x: 960
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3948,12 +3961,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 420
-        width: 76
-        height: 60
+        x: 1040
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3970,12 +3983,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_n_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 420
-        width: 76
-        height: 60
+        x: 1120
+        y: 434
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3993,11 +4006,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 360
-        width: 76
-        height: 60
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4014,12 +4027,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 360
-        width: 76
-        height: 60
+        x: 80
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4036,12 +4049,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 360
-        width: 76
-        height: 60
+        x: 160
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4058,12 +4071,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 360
-        width: 76
-        height: 60
+        x: 240
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4080,12 +4093,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 360
-        width: 76
-        height: 60
+        x: 320
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4102,12 +4115,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 360
-        width: 76
-        height: 60
+        x: 400
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4124,12 +4137,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 360
-        width: 76
-        height: 60
+        x: 480
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4146,12 +4159,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 360
-        width: 76
-        height: 60
+        x: 560
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4168,12 +4181,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 360
-        width: 76
-        height: 60
+        x: 640
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4190,12 +4203,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 360
-        width: 76
-        height: 60
+        x: 720
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4212,12 +4225,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 360
-        width: 76
-        height: 60
+        x: 800
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4234,12 +4247,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 360
-        width: 76
-        height: 60
+        x: 880
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4256,12 +4269,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 360
-        width: 76
-        height: 60
+        x: 960
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4278,12 +4291,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 360
-        width: 76
-        height: 60
+        x: 1040
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4300,12 +4313,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_nne_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 360
-        width: 76
-        height: 60
+        x: 1120
+        y: 372
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4323,11 +4336,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 300
-        width: 76
-        height: 60
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4344,12 +4357,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 300
-        width: 76
-        height: 60
+        x: 80
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4366,12 +4379,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 300
-        width: 76
-        height: 60
+        x: 160
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4388,12 +4401,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 300
-        width: 76
-        height: 60
+        x: 240
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4410,12 +4423,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 300
-        width: 76
-        height: 60
+        x: 320
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4432,12 +4445,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 300
-        width: 76
-        height: 60
+        x: 400
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4454,12 +4467,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 300
-        width: 76
-        height: 60
+        x: 480
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4476,12 +4489,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 300
-        width: 76
-        height: 60
+        x: 560
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4498,12 +4511,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 300
-        width: 76
-        height: 60
+        x: 640
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4520,12 +4533,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 300
-        width: 76
-        height: 60
+        x: 720
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4542,12 +4555,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 300
-        width: 76
-        height: 60
+        x: 800
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4564,12 +4577,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 300
-        width: 76
-        height: 60
+        x: 880
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4586,12 +4599,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 300
-        width: 76
-        height: 60
+        x: 960
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4608,12 +4621,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 300
-        width: 76
-        height: 60
+        x: 1040
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4630,12 +4643,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ne_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 300
-        width: 76
-        height: 60
+        x: 1120
+        y: 310
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4653,11 +4666,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 76
-        height: 60
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4674,12 +4687,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 240
-        width: 76
-        height: 60
+        x: 80
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4696,12 +4709,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 240
-        width: 76
-        height: 60
+        x: 160
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4718,12 +4731,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 240
-        width: 76
-        height: 60
+        x: 240
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4740,12 +4753,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 240
-        width: 76
-        height: 60
+        x: 320
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4762,12 +4775,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 240
-        width: 76
-        height: 60
+        x: 400
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4784,12 +4797,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 240
-        width: 76
-        height: 60
+        x: 480
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4806,12 +4819,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 240
-        width: 76
-        height: 60
+        x: 560
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4828,12 +4841,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 240
-        width: 76
-        height: 60
+        x: 640
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4850,12 +4863,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 240
-        width: 76
-        height: 60
+        x: 720
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4872,12 +4885,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 240
-        width: 76
-        height: 60
+        x: 800
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4894,12 +4907,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 240
-        width: 76
-        height: 60
+        x: 880
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4916,12 +4929,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 240
-        width: 76
-        height: 60
+        x: 960
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4938,12 +4951,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 240
-        width: 76
-        height: 60
+        x: 1040
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4960,12 +4973,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ene_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 240
-        width: 76
-        height: 60
+        x: 1120
+        y: 248
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4983,11 +4996,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 180
-        width: 76
-        height: 60
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5004,12 +5017,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 180
-        width: 76
-        height: 60
+        x: 80
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5026,12 +5039,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 180
-        width: 76
-        height: 60
+        x: 160
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5048,12 +5061,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 180
-        width: 76
-        height: 60
+        x: 240
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5070,12 +5083,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 180
-        width: 76
-        height: 60
+        x: 320
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5092,12 +5105,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 180
-        width: 76
-        height: 60
+        x: 400
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5114,12 +5127,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 180
-        width: 76
-        height: 60
+        x: 480
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5136,12 +5149,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 180
-        width: 76
-        height: 60
+        x: 560
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5158,12 +5171,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 180
-        width: 76
-        height: 60
+        x: 640
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5180,12 +5193,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 180
-        width: 76
-        height: 60
+        x: 720
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5202,12 +5215,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 180
-        width: 76
-        height: 60
+        x: 800
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5224,12 +5237,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 180
-        width: 76
-        height: 60
+        x: 880
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5246,12 +5259,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 180
-        width: 76
-        height: 60
+        x: 960
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5268,12 +5281,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 180
-        width: 76
-        height: 60
+        x: 1040
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5290,12 +5303,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_e_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 180
-        width: 76
-        height: 60
+        x: 1120
+        y: 186
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5313,11 +5326,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 120
-        width: 76
-        height: 60
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5334,12 +5347,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 120
-        width: 76
-        height: 60
+        x: 80
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5356,12 +5369,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 120
-        width: 76
-        height: 60
+        x: 160
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5378,12 +5391,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 120
-        width: 76
-        height: 60
+        x: 240
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5400,12 +5413,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 120
-        width: 76
-        height: 60
+        x: 320
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5422,12 +5435,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 120
-        width: 76
-        height: 60
+        x: 400
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5444,12 +5457,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 120
-        width: 76
-        height: 60
+        x: 480
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5466,12 +5479,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 120
-        width: 76
-        height: 60
+        x: 560
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5488,12 +5501,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 120
-        width: 76
-        height: 60
+        x: 640
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5510,12 +5523,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 120
-        width: 76
-        height: 60
+        x: 720
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5532,12 +5545,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 120
-        width: 76
-        height: 60
+        x: 800
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5554,12 +5567,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 120
-        width: 76
-        height: 60
+        x: 880
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5576,12 +5589,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 120
-        width: 76
-        height: 60
+        x: 960
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5598,12 +5611,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 120
-        width: 76
-        height: 60
+        x: 1040
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5620,12 +5633,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_ese_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 120
-        width: 76
-        height: 60
+        x: 1120
+        y: 124
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5643,11 +5656,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 60
-        width: 76
-        height: 60
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5664,12 +5677,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 60
-        width: 76
-        height: 60
+        x: 80
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5686,12 +5699,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 60
-        width: 76
-        height: 60
+        x: 160
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5708,12 +5721,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 60
-        width: 76
-        height: 60
+        x: 240
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5730,12 +5743,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 60
-        width: 76
-        height: 60
+        x: 320
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5752,12 +5765,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 60
-        width: 76
-        height: 60
+        x: 400
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5774,12 +5787,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 60
-        width: 76
-        height: 60
+        x: 480
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5796,12 +5809,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 60
-        width: 76
-        height: 60
+        x: 560
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5818,12 +5831,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 60
-        width: 76
-        height: 60
+        x: 640
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5840,12 +5853,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 60
-        width: 76
-        height: 60
+        x: 720
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5862,12 +5875,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_10
       rect:
         serializedVersion: 2
-        x: 760
-        y: 60
-        width: 76
-        height: 60
+        x: 800
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5884,12 +5897,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_11
       rect:
         serializedVersion: 2
-        x: 836
-        y: 60
-        width: 76
-        height: 60
+        x: 880
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5906,12 +5919,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_12
       rect:
         serializedVersion: 2
-        x: 912
-        y: 60
-        width: 76
-        height: 60
+        x: 960
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5928,12 +5941,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_13
       rect:
         serializedVersion: 2
-        x: 988
-        y: 60
-        width: 76
-        height: 60
+        x: 1040
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5950,12 +5963,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_se_14
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 60
-        width: 76
-        height: 60
+        x: 1120
+        y: 62
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5974,10 +5987,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5994,12 +6007,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_01
       rect:
         serializedVersion: 2
-        x: 76
+        x: 80
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6016,12 +6029,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_02
       rect:
         serializedVersion: 2
-        x: 152
+        x: 160
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6038,12 +6051,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_03
       rect:
         serializedVersion: 2
-        x: 228
+        x: 240
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6060,12 +6073,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_04
       rect:
         serializedVersion: 2
-        x: 304
+        x: 320
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6082,12 +6095,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_05
       rect:
         serializedVersion: 2
-        x: 380
+        x: 400
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6104,12 +6117,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_06
       rect:
         serializedVersion: 2
-        x: 456
+        x: 480
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6126,12 +6139,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_07
       rect:
         serializedVersion: 2
-        x: 532
+        x: 560
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6148,12 +6161,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_08
       rect:
         serializedVersion: 2
-        x: 608
+        x: 640
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6170,12 +6183,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_09
       rect:
         serializedVersion: 2
-        x: 684
+        x: 720
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6192,12 +6205,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_10
       rect:
         serializedVersion: 2
-        x: 760
+        x: 800
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6214,12 +6227,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_11
       rect:
         serializedVersion: 2
-        x: 836
+        x: 880
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6236,12 +6249,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_12
       rect:
         serializedVersion: 2
-        x: 912
+        x: 960
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6258,12 +6271,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_13
       rect:
         serializedVersion: 2
-        x: 988
+        x: 1040
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6280,12 +6293,12 @@ TextureImporter:
       name: wild_arrow_weapon_gallowsreach_1h_attack_move_back_sse_14
       rect:
         serializedVersion: 2
-        x: 1064
+        x: 1120
         y: 0
-        width: 76
-        height: 60
+        width: 80
+        height: 62
       alignment: 9
-      pivot: {x: 0.5, y: -0.13333333}
+      pivot: {x: 0.5, y: -0.09677418}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

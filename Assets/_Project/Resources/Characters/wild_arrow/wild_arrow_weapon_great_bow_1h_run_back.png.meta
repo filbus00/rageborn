@@ -817,6 +817,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -825,11 +838,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 705
-        width: 76
-        height: 47
+        y: 780
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -846,12 +859,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_s_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 705
-        width: 76
-        height: 47
+        x: 80
+        y: 780
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -868,12 +881,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_s_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 705
-        width: 76
-        height: 47
+        x: 160
+        y: 780
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -890,12 +903,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_s_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 705
-        width: 76
-        height: 47
+        x: 240
+        y: 780
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -912,12 +925,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_s_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 705
-        width: 76
-        height: 47
+        x: 320
+        y: 780
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -934,12 +947,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_s_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 705
-        width: 76
-        height: 47
+        x: 400
+        y: 780
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -956,12 +969,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_s_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 705
-        width: 76
-        height: 47
+        x: 480
+        y: 780
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -978,12 +991,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_s_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 705
-        width: 76
-        height: 47
+        x: 560
+        y: 780
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1000,12 +1013,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_s_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 705
-        width: 76
-        height: 47
+        x: 640
+        y: 780
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1022,12 +1035,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_s_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 705
-        width: 76
-        height: 47
+        x: 720
+        y: 780
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1045,11 +1058,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 658
-        width: 76
-        height: 47
+        y: 728
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1066,12 +1079,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ssw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 658
-        width: 76
-        height: 47
+        x: 80
+        y: 728
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1088,12 +1101,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ssw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 658
-        width: 76
-        height: 47
+        x: 160
+        y: 728
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1110,12 +1123,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ssw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 658
-        width: 76
-        height: 47
+        x: 240
+        y: 728
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1132,12 +1145,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ssw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 658
-        width: 76
-        height: 47
+        x: 320
+        y: 728
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1154,12 +1167,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ssw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 658
-        width: 76
-        height: 47
+        x: 400
+        y: 728
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1176,12 +1189,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ssw_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 658
-        width: 76
-        height: 47
+        x: 480
+        y: 728
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1198,12 +1211,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ssw_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 658
-        width: 76
-        height: 47
+        x: 560
+        y: 728
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1220,12 +1233,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ssw_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 658
-        width: 76
-        height: 47
+        x: 640
+        y: 728
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1242,12 +1255,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ssw_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 658
-        width: 76
-        height: 47
+        x: 720
+        y: 728
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1265,11 +1278,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 611
-        width: 76
-        height: 47
+        y: 676
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1286,12 +1299,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 611
-        width: 76
-        height: 47
+        x: 80
+        y: 676
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1308,12 +1321,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 611
-        width: 76
-        height: 47
+        x: 160
+        y: 676
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1330,12 +1343,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 611
-        width: 76
-        height: 47
+        x: 240
+        y: 676
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1352,12 +1365,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 611
-        width: 76
-        height: 47
+        x: 320
+        y: 676
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1374,12 +1387,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 611
-        width: 76
-        height: 47
+        x: 400
+        y: 676
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1396,12 +1409,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sw_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 611
-        width: 76
-        height: 47
+        x: 480
+        y: 676
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1418,12 +1431,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sw_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 611
-        width: 76
-        height: 47
+        x: 560
+        y: 676
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1440,12 +1453,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sw_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 611
-        width: 76
-        height: 47
+        x: 640
+        y: 676
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1462,12 +1475,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sw_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 611
-        width: 76
-        height: 47
+        x: 720
+        y: 676
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1485,11 +1498,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 564
-        width: 76
-        height: 47
+        y: 624
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1506,12 +1519,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wsw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 564
-        width: 76
-        height: 47
+        x: 80
+        y: 624
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1528,12 +1541,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wsw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 564
-        width: 76
-        height: 47
+        x: 160
+        y: 624
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1550,12 +1563,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wsw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 564
-        width: 76
-        height: 47
+        x: 240
+        y: 624
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1572,12 +1585,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wsw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 564
-        width: 76
-        height: 47
+        x: 320
+        y: 624
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1594,12 +1607,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wsw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 564
-        width: 76
-        height: 47
+        x: 400
+        y: 624
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1616,12 +1629,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wsw_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 564
-        width: 76
-        height: 47
+        x: 480
+        y: 624
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1638,12 +1651,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wsw_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 564
-        width: 76
-        height: 47
+        x: 560
+        y: 624
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1660,12 +1673,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wsw_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 564
-        width: 76
-        height: 47
+        x: 640
+        y: 624
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1682,12 +1695,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wsw_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 564
-        width: 76
-        height: 47
+        x: 720
+        y: 624
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1705,11 +1718,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 517
-        width: 76
-        height: 47
+        y: 572
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1726,12 +1739,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_w_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 517
-        width: 76
-        height: 47
+        x: 80
+        y: 572
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1748,12 +1761,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_w_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 517
-        width: 76
-        height: 47
+        x: 160
+        y: 572
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1770,12 +1783,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_w_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 517
-        width: 76
-        height: 47
+        x: 240
+        y: 572
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1792,12 +1805,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_w_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 517
-        width: 76
-        height: 47
+        x: 320
+        y: 572
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1814,12 +1827,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_w_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 517
-        width: 76
-        height: 47
+        x: 400
+        y: 572
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1836,12 +1849,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_w_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 517
-        width: 76
-        height: 47
+        x: 480
+        y: 572
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1858,12 +1871,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_w_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 517
-        width: 76
-        height: 47
+        x: 560
+        y: 572
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1880,12 +1893,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_w_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 517
-        width: 76
-        height: 47
+        x: 640
+        y: 572
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1902,12 +1915,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_w_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 517
-        width: 76
-        height: 47
+        x: 720
+        y: 572
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1925,11 +1938,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 470
-        width: 76
-        height: 47
+        y: 520
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1946,12 +1959,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wnw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 470
-        width: 76
-        height: 47
+        x: 80
+        y: 520
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1968,12 +1981,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wnw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 470
-        width: 76
-        height: 47
+        x: 160
+        y: 520
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1990,12 +2003,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wnw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 470
-        width: 76
-        height: 47
+        x: 240
+        y: 520
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2012,12 +2025,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wnw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 470
-        width: 76
-        height: 47
+        x: 320
+        y: 520
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2034,12 +2047,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wnw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 470
-        width: 76
-        height: 47
+        x: 400
+        y: 520
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2056,12 +2069,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wnw_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 470
-        width: 76
-        height: 47
+        x: 480
+        y: 520
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2078,12 +2091,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wnw_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 470
-        width: 76
-        height: 47
+        x: 560
+        y: 520
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2100,12 +2113,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wnw_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 470
-        width: 76
-        height: 47
+        x: 640
+        y: 520
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2122,12 +2135,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_wnw_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 470
-        width: 76
-        height: 47
+        x: 720
+        y: 520
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2145,11 +2158,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 423
-        width: 76
-        height: 47
+        y: 468
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2166,12 +2179,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 423
-        width: 76
-        height: 47
+        x: 80
+        y: 468
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2188,12 +2201,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 423
-        width: 76
-        height: 47
+        x: 160
+        y: 468
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2210,12 +2223,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 423
-        width: 76
-        height: 47
+        x: 240
+        y: 468
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2232,12 +2245,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 423
-        width: 76
-        height: 47
+        x: 320
+        y: 468
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2254,12 +2267,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 423
-        width: 76
-        height: 47
+        x: 400
+        y: 468
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2276,12 +2289,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nw_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 423
-        width: 76
-        height: 47
+        x: 480
+        y: 468
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2298,12 +2311,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nw_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 423
-        width: 76
-        height: 47
+        x: 560
+        y: 468
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2320,12 +2333,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nw_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 423
-        width: 76
-        height: 47
+        x: 640
+        y: 468
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2342,12 +2355,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nw_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 423
-        width: 76
-        height: 47
+        x: 720
+        y: 468
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2365,11 +2378,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 376
-        width: 76
-        height: 47
+        y: 416
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2386,12 +2399,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nnw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 376
-        width: 76
-        height: 47
+        x: 80
+        y: 416
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2408,12 +2421,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nnw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 376
-        width: 76
-        height: 47
+        x: 160
+        y: 416
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2430,12 +2443,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nnw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 376
-        width: 76
-        height: 47
+        x: 240
+        y: 416
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2452,12 +2465,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nnw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 376
-        width: 76
-        height: 47
+        x: 320
+        y: 416
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2474,12 +2487,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nnw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 376
-        width: 76
-        height: 47
+        x: 400
+        y: 416
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2496,12 +2509,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nnw_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 376
-        width: 76
-        height: 47
+        x: 480
+        y: 416
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2518,12 +2531,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nnw_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 376
-        width: 76
-        height: 47
+        x: 560
+        y: 416
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2540,12 +2553,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nnw_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 376
-        width: 76
-        height: 47
+        x: 640
+        y: 416
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2562,12 +2575,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nnw_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 376
-        width: 76
-        height: 47
+        x: 720
+        y: 416
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2585,11 +2598,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 329
-        width: 76
-        height: 47
+        y: 364
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2606,12 +2619,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_n_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 329
-        width: 76
-        height: 47
+        x: 80
+        y: 364
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2628,12 +2641,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_n_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 329
-        width: 76
-        height: 47
+        x: 160
+        y: 364
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2650,12 +2663,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_n_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 329
-        width: 76
-        height: 47
+        x: 240
+        y: 364
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2672,12 +2685,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_n_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 329
-        width: 76
-        height: 47
+        x: 320
+        y: 364
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2694,12 +2707,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_n_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 329
-        width: 76
-        height: 47
+        x: 400
+        y: 364
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2716,12 +2729,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_n_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 329
-        width: 76
-        height: 47
+        x: 480
+        y: 364
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2738,12 +2751,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_n_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 329
-        width: 76
-        height: 47
+        x: 560
+        y: 364
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2760,12 +2773,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_n_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 329
-        width: 76
-        height: 47
+        x: 640
+        y: 364
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2782,12 +2795,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_n_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 329
-        width: 76
-        height: 47
+        x: 720
+        y: 364
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2805,11 +2818,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 282
-        width: 76
-        height: 47
+        y: 312
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2826,12 +2839,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nne_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 282
-        width: 76
-        height: 47
+        x: 80
+        y: 312
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2848,12 +2861,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nne_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 282
-        width: 76
-        height: 47
+        x: 160
+        y: 312
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2870,12 +2883,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nne_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 282
-        width: 76
-        height: 47
+        x: 240
+        y: 312
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2892,12 +2905,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nne_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 282
-        width: 76
-        height: 47
+        x: 320
+        y: 312
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2914,12 +2927,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nne_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 282
-        width: 76
-        height: 47
+        x: 400
+        y: 312
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2936,12 +2949,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nne_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 282
-        width: 76
-        height: 47
+        x: 480
+        y: 312
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2958,12 +2971,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nne_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 282
-        width: 76
-        height: 47
+        x: 560
+        y: 312
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2980,12 +2993,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nne_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 282
-        width: 76
-        height: 47
+        x: 640
+        y: 312
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3002,12 +3015,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_nne_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 282
-        width: 76
-        height: 47
+        x: 720
+        y: 312
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3025,11 +3038,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 235
-        width: 76
-        height: 47
+        y: 260
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3046,12 +3059,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ne_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 235
-        width: 76
-        height: 47
+        x: 80
+        y: 260
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3068,12 +3081,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ne_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 235
-        width: 76
-        height: 47
+        x: 160
+        y: 260
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3090,12 +3103,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ne_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 235
-        width: 76
-        height: 47
+        x: 240
+        y: 260
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3112,12 +3125,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ne_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 235
-        width: 76
-        height: 47
+        x: 320
+        y: 260
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3134,12 +3147,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ne_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 235
-        width: 76
-        height: 47
+        x: 400
+        y: 260
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3156,12 +3169,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ne_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 235
-        width: 76
-        height: 47
+        x: 480
+        y: 260
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3178,12 +3191,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ne_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 235
-        width: 76
-        height: 47
+        x: 560
+        y: 260
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3200,12 +3213,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ne_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 235
-        width: 76
-        height: 47
+        x: 640
+        y: 260
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3222,12 +3235,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ne_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 235
-        width: 76
-        height: 47
+        x: 720
+        y: 260
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3245,11 +3258,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 188
-        width: 76
-        height: 47
+        y: 208
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3266,12 +3279,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ene_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 188
-        width: 76
-        height: 47
+        x: 80
+        y: 208
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3288,12 +3301,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ene_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 188
-        width: 76
-        height: 47
+        x: 160
+        y: 208
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3310,12 +3323,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ene_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 188
-        width: 76
-        height: 47
+        x: 240
+        y: 208
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3332,12 +3345,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ene_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 188
-        width: 76
-        height: 47
+        x: 320
+        y: 208
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3354,12 +3367,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ene_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 188
-        width: 76
-        height: 47
+        x: 400
+        y: 208
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3376,12 +3389,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ene_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 188
-        width: 76
-        height: 47
+        x: 480
+        y: 208
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3398,12 +3411,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ene_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 188
-        width: 76
-        height: 47
+        x: 560
+        y: 208
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3420,12 +3433,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ene_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 188
-        width: 76
-        height: 47
+        x: 640
+        y: 208
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3442,12 +3455,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ene_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 188
-        width: 76
-        height: 47
+        x: 720
+        y: 208
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3465,11 +3478,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 141
-        width: 76
-        height: 47
+        y: 156
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3486,12 +3499,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_e_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 141
-        width: 76
-        height: 47
+        x: 80
+        y: 156
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3508,12 +3521,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_e_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 141
-        width: 76
-        height: 47
+        x: 160
+        y: 156
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3530,12 +3543,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_e_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 141
-        width: 76
-        height: 47
+        x: 240
+        y: 156
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3552,12 +3565,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_e_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 141
-        width: 76
-        height: 47
+        x: 320
+        y: 156
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3574,12 +3587,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_e_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 141
-        width: 76
-        height: 47
+        x: 400
+        y: 156
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3596,12 +3609,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_e_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 141
-        width: 76
-        height: 47
+        x: 480
+        y: 156
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3618,12 +3631,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_e_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 141
-        width: 76
-        height: 47
+        x: 560
+        y: 156
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3640,12 +3653,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_e_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 141
-        width: 76
-        height: 47
+        x: 640
+        y: 156
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3662,12 +3675,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_e_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 141
-        width: 76
-        height: 47
+        x: 720
+        y: 156
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3685,11 +3698,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 94
-        width: 76
-        height: 47
+        y: 104
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3706,12 +3719,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ese_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 94
-        width: 76
-        height: 47
+        x: 80
+        y: 104
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3728,12 +3741,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ese_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 94
-        width: 76
-        height: 47
+        x: 160
+        y: 104
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3750,12 +3763,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ese_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 94
-        width: 76
-        height: 47
+        x: 240
+        y: 104
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3772,12 +3785,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ese_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 94
-        width: 76
-        height: 47
+        x: 320
+        y: 104
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3794,12 +3807,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ese_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 94
-        width: 76
-        height: 47
+        x: 400
+        y: 104
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3816,12 +3829,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ese_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 94
-        width: 76
-        height: 47
+        x: 480
+        y: 104
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3838,12 +3851,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ese_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 94
-        width: 76
-        height: 47
+        x: 560
+        y: 104
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3860,12 +3873,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ese_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 94
-        width: 76
-        height: 47
+        x: 640
+        y: 104
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3882,12 +3895,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_ese_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 94
-        width: 76
-        height: 47
+        x: 720
+        y: 104
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3905,11 +3918,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 47
-        width: 76
-        height: 47
+        y: 52
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3926,12 +3939,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_se_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 47
-        width: 76
-        height: 47
+        x: 80
+        y: 52
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3948,12 +3961,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_se_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 47
-        width: 76
-        height: 47
+        x: 160
+        y: 52
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3970,12 +3983,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_se_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 47
-        width: 76
-        height: 47
+        x: 240
+        y: 52
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3992,12 +4005,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_se_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 47
-        width: 76
-        height: 47
+        x: 320
+        y: 52
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4014,12 +4027,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_se_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 47
-        width: 76
-        height: 47
+        x: 400
+        y: 52
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4036,12 +4049,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_se_06
       rect:
         serializedVersion: 2
-        x: 456
-        y: 47
-        width: 76
-        height: 47
+        x: 480
+        y: 52
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4058,12 +4071,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_se_07
       rect:
         serializedVersion: 2
-        x: 532
-        y: 47
-        width: 76
-        height: 47
+        x: 560
+        y: 52
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4080,12 +4093,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_se_08
       rect:
         serializedVersion: 2
-        x: 608
-        y: 47
-        width: 76
-        height: 47
+        x: 640
+        y: 52
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4102,12 +4115,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_se_09
       rect:
         serializedVersion: 2
-        x: 684
-        y: 47
-        width: 76
-        height: 47
+        x: 720
+        y: 52
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4126,10 +4139,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 76
-        height: 47
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4146,12 +4159,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sse_01
       rect:
         serializedVersion: 2
-        x: 76
+        x: 80
         y: 0
-        width: 76
-        height: 47
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4168,12 +4181,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sse_02
       rect:
         serializedVersion: 2
-        x: 152
+        x: 160
         y: 0
-        width: 76
-        height: 47
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4190,12 +4203,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sse_03
       rect:
         serializedVersion: 2
-        x: 228
+        x: 240
         y: 0
-        width: 76
-        height: 47
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4212,12 +4225,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sse_04
       rect:
         serializedVersion: 2
-        x: 304
+        x: 320
         y: 0
-        width: 76
-        height: 47
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4234,12 +4247,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sse_05
       rect:
         serializedVersion: 2
-        x: 380
+        x: 400
         y: 0
-        width: 76
-        height: 47
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4256,12 +4269,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sse_06
       rect:
         serializedVersion: 2
-        x: 456
+        x: 480
         y: 0
-        width: 76
-        height: 47
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4278,12 +4291,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sse_07
       rect:
         serializedVersion: 2
-        x: 532
+        x: 560
         y: 0
-        width: 76
-        height: 47
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4300,12 +4313,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sse_08
       rect:
         serializedVersion: 2
-        x: 608
+        x: 640
         y: 0
-        width: 76
-        height: 47
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4322,12 +4335,12 @@ TextureImporter:
       name: wild_arrow_weapon_great_bow_1h_run_back_sse_09
       rect:
         serializedVersion: 2
-        x: 684
+        x: 720
         y: 0
-        width: 76
-        height: 47
+        width: 80
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: -0.17021276}
+      pivot: {x: 0.5, y: -0.09615384}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

@@ -799,6 +799,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -807,11 +820,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1020
-        width: 68
-        height: 68
+        y: 1065
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -828,12 +841,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_s_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 1020
-        width: 68
-        height: 68
+        x: 72
+        y: 1065
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -850,12 +863,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_s_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 1020
-        width: 68
-        height: 68
+        x: 144
+        y: 1065
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -872,12 +885,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_s_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 1020
-        width: 68
-        height: 68
+        x: 216
+        y: 1065
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -894,12 +907,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_s_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 1020
-        width: 68
-        height: 68
+        x: 288
+        y: 1065
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -916,12 +929,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_s_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 1020
-        width: 68
-        height: 68
+        x: 360
+        y: 1065
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -938,12 +951,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_s_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 1020
-        width: 68
-        height: 68
+        x: 432
+        y: 1065
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -960,12 +973,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_s_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 1020
-        width: 68
-        height: 68
+        x: 504
+        y: 1065
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -982,12 +995,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_s_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 1020
-        width: 68
-        height: 68
+        x: 576
+        y: 1065
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1004,12 +1017,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_s_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 1020
-        width: 68
-        height: 68
+        x: 648
+        y: 1065
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1026,12 +1039,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_s_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 1020
-        width: 68
-        height: 68
+        x: 720
+        y: 1065
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1048,12 +1061,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_s_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 1020
-        width: 68
-        height: 68
+        x: 792
+        y: 1065
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1071,11 +1084,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 952
-        width: 68
-        height: 68
+        y: 994
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1092,12 +1105,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ssw_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 952
-        width: 68
-        height: 68
+        x: 72
+        y: 994
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1114,12 +1127,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ssw_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 952
-        width: 68
-        height: 68
+        x: 144
+        y: 994
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1136,12 +1149,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ssw_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 952
-        width: 68
-        height: 68
+        x: 216
+        y: 994
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1158,12 +1171,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ssw_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 952
-        width: 68
-        height: 68
+        x: 288
+        y: 994
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1180,12 +1193,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ssw_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 952
-        width: 68
-        height: 68
+        x: 360
+        y: 994
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1202,12 +1215,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ssw_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 952
-        width: 68
-        height: 68
+        x: 432
+        y: 994
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1224,12 +1237,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ssw_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 952
-        width: 68
-        height: 68
+        x: 504
+        y: 994
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1246,12 +1259,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ssw_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 952
-        width: 68
-        height: 68
+        x: 576
+        y: 994
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1268,12 +1281,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ssw_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 952
-        width: 68
-        height: 68
+        x: 648
+        y: 994
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1290,12 +1303,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ssw_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 952
-        width: 68
-        height: 68
+        x: 720
+        y: 994
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1312,12 +1325,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ssw_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 952
-        width: 68
-        height: 68
+        x: 792
+        y: 994
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1335,11 +1348,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 884
-        width: 68
-        height: 68
+        y: 923
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1356,12 +1369,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sw_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 884
-        width: 68
-        height: 68
+        x: 72
+        y: 923
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1378,12 +1391,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sw_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 884
-        width: 68
-        height: 68
+        x: 144
+        y: 923
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1400,12 +1413,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sw_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 884
-        width: 68
-        height: 68
+        x: 216
+        y: 923
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1422,12 +1435,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sw_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 884
-        width: 68
-        height: 68
+        x: 288
+        y: 923
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1444,12 +1457,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sw_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 884
-        width: 68
-        height: 68
+        x: 360
+        y: 923
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1466,12 +1479,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sw_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 884
-        width: 68
-        height: 68
+        x: 432
+        y: 923
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1488,12 +1501,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sw_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 884
-        width: 68
-        height: 68
+        x: 504
+        y: 923
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1510,12 +1523,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sw_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 884
-        width: 68
-        height: 68
+        x: 576
+        y: 923
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1532,12 +1545,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sw_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 884
-        width: 68
-        height: 68
+        x: 648
+        y: 923
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1554,12 +1567,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sw_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 884
-        width: 68
-        height: 68
+        x: 720
+        y: 923
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1576,12 +1589,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sw_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 884
-        width: 68
-        height: 68
+        x: 792
+        y: 923
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1599,11 +1612,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 816
-        width: 68
-        height: 68
+        y: 852
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1620,12 +1633,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wsw_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 816
-        width: 68
-        height: 68
+        x: 72
+        y: 852
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1642,12 +1655,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wsw_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 816
-        width: 68
-        height: 68
+        x: 144
+        y: 852
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1664,12 +1677,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wsw_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 816
-        width: 68
-        height: 68
+        x: 216
+        y: 852
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1686,12 +1699,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wsw_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 816
-        width: 68
-        height: 68
+        x: 288
+        y: 852
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1708,12 +1721,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wsw_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 816
-        width: 68
-        height: 68
+        x: 360
+        y: 852
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1730,12 +1743,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wsw_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 816
-        width: 68
-        height: 68
+        x: 432
+        y: 852
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1752,12 +1765,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wsw_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 816
-        width: 68
-        height: 68
+        x: 504
+        y: 852
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1774,12 +1787,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wsw_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 816
-        width: 68
-        height: 68
+        x: 576
+        y: 852
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1796,12 +1809,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wsw_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 816
-        width: 68
-        height: 68
+        x: 648
+        y: 852
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1818,12 +1831,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wsw_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 816
-        width: 68
-        height: 68
+        x: 720
+        y: 852
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1840,12 +1853,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wsw_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 816
-        width: 68
-        height: 68
+        x: 792
+        y: 852
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1863,11 +1876,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 748
-        width: 68
-        height: 68
+        y: 781
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1884,12 +1897,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_w_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 748
-        width: 68
-        height: 68
+        x: 72
+        y: 781
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1906,12 +1919,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_w_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 748
-        width: 68
-        height: 68
+        x: 144
+        y: 781
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1928,12 +1941,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_w_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 748
-        width: 68
-        height: 68
+        x: 216
+        y: 781
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1950,12 +1963,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_w_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 748
-        width: 68
-        height: 68
+        x: 288
+        y: 781
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1972,12 +1985,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_w_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 748
-        width: 68
-        height: 68
+        x: 360
+        y: 781
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1994,12 +2007,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_w_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 748
-        width: 68
-        height: 68
+        x: 432
+        y: 781
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2016,12 +2029,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_w_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 748
-        width: 68
-        height: 68
+        x: 504
+        y: 781
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2038,12 +2051,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_w_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 748
-        width: 68
-        height: 68
+        x: 576
+        y: 781
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2060,12 +2073,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_w_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 748
-        width: 68
-        height: 68
+        x: 648
+        y: 781
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2082,12 +2095,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_w_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 748
-        width: 68
-        height: 68
+        x: 720
+        y: 781
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2104,12 +2117,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_w_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 748
-        width: 68
-        height: 68
+        x: 792
+        y: 781
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2127,11 +2140,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 680
-        width: 68
-        height: 68
+        y: 710
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2148,12 +2161,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wnw_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 680
-        width: 68
-        height: 68
+        x: 72
+        y: 710
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2170,12 +2183,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wnw_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 680
-        width: 68
-        height: 68
+        x: 144
+        y: 710
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2192,12 +2205,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wnw_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 680
-        width: 68
-        height: 68
+        x: 216
+        y: 710
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2214,12 +2227,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wnw_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 680
-        width: 68
-        height: 68
+        x: 288
+        y: 710
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2236,12 +2249,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wnw_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 680
-        width: 68
-        height: 68
+        x: 360
+        y: 710
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2258,12 +2271,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wnw_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 680
-        width: 68
-        height: 68
+        x: 432
+        y: 710
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2280,12 +2293,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wnw_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 680
-        width: 68
-        height: 68
+        x: 504
+        y: 710
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2302,12 +2315,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wnw_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 680
-        width: 68
-        height: 68
+        x: 576
+        y: 710
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2324,12 +2337,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wnw_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 680
-        width: 68
-        height: 68
+        x: 648
+        y: 710
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2346,12 +2359,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wnw_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 680
-        width: 68
-        height: 68
+        x: 720
+        y: 710
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2368,12 +2381,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_wnw_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 680
-        width: 68
-        height: 68
+        x: 792
+        y: 710
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2391,11 +2404,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 612
-        width: 68
-        height: 68
+        y: 639
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2412,12 +2425,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nw_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 612
-        width: 68
-        height: 68
+        x: 72
+        y: 639
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2434,12 +2447,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nw_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 612
-        width: 68
-        height: 68
+        x: 144
+        y: 639
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2456,12 +2469,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nw_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 612
-        width: 68
-        height: 68
+        x: 216
+        y: 639
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2478,12 +2491,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nw_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 612
-        width: 68
-        height: 68
+        x: 288
+        y: 639
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2500,12 +2513,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nw_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 612
-        width: 68
-        height: 68
+        x: 360
+        y: 639
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2522,12 +2535,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nw_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 612
-        width: 68
-        height: 68
+        x: 432
+        y: 639
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2544,12 +2557,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nw_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 612
-        width: 68
-        height: 68
+        x: 504
+        y: 639
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2566,12 +2579,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nw_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 612
-        width: 68
-        height: 68
+        x: 576
+        y: 639
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2588,12 +2601,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nw_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 612
-        width: 68
-        height: 68
+        x: 648
+        y: 639
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2610,12 +2623,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nw_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 612
-        width: 68
-        height: 68
+        x: 720
+        y: 639
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2632,12 +2645,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nw_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 612
-        width: 68
-        height: 68
+        x: 792
+        y: 639
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2655,11 +2668,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 544
-        width: 68
-        height: 68
+        y: 568
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2676,12 +2689,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nnw_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 544
-        width: 68
-        height: 68
+        x: 72
+        y: 568
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2698,12 +2711,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nnw_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 544
-        width: 68
-        height: 68
+        x: 144
+        y: 568
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2720,12 +2733,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nnw_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 544
-        width: 68
-        height: 68
+        x: 216
+        y: 568
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2742,12 +2755,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nnw_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 544
-        width: 68
-        height: 68
+        x: 288
+        y: 568
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2764,12 +2777,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nnw_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 544
-        width: 68
-        height: 68
+        x: 360
+        y: 568
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2786,12 +2799,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nnw_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 544
-        width: 68
-        height: 68
+        x: 432
+        y: 568
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2808,12 +2821,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nnw_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 544
-        width: 68
-        height: 68
+        x: 504
+        y: 568
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2830,12 +2843,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nnw_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 544
-        width: 68
-        height: 68
+        x: 576
+        y: 568
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2852,12 +2865,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nnw_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 544
-        width: 68
-        height: 68
+        x: 648
+        y: 568
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2874,12 +2887,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nnw_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 544
-        width: 68
-        height: 68
+        x: 720
+        y: 568
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2896,12 +2909,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nnw_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 544
-        width: 68
-        height: 68
+        x: 792
+        y: 568
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2919,11 +2932,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 476
-        width: 68
-        height: 68
+        y: 497
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2940,12 +2953,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_n_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 476
-        width: 68
-        height: 68
+        x: 72
+        y: 497
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2962,12 +2975,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_n_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 476
-        width: 68
-        height: 68
+        x: 144
+        y: 497
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2984,12 +2997,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_n_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 476
-        width: 68
-        height: 68
+        x: 216
+        y: 497
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3006,12 +3019,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_n_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 476
-        width: 68
-        height: 68
+        x: 288
+        y: 497
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3028,12 +3041,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_n_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 476
-        width: 68
-        height: 68
+        x: 360
+        y: 497
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3050,12 +3063,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_n_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 476
-        width: 68
-        height: 68
+        x: 432
+        y: 497
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3072,12 +3085,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_n_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 476
-        width: 68
-        height: 68
+        x: 504
+        y: 497
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3094,12 +3107,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_n_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 476
-        width: 68
-        height: 68
+        x: 576
+        y: 497
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3116,12 +3129,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_n_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 476
-        width: 68
-        height: 68
+        x: 648
+        y: 497
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3138,12 +3151,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_n_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 476
-        width: 68
-        height: 68
+        x: 720
+        y: 497
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3160,12 +3173,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_n_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 476
-        width: 68
-        height: 68
+        x: 792
+        y: 497
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3183,11 +3196,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 408
-        width: 68
-        height: 68
+        y: 426
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3204,12 +3217,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nne_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 408
-        width: 68
-        height: 68
+        x: 72
+        y: 426
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3226,12 +3239,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nne_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 408
-        width: 68
-        height: 68
+        x: 144
+        y: 426
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3248,12 +3261,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nne_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 408
-        width: 68
-        height: 68
+        x: 216
+        y: 426
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3270,12 +3283,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nne_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 408
-        width: 68
-        height: 68
+        x: 288
+        y: 426
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3292,12 +3305,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nne_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 408
-        width: 68
-        height: 68
+        x: 360
+        y: 426
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3314,12 +3327,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nne_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 408
-        width: 68
-        height: 68
+        x: 432
+        y: 426
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3336,12 +3349,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nne_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 408
-        width: 68
-        height: 68
+        x: 504
+        y: 426
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3358,12 +3371,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nne_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 408
-        width: 68
-        height: 68
+        x: 576
+        y: 426
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3380,12 +3393,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nne_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 408
-        width: 68
-        height: 68
+        x: 648
+        y: 426
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3402,12 +3415,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nne_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 408
-        width: 68
-        height: 68
+        x: 720
+        y: 426
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3424,12 +3437,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_nne_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 408
-        width: 68
-        height: 68
+        x: 792
+        y: 426
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3447,11 +3460,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 340
-        width: 68
-        height: 68
+        y: 355
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3468,12 +3481,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ne_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 340
-        width: 68
-        height: 68
+        x: 72
+        y: 355
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3490,12 +3503,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ne_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 340
-        width: 68
-        height: 68
+        x: 144
+        y: 355
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3512,12 +3525,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ne_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 340
-        width: 68
-        height: 68
+        x: 216
+        y: 355
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3534,12 +3547,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ne_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 340
-        width: 68
-        height: 68
+        x: 288
+        y: 355
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3556,12 +3569,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ne_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 340
-        width: 68
-        height: 68
+        x: 360
+        y: 355
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3578,12 +3591,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ne_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 340
-        width: 68
-        height: 68
+        x: 432
+        y: 355
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3600,12 +3613,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ne_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 340
-        width: 68
-        height: 68
+        x: 504
+        y: 355
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3622,12 +3635,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ne_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 340
-        width: 68
-        height: 68
+        x: 576
+        y: 355
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3644,12 +3657,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ne_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 340
-        width: 68
-        height: 68
+        x: 648
+        y: 355
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3666,12 +3679,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ne_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 340
-        width: 68
-        height: 68
+        x: 720
+        y: 355
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3688,12 +3701,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ne_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 340
-        width: 68
-        height: 68
+        x: 792
+        y: 355
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3711,11 +3724,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 272
-        width: 68
-        height: 68
+        y: 284
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3732,12 +3745,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ene_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 272
-        width: 68
-        height: 68
+        x: 72
+        y: 284
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3754,12 +3767,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ene_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 272
-        width: 68
-        height: 68
+        x: 144
+        y: 284
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3776,12 +3789,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ene_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 272
-        width: 68
-        height: 68
+        x: 216
+        y: 284
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3798,12 +3811,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ene_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 272
-        width: 68
-        height: 68
+        x: 288
+        y: 284
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3820,12 +3833,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ene_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 272
-        width: 68
-        height: 68
+        x: 360
+        y: 284
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3842,12 +3855,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ene_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 272
-        width: 68
-        height: 68
+        x: 432
+        y: 284
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3864,12 +3877,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ene_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 272
-        width: 68
-        height: 68
+        x: 504
+        y: 284
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3886,12 +3899,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ene_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 272
-        width: 68
-        height: 68
+        x: 576
+        y: 284
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3908,12 +3921,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ene_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 272
-        width: 68
-        height: 68
+        x: 648
+        y: 284
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3930,12 +3943,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ene_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 272
-        width: 68
-        height: 68
+        x: 720
+        y: 284
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3952,12 +3965,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ene_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 272
-        width: 68
-        height: 68
+        x: 792
+        y: 284
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3975,11 +3988,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 204
-        width: 68
-        height: 68
+        y: 213
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3996,12 +4009,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_e_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 204
-        width: 68
-        height: 68
+        x: 72
+        y: 213
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4018,12 +4031,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_e_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 204
-        width: 68
-        height: 68
+        x: 144
+        y: 213
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4040,12 +4053,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_e_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 204
-        width: 68
-        height: 68
+        x: 216
+        y: 213
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4062,12 +4075,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_e_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 204
-        width: 68
-        height: 68
+        x: 288
+        y: 213
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4084,12 +4097,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_e_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 204
-        width: 68
-        height: 68
+        x: 360
+        y: 213
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4106,12 +4119,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_e_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 204
-        width: 68
-        height: 68
+        x: 432
+        y: 213
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4128,12 +4141,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_e_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 204
-        width: 68
-        height: 68
+        x: 504
+        y: 213
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4150,12 +4163,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_e_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 204
-        width: 68
-        height: 68
+        x: 576
+        y: 213
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4172,12 +4185,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_e_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 204
-        width: 68
-        height: 68
+        x: 648
+        y: 213
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4194,12 +4207,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_e_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 204
-        width: 68
-        height: 68
+        x: 720
+        y: 213
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4216,12 +4229,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_e_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 204
-        width: 68
-        height: 68
+        x: 792
+        y: 213
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4239,11 +4252,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 136
-        width: 68
-        height: 68
+        y: 142
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4260,12 +4273,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ese_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 136
-        width: 68
-        height: 68
+        x: 72
+        y: 142
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4282,12 +4295,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ese_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 136
-        width: 68
-        height: 68
+        x: 144
+        y: 142
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4304,12 +4317,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ese_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 136
-        width: 68
-        height: 68
+        x: 216
+        y: 142
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4326,12 +4339,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ese_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 136
-        width: 68
-        height: 68
+        x: 288
+        y: 142
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4348,12 +4361,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ese_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 136
-        width: 68
-        height: 68
+        x: 360
+        y: 142
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4370,12 +4383,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ese_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 136
-        width: 68
-        height: 68
+        x: 432
+        y: 142
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4392,12 +4405,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ese_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 136
-        width: 68
-        height: 68
+        x: 504
+        y: 142
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4414,12 +4427,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ese_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 136
-        width: 68
-        height: 68
+        x: 576
+        y: 142
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4436,12 +4449,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ese_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 136
-        width: 68
-        height: 68
+        x: 648
+        y: 142
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4458,12 +4471,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ese_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 136
-        width: 68
-        height: 68
+        x: 720
+        y: 142
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4480,12 +4493,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_ese_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 136
-        width: 68
-        height: 68
+        x: 792
+        y: 142
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4503,11 +4516,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 68
-        width: 68
-        height: 68
+        y: 71
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4524,12 +4537,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_se_01
       rect:
         serializedVersion: 2
-        x: 68
-        y: 68
-        width: 68
-        height: 68
+        x: 72
+        y: 71
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4546,12 +4559,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_se_02
       rect:
         serializedVersion: 2
-        x: 136
-        y: 68
-        width: 68
-        height: 68
+        x: 144
+        y: 71
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4568,12 +4581,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_se_03
       rect:
         serializedVersion: 2
-        x: 204
-        y: 68
-        width: 68
-        height: 68
+        x: 216
+        y: 71
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4590,12 +4603,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_se_04
       rect:
         serializedVersion: 2
-        x: 272
-        y: 68
-        width: 68
-        height: 68
+        x: 288
+        y: 71
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4612,12 +4625,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_se_05
       rect:
         serializedVersion: 2
-        x: 340
-        y: 68
-        width: 68
-        height: 68
+        x: 360
+        y: 71
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4634,12 +4647,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_se_06
       rect:
         serializedVersion: 2
-        x: 408
-        y: 68
-        width: 68
-        height: 68
+        x: 432
+        y: 71
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4656,12 +4669,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_se_07
       rect:
         serializedVersion: 2
-        x: 476
-        y: 68
-        width: 68
-        height: 68
+        x: 504
+        y: 71
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4678,12 +4691,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_se_08
       rect:
         serializedVersion: 2
-        x: 544
-        y: 68
-        width: 68
-        height: 68
+        x: 576
+        y: 71
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4700,12 +4713,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_se_09
       rect:
         serializedVersion: 2
-        x: 612
-        y: 68
-        width: 68
-        height: 68
+        x: 648
+        y: 71
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4722,12 +4735,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_se_10
       rect:
         serializedVersion: 2
-        x: 680
-        y: 68
-        width: 68
-        height: 68
+        x: 720
+        y: 71
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4744,12 +4757,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_se_11
       rect:
         serializedVersion: 2
-        x: 748
-        y: 68
-        width: 68
-        height: 68
+        x: 792
+        y: 71
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4768,10 +4781,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 68
-        height: 68
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4788,12 +4801,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sse_01
       rect:
         serializedVersion: 2
-        x: 68
+        x: 72
         y: 0
-        width: 68
-        height: 68
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4810,12 +4823,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sse_02
       rect:
         serializedVersion: 2
-        x: 136
+        x: 144
         y: 0
-        width: 68
-        height: 68
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4832,12 +4845,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sse_03
       rect:
         serializedVersion: 2
-        x: 204
+        x: 216
         y: 0
-        width: 68
-        height: 68
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4854,12 +4867,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sse_04
       rect:
         serializedVersion: 2
-        x: 272
+        x: 288
         y: 0
-        width: 68
-        height: 68
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4876,12 +4889,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sse_05
       rect:
         serializedVersion: 2
-        x: 340
+        x: 360
         y: 0
-        width: 68
-        height: 68
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4898,12 +4911,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sse_06
       rect:
         serializedVersion: 2
-        x: 408
+        x: 432
         y: 0
-        width: 68
-        height: 68
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4920,12 +4933,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sse_07
       rect:
         serializedVersion: 2
-        x: 476
+        x: 504
         y: 0
-        width: 68
-        height: 68
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4942,12 +4955,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sse_08
       rect:
         serializedVersion: 2
-        x: 544
+        x: 576
         y: 0
-        width: 68
-        height: 68
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4964,12 +4977,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sse_09
       rect:
         serializedVersion: 2
-        x: 612
+        x: 648
         y: 0
-        width: 68
-        height: 68
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4986,12 +4999,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sse_10
       rect:
         serializedVersion: 2
-        x: 680
+        x: 720
         y: 0
-        width: 68
-        height: 68
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5008,12 +5021,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_dive_sse_11
       rect:
         serializedVersion: 2
-        x: 748
+        x: 792
         y: 0
-        width: 68
-        height: 68
+        width: 72
+        height: 71
       alignment: 9
-      pivot: {x: 0.5, y: 0.1764706}
+      pivot: {x: 0.5, y: 0.1690141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

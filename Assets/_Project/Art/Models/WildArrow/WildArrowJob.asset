@@ -12,12 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b7ef2a89c554486bb05c81650498d7, type: 3}
   m_Name: WildArrowJob
   m_EditorClassIdentifier: ARPG.Editor::ARPG.Editor.SpriteBakeJob
-  lookSwaps: []
-  boneScales: []
-  pieceScale: 1
-  lightContrast: 1
-  edgeHighlight: 0
-  textureSwaps: []
+  lookSwaps:
+  - look: brigand
+    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
+    to: {fileID: 2800000, guid: 9004b4058f8e9495f9822fbdbe5c4825, type: 3}
+  - look: scale
+    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
+    to: {fileID: 2800000, guid: b9660128741404b21904ba8fceaf613c, type: 3}
+  - look: barbute
+    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
+    to: {fileID: 2800000, guid: b9660128741404b21904ba8fceaf613c, type: 3}
+  - look: plate
+    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
+    to: {fileID: 2800000, guid: abacef4c1d68f4f339f4ec8a13b27796, type: 3}
+  - look: visored
+    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
+    to: {fileID: 2800000, guid: abacef4c1d68f4f339f4ec8a13b27796, type: 3}
+  - look: knight
+    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
+    to: {fileID: 2800000, guid: 239d218597a5d4baea7a44a6104a1f38, type: 3}
+  - look: horned
+    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
+    to: {fileID: 2800000, guid: 239d218597a5d4baea7a44a6104a1f38, type: 3}
+  - look: hide_quiver
+    from: {fileID: 2800000, guid: d56f7a7b176e846bab44073a0e1e3a38, type: 3}
+    to: {fileID: 2800000, guid: 19ce91cce6fed4359b819bd32ec6ddae, type: 3}
+  boneScales:
+  - bone: 10
+    scale: 1.3
+  - bone: 17
+    scale: 1.12
+  - bone: 18
+    scale: 1.12
+  pieceScale: 1.2
+  lightContrast: 1.35
+  edgeHighlight: 1
+  textureSwaps:
+  - from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
+    to: {fileID: 2800000, guid: 3ae46e039642a42eeb63aeacd31d9ffa, type: 3}
   trimSheets: 1
   characterName: wild_arrow
   bodies:

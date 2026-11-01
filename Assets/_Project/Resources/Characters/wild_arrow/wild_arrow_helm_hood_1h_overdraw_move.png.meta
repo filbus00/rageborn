@@ -847,6 +847,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -855,11 +868,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 405
-        width: 24
-        height: 27
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -876,12 +889,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 405
-        width: 24
-        height: 27
+        x: 28
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -898,12 +911,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 405
-        width: 24
-        height: 27
+        x: 56
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -920,12 +933,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 405
-        width: 24
-        height: 27
+        x: 84
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -942,12 +955,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 405
-        width: 24
-        height: 27
+        x: 112
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -964,12 +977,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 405
-        width: 24
-        height: 27
+        x: 140
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -986,12 +999,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 405
-        width: 24
-        height: 27
+        x: 168
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1008,12 +1021,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 405
-        width: 24
-        height: 27
+        x: 196
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1030,12 +1043,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 405
-        width: 24
-        height: 27
+        x: 224
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1052,12 +1065,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 405
-        width: 24
-        height: 27
+        x: 252
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1074,12 +1087,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 405
-        width: 24
-        height: 27
+        x: 280
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1096,12 +1109,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 405
-        width: 24
-        height: 27
+        x: 308
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1118,12 +1131,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 405
-        width: 24
-        height: 27
+        x: 336
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1140,12 +1153,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 405
-        width: 24
-        height: 27
+        x: 364
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1162,12 +1175,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_s_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 405
-        width: 24
-        height: 27
+        x: 392
+        y: 450
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1185,11 +1198,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 378
-        width: 24
-        height: 27
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1206,12 +1219,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 378
-        width: 24
-        height: 27
+        x: 28
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1228,12 +1241,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 378
-        width: 24
-        height: 27
+        x: 56
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1250,12 +1263,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 378
-        width: 24
-        height: 27
+        x: 84
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1272,12 +1285,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 378
-        width: 24
-        height: 27
+        x: 112
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1294,12 +1307,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 378
-        width: 24
-        height: 27
+        x: 140
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1316,12 +1329,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 378
-        width: 24
-        height: 27
+        x: 168
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1338,12 +1351,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 378
-        width: 24
-        height: 27
+        x: 196
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1360,12 +1373,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 378
-        width: 24
-        height: 27
+        x: 224
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1382,12 +1395,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 378
-        width: 24
-        height: 27
+        x: 252
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1404,12 +1417,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 378
-        width: 24
-        height: 27
+        x: 280
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1426,12 +1439,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 378
-        width: 24
-        height: 27
+        x: 308
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1448,12 +1461,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 378
-        width: 24
-        height: 27
+        x: 336
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1470,12 +1483,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 378
-        width: 24
-        height: 27
+        x: 364
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1492,12 +1505,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ssw_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 378
-        width: 24
-        height: 27
+        x: 392
+        y: 420
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1515,11 +1528,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 351
-        width: 24
-        height: 27
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1536,12 +1549,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 351
-        width: 24
-        height: 27
+        x: 28
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1558,12 +1571,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 351
-        width: 24
-        height: 27
+        x: 56
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1580,12 +1593,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 351
-        width: 24
-        height: 27
+        x: 84
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1602,12 +1615,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 351
-        width: 24
-        height: 27
+        x: 112
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1624,12 +1637,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 351
-        width: 24
-        height: 27
+        x: 140
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1646,12 +1659,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 351
-        width: 24
-        height: 27
+        x: 168
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1668,12 +1681,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 351
-        width: 24
-        height: 27
+        x: 196
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1690,12 +1703,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 351
-        width: 24
-        height: 27
+        x: 224
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1712,12 +1725,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 351
-        width: 24
-        height: 27
+        x: 252
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1734,12 +1747,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 351
-        width: 24
-        height: 27
+        x: 280
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1756,12 +1769,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 351
-        width: 24
-        height: 27
+        x: 308
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1778,12 +1791,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 351
-        width: 24
-        height: 27
+        x: 336
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1800,12 +1813,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 351
-        width: 24
-        height: 27
+        x: 364
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1822,12 +1835,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sw_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 351
-        width: 24
-        height: 27
+        x: 392
+        y: 390
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1845,11 +1858,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 324
-        width: 24
-        height: 27
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1866,12 +1879,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 324
-        width: 24
-        height: 27
+        x: 28
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1888,12 +1901,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 324
-        width: 24
-        height: 27
+        x: 56
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1910,12 +1923,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 324
-        width: 24
-        height: 27
+        x: 84
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1932,12 +1945,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 324
-        width: 24
-        height: 27
+        x: 112
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1954,12 +1967,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 324
-        width: 24
-        height: 27
+        x: 140
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1976,12 +1989,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 324
-        width: 24
-        height: 27
+        x: 168
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1998,12 +2011,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 324
-        width: 24
-        height: 27
+        x: 196
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2020,12 +2033,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 324
-        width: 24
-        height: 27
+        x: 224
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2042,12 +2055,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 324
-        width: 24
-        height: 27
+        x: 252
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2064,12 +2077,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 324
-        width: 24
-        height: 27
+        x: 280
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2086,12 +2099,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 324
-        width: 24
-        height: 27
+        x: 308
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2108,12 +2121,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 324
-        width: 24
-        height: 27
+        x: 336
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2130,12 +2143,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 324
-        width: 24
-        height: 27
+        x: 364
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2152,12 +2165,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wsw_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 324
-        width: 24
-        height: 27
+        x: 392
+        y: 360
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2175,11 +2188,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 297
-        width: 24
-        height: 27
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2196,12 +2209,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 297
-        width: 24
-        height: 27
+        x: 28
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2218,12 +2231,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 297
-        width: 24
-        height: 27
+        x: 56
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2240,12 +2253,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 297
-        width: 24
-        height: 27
+        x: 84
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2262,12 +2275,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 297
-        width: 24
-        height: 27
+        x: 112
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2284,12 +2297,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 297
-        width: 24
-        height: 27
+        x: 140
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2306,12 +2319,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 297
-        width: 24
-        height: 27
+        x: 168
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2328,12 +2341,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 297
-        width: 24
-        height: 27
+        x: 196
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2350,12 +2363,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 297
-        width: 24
-        height: 27
+        x: 224
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2372,12 +2385,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 297
-        width: 24
-        height: 27
+        x: 252
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2394,12 +2407,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 297
-        width: 24
-        height: 27
+        x: 280
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2416,12 +2429,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 297
-        width: 24
-        height: 27
+        x: 308
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2438,12 +2451,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 297
-        width: 24
-        height: 27
+        x: 336
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2460,12 +2473,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 297
-        width: 24
-        height: 27
+        x: 364
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2482,12 +2495,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_w_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 297
-        width: 24
-        height: 27
+        x: 392
+        y: 330
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2505,11 +2518,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 270
-        width: 24
-        height: 27
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2526,12 +2539,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 270
-        width: 24
-        height: 27
+        x: 28
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2548,12 +2561,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 270
-        width: 24
-        height: 27
+        x: 56
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2570,12 +2583,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 270
-        width: 24
-        height: 27
+        x: 84
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2592,12 +2605,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 270
-        width: 24
-        height: 27
+        x: 112
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2614,12 +2627,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 270
-        width: 24
-        height: 27
+        x: 140
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2636,12 +2649,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 270
-        width: 24
-        height: 27
+        x: 168
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2658,12 +2671,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 270
-        width: 24
-        height: 27
+        x: 196
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2680,12 +2693,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 270
-        width: 24
-        height: 27
+        x: 224
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2702,12 +2715,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 270
-        width: 24
-        height: 27
+        x: 252
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2724,12 +2737,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 270
-        width: 24
-        height: 27
+        x: 280
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2746,12 +2759,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 270
-        width: 24
-        height: 27
+        x: 308
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2768,12 +2781,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 270
-        width: 24
-        height: 27
+        x: 336
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2790,12 +2803,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 270
-        width: 24
-        height: 27
+        x: 364
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2812,12 +2825,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_wnw_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 270
-        width: 24
-        height: 27
+        x: 392
+        y: 300
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2835,11 +2848,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 243
-        width: 24
-        height: 27
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2856,12 +2869,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 243
-        width: 24
-        height: 27
+        x: 28
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2878,12 +2891,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 243
-        width: 24
-        height: 27
+        x: 56
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2900,12 +2913,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 243
-        width: 24
-        height: 27
+        x: 84
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2922,12 +2935,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 243
-        width: 24
-        height: 27
+        x: 112
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2944,12 +2957,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 243
-        width: 24
-        height: 27
+        x: 140
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2966,12 +2979,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 243
-        width: 24
-        height: 27
+        x: 168
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2988,12 +3001,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 243
-        width: 24
-        height: 27
+        x: 196
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3010,12 +3023,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 243
-        width: 24
-        height: 27
+        x: 224
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3032,12 +3045,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 243
-        width: 24
-        height: 27
+        x: 252
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3054,12 +3067,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 243
-        width: 24
-        height: 27
+        x: 280
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3076,12 +3089,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 243
-        width: 24
-        height: 27
+        x: 308
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3098,12 +3111,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 243
-        width: 24
-        height: 27
+        x: 336
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3120,12 +3133,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 243
-        width: 24
-        height: 27
+        x: 364
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3142,12 +3155,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nw_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 243
-        width: 24
-        height: 27
+        x: 392
+        y: 270
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3165,11 +3178,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 216
-        width: 24
-        height: 27
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3186,12 +3199,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 216
-        width: 24
-        height: 27
+        x: 28
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3208,12 +3221,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 216
-        width: 24
-        height: 27
+        x: 56
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3230,12 +3243,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 216
-        width: 24
-        height: 27
+        x: 84
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3252,12 +3265,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 216
-        width: 24
-        height: 27
+        x: 112
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3274,12 +3287,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 216
-        width: 24
-        height: 27
+        x: 140
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3296,12 +3309,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 216
-        width: 24
-        height: 27
+        x: 168
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3318,12 +3331,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 216
-        width: 24
-        height: 27
+        x: 196
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3340,12 +3353,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 216
-        width: 24
-        height: 27
+        x: 224
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3362,12 +3375,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 216
-        width: 24
-        height: 27
+        x: 252
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3384,12 +3397,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 216
-        width: 24
-        height: 27
+        x: 280
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3406,12 +3419,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 216
-        width: 24
-        height: 27
+        x: 308
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3428,12 +3441,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 216
-        width: 24
-        height: 27
+        x: 336
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3450,12 +3463,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 216
-        width: 24
-        height: 27
+        x: 364
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3472,12 +3485,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nnw_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 216
-        width: 24
-        height: 27
+        x: 392
+        y: 240
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3495,11 +3508,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 189
-        width: 24
-        height: 27
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3516,12 +3529,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 189
-        width: 24
-        height: 27
+        x: 28
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3538,12 +3551,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 189
-        width: 24
-        height: 27
+        x: 56
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3560,12 +3573,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 189
-        width: 24
-        height: 27
+        x: 84
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3582,12 +3595,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 189
-        width: 24
-        height: 27
+        x: 112
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3604,12 +3617,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 189
-        width: 24
-        height: 27
+        x: 140
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3626,12 +3639,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 189
-        width: 24
-        height: 27
+        x: 168
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3648,12 +3661,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 189
-        width: 24
-        height: 27
+        x: 196
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3670,12 +3683,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 189
-        width: 24
-        height: 27
+        x: 224
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3692,12 +3705,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 189
-        width: 24
-        height: 27
+        x: 252
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3714,12 +3727,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 189
-        width: 24
-        height: 27
+        x: 280
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3736,12 +3749,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 189
-        width: 24
-        height: 27
+        x: 308
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3758,12 +3771,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 189
-        width: 24
-        height: 27
+        x: 336
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3780,12 +3793,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 189
-        width: 24
-        height: 27
+        x: 364
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3802,12 +3815,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_n_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 189
-        width: 24
-        height: 27
+        x: 392
+        y: 210
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3825,11 +3838,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 162
-        width: 24
-        height: 27
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3846,12 +3859,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 162
-        width: 24
-        height: 27
+        x: 28
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3868,12 +3881,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 162
-        width: 24
-        height: 27
+        x: 56
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3890,12 +3903,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 162
-        width: 24
-        height: 27
+        x: 84
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3912,12 +3925,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 162
-        width: 24
-        height: 27
+        x: 112
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3934,12 +3947,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 162
-        width: 24
-        height: 27
+        x: 140
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3956,12 +3969,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 162
-        width: 24
-        height: 27
+        x: 168
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3978,12 +3991,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 162
-        width: 24
-        height: 27
+        x: 196
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4000,12 +4013,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 162
-        width: 24
-        height: 27
+        x: 224
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4022,12 +4035,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 162
-        width: 24
-        height: 27
+        x: 252
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4044,12 +4057,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 162
-        width: 24
-        height: 27
+        x: 280
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4066,12 +4079,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 162
-        width: 24
-        height: 27
+        x: 308
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4088,12 +4101,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 162
-        width: 24
-        height: 27
+        x: 336
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4110,12 +4123,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 162
-        width: 24
-        height: 27
+        x: 364
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4132,12 +4145,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_nne_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 162
-        width: 24
-        height: 27
+        x: 392
+        y: 180
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4155,11 +4168,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 135
-        width: 24
-        height: 27
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4176,12 +4189,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 135
-        width: 24
-        height: 27
+        x: 28
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4198,12 +4211,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 135
-        width: 24
-        height: 27
+        x: 56
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4220,12 +4233,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 135
-        width: 24
-        height: 27
+        x: 84
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4242,12 +4255,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 135
-        width: 24
-        height: 27
+        x: 112
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4264,12 +4277,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 135
-        width: 24
-        height: 27
+        x: 140
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4286,12 +4299,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 135
-        width: 24
-        height: 27
+        x: 168
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4308,12 +4321,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 135
-        width: 24
-        height: 27
+        x: 196
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4330,12 +4343,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 135
-        width: 24
-        height: 27
+        x: 224
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4352,12 +4365,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 135
-        width: 24
-        height: 27
+        x: 252
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4374,12 +4387,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 135
-        width: 24
-        height: 27
+        x: 280
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4396,12 +4409,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 135
-        width: 24
-        height: 27
+        x: 308
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4418,12 +4431,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 135
-        width: 24
-        height: 27
+        x: 336
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4440,12 +4453,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 135
-        width: 24
-        height: 27
+        x: 364
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4462,12 +4475,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ne_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 135
-        width: 24
-        height: 27
+        x: 392
+        y: 150
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4485,11 +4498,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 108
-        width: 24
-        height: 27
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4506,12 +4519,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 108
-        width: 24
-        height: 27
+        x: 28
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4528,12 +4541,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 108
-        width: 24
-        height: 27
+        x: 56
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4550,12 +4563,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 108
-        width: 24
-        height: 27
+        x: 84
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4572,12 +4585,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 108
-        width: 24
-        height: 27
+        x: 112
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4594,12 +4607,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 108
-        width: 24
-        height: 27
+        x: 140
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4616,12 +4629,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 108
-        width: 24
-        height: 27
+        x: 168
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4638,12 +4651,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 108
-        width: 24
-        height: 27
+        x: 196
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4660,12 +4673,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 108
-        width: 24
-        height: 27
+        x: 224
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4682,12 +4695,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 108
-        width: 24
-        height: 27
+        x: 252
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4704,12 +4717,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 108
-        width: 24
-        height: 27
+        x: 280
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4726,12 +4739,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 108
-        width: 24
-        height: 27
+        x: 308
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4748,12 +4761,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 108
-        width: 24
-        height: 27
+        x: 336
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4770,12 +4783,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 108
-        width: 24
-        height: 27
+        x: 364
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4792,12 +4805,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ene_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 108
-        width: 24
-        height: 27
+        x: 392
+        y: 120
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4815,11 +4828,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 81
-        width: 24
-        height: 27
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4836,12 +4849,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 81
-        width: 24
-        height: 27
+        x: 28
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4858,12 +4871,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 81
-        width: 24
-        height: 27
+        x: 56
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4880,12 +4893,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 81
-        width: 24
-        height: 27
+        x: 84
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4902,12 +4915,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 81
-        width: 24
-        height: 27
+        x: 112
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4924,12 +4937,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 81
-        width: 24
-        height: 27
+        x: 140
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4946,12 +4959,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 81
-        width: 24
-        height: 27
+        x: 168
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4968,12 +4981,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 81
-        width: 24
-        height: 27
+        x: 196
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4990,12 +5003,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 81
-        width: 24
-        height: 27
+        x: 224
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5012,12 +5025,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 81
-        width: 24
-        height: 27
+        x: 252
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5034,12 +5047,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 81
-        width: 24
-        height: 27
+        x: 280
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5056,12 +5069,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 81
-        width: 24
-        height: 27
+        x: 308
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5078,12 +5091,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 81
-        width: 24
-        height: 27
+        x: 336
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5100,12 +5113,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 81
-        width: 24
-        height: 27
+        x: 364
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5122,12 +5135,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_e_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 81
-        width: 24
-        height: 27
+        x: 392
+        y: 90
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5145,11 +5158,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 54
-        width: 24
-        height: 27
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5166,12 +5179,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 54
-        width: 24
-        height: 27
+        x: 28
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5188,12 +5201,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 54
-        width: 24
-        height: 27
+        x: 56
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5210,12 +5223,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 54
-        width: 24
-        height: 27
+        x: 84
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5232,12 +5245,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 54
-        width: 24
-        height: 27
+        x: 112
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5254,12 +5267,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 54
-        width: 24
-        height: 27
+        x: 140
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5276,12 +5289,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 54
-        width: 24
-        height: 27
+        x: 168
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5298,12 +5311,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 54
-        width: 24
-        height: 27
+        x: 196
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5320,12 +5333,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 54
-        width: 24
-        height: 27
+        x: 224
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5342,12 +5355,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 54
-        width: 24
-        height: 27
+        x: 252
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5364,12 +5377,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 54
-        width: 24
-        height: 27
+        x: 280
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5386,12 +5399,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 54
-        width: 24
-        height: 27
+        x: 308
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5408,12 +5421,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 54
-        width: 24
-        height: 27
+        x: 336
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5430,12 +5443,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 54
-        width: 24
-        height: 27
+        x: 364
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5452,12 +5465,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_ese_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 54
-        width: 24
-        height: 27
+        x: 392
+        y: 60
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5475,11 +5488,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 27
-        width: 24
-        height: 27
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5496,12 +5509,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_01
       rect:
         serializedVersion: 2
-        x: 24
-        y: 27
-        width: 24
-        height: 27
+        x: 28
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5518,12 +5531,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_02
       rect:
         serializedVersion: 2
-        x: 48
-        y: 27
-        width: 24
-        height: 27
+        x: 56
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5540,12 +5553,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_03
       rect:
         serializedVersion: 2
-        x: 72
-        y: 27
-        width: 24
-        height: 27
+        x: 84
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5562,12 +5575,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_04
       rect:
         serializedVersion: 2
-        x: 96
-        y: 27
-        width: 24
-        height: 27
+        x: 112
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5584,12 +5597,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_05
       rect:
         serializedVersion: 2
-        x: 120
-        y: 27
-        width: 24
-        height: 27
+        x: 140
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5606,12 +5619,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_06
       rect:
         serializedVersion: 2
-        x: 144
-        y: 27
-        width: 24
-        height: 27
+        x: 168
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5628,12 +5641,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_07
       rect:
         serializedVersion: 2
-        x: 168
-        y: 27
-        width: 24
-        height: 27
+        x: 196
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5650,12 +5663,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_08
       rect:
         serializedVersion: 2
-        x: 192
-        y: 27
-        width: 24
-        height: 27
+        x: 224
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5672,12 +5685,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_09
       rect:
         serializedVersion: 2
-        x: 216
-        y: 27
-        width: 24
-        height: 27
+        x: 252
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5694,12 +5707,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 27
-        width: 24
-        height: 27
+        x: 280
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5716,12 +5729,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 27
-        width: 24
-        height: 27
+        x: 308
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5738,12 +5751,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 27
-        width: 24
-        height: 27
+        x: 336
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5760,12 +5773,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 27
-        width: 24
-        height: 27
+        x: 364
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5782,12 +5795,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_se_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 27
-        width: 24
-        height: 27
+        x: 392
+        y: 30
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5806,10 +5819,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5826,12 +5839,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_01
       rect:
         serializedVersion: 2
-        x: 24
+        x: 28
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5848,12 +5861,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_02
       rect:
         serializedVersion: 2
-        x: 48
+        x: 56
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5870,12 +5883,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_03
       rect:
         serializedVersion: 2
-        x: 72
+        x: 84
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5892,12 +5905,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_04
       rect:
         serializedVersion: 2
-        x: 96
+        x: 112
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5914,12 +5927,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_05
       rect:
         serializedVersion: 2
-        x: 120
+        x: 140
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5936,12 +5949,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_06
       rect:
         serializedVersion: 2
-        x: 144
+        x: 168
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5958,12 +5971,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_07
       rect:
         serializedVersion: 2
-        x: 168
+        x: 196
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5980,12 +5993,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_08
       rect:
         serializedVersion: 2
-        x: 192
+        x: 224
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6002,12 +6015,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_09
       rect:
         serializedVersion: 2
-        x: 216
+        x: 252
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6024,12 +6037,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_10
       rect:
         serializedVersion: 2
-        x: 240
+        x: 280
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6046,12 +6059,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_11
       rect:
         serializedVersion: 2
-        x: 264
+        x: 308
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6068,12 +6081,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_12
       rect:
         serializedVersion: 2
-        x: 288
+        x: 336
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6090,12 +6103,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_13
       rect:
         serializedVersion: 2
-        x: 312
+        x: 364
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6112,12 +6125,12 @@ TextureImporter:
       name: wild_arrow_helm_hood_1h_overdraw_move_sse_14
       rect:
         serializedVersion: 2
-        x: 336
+        x: 392
         y: 0
-        width: 24
-        height: 27
+        width: 28
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: -1.1851852}
+      pivot: {x: 0.5, y: -1.0666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

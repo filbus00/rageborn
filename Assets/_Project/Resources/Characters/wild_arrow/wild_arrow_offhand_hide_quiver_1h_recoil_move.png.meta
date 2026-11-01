@@ -910,6 +910,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -918,11 +931,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 510
-        width: 26
-        height: 34
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -939,12 +952,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 510
-        width: 26
-        height: 34
+        x: 28
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -961,12 +974,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 510
-        width: 26
-        height: 34
+        x: 56
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -983,12 +996,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 510
-        width: 26
-        height: 34
+        x: 84
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1005,12 +1018,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 510
-        width: 26
-        height: 34
+        x: 112
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1027,12 +1040,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 510
-        width: 26
-        height: 34
+        x: 140
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1049,12 +1062,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 510
-        width: 26
-        height: 34
+        x: 168
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1071,12 +1084,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 510
-        width: 26
-        height: 34
+        x: 196
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1093,12 +1106,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 510
-        width: 26
-        height: 34
+        x: 224
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1115,12 +1128,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 510
-        width: 26
-        height: 34
+        x: 252
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1137,12 +1150,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 510
-        width: 26
-        height: 34
+        x: 280
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1159,12 +1172,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 510
-        width: 26
-        height: 34
+        x: 308
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1181,12 +1194,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 510
-        width: 26
-        height: 34
+        x: 336
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1203,12 +1216,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 510
-        width: 26
-        height: 34
+        x: 364
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1225,12 +1238,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_s_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 510
-        width: 26
-        height: 34
+        x: 392
+        y: 570
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1248,11 +1261,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 476
-        width: 26
-        height: 34
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1269,12 +1282,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 476
-        width: 26
-        height: 34
+        x: 28
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1291,12 +1304,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 476
-        width: 26
-        height: 34
+        x: 56
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1313,12 +1326,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 476
-        width: 26
-        height: 34
+        x: 84
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1335,12 +1348,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 476
-        width: 26
-        height: 34
+        x: 112
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1357,12 +1370,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 476
-        width: 26
-        height: 34
+        x: 140
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1379,12 +1392,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 476
-        width: 26
-        height: 34
+        x: 168
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1401,12 +1414,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 476
-        width: 26
-        height: 34
+        x: 196
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1423,12 +1436,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 476
-        width: 26
-        height: 34
+        x: 224
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1445,12 +1458,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 476
-        width: 26
-        height: 34
+        x: 252
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1467,12 +1480,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 476
-        width: 26
-        height: 34
+        x: 280
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1489,12 +1502,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 476
-        width: 26
-        height: 34
+        x: 308
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1511,12 +1524,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 476
-        width: 26
-        height: 34
+        x: 336
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1533,12 +1546,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 476
-        width: 26
-        height: 34
+        x: 364
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1555,12 +1568,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ssw_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 476
-        width: 26
-        height: 34
+        x: 392
+        y: 532
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1578,11 +1591,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 442
-        width: 26
-        height: 34
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1599,12 +1612,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 442
-        width: 26
-        height: 34
+        x: 28
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1621,12 +1634,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 442
-        width: 26
-        height: 34
+        x: 56
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1643,12 +1656,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 442
-        width: 26
-        height: 34
+        x: 84
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1665,12 +1678,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 442
-        width: 26
-        height: 34
+        x: 112
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1687,12 +1700,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 442
-        width: 26
-        height: 34
+        x: 140
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1709,12 +1722,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 442
-        width: 26
-        height: 34
+        x: 168
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1731,12 +1744,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 442
-        width: 26
-        height: 34
+        x: 196
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1753,12 +1766,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 442
-        width: 26
-        height: 34
+        x: 224
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1775,12 +1788,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 442
-        width: 26
-        height: 34
+        x: 252
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1797,12 +1810,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 442
-        width: 26
-        height: 34
+        x: 280
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1819,12 +1832,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 442
-        width: 26
-        height: 34
+        x: 308
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1841,12 +1854,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 442
-        width: 26
-        height: 34
+        x: 336
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1863,12 +1876,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 442
-        width: 26
-        height: 34
+        x: 364
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1885,12 +1898,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sw_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 442
-        width: 26
-        height: 34
+        x: 392
+        y: 494
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1908,11 +1921,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 408
-        width: 26
-        height: 34
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1929,12 +1942,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 408
-        width: 26
-        height: 34
+        x: 28
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1951,12 +1964,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 408
-        width: 26
-        height: 34
+        x: 56
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1973,12 +1986,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 408
-        width: 26
-        height: 34
+        x: 84
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1995,12 +2008,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 408
-        width: 26
-        height: 34
+        x: 112
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2017,12 +2030,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 408
-        width: 26
-        height: 34
+        x: 140
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2039,12 +2052,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 408
-        width: 26
-        height: 34
+        x: 168
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2061,12 +2074,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 408
-        width: 26
-        height: 34
+        x: 196
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2083,12 +2096,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 408
-        width: 26
-        height: 34
+        x: 224
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2105,12 +2118,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 408
-        width: 26
-        height: 34
+        x: 252
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2127,12 +2140,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 408
-        width: 26
-        height: 34
+        x: 280
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2149,12 +2162,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 408
-        width: 26
-        height: 34
+        x: 308
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2171,12 +2184,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 408
-        width: 26
-        height: 34
+        x: 336
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2193,12 +2206,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 408
-        width: 26
-        height: 34
+        x: 364
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2215,12 +2228,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wsw_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 408
-        width: 26
-        height: 34
+        x: 392
+        y: 456
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2238,11 +2251,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 374
-        width: 26
-        height: 34
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2259,12 +2272,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 374
-        width: 26
-        height: 34
+        x: 28
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2281,12 +2294,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 374
-        width: 26
-        height: 34
+        x: 56
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2303,12 +2316,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 374
-        width: 26
-        height: 34
+        x: 84
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2325,12 +2338,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 374
-        width: 26
-        height: 34
+        x: 112
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2347,12 +2360,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 374
-        width: 26
-        height: 34
+        x: 140
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2369,12 +2382,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 374
-        width: 26
-        height: 34
+        x: 168
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2391,12 +2404,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 374
-        width: 26
-        height: 34
+        x: 196
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2413,12 +2426,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 374
-        width: 26
-        height: 34
+        x: 224
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2435,12 +2448,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 374
-        width: 26
-        height: 34
+        x: 252
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2457,12 +2470,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 374
-        width: 26
-        height: 34
+        x: 280
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2479,12 +2492,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 374
-        width: 26
-        height: 34
+        x: 308
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2501,12 +2514,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 374
-        width: 26
-        height: 34
+        x: 336
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2523,12 +2536,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 374
-        width: 26
-        height: 34
+        x: 364
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2545,12 +2558,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_w_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 374
-        width: 26
-        height: 34
+        x: 392
+        y: 418
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2568,11 +2581,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 340
-        width: 26
-        height: 34
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2589,12 +2602,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 340
-        width: 26
-        height: 34
+        x: 28
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2611,12 +2624,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 340
-        width: 26
-        height: 34
+        x: 56
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2633,12 +2646,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 340
-        width: 26
-        height: 34
+        x: 84
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2655,12 +2668,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 340
-        width: 26
-        height: 34
+        x: 112
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2677,12 +2690,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 340
-        width: 26
-        height: 34
+        x: 140
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2699,12 +2712,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 340
-        width: 26
-        height: 34
+        x: 168
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2721,12 +2734,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 340
-        width: 26
-        height: 34
+        x: 196
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2743,12 +2756,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 340
-        width: 26
-        height: 34
+        x: 224
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2765,12 +2778,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 340
-        width: 26
-        height: 34
+        x: 252
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2787,12 +2800,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 340
-        width: 26
-        height: 34
+        x: 280
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2809,12 +2822,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 340
-        width: 26
-        height: 34
+        x: 308
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2831,12 +2844,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 340
-        width: 26
-        height: 34
+        x: 336
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2853,12 +2866,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 340
-        width: 26
-        height: 34
+        x: 364
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2875,12 +2888,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_wnw_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 340
-        width: 26
-        height: 34
+        x: 392
+        y: 380
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2898,11 +2911,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 306
-        width: 26
-        height: 34
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2919,12 +2932,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 306
-        width: 26
-        height: 34
+        x: 28
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2941,12 +2954,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 306
-        width: 26
-        height: 34
+        x: 56
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2963,12 +2976,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 306
-        width: 26
-        height: 34
+        x: 84
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2985,12 +2998,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 306
-        width: 26
-        height: 34
+        x: 112
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3007,12 +3020,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 306
-        width: 26
-        height: 34
+        x: 140
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3029,12 +3042,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 306
-        width: 26
-        height: 34
+        x: 168
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3051,12 +3064,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 306
-        width: 26
-        height: 34
+        x: 196
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3073,12 +3086,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 306
-        width: 26
-        height: 34
+        x: 224
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3095,12 +3108,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 306
-        width: 26
-        height: 34
+        x: 252
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3117,12 +3130,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 306
-        width: 26
-        height: 34
+        x: 280
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3139,12 +3152,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 306
-        width: 26
-        height: 34
+        x: 308
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3161,12 +3174,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 306
-        width: 26
-        height: 34
+        x: 336
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3183,12 +3196,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 306
-        width: 26
-        height: 34
+        x: 364
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3205,12 +3218,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nw_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 306
-        width: 26
-        height: 34
+        x: 392
+        y: 342
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3228,11 +3241,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 272
-        width: 26
-        height: 34
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3249,12 +3262,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 272
-        width: 26
-        height: 34
+        x: 28
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3271,12 +3284,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 272
-        width: 26
-        height: 34
+        x: 56
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3293,12 +3306,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 272
-        width: 26
-        height: 34
+        x: 84
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3315,12 +3328,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 272
-        width: 26
-        height: 34
+        x: 112
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3337,12 +3350,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 272
-        width: 26
-        height: 34
+        x: 140
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3359,12 +3372,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 272
-        width: 26
-        height: 34
+        x: 168
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3381,12 +3394,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 272
-        width: 26
-        height: 34
+        x: 196
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3403,12 +3416,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 272
-        width: 26
-        height: 34
+        x: 224
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3425,12 +3438,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 272
-        width: 26
-        height: 34
+        x: 252
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3447,12 +3460,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 272
-        width: 26
-        height: 34
+        x: 280
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3469,12 +3482,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 272
-        width: 26
-        height: 34
+        x: 308
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3491,12 +3504,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 272
-        width: 26
-        height: 34
+        x: 336
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3513,12 +3526,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 272
-        width: 26
-        height: 34
+        x: 364
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3535,12 +3548,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nnw_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 272
-        width: 26
-        height: 34
+        x: 392
+        y: 304
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3558,11 +3571,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 238
-        width: 26
-        height: 34
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3579,12 +3592,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 238
-        width: 26
-        height: 34
+        x: 28
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3601,12 +3614,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 238
-        width: 26
-        height: 34
+        x: 56
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3623,12 +3636,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 238
-        width: 26
-        height: 34
+        x: 84
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3645,12 +3658,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 238
-        width: 26
-        height: 34
+        x: 112
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3667,12 +3680,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 238
-        width: 26
-        height: 34
+        x: 140
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3689,12 +3702,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 238
-        width: 26
-        height: 34
+        x: 168
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3711,12 +3724,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 238
-        width: 26
-        height: 34
+        x: 196
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3733,12 +3746,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 238
-        width: 26
-        height: 34
+        x: 224
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3755,12 +3768,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 238
-        width: 26
-        height: 34
+        x: 252
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3777,12 +3790,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 238
-        width: 26
-        height: 34
+        x: 280
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3799,12 +3812,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 238
-        width: 26
-        height: 34
+        x: 308
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3821,12 +3834,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 238
-        width: 26
-        height: 34
+        x: 336
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3843,12 +3856,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 238
-        width: 26
-        height: 34
+        x: 364
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3865,12 +3878,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_n_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 238
-        width: 26
-        height: 34
+        x: 392
+        y: 266
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3888,11 +3901,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 204
-        width: 26
-        height: 34
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3909,12 +3922,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 204
-        width: 26
-        height: 34
+        x: 28
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3931,12 +3944,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 204
-        width: 26
-        height: 34
+        x: 56
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3953,12 +3966,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 204
-        width: 26
-        height: 34
+        x: 84
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3975,12 +3988,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 204
-        width: 26
-        height: 34
+        x: 112
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3997,12 +4010,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 204
-        width: 26
-        height: 34
+        x: 140
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4019,12 +4032,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 204
-        width: 26
-        height: 34
+        x: 168
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4041,12 +4054,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 204
-        width: 26
-        height: 34
+        x: 196
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4063,12 +4076,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 204
-        width: 26
-        height: 34
+        x: 224
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4085,12 +4098,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 204
-        width: 26
-        height: 34
+        x: 252
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4107,12 +4120,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 204
-        width: 26
-        height: 34
+        x: 280
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4129,12 +4142,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 204
-        width: 26
-        height: 34
+        x: 308
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4151,12 +4164,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 204
-        width: 26
-        height: 34
+        x: 336
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4173,12 +4186,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 204
-        width: 26
-        height: 34
+        x: 364
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4195,12 +4208,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_nne_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 204
-        width: 26
-        height: 34
+        x: 392
+        y: 228
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4218,11 +4231,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 170
-        width: 26
-        height: 34
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4239,12 +4252,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 170
-        width: 26
-        height: 34
+        x: 28
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4261,12 +4274,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 170
-        width: 26
-        height: 34
+        x: 56
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4283,12 +4296,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 170
-        width: 26
-        height: 34
+        x: 84
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4305,12 +4318,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 170
-        width: 26
-        height: 34
+        x: 112
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4327,12 +4340,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 170
-        width: 26
-        height: 34
+        x: 140
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4349,12 +4362,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 170
-        width: 26
-        height: 34
+        x: 168
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4371,12 +4384,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 170
-        width: 26
-        height: 34
+        x: 196
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4393,12 +4406,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 170
-        width: 26
-        height: 34
+        x: 224
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4415,12 +4428,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 170
-        width: 26
-        height: 34
+        x: 252
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4437,12 +4450,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 170
-        width: 26
-        height: 34
+        x: 280
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4459,12 +4472,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 170
-        width: 26
-        height: 34
+        x: 308
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4481,12 +4494,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 170
-        width: 26
-        height: 34
+        x: 336
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4503,12 +4516,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 170
-        width: 26
-        height: 34
+        x: 364
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4525,12 +4538,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ne_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 170
-        width: 26
-        height: 34
+        x: 392
+        y: 190
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4548,11 +4561,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 136
-        width: 26
-        height: 34
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4569,12 +4582,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 136
-        width: 26
-        height: 34
+        x: 28
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4591,12 +4604,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 136
-        width: 26
-        height: 34
+        x: 56
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4613,12 +4626,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 136
-        width: 26
-        height: 34
+        x: 84
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4635,12 +4648,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 136
-        width: 26
-        height: 34
+        x: 112
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4657,12 +4670,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 136
-        width: 26
-        height: 34
+        x: 140
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4679,12 +4692,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 136
-        width: 26
-        height: 34
+        x: 168
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4701,12 +4714,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 136
-        width: 26
-        height: 34
+        x: 196
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4723,12 +4736,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 136
-        width: 26
-        height: 34
+        x: 224
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4745,12 +4758,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 136
-        width: 26
-        height: 34
+        x: 252
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4767,12 +4780,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 136
-        width: 26
-        height: 34
+        x: 280
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4789,12 +4802,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 136
-        width: 26
-        height: 34
+        x: 308
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4811,12 +4824,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 136
-        width: 26
-        height: 34
+        x: 336
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4833,12 +4846,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 136
-        width: 26
-        height: 34
+        x: 364
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4855,12 +4868,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ene_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 136
-        width: 26
-        height: 34
+        x: 392
+        y: 152
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4878,11 +4891,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 102
-        width: 26
-        height: 34
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4899,12 +4912,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 102
-        width: 26
-        height: 34
+        x: 28
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4921,12 +4934,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 102
-        width: 26
-        height: 34
+        x: 56
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4943,12 +4956,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 102
-        width: 26
-        height: 34
+        x: 84
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4965,12 +4978,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 102
-        width: 26
-        height: 34
+        x: 112
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4987,12 +5000,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 102
-        width: 26
-        height: 34
+        x: 140
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5009,12 +5022,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 102
-        width: 26
-        height: 34
+        x: 168
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5031,12 +5044,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 102
-        width: 26
-        height: 34
+        x: 196
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5053,12 +5066,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 102
-        width: 26
-        height: 34
+        x: 224
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5075,12 +5088,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 102
-        width: 26
-        height: 34
+        x: 252
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5097,12 +5110,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 102
-        width: 26
-        height: 34
+        x: 280
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5119,12 +5132,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 102
-        width: 26
-        height: 34
+        x: 308
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5141,12 +5154,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 102
-        width: 26
-        height: 34
+        x: 336
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5163,12 +5176,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 102
-        width: 26
-        height: 34
+        x: 364
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5185,12 +5198,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_e_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 102
-        width: 26
-        height: 34
+        x: 392
+        y: 114
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5208,11 +5221,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 68
-        width: 26
-        height: 34
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5229,12 +5242,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 68
-        width: 26
-        height: 34
+        x: 28
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5251,12 +5264,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 68
-        width: 26
-        height: 34
+        x: 56
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5273,12 +5286,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 68
-        width: 26
-        height: 34
+        x: 84
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5295,12 +5308,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 68
-        width: 26
-        height: 34
+        x: 112
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5317,12 +5330,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 68
-        width: 26
-        height: 34
+        x: 140
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5339,12 +5352,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 68
-        width: 26
-        height: 34
+        x: 168
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5361,12 +5374,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 68
-        width: 26
-        height: 34
+        x: 196
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5383,12 +5396,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 68
-        width: 26
-        height: 34
+        x: 224
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5405,12 +5418,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 68
-        width: 26
-        height: 34
+        x: 252
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5427,12 +5440,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 68
-        width: 26
-        height: 34
+        x: 280
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5449,12 +5462,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 68
-        width: 26
-        height: 34
+        x: 308
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5471,12 +5484,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 68
-        width: 26
-        height: 34
+        x: 336
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5493,12 +5506,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 68
-        width: 26
-        height: 34
+        x: 364
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5515,12 +5528,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_ese_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 68
-        width: 26
-        height: 34
+        x: 392
+        y: 76
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5538,11 +5551,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 34
-        width: 26
-        height: 34
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5559,12 +5572,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_01
       rect:
         serializedVersion: 2
-        x: 26
-        y: 34
-        width: 26
-        height: 34
+        x: 28
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5581,12 +5594,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_02
       rect:
         serializedVersion: 2
-        x: 52
-        y: 34
-        width: 26
-        height: 34
+        x: 56
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5603,12 +5616,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_03
       rect:
         serializedVersion: 2
-        x: 78
-        y: 34
-        width: 26
-        height: 34
+        x: 84
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5625,12 +5638,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_04
       rect:
         serializedVersion: 2
-        x: 104
-        y: 34
-        width: 26
-        height: 34
+        x: 112
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5647,12 +5660,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_05
       rect:
         serializedVersion: 2
-        x: 130
-        y: 34
-        width: 26
-        height: 34
+        x: 140
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5669,12 +5682,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_06
       rect:
         serializedVersion: 2
-        x: 156
-        y: 34
-        width: 26
-        height: 34
+        x: 168
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5691,12 +5704,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_07
       rect:
         serializedVersion: 2
-        x: 182
-        y: 34
-        width: 26
-        height: 34
+        x: 196
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5713,12 +5726,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_08
       rect:
         serializedVersion: 2
-        x: 208
-        y: 34
-        width: 26
-        height: 34
+        x: 224
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5735,12 +5748,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_09
       rect:
         serializedVersion: 2
-        x: 234
-        y: 34
-        width: 26
-        height: 34
+        x: 252
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5757,12 +5770,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_10
       rect:
         serializedVersion: 2
-        x: 260
-        y: 34
-        width: 26
-        height: 34
+        x: 280
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5779,12 +5792,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_11
       rect:
         serializedVersion: 2
-        x: 286
-        y: 34
-        width: 26
-        height: 34
+        x: 308
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5801,12 +5814,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 34
-        width: 26
-        height: 34
+        x: 336
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5823,12 +5836,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 34
-        width: 26
-        height: 34
+        x: 364
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5845,12 +5858,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_se_14
       rect:
         serializedVersion: 2
-        x: 364
-        y: 34
-        width: 26
-        height: 34
+        x: 392
+        y: 38
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5869,10 +5882,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5889,12 +5902,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_01
       rect:
         serializedVersion: 2
-        x: 26
+        x: 28
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5911,12 +5924,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_02
       rect:
         serializedVersion: 2
-        x: 52
+        x: 56
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5933,12 +5946,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_03
       rect:
         serializedVersion: 2
-        x: 78
+        x: 84
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5955,12 +5968,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_04
       rect:
         serializedVersion: 2
-        x: 104
+        x: 112
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5977,12 +5990,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_05
       rect:
         serializedVersion: 2
-        x: 130
+        x: 140
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5999,12 +6012,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_06
       rect:
         serializedVersion: 2
-        x: 156
+        x: 168
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6021,12 +6034,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_07
       rect:
         serializedVersion: 2
-        x: 182
+        x: 196
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6043,12 +6056,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_08
       rect:
         serializedVersion: 2
-        x: 208
+        x: 224
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6065,12 +6078,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_09
       rect:
         serializedVersion: 2
-        x: 234
+        x: 252
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6087,12 +6100,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_10
       rect:
         serializedVersion: 2
-        x: 260
+        x: 280
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6109,12 +6122,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_11
       rect:
         serializedVersion: 2
-        x: 286
+        x: 308
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6131,12 +6144,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_12
       rect:
         serializedVersion: 2
-        x: 312
+        x: 336
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6153,12 +6166,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_13
       rect:
         serializedVersion: 2
-        x: 338
+        x: 364
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6175,12 +6188,12 @@ TextureImporter:
       name: wild_arrow_offhand_hide_quiver_1h_recoil_move_sse_14
       rect:
         serializedVersion: 2
-        x: 364
+        x: 392
         y: 0
-        width: 26
-        height: 34
+        width: 28
+        height: 38
       alignment: 9
-      pivot: {x: 0.5, y: -0.7058823}
+      pivot: {x: 0.5, y: -0.57894737}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

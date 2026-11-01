@@ -697,6 +697,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -705,11 +718,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 720
-        width: 65
-        height: 48
+        y: 735
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -726,12 +739,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_s_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 720
-        width: 65
-        height: 48
+        x: 68
+        y: 735
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -748,12 +761,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_s_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 720
-        width: 65
-        height: 48
+        x: 136
+        y: 735
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -770,12 +783,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_s_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 720
-        width: 65
-        height: 48
+        x: 204
+        y: 735
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -792,12 +805,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_s_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 720
-        width: 65
-        height: 48
+        x: 272
+        y: 735
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -814,12 +827,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_s_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 720
-        width: 65
-        height: 48
+        x: 340
+        y: 735
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -836,12 +849,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_s_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 720
-        width: 65
-        height: 48
+        x: 408
+        y: 735
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -858,12 +871,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_s_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 720
-        width: 65
-        height: 48
+        x: 476
+        y: 735
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -880,12 +893,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_s_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 720
-        width: 65
-        height: 48
+        x: 544
+        y: 735
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -902,12 +915,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_s_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 720
-        width: 65
-        height: 48
+        x: 612
+        y: 735
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -924,12 +937,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_s_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 720
-        width: 65
-        height: 48
+        x: 680
+        y: 735
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -946,12 +959,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_s_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 720
-        width: 65
-        height: 48
+        x: 748
+        y: 735
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -969,11 +982,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 672
-        width: 65
-        height: 48
+        y: 686
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -990,12 +1003,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ssw_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 672
-        width: 65
-        height: 48
+        x: 68
+        y: 686
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1012,12 +1025,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ssw_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 672
-        width: 65
-        height: 48
+        x: 136
+        y: 686
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1034,12 +1047,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ssw_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 672
-        width: 65
-        height: 48
+        x: 204
+        y: 686
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1056,12 +1069,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ssw_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 672
-        width: 65
-        height: 48
+        x: 272
+        y: 686
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1078,12 +1091,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ssw_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 672
-        width: 65
-        height: 48
+        x: 340
+        y: 686
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1100,12 +1113,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ssw_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 672
-        width: 65
-        height: 48
+        x: 408
+        y: 686
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1122,12 +1135,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ssw_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 672
-        width: 65
-        height: 48
+        x: 476
+        y: 686
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1144,12 +1157,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ssw_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 672
-        width: 65
-        height: 48
+        x: 544
+        y: 686
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1166,12 +1179,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ssw_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 672
-        width: 65
-        height: 48
+        x: 612
+        y: 686
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1188,12 +1201,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ssw_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 672
-        width: 65
-        height: 48
+        x: 680
+        y: 686
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1210,12 +1223,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ssw_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 672
-        width: 65
-        height: 48
+        x: 748
+        y: 686
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1233,11 +1246,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 624
-        width: 65
-        height: 48
+        y: 637
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1254,12 +1267,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sw_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 624
-        width: 65
-        height: 48
+        x: 68
+        y: 637
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1276,12 +1289,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sw_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 624
-        width: 65
-        height: 48
+        x: 136
+        y: 637
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1298,12 +1311,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sw_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 624
-        width: 65
-        height: 48
+        x: 204
+        y: 637
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1320,12 +1333,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sw_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 624
-        width: 65
-        height: 48
+        x: 272
+        y: 637
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1342,12 +1355,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sw_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 624
-        width: 65
-        height: 48
+        x: 340
+        y: 637
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1364,12 +1377,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sw_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 624
-        width: 65
-        height: 48
+        x: 408
+        y: 637
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1386,12 +1399,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sw_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 624
-        width: 65
-        height: 48
+        x: 476
+        y: 637
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1408,12 +1421,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sw_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 624
-        width: 65
-        height: 48
+        x: 544
+        y: 637
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1430,12 +1443,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sw_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 624
-        width: 65
-        height: 48
+        x: 612
+        y: 637
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1452,12 +1465,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sw_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 624
-        width: 65
-        height: 48
+        x: 680
+        y: 637
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1474,12 +1487,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sw_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 624
-        width: 65
-        height: 48
+        x: 748
+        y: 637
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1497,11 +1510,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 576
-        width: 65
-        height: 48
+        y: 588
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1518,12 +1531,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wsw_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 576
-        width: 65
-        height: 48
+        x: 68
+        y: 588
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1540,12 +1553,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wsw_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 576
-        width: 65
-        height: 48
+        x: 136
+        y: 588
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1562,12 +1575,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wsw_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 576
-        width: 65
-        height: 48
+        x: 204
+        y: 588
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1584,12 +1597,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wsw_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 576
-        width: 65
-        height: 48
+        x: 272
+        y: 588
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1606,12 +1619,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wsw_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 576
-        width: 65
-        height: 48
+        x: 340
+        y: 588
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1628,12 +1641,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wsw_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 576
-        width: 65
-        height: 48
+        x: 408
+        y: 588
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1650,12 +1663,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wsw_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 576
-        width: 65
-        height: 48
+        x: 476
+        y: 588
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1672,12 +1685,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wsw_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 576
-        width: 65
-        height: 48
+        x: 544
+        y: 588
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1694,12 +1707,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wsw_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 576
-        width: 65
-        height: 48
+        x: 612
+        y: 588
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1716,12 +1729,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wsw_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 576
-        width: 65
-        height: 48
+        x: 680
+        y: 588
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1738,12 +1751,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wsw_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 576
-        width: 65
-        height: 48
+        x: 748
+        y: 588
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1761,11 +1774,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 528
-        width: 65
-        height: 48
+        y: 539
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1782,12 +1795,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_w_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 528
-        width: 65
-        height: 48
+        x: 68
+        y: 539
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1804,12 +1817,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_w_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 528
-        width: 65
-        height: 48
+        x: 136
+        y: 539
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1826,12 +1839,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_w_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 528
-        width: 65
-        height: 48
+        x: 204
+        y: 539
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1848,12 +1861,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_w_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 528
-        width: 65
-        height: 48
+        x: 272
+        y: 539
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1870,12 +1883,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_w_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 528
-        width: 65
-        height: 48
+        x: 340
+        y: 539
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1892,12 +1905,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_w_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 528
-        width: 65
-        height: 48
+        x: 408
+        y: 539
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1914,12 +1927,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_w_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 528
-        width: 65
-        height: 48
+        x: 476
+        y: 539
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1936,12 +1949,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_w_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 528
-        width: 65
-        height: 48
+        x: 544
+        y: 539
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1958,12 +1971,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_w_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 528
-        width: 65
-        height: 48
+        x: 612
+        y: 539
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1980,12 +1993,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_w_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 528
-        width: 65
-        height: 48
+        x: 680
+        y: 539
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2002,12 +2015,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_w_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 528
-        width: 65
-        height: 48
+        x: 748
+        y: 539
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2025,11 +2038,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 65
-        height: 48
+        y: 490
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2046,12 +2059,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wnw_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 480
-        width: 65
-        height: 48
+        x: 68
+        y: 490
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2068,12 +2081,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wnw_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 480
-        width: 65
-        height: 48
+        x: 136
+        y: 490
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2090,12 +2103,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wnw_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 480
-        width: 65
-        height: 48
+        x: 204
+        y: 490
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2112,12 +2125,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wnw_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 480
-        width: 65
-        height: 48
+        x: 272
+        y: 490
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2134,12 +2147,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wnw_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 480
-        width: 65
-        height: 48
+        x: 340
+        y: 490
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2156,12 +2169,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wnw_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 480
-        width: 65
-        height: 48
+        x: 408
+        y: 490
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2178,12 +2191,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wnw_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 480
-        width: 65
-        height: 48
+        x: 476
+        y: 490
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2200,12 +2213,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wnw_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 480
-        width: 65
-        height: 48
+        x: 544
+        y: 490
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2222,12 +2235,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wnw_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 480
-        width: 65
-        height: 48
+        x: 612
+        y: 490
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2244,12 +2257,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wnw_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 480
-        width: 65
-        height: 48
+        x: 680
+        y: 490
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2266,12 +2279,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_wnw_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 480
-        width: 65
-        height: 48
+        x: 748
+        y: 490
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2289,11 +2302,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 432
-        width: 65
-        height: 48
+        y: 441
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2310,12 +2323,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nw_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 432
-        width: 65
-        height: 48
+        x: 68
+        y: 441
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2332,12 +2345,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nw_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 432
-        width: 65
-        height: 48
+        x: 136
+        y: 441
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2354,12 +2367,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nw_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 432
-        width: 65
-        height: 48
+        x: 204
+        y: 441
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2376,12 +2389,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nw_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 432
-        width: 65
-        height: 48
+        x: 272
+        y: 441
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2398,12 +2411,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nw_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 432
-        width: 65
-        height: 48
+        x: 340
+        y: 441
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2420,12 +2433,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nw_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 432
-        width: 65
-        height: 48
+        x: 408
+        y: 441
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2442,12 +2455,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nw_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 432
-        width: 65
-        height: 48
+        x: 476
+        y: 441
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2464,12 +2477,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nw_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 432
-        width: 65
-        height: 48
+        x: 544
+        y: 441
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2486,12 +2499,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nw_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 432
-        width: 65
-        height: 48
+        x: 612
+        y: 441
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2508,12 +2521,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nw_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 432
-        width: 65
-        height: 48
+        x: 680
+        y: 441
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2530,12 +2543,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nw_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 432
-        width: 65
-        height: 48
+        x: 748
+        y: 441
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2553,11 +2566,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 384
-        width: 65
-        height: 48
+        y: 392
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2574,12 +2587,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nnw_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 384
-        width: 65
-        height: 48
+        x: 68
+        y: 392
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2596,12 +2609,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nnw_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 384
-        width: 65
-        height: 48
+        x: 136
+        y: 392
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2618,12 +2631,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nnw_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 384
-        width: 65
-        height: 48
+        x: 204
+        y: 392
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2640,12 +2653,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nnw_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 384
-        width: 65
-        height: 48
+        x: 272
+        y: 392
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2662,12 +2675,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nnw_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 384
-        width: 65
-        height: 48
+        x: 340
+        y: 392
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2684,12 +2697,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nnw_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 384
-        width: 65
-        height: 48
+        x: 408
+        y: 392
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2706,12 +2719,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nnw_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 384
-        width: 65
-        height: 48
+        x: 476
+        y: 392
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2728,12 +2741,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nnw_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 384
-        width: 65
-        height: 48
+        x: 544
+        y: 392
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2750,12 +2763,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nnw_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 384
-        width: 65
-        height: 48
+        x: 612
+        y: 392
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2772,12 +2785,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nnw_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 384
-        width: 65
-        height: 48
+        x: 680
+        y: 392
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2794,12 +2807,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nnw_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 384
-        width: 65
-        height: 48
+        x: 748
+        y: 392
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2817,11 +2830,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 336
-        width: 65
-        height: 48
+        y: 343
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2838,12 +2851,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_n_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 336
-        width: 65
-        height: 48
+        x: 68
+        y: 343
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2860,12 +2873,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_n_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 336
-        width: 65
-        height: 48
+        x: 136
+        y: 343
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2882,12 +2895,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_n_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 336
-        width: 65
-        height: 48
+        x: 204
+        y: 343
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2904,12 +2917,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_n_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 336
-        width: 65
-        height: 48
+        x: 272
+        y: 343
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2926,12 +2939,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_n_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 336
-        width: 65
-        height: 48
+        x: 340
+        y: 343
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2948,12 +2961,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_n_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 336
-        width: 65
-        height: 48
+        x: 408
+        y: 343
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2970,12 +2983,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_n_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 336
-        width: 65
-        height: 48
+        x: 476
+        y: 343
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2992,12 +3005,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_n_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 336
-        width: 65
-        height: 48
+        x: 544
+        y: 343
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3014,12 +3027,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_n_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 336
-        width: 65
-        height: 48
+        x: 612
+        y: 343
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3036,12 +3049,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_n_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 336
-        width: 65
-        height: 48
+        x: 680
+        y: 343
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3058,12 +3071,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_n_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 336
-        width: 65
-        height: 48
+        x: 748
+        y: 343
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3081,11 +3094,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 288
-        width: 65
-        height: 48
+        y: 294
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3102,12 +3115,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nne_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 288
-        width: 65
-        height: 48
+        x: 68
+        y: 294
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3124,12 +3137,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nne_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 288
-        width: 65
-        height: 48
+        x: 136
+        y: 294
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3146,12 +3159,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nne_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 288
-        width: 65
-        height: 48
+        x: 204
+        y: 294
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3168,12 +3181,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nne_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 288
-        width: 65
-        height: 48
+        x: 272
+        y: 294
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3190,12 +3203,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nne_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 288
-        width: 65
-        height: 48
+        x: 340
+        y: 294
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3212,12 +3225,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nne_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 288
-        width: 65
-        height: 48
+        x: 408
+        y: 294
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3234,12 +3247,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nne_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 288
-        width: 65
-        height: 48
+        x: 476
+        y: 294
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3256,12 +3269,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nne_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 288
-        width: 65
-        height: 48
+        x: 544
+        y: 294
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3278,12 +3291,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nne_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 288
-        width: 65
-        height: 48
+        x: 612
+        y: 294
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3300,12 +3313,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nne_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 288
-        width: 65
-        height: 48
+        x: 680
+        y: 294
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3322,12 +3335,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_nne_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 288
-        width: 65
-        height: 48
+        x: 748
+        y: 294
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3345,11 +3358,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 65
-        height: 48
+        y: 245
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3366,12 +3379,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ne_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 240
-        width: 65
-        height: 48
+        x: 68
+        y: 245
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3388,12 +3401,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ne_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 240
-        width: 65
-        height: 48
+        x: 136
+        y: 245
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3410,12 +3423,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ne_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 240
-        width: 65
-        height: 48
+        x: 204
+        y: 245
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3432,12 +3445,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ne_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 240
-        width: 65
-        height: 48
+        x: 272
+        y: 245
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3454,12 +3467,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ne_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 240
-        width: 65
-        height: 48
+        x: 340
+        y: 245
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3476,12 +3489,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ne_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 240
-        width: 65
-        height: 48
+        x: 408
+        y: 245
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3498,12 +3511,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ne_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 240
-        width: 65
-        height: 48
+        x: 476
+        y: 245
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3520,12 +3533,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ne_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 240
-        width: 65
-        height: 48
+        x: 544
+        y: 245
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3542,12 +3555,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ne_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 240
-        width: 65
-        height: 48
+        x: 612
+        y: 245
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3564,12 +3577,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ne_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 240
-        width: 65
-        height: 48
+        x: 680
+        y: 245
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3586,12 +3599,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ne_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 240
-        width: 65
-        height: 48
+        x: 748
+        y: 245
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3609,11 +3622,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
-        width: 65
-        height: 48
+        y: 196
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3630,12 +3643,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ene_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 192
-        width: 65
-        height: 48
+        x: 68
+        y: 196
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3652,12 +3665,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ene_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 192
-        width: 65
-        height: 48
+        x: 136
+        y: 196
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3674,12 +3687,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ene_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 192
-        width: 65
-        height: 48
+        x: 204
+        y: 196
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3696,12 +3709,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ene_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 192
-        width: 65
-        height: 48
+        x: 272
+        y: 196
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3718,12 +3731,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ene_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 192
-        width: 65
-        height: 48
+        x: 340
+        y: 196
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3740,12 +3753,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ene_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 192
-        width: 65
-        height: 48
+        x: 408
+        y: 196
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3762,12 +3775,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ene_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 192
-        width: 65
-        height: 48
+        x: 476
+        y: 196
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3784,12 +3797,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ene_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 192
-        width: 65
-        height: 48
+        x: 544
+        y: 196
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3806,12 +3819,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ene_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 192
-        width: 65
-        height: 48
+        x: 612
+        y: 196
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3828,12 +3841,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ene_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 192
-        width: 65
-        height: 48
+        x: 680
+        y: 196
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3850,12 +3863,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ene_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 192
-        width: 65
-        height: 48
+        x: 748
+        y: 196
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3873,11 +3886,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 144
-        width: 65
-        height: 48
+        y: 147
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3894,12 +3907,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_e_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 144
-        width: 65
-        height: 48
+        x: 68
+        y: 147
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3916,12 +3929,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_e_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 144
-        width: 65
-        height: 48
+        x: 136
+        y: 147
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3938,12 +3951,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_e_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 144
-        width: 65
-        height: 48
+        x: 204
+        y: 147
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3960,12 +3973,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_e_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 144
-        width: 65
-        height: 48
+        x: 272
+        y: 147
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3982,12 +3995,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_e_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 144
-        width: 65
-        height: 48
+        x: 340
+        y: 147
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4004,12 +4017,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_e_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 144
-        width: 65
-        height: 48
+        x: 408
+        y: 147
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4026,12 +4039,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_e_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 144
-        width: 65
-        height: 48
+        x: 476
+        y: 147
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4048,12 +4061,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_e_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 144
-        width: 65
-        height: 48
+        x: 544
+        y: 147
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4070,12 +4083,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_e_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 144
-        width: 65
-        height: 48
+        x: 612
+        y: 147
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4092,12 +4105,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_e_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 144
-        width: 65
-        height: 48
+        x: 680
+        y: 147
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4114,12 +4127,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_e_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 144
-        width: 65
-        height: 48
+        x: 748
+        y: 147
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4137,11 +4150,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 65
-        height: 48
+        y: 98
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4158,12 +4171,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ese_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 96
-        width: 65
-        height: 48
+        x: 68
+        y: 98
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4180,12 +4193,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ese_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 96
-        width: 65
-        height: 48
+        x: 136
+        y: 98
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4202,12 +4215,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ese_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 96
-        width: 65
-        height: 48
+        x: 204
+        y: 98
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4224,12 +4237,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ese_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 96
-        width: 65
-        height: 48
+        x: 272
+        y: 98
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4246,12 +4259,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ese_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 96
-        width: 65
-        height: 48
+        x: 340
+        y: 98
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4268,12 +4281,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ese_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 96
-        width: 65
-        height: 48
+        x: 408
+        y: 98
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4290,12 +4303,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ese_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 96
-        width: 65
-        height: 48
+        x: 476
+        y: 98
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4312,12 +4325,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ese_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 96
-        width: 65
-        height: 48
+        x: 544
+        y: 98
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4334,12 +4347,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ese_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 96
-        width: 65
-        height: 48
+        x: 612
+        y: 98
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4356,12 +4369,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ese_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 96
-        width: 65
-        height: 48
+        x: 680
+        y: 98
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4378,12 +4391,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_ese_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 96
-        width: 65
-        height: 48
+        x: 748
+        y: 98
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4401,11 +4414,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 48
-        width: 65
-        height: 48
+        y: 49
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4422,12 +4435,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_se_01
       rect:
         serializedVersion: 2
-        x: 65
-        y: 48
-        width: 65
-        height: 48
+        x: 68
+        y: 49
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4444,12 +4457,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_se_02
       rect:
         serializedVersion: 2
-        x: 130
-        y: 48
-        width: 65
-        height: 48
+        x: 136
+        y: 49
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4466,12 +4479,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_se_03
       rect:
         serializedVersion: 2
-        x: 195
-        y: 48
-        width: 65
-        height: 48
+        x: 204
+        y: 49
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4488,12 +4501,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_se_04
       rect:
         serializedVersion: 2
-        x: 260
-        y: 48
-        width: 65
-        height: 48
+        x: 272
+        y: 49
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4510,12 +4523,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_se_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 48
-        width: 65
-        height: 48
+        x: 340
+        y: 49
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4532,12 +4545,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_se_06
       rect:
         serializedVersion: 2
-        x: 390
-        y: 48
-        width: 65
-        height: 48
+        x: 408
+        y: 49
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4554,12 +4567,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_se_07
       rect:
         serializedVersion: 2
-        x: 455
-        y: 48
-        width: 65
-        height: 48
+        x: 476
+        y: 49
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4576,12 +4589,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_se_08
       rect:
         serializedVersion: 2
-        x: 520
-        y: 48
-        width: 65
-        height: 48
+        x: 544
+        y: 49
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4598,12 +4611,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_se_09
       rect:
         serializedVersion: 2
-        x: 585
-        y: 48
-        width: 65
-        height: 48
+        x: 612
+        y: 49
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4620,12 +4633,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_se_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 48
-        width: 65
-        height: 48
+        x: 680
+        y: 49
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4642,12 +4655,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_se_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 48
-        width: 65
-        height: 48
+        x: 748
+        y: 49
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4666,10 +4679,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 65
-        height: 48
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4686,12 +4699,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sse_01
       rect:
         serializedVersion: 2
-        x: 65
+        x: 68
         y: 0
-        width: 65
-        height: 48
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4708,12 +4721,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sse_02
       rect:
         serializedVersion: 2
-        x: 130
+        x: 136
         y: 0
-        width: 65
-        height: 48
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4730,12 +4743,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sse_03
       rect:
         serializedVersion: 2
-        x: 195
+        x: 204
         y: 0
-        width: 65
-        height: 48
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4752,12 +4765,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sse_04
       rect:
         serializedVersion: 2
-        x: 260
+        x: 272
         y: 0
-        width: 65
-        height: 48
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4774,12 +4787,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sse_05
       rect:
         serializedVersion: 2
-        x: 325
+        x: 340
         y: 0
-        width: 65
-        height: 48
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4796,12 +4809,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sse_06
       rect:
         serializedVersion: 2
-        x: 390
+        x: 408
         y: 0
-        width: 65
-        height: 48
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4818,12 +4831,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sse_07
       rect:
         serializedVersion: 2
-        x: 455
+        x: 476
         y: 0
-        width: 65
-        height: 48
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4840,12 +4853,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sse_08
       rect:
         serializedVersion: 2
-        x: 520
+        x: 544
         y: 0
-        width: 65
-        height: 48
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4862,12 +4875,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sse_09
       rect:
         serializedVersion: 2
-        x: 585
+        x: 612
         y: 0
-        width: 65
-        height: 48
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4884,12 +4897,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sse_10
       rect:
         serializedVersion: 2
-        x: 650
+        x: 680
         y: 0
-        width: 65
-        height: 48
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4906,12 +4919,12 @@ TextureImporter:
       name: wild_arrow_weapon_galeheart_1h_overdraw_sse_11
       rect:
         serializedVersion: 2
-        x: 715
+        x: 748
         y: 0
-        width: 65
-        height: 48
+        width: 68
+        height: 49
       alignment: 9
-      pivot: {x: 0.50769234, y: -0.41666666}
+      pivot: {x: 0.5, y: -0.3877551}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

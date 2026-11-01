@@ -1036,6 +1036,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1044,11 +1057,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 855
-        width: 72
-        height: 57
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1065,12 +1078,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 855
-        width: 72
-        height: 57
+        x: 78
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1087,12 +1100,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 855
-        width: 72
-        height: 57
+        x: 156
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1109,12 +1122,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 855
-        width: 72
-        height: 57
+        x: 234
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1131,12 +1144,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 855
-        width: 72
-        height: 57
+        x: 312
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1153,12 +1166,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 855
-        width: 72
-        height: 57
+        x: 390
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1175,12 +1188,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 855
-        width: 72
-        height: 57
+        x: 468
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1197,12 +1210,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 855
-        width: 72
-        height: 57
+        x: 546
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1219,12 +1232,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 855
-        width: 72
-        height: 57
+        x: 624
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1241,12 +1254,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 855
-        width: 72
-        height: 57
+        x: 702
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1263,12 +1276,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 855
-        width: 72
-        height: 57
+        x: 780
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1285,12 +1298,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 855
-        width: 72
-        height: 57
+        x: 858
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1307,12 +1320,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 855
-        width: 72
-        height: 57
+        x: 936
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1329,12 +1342,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 855
-        width: 72
-        height: 57
+        x: 1014
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1351,12 +1364,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_s_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 855
-        width: 72
-        height: 57
+        x: 1092
+        y: 900
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1374,11 +1387,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 798
-        width: 72
-        height: 57
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1395,12 +1408,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 798
-        width: 72
-        height: 57
+        x: 78
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1417,12 +1430,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 798
-        width: 72
-        height: 57
+        x: 156
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1439,12 +1452,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 798
-        width: 72
-        height: 57
+        x: 234
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1461,12 +1474,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 798
-        width: 72
-        height: 57
+        x: 312
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1483,12 +1496,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 798
-        width: 72
-        height: 57
+        x: 390
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1505,12 +1518,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 798
-        width: 72
-        height: 57
+        x: 468
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1527,12 +1540,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 798
-        width: 72
-        height: 57
+        x: 546
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1549,12 +1562,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 798
-        width: 72
-        height: 57
+        x: 624
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1571,12 +1584,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 798
-        width: 72
-        height: 57
+        x: 702
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1593,12 +1606,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 798
-        width: 72
-        height: 57
+        x: 780
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1615,12 +1628,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 798
-        width: 72
-        height: 57
+        x: 858
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1637,12 +1650,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 798
-        width: 72
-        height: 57
+        x: 936
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1659,12 +1672,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 798
-        width: 72
-        height: 57
+        x: 1014
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1681,12 +1694,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ssw_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 798
-        width: 72
-        height: 57
+        x: 1092
+        y: 840
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1704,11 +1717,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 741
-        width: 72
-        height: 57
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1725,12 +1738,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 741
-        width: 72
-        height: 57
+        x: 78
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1747,12 +1760,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 741
-        width: 72
-        height: 57
+        x: 156
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1769,12 +1782,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 741
-        width: 72
-        height: 57
+        x: 234
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1791,12 +1804,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 741
-        width: 72
-        height: 57
+        x: 312
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1813,12 +1826,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 741
-        width: 72
-        height: 57
+        x: 390
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1835,12 +1848,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 741
-        width: 72
-        height: 57
+        x: 468
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1857,12 +1870,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 741
-        width: 72
-        height: 57
+        x: 546
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1879,12 +1892,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 741
-        width: 72
-        height: 57
+        x: 624
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1901,12 +1914,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 741
-        width: 72
-        height: 57
+        x: 702
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1923,12 +1936,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 741
-        width: 72
-        height: 57
+        x: 780
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1945,12 +1958,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 741
-        width: 72
-        height: 57
+        x: 858
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1967,12 +1980,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 741
-        width: 72
-        height: 57
+        x: 936
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1989,12 +2002,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 741
-        width: 72
-        height: 57
+        x: 1014
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2011,12 +2024,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sw_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 741
-        width: 72
-        height: 57
+        x: 1092
+        y: 780
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2034,11 +2047,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 684
-        width: 72
-        height: 57
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2055,12 +2068,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 684
-        width: 72
-        height: 57
+        x: 78
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2077,12 +2090,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 684
-        width: 72
-        height: 57
+        x: 156
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2099,12 +2112,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 684
-        width: 72
-        height: 57
+        x: 234
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2121,12 +2134,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 684
-        width: 72
-        height: 57
+        x: 312
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2143,12 +2156,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 684
-        width: 72
-        height: 57
+        x: 390
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2165,12 +2178,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 684
-        width: 72
-        height: 57
+        x: 468
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2187,12 +2200,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 684
-        width: 72
-        height: 57
+        x: 546
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2209,12 +2222,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 684
-        width: 72
-        height: 57
+        x: 624
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2231,12 +2244,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 684
-        width: 72
-        height: 57
+        x: 702
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2253,12 +2266,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 684
-        width: 72
-        height: 57
+        x: 780
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2275,12 +2288,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 684
-        width: 72
-        height: 57
+        x: 858
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2297,12 +2310,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 684
-        width: 72
-        height: 57
+        x: 936
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2319,12 +2332,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 684
-        width: 72
-        height: 57
+        x: 1014
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2341,12 +2354,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wsw_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 684
-        width: 72
-        height: 57
+        x: 1092
+        y: 720
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2364,11 +2377,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 627
-        width: 72
-        height: 57
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2385,12 +2398,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 627
-        width: 72
-        height: 57
+        x: 78
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2407,12 +2420,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 627
-        width: 72
-        height: 57
+        x: 156
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2429,12 +2442,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 627
-        width: 72
-        height: 57
+        x: 234
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2451,12 +2464,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 627
-        width: 72
-        height: 57
+        x: 312
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2473,12 +2486,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 627
-        width: 72
-        height: 57
+        x: 390
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2495,12 +2508,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 627
-        width: 72
-        height: 57
+        x: 468
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2517,12 +2530,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 627
-        width: 72
-        height: 57
+        x: 546
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2539,12 +2552,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 627
-        width: 72
-        height: 57
+        x: 624
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2561,12 +2574,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 627
-        width: 72
-        height: 57
+        x: 702
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2583,12 +2596,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 627
-        width: 72
-        height: 57
+        x: 780
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2605,12 +2618,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 627
-        width: 72
-        height: 57
+        x: 858
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2627,12 +2640,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 627
-        width: 72
-        height: 57
+        x: 936
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2649,12 +2662,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 627
-        width: 72
-        height: 57
+        x: 1014
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2671,12 +2684,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_w_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 627
-        width: 72
-        height: 57
+        x: 1092
+        y: 660
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2694,11 +2707,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 570
-        width: 72
-        height: 57
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2715,12 +2728,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 570
-        width: 72
-        height: 57
+        x: 78
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2737,12 +2750,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 570
-        width: 72
-        height: 57
+        x: 156
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2759,12 +2772,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 570
-        width: 72
-        height: 57
+        x: 234
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2781,12 +2794,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 570
-        width: 72
-        height: 57
+        x: 312
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2803,12 +2816,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 570
-        width: 72
-        height: 57
+        x: 390
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2825,12 +2838,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 570
-        width: 72
-        height: 57
+        x: 468
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2847,12 +2860,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 570
-        width: 72
-        height: 57
+        x: 546
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2869,12 +2882,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 570
-        width: 72
-        height: 57
+        x: 624
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2891,12 +2904,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 570
-        width: 72
-        height: 57
+        x: 702
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2913,12 +2926,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 570
-        width: 72
-        height: 57
+        x: 780
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2935,12 +2948,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 570
-        width: 72
-        height: 57
+        x: 858
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2957,12 +2970,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 570
-        width: 72
-        height: 57
+        x: 936
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2979,12 +2992,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 570
-        width: 72
-        height: 57
+        x: 1014
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3001,12 +3014,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_wnw_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 570
-        width: 72
-        height: 57
+        x: 1092
+        y: 600
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3024,11 +3037,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 513
-        width: 72
-        height: 57
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3045,12 +3058,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 513
-        width: 72
-        height: 57
+        x: 78
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3067,12 +3080,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 513
-        width: 72
-        height: 57
+        x: 156
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3089,12 +3102,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 513
-        width: 72
-        height: 57
+        x: 234
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3111,12 +3124,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 513
-        width: 72
-        height: 57
+        x: 312
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3133,12 +3146,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 513
-        width: 72
-        height: 57
+        x: 390
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3155,12 +3168,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 513
-        width: 72
-        height: 57
+        x: 468
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3177,12 +3190,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 513
-        width: 72
-        height: 57
+        x: 546
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3199,12 +3212,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 513
-        width: 72
-        height: 57
+        x: 624
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3221,12 +3234,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 513
-        width: 72
-        height: 57
+        x: 702
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3243,12 +3256,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 513
-        width: 72
-        height: 57
+        x: 780
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3265,12 +3278,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 513
-        width: 72
-        height: 57
+        x: 858
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3287,12 +3300,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 513
-        width: 72
-        height: 57
+        x: 936
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3309,12 +3322,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 513
-        width: 72
-        height: 57
+        x: 1014
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3331,12 +3344,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nw_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 513
-        width: 72
-        height: 57
+        x: 1092
+        y: 540
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3354,11 +3367,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 456
-        width: 72
-        height: 57
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3375,12 +3388,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 456
-        width: 72
-        height: 57
+        x: 78
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3397,12 +3410,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 456
-        width: 72
-        height: 57
+        x: 156
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3419,12 +3432,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 456
-        width: 72
-        height: 57
+        x: 234
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3441,12 +3454,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 456
-        width: 72
-        height: 57
+        x: 312
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3463,12 +3476,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 456
-        width: 72
-        height: 57
+        x: 390
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3485,12 +3498,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 456
-        width: 72
-        height: 57
+        x: 468
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3507,12 +3520,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 456
-        width: 72
-        height: 57
+        x: 546
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3529,12 +3542,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 456
-        width: 72
-        height: 57
+        x: 624
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3551,12 +3564,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 456
-        width: 72
-        height: 57
+        x: 702
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3573,12 +3586,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 456
-        width: 72
-        height: 57
+        x: 780
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3595,12 +3608,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 456
-        width: 72
-        height: 57
+        x: 858
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3617,12 +3630,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 456
-        width: 72
-        height: 57
+        x: 936
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3639,12 +3652,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 456
-        width: 72
-        height: 57
+        x: 1014
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3661,12 +3674,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nnw_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 456
-        width: 72
-        height: 57
+        x: 1092
+        y: 480
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3684,11 +3697,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 399
-        width: 72
-        height: 57
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3705,12 +3718,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 399
-        width: 72
-        height: 57
+        x: 78
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3727,12 +3740,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 399
-        width: 72
-        height: 57
+        x: 156
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3749,12 +3762,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 399
-        width: 72
-        height: 57
+        x: 234
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3771,12 +3784,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 399
-        width: 72
-        height: 57
+        x: 312
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3793,12 +3806,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 399
-        width: 72
-        height: 57
+        x: 390
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3815,12 +3828,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 399
-        width: 72
-        height: 57
+        x: 468
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3837,12 +3850,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 399
-        width: 72
-        height: 57
+        x: 546
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3859,12 +3872,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 399
-        width: 72
-        height: 57
+        x: 624
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3881,12 +3894,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 399
-        width: 72
-        height: 57
+        x: 702
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3903,12 +3916,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 399
-        width: 72
-        height: 57
+        x: 780
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3925,12 +3938,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 399
-        width: 72
-        height: 57
+        x: 858
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3947,12 +3960,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 399
-        width: 72
-        height: 57
+        x: 936
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3969,12 +3982,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 399
-        width: 72
-        height: 57
+        x: 1014
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3991,12 +4004,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_n_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 399
-        width: 72
-        height: 57
+        x: 1092
+        y: 420
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4014,11 +4027,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 342
-        width: 72
-        height: 57
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4035,12 +4048,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 342
-        width: 72
-        height: 57
+        x: 78
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4057,12 +4070,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 342
-        width: 72
-        height: 57
+        x: 156
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4079,12 +4092,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 342
-        width: 72
-        height: 57
+        x: 234
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4101,12 +4114,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 342
-        width: 72
-        height: 57
+        x: 312
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4123,12 +4136,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 342
-        width: 72
-        height: 57
+        x: 390
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4145,12 +4158,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 342
-        width: 72
-        height: 57
+        x: 468
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4167,12 +4180,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 342
-        width: 72
-        height: 57
+        x: 546
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4189,12 +4202,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 342
-        width: 72
-        height: 57
+        x: 624
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4211,12 +4224,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 342
-        width: 72
-        height: 57
+        x: 702
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4233,12 +4246,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 342
-        width: 72
-        height: 57
+        x: 780
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4255,12 +4268,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 342
-        width: 72
-        height: 57
+        x: 858
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4277,12 +4290,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 342
-        width: 72
-        height: 57
+        x: 936
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4299,12 +4312,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 342
-        width: 72
-        height: 57
+        x: 1014
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4321,12 +4334,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_nne_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 342
-        width: 72
-        height: 57
+        x: 1092
+        y: 360
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4344,11 +4357,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 285
-        width: 72
-        height: 57
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4365,12 +4378,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 285
-        width: 72
-        height: 57
+        x: 78
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4387,12 +4400,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 285
-        width: 72
-        height: 57
+        x: 156
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4409,12 +4422,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 285
-        width: 72
-        height: 57
+        x: 234
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4431,12 +4444,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 285
-        width: 72
-        height: 57
+        x: 312
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4453,12 +4466,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 285
-        width: 72
-        height: 57
+        x: 390
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4475,12 +4488,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 285
-        width: 72
-        height: 57
+        x: 468
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4497,12 +4510,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 285
-        width: 72
-        height: 57
+        x: 546
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4519,12 +4532,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 285
-        width: 72
-        height: 57
+        x: 624
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4541,12 +4554,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 285
-        width: 72
-        height: 57
+        x: 702
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4563,12 +4576,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 285
-        width: 72
-        height: 57
+        x: 780
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4585,12 +4598,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 285
-        width: 72
-        height: 57
+        x: 858
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4607,12 +4620,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 285
-        width: 72
-        height: 57
+        x: 936
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4629,12 +4642,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 285
-        width: 72
-        height: 57
+        x: 1014
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4651,12 +4664,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ne_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 285
-        width: 72
-        height: 57
+        x: 1092
+        y: 300
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4674,11 +4687,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 228
-        width: 72
-        height: 57
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4695,12 +4708,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 228
-        width: 72
-        height: 57
+        x: 78
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4717,12 +4730,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 228
-        width: 72
-        height: 57
+        x: 156
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4739,12 +4752,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 228
-        width: 72
-        height: 57
+        x: 234
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4761,12 +4774,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 228
-        width: 72
-        height: 57
+        x: 312
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4783,12 +4796,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 228
-        width: 72
-        height: 57
+        x: 390
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4805,12 +4818,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 228
-        width: 72
-        height: 57
+        x: 468
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4827,12 +4840,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 228
-        width: 72
-        height: 57
+        x: 546
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4849,12 +4862,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 228
-        width: 72
-        height: 57
+        x: 624
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4871,12 +4884,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 228
-        width: 72
-        height: 57
+        x: 702
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4893,12 +4906,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 228
-        width: 72
-        height: 57
+        x: 780
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4915,12 +4928,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 228
-        width: 72
-        height: 57
+        x: 858
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4937,12 +4950,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 228
-        width: 72
-        height: 57
+        x: 936
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4959,12 +4972,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 228
-        width: 72
-        height: 57
+        x: 1014
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4981,12 +4994,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ene_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 228
-        width: 72
-        height: 57
+        x: 1092
+        y: 240
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5004,11 +5017,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 171
-        width: 72
-        height: 57
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5025,12 +5038,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 171
-        width: 72
-        height: 57
+        x: 78
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5047,12 +5060,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 171
-        width: 72
-        height: 57
+        x: 156
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5069,12 +5082,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 171
-        width: 72
-        height: 57
+        x: 234
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5091,12 +5104,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 171
-        width: 72
-        height: 57
+        x: 312
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5113,12 +5126,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 171
-        width: 72
-        height: 57
+        x: 390
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5135,12 +5148,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 171
-        width: 72
-        height: 57
+        x: 468
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5157,12 +5170,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 171
-        width: 72
-        height: 57
+        x: 546
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5179,12 +5192,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 171
-        width: 72
-        height: 57
+        x: 624
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5201,12 +5214,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 171
-        width: 72
-        height: 57
+        x: 702
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5223,12 +5236,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 171
-        width: 72
-        height: 57
+        x: 780
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5245,12 +5258,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 171
-        width: 72
-        height: 57
+        x: 858
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5267,12 +5280,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 171
-        width: 72
-        height: 57
+        x: 936
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5289,12 +5302,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 171
-        width: 72
-        height: 57
+        x: 1014
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5311,12 +5324,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_e_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 171
-        width: 72
-        height: 57
+        x: 1092
+        y: 180
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5334,11 +5347,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 114
-        width: 72
-        height: 57
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5355,12 +5368,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 114
-        width: 72
-        height: 57
+        x: 78
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5377,12 +5390,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 114
-        width: 72
-        height: 57
+        x: 156
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5399,12 +5412,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 114
-        width: 72
-        height: 57
+        x: 234
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5421,12 +5434,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 114
-        width: 72
-        height: 57
+        x: 312
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5443,12 +5456,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 114
-        width: 72
-        height: 57
+        x: 390
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5465,12 +5478,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 114
-        width: 72
-        height: 57
+        x: 468
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5487,12 +5500,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 114
-        width: 72
-        height: 57
+        x: 546
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5509,12 +5522,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 114
-        width: 72
-        height: 57
+        x: 624
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5531,12 +5544,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 114
-        width: 72
-        height: 57
+        x: 702
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5553,12 +5566,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 114
-        width: 72
-        height: 57
+        x: 780
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5575,12 +5588,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 114
-        width: 72
-        height: 57
+        x: 858
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5597,12 +5610,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 114
-        width: 72
-        height: 57
+        x: 936
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5619,12 +5632,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 114
-        width: 72
-        height: 57
+        x: 1014
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5641,12 +5654,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_ese_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 114
-        width: 72
-        height: 57
+        x: 1092
+        y: 120
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5664,11 +5677,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 57
-        width: 72
-        height: 57
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5685,12 +5698,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 57
-        width: 72
-        height: 57
+        x: 78
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5707,12 +5720,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_02
       rect:
         serializedVersion: 2
-        x: 144
-        y: 57
-        width: 72
-        height: 57
+        x: 156
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5729,12 +5742,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_03
       rect:
         serializedVersion: 2
-        x: 216
-        y: 57
-        width: 72
-        height: 57
+        x: 234
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5751,12 +5764,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_04
       rect:
         serializedVersion: 2
-        x: 288
-        y: 57
-        width: 72
-        height: 57
+        x: 312
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5773,12 +5786,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_05
       rect:
         serializedVersion: 2
-        x: 360
-        y: 57
-        width: 72
-        height: 57
+        x: 390
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5795,12 +5808,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_06
       rect:
         serializedVersion: 2
-        x: 432
-        y: 57
-        width: 72
-        height: 57
+        x: 468
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5817,12 +5830,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_07
       rect:
         serializedVersion: 2
-        x: 504
-        y: 57
-        width: 72
-        height: 57
+        x: 546
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5839,12 +5852,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_08
       rect:
         serializedVersion: 2
-        x: 576
-        y: 57
-        width: 72
-        height: 57
+        x: 624
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5861,12 +5874,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_09
       rect:
         serializedVersion: 2
-        x: 648
-        y: 57
-        width: 72
-        height: 57
+        x: 702
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5883,12 +5896,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_10
       rect:
         serializedVersion: 2
-        x: 720
-        y: 57
-        width: 72
-        height: 57
+        x: 780
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5905,12 +5918,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_11
       rect:
         serializedVersion: 2
-        x: 792
-        y: 57
-        width: 72
-        height: 57
+        x: 858
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5927,12 +5940,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_12
       rect:
         serializedVersion: 2
-        x: 864
-        y: 57
-        width: 72
-        height: 57
+        x: 936
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5949,12 +5962,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_13
       rect:
         serializedVersion: 2
-        x: 936
-        y: 57
-        width: 72
-        height: 57
+        x: 1014
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5971,12 +5984,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_se_14
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 57
-        width: 72
-        height: 57
+        x: 1092
+        y: 60
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5995,10 +6008,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6015,12 +6028,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_01
       rect:
         serializedVersion: 2
-        x: 72
+        x: 78
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6037,12 +6050,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_02
       rect:
         serializedVersion: 2
-        x: 144
+        x: 156
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6059,12 +6072,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_03
       rect:
         serializedVersion: 2
-        x: 216
+        x: 234
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6081,12 +6094,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_04
       rect:
         serializedVersion: 2
-        x: 288
+        x: 312
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6103,12 +6116,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_05
       rect:
         serializedVersion: 2
-        x: 360
+        x: 390
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6125,12 +6138,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_06
       rect:
         serializedVersion: 2
-        x: 432
+        x: 468
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6147,12 +6160,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_07
       rect:
         serializedVersion: 2
-        x: 504
+        x: 546
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6169,12 +6182,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_08
       rect:
         serializedVersion: 2
-        x: 576
+        x: 624
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6191,12 +6204,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_09
       rect:
         serializedVersion: 2
-        x: 648
+        x: 702
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6213,12 +6226,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_10
       rect:
         serializedVersion: 2
-        x: 720
+        x: 780
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6235,12 +6248,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_11
       rect:
         serializedVersion: 2
-        x: 792
+        x: 858
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6257,12 +6270,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_12
       rect:
         serializedVersion: 2
-        x: 864
+        x: 936
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6279,12 +6292,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_13
       rect:
         serializedVersion: 2
-        x: 936
+        x: 1014
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -6301,12 +6314,12 @@ TextureImporter:
       name: wild_arrow_weapon_yew_longbow_1h_attack_move_right_sse_14
       rect:
         serializedVersion: 2
-        x: 1008
+        x: 1092
         y: 0
-        width: 72
-        height: 57
+        width: 78
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: -0.17543858}
+      pivot: {x: 0.5, y: -0.13333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
