@@ -264,6 +264,7 @@ namespace ARPG.Editor
                                             drift.y *= 1f - Mathf.Clamp01(clip.riseScale);
                                             body.Root.transform.localPosition = body.RootPosition - drift;
                                         }
+                                        body.ApplyBoneScales(job);
                                         body.Skin();
                                     }
 
@@ -391,6 +392,25 @@ namespace ARPG.Editor
             {
                 for (var i = 0; i < LowerBody.Length; i++)
                     LowerBody[i].SetLocalPositionAndRotation(lowerPositions[i], lowerRotations[i]);
+            }
+
+            // Each scaled bone's rest scale, so a heroic build scales from it every frame and never grows.
+            public Dictionary<Transform, Vector3> BoneRest = new Dictionary<Transform, Vector3>();
+
+            /// <summary>Draws the job's scaled bones larger (a heroic build, 2026-11-01).</summary>
+            public void ApplyBoneScales(SpriteBakeJob job)
+            {
+                if (job.boneScales.Count == 0 || Animator == null || !Animator.isHuman)
+                    return;
+                foreach (var bs in job.boneScales)
+                {
+                    var bone = Animator.GetBoneTransform(bs.bone);
+                    if (bone == null)
+                        continue;
+                    if (!BoneRest.TryGetValue(bone, out var rest))
+                        BoneRest[bone] = rest = bone.localScale;
+                    bone.localScale = rest * bs.scale;
+                }
             }
 
             /// <summary>Brings every skinned mesh's stand-in to the current pose (see <see cref="SkinProxy"/>).</summary>
@@ -583,6 +603,7 @@ namespace ARPG.Editor
             {
                 var definition = job.bodies[b];
                 var model = (GameObject)Object.Instantiate(definition.model);
+                SwapTextures(job, model);
                 // The look id travels as the instance's name (empty for a plain character).
                 model.name = definition.look ?? "";
                 SceneManager.MoveGameObjectToScene(model, scene);
@@ -654,6 +675,7 @@ namespace ARPG.Editor
                     continue;
                 }
                 var instance = (GameObject)Object.Instantiate(piece.prefab, holder, false);
+                SwapTextures(job, instance);
                 if (piece.autoGrip && stage.Bodies[0].Animator.isHuman)
                     PlaceInFist(stage.Bodies[0], piece, instance.transform, holder);
                 else
@@ -662,6 +684,10 @@ namespace ARPG.Editor
                     instance.transform.localRotation = Quaternion.Euler(piece.localEuler);
                     instance.transform.localScale = Vector3.one * piece.scale;
                 }
+                // A piece on the body, not in a hand (a quiver), drawn larger for a heroic build; one in a hand grows
+                // with the hand's bone scale.
+                if (job.pieceScale != 1f && piece.bone != HumanBodyBones.LeftHand && piece.bone != HumanBodyBones.RightHand)
+                    instance.transform.localScale *= job.pieceScale;
                 stage.Pieces.Add(new PieceInstance { Definition = piece, Renderers = instance.GetComponentsInChildren<Renderer>(true) });
             }
 
@@ -690,9 +716,11 @@ namespace ARPG.Editor
             stage.Camera = camera;
 
             // Key from the viewer's upper left (the brief, 0.2), a cool fill from the right, a rim from behind.
-            AddLight(scene, "Key", new Vector3(0.55f, -0.75f, 0.55f), new Color(1f, 0.95f, 0.88f), 1.5f);
-            AddLight(scene, "Fill", new Vector3(-0.8f, -0.25f, 0.3f), new Color(0.7f, 0.78f, 0.9f), 0.35f);
-            AddLight(scene, "Rim", new Vector3(0f, -0.35f, -1f), new Color(0.9f, 0.85f, 0.8f), 0.6f);
+            // A job's light contrast (2026-11-01) makes the key and rim stronger and the fill weaker.
+            var contrast = Mathf.Max(0.1f, job.lightContrast);
+            AddLight(scene, "Key", new Vector3(0.55f, -0.75f, 0.55f), new Color(1f, 0.95f, 0.88f), 1.5f * contrast);
+            AddLight(scene, "Fill", new Vector3(-0.8f, -0.25f, 0.3f), new Color(0.7f, 0.78f, 0.9f), 0.35f / contrast);
+            AddLight(scene, "Rim", new Vector3(0f, -0.35f, -1f), new Color(0.9f, 0.85f, 0.8f), 0.6f * contrast);
             return stage;
         }
 
@@ -824,7 +852,69 @@ namespace ARPG.Editor
                 }
             if (job.pixelArt)
                 PixelArt.Process(cell, job.cellSize, job.cellSize, true);
+            if (job.edgeHighlight)
+                EdgeHighlight(cell, job.cellSize);
             return cell;
+        }
+
+        /// <summary>
+        /// Lightens the pixel just inside the outline on the lit side (above and to the left), so a figure stands off a
+        /// dark ground (2026-11-01). A pixel counts when the one beside it is solid (the outline) and the one past that is
+        /// clear. Rows run bottom up.
+        /// </summary>
+        static void EdgeHighlight(Color[] cell, int size)
+        {
+            var lit = new bool[cell.Length];
+            for (var y = 0; y < size; y++)
+                for (var x = 0; x < size; x++)
+                {
+                    var i = x + y * size;
+                    if (cell[i].a < 0.5f)
+                        continue;
+                    bool Clear(int px, int py) => px < 0 || py < 0 || px >= size || py >= size || cell[px + py * size].a < 0.5f;
+                    bool Solid(int px, int py) => !Clear(px, py);
+                    lit[i] = (Solid(x, y + 1) && Clear(x, y + 2)) || (Solid(x - 1, y) && Clear(x - 2, y));
+                }
+            for (var i = 0; i < cell.Length; i++)
+                if (lit[i])
+                {
+                    var c = cell[i];
+                    cell[i] = new Color(c.r + (1f - c.r) * 0.3f, c.g + (1f - c.g) * 0.3f, c.b + (1f - c.b) * 0.3f, c.a);
+                }
+        }
+
+        /// <summary>Puts a job's swapped textures (a recoloured palette) on every material of an instance.</summary>
+        static void SwapTextures(SpriteBakeJob job, GameObject instance)
+        {
+            if (job.textureSwaps.Count == 0)
+                return;
+            foreach (var renderer in instance.GetComponentsInChildren<Renderer>(true))
+            {
+                var materials = renderer.sharedMaterials;
+                var changed = false;
+                for (var m = 0; m < materials.Length; m++)
+                {
+                    if (materials[m] == null)
+                        continue;
+                    Material copy = null;
+                    foreach (var id in materials[m].GetTexturePropertyNameIDs())
+                    {
+                        var texture = materials[m].GetTexture(id);
+                        foreach (var swap in job.textureSwaps)
+                            if (swap.from != null && swap.to != null && texture == swap.from)
+                            {
+                                copy ??= new Material(materials[m]);
+                                copy.SetTexture(id, swap.to);
+                            }
+                    }
+                    if (copy == null)
+                        continue;
+                    materials[m] = copy;
+                    changed = true;
+                }
+                if (changed)
+                    renderer.sharedMaterials = materials;
+            }
         }
 
         static Color[] RenderOver(Camera camera, RenderTexture target, Texture2D readback, Color background)
@@ -912,7 +1002,8 @@ namespace ARPG.Editor
                     Object.DestroyImmediate(textures[i]);
                     AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
                     ConfigureImporter(job, path, rects[i]);
-                    SheetTrimmer.Trim(path);
+                    if (job.trimSheets)
+                        SheetTrimmer.Trim(path);
                     paths.Add(path);
                 }
                 return paths;

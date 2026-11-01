@@ -201,6 +201,7 @@ namespace UnityEngine
         public void SetColor(string n, Color c) { } public void SetColor(int n, Color c) { } public void SetFloat(string n, float v) { } public void SetFloat(int n, float v) { } public void SetTexture(string n, Texture t) { } public void SetTexture(int n, Texture t) { } public void SetInt(string n, int v) { } public void SetVector(string n, Vector4 v) { } public void SetVector(int n, Vector4 v) { }
         public Color GetColor(string n) => default; public float GetFloat(string n) => 0; public bool HasProperty(string n) => false; public bool HasProperty(int n) => false;
         public void EnableKeyword(string k) { } public void DisableKeyword(string k) { }
+        public int[] GetTexturePropertyNameIDs() => new int[0]; public Texture GetTexture(int nameID) => null; public Texture GetTexture(string name) => null;
     }
     public sealed class MaterialPropertyBlock
     {

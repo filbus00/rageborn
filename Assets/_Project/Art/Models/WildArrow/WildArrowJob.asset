@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b7ef2a89c554486bb05c81650498d7, type: 3}
   m_Name: WildArrowJob
   m_EditorClassIdentifier: ARPG.Editor::ARPG.Editor.SpriteBakeJob
+  boneScales: []
+  pieceScale: 1
+  lightContrast: 1
+  edgeHighlight: 0
+  textureSwaps: []
+  trimSheets: 1
   characterName: wild_arrow
   bodies:
   - look: bare

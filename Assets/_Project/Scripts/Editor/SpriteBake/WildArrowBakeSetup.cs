@@ -435,6 +435,72 @@ namespace ARPG.Editor
                 SpriteBaker.Bake(job);
         }
 
+        // A side-by-side trial of a reworked look (2026-11-01, the owner: "I want the character to be more distinct. To have a
+        // clearer silhouette and for the gear to be noticable"): the same few looks and clips baked as she is (before)
+        // and with a heroic build, harder light, a light edge, a crimson palette (the owner's pick: her tunic and hood) and
+        // the quiver's feathers dimmed (after), in 8 directions, uncropped,
+        // to Art/SpriteBakeTest (git-ignored), for ArtSource/tools/bake_preview_sheet.py to lay side by side. The game's
+        // sheets are not touched.
+        const string PreviewFolder = SpriteBakeTestRig.Folder + "/WildArrowPreview";
+        const string CrimsonPalette = SpriteBakeTestRig.Folder + "/gear_albedo_crimson.png";
+        static readonly string[] PreviewLooks = { "bare", "ranger", "knight", "hood", "horned", "hunting_bow", "hide_quiver" };
+        static readonly string[] PreviewClips = { "idle", "run", "attack" };
+
+        [MenuItem("Tools/ARPG/Sprite Bake/Bake Wild Arrow Preview")]
+        public static void BakePreview()
+        {
+            var main = AssetDatabase.LoadAssetAtPath<SpriteBakeJob>(JobPath);
+            if (main == null)
+            {
+                Debug.LogError("[ARPG] Set Up Wild Arrow first.");
+                return;
+            }
+            foreach (var after in new[] { false, true })
+                SpriteBaker.Bake(PreviewJob(main, after), true);
+        }
+
+        static SpriteBakeJob PreviewJob(SpriteBakeJob main, bool after)
+        {
+            var job = Object.Instantiate(main);
+            job.characterName = after ? "preview_after" : "preview_before";
+            job.name = job.characterName;
+            job.outputFolder = PreviewFolder + "/" + job.characterName;
+            job.directions = 8;
+            job.trimSheets = false;
+            job.bodies = main.bodies.Where(b => PreviewLooks.Contains(b.look)).ToList();
+            job.pieces = main.pieces.Where(p => PreviewLooks.Contains(p.look)).ToList();
+            job.grips = main.grips.Select(g => new SpriteBakeJob.GripSet
+            {
+                grip = g.grip,
+                clips = g.clips.Where(c => PreviewClips.Contains(c.name)).ToList(),
+            }).ToList();
+            if (!after)
+                return job;
+            job.boneScales = new List<SpriteBakeJob.BoneScale>
+            {
+                new SpriteBakeJob.BoneScale { bone = HumanBodyBones.Head, scale = 1.3f },
+                // The bow grows with her hand: kept near its size, a long bow held level is a stick across her.
+                new SpriteBakeJob.BoneScale { bone = HumanBodyBones.LeftHand, scale = 1.12f },
+                new SpriteBakeJob.BoneScale { bone = HumanBodyBones.RightHand, scale = 1.12f },
+            };
+            job.pieceScale = 1.2f;
+            job.lightContrast = 1.35f;
+            job.edgeHighlight = true;
+            var gear = AssetDatabase.LoadAssetAtPath<Texture2D>(GearAlbedoPath);
+            var crimson = AssetDatabase.LoadAssetAtPath<Texture2D>(CrimsonPalette);
+            job.textureSwaps = new List<SpriteBakeJob.TextureSwap>();
+            if (gear != null && crimson != null)
+                job.textureSwaps.Add(new SpriteBakeJob.TextureSwap { from = gear, to = crimson });
+            else
+                Debug.LogWarning($"[ARPG] Preview: no crimson palette at {CrimsonPalette}; baked in her own colours.");
+            // The quiver's pale feathers dimmed: they showed as a white blob on her back.
+            var quiver = AssetDatabase.LoadAssetAtPath<Texture2D>(Folder + "/" + Character + "_offhand_hide_quiver_albedo.png");
+            var dimmed = AssetDatabase.LoadAssetAtPath<Texture2D>(SpriteBakeTestRig.Folder + "/hide_quiver_dim.png");
+            if (quiver != null && dimmed != null)
+                job.textureSwaps.Add(new SpriteBakeJob.TextureSwap { from = quiver, to = dimmed });
+            return job;
+        }
+
         /// <summary>Takes the Wild Arrow's sheets on disk as baked from the current models and clips, rendering nothing: for
         /// when they are known to be up to date and the bake cache is new or was cleared.</summary>
         [MenuItem("Tools/ARPG/Sprite Bake/Mark Wild Arrow Sheets As Baked")]

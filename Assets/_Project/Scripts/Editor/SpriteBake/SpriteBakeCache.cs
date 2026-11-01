@@ -100,8 +100,19 @@ namespace ARPG.Editor
                 // fresh (onlyRow, the portrait's one row, 2026-10-12).
                 if (field.Name == nameof(SpriteBakeJob.onlyRow) && job.onlyRow < 0)
                     continue;
+                // The heroic build's settings (2026-11-01) likewise.
+                if ((field.Name == nameof(SpriteBakeJob.pieceScale) && job.pieceScale == 1f) ||
+                    (field.Name == nameof(SpriteBakeJob.lightContrast) && job.lightContrast == 1f) ||
+                    (field.Name == nameof(SpriteBakeJob.edgeHighlight) && !job.edgeHighlight) ||
+                    (field.Name == nameof(SpriteBakeJob.trimSheets) && job.trimSheets))
+                    continue;
                 text.Append(field.Name).Append('=').Append(Convert.ToString(field.GetValue(job), System.Globalization.CultureInfo.InvariantCulture)).Append(';');
             }
+            // Two lists change the pixels: the scaled bones and the swapped textures, when there are any.
+            foreach (var bs in job.boneScales)
+                text.Append("bone=").Append(bs.bone).Append('x').Append(bs.scale.ToString(System.Globalization.CultureInfo.InvariantCulture)).Append(';');
+            foreach (var swap in job.textureSwaps)
+                text.Append("swap=").Append(swap.from != null ? swap.from.name : "-").Append('>').Append(swap.to != null ? swap.to.name : "-").Append(';');
             return text.ToString();
         }
 

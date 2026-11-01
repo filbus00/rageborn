@@ -101,6 +101,38 @@ namespace ARPG.Editor
             public List<Clip> clips = new List<Clip>();
         }
 
+        [Serializable]
+        public class BoneScale
+        {
+            public HumanBodyBones bone = HumanBodyBones.Head;
+            public float scale = 1f;
+        }
+
+        [Serializable]
+        public class TextureSwap
+        {
+            public Texture2D from;
+            public Texture2D to;
+        }
+
+        [Tooltip("A heroic build (2026-11-01, the owner: \"I want the character to be more distinct\"): bones drawn this much larger in every frame (a head, the hands and what they hold). Empty for none.")]
+        public List<BoneScale> boneScales = new List<BoneScale>();
+
+        [Tooltip("Pieces not held in a hand (a quiver on the back) drawn this much larger.")]
+        public float pieceScale = 1f;
+
+        [Tooltip("The key and rim lights this many times as strong, the fill this many times weaker: harder light and shade.")]
+        public float lightContrast = 1f;
+
+        [Tooltip("A one-pixel light line just inside the outline on the lit (upper and left) side, so the figure stands off a dark ground.")]
+        public bool edgeHighlight;
+
+        [Tooltip("Textures swapped on every body and piece for this bake (a recoloured palette).")]
+        public List<TextureSwap> textureSwaps = new List<TextureSwap>();
+
+        [Tooltip("Crop the sheets to what their frames draw (SheetTrimmer). Off for a preview that is laid out cell by cell.")]
+        public bool trimSheets = true;
+
         [Tooltip("File name prefix, lower case: wrathborn, husk, cinder_warden.")]
         public string characterName = "character";
 
