@@ -25,5 +25,26 @@ namespace ARPG.Tests
             Assert.IsNull(PoolLooks.For(new Color(0.92f, 0.88f, 0.75f, 0.85f)), "bone");
             Assert.IsNull(PoolLooks.For(new Color(0.55f, 0.5f, 0.45f, 1f)), "rock");
         }
+
+        [Test]
+        public void EveryDrawnPool_Moves_AndTheLivelyOnesThrowSpray()
+        {
+            // The owner, 2026-11-01: the pools "need to be animated".
+            foreach (var name in new[] { "pool_fire", "pool_poison", "pool_frost", "pool_void", "pool_blood" })
+            {
+                var m = PoolLooks.MotionOf(name);
+                Assert.AreNotEqual(0f, m.SpinA, name);
+                if (name == "pool_void")
+                    Assert.Greater(m.SpinA * m.SpinB, 0f, "the void's copies both swirl one way");
+                else
+                    Assert.Less(m.SpinA * m.SpinB, 0f, name + ": its copies turn opposite ways");
+                Assert.Greater(m.PulseDepth, 0f, name);
+            }
+            Assert.AreEqual(PoolLooks.Spray.Embers, PoolLooks.MotionOf("pool_fire").Spray);
+            Assert.AreEqual(PoolLooks.Spray.Bubbles, PoolLooks.MotionOf("pool_poison").Spray);
+            Assert.AreEqual(PoolLooks.Spray.Glints, PoolLooks.MotionOf("pool_frost").Spray);
+            Assert.AreEqual(PoolLooks.Spray.VoidSparks, PoolLooks.MotionOf("pool_void").Spray);
+            Assert.Greater(PoolLooks.MotionOf("pool_fire").PulseSpeed, PoolLooks.MotionOf("pool_poison").PulseSpeed, "fire flickers quicker than slime");
+        }
     }
 }

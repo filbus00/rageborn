@@ -340,6 +340,47 @@ namespace ARPG
             }
         }
 
+        /// <summary>
+        /// One piece of a lying pool's spray (2026-11-01, <see cref="PoolLooks.Spray"/>) at a random spot of a pool of ground
+        /// radius <paramref name="radius"/> round <paramref name="world"/>: an ember rising (now and then smoke), a bubble
+        /// bursting on its face, a glint of frost hanging over it, or a spark drawn from its rim into its heart.
+        /// </summary>
+        public void PoolSpray(PoolLooks.Spray spray, Vector2 world, float radius)
+        {
+            var spot = Random.insideUnitCircle * radius * 0.8f;
+            var at = world + new Vector2(spot.x, spot.y * IsoMath.GroundSquash);
+            switch (spray)
+            {
+                case PoolLooks.Spray.Embers:
+                    if (Random.value < 0.12f)
+                        Emit(at, new Vector2(Random.Range(-0.1f, 0.1f), 0f), 0.15f, Random.Range(0.4f, 0.7f), Random.Range(0.9f, 1.4f),
+                            0.18f, 0.35f, 1f, new Color(0.7f, 0.6f, 0.55f, 0.45f), new Color(0.6f, 0.55f, 0.5f, 0f), false, false, Fx("fx_smoke_small"));
+                    else
+                        Emit(at, new Vector2(Random.Range(-0.15f, 0.15f), 0f), 0.05f, Random.Range(0.8f, 1.6f), Random.Range(0.5f, 0.9f),
+                            Random.Range(0.05f, 0.08f), 0.02f, 1f, new Color(1f, 0.75f, 0.3f, 1f), new Color(0.8f, 0.2f, 0f, 0f), false, false, Ember());
+                    break;
+                case PoolLooks.Spray.Bubbles:
+                    // Swells, then bursts.
+                    Emit(at, Vector2.zero, 0.02f, 0.05f, Random.Range(0.35f, 0.6f), 0.03f, Random.Range(0.1f, 0.16f), 1f,
+                        new Color(0.7f, 1f, 0.5f, 0.95f), new Color(0.6f, 0.9f, 0.4f, 0f), false, false, Fx("fx_poison_splash"));
+                    break;
+                case PoolLooks.Spray.Glints:
+                    Emit(at, Vector2.zero, Random.Range(0.05f, 0.3f), 0.15f, Random.Range(0.4f, 0.7f), 0.08f, 0.01f, 1f,
+                        new Color(0.85f, 0.95f, 1f, 1f), new Color(0.6f, 0.85f, 1f, 0f), false, false, Fx("fx_spark"));
+                    break;
+                case PoolLooks.Spray.VoidSparks:
+                {
+                    // From a point on the rim, across to the middle in its life.
+                    var rim = Random.insideUnitCircle.normalized * radius * 0.95f;
+                    var from = world + new Vector2(rim.x, rim.y * IsoMath.GroundSquash);
+                    var life = Random.Range(0.5f, 0.8f);
+                    Emit(from, (world - from) / life, 0.05f, 0f, life, 0.07f, 0.02f, 1.4f,
+                        new Color(0.85f, 0.6f, 1f, 1f), new Color(0.5f, 0.2f, 0.9f, 0f), false, false, Fx("fx_streak"));
+                    break;
+                }
+            }
+        }
+
         /// <summary>A dark pool of blood on the floor that lasts a while (Gallowsreach's trail: enemies who walk through
         /// it bleed).</summary>
         public void Pool(Vector2 ground, float size, float seconds)

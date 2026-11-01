@@ -84,29 +84,6 @@ namespace ARPG
         }
 
         static readonly Dictionary<string, Sprite> drawnPools = new Dictionary<string, Sprite>();
-        static readonly Dictionary<string, Sprite[]> drawnPoolFrames = new Dictionary<string, Sprite[]>();
-
-        /// <summary>
-        /// A drawn pool's animation frames (2026-11-01, the owner's Gemini sprite sheets: <c>pool_fire_1</c>, <c>_2</c>, ...
-        /// cut by ArtSource/tools/pool_frames.py), or null when it has none and shows its single picture.
-        /// </summary>
-        public static Sprite[] DrawnPoolFrames(Color color)
-        {
-            var name = PoolLooks.For(color);
-            if (name == null)
-                return null;
-            if (drawnPoolFrames.TryGetValue(name, out var frames))
-                return frames;
-            var found = new List<Sprite>();
-            for (var n = 1; n <= 32; n++)
-            {
-                var frame = Resources.Load<Sprite>(PoolLooks.Folder + name + "_" + n);
-                if (frame == null)
-                    break;
-                found.Add(frame);
-            }
-            return drawnPoolFrames[name] = found.Count > 1 ? found.ToArray() : null;
-        }
 
         /// <summary>Bubbles or embers in a pool: scattered bright rings, turned over the pool to look alive.</summary>
         public static Sprite Bubbles => bubbles != null ? bubbles : bubbles = MakeXY("Bubbles", (u, v) =>
@@ -334,13 +311,25 @@ namespace ARPG
                 bubbles = NewSprite("Bubbles", TelegraphArt.Bubbles, color, root.transform, 41).GetComponent<SpriteRenderer>();
             // The owner's drawn pool for its colour (2026-10-31), under a thin rim in its colour that marks exactly where
             // it hurts; else the tinted blob with bubbles.
-            poolFrames = TelegraphArt.DrawnPoolFrames(color);
-            drawnPool = poolFrames != null ? poolFrames[0] : TelegraphArt.DrawnPool(color);
+            drawnPool = TelegraphArt.DrawnPool(color);
             if (drawnPool != null)
             {
                 rootRenderer.sprite = drawnPool;
                 rootRenderer.color = new Color(1f, 1f, 1f, Mathf.Clamp(color.a + 0.15f, 0.7f, 0.92f));
                 bubbles.gameObject.SetActive(false);
+                // Two copies of the picture turning over it (2026-11-01): under the squashed root their turn lies flat on
+                // the ground.
+                motion = PoolLooks.MotionOf(PoolLooks.For(color));
+                if (swirlA == null)
+                {
+                    swirlA = NewSprite("Swirl A", drawnPool, Color.white, root.transform, 41).GetComponent<SpriteRenderer>();
+                    swirlB = NewSprite("Swirl B", drawnPool, Color.white, root.transform, 41).GetComponent<SpriteRenderer>();
+                }
+                swirlA.sprite = drawnPool;
+                swirlB.sprite = drawnPool;
+                swirlA.gameObject.SetActive(true);
+                swirlB.gameObject.SetActive(true);
+                sprayDebt = 0f;
                 if (edge == null)
                     edge = NewSprite("Edge", TelegraphArt.Rim, color, root.transform, 42).GetComponent<SpriteRenderer>();
                 edge.color = new Color(color.r, color.g, color.b, 0.55f);
@@ -354,11 +343,9 @@ namespace ARPG
         }
 
         Sprite drawnPool;
-        Sprite[] poolFrames;
-        SpriteRenderer edge;
-
-        /// <summary>How fast an animated pool plays its frames.</summary>
-        const float PoolFramesPerSecond = 10f;
+        SpriteRenderer edge, swirlA, swirlB;
+        PoolLooks.Motion motion;
+        float sprayDebt;
 
         /// <summary>A pool's life: it breathes a little, its bubbles turn and flicker.</summary>
         public void Animate(float deltaSeconds)
@@ -368,18 +355,23 @@ namespace ARPG
             poolTime += deltaSeconds;
             var breathe = 1f + 0.035f * Mathf.Sin(poolTime * 3.1f);
             root.transform.localScale = new Vector3(poolScale.x * breathe, poolScale.y * (2f - breathe), 1f);
-            if (poolFrames != null)
-            {
-                // An animated pool plays its frames round and round, each pool from its own point in the loop.
-                rootRenderer.sprite = poolFrames[(int)(poolTime * PoolFramesPerSecond) % poolFrames.Length];
-                return;
-            }
             if (drawnPool != null)
             {
-                // A drawn pool shimmers: its light rises and falls a little.
-                var shimmer = 0.88f + 0.12f * Mathf.Sin(poolTime * 4.7f) * Mathf.Sin(poolTime * 2.3f);
+                // A drawn pool lives (2026-11-01): its copies turn over it, its light pulses (two waves, so it never
+                // beats evenly), and it throws off its spray.
+                var pulse = 1f - motion.PulseDepth * (0.5f + 0.5f * Mathf.Sin(poolTime * motion.PulseSpeed) * Mathf.Sin(poolTime * motion.PulseSpeed * 0.37f + 1.3f));
                 var a = rootRenderer.color.a;
-                rootRenderer.color = new Color(shimmer, shimmer, shimmer, a);
+                rootRenderer.color = new Color(pulse, pulse, pulse, a);
+                swirlA.transform.localRotation = Quaternion.Euler(0f, 0f, poolTime * motion.SpinA);
+                swirlB.transform.localRotation = Quaternion.Euler(0f, 0f, poolTime * motion.SpinB);
+                swirlA.color = new Color(1f, 1f, 1f, motion.AlphaA * (0.75f + 0.25f * Mathf.Sin(poolTime * 1.7f)));
+                swirlB.color = new Color(1f, 1f, 1f, motion.AlphaB * (0.75f + 0.25f * Mathf.Sin(poolTime * 2.3f + 2f)));
+                if (motion.Spray != PoolLooks.Spray.None && ArrowFx.Current != null)
+                {
+                    sprayDebt += motion.SprayRate * Radius * Radius * deltaSeconds;
+                    for (; sprayDebt >= 1f; sprayDebt -= 1f)
+                        ArrowFx.Current.PoolSpray(motion.Spray, Elevation.World2(Center), Radius);
+                }
                 return;
             }
             bubbles.transform.localRotation = Quaternion.Euler(0f, 0f, poolTime * 40f);
@@ -409,9 +401,13 @@ namespace ARPG
             {
                 pooled = false;
                 drawnPool = null;
-                poolFrames = null;
                 if (edge != null)
                     edge.gameObject.SetActive(false);
+                if (swirlA != null)
+                {
+                    swirlA.gameObject.SetActive(false);
+                    swirlB.gameObject.SetActive(false);
+                }
                 rootRenderer.sprite = TelegraphArt.Rim;
                 if (fill != null)
                     fill.gameObject.SetActive(true);
