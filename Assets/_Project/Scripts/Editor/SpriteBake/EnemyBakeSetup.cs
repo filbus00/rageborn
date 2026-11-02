@@ -72,8 +72,10 @@ namespace ARPG.Editor
         /// <summary>Bodies whose clips are copies of another enemy's (the Cinder Warden moves as the ghoul).</summary>
         static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string>
         {
+            // The forest's new enemies (2026-11-02) are the owner's Gemini pictures made into shapes by Hunyuan3D, rigged
+            // on Mixamo with their own clips: each keeps its own avatar (the cutthroat was on the husk's until then).
             { "cinder_warden", "ghoul" }, { "skeleton", "husk" }, { "cultist", "bandit_archer" },
-            { "cutthroat", "husk" }, { "ember_acolyte", "bandit_archer" }, { "pyre_keeper", "bandit_archer" }, { "carrion_bloat", "ghoul" },
+            { "ember_acolyte", "bandit_archer" }, { "pyre_keeper", "bandit_archer" }, { "carrion_bloat", "ghoul" },
             { "drowned", "husk" }, { "harpooner", "bandit_archer" }, { "drowned_watchman", "ghoul" }, { "skeleton_knight", "ghoul" },
             { "grave_priest", "bandit_archer" }, { "hollowed", "husk" }, { "void_wraith", "husk" }, { "rift_caller", "bandit_archer" },
             { "tidewife", "ghoul" }, { "saint_marrow", "ghoul" }, { "first_watchman", "ghoul" },
@@ -89,6 +91,14 @@ namespace ARPG.Editor
             { "succubus", "bandit_archer" }, { "harpy", "bandit_archer" },
             // The Retcher (2026-10-17): the archer's draw is its heave.
             { "retcher", "bandit_archer" },
+        };
+
+        /// <summary>Weapons the forest's enemies hold, baked into their own sheets (2026-11-02): the figures were drawn
+        /// empty-handed for Mixamo's auto-rigger, the weapons made by ArtSource/tools/props/enemy_weapons.py in
+        /// Art/Models/Weapons and set in the fist from the finger bones.</summary>
+        static readonly Dictionary<string, (string weapon, HumanBodyBones[] hands)> HandPieces = new Dictionary<string, (string, HumanBodyBones[])>
+        {
+            { "cutthroat", ("enemy_curved_dagger", new[] { HumanBodyBones.LeftHand, HumanBodyBones.RightHand }) },
         };
 
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
@@ -199,6 +209,18 @@ namespace ARPG.Editor
                 avatar = AssetDatabase.LoadAllAssetsAtPath($"{RigsRoot}/{donor}/{donor}.fbx").OfType<Avatar>().FirstOrDefault() ?? avatar;
 
             var job = JobFor(folder, name, bodyPath);
+            if (HandPieces.TryGetValue(name, out var held))
+            {
+                var prefab = WildArrowBakeSetup.Held($"Assets/_Project/Art/Models/Weapons/{held.weapon}.fbx");
+                if (prefab == null)
+                    Debug.LogWarning($"{name}: no {held.weapon}.fbx (ArtSource/tools/props/enemy_weapons.py); baked empty-handed.");
+                else
+                    foreach (var hand in held.hands)
+                        job.pieces.Add(new SpriteBakeJob.Piece
+                        {
+                            layer = AppearanceLayer.Weapon, look = held.weapon, prefab = prefab, bone = hand, autoGrip = true, withBody = true,
+                        });
+            }
 
             var set = new SpriteBakeJob.GripSet { grip = "" };
             foreach (var (animation, frames, loop) in Animations)

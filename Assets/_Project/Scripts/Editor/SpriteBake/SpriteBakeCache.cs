@@ -58,6 +58,10 @@ namespace ARPG.Editor
             var text = new StringBuilder(baseKey);
             text.Append('|').Append(grip);
             text.Append('|').Append(piece != null ? Piece(piece) : Body(job.bodies[bodyIndex]));
+            // Pieces drawn in the first body's sheet (an enemy's weapon, 2026-11-02) count in that sheet's key.
+            if (piece == null && bodyIndex == 0)
+                foreach (var held in job.pieces.Where(p => p.withBody))
+                    text.Append('|').Append(Piece(held));
             text.Append('|').Append(Strip(JsonUtility.ToJson(clip)));
             text.Append('|').Append(Asset(clip.clip)).Append('|').Append(Asset(clip.legs));
             // A look's own palette (2026-11-01), by content, only when it has one.

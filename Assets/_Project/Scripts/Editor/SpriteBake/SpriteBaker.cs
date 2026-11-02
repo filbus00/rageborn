@@ -313,7 +313,7 @@ namespace ARPG.Editor
                 yield return (job.bodies[b].layer, job.bodies[b].look ?? "", b, null);
             foreach (var piece in job.pieces)
             {
-                if (piece.grips.Count > 0 && !piece.grips.Contains(grip))
+                if (piece.withBody || (piece.grips.Count > 0 && !piece.grips.Contains(grip)))
                     continue;
                 yield return (piece.layer, piece.look, 0, piece);
             }
@@ -541,9 +541,11 @@ namespace ARPG.Editor
                             : body.Materials[r];
                     }
                 }
+                // A piece drawn with the body (an enemy's weapon) shows in the first body's sheet.
+                var bodySheet = layer.Piece == null && layer.BodyIndex == 0;
                 foreach (var piece in Pieces)
                     foreach (var renderer in piece.Renderers)
-                        renderer.enabled = piece == layer.Piece;
+                        renderer.enabled = piece == layer.Piece || (piece.Definition.withBody && bodySheet);
             }
         }
 
@@ -554,7 +556,7 @@ namespace ARPG.Editor
             foreach (var piece in stage.Pieces)
             {
                 var grips = piece.Definition.grips;
-                if (grips.Count > 0 && !grips.Contains(grip))
+                if (piece.Definition.withBody || (grips.Count > 0 && !grips.Contains(grip)))
                     continue;
                 yield return new LayerTarget { Layer = piece.Definition.layer, Look = piece.Definition.look, BodyIndex = 0, Piece = piece };
             }

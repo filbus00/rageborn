@@ -132,8 +132,9 @@ namespace ARPG.Editor
             return pieces.ToArray();
         }
 
-        // A rigid model with no rig, textured, wrapped in a prefab to hold.
-        static GameObject Held(string path)
+        // A rigid model with no rig, textured, wrapped in a prefab to hold (beside the model since 2026-11-02, so the
+        // enemies' weapons use it too).
+        internal static GameObject Held(string path)
         {
             if (!File.Exists(path))
                 return null;
@@ -149,7 +150,7 @@ namespace ARPG.Editor
             var root = new GameObject(name);
             var instance = (GameObject)PrefabUtility.InstantiatePrefab(model);
             instance.transform.SetParent(root.transform, false);
-            var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{Folder}/{name}.prefab");
+            var prefab = PrefabUtility.SaveAsPrefabAsset(root, $"{Path.GetDirectoryName(path).Replace('\\', '/')}/{name}.prefab");
             Object.DestroyImmediate(root);
             return prefab;
         }

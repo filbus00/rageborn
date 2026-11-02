@@ -41,6 +41,10 @@ for o in meshes:
         bpy.ops.mesh.customdata_custom_splitnormals_clear()
     bpy.ops.object.mode_set(mode="EDIT")
     bpy.ops.mesh.select_all(action="SELECT")
+    # A GLB comes split at every texture seam; joined first (the texture coordinates stay per corner), so the faces are
+    # turned outward as one skin, not as thousands of loose pieces each guessed alone (2026-11-02: black triangles all
+    # over the Cutthroat in Mixamo).
+    bpy.ops.mesh.remove_doubles(threshold=0.00001)
     bpy.ops.mesh.normals_make_consistent(inside=False)
     bpy.ops.object.mode_set(mode="OBJECT")
     for p in o.data.polygons:

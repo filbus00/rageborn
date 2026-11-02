@@ -90,6 +90,9 @@ namespace ARPG.Editor
 
             [Tooltip("The grips this piece is baked for (1h, dual, shield, 2h); empty for every grip.")]
             public List<string> grips = new List<string>();
+
+            [Tooltip("Drawn in the first body's own sheet, not as a layer of its own: an enemy's weapon (2026-11-02, the forest's cutthroat), since an enemy plays one sheet.")]
+            public bool withBody;
         }
 
         [Serializable]
@@ -202,7 +205,8 @@ namespace ARPG.Editor
         public string outputFolder = "Assets/_Project/Resources/Characters/character";
 
         /// <summary>Whether the sheets carry layer and look names (several bodies, a named look, or any piece).</summary>
-        public bool Layered => pieces.Count > 0 || bodies.Count > 1 || (bodies.Count == 1 && !string.IsNullOrEmpty(bodies[0].look));
+        /// Pieces drawn with the body (an enemy's weapon) do not count: they make no sheet of their own.
+        public bool Layered => pieces.Exists(p => !p.withBody) || bodies.Count > 1 || (bodies.Count == 1 && !string.IsNullOrEmpty(bodies[0].look));
 
         /// <summary>
         /// A sheet's name: character, then for a layered character the layer and look, then the grip if named, then the
