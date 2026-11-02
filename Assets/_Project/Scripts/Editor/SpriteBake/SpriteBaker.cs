@@ -242,14 +242,14 @@ namespace ARPG.Editor
                                         {
                                             // A moving action: the hips and legs of the run under the clip's spine, arms and
                                             // head, as an avatar mask would blend them, so it swings while it runs.
-                                            clip.legs.SampleAnimation(body.Root, legTimes[frame]);
+                                            MixamoImport.Sample(clip.legs, body.Root, legTimes[frame]);
                                             body.CaptureLowerBody();
                                             body.RestPose.Restore();
-                                            clip.clip.SampleAnimation(body.Root, times[frame]);
+                                            MixamoImport.Sample(clip.clip, body.Root, times[frame]);
                                             body.RestoreLowerBody();
                                         }
                                         else
-                                            clip.clip.SampleAnimation(body.Root, times[frame]);
+                                            MixamoImport.Sample(clip.clip, body.Root, times[frame]);
                                         body.Root.transform.localPosition = body.RootPosition;
                                         body.Root.transform.localRotation = Quaternion.identity;
                                         // A one-shot keeps its hips over the ground spot they start on. On a humanoid the
@@ -786,7 +786,7 @@ namespace ARPG.Editor
             for (var i = 0; i < count; i++)
             {
                 body.RestPose.Restore();
-                clip.SampleAnimation(body.Root, clip.length * i / (count - 1));
+                MixamoImport.Sample(clip, body.Root, clip.length * i / (count - 1));
                 body.Root.transform.localPosition = body.RootPosition;
                 body.Root.transform.localRotation = Quaternion.identity;
                 samples[0][i] = feet[0].position;

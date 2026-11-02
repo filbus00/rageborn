@@ -31,7 +31,7 @@ namespace ARPG.Editor
                 var previous = new Vector3[bones.Length];
                 for (var i = 0; i <= count; i++)
                 {
-                    clip.SampleAnimation(body, clip.length * i / count);
+                    Sample(clip, body, clip.length * i / count);
                     for (var b = 0; b < bones.Length; b++)
                     {
                         var position = body.transform.InverseTransformPoint(bones[b].position);
@@ -46,6 +46,22 @@ namespace ARPG.Editor
             {
                 Object.DestroyImmediate(body);
             }
+        }
+
+        /// <summary>
+        /// Poses a body at a time of a clip. A generic clip goes on with the body's avatar taken off for the moment
+        /// (2026-11-02, the Wild Arrow's clips on her own skeleton): sampled through a humanoid Animator, a generic clip left
+        /// her crumpled, her head 0.4 m off the ground. Taking the avatar off and putting it back keeps the pose.
+        /// </summary>
+        internal static void Sample(AnimationClip clip, GameObject body, float time)
+        {
+            var animator = clip.humanMotion ? null : body.GetComponent<Animator>();
+            var avatar = animator != null ? animator.avatar : null;
+            if (avatar != null)
+                animator.avatar = null;
+            clip.SampleAnimation(body, time);
+            if (avatar != null)
+                animator.avatar = avatar;
         }
 
         internal static void ConfigureBody(string path, string albedoPath = null)
@@ -115,6 +131,27 @@ namespace ARPG.Editor
                 clips.Add(copy);
             }
             importer.clipAnimations = clips.ToArray();
+            importer.SaveAndReimport();
+            return AssetDatabase.LoadAllAssetsAtPath(path).OfType<AnimationClip>().FirstOrDefault(c => c.name == clipName);
+        }
+
+        // Sets an animation file made on the body's own skeleton up as a generic clip (2026-11-02, the Wild Arrow's clips
+        // from ArtSource/tools/retarget_pack.py): it poses her bones exactly as made. Through a humanoid avatar the pack's
+        // leg twist was lost and her toes pointed inward.
+        internal static AnimationClip ConfigureGenericAnimation(string path, bool loop, string clipName)
+        {
+            var importer = (ModelImporter)AssetImporter.GetAtPath(path);
+            importer.animationType = ModelImporterAnimationType.Generic;
+            importer.avatarSetup = ModelImporterAvatarSetup.NoAvatar;
+            importer.materialImportMode = ModelImporterMaterialImportMode.None;
+            // The file holds the armature alone; kept as a node, the clip's paths start "Armature/" as the body's do.
+            importer.preserveHierarchy = true;
+            var clips = importer.clipAnimations.Length > 0 ? importer.clipAnimations.ToList() : importer.defaultClipAnimations.ToList();
+            var own = clips[0];
+            own.name = clipName;
+            own.loopTime = loop;
+            clips[0] = own;
+            importer.clipAnimations = clips.Take(1).ToArray();
             importer.SaveAndReimport();
             return AssetDatabase.LoadAllAssetsAtPath(path).OfType<AnimationClip>().FirstOrDefault(c => c.name == clipName);
         }

@@ -265,10 +265,6 @@ namespace ARPG
         // Null when none exists.
         string ActionSheetFor(string baseName, bool moving, Vector2 velocity)
         {
-            // Fighting on the move she plays the aiming walks whole, her shots and skills included (the owner,
-            // 2026-11-02): no draw over walking legs.
-            if (moving && HasAimWalk)
-                return null;
             if (moving)
             {
                 // Judged from the stick, which is steady, rather than the velocity, which enemies bumping the character
@@ -418,7 +414,9 @@ namespace ARPG
             var fighting = Time.time - lastCombatTime < CombatMemorySeconds && !player.Disengaged;
             // Fighting, she walks aiming at her target, her legs going the way she moves (the owner, 2026-11-02: "you
             // need to use the standing aim animations ... when she is engaging enemies"). Judged from the stick, which is
-            // steady; the legs keep their set a little past each edge (LocomotionRules.LegsFor).
+            // steady; the legs keep their set a little past each edge (LocomotionRules.LegsFor). Each shot still draws
+            // over the same walk's legs (the _move sheets; the owner, the same day: "make it so that does a separate draw
+            // each shot it looks really wierd now").
             if (fighting && HasAimWalk)
             {
                 FollowAimTarget();

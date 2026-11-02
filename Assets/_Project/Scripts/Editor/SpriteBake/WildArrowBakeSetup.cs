@@ -340,10 +340,12 @@ namespace ARPG.Editor
 
         /// <summary>The avatar her clips share (2026-10-13): a copy of the Mixamo idle, whose hierarchy is the clips' own (the
         /// file's root, then the hips). Her body, our own since then and exported from Blender, has an "Armature" node over
-        /// the hips, so the clips can no longer copy its avatar; the humanoid retargets them onto it instead.</summary>
+        /// the hips, so the clips can no longer copy its avatar; the humanoid retargets them onto it instead. Since 2026-11-02
+        /// her skeleton at rest (ArtSource/tools/retarget_pack.py), and her own clips are generic, so only the stand-in
+        /// path reads it.</summary>
         const string ClipAvatarPath = EnemyBakeSetup.RigsRoot + "/wild_arrow_rig/wild_arrow_rig.fbx";
 
-        // Her own model and the longbow pack's clips, configured as humanoid clips on the clips' avatar.
+        // Her own model and the longbow pack's clips, on her own skeleton, configured as generic clips (2026-11-02).
         static SpriteBakeJob.GripSet OwnClips(string bodyPath)
         {
             MixamoImport.ConfigureBody(ClipAvatarPath);
@@ -354,7 +356,8 @@ namespace ARPG.Editor
             foreach (var (name, frames, loop) in OwnAnimations)
             {
                 var path = $"{Folder}/{Character}_{name}.fbx";
-                var clip = File.Exists(path) ? MixamoImport.ConfigureAnimation(path, loop, avatar, name, false) : null;
+                // Generic: the clips are on her own skeleton (ArtSource/tools/retarget_pack.py, 2026-11-02).
+                var clip = File.Exists(path) ? MixamoImport.ConfigureGenericAnimation(path, loop, name) : null;
                 if (clip == null)
                 {
                     Debug.LogWarning($"[ARPG] No clip for the Wild Arrow's {name} in {path}; left out.");
@@ -373,7 +376,7 @@ namespace ARPG.Editor
             foreach (var (file, suffix) in OwnLegs)
             {
                 var path = $"{Folder}/{Character}_{file}.fbx";
-                var legs = File.Exists(path) ? MixamoImport.ConfigureAnimation(path, true, avatar, file, false) : null;
+                var legs = File.Exists(path) ? MixamoImport.ConfigureGenericAnimation(path, true, file) : null;
                 if (legs == null)
                 {
                     Debug.LogWarning($"[ARPG] No legs for the Wild Arrow's moving shots in {path}; left out.");

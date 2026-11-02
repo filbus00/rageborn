@@ -1498,7 +1498,30 @@ def squeeze_her_uvs(body):
         loop.uv = (loop.uv[0], 1.0 / STRIP + loop.uv[1] * (1 - 1.0 / STRIP))
 
 
+def pose_as_rest(arm, objects):
+    """Makes the pose her Mixamo file holds (the T-pose, frame 1) the rest pose of the armature and every mesh
+    (2026-11-02, the owner: "Har feet are pointing inward"): her model rests in an A-pose, and exported so, Unity built
+    each body's humanoid avatar from the A-pose, so the pack's clips bent her knees together and turned her toes in by
+    about 30 degrees. Everything is built at rest first (her measures, the gear), then posed and frozen here."""
+    bpy.context.view_layer.update()
+    meshes = [o for o in objects if o.type == "MESH"]
+    for o in meshes:
+        bpy.context.view_layer.objects.active = o
+        for m in [m for m in o.modifiers if m.type == "ARMATURE"]:
+            bpy.ops.object.modifier_apply(modifier=m.name)
+    bpy.context.view_layer.objects.active = arm
+    bpy.ops.object.mode_set(mode="POSE")
+    bpy.ops.pose.select_all(action="SELECT")
+    bpy.ops.pose.armature_apply(selected=False)
+    bpy.ops.object.mode_set(mode="OBJECT")
+    if arm.animation_data:
+        arm.animation_data.action = None
+    for o in meshes:
+        o.modifiers.new("Armature", "ARMATURE").object = arm
+
+
 def export(arm, objects, path):
+    pose_as_rest(arm, objects)
     bpy.ops.object.select_all(action="DESELECT")
     arm.select_set(True)
     for o in objects:
