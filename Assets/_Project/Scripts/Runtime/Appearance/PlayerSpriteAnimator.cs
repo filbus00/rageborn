@@ -265,6 +265,10 @@ namespace ARPG
         // Null when none exists.
         string ActionSheetFor(string baseName, bool moving, Vector2 velocity)
         {
+            // Fighting on the move she plays the aiming walks whole, her shots and skills included (the owner,
+            // 2026-11-02): no draw over walking legs.
+            if (moving && HasAimWalk)
+                return null;
             if (moving)
             {
                 // Judged from the stick, which is steady, rather than the velocity, which enemies bumping the character
@@ -283,6 +287,18 @@ namespace ARPG
             }
             var name = LocomotionRules.ActionSheet(baseName, moving);
             return sprite.Has(name) ? name : null;
+        }
+
+        bool HasAimWalk => sprite != null && sprite.Has(LocomotionRules.AimWalkForward);
+
+        // Walking aimed, she keeps facing the enemy her last shot went at while it lives.
+        void FollowAimTarget()
+        {
+            if (swingTarget == null || !swingTarget.IsAlive)
+                return;
+            var toTarget = swingTarget.GroundPosition - IsoMath.WorldToGround(player.transform.position);
+            if (toTarget.sqrMagnitude > 1e-6f)
+                aim = toTarget.normalized;
         }
 
         // The basic swing keeps facing its target as both move, so a circling fight never swings at the air where the
@@ -399,8 +415,25 @@ namespace ARPG
             }
             stillFor = 0f;
 
-            // Retreating from what it fights, the character faces it and runs backward.
             var fighting = Time.time - lastCombatTime < CombatMemorySeconds && !player.Disengaged;
+            // Fighting, she walks aiming at her target, her legs going the way she moves (the owner, 2026-11-02: "you
+            // need to use the standing aim animations ... when she is engaging enemies"). Judged from the stick, which is
+            // steady; the legs keep their set a little past each edge (LocomotionRules.LegsFor).
+            if (fighting && HasAimWalk)
+            {
+                FollowAimTarget();
+                var motion = player.InputDirection.sqrMagnitude > 0f ? player.InputDirection : velocity;
+                var legs = LocomotionRules.LegsFor(aim, motion, LocomotionRules.AimWalkLegsOf(sprite.Animation));
+                var sheet = LocomotionRules.AimWalkSheet(legs);
+                if (!sprite.Has(sheet))
+                    sheet = LocomotionRules.AimWalkForward;
+                sprite.FaceRow(LocomotionRules.ChooseRow(sprite.Row, aim, sprite.DirectionCount));
+                sprite.Loop(sheet);
+                sprite.Rate = LocomotionRules.AimWalkRate(speed, sprite.CurrentRecordedSpeed);
+                return;
+            }
+
+            // Retreating from what it fights, the character faces it and runs backward.
             if (fighting && LocomotionRules.IsBackpedal(aim, velocity, sprite.Animation == "run_back") && sprite.Has("run_back"))
             {
                 sprite.FaceRow(LocomotionRules.ChooseRow(sprite.Row, aim, sprite.DirectionCount));

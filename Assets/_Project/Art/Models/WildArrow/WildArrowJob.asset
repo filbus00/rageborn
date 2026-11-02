@@ -491,6 +491,50 @@ MonoBehaviour:
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
       offHandOnly: 0
+    - name: walk_aim_forward
+      clip: {fileID: -203655887218126122, guid: 49a60cd8701b84721ac25ab479fcfc6d, type: 3}
+      frames: 16
+      loop: 1
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.2
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: walk_aim_back
+      clip: {fileID: -203655887218126122, guid: 12934de583af840c0a7d72730cbe3cf5, type: 3}
+      frames: 16
+      loop: 1
+      playbackSeconds: 1.4666667
+      start: 0
+      end: 1.4666667
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: walk_aim_right
+      clip: {fileID: -203655887218126122, guid: 9197dadeab2764ac2bfe8ca4d8a5963b, type: 3}
+      frames: 16
+      loop: 1
+      playbackSeconds: 1.3000001
+      start: 0
+      end: 1.3000001
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: walk_aim_left
+      clip: {fileID: -203655887218126122, guid: f6e9f6644a72b42218406fb3803971c7, type: 3}
+      frames: 16
+      loop: 1
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.2
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
     - name: attack_move
       clip: {fileID: -203655887218126122, guid: 13b6a6897f814461dab5ea1b31d0bc18, type: 3}
       frames: 15

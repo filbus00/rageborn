@@ -48,6 +48,12 @@ namespace ARPG.Editor
             ("death", 16, false),
             // The dodge's dive (the owner, 2026-10-10): the pack's Standing Dive Forward, whole, left out until it is there.
             ("dive", 12, false),
+            // The aiming walks, whole: what she plays moving in a fight (the owner, 2026-11-02). Also the legs under the
+            // moving shots below.
+            ("walk_aim_forward", 16, true),
+            ("walk_aim_back", 16, true),
+            ("walk_aim_right", 16, true),
+            ("walk_aim_left", 16, true),
         };
 
         // The actions that get moving variants, over her aiming walk (forward, back and the two sides).

@@ -163,5 +163,15 @@ namespace ARPG.Tests
             Assert.IsFalse(LocomotionRules.Walks(LocomotionRules.WalkBelow, false), "a run does not drop to a walk at the edge");
             Assert.IsTrue(LocomotionRules.Walks(LocomotionRules.WalkBelow, true), "a walk does not jump to a run at the edge");
         }
+
+        [Test]
+        public void AimingWalks_FollowHerLegs_AndReadBack()
+        {
+            // The owner, 2026-11-02: "you need to use the standing aim animations ... when she is engaging enemies".
+            foreach (LocomotionRules.ActionLegs legs in System.Enum.GetValues(typeof(LocomotionRules.ActionLegs)))
+                Assert.AreEqual(legs, LocomotionRules.AimWalkLegsOf(LocomotionRules.AimWalkSheet(legs)));
+            Assert.AreEqual("walk_aim_back", LocomotionRules.AimWalkSheet(LocomotionRules.LegsFor(Vector2.right, Vector2.left)));
+            Assert.AreEqual(LocomotionRules.ActionLegs.Forward, LocomotionRules.AimWalkLegsOf("run"));
+        }
     }
 }

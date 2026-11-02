@@ -127,6 +127,32 @@ namespace ARPG
             legs == ActionLegs.Back ? MovingBackSuffix : legs == ActionLegs.StrafeRight ? MovingRightSuffix
             : legs == ActionLegs.StrafeLeft ? MovingLeftSuffix : MovingSuffix;
 
+        /// <summary>The aiming walks (2026-11-02, the owner: "you need to use the standing aim animations ... not for running
+        /// but when she is engaging enemies"): the pack's Standing Aim Walk forward, back, right and left, whole, her bow
+        /// drawn at her target while her legs go the way she moves.</summary>
+        public const string AimWalkForward = "walk_aim_forward";
+        public const string AimWalkBack = "walk_aim_back";
+        public const string AimWalkRight = "walk_aim_right";
+        public const string AimWalkLeft = "walk_aim_left";
+
+        /// <summary>The fastest an aiming walk plays: it was recorded at about 1 a second and she walks about 2.2 a second
+        /// while firing (more between shots), so the usual <see cref="MaxRate"/> left her feet sliding.</summary>
+        public const float AimWalkMaxRate = 3f;
+
+        /// <summary>How fast to play an aiming walk at this speed.</summary>
+        public static float AimWalkRate(float speed, float recordedSpeed) =>
+            recordedSpeed <= 0f ? 1f : Mathf.Clamp(speed / recordedSpeed, MinRate, AimWalkMaxRate);
+
+        /// <summary>The aiming walk for a set of legs.</summary>
+        public static string AimWalkSheet(ActionLegs legs) =>
+            legs == ActionLegs.Back ? AimWalkBack : legs == ActionLegs.StrafeRight ? AimWalkRight
+            : legs == ActionLegs.StrafeLeft ? AimWalkLeft : AimWalkForward;
+
+        /// <summary>The legs of a playing aiming walk; forward for any other sheet.</summary>
+        public static ActionLegs AimWalkLegsOf(string sheet) =>
+            sheet == AimWalkBack ? ActionLegs.Back : sheet == AimWalkRight ? ActionLegs.StrafeRight
+            : sheet == AimWalkLeft ? ActionLegs.StrafeLeft : ActionLegs.Forward;
+
         /// <summary>The legs a playing sheet uses, read from its name.</summary>
         public static ActionLegs LegsOf(string sheet) =>
             sheet == null ? ActionLegs.Forward
