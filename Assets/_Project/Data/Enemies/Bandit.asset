@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ARPG.Runtime::ARPG.EnemyDefinition
   level: 1
   rank: 0
-  archetype: 0
+  archetype: 3
   slamRadius: 2
   preferredRange: 5
   projectileSpeed: 9
@@ -25,7 +25,7 @@ MonoBehaviour:
   deathSeconds: 0.45
   attackRange: 1
   attackWindupSeconds: 0.3
-  attackRecoverSeconds: 1.2
+  attackRecoverSeconds: 1
   damageMultiplier: 1
   moveSpeed: 3.8
   aggroRange: 7
@@ -35,15 +35,16 @@ MonoBehaviour:
   separationRadius: 0.8
   visualScale: 1
   bodySprite: {fileID: 0}
-  lungeDistance: 4
-  lungeMinRange: 3
-  lungeSpeed: 12
-  lungeWindupSeconds: 0.5
-  lungeCooldownSeconds: 4
+  lungeDistance: 4.5
+  lungeMinRange: 2.5
+  lungeSpeed: 10
+  lungeWindupSeconds: 0.7
+  lungeCooldownSeconds: 3
+  dashIntoStrikes: 1
   strikes: 2
-  strikeGapSeconds: 0.25
-  retreatDistance: 2
-  retreatSeconds: 1
+  strikeGapSeconds: 0.3
+  retreatDistance: 2.5
+  retreatSeconds: 0.6
   burnSeconds: 3
   burnHitsPerSecond: 0.5
   auraRadius: 5

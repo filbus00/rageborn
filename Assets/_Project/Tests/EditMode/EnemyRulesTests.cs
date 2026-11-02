@@ -63,5 +63,13 @@ namespace ARPG.Tests
             Assert.IsTrue(EnemyRules.InView(new Vector2(0f, -10.6f), half));
             Assert.IsFalse(EnemyRules.InView(new Vector2(0f, -11f), half));
         }
+
+        [Test]
+        public void ACutthroatsDash_EndsInHisStrikes_OnceHeIsInReach()
+        {
+            // The owner, 2026-11-02: dash in, slash twice, roll back out.
+            Assert.IsTrue(EnemyRules.DashReaches(1.2f, 1f, 0.3f));
+            Assert.IsFalse(EnemyRules.DashReaches(1.5f, 1f, 0.3f));
+        }
     }
 }

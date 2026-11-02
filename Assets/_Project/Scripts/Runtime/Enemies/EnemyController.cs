@@ -167,6 +167,8 @@ namespace ARPG
         bool dashHit;
         int strikesLeft;
         float recoverElapsed;
+        // Backing off after its strikes, not after a dash that missed (2026-11-02).
+        bool retreating;
         bool burstDone;
         float healTimer;
         readonly System.Collections.Generic.List<EnemyController> healBuffer = new System.Collections.Generic.List<EnemyController>(16);
@@ -325,6 +327,7 @@ namespace ARPG
             dashHit = false;
             strikesLeft = 0;
             recoverElapsed = 0f;
+            retreating = false;
             burstDone = false;
             healTimer = data.HealEverySeconds;
             life = MaxLife;
@@ -552,6 +555,7 @@ namespace ARPG
                             State = EnemyState.Recover;
                             stateTimer = EffectiveAttackRecoverSeconds;
                             recoverElapsed = 0f;
+                            retreating = false;
                             SetVisuals(1f, 1f);
                             return;
                         }
@@ -574,6 +578,7 @@ namespace ARPG
                         State = EnemyState.Recover;
                         stateTimer = EffectiveAttackRecoverSeconds;
                         recoverElapsed = 0f;
+                        retreating = definition.RetreatSeconds > 0f;
                         SetVisuals(1f, 1f);
                     }
                     Hold(world, playerGround, deltaTime);
@@ -589,7 +594,7 @@ namespace ARPG
                     if (definition.Archetype == EnemyArchetype.Archer || definition.Archetype == EnemyArchetype.Caster ||
                         definition.Archetype == EnemyArchetype.Support)
                         Reposition(world, playerGround, distance, world.Nav.HasLineOfSight(ground, playerGround), deltaTime);
-                    else if (definition.RetreatSeconds > 0f && recoverElapsed <= definition.RetreatSeconds)
+                    else if (retreating && recoverElapsed <= definition.RetreatSeconds)
                         Retreat(world, playerGround, distance, deltaTime);
                     else
                         Hold(world, playerGround, deltaTime);
@@ -870,11 +875,29 @@ namespace ARPG
             var speed = smoothedVelocity.magnitude;
             var count = animationSet.DirectionCount;
 
-            if (castTimer > 0f && animationSet.Attack != null)
+            if (castTimer > 0f && (animationSet.Throw ?? animationSet.Attack) != null)
             {
+                // A special plays its throw when the type has one (the Cutthroat's knife), else the attack.
+                var cast = animationSet.Throw ?? animationSet.Attack;
                 Face(attackAim, count);
                 var progress = EnemyAnimationRules.AttackProgress(false, castSeconds - castTimer, castSeconds);
-                ShowFrame(animationSet.Attack, EnemyAnimationRules.OneShotFrame(progress, animationSet.Attack.Frames));
+                ShowFrame(cast, EnemyAnimationRules.OneShotFrame(progress, cast.Frames));
+                return;
+            }
+            // The Cutthroat's own moves (2026-11-02): crouched ready through the lunge's wind-up, his roll along the dash,
+            // his backflip as he backs off after his strikes.
+            if (animationSet.Dash != null && (lungeAttack || dashLeft > 0f))
+            {
+                Face(attackAim, count);
+                var progress = lungeAttack ? 0f : 1f - dashLeft / Mathf.Max(definition.LungeDistance, 0.01f);
+                ShowFrame(animationSet.Dash, EnemyAnimationRules.OneShotFrame(progress, animationSet.Dash.Frames));
+                return;
+            }
+            if (animationSet.RollBack != null && State == EnemyState.Recover && retreating && recoverElapsed <= definition.RetreatSeconds)
+            {
+                Face(world.PlayerGround - ground, count);
+                var progress = recoverElapsed / Mathf.Max(definition.RetreatSeconds, 0.01f);
+                ShowFrame(animationSet.RollBack, EnemyAnimationRules.OneShotFrame(progress, animationSet.RollBack.Frames));
                 return;
             }
             if ((State == EnemyState.Attack || State == EnemyState.Recover) && animationSet.Attack != null)
@@ -1119,6 +1142,20 @@ namespace ARPG
             dashLeft -= step;
             if ((ground - before).sqrMagnitude < step * step * 0.25f)
                 dashLeft = 0f;
+            // A cutthroat's dash bites nothing: where it brings him in reach, or where it ends in reach, his strikes start.
+            if (definition.DashIntoStrikes)
+            {
+                if (world.Player == null || !world.Player.IsAlive)
+                    return;
+                var reach = EnemyRules.DashReaches(Vector2.Distance(ground, world.PlayerGround), definition.AttackRange, definition.BodyRadius);
+                if (reach || dashLeft <= 0f)
+                {
+                    dashLeft = 0f;
+                    if (reach)
+                        BeginAttack(world, world.PlayerGround);
+                }
+                return;
+            }
             if (dashHit || world.Player == null || !world.Player.IsAlive)
                 return;
             if (Vector2.Distance(ground, playerGround) > definition.BodyRadius + definition.StopDistance + EnemyRules.LungeHitSlack)

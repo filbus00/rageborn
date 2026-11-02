@@ -130,6 +130,9 @@ namespace ARPG
         [SerializeField, Min(0f)] float lungeCooldownSeconds = 4f;
 
         [Header("Strikes and backing off (the Cutthroat)")]
+        [Tooltip("A charger whose lunge bites nothing: it closes the gap and goes straight into its strikes where it lands, " +
+                 "then backs off (the forest's Cutthroat, 2026-11-02: dash in, slash twice, roll back out).")]
+        [SerializeField] bool dashIntoStrikes;
         [SerializeField, Min(1)] int strikes = 1;
         [SerializeField, Min(0f)] float strikeGapSeconds = 0.25f;
         [SerializeField, Min(0f)] float retreatDistance;
@@ -210,6 +213,7 @@ namespace ARPG
         public float LungeSpeed => lungeSpeed;
         public float LungeWindupSeconds => lungeWindupSeconds;
         public float LungeCooldownSeconds => lungeCooldownSeconds;
+        public bool DashIntoStrikes => dashIntoStrikes;
         public int Strikes => Mathf.Max(1, strikes);
         public float StrikeGapSeconds => strikeGapSeconds;
         public float RetreatDistance => retreatDistance;

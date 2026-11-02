@@ -109,5 +109,9 @@ namespace ARPG
         public static float ProjectileSpeedFactor(EnemyRank rank) => rank == EnemyRank.Boss ? 1f : ProjectileSpeed;
 
         public static float ProjectileDamageFactor(EnemyRank rank) => rank == EnemyRank.Boss ? 1f : ProjectileDamage;
+
+        /// <summary>Whether a dash that goes into strikes (<see cref="EnemyDefinition.DashIntoStrikes"/>) has brought it in
+        /// reach: its strikes start there, ending the dash.</summary>
+        public static bool DashReaches(float distance, float attackRange, float bodyRadius) => distance <= attackRange + bodyRadius;
     }
 }

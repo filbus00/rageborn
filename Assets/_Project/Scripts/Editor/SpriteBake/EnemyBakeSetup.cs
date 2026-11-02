@@ -28,6 +28,9 @@ namespace ARPG.Editor
         static readonly (string name, int frames, bool loop)[] Animations =
         {
             ("idle", 12, true), ("run", 10, true), ("attack", 12, false), ("hit", 4, false), ("death", 12, false),
+            // Moves of an enemy's own, baked when its folder has them (the forest's Cutthroat, 2026-11-02): the dash of a
+            // lunge, the roll back after its strikes, the throw of a special (EnemyAnimationSet).
+            ("dash", 10, false), ("roll_back", 10, false), ("throw", 10, false),
         };
 
         /// <summary>Heights in final pixels at 64 per unit (the brief, 5.2 and 15.3, halved on 2026-09-28); others 80.</summary>

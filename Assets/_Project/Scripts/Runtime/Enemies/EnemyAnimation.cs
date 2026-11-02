@@ -11,6 +11,10 @@ namespace ARPG
     public sealed class EnemyAnimationSet
     {
         public CharacterSheet Idle, Run, Attack, Hit, Death;
+
+        /// <summary>Moves of its own, when baked (the forest's Cutthroat, 2026-11-02): the dash of a lunge, the roll back
+        /// after its strikes, the throw of a special. Null plays the attack, or nothing, as before.</summary>
+        public CharacterSheet Dash, RollBack, Throw;
         public float IdleSeconds, RunSeconds, AttackSeconds;
 
         /// <summary>The ground speed the run looks right at (from the bake), or 0 when unknown.</summary>
@@ -49,6 +53,9 @@ namespace ARPG
                     Attack = Sheet("attack"),
                     Hit = Sheet("hit"),
                     Death = Sheet("death"),
+                    Dash = Sheet("dash"),
+                    RollBack = Sheet("roll_back"),
+                    Throw = Sheet("throw"),
                 };
                 set.IdleSeconds = Seconds("idle", set.Idle);
                 set.RunSeconds = Seconds("run", set.Run);
