@@ -3,6 +3,7 @@
 # - dungeon (2026-10-18: "check the latest mp3 in the downloads folder, add is music in the dungeon. Try and make it loop
 #   seamlessly"): "Liturgy of the Deep", a quiet build-up (to about 25 s), then a 64.0 s section played twice, ending in
 #   a fade at about 113 s. The loop is one pass of that section, cut at 44.0 s where its two passes match best.
+# - dungeon since 2026-11-03, every level a forest: "Beneath the Bramble Gate", an 84.0 s loop from 51.25 s.
 # - town (2026-10-19: "check the laste mp3 in downloads, make it the new town music. Make it loop seamlessly"): "Buried
 #   Sanctum", phrases of 12.8 s, a quiet opening (to about 10 s) and a fade from about 113 s. The loop is the 89.6 s
 #   (seven phrases) from 17.5 s, where the music 89.6 s later matches best.
@@ -22,7 +23,10 @@ CROSSFADE = 1.5    # seconds
 # Source in ArtSource/audio/owner, the game's track, where the loop starts and how long it is (seconds), and its
 # loudness (RMS dB, about the generated loop's it replaces).
 TRACKS = [
-    ("Liturgy of the Deep.mp3", "dungeon", 44.0, 64.0, -15.0),
+    # The forest's music since 2026-11-03 (the owner: "change the forest music for the latest mp3 in downloads"): "Beneath
+    # the Bramble Gate", 181 s; the music matches itself 84.0 s later best from 51.25 s (0.69 against 0.66 at 49 s).
+    # "Liturgy of the Deep" (44.0, 64.0) was the dungeon's before; its source stays in ArtSource/audio/owner.
+    ("Beneath the Bramble Gate.mp3", "dungeon", 51.25, 84.0, -15.0),
     ("Buried Sanctum.mp3", "town", 17.5, 89.6, -15.0),
 ]
 
