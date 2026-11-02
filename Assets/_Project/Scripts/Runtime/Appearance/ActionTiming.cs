@@ -5,8 +5,8 @@ namespace ARPG
     /// <summary>
     /// How a one-shot's frames spread over its time (2026-11-01, the owner: "I feel that the animations are off"): even, as
     /// baked; a snap for her shots and skills, racing through the draw and the loose (she fires when it starts) and
-    /// settling in the follow-through; a burst for the dive, matching its burst of speed easing out
-    /// (<see cref="DodgeRules.DiveSpeed"/>). Pure.
+    /// settling in the follow-through; a burst (the dive's until 2026-11-02, when her new dive's roll needed its frames
+    /// spread evenly over the travel). Pure.
     /// </summary>
     public enum ActionShape { Even, Snap, Burst }
 

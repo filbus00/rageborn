@@ -332,7 +332,11 @@ namespace ARPG
                     inAction = false;
                     action = null;
                     sprite.Face(velocity);
-                    sprite.Play("dive", false, DodgeRules.AnimationSeconds, ActionShape.Burst);
+                    // Even (2026-11-02, the owner: "after rolling, she slides for a while without moving her legs"): her
+                    // new dive's roll fills three quarters of its frames, and on a burst it was over in a third of the
+                    // travel, so she stood up while still gliding. Even, the roll lasts the travel and she gets up as
+                    // she stops.
+                    sprite.Play("dive", false, DodgeRules.AnimationSeconds, ActionShape.Even);
                 }
                 return;
             }
