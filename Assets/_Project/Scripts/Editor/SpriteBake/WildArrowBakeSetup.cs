@@ -484,26 +484,22 @@ namespace ARPG.Editor
             return job;
         }
 
-        // Her palettes by look (2026-11-01, ArtSource/tools/her_palettes.sh): the base for her own clothes and every look
-        // not listed, one per armour tier, its helm taking the same.
+        // Her palettes by look (2026-11-01, ArtSource/tools/her_palettes.sh) were dropped on 2026-11-02: her new model wears
+        // crimson in its own texture, and the gear rebuilt after the owner's sheets carries each tier's colours in the
+        // strip. Only the hide quiver's dimmed feathers remain.
         const string PaletteFolder = Folder + "/Palettes";
-        static readonly (string look, string palette)[] TierPalettes =
-        {
-            ("brigand", "brigand"), ("scale", "scale"), ("barbute", "scale"), ("plate", "plate"), ("visored", "plate"),
-            ("knight", "knight"), ("horned", "knight"),
-        };
 
         /// <summary>
         /// Her reworked look (2026-11-01, the owner: "I want the character to be more distinct. To have a clearer silhouette
         /// and for the gear to be noticable"; crimson her colour): a heroic build (the head 1.3, the hands and so the bow
-        /// 1.12, the quiver 1.2), harder light, a light edge inside the outline, the crimson palette with darker trousers,
-        /// each armour tier its own metal and trims, and the hide quiver's feathers dimmed.
+        /// 1.12, the quiver 1.2), harder light, a light edge inside the outline, and the hide quiver's feathers dimmed.
         /// </summary>
         static void Rework(SpriteBakeJob job)
         {
             job.boneScales = new List<SpriteBakeJob.BoneScale>
             {
-                new SpriteBakeJob.BoneScale { bone = HumanBodyBones.Head, scale = 1.3f },
+                // 1.15 on her new model (2026-11-02): her head is in proportion already, and at 1.3 a helm was a ball.
+                new SpriteBakeJob.BoneScale { bone = HumanBodyBones.Head, scale = 1.15f },
                 // The bow grows with her hand: kept near its size, a long bow held level is a stick across her.
                 new SpriteBakeJob.BoneScale { bone = HumanBodyBones.LeftHand, scale = 1.12f },
                 new SpriteBakeJob.BoneScale { bone = HumanBodyBones.RightHand, scale = 1.12f },
@@ -511,22 +507,8 @@ namespace ARPG.Editor
             job.pieceScale = 1.2f;
             job.lightContrast = 1.35f;
             job.edgeHighlight = true;
-            var gear = AssetDatabase.LoadAssetAtPath<Texture2D>(GearAlbedoPath);
             job.textureSwaps = new List<SpriteBakeJob.TextureSwap>();
             job.lookSwaps = new List<SpriteBakeJob.LookSwap>();
-            var basePalette = AssetDatabase.LoadAssetAtPath<Texture2D>(PaletteFolder + "/base.png");
-            if (gear == null || basePalette == null)
-            {
-                Debug.LogWarning($"[ARPG] No palettes in {PaletteFolder}: run ArtSource/tools/her_palettes.sh. Baked in her own colours.");
-                return;
-            }
-            job.textureSwaps.Add(new SpriteBakeJob.TextureSwap { from = gear, to = basePalette });
-            foreach (var (look, palette) in TierPalettes)
-            {
-                var texture = AssetDatabase.LoadAssetAtPath<Texture2D>($"{PaletteFolder}/{palette}.png");
-                if (texture != null)
-                    job.lookSwaps.Add(new SpriteBakeJob.LookSwap { look = look, from = gear, to = texture });
-            }
             // The quiver's pale feathers dimmed: they showed as a white blob on her back.
             var quiver = AssetDatabase.LoadAssetAtPath<Texture2D>(Folder + "/" + Character + "_offhand_hide_quiver_albedo.png");
             var dimmed = AssetDatabase.LoadAssetAtPath<Texture2D>(PaletteFolder + "/hide_quiver_dim.png");

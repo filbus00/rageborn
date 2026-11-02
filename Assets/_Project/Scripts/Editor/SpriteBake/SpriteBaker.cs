@@ -740,6 +740,17 @@ namespace ARPG.Editor
             var little = animator.GetBoneTransform(left ? HumanBodyBones.LeftLittleProximal : HumanBodyBones.RightLittleProximal) ??
                          animator.GetBoneTransform(left ? HumanBodyBones.LeftRingProximal : HumanBodyBones.RightRingProximal);
             var middle = animator.GetBoneTransform(left ? HumanBodyBones.LeftMiddleProximal : HumanBodyBones.RightMiddleProximal);
+            var thumb = animator.GetBoneTransform(left ? HumanBodyBones.LeftThumbProximal : HumanBodyBones.RightThumbProximal);
+            if (index != null && thumb != null && (little == null || middle == null))
+            {
+                // A rig with only a thumb and an index finger (her Hunyuan3D body on Mixamo, 2026-11-02): the knuckle line
+                // runs across the palm toward the thumb's side, the grip along the index finger.
+                var along = (index.position - hand.position).normalized;
+                var side = Vector3.ProjectOnPlane(thumb.position - hand.position, along).normalized;
+                weapon.SetPositionAndRotation(Vector3.Lerp(hand.position, index.position, 0.6f), Quaternion.LookRotation(along, side));
+                weapon.localScale = Vector3.one * (body.Root.transform.lossyScale.x / Mathf.Max(hand.lossyScale.x, 1e-6f)) * piece.scale;
+                return;
+            }
             if (index == null || little == null || middle == null)
             {
                 Debug.LogWarning($"{piece.look}: the hand has no finger bones to grip with; placed at the hand.");

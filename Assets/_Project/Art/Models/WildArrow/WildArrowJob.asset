@@ -13,33 +13,12 @@ MonoBehaviour:
   m_Name: WildArrowJob
   m_EditorClassIdentifier: ARPG.Editor::ARPG.Editor.SpriteBakeJob
   lookSwaps:
-  - look: brigand
-    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
-    to: {fileID: 2800000, guid: 9004b4058f8e9495f9822fbdbe5c4825, type: 3}
-  - look: scale
-    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
-    to: {fileID: 2800000, guid: b9660128741404b21904ba8fceaf613c, type: 3}
-  - look: barbute
-    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
-    to: {fileID: 2800000, guid: b9660128741404b21904ba8fceaf613c, type: 3}
-  - look: plate
-    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
-    to: {fileID: 2800000, guid: abacef4c1d68f4f339f4ec8a13b27796, type: 3}
-  - look: visored
-    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
-    to: {fileID: 2800000, guid: abacef4c1d68f4f339f4ec8a13b27796, type: 3}
-  - look: knight
-    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
-    to: {fileID: 2800000, guid: 239d218597a5d4baea7a44a6104a1f38, type: 3}
-  - look: horned
-    from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
-    to: {fileID: 2800000, guid: 239d218597a5d4baea7a44a6104a1f38, type: 3}
   - look: hide_quiver
     from: {fileID: 2800000, guid: d56f7a7b176e846bab44073a0e1e3a38, type: 3}
     to: {fileID: 2800000, guid: 19ce91cce6fed4359b819bd32ec6ddae, type: 3}
   boneScales:
   - bone: 10
-    scale: 1.3
+    scale: 1.15
   - bone: 17
     scale: 1.12
   - bone: 18
@@ -47,9 +26,7 @@ MonoBehaviour:
   pieceScale: 1.2
   lightContrast: 1.35
   edgeHighlight: 1
-  textureSwaps:
-  - from: {fileID: 2800000, guid: cf5efa288407e435da4d8da89f3fcca9, type: 3}
-    to: {fileID: 2800000, guid: 3ae46e039642a42eeb63aeacd31d9ffa, type: 3}
+  textureSwaps: []
   trimSheets: 1
   characterName: wild_arrow
   bodies:
@@ -319,8 +296,8 @@ MonoBehaviour:
     bone: 54
     transformPath: 
     autoGrip: 0
-    localPosition: {x: 0.050000004, y: 0.050000075, z: -0.20999996}
-    localEuler: {x: 0.0000036894503, y: -0.0000004075521, z: 335}
+    localPosition: {x: 0.04999999, y: 0.049999595, z: -0.2099999}
+    localEuler: {x: -0.0000069993303, y: 0.00000011743402, z: 335}
     scale: 0.99999976
     grips:
     - 1h
@@ -330,8 +307,8 @@ MonoBehaviour:
     bone: 54
     transformPath: 
     autoGrip: 0
-    localPosition: {x: 0.050000004, y: 0.050000075, z: -0.20999996}
-    localEuler: {x: 0.0000036894503, y: -0.0000004075521, z: 335}
+    localPosition: {x: 0.04999999, y: 0.049999595, z: -0.2099999}
+    localEuler: {x: -0.0000069993303, y: 0.00000011743402, z: 335}
     scale: 0.99999976
     grips:
     - 1h
@@ -341,8 +318,8 @@ MonoBehaviour:
     bone: 54
     transformPath: 
     autoGrip: 0
-    localPosition: {x: 0.050000004, y: 0.050000075, z: -0.20999996}
-    localEuler: {x: 0.0000036894503, y: -0.0000004075521, z: 335}
+    localPosition: {x: 0.04999999, y: 0.049999595, z: -0.2099999}
+    localEuler: {x: -0.0000069993303, y: 0.00000011743402, z: 335}
     scale: 0.99999976
     grips:
     - 1h
@@ -352,8 +329,8 @@ MonoBehaviour:
     bone: 54
     transformPath: 
     autoGrip: 0
-    localPosition: {x: 0.050000004, y: 0.050000075, z: -0.20999996}
-    localEuler: {x: 0.0000036894503, y: -0.0000004075521, z: 335}
+    localPosition: {x: 0.04999999, y: 0.049999595, z: -0.2099999}
+    localEuler: {x: -0.0000069993303, y: 0.00000011743402, z: 335}
     scale: 0.99999976
     grips:
     - 1h
@@ -363,8 +340,8 @@ MonoBehaviour:
     bone: 54
     transformPath: 
     autoGrip: 0
-    localPosition: {x: 0.050000004, y: 0.050000075, z: -0.20999996}
-    localEuler: {x: 0.0000036894503, y: -0.0000004075521, z: 335}
+    localPosition: {x: 0.04999999, y: 0.049999595, z: -0.2099999}
+    localEuler: {x: -0.0000069993303, y: 0.00000011743402, z: 335}
     scale: 0.99999976
     grips:
     - 1h
@@ -374,8 +351,8 @@ MonoBehaviour:
     bone: 54
     transformPath: 
     autoGrip: 0
-    localPosition: {x: 0.050000004, y: 0.050000075, z: -0.20999996}
-    localEuler: {x: 0.0000036894503, y: -0.0000004075521, z: 335}
+    localPosition: {x: 0.04999999, y: 0.049999595, z: -0.2099999}
+    localEuler: {x: -0.0000069993303, y: 0.00000011743402, z: 335}
     scale: 0.99999976
     grips:
     - 1h
@@ -385,8 +362,8 @@ MonoBehaviour:
     bone: 54
     transformPath: 
     autoGrip: 0
-    localPosition: {x: 0.050000004, y: 0.050000075, z: -0.20999996}
-    localEuler: {x: 0.0000036894503, y: -0.0000004075521, z: 335}
+    localPosition: {x: 0.04999999, y: 0.049999595, z: -0.2099999}
+    localEuler: {x: -0.0000069993303, y: 0.00000011743402, z: 335}
     scale: 0.99999976
     grips:
     - 1h
@@ -396,8 +373,8 @@ MonoBehaviour:
     bone: 54
     transformPath: 
     autoGrip: 0
-    localPosition: {x: 0.050000004, y: 0.050000075, z: -0.20999996}
-    localEuler: {x: 0.0000036894503, y: -0.0000004075521, z: 335}
+    localPosition: {x: 0.04999999, y: 0.049999595, z: -0.2099999}
+    localEuler: {x: -0.0000069993303, y: 0.00000011743402, z: 335}
     scale: 0.99999976
     grips:
     - 1h
@@ -408,9 +385,9 @@ MonoBehaviour:
       clip: {fileID: -203655887218126122, guid: 2db7975f8b5c54b40a9d327d877809a0, type: 3}
       frames: 24
       loop: 1
-      playbackSeconds: 4.9666667
+      playbackSeconds: 5.1000004
       start: 0
-      end: 4.9666667
+      end: 5.1000004
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
@@ -452,9 +429,9 @@ MonoBehaviour:
       clip: {fileID: -203655887218126122, guid: 13b6a6897f814461dab5ea1b31d0bc18, type: 3}
       frames: 10
       loop: 0
-      playbackSeconds: 1
+      playbackSeconds: 1.0333334
       start: 0
-      end: 1
+      end: 1.0333334
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
@@ -496,9 +473,9 @@ MonoBehaviour:
       clip: {fileID: -203655887218126122, guid: 745e3284560d344998912746faf9187e, type: 3}
       frames: 16
       loop: 0
-      playbackSeconds: 2.0000002
+      playbackSeconds: 2.1000001
       start: 1
-      end: 3.0000002
+      end: 3.1000001
       riseScale: 1
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
@@ -520,7 +497,7 @@ MonoBehaviour:
       loop: 0
       playbackSeconds: 0.71428573
       start: 0
-      end: 1
+      end: 1.0333334
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: 49a60cd8701b84721ac25ab479fcfc6d, type: 3}
       legsGroundSpeed: 2
@@ -553,7 +530,7 @@ MonoBehaviour:
       loop: 0
       playbackSeconds: 0.71428573
       start: 0
-      end: 1
+      end: 1.0333334
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: 12934de583af840c0a7d72730cbe3cf5, type: 3}
       legsGroundSpeed: 2
@@ -586,7 +563,7 @@ MonoBehaviour:
       loop: 0
       playbackSeconds: 0.71428573
       start: 0
-      end: 1
+      end: 1.0333334
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: 9197dadeab2764ac2bfe8ca4d8a5963b, type: 3}
       legsGroundSpeed: 2
@@ -619,7 +596,7 @@ MonoBehaviour:
       loop: 0
       playbackSeconds: 0.71428573
       start: 0
-      end: 1
+      end: 1.0333334
       riseScale: 1
       legs: {fileID: -203655887218126122, guid: f6e9f6644a72b42218406fb3803971c7, type: 3}
       legsGroundSpeed: 2
