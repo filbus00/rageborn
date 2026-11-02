@@ -252,8 +252,10 @@ namespace ARPG
             action = baseName;
             inAction = true;
             sprite.Rate = 1f;
-            // Her shots and skills snap: the draw and loose quick, the follow-through slow (2026-11-01).
-            sprite.Play(name, false, length > 0f ? Mathf.Min(length, maxSeconds) : 0f, ActionShape.Snap);
+            // Her shots and skills snap: the draw and loose quick, the follow-through slow (2026-11-01). Standing only
+            // (2026-11-02, the owner: "her legs kind off stop moving while she is firing her bow"): a moving variant's legs
+            // are baked at her walking pace, and the snap raced them through a step and then all but froze them.
+            sprite.Play(name, false, length > 0f ? Mathf.Min(length, maxSeconds) : 0f, name == baseName ? ActionShape.Snap : ActionShape.Even);
             sprite.Face(aim);
             return true;
         }
