@@ -743,6 +743,10 @@ namespace ARPG.Editor
                          animator.GetBoneTransform(left ? HumanBodyBones.LeftRingProximal : HumanBodyBones.RightRingProximal);
             var middle = animator.GetBoneTransform(left ? HumanBodyBones.LeftMiddleProximal : HumanBodyBones.RightMiddleProximal);
             var thumb = animator.GetBoneTransform(left ? HumanBodyBones.LeftThumbProximal : HumanBodyBones.RightThumbProximal);
+            // The forest's figures rigged by rig_humanoid.py have a thumb and an index the avatar leaves unmapped
+            // (2026-11-03: the Scarecrow Bowman's bow lay along his forearm like a spear): found by their names.
+            index = index != null ? index : ChildNamed(hand, "Index1");
+            thumb = thumb != null ? thumb : ChildNamed(hand, "Thumb1");
             if (index != null && thumb != null && (little == null || middle == null))
             {
                 // A rig with only a thumb and an index finger (her Hunyuan3D body on Mixamo, 2026-11-02): the knuckle line
@@ -764,6 +768,14 @@ namespace ARPG.Editor
             var forward = Vector3.ProjectOnPlane(middle.position - hand.position, up).normalized;
             weapon.SetPositionAndRotation(Vector3.Lerp(hand.position, middle.position, 0.6f), Quaternion.LookRotation(forward, up));
             weapon.localScale = Vector3.one * (body.Root.transform.lossyScale.x / Mathf.Max(hand.lossyScale.x, 1e-6f)) * piece.scale;
+        }
+
+        static Transform ChildNamed(Transform parent, string ending)
+        {
+            foreach (var child in parent.GetComponentsInChildren<Transform>())
+                if (child != parent && child.name.EndsWith(ending))
+                    return child;
+            return null;
         }
 
         static Transform Holder(BodyInstance body, SpriteBakeJob.Piece piece)

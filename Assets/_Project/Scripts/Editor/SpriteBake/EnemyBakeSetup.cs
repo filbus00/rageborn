@@ -42,7 +42,7 @@ namespace ARPG.Editor
         static readonly HashSet<string> OwnRigs = new HashSet<string>
         {
             "cutthroat", "bandit_bowman", "woodcutter", "hedge_witch", "rotcap", "briar_thrall", "werewolf", "bandit_king",
-            "sack_thief",
+            "sack_thief", "scarecrow_bowman",
         };
 
         /// <summary>Heights in final pixels at 64 per unit (the brief, 5.2 and 15.3, halved on 2026-09-28); others 80.</summary>
@@ -55,7 +55,9 @@ namespace ARPG.Editor
             { "cutthroat", 92f }, { "ember_acolyte", 80f },
             // The Sack Thief (2026-11-03, designed in Blender, ArtSource/tools/props/bandit_concept.py), measured with his
             // hood's spike and his sack; his body as tall as the Cutthroat's.
-            { "sack_thief", 100f }, { "pyre_keeper", 104f }, { "carrion_bloat", 84f },
+            { "sack_thief", 100f },
+            // The Scarecrow Bowman (2026-11-03, ArtSource/tools/props/bowman_concept.py), measured with his tall hat.
+            { "scarecrow_bowman", 104f }, { "pyre_keeper", 104f }, { "carrion_bloat", 84f },
             // The deep levels and their bosses (2026-10-05); staffs and halos count in the measured box.
             { "drowned", 72f }, { "harpooner", 96f }, { "drowned_watchman", 92f }, { "skeleton_knight", 88f },
             { "grave_priest", 96f }, { "hollowed", 72f }, { "void_wraith", 76f }, { "rift_caller", 98f },
@@ -89,7 +91,7 @@ namespace ARPG.Editor
             { "drowned_watchman", 192 }, { "skeleton_knight", 192 }, { "tidewife", 192 }, { "saint_marrow", 192 }, { "first_watchman", 192 },
             { "ash_archivist", 192 }, { "rift_mother", 192 }, { "gaoler", 192 }, { "hanged_magistrate", 192 },
             { "bile_fiend", 192 }, { "flesh_golem", 192 }, { "ogre", 192 }, { "gargoyle", 192 }, { "stygian_demon", 192 }, { "giant", 192 },
-            { "balrog_lite", 192 }, { "tusked_boar", 192 }, { "brood_mother", 192 }, { "werewolf", 192 }, { "woodcutter", 192 }, { "briar_thrall", 192 }, { "bandit_king", 192 }, { "sack_thief", 192 }, { "retcher", 192 }, { "lich", 192 }, { "nightmare", 192 }, { "sand_worm", 192 }, { "arachnid", 192 }, { "succubus", 192 }, { "harpy", 192 } };
+            { "balrog_lite", 192 }, { "tusked_boar", 192 }, { "brood_mother", 192 }, { "werewolf", 192 }, { "woodcutter", 192 }, { "briar_thrall", 192 }, { "bandit_king", 192 }, { "sack_thief", 192 }, { "scarecrow_bowman", 192 }, { "retcher", 192 }, { "lich", 192 }, { "nightmare", 192 }, { "sand_worm", 192 }, { "arachnid", 192 }, { "succubus", 192 }, { "harpy", 192 } };
 
         /// <summary>Bodies whose clips are copies of another enemy's (the Cinder Warden moves as the ghoul).</summary>
         static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string>
@@ -122,6 +124,7 @@ namespace ARPG.Editor
         {
             { "cutthroat", ("enemy_curved_dagger", new[] { HumanBodyBones.LeftHand, HumanBodyBones.RightHand }) },
             { "sack_thief", ("enemy_cleaver", new[] { HumanBodyBones.RightHand }) },
+            { "scarecrow_bowman", ("enemy_scarecrow_longbow", new[] { HumanBodyBones.LeftHand }) },
         };
 
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
@@ -129,7 +132,7 @@ namespace ARPG.Editor
         static readonly (string definition, string character, string fallback)[] Wiring =
         {
             // The forest's Bandit Bowman (2026-11-03) in place of the old archer's look, which stays the fallback.
-            ("Ghoul", "ghoul", null), ("BanditArcher", "bandit_bowman", "bandit_archer"),
+            ("Ghoul", "ghoul", null), ("BanditArcher", "scarecrow_bowman", "bandit_bowman"),
             // The act boss (2026-10-04): built in Blender on the ghoul's rig, ArtSource/tools/props/boss.py.
             ("CinderWarden", "cinder_warden", null),
             // Act 1's undead (2026-10-04, ArtSource/tools/props/undead.py): the skeleton on the husk's rig, the cultist on

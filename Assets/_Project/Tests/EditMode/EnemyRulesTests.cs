@@ -80,5 +80,15 @@ namespace ARPG.Tests
             Assert.IsTrue(EnemyAnimationRules.Walks(EnemyState.Return));
             Assert.IsFalse(EnemyAnimationRules.Walks(EnemyState.Approach));
         }
+
+        [Test]
+        public void ArchersAndCasters_StandPlanted_ThroughTheirShot()
+        {
+            // The owner, 2026-11-03: "The current ones slide while they are drawing their bow".
+            Assert.IsTrue(EnemyRules.PlantsWhileShooting(EnemyArchetype.Archer));
+            Assert.IsTrue(EnemyRules.PlantsWhileShooting(EnemyArchetype.Caster));
+            Assert.IsFalse(EnemyRules.PlantsWhileShooting(EnemyArchetype.Swarmer));
+            Assert.IsFalse(EnemyRules.PlantsWhileShooting(EnemyArchetype.Support));
+        }
     }
 }

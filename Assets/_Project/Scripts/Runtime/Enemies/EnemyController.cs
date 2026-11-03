@@ -587,7 +587,8 @@ namespace ARPG
                         retreating = definition.RetreatSeconds > 0f;
                         SetVisuals(1f, 1f);
                     }
-                    Hold(world, playerGround, deltaTime);
+                    if (!EnemyRules.PlantsWhileShooting(definition.Archetype))
+                        Hold(world, playerGround, deltaTime);
                     return;
 
                 case EnemyState.Recover:
@@ -595,10 +596,12 @@ namespace ARPG
                     recoverElapsed += deltaTime;
                     if (stateTimer <= 0f)
                         State = EnemyState.Approach;
-                    // An archer or caster uses the time between shots to get back to its range; a cutthroat backs off
-                    // after its strikes (Docs/05: 2 units for 1 s).
-                    if (definition.Archetype == EnemyArchetype.Archer || definition.Archetype == EnemyArchetype.Caster ||
-                        definition.Archetype == EnemyArchetype.Support)
+                    // An archer or caster stands through its shot's follow-through (EnemyRules.PlantsWhileShooting) and
+                    // gets back to its range after, when it approaches again; a support uses the time to get back to its
+                    // range; a cutthroat backs off after its strikes (Docs/05: 2 units for 1 s).
+                    if (EnemyRules.PlantsWhileShooting(definition.Archetype))
+                        return;
+                    if (definition.Archetype == EnemyArchetype.Support)
                         Reposition(world, playerGround, distance, world.Nav.HasLineOfSight(ground, playerGround), deltaTime);
                     else if (retreating && recoverElapsed <= definition.RetreatSeconds)
                         Retreat(world, playerGround, distance, deltaTime);

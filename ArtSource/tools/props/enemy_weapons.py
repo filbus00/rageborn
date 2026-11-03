@@ -157,8 +157,47 @@ def cleaver():
     m.export("cleaver")
 
 
+def bent_tube(m, points, radius, color, sides=8):
+    """A tube along a path of (y, z) points in the x = 0 plane, closed at both ends."""
+    rings = []
+    for i, (y, z) in enumerate(points):
+        y0, z0 = points[max(i - 1, 0)]
+        y1, z1 = points[min(i + 1, len(points) - 1)]
+        ty, tz = y1 - y0, z1 - z0
+        length = math.hypot(ty, tz) or 1.0
+        ny, nz = -tz / length, ty / length
+        r = radius(i / (len(points) - 1)) if callable(radius) else radius
+        rings.append([(math.cos(a) * r, y + ny * math.sin(a) * r, z + nz * math.sin(a) * r)
+                      for a in [2 * math.pi * k / sides for k in range(sides)]])
+    verts = [v for ring in rings for v in ring]
+    faces = []
+    for i in range(len(rings) - 1):
+        a, b = i * sides, (i + 1) * sides
+        faces += [[a + k, a + (k + 1) % sides, b + (k + 1) % sides, b + k] for k in range(sides)]
+    faces += [list(reversed(range(sides))), list(range((len(rings) - 1) * sides, len(rings) * sides))]
+    m.add(verts, faces, color)
+
+
+def scarecrow_longbow():
+    """The Scarecrow Bowman's longbow (ArtSource/pixel/ai_exchange/bowman_concept, 2026-11-03): a tall plain wooden stave
+    1.3 long, thickest at its leather-wrapped grip, its back bowed toward +Z, the tips curling back toward the string,
+    which runs straight between them on the -Z side."""
+    m = Model()
+    stave = []
+    for i in range(17):
+        t = i / 16
+        y = -0.65 + 1.3 * t
+        z = 0.1 * (1 - (2 * t - 1) ** 2) - 0.1
+        stave.append((y, z))
+    bent_tube(m, stave, lambda t: 0.014 + 0.012 * (1 - abs(2 * t - 1)), "wood")
+    m.tube(-0.06, 0.06, 0.026, 0.026, "leather")
+    bent_tube(m, [(-0.64, -0.1), (0.0, -0.1), (0.64, -0.1)], 0.003, "steel_light", sides=4)
+    m.export("scarecrow_longbow")
+
+
 if __name__ == "__main__":
     bpy.ops.wm.read_factory_settings(use_empty=True)
     os.makedirs(FOLDER, exist_ok=True)
     curved_dagger()
     cleaver()
+    scarecrow_longbow()

@@ -1,0 +1,29 @@
+{
+  "name": "scarecrow_bowman",
+  "shape": "ArtSource/models/forest/scarecrow_bowman/shape_textured.glb",
+  "albedo": "ArtSource/models/forest/scarecrow_bowman/albedo.png",
+  "height": 2.192,
+  "foot": 0.2,
+  "out": "Assets/_Project/Art/Models/Enemies/scarecrow_bowman",
+  "joints": {
+    "hips": [0.0, 1.03], "neck": [0.0, 1.47], "head": [0.0, 1.52], "head_top": [0.0, 1.78],
+    "arm_L": [0.19, 1.4], "elbow_L": [0.34, 1.2], "wrist_L": [0.46, 1.01], "hand_L": [0.5, 0.95],
+    "arm_R": [-0.19, 1.4], "elbow_R": [-0.34, 1.2], "wrist_R": [-0.46, 1.01], "hand_R": [-0.5, 0.95],
+    "upleg_L": [0.09, 0.97], "knee_L": [0.12, 0.52], "ankle_L": [0.11, 0.1],
+    "upleg_R": [-0.09, 0.97], "knee_R": [-0.12, 0.52], "ankle_R": [-0.11, 0.1]
+  },
+  "rigid": [
+    {"min": [-0.3, -0.4, 1.6], "max": [0.4, 0.35, 2.3], "bone": "Head"},
+    {"min": [-0.25, 0.1, 0.95], "max": [0.2, 0.45, 1.56], "bone": "Spine2"},
+    {"min": [-0.47, 0.1, 1.56], "max": [-0.05, 0.45, 1.95], "bone": "Spine2"}
+  ],
+  "clips": {
+    "idle": ["ArtSource/models/mixamo_clips/bow_idle_01.fbx", true],
+    "walk": ["ArtSource/models/mixamo_clips/bow_walk_forward.fbx", true],
+    "run": ["ArtSource/models/mixamo_clips/bow_run_forward.fbx", true],
+    "attack": ["ArtSource/models/mixamo_clips/bow_draw_arrow.fbx", false],
+    "hit": ["ArtSource/models/mixamo_clips/bow_react_small_from_front.fbx", false],
+    "death": ["ArtSource/models/mixamo_clips/bow_death_backward_01.fbx", false],
+    "throw": ["ArtSource/models/mixamo_clips/bow_aim_recoil.fbx", false]
+  }
+}

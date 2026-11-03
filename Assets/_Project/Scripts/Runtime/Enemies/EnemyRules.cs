@@ -29,6 +29,13 @@ namespace ARPG
         /// </summary>
         public const float ViewMarginSide = 0.6f, ViewMarginBottom = 0.4f, ViewMarginTop = 1.4f;
 
+        /// <summary>Whether this kind stands planted through its whole shot, the draw and the follow-through, pushed by
+        /// nobody and walking nowhere (2026-11-03, the owner: "Make sure that enemy does not move when he is shooting his
+        /// bow. The current ones slide while they are drawing their bow"): archers and casters. Their shot's animation
+        /// plays through both the attack and its recovery, so a move in either slid the figure.</summary>
+        public static bool PlantsWhileShooting(EnemyArchetype archetype) =>
+            archetype == EnemyArchetype.Archer || archetype == EnemyArchetype.Caster;
+
         /// <summary>Whether a point in world space at <paramref name="offset"/> from the view's centre stands inside a
         /// view of half size <paramref name="halfView"/>, by the margins above.</summary>
         public static bool InView(Vector2 offset, Vector2 halfView) =>
