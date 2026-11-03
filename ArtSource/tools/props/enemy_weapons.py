@@ -11,7 +11,7 @@ import numpy as np
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
 FOLDER = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "Weapons")
 COLORS = [("steel", (150, 152, 158)), ("steel_dark", (78, 80, 88)), ("leather", (58, 38, 26)), ("brass", (150, 112, 52)),
-          ("wood", (92, 64, 40)), ("steel_light", (222, 226, 232)), ("hole", (12, 10, 10))]
+          ("wood", (92, 64, 40)), ("steel_light", (222, 226, 232)), ("hole", (12, 10, 10)), ("glow", (255, 222, 100))]
 NAMES = [c[0] for c in COLORS]
 
 
@@ -208,6 +208,22 @@ def hatchet():
     m.export("hatchet")
 
 
+def crow_staff():
+    """The Crow Mother's staff (ArtSource/pixel/ai_exchange/witch_concept, 2026-11-03): a crooked branch 1.8 long through
+    her fist, a hook at its top bending toward +Z, a lantern hanging from the hook, its core glowing."""
+    m = Model()
+    path = [(-1.18, 0.02), (-0.7, -0.01), (-0.25, 0.015), (0.0, 0.0), (0.35, 0.02), (0.62, 0.0), (0.76, 0.08), (0.79, 0.18)]
+    bent_tube(m, path, lambda t: 0.03 - 0.014 * t, "wood")
+    hook_y, hook_z = path[-1]
+    m.box((0, hook_y - 0.07, hook_z), (0.008, 0.14, 0.008), "steel_dark")
+    m.box((0, hook_y - 0.22, hook_z), (0.07, 0.11, 0.07), "glow")
+    for y in (hook_y - 0.155, hook_y - 0.285):
+        m.box((0, y, hook_z), (0.11, 0.02, 0.11), "steel_dark")
+    for dx, dz in ((0.05, 0.05), (-0.05, 0.05), (0.05, -0.05), (-0.05, -0.05)):
+        m.box((dx, hook_y - 0.22, hook_z + dz), (0.01, 0.13, 0.01), "steel_dark")
+    m.export("crow_staff")
+
+
 if __name__ == "__main__":
     bpy.ops.wm.read_factory_settings(use_empty=True)
     os.makedirs(FOLDER, exist_ok=True)
@@ -215,3 +231,4 @@ if __name__ == "__main__":
     cleaver()
     scarecrow_longbow()
     hatchet()
+    crow_staff()

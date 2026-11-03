@@ -146,6 +146,31 @@ def bind(o, arm):
     bpy.ops.object.parent_set(type="ARMATURE_AUTO")
     unweighted = sum(1 for v in o.data.vertices if not any(g.weight > 1e-3 for g in v.groups))
     print("REPORT bound: %d of %d vertices without weight" % (unweighted, len(o.data.vertices)))
+    if unweighted == len(o.data.vertices):
+        # Bone heat found no solution at all (the Crow Mother: her legs inside the hollow bell of her cloak): every
+        # vertex takes the two nearest bones by distance to their segments, the nearer weighted more.
+        print("REPORT bone heat failed; weighting by distance")
+        segments = []
+        for b in arm.data.bones:
+            if b.name.endswith("_End") or "Index" in b.name or "Thumb" in b.name or "Toe" in b.name:
+                continue
+            segments.append((b.name, arm.matrix_world @ b.head_local, arm.matrix_world @ b.tail_local))
+        for name, _, _ in segments:
+            if name not in o.vertex_groups:
+                o.vertex_groups.new(name=name)
+        for v in o.data.vertices:
+            p = o.matrix_world @ v.co
+            ds = []
+            for name, h, t in segments:
+                d = t - h
+                k = max(0.0, min(1.0, (p - h).dot(d) / max(d.length_squared, 1e-9)))
+                ds.append(((p - (h + d * k)).length, name))
+            ds.sort()
+            (d0, n0), (d1, n1) = ds[0], ds[1]
+            w0 = (d1 + 1e-6) / (d0 + d1 + 2e-6)
+            o.vertex_groups[n0].add([v.index], w0, "REPLACE")
+            o.vertex_groups[n1].add([v.index], 1 - w0, "REPLACE")
+        unweighted = 0
     if unweighted:
         # Vertices the automatic weights missed (bone heat fails on parts of a generated mesh: 211 on the Rotcap) take
         # the weights of the nearest vertex that has some. A smoothed copy bound instead lost every weight.

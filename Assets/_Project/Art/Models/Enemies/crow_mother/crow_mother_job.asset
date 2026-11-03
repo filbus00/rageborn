@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b7ef2a89c554486bb05c81650498d7, type: 3}
+  m_Name: crow_mother_job
+  m_EditorClassIdentifier: ARPG.Editor::ARPG.Editor.SpriteBakeJob
+  lookSwaps: []
+  boneScales: []
+  pieceScale: 1
+  lightContrast: 1
+  edgeHighlight: 0
+  textureSwaps: []
+  trimSheets: 1
+  characterName: crow_mother
+  bodies:
+  - look: 
+    model: {fileID: 919132149155446097, guid: 4d0f596bf2c6b459fae0d9bcbf5e84bb, type: 3}
+    layer: 0
+  pieces:
+  - layer: 6
+    look: enemy_crow_staff
+    prefab: {fileID: 9132042852591804611, guid: 9c523c8c325344dbf83508869b2c4168, type: 3}
+    bone: 17
+    transformPath: 
+    autoGrip: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
+    scale: 1
+    grips: []
+    withBody: 1
+    upright: 1
+  grips:
+  - grip: 
+    clips:
+    - name: idle
+      clip: {fileID: -623603649343465320, guid: 2c8db0d7ad19e469da125a1554025809, type: 3}
+      frames: 12
+      loop: 1
+      playbackSeconds: 1.9666667
+      start: 0
+      end: 1.9666667
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: run
+      clip: {fileID: -623603649343465320, guid: d176bdcac39d34a7f9a7ac8812114bd4, type: 3}
+      frames: 10
+      loop: 1
+      playbackSeconds: 0.8
+      start: 0
+      end: 0.8
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: attack
+      clip: {fileID: -623603649343465320, guid: 65191786a9fd54db3ba195a53d10eb88, type: 3}
+      frames: 12
+      loop: 0
+      playbackSeconds: 2
+      start: 0
+      end: 2
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: hit
+      clip: {fileID: -623603649343465320, guid: baa3b97ffc92f4b8d92bcb7a600e4d3c, type: 3}
+      frames: 4
+      loop: 0
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.2
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: death
+      clip: {fileID: -623603649343465320, guid: 1f700e7be8bcf4f8facc75b4ac8bc132, type: 3}
+      frames: 12
+      loop: 0
+      playbackSeconds: 3.166667
+      start: 0
+      end: 3.166667
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: dash
+      clip: {fileID: -623603649343465320, guid: 3206c52e0b37b4d0f9170cb8275b8803, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 1.6333334
+      start: 0
+      end: 1.6333334
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: throw
+      clip: {fileID: -623603649343465320, guid: 5f3efe29349d94fcfbad8bba34ad2aab, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 2
+      start: 0
+      end: 2
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: walk
+      clip: {fileID: -623603649343465320, guid: 5de5f106e571d496fabb8de6afe3229e, type: 3}
+      frames: 12
+      loop: 1
+      playbackSeconds: 1.2
+      start: 0
+      end: 1.2
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+  pixelsPerUnit: 40
+  cellSize: 120
+  pivot: {x: 60, y: 12}
+  targetHeightPixels: 65.4
+  bakedScale: 1
+  pixelArt: 1
+  supersample: 4
+  framesPerSecond: 12
+  directions: 8
+  onlyRow: -1
+  outputFolder: Assets/_Project/Resources/Characters/crow_mother

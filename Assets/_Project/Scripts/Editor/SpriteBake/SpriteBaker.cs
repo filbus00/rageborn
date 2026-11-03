@@ -267,6 +267,13 @@ namespace ARPG.Editor
                                         body.ApplyBoneScales(job);
                                         body.Skin();
                                     }
+                                    // An upright piece turned about its grip to stand straight up in this frame's hand.
+                                    foreach (var piece in stage.Pieces)
+                                        if (piece.Definition.upright && piece.Transform != null)
+                                        {
+                                            piece.Transform.localRotation = piece.GripRotation;
+                                            piece.Transform.rotation = Quaternion.FromToRotation(piece.Transform.up, Vector3.up) * piece.Transform.rotation;
+                                        }
 
                                     stage.Show(layer, depthOnly);
                                     sheet.Put(row, frame, RenderCell(stage.Camera, target, readback, job));
@@ -463,6 +470,8 @@ namespace ARPG.Editor
         {
             public SpriteBakeJob.Piece Definition;
             public Renderer[] Renderers;
+            public Transform Transform;
+            public Quaternion GripRotation;
         }
 
         static readonly int PushBack = Shader.PropertyToID("_PushBack");
@@ -690,7 +699,11 @@ namespace ARPG.Editor
                 // with the hand's bone scale.
                 if (job.pieceScale != 1f && piece.bone != HumanBodyBones.LeftHand && piece.bone != HumanBodyBones.RightHand)
                     instance.transform.localScale *= job.pieceScale;
-                stage.Pieces.Add(new PieceInstance { Definition = piece, Renderers = instance.GetComponentsInChildren<Renderer>(true) });
+                stage.Pieces.Add(new PieceInstance
+                {
+                    Definition = piece, Renderers = instance.GetComponentsInChildren<Renderer>(true), Transform = instance.transform,
+                    GripRotation = instance.transform.localRotation,
+                });
             }
 
             var cameraObject = new GameObject("Bake Camera");

@@ -18,6 +18,8 @@ scene = bpy.context.scene
 COLOURS = {}
 FABRIC = set()
 METAL = set()
+# Colours that glow, and how strongly: the eyes, and whatever a figure adds (the Crow Mother's lantern).
+GLOW = {"eye": 12}
 materials = {}
 
 
@@ -63,9 +65,9 @@ def mat(name):
         bsdf.inputs["Roughness"].default_value = 0.45
     if name == "teeth" or name == "bone":
         bsdf.inputs["Roughness"].default_value = 0.6
-    if name == "eye":
+    if name in GLOW:
         bsdf.inputs["Emission Color"].default_value = base
-        bsdf.inputs["Emission Strength"].default_value = 12
+        bsdf.inputs["Emission Strength"].default_value = GLOW[name]
     materials[name] = m
     return m
 
@@ -193,6 +195,26 @@ def flap(at, direction, length, width, colour):
     o.name = "flap"
     o.scale = (1, 0.25, 1)
     return finish(o, colour, smooth=False)
+
+
+def feather(at, out, down, length, width, colour, name="feather"):
+    """A flat pointed feather (or rag) lying on a surface: its root across at, its point length along down, facing out."""
+    out, down = Vector(out).normalized(), Vector(down).normalized()
+    side = down.cross(out).normalized()
+    at = Vector(at)
+    bm = bmesh.new()
+    a, b = bm.verts.new(at + side * width), bm.verts.new(at - side * width)
+    mid = bm.verts.new(at + down * length * 0.55 + out * 0.012)
+    tip = bm.verts.new(at + down * length + out * 0.004)
+    bm.faces.new([a, mid, tip])
+    bm.faces.new([mid, b, tip])
+    bm.faces.new([a, b, mid])
+    mesh = bpy.data.meshes.new(name)
+    bm.to_mesh(mesh)
+    o = bpy.data.objects.new(name, mesh)
+    scene.collection.objects.link(o)
+    o.modifiers.new("thick", "SOLIDIFY").thickness = 0.006
+    return finish(o, colour)
 
 
 def ring(name, at, radius, thick, colour, rot=(0, 0, 0)):

@@ -93,6 +93,9 @@ namespace ARPG.Editor
 
             [Tooltip("Drawn in the first body's own sheet, not as a layer of its own: an enemy's weapon (2026-11-02, the forest's cutthroat), since an enemy plays one sheet.")]
             public bool withBody;
+
+            [Tooltip("Kept standing straight up whatever the hand does (2026-11-03: the Crow Mother's staff, which a hanging hand held level like a spear), turned about its grip.")]
+            public bool upright;
         }
 
         [Serializable]

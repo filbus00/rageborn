@@ -1,0 +1,30 @@
+{
+  "name": "crow_mother",
+  "shape": "ArtSource/models/forest/crow_mother/shape_textured.glb",
+  "albedo": "ArtSource/models/forest/crow_mother/albedo.png",
+  "height": 1.76,
+  "foot": 0.38,
+  "out": "Assets/_Project/Art/Models/Enemies/crow_mother",
+  "joints": {
+    "hips": [0.0, 0.78], "neck": [0.0, 1.2], "head": [0.0, 1.26], "head_top": [0.0, 1.5],
+    "arm_L": [0.2, 1.2], "elbow_L": [0.36, 1.0], "wrist_L": [0.48, 0.8], "hand_L": [0.54, 0.7],
+    "arm_R": [-0.2, 1.2], "elbow_R": [-0.36, 1.0], "wrist_R": [-0.48, 0.8], "hand_R": [-0.54, 0.7],
+    "upleg_L": [0.1, 0.72], "knee_L": [0.12, 0.4], "ankle_L": [0.12, 0.09],
+    "upleg_R": [-0.1, 0.72], "knee_R": [-0.12, 0.4], "ankle_R": [-0.12, 0.09]
+  },
+  "rigid": [
+    {"min": [-0.62, -0.62, 0.0], "max": [0.62, 0.62, 1.08], "bone": "Hips"},
+    {"min": [-0.18, -0.6, 1.22], "max": [0.18, -0.04, 1.9], "bone": "Head"},
+    {"min": [-0.34, -0.1, 1.29], "max": [-0.1, 0.16, 1.52], "bone": "Spine2"}
+  ],
+  "clips": {
+    "idle": ["ArtSource/models/mixamo_clips/idle_with_skin.fbx", true],
+    "walk": ["ArtSource/models/mixamo_clips/walk.fbx", true],
+    "run": ["ArtSource/models/mixamo_clips/husk_run.fbx", true],
+    "attack": ["ArtSource/models/mixamo_clips/throw_object.fbx", false],
+    "hit": ["ArtSource/models/mixamo_clips/bow_react_small_from_front.fbx", false],
+    "death": ["ArtSource/models/mixamo_clips/bow_death_forward_01.fbx", false],
+    "throw": ["ArtSource/models/mixamo_clips/throw_object.fbx", false],
+    "dash": ["ArtSource/models/mixamo_clips/bow_dive_forward.fbx", false]
+  }
+}
