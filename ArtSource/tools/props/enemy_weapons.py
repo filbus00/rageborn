@@ -116,7 +116,25 @@ def curved_dagger():
     m.export("curved_dagger")
 
 
+def cleaver():
+    """The Sack Thief's cleaver (ArtSource/pixel/ai_exchange/bandit_concept, 2026-11-03): a thick wooden handle with an
+    iron band, and on it a broad rusty slab of a blade, its spine in line with the handle, its edge toward +Z, a hole
+    near its tip and brass rivets."""
+    m = Model()
+    m.box((0, 0, 0.0), (0.05, 0.24, 0.055), "wood")
+    m.box((0, 0.13, 0.0), (0.062, 0.03, 0.066), "steel_dark")
+    # The blade: from the band up 0.42, from the spine (just behind the handle's line) 0.27 toward the edge.
+    m.box((0, 0.36, 0.11), (0.022, 0.42, 0.27), "steel")
+    m.box((0, 0.36, -0.03), (0.03, 0.43, 0.03), "steel_dark")
+    m.box((0, 0.36, 0.245), (0.012, 0.42, 0.012), "steel")
+    m.box((0, 0.52, 0.03), (0.026, 0.04, 0.04), "leather")
+    for y in (0.17, 0.21):
+        m.box((0, y, 0.03), (0.03, 0.02, 0.02), "brass")
+    m.export("cleaver")
+
+
 if __name__ == "__main__":
     bpy.ops.wm.read_factory_settings(use_empty=True)
     os.makedirs(FOLDER, exist_ok=True)
     curved_dagger()
+    cleaver()

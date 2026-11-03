@@ -167,6 +167,24 @@ def bind(o, arm):
         print("REPORT filled from neighbours: %d without weight" % unweighted)
 
 
+def rigid(o, shift):
+    """Optional "rigid": [{"min": [x, y, z], "max": [x, y, z], "bone": name}] in the figure's coordinates before it is
+    centred: every vertex in the box follows that bone alone, applied in order (the Sack Thief's sack on his back, his
+    hood's spike and his collar, which the automatic weights split between his arms and his body)."""
+    for rule in CFG.get("rigid", []):
+        lo, hi = V(rule["min"]) + shift, V(rule["max"]) + shift
+        group = o.vertex_groups[P + rule["bone"]]
+        n = 0
+        for v in o.data.vertices:
+            c = v.co
+            if lo.x <= c.x <= hi.x and lo.y <= c.y <= hi.y and lo.z <= c.z <= hi.z:
+                for g in list(v.groups):
+                    o.vertex_groups[g.group].remove([v.index])
+                group.add([v.index], 1.0, "REPLACE")
+                n += 1
+        print("REPORT rigid %s: %d vertices" % (rule["bone"], n))
+
+
 def export(objects, file, animated):
     bpy.ops.object.select_all(action="DESELECT")
     for x in objects:
@@ -302,6 +320,7 @@ def main():
     j = {k: p + shift for k, p in j.items()}
     arm = build_armature(o, j)
     bind(o, arm)
+    rigid(o, shift)
     # The figure's material: its own texture, which Unity puts back from <name>_albedo.png (MixamoImport.ApplyTexture).
     export([arm, o], os.path.join(out, CFG["name"] + ".fbx"), False)
     import shutil

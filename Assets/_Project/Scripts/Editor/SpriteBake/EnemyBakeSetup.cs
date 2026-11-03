@@ -42,6 +42,7 @@ namespace ARPG.Editor
         static readonly HashSet<string> OwnRigs = new HashSet<string>
         {
             "cutthroat", "bandit_bowman", "woodcutter", "hedge_witch", "rotcap", "briar_thrall", "werewolf", "bandit_king",
+            "sack_thief",
         };
 
         /// <summary>Heights in final pixels at 64 per unit (the brief, 5.2 and 15.3, halved on 2026-09-28); others 80.</summary>
@@ -51,7 +52,10 @@ namespace ARPG.Editor
             // The rest of act 1 (2026-10-05). The pyre keeper is measured with its brazier pole, which stands well over
             // its head, so it asks more to stand as tall as a cultist.
             // The forest's Cutthroat 92 (2026-11-03, the owner: "a bit too small"; his hat counts).
-            { "cutthroat", 92f }, { "ember_acolyte", 80f }, { "pyre_keeper", 104f }, { "carrion_bloat", 84f },
+            { "cutthroat", 92f }, { "ember_acolyte", 80f },
+            // The Sack Thief (2026-11-03, designed in Blender, ArtSource/tools/props/bandit_concept.py), measured with his
+            // hood's spike and his sack; his body as tall as the Cutthroat's.
+            { "sack_thief", 100f }, { "pyre_keeper", 104f }, { "carrion_bloat", 84f },
             // The deep levels and their bosses (2026-10-05); staffs and halos count in the measured box.
             { "drowned", 72f }, { "harpooner", 96f }, { "drowned_watchman", 92f }, { "skeleton_knight", 88f },
             { "grave_priest", 96f }, { "hollowed", 72f }, { "void_wraith", 76f }, { "rift_caller", 98f },
@@ -85,7 +89,7 @@ namespace ARPG.Editor
             { "drowned_watchman", 192 }, { "skeleton_knight", 192 }, { "tidewife", 192 }, { "saint_marrow", 192 }, { "first_watchman", 192 },
             { "ash_archivist", 192 }, { "rift_mother", 192 }, { "gaoler", 192 }, { "hanged_magistrate", 192 },
             { "bile_fiend", 192 }, { "flesh_golem", 192 }, { "ogre", 192 }, { "gargoyle", 192 }, { "stygian_demon", 192 }, { "giant", 192 },
-            { "balrog_lite", 192 }, { "tusked_boar", 192 }, { "brood_mother", 192 }, { "werewolf", 192 }, { "woodcutter", 192 }, { "briar_thrall", 192 }, { "bandit_king", 192 }, { "retcher", 192 }, { "lich", 192 }, { "nightmare", 192 }, { "sand_worm", 192 }, { "arachnid", 192 }, { "succubus", 192 }, { "harpy", 192 } };
+            { "balrog_lite", 192 }, { "tusked_boar", 192 }, { "brood_mother", 192 }, { "werewolf", 192 }, { "woodcutter", 192 }, { "briar_thrall", 192 }, { "bandit_king", 192 }, { "sack_thief", 192 }, { "retcher", 192 }, { "lich", 192 }, { "nightmare", 192 }, { "sand_worm", 192 }, { "arachnid", 192 }, { "succubus", 192 }, { "harpy", 192 } };
 
         /// <summary>Bodies whose clips are copies of another enemy's (the Cinder Warden moves as the ghoul).</summary>
         static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string>
@@ -117,6 +121,7 @@ namespace ARPG.Editor
         static readonly Dictionary<string, (string weapon, HumanBodyBones[] hands)> HandPieces = new Dictionary<string, (string, HumanBodyBones[])>
         {
             { "cutthroat", ("enemy_curved_dagger", new[] { HumanBodyBones.LeftHand, HumanBodyBones.RightHand }) },
+            { "sack_thief", ("enemy_cleaver", new[] { HumanBodyBones.RightHand }) },
         };
 
         /// <summary>The definitions each baked look is wired to when it exists: base looks to every rank of the type
@@ -151,7 +156,7 @@ namespace ARPG.Editor
             ("BalrogLite", "balrog_lite", null),
             ("Retcher", "retcher", null),
             ("Rat", "rat", null), ("Bat", "bat", null), ("Blob", "blob", null), ("BlobSmall", "blob_small", "blob"),
-            ("Wolf", "wolf", null), ("Spider", "spider", null), ("Bandit", "cutthroat", null),
+            ("Wolf", "wolf", null), ("Spider", "spider", null), ("Bandit", "sack_thief", "cutthroat"),
             // The forest redone (2026-11-03): rigged in Blender by ArtSource/tools/rig_humanoid.py.
             ("Woodcutter", "woodcutter", null), ("HedgeWitch", "hedge_witch", null), ("Rotcap", "rotcap", null),
             ("BriarThrall", "briar_thrall", null), ("Werewolf", "werewolf", null), ("TuskedBoar", "tusked_boar", null),
