@@ -232,6 +232,9 @@ namespace ARPG
         public float Elapsed { get; private set; }
         public bool Done => Elapsed >= Duration;
 
+        /// <summary>How far it has filled, 0 to 1.</summary>
+        public float Progress => Duration > 0f ? Mathf.Clamp01(Elapsed / Duration) : 1f;
+
         /// <summary>A ground circle of the given radius, filling over <paramref name="duration"/> seconds.</summary>
         public static GroundMarker Circle(Vector2 ground, float radius, float duration, Color color, Transform parent)
         {

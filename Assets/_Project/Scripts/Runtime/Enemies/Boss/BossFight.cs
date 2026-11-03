@@ -91,6 +91,13 @@ namespace ARPG
         /// <summary>Called when the boss dies or the fight resets, to clear the fight's own objects.</summary>
         protected virtual void ClearFight() { }
 
+        /// <summary>An attack was dropped part way (a phase change, a stagger, her leaving): undo what it left half done.</summary>
+        protected virtual void OnAttackCancelled() { }
+
+        /// <summary>Charges and fans warned by a symbol on her ring, not a line on the ground (the owner, 2026-11-02: "do
+        /// not use lines for indicating attacks on any enemy"); the forest's bosses. The older bosses keep their lines.</summary>
+        protected virtual bool RingWarnings => false;
+
         protected virtual float MoveSpeed => 2.4f;
         protected virtual float KeepDistance => 2.2f;
 
@@ -309,9 +316,18 @@ namespace ARPG
         {
             var from = boss.GroundPosition;
             target = ClampToArena(target, 1.5f);
-            var line = Track(GroundMarker.Line(from, target, 0.9f, windup, TelegraphColor, transform));
-            while (!line.Done)
-                yield return null;
+            // A warning on her ring where the boss asks for it (the owner, 2026-11-02: no lines for attacks), else the line.
+            if (RingWarnings)
+            {
+                manager.Warnings?.Warn(boss, from, windup, IncomingWarnings.LungeColor, IncomingWarnings.Shape.Diamond);
+                yield return Wait(windup);
+            }
+            else
+            {
+                var line = Track(GroundMarker.Line(from, target, 0.9f, windup, TelegraphColor, transform));
+                while (!line.Done)
+                    yield return null;
+            }
             ClearAttackMarkers();
             var hit = false;
             var travelled = 0f;
@@ -343,8 +359,11 @@ namespace ARPG
             {
                 var angle = (i - (count - 1) / 2f) * spreadDegrees * Mathf.Deg2Rad;
                 directions[i] = new Vector2(aim.x * Mathf.Cos(angle) - aim.y * Mathf.Sin(angle), aim.x * Mathf.Sin(angle) + aim.y * Mathf.Cos(angle));
-                Track(GroundMarker.Line(origin, origin + directions[i] * arenaRadius * 1.6f, 0.08f, 0.4f, TelegraphColor, transform));
+                if (!RingWarnings)
+                    Track(GroundMarker.Line(origin, origin + directions[i] * arenaRadius * 1.6f, 0.08f, 0.4f, TelegraphColor, transform));
             }
+            if (RingWarnings)
+                manager.Warnings?.Warn(boss, origin, 0.4f, IncomingWarnings.ShotColor, IncomingWarnings.Shape.Triangle);
             yield return Wait(0.4f);
             foreach (var direction in directions)
                 LaunchShot(origin, direction * speed, radius, multiplier, color, slowFraction);
@@ -484,6 +503,7 @@ namespace ARPG
 
         void CancelAttack()
         {
+            OnAttackCancelled();
             attack.Clear();
             ClearAttackMarkers();
         }

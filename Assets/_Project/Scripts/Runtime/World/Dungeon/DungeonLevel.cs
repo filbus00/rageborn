@@ -117,6 +117,13 @@ namespace ARPG
                 settings.NormalAggroRange = normalEnemy.AggroRange;
             if (eliteEnemy != null)
                 settings.EliteAggroRange = eliteEnemy.AggroRange;
+            // Smaller packs in the forest (2026-11-03): packs of 8 to 15 put about 290 enemies on a level, slow to load and
+            // to tick; 5 to 8 put about 185. Claude's numbers, to review.
+            if (DungeonRules.Forest)
+            {
+                settings.MinPackSize = 5;
+                settings.MaxPackSize = 8;
+            }
 
             levelSeed = DungeonRules.LevelSeed(session.DungeonSeed, depth);
             Layout = DungeonGenerator.Generate(levelSeed, depth, shapes, settings);
@@ -224,6 +231,20 @@ namespace ARPG
             EnemyDefinition definition = bossEnemy, adds = normalEnemy;
             switch (depth)
             {
+                // The forest's bosses while every level is a forest (2026-11-03; the owner: the forest is depths 1 to
+                // 12): the Bandit King with his cutthroats and bowmen, the Brood Mother with her brood.
+                case 6 when DungeonRules.Forest && Deep("BanditKing") != null:
+                    var king = new GameObject("Bandit King Fight").AddComponent<BanditKingFight>();
+                    king.Bowmen = Deep("BanditArcher");
+                    fight = king;
+                    definition = Deep("BanditKing");
+                    adds = Deep("Bandit") ?? normalEnemy;
+                    break;
+                case 12 when DungeonRules.Forest && Deep("BroodMother") != null:
+                    fight = new GameObject("Brood Mother Fight").AddComponent<BroodMotherFight>();
+                    definition = Deep("BroodMother");
+                    adds = Deep("Spider") ?? normalEnemy;
+                    break;
                 case 12 when Deep("Tidewife") != null:
                     fight = new GameObject("Tidewife Fight").AddComponent<TidewifeFight>();
                     definition = Deep("Tidewife");
@@ -1119,7 +1140,11 @@ namespace ARPG
             }
             if (placement.Kind == PackKind.Elite)
             {
-                pack.Configure(eliteEnemy, null, placement.Count, placement.Radius, Layout.EnemyLevel);
+                // The forest's elite packs are its own kinds raised to Elite, not the crypt's zombies (2026-11-03).
+                var elite = DungeonRules.Forest
+                    ? Definition(PackComposition.Roll(depth, PackKind.Elite, 1, levelSeed, index)[0])?.Ranked(eliteEnemy) ?? eliteEnemy
+                    : eliteEnemy;
+                pack.Configure(elite, null, placement.Count, placement.Radius, Layout.EnemyLevel);
                 return;
             }
 
@@ -1128,7 +1153,7 @@ namespace ARPG
             for (var i = 0; i < members.Length; i++)
                 perSlot[i] = Definition(members[i]);
             if (placement.Kind == PackKind.WithChampion && perSlot.Length > 0)
-                perSlot[0] = championEnemy;
+                perSlot[0] = DungeonRules.Forest && perSlot[0] != null ? perSlot[0].Ranked(championEnemy) : championEnemy;
             pack.Configure(perSlot, placement.Radius, Layout.EnemyLevel);
         }
 

@@ -241,9 +241,44 @@ namespace ARPG
                     foreach (var legs in Legs)
                         baked.Add(action + legs);
             }
+            // Spread over frames (2026-11-03, the owner: "There are still small freezes when equpping gear"): each sheet's
+            // texture is read in the background first (Resources.LoadAsync), then its sprites are gathered, a few a frame,
+            // so equipping no longer loads 26 sheets a layer at once. What shows now loaded already, through Resolve.
+            pending.Clear();
             for (var layer = 0; layer < LayerCount; layer++)
                 foreach (var name in baked)
-                    SheetFor((AppearanceLayer)layer, name);
+                    pending.Enqueue(((AppearanceLayer)layer, name));
+        }
+
+        readonly Queue<(AppearanceLayer layer, string name)> pending = new Queue<(AppearanceLayer, string)>();
+        readonly List<(AppearanceLayer layer, string name, ResourceRequest request)> reading = new List<(AppearanceLayer, string, ResourceRequest)>(4);
+        const int ReadAhead = 3;
+
+        // Starts the background reads and finishes those done, at most one sheet's sprites gathered a frame.
+        void TickPreload()
+        {
+            while (reading.Count < ReadAhead && pending.Count > 0)
+            {
+                var (layer, name) = pending.Dequeue();
+                var look = appearance.LookOf(layer);
+                if (string.IsNullOrEmpty(look))
+                    continue;
+                var sheetName = AppearanceRules.SheetName(character, layer, look, appearance.Grip, name);
+                if (sheets.ContainsKey(sheetName) || absent.Contains(sheetName))
+                {
+                    SheetFor(layer, name);
+                    continue;
+                }
+                reading.Add((layer, name, Resources.LoadAsync<Texture2D>($"Characters/{character}/{sheetName}")));
+            }
+            for (var i = 0; i < reading.Count; i++)
+            {
+                if (!reading[i].request.isDone)
+                    continue;
+                SheetFor(reading[i].layer, reading[i].name);
+                reading.RemoveAt(i);
+                return;
+            }
         }
 
         void EnsureTiming()
@@ -323,6 +358,8 @@ namespace ARPG
 
         void Update()
         {
+            if (pending.Count > 0 || reading.Count > 0)
+                TickPreload();
             time += Time.deltaTime * (loop ? Rate : 1f);
             Apply();
         }

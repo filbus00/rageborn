@@ -196,6 +196,10 @@ namespace ARPG
         /// </summary>
         public bool Scripted { get; set; }
 
+        /// <summary>How high a boss is lifted out of reach, in world units (the Brood Mother up in the canopy, 2026-11-03):
+        /// drawn that much higher, and no hit lands while it is over 0.</summary>
+        public float Aloft { get; set; }
+
         /// <summary>Raised with the damage of every hit this enemy takes, the killing one included. Cleared on spawn.</summary>
         public event System.Action<float> Damaged;
 
@@ -304,6 +308,7 @@ namespace ARPG
             definition = data;
             Level = level > 0 ? level : data.Level;
             Scripted = false;
+            Aloft = 0f;
             Damaged = null;
             modifiers = rolledModifiers;
             pack = owner;
@@ -630,7 +635,7 @@ namespace ARPG
         /// </summary>
         public bool TakeDamage(float amount)
         {
-            if (!IsAlive)
+            if (!IsAlive || Aloft > 0f)
                 return false;
 
             life -= amount;
@@ -938,6 +943,11 @@ namespace ARPG
         // A flier (the Bat) is drawn over its shadow, bobbing; it drops to the ground as it dies.
         void Lift(float down)
         {
+            if (Aloft > 0f)
+            {
+                bodyRenderer.transform.localPosition = new Vector3(0f, Aloft, 0f);
+                return;
+            }
             if (definition.HoverHeight > 0f)
                 bodyRenderer.transform.localPosition = new Vector3(0f, EnemyRules.Hover(definition.HoverHeight, animationTime, down), 0f);
         }

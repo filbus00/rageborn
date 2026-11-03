@@ -129,3 +129,74 @@ namespace ARPG
             frames <= 1 ? 0 : Mathf.Clamp(Mathf.FloorToInt(progress * frames), 0, frames - 1);
     }
 }
+
+namespace ARPG
+{
+    /// <summary>
+    /// Reads the forest's enemies' sheets in the background while she is in town (2026-11-03, the owner: "Loading times
+    /// are getting long"): the first dungeon load spent about 0.8 s of its 2.5 s (in the editor) loading 18 enemy sheets the
+    /// first time their kinds appeared. Each sheet's texture is read with Resources.LoadAsync and held, then its kind's
+    /// <see cref="EnemyAnimationSet"/> is built, one kind a frame, so it is in the static cache when the dungeon loads.
+    /// </summary>
+    public sealed class EnemySheetWarmer : MonoBehaviour
+    {
+        /// <summary>The forest's kinds (PackComposition.ForestTable's looks; the bosses load with their arenas).</summary>
+        static readonly string[] Kinds =
+        {
+            "cutthroat", "bandit_bowman", "woodcutter", "hedge_witch", "rotcap", "briar_thrall", "werewolf", "wolf", "spider", "tusked_boar",
+        };
+        static readonly string[] Sheets = { "idle", "run", "walk", "attack", "hit", "death", "dash", "roll_back", "throw" };
+
+        // Held so the scene change does not free them before the sets are built.
+        static readonly List<ResourceRequest> held = new List<ResourceRequest>();
+        static bool done;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics()
+        {
+            held.Clear();
+            done = false;
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        static void Begin()
+        {
+            if (done)
+                return;
+            var go = new GameObject("Enemy Sheet Warmer");
+            DontDestroyOnLoad(go);
+            go.AddComponent<EnemySheetWarmer>();
+        }
+
+        int kind;
+        readonly List<ResourceRequest> reading = new List<ResourceRequest>(Sheets.Length);
+
+        void Update()
+        {
+            if (kind >= Kinds.Length)
+            {
+                done = true;
+                Destroy(gameObject);
+                return;
+            }
+            var name = Kinds[kind];
+            if (reading.Count == 0)
+            {
+                foreach (var sheet in Sheets)
+                {
+                    var request = Resources.LoadAsync<Texture2D>($"Characters/{name}/{name}_{sheet}");
+                    reading.Add(request);
+                    held.Add(request);
+                }
+                return;
+            }
+            foreach (var request in reading)
+                if (!request.isDone)
+                    return;
+            // The textures are in: building the set gathers their sprites, a few milliseconds.
+            EnemyAnimationSet.For(name);
+            reading.Clear();
+            kind++;
+        }
+    }
+}

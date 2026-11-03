@@ -155,6 +155,8 @@ namespace ARPG.Editor
             // The forest redone (2026-11-03): rigged in Blender by ArtSource/tools/rig_humanoid.py.
             ("Woodcutter", "woodcutter", null), ("HedgeWitch", "hedge_witch", null), ("Rotcap", "rotcap", null),
             ("BriarThrall", "briar_thrall", null), ("Werewolf", "werewolf", null), ("TuskedBoar", "tusked_boar", null),
+            // The forest's bosses (2026-11-03): baked at their VisualScale like every boss.
+            ("BanditKing", "bandit_king", null), ("BroodMother", "brood_mother", null),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the

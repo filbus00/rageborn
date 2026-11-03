@@ -243,6 +243,38 @@ namespace ARPG
         /// <summary>The baked character that animates this enemy, or empty for the placeholder body.</summary>
         public string SpriteCharacter => spriteCharacter;
 
+/// <summary>
+        /// This kind promoted to the rank of <paramref name="template"/> (the forest, 2026-11-03: its champions and elite
+        /// packs were the crypt's zombies): a runtime copy with the template's rank, and its life, damage, body and size
+        /// raised by as much as the template's are over a Normal one (the zombie champion's 3x life, 1.6x damage, 1.4x
+        /// size; the elite's 6x, 2.5x, 1.6x). Its own look is kept, drawn larger. One copy per pair, kept for the session.
+        /// </summary>
+        public EnemyDefinition Ranked(EnemyDefinition template)
+        {
+            if (template == null || template.rank == EnemyRank.Normal || rank != EnemyRank.Normal)
+                return this;
+            var key = (this, template);
+            if (RankedCopies.TryGetValue(key, out var copy) && copy != null)
+                return copy;
+            copy = Instantiate(this);
+            copy.name = name + template.rank;
+            copy.hideFlags = HideFlags.DontSave;
+            copy.rank = template.rank;
+            copy.lifeMultiplier = lifeMultiplier * template.lifeMultiplier;
+            copy.damageMultiplier = damageMultiplier * template.damageMultiplier;
+            copy.bodyRadius = bodyRadius * template.bodyRadius / 0.3f;
+            copy.visualScale = visualScale * template.visualScale;
+            copy.aggroRange = Mathf.Max(aggroRange, template.aggroRange);
+            RankedCopies[key] = copy;
+            return copy;
+        }
+
+        static readonly System.Collections.Generic.Dictionary<(EnemyDefinition, EnemyDefinition), EnemyDefinition> RankedCopies =
+            new System.Collections.Generic.Dictionary<(EnemyDefinition, EnemyDefinition), EnemyDefinition>();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetRankedCopies() => RankedCopies.Clear();
+
 #if UNITY_EDITOR
         /// <summary>For the editor tools that wire baked art to the definitions.</summary>
         public void SetSpriteCharacter(string value) => spriteCharacter = value;

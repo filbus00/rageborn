@@ -219,6 +219,17 @@ namespace ARPG
             var cobble = sources[1];
             var grass = sources[2];
             var path = sources[3];
+            // The forest's slow light drift, from the cell's four corners (2026-11-03, the owner: "Loading times are getting
+            // long"): two noises a pixel were a third of the ground's drawing, and the drift is over 2 and 6 cells.
+            var forestFloor = !town && DungeonRules.Forest && dungeonTheme == DungeonTheme.Cave && forestGrass != null && forestPath != null;
+            float s00 = 0f, s10 = 0f, s01 = 0f, s11 = 0f;
+            if (forestFloor)
+            {
+                s00 = GroundRules.ForestShade(centre + new Vector2(-0.5f, -0.5f));
+                s10 = GroundRules.ForestShade(centre + new Vector2(0.5f, -0.5f));
+                s01 = GroundRules.ForestShade(centre + new Vector2(-0.5f, 0.5f));
+                s11 = GroundRules.ForestShade(centre + new Vector2(0.5f, 0.5f));
+            }
             for (var y = 0; y < TileH; y++)
                 for (var x = 0; x < Unit; x++)
                 {
@@ -237,6 +248,20 @@ namespace ARPG
                         var f = cryptFloor[Wrap(Mathf.FloorToInt(g.x * Unit), cryptFloorSize) + Wrap(Mathf.FloorToInt(g.y * Unit), cryptFloorSize) * cryptFloorSize];
                         var k = GroundRules.CryptFloorShade(g);
                         cellPixels[i] = new Color32((byte)Mathf.Min(255f, f.r * k), (byte)Mathf.Min(255f, f.g * k), (byte)Mathf.Min(255f, f.b * k), 255);
+                        continue;
+                    }
+                    if (forestFloor)
+                    {
+                        // The grass and the path frayed into each other along their edge (2026-10-27), the amount worked
+                        // out once a pixel (it was twice: once to pick the layer).
+                        int gx = Mathf.FloorToInt(g.x * Unit), gy = Mathf.FloorToInt(g.y * Unit);
+                        var blade = forestGrass[Wrap(gx, forestGrassSize) + Wrap(gy, forestGrassSize) * forestGrassSize];
+                        var earth = forestPath[Wrap(gx, forestPathSize) + Wrap(gy, forestPathSize) * forestPathSize];
+                        var amount = GroundRules.ForestGrassAmount(g);
+                        var share = GroundRules.ForestGrassShare(amount, Light(blade), forestGrassMean, GroundRules.ForestClump(gx, gy));
+                        float u = Mathf.Clamp01(g.x - centre.x + 0.5f), v = Mathf.Clamp01(g.y - centre.y + 0.5f);
+                        var drift = Mathf.Lerp(Mathf.Lerp(s00, s10, u), Mathf.Lerp(s01, s11, u), v);
+                        cellPixels[i] = share > 0f ? Tone(blade, drift) : Scale(earth, drift * GroundRules.PathRim(amount));
                         continue;
                     }
                     var s = Wrap(Mathf.FloorToInt(g.x * Unit)) + Wrap(Mathf.FloorToInt(g.y * Unit)) * SourceSize;
