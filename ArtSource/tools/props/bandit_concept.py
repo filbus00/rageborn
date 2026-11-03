@@ -27,7 +27,7 @@ scene = bpy.context.scene
 COLOURS = {
     "burlap": (0.42, 0.21, 0.08), "hood": (0.58, 0.035, 0.02), "hood_dark": (0.3, 0.02, 0.015),
     "leather": (0.22, 0.075, 0.022), "boot": (0.4, 0.1, 0.02), "cloth": (0.62, 0.46, 0.2),
-    "sack": (0.33, 0.29, 0.1), "rope": (0.42, 0.26, 0.08), "stitch": (0.1, 0.04, 0.015),
+    "sack": (0.6, 0.44, 0.22), "rope": (0.42, 0.26, 0.08), "stitch": (0.1, 0.04, 0.015),
     "skull": (0.085, 0.085, 0.1), "teeth": (0.92, 0.8, 0.52), "steel": (0.52, 0.45, 0.38), "steel_dark": (0.2, 0.18, 0.17),
     "brass": (0.95, 0.58, 0.1), "gold": (1.0, 0.68, 0.08), "eye": (1.0, 0.85, 0.45), "void": (0.02, 0.01, 0.01),
     "wood": (0.36, 0.14, 0.035), "bone": (0.9, 0.8, 0.58),
@@ -359,7 +359,7 @@ if REST:
     # Tied on his back: a short knotted neck on top, a rope strap over his left shoulder and across his chest.
     neck_top = sack + Vector((0.05, -0.05, 0.42)) * S
     limb("sack_neck", sack + Vector((0.03, -0.02, 0.3)) * S, neck_top, 0.08, 0.05, "sack")
-    ring("sack_tie", neck_top + Vector((0, 0, -0.03)), 0.05, 0.014, "rope", rot=(0.2, 0, 0))
+    ring("sack_tie", neck_top + Vector((0, 0, -0.03)), 0.055, 0.022, "leather", rot=(0.2, 0, 0))
     limb("strap", Vector((0.2, 0.12, 1.33)), Vector((0.2, -0.22, 1.27)), 0.02, 0.02, "rope")
     limb("strap_front", Vector((0.2, -0.24, 1.27)), Vector((-0.17, -0.22, 0.95)), 0.02, 0.02, "rope")
 else:
