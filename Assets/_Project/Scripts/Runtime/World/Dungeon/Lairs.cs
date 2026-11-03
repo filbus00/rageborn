@@ -65,6 +65,7 @@ namespace ARPG
                     return LairTheme.Camp;
                 case PackMember.Wolf:
                 case PackMember.Werewolf:
+                case PackMember.TuskedBoar:
                     return LairTheme.Den;
                 case PackMember.Rotcap:
                 case PackMember.BriarThrall:

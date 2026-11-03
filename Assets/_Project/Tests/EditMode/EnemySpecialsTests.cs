@@ -9,7 +9,7 @@ namespace ARPG.Tests
         // Every enemy the packs are made of (Data/Enemies), bosses and break targets aside.
         // The critters (2026-10-25) have only their bite and swipe.
         // The forest's Rotcap only bursts and its Werewolf leaps and claws (2026-11-03, the owner's choices).
-        static readonly string[] Critters = { "Rat", "Bat", "Wolf", "Rotcap", "Werewolf" };
+        static readonly string[] Critters = { "Rat", "Bat", "Wolf", "Rotcap", "Werewolf", "TuskedBoar" };
 
         static readonly string[] Roster = System.Enum.GetNames(typeof(PackMember)).Where(n => n != "None" && !Critters.Contains(n))
             .Concat(new[] { "Swarmer", "SwarmerChampion", "SwarmerElite" }).ToArray();

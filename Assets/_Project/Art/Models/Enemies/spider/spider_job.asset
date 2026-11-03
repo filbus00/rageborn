@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b7ef2a89c554486bb05c81650498d7, type: 3}
   m_Name: spider_job
   m_EditorClassIdentifier: ARPG.Editor::ARPG.Editor.SpriteBakeJob
+  lookSwaps: []
+  boneScales: []
+  pieceScale: 1
+  lightContrast: 1
+  edgeHighlight: 0
+  textureSwaps: []
+  trimSheets: 1
   characterName: spider
   bodies:
   - look: 
@@ -69,6 +76,17 @@ MonoBehaviour:
       clip: {fileID: 5866576275671282845, guid: 2bb4bdb74ccfb406aa999b2094c184d8, type: 3}
       frames: 12
       loop: 0
+      playbackSeconds: 1
+      start: 0
+      end: 1
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: walk
+      clip: {fileID: -4799524434163024911, guid: 2bb4bdb74ccfb406aa999b2094c184d8, type: 3}
+      frames: 12
+      loop: 1
       playbackSeconds: 1
       start: 0
       end: 1

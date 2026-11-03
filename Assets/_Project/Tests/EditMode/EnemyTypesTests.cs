@@ -180,7 +180,11 @@ namespace ARPG.Tests
                 if (kinds.Length == 1 && PackComposition.RoleOf(kinds[0]) == PackRole.Swarm)
                 {
                     swarms++;
-                    Assert.That(members.Count(m => m != PackMember.None), Is.InRange(PackComposition.MinSwarm, PackComposition.MaxSwarm));
+                    // Boars come alone or in pairs (the owner, 2026-11-02).
+                    if (kinds[0] == PackMember.TuskedBoar)
+                        Assert.That(members.Count(m => m != PackMember.None), Is.InRange(1, 2));
+                    else
+                        Assert.That(members.Count(m => m != PackMember.None), Is.InRange(PackComposition.MinSwarm, PackComposition.MaxSwarm));
                 }
                 else
                     Assert.IsFalse(members.Any(m => m != PackMember.None && PackComposition.RoleOf(m) == PackRole.Swarm), "swarms run alone");

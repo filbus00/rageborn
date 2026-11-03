@@ -68,7 +68,7 @@ namespace ARPG.Editor
             { "arachnid", 52f }, { "sand_worm", 70f }, { "giant", 120f }, { "nightmare", 80f }, { "balrog_lite", 112f },
             // The forest's new figures (2026-11-03), measured with their hats, hoods, horns and raised arms.
             { "bandit_bowman", 88f }, { "woodcutter", 98f }, { "hedge_witch", 90f }, { "rotcap", 62f }, { "briar_thrall", 104f },
-            { "werewolf", 112f }, { "bandit_king", 104f },
+            { "werewolf", 112f }, { "bandit_king", 104f }, { "tusked_boar", 72f }, { "brood_mother", 96f },
             // The Retcher (2026-10-17), hunched.
             { "retcher", 78f },
             // The critters (2026-10-25): the bat measured with its wings spread; the blob's piece before the blob, so
@@ -85,7 +85,7 @@ namespace ARPG.Editor
             { "drowned_watchman", 192 }, { "skeleton_knight", 192 }, { "tidewife", 192 }, { "saint_marrow", 192 }, { "first_watchman", 192 },
             { "ash_archivist", 192 }, { "rift_mother", 192 }, { "gaoler", 192 }, { "hanged_magistrate", 192 },
             { "bile_fiend", 192 }, { "flesh_golem", 192 }, { "ogre", 192 }, { "gargoyle", 192 }, { "stygian_demon", 192 }, { "giant", 192 },
-            { "balrog_lite", 192 }, { "retcher", 192 }, { "lich", 192 }, { "nightmare", 192 }, { "sand_worm", 192 }, { "arachnid", 192 }, { "succubus", 192 }, { "harpy", 192 } };
+            { "balrog_lite", 192 }, { "tusked_boar", 192 }, { "brood_mother", 192 }, { "werewolf", 192 }, { "woodcutter", 192 }, { "briar_thrall", 192 }, { "bandit_king", 192 }, { "retcher", 192 }, { "lich", 192 }, { "nightmare", 192 }, { "sand_worm", 192 }, { "arachnid", 192 }, { "succubus", 192 }, { "harpy", 192 } };
 
         /// <summary>Bodies whose clips are copies of another enemy's (the Cinder Warden moves as the ghoul).</summary>
         static readonly Dictionary<string, string> ClipAvatarFrom = new Dictionary<string, string>
@@ -154,13 +154,16 @@ namespace ARPG.Editor
             ("Wolf", "wolf", null), ("Spider", "spider", null), ("Bandit", "cutthroat", null),
             // The forest redone (2026-11-03): rigged in Blender by ArtSource/tools/rig_humanoid.py.
             ("Woodcutter", "woodcutter", null), ("HedgeWitch", "hedge_witch", null), ("Rotcap", "rotcap", null),
-            ("BriarThrall", "briar_thrall", null), ("Werewolf", "werewolf", null),
+            ("BriarThrall", "briar_thrall", null), ("Werewolf", "werewolf", null), ("TuskedBoar", "tusked_boar", null),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the
         /// animation (wolf.py exports idle, run, attack, hit and death as takes).</summary>
         static readonly HashSet<string> GenericBodies = new HashSet<string> { "ash_wolf", "pet_wolf", "pet_boar", "pet_raven",
-            "hell_hound", "nightmare", "quill_rat", "arachnid", "sand_worm", "rat", "bat", "blob", "blob_small", "wolf", "spider" };
+            "hell_hound", "nightmare", "quill_rat", "arachnid", "sand_worm", "rat", "bat", "blob", "blob_small", "wolf", "spider",
+            // The forest's beasts rigged by ArtSource/tools/rig_beast.py (2026-11-03): the Grey Wolf and the Brood Spider in
+            // the old wolf's and spider's place, the Tusked Boar, the Brood Mother.
+            "tusked_boar", "brood_mother" };
 
         const string PetsRoot = "Assets/_Project/Art/Models/Pets";
 

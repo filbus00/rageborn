@@ -57,6 +57,7 @@ namespace ARPG
         Rotcap,
         BriarThrall,
         Werewolf,
+        TuskedBoar,
     }
 
     /// <summary>Where a kind stands in a pack: in front, at the back, one behind the rest helping them, or in a pack
@@ -157,6 +158,8 @@ namespace ARPG
             new Entry(PackMember.Bandit, PackRole.Front, 1, 48, 10),
             new Entry(PackMember.Woodcutter, PackRole.Front, 2, 48, 5),
             new Entry(PackMember.BriarThrall, PackRole.Front, 3, 48, 5),
+            // The boar charges alone or in pairs (the owner, 2026-11-02): a swarm of its own kind, made small below.
+            new Entry(PackMember.TuskedBoar, PackRole.Swarm, 3, 48, 3),
             new Entry(PackMember.BanditArcher, PackRole.Back, 2, 48, 8),
             new Entry(PackMember.HedgeWitch, PackRole.Back, 3, 48, 5),
             new Entry(PackMember.Werewolf, PackRole.Support, 4, 48, 4),
@@ -200,8 +203,10 @@ namespace ARPG
             if (kind == PackKind.Normal && count >= MinSwarm && hash / 7 % 100 < SwarmPercent && Has(PackRole.Swarm, depth))
             {
                 var swarm = Pick(PackRole.Swarm, depth, hash / 11);
+                // Boars come alone or in pairs (the owner, 2026-11-02).
+                var size = swarm == PackMember.TuskedBoar ? 1 + (int)(hash / 31 % 2) : MaxSwarm;
                 for (var i = 0; i < count; i++)
-                    members[i] = i < MaxSwarm ? swarm : PackMember.None;
+                    members[i] = i < size ? swarm : PackMember.None;
                 return members;
             }
             if (depth < 2)

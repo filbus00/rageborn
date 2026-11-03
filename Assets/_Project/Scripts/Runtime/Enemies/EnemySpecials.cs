@@ -136,6 +136,8 @@ namespace ARPG
             // The Rotcap only waddles and bursts; the Werewolf leaps and claws.
             ("Rotcap", default),
             ("Werewolf", default),
+            // The Tusked Boar's charge is its attack.
+            ("TuskedBoar", default),
             ("Wolf", default),
             ("BlobSmall", default),
             ("Rat", default),
