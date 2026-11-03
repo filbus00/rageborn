@@ -11,7 +11,7 @@ import numpy as np
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
 FOLDER = os.path.join(ROOT, "Assets", "_Project", "Art", "Models", "Weapons")
 COLORS = [("steel", (150, 152, 158)), ("steel_dark", (78, 80, 88)), ("leather", (58, 38, 26)), ("brass", (150, 112, 52)),
-          ("wood", (92, 64, 40))]
+          ("wood", (92, 64, 40)), ("steel_light", (222, 226, 232)), ("hole", (12, 10, 10))]
 NAMES = [c[0] for c in COLORS]
 
 
@@ -116,20 +116,44 @@ def curved_dagger():
     m.export("curved_dagger")
 
 
+def prism(m, outline, thick, color, x=0.0):
+    """A flat slab: an outline in the (y, z) plane, extruded thick along x about x."""
+    n = len(outline)
+    verts = [(x - thick / 2, y, z) for y, z in outline] + [(x + thick / 2, y, z) for y, z in outline]
+    faces = [list(reversed(range(n))), list(range(n, 2 * n))]
+    faces += [[k, (k + 1) % n, n + (k + 1) % n, n + k] for k in range(n)]
+    m.add(verts, faces, color)
+
+
 def cleaver():
-    """The Sack Thief's cleaver (ArtSource/pixel/ai_exchange/bandit_concept, 2026-11-03): a thick wooden handle with an
-    iron band, and on it a broad rusty slab of a blade, its spine in line with the handle, its edge toward +Z, a hole
-    near its tip and brass rivets."""
+    """The Sack Thief's cleaver (2026-11-03, the owner: "make the design of the cleaver more cleaver-like"): a butcher's
+    cleaver. A short thick round wooden handle with three brass rivets and a rounded butt; a steel bolster; a tall
+    squared blade whose straight spine runs on from the handle's top, wider at its square tip than at its heel, its edge
+    a little bellied and ground bright, a hanging hole in the top corner by the tip."""
     m = Model()
-    m.box((0, 0, 0.0), (0.05, 0.24, 0.055), "wood")
-    m.box((0, 0.13, 0.0), (0.062, 0.03, 0.066), "steel_dark")
-    # The blade: from the band up 0.42, from the spine (just behind the handle's line) 0.27 toward the edge.
-    m.box((0, 0.36, 0.11), (0.022, 0.42, 0.27), "steel")
-    m.box((0, 0.36, -0.03), (0.03, 0.43, 0.03), "steel_dark")
-    m.box((0, 0.36, 0.245), (0.012, 0.42, 0.012), "steel")
-    m.box((0, 0.52, 0.03), (0.026, 0.04, 0.04), "leather")
-    for y in (0.17, 0.21):
-        m.box((0, y, 0.03), (0.03, 0.02, 0.02), "brass")
+    # The handle along +Y, the grip's middle at the origin: thicker toward the butt, a rounded knob at the end.
+    m.tube(-0.11, 0.08, 0.03, 0.026, "wood")
+    m.tube(-0.125, -0.11, 0.022, 0.032, "wood")
+    for y in (-0.06, 0.0, 0.06):
+        m.box((0, y, 0.0), (0.066, 0.016, 0.016), "brass")
+    # The bolster where the handle meets the blade.
+    m.box((0, 0.095, 0.0), (0.03, 0.035, 0.062), "steel_dark")
+    # The blade, from the bolster up along +Y; its spine just behind the handle's line (z -0.03), its edge toward +Z.
+    heel, tip = 0.11, 0.5
+    edge = []
+    for i in range(9):
+        t = i / 8
+        y = heel + (tip - heel) * t
+        edge.append((y, 0.2 + 0.05 * t + 0.022 * math.sin(math.pi * t)))
+    outline = [(heel, -0.03), (tip, -0.03)] + list(reversed(edge))
+    prism(m, outline, 0.012, "steel")
+    # The edge ground bright: a band along the belly.
+    band = [(y, z - 0.035) for y, z in edge] + list(reversed(edge))
+    prism(m, band, 0.014, "steel_light")
+    # The spine, thick and dark, and the hanging hole by the tip.
+    m.box((0, (heel + tip) / 2, -0.026), (0.02, tip - heel, 0.016), "steel_dark")
+    hole = [(tip - 0.06 + 0.02 * math.cos(a), 0.03 + 0.02 * math.sin(a)) for a in [2 * math.pi * k / 10 for k in range(10)]]
+    prism(m, hole, 0.016, "hole")
     m.export("cleaver")
 
 
