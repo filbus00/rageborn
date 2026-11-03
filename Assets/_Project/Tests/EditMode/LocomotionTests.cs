@@ -173,5 +173,15 @@ namespace ARPG.Tests
             Assert.AreEqual("walk_aim_back", LocomotionRules.AimWalkSheet(LocomotionRules.LegsFor(Vector2.right, Vector2.left)));
             Assert.AreEqual(LocomotionRules.ActionLegs.Forward, LocomotionRules.AimWalkLegsOf("run"));
         }
+
+        [Test]
+        public void HerSlowestWalk_StepsAtHerPace()
+        {
+            // The owner, 2026-11-03: "Still very fast steps for slow walk".
+            Assert.AreEqual(0.3f / 0.95f, LocomotionRules.AimWalkRate(0.3f, 0.95f), 1e-4f);
+            Assert.AreEqual(0.3f / 0.95f, LocomotionRules.WalkRate(0.3f, 0.95f), 1e-4f);
+            Assert.AreEqual(0.35f, LocomotionRules.MovingShotRate(0.7f), 1e-4f);
+            Assert.AreEqual(1f, LocomotionRules.MovingShotRate(LocomotionRules.MovingShotLegSpeed), 1e-4f);
+        }
     }
 }

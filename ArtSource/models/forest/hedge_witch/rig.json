@@ -1,0 +1,115 @@
+{
+ "name": "hedge_witch",
+ "shape": "ArtSource/models/forest/hedge_witch/shape_textured.glb",
+ "albedo": "ArtSource/models/forest/hedge_witch/albedo.png",
+ "height": 1.75,
+ "out": "Assets/_Project/Art/Models/Enemies/hedge_witch",
+ "joints": {
+  "hips": [
+   0.0,
+   0.836
+  ],
+  "neck": [
+   0.0,
+   1.318
+  ],
+  "head": [
+   0.0,
+   1.356
+  ],
+  "head_top": [
+   0.0,
+   1.635
+  ],
+  "arm_L": [
+   0.154,
+   1.222
+  ],
+  "elbow_L": [
+   0.366,
+   1.164
+  ],
+  "wrist_L": [
+   0.558,
+   1.125
+  ],
+  "hand_L": [
+   0.77,
+   1.125
+  ],
+  "arm_R": [
+   -0.154,
+   1.222
+  ],
+  "elbow_R": [
+   -0.366,
+   1.173
+  ],
+  "wrist_R": [
+   -0.539,
+   1.116
+  ],
+  "hand_R": [
+   -0.674,
+   1.106
+  ],
+  "upleg_L": [
+   0.087,
+   0.759
+  ],
+  "knee_L": [
+   0.173,
+   0.394
+  ],
+  "ankle_L": [
+   0.289,
+   0.066
+  ],
+  "upleg_R": [
+   -0.087,
+   0.759
+  ],
+  "knee_R": [
+   -0.173,
+   0.394
+  ],
+  "ankle_R": [
+   -0.27,
+   0.066
+  ]
+ },
+ "clips": {
+  "idle": [
+   "ArtSource/models/mixamo_clips/bow_idle_02_looking.fbx",
+   true
+  ],
+  "walk": [
+   "ArtSource/models/mixamo_clips/walk.fbx",
+   true
+  ],
+  "run": [
+   "ArtSource/models/mixamo_clips/husk_run.fbx",
+   true
+  ],
+  "attack": [
+   "ArtSource/models/mixamo_clips/throw_object.fbx",
+   false
+  ],
+  "hit": [
+   "ArtSource/models/mixamo_clips/bow_react_small_from_front.fbx",
+   false
+  ],
+  "death": [
+   "ArtSource/models/mixamo_clips/bow_death_forward_01.fbx",
+   false
+  ],
+  "throw": [
+   "ArtSource/models/mixamo_clips/throw_object.fbx",
+   false
+  ],
+  "dash": [
+   "ArtSource/models/mixamo_clips/bow_dive_forward.fbx",
+   false
+  ]
+ }
+}

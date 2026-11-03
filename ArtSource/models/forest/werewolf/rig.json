@@ -1,0 +1,115 @@
+{
+ "name": "werewolf",
+ "shape": "ArtSource/models/forest/werewolf/shape_textured.glb",
+ "albedo": "ArtSource/models/forest/werewolf/albedo.png",
+ "height": 2.3,
+ "out": "Assets/_Project/Art/Models/Enemies/werewolf",
+ "joints": {
+  "hips": [
+   0.0,
+   1.014
+  ],
+  "neck": [
+   0.0,
+   1.999
+  ],
+  "head": [
+   0.0,
+   2.084
+  ],
+  "head_top": [
+   0.0,
+   2.287
+  ],
+  "arm_L": [
+   0.475,
+   1.761
+  ],
+  "elbow_L": [
+   0.883,
+   1.642
+  ],
+  "wrist_L": [
+   1.222,
+   1.54
+  ],
+  "hand_L": [
+   1.494,
+   1.506
+  ],
+  "arm_R": [
+   -0.475,
+   1.761
+  ],
+  "elbow_R": [
+   -0.883,
+   1.642
+  ],
+  "wrist_R": [
+   -1.222,
+   1.54
+  ],
+  "hand_R": [
+   -1.494,
+   1.506
+  ],
+  "upleg_L": [
+   0.238,
+   0.878
+  ],
+  "knee_L": [
+   0.339,
+   0.505
+  ],
+  "ankle_L": [
+   0.407,
+   0.064
+  ],
+  "upleg_R": [
+   -0.238,
+   0.878
+  ],
+  "knee_R": [
+   -0.339,
+   0.505
+  ],
+  "ankle_R": [
+   -0.407,
+   0.064
+  ]
+ },
+ "clips": {
+  "idle": [
+   "ArtSource/models/mixamo_clips/fighting_idle.fbx",
+   true
+  ],
+  "walk": [
+   "ArtSource/models/mixamo_clips/walk.fbx",
+   true
+  ],
+  "run": [
+   "ArtSource/models/mixamo_clips/fast_run.fbx",
+   true
+  ],
+  "attack": [
+   "ArtSource/models/mixamo_clips/dual_weapon_combo.fbx",
+   false
+  ],
+  "hit": [
+   "ArtSource/models/mixamo_clips/rib_hit.fbx",
+   false
+  ],
+  "death": [
+   "ArtSource/models/mixamo_clips/dying.fbx",
+   false
+  ],
+  "dash": [
+   "ArtSource/models/mixamo_clips/sprinting_forward_roll.fbx",
+   false
+  ],
+  "throw": [
+   "ArtSource/models/mixamo_clips/bow_melee_punch.fbx",
+   false
+  ]
+ }
+}

@@ -126,6 +126,16 @@ namespace ARPG
             // The Cutthroat throws only when she keeps her distance (the owner, 2026-11-02); up close he dashes and slashes.
             ("Bandit", new EnemySpecial("Thrown Knife", SpecialShape.Throw, 5f, 4f, 9f, 0.2f, 0.45f, 0.8f, Steel, length: 9f, speed: 16f, kind: ProjectileKind.Knife)),
             ("BanditArcher", new EnemySpecial("Volley", SpecialShape.Throw, 7f, 2.5f, 10f, 0.2f, 0.5f, 0.8f, Steel, count: 3, spread: 12f, length: 11f, speed: 15f)),
+            // The forest redone (2026-11-02, the owner's choices, Docs/08). Claude's numbers, to review.
+            // The Woodcutter throws his axe out and it comes back to him, hurting her both ways.
+            ("Woodcutter", new EnemySpecial("Returning Axe", SpecialShape.Throw, 5.5f, 2.5f, 9f, 0.45f, 0.6f, 1.4f, Steel, length: 7f, speed: 10f, kind: ProjectileKind.Returning)),
+            // The Hedge Witch drops a poison pool under her; her crows are her normal attack.
+            ("HedgeWitch", new EnemySpecial("Poison Pool", SpecialShape.Lob, 6f, 3f, 10f, 1.3f, 0.9f, 0.6f, Bile, lingerSeconds: 4f, lingerHit: 0.35f, poison: true)),
+            // The Briar Thrall's roots burst up under her and hold her a moment.
+            ("BriarThrall", new EnemySpecial("Root Grasp", SpecialShape.Lob, 5f, 1.5f, 8f, 1.0f, 0.8f, 0.9f, Grave, slow: 0.05f, slowSeconds: 1f)),
+            // The Rotcap only waddles and bursts; the Werewolf leaps and claws.
+            ("Rotcap", default),
+            ("Werewolf", default),
             ("Wolf", default),
             ("BlobSmall", default),
             ("Rat", default),

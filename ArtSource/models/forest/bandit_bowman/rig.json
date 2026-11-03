@@ -1,0 +1,111 @@
+{
+ "name": "bandit_bowman",
+ "shape": "ArtSource/models/forest/bandit_bowman/shape_textured.glb",
+ "albedo": "ArtSource/models/forest/bandit_bowman/albedo.png",
+ "height": 1.8,
+ "out": "Assets/_Project/Art/Models/Enemies/bandit_bowman",
+ "joints": {
+  "hips": [
+   0.0,
+   0.781
+  ],
+  "neck": [
+   0.0,
+   1.464
+  ],
+  "head": [
+   0.0,
+   1.514
+  ],
+  "head_top": [
+   0.0,
+   1.795
+  ],
+  "arm_L": [
+   0.168,
+   1.336
+  ],
+  "elbow_L": [
+   0.327,
+   1.157
+  ],
+  "wrist_L": [
+   0.436,
+   1.009
+  ],
+  "hand_L": [
+   0.485,
+   0.94
+  ],
+  "arm_R": [
+   -0.168,
+   1.336
+  ],
+  "elbow_R": [
+   -0.356,
+   1.157
+  ],
+  "wrist_R": [
+   -0.554,
+   1.039
+  ],
+  "hand_R": [
+   -0.634,
+   0.9
+  ],
+  "upleg_L": [
+   0.089,
+   0.702
+  ],
+  "knee_L": [
+   0.119,
+   0.346
+  ],
+  "ankle_L": [
+   0.139,
+   0.078
+  ],
+  "upleg_R": [
+   -0.089,
+   0.702
+  ],
+  "knee_R": [
+   -0.119,
+   0.346
+  ],
+  "ankle_R": [
+   -0.198,
+   0.078
+  ]
+ },
+ "clips": {
+  "idle": [
+   "ArtSource/models/mixamo_clips/bow_idle_01.fbx",
+   true
+  ],
+  "walk": [
+   "ArtSource/models/mixamo_clips/bow_walk_forward.fbx",
+   true
+  ],
+  "run": [
+   "ArtSource/models/mixamo_clips/bow_run_forward.fbx",
+   true
+  ],
+  "attack": [
+   "ArtSource/models/mixamo_clips/bow_draw_arrow.fbx",
+   false
+  ],
+  "hit": [
+   "ArtSource/models/mixamo_clips/bow_react_small_from_front.fbx",
+   false
+  ],
+  "death": [
+   "ArtSource/models/mixamo_clips/bow_death_backward_01.fbx",
+   false
+  ],
+  "throw": [
+   "ArtSource/models/mixamo_clips/bow_aim_recoil.fbx",
+   false
+  ]
+ }
+}

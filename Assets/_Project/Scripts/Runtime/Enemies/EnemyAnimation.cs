@@ -15,6 +15,11 @@ namespace ARPG
         /// <summary>Moves of its own, when baked (the forest's Cutthroat, 2026-11-02): the dash of a lunge, the roll back
         /// after its strikes, the throw of a special. Null plays the attack, or nothing, as before.</summary>
         public CharacterSheet Dash, RollBack, Throw;
+
+        /// <summary>A walk for wandering and going home, when baked (2026-11-03, the owner: bandits "running around in camp
+        /// ... looks wierd"); the run is for chasing.</summary>
+        public CharacterSheet Walk;
+        public float WalkSeconds, WalkRecordedSpeed;
         public float IdleSeconds, RunSeconds, AttackSeconds;
 
         /// <summary>The ground speed the run looks right at (from the bake), or 0 when unknown.</summary>
@@ -56,7 +61,10 @@ namespace ARPG
                     Dash = Sheet("dash"),
                     RollBack = Sheet("roll_back"),
                     Throw = Sheet("throw"),
+                    Walk = Sheet("walk"),
                 };
+                set.WalkSeconds = set.Walk != null ? Seconds("walk", set.Walk) : 0f;
+                speeds.TryGetValue("walk", out set.WalkRecordedSpeed);
                 set.IdleSeconds = Seconds("idle", set.Idle);
                 set.RunSeconds = Seconds("run", set.Run);
                 set.AttackSeconds = Seconds("attack", set.Attack);
@@ -72,6 +80,10 @@ namespace ARPG
     /// <summary>How an enemy's frames follow its state, pure so it is tested.</summary>
     public static class EnemyAnimationRules
     {
+        /// <summary>Whether an enemy moving in this state walks rather than runs: wandering while calm or going home walks
+        /// (2026-11-03); chasing runs.</summary>
+        public static bool Walks(EnemyState state) => state == EnemyState.Idle || state == EnemyState.Return;
+
         /// <summary>Where in the attack animation the blow lands: the wind-up plays the frames before it, the recovery the
         /// rest. Tuning (Mixamo's attacks strike a little past the middle).</summary>
         public const float HitFraction = 0.55f;

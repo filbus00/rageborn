@@ -8,7 +8,8 @@ namespace ARPG.Tests
     {
         // Every enemy the packs are made of (Data/Enemies), bosses and break targets aside.
         // The critters (2026-10-25) have only their bite and swipe.
-        static readonly string[] Critters = { "Rat", "Bat", "Wolf" };
+        // The forest's Rotcap only bursts and its Werewolf leaps and claws (2026-11-03, the owner's choices).
+        static readonly string[] Critters = { "Rat", "Bat", "Wolf", "Rotcap", "Werewolf" };
 
         static readonly string[] Roster = System.Enum.GetNames(typeof(PackMember)).Where(n => n != "None" && !Critters.Contains(n))
             .Concat(new[] { "Swarmer", "SwarmerChampion", "SwarmerElite" }).ToArray();
@@ -87,7 +88,8 @@ namespace ARPG.Tests
                 if (special.Shape == SpecialShape.Throw)
                     kinds.Add(special.Kind);
             }
-            Assert.LessOrEqual(pools, 3);
+            // The Hedge Witch's poison pool is the fourth (2026-11-03, the owner's choice).
+            Assert.LessOrEqual(pools, 4);
             foreach (var wanted in new[] { ProjectileKind.Knife, ProjectileKind.Axe, ProjectileKind.Fireball, ProjectileKind.Bomb, ProjectileKind.Bouncing })
                 Assert.IsTrue(kinds.Contains(wanted), wanted.ToString());
         }

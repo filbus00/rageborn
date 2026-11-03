@@ -139,9 +139,22 @@ namespace ARPG
         /// while firing (more between shots), so the usual <see cref="MaxRate"/> left her feet sliding.</summary>
         public const float AimWalkMaxRate = 3f;
 
+        /// <summary>The slowest a walk plays (2026-11-03, the owner: "Still very fast steps for slow walk"): her slowest
+        /// push moves her at about a third of the aiming walk's recorded pace, and the run's lower limit (0.6) made her
+        /// feet step twice as fast as she went.</summary>
+        public const float WalkMinRate = 0.2f;
+
         /// <summary>How fast to play an aiming walk at this speed.</summary>
         public static float AimWalkRate(float speed, float recordedSpeed) =>
-            recordedSpeed <= 0f ? 1f : Mathf.Clamp(speed / recordedSpeed, MinRate, AimWalkMaxRate);
+            recordedSpeed <= 0f ? 1f : Mathf.Clamp(speed / recordedSpeed, WalkMinRate, AimWalkMaxRate);
+
+        /// <summary>The ground speed the legs under her moving shots are baked at (WildArrowBakeSetup.WalkGroundSpeed:
+        /// her base 4 at FiringPace's half).</summary>
+        public const float MovingShotLegSpeed = 2f;
+
+        /// <summary>How fast a moving shot plays at her speed, so its legs step as she goes (2026-11-03): slower at a slow
+        /// push (the draw with them; the next shot starts it again), a little quicker at her full pace.</summary>
+        public static float MovingShotRate(float speed) => Mathf.Clamp(speed / MovingShotLegSpeed, 0.25f, 1.5f);
 
         /// <summary>The aiming walk for a set of legs.</summary>
         public static string AimWalkSheet(ActionLegs legs) =>
@@ -177,6 +190,10 @@ namespace ARPG
 
         /// <summary>Whether to show the walk at this speed: below <see cref="WalkBelow"/>, holding either way by
         /// <see cref="WalkMargin"/>.</summary>
+        /// <summary>How fast to play her plain walk: down to <see cref="WalkMinRate"/>, so her slowest pace still steps.</summary>
+        public static float WalkRate(float speed, float recordedSpeed) =>
+            recordedSpeed <= 0f ? 1f : Mathf.Clamp(speed / recordedSpeed, WalkMinRate, MaxRate);
+
         public static bool Walks(float speed, bool wasWalking) =>
             speed < WalkBelow + (wasWalking ? WalkMargin : -WalkMargin);
 

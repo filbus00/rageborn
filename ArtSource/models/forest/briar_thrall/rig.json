@@ -1,0 +1,111 @@
+{
+ "name": "briar_thrall",
+ "shape": "ArtSource/models/forest/briar_thrall/shape_textured.glb",
+ "albedo": "ArtSource/models/forest/briar_thrall/albedo.png",
+ "height": 2.0,
+ "out": "Assets/_Project/Art/Models/Enemies/briar_thrall",
+ "joints": {
+  "hips": [
+   0.0,
+   0.826
+  ],
+  "neck": [
+   0.0,
+   1.581
+  ],
+  "head": [
+   0.0,
+   1.639
+  ],
+  "head_top": [
+   0.0,
+   1.959
+  ],
+  "arm_L": [
+   0.232,
+   1.465
+  ],
+  "elbow_L": [
+   0.639,
+   1.291
+  ],
+  "wrist_L": [
+   1.046,
+   1.058
+  ],
+  "hand_L": [
+   1.278,
+   0.913
+  ],
+  "arm_R": [
+   -0.232,
+   1.465
+  ],
+  "elbow_R": [
+   -0.639,
+   1.291
+  ],
+  "wrist_R": [
+   -1.046,
+   1.058
+  ],
+  "hand_R": [
+   -1.278,
+   0.913
+  ],
+  "upleg_L": [
+   0.16,
+   0.709
+  ],
+  "knee_L": [
+   0.407,
+   0.361
+  ],
+  "ankle_L": [
+   0.581,
+   0.099
+  ],
+  "upleg_R": [
+   -0.16,
+   0.709
+  ],
+  "knee_R": [
+   -0.407,
+   0.361
+  ],
+  "ankle_R": [
+   -0.581,
+   0.099
+  ]
+ },
+ "clips": {
+  "idle": [
+   "ArtSource/models/mixamo_clips/ghoul_idle_with_skin.fbx",
+   true
+  ],
+  "walk": [
+   "ArtSource/models/mixamo_clips/walk.fbx",
+   true
+  ],
+  "run": [
+   "ArtSource/models/mixamo_clips/husk_run.fbx",
+   true
+  ],
+  "attack": [
+   "ArtSource/models/mixamo_clips/ghoul_attack.fbx",
+   false
+  ],
+  "hit": [
+   "ArtSource/models/mixamo_clips/ghoul_hit.fbx",
+   false
+  ],
+  "death": [
+   "ArtSource/models/mixamo_clips/ghoul_death.fbx",
+   false
+  ],
+  "throw": [
+   "ArtSource/models/mixamo_clips/bow_melee_punch.fbx",
+   false
+  ]
+ }
+}

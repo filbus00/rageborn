@@ -31,6 +31,17 @@ namespace ARPG.Editor
             // Moves of an enemy's own, baked when its folder has them (the forest's Cutthroat, 2026-11-02): the dash of a
             // lunge, the roll back after its strikes, the throw of a special (EnemyAnimationSet).
             ("dash", 10, false), ("roll_back", 10, false), ("throw", 10, false),
+            // A walk for wandering (2026-11-03, the owner: bandits "running around in camp ... looks wierd").
+            ("walk", 12, true),
+        };
+
+        /// <summary>Enemies rigged in Blender by ArtSource/tools/rig_humanoid.py (2026-11-03, the forest's new figures,
+        /// without Mixamo's auto-rigger): their clips are Mixamo's, put on the figure's own skeleton there, and are
+        /// imported as generic clips that pose its bones exactly (the body keeps a humanoid avatar only so its hands
+        /// and hips can be found).</summary>
+        static readonly HashSet<string> OwnRigs = new HashSet<string>
+        {
+            "cutthroat", "bandit_bowman", "woodcutter", "hedge_witch", "rotcap", "briar_thrall", "werewolf", "bandit_king",
         };
 
         /// <summary>Heights in final pixels at 64 per unit (the brief, 5.2 and 15.3, halved on 2026-09-28); others 80.</summary>
@@ -39,7 +50,8 @@ namespace ARPG.Editor
             { "husk", 70f }, { "ghoul", 88f }, { "bandit_archer", 80f }, { "ash_wolf", 60f }, { "cinder_warden", 92f }, { "skeleton", 72f }, { "cultist", 82f },
             // The rest of act 1 (2026-10-05). The pyre keeper is measured with its brazier pole, which stands well over
             // its head, so it asks more to stand as tall as a cultist.
-            { "cutthroat", 74f }, { "ember_acolyte", 80f }, { "pyre_keeper", 104f }, { "carrion_bloat", 84f },
+            // The forest's Cutthroat 92 (2026-11-03, the owner: "a bit too small"; his hat counts).
+            { "cutthroat", 92f }, { "ember_acolyte", 80f }, { "pyre_keeper", 104f }, { "carrion_bloat", 84f },
             // The deep levels and their bosses (2026-10-05); staffs and halos count in the measured box.
             { "drowned", 72f }, { "harpooner", 96f }, { "drowned_watchman", 92f }, { "skeleton_knight", 88f },
             { "grave_priest", 96f }, { "hollowed", 72f }, { "void_wraith", 76f }, { "rift_caller", 98f },
@@ -54,6 +66,9 @@ namespace ARPG.Editor
             { "bone_mage", 88f }, { "flesh_golem", 100f }, { "wraith", 86f }, { "ogre", 104f }, { "gargoyle", 84f }, { "lich", 96f },
             { "imp", 54f }, { "succubus", 86f }, { "harpy", 70f }, { "stygian_demon", 100f }, { "hell_hound", 58f },
             { "arachnid", 52f }, { "sand_worm", 70f }, { "giant", 120f }, { "nightmare", 80f }, { "balrog_lite", 112f },
+            // The forest's new figures (2026-11-03), measured with their hats, hoods, horns and raised arms.
+            { "bandit_bowman", 88f }, { "woodcutter", 98f }, { "hedge_witch", 90f }, { "rotcap", 62f }, { "briar_thrall", 104f },
+            { "werewolf", 112f }, { "bandit_king", 104f },
             // The Retcher (2026-10-17), hunched.
             { "retcher", 78f },
             // The critters (2026-10-25): the bat measured with its wings spread; the blob's piece before the blob, so
@@ -108,7 +123,8 @@ namespace ARPG.Editor
         /// until the rank has its own.</summary>
         static readonly (string definition, string character, string fallback)[] Wiring =
         {
-            ("Ghoul", "ghoul", null), ("BanditArcher", "bandit_archer", null),
+            // The forest's Bandit Bowman (2026-11-03) in place of the old archer's look, which stays the fallback.
+            ("Ghoul", "ghoul", null), ("BanditArcher", "bandit_bowman", "bandit_archer"),
             // The act boss (2026-10-04): built in Blender on the ghoul's rig, ArtSource/tools/props/boss.py.
             ("CinderWarden", "cinder_warden", null),
             // Act 1's undead (2026-10-04, ArtSource/tools/props/undead.py): the skeleton on the husk's rig, the cultist on
@@ -136,6 +152,9 @@ namespace ARPG.Editor
             ("Retcher", "retcher", null),
             ("Rat", "rat", null), ("Bat", "bat", null), ("Blob", "blob", null), ("BlobSmall", "blob_small", "blob"),
             ("Wolf", "wolf", null), ("Spider", "spider", null), ("Bandit", "cutthroat", null),
+            // The forest redone (2026-11-03): rigged in Blender by ArtSource/tools/rig_humanoid.py.
+            ("Woodcutter", "woodcutter", null), ("HedgeWitch", "hedge_witch", null), ("Rotcap", "rotcap", null),
+            ("BriarThrall", "briar_thrall", null), ("Werewolf", "werewolf", null),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the
@@ -231,7 +250,8 @@ namespace ARPG.Editor
                 var path = $"{folder}/{name}_{animation}.fbx";
                 var idleFrom = donor != null ? $"{RigsRoot}/{donor}/{donor}.fbx" : bodyPath;
                 var clip = File.Exists(path)
-                    ? MixamoImport.ConfigureAnimation(path, loop, avatar, animation, false)
+                    ? OwnRigs.Contains(name) ? MixamoImport.ConfigureGenericAnimation(path, loop, animation)
+                    : MixamoImport.ConfigureAnimation(path, loop, avatar, animation, false)
                     : animation == "idle" ? MixamoImport.FirstClip(idleFrom) : null;
                 if (clip == null)
                     continue;

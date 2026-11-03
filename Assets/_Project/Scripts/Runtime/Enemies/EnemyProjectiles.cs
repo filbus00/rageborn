@@ -40,6 +40,8 @@ namespace ARPG
             // The kind (2026-10-17): how it looks and what it does when it stops; bounces left, the colour of its burst.
             public ProjectileKind Kind;
             public int Bounces;
+            // A returning axe on its way home (it hits her once each way).
+            public bool Returning;
             public Color Color;
             public float Spin;
         }
@@ -83,7 +85,7 @@ namespace ARPG
                 renderer.color = Color.white;
                 // About the size of the coloured bolts (2026-10-25, the owner: "make sure that all enemie projectiles are
                 // about the size as the green attacks of the first enemies"; were 1.5 and 1.9, a knife hardly seen).
-                look.Body.transform.localScale = kind == ProjectileKind.Axe || kind == ProjectileKind.Bomb ? new Vector3(2.6f, 2.6f, 1f) : new Vector3(2.4f, 2.4f, 1f);
+                look.Body.transform.localScale = kind == ProjectileKind.Axe || kind == ProjectileKind.Returning || kind == ProjectileKind.Bomb ? new Vector3(2.6f, 2.6f, 1f) : new Vector3(2.4f, 2.4f, 1f);
                 glowSize = 0.9f;
                 trailLength = kind == ProjectileKind.Knife ? 1.0f : 0.8f;
                 trailWidth = kind == ProjectileKind.Knife ? 0.16f : 0.22f;
@@ -131,6 +133,7 @@ namespace ARPG
                 Shooter = shooter,
                 Kind = kind,
                 Bounces = kind == ProjectileKind.Bouncing ? ProjectileKinds.Bounces : 0,
+                Returning = false,
                 Color = color.a > 0f ? color : ArrowColor,
                 Spin = kind == ProjectileKind.Bouncing ? ProjectileKinds.BladeSpinDegrees : ProjectileKinds.Spins(kind) ? ProjectileKinds.AxeSpinDegrees : 0f,
             });
@@ -151,6 +154,22 @@ namespace ARPG
                     walkable ??= c => world.Nav.IsOpenToShots(c);
                     shot.Velocity = ProjectileKinds.Bounce(shot.Position, shot.Velocity, walkable);
                     outcome = EnemyProjectileFlight.Outcome.Flying;
+                }
+
+                // A returning axe turns for home where it stops, hurting her if that was her; on its way home it is
+                // done when it reaches its thrower (or he has fallen).
+                if (shot.Kind == ProjectileKind.Returning && !shot.Returning && outcome != EnemyProjectileFlight.Outcome.Flying)
+                {
+                    if (outcome == EnemyProjectileFlight.Outcome.HitPlayer)
+                        HitPlayer(ref shot, world);
+                    shot.Returning = true;
+                    shot.Travelled = 0f;
+                    var thrower = shot.Shooter != null && shot.Shooter.IsAlive ? shot.Shooter.GroundPosition : shot.Position;
+                    shot.Velocity = ProjectileKinds.ReturnVelocity(shot.Position, thrower, shot.Velocity.magnitude);
+                    shot.MaxDistance = Vector2.Distance(shot.Position, thrower);
+                    // Past her already, so the way back can hit her again.
+                    shot.Position += shot.Velocity.normalized * HitRadius * 2.2f;
+                    outcome = shot.MaxDistance > 0.3f ? EnemyProjectileFlight.Outcome.Flying : EnemyProjectileFlight.Outcome.Spent;
                 }
 
                 if (outcome == EnemyProjectileFlight.Outcome.Flying)
@@ -181,13 +200,8 @@ namespace ARPG
                 }
                 else
                 {
-                    if (outcome == EnemyProjectileFlight.Outcome.HitPlayer && world.Player != null && world.Player.IsAlive)
-                    {
-                        var lifeBefore = world.Player.Life;
-                        world.Player.TakeHit(shot.Damage, shot.Level, shot.ArmorIgnore);
-                        if (world.Player.Life < lifeBefore && shot.Shooter != null && shot.Shooter.IsAlive)
-                            shot.Shooter.ApplyOnHitEffects(world, shot.Damage);
-                    }
+                    if (outcome == EnemyProjectileFlight.Outcome.HitPlayer)
+                        HitPlayer(ref shot, world);
                     // A fireball that missed bursts where it stopped.
                     else if (shot.Kind == ProjectileKind.Fireball)
                         world.Hazards.Strike(shot.Position, ProjectileKinds.FireballBurstRadius, EnemyRules.Telegraph(ProjectileKinds.FireballBurstFill),
@@ -199,6 +213,16 @@ namespace ARPG
                 flying[i] = flying[flying.Count - 1];
                 flying.RemoveAt(flying.Count - 1);
             }
+        }
+
+        void HitPlayer(ref Shot shot, EnemyManager world)
+        {
+            if (world.Player == null || !world.Player.IsAlive)
+                return;
+            var lifeBefore = world.Player.Life;
+            world.Player.TakeHit(shot.Damage, shot.Level, shot.ArmorIgnore);
+            if (world.Player.Life < lifeBefore && shot.Shooter != null && shot.Shooter.IsAlive)
+                shot.Shooter.ApplyOnHitEffects(world, shot.Damage);
         }
 
         Visual Create()

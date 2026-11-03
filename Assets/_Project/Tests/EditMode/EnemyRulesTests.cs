@@ -71,5 +71,14 @@ namespace ARPG.Tests
             Assert.IsTrue(EnemyRules.DashReaches(1.2f, 1f, 0.3f));
             Assert.IsFalse(EnemyRules.DashReaches(1.5f, 1f, 0.3f));
         }
+
+        [Test]
+        public void EnemiesWalk_WhileWandering_AndRun_WhileChasing()
+        {
+            // The owner, 2026-11-03: bandits "running around in camp ... looks wierd".
+            Assert.IsTrue(EnemyAnimationRules.Walks(EnemyState.Idle));
+            Assert.IsTrue(EnemyAnimationRules.Walks(EnemyState.Return));
+            Assert.IsFalse(EnemyAnimationRules.Walks(EnemyState.Approach));
+        }
     }
 }

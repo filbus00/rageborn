@@ -165,6 +165,7 @@ namespace ARPG
         bool lungeAttack;
         float dashLeft;
         bool dashHit;
+        float walkPhase;
         int strikesLeft;
         float recoverElapsed;
         // Backing off after its strikes, not after a dash that missed (2026-11-02).
@@ -914,6 +915,13 @@ namespace ARPG
             {
                 var progress = 1f - hitAnimationTimer / EnemyAnimationRules.HitSeconds;
                 ShowFrame(animationSet.Hit, EnemyAnimationRules.OneShotFrame(progress, animationSet.Hit.Frames));
+                return;
+            }
+            if (speed > EnemyAnimationRules.MovingSpeed && animationSet.Walk != null && EnemyAnimationRules.Walks(State))
+            {
+                Face(smoothedVelocity, count);
+                walkPhase += deltaTime * LocomotionRules.PlaybackRate(speed, animationSet.WalkRecordedSpeed);
+                ShowFrame(animationSet.Walk, EnemyAnimationRules.LoopFrame(walkPhase, animationSet.WalkSeconds, animationSet.Walk.Frames));
                 return;
             }
             if (speed > EnemyAnimationRules.MovingSpeed && animationSet.Run != null)

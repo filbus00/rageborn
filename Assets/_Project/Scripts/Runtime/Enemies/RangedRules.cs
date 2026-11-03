@@ -87,11 +87,25 @@ namespace ARPG
         Bomb,
         /// <summary>A spinning blade that bounces off walls.</summary>
         Bouncing,
+        /// <summary>A heavy axe that flies out and comes back to its thrower, hurting her on the way out and on the way
+        /// back (the Woodcutter, 2026-11-03).</summary>
+        Returning,
     }
 
     /// <summary>The kinds' numbers and the bounce off a wall. Claude's numbers, to review. Pure.</summary>
     public static class ProjectileKinds
     {
+        /// <summary>A returning axe turns for home where it stops (its reach, a wall, or her), flying back at this share of
+        /// its speed toward where its thrower stands.</summary>
+        public const float ReturnSpeedShare = 0.9f;
+
+        /// <summary>The way home from a returning axe's turn: toward the thrower, at the share of its outward speed.</summary>
+        public static Vector2 ReturnVelocity(Vector2 position, Vector2 thrower, float speed)
+        {
+            var home = thrower - position;
+            return home.sqrMagnitude > 1e-6f ? home.normalized * speed * ReturnSpeedShare : Vector2.zero;
+        }
+
         public const float FireballBurstRadius = 1.1f;
         public const float FireballBurstFill = 0.35f;
         public const float FireballBurstShare = 0.6f;
@@ -103,7 +117,7 @@ namespace ARPG
         public const float BladeSpinDegrees = 1400f;
 
         /// <summary>Whether it is drawn spinning.</summary>
-        public static bool Spins(ProjectileKind kind) => kind == ProjectileKind.Axe || kind == ProjectileKind.Bouncing || kind == ProjectileKind.Bomb;
+        public static bool Spins(ProjectileKind kind) => kind == ProjectileKind.Axe || kind == ProjectileKind.Returning || kind == ProjectileKind.Bouncing || kind == ProjectileKind.Bomb;
 
         /// <summary>
         /// The velocity after striking a wall from <paramref name="position"/> (the last open point): the side that is

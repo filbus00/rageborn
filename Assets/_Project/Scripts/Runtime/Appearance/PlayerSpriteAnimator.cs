@@ -37,7 +37,9 @@ namespace ARPG
 
         const float HitSeconds = 0.3f;
         const float MaxSkillSeconds = 1.2f;
-        const float RunThreshold = 0.5f;
+        // Any real movement walks (2026-11-03, the owner: "when moving at its slowest stops walking and just glides"):
+        // 0.5 until then, under which she stood idle while sliding along.
+        const float RunThreshold = 0.12f;
 
         bool diving;
         int diveShown;
@@ -251,7 +253,8 @@ namespace ARPG
             var length = sprite.LengthOf(name);
             action = baseName;
             inAction = true;
-            sprite.Rate = 1f;
+            // A moving shot plays at her pace, so its legs step as she goes (2026-11-03); a standing one at its own.
+            sprite.Rate = name == baseName ? 1f : LocomotionRules.MovingShotRate(player.GroundVelocity.magnitude);
             // Her shots and skills snap: the draw and loose quick, the follow-through slow (2026-11-01). Standing only
             // (2026-11-02, the owner: "her legs kind off stop moving while she is firing her bow"): a moving variant's legs
             // are baked at her walking pace, and the snap raced them through a step and then all but froze them.
@@ -388,6 +391,9 @@ namespace ARPG
                     var name = action != null ? ActionSheetFor(action, moving, velocity) : moving ? null : sprite.Animation;
                     if (name != null && name != sprite.Animation)
                         sprite.Switch(name);
+                    // Her legs keep stepping at her pace through the draw, as her speed changes (2026-11-03).
+                    if (name != null && action != null)
+                        sprite.Rate = moving && name != action ? LocomotionRules.MovingShotRate(speed) : 1f;
                     if (name != null)
                     {
                         if (action != null)
@@ -446,8 +452,9 @@ namespace ARPG
             var row = LocomotionRules.ChooseRow(sprite.Row, heading, sprite.DirectionCount);
             sprite.FaceRow(row);
             // Moving slowly she walks (when the walk is baked), else she runs.
-            sprite.Loop(sprite.Has("walk") && LocomotionRules.Walks(speed, sprite.Animation == "walk") ? "walk" : "run");
-            sprite.Rate = LocomotionRules.PlaybackRate(speed, sprite.CurrentRecordedSpeed);
+            var walking = sprite.Has("walk") && LocomotionRules.Walks(speed, sprite.Animation == "walk");
+            sprite.Loop(walking ? "walk" : "run");
+            sprite.Rate = walking ? LocomotionRules.WalkRate(speed, sprite.CurrentRecordedSpeed) : LocomotionRules.PlaybackRate(speed, sprite.CurrentRecordedSpeed);
         }
     }
 }

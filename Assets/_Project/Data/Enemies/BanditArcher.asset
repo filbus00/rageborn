@@ -40,6 +40,7 @@ MonoBehaviour:
   lungeSpeed: 12
   lungeWindupSeconds: 0.5
   lungeCooldownSeconds: 4
+  dashIntoStrikes: 0
   strikes: 1
   strikeGapSeconds: 0.25
   retreatDistance: 0
@@ -62,4 +63,4 @@ MonoBehaviour:
   hoverHeight: 0
   splitInto: {fileID: 0}
   splitCount: 0
-  spriteCharacter: bandit_archer
+  spriteCharacter: bandit_bowman

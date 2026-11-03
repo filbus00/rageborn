@@ -61,9 +61,15 @@ namespace ARPG
                 // the dead keep tombs, demons nest.
                 case PackMember.Bandit:
                 case PackMember.BanditArcher:
+                case PackMember.Woodcutter:
                     return LairTheme.Camp;
                 case PackMember.Wolf:
+                case PackMember.Werewolf:
                     return LairTheme.Den;
+                case PackMember.Rotcap:
+                case PackMember.BriarThrall:
+                case PackMember.HedgeWitch:
+                    return LairTheme.Shrine;
                 case PackMember.Spider:
                     return LairTheme.Web;
                 case PackMember.Fallen:

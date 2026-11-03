@@ -1,0 +1,111 @@
+{
+ "name": "woodcutter",
+ "shape": "ArtSource/models/forest/woodcutter/shape_textured.glb",
+ "albedo": "ArtSource/models/forest/woodcutter/albedo.png",
+ "height": 1.9,
+ "out": "Assets/_Project/Art/Models/Enemies/woodcutter",
+ "joints": {
+  "hips": [
+   0.28,
+   0.782
+  ],
+  "neck": [
+   0.28,
+   1.607
+  ],
+  "head": [
+   0.28,
+   1.677
+  ],
+  "head_top": [
+   0.28,
+   1.901
+  ],
+  "arm_L": [
+   0.559,
+   1.439
+  ],
+  "elbow_L": [
+   0.867,
+   1.23
+  ],
+  "wrist_L": [
+   1.119,
+   1.076
+  ],
+  "hand_L": [
+   1.231,
+   0.95
+  ],
+  "arm_R": [
+   0.0,
+   1.439
+  ],
+  "elbow_R": [
+   -0.336,
+   1.23
+  ],
+  "wrist_R": [
+   -0.587,
+   1.048
+  ],
+  "hand_R": [
+   -0.643,
+   0.894
+  ],
+  "upleg_L": [
+   0.42,
+   0.67
+  ],
+  "knee_L": [
+   0.503,
+   0.335
+  ],
+  "ankle_L": [
+   0.573,
+   0.111
+  ],
+  "upleg_R": [
+   0.14,
+   0.67
+  ],
+  "knee_R": [
+   0.056,
+   0.335
+  ],
+  "ankle_R": [
+   -0.028,
+   0.111
+  ]
+ },
+ "clips": {
+  "idle": [
+   "ArtSource/models/mixamo_clips/ghoul_idle_with_skin.fbx",
+   true
+  ],
+  "walk": [
+   "ArtSource/models/mixamo_clips/walk.fbx",
+   true
+  ],
+  "run": [
+   "ArtSource/models/mixamo_clips/ghoul_run.fbx",
+   true
+  ],
+  "attack": [
+   "ArtSource/models/mixamo_clips/ghoul_attack.fbx",
+   false
+  ],
+  "hit": [
+   "ArtSource/models/mixamo_clips/rib_hit.fbx",
+   false
+  ],
+  "death": [
+   "ArtSource/models/mixamo_clips/dying.fbx",
+   false
+  ],
+  "throw": [
+   "ArtSource/models/mixamo_clips/throw_object.fbx",
+   false
+  ]
+ }
+}

@@ -71,7 +71,7 @@ namespace ARPG
             var name = kind switch
             {
                 ProjectileKind.Knife => "projectile_knife",
-                ProjectileKind.Axe => "projectile_axe",
+                ProjectileKind.Axe or ProjectileKind.Returning => "projectile_axe",
                 ProjectileKind.Bomb => "projectile_bomb",
                 ProjectileKind.Bouncing => "projectile_blade",
                 ProjectileKind.Fireball => "projectile_fireball",
@@ -83,6 +83,9 @@ namespace ARPG
         /// <summary>The kind's sprite, or null for the kinds drawn as an ember (plain bolts, fireballs).</summary>
         public static Sprite For(ProjectileKind kind)
         {
+            // The Woodcutter's returning axe looks as a thrown axe (2026-11-03).
+            if (kind == ProjectileKind.Returning)
+                kind = ProjectileKind.Axe;
             if (!Glyphs.TryGetValue(kind, out var glyph))
                 return null;
             if (Sprites.TryGetValue(kind, out var sprite) && sprite != null)

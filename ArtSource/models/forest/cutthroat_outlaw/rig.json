@@ -1,0 +1,25 @@
+{
+  "name": "cutthroat",
+  "shape": "ArtSource/models/forest/cutthroat_outlaw/shape_textured.glb",
+  "albedo": "ArtSource/models/forest/cutthroat_outlaw/albedo.png",
+  "height": 1.85,
+  "out": "Assets/_Project/Art/Models/Enemies/cutthroat",
+  "joints": {
+    "hips": [0.0, 0.93], "neck": [0.0, 1.46], "head": [0.0, 1.505], "head_top": [0.0, 1.74],
+    "arm_L": [0.193, 1.413], "elbow_L": [0.387, 1.21], "wrist_L": [0.519, 1.027], "hand_L": [0.58, 0.894],
+    "arm_R": [-0.193, 1.413], "elbow_R": [-0.383, 1.21], "wrist_R": [-0.523, 1.027], "hand_R": [-0.586, 0.894],
+    "upleg_L": [0.092, 0.884], "knee_L": [0.173, 0.518], "ankle_L": [0.204, 0.111],
+    "upleg_R": [-0.092, 0.884], "knee_R": [-0.173, 0.518], "ankle_R": [-0.204, 0.111]
+  },
+  "clips": {
+    "idle": ["ArtSource/models/mixamo_clips/fighting_idle.fbx", true],
+    "walk": ["ArtSource/models/mixamo_clips/walk.fbx", true],
+    "run": ["ArtSource/models/mixamo_clips/fast_run.fbx", true],
+    "attack": ["ArtSource/models/mixamo_clips/dual_weapon_combo.fbx", false],
+    "hit": ["ArtSource/models/mixamo_clips/rib_hit.fbx", false],
+    "death": ["ArtSource/models/mixamo_clips/dying.fbx", false],
+    "dash": ["ArtSource/models/mixamo_clips/sprinting_forward_roll.fbx", false],
+    "roll_back": ["ArtSource/models/mixamo_clips/backflip.fbx", false],
+    "throw": ["ArtSource/models/mixamo_clips/throw_object.fbx", false]
+  }
+}

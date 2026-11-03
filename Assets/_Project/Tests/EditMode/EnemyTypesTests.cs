@@ -108,9 +108,9 @@ namespace ARPG.Tests
                 Assert.AreEqual(1, kinds.Length, "one kind a pack at depth 1");
             }
             met.Remove(PackMember.None);
-            // And the forest's (2026-10-26): bandits up front, wolves and spiders in swarms.
-            CollectionAssert.AreEquivalent(new[] { PackMember.Zombie, PackMember.Blob, PackMember.Rat, PackMember.Bat,
-                PackMember.Bandit, PackMember.Wolf, PackMember.Spider }, met);
+            // Every level a forest (2026-11-03): only the forest's own at depth 1, cutthroats up front, wolves and spiders
+            // in swarms.
+            CollectionAssert.AreEquivalent(new[] { PackMember.Bandit, PackMember.Wolf, PackMember.Spider }, met);
         }
 
         [Test]
@@ -151,7 +151,8 @@ namespace ARPG.Tests
         [Test]
         public void EveryKind_IsMetInItsSpan_AndNeverOutsideIt()
         {
-            foreach (var entry in PackComposition.Table)
+            // The table in force: the forest's while every level is a forest (2026-11-03).
+            foreach (var entry in DungeonRules.Forest ? PackComposition.ForestTable : PackComposition.Table)
             {
                 Assert.Greater(Share(entry.First + 2, entry.Member), 0f, entry.Member + " in its span");
                 if (entry.First > 1)

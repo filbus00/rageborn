@@ -49,6 +49,14 @@ namespace ARPG
         Spider,
         Bandit,
         BanditArcher,
+
+        // The forest redone (2026-11-02, the owner: "About 10 unique enemies for the forest"; Docs/08). The Bandit is the
+        // Cutthroat, the BanditArcher the Bandit Bowman; the Tusked Boar comes with the beasts' rigs.
+        Woodcutter,
+        HedgeWitch,
+        Rotcap,
+        BriarThrall,
+        Werewolf,
     }
 
     /// <summary>Where a kind stands in a pack: in front, at the back, one behind the rest helping them, or in a pack
@@ -136,6 +144,26 @@ namespace ARPG
             new Entry(PackMember.Nightmare, PackRole.Swarm, 40, 48, 5),
         };
 
+        /// <summary>
+        /// The forest's own roster, alone while every level is a forest (2026-11-03, <see cref="DungeonRules.Forest"/>; the
+        /// owner: the forest is depths 1 to 12): wolves and spiders in swarms, cutthroats, woodcutters, rotcaps and briar
+        /// thralls up front, bowmen and hedge witches behind, a werewolf leading from depth 4. Claude's numbers, to review.
+        /// </summary>
+        public static readonly Entry[] ForestTable =
+        {
+            new Entry(PackMember.Wolf, PackRole.Swarm, 1, 48, 8),
+            new Entry(PackMember.Spider, PackRole.Swarm, 1, 48, 7),
+            new Entry(PackMember.Rotcap, PackRole.Swarm, 2, 48, 5),
+            new Entry(PackMember.Bandit, PackRole.Front, 1, 48, 10),
+            new Entry(PackMember.Woodcutter, PackRole.Front, 2, 48, 5),
+            new Entry(PackMember.BriarThrall, PackRole.Front, 3, 48, 5),
+            new Entry(PackMember.BanditArcher, PackRole.Back, 2, 48, 8),
+            new Entry(PackMember.HedgeWitch, PackRole.Back, 3, 48, 5),
+            new Entry(PackMember.Werewolf, PackRole.Support, 4, 48, 4),
+        };
+
+        static Entry[] Current => DungeonRules.Forest ? ForestTable : Table;
+
         public const int SwarmPercent = 20;
         // More packs with a ranged back row, and a bigger one (2026-10-17, steady pressure; was 60 percent, 2 or 3).
         public const int BackPercent = 85;
@@ -151,7 +179,7 @@ namespace ARPG
         /// <summary>The kinds of a role met at a depth.</summary>
         public static bool Has(PackRole role, int depth)
         {
-            foreach (var entry in Table)
+            foreach (var entry in Current)
                 if (entry.Role == role && WeightAt(entry, depth) > 0)
                     return true;
             return false;
@@ -198,13 +226,13 @@ namespace ARPG
         static PackMember Pick(PackRole role, int depth, uint hash)
         {
             var total = 0;
-            foreach (var entry in Table)
+            foreach (var entry in Current)
                 if (entry.Role == role)
                     total += WeightAt(entry, depth);
             if (total == 0)
-                return PackMember.Zombie;
+                return DungeonRules.Forest ? PackMember.Bandit : PackMember.Zombie;
             var roll = (int)(hash % (uint)total);
-            foreach (var entry in Table)
+            foreach (var entry in Current)
             {
                 if (entry.Role != role)
                     continue;
@@ -212,12 +240,15 @@ namespace ARPG
                 if (roll < 0)
                     return entry.Member;
             }
-            return PackMember.Zombie;
+            return DungeonRules.Forest ? PackMember.Bandit : PackMember.Zombie;
         }
 
         /// <summary>The role of a kind (swarms are their own packs).</summary>
         public static PackRole RoleOf(PackMember member)
         {
+            foreach (var entry in Current)
+                if (entry.Member == member)
+                    return entry.Role;
             foreach (var entry in Table)
                 if (entry.Member == member)
                     return entry.Role;
