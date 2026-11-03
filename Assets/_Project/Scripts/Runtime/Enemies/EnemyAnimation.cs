@@ -143,7 +143,7 @@ namespace ARPG
         /// <summary>The forest's kinds (PackComposition.ForestTable's looks; the bosses load with their arenas).</summary>
         static readonly string[] Kinds =
         {
-            "sack_thief", "scarecrow_bowman", "woodcutter", "hedge_witch", "rotcap", "briar_thrall", "werewolf", "wolf", "spider", "tusked_boar",
+            "sack_thief", "scarecrow_bowman", "stump_hauler", "hedge_witch", "rotcap", "briar_thrall", "werewolf", "wolf", "spider", "tusked_boar",
         };
         static readonly string[] Sheets = { "idle", "run", "walk", "attack", "hit", "death", "dash", "roll_back", "throw" };
 

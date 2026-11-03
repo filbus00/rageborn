@@ -1,0 +1,29 @@
+{
+  "name": "stump_hauler",
+  "shape": "ArtSource/models/forest/stump_hauler/shape_textured.glb",
+  "albedo": "ArtSource/models/forest/stump_hauler/albedo.png",
+  "height": 2.004,
+  "foot": 0.19,
+  "out": "Assets/_Project/Art/Models/Enemies/stump_hauler",
+  "joints": {
+    "hips": [0.0, 0.8], "neck": [0.0, 1.36], "head": [0.0, 1.42], "head_top": [0.0, 1.7],
+    "arm_L": [0.38, 1.28], "elbow_L": [0.58, 1.08], "wrist_L": [0.74, 0.86], "hand_L": [0.82, 0.75],
+    "arm_R": [-0.38, 1.28], "elbow_R": [-0.58, 1.08], "wrist_R": [-0.74, 0.86], "hand_R": [-0.82, 0.75],
+    "upleg_L": [0.15, 0.74], "knee_L": [0.19, 0.42], "ankle_L": [0.18, 0.11],
+    "upleg_R": [-0.15, 0.74], "knee_R": [-0.19, 0.42], "ankle_R": [-0.18, 0.11]
+  },
+  "rigid": [
+    {"min": [-0.2, -0.32, 1.34], "max": [0.2, 0.12, 1.8], "bone": "Head"},
+    {"min": [-0.3, 0.18, 0.6], "max": [0.35, 0.75, 2.1], "bone": "Spine2"},
+    {"min": [-0.2, -0.45, 0.84], "max": [0.2, -0.24, 1.34], "bone": "Spine2"}
+  ],
+  "clips": {
+    "idle": ["ArtSource/models/mixamo_clips/fighting_idle.fbx", true],
+    "walk": ["ArtSource/models/mixamo_clips/walk.fbx", true],
+    "run": ["ArtSource/models/mixamo_clips/fast_run.fbx", true],
+    "attack": ["ArtSource/models/mixamo_clips/ghoul_attack.fbx", false],
+    "hit": ["ArtSource/models/mixamo_clips/rib_hit.fbx", false],
+    "death": ["ArtSource/models/mixamo_clips/dying.fbx", false],
+    "throw": ["ArtSource/models/mixamo_clips/throw_object.fbx", false]
+  }
+}

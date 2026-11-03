@@ -276,6 +276,16 @@ def retarget(arm, src_file, loop):
         for c in b.children:
             walk(c)
     walk(arm.pose.bones[P + "Hips"])
+    # The feet's lowest point at rest: no frame may put a foot lower (2026-11-03, the owner: "the current woodcutter is
+    # clipping trough the ground": the ghoul's crouching clips sank his boots into the floor).
+    feet = [(P + side + "Foot", "head") for side in ("Left", "Right")] + [(P + side + "ToeBase", "tail") for side in ("Left", "Right")]
+
+    def lowest():
+        return min((ow @ getattr(arm.pose.bones[name], end_)).z for name, end_ in feet if name in arm.pose.bones)
+    for pb in arm.pose.bones:
+        pb.matrix_basis = mathutils.Matrix.Identity(4)
+    bpy.context.view_layer.update()
+    ground = lowest()
     for f in range(start, end + 1):
         bpy.context.scene.frame_set(f)
         for pb in arm.pose.bones:
@@ -297,6 +307,13 @@ def retarget(arm, src_file, loop):
             else:
                 head = (pb.parent.matrix @ pb.parent.bone.matrix_local.inverted() @ pb.bone.matrix_local).to_translation()
             pb.matrix = mathutils.Matrix.LocRotScale(head, (ow_inv.to_3x3() @ target).to_quaternion(), None)
+            bpy.context.view_layer.update()
+        sink = ground - lowest()
+        if sink > 1e-4:
+            root = arm.pose.bones[P + "Hips"]
+            m = root.matrix.copy()
+            m.translation += ow_inv.to_3x3() @ V((0, 0, sink))
+            root.matrix = m
             bpy.context.view_layer.update()
         for pb in arm.pose.bones:
             pb.keyframe_insert("rotation_quaternion", frame=f)

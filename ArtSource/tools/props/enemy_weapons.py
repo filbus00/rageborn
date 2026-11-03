@@ -195,9 +195,23 @@ def scarecrow_longbow():
     m.export("scarecrow_longbow")
 
 
+def hatchet():
+    """The Stump Hauler's throwing axe (ArtSource/pixel/ai_exchange/woodcutter_concept, 2026-11-03): a wooden handle, an
+    iron head on its end, the blade flaring toward +Z to a bright edge. Much bigger than a hand hatchet (the owner: "make
+    the hatchet much bigger"): 0.75 long, its blade 0.32 deep, a woodsman's axe in his huge fist."""
+    m = Model()
+    k = 1.8
+    m.tube(-0.2 * k, 0.2 * k, 0.02 * k, 0.022 * k, "wood")
+    m.box((0, 0.22 * k, 0.0), (0.035 * k, 0.08 * k, 0.07 * k), "steel_dark")
+    prism(m, [(y * k, z * k) for y, z in [(0.19, 0.03), (0.25, 0.03), (0.29, 0.16), (0.14, 0.16)]], 0.022 * k, "steel")
+    prism(m, [(y * k, z * k) for y, z in [(0.14, 0.155), (0.29, 0.155), (0.295, 0.175), (0.135, 0.175)]], 0.024 * k, "steel_light")
+    m.export("hatchet")
+
+
 if __name__ == "__main__":
     bpy.ops.wm.read_factory_settings(use_empty=True)
     os.makedirs(FOLDER, exist_ok=True)
     curved_dagger()
     cleaver()
     scarecrow_longbow()
+    hatchet()
