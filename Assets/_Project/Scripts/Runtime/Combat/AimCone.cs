@@ -16,9 +16,11 @@ namespace ARPG
     /// </summary>
     public class AimCone : MonoBehaviour
     {
-        /// <summary>The arc's radius and band, in ground units, and the background's half span in degrees.</summary>
-        public const float Radius = 1.35f;
-        public const float Band = 0.24f;
+        /// <summary>The arc's radius and band, in ground units, and the background's half span in degrees. Smaller,
+        /// thinner and fainter since 2026-11-03 (the owner: "make the aim indicator less conspicous. No need to have it
+        /// that big"; was 1.35 and 0.24).</summary>
+        public const float Radius = 0.95f;
+        public const float Band = 0.12f;
         public const float BackgroundHalfDegrees = 45f;
 
         /// <summary>The foreground never thinner than this either side, so perfect aim still shows a tick.</summary>
@@ -28,10 +30,10 @@ namespace ARPG
         const float LingerSeconds = 1.5f;
         const float TurnSpeed = 14f;
 
-        static readonly Color Background = new Color(0.85f, 0.8f, 0.72f, 0.28f);
-        static readonly Color Steady = new Color(0.95f, 0.95f, 0.9f, 0.9f);
-        static readonly Color Walking = new Color(1f, 0.74f, 0.25f, 0.9f);
-        static readonly Color Running = new Color(1f, 0.3f, 0.2f, 0.9f);
+        static readonly Color Background = new Color(0.85f, 0.8f, 0.72f, 0.14f);
+        static readonly Color Steady = new Color(0.95f, 0.95f, 0.9f, 0.6f);
+        static readonly Color Walking = new Color(1f, 0.74f, 0.25f, 0.6f);
+        static readonly Color Running = new Color(1f, 0.3f, 0.2f, 0.6f);
 
         PlayerCombat combat;
         PlayerController player;
