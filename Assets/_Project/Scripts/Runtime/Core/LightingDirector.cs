@@ -85,8 +85,9 @@ namespace ARPG
 
         static void PaintTownGround(Scene scene)
         {
-            // The dungeon shades its own floor as it paints it (DungeonLevel); the town's is painted in the scene.
-            if (scene.name == SceneTravel.TownScene)
+            // The dungeon shades its own floor as it paints it (DungeonLevel); the town's is painted in the scene. Under
+            // the company's menu the town is never seen, so it is not painted (2026-11-03).
+            if (scene.name == SceneTravel.TownScene && !Features.CompanyMenu)
                 foreach (var tilemap in FindObjectsByType<Tilemap>())
                     if (tilemap.name == "Ground")
                     {

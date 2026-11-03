@@ -271,6 +271,9 @@ namespace ARPG
             Talents.Changed += RaiseModified;
             Quests = new QuestState();
             Quests.Changed += RaiseModified;
+            // The Wild Arrow Company (2026-11-03): a first archer signs on; a loaded save puts its own back.
+            Company = new CompanyRecord();
+            Company.Hire(new System.Random(DungeonRules.LevelSeed(lootSeed, -2)));
             // The roguelite (2026-10-13): extra potion charges are bought in town.
             Meta = new MetaProgress();
             Talents.Meta = Meta;
@@ -646,6 +649,8 @@ namespace ARPG
             foreach (var id in codex)
                 next.codex.Add(id);
             next.SetOnboarding(onboarding);
+            // The company and its record go on; the archer with them unless she fell (RunDirector buries her first).
+            next.Company = Company;
             if (keepCarried)
             {
                 next.Equipment = Equipment;
@@ -660,6 +665,10 @@ namespace ARPG
         }
 
         public int Level => Progress.Level;
+
+        /// <summary>The Wild Arrow Company's record: the archer under contract, her contract, the cleared contracts and
+        /// the fallen (2026-11-03). Kept across runs. Saved.</summary>
+        public CompanyRecord Company { get; internal set; }
 
         /// <summary>What this run has done (the run summary, 2026-10-15). Saved.</summary>
         public RunStats Run { get; } = new RunStats();

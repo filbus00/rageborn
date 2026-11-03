@@ -21,7 +21,7 @@ namespace ARPG.Tests
             session.Talents.Grant("extra_arrow");
             var next = session.NextRun(2, false);
             var summary = RunSummary.Of(session, RunEnd.Died, 0, next);
-            Assert.AreEqual("The Run Is Over", summary.Title);
+            Assert.AreEqual("Fallen in Service", summary.Title);
             StringAssert.Contains("depth 2", summary.Headline);
             StringAssert.Contains("new deepest", summary.Headline);
             var lines = summary.Lines().ToList();
@@ -43,7 +43,7 @@ namespace ARPG.Tests
             var learned = session.LearnCarriedBlueprints();
             var next = session.NextRun(2, true);
             var summary = RunSummary.Of(session, RunEnd.Portal, learned, next);
-            Assert.AreEqual("Home Through the Portal", summary.Title);
+            Assert.AreEqual("Back to the Company", summary.Title);
             var lines = summary.Lines().ToList();
             Assert.IsTrue(lines.Any(l => l.Contains("new for Thorin  1")));
             Assert.IsTrue(lines.Any(l => l.Contains("brought home")));

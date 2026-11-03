@@ -25,7 +25,7 @@ namespace ARPG
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (scene.name != SceneTravel.TownScene)
+            if (scene.name != SceneTravel.TownScene || Features.CompanyMenu)
                 return;
             var root = new GameObject("Town Pieces").transform;
             SceneManager.MoveGameObjectToScene(root.gameObject, scene);

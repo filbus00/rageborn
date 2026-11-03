@@ -57,7 +57,7 @@ namespace ARPG
 
             inDungeon = FindAnyObjectByType<DungeonLevel>() != null;
             button = null;
-            if (scene.name == TownScene)
+            if (scene.name == TownScene && !Features.CompanyMenu)
             {
                 if (!Features.Roguelite)
                     Waypoint.Create(0, IsoMath.CellToGround(WaystoneCell), null);

@@ -143,9 +143,13 @@ namespace ARPG.Tests
             Assert.AreEqual("0:59", RunSummary.Duration(59.9f));
             Assert.AreEqual("1:01:05", RunSummary.Duration(3665f));
 
-            var summary = new RunSummary { End = RunEnd.Won, Depth = 48, DeepestEver = 48, Stats = new RunStats { Kills = 10, Bosses = 8, Blueprints = 1 } };
-            Assert.AreEqual("The Run Is Won", summary.Title);
-            StringAssert.StartsWith("The First Watchman", summary.Headline);
+            var summary = new RunSummary
+            {
+                End = RunEnd.Won, Depth = 48, DeepestEver = 48, Stats = new RunStats { Kills = 10, Bosses = 8, Blueprints = 1 },
+                Mercenary = "Aella Ravenfletch", Contract = "The Rift Caves",
+            };
+            Assert.AreEqual("Contract Fulfilled", summary.Title);
+            StringAssert.StartsWith("Aella Ravenfletch has cleared The Rift Caves", summary.Headline);
             var lines = summary.Lines().ToList();
             Assert.IsTrue(lines.Any(l => l.Contains("bosses  8")));
             Assert.IsTrue(lines.Any(l => l.Contains("brought home")));
@@ -153,7 +157,7 @@ namespace ARPG.Tests
 
             var died = new RunSummary { End = RunEnd.Died, Depth = 3, Stats = new RunStats() };
             Assert.IsFalse(died.Lines().Any(l => l.Contains("Blueprints")), "no blueprint line when none were found");
-            Assert.AreEqual("Home Through the Portal", new RunSummary { End = RunEnd.Portal, Stats = new RunStats() }.Title);
+            Assert.AreEqual("Back to the Company", new RunSummary { End = RunEnd.Portal, Stats = new RunStats() }.Title);
         }
     }
 }

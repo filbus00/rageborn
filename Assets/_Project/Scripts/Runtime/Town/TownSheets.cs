@@ -358,7 +358,7 @@ namespace ARPG
                 var pips = node != null ? SheetKit.Pips(rank, node.MaxRanks) : "";
                 SheetKit.Card(content, $"<b>{name}</b>{pips}", null, false, null, 76f, 0f, false, node != null ? BoonBar.SpriteFor(node) : null);
             }
-            Line("<size=28><color=#999999>Coins buy upgrades in town; the chest keeps what you put in it.</color></size>", 28, 80f);
+            Line("<size=28><color=#999999>Coins buy the quarters' upgrades; Elara's vault keeps what you put in it.</color></size>", 28, 80f);
         }
     }
 

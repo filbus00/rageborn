@@ -36,7 +36,17 @@ namespace ARPG
             MigrateFrom18, // 18 to 19: no pet skills existed; none is taught.
             MigrateFrom19, // 19 to 20: no run numbers were kept; a run under way starts them at zero.
             MigrateFrom20, // 20 to 21: backpack places were not kept; the backpack packs itself as before.
+            MigrateFrom21, // 21 to 22: no company record existed; a new archer signs on, nothing is cleared, nobody has fallen.
         };
+
+        static SaveData MigrateFrom21(SaveData data)
+        {
+            data.mercenary = "";
+            data.contract = "";
+            data.clearedContracts = new List<string>();
+            data.fallen = new List<FallenData>();
+            return data;
+        }
 
         static SaveData MigrateFrom20(SaveData data)
         {
@@ -305,7 +315,16 @@ namespace ARPG
                 rerollsLeft = session.RerollsLeft,
                 sentToStash = session.SentToStash,
                 runStarted = session.RunStarted,
+                mercenary = session.Company.Mercenary,
+                contract = session.Company.ContractId,
             };
+            data.clearedContracts.AddRange(session.Company.Cleared);
+            foreach (var fallen in session.Company.Fallen)
+                data.fallen.Add(new FallenData
+                {
+                    name = fallen.Name, contract = fallen.Contract, depth = fallen.Depth, kills = fallen.Kills,
+                    bosses = fallen.Bosses, seconds = fallen.Seconds, day = fallen.Day,
+                });
             foreach (var pair in session.Meta.Ranks)
                 data.metaUpgrades.Add(new TalentData { id = pair.Key.ToString(), rank = pair.Value });
             data.metaBlueprints.AddRange(session.Meta.Blueprints);
@@ -387,6 +406,21 @@ namespace ARPG
             session.RerollsLeft = data.rerollsLeft;
             session.SentToStash = data.sentToStash;
             session.RunStarted = data.runStarted;
+            // The company (format 22): an older save keeps the archer the new session hired.
+            var company = session.Company;
+            if (!string.IsNullOrEmpty(data.mercenary))
+                company.Mercenary = data.mercenary;
+            if (!string.IsNullOrEmpty(data.contract))
+                company.ContractId = ContractRules.Get(data.contract).Id;
+            foreach (var id in data.clearedContracts ?? new List<string>())
+                company.Cleared.Add(id);
+            foreach (var saved in data.fallen ?? new List<FallenData>())
+                company.Fallen.Add(new FallenMercenary
+                {
+                    Name = saved.name ?? "", Contract = saved.contract ?? "", Depth = saved.depth, Kills = saved.kills,
+                    Bosses = saved.bosses, Seconds = saved.seconds, Day = saved.day,
+                });
+            GraveRules.Rank(company.Fallen);
             foreach (var saved in data.stash ?? new List<ItemData>())
             {
                 var stored = RestoreItem(saved, warnings);

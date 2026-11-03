@@ -19,6 +19,12 @@ namespace ARPG
         /// so the quest tests still run.</summary>
         public static bool Quests = false;
 
+        /// <summary>The Wild Arrow Company's menu in place of the town (the owner, 2026-11-03: "remove the town. Everything
+        /// done in the town will now be done in a starting menu"): the hub scene loads with no town in it, its player
+        /// hidden, and <see cref="CompanyMenu"/> covers it, opening the town's shops from cards. Off: the walkable town.
+        /// </summary>
+        public static readonly bool CompanyMenu = true;
+
         // The look reset (the owner, 2026-10-20: "lets reset the visuals. remove shaders and filters and lets start over";
         // asked how far: "Everything, lighting too"). Each part kept, to bring back one at a time.
 

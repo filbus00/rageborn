@@ -87,6 +87,12 @@ namespace ARPG
             depth = travel.Depth > 0 ? travel.Depth : editorDepth;
             var arrival = travel.Depth > 0 ? travel.Arrival : Arrival.FromAbove;
             session.Travel = default;
+            // The contract's ground (2026-11-03): the Thornwood is the forest, the deeper contracts the old themes. A depth
+            // outside the contract (the editor's test depth) takes the contract it belongs to.
+            var contract = session.Company.Contract;
+            if (depth < contract.FirstDepth || depth > contract.LastDepth)
+                contract = ContractRules.At(depth);
+            DungeonRules.Forest = contract.Forest;
 
             levelId = DungeonRules.LevelId(depth);
             LevelContext.Set(levelId);
@@ -117,13 +123,11 @@ namespace ARPG
                 settings.NormalAggroRange = normalEnemy.AggroRange;
             if (eliteEnemy != null)
                 settings.EliteAggroRange = eliteEnemy.AggroRange;
-            // Smaller packs in the forest (2026-11-03): packs of 8 to 15 put about 290 enemies on a level, slow to load and
-            // to tick; 5 to 8 put about 185. Claude's numbers, to review.
-            if (DungeonRules.Forest)
-            {
-                settings.MinPackSize = 5;
-                settings.MaxPackSize = 8;
-            }
+            // Smaller packs (2026-11-03): packs of 8 to 15 put about 290 enemies on a level, slow to load and to tick; 5 to
+            // 8 put about 185. The forest first, then every contract's levels (the Iron Gaol came up with 286). Claude's
+            // numbers, to review.
+            settings.MinPackSize = 5;
+            settings.MaxPackSize = 8;
 
             levelSeed = DungeonRules.LevelSeed(session.DungeonSeed, depth);
             Layout = DungeonGenerator.Generate(levelSeed, depth, shapes, settings);
@@ -209,10 +213,11 @@ namespace ARPG
             var stairsCell = Layout.StairsDown;
             void AddWayOn()
             {
-                if (depth < DungeonRules.Depths)
+                // Past a contract's last boss the way leads back to the company (2026-11-03), not further down.
+                if (depth < DungeonRules.Depths && depth < session.Company.Contract.LastDepth)
                     AddStairs(root, "Stairs Down", stairsCell, Vector2Int.zero, dungeonScene, depth + 1, Arrival.FromAbove);
                 else
-                    AddStairs(root, "Stairs To Town", stairsCell, Vector2Int.zero, townScene, 0, Arrival.FromAbove);
+                    AddStairs(root, "Stairs To The Company", stairsCell, Vector2Int.zero, townScene, 0, Arrival.FromAbove);
             }
             if (session.IsKilled(key, 0))
             {

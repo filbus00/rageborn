@@ -21,7 +21,7 @@ namespace ARPG
         /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses. 13: adds each
         /// item's named legendary and the legendaries seen (the Codex). 14: the deepest depth and the stash. 15: the talent
         /// trees' ranks (2026-10-07; skill levels and the loadout are kept in the file but no longer used).</summary>
-        public const int CurrentVersion = 21;
+        public const int CurrentVersion = 22;
 
         public int version;
 
@@ -134,6 +134,25 @@ namespace ARPG
         public int rerollsLeft;
         public bool sentToStash;
         public bool runStarted;
+
+        // 22 (2026-11-03): the Wild Arrow Company. The archer under contract, her contract, the contracts cleared and
+        // the fallen on the grave list.
+        public string mercenary = "";
+        public string contract = "";
+        public List<string> clearedContracts = new List<string>();
+        public List<FallenData> fallen = new List<FallenData>();
+    }
+
+    [Serializable]
+    public sealed class FallenData
+    {
+        public string name;
+        public string contract;
+        public int depth;
+        public int kills;
+        public int bosses;
+        public float seconds;
+        public int day;
     }
 
     [Serializable]

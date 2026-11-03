@@ -36,15 +36,37 @@ namespace ARPG
             SceneTravel.ToTown();
         }
 
+        /// <summary>Sets out on a contract from the company's menu (2026-11-03): the run begins at its first depth.</summary>
+        public static void Embark(Contract contract)
+        {
+            var session = GameSession.Current;
+            if (SceneTravel.IsTravelling || session.RunStarted)
+                return;
+            session.Company.ContractId = contract.Id;
+            DungeonRules.Forest = contract.Forest;
+            SaveDirector.SaveNow();
+            SceneTravel.ToDepth(contract.FirstDepth, Arrival.FromAbove);
+        }
+
         /// <summary>Ends the run if one is under way, before the town loads (the death fade, the portal, the stairs after
-        /// the last boss).</summary>
+        /// the contract's last boss).</summary>
         public static void BeforeTownLoad(bool died)
         {
             var session = GameSession.Current;
             if (!Features.Roguelite || !session.RunStarted)
                 return;
             var depth = session.DeepestDepth;
-            var won = !died && depth >= DungeonRules.Depths;
+            var company = session.Company;
+            var contract = company.Contract;
+            // The contract is cleared when she walks out past its last boss (every boss before lies on the way).
+            var won = !died && depth >= contract.LastDepth;
+            if (won)
+                company.Cleared.Add(contract.Id);
+            var mercenary = company.Mercenary;
+            // Fallen: her name goes on the grave list and a new archer signs on (the owner, 2026-11-03).
+            if (died)
+                company.Bury(depth, session.Run, (int)(System.DateTimeOffset.UtcNow.ToUnixTimeSeconds() / 86400),
+                    new System.Random(System.Environment.TickCount));
             // Home alive (the portal, or the last boss): what she carries comes with her and Thorin learns the
             // blueprints; dead, all of it is lost (the owner, 2026-10-15).
             var learned = died ? 0 : session.LearnCarriedBlueprints();
@@ -52,6 +74,9 @@ namespace ARPG
             SaveDirector.BeginRun(next);
             // The run summary, shown when the town has loaded (2026-10-15).
             pendingSummary = RunSummary.Of(session, died ? RunEnd.Died : won ? RunEnd.Won : RunEnd.Portal, learned, next);
+            pendingSummary.Mercenary = mercenary;
+            pendingSummary.Contract = contract.Name;
+            pendingSummary.NextMercenary = company.Mercenary;
         }
 
         static RunSummary pendingSummary;

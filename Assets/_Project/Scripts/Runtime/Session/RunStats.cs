@@ -41,6 +41,11 @@ namespace ARPG
         public int BlueprintsLearned;
         public readonly List<(string name, int rank)> Boons = new List<(string, int)>();
 
+        /// <summary>The archer, her contract and, after a death, the one who signed on in her place (2026-11-03).</summary>
+        public string Mercenary = "";
+        public string Contract = "";
+        public string NextMercenary = "";
+
         public static RunSummary Of(GameSession ending, RunEnd end, int blueprintsLearned, GameSession next)
         {
             var summary = new RunSummary
@@ -71,17 +76,18 @@ namespace ARPG
 
         public string Title => End switch
         {
-            RunEnd.Won => "The Run Is Won",
-            RunEnd.Portal => "Home Through the Portal",
-            _ => "The Run Is Over",
+            RunEnd.Won => "Contract Fulfilled",
+            RunEnd.Portal => "Back to the Company",
+            _ => "Fallen in Service",
         };
 
         /// <summary>The line under the title.</summary>
         public string Headline => End switch
         {
-            RunEnd.Won => "The First Watchman has fallen.",
-            RunEnd.Portal => $"Out of depth {Depth} with everything you carried.",
-            _ => $"Fallen at depth {Depth}. All you wore and carried is lost.",
+            RunEnd.Won => $"{Mercenary} has cleared {Contract}. A new contract is open on the map.",
+            RunEnd.Portal => $"{Mercenary} came back from depth {Depth} with everything she carried.",
+            _ => $"{Mercenary} fell at depth {Depth} of {Contract}. Her name is cut into the grave stone; " +
+                 $"{NextMercenary} signs on in her place.",
         } + (NewRecord ? "  A new deepest depth." : "");
 
         public static string Duration(float seconds)
