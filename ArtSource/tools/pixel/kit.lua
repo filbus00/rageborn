@@ -164,6 +164,20 @@ end
 -- Saves the art trimmed to what was drawn: the top down to its first pixel, the sides by the same amount each so its
 -- middle stays over the cell's middle (the importer's pivot), the bottom kept so the ground line stays BASE rows up.
 function kit:save(folder, name)
+  if self.exact then
+    -- A picture of a fixed size (a ground mark fills one 40 x 20 ground tile): cropped to it, not to the art.
+    self.sprite:crop(self.ox, self.oy, self.W, self.H)
+    -- Drawn on a coarser grid and enlarged by whole pixels (`upscale`), then cut to `finalW` x `finalH`.
+    if self.upscale then
+      self.sprite:resize(self.W * self.upscale, self.H * self.upscale)
+      self.sprite:crop(0, 0, self.finalW or self.sprite.width, self.finalH or self.sprite.height)
+    end
+    self.sprite:saveAs(folder .. "/" .. name .. ".aseprite")
+    self.sprite:saveCopyAs(folder .. "/" .. name .. ".png")
+    print("REPORT wrote " .. name .. " " .. self.sprite.width .. " x " .. self.sprite.height)
+    self.sprite:close()
+    return
+  end
   local top, left, right = self.CH, self.CW, -1
   for y = 0, self.CH - 1 do
     for x = 0, self.CW - 1 do

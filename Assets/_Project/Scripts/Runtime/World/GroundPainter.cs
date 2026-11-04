@@ -11,16 +11,26 @@ namespace ARPG
     /// grass, path: ArtSource/tools/props/ground_sources.py), sampled at the cell's ground-space position and chosen
     /// pixel by pixel by <see cref="GroundRules"/>, so the ground runs across cells and rooms with no seams and no
     /// repeat. The tiles share atlas textures, freed when the next scene paints. Returns false when the textures are
-    /// missing or not readable, and the caller falls back to <see cref="DungeonArt"/>'s floors.
+    /// missing or not readable, and the caller falls back to <see cref="DungeonArt"/>'s floors. The forest's ground is on
+    /// the screen's pixel grid (2026-11-04, the owner chose "Move to screen grid"): its tiles are drawn at twice
+    /// <see cref="ScreenUnit"/> a unit, so each screen pixel is one of their pixels, and its grass and path pictures are
+    /// pixel art on that grid, sampled at the screen position of each pixel; the other themes keep 40 a unit.
     /// </summary>
     public static class GroundPainter
     {
         public const string Folder = "Art/Ground";
-        const int Unit = PixelArt.PixelsPerUnit;
-        const int TileH = Unit / 2;
+        // The old textures' scale: 40 of their pixels a unit of ground.
+        const int SampleUnit = PixelArt.PixelsPerUnit;
+        /// <summary>The pixels a unit the world is rendered at on every phone (<see cref="RenderResolution.RenderedUnit"/>
+        /// with no extra pixelation: 40 over the camera's 1.5).</summary>
+        public const int ScreenUnit = 27;
+        /// <summary>The forest's tiles: twice the screen's pixels a unit, so the 1 x 0.5 cell is a whole 54 x 27.</summary>
+        public const int ForestTileUnit = 2 * ScreenUnit;
+        // The tile size of the paint in progress (40 a unit, or the forest's 54), set before the worker threads start.
+        static int tileW = SampleUnit, tileH = SampleUnit / 2;
         // Atlas slots leave a clear pixel on each side, so point sampling never picks up a neighbour.
-        const int SlotW = Unit + 2;
-        const int SlotH = TileH + 2;
+        static int SlotW => tileW + 2;
+        static int SlotH => tileH + 2;
         const int AtlasSize = 2048;
         const int SourceSize = 512;
 
@@ -41,7 +51,7 @@ namespace ARPG
         static readonly List<Object> made = new List<Object>();
         static readonly List<Vector3Int> positions = new List<Vector3Int>();
         static readonly List<TileBase> tiles = new List<TileBase>();
-        static readonly Color32[] cellPixels = new Color32[Unit * TileH];
+        static Color32[] cellPixels = new Color32[SampleUnit * SampleUnit / 2];
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStatics()
@@ -101,13 +111,17 @@ namespace ARPG
             // The floor's tint (GradeRules.FloorTint; none since the darker floor of 2026-10-19 was too dark).
             ground.color = GradeRules.FloorTint;
             LoadTimer.Mark("ground: textures");
+            tileW = ForestOnScreenGrid(town) ? ForestTileUnit : SampleUnit;
+            tileH = tileW / 2;
+            if (cellPixels.Length != tileW * tileH)
+                cellPixels = new Color32[tileW * tileH];
             Release();
             positions.Clear();
             tiles.Clear();
 
-            const int columns = AtlasSize / SlotW;
-            const int rows = AtlasSize / SlotH;
-            const int perAtlas = columns * rows;
+            var columns = AtlasSize / SlotW;
+            var rows = AtlasSize / SlotH;
+            var perAtlas = columns * rows;
             var atlasCount = (cells.Count + perAtlas - 1) / perAtlas;
             var atlases = new Color32[atlasCount][];
             var heights = new int[atlasCount];
@@ -118,7 +132,7 @@ namespace ARPG
                 atlases[a] = new Color32[AtlasSize * heights[a]];
             }
 
-            System.Threading.Tasks.Parallel.For(0, cells.Count, () => new Color32[Unit * TileH], (n, _, buffer) =>
+            System.Threading.Tasks.Parallel.For(0, cells.Count, () => new Color32[tileW * tileH], (n, _, buffer) =>
             {
                 var cell = cells[n];
                 DrawCell(cell, town, buffer);
@@ -135,7 +149,7 @@ namespace ARPG
                     if (!decals.TryGetValue(cells[n], out var decal))
                         continue;
                     DrawCell(cells[n], town, cellPixels);
-                    DungeonArt.StampDecal(cellPixels, (int)decal, cells[n].x * 31 + cells[n].y * 7, cells[n]);
+                    DungeonArt.StampDecal(cellPixels, tileW, tileH, (int)decal, cells[n].x * 31 + cells[n].y * 7, cells[n]);
                     if (shade)
                         Shade(cellPixels, cells[n]);
                     Put(cellPixels, atlases[n / perAtlas], n % perAtlas, columns);
@@ -173,9 +187,9 @@ namespace ARPG
             made.Add(texture);
             foreach (var (cell, slot) in pending)
             {
-                var rect = new Rect((slot % columns) * SlotW + 1, (slot / columns) * SlotH + 1, Unit, TileH);
+                var rect = new Rect((slot % columns) * SlotW + 1, (slot / columns) * SlotH + 1, tileW, tileH);
                 // A full-rect mesh and no physics shape: the atlas keeps no CPU copy (see DungeonArt.MakeTile).
-                var sprite = Sprite.Create(texture, rect, new Vector2(0.5f, 0.5f), Unit, 0, SpriteMeshType.FullRect, Vector4.zero, false);
+                var sprite = Sprite.Create(texture, rect, new Vector2(0.5f, 0.5f), tileW, 0, SpriteMeshType.FullRect, Vector4.zero, false);
                 var tile = ScriptableObject.CreateInstance<Tile>();
                 tile.sprite = sprite;
                 tile.colliderType = Tile.ColliderType.None;
@@ -190,8 +204,8 @@ namespace ARPG
         {
             var ox = (slot % columns) * SlotW + 1;
             var oy = (slot / columns) * SlotH + 1;
-            for (var y = 0; y < TileH; y++)
-                System.Array.Copy(pixels, y * Unit, atlas, ox + (oy + y) * AtlasSize, Unit);
+            for (var y = 0; y < tileH; y++)
+                System.Array.Copy(pixels, y * tileW, atlas, ox + (oy + y) * AtlasSize, tileW);
         }
 
         // The cell's tint painted into its pixels, as the tile's colour would have tinted them.
@@ -230,22 +244,22 @@ namespace ARPG
                 s01 = GroundRules.ForestShade(centre + new Vector2(-0.5f, 0.5f));
                 s11 = GroundRules.ForestShade(centre + new Vector2(0.5f, 0.5f));
             }
-            for (var y = 0; y < TileH; y++)
-                for (var x = 0; x < Unit; x++)
+            for (var y = 0; y < tileH; y++)
+                for (var x = 0; x < tileW; x++)
                 {
-                    var i = x + y * Unit;
-                    var dx = Mathf.Abs(x + 0.5f - Unit * 0.5f) / (Unit * 0.5f);
-                    var dy = Mathf.Abs(y + 0.5f - TileH * 0.5f) / (TileH * 0.5f);
+                    var i = x + y * tileW;
+                    var dx = Mathf.Abs(x + 0.5f - tileW * 0.5f) / (tileW * 0.5f);
+                    var dy = Mathf.Abs(y + 0.5f - tileH * 0.5f) / (tileH * 0.5f);
                     if (dx + dy > 1.06f)
                     {
                         cellPixels[i] = default;
                         continue;
                     }
                     // The pixel's world offset from the cell's middle, then ground space (y doubled).
-                    var g = new Vector2(centre.x + (x + 0.5f - Unit * 0.5f) / Unit, centre.y + 2f * (y + 0.5f - TileH * 0.5f) / Unit);
+                    var g = new Vector2(centre.x + (x + 0.5f - tileW * 0.5f) / tileW, centre.y + 2f * (y + 0.5f - tileH * 0.5f) / tileW);
                     if (!town && dungeonTheme == DungeonTheme.Crypt && cryptFloor != null)
                     {
-                        var f = cryptFloor[Wrap(Mathf.FloorToInt(g.x * Unit), cryptFloorSize) + Wrap(Mathf.FloorToInt(g.y * Unit), cryptFloorSize) * cryptFloorSize];
+                        var f = cryptFloor[Wrap(Mathf.FloorToInt(g.x * SampleUnit), cryptFloorSize) + Wrap(Mathf.FloorToInt(g.y * SampleUnit), cryptFloorSize) * cryptFloorSize];
                         var k = GroundRules.CryptFloorShade(g);
                         cellPixels[i] = new Color32((byte)Mathf.Min(255f, f.r * k), (byte)Mathf.Min(255f, f.g * k), (byte)Mathf.Min(255f, f.b * k), 255);
                         continue;
@@ -253,8 +267,9 @@ namespace ARPG
                     if (forestFloor)
                     {
                         // The grass and the path frayed into each other along their edge (2026-10-27), the amount worked
-                        // out once a pixel (it was twice: once to pick the layer).
-                        int gx = Mathf.FloorToInt(g.x * Unit), gy = Mathf.FloorToInt(g.y * Unit);
+                        // out once a pixel (it was twice: once to pick the layer). The pictures are read on the screen's
+                        // grid: the pixel's world position (ground y halved) at the screen's pixels a unit.
+                        int gx = Mathf.FloorToInt(g.x * ScreenUnit), gy = Mathf.FloorToInt(g.y * 0.5f * ScreenUnit);
                         var blade = forestGrass[Wrap(gx, forestGrassSize) + Wrap(gy, forestGrassSize) * forestGrassSize];
                         var earth = forestPath[Wrap(gx, forestPathSize) + Wrap(gy, forestPathSize) * forestPathSize];
                         var amount = GroundRules.ForestGrassAmount(g);
@@ -264,7 +279,7 @@ namespace ARPG
                         cellPixels[i] = share > 0f ? Tone(blade, drift) : Scale(earth, drift * GroundRules.PathRim(amount));
                         continue;
                     }
-                    var s = Wrap(Mathf.FloorToInt(g.x * Unit)) + Wrap(Mathf.FloorToInt(g.y * Unit)) * SourceSize;
+                    var s = Wrap(Mathf.FloorToInt(g.x * SampleUnit)) + Wrap(Mathf.FloorToInt(g.y * SampleUnit)) * SourceSize;
                     GroundLayer layer;
                     if (town)
                     {
@@ -303,8 +318,8 @@ namespace ARPG
                     var forest = !town && DungeonRules.Forest && dungeonTheme == DungeonTheme.Cave;
                     if (forest && forestGrass != null && forestPath != null)
                     {
-                        // The grass and the path frayed into each other along their edge (2026-10-27).
-                        int gx = Mathf.FloorToInt(g.x * Unit), gy = Mathf.FloorToInt(g.y * Unit);
+                        // The grass and the path frayed into each other along their edge (2026-10-27), on the screen's grid.
+                        int gx = Mathf.FloorToInt(g.x * ScreenUnit), gy = Mathf.FloorToInt(g.y * 0.5f * ScreenUnit);
                         var blade = forestGrass[Wrap(gx, forestGrassSize) + Wrap(gy, forestGrassSize) * forestGrassSize];
                         var earth = forestPath[Wrap(gx, forestPathSize) + Wrap(gy, forestPathSize) * forestPathSize];
                         var amount = GroundRules.ForestGrassAmount(g);
@@ -318,7 +333,7 @@ namespace ARPG
                     if (picture != null)
                     {
                         var size = layer == GroundLayer.Grass ? forestGrassSize : forestPathSize;
-                        cellPixels[i] = picture[Wrap(Mathf.FloorToInt(g.x * Unit), size) + Wrap(Mathf.FloorToInt(g.y * Unit), size) * size];
+                        cellPixels[i] = picture[Wrap(Mathf.FloorToInt(g.x * ScreenUnit), size) + Wrap(Mathf.FloorToInt(g.y * 0.5f * ScreenUnit), size) * size];
                         continue;
                     }
                     if (forest)
@@ -343,6 +358,10 @@ namespace ARPG
                     cellPixels[i] = new Color32(c.r, c.g, c.b, 255);
                 }
         }
+
+        // Whether this paint is the forest drawn on the screen's grid: the forest's ground with its pictures in.
+        static bool ForestOnScreenGrid(bool town) =>
+            !town && DungeonRules.Forest && dungeonTheme == DungeonTheme.Cave && forestGrass != null && forestPath != null;
 
         static float NearestPath(Vector2 ground)
         {

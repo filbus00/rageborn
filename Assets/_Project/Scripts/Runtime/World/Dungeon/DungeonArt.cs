@@ -233,7 +233,7 @@ namespace ARPG
             if (imported != null)
             {
                 lo = PixelsOf(imported, Unit, Unit / 2);
-                if (lo == null || !StampImportedDecal(lo, decal, seed))
+                if (lo == null || !StampImportedDecal(lo, Unit, Unit / 2, decal, seed))
                 {
                     // No imported decal of this kind: draw the code's on the imported floor at the drawing size.
                     var big = PixelArt.Enlarge(lo ?? FloorPixels(style, variant), lo != null ? Unit : TileW, lo != null ? Unit / 2 : TileH, TileW, TileH);
@@ -356,21 +356,40 @@ namespace ARPG
             return pixels;
         }
 
-        /// <summary>Lays an imported decal of the kind (a variant picked by the seed) over a floor's opaque pixels;
-        /// false when none of that kind was imported.</summary>
-        /// <summary>Stamps an imported decal of a kind onto a 40 x 20 floor tile's pixels, if one was imported. A carpet
-        /// cell is drawn from the carpet picture when there is one (its place on the picture from the cell), else in
-        /// code.</summary>
-        public static bool StampDecal(Color32[] floor, int decal, int seed, Vector2Int cell = default)
+        /// <summary>A decal's pixels at the tile's size: as they are when the decal was drawn at that size, else picked
+        /// nearest from it (a 40 x 20 mark on the forest's 54 x 27 tiles, or the other way); null when unreadable.</summary>
+        static Color32[] MarkOf(Sprite sprite, int w, int h)
+        {
+            var rect = sprite.rect;
+            if ((int)rect.width == w && (int)rect.height == h)
+                return PixelsOf(sprite, w, h);
+            if (!sprite.texture.isReadable)
+                return null;
+            int sw = (int)rect.width, sh = (int)rect.height;
+            var source = sprite.texture.GetPixels32();
+            var stride = sprite.texture.width;
+            var pixels = new Color32[w * h];
+            for (var y = 0; y < h; y++)
+                for (var x = 0; x < w; x++)
+                    pixels[x + y * w] = source[(int)rect.x + x * sw / w + ((int)rect.y + y * sh / h) * stride];
+            return pixels;
+        }
+
+        /// <summary>Stamps an imported decal of a kind onto a floor tile's pixels (<paramref name="w"/> x <paramref name="h"/>:
+        /// 40 x 20, or the forest's 54 x 27 on the screen's grid), if one was imported. A carpet cell is drawn from the
+        /// carpet picture when there is one (its place on the picture from the cell), else in code, on 40 x 20 tiles.</summary>
+        public static bool StampDecal(Color32[] floor, int w, int h, int decal, int seed, Vector2Int cell = default)
         {
             if (RugRules.IsRug((DecalKind)decal))
             {
+                if (w != Unit)
+                    return false;
                 if (!StampRugImage(floor, (DecalKind)decal, cell))
                     StampRug(floor, (DecalKind)decal, seed);
                 return true;
             }
             LoadImported();
-            return StampImportedDecal(floor, decal, seed);
+            return StampImportedDecal(floor, w, h, decal, seed);
         }
 
         // A cell of a long carpet (2026-10-20), drawn in code: deep red, a gold border along its outer long side, dark
@@ -431,11 +450,11 @@ namespace ARPG
             return true;
         }
 
-        static bool StampImportedDecal(Color32[] floor, int decal, int seed)
+        static bool StampImportedDecal(Color32[] floor, int w, int h, int decal, int seed)
         {
             if (!importedDecals.TryGetValue(decal, out var list) || list.Count == 0)
                 return false;
-            var mark = PixelsOf(list[Mathf.Abs(seed) % list.Count], Unit, Unit / 2);
+            var mark = MarkOf(list[Mathf.Abs(seed) % list.Count], w, h);
             if (mark == null)
                 return false;
             for (var i = 0; i < floor.Length; i++)
