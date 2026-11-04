@@ -258,7 +258,7 @@ namespace ARPG
                 {
                     if (!Allowed(layout, kind))
                         continue;
-                    var count = random.Next(min, max + 1);
+                    var count = (int)System.Math.Round(random.Next(min, max + 1) * LairPropShare, System.MidpointRounding.AwayFromZero);
                     for (var k = 0; k < count && ring.Count > 0; k++)
                     {
                         // A few tries for a cell that keeps the floor in one piece.
@@ -424,8 +424,13 @@ namespace ARPG
             (PropKind.BonePile, new[] { PropKind.BonePile }, 1, 2, 6),
         };
 
-        /// <summary>One scene per this many floor cells of a forest clearing.</summary>
-        const int CellsPerForestGroup = 120;
+        /// <summary>One scene per this many floor cells of a forest clearing (200 since 2026-11-04, the owner: "Lessen the
+        /// frequency of the props by 40%"; was 120).</summary>
+        const int CellsPerForestGroup = 200;
+
+        /// <summary>The share of a lair's props that stand (2026-11-04: 40 percent fewer), rounded, so a lair keeps at
+        /// least its one of each where it had one.</summary>
+        const float LairPropShare = 0.6f;
         /// <summary>Cells (Chebyshev) between two scenes' middles.</summary>
         const int ForestGroupGap = 7;
 
