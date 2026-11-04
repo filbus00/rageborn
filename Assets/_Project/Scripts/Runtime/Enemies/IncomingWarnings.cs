@@ -52,10 +52,18 @@ namespace ARPG
         /// <summary>A pool (a ground hazard) is near, shown while she is within this many units of its edge.</summary>
         public const float PoolNear = 3f;
 
-        /// <summary>Shows a warning for a pool about to hurt (the owner, 2026-10-19: "Add warnings for pools also"),
-        /// on its side of her, while she is near it.</summary>
-        public void WarnPool(Vector2 center, float radius, float seconds, Color color)
+        /// <summary>Shows a warning for a pool about to hurt (the owner, 2026-10-19: "Add warnings for pools also"). Cast
+        /// by an enemy, it stands on her ring toward that enemy and follows it, shown whatever the distance, as every other
+        /// warning does (the owner, 2026-11-03: "make it appear just like it does with the other ones. Around the character
+        /// in the direction of the enemy casting the dmg pool"); with no caster (a bomb's burst, a dying bloat's) it stands
+        /// toward the pool while she is near it.</summary>
+        public void WarnPool(Vector2 center, float radius, float seconds, Color color, EnemyController caster = null)
         {
+            if (caster != null)
+            {
+                Warn(caster, caster.GroundPosition, seconds, color, Shape.Round);
+                return;
+            }
             Warn(null, center, seconds, color, Shape.Round);
             var w = last;
             w.Near = PoolNear;

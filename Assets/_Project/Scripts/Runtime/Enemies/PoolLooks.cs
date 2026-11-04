@@ -3,13 +3,12 @@ using UnityEngine;
 namespace ARPG
 {
     /// <summary>
-    /// Which drawn pool a lasting ground pool shows (2026-10-31, the owner's Gemini pools in Resources/Art/Effects): the
-    /// pools are known only by their colour, so by its hue. Red is blood, orange fire, green poison, pale blue frost and
-    /// purple void; greys, bone and deep blue water keep the tinted blob (water drawn as ice would be wrong). Pure.
+    /// Which drawn pool a lasting ground pool shows (2026-10-31; drawn in code by <see cref="PoolArt"/> since 2026-11-03,
+    /// the owner's Gemini pools removed): the pools are known only by their colour, so by its hue. Red is blood, orange
+    /// fire, green poison, pale blue frost, deep blue water and purple void; greys and bone keep the tinted blob. Pure.
     /// </summary>
     public static class PoolLooks
     {
-        public const string Folder = "Art/Effects/";
 
         /// <summary>What a drawn pool throws off as it lies (2026-11-01).</summary>
         public enum Spray { None, Embers, Bubbles, Glints, VoidSparks }
@@ -38,6 +37,18 @@ namespace ARPG
             }
         }
 
+        /// <summary>How strongly a pool's glow shows under it (2026-11-03): fire and the void burn bright, ice and water
+        /// faintly, blood hardly.</summary>
+        public static float GlowOf(string name) => name switch
+        {
+            "pool_fire" => 0.55f,
+            "pool_void" => 0.5f,
+            "pool_poison" => 0.35f,
+            "pool_frost" => 0.3f,
+            "pool_water" => 0.2f,
+            _ => 0.12f,
+        };
+
         /// <summary>The motion of a drawn pool by its name.</summary>
         public static Motion MotionOf(string name) => name switch
         {
@@ -49,6 +60,8 @@ namespace ARPG
             "pool_frost" => new Motion(5f, -7f, 0.3f, 0.2f, 1.6f, 0.08f, Spray.Glints, 4f),
             // The void swirls fast and pulls sparks into its heart.
             "pool_void" => new Motion(70f, 110f, 0.55f, 0.4f, 3f, 0.15f, Spray.VoidSparks, 6f),
+            // Water ripples slowly and glints.
+            "pool_water" => new Motion(6f, -9f, 0.3f, 0.2f, 1.4f, 0.08f, Spray.Glints, 2f),
             // Blood turns slowly and pulses like a heartbeat.
             "pool_blood" => new Motion(8f, -12f, 0.35f, 0.25f, 4.5f, 0.12f, Spray.None, 0f),
             _ => new Motion(10f, -14f, 0.35f, 0.25f, 2f, 0.1f, Spray.None, 0f),
@@ -68,7 +81,7 @@ namespace ARPG
             if (hue < 165f)
                 return "pool_poison";
             if (hue < 250f)
-                return s < 0.55f ? "pool_frost" : null;
+                return s < 0.55f ? "pool_frost" : "pool_water";
             return "pool_void";
         }
     }

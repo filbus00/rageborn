@@ -214,6 +214,7 @@ namespace ARPG
                 if (!timers.TryGetValue(enemy, out var t))
                     timers[enemy] = t = NewTimers(enemy);
                 Use(enemy, t, deltaTime, world, target);
+                world.Hazards.Caster = null;
             }
 
             TickLances(deltaTime, world);
@@ -249,6 +250,8 @@ namespace ARPG
             var hit = Hit(enemy);
             var level = enemy.Level;
             var here = enemy.GroundPosition;
+            // Its attacks' pools warn toward it on her ring; its molten trail (laid under it every few steps) does not.
+            world.Hazards.Caster = null;
 
             if ((m & EliteModifiers.Molten) != 0)
             {
@@ -260,6 +263,7 @@ namespace ARPG
                     world.Hazards.Fire(here, EliteAffixRules.MoltenRadius, EliteAffixRules.MoltenSeconds, hit * EliteAffixRules.MoltenBurn, level);
                 }
             }
+            world.Hazards.Caster = enemy;
             if ((m & EliteModifiers.Desecrator) != 0 && (t.Desecrator -= dt) <= 0f)
             {
                 t.Desecrator = EliteAffixRules.DesecratorEvery;

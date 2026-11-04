@@ -215,7 +215,10 @@ namespace ARPG
                 var enemy = active[i];
                 if (enemy.IsAlive)
                 {
+                    // Pools it casts in its turn warn toward it (EnemyHazards.Caster).
+                    Hazards.Caster = enemy;
                     enemy.Tick(deltaTime, this);
+                    Hazards.Caster = null;
                     enemy.Animate(deltaTime, this);
                     var state = enemy.State;
                     if (state == EnemyState.Approach || state == EnemyState.Attack || state == EnemyState.Recover)

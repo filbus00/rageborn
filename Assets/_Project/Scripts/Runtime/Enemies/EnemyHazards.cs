@@ -225,12 +225,16 @@ namespace ARPG
         /// (2026-10-19).</summary>
         public IncomingWarnings Warnings { get; set; }
 
+        /// <summary>The enemy whose turn it is (set by the manager round each enemy's tick, its specials and its elite
+        /// attacks): a pool made now warns toward it on her ring (2026-11-03). Null for pools nobody casts.</summary>
+        public EnemyController Caster { get; set; }
+
         /// <summary>How long a pool that hurts at once still warns (burning ground, which has no fill).</summary>
         const float LeastWarningSeconds = 0.6f;
 
         Hazard Add(Vector2 center, float radius, float fill, float burn, float damage, float burnPerSecond, int level, Color color)
         {
-            Warnings?.WarnPool(center, radius, Mathf.Max(fill, LeastWarningSeconds), color);
+            Warnings?.WarnPool(center, radius, Mathf.Max(fill, LeastWarningSeconds), color, Caster);
             Hazard hazard = null;
             foreach (var h in hazards)
                 if (!h.Active && h.Marker != null)

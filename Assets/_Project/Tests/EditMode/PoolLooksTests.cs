@@ -19,9 +19,9 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void WaterBoneAndStone_KeepTheTintedBlob()
+        public void WaterHasItsOwnPool_BoneAndStoneKeepTheTintedBlob()
         {
-            Assert.IsNull(PoolLooks.For(new Color(0.35f, 0.65f, 0.95f, 0.85f)), "water is not ice");
+            Assert.AreEqual("pool_water", PoolLooks.For(new Color(0.35f, 0.65f, 0.95f, 0.85f)), "water is not ice");
             Assert.IsNull(PoolLooks.For(new Color(0.92f, 0.88f, 0.75f, 0.85f)), "bone");
             Assert.IsNull(PoolLooks.For(new Color(0.55f, 0.5f, 0.45f, 1f)), "rock");
         }
@@ -45,6 +45,24 @@ namespace ARPG.Tests
             Assert.AreEqual(PoolLooks.Spray.Glints, PoolLooks.MotionOf("pool_frost").Spray);
             Assert.AreEqual(PoolLooks.Spray.VoidSparks, PoolLooks.MotionOf("pool_void").Spray);
             Assert.Greater(PoolLooks.MotionOf("pool_fire").PulseSpeed, PoolLooks.MotionOf("pool_poison").PulseSpeed, "fire flickers quicker than slime");
+        }
+
+        [Test]
+        public void EveryPool_IsDrawnInCode_RoundWithAnEdgeAndAllItsTones()
+        {
+            // The owner, 2026-11-03: "remove the damage pool assets that are imported. Use your own".
+            foreach (var name in new[] { "pool_fire", "pool_poison", "pool_frost", "pool_void", "pool_blood", "pool_water" })
+            {
+                var pixels = PoolArt.Pixels(name);
+                Assert.AreEqual(PoolArt.Size * PoolArt.Size, pixels.Length);
+                Assert.AreEqual(0, pixels[0].a, name + ": a corner is clear");
+                Assert.AreEqual(255, pixels[PoolArt.Size / 2 + PoolArt.Size / 2 * PoolArt.Size].a, name + ": the middle is filled");
+                var tones = new System.Collections.Generic.HashSet<Color32>();
+                foreach (var p in pixels)
+                    if (p.a > 0)
+                        tones.Add(p);
+                Assert.GreaterOrEqual(tones.Count, 3, name + " has a pattern, not a flat fill");
+            }
         }
     }
 }

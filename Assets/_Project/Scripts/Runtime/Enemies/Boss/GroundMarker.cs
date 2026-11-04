@@ -72,7 +72,8 @@ namespace ARPG
         static readonly (float x, float y, float size)[] BubbleSpots =
             { (0.3f, 0.2f, 0.11f), (-0.35f, 0.35f, 0.08f), (-0.15f, -0.4f, 0.13f), (0.45f, -0.25f, 0.07f), (0.05f, 0.55f, 0.06f), (-0.55f, -0.05f, 0.09f) };
 
-        /// <summary>The owner's drawn pool for a pool's colour (<see cref="PoolLooks"/>), one world unit across, or null.</summary>
+        /// <summary>The drawn pool for a pool's colour (<see cref="PoolLooks"/>, drawn by <see cref="PoolArt"/>), one world
+        /// unit across, or null.</summary>
         public static Sprite DrawnPool(Color color)
         {
             var name = PoolLooks.For(color);
@@ -80,7 +81,14 @@ namespace ARPG
                 return null;
             if (drawnPools.TryGetValue(name, out var sprite))
                 return sprite;
-            return drawnPools[name] = Resources.Load<Sprite>(PoolLooks.Folder + name);
+            var texture = new Texture2D(PoolArt.Size, PoolArt.Size, TextureFormat.RGBA32, false)
+            {
+                name = name, filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp,
+            };
+            texture.SetPixels32(PoolArt.Pixels(name));
+            texture.Apply(false, true);
+            return drawnPools[name] = Sprite.Create(texture, new Rect(0, 0, PoolArt.Size, PoolArt.Size), new Vector2(0.5f, 0.5f), PoolArt.Size, 0,
+                SpriteMeshType.FullRect, Vector4.zero, false);
         }
 
         static readonly Dictionary<string, Sprite> drawnPools = new Dictionary<string, Sprite>();
@@ -330,6 +338,16 @@ namespace ARPG
                 }
                 swirlA.sprite = drawnPool;
                 swirlB.sprite = drawnPool;
+                // Its light on the ground round it (2026-11-03), in its brightest tone but one, breathing with it.
+                var kind = PoolLooks.For(color);
+                glowStrength = PoolLooks.GlowOf(kind);
+                if (glow == null)
+                {
+                    glow = NewSprite("Glow", TelegraphArt.Glow, Color.white, root.transform, 39).GetComponent<SpriteRenderer>();
+                    glow.transform.localScale = Vector3.one * 1.45f;
+                }
+                glowColor = PoolArt.Ramp(kind)[3];
+                glow.gameObject.SetActive(true);
                 swirlA.gameObject.SetActive(true);
                 swirlB.gameObject.SetActive(true);
                 sprayDebt = 0f;
@@ -346,7 +364,9 @@ namespace ARPG
         }
 
         Sprite drawnPool;
-        SpriteRenderer edge, swirlA, swirlB;
+        SpriteRenderer edge, swirlA, swirlB, glow;
+        Color glowColor;
+        float glowStrength;
         PoolLooks.Motion motion;
         float sprayDebt;
 
@@ -369,6 +389,7 @@ namespace ARPG
                 swirlB.transform.localRotation = Quaternion.Euler(0f, 0f, poolTime * motion.SpinB);
                 swirlA.color = new Color(1f, 1f, 1f, motion.AlphaA * (0.75f + 0.25f * Mathf.Sin(poolTime * 1.7f)));
                 swirlB.color = new Color(1f, 1f, 1f, motion.AlphaB * (0.75f + 0.25f * Mathf.Sin(poolTime * 2.3f + 2f)));
+                glow.color = new Color(glowColor.r, glowColor.g, glowColor.b, glowStrength * (0.7f + 0.3f * Mathf.Sin(poolTime * motion.PulseSpeed * 0.6f)));
                 if (motion.Spray != PoolLooks.Spray.None && ArrowFx.Current != null)
                 {
                     sprayDebt += motion.SprayRate * Radius * Radius * deltaSeconds;
@@ -411,6 +432,8 @@ namespace ARPG
                     swirlA.gameObject.SetActive(false);
                     swirlB.gameObject.SetActive(false);
                 }
+                if (glow != null)
+                    glow.gameObject.SetActive(false);
                 rootRenderer.sprite = TelegraphArt.Rim;
                 if (fill != null)
                     fill.gameObject.SetActive(true);

@@ -361,6 +361,7 @@ namespace ARPG
             var s = p.Special;
             var hit = CombatFormulas.EnemyHitDamage(enemy.Level) * enemy.Definition.DamageMultiplier;
             var level = enemy.Level;
+            world.Hazards.Caster = enemy;
             switch (s.Shape)
             {
                 case SpecialShape.Lob:
@@ -406,6 +407,7 @@ namespace ARPG
                     }
                     break;
             }
+            world.Hazards.Caster = null;
         }
 
         /// <summary>Forgets an enemy that died or left (the manager calls it on a kill).</summary>
