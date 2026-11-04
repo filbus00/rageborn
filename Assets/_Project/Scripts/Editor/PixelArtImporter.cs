@@ -19,6 +19,18 @@ namespace ARPG.Editor
     public static class PixelArtImporter
     {
         public const string SourceFolder = "ArtSource/pixel/dungeon";
+
+        /// <summary>
+        /// Art drawn at the game's rendered scale (2026-11-04, the owner: "redraw the art at the new scale"): 27 pixels a
+        /// unit, as the world is rendered since the camera moved back (<see cref="RenderResolution.RenderedUnit"/> on the
+        /// iPhone 11 and on 3x phones), so one of its pixels is one pixel on screen. Taken as drawn: no shrinking, no
+        /// palette snap or outline (the drawing has its own), only hard alpha; it wins over a piece of the same name in
+        /// <see cref="SourceFolder"/>. Made by the scripts in ArtSource/tools/pixel (Aseprite).
+        /// </summary>
+        public const string RenderScaleFolder = "ArtSource/pixel/dungeon27";
+
+        /// <summary>The rendered scale's pixels a unit.</summary>
+        public const int RenderScaleUnit = 27;
         public const string OutputFolder = "Assets/_Project/Resources/" + DungeonArt.ImportedFolder;
         const string ReportPath = "Logs/PixelArtImport.txt";
 
@@ -77,6 +89,39 @@ namespace ARPG.Editor
                 report.AppendLine();
             }
 
+            // Art drawn at the rendered scale, taken as drawn.
+            var atRenderScale = new HashSet<string>();
+            Directory.CreateDirectory(RenderScaleFolder);
+            foreach (var path in Directory.GetFiles(RenderScaleFolder, "*.png"))
+            {
+                var name = Path.GetFileNameWithoutExtension(path).ToLowerInvariant();
+                if (ArtNames.Parse(name, out _, out _) == ArtKind.Unknown)
+                {
+                    report.AppendLine($"SKIPPED {Path.GetFileName(path)} (at the rendered scale): not a name the game reads.");
+                    problems++;
+                    continue;
+                }
+                var texture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+                if (!texture.LoadImage(File.ReadAllBytes(path)))
+                {
+                    report.AppendLine($"SKIPPED {Path.GetFileName(path)} (at the rendered scale): not a readable PNG.");
+                    problems++;
+                    Object.DestroyImmediate(texture);
+                    continue;
+                }
+                var pixels = texture.GetPixels32();
+                for (var i = 0; i < pixels.Length; i++)
+                    pixels[i].a = pixels[i].a >= 128 ? (byte)255 : (byte)0;
+                texture.SetPixels32(pixels);
+                texture.Apply();
+                var output = $"{OutputFolder}/{name}.png";
+                File.WriteAllBytes(output, texture.EncodeToPNG());
+                report.AppendLine($"RENDERED {name}: {texture.width} x {texture.height} at {RenderScaleUnit} a unit");
+                Object.DestroyImmediate(texture);
+                written.Add(output);
+                atRenderScale.Add(output);
+            }
+
             // Outputs whose source was removed or renamed.
             var removed = 0;
             foreach (var old in Directory.GetFiles(OutputFolder, "*.png"))
@@ -91,7 +136,7 @@ namespace ARPG.Editor
 
             AssetDatabase.Refresh();
             foreach (var asset in written)
-                Configure(asset);
+                Configure(asset, atRenderScale.Contains(asset) ? RenderScaleUnit : PixelArt.PixelsPerUnit);
 
             report.AppendLine();
             report.AppendLine($"Imported {written.Count}: {counts[(int)ArtKind.Floor]} floors, {counts[(int)ArtKind.Decal]} decals, " +
@@ -152,14 +197,14 @@ namespace ARPG.Editor
 
         /// <summary>Import settings for one written sprite: 40 a unit, point filtered, uncompressed, readable (floors and
         /// decals are combined at load), standing on the cell's middle.</summary>
-        static void Configure(string asset)
+        static void Configure(string asset, int unit)
         {
             var importer = AssetImporter.GetAtPath(asset) as TextureImporter;
             if (importer == null)
                 return;
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Single;
-            importer.spritePixelsPerUnit = PixelArt.PixelsPerUnit;
+            importer.spritePixelsPerUnit = unit;
             importer.filterMode = FilterMode.Point;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
             importer.mipmapEnabled = false;
@@ -171,7 +216,8 @@ namespace ARPG.Editor
             importer.ReadTextureSettings(settings);
             importer.GetSourceTextureWidthAndHeight(out _, out var height);
             settings.spriteAlignment = (int)SpriteAlignment.Custom;
-            settings.spritePivot = new Vector2(0.5f, ArtNames.PivotY / (float)Mathf.Max(1, height));
+            // The cell's middle a quarter unit up from the bottom, at either scale.
+            settings.spritePivot = new Vector2(0.5f, unit / 4f / Mathf.Max(1, height));
             settings.spriteMeshType = SpriteMeshType.FullRect;
             settings.spriteExtrude = 0;
             settings.spriteGenerateFallbackPhysicsShape = false;
