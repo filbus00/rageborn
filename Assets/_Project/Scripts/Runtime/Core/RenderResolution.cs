@@ -35,10 +35,11 @@ namespace ARPG
 
         /// <summary>
         /// Heavier pixels (the owner, 2026-10-18: "Implement the 1.5 pixelation"): the world is drawn at a resolution this
-        /// many times lower on each side with the same view, so each rendered pixel is half again as big (3 x 3 screen
-        /// pixels on an iPhone 11, was 2 x 2). The art is drawn at fewer pixels a unit to keep the view's size.
+        /// many times lower on each side with the same view. 1 since 2026-11-04: with the camera further back
+        /// (<see cref="ViewScale"/>) the art's pixels already shrink on screen, and 1.5 on top made them a smear; 2 x 2
+        /// screen pixels a rendered pixel on an iPhone 11.
         /// </summary>
-        public const float Pixelation = 1.5f;
+        public const float Pixelation = 1f;
 
         /// <summary>The screen pixels a rendered pixel covers with the heavier pixels: <see cref="Pixelation"/> times
         /// <see cref="Factor"/>, rounded up to a whole number (3 on a 2x phone, 5 on a 3x one).</summary>
@@ -56,9 +57,16 @@ namespace ARPG
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
-        /// <summary>The camera stands this much further back (2026-10-25, the owner: "move the game camera back 20%"):
-        /// the view shows 20 percent more each way.</summary>
-        public const float ViewScale = 1.2f;
+        /// <summary>The camera stands this much further back than the art's own scale (2026-10-25, the owner: "move the
+        /// game camera back 20%"; 1.5 since 2026-11-04: "the camera could be even further away", a quarter further than
+        /// 1.2): the view shows this much more each way, 33 units tall on an iPhone 11. With the pixel filter the world is
+        /// rendered at fewer pixels a unit to match (<see cref="RenderedUnit"/>).</summary>
+        public const float ViewScale = 1.5f;
+
+        /// <summary>The pixels a unit the world is rendered at with the pixel filter: the art's, over the pixelation's
+        /// factor and the camera's distance (27 on an iPhone 11: 40 times 2 over 2, over 1.5). The art's 40 a unit fall on
+        /// this one grid, so every sprite, effect and the ground share one pixel size on screen.</summary>
+        public static int RenderedUnit(int screenLongSide) => Mathf.Max(1, Mathf.RoundToInt(PixelatedUnit(screenLongSide) / ViewScale));
 
         static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
@@ -76,19 +84,22 @@ namespace ARPG
             }
             var factor = PixelatedFactor(longSide);
             // The component renders into a texture of the screen over the factor (rounded down to even) and sets the
-            // camera's orthographic size from its height and the pixels per unit.
-            var height = Screen.height / factor / 2 * 2;
+            // camera's orthographic size from its height and the pixels per unit. Portrait whatever the screen reports at
+            // load (2026-11-04: the editor reported a landscape screen loading the dungeon, the reference came out wider
+            // than the screen and the component zoomed out twice as far, off centre).
+            var shortSide = Mathf.Min(Screen.width, Screen.height);
+            var height = longSide / factor / 2 * 2;
             var pixelPerfect = camera.gameObject.AddComponent<PixelPerfectCamera>();
-            pixelPerfect.refResolutionX = Screen.width / factor;
-            pixelPerfect.refResolutionY = Screen.height / factor;
+            pixelPerfect.refResolutionX = shortSide / factor;
+            pixelPerfect.refResolutionY = longSide / factor;
             // Every world sprite is drawn at PixelArt.PixelsPerUnit, so the world renders at that too and one art pixel is
             // one rendered pixel; the view's height follows the screen (14.9 units on an iPhone 11, the scenes' 15 give
             // or take, 16.4 on an iPhone 17). It used to follow the camera's size instead, which the art could not match.
             // Since 2026-10-18 at the heavier pixels: fewer art pixels a unit (PixelatedUnit), the same view.
-            pixelPerfect.assetsPPU = PixelatedUnit(longSide);
+            pixelPerfect.assetsPPU = RenderedUnit(longSide);
             pixelPerfect.gridSnapping = PixelPerfectCamera.GridSnapping.UpscaleRenderTexture;
             pixelPerfect.cropFrame = PixelPerfectCamera.CropFrame.None;
-            Debug.Log($"RenderResolution: {scene.name} world at {Screen.width / factor} x {height}, " +
+            Debug.Log($"RenderResolution: {scene.name} world at {shortSide / factor} x {height}, " +
                       $"{pixelPerfect.assetsPPU} px a unit, each shown as {factor} x {factor}");
         }
     }

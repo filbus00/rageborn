@@ -32,9 +32,10 @@ namespace ARPG
         /// </summary>
         public static readonly bool ColourGrade = false;
 
-        /// <summary>The pixel filter: the world rendered at the art's pixels (1.5 times heavier since 2026-10-18) and
-        /// scaled up, RenderResolution's Pixel Perfect Camera. Off: the full screen resolution, the same view.</summary>
-        public static readonly bool PixelFilter = false;
+        /// <summary>The pixel filter: the world rendered at the art's pixels and scaled up, RenderResolution's Pixel Perfect
+        /// Camera. On again since 2026-11-04 (the owner: "The current art style is not cohesive. I want it to be pixel
+        /// art"): every sprite, effect and the ground land on one grid of pixels. Off: the full screen resolution.</summary>
+        public static readonly bool PixelFilter = true;
 
         /// <summary>The scenes' moods: the dark dungeon and dusk town, the ember round her, torches and other point
         /// lights, the shade on characters (LightingDirector). Off: plain full white light everywhere.</summary>

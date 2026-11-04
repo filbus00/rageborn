@@ -13,8 +13,8 @@ namespace ARPG
     /// </summary>
     public static class PoolArt
     {
-        /// <summary>Pixels across (one world unit; the world's art is 40 a unit, so these read as the same pixels).</summary>
-        public const int Size = 48;
+        /// <summary>Pixels across: one world unit at the art's 40 a unit (48 until 2026-11-04), so they share its grid.</summary>
+        public const int Size = 40;
 
         static readonly Color32[] Fire =
             { new Color32(52, 14, 8, 255), new Color32(140, 28, 10, 255), new Color32(226, 92, 18, 255), new Color32(255, 186, 48, 255), new Color32(255, 242, 170, 255) };

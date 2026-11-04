@@ -26,19 +26,19 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void HeavierPixels_KeepTheView_WithBiggerPixels()
+        public void ThePixelFilter_ShowsTheFartherView_OnOneGrid()
         {
-            // The owner, 2026-10-18: the 1.5 pixelation. iPhone 11: 3 x 3 screen pixels a rendered pixel, 27 art pixels a unit.
-            Assert.AreEqual(3, RenderResolution.PixelatedFactor(1792));
-            Assert.AreEqual(27, RenderResolution.PixelatedUnit(1792));
+            // The owner, 2026-11-04: "the camera could be even further away" and "I want it to be pixel art". iPhone 11:
+            // 2 x 2 screen pixels a rendered pixel, 27 rendered pixels a unit, a view about 33 units tall.
+            Assert.AreEqual(2, RenderResolution.PixelatedFactor(1792));
+            Assert.AreEqual(27, RenderResolution.RenderedUnit(1792));
             foreach (var longSide in new[] { 1334, 1792, 2532, 2622, 2868 })
             {
-                // The view in units (the long side over the factor, over the art's pixels a unit) within 6 percent of
-                // what it was, and each rendered pixel at least 1.4 times bigger.
-                var before = longSide / RenderResolution.Factor(longSide) / (float)PixelArt.PixelsPerUnit;
-                var after = longSide / RenderResolution.PixelatedFactor(longSide) / (float)RenderResolution.PixelatedUnit(longSide);
-                Assert.AreEqual(before, after, before * 0.06f, longSide.ToString());
-                Assert.GreaterOrEqual(RenderResolution.PixelatedFactor(longSide) / (float)RenderResolution.Factor(longSide), 1.4f, longSide.ToString());
+                // The view in units: the art's own (the long side over the factor, over the art's pixels a unit) times
+                // the camera's distance, within 6 percent.
+                var art = longSide / RenderResolution.Factor(longSide) / (float)PixelArt.PixelsPerUnit;
+                var shown = longSide / RenderResolution.PixelatedFactor(longSide) / (float)RenderResolution.RenderedUnit(longSide);
+                Assert.AreEqual(art * RenderResolution.ViewScale, shown, art * 0.06f, longSide.ToString());
             }
         }
     }
