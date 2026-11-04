@@ -20,7 +20,7 @@ props.prop_bandit_tent = function()
   local A2, R2, L2 = { A[1] + D[1], A[2] + D[2] }, { R[1] + D[1], R[2] + D[2] }, { L[1] + D[1], L[2] + D[2] }
   -- The shadow over its footprint and a little past it, behind and to the right where the light throws it.
   for y = 0, c.H - 1 do
-    for x = 0, c.W - 1 do
+    for x = -4, c.W + 3 do
       local ins = false
       local poly = { L[1] - 1, L[2] + 2, R[1] + 3, R[2] + 2, R2[1] + 4, R2[2] + 1, L2[1] + 2, L2[2] - 1 }
       local n, j = #poly // 2, #poly // 2
@@ -29,7 +29,7 @@ props.prop_bandit_tent = function()
         if ((yi > y + 0.5) ~= (yj > y + 0.5)) and (x + 0.5 < (xj - xi) * (y + 0.5 - yi) / (yj - yi) + xi) then ins = not ins end
         j = i
       end
-      if ins and (x + y) % 2 == 0 then c.image:drawPixel(x, y, K.OUTLINE) end
+      if ins and (x + y) % 2 == 0 then c:dot(x, y, K.OUTLINE) end
     end
   end
   -- The slope.
