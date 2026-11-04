@@ -75,18 +75,41 @@ end
 
 -- A wooden crate, planks and a dark iron band, its top lit.
 props.prop_crate = function()
+  -- Redrawn after the barrel (2026-11-04, the owner: "amazing, now to the same for the crate"): flat tones per face, lit
+  -- from the left (the left face in shade, the right half lit, the top brightest); each side a frame of lighter planks
+  -- round its edge, the boards inside running across with a dark seam between each, a
+  -- nail at each frame corner; the top's boards running back with seams, its near edges catching the light.
   local c = kit.new(24, 26)
   local g = c.ground
-  c:shadow(12, g - 1, 11, 4)
-  c:box(12, g + 1, 5, 5, 11, function(face, x, y)
-    if face == "top" then return (x + y * 2) % 7 == 0 and K.WOOD[4] or K.WOOD[6] end
-    local base = face == "left" and K.WOOD[3] or K.WOOD[5]
-    -- Plank seams, the band across the middle.
-    local fromTop = face == "left" and (y - (g + 1 - (12 - x) / 2 - 11)) or (y - (g + 1 - (x - 12) / 2 - 11))
-    if math.floor(fromTop) == 5 then return K.STONE[2] end
-    if face == "left" and (12 - x) % 4 == 0 then return K.WOOD[2] end
-    if face == "right" and (x - 12) % 4 == 0 then return K.WOOD[3] end
-    return base
+  local x0, y0, d, h = 12, g + 2, 5, 12
+  c:shadow(x0 + 1, g, 11, 4)
+  local side = {
+    left = { infill = 3, frame = 4, seam = 2 },
+    right = { infill = 5, frame = 6, seam = 4 },
+  }
+  c:box(x0, y0, d, d, h, function(face, x, y)
+    if face == "top" then
+      -- How far in from the near edges, along each: 0 on the edge itself.
+      local inLeft = (y0 - h) - y - (x0 - 1 - x) / 2
+      local inRight = (y0 - h) - y - (x - x0) / 2
+      if inLeft < 1 or inRight < 1 then return K.WOOD[6] end
+      -- Seams running back to the right at the camera's 2:1, two pixels across for each one up.
+      if (x + 2 * y) % 8 < 2 then return K.WOOD[4] end
+      return K.WOOD[5]
+    end
+    local tone = side[face]
+    local along = face == "left" and (x0 - 1 - x) or (x - x0)
+    local up = (y0 - along / 2) - y
+    local width = 2 * d
+    local onFrame = along < 2 or along >= width - 2 or up < 2.5 or up >= h - 1
+    local corner = (along == 0 or along == width - 1) and (math.floor(up) == 1 or math.floor(up) == h - 1)
+    if corner then return K.STONE[5] end
+    if onFrame then
+      if along == 0 and face == "right" then return K.WOOD[6] end
+      return K.WOOD[tone.frame]
+    end
+    if math.floor(up) % 3 == 1 then return K.WOOD[tone.seam] end
+    return K.WOOD[tone.infill]
   end)
   c:outline()
   return c
@@ -94,68 +117,192 @@ end
 
 -- A barrel: staves bulging at the middle, two iron hoops, a dark lid.
 props.prop_barrel = function()
-  local c = kit.new(18, 26)
+  -- Redrawn three times on 2026-11-04 (the owner: "remake the barrel, it looks bad", "the top rim does not show", "it
+  -- still looks a bit bad"): flat bands of light across its staves (lit from the left), a seam where one stave turns
+  -- into the next, every row following the camera's curve round it (its foot and hoops bow down in front), a belly of
+  -- one pixel each side in the middle, two thin dark iron hoops with one lit row each, a dark row at its foot, and on top
+  -- a lid as wide as the barrel: its rim a lit ring, the far rim's shadow on the lid's back, planks across it.
+  local c = kit.new(18, 28)
   local g = c.ground
-  c:shadow(9, g, 8, 3)
-  local top, bottom = g - 15, g
-  for y = top, bottom do
-    local t = (y - top) / (bottom - top)
-    local half = 5.5 + 1.5 * math.sin(t * math.pi)
-    for x = math.floor(9 - half), math.ceil(9 + half) - 1 do
-      local u = (x + 0.5 - 9) / half
-      local colour = u < -0.45 and K.WOOD[3] or u < 0.2 and K.WOOD[4] or u < 0.6 and K.WOOD[5] or K.WOOD[4]
-      if (x - 9) % 3 == 0 then colour = K.WOOD[2] end
-      if math.abs(t - 0.22) < 0.06 or math.abs(t - 0.8) < 0.06 then colour = u < 0 and K.STONE[3] or K.STONE[4] end
+  local cx, R, ry, H = 9, 8, 3, 14
+  local T = g - H
+  c:shadow(cx + 1, g + 1, 10, 4)
+  local function u(x) return (x + 0.5 - cx) / R end
+  local function curve(x) local q = u(x); return math.floor(ry * math.sqrt(math.max(0, 1 - q * q)) + 0.5) end
+  local function band(q)
+    if q < -0.8 then return 4 elseif q < -0.45 then return 6 elseif q < -0.1 then return 5
+    elseif q < 0.3 then return 4 elseif q < 0.7 then return 3 else return 2 end
+  end
+  local function stave(x) return math.floor(math.asin(math.max(-1, math.min(1, u(x)))) / (math.pi / 6) + 0.5) end
+  for x = cx - R, cx + R - 1 do
+    local q = u(x)
+    local seam = stave(x) ~= stave(x + 1) and x < cx + R - 2
+    for k = 0, H do
+      local y = T + curve(x) + k
+      local colour
+      if k == 2 or k == H - 3 then colour = q < 0.3 and K.STONE[5] or K.STONE[4]
+      elseif k == 3 or k == H - 2 then colour = q < 0.3 and K.STONE[3] or K.STONE[2]
+      elseif k == H then colour = K.WOOD[2]
+      else
+        local tone = band(q)
+        if seam then tone = math.max(1, tone - 2) end
+        colour = K.WOOD[tone]
+      end
       c:px(x, y, colour)
     end
   end
-  c:ellipse(9, top, 5.5, 2.2, function(x, y, u, v) return (u * u + v * v > 0.5) and K.WOOD[4] or K.WOOD[2] end)
+  -- The belly: one more column each side through the middle rows.
+  for k = 5, H - 5 do
+    c:px(cx - R - 1, T + k, K.WOOD[4])
+    c:px(cx + R, T + k, K.WOOD[2])
+  end
+  c:ellipse(cx, T, R, ry + 0.5, function(x, y, uu, v)
+    if uu * uu + v * v > 0.5 then return v < 0 and K.WOOD[5] or K.WOOD[6] end
+    if v < -0.05 then return K.WOOD[2] end
+    if (x - cx) % 3 == 1 then return K.WOOD[3] end
+    return uu < 0.2 and K.WOOD[5] or K.WOOD[4]
+  end)
   c:outline()
   return c
 end
 
 -- A burlap sack, tied at the neck, slumped.
 props.prop_sack = function()
-  local c = kit.new(18, 20)
+  -- Redrawn after the barrel and the crate (2026-11-04, the owner: "well done, now do the bag"): a burlap sack slumped
+  -- on the ground, its belly low and wide, drawn row by row from a profile in flat bands of light from the left (lighter
+  -- toward its shoulders), its foot bowing down in front with the camera's curve, two folds running down from the neck,
+  -- a rope tied round the neck with its end hanging, and above it the gathered mouth in pleats with ragged tips.
+  local c = kit.new(20, 24)
   local g = c.ground
-  c:shadow(9, g, 8, 3)
-  c:ellipse(9, g - 4, 7, 5.5, function(x, y, u, v)
-    if u + v * 0.6 < -0.5 then return K.SKIN[4] end
-    if u - v > 0.9 then return K.SKIN[2] end
-    if (x * 3 + y) % 8 == 0 then return K.SKIN[2] end
-    return K.SKIN[3]
-  end)
-  c:poly({ 7, g - 9, 11, g - 9, 12, g - 13, 6, g - 13 }, K.SKIN[3])
-  c:line(6, g - 10, 12, g - 10, K.WOOD[2])
-  c:px(5, g - 13, K.SKIN[4])
-  c:px(13, g - 13, K.SKIN[2])
+  local cx = 10
+  local profile = { 6.5, 7.5, 8, 8.2, 8, 7.6, 7, 6.3, 5.5, 4.7, 4, 3.6, 3.4 }
+  c:shadow(cx + 1, g + 1, 9, 3)
+  local function tone(u, k)
+    local q = u - 0.3 * (k - 4) / 8
+    if q < -0.6 then return 5 elseif q < -0.15 then return 4 elseif q < 0.35 then return 3 elseif q < 0.75 then return 2 end
+    return 1
+  end
+  for k = 0, #profile - 3 do
+    local hw = profile[k + 1]
+    for x = math.floor(cx - hw), math.ceil(cx + hw) - 1 do
+      local u = (x + 0.5 - cx) / hw
+      local t = tone(u, k)
+      -- The folds: two creases from the neck, curving out as the sack widens.
+      if k >= 4 and k <= 9 then
+        local spread = (10 - k) * 0.06
+        if math.abs(u - (-0.3 - spread)) < 0.09 or math.abs(u - (0.28 + spread)) < 0.09 then t = math.max(1, t - 1) end
+      end
+      if k == 0 then t = math.max(1, t - 1) end
+      c:px(x, g - k, K.BURLAP[t])
+      -- The foot bows down in front.
+      if k == 0 then
+        local drop = math.floor(1.6 * math.sqrt(math.max(0, 1 - u * u)) + 0.5)
+        for dy = 1, drop do c:px(x, g + dy, K.BURLAP[math.max(1, t - 1)]) end
+      end
+    end
+  end
+  -- The rope round the neck: a dark row under a lit one, standing a pixel proud each side, the knot on the right and
+  -- its end hanging down over the sack.
+  local neck = #profile - 2
+  for x = cx - 4, cx + 3 do
+    c:px(x, g - neck, K.WOOD[2])
+    c:px(x, g - neck - 1, x < cx and K.WOOD[5] or x < cx + 2 and K.WOOD[4] or K.WOOD[3])
+  end
+  c:px(cx + 4, g - neck, K.WOOD[3])
+  c:px(cx + 4, g - neck - 1, K.WOOD[4])
+  c:px(cx + 4, g - neck + 1, K.WOOD[3])
+  c:px(cx + 4, g - neck + 2, K.WOOD[2])
+  c:px(cx + 5, g - neck + 3, K.WOOD[2])
+  -- The gathered mouth: a tight pleated row over the rope, a wider one, and ragged tips of cloth of uneven heights.
+  local function pleat(x, y, dark)
+    local dx = x - cx
+    local t = dx < -1 and 5 or dx < 2 and 4 or 3
+    if dx % 2 ~= 0 then t = t - 1 end
+    c:px(x, y, K.BURLAP[math.max(1, t - (dark and 1 or 0))])
+  end
+  local y = g - neck - 2
+  for x = cx - 3, cx + 2 do pleat(x, y, true) end
+  for x = cx - 5, cx + 4 do pleat(x, y - 1, false) end
+  for _, tip in ipairs({ { -5, 1 }, { -3, 2 }, { -2, 1 }, { 0, 1 }, { 1, 2 }, { 3, 1 } }) do
+    for k = 1, tip[2] do pleat(cx + tip[1], y - 1 - k, false) end
+  end
   c:outline()
   return c
 end
 
 -- A weapon rack: two posts and a crossbar, spears and a sword leaning on it.
 props.prop_weapon_rack = function()
-  local c = kit.new(30, 36)
+  -- Redrawn after the barrel (2026-11-04, the owner: "well done, now the weapon rack"): a rack running back to the
+  -- right at the camera's 2:1, two posts and a top rail, each two pixels thick (lit on its left or top, dark on the
+  -- other), and leaning on the rail four weapons with their own shapes: a spear with a pointed head and a red tassel,
+  -- an axe with a bearded head, a sword point down (a two-tone blade, an iron guard, a grip, a pommel) and a second
+  -- spear; a round red shield with an iron rim and boss against the near post.
+  local c = kit.new(34, 40)
   local g = c.ground
-  c:shadow(15, g, 13, 3)
-  -- The posts and the bars.
-  c:stroke(5, g, 5, g - 18, 0.6, K.WOOD[3])
-  c:stroke(25, g - 3, 25, g - 21, 0.6, K.WOOD[4])
-  c:stroke(5, g - 16, 25, g - 19, 0.7, K.WOOD[5])
-  c:stroke(5, g - 5, 25, g - 8, 0.5, K.WOOD[3])
-  -- Spears leaning back on the bar, steel heads up; a sword hanging between.
-  for k, x in ipairs({ 8, 13, 21 }) do
-    local lean = (k % 2 == 0) and 1 or -1
-    local tx = x + lean * 2
-    c:line(x, g - 1, tx, g - 25, K.WOOD[4])
-    -- A leaf-shaped steel head, lit on its left.
-    c:poly({ tx, g - 32, tx + 2, g - 28, tx, g - 25, tx - 2, g - 28 }, function(px) return px <= tx and K.STONE[7] or K.STONE[5] end)
+  local x0, y0, run, tall = 6, g + 1, 22, 15
+  local function rail(x) return math.floor(y0 - tall - (x - x0) / 2 + 0.5) end
+  c:shadow(17, g - 4, 15, 5)
+  local function post(x, foot)
+    for y = foot - tall - 1, foot do
+      c:px(x, y, K.WOOD[5])
+      c:px(x + 1, y, K.WOOD[3])
+    end
+    c:px(x, foot - tall - 2, K.WOOD[6])
+    c:px(x + 1, foot - tall - 2, K.WOOD[4])
   end
-  c:line(17, g - 19, 17, g - 5, K.STONE[6])
-  c:line(18, g - 19, 18, g - 5, K.STONE[4])
-  c:line(15, g - 19, 20, g - 19, K.EMBER[2])
-  c:px(17, g - 21, K.WOOD[2])
-  c:px(17, g - 20, K.WOOD[2])
+  post(x0 + run, y0 - run // 2)
+  for x = x0, x0 + run + 1 do
+    c:px(x, rail(x) - 1, K.WOOD[5])
+    c:px(x, rail(x), K.WOOD[3])
+  end
+  post(x0, y0)
+  local function shaft(xa, ya, xb, yb) c:line(xa, ya, xb, yb, K.WOOD[4]) end
+  -- A spear's head, its tip at (x, y): widening to three pixels, narrowing to its socket, lit on the left; a red tassel.
+  local function spearhead(x, y)
+    c:px(x, y, K.STONE[7])
+    for k = 1, 4 do
+      c:px(x - 1, y + k, K.STONE[6]); c:px(x, y + k, K.STONE[5]); c:px(x + 1, y + k, K.STONE[3])
+    end
+    c:px(x, y + 5, K.STONE[4])
+    c:px(x - 1, y + 6, K.RED[5]); c:px(x, y + 6, K.RED[4]); c:px(x + 1, y + 6, K.RED[3])
+    c:px(x, y + 7, K.RED[3])
+  end
+  local tx = 10
+  local top = rail(tx) - 9
+  shaft(8, g + 4, tx, top + 6)
+  spearhead(tx, top)
+  -- The axe, its bearded head out to the right of the shaft.
+  tx = 14
+  top = rail(tx) - 5
+  shaft(15, g + 3, tx, top)
+  c:poly({ tx + 1, top, tx + 5, top - 2, tx + 6, top + 3, tx + 4, top + 7, tx + 1, top + 4 }, function(px)
+    if px >= tx + 5 then return K.STONE[6] end
+    return px <= tx + 2 and K.STONE[3] or K.STONE[4]
+  end)
+  -- The sword, point down on the ground, its hilt over the rail.
+  tx = 23
+  top = rail(tx) - 5
+  for y = top + 3, g do
+    c:px(tx, y, K.STONE[6])
+    c:px(tx + 1, y, K.STONE[4])
+  end
+  for x = tx - 2, tx + 3 do c:px(x, top + 2, x < tx + 1 and K.STONE[4] or K.STONE[3]) end
+  c:px(tx, top + 1, K.WOOD[2]); c:px(tx + 1, top + 1, K.WOOD[2])
+  c:px(tx, top, K.WOOD[3]); c:px(tx + 1, top, K.WOOD[2])
+  c:px(tx, top - 1, K.STONE[6]); c:px(tx + 1, top - 1, K.STONE[4])
+  -- The second spear, leaning the other way.
+  tx = 27
+  top = rail(tx) - 9
+  shaft(30, g - 1, tx, top + 6)
+  spearhead(tx, top)
+  -- The shield against the near post: iron rim, red face lit on its left, a boss.
+  c:ellipse(6, g - 4, 4.5, 5, function(x, y, u, v)
+    local d = u * u + v * v
+    if d > 0.62 then return u < 0 and K.STONE[5] or K.STONE[3] end
+    if d < 0.08 then return K.STONE[6] end
+    if d < 0.16 then return K.STONE[3] end
+    return (u + v * 0.5) < -0.2 and K.RED[5] or (u + v * 0.5) < 0.35 and K.RED[4] or K.RED[3]
+  end)
   c:outline()
   return c
 end
@@ -385,23 +532,50 @@ end
 
 -- A spider's web sac: a pale cocoon hung from threads, a dark shape inside it, strands to the ground.
 props.prop_web_sac = function()
-  local c = kit.new(24, 34)
+  -- A clutch of three spider eggs (2026-11-04, the owner: "now do the spider egg, it looks really bad, try make a
+  -- clyster of three eggs"): a big egg at the back, two smaller in front, each egg-shaped (narrow at its top, full at
+  -- its foot), cream in flat bands of light from the upper left with a glossy highlight, a dark edge of its own parting
+  -- it from the one behind, a silk thread wound round it; strands of web from them out over the ground.
+  local c = kit.new(28, 28)
   local g = c.ground
-  c:shadow(12, g, 8, 2)
-  c:ellipse(12, g - 12, 5, 9, function(x, y, u, v)
-    if math.abs(u) < 0.35 and v > -0.5 and v < 0.4 then return K.BONE[1] end
-    if (y + math.floor(x / 2)) % 3 == 0 then return K.BONE[1] end
-    return u < 0 and K.BONE[3] or K.BONE[2]
-  end)
+  c:shadow(14, g, 12, 3)
+  -- Half the width at height v (-1 at its top, 1 at its foot): an egg, fuller below its middle.
+  local function half(v) return math.sqrt(math.max(0, 1 - v * v)) * (0.88 + 0.12 * v) end
+  local function egg(cx, foot, rx, ry, edged)
+    local cy = foot - ry
+    local function inside(x, y, grow)
+      local v = (y + 0.5 - cy) / (ry + grow)
+      if math.abs(v) > 1 then return nil end
+      local u = (x + 0.5 - cx) / ((rx + grow) * 1.12)
+      if math.abs(u) > half(v) then return nil end
+      return u, v
+    end
+    for y = math.floor(cy - ry - 2), math.ceil(cy + ry + 2) do
+      for x = math.floor(cx - rx - 2), math.ceil(cx + rx + 2) do
+        local u, v = inside(x, y, 0)
+        if u then
+          local q = u * 0.85 + v * 0.5
+          local t = q < -0.6 and 5 or q < -0.15 and 4 or q < 0.35 and 3 or q < 0.75 and 2 or 1
+          -- The gloss: a short streak up on its lit side.
+          if math.abs(u + 0.38) < 0.13 and v > -0.62 and v < -0.2 then t = 5 end
+          c:px(x, y, t == 5 and math.abs(u + 0.38) < 0.13 and v > -0.62 and v < -0.2 and K.BONE[3] or K.CREAM[t])
+          -- A silk thread wound round it, a little lighter than the egg under it (not over the gloss).
+          if t < 4 and math.abs(v - (0.42 * u + 0.3)) < 0.07 then c:px(x, y, K.CREAM[t + 1]) end
+        elseif edged and c:get(x, y) and inside(x, y, 1) then
+          c:px(x, y, K.OUTLINE)
+        end
+      end
+    end
+  end
+  egg(14, g - 2, 5, 7.5, false)
+  egg(8, g + 1, 4, 5, true)
+  egg(20, g + 1, 3.6, 4.6, true)
   c:outline()
-  -- Threads up out of the picture and down to the ground, drawn without outline.
-  local W = K.BONE[2]
-  c:line(12, g - 21, 12, 0, W, false)
-  c:line(10, g - 20, 5, 0, W, false)
-  c:line(14, g - 20, 20, 0, W, false)
-  c:line(8, g - 6, 2, g, W, false)
-  c:line(16, g - 6, 22, g + 1, W, false)
-  c:line(12, g - 3, 13, g + 1, W, false)
+  -- Web from the eggs out over the ground, drawn over everything with no outline.
+  c:line(4, g - 2, 1, g + 2, K.SILK[3], false)
+  c:line(23, g - 1, 27, g + 1, K.SILK[3], false)
+  c:line(9, g + 2, 6, g + 4, K.SILK[3], false)
+  c:line(20, g + 2, 23, g + 4, K.SILK[3], false)
   return c
 end
 

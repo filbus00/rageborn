@@ -18,6 +18,9 @@ kit.MOSS = { rgba(18, 26, 16, 255), rgba(34, 48, 28, 255), rgba(54, 72, 40, 255)
 kit.COLD = { rgba(20, 24, 32, 255), rgba(38, 46, 58, 255), rgba(62, 74, 90, 255), rgba(94, 108, 124, 255), rgba(136, 150, 164, 255), rgba(184, 196, 204, 255) }
 kit.EMBER = { rgba(88, 40, 12, 255), rgba(148, 70, 18, 255), rgba(204, 110, 30, 255), rgba(236, 160, 60, 255), rgba(252, 214, 120, 255) }
 kit.BONE = { rgba(150, 142, 118, 255), rgba(196, 188, 162, 255), rgba(232, 224, 198, 255) }
+kit.BURLAP = { rgba(64, 46, 28, 255), rgba(104, 78, 46, 255), rgba(144, 112, 68, 255), rgba(184, 150, 96, 255), rgba(218, 188, 132, 255) }
+kit.SILK = { rgba(70, 74, 80, 255), rgba(122, 126, 126, 255), rgba(172, 174, 166, 255), rgba(212, 212, 200, 255), rgba(242, 240, 228, 255) }
+kit.CREAM = { rgba(84, 72, 52, 255), rgba(142, 128, 92, 255), rgba(194, 182, 138, 255), rgba(228, 220, 180, 255), rgba(250, 246, 222, 255) }
 kit.EARTH = { rgba(36, 31, 25, 255), rgba(52, 46, 36, 255), rgba(68, 61, 47, 255), rgba(86, 77, 59, 255), rgba(106, 96, 74, 255), rgba(130, 118, 92, 255), rgba(156, 144, 114, 255) }
 
 -- A prop drawn on a w x h picture (its coordinates), on a canvas with PAD pixels of room above and to each side, so
