@@ -21,6 +21,9 @@ kit.BONE = { rgba(150, 142, 118, 255), rgba(196, 188, 162, 255), rgba(232, 224, 
 kit.BURLAP = { rgba(64, 46, 28, 255), rgba(104, 78, 46, 255), rgba(144, 112, 68, 255), rgba(184, 150, 96, 255), rgba(218, 188, 132, 255) }
 kit.SILK = { rgba(70, 74, 80, 255), rgba(122, 126, 126, 255), rgba(172, 174, 166, 255), rgba(212, 212, 200, 255), rgba(242, 240, 228, 255) }
 kit.CREAM = { rgba(84, 72, 52, 255), rgba(142, 128, 92, 255), rgba(194, 182, 138, 255), rgba(228, 220, 180, 255), rgba(250, 246, 222, 255) }
+kit.HIDE = { rgba(56, 34, 22, 255), rgba(94, 58, 34, 255), rgba(136, 88, 50, 255), rgba(174, 124, 74, 255), rgba(210, 168, 112, 255) }
+kit.BONES = { rgba(78, 70, 56, 255), rgba(124, 114, 92, 255), rgba(166, 156, 128, 255), rgba(206, 198, 170, 255), rgba(238, 232, 210, 255) }
+kit.FERN = { rgba(28, 46, 22, 255), rgba(44, 72, 30, 255), rgba(66, 102, 38, 255), rgba(98, 136, 50, 255), rgba(140, 172, 72, 255) }
 kit.EARTH = { rgba(36, 31, 25, 255), rgba(52, 46, 36, 255), rgba(68, 61, 47, 255), rgba(86, 77, 59, 255), rgba(106, 96, 74, 255), rgba(130, 118, 92, 255), rgba(156, 144, 114, 255) }
 
 -- A prop drawn on a w x h picture (its coordinates), on a canvas with PAD pixels of room above and to each side, so
