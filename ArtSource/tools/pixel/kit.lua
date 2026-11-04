@@ -24,6 +24,11 @@ kit.CREAM = { rgba(84, 72, 52, 255), rgba(142, 128, 92, 255), rgba(194, 182, 138
 kit.HIDE = { rgba(56, 34, 22, 255), rgba(94, 58, 34, 255), rgba(136, 88, 50, 255), rgba(174, 124, 74, 255), rgba(210, 168, 112, 255) }
 kit.BONES = { rgba(78, 70, 56, 255), rgba(124, 114, 92, 255), rgba(166, 156, 128, 255), rgba(206, 198, 170, 255), rgba(238, 232, 210, 255) }
 kit.FERN = { rgba(28, 46, 22, 255), rgba(44, 72, 30, 255), rgba(66, 102, 38, 255), rgba(98, 136, 50, 255), rgba(140, 172, 72, 255) }
+kit.PINE = { rgba(14, 26, 20, 255), rgba(22, 40, 28, 255), rgba(32, 58, 38, 255), rgba(48, 80, 48, 255), rgba(70, 104, 60, 255) }
+kit.LEAF = { rgba(18, 30, 18, 255), rgba(30, 48, 26, 255), rgba(46, 70, 34, 255), rgba(68, 94, 44, 255), rgba(96, 120, 56, 255) }
+kit.DEADWOOD = { rgba(28, 24, 24, 255), rgba(46, 40, 38, 255), rgba(68, 60, 54, 255), rgba(94, 84, 72, 255), rgba(124, 112, 94, 255) }
+kit.AUTUMN = { rgba(42, 20, 12, 255), rgba(80, 36, 16, 255), rgba(122, 58, 22, 255), rgba(162, 90, 34, 255), rgba(198, 128, 56, 255) }
+kit.GOLD = { rgba(56, 44, 16, 255), rgba(100, 80, 26, 255), rgba(146, 120, 40, 255), rgba(190, 160, 60, 255), rgba(226, 200, 96, 255) }
 kit.EARTH = { rgba(36, 31, 25, 255), rgba(52, 46, 36, 255), rgba(68, 61, 47, 255), rgba(86, 77, 59, 255), rgba(106, 96, 74, 255), rgba(130, 118, 92, 255), rgba(156, 144, 114, 255) }
 
 -- A prop drawn on a w x h picture (its coordinates), on a canvas with PAD pixels of room above and to each side, so

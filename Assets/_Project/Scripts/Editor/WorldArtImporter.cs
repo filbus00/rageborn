@@ -13,12 +13,16 @@ namespace ARPG.Editor
     /// shrinks it by 4, makes the alpha hard, snaps it to the <see cref="PixelArt"/> palette, outlines it (not the flat
     /// pieces in <see cref="Flat"/>), and writes it to Resources/Art/World as a point-filtered sprite at 40 a unit with
     /// its pivot at the middle of its footprint. <see cref="WorldArt"/> loads them by name. Outputs whose source is gone
-    /// are deleted. Writes a report to Logs/WorldArtImport.txt. Safe to run again.
+    /// are deleted. Writes a report to Logs/WorldArtImport.txt. Safe to run again. Pieces drawn by hand at the rendered
+    /// scale (2026-11-04, the trees first) go in <see cref="RenderScaleFolder"/>: taken as drawn at
+    /// <see cref="PixelArtImporter.RenderScaleUnit"/> a unit (hard alpha only), standing a quarter unit up from their
+    /// bottom like the props, and winning over a rendered piece of the same name.
     /// </summary>
     public static class WorldArtImporter
     {
         public const string SourceFolder = "ArtSource/pixel/world";
         public const string OutputFolder = "Assets/_Project/Resources/" + WorldArt.Folder;
+        public const string RenderScaleFolder = "ArtSource/pixel/world27";
         const string ReportPath = "Logs/WorldArtImport.txt";
         const int Shrink = 4;
 
@@ -57,9 +61,15 @@ namespace ARPG.Editor
             var manifest = File.Exists(manifestPath) ? JsonUtility.FromJson<Manifest>(File.ReadAllText(manifestPath)) : new Manifest();
             var pivots = new Dictionary<string, Vector2>();
             var written = new HashSet<string>();
+            var atRenderScale = new HashSet<string>();
+            Directory.CreateDirectory(RenderScaleFolder);
+            foreach (var path in Directory.GetFiles(RenderScaleFolder, "*.png"))
+                atRenderScale.Add(Path.GetFileNameWithoutExtension(path).ToLowerInvariant());
 
             foreach (var item in manifest.items)
             {
+                if (atRenderScale.Contains(item.name))
+                    continue;
                 var path = Path.Combine(SourceFolder, item.name + ".png");
                 if (!File.Exists(path))
                 {
@@ -85,6 +95,32 @@ namespace ARPG.Editor
                 report.AppendLine($"{item.name}: {w} x {h}, pivot ({item.pivotX / Shrink}, {item.pivotY / Shrink})");
             }
 
+            // Pieces drawn at the rendered scale, taken as drawn.
+            var unit = PixelArtImporter.RenderScaleUnit;
+            var units = new Dictionary<string, int>();
+            foreach (var name in atRenderScale)
+            {
+                var texture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+                if (!texture.LoadImage(File.ReadAllBytes(Path.Combine(RenderScaleFolder, name + ".png"))))
+                {
+                    report.AppendLine($"SKIPPED {name}.png (at the rendered scale): not a readable PNG.");
+                    Object.DestroyImmediate(texture);
+                    continue;
+                }
+                var pixels = texture.GetPixels32();
+                for (var i = 0; i < pixels.Length; i++)
+                    pixels[i].a = pixels[i].a >= 128 ? (byte)255 : (byte)0;
+                texture.SetPixels32(pixels);
+                texture.Apply();
+                var output = $"{OutputFolder}/{name}.png";
+                File.WriteAllBytes(output, texture.EncodeToPNG());
+                written.Add(output);
+                pivots[output] = new Vector2(0.5f, unit / 4f / Mathf.Max(1, texture.height));
+                units[output] = unit;
+                report.AppendLine($"RENDERED {name}: {texture.width} x {texture.height} at {unit} a unit");
+                Object.DestroyImmediate(texture);
+            }
+
             var removed = 0;
             foreach (var old in Directory.GetFiles(OutputFolder, "*.png"))
             {
@@ -98,7 +134,7 @@ namespace ARPG.Editor
 
             AssetDatabase.Refresh();
             foreach (var asset in written)
-                Configure(asset, pivots[asset]);
+                Configure(asset, pivots[asset], units.TryGetValue(asset, out var u) ? u : PixelArt.PixelsPerUnit);
 
             report.AppendLine($"Imported {written.Count}, removed {removed}.");
             Directory.CreateDirectory(Path.GetDirectoryName(ReportPath));
@@ -106,14 +142,14 @@ namespace ARPG.Editor
             Debug.Log($"World art: imported {written.Count}, removed {removed}. See {ReportPath}.");
         }
 
-        static void Configure(string asset, Vector2 pivot)
+        static void Configure(string asset, Vector2 pivot, int unit)
         {
             var importer = AssetImporter.GetAtPath(asset) as TextureImporter;
             if (importer == null)
                 return;
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Single;
-            importer.spritePixelsPerUnit = PixelArt.PixelsPerUnit;
+            importer.spritePixelsPerUnit = unit;
             importer.filterMode = FilterMode.Point;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
             importer.mipmapEnabled = false;
