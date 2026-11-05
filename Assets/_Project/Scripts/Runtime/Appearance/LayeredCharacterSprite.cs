@@ -304,6 +304,8 @@ namespace ARPG
         /// attack fitted to the attack rate); 0 plays it at 12 frames per second.</summary>
         public void Play(string animationName, bool looping, float seconds = 0f, ActionShape shape = ActionShape.Even)
         {
+            // Every animation starts at its own pace; the caller sets the Rate after (a walk's to her speed).
+            Rate = 1f;
             animation = animationName;
             loop = looping;
             duration = seconds;
@@ -360,7 +362,10 @@ namespace ARPG
         {
             if (pending.Count > 0 || reading.Count > 0)
                 TickPreload();
-            time += Time.deltaTime * (loop ? Rate : 1f);
+            // One-shots too (2026-11-05, the owner: "the character seems to be moving her legs faster the slower you walk"):
+            // a moving shot's Rate, her pace against its baked legs, was ignored, so at a slow walk its legs stepped at
+            // full pace under her.
+            time += Time.deltaTime * Rate;
             Apply();
         }
 

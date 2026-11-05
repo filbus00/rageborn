@@ -253,12 +253,12 @@ namespace ARPG
             var length = sprite.LengthOf(name);
             action = baseName;
             inAction = true;
-            // A moving shot plays at her pace, so its legs step as she goes (2026-11-03); a standing one at its own.
-            sprite.Rate = name == baseName ? 1f : LocomotionRules.MovingShotRate(player.GroundVelocity.magnitude);
             // Her shots and skills snap: the draw and loose quick, the follow-through slow (2026-11-01). Standing only
             // (2026-11-02, the owner: "her legs kind off stop moving while she is firing her bow"): a moving variant's legs
             // are baked at her walking pace, and the snap raced them through a step and then all but froze them.
             sprite.Play(name, false, length > 0f ? Mathf.Min(length, maxSeconds) : 0f, name == baseName ? ActionShape.Snap : ActionShape.Even);
+            // A moving shot plays at her pace, so its legs step as she goes (2026-11-03); a standing one at its own.
+            sprite.Rate = name == baseName ? 1f : LocomotionRules.MovingShotRate(player.GroundVelocity.magnitude);
             sprite.Face(aim);
             return true;
         }

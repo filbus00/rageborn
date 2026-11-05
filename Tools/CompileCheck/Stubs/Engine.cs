@@ -239,7 +239,8 @@ namespace UnityEngine
     public enum FontStyle { Normal, Bold, Italic, BoldAndItalic }
     public enum HorizontalWrapMode { Wrap, Overflow }
     public enum VerticalWrapMode { Truncate, Overflow }
-    public sealed class Font : Object { public Font() { } public Font(string n) { } public static Font CreateDynamicFontFromOSFont(string n, int s) => new Font(); public static Font CreateDynamicFontFromOSFont(string[] n, int s) => new Font(); public static string[] GetOSInstalledFontNames() => new string[0]; public Material material { get; set; } public bool dynamic => true; public int fontSize => 16; }
+    public sealed class Font : Object { public Font() { } public Font(string n) { } public static Font CreateDynamicFontFromOSFont(string n, int s) => new Font(); public static Font CreateDynamicFontFromOSFont(string[] n, int s) => new Font(); public static string[] GetOSInstalledFontNames() => new string[0]; public Material material { get; set; } public bool dynamic => true; public int fontSize => 16; public CharacterInfo[] characterInfo { get; set; } }
+    public struct CharacterInfo { public int index; public int advance; public int minX; public int maxX; public int minY; public int maxY; public int size; public FontStyle style; public Vector2 uvBottomLeft { get; set; } public Vector2 uvBottomRight { get; set; } public Vector2 uvTopLeft { get; set; } public Vector2 uvTopRight { get; set; } }
     public sealed class Camera : Behaviour
     {
         public static Camera main => null; public static Camera current => null; public static Camera[] allCameras => new Camera[0];
