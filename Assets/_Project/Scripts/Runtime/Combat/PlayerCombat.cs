@@ -1502,6 +1502,7 @@ namespace ARPG
                 : shot.Style == ShotStyle.Pierce || shot.Style == ShotStyle.KillShot ? ArrowLook.Pierce
                 : shot.Fiery ? ArrowLook.Fire : shot.Frosty ? ArrowLook.Frost : shot.Charged ? ArrowLook.Lightning : ArrowLook.Plain;
             renderer.sprite = ArrowArt.For(kind);
+            PlaceArrow(shot.Transform, shot.Position, shot.Velocity);
         }
 
         // An arrow shows an element from this chance on (a gear affix of a few percent leaves it plain).
@@ -1533,13 +1534,26 @@ namespace ARPG
                 shot.Pierced = sparePierceSets.Count > 0 ? sparePierceSets.Pop() : new HashSet<EnemyController>();
         }
 
-        // An arrow is drawn at chest height over its ground point, pointing along its flight as seen on screen.
+        // An arrow is drawn at chest height over its ground point, pointing along its flight as seen on screen: its
+        // picture turned a pixel at a time to the nearest of 16 directions (2026-11-05, TurnedArt), or the sprite turned
+        // when it cannot be.
         static void PlaceArrow(Transform arrow, Vector2 ground, Vector2 velocity)
         {
             var world = Elevation.World2(ground);
             arrow.position = new Vector3(world.x, world.y + ArrowHeight, 0f);
             var screen = IsoMath.GroundToWorld(velocity);
-            arrow.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(screen.y, screen.x) * Mathf.Rad2Deg);
+            var degrees = Mathf.Atan2(screen.y, screen.x) * Mathf.Rad2Deg;
+            if (arrow.TryGetComponent<SpriteRenderer>(out var renderer))
+            {
+                var turned = TurnedArt.Toward(renderer.sprite, degrees);
+                if (turned != null)
+                {
+                    renderer.sprite = turned;
+                    arrow.rotation = Quaternion.identity;
+                    return;
+                }
+            }
+            arrow.rotation = Quaternion.Euler(0f, 0f, degrees);
         }
 
         Transform CreateAxe(SkillDefinition skill)

@@ -44,6 +44,10 @@ namespace ARPG
             public bool Returning;
             public Color Color;
             public float Spin;
+            // Its picture, turned a pixel at a time to its flight or its spin (2026-11-05, TurnedArt); null when the
+            // sprite itself turns. Turn is the spin's angle so far.
+            public Sprite Art;
+            public float Turn;
         }
 
         readonly Transform parent;
@@ -121,6 +125,13 @@ namespace ARPG
             var heading = Quaternion.Euler(0f, 0f, Mathf.Atan2(world.y, world.x) * Mathf.Rad2Deg);
             look.Body.transform.rotation = heading;
             look.Trail.transform.rotation = heading;
+            var headingDegrees = Mathf.Atan2(world.y, world.x) * Mathf.Rad2Deg;
+            var turnable = drawn != null && TurnedArt.Toward(drawn, headingDegrees) != null ? drawn : null;
+            if (turnable != null)
+            {
+                renderer.sprite = TurnedArt.Toward(turnable, headingDegrees);
+                look.Body.transform.rotation = Quaternion.identity;
+            }
             flying.Add(new Shot
             {
                 Look = look,
@@ -136,6 +147,8 @@ namespace ARPG
                 Returning = false,
                 Color = color.a > 0f ? color : ArrowColor,
                 Spin = kind == ProjectileKind.Bouncing ? ProjectileKinds.BladeSpinDegrees : ProjectileKinds.Spins(kind) ? ProjectileKinds.AxeSpinDegrees : 0f,
+                Art = turnable,
+                Turn = headingDegrees,
             });
         }
 
@@ -178,7 +191,13 @@ namespace ARPG
                     var heading = IsoMath.GroundToWorld(shot.Velocity);
                     var turn = Quaternion.Euler(0f, 0f, Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg);
                     shot.Look.Trail.transform.rotation = turn;
-                    if (shot.Spin != 0f)
+                    if (shot.Art != null)
+                    {
+                        // A drawn picture turned a pixel at a time: spinning, or along its flight.
+                        shot.Turn = shot.Spin != 0f ? shot.Turn - shot.Spin * deltaTime : Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg;
+                        shot.Look.Body.sprite = TurnedArt.Toward(shot.Art, shot.Turn);
+                    }
+                    else if (shot.Spin != 0f)
                         shot.Look.Body.transform.Rotate(0f, 0f, -shot.Spin * deltaTime);
                     else
                         shot.Look.Body.transform.rotation = turn;

@@ -72,26 +72,31 @@ namespace ARPG
         static readonly (float x, float y, float size)[] BubbleSpots =
             { (0.3f, 0.2f, 0.11f), (-0.35f, 0.35f, 0.08f), (-0.15f, -0.4f, 0.13f), (0.45f, -0.25f, 0.07f), (0.05f, 0.55f, 0.06f), (-0.55f, -0.05f, 0.09f) };
 
-        /// <summary>The drawn pool for a pool's colour (<see cref="PoolLooks"/>, drawn by <see cref="PoolArt"/>), one world
-        /// unit across, or null.</summary>
-        public static Sprite DrawnPool(Color color)
+        /// <summary>
+        /// One frame of the drawn pool <paramref name="name"/> (<see cref="PoolLooks"/>, drawn by <see cref="PoolArt"/>)
+        /// at <paramref name="radius"/>, on the screen's grid at <see cref="PoolArt.ScreenUnit"/> pixels a unit, shown
+        /// unscaled (2026-11-05). Each size's frames are drawn when first shown.
+        /// </summary>
+        public static Sprite DrawnPoolFrame(string name, float radius, int frame)
         {
-            var name = PoolLooks.For(color);
-            if (name == null)
-                return null;
-            if (drawnPools.TryGetValue(name, out var sprite))
-                return sprite;
-            var texture = new Texture2D(PoolArt.Size, PoolArt.Size, TextureFormat.RGBA32, false)
+            var key = (name, PoolArt.WidthFor(radius));
+            if (!drawnPools.TryGetValue(key, out var frames))
+                drawnPools[key] = frames = new Sprite[PoolArt.Frames];
+            frame = ((frame % PoolArt.Frames) + PoolArt.Frames) % PoolArt.Frames;
+            if (frames[frame] != null)
+                return frames[frame];
+            int w = PoolArt.WidthFor(radius), h = PoolArt.HeightFor(radius);
+            var texture = new Texture2D(w, h, TextureFormat.RGBA32, false)
             {
-                name = name, filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp,
+                name = name + " " + w + " " + frame, filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp,
             };
-            texture.SetPixels32(PoolArt.Pixels(name));
+            texture.SetPixels32(PoolArt.Frame(name, radius, frame));
             texture.Apply(false, true);
-            return drawnPools[name] = Sprite.Create(texture, new Rect(0, 0, PoolArt.Size, PoolArt.Size), new Vector2(0.5f, 0.5f), PoolArt.Size, 0,
+            return frames[frame] = Sprite.Create(texture, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), PoolArt.ScreenUnit, 0,
                 SpriteMeshType.FullRect, Vector4.zero, false);
         }
 
-        static readonly Dictionary<string, Sprite> drawnPools = new Dictionary<string, Sprite>();
+        static readonly Dictionary<(string, int), Sprite[]> drawnPools = new Dictionary<(string, int), Sprite[]>();
 
         /// <summary>Bubbles or embers in a pool: scattered bright rings, turned over the pool to look alive.</summary>
         public static Sprite Bubbles => bubbles != null ? bubbles : bubbles = MakeXY("Bubbles", (u, v) =>
@@ -322,24 +327,24 @@ namespace ARPG
                 bubbles = NewSprite("Bubbles", TelegraphArt.Bubbles, color, root.transform, 41).GetComponent<SpriteRenderer>();
             // The owner's drawn pool for its colour (2026-10-31), under a thin rim in its colour that marks exactly where
             // it hurts; else the tinted blob with bubbles.
-            drawnPool = TelegraphArt.DrawnPool(color);
+            drawnPool = PoolLooks.For(color);
             if (drawnPool != null)
             {
-                rootRenderer.sprite = drawnPool;
-                rootRenderer.color = new Color(1f, 1f, 1f, Mathf.Clamp(color.a + 0.15f, 0.7f, 0.92f));
+                // On the screen's grid (2026-11-05): a child undoing the root's squashed scale shows the frames unscaled,
+                // their two copies rocking in them (they turned over it as sprites until then).
+                rootRenderer.sprite = null;
                 bubbles.gameObject.SetActive(false);
-                // Two copies of the picture turning over it (2026-11-01): under the squashed root their turn lies flat on
-                // the ground.
-                motion = PoolLooks.MotionOf(PoolLooks.For(color));
-                if (swirlA == null)
-                {
-                    swirlA = NewSprite("Swirl A", drawnPool, Color.white, root.transform, 41).GetComponent<SpriteRenderer>();
-                    swirlB = NewSprite("Swirl B", drawnPool, Color.white, root.transform, 41).GetComponent<SpriteRenderer>();
-                }
-                swirlA.sprite = drawnPool;
-                swirlB.sprite = drawnPool;
+                motion = PoolLooks.MotionOf(drawnPool);
+                if (pixels == null)
+                    pixels = NewSprite("Pool", null, Color.white, root.transform, 41).GetComponent<SpriteRenderer>();
+                var scale = root.transform.localScale;
+                pixels.transform.localScale = new Vector3(1f / Mathf.Max(0.01f, scale.x), 1f / Mathf.Max(0.01f, scale.y), 1f);
+                pixelsAlpha = Mathf.Clamp(color.a + 0.15f, 0.7f, 0.92f);
+                pixels.sprite = TelegraphArt.DrawnPoolFrame(drawnPool, Radius, 0);
+                pixels.color = new Color(1f, 1f, 1f, pixelsAlpha);
+                pixels.gameObject.SetActive(true);
                 // Its light on the ground round it (2026-11-03), in its brightest tone but one, breathing with it.
-                var kind = PoolLooks.For(color);
+                var kind = drawnPool;
                 glowStrength = PoolLooks.GlowOf(kind);
                 if (glow == null)
                 {
@@ -348,8 +353,6 @@ namespace ARPG
                 }
                 glowColor = PoolArt.Ramp(kind)[3];
                 glow.gameObject.SetActive(true);
-                swirlA.gameObject.SetActive(true);
-                swirlB.gameObject.SetActive(true);
                 sprayDebt = 0f;
                 if (edge == null)
                     edge = NewSprite("Edge", TelegraphArt.Rim, color, root.transform, 42).GetComponent<SpriteRenderer>();
@@ -363,8 +366,9 @@ namespace ARPG
             bubbles.gameObject.SetActive(true);
         }
 
-        Sprite drawnPool;
-        SpriteRenderer edge, swirlA, swirlB, glow;
+        string drawnPool;
+        SpriteRenderer edge, pixels, glow;
+        float pixelsAlpha;
         Color glowColor;
         float glowStrength;
         PoolLooks.Motion motion;
@@ -376,19 +380,14 @@ namespace ARPG
             if (!pooled || root == null)
                 return;
             poolTime += deltaSeconds;
-            var breathe = 1f + 0.035f * Mathf.Sin(poolTime * 3.1f);
-            root.transform.localScale = new Vector3(poolScale.x * breathe, poolScale.y * (2f - breathe), 1f);
             if (drawnPool != null)
             {
-                // A drawn pool lives (2026-11-01): its copies turn over it, its light pulses (two waves, so it never
-                // beats evenly), and it throws off its spray.
+                // A drawn pool lives (2026-11-01): its frames play (its copies rocking over it), its light pulses (two
+                // waves, so it never beats evenly), and it throws off its spray. It no longer breathes: a stretched
+                // picture has uneven pixels (2026-11-05).
                 var pulse = 1f - motion.PulseDepth * (0.5f + 0.5f * Mathf.Sin(poolTime * motion.PulseSpeed) * Mathf.Sin(poolTime * motion.PulseSpeed * 0.37f + 1.3f));
-                var a = rootRenderer.color.a;
-                rootRenderer.color = new Color(pulse, pulse, pulse, a);
-                swirlA.transform.localRotation = Quaternion.Euler(0f, 0f, poolTime * motion.SpinA);
-                swirlB.transform.localRotation = Quaternion.Euler(0f, 0f, poolTime * motion.SpinB);
-                swirlA.color = new Color(1f, 1f, 1f, motion.AlphaA * (0.75f + 0.25f * Mathf.Sin(poolTime * 1.7f)));
-                swirlB.color = new Color(1f, 1f, 1f, motion.AlphaB * (0.75f + 0.25f * Mathf.Sin(poolTime * 2.3f + 2f)));
+                pixels.sprite = TelegraphArt.DrawnPoolFrame(drawnPool, Radius, (int)(poolTime * PoolArt.FrameRate));
+                pixels.color = new Color(pulse, pulse, pulse, pixelsAlpha);
                 glow.color = new Color(glowColor.r, glowColor.g, glowColor.b, glowStrength * (0.7f + 0.3f * Mathf.Sin(poolTime * motion.PulseSpeed * 0.6f)));
                 if (motion.Spray != PoolLooks.Spray.None && ArrowFx.Current != null)
                 {
@@ -398,6 +397,8 @@ namespace ARPG
                 }
                 return;
             }
+            var breathe = 1f + 0.035f * Mathf.Sin(poolTime * 3.1f);
+            root.transform.localScale = new Vector3(poolScale.x * breathe, poolScale.y * (2f - breathe), 1f);
             bubbles.transform.localRotation = Quaternion.Euler(0f, 0f, poolTime * 40f);
             var flicker = 0.55f + 0.45f * Mathf.Abs(Mathf.Sin(poolTime * 4.3f));
             var c = Color.Lerp(color, Color.white, 0.35f);
@@ -427,11 +428,8 @@ namespace ARPG
                 drawnPool = null;
                 if (edge != null)
                     edge.gameObject.SetActive(false);
-                if (swirlA != null)
-                {
-                    swirlA.gameObject.SetActive(false);
-                    swirlB.gameObject.SetActive(false);
-                }
+                if (pixels != null)
+                    pixels.gameObject.SetActive(false);
                 if (glow != null)
                     glow.gameObject.SetActive(false);
                 rootRenderer.sprite = TelegraphArt.Rim;

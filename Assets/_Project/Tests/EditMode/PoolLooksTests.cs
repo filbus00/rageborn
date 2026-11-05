@@ -64,5 +64,27 @@ namespace ARPG.Tests
                 Assert.GreaterOrEqual(tones.Count, 3, name + " has a pattern, not a flat fill");
             }
         }
+    
+        [Test]
+        public void Pools_AreDrawnOnTheScreensGrid_AtTheirSize_AndMove()
+        {
+            // 2026-11-05: a pool of radius r is 2r units wide on screen at 27 a unit, half as tall, shown unscaled.
+            Assert.AreEqual(54, PoolArt.WidthFor(1f));
+            Assert.AreEqual(27, PoolArt.HeightFor(1f));
+            Assert.AreEqual(0, PoolArt.WidthFor(1.3f) % 2, "even, so its middle is on a pixel edge");
+            foreach (var name in new[] { "pool_fire", "pool_poison", "pool_frost", "pool_void", "pool_blood", "pool_water" })
+            {
+                var first = PoolArt.Frame(name, 1.2f, 0);
+                int w = PoolArt.WidthFor(1.2f), h = PoolArt.HeightFor(1.2f);
+                Assert.AreEqual(w * h, first.Length);
+                Assert.AreEqual(0, first[0].a, name + ": a corner is clear");
+                Assert.AreEqual(255, first[w / 2 + h / 2 * w].a, name + ": the middle is filled");
+                var changed = false;
+                var later = PoolArt.Frame(name, 1.2f, PoolArt.Frames / 4);
+                for (var i = 0; i < first.Length && !changed; i++)
+                    changed = !first[i].Equals(later[i]);
+                Assert.IsTrue(changed, name + " moves from frame to frame");
+            }
+        }
     }
 }

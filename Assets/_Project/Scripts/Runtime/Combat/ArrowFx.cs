@@ -59,6 +59,8 @@ namespace ARPG
             public bool Falls;          // a droplet: gravity, and a splash on the floor when it lands
             public bool Flat;           // lies on the floor (a splash, a scorch)
             public bool Chunk;          // a chunk of flesh: lands as itself, not a splat
+            public Sprite Drawn;        // a drawn particle shown at its own size on the screen's grid (2026-11-05)
+            public bool Turns;          // and turned to its flight a pixel at a time (sparks, streaks, shards)
         }
 
         struct Stain
@@ -420,13 +422,27 @@ namespace ARPG
         const float SoftGlowSize = 0.25f;
         static readonly Dictionary<string, Sprite> drawn = new Dictionary<string, Sprite>();
 
-        /// <summary>The owner's drawn particle (Resources/Art/Effects/fx_*), or null: the glow is drawn instead.</summary>
+        /// <summary>The drawn particle: Claude's pixel art at 27 a unit (2026-11-05, Resources/Art/World/fx_*), else the
+        /// owner's (Resources/Art/Effects/fx_*), or null: the glow is drawn instead.</summary>
         static Sprite Fx(string name)
         {
             if (!drawn.TryGetValue(name, out var sprite))
-                drawn[name] = sprite = Resources.Load<Sprite>("Art/Effects/" + name);
+            {
+                sprite = WorldArt.Get(name);
+                if (sprite != null)
+                    pixelParticles.Add(sprite);
+                else
+                    sprite = Resources.Load<Sprite>("Art/Effects/" + name);
+                drawn[name] = sprite;
+                if (sprite != null && (name == "fx_spark" || name == "fx_streak" || name == "fx_shard"))
+                    directional.Add(sprite);
+            }
             return sprite;
         }
+
+        // The particles drawn at the screen's scale, shown unscaled; those turned to their flight.
+        static readonly HashSet<Sprite> pixelParticles = new HashSet<Sprite>();
+        static readonly HashSet<Sprite> directional = new HashSet<Sprite>();
 
         static Sprite Ember() => Fx(Random.value < 0.5f ? "fx_ember" : "fx_ember_small");
         static Sprite Spark() => Fx(Random.value < 0.5f ? "fx_spark" : "fx_streak");
@@ -475,6 +491,8 @@ namespace ARPG
                 Color1 = color1,
                 Falls = falls,
                 Flat = flat,
+                Drawn = look != null && pixelParticles.Contains(look) ? look : null,
+                Turns = look != null && directional.Contains(look),
             });
         }
 
@@ -505,9 +523,9 @@ namespace ARPG
 
         /// <summary>A splat of blood on the floor, <paramref name="size"/> world units across, lying a while. The oldest
         /// splat makes way when <see cref="MaxStains"/> lie.</summary>
-        public void AddStain(Vector2 ground, float size, float alpha) => AddStain(ground, size, alpha, BloodArt.Splat(Random.Range(0, BloodArt.Variants)));
+        public void AddStain(Vector2 ground, float size, float alpha) => AddStain(ground, alpha, BloodArt.Splat(Random.Range(0, BloodArt.Variants), size));
 
-        void AddStain(Vector2 ground, float size, float alpha, Sprite sprite)
+        void AddStain(Vector2 ground, float alpha, Sprite sprite)
         {
             ref var stain = ref stains[nextStain];
             nextStain = (nextStain + 1) % MaxStains;
@@ -526,11 +544,8 @@ namespace ARPG
             var transform = renderer.transform;
             transform.position = new Vector3(ground.x, ground.y, 0f);
             transform.rotation = Quaternion.identity;
-            // The splat sprite is 0.8 units across at scale 1; a random flip so neighbours differ.
-            var scale = size / (BloodArt.SplatWidth / (float)PixelArt.PixelsPerUnit);
-            if (sprite.rect.width < BloodArt.SplatWidth)
-                scale = 1f;
-            transform.localScale = new Vector3(Random.value < 0.5f ? -scale : scale, scale, 1f);
+            // Drawn at its size on the screen's grid, so never scaled (2026-11-05); a random flip so neighbours differ.
+            transform.localScale = new Vector3(Random.value < 0.5f ? -1f : 1f, 1f, 1f);
         }
 
         void TickStains(float deltaTime)
@@ -593,7 +608,7 @@ namespace ARPG
                     {
                         // Landed: the drop becomes a splat on the floor, the chunk lies where it fell; both stay a while.
                         if (p.Chunk)
-                            AddStain(p.Ground, 0f, 1f, p.Renderer.sprite);
+                            AddStain(p.Ground, 1f, p.Renderer.sprite);
                         else
                             AddStain(p.Ground, p.Size0 * Random.Range(2.2f, 3.4f) / (p.Renderer.sprite == TelegraphArt.Ember ? 1f : DrawnScale), 0.9f);
                         Release(p.Renderer);
@@ -620,10 +635,25 @@ namespace ARPG
             var transform = renderer.transform;
             transform.position = new Vector3(p.Ground.x, p.Ground.y + p.Height, 0f);
             renderer.color = Color.Lerp(p.Color0, p.Color1, t);
+            if (p.Drawn != null)
+            {
+                // A particle drawn at the screen's scale (2026-11-05): never scaled or turned as a sprite (its pixels
+                // would come out uneven); a spark or a shard faces its flight, turned a pixel at a time.
+                transform.rotation = Quaternion.identity;
+                transform.localScale = Vector3.one;
+                if (p.Turns && p.Velocity.sqrMagnitude > 0.0025f)
+                {
+                    var turned = TurnedArt.Toward(p.Drawn, Mathf.Atan2(p.Velocity.y + p.HeightVelocity, p.Velocity.x) * Mathf.Rad2Deg);
+                    if (turned != null)
+                        renderer.sprite = turned;
+                }
+                return;
+            }
             if (p.Stretch <= 0f)
             {
-                // A sprite with its own shape (a stuck arrow): pointed the way it flew.
-                transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(p.Velocity.y, p.Velocity.x) * Mathf.Rad2Deg);
+                // A sprite with its own shape (a stuck arrow): pointed the way it flew, unless it is already drawn
+                // turned (TurnedArt).
+                transform.rotation = TurnedArt.IsTurned(renderer.sprite) ? Quaternion.identity : Quaternion.Euler(0f, 0f, Mathf.Atan2(p.Velocity.y, p.Velocity.x) * Mathf.Rad2Deg);
                 transform.localScale = Vector3.one;
                 return;
             }
@@ -738,8 +768,9 @@ namespace ARPG
             Set(1, mid + 2, fletch);
             Set(1, mid - 2, fletch);
             texture.SetPixels32(pixels);
-            texture.Apply(false, true);
-            // Full rect, no physics shape: the texture is no longer readable, and tracing its outline fails on iOS.
+            // Kept readable, so TurnedArt can turn it (2026-11-05).
+            texture.Apply(false, false);
+            // Full rect, no physics shape: tracing its outline fails on iOS.
             return Sprite.Create(texture, new Rect(0, 0, Width, Height), new Vector2(1f, 0.5f), PixelArt.PixelsPerUnit, 0,
                 SpriteMeshType.FullRect, Vector4.zero, false);
         }

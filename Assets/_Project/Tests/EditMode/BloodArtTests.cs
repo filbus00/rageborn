@@ -58,5 +58,24 @@ namespace ARPG.Tests
                 Assert.Greater(rim, 0, $"variant {v}");
             }
         }
+    
+        [Test]
+        public void Splats_AreDrawnAtTheirSize_OnTheScreensGrid()
+        {
+            // 2026-11-05: a stain takes the nearest drawn width and is shown unscaled.
+            Assert.AreEqual(10, BloodArt.Widths[BloodArt.WidthIndex(0.3f)]);
+            Assert.AreEqual(30, BloodArt.Widths[BloodArt.WidthIndex(1.1f)]);
+            Assert.AreEqual(46, BloodArt.Widths[BloodArt.WidthIndex(3f)]);
+            foreach (var w in BloodArt.Widths)
+            {
+                var filled = 0;
+                for (var y = 0; y < w / 2; y++)
+                    for (var x = 0; x < w; x++)
+                        if (BloodArt.SplatShade(2, x, y, w, w / 2) > 0)
+                            filled++;
+                Assert.Greater(filled, w * w / 2 / 5, "width " + w);
+                Assert.That(BloodArt.SplatShade(2, w / 2, w / 4, w, w / 2), Is.EqualTo(2).Or.EqualTo(3), "width " + w + " middle");
+            }
+        }
     }
 }

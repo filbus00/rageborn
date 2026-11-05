@@ -95,9 +95,17 @@ namespace ARPG.Editor
                 report.AppendLine($"{item.name}: {w} x {h}, pivot ({item.pivotX / Shrink}, {item.pivotY / Shrink})");
             }
 
-            // Pieces drawn at the rendered scale, taken as drawn.
+            // Pieces drawn at the rendered scale, taken as drawn. Those listed in its pivots.json (arrows, thrown things,
+            // particles, 2026-11-05) take their pivot from it, in pixels from the left and the bottom, and stay readable:
+            // the game turns them a pixel at a time (TurnedArt).
             var unit = PixelArtImporter.RenderScaleUnit;
             var units = new Dictionary<string, int>();
+            var ownPivots = new Dictionary<string, Vector2>();
+            var pivotsPath = Path.Combine(RenderScaleFolder, "pivots.json");
+            if (File.Exists(pivotsPath))
+                foreach (var p in JsonUtility.FromJson<PivotList>(File.ReadAllText(pivotsPath)).items)
+                    ownPivots[p.name.ToLowerInvariant()] = new Vector2(p.x, p.y);
+            var readable = new HashSet<string>();
             foreach (var name in atRenderScale)
             {
                 var texture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
@@ -115,7 +123,13 @@ namespace ARPG.Editor
                 var output = $"{OutputFolder}/{name}.png";
                 File.WriteAllBytes(output, texture.EncodeToPNG());
                 written.Add(output);
-                pivots[output] = new Vector2(0.5f, unit / 4f / Mathf.Max(1, texture.height));
+                if (ownPivots.TryGetValue(name, out var own))
+                {
+                    pivots[output] = new Vector2(own.x / texture.width, own.y / texture.height);
+                    readable.Add(output);
+                }
+                else
+                    pivots[output] = new Vector2(0.5f, unit / 4f / Mathf.Max(1, texture.height));
                 units[output] = unit;
                 report.AppendLine($"RENDERED {name}: {texture.width} x {texture.height} at {unit} a unit");
                 Object.DestroyImmediate(texture);
@@ -134,7 +148,7 @@ namespace ARPG.Editor
 
             AssetDatabase.Refresh();
             foreach (var asset in written)
-                Configure(asset, pivots[asset], units.TryGetValue(asset, out var u) ? u : PixelArt.PixelsPerUnit);
+                Configure(asset, pivots[asset], units.TryGetValue(asset, out var u) ? u : PixelArt.PixelsPerUnit, readable.Contains(asset));
 
             report.AppendLine($"Imported {written.Count}, removed {removed}.");
             Directory.CreateDirectory(Path.GetDirectoryName(ReportPath));
@@ -142,7 +156,21 @@ namespace ARPG.Editor
             Debug.Log($"World art: imported {written.Count}, removed {removed}. See {ReportPath}.");
         }
 
-        static void Configure(string asset, Vector2 pivot, int unit)
+        [System.Serializable]
+        class PivotList
+        {
+            public PivotEntry[] items = new PivotEntry[0];
+        }
+
+        [System.Serializable]
+        class PivotEntry
+        {
+            public string name;
+            public float x;
+            public float y;
+        }
+
+        static void Configure(string asset, Vector2 pivot, int unit, bool readable = false)
         {
             var importer = AssetImporter.GetAtPath(asset) as TextureImporter;
             if (importer == null)
@@ -154,7 +182,7 @@ namespace ARPG.Editor
             importer.textureCompression = TextureImporterCompression.Uncompressed;
             importer.mipmapEnabled = false;
             importer.alphaIsTransparency = true;
-            importer.isReadable = false;
+            importer.isReadable = readable;
             importer.wrapMode = TextureWrapMode.Clamp;
 
             var settings = new TextureImporterSettings();
