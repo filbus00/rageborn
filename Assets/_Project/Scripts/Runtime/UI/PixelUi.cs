@@ -23,19 +23,24 @@ namespace ARPG
         /// <summary>The narrowest the menu is drawn, in menu pixels: the concept's width.</summary>
         public const float DesignWidth = 384f;
 
-        static Font title, titleBig, body;
+        static Font title, titleBig, body, title3, title6, body3;
         static readonly Dictionary<string, Sprite> sprites = new Dictionary<string, Sprite>();
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStatics()
         {
-            title = titleBig = body = null;
+            title = titleBig = body = title3 = title6 = body3 = null;
             sprites.Clear();
         }
 
         public static Font TitleFont => title != null ? title : title = Resources.Load<Font>("UI/Pixel/Fonts/title");
         public static Font TitleBigFont => titleBig != null ? titleBig : titleBig = Resources.Load<Font>("UI/Pixel/Fonts/title_x2");
         public static Font BodyFont => body != null ? body : body = Resources.Load<Font>("UI/Pixel/Fonts/body");
+
+        // The same at three and six canvas units a pixel, for the menus laid out 1170 units across (PixelMenu).
+        public static Font TitleFont3 => title3 != null ? title3 : title3 = Resources.Load<Font>("UI/Pixel/Fonts/title_x3");
+        public static Font TitleFont6 => title6 != null ? title6 : title6 = Resources.Load<Font>("UI/Pixel/Fonts/title_x6");
+        public static Font BodyFont3 => body3 != null ? body3 : body3 = Resources.Load<Font>("UI/Pixel/Fonts/body_x3");
 
         /// <summary>Whether the drawn menu art is in the build (else the menus fall back to their old look).</summary>
         public static bool Available => TitleFont != null && BodyFont != null && Sprite("frame_panel_b4") != null;

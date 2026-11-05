@@ -75,6 +75,24 @@ namespace ARPG
 
             if (panelRoot != null)
             {
+                // The Bag on a canvas of its own (2026-11-05, every menu in the pixel look, PixelMenu, the owner: "remake
+                // all"): the HUD's canvas it was on keeps its own look and scale.
+                if (PixelUi.Available)
+                {
+                    var canvasObject = new GameObject("Bag Canvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
+                    // A root canvas in the scene (nested in the HUD's, it would take the HUD's scale).
+                    UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(canvasObject, gameObject.scene);
+                    var canvas = canvasObject.GetComponent<Canvas>();
+                    canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                    // Over the company menu (40), under the sheets and pages it opens (50, 55).
+                    canvas.sortingOrder = 48;
+                    PixelMenu.Attach(canvasObject);
+                    var rect = (RectTransform)panelRoot.transform;
+                    rect.SetParent(canvasObject.transform, false);
+                    rect.anchorMin = Vector2.zero;
+                    rect.anchorMax = Vector2.one;
+                    rect.offsetMin = rect.offsetMax = Vector2.zero;
+                }
                 // The scene's old layout is replaced by the one built here.
                 for (var i = panelRoot.transform.childCount - 1; i >= 0; i--)
                     Destroy(panelRoot.transform.GetChild(i).gameObject);

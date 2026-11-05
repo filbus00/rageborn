@@ -81,6 +81,8 @@ namespace ARPG
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1170f, 2532f);
             scaler.matchWidthOrHeight = 0.5f;
+            // The company menu's pixel look (2026-11-05, the owner: "remake all").
+            PixelMenu.Attach(canvasObject);
 
             // A whole page on the leather, as the Bag is (a sheet over the dimmed game until 2026-10-19).
             var root = new GameObject("Settings", typeof(RectTransform), typeof(Image));

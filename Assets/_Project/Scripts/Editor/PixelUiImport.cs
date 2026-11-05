@@ -65,7 +65,12 @@ namespace ARPG.Editor
         public static void BuildFonts()
         {
             Directory.CreateDirectory(Target + "/Fonts");
-            foreach (var (atlas, scale, name) in new[] { ("title", 1, "title"), ("title", 2, "title_x2"), ("body", 1, "body") })
+            foreach (var (atlas, scale, name) in new[]
+                     {
+                         ("title", 1, "title"), ("title", 2, "title_x2"), ("body", 1, "body"),
+                         // The menus laid out 1170 units across, three units a pixel (PixelMenu).
+                         ("title", 3, "title_x3"), ("title", 6, "title_x6"), ("body", 3, "body_x3"),
+                     })
                 BuildFont(atlas, scale, name);
             AssetDatabase.SaveAssets();
             Debug.Log("[ARPG] Pixel fonts built.");
@@ -109,6 +114,19 @@ namespace ARPG.Editor
                 });
             }
             characters.Add(new CharacterInfo { index = ' ', advance = data.space * s });
+            // The title font has capitals only: a small letter shows as its capital.
+            if (atlasName == "title")
+            {
+                var capitals = new List<CharacterInfo>();
+                foreach (var c in characters)
+                    if (c.index >= 'A' && c.index <= 'Z')
+                    {
+                        var small = c;
+                        small.index = c.index + ('a' - 'A');
+                        capitals.Add(small);
+                    }
+                characters.AddRange(capitals);
+            }
             var materialPath = $"{Target}/Fonts/{name}.mat";
             var material = AssetDatabase.LoadAssetAtPath<Material>(materialPath);
             if (material == null)

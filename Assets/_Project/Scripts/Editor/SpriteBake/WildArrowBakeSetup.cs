@@ -203,9 +203,13 @@ namespace ARPG.Editor
             job.grips.Clear();
             if (set.clips.Count > 0)
                 job.grips.Add(set);
-            // Her reworked look (the owner, 2026-11-01: "do it", after the third preview).
+            // Her reworked look (the owner, 2026-11-01: "do it", after the third preview), and her pixel-art remake (the
+            // owner, 2026-11-05: "push the remake of the character, rebake the sheets").
             if (own)
+            {
                 Rework(job);
+                Remake(job);
+            }
             EditorUtility.SetDirty(job);
             AssetDatabase.SaveAssets();
             Debug.Log($"[ARPG] Wild Arrow bake job ({(own ? "her own model" : "the stand-in")}): {string.Join(", ", set.clips.Select(c => c.name))}.");
@@ -503,12 +507,14 @@ namespace ARPG.Editor
         /// </summary>
         static void Remake(SpriteBakeJob job)
         {
+            // From the 40 a unit numbers SetUp starts from, so it can be applied again (the preview's "after").
             const float toScreen = 27f / PixelArt.PixelsPerUnit;
             const float presence = 1.15f;
+            const float scale = PixelArt.PixelsPerUnit / 64f;
             job.pixelsPerUnit = 27f;
-            job.cellSize = 2 * Mathf.RoundToInt(job.cellSize * toScreen * presence / 2f);
-            job.pivot = new Vector2(job.cellSize / 2f, Mathf.Round(job.pivot.y * toScreen));
-            job.targetHeightPixels = job.targetHeightPixels * toScreen * presence;
+            job.cellSize = 2 * Mathf.RoundToInt(Mathf.RoundToInt(128 * scale) * toScreen * presence / 2f);
+            job.pivot = new Vector2(job.cellSize / 2f, Mathf.Round(Mathf.Round(20f * scale) * toScreen));
+            job.targetHeightPixels = 92.5f * scale * toScreen * presence;
             job.define = true;
             job.lightContrast = Mathf.Max(job.lightContrast, 1.5f);
         }

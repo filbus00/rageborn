@@ -252,7 +252,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 27
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -346,11 +346,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 210
-        width: 20
-        height: 14
+        y: 180
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -367,12 +367,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_s_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 210
-        width: 20
-        height: 14
+        x: 16
+        y: 180
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -389,12 +389,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_s_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 210
-        width: 20
-        height: 14
+        x: 32
+        y: 180
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -411,12 +411,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_s_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 210
-        width: 20
-        height: 14
+        x: 48
+        y: 180
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -434,11 +434,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 196
-        width: 20
-        height: 14
+        y: 168
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -455,12 +455,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_ssw_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 196
-        width: 20
-        height: 14
+        x: 16
+        y: 168
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -477,12 +477,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_ssw_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 196
-        width: 20
-        height: 14
+        x: 32
+        y: 168
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -499,12 +499,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_ssw_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 196
-        width: 20
-        height: 14
+        x: 48
+        y: 168
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -522,11 +522,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 182
-        width: 20
-        height: 14
+        y: 156
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -543,12 +543,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_sw_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 182
-        width: 20
-        height: 14
+        x: 16
+        y: 156
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -565,12 +565,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_sw_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 182
-        width: 20
-        height: 14
+        x: 32
+        y: 156
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -587,12 +587,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_sw_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 182
-        width: 20
-        height: 14
+        x: 48
+        y: 156
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -610,11 +610,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 168
-        width: 20
-        height: 14
+        y: 144
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -631,12 +631,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_wsw_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 168
-        width: 20
-        height: 14
+        x: 16
+        y: 144
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -653,12 +653,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_wsw_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 168
-        width: 20
-        height: 14
+        x: 32
+        y: 144
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -675,12 +675,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_wsw_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 168
-        width: 20
-        height: 14
+        x: 48
+        y: 144
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -698,11 +698,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 154
-        width: 20
-        height: 14
+        y: 132
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -719,12 +719,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_w_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 154
-        width: 20
-        height: 14
+        x: 16
+        y: 132
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -741,12 +741,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_w_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 154
-        width: 20
-        height: 14
+        x: 32
+        y: 132
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -763,12 +763,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_w_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 154
-        width: 20
-        height: 14
+        x: 48
+        y: 132
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -786,11 +786,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 140
-        width: 20
-        height: 14
+        y: 120
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -807,12 +807,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_wnw_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 140
-        width: 20
-        height: 14
+        x: 16
+        y: 120
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -829,12 +829,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_wnw_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 140
-        width: 20
-        height: 14
+        x: 32
+        y: 120
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -851,12 +851,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_wnw_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 140
-        width: 20
-        height: 14
+        x: 48
+        y: 120
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -874,11 +874,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 126
-        width: 20
-        height: 14
+        y: 108
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -895,12 +895,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_nw_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 126
-        width: 20
-        height: 14
+        x: 16
+        y: 108
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -917,12 +917,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_nw_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 126
-        width: 20
-        height: 14
+        x: 32
+        y: 108
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -939,12 +939,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_nw_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 126
-        width: 20
-        height: 14
+        x: 48
+        y: 108
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -962,11 +962,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 112
-        width: 20
-        height: 14
+        y: 96
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -983,12 +983,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_nnw_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 112
-        width: 20
-        height: 14
+        x: 16
+        y: 96
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1005,12 +1005,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_nnw_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 112
-        width: 20
-        height: 14
+        x: 32
+        y: 96
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1027,12 +1027,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_nnw_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 112
-        width: 20
-        height: 14
+        x: 48
+        y: 96
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1050,11 +1050,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 98
-        width: 20
-        height: 14
+        y: 84
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1071,12 +1071,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_n_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 98
-        width: 20
-        height: 14
+        x: 16
+        y: 84
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1093,12 +1093,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_n_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 98
-        width: 20
-        height: 14
+        x: 32
+        y: 84
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1115,12 +1115,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_n_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 98
-        width: 20
-        height: 14
+        x: 48
+        y: 84
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1138,11 +1138,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 84
-        width: 20
-        height: 14
+        y: 72
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1159,12 +1159,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_nne_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 84
-        width: 20
-        height: 14
+        x: 16
+        y: 72
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1181,12 +1181,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_nne_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 84
-        width: 20
-        height: 14
+        x: 32
+        y: 72
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1203,12 +1203,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_nne_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 84
-        width: 20
-        height: 14
+        x: 48
+        y: 72
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1226,11 +1226,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 70
-        width: 20
-        height: 14
+        y: 60
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1247,12 +1247,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_ne_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 70
-        width: 20
-        height: 14
+        x: 16
+        y: 60
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1269,12 +1269,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_ne_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 70
-        width: 20
-        height: 14
+        x: 32
+        y: 60
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1291,12 +1291,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_ne_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 70
-        width: 20
-        height: 14
+        x: 48
+        y: 60
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1314,11 +1314,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 56
-        width: 20
-        height: 14
+        y: 48
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1335,12 +1335,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_ene_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 56
-        width: 20
-        height: 14
+        x: 16
+        y: 48
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1357,12 +1357,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_ene_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 56
-        width: 20
-        height: 14
+        x: 32
+        y: 48
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1379,12 +1379,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_ene_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 56
-        width: 20
-        height: 14
+        x: 48
+        y: 48
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1402,11 +1402,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 42
-        width: 20
-        height: 14
+        y: 36
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1423,12 +1423,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_e_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 42
-        width: 20
-        height: 14
+        x: 16
+        y: 36
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1445,12 +1445,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_e_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 42
-        width: 20
-        height: 14
+        x: 32
+        y: 36
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1467,12 +1467,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_e_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 42
-        width: 20
-        height: 14
+        x: 48
+        y: 36
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1490,11 +1490,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 28
-        width: 20
-        height: 14
+        y: 24
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1511,12 +1511,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_ese_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 28
-        width: 20
-        height: 14
+        x: 16
+        y: 24
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1533,12 +1533,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_ese_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 28
-        width: 20
-        height: 14
+        x: 32
+        y: 24
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1555,12 +1555,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_ese_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 28
-        width: 20
-        height: 14
+        x: 48
+        y: 24
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1578,11 +1578,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 14
-        width: 20
-        height: 14
+        y: 12
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1599,12 +1599,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_se_01
       rect:
         serializedVersion: 2
-        x: 20
-        y: 14
-        width: 20
-        height: 14
+        x: 16
+        y: 12
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1621,12 +1621,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_se_02
       rect:
         serializedVersion: 2
-        x: 40
-        y: 14
-        width: 20
-        height: 14
+        x: 32
+        y: 12
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1643,12 +1643,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_se_03
       rect:
         serializedVersion: 2
-        x: 60
-        y: 14
-        width: 20
-        height: 14
+        x: 48
+        y: 12
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1667,10 +1667,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20
-        height: 14
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1687,12 +1687,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_sse_01
       rect:
         serializedVersion: 2
-        x: 20
+        x: 16
         y: 0
-        width: 20
-        height: 14
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1709,12 +1709,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_sse_02
       rect:
         serializedVersion: 2
-        x: 40
+        x: 32
         y: 0
-        width: 20
-        height: 14
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1731,12 +1731,12 @@ TextureImporter:
       name: wild_arrow_belt_pouch_belt_1h_hit_sse_03
       rect:
         serializedVersion: 2
-        x: 60
+        x: 48
         y: 0
-        width: 20
-        height: 14
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: -1.5}
+      pivot: {x: 0.5, y: -1.3333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

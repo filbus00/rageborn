@@ -408,7 +408,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 27
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -502,11 +502,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 44
-        height: 32
+        y: 375
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -523,12 +523,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_s_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 480
-        width: 44
-        height: 32
+        x: 34
+        y: 375
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -545,12 +545,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_s_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 480
-        width: 44
-        height: 32
+        x: 68
+        y: 375
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -567,12 +567,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_s_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 480
-        width: 44
-        height: 32
+        x: 102
+        y: 375
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -590,11 +590,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 448
-        width: 44
-        height: 32
+        y: 350
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -611,12 +611,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_ssw_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 448
-        width: 44
-        height: 32
+        x: 34
+        y: 350
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -633,12 +633,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_ssw_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 448
-        width: 44
-        height: 32
+        x: 68
+        y: 350
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -655,12 +655,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_ssw_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 448
-        width: 44
-        height: 32
+        x: 102
+        y: 350
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -678,11 +678,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 416
-        width: 44
-        height: 32
+        y: 325
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -699,12 +699,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_sw_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 416
-        width: 44
-        height: 32
+        x: 34
+        y: 325
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -721,12 +721,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_sw_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 416
-        width: 44
-        height: 32
+        x: 68
+        y: 325
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -743,12 +743,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_sw_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 416
-        width: 44
-        height: 32
+        x: 102
+        y: 325
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -766,11 +766,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 384
-        width: 44
-        height: 32
+        y: 300
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -787,12 +787,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_wsw_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 384
-        width: 44
-        height: 32
+        x: 34
+        y: 300
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -809,12 +809,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_wsw_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 384
-        width: 44
-        height: 32
+        x: 68
+        y: 300
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -831,12 +831,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_wsw_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 384
-        width: 44
-        height: 32
+        x: 102
+        y: 300
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -854,11 +854,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 352
-        width: 44
-        height: 32
+        y: 275
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -875,12 +875,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_w_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 352
-        width: 44
-        height: 32
+        x: 34
+        y: 275
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -897,12 +897,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_w_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 352
-        width: 44
-        height: 32
+        x: 68
+        y: 275
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -919,12 +919,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_w_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 352
-        width: 44
-        height: 32
+        x: 102
+        y: 275
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -942,11 +942,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 320
-        width: 44
-        height: 32
+        y: 250
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -963,12 +963,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_wnw_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 320
-        width: 44
-        height: 32
+        x: 34
+        y: 250
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -985,12 +985,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_wnw_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 320
-        width: 44
-        height: 32
+        x: 68
+        y: 250
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1007,12 +1007,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_wnw_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 320
-        width: 44
-        height: 32
+        x: 102
+        y: 250
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1030,11 +1030,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 288
-        width: 44
-        height: 32
+        y: 225
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1051,12 +1051,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_nw_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 288
-        width: 44
-        height: 32
+        x: 34
+        y: 225
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1073,12 +1073,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_nw_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 288
-        width: 44
-        height: 32
+        x: 68
+        y: 225
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1095,12 +1095,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_nw_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 288
-        width: 44
-        height: 32
+        x: 102
+        y: 225
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1118,11 +1118,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 44
-        height: 32
+        y: 200
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1139,12 +1139,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_nnw_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 256
-        width: 44
-        height: 32
+        x: 34
+        y: 200
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1161,12 +1161,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_nnw_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 256
-        width: 44
-        height: 32
+        x: 68
+        y: 200
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1183,12 +1183,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_nnw_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 256
-        width: 44
-        height: 32
+        x: 102
+        y: 200
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1206,11 +1206,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 224
-        width: 44
-        height: 32
+        y: 175
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1227,12 +1227,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_n_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 224
-        width: 44
-        height: 32
+        x: 34
+        y: 175
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1249,12 +1249,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_n_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 224
-        width: 44
-        height: 32
+        x: 68
+        y: 175
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1271,12 +1271,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_n_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 224
-        width: 44
-        height: 32
+        x: 102
+        y: 175
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1294,11 +1294,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
-        width: 44
-        height: 32
+        y: 150
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1315,12 +1315,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_nne_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 192
-        width: 44
-        height: 32
+        x: 34
+        y: 150
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1337,12 +1337,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_nne_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 192
-        width: 44
-        height: 32
+        x: 68
+        y: 150
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1359,12 +1359,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_nne_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 192
-        width: 44
-        height: 32
+        x: 102
+        y: 150
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1382,11 +1382,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 44
-        height: 32
+        y: 125
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1403,12 +1403,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_ne_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 160
-        width: 44
-        height: 32
+        x: 34
+        y: 125
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1425,12 +1425,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_ne_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 160
-        width: 44
-        height: 32
+        x: 68
+        y: 125
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1447,12 +1447,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_ne_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 160
-        width: 44
-        height: 32
+        x: 102
+        y: 125
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1470,11 +1470,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 44
-        height: 32
+        y: 100
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1491,12 +1491,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_ene_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 128
-        width: 44
-        height: 32
+        x: 34
+        y: 100
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1513,12 +1513,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_ene_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 128
-        width: 44
-        height: 32
+        x: 68
+        y: 100
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1535,12 +1535,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_ene_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 128
-        width: 44
-        height: 32
+        x: 102
+        y: 100
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1558,11 +1558,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 44
-        height: 32
+        y: 75
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1579,12 +1579,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_e_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 96
-        width: 44
-        height: 32
+        x: 34
+        y: 75
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1601,12 +1601,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_e_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 96
-        width: 44
-        height: 32
+        x: 68
+        y: 75
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1623,12 +1623,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_e_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 96
-        width: 44
-        height: 32
+        x: 102
+        y: 75
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1646,11 +1646,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 44
-        height: 32
+        y: 50
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1667,12 +1667,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_ese_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 64
-        width: 44
-        height: 32
+        x: 34
+        y: 50
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1689,12 +1689,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_ese_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 64
-        width: 44
-        height: 32
+        x: 68
+        y: 50
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1711,12 +1711,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_ese_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 64
-        width: 44
-        height: 32
+        x: 102
+        y: 50
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1734,11 +1734,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 44
-        height: 32
+        y: 25
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1755,12 +1755,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_se_01
       rect:
         serializedVersion: 2
-        x: 44
-        y: 32
-        width: 44
-        height: 32
+        x: 34
+        y: 25
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1777,12 +1777,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_se_02
       rect:
         serializedVersion: 2
-        x: 88
-        y: 32
-        width: 44
-        height: 32
+        x: 68
+        y: 25
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1799,12 +1799,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_se_03
       rect:
         serializedVersion: 2
-        x: 132
-        y: 32
-        width: 44
-        height: 32
+        x: 102
+        y: 25
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1823,10 +1823,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 44
-        height: 32
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1843,12 +1843,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_sse_01
       rect:
         serializedVersion: 2
-        x: 44
+        x: 34
         y: 0
-        width: 44
-        height: 32
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1865,12 +1865,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_sse_02
       rect:
         serializedVersion: 2
-        x: 88
+        x: 68
         y: 0
-        width: 44
-        height: 32
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1887,12 +1887,12 @@ TextureImporter:
       name: wild_arrow_gloves_bracers_1h_hit_sse_03
       rect:
         serializedVersion: 2
-        x: 132
+        x: 102
         y: 0
-        width: 44
-        height: 32
+        width: 34
+        height: 25
       alignment: 9
-      pivot: {x: 0.5, y: -0.40625}
+      pivot: {x: 0.5, y: -0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

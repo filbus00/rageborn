@@ -83,6 +83,8 @@ namespace ARPG
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1170f, 2532f);
             scaler.matchWidthOrHeight = 0.5f;
+            // The company menu's pixel look (2026-11-05, the owner: "remake all").
+            PixelMenu.Attach(canvasObject);
 
             var root = new GameObject(title, typeof(RectTransform), typeof(Image), typeof(Button));
             root.transform.SetParent(canvasObject.transform, false);

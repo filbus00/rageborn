@@ -249,7 +249,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 27
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -343,11 +343,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 42
-        height: 32
+        y: 390
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -364,12 +364,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_s_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 480
-        width: 42
-        height: 32
+        x: 34
+        y: 390
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -386,12 +386,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_s_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 480
-        width: 42
-        height: 32
+        x: 68
+        y: 390
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -408,12 +408,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_s_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 480
-        width: 42
-        height: 32
+        x: 102
+        y: 390
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -431,11 +431,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 448
-        width: 42
-        height: 32
+        y: 364
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -452,12 +452,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_ssw_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 448
-        width: 42
-        height: 32
+        x: 34
+        y: 364
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -474,12 +474,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_ssw_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 448
-        width: 42
-        height: 32
+        x: 68
+        y: 364
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -496,12 +496,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_ssw_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 448
-        width: 42
-        height: 32
+        x: 102
+        y: 364
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -519,11 +519,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 416
-        width: 42
-        height: 32
+        y: 338
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -540,12 +540,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_sw_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 416
-        width: 42
-        height: 32
+        x: 34
+        y: 338
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -562,12 +562,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_sw_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 416
-        width: 42
-        height: 32
+        x: 68
+        y: 338
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -584,12 +584,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_sw_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 416
-        width: 42
-        height: 32
+        x: 102
+        y: 338
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -607,11 +607,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 384
-        width: 42
-        height: 32
+        y: 312
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -628,12 +628,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_wsw_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 384
-        width: 42
-        height: 32
+        x: 34
+        y: 312
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -650,12 +650,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_wsw_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 384
-        width: 42
-        height: 32
+        x: 68
+        y: 312
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -672,12 +672,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_wsw_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 384
-        width: 42
-        height: 32
+        x: 102
+        y: 312
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -695,11 +695,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 352
-        width: 42
-        height: 32
+        y: 286
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -716,12 +716,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_w_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 352
-        width: 42
-        height: 32
+        x: 34
+        y: 286
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -738,12 +738,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_w_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 352
-        width: 42
-        height: 32
+        x: 68
+        y: 286
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -760,12 +760,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_w_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 352
-        width: 42
-        height: 32
+        x: 102
+        y: 286
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -783,11 +783,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 320
-        width: 42
-        height: 32
+        y: 260
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -804,12 +804,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_wnw_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 320
-        width: 42
-        height: 32
+        x: 34
+        y: 260
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -826,12 +826,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_wnw_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 320
-        width: 42
-        height: 32
+        x: 68
+        y: 260
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -848,12 +848,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_wnw_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 320
-        width: 42
-        height: 32
+        x: 102
+        y: 260
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -871,11 +871,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 288
-        width: 42
-        height: 32
+        y: 234
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -892,12 +892,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_nw_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 288
-        width: 42
-        height: 32
+        x: 34
+        y: 234
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -914,12 +914,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_nw_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 288
-        width: 42
-        height: 32
+        x: 68
+        y: 234
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -936,12 +936,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_nw_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 288
-        width: 42
-        height: 32
+        x: 102
+        y: 234
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -959,11 +959,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 42
-        height: 32
+        y: 208
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -980,12 +980,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_nnw_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 256
-        width: 42
-        height: 32
+        x: 34
+        y: 208
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1002,12 +1002,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_nnw_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 256
-        width: 42
-        height: 32
+        x: 68
+        y: 208
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1024,12 +1024,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_nnw_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 256
-        width: 42
-        height: 32
+        x: 102
+        y: 208
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1047,11 +1047,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 224
-        width: 42
-        height: 32
+        y: 182
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1068,12 +1068,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_n_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 224
-        width: 42
-        height: 32
+        x: 34
+        y: 182
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1090,12 +1090,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_n_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 224
-        width: 42
-        height: 32
+        x: 68
+        y: 182
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1112,12 +1112,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_n_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 224
-        width: 42
-        height: 32
+        x: 102
+        y: 182
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1135,11 +1135,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
-        width: 42
-        height: 32
+        y: 156
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1156,12 +1156,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_nne_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 192
-        width: 42
-        height: 32
+        x: 34
+        y: 156
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1178,12 +1178,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_nne_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 192
-        width: 42
-        height: 32
+        x: 68
+        y: 156
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1200,12 +1200,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_nne_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 192
-        width: 42
-        height: 32
+        x: 102
+        y: 156
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1223,11 +1223,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 42
-        height: 32
+        y: 130
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1244,12 +1244,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_ne_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 160
-        width: 42
-        height: 32
+        x: 34
+        y: 130
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1266,12 +1266,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_ne_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 160
-        width: 42
-        height: 32
+        x: 68
+        y: 130
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1288,12 +1288,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_ne_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 160
-        width: 42
-        height: 32
+        x: 102
+        y: 130
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1311,11 +1311,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 42
-        height: 32
+        y: 104
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1332,12 +1332,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_ene_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 128
-        width: 42
-        height: 32
+        x: 34
+        y: 104
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1354,12 +1354,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_ene_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 128
-        width: 42
-        height: 32
+        x: 68
+        y: 104
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1376,12 +1376,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_ene_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 128
-        width: 42
-        height: 32
+        x: 102
+        y: 104
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1399,11 +1399,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 42
-        height: 32
+        y: 78
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1420,12 +1420,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_e_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 96
-        width: 42
-        height: 32
+        x: 34
+        y: 78
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1442,12 +1442,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_e_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 96
-        width: 42
-        height: 32
+        x: 68
+        y: 78
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1464,12 +1464,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_e_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 96
-        width: 42
-        height: 32
+        x: 102
+        y: 78
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1487,11 +1487,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 42
-        height: 32
+        y: 52
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1508,12 +1508,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_ese_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 64
-        width: 42
-        height: 32
+        x: 34
+        y: 52
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1530,12 +1530,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_ese_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 64
-        width: 42
-        height: 32
+        x: 68
+        y: 52
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1552,12 +1552,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_ese_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 64
-        width: 42
-        height: 32
+        x: 102
+        y: 52
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1575,11 +1575,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 42
-        height: 32
+        y: 26
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1596,12 +1596,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_se_01
       rect:
         serializedVersion: 2
-        x: 42
-        y: 32
-        width: 42
-        height: 32
+        x: 34
+        y: 26
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1618,12 +1618,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_se_02
       rect:
         serializedVersion: 2
-        x: 84
-        y: 32
-        width: 42
-        height: 32
+        x: 68
+        y: 26
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1640,12 +1640,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_se_03
       rect:
         serializedVersion: 2
-        x: 126
-        y: 32
-        width: 42
-        height: 32
+        x: 102
+        y: 26
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1664,10 +1664,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 42
-        height: 32
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1684,12 +1684,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_sse_01
       rect:
         serializedVersion: 2
-        x: 42
+        x: 34
         y: 0
-        width: 42
-        height: 32
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1706,12 +1706,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_sse_02
       rect:
         serializedVersion: 2
-        x: 84
+        x: 68
         y: 0
-        width: 42
-        height: 32
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1728,12 +1728,12 @@ TextureImporter:
       name: wild_arrow_helm_mask_1h_hit_sse_03
       rect:
         serializedVersion: 2
-        x: 126
+        x: 102
         y: 0
-        width: 42
-        height: 32
+        width: 34
+        height: 26
       alignment: 9
-      pivot: {x: 0.5, y: -0.71875}
+      pivot: {x: 0.5, y: -0.65384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
