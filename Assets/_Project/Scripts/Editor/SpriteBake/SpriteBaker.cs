@@ -888,10 +888,14 @@ namespace ARPG.Editor
                     var gamma = new Color(c.r, c.g, c.b).gamma;
                     cell[i] = new Color(gamma.r, gamma.g, gamma.b, c.a);
                 }
+            if (job.define)
+                PixelDefine.Shape(cell);
             if (job.pixelArt)
                 PixelArt.Process(cell, job.cellSize, job.cellSize, true);
             if (job.edgeHighlight)
                 EdgeHighlight(cell, job.cellSize);
+            if (job.define)
+                PixelDefine.Volume(cell, job.cellSize);
             return cell;
         }
 

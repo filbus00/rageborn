@@ -141,6 +141,65 @@ namespace ARPG
             return Mathf.Abs(v) > width ? 0f : x * x * (1f - Mathf.Abs(v) / Mathf.Max(0.01f, width) * 0.5f);
         }, new Vector2(1f, 0.5f));
 
+        // Only the lights stay smooth (2026-11-05): every shape with an edge is read with hard pixels, so it comes out on
+        // the screen's grid like the rest of the art.
+        static bool Soft(string name) => name == "Glow" || name == "Ember" || name == "Streak";
+
+        /// <summary>
+        /// A telegraph circle's outline drawn on the screen's grid at its size (2026-11-05): <see cref="PoolArt.WidthFor"/>
+        /// by half that at 27 a unit, shown unscaled: a bright edge a pixel wide, a faint pixel inside it, a thin second
+        /// line two pixels in, eight short notches pointing in, and a faint floor. White, tinted by its marker.
+        /// </summary>
+        public static Sprite PixelRim(float radius)
+        {
+            var w = PoolArt.WidthFor(radius);
+            if (pixelRims.TryGetValue(w, out var sprite))
+                return sprite;
+            var h = w / 2;
+            var texture = new Texture2D(w, h, TextureFormat.RGBA32, false)
+            {
+                name = "Telegraph Rim " + w, filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp,
+            };
+            texture.SetPixels32(PixelRimAlpha(w, h));
+            texture.Apply(false, true);
+            return pixelRims[w] = Sprite.Create(texture, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), PoolArt.ScreenUnit, 0,
+                SpriteMeshType.FullRect, Vector4.zero, false);
+        }
+
+        static readonly Dictionary<int, Sprite> pixelRims = new Dictionary<int, Sprite>();
+
+        /// <summary>The rim's pixels (pure), row by row from the bottom.</summary>
+        public static Color32[] PixelRimAlpha(int w, int h)
+        {
+            var pixels = new Color32[w * h];
+            float hw = w / 2f, hh = h / 2f;
+            for (var y = 0; y < h; y++)
+                for (var x = 0; x < w; x++)
+                {
+                    float u = (x + 0.5f - hw) / hw, v = (y + 0.5f - hh) / hh;
+                    var r = Mathf.Sqrt(u * u + v * v);
+                    if (r > 1f)
+                        continue;
+                    // How many pixels in from the edge.
+                    var grad = Mathf.Sqrt(u / hw * (u / hw) + v / hh * (v / hh)) / Mathf.Max(0.001f, r);
+                    var d = (1f - r) / Mathf.Max(0.0001f, grad);
+                    float a;
+                    if (d < 1f)
+                        a = 1f;
+                    else if (d < 2f)
+                        a = 0.3f;
+                    else if (d >= 3f && d < 4f)
+                        a = 0.7f;
+                    else
+                    {
+                        var turn = Mathf.Atan2(v, u) / (Mathf.PI * 2f) * 8f;
+                        a = d < 7f && Mathf.Abs(turn - Mathf.Round(turn)) * Mathf.PI * 2f / 8f * r * hw < 0.6f ? 0.9f : r > 0.7f ? 0.16f : 0.09f;
+                    }
+                    pixels[x + y * w] = new Color32(255, 255, 255, (byte)(a * 255f));
+                }
+            return pixels;
+        }
+
         /// <summary>A white sprite whose alpha at each pixel is <paramref name="alpha"/> of its place, both from -1 to 1
         /// across the square.</summary>
         static Sprite MakeXY(string name, Func<float, float, float> alpha, Vector2? pivot = null)
@@ -148,7 +207,7 @@ namespace ARPG
             var texture = new Texture2D(Size, Size, TextureFormat.RGBA32, false)
             {
                 name = name,
-                filterMode = FilterMode.Bilinear,
+                filterMode = Soft(name) ? FilterMode.Bilinear : FilterMode.Point,
                 wrapMode = TextureWrapMode.Clamp,
             };
             var pixels = new Color32[Size * Size];
@@ -168,7 +227,7 @@ namespace ARPG
             var texture = new Texture2D(Size, Size, TextureFormat.RGBA32, false)
             {
                 name = name,
-                filterMode = FilterMode.Bilinear,
+                filterMode = Soft(name) ? FilterMode.Bilinear : FilterMode.Point,
                 wrapMode = TextureWrapMode.Clamp,
             };
             var pixels = new Color32[Size * Size];
@@ -255,7 +314,9 @@ namespace ARPG
             Place(root.transform, ground, radius);
             var fillObject = NewSprite("Fill", TelegraphArt.FillDisc, color, root.transform, 41);
             fillObject.transform.localScale = Vector3.zero;
-            return new GroundMarker(root, fillObject.transform, duration, true, ground, radius);
+            var marker = new GroundMarker(root, fillObject.transform, duration, true, ground, radius);
+            marker.FitRim();
+            return marker;
         }
 
         /// <summary>A lasting ring (the burning arena edge), fading in over <paramref name="duration"/> seconds.</summary>
@@ -285,6 +346,37 @@ namespace ARPG
             Radius = radius;
             Place(root.transform, ground, radius);
             Restart(duration);
+            FitRim();
+        }
+
+        // The circle's outline on the screen's grid (2026-11-05): a child undoing the root's squashed scale shows it at
+        // its size; the root's own scaled rim is hidden, its colour copied across (ShowRimColour).
+        SpriteRenderer rimPixels;
+
+        void FitRim()
+        {
+            if (!IsCircle || root == null)
+                return;
+            if (rimPixels == null)
+                rimPixels = NewSprite("Rim", null, color, root.transform, 40).GetComponent<SpriteRenderer>();
+            rimPixels.sprite = TelegraphArt.PixelRim(Radius);
+            rimPixels.transform.localScale = Unsquashed(root.transform);
+            rimPixels.gameObject.SetActive(true);
+            rootRenderer.enabled = false;
+            ShowRimColour();
+        }
+
+        void ShowRimColour()
+        {
+            if (rimPixels != null && rimPixels.gameObject.activeSelf)
+                rimPixels.color = rootRenderer.color;
+        }
+
+        // The scale under a root that shows a child at its own size.
+        static Vector3 Unsquashed(Transform root)
+        {
+            var scale = root.localScale;
+            return new Vector3(1f / Mathf.Max(0.01f, scale.x), 1f / Mathf.Max(0.01f, scale.y), 1f);
         }
 
         /// <summary>Shows a line marker again along another segment.</summary>
@@ -304,6 +396,7 @@ namespace ARPG
                 rootRenderer.color = color;
             if (edge != null)
                 edge.color = new Color(color.r, color.g, color.b, 0.55f);
+            ShowRimColour();
             if (fill != null)
                 fill.GetComponent<SpriteRenderer>().color = color;
             if (bubbles != null)
@@ -323,6 +416,9 @@ namespace ARPG
             poolScale = root.transform.localScale;
             if (fill != null)
                 fill.gameObject.SetActive(false);
+            if (rimPixels != null)
+                rimPixels.gameObject.SetActive(false);
+            rootRenderer.enabled = true;
             if (bubbles == null)
                 bubbles = NewSprite("Bubbles", TelegraphArt.Bubbles, color, root.transform, 41).GetComponent<SpriteRenderer>();
             // The owner's drawn pool for its colour (2026-10-31), under a thin rim in its colour that marks exactly where
@@ -356,6 +452,9 @@ namespace ARPG
                 sprayDebt = 0f;
                 if (edge == null)
                     edge = NewSprite("Edge", TelegraphArt.Rim, color, root.transform, 42).GetComponent<SpriteRenderer>();
+                // On the screen's grid at its size, like the telegraph's rim (2026-11-05).
+                edge.sprite = TelegraphArt.PixelRim(Radius);
+                edge.transform.localScale = Unsquashed(root.transform);
                 edge.color = new Color(color.r, color.g, color.b, 0.55f);
                 edge.gameObject.SetActive(true);
                 return;
@@ -461,6 +560,8 @@ namespace ARPG
                 var pulse = t < 0.75f ? 1f : 0.7f + 0.3f * Mathf.Cos(Elapsed * (18f + 30f * (t - 0.75f)));
                 rootRenderer.color = new Color(Mathf.Min(1f, color.r * (2f - pulse)), Mathf.Min(1f, color.g * (2f - pulse)), Mathf.Min(1f, color.b * (2f - pulse)), color.a * pulse);
             }
+            if (!pooled)
+                ShowRimColour();
         }
 
         public void Destroy()

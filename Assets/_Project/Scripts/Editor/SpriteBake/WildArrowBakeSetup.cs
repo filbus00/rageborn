@@ -489,9 +489,28 @@ namespace ARPG.Editor
                 grip = g.grip,
                 clips = g.clips.Where(c => PreviewClips.Contains(c.name)).ToList(),
             }).ToList();
+            // Since 2026-11-05 the game's sheets are already reworked: "after" is the pixel-art remake (the owner: "Make her
+            // much more defined. She has a very weak presence on screen").
             if (after)
-                Rework(job);
+                Remake(job);
             return job;
+        }
+
+        /// <summary>
+        /// Her pixel-art remake, on trial (2026-11-05): baked at the screen's 27 pixels a unit instead of 40 (shown at 27,
+        /// her 40 were thinned unevenly to it), 15 percent taller for presence, and defined (<see cref="PixelDefine"/>: richer
+        /// colour, harder shade bands, a shaded lower-right edge and dark lines between parts). Claude's numbers, to review.
+        /// </summary>
+        static void Remake(SpriteBakeJob job)
+        {
+            const float toScreen = 27f / PixelArt.PixelsPerUnit;
+            const float presence = 1.15f;
+            job.pixelsPerUnit = 27f;
+            job.cellSize = 2 * Mathf.RoundToInt(job.cellSize * toScreen * presence / 2f);
+            job.pivot = new Vector2(job.cellSize / 2f, Mathf.Round(job.pivot.y * toScreen));
+            job.targetHeightPixels = job.targetHeightPixels * toScreen * presence;
+            job.define = true;
+            job.lightContrast = Mathf.Max(job.lightContrast, 1.5f);
         }
 
         // Her palettes by look (2026-11-01, ArtSource/tools/her_palettes.sh) were dropped on 2026-11-02: her new model wears

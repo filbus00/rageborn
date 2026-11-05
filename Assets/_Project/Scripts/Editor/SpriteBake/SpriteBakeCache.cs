@@ -113,6 +113,7 @@ namespace ARPG.Editor
                 if ((field.Name == nameof(SpriteBakeJob.pieceScale) && job.pieceScale == 1f) ||
                     (field.Name == nameof(SpriteBakeJob.lightContrast) && job.lightContrast == 1f) ||
                     (field.Name == nameof(SpriteBakeJob.edgeHighlight) && !job.edgeHighlight) ||
+                    (field.Name == nameof(SpriteBakeJob.define) && !job.define) ||
                     (field.Name == nameof(SpriteBakeJob.trimSheets) && job.trimSheets))
                     continue;
                 text.Append(field.Name).Append('=').Append(Convert.ToString(field.GetValue(job), System.Globalization.CultureInfo.InvariantCulture)).Append(';');

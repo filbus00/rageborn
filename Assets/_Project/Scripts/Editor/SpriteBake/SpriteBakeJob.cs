@@ -155,6 +155,9 @@ namespace ARPG.Editor
         [Tooltip("A one-pixel light line just inside the outline on the lit (upper and left) side, so the figure stands off a dark ground.")]
         public bool edgeHighlight;
 
+        [Tooltip("Pixel definition (2026-11-05): richer colour and harder shade bands before the palette, a shaded inner edge on the lower right and dark lines between parts after it (PixelDefine).")]
+        public bool define;
+
         [Tooltip("Textures swapped on every body and piece for this bake (a recoloured palette).")]
         public List<TextureSwap> textureSwaps = new List<TextureSwap>();
 

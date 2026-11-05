@@ -23,8 +23,25 @@ def sheet(name):
     return np.array(im.pixels[:], dtype=np.float32).reshape(h, w, 4)[::-1]  # top row first
 
 
-def cell(img, row, col):
-    return img[row * CELL:(row + 1) * CELL, col * CELL:(col + 1) * CELL]
+def cell(img, row, col, size):
+    return img[row * size:(row + 1) * size, col * size:(col + 1) * size]
+
+
+# Since 2026-11-05 the after sheets are baked at the screen's 27 a unit (cells of their own size): every cell is shown as
+# the screen shows it, the 40 a unit before ones thinned to 27 by nearest pixels, on a square of SHOW pixels, feet level.
+SHOW = 64
+
+
+def on_screen(c, ppu):
+    n = c.shape[0]
+    m = max(1, int(round(n * 27.0 / ppu)))
+    idx = (np.arange(m) * n / m).astype(int)
+    c = c[idx][:, idx]
+    out = np.zeros((SHOW, SHOW, 4), dtype=np.float32)
+    x0 = (SHOW - m) // 2
+    y0 = SHOW - m - 2
+    out[max(0, y0):y0 + m, max(0, x0):x0 + m] = c[max(0, -y0):, max(0, -x0):][:SHOW - max(0, y0), :SHOW - max(0, x0)]
+    return out
 
 
 def over(dst, src):
@@ -42,11 +59,13 @@ for chest, helm in OUTFITS:
         layers += [f"{who}_offhand_hide_quiver_1h_{clip}", f"{who}_weapon_hunting_bow_1h_{clip}"]
         sheets = [s for s in (sheet(n) for n in layers) if s is not None]
         strip = []
+        size = sheets[0].shape[0] // DIRS if sheets else CELL
+        ppu = 40.0 if who == "preview_before" else 27.0
         for d in range(DIRS):
-            c = np.tile(BG, (CELL, CELL, 1))
+            c = np.tile(BG, (SHOW, SHOW, 1))
             for s in sheets:
-                f = min(frame, s.shape[1] // CELL - 1)
-                c = over(c, cell(s, d, f))
+                f = min(frame, s.shape[1] // size - 1)
+                c = over(c, on_screen(cell(s, d, f, size), ppu))
             strip.append(c)
         rows.append(np.concatenate(strip, axis=1))
 grid = np.concatenate(rows, axis=0)
