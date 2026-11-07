@@ -194,6 +194,9 @@ namespace ARPG.Editor
             var baked = new List<string>();
             foreach (var folder in Directory.GetDirectories(PetsRoot).Select(d => d.Replace('\\', '/')).OrderBy(d => d))
             {
+                // A pet drawn as pixel art (the wolf, 2026-11-05) is imported by DrawnCharacterImport, not baked.
+                if (DrawnCharacterImport.IsDrawn(Path.GetFileName(folder)))
+                    continue;
                 var job = SetUp(folder);
                 if (job == null)
                     continue;
@@ -337,8 +340,30 @@ namespace ARPG.Editor
             job.bodies.Clear();
             job.bodies.Add(new SpriteBakeJob.Body { look = "", model = AssetDatabase.LoadAssetAtPath<GameObject>(bodyPath) });
             job.pieces.Clear();
+            if (Remade.TryGetValue(name, out var presence))
+            {
+                // Remade like her (2026-11-05): at the screen's 27 a unit, defined (PixelDefine), harder light, and drawn
+                // larger by its presence (the pet wolf 1.4: the owner chose a bigger pet so its face and collar show).
+                const float toScreen = 27f / PixelArt.PixelsPerUnit;
+                job.pixelsPerUnit = 27f;
+                job.cellSize = 2 * Mathf.RoundToInt(job.cellSize * toScreen * 1.2f * presence / 2f);
+                job.pivot = new Vector2(job.cellSize / 2f, Mathf.Round(job.pivot.y * toScreen));
+                job.targetHeightPixels *= toScreen * presence;
+                job.define = true;
+                job.lightContrast = 1.5f;
+            }
+            else
+            {
+                job.define = false;
+                job.lightContrast = 1f;
+            }
             return job;
         }
+
+        /// <summary>Looks remade as pixel art at the screen's scale (2026-11-05, the owner: "remake the pets, start with the
+        /// wolf"; the pet wolf from the owner's Gemini sheet, ArtSource/pixel/ai_exchange/pets/wolf_sheet.jpeg, made into a
+        /// shape by Hunyuan3D and rigged by rig_beast.py).</summary>
+        static readonly Dictionary<string, float> Remade = new Dictionary<string, float> { { "pet_wolf", 1.4f } };
 
         /// <summary>A body on its own generic rig, its clips in its own file (the Ash Wolf, ArtSource/tools/props/wolf.py).</summary>
         static SpriteBakeJob SetUpGeneric(string folder, string name, string bodyPath)

@@ -274,7 +274,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -288,7 +288,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 27
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -314,7 +314,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -361,6 +361,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -369,11 +382,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 308
-        width: 48
-        height: 44
+        y: 420
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -390,12 +403,12 @@ TextureImporter:
       name: pet_wolf_run_s_01
       rect:
         serializedVersion: 2
-        x: 48
-        y: 308
-        width: 48
-        height: 44
+        x: 88
+        y: 420
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -412,12 +425,12 @@ TextureImporter:
       name: pet_wolf_run_s_02
       rect:
         serializedVersion: 2
-        x: 96
-        y: 308
-        width: 48
-        height: 44
+        x: 176
+        y: 420
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -434,12 +447,12 @@ TextureImporter:
       name: pet_wolf_run_s_03
       rect:
         serializedVersion: 2
-        x: 144
-        y: 308
-        width: 48
-        height: 44
+        x: 264
+        y: 420
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -456,12 +469,12 @@ TextureImporter:
       name: pet_wolf_run_s_04
       rect:
         serializedVersion: 2
-        x: 192
-        y: 308
-        width: 48
-        height: 44
+        x: 352
+        y: 420
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -478,12 +491,12 @@ TextureImporter:
       name: pet_wolf_run_s_05
       rect:
         serializedVersion: 2
-        x: 240
-        y: 308
-        width: 48
-        height: 44
+        x: 440
+        y: 420
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -500,12 +513,12 @@ TextureImporter:
       name: pet_wolf_run_s_06
       rect:
         serializedVersion: 2
-        x: 288
-        y: 308
-        width: 48
-        height: 44
+        x: 528
+        y: 420
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -522,12 +535,12 @@ TextureImporter:
       name: pet_wolf_run_s_07
       rect:
         serializedVersion: 2
-        x: 336
-        y: 308
-        width: 48
-        height: 44
+        x: 616
+        y: 420
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -541,59 +554,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_run_s_08
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 308
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3143ff75860944a2f84c0d6bb88407e3
-      internalID: -452546969
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_run_s_09
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 308
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed89bb22979df4ea09d68f018f5339ab
-      internalID: -871710529
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_run_sw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 264
-        width: 48
-        height: 44
+        y: 360
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -610,12 +579,12 @@ TextureImporter:
       name: pet_wolf_run_sw_01
       rect:
         serializedVersion: 2
-        x: 48
-        y: 264
-        width: 48
-        height: 44
+        x: 88
+        y: 360
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -632,12 +601,12 @@ TextureImporter:
       name: pet_wolf_run_sw_02
       rect:
         serializedVersion: 2
-        x: 96
-        y: 264
-        width: 48
-        height: 44
+        x: 176
+        y: 360
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -654,12 +623,12 @@ TextureImporter:
       name: pet_wolf_run_sw_03
       rect:
         serializedVersion: 2
-        x: 144
-        y: 264
-        width: 48
-        height: 44
+        x: 264
+        y: 360
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -676,12 +645,12 @@ TextureImporter:
       name: pet_wolf_run_sw_04
       rect:
         serializedVersion: 2
-        x: 192
-        y: 264
-        width: 48
-        height: 44
+        x: 352
+        y: 360
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -698,12 +667,12 @@ TextureImporter:
       name: pet_wolf_run_sw_05
       rect:
         serializedVersion: 2
-        x: 240
-        y: 264
-        width: 48
-        height: 44
+        x: 440
+        y: 360
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -720,12 +689,12 @@ TextureImporter:
       name: pet_wolf_run_sw_06
       rect:
         serializedVersion: 2
-        x: 288
-        y: 264
-        width: 48
-        height: 44
+        x: 528
+        y: 360
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -742,12 +711,12 @@ TextureImporter:
       name: pet_wolf_run_sw_07
       rect:
         serializedVersion: 2
-        x: 336
-        y: 264
-        width: 48
-        height: 44
+        x: 616
+        y: 360
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -761,59 +730,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_run_sw_08
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 264
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 115cc03ca30e041ce90255c9d4a18658
-      internalID: 1748272428
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_run_sw_09
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 264
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d51ab454df79548eda3618de02d14924
-      internalID: -589199067
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_run_w_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 220
-        width: 48
-        height: 44
+        y: 300
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -830,12 +755,12 @@ TextureImporter:
       name: pet_wolf_run_w_01
       rect:
         serializedVersion: 2
-        x: 48
-        y: 220
-        width: 48
-        height: 44
+        x: 88
+        y: 300
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -852,12 +777,12 @@ TextureImporter:
       name: pet_wolf_run_w_02
       rect:
         serializedVersion: 2
-        x: 96
-        y: 220
-        width: 48
-        height: 44
+        x: 176
+        y: 300
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -874,12 +799,12 @@ TextureImporter:
       name: pet_wolf_run_w_03
       rect:
         serializedVersion: 2
-        x: 144
-        y: 220
-        width: 48
-        height: 44
+        x: 264
+        y: 300
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -896,12 +821,12 @@ TextureImporter:
       name: pet_wolf_run_w_04
       rect:
         serializedVersion: 2
-        x: 192
-        y: 220
-        width: 48
-        height: 44
+        x: 352
+        y: 300
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -918,12 +843,12 @@ TextureImporter:
       name: pet_wolf_run_w_05
       rect:
         serializedVersion: 2
-        x: 240
-        y: 220
-        width: 48
-        height: 44
+        x: 440
+        y: 300
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -940,12 +865,12 @@ TextureImporter:
       name: pet_wolf_run_w_06
       rect:
         serializedVersion: 2
-        x: 288
-        y: 220
-        width: 48
-        height: 44
+        x: 528
+        y: 300
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -962,12 +887,12 @@ TextureImporter:
       name: pet_wolf_run_w_07
       rect:
         serializedVersion: 2
-        x: 336
-        y: 220
-        width: 48
-        height: 44
+        x: 616
+        y: 300
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -981,59 +906,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_run_w_08
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 220
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9752541db8e72429fa32ea48d152f3a0
-      internalID: -324052680
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_run_w_09
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 220
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 904184ea6385b42ab86559c0ee28487c
-      internalID: -1514791918
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_run_nw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 176
-        width: 48
-        height: 44
+        y: 240
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1050,12 +931,12 @@ TextureImporter:
       name: pet_wolf_run_nw_01
       rect:
         serializedVersion: 2
-        x: 48
-        y: 176
-        width: 48
-        height: 44
+        x: 88
+        y: 240
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1072,12 +953,12 @@ TextureImporter:
       name: pet_wolf_run_nw_02
       rect:
         serializedVersion: 2
-        x: 96
-        y: 176
-        width: 48
-        height: 44
+        x: 176
+        y: 240
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1094,12 +975,12 @@ TextureImporter:
       name: pet_wolf_run_nw_03
       rect:
         serializedVersion: 2
-        x: 144
-        y: 176
-        width: 48
-        height: 44
+        x: 264
+        y: 240
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1116,12 +997,12 @@ TextureImporter:
       name: pet_wolf_run_nw_04
       rect:
         serializedVersion: 2
-        x: 192
-        y: 176
-        width: 48
-        height: 44
+        x: 352
+        y: 240
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1138,12 +1019,12 @@ TextureImporter:
       name: pet_wolf_run_nw_05
       rect:
         serializedVersion: 2
-        x: 240
-        y: 176
-        width: 48
-        height: 44
+        x: 440
+        y: 240
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1160,12 +1041,12 @@ TextureImporter:
       name: pet_wolf_run_nw_06
       rect:
         serializedVersion: 2
-        x: 288
-        y: 176
-        width: 48
-        height: 44
+        x: 528
+        y: 240
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1182,12 +1063,12 @@ TextureImporter:
       name: pet_wolf_run_nw_07
       rect:
         serializedVersion: 2
-        x: 336
-        y: 176
-        width: 48
-        height: 44
+        x: 616
+        y: 240
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1201,59 +1082,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_run_nw_08
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 176
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d3f056b251d943fb8841bb5f7ddcacf
-      internalID: 1739743060
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_run_nw_09
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 176
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 16c26db4965c0452299f0ad5c1584764
-      internalID: -352506766
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_run_n_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 132
-        width: 48
-        height: 44
+        y: 180
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1270,12 +1107,12 @@ TextureImporter:
       name: pet_wolf_run_n_01
       rect:
         serializedVersion: 2
-        x: 48
-        y: 132
-        width: 48
-        height: 44
+        x: 88
+        y: 180
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1292,12 +1129,12 @@ TextureImporter:
       name: pet_wolf_run_n_02
       rect:
         serializedVersion: 2
-        x: 96
-        y: 132
-        width: 48
-        height: 44
+        x: 176
+        y: 180
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1314,12 +1151,12 @@ TextureImporter:
       name: pet_wolf_run_n_03
       rect:
         serializedVersion: 2
-        x: 144
-        y: 132
-        width: 48
-        height: 44
+        x: 264
+        y: 180
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1336,12 +1173,12 @@ TextureImporter:
       name: pet_wolf_run_n_04
       rect:
         serializedVersion: 2
-        x: 192
-        y: 132
-        width: 48
-        height: 44
+        x: 352
+        y: 180
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1358,12 +1195,12 @@ TextureImporter:
       name: pet_wolf_run_n_05
       rect:
         serializedVersion: 2
-        x: 240
-        y: 132
-        width: 48
-        height: 44
+        x: 440
+        y: 180
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1380,12 +1217,12 @@ TextureImporter:
       name: pet_wolf_run_n_06
       rect:
         serializedVersion: 2
-        x: 288
-        y: 132
-        width: 48
-        height: 44
+        x: 528
+        y: 180
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1402,12 +1239,12 @@ TextureImporter:
       name: pet_wolf_run_n_07
       rect:
         serializedVersion: 2
-        x: 336
-        y: 132
-        width: 48
-        height: 44
+        x: 616
+        y: 180
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1421,59 +1258,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_run_n_08
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 132
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be9991cab9f2f43b1b705beed2051b2e
-      internalID: -1125321348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_run_n_09
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 132
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fabac8e43e5e7452ca1f0490b76ef530
-      internalID: -693293497
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_run_ne_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 88
-        width: 48
-        height: 44
+        y: 120
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1490,12 +1283,12 @@ TextureImporter:
       name: pet_wolf_run_ne_01
       rect:
         serializedVersion: 2
-        x: 48
-        y: 88
-        width: 48
-        height: 44
+        x: 88
+        y: 120
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1512,12 +1305,12 @@ TextureImporter:
       name: pet_wolf_run_ne_02
       rect:
         serializedVersion: 2
-        x: 96
-        y: 88
-        width: 48
-        height: 44
+        x: 176
+        y: 120
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1534,12 +1327,12 @@ TextureImporter:
       name: pet_wolf_run_ne_03
       rect:
         serializedVersion: 2
-        x: 144
-        y: 88
-        width: 48
-        height: 44
+        x: 264
+        y: 120
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1556,12 +1349,12 @@ TextureImporter:
       name: pet_wolf_run_ne_04
       rect:
         serializedVersion: 2
-        x: 192
-        y: 88
-        width: 48
-        height: 44
+        x: 352
+        y: 120
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1578,12 +1371,12 @@ TextureImporter:
       name: pet_wolf_run_ne_05
       rect:
         serializedVersion: 2
-        x: 240
-        y: 88
-        width: 48
-        height: 44
+        x: 440
+        y: 120
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1600,12 +1393,12 @@ TextureImporter:
       name: pet_wolf_run_ne_06
       rect:
         serializedVersion: 2
-        x: 288
-        y: 88
-        width: 48
-        height: 44
+        x: 528
+        y: 120
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1622,12 +1415,12 @@ TextureImporter:
       name: pet_wolf_run_ne_07
       rect:
         serializedVersion: 2
-        x: 336
-        y: 88
-        width: 48
-        height: 44
+        x: 616
+        y: 120
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1641,59 +1434,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_run_ne_08
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 88
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d7201b90bba1a4b3a9948d6c0ad2c316
-      internalID: -125702080
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_run_ne_09
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 88
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 36085bd16ddc846cd963f255eb1634de
-      internalID: -1776948546
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_run_e_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 44
-        width: 48
-        height: 44
+        y: 60
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1710,12 +1459,12 @@ TextureImporter:
       name: pet_wolf_run_e_01
       rect:
         serializedVersion: 2
-        x: 48
-        y: 44
-        width: 48
-        height: 44
+        x: 88
+        y: 60
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1732,12 +1481,12 @@ TextureImporter:
       name: pet_wolf_run_e_02
       rect:
         serializedVersion: 2
-        x: 96
-        y: 44
-        width: 48
-        height: 44
+        x: 176
+        y: 60
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1754,12 +1503,12 @@ TextureImporter:
       name: pet_wolf_run_e_03
       rect:
         serializedVersion: 2
-        x: 144
-        y: 44
-        width: 48
-        height: 44
+        x: 264
+        y: 60
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1776,12 +1525,12 @@ TextureImporter:
       name: pet_wolf_run_e_04
       rect:
         serializedVersion: 2
-        x: 192
-        y: 44
-        width: 48
-        height: 44
+        x: 352
+        y: 60
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1798,12 +1547,12 @@ TextureImporter:
       name: pet_wolf_run_e_05
       rect:
         serializedVersion: 2
-        x: 240
-        y: 44
-        width: 48
-        height: 44
+        x: 440
+        y: 60
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1820,12 +1569,12 @@ TextureImporter:
       name: pet_wolf_run_e_06
       rect:
         serializedVersion: 2
-        x: 288
-        y: 44
-        width: 48
-        height: 44
+        x: 528
+        y: 60
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1842,12 +1591,12 @@ TextureImporter:
       name: pet_wolf_run_e_07
       rect:
         serializedVersion: 2
-        x: 336
-        y: 44
-        width: 48
-        height: 44
+        x: 616
+        y: 60
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1861,59 +1610,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_run_e_08
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 44
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1ce3630962a37446890f29f3d0ba2b7e
-      internalID: 805660550
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_run_e_09
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 44
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 50e2a647a1a7a4ce0a0374c5e734f604
-      internalID: 1314784461
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_run_se_00
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 44
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1930,12 +1635,12 @@ TextureImporter:
       name: pet_wolf_run_se_01
       rect:
         serializedVersion: 2
-        x: 48
+        x: 88
         y: 0
-        width: 48
-        height: 44
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1952,12 +1657,12 @@ TextureImporter:
       name: pet_wolf_run_se_02
       rect:
         serializedVersion: 2
-        x: 96
+        x: 176
         y: 0
-        width: 48
-        height: 44
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1974,12 +1679,12 @@ TextureImporter:
       name: pet_wolf_run_se_03
       rect:
         serializedVersion: 2
-        x: 144
+        x: 264
         y: 0
-        width: 48
-        height: 44
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1996,12 +1701,12 @@ TextureImporter:
       name: pet_wolf_run_se_04
       rect:
         serializedVersion: 2
-        x: 192
+        x: 352
         y: 0
-        width: 48
-        height: 44
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2018,12 +1723,12 @@ TextureImporter:
       name: pet_wolf_run_se_05
       rect:
         serializedVersion: 2
-        x: 240
+        x: 440
         y: 0
-        width: 48
-        height: 44
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2040,12 +1745,12 @@ TextureImporter:
       name: pet_wolf_run_se_06
       rect:
         serializedVersion: 2
-        x: 288
+        x: 528
         y: 0
-        width: 48
-        height: 44
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2062,12 +1767,12 @@ TextureImporter:
       name: pet_wolf_run_se_07
       rect:
         serializedVersion: 2
-        x: 336
+        x: 616
         y: 0
-        width: 48
-        height: 44
+        width: 88
+        height: 60
       alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
+      pivot: {x: 0.5, y: 0.06666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2076,50 +1781,6 @@ TextureImporter:
       bones: []
       spriteID: 64287ac10d74f4a0f92a0adc9c7a859b
       internalID: 293269964
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_run_se_08
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5fa4f65760f704f618693f0a0a3d52ce
-      internalID: 311265954
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_run_se_09
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 0
-        width: 48
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5, y: 0.20454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd8886ffca83b409889b85c32d4cf631
-      internalID: -472282515
       vertices: []
       indices: 
       edges: []
@@ -2146,8 +1807,6 @@ TextureImporter:
       pet_wolf_run_e_05: 1997607679
       pet_wolf_run_e_06: 1056643856
       pet_wolf_run_e_07: -18338110
-      pet_wolf_run_e_08: 805660550
-      pet_wolf_run_e_09: 1314784461
       pet_wolf_run_n_00: 301810086
       pet_wolf_run_n_01: 1335084304
       pet_wolf_run_n_02: 1478190674
@@ -2156,8 +1815,6 @@ TextureImporter:
       pet_wolf_run_n_05: -695339805
       pet_wolf_run_n_06: -2123340366
       pet_wolf_run_n_07: -1509668478
-      pet_wolf_run_n_08: -1125321348
-      pet_wolf_run_n_09: -693293497
       pet_wolf_run_ne_00: -1608303020
       pet_wolf_run_ne_01: -2054570816
       pet_wolf_run_ne_02: -321531114
@@ -2166,8 +1823,6 @@ TextureImporter:
       pet_wolf_run_ne_05: -151305284
       pet_wolf_run_ne_06: 1611284506
       pet_wolf_run_ne_07: 1308195355
-      pet_wolf_run_ne_08: -125702080
-      pet_wolf_run_ne_09: -1776948546
       pet_wolf_run_nw_00: -1159891482
       pet_wolf_run_nw_01: -1368338126
       pet_wolf_run_nw_02: -978604222
@@ -2176,8 +1831,6 @@ TextureImporter:
       pet_wolf_run_nw_05: -1226615933
       pet_wolf_run_nw_06: 1318935750
       pet_wolf_run_nw_07: 114922786
-      pet_wolf_run_nw_08: 1739743060
-      pet_wolf_run_nw_09: -352506766
       pet_wolf_run_s_00: -1236763920
       pet_wolf_run_s_01: 1748464813
       pet_wolf_run_s_02: 861253624
@@ -2186,8 +1839,6 @@ TextureImporter:
       pet_wolf_run_s_05: 1578679325
       pet_wolf_run_s_06: -52451792
       pet_wolf_run_s_07: -1712125773
-      pet_wolf_run_s_08: -452546969
-      pet_wolf_run_s_09: -871710529
       pet_wolf_run_se_00: 141643722
       pet_wolf_run_se_01: 989026063
       pet_wolf_run_se_02: -807772226
@@ -2196,8 +1847,6 @@ TextureImporter:
       pet_wolf_run_se_05: -452346376
       pet_wolf_run_se_06: 321386107
       pet_wolf_run_se_07: 293269964
-      pet_wolf_run_se_08: 311265954
-      pet_wolf_run_se_09: -472282515
       pet_wolf_run_sw_00: 227495710
       pet_wolf_run_sw_01: 91620444
       pet_wolf_run_sw_02: 416535903
@@ -2206,8 +1855,6 @@ TextureImporter:
       pet_wolf_run_sw_05: 664374989
       pet_wolf_run_sw_06: -1809744921
       pet_wolf_run_sw_07: 186927973
-      pet_wolf_run_sw_08: 1748272428
-      pet_wolf_run_sw_09: -589199067
       pet_wolf_run_w_00: -1578094179
       pet_wolf_run_w_01: -215267521
       pet_wolf_run_w_02: -3405732
@@ -2216,8 +1863,6 @@ TextureImporter:
       pet_wolf_run_w_05: -1052848122
       pet_wolf_run_w_06: -529694976
       pet_wolf_run_w_07: -399549221
-      pet_wolf_run_w_08: -324052680
-      pet_wolf_run_w_09: -1514791918
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

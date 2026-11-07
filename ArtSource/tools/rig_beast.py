@@ -196,6 +196,73 @@ def bind(o, arm):
     print("REPORT bound: %d of %d missed, filled" % (missed, len(vs)))
 
 
+def marks(o):
+    """A pet's marks (2026-11-05, the pet wolf; rig.json "collar": true): a bright red collar round the neck and two red
+    eyes, made as shapes and joined into the body (weighted with it), so they survive the bake at thirty or forty pixels,
+    where the picture's thin collar and eye dots were lost. Their texture is a red square in the albedo's corner."""
+    co = np.array([v.co[:] for v in o.data.vertices])
+    H = co[:, 2].max()
+    line = body_line(co)
+    chest = line[(3 * len(line)) // 4 - 1]
+    neck_end = line[-2]
+    centre = chest.lerp(neck_end, 0.42)
+    d = (neck_end - chest).normalized()
+    rel = co - np.array(centre[:])
+    along = rel @ np.array(d[:])
+    slab = rel[np.abs(along) < 0.03 * H]
+    radial = slab - np.outer(slab @ np.array(d[:]), np.array(d[:]))
+    R = float(np.percentile(np.linalg.norm(radial, axis=1), 50)) * 0.78 if len(slab) else 0.08 * H
+    parts = []
+    bpy.ops.mesh.primitive_torus_add(location=centre, major_radius=R, minor_radius=0.04 * H, major_segments=24, minor_segments=6)
+    ring = bpy.context.active_object
+    ring.rotation_mode = "QUATERNION"
+    ring.rotation_quaternion = V((0, 0, 1)).rotation_difference(d)
+    parts.append(ring)
+    # The eyes: on the head's sides, two thirds of the way up it, a little before its middle.
+    front = line[-1]
+    at = neck_end.lerp(front, 0.45)
+    head = co[np.abs(co[:, 1] - at.y) < 0.03 * H]
+    if len(head):
+        z0, z1 = head[:, 2].min(), head[:, 2].max()
+        ez = z0 + (z1 - z0) * 0.68
+        band = head[np.abs(head[:, 2] - ez) < 0.03 * H]
+        half = np.abs(band[:, 0]).max() if len(band) else 0.05 * H
+        for side in (1, -1):
+            bpy.ops.mesh.primitive_uv_sphere_add(location=(side * half * 0.9, at.y, ez), radius=0.03 * H, segments=8, ring_count=6)
+            parts.append(bpy.context.active_object)
+    for part in parts:
+        bpy.context.view_layer.objects.active = part
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+        # Every UV layer it has (a new shape comes with one), named as the body's, onto the red square.
+        if not part.data.uv_layers:
+            part.data.uv_layers.new()
+        if o.data.uv_layers:
+            part.data.uv_layers[0].name = o.data.uv_layers[0].name
+        for uv in part.data.uv_layers:
+            for loop in uv.data:
+                loop.uv = (0.006, 0.006)
+    bpy.ops.object.select_all(action="DESELECT")
+    for part in parts:
+        part.select_set(True)
+    o.select_set(True)
+    bpy.context.view_layer.objects.active = o
+    bpy.ops.object.join()
+    print("REPORT marks: collar radius %.3f, %d eyes" % (R, len(parts) - 1))
+    return bpy.context.view_layer.objects.active
+
+
+def paint_marks(albedo):
+    """The red square in the albedo's corner the marks are mapped to."""
+    img = bpy.data.images.load(albedo)
+    w, h = img.size
+    px = np.array(img.pixels[:], dtype=np.float32).reshape(h, w, 4)
+    px[0:48, 0:48] = (0.78, 0.07, 0.05, 1.0)
+    img.pixels = px.ravel()
+    img.filepath_raw = albedo
+    img.file_format = "PNG"
+    img.save()
+
+
 # ---------------------------------------------------------------- the clips
 
 def ease(x):
@@ -347,6 +414,8 @@ def main():
     out = path(CFG["out"])
     os.makedirs(out, exist_ok=True)
     o = load()
+    if CFG.get("collar"):
+        o = marks(o)
     H = np.array([v.co[2] for v in o.data.vertices]).max()
     arm = build(o)
     bind(o, arm)
@@ -362,6 +431,8 @@ def main():
     bpy.ops.export_scene.fbx(filepath=f, use_selection=True, add_leaf_bones=False, bake_anim=True, bake_anim_use_all_actions=True,
                              bake_anim_use_nla_strips=False, path_mode="STRIP", embed_textures=False, apply_scale_options="FBX_SCALE_ALL")
     shutil.copyfile(path(CFG["albedo"]), os.path.join(out, CFG["name"] + "_albedo.png"))
+    if CFG.get("collar"):
+        paint_marks(os.path.join(out, CFG["name"] + "_albedo.png"))
     print("REPORT wrote", os.path.relpath(f, ROOT), "bones", len(arm.data.bones))
 
 

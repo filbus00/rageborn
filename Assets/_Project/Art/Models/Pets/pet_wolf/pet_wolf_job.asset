@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b7ef2a89c554486bb05c81650498d7, type: 3}
   m_Name: pet_wolf_job
   m_EditorClassIdentifier: ARPG.Editor::ARPG.Editor.SpriteBakeJob
+  lookSwaps: []
+  boneScales: []
+  pieceScale: 1
+  lightContrast: 1.5
+  edgeHighlight: 0
+  define: 1
+  textureSwaps: []
+  trimSheets: 1
   characterName: pet_wolf
   bodies:
   - look: 
@@ -76,13 +84,36 @@ MonoBehaviour:
       legs: {fileID: 0}
       legsGroundSpeed: 4.4
       offHandOnly: 0
-  pixelsPerUnit: 40
-  cellSize: 80
-  pivot: {x: 40, y: 12}
-  targetHeightPixels: 46.325
+    - name: dash
+      clip: {fileID: 1728212603955262588, guid: 928ac864ce4f94695afc836078c9df7b, type: 3}
+      frames: 10
+      loop: 0
+      playbackSeconds: 0.5
+      start: 0
+      end: 0.5
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+    - name: walk
+      clip: {fileID: -4799524434163024911, guid: 928ac864ce4f94695afc836078c9df7b, type: 3}
+      frames: 12
+      loop: 1
+      playbackSeconds: 1
+      start: 0
+      end: 1
+      riseScale: 1
+      legs: {fileID: 0}
+      legsGroundSpeed: 4.4
+      offHandOnly: 0
+  pixelsPerUnit: 27
+  cellSize: 90
+  pivot: {x: 45, y: 8}
+  targetHeightPixels: 43.777126
   bakedScale: 1
   pixelArt: 1
   supersample: 4
   framesPerSecond: 12
   directions: 8
+  onlyRow: -1
   outputFolder: Assets/_Project/Resources/Characters/pet_wolf
