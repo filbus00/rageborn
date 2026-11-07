@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: e6f42493986364b25866282bf17df1a0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3924160307568764841
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_0
+  - first:
+      213: 2114038925817194788
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_1
+  - first:
+      213: -1438576175108752873
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_2
+  - first:
+      213: 3580695076296410206
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_3
+  - first:
+      213: -4673565373514532903
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_4
+  - first:
+      213: -7365580079605263346
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_5
+  - first:
+      213: 2370852590015510301
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_6
+  - first:
+      213: -8819787996926651889
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_7
+  - first:
+      213: 187937754599115272
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_8
+  - first:
+      213: 4371206292538237542
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_9
+  - first:
+      213: 3112851544761297044
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_10
+  - first:
+      213: -7312292261671837391
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_11
+  - first:
+      213: -2434393129221351457
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_12
+  - first:
+      213: 6525990466169938063
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_13
+  - first:
+      213: -7502615043944004585
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_14
+  - first:
+      213: 6809135205619244488
+    second: wild_arrow_drawn_body_cinder_jerkin_1h_hit_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 364
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f6e7225480a64e5bb625f6dfabd8bd3
+      internalID: 1027026736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 364
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cdb29814cdaa49b089ef897fd4d55b6
+      internalID: -281557306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce4fbd14662ab422db5bd735401859ad
+      internalID: -894935769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 312
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b77fb3531527406ca822b98093d8100
+      internalID: -1385021115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 260
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4538407f50bd4d09984f66f22caf5a3
+      internalID: -1654933182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 260
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9d2dcd30d4584de0a5d84c66b6a8157
+      internalID: 1438449104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f24bfae32d4de4309bf6287365861e96
+      internalID: 1942138146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 208
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cadff9e88ab1c4e37b383af60d14220f
+      internalID: 449804359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31b260661421e46c18d4fcf8a94a76d3
+      internalID: -25067223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 156
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d88734ac16cc0439fb4df12a80626e8b
+      internalID: -426314717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71cafd559b430401f905975bcef3f7b1
+      internalID: 440531101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 104
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbd6dda9b7db845098631fb255f322ea
+      internalID: 1933194498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c280c59c450f4d85b3c621046c77bb6
+      internalID: 1977788359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 52
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a641b7416ad7243488f262593f7294c7
+      internalID: 1344537791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 570e8d8b716e843c69ec2bc99aad67d0
+      internalID: -294074639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_cinder_jerkin_1h_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 0
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d71c25182a32244c8b3ebd2e5413ff39
+      internalID: -1937297506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: dfdb509bfb6d540e0a9618c2821c9aa2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_e_00: 1977788359
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_e_01: 1344537791
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_n_00: -25067223
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_n_01: -426314717
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_ne_00: 440531101
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_ne_01: 1933194498
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_nw_00: 1942138146
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_nw_01: 449804359
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_s_00: 1027026736
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_s_01: -281557306
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_se_00: -294074639
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_se_01: -1937297506
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_sw_00: -894935769
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_sw_01: -1385021115
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_w_00: -1654933182
+      wild_arrow_drawn_body_cinder_jerkin_1h_hit_w_01: 1438449104
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

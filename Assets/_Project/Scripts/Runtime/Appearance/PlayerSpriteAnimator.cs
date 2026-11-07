@@ -16,6 +16,10 @@ namespace ARPG
     public class PlayerSpriteAnimator : MonoBehaviour
     {
         public const string WildArrowCharacter = "wild_arrow";
+
+        /// <summary>The Wild Arrow drawn in the 16x16 style (2026-11-07, ArtSource/pixel/sixteen/wild_arrow_16.py): one body
+        /// layer, a look per armour tier, no other layers. Shown in place of the baked one when its sheets exist.</summary>
+        public const string WildArrowDrawnCharacter = "wild_arrow_drawn";
         public const string WrathbornCharacter = "wrathborn";
 
         static string defaultCharacter;
@@ -30,10 +34,15 @@ namespace ARPG
         /// longer show (bows only, 2026-09-30).
         /// </summary>
         public static string DefaultCharacter => defaultCharacter ??=
+            HasBareBody(WildArrowDrawnCharacter) ? WildArrowDrawnCharacter :
             CharacterSheets.Load($"Characters/{WildArrowCharacter}/" +
                                  AppearanceRules.SheetName(WildArrowCharacter, AppearanceLayer.Body, AppearanceRules.BareBody, CharacterGrip.OneHand, "idle")) != null
                 ? WildArrowCharacter
                 : WrathbornCharacter;
+
+        static bool HasBareBody(string character) =>
+            CharacterSheets.Load($"Characters/{character}/" +
+                                 AppearanceRules.SheetName(character, AppearanceLayer.Body, AppearanceRules.BareBody, CharacterGrip.OneHand, "idle")) != null;
 
         const float HitSeconds = 0.3f;
         const float MaxSkillSeconds = 1.2f;

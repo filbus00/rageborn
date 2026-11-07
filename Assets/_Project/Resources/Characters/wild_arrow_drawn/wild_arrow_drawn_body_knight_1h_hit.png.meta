@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: 98470b89204ba456abeec617dc1afc32
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -933761503336031141
+    second: wild_arrow_drawn_body_knight_1h_hit_0
+  - first:
+      213: 2968374443638993170
+    second: wild_arrow_drawn_body_knight_1h_hit_1
+  - first:
+      213: 3235499339697716664
+    second: wild_arrow_drawn_body_knight_1h_hit_2
+  - first:
+      213: -2190162685635545294
+    second: wild_arrow_drawn_body_knight_1h_hit_3
+  - first:
+      213: 251582206032994498
+    second: wild_arrow_drawn_body_knight_1h_hit_4
+  - first:
+      213: -5786732523316554921
+    second: wild_arrow_drawn_body_knight_1h_hit_5
+  - first:
+      213: -3547433023349090445
+    second: wild_arrow_drawn_body_knight_1h_hit_6
+  - first:
+      213: -30694770504205689
+    second: wild_arrow_drawn_body_knight_1h_hit_7
+  - first:
+      213: -2235492310566554575
+    second: wild_arrow_drawn_body_knight_1h_hit_8
+  - first:
+      213: 7600129953568163783
+    second: wild_arrow_drawn_body_knight_1h_hit_9
+  - first:
+      213: -6214555799909751359
+    second: wild_arrow_drawn_body_knight_1h_hit_10
+  - first:
+      213: 2143374957211488187
+    second: wild_arrow_drawn_body_knight_1h_hit_11
+  - first:
+      213: -2043045058956380217
+    second: wild_arrow_drawn_body_knight_1h_hit_12
+  - first:
+      213: 1671266159956732207
+    second: wild_arrow_drawn_body_knight_1h_hit_13
+  - first:
+      213: -1600657663357306890
+    second: wild_arrow_drawn_body_knight_1h_hit_14
+  - first:
+      213: 5580525281029805870
+    second: wild_arrow_drawn_body_knight_1h_hit_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 364
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417271007d25745479ecb0d24a29ce4d
+      internalID: -984991868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 364
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 876c4456d63164c37bff2c1d3e532558
+      internalID: 1633900525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23f9bac166e8b414cbb167ae59dbe7dd
+      internalID: 1639392981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 312
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3a014c73a61044eb811bf587e3ad73a
+      internalID: 1298228984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 260
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 147750bf93c994ea289928673a5dd51d
+      internalID: 155441421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 260
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 785c3818cb6674fd18826d16d1d95ce4
+      internalID: 1076774767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dbdb5ce1aba14f789509379b417568a
+      internalID: -415941993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 208
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65da723645f7a4ce3bb80b73f1a26b9c
+      internalID: 2028735714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b39907f96e380487d95ed01f135b91fb
+      internalID: -192422199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 156
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76aac9c231b9b40449c4bd5a608333ab
+      internalID: 1492616554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5937056747c2040cc86e0e468e2cb88b
+      internalID: -1160255711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 104
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e8daff72bdc8447f95d665c335c29c6
+      internalID: 326227557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 892a47983fce74b768023bbd197f977a
+      internalID: 284613412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 52
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1d9059bd1bdf40149d2520fc712cc16
+      internalID: 2003592586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cf77dcdd5e454477adb20bac6f0e6ac
+      internalID: -84156483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_knight_1h_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 0
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc25a304843724961ab515d34306e6ad
+      internalID: 522838184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0bd2316612e8d4d3dbd414bdfc9fef07
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      wild_arrow_drawn_body_knight_1h_hit_e_00: 284613412
+      wild_arrow_drawn_body_knight_1h_hit_e_01: 2003592586
+      wild_arrow_drawn_body_knight_1h_hit_n_00: -192422199
+      wild_arrow_drawn_body_knight_1h_hit_n_01: 1492616554
+      wild_arrow_drawn_body_knight_1h_hit_ne_00: -1160255711
+      wild_arrow_drawn_body_knight_1h_hit_ne_01: 326227557
+      wild_arrow_drawn_body_knight_1h_hit_nw_00: -415941993
+      wild_arrow_drawn_body_knight_1h_hit_nw_01: 2028735714
+      wild_arrow_drawn_body_knight_1h_hit_s_00: -984991868
+      wild_arrow_drawn_body_knight_1h_hit_s_01: 1633900525
+      wild_arrow_drawn_body_knight_1h_hit_se_00: -84156483
+      wild_arrow_drawn_body_knight_1h_hit_se_01: 522838184
+      wild_arrow_drawn_body_knight_1h_hit_sw_00: 1639392981
+      wild_arrow_drawn_body_knight_1h_hit_sw_01: 1298228984
+      wild_arrow_drawn_body_knight_1h_hit_w_00: 155441421
+      wild_arrow_drawn_body_knight_1h_hit_w_01: 1076774767
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: 7cf8e0800904c4cad9603787f481b0e0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4371226548417591343
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_0
+  - first:
+      213: -7383712510175856572
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_1
+  - first:
+      213: -2799980141649872720
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_2
+  - first:
+      213: 7639770385240826859
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_3
+  - first:
+      213: 8041110134810167970
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_4
+  - first:
+      213: 6710399834753025265
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_5
+  - first:
+      213: 2857792834381888920
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_6
+  - first:
+      213: -3857489374703405857
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_7
+  - first:
+      213: -3421088193845354542
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_8
+  - first:
+      213: -2178975529712882641
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_9
+  - first:
+      213: 9029028848867030328
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_10
+  - first:
+      213: 2181392805852311356
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_11
+  - first:
+      213: 1019656545206232005
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_12
+  - first:
+      213: 2474212169838573756
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_13
+  - first:
+      213: -6455380202645547312
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_14
+  - first:
+      213: 4416929422234664466
+    second: wild_arrow_drawn_body_stag_hide_1h_hit_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 364
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bde35609fc3f4c9180f01a9ca0fd0aa
+      internalID: -1323841208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 364
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34a5b20ef6e474b48925afa3bd294a11
+      internalID: 421536363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db2f0f2f384904b8cb244d4c1cf88ce7
+      internalID: -625589673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 312
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89b6529d1d9664f9c94ecdb83b18ad81
+      internalID: -2117031034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 260
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 372a52910ed4c4cba8b6c7e7057282f5
+      internalID: -569176931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 260
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 582516614a5aa4245ab3e3cc96b072a8
+      internalID: 1232587997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45ea1057c48f0455ca8e44aefc8e144e
+      internalID: 875154235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 208
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f637a6f89a0143c3af6f60bc9abe51f
+      internalID: -725061451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d68d595120aa47b4a2e983987dbe4f9
+      internalID: -288950032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 156
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12ef33a789a2745f6bab926ff5f422e2
+      internalID: 1030771844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed402801c0e1a4846b0d8100cc262519
+      internalID: -501600984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 104
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb88dddaf8ba94507a682bf4ec440cab
+      internalID: -334506907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2d011f26f0f340989339f766ce79b0c
+      internalID: -2132150167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 52
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5d38ca62087742c690b641f403bd1ab
+      internalID: -911581186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de81770e1750e44cda276809dbc026bb
+      internalID: -907446644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_stag_hide_1h_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 0
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1de2472c651ab47c78b14a29f43ebc0e
+      internalID: -793174681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a91b0339a5d5847839dae5097c79028f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      wild_arrow_drawn_body_stag_hide_1h_hit_e_00: -2132150167
+      wild_arrow_drawn_body_stag_hide_1h_hit_e_01: -911581186
+      wild_arrow_drawn_body_stag_hide_1h_hit_n_00: -288950032
+      wild_arrow_drawn_body_stag_hide_1h_hit_n_01: 1030771844
+      wild_arrow_drawn_body_stag_hide_1h_hit_ne_00: -501600984
+      wild_arrow_drawn_body_stag_hide_1h_hit_ne_01: -334506907
+      wild_arrow_drawn_body_stag_hide_1h_hit_nw_00: 875154235
+      wild_arrow_drawn_body_stag_hide_1h_hit_nw_01: -725061451
+      wild_arrow_drawn_body_stag_hide_1h_hit_s_00: -1323841208
+      wild_arrow_drawn_body_stag_hide_1h_hit_s_01: 421536363
+      wild_arrow_drawn_body_stag_hide_1h_hit_se_00: -907446644
+      wild_arrow_drawn_body_stag_hide_1h_hit_se_01: -793174681
+      wild_arrow_drawn_body_stag_hide_1h_hit_sw_00: -625589673
+      wild_arrow_drawn_body_stag_hide_1h_hit_sw_01: -2117031034
+      wild_arrow_drawn_body_stag_hide_1h_hit_w_00: -569176931
+      wild_arrow_drawn_body_stag_hide_1h_hit_w_01: 1232587997
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

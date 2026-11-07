@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: b2f688aaf387b4c928bee782a5bf1d72
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 888461175414074162
+    second: wild_arrow_drawn_body_bare_1h_hit_0
+  - first:
+      213: -4068715276505131144
+    second: wild_arrow_drawn_body_bare_1h_hit_1
+  - first:
+      213: 1623968603807759288
+    second: wild_arrow_drawn_body_bare_1h_hit_2
+  - first:
+      213: -6580845961803008977
+    second: wild_arrow_drawn_body_bare_1h_hit_3
+  - first:
+      213: -6108702589948369564
+    second: wild_arrow_drawn_body_bare_1h_hit_4
+  - first:
+      213: -5791956180906962904
+    second: wild_arrow_drawn_body_bare_1h_hit_5
+  - first:
+      213: 7671919787015797968
+    second: wild_arrow_drawn_body_bare_1h_hit_6
+  - first:
+      213: -3904740218023708949
+    second: wild_arrow_drawn_body_bare_1h_hit_7
+  - first:
+      213: 3039442470871306754
+    second: wild_arrow_drawn_body_bare_1h_hit_8
+  - first:
+      213: 6197433309991879637
+    second: wild_arrow_drawn_body_bare_1h_hit_9
+  - first:
+      213: -7279648204156135925
+    second: wild_arrow_drawn_body_bare_1h_hit_10
+  - first:
+      213: 7725776242254907852
+    second: wild_arrow_drawn_body_bare_1h_hit_11
+  - first:
+      213: 5925030551794469421
+    second: wild_arrow_drawn_body_bare_1h_hit_12
+  - first:
+      213: -5267860291666737754
+    second: wild_arrow_drawn_body_bare_1h_hit_13
+  - first:
+      213: 128119640076669783
+    second: wild_arrow_drawn_body_bare_1h_hit_14
+  - first:
+      213: -816754484682529593
+    second: wild_arrow_drawn_body_bare_1h_hit_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 364
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d180bb2318ba54cf9b5896be1fb025e9
+      internalID: -650655140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 364
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a2540d03a8c64b2d87fa89355dfd880
+      internalID: 1171658660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34269e215990c46148ade4ea060bf707
+      internalID: -1588952426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 312
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a90d847909b284beda92d6d604c7a0a3
+      internalID: -1055622837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 260
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbf20932aa4b849c48206ae1ea2c9d5d
+      internalID: -311360897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 260
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7ac42aa7683d48aa9f5104f8fdf9531
+      internalID: -739340418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b760351bf7ff45bdb861e763238617a
+      internalID: 1086101968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 208
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb2b5bd777c8b4ace9024f43b56fd096
+      internalID: -99370055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b847f974537694124a14013d1d40cebe
+      internalID: 1869443087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 156
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe783c5110fd64d57835d39cee2f44e1
+      internalID: 1205965303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4be39c291207e4271957c4211df54ba0
+      internalID: 1954243265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 104
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60987587d893048f09abd3002ee742e7
+      internalID: -1754715927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5418226afbe764c9eb9ebf21b09165b4
+      internalID: 1944225587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 52
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5756d73bd5b074bff8325c8e2f8ff974
+      internalID: 1101341541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9bfe83e24f7d4e1185922136840e609
+      internalID: 2012422752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_body_bare_1h_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 0
+        width: 58
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f09659e6966b74cab8f41d9087a5971c
+      internalID: -1503549331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 710947074f47d4949b2597dae7f0dc4f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      wild_arrow_drawn_body_bare_1h_hit_e_00: 1944225587
+      wild_arrow_drawn_body_bare_1h_hit_e_01: 1101341541
+      wild_arrow_drawn_body_bare_1h_hit_n_00: 1869443087
+      wild_arrow_drawn_body_bare_1h_hit_n_01: 1205965303
+      wild_arrow_drawn_body_bare_1h_hit_ne_00: 1954243265
+      wild_arrow_drawn_body_bare_1h_hit_ne_01: -1754715927
+      wild_arrow_drawn_body_bare_1h_hit_nw_00: 1086101968
+      wild_arrow_drawn_body_bare_1h_hit_nw_01: -99370055
+      wild_arrow_drawn_body_bare_1h_hit_s_00: -650655140
+      wild_arrow_drawn_body_bare_1h_hit_s_01: 1171658660
+      wild_arrow_drawn_body_bare_1h_hit_se_00: 2012422752
+      wild_arrow_drawn_body_bare_1h_hit_se_01: -1503549331
+      wild_arrow_drawn_body_bare_1h_hit_sw_00: -1588952426
+      wild_arrow_drawn_body_bare_1h_hit_sw_01: -1055622837
+      wild_arrow_drawn_body_bare_1h_hit_w_00: -311360897
+      wild_arrow_drawn_body_bare_1h_hit_w_01: -739340418
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

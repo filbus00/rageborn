@@ -36,6 +36,10 @@ namespace ARPG.Editor
             public int frames;
             public float seconds;
             public float speed;
+
+            /// <summary>The timing file's key when it is not the clip's name (the drawn Wild Arrow's body sheets,
+            /// "body_ranger_1h_idle", time as her baked "1h_idle").</summary>
+            public string key;
         }
 
         /// <summary>Whether a character is drawn here, so the sprite bake leaves it alone.</summary>
@@ -62,6 +66,7 @@ namespace ARPG.Editor
             var written = new HashSet<string>();
             var culture = System.Globalization.CultureInfo.InvariantCulture;
             var timing = new List<string>();
+            var timed = new HashSet<string>();
             foreach (var clip in sheet.animations)
             {
                 var path = $"{target}/{name}_{clip.name}.png";
@@ -69,7 +74,9 @@ namespace ARPG.Editor
                 written.Add(path);
                 AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
                 Slice(path, name, clip, sheet);
-                timing.Add($"{clip.name} {clip.seconds.ToString("0.###", culture)}" + (clip.speed > 0f ? " " + clip.speed.ToString("0.###", culture) : ""));
+                var key = string.IsNullOrEmpty(clip.key) ? clip.name : clip.key;
+                if (timed.Add(key))
+                    timing.Add($"{key} {clip.seconds.ToString("0.###", culture)}" + (clip.speed > 0f ? " " + clip.speed.ToString("0.###", culture) : ""));
             }
             File.WriteAllLines($"{target}/{name}_timing.txt", timing);
             AssetDatabase.ImportAsset($"{target}/{name}_timing.txt");
