@@ -322,7 +322,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -430,11 +430,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 420
-        width: 88
-        height: 60
+        y: 315
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -451,12 +451,12 @@ TextureImporter:
       name: pet_wolf_idle_s_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 420
-        width: 88
-        height: 60
+        x: 66
+        y: 315
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -473,12 +473,12 @@ TextureImporter:
       name: pet_wolf_idle_s_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 420
-        width: 88
-        height: 60
+        x: 132
+        y: 315
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -495,12 +495,12 @@ TextureImporter:
       name: pet_wolf_idle_s_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 420
-        width: 88
-        height: 60
+        x: 198
+        y: 315
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -518,11 +518,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 360
-        width: 88
-        height: 60
+        y: 270
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -539,12 +539,12 @@ TextureImporter:
       name: pet_wolf_idle_sw_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 360
-        width: 88
-        height: 60
+        x: 66
+        y: 270
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -561,12 +561,12 @@ TextureImporter:
       name: pet_wolf_idle_sw_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 360
-        width: 88
-        height: 60
+        x: 132
+        y: 270
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -583,12 +583,12 @@ TextureImporter:
       name: pet_wolf_idle_sw_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 360
-        width: 88
-        height: 60
+        x: 198
+        y: 270
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -606,11 +606,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 300
-        width: 88
-        height: 60
+        y: 225
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -627,12 +627,12 @@ TextureImporter:
       name: pet_wolf_idle_w_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 300
-        width: 88
-        height: 60
+        x: 66
+        y: 225
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -649,12 +649,12 @@ TextureImporter:
       name: pet_wolf_idle_w_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 300
-        width: 88
-        height: 60
+        x: 132
+        y: 225
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -671,12 +671,12 @@ TextureImporter:
       name: pet_wolf_idle_w_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 300
-        width: 88
-        height: 60
+        x: 198
+        y: 225
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -694,11 +694,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 88
-        height: 60
+        y: 180
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -715,12 +715,12 @@ TextureImporter:
       name: pet_wolf_idle_nw_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 240
-        width: 88
-        height: 60
+        x: 66
+        y: 180
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -737,12 +737,12 @@ TextureImporter:
       name: pet_wolf_idle_nw_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 240
-        width: 88
-        height: 60
+        x: 132
+        y: 180
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -759,12 +759,12 @@ TextureImporter:
       name: pet_wolf_idle_nw_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 240
-        width: 88
-        height: 60
+        x: 198
+        y: 180
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -782,11 +782,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 180
-        width: 88
-        height: 60
+        y: 135
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -803,12 +803,12 @@ TextureImporter:
       name: pet_wolf_idle_n_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 180
-        width: 88
-        height: 60
+        x: 66
+        y: 135
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -825,12 +825,12 @@ TextureImporter:
       name: pet_wolf_idle_n_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 180
-        width: 88
-        height: 60
+        x: 132
+        y: 135
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -847,12 +847,12 @@ TextureImporter:
       name: pet_wolf_idle_n_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 180
-        width: 88
-        height: 60
+        x: 198
+        y: 135
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -870,11 +870,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 120
-        width: 88
-        height: 60
+        y: 90
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -891,12 +891,12 @@ TextureImporter:
       name: pet_wolf_idle_ne_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 120
-        width: 88
-        height: 60
+        x: 66
+        y: 90
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -913,12 +913,12 @@ TextureImporter:
       name: pet_wolf_idle_ne_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 120
-        width: 88
-        height: 60
+        x: 132
+        y: 90
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -935,12 +935,12 @@ TextureImporter:
       name: pet_wolf_idle_ne_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 120
-        width: 88
-        height: 60
+        x: 198
+        y: 90
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -958,11 +958,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 60
-        width: 88
-        height: 60
+        y: 45
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -979,12 +979,12 @@ TextureImporter:
       name: pet_wolf_idle_e_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 60
-        width: 88
-        height: 60
+        x: 66
+        y: 45
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1001,12 +1001,12 @@ TextureImporter:
       name: pet_wolf_idle_e_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 60
-        width: 88
-        height: 60
+        x: 132
+        y: 45
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1023,12 +1023,12 @@ TextureImporter:
       name: pet_wolf_idle_e_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 60
-        width: 88
-        height: 60
+        x: 198
+        y: 45
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1047,10 +1047,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 88
-        height: 60
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1067,12 +1067,12 @@ TextureImporter:
       name: pet_wolf_idle_se_01
       rect:
         serializedVersion: 2
-        x: 88
+        x: 66
         y: 0
-        width: 88
-        height: 60
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1089,12 +1089,12 @@ TextureImporter:
       name: pet_wolf_idle_se_02
       rect:
         serializedVersion: 2
-        x: 176
+        x: 132
         y: 0
-        width: 88
-        height: 60
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1111,12 +1111,12 @@ TextureImporter:
       name: pet_wolf_idle_se_03
       rect:
         serializedVersion: 2
-        x: 264
+        x: 198
         y: 0
-        width: 88
-        height: 60
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1133,12 +1133,12 @@ TextureImporter:
       name: pet_wolf_idle_s_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 420
-        width: 88
-        height: 60
+        x: 264
+        y: 315
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1155,12 +1155,12 @@ TextureImporter:
       name: pet_wolf_idle_s_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 420
-        width: 88
-        height: 60
+        x: 330
+        y: 315
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1177,12 +1177,12 @@ TextureImporter:
       name: pet_wolf_idle_s_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 420
-        width: 88
-        height: 60
+        x: 396
+        y: 315
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1199,12 +1199,12 @@ TextureImporter:
       name: pet_wolf_idle_s_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 420
-        width: 88
-        height: 60
+        x: 462
+        y: 315
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1221,12 +1221,12 @@ TextureImporter:
       name: pet_wolf_idle_sw_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 360
-        width: 88
-        height: 60
+        x: 264
+        y: 270
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1243,12 +1243,12 @@ TextureImporter:
       name: pet_wolf_idle_sw_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 360
-        width: 88
-        height: 60
+        x: 330
+        y: 270
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1265,12 +1265,12 @@ TextureImporter:
       name: pet_wolf_idle_sw_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 360
-        width: 88
-        height: 60
+        x: 396
+        y: 270
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1287,12 +1287,12 @@ TextureImporter:
       name: pet_wolf_idle_sw_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 360
-        width: 88
-        height: 60
+        x: 462
+        y: 270
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1309,12 +1309,12 @@ TextureImporter:
       name: pet_wolf_idle_w_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 300
-        width: 88
-        height: 60
+        x: 264
+        y: 225
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1331,12 +1331,12 @@ TextureImporter:
       name: pet_wolf_idle_w_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 300
-        width: 88
-        height: 60
+        x: 330
+        y: 225
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1353,12 +1353,12 @@ TextureImporter:
       name: pet_wolf_idle_w_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 300
-        width: 88
-        height: 60
+        x: 396
+        y: 225
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1375,12 +1375,12 @@ TextureImporter:
       name: pet_wolf_idle_w_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 300
-        width: 88
-        height: 60
+        x: 462
+        y: 225
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1397,12 +1397,12 @@ TextureImporter:
       name: pet_wolf_idle_nw_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 240
-        width: 88
-        height: 60
+        x: 264
+        y: 180
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1419,12 +1419,12 @@ TextureImporter:
       name: pet_wolf_idle_nw_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 240
-        width: 88
-        height: 60
+        x: 330
+        y: 180
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1441,12 +1441,12 @@ TextureImporter:
       name: pet_wolf_idle_nw_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 240
-        width: 88
-        height: 60
+        x: 396
+        y: 180
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1463,12 +1463,12 @@ TextureImporter:
       name: pet_wolf_idle_nw_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 240
-        width: 88
-        height: 60
+        x: 462
+        y: 180
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1485,12 +1485,12 @@ TextureImporter:
       name: pet_wolf_idle_n_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 180
-        width: 88
-        height: 60
+        x: 264
+        y: 135
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1507,12 +1507,12 @@ TextureImporter:
       name: pet_wolf_idle_n_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 180
-        width: 88
-        height: 60
+        x: 330
+        y: 135
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1529,12 +1529,12 @@ TextureImporter:
       name: pet_wolf_idle_n_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 180
-        width: 88
-        height: 60
+        x: 396
+        y: 135
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1551,12 +1551,12 @@ TextureImporter:
       name: pet_wolf_idle_n_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 180
-        width: 88
-        height: 60
+        x: 462
+        y: 135
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1573,12 +1573,12 @@ TextureImporter:
       name: pet_wolf_idle_ne_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 120
-        width: 88
-        height: 60
+        x: 264
+        y: 90
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1595,12 +1595,12 @@ TextureImporter:
       name: pet_wolf_idle_ne_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 120
-        width: 88
-        height: 60
+        x: 330
+        y: 90
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1617,12 +1617,12 @@ TextureImporter:
       name: pet_wolf_idle_ne_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 120
-        width: 88
-        height: 60
+        x: 396
+        y: 90
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1639,12 +1639,12 @@ TextureImporter:
       name: pet_wolf_idle_ne_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 120
-        width: 88
-        height: 60
+        x: 462
+        y: 90
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1661,12 +1661,12 @@ TextureImporter:
       name: pet_wolf_idle_e_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 60
-        width: 88
-        height: 60
+        x: 264
+        y: 45
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1683,12 +1683,12 @@ TextureImporter:
       name: pet_wolf_idle_e_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 60
-        width: 88
-        height: 60
+        x: 330
+        y: 45
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1705,12 +1705,12 @@ TextureImporter:
       name: pet_wolf_idle_e_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 60
-        width: 88
-        height: 60
+        x: 396
+        y: 45
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1727,12 +1727,12 @@ TextureImporter:
       name: pet_wolf_idle_e_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 60
-        width: 88
-        height: 60
+        x: 462
+        y: 45
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1749,12 +1749,12 @@ TextureImporter:
       name: pet_wolf_idle_se_04
       rect:
         serializedVersion: 2
-        x: 352
+        x: 264
         y: 0
-        width: 88
-        height: 60
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1771,12 +1771,12 @@ TextureImporter:
       name: pet_wolf_idle_se_05
       rect:
         serializedVersion: 2
-        x: 440
+        x: 330
         y: 0
-        width: 88
-        height: 60
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1793,12 +1793,12 @@ TextureImporter:
       name: pet_wolf_idle_se_06
       rect:
         serializedVersion: 2
-        x: 528
+        x: 396
         y: 0
-        width: 88
-        height: 60
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1815,12 +1815,12 @@ TextureImporter:
       name: pet_wolf_idle_se_07
       rect:
         serializedVersion: 2
-        x: 616
+        x: 462
         y: 0
-        width: 88
-        height: 60
+        width: 66
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1829,6 +1829,710 @@ TextureImporter:
       bones: []
       spriteID: 894a9c50e738d4ea7a2aaf325e57be43
       internalID: 1244629744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_s_08
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 315
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13054f2e0bf694e718ac0cd0b34cb317
+      internalID: -1299693325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_s_09
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 315
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18756b8732b7a4e24a15d22a47237ca7
+      internalID: 1810018110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_s_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 315
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d9db47af26c74eae8ef6e3a3c2960d7
+      internalID: 470272724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_s_11
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 315
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aef8aef9e0744f5e8c681da7f2d5899
+      internalID: -430196260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_sw_08
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 270
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e89cc7991bd24cbbb9890553c882f94
+      internalID: 813513769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_sw_09
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 270
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae4160e473df042d3b9ae51512d49603
+      internalID: -295474341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_sw_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 270
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4546d4a063d884753b92b2d0143ed605
+      internalID: 10930916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_sw_11
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 270
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 538b871a2e44b4289b039d8667bbceaa
+      internalID: -757440960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_w_08
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 225
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da6e93a8e7a4247dfaf3346c28182147
+      internalID: -1691987434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_w_09
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 225
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f82c983847344a4096c7b3f9dbc0511
+      internalID: 56122962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_w_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 225
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dde6854d79f54fb28b77a43b9d257d9
+      internalID: 1505864956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_w_11
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 225
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b7f6e662fb1e47aea9e0a17f6cf1ea9
+      internalID: 53404147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_nw_08
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 180
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ec315df4d117487bbaa9a958949a87e
+      internalID: -552282146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_nw_09
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 180
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42c90bbb1d1bd4445aaf1e8361f8db53
+      internalID: 1318167810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_nw_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 180
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16ae6177ae4d44e9dac1cc93ffab677c
+      internalID: 1171054721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_nw_11
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 180
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05a15de872c3843a599e13db0d378351
+      internalID: 360785302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_n_08
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 135
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6236e987c55b4b719cdf2a80c825d33
+      internalID: -1413362693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_n_09
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 135
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66dc7201e6d6343c0acf7a6bf9706cf5
+      internalID: -715896833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_n_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 135
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 719dc11da9cfc4773a35c5712bd58305
+      internalID: 1263788148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_n_11
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 135
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d080555053c9e447cbd1b8876846d9be
+      internalID: -235699178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_ne_08
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 90
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 254dc57a012c34fa69fba4f8679210b0
+      internalID: 1160513890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_ne_09
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 90
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abb53d12765c34bbcb19e3e4fa909b80
+      internalID: 1982997862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_ne_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 90
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1df11dd07f92496896a19d81eb656f2
+      internalID: -652376984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_ne_11
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 90
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d75d0d443e3974da196a64259b7c81b4
+      internalID: -580084162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_e_08
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 45
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 660a08bf0ad7c49e687df5109aba30f1
+      internalID: -738115751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_e_09
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 45
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ada3816492904858a75e63e3760b5f6
+      internalID: -589653905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_e_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 45
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3c5d44465078446eb35b6fd0c0d70c2
+      internalID: 1335977846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_e_11
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 45
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9fd998e258ac46c4a0f80491c9e8b7b
+      internalID: 218650772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_se_08
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b40e83f763514c1886c1fa0fd41a97f
+      internalID: 1263624352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_se_09
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 0
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d813f7000199436e845221e508a464f
+      internalID: 88689796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_se_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 0
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36c577d2b44aa4a42b77357858101fc9
+      internalID: -2049100141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_idle_se_11
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 0
+        width: 66
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 255a6ffa6c500498dafd115cd5de1522
+      internalID: 1992587200
       vertices: []
       indices: 
       edges: []
@@ -1855,6 +2559,10 @@ TextureImporter:
       pet_wolf_idle_e_05: 1215884454
       pet_wolf_idle_e_06: -1754646097
       pet_wolf_idle_e_07: 850199735
+      pet_wolf_idle_e_08: -738115751
+      pet_wolf_idle_e_09: -589653905
+      pet_wolf_idle_e_10: 1335977846
+      pet_wolf_idle_e_11: 218650772
       pet_wolf_idle_n_00: -412389832
       pet_wolf_idle_n_01: -2092089899
       pet_wolf_idle_n_02: -73753160
@@ -1863,6 +2571,10 @@ TextureImporter:
       pet_wolf_idle_n_05: -213201249
       pet_wolf_idle_n_06: -209897336
       pet_wolf_idle_n_07: 695641120
+      pet_wolf_idle_n_08: -1413362693
+      pet_wolf_idle_n_09: -715896833
+      pet_wolf_idle_n_10: 1263788148
+      pet_wolf_idle_n_11: -235699178
       pet_wolf_idle_ne_00: -400585622
       pet_wolf_idle_ne_01: -1478334329
       pet_wolf_idle_ne_02: -526045668
@@ -1871,6 +2583,10 @@ TextureImporter:
       pet_wolf_idle_ne_05: -1940221866
       pet_wolf_idle_ne_06: -650957709
       pet_wolf_idle_ne_07: 2143046831
+      pet_wolf_idle_ne_08: 1160513890
+      pet_wolf_idle_ne_09: 1982997862
+      pet_wolf_idle_ne_10: -652376984
+      pet_wolf_idle_ne_11: -580084162
       pet_wolf_idle_nw_00: 2062052112
       pet_wolf_idle_nw_01: -1332017243
       pet_wolf_idle_nw_02: 248417815
@@ -1879,6 +2595,10 @@ TextureImporter:
       pet_wolf_idle_nw_05: 1361415944
       pet_wolf_idle_nw_06: 2048719050
       pet_wolf_idle_nw_07: 333593400
+      pet_wolf_idle_nw_08: -552282146
+      pet_wolf_idle_nw_09: 1318167810
+      pet_wolf_idle_nw_10: 1171054721
+      pet_wolf_idle_nw_11: 360785302
       pet_wolf_idle_s_00: -621012503
       pet_wolf_idle_s_01: -1103649841
       pet_wolf_idle_s_02: 538730188
@@ -1887,6 +2607,10 @@ TextureImporter:
       pet_wolf_idle_s_05: -724432342
       pet_wolf_idle_s_06: -682202028
       pet_wolf_idle_s_07: 963877072
+      pet_wolf_idle_s_08: -1299693325
+      pet_wolf_idle_s_09: 1810018110
+      pet_wolf_idle_s_10: 470272724
+      pet_wolf_idle_s_11: -430196260
       pet_wolf_idle_se_00: -1745501231
       pet_wolf_idle_se_01: -540169924
       pet_wolf_idle_se_02: 1963380384
@@ -1895,6 +2619,10 @@ TextureImporter:
       pet_wolf_idle_se_05: 1431722319
       pet_wolf_idle_se_06: 1315654501
       pet_wolf_idle_se_07: 1244629744
+      pet_wolf_idle_se_08: 1263624352
+      pet_wolf_idle_se_09: 88689796
+      pet_wolf_idle_se_10: -2049100141
+      pet_wolf_idle_se_11: 1992587200
       pet_wolf_idle_sw_00: -881312752
       pet_wolf_idle_sw_01: -298299640
       pet_wolf_idle_sw_02: 1903772025
@@ -1903,6 +2631,10 @@ TextureImporter:
       pet_wolf_idle_sw_05: -1596494564
       pet_wolf_idle_sw_06: 714696554
       pet_wolf_idle_sw_07: 274858130
+      pet_wolf_idle_sw_08: 813513769
+      pet_wolf_idle_sw_09: -295474341
+      pet_wolf_idle_sw_10: 10930916
+      pet_wolf_idle_sw_11: -757440960
       pet_wolf_idle_w_00: -1128323311
       pet_wolf_idle_w_01: -1293662135
       pet_wolf_idle_w_02: 344939413
@@ -1911,6 +2643,10 @@ TextureImporter:
       pet_wolf_idle_w_05: -1715525704
       pet_wolf_idle_w_06: 372804108
       pet_wolf_idle_w_07: -215765341
+      pet_wolf_idle_w_08: -1691987434
+      pet_wolf_idle_w_09: 56122962
+      pet_wolf_idle_w_10: 1505864956
+      pet_wolf_idle_w_11: 53404147
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

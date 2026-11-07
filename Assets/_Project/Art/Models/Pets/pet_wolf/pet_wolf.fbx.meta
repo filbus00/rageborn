@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: fox_material
+    second: {fileID: 2100000, guid: 21cf0e7422b1d413eaf804a639b3b4eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: pet_wolf
     second: {fileID: 2100000, guid: 21cf0e7422b1d413eaf804a639b3b4eb, type: 2}
   materials:
@@ -43,39 +48,10 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: attack
-      takeName: Armature|attack
-      internalID: -251351218608039746
+      takeName: attack
+      internalID: -6239216113759591374
       firstFrame: 0
-      lastFrame: 22
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000u
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: dash
-      takeName: Armature|dash
-      internalID: 1728212603955262588
-      firstFrame: 0
-      lastFrame: 12
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -101,10 +77,10 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: death
-      takeName: Armature|death
-      internalID: 5866576275671282845
+      takeName: death
+      internalID: -6758483313513240000
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 27
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -130,8 +106,8 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: hit
-      takeName: Armature|hit
-      internalID: -5742113246664979595
+      takeName: hit
+      internalID: 2459078804267041145
       firstFrame: 0
       lastFrame: 8
       wrapMode: 0
@@ -159,10 +135,10 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: idle
-      takeName: Armature|idle
-      internalID: -1978303741906493279
+      takeName: idle
+      internalID: -5252816984213320552
       firstFrame: 0
-      lastFrame: 48
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -188,10 +164,10 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: run
-      takeName: Armature|run
-      internalID: 1303299601406483602
+      takeName: run
+      internalID: 6200578666267062213
       firstFrame: 0
-      lastFrame: 12
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -217,10 +193,10 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: walk
-      takeName: Armature|walk
-      internalID: -4799524434163024911
+      takeName: walk
+      internalID: -3419257869308726280
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

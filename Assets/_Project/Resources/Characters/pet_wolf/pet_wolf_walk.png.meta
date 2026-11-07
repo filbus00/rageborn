@@ -322,7 +322,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -430,11 +430,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 420
-        width: 88
-        height: 60
+        y: 315
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -451,12 +451,12 @@ TextureImporter:
       name: pet_wolf_walk_s_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 420
-        width: 88
-        height: 60
+        x: 64
+        y: 315
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -473,12 +473,12 @@ TextureImporter:
       name: pet_wolf_walk_s_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 420
-        width: 88
-        height: 60
+        x: 128
+        y: 315
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -495,12 +495,12 @@ TextureImporter:
       name: pet_wolf_walk_s_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 420
-        width: 88
-        height: 60
+        x: 192
+        y: 315
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -517,12 +517,12 @@ TextureImporter:
       name: pet_wolf_walk_s_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 420
-        width: 88
-        height: 60
+        x: 256
+        y: 315
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -539,12 +539,12 @@ TextureImporter:
       name: pet_wolf_walk_s_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 420
-        width: 88
-        height: 60
+        x: 320
+        y: 315
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -561,12 +561,12 @@ TextureImporter:
       name: pet_wolf_walk_s_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 420
-        width: 88
-        height: 60
+        x: 384
+        y: 315
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -583,12 +583,12 @@ TextureImporter:
       name: pet_wolf_walk_s_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 420
-        width: 88
-        height: 60
+        x: 448
+        y: 315
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -606,11 +606,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 360
-        width: 88
-        height: 60
+        y: 270
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -627,12 +627,12 @@ TextureImporter:
       name: pet_wolf_walk_sw_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 360
-        width: 88
-        height: 60
+        x: 64
+        y: 270
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -649,12 +649,12 @@ TextureImporter:
       name: pet_wolf_walk_sw_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 360
-        width: 88
-        height: 60
+        x: 128
+        y: 270
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -671,12 +671,12 @@ TextureImporter:
       name: pet_wolf_walk_sw_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 360
-        width: 88
-        height: 60
+        x: 192
+        y: 270
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -693,12 +693,12 @@ TextureImporter:
       name: pet_wolf_walk_sw_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 360
-        width: 88
-        height: 60
+        x: 256
+        y: 270
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -715,12 +715,12 @@ TextureImporter:
       name: pet_wolf_walk_sw_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 360
-        width: 88
-        height: 60
+        x: 320
+        y: 270
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -737,12 +737,12 @@ TextureImporter:
       name: pet_wolf_walk_sw_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 360
-        width: 88
-        height: 60
+        x: 384
+        y: 270
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -759,12 +759,12 @@ TextureImporter:
       name: pet_wolf_walk_sw_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 360
-        width: 88
-        height: 60
+        x: 448
+        y: 270
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -782,11 +782,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 300
-        width: 88
-        height: 60
+        y: 225
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -803,12 +803,12 @@ TextureImporter:
       name: pet_wolf_walk_w_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 300
-        width: 88
-        height: 60
+        x: 64
+        y: 225
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -825,12 +825,12 @@ TextureImporter:
       name: pet_wolf_walk_w_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 300
-        width: 88
-        height: 60
+        x: 128
+        y: 225
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -847,12 +847,12 @@ TextureImporter:
       name: pet_wolf_walk_w_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 300
-        width: 88
-        height: 60
+        x: 192
+        y: 225
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -869,12 +869,12 @@ TextureImporter:
       name: pet_wolf_walk_w_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 300
-        width: 88
-        height: 60
+        x: 256
+        y: 225
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -891,12 +891,12 @@ TextureImporter:
       name: pet_wolf_walk_w_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 300
-        width: 88
-        height: 60
+        x: 320
+        y: 225
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -913,12 +913,12 @@ TextureImporter:
       name: pet_wolf_walk_w_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 300
-        width: 88
-        height: 60
+        x: 384
+        y: 225
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -935,12 +935,12 @@ TextureImporter:
       name: pet_wolf_walk_w_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 300
-        width: 88
-        height: 60
+        x: 448
+        y: 225
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -958,11 +958,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 88
-        height: 60
+        y: 180
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -979,12 +979,12 @@ TextureImporter:
       name: pet_wolf_walk_nw_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 240
-        width: 88
-        height: 60
+        x: 64
+        y: 180
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1001,12 +1001,12 @@ TextureImporter:
       name: pet_wolf_walk_nw_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 240
-        width: 88
-        height: 60
+        x: 128
+        y: 180
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1023,12 +1023,12 @@ TextureImporter:
       name: pet_wolf_walk_nw_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 240
-        width: 88
-        height: 60
+        x: 192
+        y: 180
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1045,12 +1045,12 @@ TextureImporter:
       name: pet_wolf_walk_nw_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 240
-        width: 88
-        height: 60
+        x: 256
+        y: 180
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1067,12 +1067,12 @@ TextureImporter:
       name: pet_wolf_walk_nw_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 240
-        width: 88
-        height: 60
+        x: 320
+        y: 180
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1089,12 +1089,12 @@ TextureImporter:
       name: pet_wolf_walk_nw_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 240
-        width: 88
-        height: 60
+        x: 384
+        y: 180
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1111,12 +1111,12 @@ TextureImporter:
       name: pet_wolf_walk_nw_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 240
-        width: 88
-        height: 60
+        x: 448
+        y: 180
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1134,11 +1134,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 180
-        width: 88
-        height: 60
+        y: 135
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1155,12 +1155,12 @@ TextureImporter:
       name: pet_wolf_walk_n_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 180
-        width: 88
-        height: 60
+        x: 64
+        y: 135
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1177,12 +1177,12 @@ TextureImporter:
       name: pet_wolf_walk_n_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 180
-        width: 88
-        height: 60
+        x: 128
+        y: 135
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1199,12 +1199,12 @@ TextureImporter:
       name: pet_wolf_walk_n_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 180
-        width: 88
-        height: 60
+        x: 192
+        y: 135
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1221,12 +1221,12 @@ TextureImporter:
       name: pet_wolf_walk_n_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 180
-        width: 88
-        height: 60
+        x: 256
+        y: 135
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1243,12 +1243,12 @@ TextureImporter:
       name: pet_wolf_walk_n_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 180
-        width: 88
-        height: 60
+        x: 320
+        y: 135
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1265,12 +1265,12 @@ TextureImporter:
       name: pet_wolf_walk_n_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 180
-        width: 88
-        height: 60
+        x: 384
+        y: 135
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1287,12 +1287,12 @@ TextureImporter:
       name: pet_wolf_walk_n_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 180
-        width: 88
-        height: 60
+        x: 448
+        y: 135
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1310,11 +1310,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 120
-        width: 88
-        height: 60
+        y: 90
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1331,12 +1331,12 @@ TextureImporter:
       name: pet_wolf_walk_ne_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 120
-        width: 88
-        height: 60
+        x: 64
+        y: 90
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1353,12 +1353,12 @@ TextureImporter:
       name: pet_wolf_walk_ne_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 120
-        width: 88
-        height: 60
+        x: 128
+        y: 90
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1375,12 +1375,12 @@ TextureImporter:
       name: pet_wolf_walk_ne_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 120
-        width: 88
-        height: 60
+        x: 192
+        y: 90
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1397,12 +1397,12 @@ TextureImporter:
       name: pet_wolf_walk_ne_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 120
-        width: 88
-        height: 60
+        x: 256
+        y: 90
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1419,12 +1419,12 @@ TextureImporter:
       name: pet_wolf_walk_ne_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 120
-        width: 88
-        height: 60
+        x: 320
+        y: 90
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1441,12 +1441,12 @@ TextureImporter:
       name: pet_wolf_walk_ne_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 120
-        width: 88
-        height: 60
+        x: 384
+        y: 90
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1463,12 +1463,12 @@ TextureImporter:
       name: pet_wolf_walk_ne_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 120
-        width: 88
-        height: 60
+        x: 448
+        y: 90
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1486,11 +1486,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 60
-        width: 88
-        height: 60
+        y: 45
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1507,12 +1507,12 @@ TextureImporter:
       name: pet_wolf_walk_e_01
       rect:
         serializedVersion: 2
-        x: 88
-        y: 60
-        width: 88
-        height: 60
+        x: 64
+        y: 45
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1529,12 +1529,12 @@ TextureImporter:
       name: pet_wolf_walk_e_02
       rect:
         serializedVersion: 2
-        x: 176
-        y: 60
-        width: 88
-        height: 60
+        x: 128
+        y: 45
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1551,12 +1551,12 @@ TextureImporter:
       name: pet_wolf_walk_e_03
       rect:
         serializedVersion: 2
-        x: 264
-        y: 60
-        width: 88
-        height: 60
+        x: 192
+        y: 45
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1573,12 +1573,12 @@ TextureImporter:
       name: pet_wolf_walk_e_04
       rect:
         serializedVersion: 2
-        x: 352
-        y: 60
-        width: 88
-        height: 60
+        x: 256
+        y: 45
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1595,12 +1595,12 @@ TextureImporter:
       name: pet_wolf_walk_e_05
       rect:
         serializedVersion: 2
-        x: 440
-        y: 60
-        width: 88
-        height: 60
+        x: 320
+        y: 45
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1617,12 +1617,12 @@ TextureImporter:
       name: pet_wolf_walk_e_06
       rect:
         serializedVersion: 2
-        x: 528
-        y: 60
-        width: 88
-        height: 60
+        x: 384
+        y: 45
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1639,12 +1639,12 @@ TextureImporter:
       name: pet_wolf_walk_e_07
       rect:
         serializedVersion: 2
-        x: 616
-        y: 60
-        width: 88
-        height: 60
+        x: 448
+        y: 45
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1663,10 +1663,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 88
-        height: 60
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1683,12 +1683,12 @@ TextureImporter:
       name: pet_wolf_walk_se_01
       rect:
         serializedVersion: 2
-        x: 88
+        x: 64
         y: 0
-        width: 88
-        height: 60
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1705,12 +1705,12 @@ TextureImporter:
       name: pet_wolf_walk_se_02
       rect:
         serializedVersion: 2
-        x: 176
+        x: 128
         y: 0
-        width: 88
-        height: 60
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1727,12 +1727,12 @@ TextureImporter:
       name: pet_wolf_walk_se_03
       rect:
         serializedVersion: 2
-        x: 264
+        x: 192
         y: 0
-        width: 88
-        height: 60
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1749,12 +1749,12 @@ TextureImporter:
       name: pet_wolf_walk_se_04
       rect:
         serializedVersion: 2
-        x: 352
+        x: 256
         y: 0
-        width: 88
-        height: 60
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1771,12 +1771,12 @@ TextureImporter:
       name: pet_wolf_walk_se_05
       rect:
         serializedVersion: 2
-        x: 440
+        x: 320
         y: 0
-        width: 88
-        height: 60
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1793,12 +1793,12 @@ TextureImporter:
       name: pet_wolf_walk_se_06
       rect:
         serializedVersion: 2
-        x: 528
+        x: 384
         y: 0
-        width: 88
-        height: 60
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1815,12 +1815,12 @@ TextureImporter:
       name: pet_wolf_walk_se_07
       rect:
         serializedVersion: 2
-        x: 616
+        x: 448
         y: 0
-        width: 88
-        height: 60
+        width: 64
+        height: 45
       alignment: 9
-      pivot: {x: 0.5, y: 0.06666667}
+      pivot: {x: 0.5, y: 0.17777778}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1829,6 +1829,710 @@ TextureImporter:
       bones: []
       spriteID: 060c73363b83f4e4a838c301821ba008
       internalID: 1303175345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_s_08
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 315
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f3c7fd50566143cc877b213e26da08f
+      internalID: -988328891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_s_09
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 315
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319c10248ce9045088612aae37da4e18
+      internalID: 762750604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_s_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 315
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd80d62251bf94dbd9f7de17c51e27f3
+      internalID: 929703108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_s_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 315
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ac53eeddd396459ea454e8c9a7fdc06
+      internalID: 1919040858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_sw_08
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 270
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00cd39d1f259044a494a253ad8682754
+      internalID: 1566092038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_sw_09
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 270
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 608a121a4867f472d86ce71f9d2bda7a
+      internalID: -100533798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_sw_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 270
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9126f579d6f764688a95babdfb539f61
+      internalID: 2095763999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_sw_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 270
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ac98a2e7ffe9403d99e632973a28edd
+      internalID: -2041151116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_w_08
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 225
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96e2e87e027c941289863aa44d92b8f7
+      internalID: -2142627583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_w_09
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 225
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca9778f4439e9440996f4ad368cac1e0
+      internalID: -620174917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_w_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 225
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19f6c2960b63c4cd1b009d804b92800d
+      internalID: 826083052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_w_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 225
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5657c2c413f744b8a85dd80358a0dc8
+      internalID: -1273360956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_nw_08
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 180
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8674767edd61847c1ae79b2784f9a7b5
+      internalID: 564561080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_nw_09
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 180
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8712344fbc2cd41379edcb5e52b6f848
+      internalID: 712219909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_nw_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 180
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b7bcdf3dcc8c41348cee0f81f66cb62
+      internalID: -752249107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_nw_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 180
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30d2dccae542249c087a28e22325faf7
+      internalID: 124648915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_n_08
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 135
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db15acaee209c4f49bb6bc42e717d9e9
+      internalID: 2142046772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_n_09
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 135
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbeda3104cbb445ee8ba029c7a4e5c5e
+      internalID: 203447020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_n_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 135
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b19bb44c43b5a49b6a7a1bbf50cbfe28
+      internalID: -44583504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_n_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 135
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9778907f0a4084173b817119bfd9f560
+      internalID: 1530959921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_ne_08
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 90
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f327f898ea65e4c31b571f8ec46cb855
+      internalID: 690280932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_ne_09
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 90
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c4558a72136d4f3aa15bfdab8c441fa
+      internalID: 1809570065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_ne_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 90
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 390815c5c4ee744d0b4c514f3484acf0
+      internalID: -1515489088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_ne_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 90
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fffa200fd6e24e9d9041625d226de73
+      internalID: -801974066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_e_08
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 45
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 028c8427ffe3048b99d99205a9003fb4
+      internalID: -101158696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_e_09
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 45
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71859be00dafc4c1da299714e896c72c
+      internalID: -112957084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_e_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 45
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49c6871a89d194f8ea73e8c7f221b634
+      internalID: 1275625205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_e_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 45
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6939cb1f993fc49d0bddd9781491cf3d
+      internalID: -1692000850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_se_08
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d5e771abcc8b44d2a8b82be906f7094
+      internalID: 609867960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_se_09
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76f0190ed88dc4d5184330509042f848
+      internalID: 245611194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_se_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9579c68ce6edb4f0982fdcf50d66ee51
+      internalID: -1674138882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pet_wolf_walk_se_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17777778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94ae04836325945f882549385dadebe6
+      internalID: -1385204426
       vertices: []
       indices: 
       edges: []
@@ -1855,6 +2559,10 @@ TextureImporter:
       pet_wolf_walk_e_05: 1066331555
       pet_wolf_walk_e_06: 751767771
       pet_wolf_walk_e_07: -700733798
+      pet_wolf_walk_e_08: -101158696
+      pet_wolf_walk_e_09: -112957084
+      pet_wolf_walk_e_10: 1275625205
+      pet_wolf_walk_e_11: -1692000850
       pet_wolf_walk_n_00: -579679219
       pet_wolf_walk_n_01: -1807759978
       pet_wolf_walk_n_02: 246465938
@@ -1863,6 +2571,10 @@ TextureImporter:
       pet_wolf_walk_n_05: 171095936
       pet_wolf_walk_n_06: 1114892603
       pet_wolf_walk_n_07: 1799158104
+      pet_wolf_walk_n_08: 2142046772
+      pet_wolf_walk_n_09: 203447020
+      pet_wolf_walk_n_10: -44583504
+      pet_wolf_walk_n_11: 1530959921
       pet_wolf_walk_ne_00: 1399330722
       pet_wolf_walk_ne_01: -2023122600
       pet_wolf_walk_ne_02: 1294231634
@@ -1871,6 +2583,10 @@ TextureImporter:
       pet_wolf_walk_ne_05: -143204453
       pet_wolf_walk_ne_06: 1283625053
       pet_wolf_walk_ne_07: -1242767919
+      pet_wolf_walk_ne_08: 690280932
+      pet_wolf_walk_ne_09: 1809570065
+      pet_wolf_walk_ne_10: -1515489088
+      pet_wolf_walk_ne_11: -801974066
       pet_wolf_walk_nw_00: 2042423005
       pet_wolf_walk_nw_01: 595239496
       pet_wolf_walk_nw_02: -1893000299
@@ -1879,6 +2595,10 @@ TextureImporter:
       pet_wolf_walk_nw_05: -2085081272
       pet_wolf_walk_nw_06: 830436248
       pet_wolf_walk_nw_07: 775453788
+      pet_wolf_walk_nw_08: 564561080
+      pet_wolf_walk_nw_09: 712219909
+      pet_wolf_walk_nw_10: -752249107
+      pet_wolf_walk_nw_11: 124648915
       pet_wolf_walk_s_00: 1793318183
       pet_wolf_walk_s_01: -2107219157
       pet_wolf_walk_s_02: -1158299814
@@ -1887,6 +2607,10 @@ TextureImporter:
       pet_wolf_walk_s_05: 1539636943
       pet_wolf_walk_s_06: -1351301518
       pet_wolf_walk_s_07: -252216593
+      pet_wolf_walk_s_08: -988328891
+      pet_wolf_walk_s_09: 762750604
+      pet_wolf_walk_s_10: 929703108
+      pet_wolf_walk_s_11: 1919040858
       pet_wolf_walk_se_00: -1984072462
       pet_wolf_walk_se_01: -1373382740
       pet_wolf_walk_se_02: -1719640325
@@ -1895,6 +2619,10 @@ TextureImporter:
       pet_wolf_walk_se_05: -1048882931
       pet_wolf_walk_se_06: 59109041
       pet_wolf_walk_se_07: 1303175345
+      pet_wolf_walk_se_08: 609867960
+      pet_wolf_walk_se_09: 245611194
+      pet_wolf_walk_se_10: -1674138882
+      pet_wolf_walk_se_11: -1385204426
       pet_wolf_walk_sw_00: -201282888
       pet_wolf_walk_sw_01: -682554484
       pet_wolf_walk_sw_02: -1736499078
@@ -1903,6 +2631,10 @@ TextureImporter:
       pet_wolf_walk_sw_05: -1506821261
       pet_wolf_walk_sw_06: -643711902
       pet_wolf_walk_sw_07: 1864062786
+      pet_wolf_walk_sw_08: 1566092038
+      pet_wolf_walk_sw_09: -100533798
+      pet_wolf_walk_sw_10: 2095763999
+      pet_wolf_walk_sw_11: -2041151116
       pet_wolf_walk_w_00: -2041041012
       pet_wolf_walk_w_01: -2105365080
       pet_wolf_walk_w_02: -289613703
@@ -1911,6 +2643,10 @@ TextureImporter:
       pet_wolf_walk_w_05: 16377036
       pet_wolf_walk_w_06: -869150038
       pet_wolf_walk_w_07: 1034753734
+      pet_wolf_walk_w_08: -2142627583
+      pet_wolf_walk_w_09: -620174917
+      pet_wolf_walk_w_10: 826083052
+      pet_wolf_walk_w_11: -1273360956
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
