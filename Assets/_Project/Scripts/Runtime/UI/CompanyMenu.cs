@@ -480,9 +480,9 @@ namespace ARPG
             ["Miranda"] = ("icon_hand", "emblem_goblet", "portrait_miranda"),
             ["Sylthara"] = ("icon_eye", "emblem_feather", "portrait_sylthara"),
             ["Garrett"] = ("icon_shield", "emblem_compass", "portrait_garrett"),
-            ["Thorin"] = ("icon_hammer", "emblem_anvil", null),
-            ["Elara"] = ("icon_key", "emblem_chest", null),
-            ["Lyriel"] = ("icon_paw", "emblem_paw", null),
+            ["Thorin"] = ("icon_hammer", "emblem_anvil", "portrait_thorin"),
+            ["Elara"] = ("icon_key", "emblem_chest", "portrait_elara"),
+            ["Lyriel"] = ("icon_paw", "emblem_paw", "portrait_lyriel"),
         };
 
         void DrawQuarters()

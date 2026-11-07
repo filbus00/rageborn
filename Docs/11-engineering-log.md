@@ -1923,3 +1923,7 @@ The owner: "Ok, big change, remove the town. Everything done in the town will no
   - `TalentNode.AnyDepth` offers them from the first depth, since the rows that open from the start were full.
   - Lyriel's sheet shows the wolf, her training (`MetaShop.Kennel`: Sharp Fangs and Thick Coat) and its rules. The boons have icons (paw, howl).
 - Compile check: 755 of 760 offline tests pass; the 5 NavGridBaker failures are the old tilemap-stub ones. Built and installed on the owner's iPhone; not seen there by Claude.
+
+## 2026-11-07: the portraits from the owner's Gemini picture
+
+- The owner sent the Quarters tab redrawn by Gemini (`ArtSource/ui/concepts/quarters_portraits.jpeg`, 704 px wide, about 1.8 picture pixels a menu pixel) and asked to "update the portraits". Cut from it inside each frame and scaled with sips: the archer (133 x 163), Miranda, Sylthara, Garrett, and now Thorin, Elara and Lyriel (71 x 64; the last three had shown their baked figures). Brunhilde's was scrolled off the picture and is kept. Imported by Import Menu Art. Built and installed on the owner's iPhone; not seen there by Claude.
