@@ -1,7 +1,10 @@
-idle 2
-run 0.5
-attack 0.917
-hit 0.333
-death 1
-walk 1
+idle 1.6
+walk 0.9 1
+run 0.4 3
+hit 0.25
+death 0.9
+attack 0.8
+dash 0.5
+roll_back 0.6
+throw 0.6
 scale 1.5

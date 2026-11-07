@@ -141,7 +141,7 @@ namespace ARPG.Editor
         static readonly (string definition, string character, string fallback)[] Wiring =
         {
             // The forest's Bandit Bowman (2026-11-03) in place of the old archer's look, which stays the fallback.
-            ("Ghoul", "ghoul", null), ("BanditArcher", "scarecrow_bowman", "bandit_bowman"),
+            ("Ghoul", "ghoul", null), ("BanditArcher", "owl_archer", "scarecrow_bowman"),
             // The act boss (2026-10-04): built in Blender on the ghoul's rig, ArtSource/tools/props/boss.py.
             ("CinderWarden", "cinder_warden", null),
             // Act 1's undead (2026-10-04, ArtSource/tools/props/undead.py): the skeleton on the husk's rig, the cultist on
@@ -168,14 +168,15 @@ namespace ARPG.Editor
             ("BalrogLite", "balrog_lite", null),
             ("Retcher", "retcher", null),
             ("Rat", "rat", null), ("Bat", "bat", null), ("Blob", "blob", null), ("BlobSmall", "blob_small", "blob"),
-            ("Wolf", "wolf", null), ("Spider", "spider", null),
+            ("Wolf", "ash_jackal", "wolf"), ("Spider", "glowback_spider", "spider"),
             // The Magpie Cutpurse, drawn in 16x16 (2026-11-07, ArtSource/pixel/sixteen), in the Sack Thief's place.
             ("Bandit", "magpie_cutpurse", "sack_thief"),
-            // The forest redone (2026-11-03): rigged in Blender by ArtSource/tools/rig_humanoid.py.
-            ("Woodcutter", "stump_hauler", "woodcutter"), ("HedgeWitch", "crow_mother", "hedge_witch"), ("Rotcap", "rotcap", null),
-            ("BriarThrall", "briar_thrall", null), ("Werewolf", "werewolf", null), ("TuskedBoar", "tusked_boar", null),
+            // The forest redone (2026-11-03): rigged in Blender by ArtSource/tools/rig_humanoid.py; since 2026-11-07 every
+            // forest kind is drawn in the 16x16 style (ArtSource/pixel/sixteen/enemies), the bakes the fallbacks.
+            ("Woodcutter", "boar_brute", "stump_hauler"), ("HedgeWitch", "moth_witch", "crow_mother"), ("Rotcap", "puffcap", "rotcap"),
+            ("BriarThrall", "stumpling", "briar_thrall"), ("Werewolf", "antler_fiend", "werewolf"), ("TuskedBoar", "bristleback", "tusked_boar"),
             // The forest's bosses (2026-11-03): baked at their VisualScale like every boss.
-            ("BanditKing", "bandit_king", null), ("BroodMother", "brood_mother", null),
+            ("BanditKing", "magpie_king", "bandit_king"), ("BroodMother", "brood_mother", null),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the

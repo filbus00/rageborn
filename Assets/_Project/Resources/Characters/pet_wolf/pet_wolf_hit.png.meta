@@ -130,7 +130,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -238,11 +238,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 329
-        width: 64
-        height: 47
+        y: 364
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -259,12 +259,12 @@ TextureImporter:
       name: pet_wolf_hit_s_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 329
-        width: 64
-        height: 47
+        x: 56
+        y: 364
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -278,37 +278,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_hit_s_02
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 329
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b181b1e7d761f49468800861e64e6ee3
-      internalID: -249315870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_hit_sw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 282
-        width: 64
-        height: 47
+        y: 312
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -325,12 +303,12 @@ TextureImporter:
       name: pet_wolf_hit_sw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 282
-        width: 64
-        height: 47
+        x: 56
+        y: 312
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -344,37 +322,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_hit_sw_02
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 282
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e62eae98883c64e1a9d33a8e93788ddf
-      internalID: 1948575829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_hit_w_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 235
-        width: 64
-        height: 47
+        y: 260
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -391,12 +347,12 @@ TextureImporter:
       name: pet_wolf_hit_w_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 235
-        width: 64
-        height: 47
+        x: 56
+        y: 260
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -410,37 +366,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_hit_w_02
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 235
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4795f3f16288944b192ff4b6e0d0fe72
-      internalID: -798750911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_hit_nw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 188
-        width: 64
-        height: 47
+        y: 208
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -457,12 +391,12 @@ TextureImporter:
       name: pet_wolf_hit_nw_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 188
-        width: 64
-        height: 47
+        x: 56
+        y: 208
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -476,37 +410,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_hit_nw_02
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 188
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce0bd0941f4c54f1caa769b068b2ecf0
-      internalID: 947273415
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_hit_n_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 141
-        width: 64
-        height: 47
+        y: 156
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -523,12 +435,12 @@ TextureImporter:
       name: pet_wolf_hit_n_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 141
-        width: 64
-        height: 47
+        x: 56
+        y: 156
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -542,37 +454,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_hit_n_02
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 141
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f0fc13c6952ab488298aa11d5858b00f
-      internalID: -3623867
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_hit_ne_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 94
-        width: 64
-        height: 47
+        y: 104
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -589,12 +479,12 @@ TextureImporter:
       name: pet_wolf_hit_ne_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 94
-        width: 64
-        height: 47
+        x: 56
+        y: 104
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -608,37 +498,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_hit_ne_02
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 94
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c4767deefcdf4750a78be84dacc9d82
-      internalID: 40867342
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_hit_e_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 47
-        width: 64
-        height: 47
+        y: 52
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -655,12 +523,12 @@ TextureImporter:
       name: pet_wolf_hit_e_01
       rect:
         serializedVersion: 2
-        x: 64
-        y: 47
-        width: 64
-        height: 47
+        x: 56
+        y: 52
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -674,37 +542,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_hit_e_02
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 47
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a7cdd0a5d1e7f4e0191a26f13497ba15
-      internalID: 1680614281
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_hit_se_00
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 47
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -721,12 +567,12 @@ TextureImporter:
       name: pet_wolf_hit_se_01
       rect:
         serializedVersion: 2
-        x: 64
+        x: 56
         y: 0
-        width: 64
-        height: 47
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -735,204 +581,6 @@ TextureImporter:
       bones: []
       spriteID: 788fd8ee44b764868babecaaba6e1939
       internalID: 784781188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_hit_se_02
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f273527ba129b45979e9d923ea810d43
-      internalID: 603908516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_hit_s_03
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 329
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f774081dcd8a41a18a72eef8b9b3b1e
-      internalID: 594669376
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_hit_sw_03
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 282
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2e588464e5e734426ab1c66a022d6ed3
-      internalID: -1098010134
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_hit_w_03
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 235
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2d37ada0cf1c54137b0cbde0f77f8678
-      internalID: 1861957674
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_hit_nw_03
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 188
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6e6b479f9fe64484ba26882d1dce002
-      internalID: 236555156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_hit_n_03
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 141
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 898e52c1eadd646f8998136c6b1584b3
-      internalID: -1380934280
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_hit_ne_03
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 94
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14d6bd14f4642418e927ae8babf02519
-      internalID: -492796018
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_hit_e_03
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 47
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f3e7d86604444ffabd5d4aae45d0b48
-      internalID: -907659497
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_hit_se_03
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.10638298}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8065dacec386d434d89f7176b78a0f21
-      internalID: 717648078
       vertices: []
       indices: 
       edges: []
@@ -953,36 +601,20 @@ TextureImporter:
     nameFileIdTable:
       pet_wolf_hit_e_00: 1627423183
       pet_wolf_hit_e_01: 1002870143
-      pet_wolf_hit_e_02: 1680614281
-      pet_wolf_hit_e_03: -907659497
       pet_wolf_hit_n_00: -637046930
       pet_wolf_hit_n_01: 722344441
-      pet_wolf_hit_n_02: -3623867
-      pet_wolf_hit_n_03: -1380934280
       pet_wolf_hit_ne_00: 26138739
       pet_wolf_hit_ne_01: -1673998607
-      pet_wolf_hit_ne_02: 40867342
-      pet_wolf_hit_ne_03: -492796018
       pet_wolf_hit_nw_00: -621951322
       pet_wolf_hit_nw_01: 2121456373
-      pet_wolf_hit_nw_02: 947273415
-      pet_wolf_hit_nw_03: 236555156
       pet_wolf_hit_s_00: 316867295
       pet_wolf_hit_s_01: -1125540903
-      pet_wolf_hit_s_02: -249315870
-      pet_wolf_hit_s_03: 594669376
       pet_wolf_hit_se_00: 631064305
       pet_wolf_hit_se_01: 784781188
-      pet_wolf_hit_se_02: 603908516
-      pet_wolf_hit_se_03: 717648078
       pet_wolf_hit_sw_00: -2006165333
       pet_wolf_hit_sw_01: 1361422743
-      pet_wolf_hit_sw_02: 1948575829
-      pet_wolf_hit_sw_03: -1098010134
       pet_wolf_hit_w_00: 740173724
       pet_wolf_hit_w_01: 80730897
-      pet_wolf_hit_w_02: -798750911
-      pet_wolf_hit_w_03: 1861957674
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

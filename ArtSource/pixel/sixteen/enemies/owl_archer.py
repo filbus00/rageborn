@@ -1,0 +1,58 @@
+# The Owl Archer (2026-11-07): the BanditArcher kind, an archer in an owl mask with ear tufts and big yellow eyes, a
+# cloak of brown feathers over a cream breast, a short bow.
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+import kit
+E = "................"
+FRONT = ["...K........K...",
+         "...KoK....KoK...",
+         "...KooKKKKooK...",
+         "..KooooooooooK..",
+         "..KoWWWooWWWoK..",
+         "..KoWEWooWEWoK..",
+         "..KoWWWbbWWWoK..",
+         "...KooobbbooK...",
+         "...KKooooooKK...",
+         "..KfKccccccKfKw.",
+         ".KffKccccccKffKw",
+         ".KffKKccccKKffKw",
+         "..KfKffffffKfK.w",
+         "...KKfffffKK...w",
+         "....KlK..KlK...w",
+         "....KlK..KlK...."]
+SIDE = [".....K..........",
+        ".....KoK........",
+        "....KooKKK......",
+        "...KoooooooK....",
+        "...KoooWWWooK...",
+        "...KoooWEWobK...",
+        "...KoooWWWobbK..",
+        "....KoooooooK...",
+        "....KKfooffK....",
+        "...KffKcccKfKw..",
+        "...KffKcccKKKwK.",
+        "...KffKcccccKw..",
+        "...KfffcccffKw..",
+        "....KKfffffK.w..",
+        ".....KlK.KlK....",
+        ".....KlK.KlK...."]
+BACK = ["...K........K...",
+        "...KoK....KoK...",
+        "...KooKKKKooK...",
+        "..KooooooooooK..",
+        "..KoOoOoOoOooK..",
+        "..KooOoOoOoOoK..",
+        "..KoOoOoOoOooK..",
+        "...KooooooooK...",
+        "...KKooooooKK...",
+        ".wKfKffqqffKfK..",
+        "wKffKffqqffKffK.",
+        "wKfKKffqqffKKfK.",
+        "w.KfKffffffKfK..",
+        "w..KKfffffKK....",
+        "....KlK..KlK....",
+        "....KlK..KlK...."]
+kit.Character("owl_archer", {"s": FRONT, "se": SIDE, "e": SIDE, "ne": SIDE, "n": BACK},
+              {"o": "b89a6a", "O": "7a6040", "W": "fff2d0", "E": "ffd23f", "b": "e8922a", "f": "6a4a32", "c": "e8dcc0",
+               "l": "4a3a2a", "w": "d8a050", "q": "8a5a30"}, role="archer",
+              hand={"s": (15, 11), "se": (13, 10), "e": (13, 10), "ne": (13, 10), "n": (0, 11)}).build()

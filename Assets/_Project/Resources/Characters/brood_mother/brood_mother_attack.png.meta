@@ -140,156 +140,6 @@ TextureImporter:
   - first:
       213: 8279490650871968896
     second: brood_mother_attack_45
-  - first:
-      213: 6613072117079525170
-    second: brood_mother_attack_46
-  - first:
-      213: -3878780048628387712
-    second: brood_mother_attack_47
-  - first:
-      213: 9028732686649633162
-    second: brood_mother_attack_48
-  - first:
-      213: 8741985263284040191
-    second: brood_mother_attack_49
-  - first:
-      213: -8259368401738610152
-    second: brood_mother_attack_50
-  - first:
-      213: -7793992539451707928
-    second: brood_mother_attack_51
-  - first:
-      213: 9118608344579269586
-    second: brood_mother_attack_52
-  - first:
-      213: -7070461337284834462
-    second: brood_mother_attack_53
-  - first:
-      213: 7323756887325158110
-    second: brood_mother_attack_54
-  - first:
-      213: -1945312843907482427
-    second: brood_mother_attack_55
-  - first:
-      213: 3871984973779524349
-    second: brood_mother_attack_56
-  - first:
-      213: 7755138325091654552
-    second: brood_mother_attack_57
-  - first:
-      213: -2234191175745735952
-    second: brood_mother_attack_58
-  - first:
-      213: 4847814575382101673
-    second: brood_mother_attack_59
-  - first:
-      213: 2353019015749716416
-    second: brood_mother_attack_60
-  - first:
-      213: -5020367565297240908
-    second: brood_mother_attack_61
-  - first:
-      213: -3999237899710899497
-    second: brood_mother_attack_62
-  - first:
-      213: 6201160660526661803
-    second: brood_mother_attack_63
-  - first:
-      213: 1614303186311158
-    second: brood_mother_attack_64
-  - first:
-      213: -4151653735749981188
-    second: brood_mother_attack_65
-  - first:
-      213: -6959918502348517464
-    second: brood_mother_attack_66
-  - first:
-      213: -340175815572636794
-    second: brood_mother_attack_67
-  - first:
-      213: 1366503494592471832
-    second: brood_mother_attack_68
-  - first:
-      213: 4521573323359978794
-    second: brood_mother_attack_69
-  - first:
-      213: -2576708937649314098
-    second: brood_mother_attack_70
-  - first:
-      213: -8428968862300007693
-    second: brood_mother_attack_71
-  - first:
-      213: -1936413568647677705
-    second: brood_mother_attack_72
-  - first:
-      213: 3133887239874232283
-    second: brood_mother_attack_73
-  - first:
-      213: 5484415024608332990
-    second: brood_mother_attack_74
-  - first:
-      213: 5029181912433487355
-    second: brood_mother_attack_75
-  - first:
-      213: -3557419362102675877
-    second: brood_mother_attack_76
-  - first:
-      213: -1812398844217210552
-    second: brood_mother_attack_77
-  - first:
-      213: -985107167965596873
-    second: brood_mother_attack_78
-  - first:
-      213: 1219851853899496767
-    second: brood_mother_attack_79
-  - first:
-      213: 5481082443092627062
-    second: brood_mother_attack_80
-  - first:
-      213: -1837601744958807959
-    second: brood_mother_attack_81
-  - first:
-      213: 383737041313400898
-    second: brood_mother_attack_82
-  - first:
-      213: -7702267183963060056
-    second: brood_mother_attack_83
-  - first:
-      213: -2444354877770624463
-    second: brood_mother_attack_84
-  - first:
-      213: 2948458088593520447
-    second: brood_mother_attack_85
-  - first:
-      213: 578324966716592274
-    second: brood_mother_attack_86
-  - first:
-      213: 5483905956092912762
-    second: brood_mother_attack_87
-  - first:
-      213: 2158954835981943892
-    second: brood_mother_attack_88
-  - first:
-      213: 4594384547574696460
-    second: brood_mother_attack_89
-  - first:
-      213: -4857914393276240260
-    second: brood_mother_attack_90
-  - first:
-      213: 2483759652101866156
-    second: brood_mother_attack_91
-  - first:
-      213: -2121699967524537969
-    second: brood_mother_attack_92
-  - first:
-      213: -1688770319993434233
-    second: brood_mother_attack_93
-  - first:
-      213: 1904520261573213509
-    second: brood_mother_attack_94
-  - first:
-      213: -7449617393450868292
-    second: brood_mother_attack_95
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -322,7 +172,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -333,10 +183,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 27
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -359,10 +209,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -430,19 +280,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 553
-        width: 136
-        height: 79
+        y: 448
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 182500a4cc95242daad828a39cb47d37
-      internalID: -1230202126
+      spriteID: c15dc6e8185994034ae13013ebab1132
+      internalID: 532278647
       vertices: []
       indices: 
       edges: []
@@ -451,20 +301,20 @@ TextureImporter:
       name: brood_mother_attack_s_01
       rect:
         serializedVersion: 2
-        x: 136
-        y: 553
-        width: 136
-        height: 79
+        x: 84
+        y: 448
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 716ad467c744b4804a9b915dffaf9f72
-      internalID: 1045645052
+      spriteID: 32219e1aba73b4e15a1ec309b3171529
+      internalID: -60760514
       vertices: []
       indices: 
       edges: []
@@ -473,20 +323,20 @@ TextureImporter:
       name: brood_mother_attack_s_02
       rect:
         serializedVersion: 2
-        x: 272
-        y: 553
-        width: 136
-        height: 79
+        x: 168
+        y: 448
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2e10d7a41768464baa89405d9b6eaad
-      internalID: -1624959555
+      spriteID: ed37676d2d14c4206a324224289e1bc6
+      internalID: -1663777480
       vertices: []
       indices: 
       edges: []
@@ -495,20 +345,20 @@ TextureImporter:
       name: brood_mother_attack_s_03
       rect:
         serializedVersion: 2
-        x: 408
-        y: 553
-        width: 136
-        height: 79
+        x: 252
+        y: 448
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1becc7860edee465fb32e74312d15601
-      internalID: 594862895
+      spriteID: c607e0688dcb9441daec7f78884ba59c
+      internalID: -1793983059
       vertices: []
       indices: 
       edges: []
@@ -517,174 +367,20 @@ TextureImporter:
       name: brood_mother_attack_s_04
       rect:
         serializedVersion: 2
-        x: 544
-        y: 553
-        width: 136
-        height: 79
+        x: 336
+        y: 448
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb2dadd69ff3f4437a3b2822b0b83df9
-      internalID: -282711254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_s_05
-      rect:
-        serializedVersion: 2
-        x: 680
-        y: 553
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 545aad0e7e3fa4d07b6c361ea5a26584
-      internalID: -352196193
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_s_06
-      rect:
-        serializedVersion: 2
-        x: 816
-        y: 553
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8f1776c920915458a87719b07d536ee9
-      internalID: 1889569967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_s_07
-      rect:
-        serializedVersion: 2
-        x: 952
-        y: 553
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69f5343bf7c864273b878ed108a02d38
-      internalID: -1601442234
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_s_08
-      rect:
-        serializedVersion: 2
-        x: 1088
-        y: 553
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f606c03292f448c08ee83c0d0b13bf1
-      internalID: 2021315466
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_s_09
-      rect:
-        serializedVersion: 2
-        x: 1224
-        y: 553
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43b3774c39fe84c73b4e324dd77a4bb5
-      internalID: -1571063067
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_s_10
-      rect:
-        serializedVersion: 2
-        x: 1360
-        y: 553
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7be5dcb15965f4784b74eeb1670abc30
-      internalID: 474689468
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_s_11
-      rect:
-        serializedVersion: 2
-        x: 1496
-        y: 553
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 70dbd0b665aa24e369ee51abdfb1255b
-      internalID: 2052855118
+      spriteID: c80dd9ee03cac4c8baa18b8022482053
+      internalID: -1780664055
       vertices: []
       indices: 
       edges: []
@@ -694,19 +390,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 474
-        width: 136
-        height: 79
+        y: 384
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7eca3f3dfe234a318b5b1cf844b4b36
-      internalID: 1148448471
+      spriteID: cab62e91e5e314c93829b63fd364eb72
+      internalID: -2082326760
       vertices: []
       indices: 
       edges: []
@@ -715,20 +411,20 @@ TextureImporter:
       name: brood_mother_attack_sw_01
       rect:
         serializedVersion: 2
-        x: 136
-        y: 474
-        width: 136
-        height: 79
+        x: 84
+        y: 384
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 402695beacefc40fcbe6dd8a9eb79a49
-      internalID: -1948621957
+      spriteID: ad57fdd6dc9e240128fe846ec3c67df9
+      internalID: -247698015
       vertices: []
       indices: 
       edges: []
@@ -737,20 +433,20 @@ TextureImporter:
       name: brood_mother_attack_sw_02
       rect:
         serializedVersion: 2
-        x: 272
-        y: 474
-        width: 136
-        height: 79
+        x: 168
+        y: 384
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d87e3bbe7cfd74b7a94985420cf270f6
-      internalID: 1213138268
+      spriteID: 36fbf8dc38fa34e9796f88e5089c22e8
+      internalID: -990481849
       vertices: []
       indices: 
       edges: []
@@ -759,20 +455,20 @@ TextureImporter:
       name: brood_mother_attack_sw_03
       rect:
         serializedVersion: 2
-        x: 408
-        y: 474
-        width: 136
-        height: 79
+        x: 252
+        y: 384
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf55068c33d7f43039ca8df6815ae5f0
-      internalID: 57378139
+      spriteID: 71309d9098c3448b889e3ceb09f287bc
+      internalID: 622215962
       vertices: []
       indices: 
       edges: []
@@ -781,174 +477,20 @@ TextureImporter:
       name: brood_mother_attack_sw_04
       rect:
         serializedVersion: 2
-        x: 544
-        y: 474
-        width: 136
-        height: 79
+        x: 336
+        y: 384
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c99f26716af6a4a75b075b41d27d6162
-      internalID: 2059183270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_sw_05
-      rect:
-        serializedVersion: 2
-        x: 680
-        y: 474
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 45678a6fa1cb84b82a1254aaa450581c
-      internalID: -823647650
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_sw_06
-      rect:
-        serializedVersion: 2
-        x: 816
-        y: 474
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 10dd578e5169f43a1bc7986a494b06b4
-      internalID: 1803655265
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_sw_07
-      rect:
-        serializedVersion: 2
-        x: 952
-        y: 474
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: faca2a87daa654be384eac60942d3b81
-      internalID: -1546767944
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_sw_08
-      rect:
-        serializedVersion: 2
-        x: 1088
-        y: 474
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5124f276264e44ceda27a1b37ba4ddf5
-      internalID: -368503931
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_sw_09
-      rect:
-        serializedVersion: 2
-        x: 1224
-        y: 474
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b778d27fa383f464ca304d61942f1c0d
-      internalID: -2012678720
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_sw_10
-      rect:
-        serializedVersion: 2
-        x: 1360
-        y: 474
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f55181b5ee9ee440ea7fa8591e39bfe0
-      internalID: 1570296618
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_sw_11
-      rect:
-        serializedVersion: 2
-        x: 1496
-        y: 474
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 521b7d63ec6b4449db4a67ea58481f6d
-      internalID: 1764426691
+      spriteID: 49149699ed7dc4c34b473207c3149bc9
+      internalID: -1336282158
       vertices: []
       indices: 
       edges: []
@@ -958,19 +500,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 395
-        width: 136
-        height: 79
+        y: 320
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f253efdb6c414faf9dff99c9c4bdbbc
-      internalID: 1308534206
+      spriteID: bb7e94dc1d31b4183ba6896732330dbf
+      internalID: -1409110014
       vertices: []
       indices: 
       edges: []
@@ -979,20 +521,20 @@ TextureImporter:
       name: brood_mother_attack_w_01
       rect:
         serializedVersion: 2
-        x: 136
-        y: 395
-        width: 136
-        height: 79
+        x: 84
+        y: 320
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b99447b1371b4494791bd28cac354d33
-      internalID: 1055063525
+      spriteID: eaea7dbcc766447b3ad604e1c70399aa
+      internalID: -69709071
       vertices: []
       indices: 
       edges: []
@@ -1001,20 +543,20 @@ TextureImporter:
       name: brood_mother_attack_w_02
       rect:
         serializedVersion: 2
-        x: 272
-        y: 395
-        width: 136
-        height: 79
+        x: 168
+        y: 320
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 642469ae8b51545dead84445284417b7
-      internalID: -1351895214
+      spriteID: e01580588a83c4ee08c1f3d7fecfc21c
+      internalID: -131810911
       vertices: []
       indices: 
       edges: []
@@ -1023,20 +565,20 @@ TextureImporter:
       name: brood_mother_attack_w_03
       rect:
         serializedVersion: 2
-        x: 408
-        y: 395
-        width: 136
-        height: 79
+        x: 252
+        y: 320
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a927526af5b74f638193048c80de263
-      internalID: -1408506324
+      spriteID: be8070a15542a412ebe025db6e60f78a
+      internalID: 1742919226
       vertices: []
       indices: 
       edges: []
@@ -1045,174 +587,20 @@ TextureImporter:
       name: brood_mother_attack_w_04
       rect:
         serializedVersion: 2
-        x: 544
-        y: 395
-        width: 136
-        height: 79
+        x: 336
+        y: 320
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3fd90b8e75aa4ab78a45f67e370c8ab
-      internalID: -1888485299
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_w_05
-      rect:
-        serializedVersion: 2
-        x: 680
-        y: 395
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 085e47140302347aaa4735474844af12
-      internalID: -424273386
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_w_06
-      rect:
-        serializedVersion: 2
-        x: 816
-        y: 395
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7151581dcd95d487dae33978c2e548ef
-      internalID: -1610845246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_w_07
-      rect:
-        serializedVersion: 2
-        x: 952
-        y: 395
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b2afceb56802e4132b40937eca7a3b8c
-      internalID: -1219645225
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_w_08
-      rect:
-        serializedVersion: 2
-        x: 1088
-        y: 395
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3a1baab8b24a4413281709bd9d9c3ebd
-      internalID: 791373759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_w_09
-      rect:
-        serializedVersion: 2
-        x: 1224
-        y: 395
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e0decfc48e044175a81b446f46e496d
-      internalID: 1176123605
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_w_10
-      rect:
-        serializedVersion: 2
-        x: 1360
-        y: 395
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d9522634187f04789ba2e663a8f311d9
-      internalID: -1764490329
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_w_11
-      rect:
-        serializedVersion: 2
-        x: 1496
-        y: 395
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 083f6e50935a34d8fa7b05ebfea303ae
-      internalID: 1758725421
+      spriteID: 7281bc72039c54105bdd979f12922595
+      internalID: -1823556973
       vertices: []
       indices: 
       edges: []
@@ -1222,19 +610,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 316
-        width: 136
-        height: 79
+        y: 256
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acc1c58fc045b4cf3b2fcc5d47b20b43
-      internalID: -2142098059
+      spriteID: 13501aa9aaaa841f8bd96c7f2841c182
+      internalID: 647184693
       vertices: []
       indices: 
       edges: []
@@ -1243,20 +631,20 @@ TextureImporter:
       name: brood_mother_attack_nw_01
       rect:
         serializedVersion: 2
-        x: 136
-        y: 316
-        width: 136
-        height: 79
+        x: 84
+        y: 256
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d436f39667daf4ac3845907ce1827621
-      internalID: -1626644914
+      spriteID: fbdb555f9a1de459d8008116ea541723
+      internalID: -278332163
       vertices: []
       indices: 
       edges: []
@@ -1265,20 +653,20 @@ TextureImporter:
       name: brood_mother_attack_nw_02
       rect:
         serializedVersion: 2
-        x: 272
-        y: 316
-        width: 136
-        height: 79
+        x: 168
+        y: 256
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edac8ad10eb4341ef9d2d407fa4b210c
-      internalID: 745617426
+      spriteID: ee1f956643ac24a839a084be0fe5c232
+      internalID: 438060901
       vertices: []
       indices: 
       edges: []
@@ -1287,20 +675,20 @@ TextureImporter:
       name: brood_mother_attack_nw_03
       rect:
         serializedVersion: 2
-        x: 408
-        y: 316
-        width: 136
-        height: 79
+        x: 252
+        y: 256
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6dcc9942c65a430d8792b882161e50c
-      internalID: 724901821
+      spriteID: 075f8316842ab4ba38a3a71974ca110f
+      internalID: 221825944
       vertices: []
       indices: 
       edges: []
@@ -1309,174 +697,20 @@ TextureImporter:
       name: brood_mother_attack_nw_04
       rect:
         serializedVersion: 2
-        x: 544
-        y: 316
-        width: 136
-        height: 79
+        x: 336
+        y: 256
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f7af3e338a164b0a88e95fa76d7aac5
-      internalID: -2063334886
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_nw_05
-      rect:
-        serializedVersion: 2
-        x: 680
-        y: 316
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e8ff1cf3234c4c3a9759847908ef757
-      internalID: 1314404403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_nw_06
-      rect:
-        serializedVersion: 2
-        x: 816
-        y: 316
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4f0ae1d6a655647189c3b847c31217d6
-      internalID: -2089797014
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_nw_07
-      rect:
-        serializedVersion: 2
-        x: 952
-        y: 316
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba183a3670d59419d98cd126822bf956
-      internalID: -312452551
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_nw_08
-      rect:
-        serializedVersion: 2
-        x: 1088
-        y: 316
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ec01ef9ee55c8410db371a7c9c15276b
-      internalID: 399228536
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_nw_09
-      rect:
-        serializedVersion: 2
-        x: 1224
-        y: 316
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4db61dbb8289b432892c23d2ca03e8ab
-      internalID: -293096008
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_nw_10
-      rect:
-        serializedVersion: 2
-        x: 1360
-        y: 316
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 910a253fa840f4a7da9503de718e9b43
-      internalID: 328472641
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_nw_11
-      rect:
-        serializedVersion: 2
-        x: 1496
-        y: 316
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 44a559054ea3a4575b3c1fc73272bfea
-      internalID: 1263018242
+      spriteID: 23c6e8a57ea8b49aba20f3b69424b0b4
+      internalID: -1220335757
       vertices: []
       indices: 
       edges: []
@@ -1486,19 +720,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 237
-        width: 136
-        height: 79
+        y: 192
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef3c704922078437fa33ebbdb35e4b3b
-      internalID: 456236068
+      spriteID: 4de0be5f0228743f79158b5871c75be7
+      internalID: 2071506096
       vertices: []
       indices: 
       edges: []
@@ -1507,20 +741,20 @@ TextureImporter:
       name: brood_mother_attack_n_01
       rect:
         serializedVersion: 2
-        x: 136
-        y: 237
-        width: 136
-        height: 79
+        x: 84
+        y: 192
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f6fba47df62446e0a6e868a6879ebde
-      internalID: -2102240245
+      spriteID: df2f0c547c3b447dc85a0e811baee495
+      internalID: 429038515
       vertices: []
       indices: 
       edges: []
@@ -1529,20 +763,20 @@ TextureImporter:
       name: brood_mother_attack_n_02
       rect:
         serializedVersion: 2
-        x: 272
-        y: 237
-        width: 136
-        height: 79
+        x: 168
+        y: 192
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54737d39532d147149f1b174d43142b7
-      internalID: -1787684291
+      spriteID: e3896ca41fac344aaad5a1a437c8ff5f
+      internalID: -1376108226
       vertices: []
       indices: 
       edges: []
@@ -1551,20 +785,20 @@ TextureImporter:
       name: brood_mother_attack_n_03
       rect:
         serializedVersion: 2
-        x: 408
-        y: 237
-        width: 136
-        height: 79
+        x: 252
+        y: 192
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb57c4f37b56c46dfabbf15d761f4fa2
-      internalID: -399378185
+      spriteID: da7bf5908165b4a129aeed633405892f
+      internalID: -646535424
       vertices: []
       indices: 
       edges: []
@@ -1573,174 +807,20 @@ TextureImporter:
       name: brood_mother_attack_n_04
       rect:
         serializedVersion: 2
-        x: 544
-        y: 237
-        width: 136
-        height: 79
+        x: 336
+        y: 192
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1d7e79c016c64b7cab0fd1e306c66d0
-      internalID: -184552608
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_n_05
-      rect:
-        serializedVersion: 2
-        x: 680
-        y: 237
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 60586bd02245e4720a3d7302b3807818
-      internalID: -1867107561
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_n_06
-      rect:
-        serializedVersion: 2
-        x: 816
-        y: 237
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1433bc50f76b345c4bcbfb035ef73f28
-      internalID: -964785085
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_n_07
-      rect:
-        serializedVersion: 2
-        x: 952
-        y: 237
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b62c0afeaf344a1e8cab620db484faa
-      internalID: -1408058091
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_n_08
-      rect:
-        serializedVersion: 2
-        x: 1088
-        y: 237
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df2b16b54a3a44af2a0cd975448500de
-      internalID: 1182457467
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_n_09
-      rect:
-        serializedVersion: 2
-        x: 1224
-        y: 237
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5efea8b1a5bd94bbf8e9ed27fd4408fd
-      internalID: -273818705
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_n_10
-      rect:
-        serializedVersion: 2
-        x: 1360
-        y: 237
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9ff37eb716bf34fd99a6836f9766581a
-      internalID: 1012877040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_n_11
-      rect:
-        serializedVersion: 2
-        x: 1496
-        y: 237
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce5cd63e551264a20818c4fa8a43a3e7
-      internalID: 1317338041
+      spriteID: 8af83a0268be44d0086901ad65b366c4
+      internalID: -217590296
       vertices: []
       indices: 
       edges: []
@@ -1750,19 +830,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 158
-        width: 136
-        height: 79
+        y: 128
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a6fd8d85d74146c480609cbba1ba815
-      internalID: -671763948
+      spriteID: 8c7f522daca9145e589c3c2511f21f4f
+      internalID: 351010914
       vertices: []
       indices: 
       edges: []
@@ -1771,20 +851,20 @@ TextureImporter:
       name: brood_mother_attack_ne_01
       rect:
         serializedVersion: 2
-        x: 136
-        y: 158
-        width: 136
-        height: 79
+        x: 84
+        y: 128
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c9d174a46bf440a795a285dd1eb9108
-      internalID: 1195147629
+      spriteID: 5d3ff19f2b8964212bb2c7b356c7bc58
+      internalID: -311831852
       vertices: []
       indices: 
       edges: []
@@ -1793,20 +873,20 @@ TextureImporter:
       name: brood_mother_attack_ne_02
       rect:
         serializedVersion: 2
-        x: 272
-        y: 158
-        width: 136
-        height: 79
+        x: 168
+        y: 128
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9af4a0cd4c9e14b06b011674b922cc84
-      internalID: -671838284
+      spriteID: 6534b887a479146de87b4e8b623074d1
+      internalID: 144844836
       vertices: []
       indices: 
       edges: []
@@ -1815,20 +895,20 @@ TextureImporter:
       name: brood_mother_attack_ne_03
       rect:
         serializedVersion: 2
-        x: 408
-        y: 158
-        width: 136
-        height: 79
+        x: 252
+        y: 128
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b818614fc9994f8e9775be5c39842b7
-      internalID: -2091737971
+      spriteID: c7de9ba706ee5419d8752f3b332ca721
+      internalID: 1488296014
       vertices: []
       indices: 
       edges: []
@@ -1837,174 +917,20 @@ TextureImporter:
       name: brood_mother_attack_ne_04
       rect:
         serializedVersion: 2
-        x: 544
-        y: 158
-        width: 136
-        height: 79
+        x: 336
+        y: 128
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00eb48867b5534e51a3b76081322d466
-      internalID: 262624083
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_ne_05
-      rect:
-        serializedVersion: 2
-        x: 680
-        y: 158
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23f26b445da9a41f8bee2c491c3fd70d
-      internalID: -518915922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_ne_06
-      rect:
-        serializedVersion: 2
-        x: 816
-        y: 158
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a880dc3f6acb04848844d001e7ebab65
-      internalID: 581779282
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_ne_07
-      rect:
-        serializedVersion: 2
-        x: 952
-        y: 158
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e4e0fdb129ac448181ed5f62cfe69bd
-      internalID: 1390737889
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_ne_08
-      rect:
-        serializedVersion: 2
-        x: 1088
-        y: 158
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5954ca45898d340e3bee6d44fc10bfa5
-      internalID: 495375553
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_ne_09
-      rect:
-        serializedVersion: 2
-        x: 1224
-        y: 158
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8feb8ccdac0aa4d02b264a833f3b40ce
-      internalID: -955024053
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_ne_10
-      rect:
-        serializedVersion: 2
-        x: 1360
-        y: 158
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3cedea87f8a674f02b68e4bed6336544
-      internalID: -144859297
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_ne_11
-      rect:
-        serializedVersion: 2
-        x: 1496
-        y: 158
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2e078728298774a77bc15bfbc20f80f4
-      internalID: 1517132255
+      spriteID: eaa14260b9949410cba83168d4a858f0
+      internalID: -494414052
       vertices: []
       indices: 
       edges: []
@@ -2014,19 +940,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 79
-        width: 136
-        height: 79
+        y: 64
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05a52c3391bb44fe09c4205ec2b73bce
-      internalID: -1112236659
+      spriteID: f9c9d17b380b34fb8ac5df344c68bc4d
+      internalID: -567621924
       vertices: []
       indices: 
       edges: []
@@ -2035,20 +961,20 @@ TextureImporter:
       name: brood_mother_attack_e_01
       rect:
         serializedVersion: 2
-        x: 136
-        y: 79
-        width: 136
-        height: 79
+        x: 84
+        y: 64
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df065729ecfc44ce8b6d4e810bf257fd
-      internalID: -1653549753
+      spriteID: d47606bad7e67464b9df144529219e0e
+      internalID: -529160703
       vertices: []
       indices: 
       edges: []
@@ -2057,20 +983,20 @@ TextureImporter:
       name: brood_mother_attack_e_02
       rect:
         serializedVersion: 2
-        x: 272
-        y: 79
-        width: 136
-        height: 79
+        x: 168
+        y: 64
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4a48e6c1dd9344d0819761f1339ad46
-      internalID: -2016002615
+      spriteID: 92892c04a27974d5db7656ac63c7dc5f
+      internalID: 1102086912
       vertices: []
       indices: 
       edges: []
@@ -2079,20 +1005,20 @@ TextureImporter:
       name: brood_mother_attack_e_03
       rect:
         serializedVersion: 2
-        x: 408
-        y: 79
-        width: 136
-        height: 79
+        x: 252
+        y: 64
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bc5879f4fe73402ea6813603e3d9fe7
-      internalID: 1476985652
+      spriteID: 56102e7d9f5104d0ca6c9532d005a005
+      internalID: 1157243593
       vertices: []
       indices: 
       edges: []
@@ -2101,174 +1027,20 @@ TextureImporter:
       name: brood_mother_attack_e_04
       rect:
         serializedVersion: 2
-        x: 544
-        y: 79
-        width: 136
-        height: 79
+        x: 336
+        y: 64
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce502041d0c4541d58bccef7c6bd283a
-      internalID: 1227846068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_e_05
-      rect:
-        serializedVersion: 2
-        x: 680
-        y: 79
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2feeac296b91c4db79484dd71b3c7748
-      internalID: 226230446
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_e_06
-      rect:
-        serializedVersion: 2
-        x: 816
-        y: 79
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ccdffc8f2299409e8279ce02783540a
-      internalID: 819855233
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_e_07
-      rect:
-        serializedVersion: 2
-        x: 952
-        y: 79
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 731d1fbafb4d54dfc9de2734d0e74601
-      internalID: 1482243989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_e_08
-      rect:
-        serializedVersion: 2
-        x: 1088
-        y: 79
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 53ee64d5980a4464081da128597e8660
-      internalID: -733334163
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_e_09
-      rect:
-        serializedVersion: 2
-        x: 1224
-        y: 79
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23bb3e80dc63248a0a5cb40750f25cfa
-      internalID: 1109257722
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_e_10
-      rect:
-        serializedVersion: 2
-        x: 1360
-        y: 79
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 24f58f7371f06479fb7a3514b174b0d1
-      internalID: -2000260411
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_e_11
-      rect:
-        serializedVersion: 2
-        x: 1496
-        y: 79
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8bc60f460f2c445799821efdd7cfefd8
-      internalID: -108079840
+      spriteID: b981dc626b6194349b5d5f5b188fa4e1
+      internalID: 76810109
       vertices: []
       indices: 
       edges: []
@@ -2279,18 +1051,18 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 136
-        height: 79
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9328e596ce9824af3a4a5cc4a34e4a5d
-      internalID: 1039889124
+      spriteID: 51647f673eec249ba8f08fce390f3154
+      internalID: 1175389907
       vertices: []
       indices: 
       edges: []
@@ -2299,20 +1071,20 @@ TextureImporter:
       name: brood_mother_attack_se_01
       rect:
         serializedVersion: 2
-        x: 136
+        x: 84
         y: 0
-        width: 136
-        height: 79
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2af18502c6d0244a5886b0115b6be074
-      internalID: 1297314090
+      spriteID: a6ef488d39a374cba9d8b091c9b70d27
+      internalID: 1562673127
       vertices: []
       indices: 
       edges: []
@@ -2321,20 +1093,20 @@ TextureImporter:
       name: brood_mother_attack_se_02
       rect:
         serializedVersion: 2
-        x: 272
+        x: 168
         y: 0
-        width: 136
-        height: 79
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ccd5f6c3e9554740b6d0591391a5d17
-      internalID: 1934278850
+      spriteID: 4056e6fd8461d4b1981955137405a304
+      internalID: -1611088442
       vertices: []
       indices: 
       edges: []
@@ -2343,20 +1115,20 @@ TextureImporter:
       name: brood_mother_attack_se_03
       rect:
         serializedVersion: 2
-        x: 408
+        x: 252
         y: 0
-        width: 136
-        height: 79
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb69a07ab5e7948c0a25472dd235fda1
-      internalID: -384907803
+      spriteID: 20e5b6082efe84205a32c30362c3ba3f
+      internalID: -1991967809
       vertices: []
       indices: 
       edges: []
@@ -2365,174 +1137,20 @@ TextureImporter:
       name: brood_mother_attack_se_04
       rect:
         serializedVersion: 2
-        x: 544
+        x: 336
         y: 0
-        width: 136
-        height: 79
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5191bc5bc629a41af958416ebe718618
-      internalID: -1637431579
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_se_05
-      rect:
-        serializedVersion: 2
-        x: 680
-        y: 0
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2580d1545469647ed8fc7ce9c3f413fd
-      internalID: 2078913770
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_se_06
-      rect:
-        serializedVersion: 2
-        x: 816
-        y: 0
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4814a421a3e5d4d318e706f791c16fbc
-      internalID: -85193518
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_se_07
-      rect:
-        serializedVersion: 2
-        x: 952
-        y: 0
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ca931daf814144e399dafdd7ea156b76
-      internalID: -1878107065
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_se_08
-      rect:
-        serializedVersion: 2
-        x: 1088
-        y: 0
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 415dc6fea3acf4d4b92daa602c431402
-      internalID: -487255589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_se_09
-      rect:
-        serializedVersion: 2
-        x: 1224
-        y: 0
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f0870948e0bf4ba6b938121aebe8357
-      internalID: 528487097
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_se_10
-      rect:
-        serializedVersion: 2
-        x: 1360
-        y: 0
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2851f8a8e346e482992360b348db0c05
-      internalID: 1596253805
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_attack_se_11
-      rect:
-        serializedVersion: 2
-        x: 1496
-        y: 0
-        width: 136
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15189874}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5f42d971cc1549509abd32571ca5d53
-      internalID: -1142350465
+      spriteID: 693064458bb864b4c814dd5f16490701
+      internalID: 842788507
       vertices: []
       indices: 
       edges: []
@@ -2541,7 +1159,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e90ba91f1ac6040ed8c8e3e6270d3303
+    spriteID: 33d09e57cf8eb47519432930942c0d57
     internalID: 0
     vertices: []
     indices: 
@@ -2551,102 +1169,46 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      brood_mother_attack_e_00: -1112236659
-      brood_mother_attack_e_01: -1653549753
-      brood_mother_attack_e_02: -2016002615
-      brood_mother_attack_e_03: 1476985652
-      brood_mother_attack_e_04: 1227846068
-      brood_mother_attack_e_05: 226230446
-      brood_mother_attack_e_06: 819855233
-      brood_mother_attack_e_07: 1482243989
-      brood_mother_attack_e_08: -733334163
-      brood_mother_attack_e_09: 1109257722
-      brood_mother_attack_e_10: -2000260411
-      brood_mother_attack_e_11: -108079840
-      brood_mother_attack_n_00: 456236068
-      brood_mother_attack_n_01: -2102240245
-      brood_mother_attack_n_02: -1787684291
-      brood_mother_attack_n_03: -399378185
-      brood_mother_attack_n_04: -184552608
-      brood_mother_attack_n_05: -1867107561
-      brood_mother_attack_n_06: -964785085
-      brood_mother_attack_n_07: -1408058091
-      brood_mother_attack_n_08: 1182457467
-      brood_mother_attack_n_09: -273818705
-      brood_mother_attack_n_10: 1012877040
-      brood_mother_attack_n_11: 1317338041
-      brood_mother_attack_ne_00: -671763948
-      brood_mother_attack_ne_01: 1195147629
-      brood_mother_attack_ne_02: -671838284
-      brood_mother_attack_ne_03: -2091737971
-      brood_mother_attack_ne_04: 262624083
-      brood_mother_attack_ne_05: -518915922
-      brood_mother_attack_ne_06: 581779282
-      brood_mother_attack_ne_07: 1390737889
-      brood_mother_attack_ne_08: 495375553
-      brood_mother_attack_ne_09: -955024053
-      brood_mother_attack_ne_10: -144859297
-      brood_mother_attack_ne_11: 1517132255
-      brood_mother_attack_nw_00: -2142098059
-      brood_mother_attack_nw_01: -1626644914
-      brood_mother_attack_nw_02: 745617426
-      brood_mother_attack_nw_03: 724901821
-      brood_mother_attack_nw_04: -2063334886
-      brood_mother_attack_nw_05: 1314404403
-      brood_mother_attack_nw_06: -2089797014
-      brood_mother_attack_nw_07: -312452551
-      brood_mother_attack_nw_08: 399228536
-      brood_mother_attack_nw_09: -293096008
-      brood_mother_attack_nw_10: 328472641
-      brood_mother_attack_nw_11: 1263018242
-      brood_mother_attack_s_00: -1230202126
-      brood_mother_attack_s_01: 1045645052
-      brood_mother_attack_s_02: -1624959555
-      brood_mother_attack_s_03: 594862895
-      brood_mother_attack_s_04: -282711254
-      brood_mother_attack_s_05: -352196193
-      brood_mother_attack_s_06: 1889569967
-      brood_mother_attack_s_07: -1601442234
-      brood_mother_attack_s_08: 2021315466
-      brood_mother_attack_s_09: -1571063067
-      brood_mother_attack_s_10: 474689468
-      brood_mother_attack_s_11: 2052855118
-      brood_mother_attack_se_00: 1039889124
-      brood_mother_attack_se_01: 1297314090
-      brood_mother_attack_se_02: 1934278850
-      brood_mother_attack_se_03: -384907803
-      brood_mother_attack_se_04: -1637431579
-      brood_mother_attack_se_05: 2078913770
-      brood_mother_attack_se_06: -85193518
-      brood_mother_attack_se_07: -1878107065
-      brood_mother_attack_se_08: -487255589
-      brood_mother_attack_se_09: 528487097
-      brood_mother_attack_se_10: 1596253805
-      brood_mother_attack_se_11: -1142350465
-      brood_mother_attack_sw_00: 1148448471
-      brood_mother_attack_sw_01: -1948621957
-      brood_mother_attack_sw_02: 1213138268
-      brood_mother_attack_sw_03: 57378139
-      brood_mother_attack_sw_04: 2059183270
-      brood_mother_attack_sw_05: -823647650
-      brood_mother_attack_sw_06: 1803655265
-      brood_mother_attack_sw_07: -1546767944
-      brood_mother_attack_sw_08: -368503931
-      brood_mother_attack_sw_09: -2012678720
-      brood_mother_attack_sw_10: 1570296618
-      brood_mother_attack_sw_11: 1764426691
-      brood_mother_attack_w_00: 1308534206
-      brood_mother_attack_w_01: 1055063525
-      brood_mother_attack_w_02: -1351895214
-      brood_mother_attack_w_03: -1408506324
-      brood_mother_attack_w_04: -1888485299
-      brood_mother_attack_w_05: -424273386
-      brood_mother_attack_w_06: -1610845246
-      brood_mother_attack_w_07: -1219645225
-      brood_mother_attack_w_08: 791373759
-      brood_mother_attack_w_09: 1176123605
-      brood_mother_attack_w_10: -1764490329
-      brood_mother_attack_w_11: 1758725421
+      brood_mother_attack_e_00: -567621924
+      brood_mother_attack_e_01: -529160703
+      brood_mother_attack_e_02: 1102086912
+      brood_mother_attack_e_03: 1157243593
+      brood_mother_attack_e_04: 76810109
+      brood_mother_attack_n_00: 2071506096
+      brood_mother_attack_n_01: 429038515
+      brood_mother_attack_n_02: -1376108226
+      brood_mother_attack_n_03: -646535424
+      brood_mother_attack_n_04: -217590296
+      brood_mother_attack_ne_00: 351010914
+      brood_mother_attack_ne_01: -311831852
+      brood_mother_attack_ne_02: 144844836
+      brood_mother_attack_ne_03: 1488296014
+      brood_mother_attack_ne_04: -494414052
+      brood_mother_attack_nw_00: 647184693
+      brood_mother_attack_nw_01: -278332163
+      brood_mother_attack_nw_02: 438060901
+      brood_mother_attack_nw_03: 221825944
+      brood_mother_attack_nw_04: -1220335757
+      brood_mother_attack_s_00: 532278647
+      brood_mother_attack_s_01: -60760514
+      brood_mother_attack_s_02: -1663777480
+      brood_mother_attack_s_03: -1793983059
+      brood_mother_attack_s_04: -1780664055
+      brood_mother_attack_se_00: 1175389907
+      brood_mother_attack_se_01: 1562673127
+      brood_mother_attack_se_02: -1611088442
+      brood_mother_attack_se_03: -1991967809
+      brood_mother_attack_se_04: 842788507
+      brood_mother_attack_sw_00: -2082326760
+      brood_mother_attack_sw_01: -247698015
+      brood_mother_attack_sw_02: -990481849
+      brood_mother_attack_sw_03: 622215962
+      brood_mother_attack_sw_04: -1336282158
+      brood_mother_attack_w_00: -1409110014
+      brood_mother_attack_w_01: -69709071
+      brood_mother_attack_w_02: -131810911
+      brood_mother_attack_w_03: 1742919226
+      brood_mother_attack_w_04: -1823556973
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

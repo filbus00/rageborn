@@ -322,7 +322,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -430,11 +430,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 378
-        width: 76
-        height: 54
+        y: 364
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -451,12 +451,12 @@ TextureImporter:
       name: pet_wolf_death_s_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 378
-        width: 76
-        height: 54
+        x: 56
+        y: 364
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -473,12 +473,12 @@ TextureImporter:
       name: pet_wolf_death_s_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 378
-        width: 76
-        height: 54
+        x: 112
+        y: 364
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -495,12 +495,12 @@ TextureImporter:
       name: pet_wolf_death_s_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 378
-        width: 76
-        height: 54
+        x: 168
+        y: 364
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -517,12 +517,12 @@ TextureImporter:
       name: pet_wolf_death_s_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 378
-        width: 76
-        height: 54
+        x: 224
+        y: 364
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -539,12 +539,12 @@ TextureImporter:
       name: pet_wolf_death_s_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 378
-        width: 76
-        height: 54
+        x: 280
+        y: 364
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -558,59 +558,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_death_s_06
-      rect:
-        serializedVersion: 2
-        x: 456
-        y: 378
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a90801e21b6ee438b9575f2557b5ccbb
-      internalID: -1693461479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_s_07
-      rect:
-        serializedVersion: 2
-        x: 532
-        y: 378
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1003009cbb4684d429dbefd4f61481f2
-      internalID: 560334931
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_death_sw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 324
-        width: 76
-        height: 54
+        y: 312
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -627,12 +583,12 @@ TextureImporter:
       name: pet_wolf_death_sw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 324
-        width: 76
-        height: 54
+        x: 56
+        y: 312
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -649,12 +605,12 @@ TextureImporter:
       name: pet_wolf_death_sw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 324
-        width: 76
-        height: 54
+        x: 112
+        y: 312
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -671,12 +627,12 @@ TextureImporter:
       name: pet_wolf_death_sw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 324
-        width: 76
-        height: 54
+        x: 168
+        y: 312
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -693,12 +649,12 @@ TextureImporter:
       name: pet_wolf_death_sw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 324
-        width: 76
-        height: 54
+        x: 224
+        y: 312
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -715,12 +671,12 @@ TextureImporter:
       name: pet_wolf_death_sw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 324
-        width: 76
-        height: 54
+        x: 280
+        y: 312
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -734,59 +690,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_death_sw_06
-      rect:
-        serializedVersion: 2
-        x: 456
-        y: 324
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e2a666c7860a4257ad6d5bfa770f85b
-      internalID: 1318020179
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_sw_07
-      rect:
-        serializedVersion: 2
-        x: 532
-        y: 324
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1c2abb02a316344a9a5a993bb018c5c5
-      internalID: -1856968527
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_death_w_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 270
-        width: 76
-        height: 54
+        y: 260
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -803,12 +715,12 @@ TextureImporter:
       name: pet_wolf_death_w_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 270
-        width: 76
-        height: 54
+        x: 56
+        y: 260
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -825,12 +737,12 @@ TextureImporter:
       name: pet_wolf_death_w_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 270
-        width: 76
-        height: 54
+        x: 112
+        y: 260
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -847,12 +759,12 @@ TextureImporter:
       name: pet_wolf_death_w_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 270
-        width: 76
-        height: 54
+        x: 168
+        y: 260
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -869,12 +781,12 @@ TextureImporter:
       name: pet_wolf_death_w_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 270
-        width: 76
-        height: 54
+        x: 224
+        y: 260
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -891,12 +803,12 @@ TextureImporter:
       name: pet_wolf_death_w_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 270
-        width: 76
-        height: 54
+        x: 280
+        y: 260
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -910,59 +822,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_death_w_06
-      rect:
-        serializedVersion: 2
-        x: 456
-        y: 270
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23a6c8f0cf6b64c8baaaa678446df647
-      internalID: -608668011
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_w_07
-      rect:
-        serializedVersion: 2
-        x: 532
-        y: 270
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 26849ae50c5ef43bbb0602fcd15531fc
-      internalID: 1579603240
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_death_nw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 216
-        width: 76
-        height: 54
+        y: 208
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -979,12 +847,12 @@ TextureImporter:
       name: pet_wolf_death_nw_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 216
-        width: 76
-        height: 54
+        x: 56
+        y: 208
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1001,12 +869,12 @@ TextureImporter:
       name: pet_wolf_death_nw_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 216
-        width: 76
-        height: 54
+        x: 112
+        y: 208
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1023,12 +891,12 @@ TextureImporter:
       name: pet_wolf_death_nw_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 216
-        width: 76
-        height: 54
+        x: 168
+        y: 208
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1045,12 +913,12 @@ TextureImporter:
       name: pet_wolf_death_nw_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 216
-        width: 76
-        height: 54
+        x: 224
+        y: 208
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1067,12 +935,12 @@ TextureImporter:
       name: pet_wolf_death_nw_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 216
-        width: 76
-        height: 54
+        x: 280
+        y: 208
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1086,59 +954,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_death_nw_06
-      rect:
-        serializedVersion: 2
-        x: 456
-        y: 216
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f96d1cf5b13fa4a0188fd5504bc5276c
-      internalID: -1612968095
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_nw_07
-      rect:
-        serializedVersion: 2
-        x: 532
-        y: 216
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df7989b1bfe934d269907810a105c5f3
-      internalID: -1556634714
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_death_n_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 162
-        width: 76
-        height: 54
+        y: 156
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1155,12 +979,12 @@ TextureImporter:
       name: pet_wolf_death_n_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 162
-        width: 76
-        height: 54
+        x: 56
+        y: 156
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1177,12 +1001,12 @@ TextureImporter:
       name: pet_wolf_death_n_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 162
-        width: 76
-        height: 54
+        x: 112
+        y: 156
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1199,12 +1023,12 @@ TextureImporter:
       name: pet_wolf_death_n_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 162
-        width: 76
-        height: 54
+        x: 168
+        y: 156
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1221,12 +1045,12 @@ TextureImporter:
       name: pet_wolf_death_n_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 162
-        width: 76
-        height: 54
+        x: 224
+        y: 156
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1243,12 +1067,12 @@ TextureImporter:
       name: pet_wolf_death_n_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 162
-        width: 76
-        height: 54
+        x: 280
+        y: 156
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1262,59 +1086,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_death_n_06
-      rect:
-        serializedVersion: 2
-        x: 456
-        y: 162
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 51a55f5ae538646e9ab718931aec9d5b
-      internalID: -1295268349
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_n_07
-      rect:
-        serializedVersion: 2
-        x: 532
-        y: 162
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e730a3171bd4745659dae9e99f78b865
-      internalID: 1119792415
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_death_ne_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 108
-        width: 76
-        height: 54
+        y: 104
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1331,12 +1111,12 @@ TextureImporter:
       name: pet_wolf_death_ne_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 108
-        width: 76
-        height: 54
+        x: 56
+        y: 104
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1353,12 +1133,12 @@ TextureImporter:
       name: pet_wolf_death_ne_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 108
-        width: 76
-        height: 54
+        x: 112
+        y: 104
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1375,12 +1155,12 @@ TextureImporter:
       name: pet_wolf_death_ne_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 108
-        width: 76
-        height: 54
+        x: 168
+        y: 104
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1397,12 +1177,12 @@ TextureImporter:
       name: pet_wolf_death_ne_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 108
-        width: 76
-        height: 54
+        x: 224
+        y: 104
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1419,12 +1199,12 @@ TextureImporter:
       name: pet_wolf_death_ne_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 108
-        width: 76
-        height: 54
+        x: 280
+        y: 104
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1438,59 +1218,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_death_ne_06
-      rect:
-        serializedVersion: 2
-        x: 456
-        y: 108
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1558c49c350e4705a931df4acdb61f0
-      internalID: 1495191620
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_ne_07
-      rect:
-        serializedVersion: 2
-        x: 532
-        y: 108
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 975fccc5e325c4cb5bb7a11407ee5fea
-      internalID: -337355374
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_death_e_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 54
-        width: 76
-        height: 54
+        y: 52
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1507,12 +1243,12 @@ TextureImporter:
       name: pet_wolf_death_e_01
       rect:
         serializedVersion: 2
-        x: 76
-        y: 54
-        width: 76
-        height: 54
+        x: 56
+        y: 52
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1529,12 +1265,12 @@ TextureImporter:
       name: pet_wolf_death_e_02
       rect:
         serializedVersion: 2
-        x: 152
-        y: 54
-        width: 76
-        height: 54
+        x: 112
+        y: 52
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1551,12 +1287,12 @@ TextureImporter:
       name: pet_wolf_death_e_03
       rect:
         serializedVersion: 2
-        x: 228
-        y: 54
-        width: 76
-        height: 54
+        x: 168
+        y: 52
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1573,12 +1309,12 @@ TextureImporter:
       name: pet_wolf_death_e_04
       rect:
         serializedVersion: 2
-        x: 304
-        y: 54
-        width: 76
-        height: 54
+        x: 224
+        y: 52
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1595,12 +1331,12 @@ TextureImporter:
       name: pet_wolf_death_e_05
       rect:
         serializedVersion: 2
-        x: 380
-        y: 54
-        width: 76
-        height: 54
+        x: 280
+        y: 52
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1614,59 +1350,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pet_wolf_death_e_06
-      rect:
-        serializedVersion: 2
-        x: 456
-        y: 54
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14806ac2d622d439fbdb0c8ef7b15c03
-      internalID: -2044029204
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_e_07
-      rect:
-        serializedVersion: 2
-        x: 532
-        y: 54
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4a1039eeebf55409191f84d161c2cc8c
-      internalID: 1118611777
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pet_wolf_death_se_00
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 76
-        height: 54
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1683,12 +1375,12 @@ TextureImporter:
       name: pet_wolf_death_se_01
       rect:
         serializedVersion: 2
-        x: 76
+        x: 56
         y: 0
-        width: 76
-        height: 54
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1705,12 +1397,12 @@ TextureImporter:
       name: pet_wolf_death_se_02
       rect:
         serializedVersion: 2
-        x: 152
+        x: 112
         y: 0
-        width: 76
-        height: 54
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1727,12 +1419,12 @@ TextureImporter:
       name: pet_wolf_death_se_03
       rect:
         serializedVersion: 2
-        x: 228
+        x: 168
         y: 0
-        width: 76
-        height: 54
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1749,12 +1441,12 @@ TextureImporter:
       name: pet_wolf_death_se_04
       rect:
         serializedVersion: 2
-        x: 304
+        x: 224
         y: 0
-        width: 76
-        height: 54
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1771,12 +1463,12 @@ TextureImporter:
       name: pet_wolf_death_se_05
       rect:
         serializedVersion: 2
-        x: 380
+        x: 280
         y: 0
-        width: 76
-        height: 54
+        width: 56
+        height: 52
       alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
+      pivot: {x: 0.5, y: 0.09615385}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1785,754 +1477,6 @@ TextureImporter:
       bones: []
       spriteID: f81188a9929d84c52ae90e7ab5a98e3c
       internalID: -714367973
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_se_06
-      rect:
-        serializedVersion: 2
-        x: 456
-        y: 0
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 96668788feea747fead020df735e5d1a
-      internalID: -1652851301
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_se_07
-      rect:
-        serializedVersion: 2
-        x: 532
-        y: 0
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c85b41f687a5b4266a1b750211bcc43a
-      internalID: -702468837
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_s_08
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 378
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a00490ddeaee463396965a3c6f077d5
-      internalID: 924507208
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_s_09
-      rect:
-        serializedVersion: 2
-        x: 684
-        y: 378
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 473c6883ebd4048138fe953aef0e0c93
-      internalID: -120406109
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_s_10
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 378
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 46fe1cbb596464ed8a12353ddbc13aa5
-      internalID: 1684557916
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_s_11
-      rect:
-        serializedVersion: 2
-        x: 836
-        y: 378
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d83a6f99e4abf4df3b4555cdfe76f0f9
-      internalID: 266487815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_sw_08
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 324
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0635a5d73da5a42bdb8d55b9eda3a7db
-      internalID: -1274228356
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_sw_09
-      rect:
-        serializedVersion: 2
-        x: 684
-        y: 324
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c021f4e21e12471f9ec883b64765b5e
-      internalID: 1119381328
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_sw_10
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 324
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0743562a53a544b75813ff083bc6035e
-      internalID: -59816121
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_sw_11
-      rect:
-        serializedVersion: 2
-        x: 836
-        y: 324
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c09fd5ea93c3d4e9a818580c7718a17c
-      internalID: -596252264
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_w_08
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 270
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08a9a02ef3ec1490fb15bcdfc2725c63
-      internalID: 1294099248
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_w_09
-      rect:
-        serializedVersion: 2
-        x: 684
-        y: 270
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84e8597a64b884d648b6d2eea2713c33
-      internalID: -469989056
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_w_10
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 270
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 71f61c2c6463e435b9c0b3f92c02085f
-      internalID: 1886040616
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_w_11
-      rect:
-        serializedVersion: 2
-        x: 836
-        y: 270
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d547864499dcd4d398f3e47884857ec0
-      internalID: 1072617565
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_nw_08
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 216
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e0f6450574d4049ddad4e1cde7d0f174
-      internalID: -310490450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_nw_09
-      rect:
-        serializedVersion: 2
-        x: 684
-        y: 216
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 262b16270459648928a922bccaacd855
-      internalID: -8064868
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_nw_10
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 216
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69a50c8d87ce747e585801d32867a669
-      internalID: 1531767597
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_nw_11
-      rect:
-        serializedVersion: 2
-        x: 836
-        y: 216
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e79fa481b2ff44c987df4683ce528cf
-      internalID: 1239116305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_n_08
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 162
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 987f40457f387489ca9c329838dec329
-      internalID: -1987104195
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_n_09
-      rect:
-        serializedVersion: 2
-        x: 684
-        y: 162
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2507a8cd0087743a0b8159b96cf02a87
-      internalID: -1366390356
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_n_10
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 162
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e483b87de118f46a98d0594cfc97a136
-      internalID: -137519102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_n_11
-      rect:
-        serializedVersion: 2
-        x: 836
-        y: 162
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 413e7992f90d2429097ea748ad61343e
-      internalID: -1907777319
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_ne_08
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 108
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b38f43ccd9be74cccb393ff3c61b4543
-      internalID: 2040153442
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_ne_09
-      rect:
-        serializedVersion: 2
-        x: 684
-        y: 108
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3e3e6dc5f01d46bba10b3f21d3de5c9
-      internalID: -1965873177
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_ne_10
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 108
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 61a560b1fb4914dc7b576a24fe3c7fa3
-      internalID: 398321597
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_ne_11
-      rect:
-        serializedVersion: 2
-        x: 836
-        y: 108
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 99e91402e693147a18eaa75e7b4bb5ee
-      internalID: -1043800607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_e_08
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 54
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 698201600af8548ef99865d340045205
-      internalID: 2022207713
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_e_09
-      rect:
-        serializedVersion: 2
-        x: 684
-        y: 54
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ceaf7e77ae16440f985eabf859db9a77
-      internalID: -247771458
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_e_10
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 54
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9b900089c90aa4c72a7cd9b772441c48
-      internalID: 824729596
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_e_11
-      rect:
-        serializedVersion: 2
-        x: 836
-        y: 54
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2f88a78d6c35942bc99bfe1ee395cb76
-      internalID: 1482587070
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_se_08
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 0
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f616ac5629090466b99f4520f3cabcf3
-      internalID: -1368299887
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_se_09
-      rect:
-        serializedVersion: 2
-        x: 684
-        y: 0
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 412d13527f8ed4f45887500fdd68cf36
-      internalID: 1977466615
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_se_10
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 0
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 855c9b208000043b097da1f8bdd04b30
-      internalID: 1191751547
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pet_wolf_death_se_11
-      rect:
-        serializedVersion: 2
-        x: 836
-        y: 0
-        width: 76
-        height: 54
-      alignment: 9
-      pivot: {x: 0.5, y: 0.14814815}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: feab6b133979c4062a27efcb36422170
-      internalID: 1470191817
       vertices: []
       indices: 
       edges: []
@@ -2557,96 +1501,48 @@ TextureImporter:
       pet_wolf_death_e_03: 1931185342
       pet_wolf_death_e_04: 1926675343
       pet_wolf_death_e_05: -463324900
-      pet_wolf_death_e_06: -2044029204
-      pet_wolf_death_e_07: 1118611777
-      pet_wolf_death_e_08: 2022207713
-      pet_wolf_death_e_09: -247771458
-      pet_wolf_death_e_10: 824729596
-      pet_wolf_death_e_11: 1482587070
       pet_wolf_death_n_00: 190583077
       pet_wolf_death_n_01: -2005244257
       pet_wolf_death_n_02: 1285743200
       pet_wolf_death_n_03: 877166059
       pet_wolf_death_n_04: -11759052
       pet_wolf_death_n_05: -928794241
-      pet_wolf_death_n_06: -1295268349
-      pet_wolf_death_n_07: 1119792415
-      pet_wolf_death_n_08: -1987104195
-      pet_wolf_death_n_09: -1366390356
-      pet_wolf_death_n_10: -137519102
-      pet_wolf_death_n_11: -1907777319
       pet_wolf_death_ne_00: 1901047613
       pet_wolf_death_ne_01: 413206613
       pet_wolf_death_ne_02: -2785388
       pet_wolf_death_ne_03: -565885879
       pet_wolf_death_ne_04: 325086560
       pet_wolf_death_ne_05: -851129276
-      pet_wolf_death_ne_06: 1495191620
-      pet_wolf_death_ne_07: -337355374
-      pet_wolf_death_ne_08: 2040153442
-      pet_wolf_death_ne_09: -1965873177
-      pet_wolf_death_ne_10: 398321597
-      pet_wolf_death_ne_11: -1043800607
       pet_wolf_death_nw_00: 670945200
       pet_wolf_death_nw_01: 380551149
       pet_wolf_death_nw_02: 124185804
       pet_wolf_death_nw_03: -1418317746
       pet_wolf_death_nw_04: -97296631
       pet_wolf_death_nw_05: 1011253896
-      pet_wolf_death_nw_06: -1612968095
-      pet_wolf_death_nw_07: -1556634714
-      pet_wolf_death_nw_08: -310490450
-      pet_wolf_death_nw_09: -8064868
-      pet_wolf_death_nw_10: 1531767597
-      pet_wolf_death_nw_11: 1239116305
       pet_wolf_death_s_00: -2137363519
       pet_wolf_death_s_01: 2144119742
       pet_wolf_death_s_02: 1420169979
       pet_wolf_death_s_03: 1145122798
       pet_wolf_death_s_04: -1159172728
       pet_wolf_death_s_05: -1968865034
-      pet_wolf_death_s_06: -1693461479
-      pet_wolf_death_s_07: 560334931
-      pet_wolf_death_s_08: 924507208
-      pet_wolf_death_s_09: -120406109
-      pet_wolf_death_s_10: 1684557916
-      pet_wolf_death_s_11: 266487815
       pet_wolf_death_se_00: 630524370
       pet_wolf_death_se_01: -1096921091
       pet_wolf_death_se_02: 917921625
       pet_wolf_death_se_03: 1770808538
       pet_wolf_death_se_04: 1264438559
       pet_wolf_death_se_05: -714367973
-      pet_wolf_death_se_06: -1652851301
-      pet_wolf_death_se_07: -702468837
-      pet_wolf_death_se_08: -1368299887
-      pet_wolf_death_se_09: 1977466615
-      pet_wolf_death_se_10: 1191751547
-      pet_wolf_death_se_11: 1470191817
       pet_wolf_death_sw_00: 1906552034
       pet_wolf_death_sw_01: -1045482394
       pet_wolf_death_sw_02: 578869104
       pet_wolf_death_sw_03: -973627453
       pet_wolf_death_sw_04: 876350129
       pet_wolf_death_sw_05: 469369368
-      pet_wolf_death_sw_06: 1318020179
-      pet_wolf_death_sw_07: -1856968527
-      pet_wolf_death_sw_08: -1274228356
-      pet_wolf_death_sw_09: 1119381328
-      pet_wolf_death_sw_10: -59816121
-      pet_wolf_death_sw_11: -596252264
       pet_wolf_death_w_00: -828871268
       pet_wolf_death_w_01: -1733340590
       pet_wolf_death_w_02: -974594185
       pet_wolf_death_w_03: -956086607
       pet_wolf_death_w_04: -489085859
       pet_wolf_death_w_05: 1698517722
-      pet_wolf_death_w_06: -608668011
-      pet_wolf_death_w_07: 1579603240
-      pet_wolf_death_w_08: 1294099248
-      pet_wolf_death_w_09: -469989056
-      pet_wolf_death_w_10: 1886040616
-      pet_wolf_death_w_11: 1072617565
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

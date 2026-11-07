@@ -27,6 +27,10 @@ namespace ARPG.Editor
         {
             public int cellWidth, cellHeight, pivotX, pivotY, directions;
             public Clip[] animations;
+
+            /// <summary>The size the art is drawn at over the definition's (a boss drawn at its VisualScale, 2026-11-07), so
+            /// the game does not stretch it; 0 when drawn at 1.</summary>
+            public float bakedScale;
         }
 
         [System.Serializable]
@@ -78,6 +82,8 @@ namespace ARPG.Editor
                 if (timed.Add(key))
                     timing.Add($"{key} {clip.seconds.ToString("0.###", culture)}" + (clip.speed > 0f ? " " + clip.speed.ToString("0.###", culture) : ""));
             }
+            if (sheet.bakedScale > 0f)
+                timing.Add("scale " + sheet.bakedScale.ToString("0.###", culture));
             File.WriteAllLines($"{target}/{name}_timing.txt", timing);
             AssetDatabase.ImportAsset($"{target}/{name}_timing.txt");
             foreach (var old in Directory.GetFiles(target, "*.png").Select(p => p.Replace('\\', '/')))

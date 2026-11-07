@@ -50,54 +50,6 @@ TextureImporter:
   - first:
       213: 5125510795999646760
     second: brood_mother_hit_15
-  - first:
-      213: -3933033215845113601
-    second: brood_mother_hit_16
-  - first:
-      213: -2910921554997200805
-    second: brood_mother_hit_17
-  - first:
-      213: 5990225010824801513
-    second: brood_mother_hit_18
-  - first:
-      213: -6407981376316125125
-    second: brood_mother_hit_19
-  - first:
-      213: -6023089447185375958
-    second: brood_mother_hit_20
-  - first:
-      213: -6898036077101775057
-    second: brood_mother_hit_21
-  - first:
-      213: -1444850560500592423
-    second: brood_mother_hit_22
-  - first:
-      213: 3740543046811729595
-    second: brood_mother_hit_23
-  - first:
-      213: 8956128001423455770
-    second: brood_mother_hit_24
-  - first:
-      213: 6964408010689123188
-    second: brood_mother_hit_25
-  - first:
-      213: -8723510663800219475
-    second: brood_mother_hit_26
-  - first:
-      213: 75734748686719260
-    second: brood_mother_hit_27
-  - first:
-      213: -6742816215586293894
-    second: brood_mother_hit_28
-  - first:
-      213: 7050630128084877508
-    second: brood_mother_hit_29
-  - first:
-      213: 2913506289589975300
-    second: brood_mother_hit_30
-  - first:
-      213: -4820354228962490913
-    second: brood_mother_hit_31
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -130,7 +82,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -141,10 +93,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 27
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -167,10 +119,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -238,19 +190,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 539
-        width: 139
-        height: 77
+        y: 448
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d1c73a9d29cd437f9d0f07870e07a3c
-      internalID: 57179973
+      spriteID: 8c9b06e7b1ed0442bbe3c960701f3142
+      internalID: 652792251
       vertices: []
       indices: 
       edges: []
@@ -259,64 +211,20 @@ TextureImporter:
       name: brood_mother_hit_s_01
       rect:
         serializedVersion: 2
-        x: 139
-        y: 539
-        width: 139
-        height: 77
+        x: 84
+        y: 448
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc220b59039834376b0569ebb0f68c6e
-      internalID: 1001427484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_s_02
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 539
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 718392d1c7820431abed8fc1b2337b7c
-      internalID: 2029577526
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_s_03
-      rect:
-        serializedVersion: 2
-        x: 417
-        y: 539
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 54fee7fff78d5438b9e4e2f8cf025915
-      internalID: -1979249755
+      spriteID: 43d5f926a0c1e4a459516cf7680af4df
+      internalID: 1024710241
       vertices: []
       indices: 
       edges: []
@@ -326,19 +234,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 462
-        width: 139
-        height: 77
+        y: 384
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e160d948b973d4e038a0e4a09e6be247
-      internalID: 1899646171
+      spriteID: 41fb8148533e949a1a73bab1ad2b4d52
+      internalID: 368882550
       vertices: []
       indices: 
       edges: []
@@ -347,64 +255,20 @@ TextureImporter:
       name: brood_mother_hit_sw_01
       rect:
         serializedVersion: 2
-        x: 139
-        y: 462
-        width: 139
-        height: 77
+        x: 84
+        y: 384
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b1576a184c854ce2a74032bf7dbce2d
-      internalID: -1570018498
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_sw_02
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 462
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f21109716c4d4ab4984b990867564ca
-      internalID: 2011342749
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_sw_03
-      rect:
-        serializedVersion: 2
-        x: 417
-        y: 462
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f84762029dc6b44c8b2afbf4efa95f74
-      internalID: -1535427812
+      spriteID: 1ff1ed9afc9fe46188f8454320f6f079
+      internalID: 148311896
       vertices: []
       indices: 
       edges: []
@@ -414,19 +278,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 385
-        width: 139
-        height: 77
+        y: 320
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c100c2dd0b3354faa939010810a44038
-      internalID: 2009786943
+      spriteID: 00d3e7075ae95413396c98ca60e50c64
+      internalID: 1372144332
       vertices: []
       indices: 
       edges: []
@@ -435,64 +299,20 @@ TextureImporter:
       name: brood_mother_hit_w_01
       rect:
         serializedVersion: 2
-        x: 139
-        y: 385
-        width: 139
-        height: 77
+        x: 84
+        y: 320
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5498ff671dd7a4df7b6cebba85a86557
-      internalID: 2044698403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_w_02
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 385
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ed59d4e4b792406c852e860bdf59390
-      internalID: -1295938967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_w_03
-      rect:
-        serializedVersion: 2
-        x: 417
-        y: 385
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 93777d291d2444715ba34e528aee71cc
-      internalID: -1590679435
+      spriteID: 0e4e9cf260d764363b54d9e8f9db4680
+      internalID: -1474960922
       vertices: []
       indices: 
       edges: []
@@ -502,19 +322,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 308
-        width: 139
-        height: 77
+        y: 256
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0646df4f2fd694fb98e5389d055a1842
-      internalID: 1214502615
+      spriteID: 109151de2a92a4492888bf9f45f5ea89
+      internalID: 1923367481
       vertices: []
       indices: 
       edges: []
@@ -523,64 +343,20 @@ TextureImporter:
       name: brood_mother_hit_nw_01
       rect:
         serializedVersion: 2
-        x: 139
-        y: 308
-        width: 139
-        height: 77
+        x: 84
+        y: 256
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10e86fa2caef0420b9855089ce6384b7
-      internalID: 1650867410
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_nw_02
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 308
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 20c3537cb49c242018cfd98aece2511c
-      internalID: 95918242
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_nw_03
-      rect:
-        serializedVersion: 2
-        x: 417
-        y: 308
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e1ebb59c78c24bf9b6baccb07eef074
-      internalID: -1696246684
+      spriteID: 348a24b0c1fdc4a7aa660753bcf6f117
+      internalID: 1710928346
       vertices: []
       indices: 
       edges: []
@@ -590,19 +366,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 231
-        width: 139
-        height: 77
+        y: 192
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 463d1bb63e0404909ba8d08d3d22657e
-      internalID: -1002784295
+      spriteID: b856910a083d34148ac4c20e264799a1
+      internalID: 956013069
       vertices: []
       indices: 
       edges: []
@@ -611,64 +387,20 @@ TextureImporter:
       name: brood_mother_hit_n_01
       rect:
         serializedVersion: 2
-        x: 139
-        y: 231
-        width: 139
-        height: 77
+        x: 84
+        y: 192
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56d3fa1821cc843dca9a8e5d555a25f1
-      internalID: -205523158
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_n_02
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 231
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1772b681a697847f8944564df55e8344
-      internalID: 1289007624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_n_03
-      rect:
-        serializedVersion: 2
-        x: 417
-        y: 231
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c745a4e8abbbb429bbd5793b07ee4ebf
-      internalID: -1526967055
+      spriteID: bc7f340adb99e4060a2975af86bde96a
+      internalID: -301186806
       vertices: []
       indices: 
       edges: []
@@ -678,19 +410,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 154
-        width: 139
-        height: 77
+        y: 128
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d63b0c176c9bf4d6098d7b47dd6353ec
-      internalID: 875544362
+      spriteID: 8e598ea04cb0a4987b2c255e840984f5
+      internalID: 898621927
       vertices: []
       indices: 
       edges: []
@@ -699,64 +431,20 @@ TextureImporter:
       name: brood_mother_hit_ne_01
       rect:
         serializedVersion: 2
-        x: 139
-        y: 154
-        width: 139
-        height: 77
+        x: 84
+        y: 128
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5c062a1e420e49649605606d1f2ab33
-      internalID: -709877179
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_ne_02
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 154
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 232ca8eb13bd24cf79408d04e7940a45
-      internalID: 682737462
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_ne_03
-      rect:
-        serializedVersion: 2
-        x: 417
-        y: 154
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c6f7fa15488dc47c28c98ccc482b3ffd
-      internalID: -856685354
+      spriteID: cf94cc61ae32243ef85468b32df0bd80
+      internalID: 1978822335
       vertices: []
       indices: 
       edges: []
@@ -766,19 +454,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 77
-        width: 139
-        height: 77
+        y: 64
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97d14f9c635144810926964e814b524b
-      internalID: -1273733725
+      spriteID: 6a53c36639cb04eeeb847ea25d7b60f7
+      internalID: 456086510
       vertices: []
       indices: 
       edges: []
@@ -787,64 +475,20 @@ TextureImporter:
       name: brood_mother_hit_e_01
       rect:
         serializedVersion: 2
-        x: 139
-        y: 77
-        width: 139
-        height: 77
+        x: 84
+        y: 64
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d29a170595b4c43c68a59094b3ca4b57
-      internalID: -415312411
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_e_02
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 77
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 33ae2d7a532a149babd5ecd8d8c710a6
-      internalID: -2107276659
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_e_03
-      rect:
-        serializedVersion: 2
-        x: 417
-        y: 77
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6cd5f524939c40ceb99776f6a7d42f7
-      internalID: 89216358
+      spriteID: 6fc2c1c50374746ab86235ebe8095c7b
+      internalID: 270289239
       vertices: []
       indices: 
       edges: []
@@ -855,18 +499,18 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 139
-        height: 77
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bdf73168478440b7acc63b648a2607b
-      internalID: -927684582
+      spriteID: 4e252171439af4b0781f5328f1d975a6
+      internalID: -1032293148
       vertices: []
       indices: 
       edges: []
@@ -875,64 +519,20 @@ TextureImporter:
       name: brood_mother_hit_se_01
       rect:
         serializedVersion: 2
-        x: 139
+        x: 84
         y: 0
-        width: 139
-        height: 77
+        width: 84
+        height: 64
       alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
+      pivot: {x: 0.5, y: 0.078125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a59ea0bbce5f44a7864296e769c53d6
-      internalID: 1365324586
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_se_02
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 0
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1ac1c87f9b56446ea8ff51032b1fdf1b
-      internalID: -265499260
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: brood_mother_hit_se_03
-      rect:
-        serializedVersion: 2
-        x: 417
-        y: 0
-        width: 139
-        height: 77
-      alignment: 9
-      pivot: {x: 0.50359714, y: 0.15584417}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6fbbeb97217ec40e398f5cbb2365fc94
-      internalID: 962137745
+      spriteID: ab2b29ae6234244e094f0decc8f721fc
+      internalID: 132673608
       vertices: []
       indices: 
       edges: []
@@ -941,7 +541,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5beb1143813ee49eca148d6924aa31d0
+    spriteID: b97149a0b03d84176acedc129f74d75b
     internalID: 0
     vertices: []
     indices: 
@@ -951,38 +551,22 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      brood_mother_hit_e_00: -1273733725
-      brood_mother_hit_e_01: -415312411
-      brood_mother_hit_e_02: -2107276659
-      brood_mother_hit_e_03: 89216358
-      brood_mother_hit_n_00: -1002784295
-      brood_mother_hit_n_01: -205523158
-      brood_mother_hit_n_02: 1289007624
-      brood_mother_hit_n_03: -1526967055
-      brood_mother_hit_ne_00: 875544362
-      brood_mother_hit_ne_01: -709877179
-      brood_mother_hit_ne_02: 682737462
-      brood_mother_hit_ne_03: -856685354
-      brood_mother_hit_nw_00: 1214502615
-      brood_mother_hit_nw_01: 1650867410
-      brood_mother_hit_nw_02: 95918242
-      brood_mother_hit_nw_03: -1696246684
-      brood_mother_hit_s_00: 57179973
-      brood_mother_hit_s_01: 1001427484
-      brood_mother_hit_s_02: 2029577526
-      brood_mother_hit_s_03: -1979249755
-      brood_mother_hit_se_00: -927684582
-      brood_mother_hit_se_01: 1365324586
-      brood_mother_hit_se_02: -265499260
-      brood_mother_hit_se_03: 962137745
-      brood_mother_hit_sw_00: 1899646171
-      brood_mother_hit_sw_01: -1570018498
-      brood_mother_hit_sw_02: 2011342749
-      brood_mother_hit_sw_03: -1535427812
-      brood_mother_hit_w_00: 2009786943
-      brood_mother_hit_w_01: 2044698403
-      brood_mother_hit_w_02: -1295938967
-      brood_mother_hit_w_03: -1590679435
+      brood_mother_hit_e_00: 456086510
+      brood_mother_hit_e_01: 270289239
+      brood_mother_hit_n_00: 956013069
+      brood_mother_hit_n_01: -301186806
+      brood_mother_hit_ne_00: 898621927
+      brood_mother_hit_ne_01: 1978822335
+      brood_mother_hit_nw_00: 1923367481
+      brood_mother_hit_nw_01: 1710928346
+      brood_mother_hit_s_00: 652792251
+      brood_mother_hit_s_01: 1024710241
+      brood_mother_hit_se_00: -1032293148
+      brood_mother_hit_se_01: 132673608
+      brood_mother_hit_sw_00: 368882550
+      brood_mother_hit_sw_01: 148311896
+      brood_mother_hit_w_00: 1372144332
+      brood_mother_hit_w_01: -1474960922
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
