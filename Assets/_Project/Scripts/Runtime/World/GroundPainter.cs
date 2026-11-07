@@ -269,10 +269,10 @@ namespace ARPG
                         // The grass and the path frayed into each other along their edge (2026-10-27), the amount worked
                         // out once a pixel (it was twice: once to pick the layer). The pictures are read on the screen's
                         // grid: the pixel's world position (ground y halved) at the screen's pixels a unit.
-                        int gx = Mathf.FloorToInt(g.x * ScreenUnit), gy = Mathf.FloorToInt(g.y * 0.5f * ScreenUnit);
+                        ForestBlockOf(g, out var gx, out var gy, out var gm);
                         var blade = forestGrass[Wrap(gx, forestGrassSize) + Wrap(gy, forestGrassSize) * forestGrassSize];
                         var earth = forestPath[Wrap(gx, forestPathSize) + Wrap(gy, forestPathSize) * forestPathSize];
-                        var amount = GroundRules.ForestGrassAmount(g);
+                        var amount = GroundRules.ForestGrassAmount(gm);
                         var share = GroundRules.ForestGrassShare(amount, Light(blade), forestGrassMean, GroundRules.ForestClump(gx, gy));
                         float u = Mathf.Clamp01(g.x - centre.x + 0.5f), v = Mathf.Clamp01(g.y - centre.y + 0.5f);
                         var drift = Mathf.Lerp(Mathf.Lerp(s00, s10, u), Mathf.Lerp(s01, s11, u), v);
@@ -319,13 +319,13 @@ namespace ARPG
                     if (forest && forestGrass != null && forestPath != null)
                     {
                         // The grass and the path frayed into each other along their edge (2026-10-27), on the screen's grid.
-                        int gx = Mathf.FloorToInt(g.x * ScreenUnit), gy = Mathf.FloorToInt(g.y * 0.5f * ScreenUnit);
+                        ForestBlockOf(g, out var gx, out var gy, out var gm);
                         var blade = forestGrass[Wrap(gx, forestGrassSize) + Wrap(gy, forestGrassSize) * forestGrassSize];
                         var earth = forestPath[Wrap(gx, forestPathSize) + Wrap(gy, forestPathSize) * forestPathSize];
-                        var amount = GroundRules.ForestGrassAmount(g);
+                        var amount = GroundRules.ForestGrassAmount(gm);
                         var share = GroundRules.ForestGrassShare(amount, Light(blade), forestGrassMean, GroundRules.ForestClump(gx, gy));
                         // The grass toned to the trees' gloom, the earth darker at its trodden rim, both under a slow drift.
-                        var shade = GroundRules.ForestShade(g);
+                        var shade = GroundRules.ForestShade(gm);
                         cellPixels[i] = share > 0f ? Tone(blade, shade) : Scale(earth, shade * GroundRules.PathRim(amount));
                         continue;
                     }
@@ -375,6 +375,18 @@ namespace ARPG
         static int Wrap(int v) => Wrap(v, SourceSize);
 
         static int Wrap(int v, int size) => ((v % size) + size) % size;
+
+        /// <summary>The forest floor is read in blocks of this many screen pixels (2026-11-07, the 16x16 style: each drawn
+        /// pixel is 2 of the screen's), so its grass, paths and their frayed edge are as coarse as the characters.</summary>
+        const int ForestBlock = 2;
+
+        /// <summary>A ground point's block: its place in the forest's pictures and the ground point at its middle.</summary>
+        static void ForestBlockOf(Vector2 g, out int gx, out int gy, out Vector2 middle)
+        {
+            gx = Mathf.FloorToInt(g.x * ScreenUnit / ForestBlock);
+            gy = Mathf.FloorToInt(g.y * 0.5f * ScreenUnit / ForestBlock);
+            middle = new Vector2((gx + 0.5f) * ForestBlock / ScreenUnit, (gy + 0.5f) * ForestBlock * 2f / ScreenUnit);
+        }
 
         static bool Load()
         {
