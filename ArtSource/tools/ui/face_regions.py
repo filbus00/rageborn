@@ -9,7 +9,7 @@ import bpy, sys, json, numpy as np
 base = sys.argv[sys.argv.index("--") + 1]
 spec = json.load(open(base + ".json"))
 for key in ("face", "neck", "hair", "cloak", "eyes"):
-    flat = spec[key]
+    flat = spec.get(key, [])
     spec[key] = [flat[i:i + 2] for i in range(0, len(flat), 2)]
 im = bpy.data.images.load(base + ".png")
 w, h = im.size
@@ -37,7 +37,7 @@ neck = inside(spec["neck"])
 hair_area = inside(spec["hair"])
 warm = (r > g) & (g >= b * 0.9)
 # The cloak: green inside its polygon (the backdrop is dark green too).
-green = (g > r * 1.02) & (g > b) & inside(spec["cloak"])
+green = (g > r * 1.02) & (g > b) & (inside(spec["cloak"]) if spec["cloak"] else True)
 # How much of a pixel the recolouring takes (the green channel): all of it, but the cloak fades out into the dark
 # backdrop.
 strength = np.ones((h, w), np.float32)
@@ -48,7 +48,7 @@ strength[green] = np.clip((light[green] - 0.05) / 0.08, 0, 1)
 region[hair_area & ~face & ~neck & warm & (light > 0.03)] = 2
 # Skin: the face and the neck where they are warm (shadow too: by colour alone shaded skin is dark hair). A light warm
 # pixel in the hair stays hair: taken for an ear, a lit strand came out skin.
-region[(face | neck) & warm & (light > 0.05)] = 1
+region[(face | neck) & warm & (light > 0.03)] = 1
 # The irises: the darker pixels in a small box round each eye's centre.
 for ex, ey in spec["eyes"]:
     box = (np.abs(xs - (ex + 0.5)) <= 2.2) & (np.abs(ys - (ey + 0.5)) <= 1.6)

@@ -19,7 +19,7 @@ namespace ARPG
     public struct PortraitLook
     {
         public int Base;
-        public Color Skin, Hair, Eyes, Cloak, Paint;
+        public Color Skin, Hair, Eyes, Paint;
         public FaceMarks Marks;
 
         /// <summary>Which way the scar runs (true: down to the right) and across which cheek.</summary>
@@ -40,9 +40,10 @@ namespace ARPG
     /// <summary>
     /// The archers' faces (2026-11-07, the owner: "now all the amazon archers have the same portrait, I want it to auto
     /// generate different looks ... so that no amazon is identical", then "Bases + variations"): each archer's look comes
-    /// from her name, so the same archer always has the same face and the save needs nothing new. A base portrait (one
-    /// for now; the owner's Gemini faces to come) and on it a skin, a hair colour, eye colour, a cloak colour and marks
-    /// (war paint, a scar, freckles, a mark on the chin). The palettes are Claude's, to review (Docs/08). Pure.
+    /// from her name, so the same archer always has the same face and the save needs nothing new. A base portrait (ten,
+    /// the owner's Gemini faces: hair styles, face shapes, ages) and on it a skin, a hair colour, eye colour and marks
+    /// (war paint, a scar, freckles, a mark on the chin). Her armour keeps its colours (the owner, 2026-11-07: "do not
+    /// change the characters armor color"). The palettes are Claude's, to review (Docs/08). Pure.
     /// </summary>
     public static class PortraitLooks
     {
@@ -54,7 +55,7 @@ namespace ARPG
 
         static readonly Color[] Hairs =
         {
-            new Color(0.07f, 0.06f, 0.06f), new Color(0.06f, 0.07f, 0.11f), new Color(0.16f, 0.10f, 0.06f),
+            new Color(0.07f, 0.06f, 0.06f), new Color(0.07f, 0.07f, 0.09f), new Color(0.16f, 0.10f, 0.06f),
             new Color(0.26f, 0.14f, 0.07f), new Color(0.38f, 0.13f, 0.05f), new Color(0.55f, 0.23f, 0.08f),
             new Color(0.62f, 0.48f, 0.26f), new Color(0.52f, 0.47f, 0.37f), new Color(0.58f, 0.57f, 0.56f),
         };
@@ -63,14 +64,6 @@ namespace ARPG
         {
             new Color(0.25f, 0.14f, 0.07f), new Color(0.38f, 0.30f, 0.12f), new Color(0.22f, 0.42f, 0.22f),
             new Color(0.24f, 0.40f, 0.62f), new Color(0.45f, 0.48f, 0.52f), new Color(0.62f, 0.42f, 0.12f),
-        };
-
-        // The company's green most often, then other cloths.
-        static readonly Color[] Cloaks =
-        {
-            new Color(0.19f, 0.27f, 0.13f), new Color(0.19f, 0.27f, 0.13f), new Color(0.27f, 0.29f, 0.12f),
-            new Color(0.36f, 0.10f, 0.08f), new Color(0.12f, 0.17f, 0.30f), new Color(0.20f, 0.20f, 0.21f),
-            new Color(0.32f, 0.22f, 0.13f), new Color(0.26f, 0.13f, 0.27f),
         };
 
         static readonly Color[] Paints =
@@ -104,7 +97,6 @@ namespace ARPG
                 Skin = Skins[random.Next(Skins.Length)],
                 Hair = Hairs[random.Next(Hairs.Length)],
                 Eyes = EyeColours[random.Next(EyeColours.Length)],
-                Cloak = Cloaks[random.Next(Cloaks.Length)],
                 Paint = Paints[random.Next(Paints.Length)],
                 ScarDown = random.Next(2) == 0,
                 ScarLeft = random.Next(2) == 0,
@@ -123,36 +115,36 @@ namespace ARPG
     }
 
     /// <summary>
-    /// Paints a look onto a base face. The base's regions (red: 1 skin, 2 hair, 3 iris, 4 cloak; green: how much the
-    /// recolouring takes) come from ArtSource/tools/ui/face_regions.py. A region keeps its shading: each pixel's lightness
+    /// Paints a look onto a base face. The base's regions (red: 1 skin, 2 hair, 3 iris; 4, the cloak, is left as it is;
+    /// green: how much the recolouring takes) come from ArtSource/tools/ui/face_regions.py. A region keeps its shading: each pixel's lightness
     /// against the region's average sets how light the new colour is there. Pixels top row first. Pure.
     /// </summary>
     public static class PortraitPainter
     {
-        public const int Skin = 1, Hair = 2, Iris = 3, Cloak = 4;
+        public const int Skin = 1, Hair = 2, Iris = 3;
 
         public static Color32[] Paint(Color32[] pixels, Color32[] regions, int width, int height, PortraitBase spot, PortraitLook look)
         {
             var result = (Color32[])pixels.Clone();
-            var average = new float[5];
-            var counts = new int[5];
+            var average = new float[4];
+            var counts = new int[4];
             for (var i = 0; i < pixels.Length; i++)
             {
                 var region = regions[i].r;
-                if (region <= 0 || region > 4)
+                if (region <= 0 || region > Iris)
                     continue;
                 average[region] += Lightness(pixels[i]);
                 counts[region]++;
             }
-            for (var k = 1; k <= 4; k++)
+            for (var k = 1; k <= Iris; k++)
                 average[k] = counts[k] > 0 ? Mathf.Max(0.02f, average[k] / counts[k]) : 1f;
 
             for (var i = 0; i < pixels.Length; i++)
             {
                 var region = regions[i].r;
-                if (region <= 0 || region > 4)
+                if (region <= 0 || region > Iris)
                     continue;
-                var target = region == Skin ? look.Skin : region == Hair ? look.Hair : region == Iris ? look.Eyes : look.Cloak;
+                var target = region == Skin ? look.Skin : region == Hair ? look.Hair : look.Eyes;
                 // Toward light targets the shading is eased, so a blonde's dark strands do not go grey.
                 var relative = Lightness(pixels[i]) / average[region];
                 // Capped: a lit strand three times the hair's average lightness glared on red and blonde hair.

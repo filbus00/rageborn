@@ -25,9 +25,9 @@ namespace ARPG.Tests
             for (var seed = 0; seed < 200; seed++)
             {
                 var look = PortraitLooks.For(MercenaryNames.Full(seed), 1);
-                seen.Add($"{look.Skin}{look.Hair}{look.Eyes}{look.Cloak}{look.Marks}");
+                seen.Add($"{look.Skin}{look.Hair}{look.Eyes}{look.Marks}");
             }
-            Assert.Greater(seen.Count, 190);
+            Assert.Greater(seen.Count, 150);
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace ARPG.Tests
             // Four pixels in a row: nothing, skin, hair, skin.
             var pixels = new Color32[] { new Color32(10, 200, 10, 255), new Color32(150, 100, 60, 255), new Color32(50, 35, 20, 255), new Color32(150, 100, 60, 255) };
             var regions = new Color32[] { new Color32(0, 255, 0, 255), new Color32(1, 255, 0, 255), new Color32(2, 255, 0, 255), new Color32(1, 255, 0, 255) };
-            var look = new PortraitLook { Skin = new Color(0.3f, 0.2f, 0.1f), Hair = new Color(0.6f, 0.5f, 0.3f), Eyes = Color.blue, Cloak = Color.red };
+            var look = new PortraitLook { Skin = new Color(0.3f, 0.2f, 0.1f), Hair = new Color(0.6f, 0.5f, 0.3f), Eyes = Color.blue };
             var painted = PortraitPainter.Paint(pixels, regions, 4, 1, new PortraitBase(), look);
             Assert.AreEqual(pixels[0], painted[0], "outside every region");
             Assert.AreEqual(77, painted[1].r, 1, "skin at its average lightness takes the skin colour");
