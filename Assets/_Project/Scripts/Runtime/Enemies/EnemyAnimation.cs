@@ -144,6 +144,7 @@ namespace ARPG
         static readonly string[] Kinds =
         {
             "sack_thief", "scarecrow_bowman", "stump_hauler", "crow_mother", "rotcap", "briar_thrall", "werewolf", "wolf", "spider", "tusked_boar",
+            "bell_hermit",
         };
         static readonly string[] Sheets = { "idle", "run", "walk", "attack", "hit", "death", "dash", "roll_back", "throw" };
 

@@ -100,6 +100,7 @@ namespace ARPG
         static readonly Color Grave = new Color(0.45f, 0.9f, 0.6f, 0.85f);
         static readonly Color Rock = new Color(0.55f, 0.5f, 0.45f, 1f);
         static readonly Color Steel = new Color(0.8f, 0.82f, 0.85f, 1f);
+        static readonly Color Brass = new Color(1f, 0.82f, 0.35f, 0.9f);
 
         // By the definition's name; a champion or elite of a kind ("SwarmerChampion") takes the kind's. The concept
         // roster's (2026-10-13), each the ranged move its card names. Claude's numbers, to review.
@@ -133,6 +134,8 @@ namespace ARPG
             ("HedgeWitch", new EnemySpecial("Poison Pool", SpecialShape.Lob, 6f, 3f, 10f, 1.3f, 0.9f, 0.6f, Bile, lingerSeconds: 4f, lingerHit: 0.35f, poison: true)),
             // The Briar Thrall's roots burst up under her and hold her a moment.
             ("BriarThrall", new EnemySpecial("Root Grasp", SpecialShape.Lob, 5f, 1.5f, 8f, 1.0f, 0.8f, 0.9f, Grave, slow: 0.05f, slowSeconds: 1f)),
+            // The Bell Hermit tolls his bell: a ring of sound lands round her and slows her (2026-11-07, Claude's numbers, to review).
+            ("BellHermit", new EnemySpecial("Toll", SpecialShape.Lob, 6.5f, 2.5f, 9f, 1.3f, 0.9f, 0.5f, Brass, slow: 0.5f, slowSeconds: 1.5f)),
             // The Rotcap only waddles and bursts; the Werewolf leaps and claws.
             ("Rotcap", default),
             ("Werewolf", default),

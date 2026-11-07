@@ -58,6 +58,10 @@ namespace ARPG
         BriarThrall,
         Werewolf,
         TuskedBoar,
+
+        /// <summary>The Bell Hermit (2026-11-07, the owner: "design a totally new and original enemy in 16x16"): drawn as
+        /// pixel art (ArtSource/pixel/sixteen/bell_hermit_sheets.py), a support whose bell makes the pack hit harder.</summary>
+        BellHermit,
     }
 
     /// <summary>Where a kind stands in a pack: in front, at the back, one behind the rest helping them, or in a pack
@@ -163,6 +167,7 @@ namespace ARPG
             new Entry(PackMember.BanditArcher, PackRole.Back, 2, 48, 8),
             new Entry(PackMember.HedgeWitch, PackRole.Back, 3, 48, 5),
             new Entry(PackMember.Werewolf, PackRole.Support, 4, 48, 4),
+            new Entry(PackMember.BellHermit, PackRole.Support, 2, 48, 4),
         };
 
         static Entry[] Current => DungeonRules.Forest ? ForestTable : Table;

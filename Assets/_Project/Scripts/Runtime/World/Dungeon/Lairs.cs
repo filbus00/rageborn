@@ -69,6 +69,7 @@ namespace ARPG
                     return LairTheme.Den;
                 case PackMember.Rotcap:
                 case PackMember.BriarThrall:
+                case PackMember.BellHermit:
                 case PackMember.HedgeWitch:
                     return LairTheme.Shrine;
                 case PackMember.Spider:
