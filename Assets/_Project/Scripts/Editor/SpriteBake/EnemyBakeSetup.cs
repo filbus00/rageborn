@@ -168,7 +168,9 @@ namespace ARPG.Editor
             ("BalrogLite", "balrog_lite", null),
             ("Retcher", "retcher", null),
             ("Rat", "rat", null), ("Bat", "bat", null), ("Blob", "blob", null), ("BlobSmall", "blob_small", "blob"),
-            ("Wolf", "wolf", null), ("Spider", "spider", null), ("Bandit", "sack_thief", "cutthroat"),
+            ("Wolf", "wolf", null), ("Spider", "spider", null),
+            // The Magpie Cutpurse, drawn in 16x16 (2026-11-07, ArtSource/pixel/sixteen), in the Sack Thief's place.
+            ("Bandit", "magpie_cutpurse", "sack_thief"),
             // The forest redone (2026-11-03): rigged in Blender by ArtSource/tools/rig_humanoid.py.
             ("Woodcutter", "stump_hauler", "woodcutter"), ("HedgeWitch", "crow_mother", "hedge_witch"), ("Rotcap", "rotcap", null),
             ("BriarThrall", "briar_thrall", null), ("Werewolf", "werewolf", null), ("TuskedBoar", "tusked_boar", null),

@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: d53dfd6dbe98c4c6fb9e259f0101bdf8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1881153601273811482
+    second: magpie_cutpurse_hit_0
+  - first:
+      213: -1894456995396351257
+    second: magpie_cutpurse_hit_1
+  - first:
+      213: -8576701076953178787
+    second: magpie_cutpurse_hit_2
+  - first:
+      213: 2331137351420970207
+    second: magpie_cutpurse_hit_3
+  - first:
+      213: -4247030801033697381
+    second: magpie_cutpurse_hit_4
+  - first:
+      213: -2431175077229736628
+    second: magpie_cutpurse_hit_5
+  - first:
+      213: 323528862774398570
+    second: magpie_cutpurse_hit_6
+  - first:
+      213: -6512481220198562005
+    second: magpie_cutpurse_hit_7
+  - first:
+      213: 3796400408231548597
+    second: magpie_cutpurse_hit_8
+  - first:
+      213: 4026870459909713600
+    second: magpie_cutpurse_hit_9
+  - first:
+      213: 3842816507207465968
+    second: magpie_cutpurse_hit_10
+  - first:
+      213: -7853771063542129349
+    second: magpie_cutpurse_hit_11
+  - first:
+      213: -295297415369905936
+    second: magpie_cutpurse_hit_12
+  - first:
+      213: 118412541163315754
+    second: magpie_cutpurse_hit_13
+  - first:
+      213: 1441954923017111353
+    second: magpie_cutpurse_hit_14
+  - first:
+      213: -9119898845431196735
+    second: magpie_cutpurse_hit_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 294
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd7e63fae35ed4ab4b153fccdf2482f2
+      internalID: -1775220424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 294
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 382010c64e4204a67b5b83cec98b2ff4
+      internalID: -1476001780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 252
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c3d49ec7029948b5a58cea8f3ecc426
+      internalID: -1168111789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 252
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f84240d68b24880a755cc80cb81162
+      internalID: -1642859833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 210
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45933b2f44d0e400589f5976d582f754
+      internalID: 465274140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 210
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba33363fa2ff545f7b53d1fa90f420b0
+      internalID: -474278153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 168
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75f3f35bf1613407f86e8169cff4000b
+      internalID: 1410540691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 168
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db3989bf88beb4d6eac36239ca86db28
+      internalID: -357534213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 126
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 362023333d5ec4d51b4d1aaad486468e
+      internalID: 1288533948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 126
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 723f7c06142304352b6ee6ca08514c48
+      internalID: -1902225728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 84
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa157e6fbbbda44f6a348161950700ba
+      internalID: -1915284577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 84
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3b807b7463a94385a6c381101d71539
+      internalID: -2047908497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 42
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bdd1a205b61047e993271deaad0d494
+      internalID: 695768584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 42
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a2aaab4975d0498c939868ad050b3bd
+      internalID: 2128736838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58e87fe6fb45a48d0870b7aa9abd7d33
+      internalID: 8814471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magpie_cutpurse_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 0
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.023809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1f8b3fb2335a4796a2d09ef0508b6ea
+      internalID: 536700127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 27a4dfb65d943421485ab87fc85239cc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      magpie_cutpurse_hit_e_00: 695768584
+      magpie_cutpurse_hit_e_01: 2128736838
+      magpie_cutpurse_hit_n_00: 1288533948
+      magpie_cutpurse_hit_n_01: -1902225728
+      magpie_cutpurse_hit_ne_00: -1915284577
+      magpie_cutpurse_hit_ne_01: -2047908497
+      magpie_cutpurse_hit_nw_00: 1410540691
+      magpie_cutpurse_hit_nw_01: -357534213
+      magpie_cutpurse_hit_s_00: -1775220424
+      magpie_cutpurse_hit_s_01: -1476001780
+      magpie_cutpurse_hit_se_00: 8814471
+      magpie_cutpurse_hit_se_01: 536700127
+      magpie_cutpurse_hit_sw_00: -1168111789
+      magpie_cutpurse_hit_sw_01: -1642859833
+      magpie_cutpurse_hit_w_00: 465274140
+      magpie_cutpurse_hit_w_01: -474278153
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
