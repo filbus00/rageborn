@@ -331,8 +331,6 @@ namespace ARPG
             var run = session.Run;
             (data.runKills, data.runBosses, data.runCoins, data.runItems, data.runBlueprints, data.runRecordBefore, data.runSeconds) =
                 (run.Kills, run.Bosses, run.Coins, run.Items, run.Blueprints, run.RecordBefore, run.Seconds);
-            foreach (var pair in session.Pets.SkillRanks)
-                data.petSkills.Add(new TalentData { id = pair.Key.ToString(), rank = pair.Value });
             foreach (var pair in session.Meta.Forged)
                 data.metaForged.Add(CaptureItem(pair.Value));
 
@@ -441,12 +439,9 @@ namespace ARPG
                 session.Talents.Restore(entry.id, entry.rank);
             session.PassiveTree.Restore(data.passiveNodes, string.IsNullOrEmpty(data.activeKeystone) ? null : data.activeKeystone);
             session.Attributes.Restore(data.attributePoints);
-            session.Pets.Restore(data.pets, data.activePet, data.petRules, warnings);
-            foreach (var entry in data.petSkills ?? new List<TalentData>())
-                if (TryParseEnum(entry.id, out PetSkillId skill))
-                    session.Pets.RestoreSkill(skill, entry.rank);
-                else
-                    warnings?.Add($"Left out an unknown pet skill ({entry.id}).");
+            // The wolf is always hers and its skills are boons since 2026-11-07: the pets bought and the skills taught are
+            // no longer read.
+            session.Pets.Restore(data.petRules);
             foreach (var name in data.codex)
                 if (TryParseEnum(name, out LegendaryId seen))
                     session.RecordLegendary(seen);

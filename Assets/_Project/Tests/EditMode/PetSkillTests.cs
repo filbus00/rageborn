@@ -1,71 +1,58 @@
-using System.Linq;
 using NUnit.Framework;
 
 namespace ARPG.Tests
 {
-    /// <summary>The pets' skills (2026-10-15): four a pet, taught by Lyriel for coins, kept for good, working while the
-    /// pet follows her, each pairing with a boon.</summary>
+    /// <summary>The wolf's skills, boons since 2026-11-07, and Lyriel's training.</summary>
     public class PetSkillTests
     {
         [Test]
-        public void EveryPet_HasFourSkills_EachPairingWithARealBoonOrNone()
+        public void EverySkill_IsABoonOfBeastMastery_OfferedFromTheFirstDepth()
         {
-            foreach (var pet in PetRules.All)
-                Assert.AreEqual(4, PetSkillRules.For(pet).Count(), pet.ToString());
-            Assert.AreEqual(PetSkillRules.All.Count, PetSkillRules.All.Select(s => s.Id).Distinct().Count());
             foreach (var skill in PetSkillRules.All)
             {
-                Assert.IsTrue(skill.Pairs == null || TalentRules.Get(skill.Pairs) != null, skill.Name);
-                for (var rank = 0; rank <= PetSkillRules.MaxRanks; rank++)
-                    Assert.IsFalse(PetSkillRules.Describe(skill, rank).Contains("{0}"), skill.Name);
+                var node = TalentRules.Get(skill.Boon);
+                Assert.IsNotNull(node, skill.Name);
+                Assert.AreEqual(TalentTree.BeastMastery, node.Tree, skill.Name);
+                Assert.AreEqual(PetSkillRules.MaxRanks, node.MaxRanks, skill.Name);
+                Assert.IsTrue(node.AnyDepth, skill.Name);
             }
+            Assert.IsTrue(BoonRules.CanTake(new TalentState(), TalentRules.Get("alpha_wolf"), MetaProgress.BaseBoonTier));
         }
 
         [Test]
-        public void Lyriel_TeachesSkills_ForTheirPrice_OnlyForAnOwnedPet_UpToTheLastRank()
+        public void ASkillsRank_IsItsBoonsRank_AndEndsWithTheRun()
         {
-            var session = new GameSession(1);
-            session.AddGold(100000);
-            Assert.IsFalse(session.TeachPetSkill(PetSkillId.Rend), "no wolf yet");
-            Assert.IsTrue(session.BuyPet(PetKind.Wolf));
-            var gold = session.Gold;
-            Assert.IsTrue(session.TeachPetSkill(PetSkillId.Rend));
-            Assert.AreEqual(gold - PetSkillRules.Cost(0), session.Gold);
-            Assert.IsTrue(session.TeachPetSkill(PetSkillId.Rend));
-            Assert.IsTrue(session.TeachPetSkill(PetSkillId.Rend));
-            Assert.IsFalse(session.TeachPetSkill(PetSkillId.Rend), "mastered");
-            Assert.AreEqual(3, session.Pets.Rank(PetSkillId.Rend));
-            Assert.AreEqual(600 + 2400 + 5400, gold - session.Gold);
+            var session = new GameSession(2);
+            Assert.AreEqual(0, session.Pets.ActiveRank(PetSkillId.Pounce));
+            session.Talents.Grant("wolf_pounce");
+            session.Talents.Grant("wolf_pounce");
+            Assert.AreEqual(2, session.Pets.ActiveRank(PetSkillId.Pounce));
+            Assert.AreEqual(0, session.NextRun(3).Pets.ActiveRank(PetSkillId.Pounce));
+            Assert.AreEqual("Every 8 seconds the wolf leaps at an enemy up to 6 away, its bite chilling it 2 times.",
+                TalentRules.Describe(TalentRules.Get("wolf_pounce"), 2));
         }
 
         [Test]
-        public void OnlyTheFollowingPetsSkills_Work()
+        public void BloodFeast_NeedsRendFirst()
         {
-            var session = new GameSession(1);
-            session.AddGold(100000);
-            session.BuyPet(PetKind.Wolf);
-            session.TeachPetSkill(PetSkillId.Rend);
-            session.BuyPet(PetKind.Raven);
-            session.TeachPetSkill(PetSkillId.HuntersMark);
-            Assert.AreEqual(0, session.Pets.ActiveRank(PetSkillId.Rend), "the raven follows");
-            Assert.AreEqual(1, session.Pets.ActiveRank(PetSkillId.HuntersMark));
-            session.Pets.SetActive(PetKind.Wolf);
-            Assert.AreEqual(1, session.Pets.ActiveRank(PetSkillId.Rend));
+            var talents = new TalentState();
+            Assert.IsFalse(BoonRules.CanTake(talents, TalentRules.Get("wolf_feast"), MetaProgress.BaseBoonTier));
+            talents.Grant("wolf_rend");
+            Assert.IsTrue(BoonRules.CanTake(talents, TalentRules.Get("wolf_feast"), MetaProgress.BaseBoonTier));
         }
 
         [Test]
-        public void TheSkills_LastThroughDeathAndTheSave()
+        public void AlphaWolf_AndLyrielsTraining_StrengthenTheWolf()
         {
-            var session = new GameSession(1);
-            session.AddGold(100000);
-            session.BuyPet(PetKind.Boar);
-            session.TeachPetSkill(PetSkillId.Trample);
-            session.TeachPetSkill(PetSkillId.Trample);
-            var next = session.NextRun(2, false);
-            Assert.AreEqual(2, next.Pets.Rank(PetSkillId.Trample));
-            var loaded = SaveCodec.Restore(SaveCodec.Capture(next, 0), 3);
-            Assert.AreEqual(2, loaded.Pets.Rank(PetSkillId.Trample));
-            Assert.AreEqual(2, loaded.Pets.ActiveRank(PetSkillId.Trample));
+            var session = new GameSession(2);
+            session.Talents.Grant("alpha_wolf");
+            Assert.AreEqual(0.4f, session.Talents.Bonuses.PetDamage, 1e-5f);
+            Assert.AreEqual(0.4f, session.Talents.Bonuses.PetLife, 1e-5f);
+            session.AddGold(10000);
+            Assert.IsTrue(session.BuyUpgrade(MetaUpgradeId.SharpFangs));
+            Assert.IsTrue(session.BuyUpgrade(MetaUpgradeId.ThickCoat));
+            Assert.AreEqual(0.55f, session.Talents.Bonuses.PetDamage, 1e-5f);
+            Assert.AreEqual(0.6f, session.Talents.Bonuses.PetLife, 1e-5f);
         }
     }
 }

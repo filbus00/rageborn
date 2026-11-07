@@ -49,7 +49,7 @@ namespace ARPG
         /// <summary>Armor from equipped Chest and Helm pieces: their base value by item level plus any Armor affix.</summary>
         public float Armor =>
             (GameSession.Current.Equipment.TotalArmor + GameSession.Current.AttributeBonuses.Armor) *
-            (1f + GameSession.Current.Talents.Bonuses.ArmorPercent + PetRules.ArmorBonus(GameSession.Current.Pets.Active));
+            (1f + GameSession.Current.Talents.Bonuses.ArmorPercent);
 
         void Awake()
         {

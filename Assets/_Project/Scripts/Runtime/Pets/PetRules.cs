@@ -4,13 +4,11 @@ using UnityEngine;
 
 namespace ARPG
 {
-    /// <summary>The pets the Pet Vendor sells (Docs/02, Pets; decided 2026-09-30: a few kinds, one active). New kinds go at
-    /// the end; saves store names.</summary>
+    /// <summary>The pets (Docs/02, Pets). Only the wolf since 2026-11-07 (the owner: "Remove all other pets"); the raven
+    /// and the boar were Raven and Boar. Saves store names.</summary>
     public enum PetKind
     {
         Wolf,
-        Raven,
-        Boar,
     }
 
     /// <summary>What the pet attacks (the owner: "customizable. Which enemy to attack"), one chosen at a time.</summary>
@@ -42,9 +40,6 @@ namespace ARPG
         /// <summary>Below half life, the pet stays at the character's side and fights only what reaches it.</summary>
         GuardWhenLow = 1,
 
-        /// <summary>The pet fetches loot only when no enemy is near; off, it fetches whenever it has no target.</summary>
-        FetchOnlyWhenClear = 2,
-
         /// <summary>The pet never strays more than 3 units from the character.</summary>
         StayClose = 4,
 
@@ -56,7 +51,7 @@ namespace ARPG
     public readonly struct PetDefinition
     {
         public PetDefinition(string name, string bonusText, int price, float lifeFactor, float damageFactor, float attackSeconds,
-            float speed, float fetchRadius, float aggroChance, Color color)
+            float speed, float aggroChance, Color color)
         {
             Name = name;
             BonusText = bonusText;
@@ -65,7 +60,6 @@ namespace ARPG
             DamageFactor = damageFactor;
             AttackSeconds = attackSeconds;
             Speed = speed;
-            FetchRadius = fetchRadius;
             AggroChance = aggroChance;
             Color = color;
         }
@@ -81,7 +75,6 @@ namespace ARPG
         public float DamageFactor { get; }
         public float AttackSeconds { get; }
         public float Speed { get; }
-        public float FetchRadius { get; }
 
         /// <summary>The chance that an enemy beside it hits it instead of the character.</summary>
         public float AggroChance { get; }
@@ -90,7 +83,7 @@ namespace ARPG
 
     /// <summary>
     /// The pets' rules and numbers (Docs/02, Pets; the owner's decisions of 2026-09-30, the numbers Claude's proposal,
-    /// tuning): three kinds, each with a passive bonus while it is the active pet; a pet's level is always the
+    /// tuning): the wolf (the only pet since 2026-11-07), with a passive bonus; a pet's level is always the
     /// character's, so it needs no XP of its own; it is knocked out, never killed, and comes back after
     /// <see cref="KnockedOutSeconds"/>. Pure.
     /// </summary>
@@ -99,15 +92,15 @@ namespace ARPG
         public const float KnockedOutSeconds = 20f;
         public const float BiteReach = 1f;
 
-        // How far from the character the pet looks for enemies, and where it walks when there is nothing to do.
-        public const float HuntRadius = 6f;
+        // How far from the character the pet looks for enemies, and where it walks when there is nothing to do. 10 since
+        // 2026-11-07 (the owner: "fix the wolfs aggro range and ai. It does not seem to be attacking enemies"): at 6 her
+        // arrows (7.5 and up) killed most enemies before they came that near, more so with the camera further back.
+        public const float HuntRadius = 10f;
         public const float StayCloseRadius = 3f;
 
         static readonly PetDefinition[] Definitions =
         {
-            new PetDefinition("Wolf", "+5% life", 500, 0.45f, 0.8f, 1f, 5.5f, 6f, 0.5f, new Color(0.55f, 0.6f, 0.7f)),
-            new PetDefinition("Raven", "+10% Magic Find", 1500, 0.25f, 0.55f, 0.7f, 7f, 12f, 0.2f, new Color(0.25f, 0.22f, 0.3f)),
-            new PetDefinition("Boar", "+10% armor", 3000, 0.7f, 0.7f, 1.4f, 4.5f, 6f, 0.8f, new Color(0.5f, 0.35f, 0.25f)),
+            new PetDefinition("Wolf", "+5% life", 500, 0.45f, 0.8f, 1f, 5.5f, 0.5f, new Color(0.55f, 0.6f, 0.7f)),
         };
 
         public static PetDefinition Get(PetKind kind) => Definitions[(int)kind];
@@ -115,22 +108,10 @@ namespace ARPG
         /// <summary>The pet's baked sheets (Resources/Characters/pet_&lt;kind&gt;, ArtSource/tools/props/pets.py).</summary>
         public static string SpriteCharacter(PetKind kind) => "pet_" + kind.ToString().ToLowerInvariant();
 
-        /// <summary>How high the raven flies over its shadow, in world units; the others walk.</summary>
-        public static float HoverHeight(PetKind kind) => kind == PetKind.Raven ? 0.75f : 0f;
-
-        /// <summary>The raven's hover with its slow rise and fall at a time, lowered to the ground while it falls
-        /// knocked out (<paramref name="down"/> 0 flying, 1 on the ground).</summary>
-        public static float Hover(PetKind kind, float time, float down) =>
-            HoverHeight(kind) * (1f - Mathf.Clamp01(down)) * (1f + 0.06f * Mathf.Sin(time * 2.6f));
-
         public static IReadOnlyList<PetKind> All { get; } = (PetKind[])Enum.GetValues(typeof(PetKind));
 
         /// <summary>The active pet's bonuses, as fractions (0.05 for 5 percent); zero without one.</summary>
         public static float LifeBonus(PetKind? active) => active == PetKind.Wolf ? 0.05f : 0f;
-
-        public static float MagicFindBonus(PetKind? active) => active == PetKind.Raven ? 0.1f : 0f;
-
-        public static float ArmorBonus(PetKind? active) => active == PetKind.Boar ? 0.1f : 0f;
 
         public static float MaxLife(PetKind kind, int level) => CombatFormulas.CharacterLife(level) * Get(kind).LifeFactor;
 
@@ -146,7 +127,6 @@ namespace ARPG
         public static string BehaviourText(PetBehaviour behaviour) => behaviour switch
         {
             PetBehaviour.GuardWhenLow => "Guard me when my life is below 50%",
-            PetBehaviour.FetchOnlyWhenClear => "Fetch loot only when no enemy is near",
             PetBehaviour.StayClose => "Stay close to me",
             PetBehaviour.HoldBackFromBosses => "Hold back from bosses",
             _ => behaviour.ToString(),
@@ -218,78 +198,42 @@ namespace ARPG
     }
 
     /// <summary>
-    /// The character's pets (Docs/02, Pets): the kinds bought, the one following it, and its rules. Lives in
-    /// <see cref="GameSession"/> and is saved. Buying goes through <see cref="GameSession.BuyPet"/>, which takes the
-    /// gold. Pure.
+    /// The character's pet (Docs/02, Pets) and its rules. Since 2026-11-07 the wolf follows her in every run, bought or
+    /// not (the owner: "Remove all other pets and rework the beastmaster"); its skills are boons
+    /// (<see cref="PetSkillRules"/>), their ranks read from <see cref="Talents"/>. Lives in <see cref="GameSession"/> and
+    /// is saved. Pure.
     /// </summary>
     public sealed class PetState
     {
         public const PetTargeting DefaultTargeting = PetTargeting.WhatIAttack;
-        public const PetBehaviour DefaultBehaviours = PetBehaviour.FetchOnlyWhenClear;
+        public const PetBehaviour DefaultBehaviours = PetBehaviour.None;
 
-        readonly List<PetKind> owned = new List<PetKind>();
+        static readonly PetKind[] OwnedKinds = { PetKind.Wolf };
 
         public event Action Changed;
 
-        public IReadOnlyList<PetKind> Owned => owned;
+        public IReadOnlyList<PetKind> Owned => OwnedKinds;
 
-        /// <summary>The pet following the character, or null for none.</summary>
-        public PetKind? Active { get; private set; }
+        /// <summary>The pet following the character: always the wolf.</summary>
+        public PetKind? Active => PetKind.Wolf;
 
         public PetTargeting Targeting { get; private set; } = DefaultTargeting;
 
         public PetBehaviour Behaviours { get; private set; } = DefaultBehaviours;
 
-        public bool Owns(PetKind kind) => owned.Contains(kind);
+        public bool Owns(PetKind kind) => kind == PetKind.Wolf;
 
-        // The skills Lyriel has taught (2026-10-15, PetSkillRules), by rank; they last for every run. Saved.
-        readonly Dictionary<PetSkillId, int> skillRanks = new Dictionary<PetSkillId, int>();
+        /// <summary>The run's boons, where the wolf's skills are (set by the session).</summary>
+        public TalentState Talents { get; set; }
 
-        public int Rank(PetSkillId id) => skillRanks.TryGetValue(id, out var rank) ? rank : 0;
-
-        /// <summary>A skill's rank when its pet is the one following her, else 0: only the active pet's skills work.</summary>
+        /// <summary>A wolf skill's rank: its boon's.</summary>
         public int ActiveRank(PetSkillId id)
         {
             var skill = PetSkillRules.Get(id);
-            return skill != null && Active == skill.Pet ? Rank(id) : 0;
-        }
-
-        public IEnumerable<KeyValuePair<PetSkillId, int>> SkillRanks => skillRanks;
-
-        internal bool RaiseSkill(PetSkillId id)
-        {
-            if (Rank(id) >= PetSkillRules.MaxRanks)
-                return false;
-            skillRanks[id] = Rank(id) + 1;
-            Changed?.Invoke();
-            return true;
-        }
-
-        public void RestoreSkill(PetSkillId id, int rank)
-        {
-            if (rank > 0)
-                skillRanks[id] = System.Math.Min(rank, PetSkillRules.MaxRanks);
+            return skill != null && Talents != null ? Talents.RankOf(skill.Boon) : 0;
         }
 
         public bool Has(PetBehaviour behaviour) => (Behaviours & behaviour) != 0;
-
-        internal void AddOwned(PetKind kind)
-        {
-            if (owned.Contains(kind))
-                return;
-            owned.Add(kind);
-            Changed?.Invoke();
-        }
-
-        /// <summary>Makes an owned pet the one that follows; switching is free (Docs/02).</summary>
-        public bool SetActive(PetKind kind)
-        {
-            if (!Owns(kind) || Active == kind)
-                return false;
-            Active = kind;
-            Changed?.Invoke();
-            return true;
-        }
 
         public void SetTargeting(PetTargeting targeting)
         {
@@ -313,13 +257,7 @@ namespace ARPG
         }
 
         /// <summary>Owned kinds by name, for the save.</summary>
-        public List<string> OwnedNames()
-        {
-            var names = new List<string>(owned.Count);
-            foreach (var kind in owned)
-                names.Add(kind.ToString());
-            return names;
-        }
+        public List<string> OwnedNames() => new List<string> { PetKind.Wolf.ToString() };
 
         /// <summary>The rules by name, for the save: the targeting first, then each behaviour that is on.</summary>
         public List<string> RuleNames()
@@ -331,35 +269,18 @@ namespace ARPG
             return names;
         }
 
-        /// <summary>Loads saved pets. Unknown names are left out with a warning; the rest loads.</summary>
-        public void Restore(IReadOnlyList<string> ownedNames, string active, IReadOnlyList<string> rules, List<string> warnings)
+        /// <summary>Loads the saved rules. The pets once bought no longer matter: the wolf is always hers.</summary>
+        public void Restore(IReadOnlyList<string> rules)
         {
-            owned.Clear();
-            Active = null;
             Targeting = DefaultTargeting;
             Behaviours = DefaultBehaviours;
-            if (ownedNames != null)
-                foreach (var name in ownedNames)
-                {
-                    if (Enum.TryParse(name, out PetKind kind) && Enum.IsDefined(typeof(PetKind), kind))
-                    {
-                        if (!owned.Contains(kind))
-                            owned.Add(kind);
-                    }
-                    else
-                    {
-                        warnings?.Add($"Left out an unknown pet ({name}).");
-                    }
-                }
-            if (!string.IsNullOrEmpty(active) && Enum.TryParse(active, out PetKind activeKind) && owned.Contains(activeKind))
-                Active = activeKind;
             if (rules != null && rules.Count > 0)
             {
                 if (Enum.TryParse(rules[0], out PetTargeting targeting) && Enum.IsDefined(typeof(PetTargeting), targeting))
                     Targeting = targeting;
                 var behaviours = PetBehaviour.None;
                 for (var i = 1; i < rules.Count; i++)
-                    if (Enum.TryParse(rules[i], out PetBehaviour behaviour) && behaviour != PetBehaviour.None)
+                    if (Enum.TryParse(rules[i], out PetBehaviour behaviour) && behaviour != PetBehaviour.None && Enum.IsDefined(typeof(PetBehaviour), behaviour))
                         behaviours |= behaviour;
                 Behaviours = behaviours;
             }

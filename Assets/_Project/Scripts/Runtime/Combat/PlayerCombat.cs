@@ -142,11 +142,9 @@ namespace ARPG
             public float ChillChance;
             // Freezing Arrow (a boon): each chill counts twice.
             public bool Freezing;
-            // Boons (2026-10-15): Ricochet's leaps left, Seeking Arrows' bend toward the target; whether the raven's
-            // Guiding Cry has added leaps to it.
+            // Boons (2026-10-15): Ricochet's leaps left, Seeking Arrows' bend toward the target.
             public int Bounces;
             public bool Seeking;
-            public bool Guided;
             // Stillwater Yew's certain crit, and Gallowsreach's blood pools along the trail.
             public bool CertainCrit;
             public bool BloodPools;
@@ -1791,14 +1789,6 @@ namespace ARPG
             var wasBleeding = enemy.IsBleeding;
             var bleed = enemy.BleedPerSecond;
             var killed = Strike(enemy, multiplier, projectile: true, forceCrit: forceCrit);
-            // The raven's Guiding Cry: an arrow that hits its target leaps on.
-            var guiding = session.Pets.ActiveRank(PetSkillId.GuidingCry);
-            if (guiding > 0 && !shot.Guided && PetController.Current != null && PetController.Current.Target == enemy &&
-                shot.Style != ShotStyle.Explosive)
-            {
-                shot.Guided = true;
-                shot.Bounces += guiding;
-            }
             var boons = session.Talents.Bonuses;
             if (boons.ChainLightning > 0f && Random.value < boons.ChainLightning)
                 ChainLightning(enemy, multiplier);
@@ -2365,12 +2355,12 @@ namespace ARPG
                 more *= 1f + Legendaries.HoundMarkBonus;
             if (enemy.IsBleeding && equipment.Wears(LegendaryId.BloodlettersGrips))
                 more *= 1f + Legendaries.BloodletterBonus;
-            // The pets' skills (2026-10-15): the wolf's Rend on the bleeding, the raven's Hunter's Mark on the marked.
+            // The wolf's boons (2026-10-15, boons since 2026-11-07): Rend on the bleeding, Pack Hunt on what it fights.
             var pets = session.Pets;
             if (enemy.IsBleeding)
                 more *= 1f + pets.ActiveRank(PetSkillId.Rend) * PetSkillRules.Get(PetSkillId.Rend).PerRank;
-            if (enemy.IsMarked)
-                more *= 1f + pets.ActiveRank(PetSkillId.HuntersMark) * PetSkillRules.Get(PetSkillId.HuntersMark).PerRank;
+            if (PetController.Current != null && PetController.Current.Target == enemy)
+                more *= 1f + pets.ActiveRank(PetSkillId.PackHunt) * PetSkillRules.Get(PetSkillId.PackHunt).PerRank;
             return more;
         }
 

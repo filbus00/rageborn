@@ -5,8 +5,8 @@ using UnityEngine.UI;
 namespace ARPG
 {
     /// <summary>
-    /// The Pet Vendor's sheet (Docs/02, Pets; decided 2026-09-30): the kinds for sale, each with its bonus and price and
-    /// a button (Buy, Make active, or Following), and the active pet's rules, picked from chips with one thumb and no
+    /// Lyriel's sheet (Docs/02, Pets): the wolf, its training for coins (since 2026-11-07, when the raven and the boar
+    /// went and its skills became boons), and its rules, picked from chips with one thumb and no
     /// typing: what it attacks (a chip that cycles through the choices) and what it does in which situation (on/off
     /// rows). Built in code the first time it opens, in the other sheets' look (<see cref="UiStyle"/>). It does not
     /// pause the game (the town has no enemies); the full-screen backdrop keeps touches off the stick.
@@ -99,7 +99,7 @@ namespace ARPG
         {
             var session = GameSession.Current;
             var pets = session.Pets;
-            gold.text = $"<color=#E8C66A>{session.Gold:N0} gold</color>.  Pets follow you into the dungeon and fight at your side.";
+            gold.text = $"<color=#E8C66A>{session.Gold:N0} gold</color>.  The wolf follows you into the dungeon and fights at your side.";
 
             for (var i = content.childCount - 1; i >= 0; i--)
             {
@@ -108,60 +108,32 @@ namespace ARPG
                 Destroy(child.gameObject);
             }
 
-            SheetKit.Heading(content, "Companions");
-            foreach (var kind in PetRules.All)
+            // The wolf runs with every archer (2026-11-07, the owner: "Remove all other pets and rework the beastmaster"):
+            // nothing to buy; Lyriel trains it for coins, and its skills are boons in a run.
+            var wolf = PetRules.Get(PetKind.Wolf);
+            SheetKit.Heading(content, "The wolf");
+            Row($"<b>{wolf.Name}</b>\n<size=28><color=#CCCCCC>{wolf.BonusText}; runs with every archer and levels with her. Its skills are boons.</color></size>",
+                "Following", false, null, 150f);
+
+            SheetKit.Heading(content, "Training");
+            foreach (var upgrade in MetaRules.All)
             {
-                var definition = PetRules.Get(kind);
-                string action;
-                var enabled = true;
-                Action onClick;
-                if (pets.Active == kind)
-                {
-                    action = "Following";
-                    enabled = false;
-                    onClick = null;
-                }
-                else if (pets.Owns(kind))
-                {
-                    action = "Make active";
-                    onClick = () => pets.SetActive(kind);
-                }
-                else
-                {
-                    action = $"Buy {definition.Price}";
-                    enabled = session.Gold >= definition.Price;
-                    onClick = () =>
+                if (upgrade.Shop != MetaShop.Kennel)
+                    continue;
+                var rank = session.Meta.Rank(upgrade.Id);
+                var maxed = session.Meta.IsMaxed(upgrade.Id);
+                var cost = session.Meta.NextCost(upgrade.Id);
+                var id = upgrade.Id;
+                Row($"<b>{upgrade.Name}</b>{SheetKit.Pips(rank, upgrade.MaxRanks)}\n" +
+                    $"<size=26><color=#CCCCCC>{MetaRules.Describe(upgrade, maxed ? rank : rank + 1)}</color></size>",
+                    maxed ? "Mastered" : $"Train {cost:N0}", !maxed && session.Gold >= cost, () =>
                     {
-                        if (session.BuyPet(kind))
-                            Sfx.Play(SoundId.Pickup);
-                    };
-                }
-                Row($"<b>{definition.Name}</b>\n<size=28><color=#CCCCCC>{definition.BonusText}; levels with you</color></size>", action, enabled, onClick, 150f);
+                        if (session.BuyUpgrade(id))
+                            Sfx.Play(SoundId.LevelUp, 0.6f);
+                    }, 150f);
             }
 
-            // The pet's skills (2026-10-15): taught for coins, kept for good, all of them working while it follows her.
-            if (pets.Active is PetKind active)
-            {
-                SheetKit.Heading(content, $"{PetRules.Get(active).Name}'s skills");
-                foreach (var skill in PetSkillRules.For(active))
-                {
-                    var rank = pets.Rank(skill.Id);
-                    var maxed = rank >= PetSkillRules.MaxRanks;
-                    var cost = PetSkillRules.Cost(rank);
-                    var pairs = skill.Pairs != null && TalentRules.Get(skill.Pairs) != null
-                        ? $"  <color=#E0C040>Pairs with {TalentRules.Get(skill.Pairs).Name}.</color>" : "";
-                    var captured = skill.Id;
-                    Row($"<b>{skill.Name}</b>{SheetKit.Pips(rank, PetSkillRules.MaxRanks)}\n" +
-                        $"<size=26><color=#CCCCCC>{PetSkillRules.Describe(skill, rank > 0 && !maxed ? rank + 1 : System.Math.Max(rank, 1))}</color>{pairs}</size>",
-                        maxed ? "Mastered" : rank == 0 ? $"Teach {cost:N0}" : $"Rank up {cost:N0}", !maxed && session.Gold >= cost, () =>
-                        {
-                            if (session.TeachPetSkill(captured))
-                                Sfx.Play(SoundId.LevelUp, 0.6f);
-                        }, 150f);
-                }
-            }
-
-            SheetKit.Heading(content, pets.Active != null ? "How it behaves" : "How it behaves (the pet you buy)");
+            SheetKit.Heading(content, "How it fights");
             Row($"<b>Target</b>\n<size=28><color=#CCCCCC>Tap to change</color></size>", PetRules.TargetingText(pets.Targeting), true,
                 pets.CycleTargeting, 150f, 520f);
             foreach (PetBehaviour behaviour in Enum.GetValues(typeof(PetBehaviour)))

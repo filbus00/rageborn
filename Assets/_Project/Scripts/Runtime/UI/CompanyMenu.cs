@@ -453,7 +453,7 @@ namespace ARPG
                 () => UpgradeShopScreen.Open(MetaShop.Outfitting, "Garrett")),
             ("Thorin", "Blacksmith", "Forges gear from the blueprints you recover.", "pellam", SmithScreen.Open),
             ("Elara", "Keeper of the vault", "Keeps what you store between contracts.", "stash_keeper", StashScreen.Open),
-            ("Lyriel", "Beastmaster", "Wolves, ravens and boars to fight at your side.", "pet_vendor", PetVendorScreen.Open),
+            ("Lyriel", "Beastmaster", "Trains the wolf that runs with every archer.", "pet_vendor", PetVendorScreen.Open),
         };
 
         static readonly Dictionary<string, Sprite> Pictures = new Dictionary<string, Sprite>();

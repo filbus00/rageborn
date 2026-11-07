@@ -46,6 +46,9 @@ namespace ARPG
         public string ImprovesSkill;
         public float SkillDamage;
 
+        /// <summary>The wolf's skill this node's ranks are, or null.</summary>
+        public PetSkillId? WolfSkill;
+
         /// <summary>A node that must be at its full rank first, or null.</summary>
         public string Requires;
 
@@ -55,6 +58,10 @@ namespace ARPG
         /// <summary>How often it is offered as a boon, against 1 for most (the owner, 2026-10-17: the boons that multiply
         /// arrows "not fewer ranks but less common").</summary>
         public float Weight = 1f;
+
+        /// <summary>Offered from the first depth whatever its row (the wolf's boons, 2026-11-07: the rows that open from
+        /// the start were full).</summary>
+        public bool AnyDepth;
 
         /// <summary>Offered less often than most: shown as a rare boon.</summary>
         public bool IsRare => Weight < 1f;
@@ -112,6 +119,19 @@ namespace ARPG
         static TalentNode Passive(TalentTree tree, int tier, int column, string id, string name, int ranks, PassiveEffect effect, float perRank, string text,
             string requires = null) =>
             new TalentNode { Id = id, Tree = tree, Tier = tier, Column = column, Name = name, MaxRanks = ranks, Effect = effect, PerRank = perRank, Text = text, Requires = requires };
+
+        // The wolf's boons (2026-11-07, the owner: "rework the beastmaster", "Wolf-centred boons"): its skills, once
+        // Lyriel's (PetSkillRules), offered from the first depth. Claude's, to review (Docs/08).
+        static TalentNode Wolf(int tier, int column, PetSkillId skill, string requires = null)
+        {
+            var wolf = PetSkillRules.Get(skill);
+            return new TalentNode
+            {
+                Id = wolf.Boon, Tree = TalentTree.BeastMastery, Tier = tier, Column = column, Name = wolf.Name,
+                MaxRanks = PetSkillRules.MaxRanks, Text = wolf.Text, PerRank = wolf.PerRank, WolfSkill = skill, Requires = requires,
+                AnyDepth = true,
+            };
+        }
 
         static TalentNode Rare(TalentNode node, float weight)
         {
@@ -175,6 +195,18 @@ namespace ARPG
                 Skill(B, 2, 1, "hunters_breath", "Hunter's Breath", "HuntersBreath", "Learn Hunter's Breath: refills Focus when it runs low."),
                 Passive(B, 2, 2, "corpse_burst", "Corpse Burst", 1, PassiveEffect.CorpseBurst, 1f, "An enemy her arrow kills bursts, striking those around it."),
                 Skill(B, 4, 1, "wild_frenzy", "Wild Frenzy", "WildFrenzy", "Learn Wild Frenzy: a burst of attack speed in a fight."),
+                // The wolf (2026-11-07): stronger, and its skills.
+                new TalentNode
+                {
+                    Id = "alpha_wolf", Tree = B, Tier = 0, Column = 3, Name = "Alpha Wolf", MaxRanks = 3, AnyDepth = true,
+                    Effect = PassiveEffect.PetDamage, PerRank = 0.4f, Effect2 = PassiveEffect.PetLife, PerRank2 = 0.4f,
+                    Text = "The wolf bites {0} harder and has as much more life.",
+                },
+                Wolf(2, 3, PetSkillId.Rend),
+                Wolf(3, 0, PetSkillId.Pounce),
+                Wolf(3, 1, PetSkillId.PackHowl),
+                Wolf(3, 2, PetSkillId.BloodFeast, "wolf_rend"),
+                Wolf(3, 3, PetSkillId.PackHunt),
 
                 // Survival: fire, frost and lightning, and the heavy skills.
                 Skill(S, 0, 0, "knockback_shot", "Knockback Shot", "KnockbackShot", "Learn Knockback Shot: a heavy arrow that throws enemies back."),
@@ -204,6 +236,8 @@ namespace ARPG
             if (node.Text == null || !node.Text.Contains("{0}"))
                 return node.Text;
             var shown = Mathf.Max(1, rank);
+            if (node.WolfSkill is PetSkillId wolf)
+                return PetSkillRules.Describe(PetSkillRules.Get(wolf), shown);
             if (node.ImprovesSkill != null)
                 return string.Format(node.Text, Percent(node.SkillDamage * shown));
             var value = node.PerRank * shown;

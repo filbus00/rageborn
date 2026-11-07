@@ -4,52 +4,26 @@ using UnityEngine;
 
 namespace ARPG.Tests
 {
-    /// <summary>Pets (Docs/02, decided 2026-09-30): bought at the Pet Vendor, one active, levelling with the character,
-    /// with the player's rules.</summary>
+    /// <summary>The pet (Docs/02): the wolf alone since 2026-11-07, with every archer, levelling with her, with the
+    /// player's rules, its skills boons and its training Lyriel's.</summary>
     public class PetTests
     {
         [Test]
-        public void Buying_TakesTheGold_AndTheNewPetFollows()
+        public void TheWolf_FollowsEveryArcher_WithNothingToBuy()
         {
             var session = new GameSession();
-            Assert.IsFalse(session.BuyPet(PetKind.Wolf), "no gold");
-            session.AddGold(600);
-            Assert.IsTrue(session.BuyPet(PetKind.Wolf));
-            Assert.AreEqual(100, session.Gold);
             Assert.AreEqual(PetKind.Wolf, session.Pets.Active);
-            Assert.IsFalse(session.BuyPet(PetKind.Wolf), "owned already");
-            Assert.AreEqual(100, session.Gold);
-        }
-
-        [Test]
-        public void Switching_IsFree_ButOnlyToAnOwnedPet()
-        {
-            var session = new GameSession();
-            session.AddGold(2000);
-            session.BuyPet(PetKind.Wolf);
-            session.BuyPet(PetKind.Raven);
-            Assert.AreEqual(PetKind.Raven, session.Pets.Active);
-            Assert.IsTrue(session.Pets.SetActive(PetKind.Wolf));
-            Assert.AreEqual(0, session.Gold);
-            Assert.IsFalse(session.Pets.SetActive(PetKind.Boar));
-            Assert.AreEqual(PetKind.Wolf, session.Pets.Active);
+            Assert.IsTrue(session.Pets.Owns(PetKind.Wolf));
+            Assert.AreEqual(PetKind.Wolf, session.NextRun(4).Pets.Active);
         }
 
         [Test]
         public void ThePetsLevel_IsTheCharacters()
         {
-            Assert.AreEqual(CombatFormulas.CharacterLife(10) * PetRules.Get(PetKind.Boar).LifeFactor, PetRules.MaxLife(PetKind.Boar, 10), 1e-3f);
+            Assert.AreEqual(CombatFormulas.CharacterLife(10) * PetRules.Get(PetKind.Wolf).LifeFactor, PetRules.MaxLife(PetKind.Wolf, 10), 1e-3f);
             Assert.Greater(PetRules.MaxLife(PetKind.Wolf, 20), PetRules.MaxLife(PetKind.Wolf, 5));
-        }
-
-        [Test]
-        public void EachKind_GivesItsBonus_OnlyWhileActive()
-        {
             Assert.AreEqual(0.05f, PetRules.LifeBonus(PetKind.Wolf), 1e-5f);
-            Assert.AreEqual(0.1f, PetRules.MagicFindBonus(PetKind.Raven), 1e-5f);
-            Assert.AreEqual(0.1f, PetRules.ArmorBonus(PetKind.Boar), 1e-5f);
             Assert.AreEqual(0f, PetRules.LifeBonus(null));
-            Assert.AreEqual(0f, PetRules.MagicFindBonus(PetKind.Wolf));
         }
 
         [Test]
@@ -71,48 +45,32 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void PetsAndTheirRules_SurviveASave()
+        public void TheRules_SurviveASave()
         {
             var session = new GameSession();
-            session.AddGold(5000);
-            session.BuyPet(PetKind.Boar);
-            session.BuyPet(PetKind.Wolf);
-            session.Pets.SetActive(PetKind.Boar);
             session.Pets.SetTargeting(PetTargeting.Weakest);
             session.Pets.Toggle(PetBehaviour.StayClose);
-            session.Pets.Toggle(PetBehaviour.FetchOnlyWhenClear);
 
             var restored = SaveCodec.Restore(SaveCodec.Capture(session, 0), 1);
-            Assert.IsTrue(restored.Pets.Owns(PetKind.Boar) && restored.Pets.Owns(PetKind.Wolf));
-            Assert.IsFalse(restored.Pets.Owns(PetKind.Raven));
-            Assert.AreEqual(PetKind.Boar, restored.Pets.Active);
+            Assert.AreEqual(PetKind.Wolf, restored.Pets.Active);
             Assert.AreEqual(PetTargeting.Weakest, restored.Pets.Targeting);
             Assert.IsTrue(restored.Pets.Has(PetBehaviour.StayClose));
-            Assert.IsFalse(restored.Pets.Has(PetBehaviour.FetchOnlyWhenClear));
         }
 
         [Test]
-        public void UnknownPetNames_AreLeftOut()
+        public void OldRules_LoadWithoutTheFetching()
         {
             var state = new PetState();
-            var warnings = new List<string>();
-            state.Restore(new[] { "Wolf", "Dragon" }, "Dragon", new[] { "Sideways" }, warnings);
-            Assert.IsTrue(state.Owns(PetKind.Wolf));
-            Assert.IsNull(state.Active);
+            state.Restore(new[] { "Sideways", "FetchOnlyWhenClear", "GuardWhenLow" });
             Assert.AreEqual(PetState.DefaultTargeting, state.Targeting);
-            Assert.AreEqual(1, warnings.Count);
+            Assert.AreEqual(PetBehaviour.GuardWhenLow, state.Behaviours);
+            Assert.AreEqual(PetKind.Wolf, state.Active);
         }
 
         [Test]
-        public void Pets_ShowTheirOwnSheets_AndOnlyTheRavenFlies()
+        public void TheWolf_ShowsItsOwnSheets()
         {
             Assert.AreEqual("pet_wolf", PetRules.SpriteCharacter(PetKind.Wolf));
-            Assert.AreEqual("pet_raven", PetRules.SpriteCharacter(PetKind.Raven));
-            Assert.AreEqual(0f, PetRules.Hover(PetKind.Boar, 1.3f, 0f));
-            var flying = PetRules.Hover(PetKind.Raven, 0f, 0f);
-            Assert.AreEqual(PetRules.HoverHeight(PetKind.Raven), flying, 1e-5f);
-            Assert.AreEqual(flying / 2f, PetRules.Hover(PetKind.Raven, 0f, 0.5f), 1e-5f, "halfway down while it falls");
-            Assert.AreEqual(0f, PetRules.Hover(PetKind.Raven, 0.7f, 1f), "knocked out on the ground");
         }
     }
 }

@@ -281,7 +281,7 @@ namespace ARPG
             // Stat points change max life, armor and the rest, so they raise Changed (which raises Modified) too.
             Attributes = new AttributePoints();
             Attributes.Changed += NotifyChanged;
-            Pets = new PetState();
+            Pets = new PetState { Talents = Talents };
             Pets.Changed += NotifyChanged;
             Potion.ExtraCharges = Meta.ExtraPotionCharges;
             if (Features.Roguelite)
@@ -644,6 +644,7 @@ namespace ARPG
             next.RestoreMeta(Meta);
             Pets.Changed -= NotifyChanged;
             next.Pets = Pets;
+            next.Pets.Talents = next.Talents;
             next.Pets.Changed += next.NotifyChanged;
             next.stash.AddRange(stash);
             foreach (var id in codex)
@@ -712,36 +713,6 @@ namespace ARPG
             foreach (var id in codex)
                 names.Add(id.ToString());
             return names;
-        }
-
-        /// <summary>Buys a pet at the Pet Vendor (Docs/02, Pets): pays its price in gold, and it follows the character
-        /// at once. False, and nothing changes, when it is owned already or the gold is short.</summary>
-        public bool BuyPet(PetKind kind)
-        {
-            var price = PetRules.Get(kind).Price;
-            if (Pets.Owns(kind) || Gold < price)
-                return false;
-            Gold -= price;
-            Pets.AddOwned(kind);
-            Pets.SetActive(kind);
-            NotifyChanged();
-            return true;
-        }
-
-        /// <summary>Lyriel teaches the next rank of a pet's skill (2026-10-15) for coins. False when the pet is not hers, the
-        /// skill is at its last rank or the coins are short.</summary>
-        public bool TeachPetSkill(PetSkillId id)
-        {
-            var skill = PetSkillRules.Get(id);
-            if (skill == null || !Pets.Owns(skill.Pet) || Pets.Rank(id) >= PetSkillRules.MaxRanks)
-                return false;
-            var cost = PetSkillRules.Cost(Pets.Rank(id));
-            if (Gold < cost)
-                return false;
-            Gold -= cost;
-            Pets.RaiseSkill(id);
-            NotifyChanged();
-            return true;
         }
 
         public void AddGold(int amount)

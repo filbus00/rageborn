@@ -110,6 +110,8 @@ The owner: "No skill trees, add stat points to spend on attributes", with the at
 
 ### Pets (decided 2026-09-30)
 
+**Since 2026-11-07: the wolf alone** (the owner: "Remove the wolf item pickup. Remove all other pets and rework the beastmaster", then "Wolf-centred boons"). The raven and the boar are gone. The wolf runs with every archer and is not bought. It no longer picks up loot. Its skills (Rend, Pounce, Pack Howl, Blood Feast, and the new Pack Hunt) are Beast Mastery boons, offered from the first depth with Alpha Wolf (a stronger wolf). Lyriel, the beastmaster, trains it for coins: Sharp Fangs (a harder bite) and Thick Coat (more life). She still keeps its rules. It hunts enemies awake on screen within 10 of her and walks round walls and trees on a route of its own. The section below is the 2026-09-30 design, kept as history.
+
 The owner: "Add a pet vendor in town. Pet is bought and levels with the player", later: a few kinds, one active, and a pet fights, draws aggro, picks up loot, gives a passive bonus and is customizable ("which enemy to attack, what to do depending on context etc"). Details proposed:
 
 - **The Pet Vendor**, a new NPC in every town (05, Towns), walked up to like the others. Its sheet lists the kinds, buys one for gold, switches the active pet and holds the pet's rules. Owned pets are kept; switching is free.

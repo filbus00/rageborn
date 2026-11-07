@@ -1909,3 +1909,17 @@ The owner: "Ok, big change, remove the town. Everything done in the town will no
   - The clips: Bite is the attack and the first frames of Fall are the hit. Exported with NLA strips.
 - The strip's drawn sheets are moved to `ArtSource/pixel/characters_retired/pet_wolf`, so the bake makes the wolf again. Baked as a remade pet (`EnemyBakeSetup.Remade`): presence 1.75 (about the strip wolf's size, cell 114), plain light, because the harder light bleached the grey coat to beige.
 - Compile check: 757 of 762 offline tests pass; the 5 NavGridBaker failures are the same without this change (tilemap stubs). Built and installed on the owner's iPhone; not seen there by Claude.
+
+## 2026-11-07: the wolf's hunting, and the wolf alone
+
+- The owner: "fix the wolfs aggro range and ai. It does not seem to be attacking enemies". There were two causes:
+  - Range: the wolf only looked within 6 of her (`PetRules.HuntRadius`), but her arrows reach 7.5 and more, and the camera is further back since 2026-11-04. Most enemies died before they came that near. It is 10 now, counting only enemies that are awake and on screen (`EnemyManager.InView`), or her own target, so it does not run off and wake a pack she cannot see.
+  - Walls and trees: it walked in straight lines, slid along the first tree, and after 2 s stuck it jumped back to her side. Now, when the straight way is blocked, it walks a route of its own: a `FlowField` toward its goal's cell, remade when that cell changes, at most every 0.25 s, out to 20. The leash is 16.
+- The owner: "Remove the wolf item pickup. Remove all other pets and rework the beastmaster" (then "Wolf-centred boons"):
+  - `PetKind` is only `Wolf`. `PetState` always has the wolf: it has nothing to buy and reads only the rules on load (format unchanged; the `pets`, `activePet` and `petSkills` fields are no longer read or written).
+  - Fetching, `PetBehaviour.FetchOnlyWhenClear`, the raven's hover, the boar's and the raven's skills, and the bonuses to Magic Find and armour are gone. So is Gilded Beak's coin bonus in `PlayerLoot`.
+  - `pet_raven` and `pet_boar` are removed from Resources; their models stay. Bake Pets bakes only the kinds in `PetKind`.
+  - The wolf's skills (`PetSkillRules`) are Beast Mastery boons (`wolf_rend`, `wolf_pounce`, `wolf_howl`, `wolf_feast`, `wolf_pack_hunt`), plus `alpha_wolf`. A skill's rank is its boon's rank (`PetState.Talents`, set by the session and by `NextRun`).
+  - `TalentNode.AnyDepth` offers them from the first depth, since the rows that open from the start were full.
+  - Lyriel's sheet shows the wolf, her training (`MetaShop.Kennel`: Sharp Fangs and Thick Coat) and its rules. The boons have icons (paw, howl).
+- Compile check: 755 of 760 offline tests pass; the 5 NavGridBaker failures are the old tilemap-stub ones. Built and installed on the owner's iPhone; not seen there by Claude.

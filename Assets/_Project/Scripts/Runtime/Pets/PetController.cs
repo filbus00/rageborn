@@ -5,27 +5,31 @@ namespace ARPG
 {
     /// <summary>
     /// The pet following the character (Docs/02, Pets; the owner's decisions of 2026-09-30): it fights an enemy chosen
-    /// by its targeting rule, draws hits (an enemy beside it may strike it instead of the character), fetches gold and
-    /// items to the character when it has nothing to fight, and follows otherwise. Its level is the character's. At no
+    /// by its targeting rule, draws hits (an enemy beside it may strike it instead of the character), and follows
+    /// otherwise (it fetched loot until 2026-11-07, the owner: "Remove the wolf item pickup"). Its level is the character's. At no
     /// life it is knocked out and comes back after <see cref="PetRules.KnockedOutSeconds"/>. Like the enemies it lives in
     /// ground space with no physics body, walking around walls with the enemies' nav grid where there is one (none in
     /// town). Drawn from its baked sheets (Resources/Characters/pet_&lt;kind&gt;, ArtSource/tools/props/pets.py, 2026-10-06):
-    /// idle, run, the bite, a flinch and the fall when knocked out, the raven flying above its shadow; a small figure in
+    /// idle, run, the bite, a flinch and the fall when knocked out; a small figure in
     /// its kind's colour with its name when the sheets are missing.
     /// Spawned by <see cref="PetDirector"/>.
     /// </summary>
     public class PetController : MonoBehaviour
     {
         // Past this far from the character, or stuck this long, it jumps back to the character's side.
-        const float LeashDistance = 14f;
+        const float LeashDistance = 16f;
         const float StuckSeconds = 2f;
         const float FollowGap = 1.3f;
         const float StepPiece = 0.25f;
         const float RegenPerSecond = 0.05f;
-        const float CarryHandOver = 1.5f;
-        const float PickUpReach = 0.5f;
         const float GuardRadius = 2.5f;
         const float BodyRadius = 0.35f;
+
+        // Its route round walls and trees (2026-11-07): a field of its own toward where it is going, remade when that
+        // cell changes, at most this often, and this far (ground units) out. Straight lines slid along the first tree
+        // and, stuck, it jumped back to her side before it ever reached an enemy.
+        const float RouteSeconds = 0.25f;
+        const float RouteReach = 20f;
 
         // How long the knocked-out pet shows its fall before it is hidden.
         const float FallSeconds = 1f;
@@ -41,7 +45,6 @@ namespace ARPG
         PlayerHealth health;
         PlayerCombat combat;
         EnemyManager enemies;
-        LootDirector loot;
 
         Vector2 ground;
         float life;
@@ -49,7 +52,6 @@ namespace ARPG
         float knockedOut;
         float stuckTimer;
         Vector2 lastGround;
-        LootDrop carrying;
         Transform model;
         EnemyAnimationSet animationSet;
         SpriteRenderer bodyRenderer;
@@ -69,6 +71,10 @@ namespace ARPG
         readonly List<Vector2> positions = new List<Vector2>(16);
         readonly List<float> fractions = new List<float>(16);
         readonly List<bool> elites = new List<bool>(16);
+        FlowField route;
+        NavGrid routeNav;
+        Vector2Int routeCell;
+        float routeTimer;
 
         public PetKind Kind => kind;
         public Vector2 GroundPosition => ground;
@@ -76,10 +82,9 @@ namespace ARPG
         /// <summary>What it is attacking now (the raven's Guiding Cry reads it), or null.</summary>
         public EnemyController Target { get; private set; }
 
-        // The timed skills' clocks (2026-10-15): the wolf's Pounce and Pack Howl, the boar's Trample.
-        float pounceTimer, howlTimer, trampleTimer;
+        // The timed skills' clocks (2026-10-15): the wolf's Pounce and Pack Howl.
+        float pounceTimer, howlTimer;
         bool feastHooked;
-        readonly List<EnemyController> struck = new List<EnemyController>(8);
         public bool IsKnockedOut => knockedOut > 0f;
         public float Life => life;
 
@@ -94,19 +99,18 @@ namespace ARPG
             pet.health = FindAnyObjectByType<PlayerHealth>();
             pet.combat = FindAnyObjectByType<PlayerCombat>();
             pet.enemies = FindAnyObjectByType<EnemyManager>();
-            pet.loot = FindAnyObjectByType<LootDirector>();
 
             pet.animationSet = EnemyAnimationSet.For(PetRules.SpriteCharacter(kind));
             if (pet.animationSet != null)
                 pet.BuildBody(go.transform);
             else
             {
-                // A small figure: the NPC placeholder scaled down, lower and longer for the wolf and boar.
+                // A small figure: the NPC placeholder scaled down, lower and longer.
                 var modelObject = new GameObject("Model");
                 modelObject.transform.SetParent(go.transform, false);
-                modelObject.transform.localScale = kind == PetKind.Raven ? new Vector3(0.45f, 0.45f, 1f) : new Vector3(0.75f, 0.55f, 1f);
+                modelObject.transform.localScale = new Vector3(0.75f, 0.55f, 1f);
                 TravelArt.Figure(modelObject.transform, pet.definition.Color);
-                TravelArt.Label(go.transform, pet.definition.Name, new Color(0.85f, 0.85f, 0.75f), kind == PetKind.Raven ? 0.9f : 0.8f);
+                TravelArt.Label(go.transform, pet.definition.Name, new Color(0.85f, 0.85f, 0.75f), 0.8f);
                 pet.model = modelObject.transform;
             }
 
@@ -115,11 +119,10 @@ namespace ARPG
             return pet;
         }
 
-        // The baked body: a shadow on the ground and the sprite in a sorting group at the feet, so the raven flying above
-        // its shadow sorts by where it is on the ground.
+        // The baked body: a shadow on the ground and the sprite in a sorting group at the feet.
         void BuildBody(Transform root)
         {
-            var width = kind == PetKind.Raven ? 0.45f : 0.75f;
+            const float width = 0.75f;
             var shadow = GroundMarker.NewSprite("Shadow", TelegraphArt.Disc, new Color(0f, 0f, 0f, 0.4f), root, 0);
             shadow.transform.localScale = new Vector3(width, width * IsoMath.GroundSquash, 1f);
             var sprite = new GameObject("Sprite", typeof(UnityEngine.Rendering.SortingGroup));
@@ -162,12 +165,10 @@ namespace ARPG
                 return false;
             if (Vector2.Distance(attacker.GroundPosition, ground) > attacker.Definition.AttackRange + attacker.Definition.BodyRadius + BodyRadius)
                 return false;
-            // The boar's Bristle: likelier to draw the blow, and it takes less (2026-10-15).
-            var bristle = GameSession.Current.Pets.ActiveRank(PetSkillId.Bristle);
-            if (Random.value >= Mathf.Min(0.9f, definition.AggroChance + bristle * PetSkillRules.Get(PetSkillId.Bristle).PerRank))
+            if (Random.value >= definition.AggroChance)
                 return false;
 
-            life -= damage * (1f - 0.1f * bristle);
+            life -= damage;
             hitAnimation = EnemyAnimationRules.HitSeconds;
             var world = Elevation.World2(ground);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y + 0.6f, 0f), damage, false, isDamageToPlayer: true);
@@ -180,7 +181,6 @@ namespace ARPG
         {
             life = 0f;
             knockedOut = PetRules.KnockedOutSeconds;
-            DropCarried();
             var world = Elevation.World2(ground);
             DamageNumbers.Current?.ShowText(new Vector3(world.x, world.y + 1f, 0f), definition.Name.ToUpperInvariant() + " IS DOWN", definition.Color, 32);
             // With sheets it falls first (ShowKnockedOut); the placeholder just goes.
@@ -213,7 +213,7 @@ namespace ARPG
             attackTimer = Mathf.Max(0f, attackTimer - deltaTime);
             pounceTimer = Mathf.Max(0f, pounceTimer - deltaTime);
             howlTimer = Mathf.Max(0f, howlTimer - deltaTime);
-            trampleTimer = Mathf.Max(0f, trampleTimer - deltaTime);
+            routeTimer = Mathf.Max(0f, routeTimer - deltaTime);
             HookFeast();
             var rules = session.Pets;
             var target = ChooseTarget(rules, playerGround);
@@ -227,21 +227,14 @@ namespace ARPG
             var stopAt = 0.2f;
             if (target != null)
             {
-                DropCarried();
                 goal = target.GroundPosition;
                 stopAt = PetRules.BiteReach + target.Definition.BodyRadius;
                 facing = goal - ground;
                 if (Vector2.Distance(ground, goal) <= stopAt + 0.1f && attackTimer <= 0f)
                     Bite(target);
             }
-            else if (Fetch(rules, playerGround, out var fetchGoal))
-            {
-                goal = fetchGoal;
-            }
             else
-            {
                 goal = FollowPoint(playerGround);
-            }
 
             var before = ground;
             Walk(goal, stopAt, deltaTime);
@@ -249,19 +242,12 @@ namespace ARPG
             if (target == null && moved.sqrMagnitude > 1e-6f)
                 facing = moved;
 
-            // Carried loot rides along at the pet's feet.
-            if (carrying != null)
-                carrying.MoveTo(ground);
-
             // Too far, or stuck on a wall: back to the character's side.
             stuckTimer = Vector2.Distance(ground, lastGround) < 0.01f && Vector2.Distance(ground, goal) > stopAt + 0.5f
                 ? stuckTimer + deltaTime : 0f;
             lastGround = ground;
             if (Vector2.Distance(ground, playerGround) > LeashDistance || stuckTimer > StuckSeconds)
-            {
-                DropCarried();
                 PlaceBeside(playerGround);
-            }
             Draw(goal);
             if (animationSet != null)
                 Animate(deltaTime, deltaTime > 0f ? moved.magnitude / deltaTime : 0f);
@@ -290,7 +276,6 @@ namespace ARPG
             }
             else
                 ShowFrame(set.Idle, EnemyAnimationRules.LoopFrame(animationTime, set.IdleSeconds, set.Idle.Frames));
-            Lift(0f);
         }
 
         // The fall when knocked out, then hidden until it comes back.
@@ -306,7 +291,6 @@ namespace ARPG
                 return;
             }
             ShowFrame(animationSet.Death, EnemyAnimationRules.OneShotFrame(fallen / FallSeconds, animationSet.Death.Frames));
-            Lift(fallen / FallSeconds);
         }
 
         void ShowFrame(CharacterSheet sheet, int frame)
@@ -315,8 +299,6 @@ namespace ARPG
             bodyRenderer.sprite = sheet.Rows[row][frame];
         }
 
-        // The raven flies over its shadow; down 1 is on the ground.
-        void Lift(float down) => model.localPosition = new Vector3(0f, PetRules.Hover(kind, animationTime, down), 0f);
 
         // The enemies the pet may consider, by its behaviours, then one of them by its targeting rule.
         EnemyController ChooseTarget(PetState rules, Vector2 playerGround)
@@ -336,6 +318,10 @@ namespace ARPG
             {
                 var enemy = near[i];
                 if (!enemy.IsAlive || Vector2.Distance(enemy.GroundPosition, playerGround) > radius + enemy.Definition.BodyRadius)
+                    continue;
+                // Only what is on screen and awake, or her own target: running into a pack still asleep off screen
+                // woke it for her.
+                if (enemy != chosenByPlayer && (enemy.State == EnemyState.Idle || !enemies.InView(enemy.GroundPosition)))
                     continue;
                 var rank = enemy.Definition.Rank;
                 if (rank == EnemyRank.Boss && rules.Has(PetBehaviour.HoldBackFromBosses))
@@ -371,10 +357,6 @@ namespace ARPG
             var damage = CombatFormulas.HitDamage(equipment.WeaponDamage, definition.DamageFactor, 0f,
                 equipment.AffixTotal(AffixId.PetDamage) / 100f + session.Talents.Bonuses.PetDamage, 1f,
                 critical, criticalDamage, target.Definition.Armor, target.Level) * session.Quests.Boons.PetPower;
-            // The boar's Ember Tusks: more on the burning (2026-10-15).
-            var pets = session.Pets;
-            if (target.IsBurning)
-                damage *= 1f + pets.ActiveRank(PetSkillId.EmberTusks) * PetSkillRules.Get(PetSkillId.EmberTusks).PerRank;
             var world = Elevation.World2(target.GroundPosition);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);
             // Quiver of the Hollow Hound (Docs/03): what the pet bites is marked for the arrows.
@@ -389,69 +371,13 @@ namespace ARPG
 
         // --- Skills (2026-10-15, PetSkillRules) ------------------------------------------------------------------
 
-        // What a bite does beyond its damage, by the pet's skills.
+        // What a bite does beyond its damage, by the wolf's skills.
         void AfterBite(EnemyController target, float damage, bool killed)
         {
-            var pets = GameSession.Current.Pets;
-            var boons = GameSession.Current.Talents.Bonuses;
-            if (!killed && target.IsAlive)
-            {
-                // The wolf's Rend: a bleed of a fifth of the bite a second a rank.
-                var rend = pets.ActiveRank(PetSkillId.Rend);
-                if (rend > 0)
-                    target.ApplyBleed(damage * 0.2f * rend, PetSkillRules.BleedSeconds);
-                // The raven's Hunter's Mark.
-                if (pets.ActiveRank(PetSkillId.HuntersMark) > 0)
-                    target.Mark(PetSkillRules.MarkSeconds);
-                // The boar's Ember Tusks: a burn of a fifth of the gore a second a rank.
-                var tusks = pets.ActiveRank(PetSkillId.EmberTusks);
-                if (tusks > 0)
-                    target.ApplyBurn(damage * 0.2f * tusks);
-            }
-            // The raven's Storm Wings: lightning to the nearest others, one more with Chain Lightning.
-            var wings = pets.ActiveRank(PetSkillId.StormWings);
-            if (wings > 0 && enemies != null)
-            {
-                var arcs = wings + (boons.ChainLightning > 0f ? 1 : 0);
-                var from = target.GroundPosition;
-                enemies.QueryEnemies(from, 4.5f, near);
-                struck.Clear();
-                struck.Add(target);
-                for (var k = 0; k < arcs; k++)
-                {
-                    EnemyController best = null;
-                    var bestDistance = 4.5f;
-                    foreach (var enemy in near)
-                    {
-                        if (!enemy.IsAlive || struck.Contains(enemy))
-                            continue;
-                        var distance = Vector2.Distance(from, enemy.GroundPosition);
-                        if (distance < bestDistance)
-                        {
-                            best = enemy;
-                            bestDistance = distance;
-                        }
-                    }
-                    if (best == null)
-                        break;
-                    struck.Add(best);
-                    combat?.Bolt(from, best.GroundPosition);
-                    best.TakeDamage(damage * 0.5f);
-                    from = best.GroundPosition;
-                }
-            }
-            // The boar's Gore Burst: its kill bursts, wider with Corpse Burst.
-            var burst = pets.ActiveRank(PetSkillId.GoreBurst);
-            if (killed && burst > 0 && enemies != null)
-            {
-                var radius = PetSkillRules.BurstRadius + (boons.CorpseBurst ? 1f : 0f);
-                enemies.QueryEnemies(target.GroundPosition, radius + 1f, near);
-                foreach (var enemy in near)
-                    if (enemy != target && enemy.IsAlive && Vector2.Distance(enemy.GroundPosition, target.GroundPosition) <= radius + enemy.Definition.BodyRadius)
-                        enemy.TakeDamage(damage * PetSkillRules.Get(PetSkillId.GoreBurst).PerRank * burst);
-                var world = Elevation.World2(target.GroundPosition);
-                DamageNumbers.Current?.ShowText(new Vector3(world.x, world.y + 1f, 0f), "GORE BURST", definition.Color, 30);
-            }
+            // Rend: a bleed of a fifth of the bite a second a rank.
+            var rend = GameSession.Current.Pets.ActiveRank(PetSkillId.Rend);
+            if (rend > 0 && !killed && target.IsAlive)
+                target.ApplyBleed(damage * 0.2f * rend, PetSkillRules.BleedSeconds);
         }
 
         // The skills that come round on a clock, while it has a target.
@@ -479,40 +405,6 @@ namespace ARPG
                 combat.Howl(howl * PetSkillRules.Get(PetSkillId.PackHowl).PerRank, PetSkillRules.HowlLasts);
                 Callout("HOWL");
             }
-            // The boar's Trample: a charge through the enemies before it.
-            var trample = pets.ActiveRank(PetSkillId.Trample);
-            if (trample > 0 && trampleTimer <= 0f && distance <= PetSkillRules.TrampleLength + 1f && enemies != null)
-            {
-                trampleTimer = PetSkillRules.TrampleSeconds;
-                var direction = (target.GroundPosition - ground).normalized;
-                var length = PetSkillRules.TrampleLength;
-                while (length > 0.5f && !enemies.Nav.HasClearWalk(ground, ground + direction * length))
-                    length -= 0.5f;
-                var end = ground + direction * length;
-                var gore = CombatFormulas.HitDamage(GameSession.Current.Equipment.WeaponDamage, definition.DamageFactor, 0f, 0f, 1f,
-                    false, 0f, target.Definition.Armor, target.Level) * trample * PetSkillRules.Get(PetSkillId.Trample).PerRank;
-                enemies.QueryEnemies((ground + end) * 0.5f, length * 0.5f + 1.5f, near);
-                foreach (var enemy in near)
-                {
-                    if (!enemy.IsAlive || DistanceToSegment(enemy.GroundPosition, ground, end) > 1f + enemy.Definition.BodyRadius)
-                        continue;
-                    var side = new Vector2(-direction.y, direction.x);
-                    if (Vector2.Dot(enemy.GroundPosition - ground, side) < 0f)
-                        side = -side;
-                    enemy.TakeDamage(gore);
-                    if (enemy.IsAlive)
-                        enemy.Push(side * 1.2f);
-                }
-                ground = end;
-                Callout("TRAMPLE");
-            }
-        }
-
-        static float DistanceToSegment(Vector2 p, Vector2 a, Vector2 b)
-        {
-            var ab = b - a;
-            var t = ab.sqrMagnitude > 1e-6f ? Mathf.Clamp01(Vector2.Dot(p - a, ab) / ab.sqrMagnitude) : 0f;
-            return Vector2.Distance(p, a + ab * t);
         }
 
         void Callout(string text)
@@ -548,71 +440,6 @@ namespace ARPG
                 enemies.Killed -= OnEnemyKilled;
         }
 
-        // Loot within the kind's reach of the character and outside the character's own pick-up reach, fetched when the
-        // rules allow; the drop is carried to the character and left at its feet for auto-loot. Returns where to walk.
-        bool Fetch(PetState rules, Vector2 playerGround, out Vector2 goal)
-        {
-            goal = default;
-            if (loot == null)
-                return false;
-            if (rules.Has(PetBehaviour.FetchOnlyWhenClear) && enemies != null && enemies.EngagedCount > 0)
-            {
-                DropCarried();
-                return false;
-            }
-            if (carrying != null)
-            {
-                if (!Contains(loot.Active, carrying))
-                {
-                    carrying = null;
-                    return false;
-                }
-                if (Vector2.Distance(ground, playerGround) <= CarryHandOver)
-                {
-                    carrying = null;
-                    return false;
-                }
-                goal = playerGround;
-                return true;
-            }
-
-            LootDrop best = null;
-            var bestDistance = float.MaxValue;
-            var drops = loot.Active;
-            for (var i = 0; i < drops.Count; i++)
-            {
-                var drop = drops[i];
-                var fromPlayer = Vector2.Distance(drop.GroundPosition, playerGround);
-                if (fromPlayer > definition.FetchRadius || AutoLootRules.InRange(playerGround, drop.GroundPosition))
-                    continue;
-                // Only what the player's pick-up rule would take.
-                if (!drop.IsWanted())
-                    continue;
-                var distance = Vector2.Distance(ground, drop.GroundPosition);
-                if (distance < bestDistance)
-                {
-                    best = drop;
-                    bestDistance = distance;
-                }
-            }
-            if (best == null)
-                return false;
-            if (bestDistance <= PickUpReach)
-                carrying = best;
-            goal = best.GroundPosition;
-            return true;
-        }
-
-        static bool Contains(IReadOnlyList<LootDrop> drops, LootDrop drop)
-        {
-            for (var i = 0; i < drops.Count; i++)
-                if (drops[i] == drop)
-                    return true;
-            return false;
-        }
-
-        void DropCarried() => carrying = null;
-
         // A little behind and to the side of the character, the way it last moved. The side is kept from that heading,
         // not from where the pet stands: worked out from the pet's own side, the point moved on each time the pet came
         // near it, and the pet ran round a standing character for ever (seen once pets had run sheets, 2026-10-06).
@@ -625,7 +452,8 @@ namespace ARPG
             return playerGround + (followBack + side).normalized * FollowGap;
         }
 
-        // Straight toward the goal in short pieces; a wall blocks a piece, and the pet slides along it on one axis.
+        // Toward the goal in short pieces: straight when the way is clear, else along its route; a wall blocks a piece,
+        // and the pet slides along it on one axis.
         void Walk(Vector2 goal, float stopAt, float deltaTime)
         {
             var toGoal = goal - ground;
@@ -635,6 +463,8 @@ namespace ARPG
             var travel = Mathf.Min(distance - stopAt, definition.Speed * deltaTime);
             var direction = toGoal / distance;
             var nav = enemies != null && enemies.IsReady ? enemies.Nav : null;
+            if (nav != null && !nav.HasClearWalk(ground, goal) && TryRoute(nav, goal, out var routed))
+                direction = routed;
             while (travel > 1e-4f)
             {
                 var piece = Mathf.Min(StepPiece, travel);
@@ -649,6 +479,23 @@ namespace ARPG
                 else
                     break;
             }
+        }
+
+        bool TryRoute(NavGrid nav, Vector2 goal, out Vector2 direction)
+        {
+            if (route == null || routeNav != nav)
+            {
+                route = new FlowField(nav);
+                routeNav = nav;
+            }
+            var cell = IsoMath.GroundToCell(goal);
+            if ((cell != routeCell || !route.HasTarget) && routeTimer <= 0f)
+            {
+                routeCell = cell;
+                routeTimer = RouteSeconds;
+                route.Compute(cell, RouteReach);
+            }
+            return route.TryGetDirection(ground, out direction);
         }
 
         static bool Walkable(NavGrid nav, Vector2 at) => nav == null || nav.IsWalkable(IsoMath.GroundToCell(at));

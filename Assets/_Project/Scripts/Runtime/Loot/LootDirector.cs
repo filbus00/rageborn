@@ -25,7 +25,7 @@ namespace ARPG
         [SerializeField, Min(0f)] float magicFind;
 
         // The scene's own Magic Find and the raven's (Docs/02, Pets).
-        float MagicFind => magicFind + PetRules.MagicFindBonus(GameSession.Current.Pets.Active);
+        float MagicFind => magicFind;
 
         // Drops from one kill are spread out a little so a coin and an item do not sit on the same spot. Items hop
         // farther out, so a pack's loot does not land in one heap.

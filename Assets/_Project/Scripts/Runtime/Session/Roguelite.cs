@@ -28,6 +28,8 @@ namespace ARPG
         StartQuiver,
         StartArmour,
         StashSlot,
+        SharpFangs,
+        ThickCoat,
     }
 
     /// <summary>Who sells an upgrade.</summary>
@@ -47,6 +49,9 @@ namespace ARPG
 
         /// <summary>Elara, the scholar (the Stash Keeper's place).</summary>
         Stash,
+
+        /// <summary>Lyriel, the beastmaster: the wolf's training (2026-11-07).</summary>
+        Kennel,
     }
 
     public sealed class MetaUpgrade
@@ -90,6 +95,10 @@ namespace ARPG
             // The stash chest (the owner, 2026-10-15: "A stash (a chest) in town is available and can be expanded with
             // coin"): ten slots free, ten more a rank.
             new MetaUpgrade { Id = MetaUpgradeId.StashSlot, Shop = MetaShop.Stash, Name = "A Bigger Chest", Text = "{0} stash slots.", MaxRanks = 5, BaseCost = 500, Growth = 2f },
+            // Lyriel trains the wolf (2026-11-07, the owner: "rework the beastmaster"; its skills became boons). Claude's,
+            // to review (Docs/08).
+            new MetaUpgrade { Id = MetaUpgradeId.SharpFangs, Shop = MetaShop.Kennel, Name = "Sharp Fangs", Text = "The wolf bites {0} harder.", MaxRanks = 5, BaseCost = 300, Effect = PassiveEffect.PetDamage, PerRank = 0.15f },
+            new MetaUpgrade { Id = MetaUpgradeId.ThickCoat, Shop = MetaShop.Kennel, Name = "Thick Coat", Text = "{0} life for the wolf.", MaxRanks = 5, BaseCost = 300, Effect = PassiveEffect.PetLife, PerRank = 0.2f },
         };
 
         public static MetaUpgrade Get(MetaUpgradeId id)
@@ -268,7 +277,7 @@ namespace ARPG
         }
 
         public static bool CanTake(TalentState talents, TalentNode node, int maxTier) =>
-            node.Tier < maxTier && talents.RankOf(node.Id) < node.MaxRanks &&
+            (node.Tier < maxTier || node.AnyDepth) && talents.RankOf(node.Id) < node.MaxRanks &&
             (node.Requires == null || talents.RankOf(node.Requires) > 0);
 
         /// <summary>The level she fights at on a depth: the depth's enemy level (no experience; she keeps pace).</summary>

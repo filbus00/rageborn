@@ -43,7 +43,7 @@ namespace ARPG.Tests
                 foreach (var id in BoonRules.Offer(talents, MetaProgress.BaseBoonTier, 4, new System.Random(seed)))
                 {
                     var node = TalentRules.Get(id);
-                    Assert.Less(node.Tier, MetaProgress.BaseBoonTier, id);
+                    Assert.IsTrue(node.Tier < MetaProgress.BaseBoonTier || node.AnyDepth, id);
                     Assert.IsTrue(node.Requires == null || talents.RankOf(node.Requires) > 0, id + " needs " + node.Requires);
                 }
         }
@@ -68,7 +68,6 @@ namespace ARPG.Tests
             session.AddGold(100000);
             session.BuyUpgrade(MetaUpgradeId.StashSlot);
             session.BuyUpgrade(MetaUpgradeId.StartBow);
-            session.BuyPet(PetKind.Wolf);
             session.ReachDepth(4);
             session.TakeBoon(BoonRules.Offer(session.Talents, 2, 3, new System.Random(2))[0]);
             var item = session.Loot.RollItemOf(ItemSlot.Helm, ItemRarity.Rare, 5);

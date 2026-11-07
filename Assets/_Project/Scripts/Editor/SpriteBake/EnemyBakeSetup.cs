@@ -197,6 +197,9 @@ namespace ARPG.Editor
                 // A pet drawn as pixel art (the wolf, 2026-11-05) is imported by DrawnCharacterImport, not baked.
                 if (DrawnCharacterImport.IsDrawn(Path.GetFileName(folder)))
                     continue;
+                // Only the pets in the game: the raven's and the boar's models stay, unbaked (2026-11-07).
+                if (!PetRules.All.Any(kind => PetRules.SpriteCharacter(kind) == Path.GetFileName(folder)))
+                    continue;
                 var job = SetUp(folder);
                 if (job == null)
                     continue;
