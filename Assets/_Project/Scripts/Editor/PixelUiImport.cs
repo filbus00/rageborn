@@ -18,8 +18,26 @@ namespace ARPG.Editor
         const string Source = "ArtSource/ui/pixel";
         const string Target = "Assets/_Project/Resources/UI/Pixel";
 
+        // The archers' base faces and their regions (2026-11-07, PortraitFaces): read by code, so readable, and kept exact.
+        const string FacesFolder = "Resources/UI/Faces/";
+        const string FacesSource = "ArtSource/ui/faces";
+        const string FacesTarget = "Assets/_Project/Resources/UI/Faces";
+
         void OnPreprocessTexture()
         {
+            if (assetPath.Replace('\\', '/').Contains(FacesFolder))
+            {
+                var face = (TextureImporter)assetImporter;
+                face.textureType = TextureImporterType.Default;
+                face.isReadable = true;
+                face.sRGBTexture = !assetPath.EndsWith("_regions.png");
+                face.filterMode = FilterMode.Point;
+                face.textureCompression = TextureImporterCompression.Uncompressed;
+                face.mipmapEnabled = false;
+                face.npotScale = TextureImporterNPOTScale.None;
+                face.alphaIsTransparency = false;
+                return;
+            }
             if (!assetPath.Replace('\\', '/').Contains(Folder))
                 return;
             var importer = (TextureImporter)assetImporter;
@@ -42,7 +60,8 @@ namespace ARPG.Editor
             importer.spriteBorder = new Vector4(b, b, b, b);
         }
 
-        /// <summary>Copies the drawn menu art from ArtSource/ui/pixel into Resources/UI/Pixel and builds the fonts.</summary>
+        /// <summary>Copies the drawn menu art from ArtSource/ui/pixel into Resources/UI/Pixel, the archers' base faces from
+        /// ArtSource/ui/faces into Resources/UI/Faces, and builds the fonts.</summary>
         [MenuItem("Tools/ARPG/Import Menu Art")]
         public static void Import()
         {
@@ -53,6 +72,13 @@ namespace ARPG.Editor
                 if (ext != ".png" && ext != ".json")
                     continue;
                 File.Copy(path, Path.Combine(Target, Path.GetFileName(path)), true);
+            }
+            Directory.CreateDirectory(FacesTarget);
+            foreach (var path in Directory.GetFiles(FacesSource))
+            {
+                var ext = Path.GetExtension(path);
+                if (ext == ".png" || ext == ".json")
+                    File.Copy(path, Path.Combine(FacesTarget, Path.GetFileName(path)), true);
             }
             AssetDatabase.Refresh();
             BuildFonts();

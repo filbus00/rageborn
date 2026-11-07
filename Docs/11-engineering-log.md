@@ -1927,3 +1927,19 @@ The owner: "Ok, big change, remove the town. Everything done in the town will no
 ## 2026-11-07: the portraits from the owner's Gemini picture
 
 - The owner sent the Quarters tab redrawn by Gemini (`ArtSource/ui/concepts/quarters_portraits.jpeg`, 704 px wide, about 1.8 picture pixels a menu pixel) and asked to "update the portraits". Cut from it inside each frame and scaled with sips: the archer (133 x 163), Miranda, Sylthara, Garrett, and now Thorin, Elara and Lyriel (71 x 64; the last three had shown their baked figures). Brunhilde's was scrolled off the picture and is kept. Imported by Import Menu Art. Built and installed on the owner's iPhone; not seen there by Claude.
+
+## 2026-11-07: every archer her own face
+
+- The owner: "now all the amazon archers have the same portrait, I want it to auto generate different looks ... so that no amazon is identical. How to go about that?"; chose "Bases + variations".
+- Base faces live in `ArtSource/ui/faces/<base>.png` (one so far: `archer_1`, the Gemini portrait) with a `.json`: polygons for the face, neck, hair and cloak, the irises, and where marks go (cheeks, brow, chin), as flat x, y lists from the top left.
+- `ArtSource/tools/ui/face_regions.py` (Blender) writes `<base>_regions.png`: each pixel's region in red (1 skin, 2 hair, 3 iris, 4 cloak) and how much it takes in green. The rules:
+  - Skin is whatever is warm inside the face and neck polygons. By colour alone, shaded skin cannot be told from dark hair.
+  - Hair is whatever is warm inside the hair polygon. A light warm pixel there stays hair (taken for an ear, a lit strand came out skin).
+  - The cloak is green inside its polygon (the backdrop is dark green too).
+- Import Menu Art copies the faces to `Resources/UI/Faces`, imported readable, the regions linear (`PixelUiImport`).
+- `UI/Portraits.cs`:
+  - `PortraitLooks.For(name, bases)` (pure) picks the look from an FNV hash of her name, so the same archer always has the same face and the save needs nothing new. It picks the base, one of 6 skins, 9 hair colours, 6 eye colours and 8 cloaks (the company's green twice), plus marks, each on its own: war paint 30 percent, a scar 20, freckles 25, a chin mark 15.
+  - `PortraitPainter.Paint` (pure) recolours each region by its target colour times each pixel's lightness against the region's average. That shading is capped at 1.4 (a lit strand glared on light hair) and eased toward light targets. Marks go only on skin.
+  - `PortraitFaces.For(name)` paints once and keeps the sprite. `CompanyMenu`'s header shows it.
+- `PortraitTests` (3). Compile check: the same 5 old NavGridBaker failures only. Twelve faces were rendered in the editor and looked at. Built and installed on the owner's iPhone; not seen there by Claude.
+- More base faces: drop `<name>.png` (133 x 163) and its `.json` in `ArtSource/ui/faces`, run `face_regions.py`, then Import Menu Art. Each new base multiplies the looks.

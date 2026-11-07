@@ -308,15 +308,18 @@ namespace ARPG
         // --- The archer ----------------------------------------------------------------------------------------------
 
         Text nameText, contractsText, coinsText;
+        Image portrait;
 
         void DrawHeader()
         {
             if (nameText == null)
             {
-                // Her portrait (the owner's concept picture), framed in gold.
+                // Her portrait, framed in gold: her own face, made from her name (PortraitFaces, 2026-11-07), on the
+                // concept picture's face when there are no base faces.
                 var frame = PixelUi.Frame(header, "Portrait", "frame_portrait_b3").rectTransform;
                 PixelUi.At(frame, 0f, 0f, 139f, 169f);
-                var picture = PixelUi.Picture(frame, "Archer", "portrait_archer").rectTransform;
+                portrait = PixelUi.Picture(frame, "Archer", "portrait_archer");
+                var picture = portrait.rectTransform;
                 UiStyle.Place(picture, new Vector2(0.5f, 0.5f), Vector2.zero, picture.sizeDelta);
                 var panel = PixelUi.Frame(header, "Panel", "frame_panel_b4").rectTransform;
                 panel.anchorMin = Vector2.zero;
@@ -339,6 +342,8 @@ namespace ARPG
             }
             var company = session.Company;
             nameText.text = company.Mercenary.ToUpperInvariant();
+            if (PortraitFaces.For(company.Mercenary) is Sprite face)
+                portrait.sprite = face;
             contractsText.text = $"Contracts Cleared {company.Cleared.Count} of {ContractRules.All.Length} <color=#CC342C>·</color> Fallen {company.Fallen.Count}";
             coinsText.text = $"{session.Gold:N0} Coins in the Company Chest";
         }
