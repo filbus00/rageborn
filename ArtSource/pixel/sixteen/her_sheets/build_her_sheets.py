@@ -60,6 +60,10 @@ assert len(shoot) == 24, len(shoot)
 # right the bow points to the left"; looked at frame by frame): front, aiming down-right; front again, aiming right;
 # back, aiming up-right; left, aiming left. Each direction takes the row aiming its way, or its mirror.
 SHOT = {"front": shoot[0:6], "front2": shoot[6:12], "back": shoot[12:18], "left": shoot[18:24]}
+# In the rows aiming right she rests with the bow on her left (frames 0, 4 and 5): mirrored, so it stays on the aiming
+# side (2026-11-08).
+for row in ("front", "back"):
+    SHOT[row] = [f[:, ::-1] if k in (0, 4, 5) else f for k, f in enumerate(SHOT[row])]
 
 
 # The idle sheet's facings (2026-11-08, looked at one by one): front-left, three-quarter left, back, left; each with its
@@ -121,8 +125,14 @@ def _hsv(c):
     return colorsys.rgb_to_hsv(*[float(v) for v in c])
 
 
-HAIR = [k for k, c in enumerate(PAL) if (_hsv(c)[0] < 0.03 or _hsv(c)[0] > 0.93) and _hsv(c)[1] > 0.4]
-SKIN = [k for k, c in enumerate(PAL) if 0.02 <= _hsv(c)[0] <= 0.11 and 0.2 <= _hsv(c)[1] <= 0.62 and _hsv(c)[2] > 0.55]
+HAIR = [k for k, c in enumerate(PAL) if (_hsv(c)[0] < 0.03 or _hsv(c)[0] > 0.9) and _hsv(c)[1] > 0.55 and _hsv(c)[2] > 0.4]
+SKIN = [k for k, c in enumerate(PAL) if 0.03 <= _hsv(c)[0] <= 0.08 and 0.38 <= _hsv(c)[1] <= 0.56 and _hsv(c)[2] > 0.65]
+# The bow's wood (the browns of the darkest warm colours), its string, an arrow's shaft and fletching.
+WOOD = sorted([k for k, c in enumerate(PAL) if 0.2 < _hsv(c)[2] < 0.4 and 0.3 < _hsv(c)[1] < 0.45], key=lambda k: PAL[k].sum())
+STRING = int(np.argmax(PAL.sum(1) - 3 * np.array([_hsv(c)[1] for c in PAL])))
+SHAFT = [k for k, c in enumerate(PAL) if _hsv(c)[1] < 0.25 and _hsv(c)[2] > 0.6 and k != STRING][-1]
+FLETCH = HAIR[len(HAIR) // 2] if HAIR else 0
+OUTLINE = int(np.argmin(PAL.sum(1)))
 EYES = [k for k, c in enumerate(PAL) if 0.2 < _hsv(c)[0] < 0.5 and _hsv(c)[1] > 0.25]
 
 
@@ -167,6 +177,83 @@ def sources(d):
     return SHOT["back"], mirror(head_turned_away(IDLE["w"])), m([head_turned_away(f) for f in WALK["w"]])
 
 
+def down_shot(f, pull, loosed=False):
+    """Shooting toward the camera (2026-11-08, the owner: "fix a frame where she is shooting straight down"; the sheets
+    have none): on her front-facing frame, the bow held level across her chest, both arms raised to it, her right hand
+    drawing the string up toward her chest by pull pixels, the arrow pointing down at the viewer from her hand through
+    the bow; loosed, the string straight and the limbs sprung."""
+    g = f.copy()
+    h, w = g.shape
+    ys, xs = np.where(g >= 0)
+    cx = int(round(feet_x(g)))
+    row = int(round(h * 0.47))
+    half = 7
+    pad = max(0, half + 2 - cx, cx + half + 3 - w)
+    if pad:
+        g = np.pad(g, ((0, 0), (pad, pad)), constant_values=-1)
+        cx += pad
+        w = g.shape[1]
+
+    def put(x, y, k):
+        if 0 <= x < w and 0 <= y < h:
+            g[y, x] = k
+
+    def line(x0, y0, x1, y1, k):
+        n = max(abs(x1 - x0), abs(y1 - y0), 1)
+        for t in range(n + 1):
+            put(round(x0 + (x1 - x0) * t / n), round(y0 + (y1 - y0) * t / n), k)
+
+    # Her own bow, hanging at her left in the standing frame, taken away: everything left of her body below her
+    # shoulders.
+    for y in range(int(h * 0.35), h):
+        for x in range(0, max(0, cx - 6)):
+            g[y, x] = -1
+    wood, wood_light = WOOD[0], WOOD[-1]
+    skin = SKIN[len(SKIN) // 2] if SKIN else wood_light
+    tips = row if loosed else row - 1
+    hy = row - (0 if loosed else pull) - 1
+    # The arms, from the shoulders to the hands.
+    shoulder = int(round(h * 0.36))
+    line(cx - 5, shoulder, cx - 1, hy, skin)
+    line(cx + 5, shoulder, cx + 1, row, skin)
+    # The bow: its wood level across her, curving toward the viewer, the tips a row up.
+    for x in range(cx - half, cx + half + 1):
+        end = abs(x - cx) >= half - 1
+        put(x, tips if end else row, wood if not end else wood_light)
+        put(x, (tips if end else row) + 1, OUTLINE)
+    # The string from the tips to her hand (straight when loosed), the arrow from her hand down through the bow.
+    if loosed:
+        line(cx - half + 1, row - 1, cx + half - 1, row - 1, STRING)
+    else:
+        line(cx - half + 1, tips, cx, hy, STRING)
+        line(cx, hy, cx + half - 1, tips, STRING)
+        for y in range(hy, row + 4):
+            put(cx, y, SHAFT)
+        put(cx, row + 4, OUTLINE)
+        put(cx, hy - 1, FLETCH)
+    # Her hands over it all.
+    put(cx, hy if not loosed else row - 1, skin)
+    put(cx + 1, row, skin)
+    put(cx - 1, row, skin)
+    return outlined(g)
+
+
+def outlined(f):
+    """A dark pixel wherever a figure's edge has none."""
+    darkish = set(int(k) for k in np.argsort(PAL.sum(1))[:3])
+    out = f.copy()
+    h, w = f.shape
+    for y in range(h):
+        for x in range(w):
+            if f[y, x] >= 0:
+                continue
+            for yy, xx in ((y + 1, x), (y - 1, x), (y, x + 1), (y, x - 1)):
+                if 0 <= yy < h and 0 <= xx < w and f[yy, xx] >= 0 and f[yy, xx] not in darkish:
+                    out[y, x] = OUTLINE
+                    break
+    return out
+
+
 def shear(f, lean):
     """Leaning: each row moved toward where she faces, the top the most (lean pixels), the feet not at all."""
     h, w = f.shape
@@ -193,15 +280,26 @@ def clips(d):
     back = -1 if d in ("e", "se", "ne") else 1      # away from where she faces, across the screen
     c = {}
     c["idle"] = [place(idle), place(idle), place(idle, dy=1), place(idle)]
-    c["walk"] = [place(walk[0]), place(walk[0], dy=-1), place(walk[1]), place(walk[1], dy=-1)]
+    # A step, the passing pose (her standing frame, risen a pixel), the other step, the passing pose (2026-11-08: each
+    # step had been held for two frames).
+    c["walk"] = [place(walk[0]), place(idle, dy=-1), place(walk[1]), place(idle, dy=-1)]
     c["run"] = c["walk"]
     c["run_back"] = c["walk"]
     for way in ("forward", "back", "left", "right"):
         c["walk_aim_" + way] = [place(shot[1]), place(shot[1], dy=-1), place(shot[1]), place(shot[1], dy=-1)]
     # Shots: the release on the frame the game expects (attack 3 of 5, overdraw 5 of 7).
-    c["attack"] = [place(shot[i]) for i in (0, 1, 2, 3, 5)]
-    c["overdraw"] = [place(shot[i]) for i in (0, 1, 2, 2, 2, 3, 5)]
-    c["recoil"] = [place(shot[0]), place(shot[1]), place(shot[2]), place(shot[3], dx=back), place(shot[4])]
+    if d == "s":
+        # Shooting straight down: raised, drawn, at full draw, loosed, settling.
+        raised, drawn, full, loosed = (down_shot(idle, 0), down_shot(idle, 1), down_shot(idle, 2), down_shot(idle, 0, True))
+        c["attack"] = [place(raised), place(drawn), place(full), place(loosed, dy=-1), place(idle)]
+        c["overdraw"] = [place(raised), place(drawn), place(full), place(full), place(down_shot(idle, 3)), place(loosed, dy=-1), place(idle)]
+        c["recoil"] = [place(raised), place(drawn), place(full), place(loosed, dy=-1), place(idle)]
+        for way in ("forward", "back", "left", "right"):
+            c["walk_aim_" + way] = [place(drawn), place(drawn, dy=-1), place(drawn), place(drawn, dy=-1)]
+    else:
+        c["attack"] = [place(shot[i]) for i in (0, 1, 2, 3, 5)]
+        c["overdraw"] = [place(shot[i]) for i in (0, 1, 2, 2, 2, 3, 5)]
+        c["recoil"] = [place(shot[0]), place(shot[1]), place(shot[2]), place(shot[3], dx=back), place(shot[4])]
     for name in ("attack", "overdraw", "recoil"):
         for suffix in ("", "_back", "_left", "_right"):
             c[name + "_move" + suffix] = c[name]
