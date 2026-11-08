@@ -1,85 +1,23 @@
 {
-  "comment": "A base face from the owner's Gemini grid (2026-11-07, ArtSource/ui/concepts/archer_faces_grid.jpeg). Pixels from the top left, as x, y pairs. face, neck and hair: polygons (the face is skin where it is warm, the hair outside it brown); eyes: the irises' centres; cheeks: under the eyes, where paint and freckles go; brow and chin: where a scar or a chin mark goes.",
-  "face": [
-    56,
-    32,
-    82,
-    29,
-    102,
-    32,
-    106,
-    46,
-    104,
-    66,
-    96,
-    82,
-    84,
-    88,
-    66,
-    84,
-    58,
-    70,
-    50,
-    64,
-    42,
-    56,
-    44,
-    48,
-    54,
-    48
-  ],
   "eyes": [
-    75,
-    53,
-    96,
-    53
+    28,
+    35,
+    38,
+    35
   ],
   "cheeks": [
-    75,
-    61,
-    97,
-    61
+    27,
+    39,
+    39,
+    39
   ],
   "brow": [
-    86,
-    46
+    33,
+    29
   ],
   "chin": [
-    86,
-    84
+    33,
+    46
   ],
-  "neck": [
-    58,
-    82,
-    98,
-    84,
-    100,
-    104,
-    56,
-    104
-  ],
-  "hair": [
-    38,
-    10,
-    60,
-    2,
-    100,
-    2,
-    116,
-    20,
-    112,
-    40,
-    106,
-    46,
-    102,
-    32,
-    82,
-    29,
-    60,
-    32,
-    58,
-    48,
-    44,
-    48
-  ]
+  "comment": "A base face in the 16x16 style (portraits_16.py, 2026-11-08). Pixels from the top left, as x, y pairs: the irises' centres, the cheeks (where paint and freckles go), the brow and the chin."
 }

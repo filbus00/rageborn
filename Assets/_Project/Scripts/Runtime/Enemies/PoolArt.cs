@@ -53,6 +53,10 @@ namespace ARPG
         /// <summary>The pixels a unit the world is rendered at (<see cref="GroundPainter.ScreenUnit"/>).</summary>
         public const int ScreenUnit = GroundPainter.ScreenUnit;
 
+        /// <summary>Screen pixels a drawn pixel of the pools, the blood and the telegraph rims: two, as the characters drawn
+        /// in the 16x16 style (2026-11-08, the owner: "redraw the effects and UI in 16x16 too"; one until then).</summary>
+        public const int Block = 2;
+
         /// <summary>The frames of a pool's loop, and how many a second it plays.</summary>
         public const int Frames = 12;
         public const float FrameRate = 10f;

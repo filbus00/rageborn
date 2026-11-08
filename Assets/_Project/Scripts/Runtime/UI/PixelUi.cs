@@ -31,6 +31,7 @@ namespace ARPG
         {
             title = titleBig = body = title3 = title6 = body3 = null;
             sprites.Clear();
+            circles.Clear();
         }
 
         public static Font TitleFont => title != null ? title : title = Resources.Load<Font>("UI/Pixel/Fonts/title");
@@ -47,6 +48,33 @@ namespace ARPG
 
         /// <summary>Screen pixels a menu pixel: the most whole pixels that still fit the concept's width.</summary>
         public static int Scale(float screenWidth) => Mathf.Max(1, Mathf.FloorToInt(screenWidth / DesignWidth));
+
+        static readonly Dictionary<int, Sprite> circles = new Dictionary<int, Sprite>();
+
+        /// <summary>A white disc <paramref name="diameter"/> pixels across with hard, stepped edges (the HUD's round
+        /// portrait, 2026-11-08), point filtered, made once a size.</summary>
+        public static Sprite Circle(int diameter)
+        {
+            diameter = Mathf.Max(2, diameter);
+            if (circles.TryGetValue(diameter, out var circle) && circle != null)
+                return circle;
+            var pixels = new Color32[diameter * diameter];
+            var r = diameter / 2f;
+            for (var y = 0; y < diameter; y++)
+                for (var x = 0; x < diameter; x++)
+                {
+                    float dx = x + 0.5f - r, dy = y + 0.5f - r;
+                    pixels[x + y * diameter] = dx * dx + dy * dy <= r * r ? new Color32(255, 255, 255, 255) : new Color32(255, 255, 255, 0);
+                }
+            var texture = new Texture2D(diameter, diameter, TextureFormat.RGBA32, false)
+            {
+                name = "Pixel Circle " + diameter, filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp,
+            };
+            texture.SetPixels32(pixels);
+            texture.Apply(false, true);
+            return circles[diameter] = UnityEngine.Sprite.Create(texture, new Rect(0, 0, diameter, diameter), new Vector2(0.5f, 0.5f), 100f, 0,
+                SpriteMeshType.FullRect, Vector4.zero, false);
+        }
 
         public static Sprite Sprite(string name)
         {

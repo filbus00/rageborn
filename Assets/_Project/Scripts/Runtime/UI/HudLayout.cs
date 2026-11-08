@@ -38,6 +38,11 @@ namespace ARPG
             if (hud == null || hud.GetComponent<HudLayout>() != null)
                 return;
             var layout = hud.gameObject.AddComponent<HudLayout>();
+            // The HUD in the menus' pixel look too (2026-11-08, the owner: "redraw the effects and UI in 16x16 too"): the
+            // pixel fonts, the drawn frames, a whole number of screen pixels a menu pixel (PixelMenu).
+            var canvas = hud.GetComponentInParent<Canvas>();
+            if (canvas != null)
+                PixelMenu.Attach(canvas.rootCanvas.gameObject);
             SafeArea.WrapChildren((RectTransform)hud);
             var area = hud.GetChild(hud.childCount - 1);
 
@@ -96,6 +101,14 @@ namespace ARPG
             UiStyle.Place(edge.rectTransform, new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(size - 10f, size - 10f));
             var mask = UiStyle.Disc(edge.transform, "Face", new Color(0.16f, 0.07f, 0.06f, 1f), true);
             UiStyle.Place(mask.rectTransform, new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(size - 18f, size - 18f));
+            // Stepped pixel circles in the pixel look (2026-11-08), a menu pixel (PixelMenu.Unit) each.
+            if (PixelUi.Available)
+                foreach (var disc in new[] { ring, edge, mask })
+                {
+                    var units = Mathf.Round(disc.rectTransform.sizeDelta.x / PixelMenu.Unit);
+                    disc.sprite = PixelUi.Circle((int)units);
+                    disc.rectTransform.sizeDelta = new Vector2(units, units) * PixelMenu.Unit;
+                }
             // The baked cell is 128 px with the feet 20 px up and the head near the top: drawn at three times the
             // circle and lowered, the head and shoulders fill it (placed by eye on the simulator).
             var figure = UiStyle.Place(UiStyle.Rect(mask.transform, "Character"), new Vector2(0.5f, 0.5f),
@@ -196,7 +209,8 @@ namespace ARPG
             icon.preserveAspect = true;
             UiStyle.Place(icon.rectTransform, new Vector2(1f, 0.5f), Vector2.zero, new Vector2(54f, 48f));
             icon.rectTransform.pivot = new Vector2(1f, 0.5f);
-            counter.text = UiStyle.Text(rect, "", 38, UiStyle.Gold, TextAnchor.MiddleRight);
+            // 40 and up: the pixel look's title font (PixelMenu).
+            counter.text = UiStyle.Text(rect, "", 40, UiStyle.Gold, TextAnchor.MiddleRight);
             counter.text.font = UiStyle.Title;
             counter.text.raycastTarget = false;
             var textRect = counter.text.rectTransform;
@@ -235,7 +249,7 @@ namespace ARPG
             var label = rect.gameObject.AddComponent<DepthLabel>();
             label.text = rect.gameObject.AddComponent<Text>();
             label.text.font = UiStyle.Title;
-            label.text.fontSize = 34;
+            label.text.fontSize = 40;
             label.text.color = UiStyle.Gold;
             label.text.alignment = TextAnchor.MiddleLeft;
             label.text.raycastTarget = false;

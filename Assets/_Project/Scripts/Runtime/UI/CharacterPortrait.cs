@@ -31,6 +31,9 @@ namespace ARPG
 
         /// <summary>The portrait bake's scale over the game's sheets (WildArrowBakeSetup.BakePortrait).</summary>
         const int SharpTimes = 6;
+
+        /// <summary>How far up the canvas the drawn Wild Arrow's feet stand, in art pixels.</summary>
+        const float DrawnFeet = 26f;
         const string SharpCharacter = "wild_arrow_portrait";
 
         readonly int canvasSize;
@@ -66,6 +69,10 @@ namespace ARPG
             var times = sharp ? SharpTimes : 1;
             canvasSize = CanvasSize * times;
             feet = new Vector2(canvasSize / 2f, 12f * times);
+            // The drawn Wild Arrow (2026-11-08) stands 42 px in her 58 x 52 cell: her feet higher on the canvas put her
+            // head and chest where the round frames look.
+            if (!sharp && PlayerSpriteAnimator.DefaultCharacter == PlayerSpriteAnimator.WildArrowDrawnCharacter)
+                feet = new Vector2(canvasSize / 2f, DrawnFeet);
             canvas = new RenderTexture(canvasSize, canvasSize, 0, RenderTextureFormat.ARGB32)
             {
                 name = "Character Portrait", filterMode = sharp ? FilterMode.Bilinear : FilterMode.Point, wrapMode = TextureWrapMode.Clamp,
@@ -81,7 +88,7 @@ namespace ARPG
             if (size.x <= 0f || size.y <= 0f)
                 size = parent.sizeDelta;
             // The sharp portrait is scaled smoothly to fill the frame instead.
-            var scale = sharp ? Mathf.Min(size.x, size.y) / canvasSize : Mathf.Max(1, Mathf.FloorToInt(Mathf.Min(size.x, size.y) / CanvasSize));
+            var scale = sharp ? Mathf.Min(size.x, size.y) / canvasSize : Mathf.Max(1, Mathf.FloorToInt(Mathf.Min(size.x, size.y) / canvasSize));
             var rect = image.rectTransform;
             rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0.5f, 0.5f);
             rect.sizeDelta = new Vector2(canvasSize * scale, canvasSize * scale);

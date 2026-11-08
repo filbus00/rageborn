@@ -85,14 +85,16 @@ namespace ARPG
             frame = ((frame % PoolArt.Frames) + PoolArt.Frames) % PoolArt.Frames;
             if (frames[frame] != null)
                 return frames[frame];
-            int w = PoolArt.WidthFor(radius), h = PoolArt.HeightFor(radius);
+            // Drawn at a block's scale and shown with each pixel a block wide (PoolArt.Block, 2026-11-08).
+            var drawn = radius / PoolArt.Block;
+            int w = PoolArt.WidthFor(drawn), h = PoolArt.HeightFor(drawn);
             var texture = new Texture2D(w, h, TextureFormat.RGBA32, false)
             {
                 name = name + " " + w + " " + frame, filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp,
             };
-            texture.SetPixels32(PoolArt.Frame(name, radius, frame));
+            texture.SetPixels32(PoolArt.Frame(name, drawn, frame));
             texture.Apply(false, true);
-            return frames[frame] = Sprite.Create(texture, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), PoolArt.ScreenUnit, 0,
+            return frames[frame] = Sprite.Create(texture, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), (float)PoolArt.ScreenUnit / PoolArt.Block, 0,
                 SpriteMeshType.FullRect, Vector4.zero, false);
         }
 
@@ -152,7 +154,7 @@ namespace ARPG
         /// </summary>
         public static Sprite PixelRim(float radius)
         {
-            var w = PoolArt.WidthFor(radius);
+            var w = PoolArt.WidthFor(radius / PoolArt.Block);
             if (pixelRims.TryGetValue(w, out var sprite))
                 return sprite;
             var h = w / 2;
@@ -162,7 +164,7 @@ namespace ARPG
             };
             texture.SetPixels32(PixelRimAlpha(w, h));
             texture.Apply(false, true);
-            return pixelRims[w] = Sprite.Create(texture, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), PoolArt.ScreenUnit, 0,
+            return pixelRims[w] = Sprite.Create(texture, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), (float)PoolArt.ScreenUnit / PoolArt.Block, 0,
                 SpriteMeshType.FullRect, Vector4.zero, false);
         }
 

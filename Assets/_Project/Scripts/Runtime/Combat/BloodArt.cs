@@ -15,7 +15,7 @@ namespace ARPG
         public const int SplatWidth = 32;
         public const int SplatHeight = 16;
         public const int Variants = 6;
-        const int ChunkSize = 4;
+        const int ChunkSize = 3;
 
         /// <summary>The pixels a unit the world is rendered at (<see cref="GroundPainter.ScreenUnit"/>).</summary>
         public const int ScreenUnit = GroundPainter.ScreenUnit;
@@ -52,7 +52,7 @@ namespace ARPG
             splats ??= new Sprite[Widths.Length, Variants];
             variant = ((variant % Variants) + Variants) % Variants;
             var w = WidthIndex(size);
-            return splats[w, variant] != null ? splats[w, variant] : splats[w, variant] = MakeSplat(variant, Widths[w]);
+            return splats[w, variant] != null ? splats[w, variant] : splats[w, variant] = MakeSplat(variant, Mathf.Max(6, Widths[w] / PoolArt.Block));
         }
 
         /// <summary>A chunk of flesh, a few pixels across.</summary>
@@ -148,7 +148,8 @@ namespace ARPG
             texture.SetPixels32(pixels);
             texture.Apply(false, true);
             // Full rect, no physics shape: the texture is no longer readable, and tracing its outline fails on iOS.
-            return Sprite.Create(texture, new Rect(0, 0, width, height), new Vector2(0.5f, 0.5f), ScreenUnit, 0,
+            // Each pixel a block wide (PoolArt.Block, 2026-11-08: the 16x16 style), so a splat is drawn at half its width.
+            return Sprite.Create(texture, new Rect(0, 0, width, height), new Vector2(0.5f, 0.5f), (float)ScreenUnit / PoolArt.Block, 0,
                 SpriteMeshType.FullRect, Vector4.zero, false);
         }
     }
