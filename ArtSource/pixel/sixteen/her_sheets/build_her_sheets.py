@@ -138,20 +138,58 @@ EYES = [k for k, c in enumerate(PAL) if 0.2 < _hsv(c)[0] < 0.5 and _hsv(c)[1] > 
 
 def head_turned_away(f):
     """A side frame made into a three-quarter back one (2026-11-08, the owner: "she does not seem to have sprites for
-    moving north west and north east"; the sheets have none): her face and eyes, in the head's rows, painted over with
-    her hair, the hair colour by the brightness of what it covers."""
+    moving north west and north east"; the sheets have none): in her head's rows her own hair is kept, and her face
+    (the skin, and the dark pixels of her eyes, brows and mouth inside the outline) is repainted in the hair's shades,
+    lit from the top left, so the back of her head shows. (Painting only the skin had left her eyes and mouth in it;
+    painting everything made a cone of red over her shoulders.)"""
     g = f.copy()
-    h = g.shape[0]
+    h, w = g.shape
     hair = sorted(HAIR, key=lambda k: PAL[k].sum())
     if not hair:
         return g
-    for y in range(int(h * 0.42)):
-        for x in range(g.shape[1]):
+    darkish = set(int(k) for k in np.argsort(PAL.sum(1))[:4])
+    ys, xs = np.where(g >= 0)
+    top = ys.min()
+    chin = top + int((ys.max() - top) * 0.34)
+    hx = np.mean([x for y, x in zip(ys, xs) if y <= chin])
+    for y in range(top, chin + 1):
+        for x in range(w):
             k = g[y, x]
-            if k in SKIN or k in EYES:
-                light = PAL[k].mean()
-                g[y, x] = hair[min(len(hair) - 1, int(light * len(hair)))]
+            if k < 0 or k in HAIR:
+                continue
+            edge = any(not (0 <= yy < h and 0 <= xx < w) or g[yy, xx] < 0 for yy, xx in ((y + 1, x), (y - 1, x), (y, x + 1), (y, x - 1)))
+            if k in SKIN or (k in darkish and not edge):
+                lit = (hx - x) * 0.08 + (chin - y) / max(1, chin - top) * 0.7
+                g[y, x] = hair[max(0, min(len(hair) - 1, int(round(lit * (len(hair) - 1)))))]
+    # Specks of other colours left inside the hair: a pixel mostly surrounded by hair becomes the hair beside it.
+    for y in range(top, chin + 1):
+        for x in range(w):
+            k = g[y, x]
+            if k < 0 or k in HAIR:
+                continue
+            near = [g[yy, xx] for yy, xx in ((y + 1, x), (y - 1, x), (y, x + 1), (y, x - 1)) if 0 <= yy < h and 0 <= xx < w]
+            if near.count(-1) == 0 and sum(1 for n in near if n in HAIR) >= 3:
+                g[y, x] = max((n for n in near if n in HAIR), key=lambda n: near.count(n))
     return g
+
+
+def stepping(f, side, lift=2):
+    """A walking frame made from a standing one: the leg on one side (0 her left on the screen, 1 the right) lifted
+    off the ground by lift pixels, the body risen a pixel on the other step."""
+    g = -np.ones_like(f)
+    h, w = f.shape
+    ys, xs = np.where(f >= 0)
+    legs = int(ys.max() - (ys.max() - ys.min()) * 0.28)
+    mid = feet_x(f)
+    for y in range(h):
+        for x in range(w):
+            if f[y, x] < 0:
+                continue
+            lifted = y >= legs and ((x < mid) == (side == 0))
+            yy = y - lift if lifted else y
+            if 0 <= yy < h and (g[yy, x] < 0 or lifted):
+                g[yy, x] = f[y, x]
+    return outlined(g)
 
 
 # The frames each of the 8 directions uses: (shot frames, idle frame, walk frames). Down shows the front-left frames,
@@ -170,7 +208,9 @@ def sources(d):
     if d == "e":
         return m(SHOT["left"]), mirror(IDLE["w"]), m(WALK["w"])
     if d == "n":
-        return SHOT["back"], IDLE["n"], WALK["n"]
+        # Walking away: her two back walking frames are drawn differently (she flickered between them), so the steps
+        # are made from her back standing frame.
+        return SHOT["back"], IDLE["n"], [stepping(IDLE["n"], 0), stepping(IDLE["n"], 1)]
     if d == "nw":
         return m(SHOT["back"]), head_turned_away(IDLE["w"]), [head_turned_away(f) for f in WALK["w"]]
     # ne
