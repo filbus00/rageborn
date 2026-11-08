@@ -191,7 +191,7 @@ namespace UnityEngine
         public static Sprite Create(Texture2D t, Rect r, Vector2 p, float ppu, uint extrude) => new Sprite(); public static Sprite Create(Texture2D t, Rect r, Vector2 p, float ppu, uint extrude, SpriteMeshType m) => new Sprite();
         public static Sprite Create(Texture2D t, Rect r, Vector2 p, float ppu, uint extrude, SpriteMeshType m, Vector4 border) => new Sprite();
         public static Sprite Create(Texture2D t, Rect r, Vector2 p, float ppu, uint extrude, SpriteMeshType m, Vector4 border, bool physics) => new Sprite();
-        public Texture2D texture => null; public Rect rect => default; public Rect textureRect => default; public Vector2 textureRectOffset => default; public Vector2 pivot => default; public float pixelsPerUnit => 100; public Bounds bounds => default; public Vector4 border => default;
+        public Texture2D texture => null; public Rect rect => default; public Rect textureRect => default; public Vector2 pivot => default; public float pixelsPerUnit => 100; public Bounds bounds => default; public Vector4 border => default;
         public Vector2[] vertices => new Vector2[0]; public ushort[] triangles => new ushort[0]; public Vector2[] uv => new Vector2[0];
     }
     public class Material : Object

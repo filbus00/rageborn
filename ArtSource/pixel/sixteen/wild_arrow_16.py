@@ -1,5 +1,3 @@
-# Replaced on 2026-11-08 by her_sheets/ (her frames from the owner's two sprite sheets), which writes the same
-# wild_arrow_drawn sheets: running this would bring back the hooded archer drawn here.
 # The Wild Arrow drawn in the 16x16 style (2026-11-07, the owner: "now do the player character. Recreate her into something
 # original if that is easier"). A wolf-pelt hood with its ears up, copper hair in a long tail, a teal sash and war paint,
 # leather and bare legs, a long bow with bone tips, a quiver of red-fletched arrows. Five views drawn as letter grids
