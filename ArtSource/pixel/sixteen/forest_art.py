@@ -199,9 +199,9 @@ BUSHES = {"forest_bush_1": lambda: bush(17, 14, "green", 1), "forest_bush_2": la
 
 # Props -----------------------------------------------------------------------------------------------------------
 def stump(w=15, h=11, axe=False):
-    im = Img(w, h + (4 if axe else 0))
+    im = Img(w + (6 if axe else 0), h + (4 if axe else 0))   # room for the axe's handle either side
     oy = 4 if axe else 0
-    cx = w / 2
+    cx = im.w / 2
     im.rect(cx - 5, oy + 4, cx + 4, oy + h - 2, PAL["wood"][1])
     im.rect(cx - 5, oy + 4, cx - 4, oy + h - 2, PAL["wood"][2])
     im.rect(cx + 3, oy + 4, cx + 4, oy + h - 2, PAL["wood"][0])
@@ -212,8 +212,8 @@ def stump(w=15, h=11, axe=False):
         # The blade sunk in the cut top, the handle rising from it.
         im.rect(cx - 1, oy + 2, cx + 1, oy + 4, PAL["stone"][3])
         im.set(cx - 1, oy + 4, PAL["stone"][2]); im.set(cx, oy + 4, PAL["stone"][2])
-        im.line(cx, oy + 1, cx + 3, 0, PAL["wood"][2])
-        im.line(cx + 1, oy + 1, cx + 3, 1, PAL["wood"][1])
+        im.line(cx + 1, oy + 2, cx + 5, oy - 2, PAL["wood"][2])
+        im.line(cx + 2, oy + 2, cx + 6, oy - 2, PAL["wood"][1])
     return im.outline()
 
 
