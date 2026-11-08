@@ -41,8 +41,10 @@ shoot = [clean(i) for _, i in D["shoot"] if i.shape[0] > 12]
 idlewalk = [clean(i) for _, i in D["idlewalk"]]
 assert len(shoot) == 24, len(shoot)
 SHOT = {"sw": shoot[0:6], "e": shoot[6:12], "ne": shoot[12:18], "w": shoot[18:24]}
-IDLE = {"sw": idlewalk[0], "s2": idlewalk[1], "n": idlewalk[2], "w": idlewalk[3]}
-WALK = {"sw": idlewalk[4:6], "w2": idlewalk[6:8], "n": idlewalk[8:10], "w": idlewalk[10:12]}
+# The idle sheet's facings (2026-11-08, looked at one by one): front-left, three-quarter left, back, left; each with its
+# two walking frames.
+IDLE = {"s": idlewalk[0], "sw": idlewalk[1], "n": idlewalk[2], "w": idlewalk[3]}
+WALK = {"s": idlewalk[4:6], "sw": idlewalk[6:8], "n": idlewalk[8:10], "w": idlewalk[10:12]}
 
 
 def mirror(f):
@@ -92,10 +94,42 @@ def lying(f):
     return np.rot90(f, 1)
 
 
-# The frames each of the 8 directions uses: (shot frames, idle frame, walk frames).
+# Her colours by kind, from the palette: hair (a saturated red), skin (a light warm tan) and eyes (green).
+def _hsv(c):
+    import colorsys
+    return colorsys.rgb_to_hsv(*[float(v) for v in c])
+
+
+HAIR = [k for k, c in enumerate(PAL) if (_hsv(c)[0] < 0.03 or _hsv(c)[0] > 0.93) and _hsv(c)[1] > 0.4]
+SKIN = [k for k, c in enumerate(PAL) if 0.02 <= _hsv(c)[0] <= 0.11 and 0.2 <= _hsv(c)[1] <= 0.62 and _hsv(c)[2] > 0.55]
+EYES = [k for k, c in enumerate(PAL) if 0.2 < _hsv(c)[0] < 0.5 and _hsv(c)[1] > 0.25]
+
+
+def head_turned_away(f):
+    """A side frame made into a three-quarter back one (2026-11-08, the owner: "she does not seem to have sprites for
+    moving north west and north east"; the sheets have none): her face and eyes, in the head's rows, painted over with
+    her hair, the hair colour by the brightness of what it covers."""
+    g = f.copy()
+    h = g.shape[0]
+    hair = sorted(HAIR, key=lambda k: PAL[k].sum())
+    if not hair:
+        return g
+    for y in range(int(h * 0.42)):
+        for x in range(g.shape[1]):
+            k = g[y, x]
+            if k in SKIN or k in EYES:
+                light = PAL[k].mean()
+                g[y, x] = hair[min(len(hair) - 1, int(light * len(hair)))]
+    return g
+
+
+# The frames each of the 8 directions uses: (shot frames, idle frame, walk frames). Down shows the front-left frames,
+# down-left the three-quarter ones, left the left ones; up the back; up-left the left ones with the head turned away;
+# the right side mirrors the left, but for the sheet's own shot to the right.
 def sources(d):
-    m = d in ("se", "nw")          # mirrored ones
-    if d in ("sw", "s"):
+    if d == "s":
+        return SHOT["sw"], IDLE["s"], WALK["s"]
+    if d == "sw":
         return SHOT["sw"], IDLE["sw"], WALK["sw"]
     if d == "se":
         return [mirror(f) for f in SHOT["sw"]], mirror(IDLE["sw"]), [mirror(f) for f in WALK["sw"]]
@@ -103,9 +137,33 @@ def sources(d):
         return SHOT["w"], IDLE["w"], WALK["w"]
     if d == "e":
         return SHOT["e"], mirror(IDLE["w"]), [mirror(f) for f in WALK["w"]]
-    if d in ("n", "ne"):
+    if d == "n":
         return SHOT["ne"], IDLE["n"], WALK["n"]
-    return [mirror(f) for f in SHOT["ne"]], mirror(IDLE["n"]), [mirror(f) for f in WALK["n"]]   # nw
+    if d == "nw":
+        return [mirror(f) for f in SHOT["ne"]], head_turned_away(IDLE["w"]), [head_turned_away(f) for f in WALK["w"]]
+    # ne
+    return SHOT["ne"], mirror(head_turned_away(IDLE["w"])), [mirror(head_turned_away(f)) for f in WALK["w"]]
+
+
+def shear(f, lean):
+    """Leaning: each row moved toward where she faces, the top the most (lean pixels), the feet not at all."""
+    h, w = f.shape
+    pad = abs(lean)
+    out = -np.ones((h, w + 2 * pad), int)
+    for y in range(h):
+        shift = int(round(lean * (1 - y / max(1, h - 1))))
+        out[y, pad + shift:pad + shift + w] = f[y]
+    return out
+
+
+def ball(f, size=14):
+    """Curled up: her head and shoulders (the top of the frame) squeezed into a ball about size pixels across."""
+    top = f[:max(size + 2, int(f.shape[0] * 0.55))]
+    rows = np.linspace(0, top.shape[0] - 1, size).round().astype(int)
+    ys, xs = np.where(top >= 0)
+    left, right = xs.min(), xs.max()
+    cols = np.linspace(left, right, size).round().astype(int)
+    return top[rows][:, cols]
 
 
 def clips(d):
@@ -126,11 +184,15 @@ def clips(d):
         for suffix in ("", "_back", "_left", "_right"):
             c[name + "_move" + suffix] = c[name]
     c["hit"] = [place(idle, dx=back, dy=-1), place(idle)]
-    # The roll: crouched, curled, turning a quarter at a time, landing, rising.
-    curl = squash(idle, idle.shape[0] // 2)
-    c["dive"] = [place(kneel(idle, 3)), place(kneel(idle, 6))] + \
-                [place(np.rot90(curl, -k), dy=-(2 if k in (1, 2) else 0)) for k in range(4)] + \
-                [place(kneel(idle, 5)), place(kneel(idle, 2))]
+    # The dive (2026-11-08, the owner: "The dive animation needs work"): she crouches, lunges low leaning the way she
+    # goes, curls into a ball that turns that way through an arc off the ground, lands crouched and rises (the game
+    # moves her through the dodge, so the frames stay in place).
+    forward = -back if d in ("e", "se", "ne", "w", "sw", "nw") else 0
+    turn = -1 if forward >= 0 else 1                 # clockwise rolling right, the other way rolling left
+    curl = ball(idle)
+    c["dive"] = [place(kneel(idle, 4)), place(shear(kneel(walk[0], 3), 4 * (forward or 1)), dy=-1)] + \
+                [place(np.rot90(curl, turn * (k + 1)), dy=-(1, 3, 3, 1)[k]) for k in range(4)] + \
+                [place(kneel(idle, 6)), place(kneel(idle, 2))]
     # Death: struck, knees going, down, lying on her side.
     lie = lying(idle) if back > 0 else lying(mirror(idle))[:, ::-1]
     c["death"] = [place(idle, dx=back, dy=-1), place(kneel(idle, 3)), place(kneel(idle, 6)), place(kneel(idle, 8)),
@@ -192,7 +254,7 @@ for clip in SHOWN:
     strips.append(np.tile(np.array([0.08, 0.1, 0.06, 1], np.float32), (2, width, 1)))
 save(np.repeat(np.repeat(np.concatenate(strips, 0), 3, 0), 3, 1), os.path.join(P, "ArtSource", "pixel", "previews", "wild_arrow_sheets_moves.png"))
 close = []
-for d, clip in (("s", "idle"), ("e", "walk"), ("e", "attack"), ("sw", "attack"), ("n", "attack"), ("e", "dive"), ("e", "death")):
+for d, clip in (("nw", "idle"), ("nw", "walk"), ("ne", "walk"), ("sw", "walk"), ("e", "dive"), ("w", "dive"), ("n", "dive"), ("e", "death")):
     strip = np.concatenate([np.where(rgba(f)[..., 3:4] > 0.5, rgba(f), BG) for f in every[d][clip]], 1)
     close.append(np.concatenate([strip, np.tile(BG, (CH, 8 * CW - strip.shape[1], 1))], 1))
 save(np.repeat(np.repeat(np.concatenate(close, 0), 5, 0), 5, 1), os.path.join(P, "ArtSource", "pixel", "previews", "wild_arrow_sheets_close.png"))
