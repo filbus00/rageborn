@@ -2017,3 +2017,7 @@ The owner: "Ok, big change, remove the town. Everything done in the town will no
 ### 2026-11-08: her art from the owner's sprite sheets undone
 
 The owner: "remove all changes and reinstate the old character". The six commits that made her from the owner's two sprite sheets (5f7625d2 to 5a0c56b2, `ArtSource/pixel/sixteen/her_sheets/`) were reverted: she is again the hooded archer drawn by `ArtSource/pixel/sixteen/wild_arrow_16.py` as of f87a9a49.
+
+### 2026-11-08: gear slots the size of their items
+
+The owner: "remake the gear slots to match the size of the items in bag". The Bag's gear slots (`InventoryScreen.BuildDoll`, `SlotLayout`) are now laid on the backpack's cells (104 units, 4 apart), each the block `ItemSize` gives its item: bow 2 x 4, helm over gloves (2 x 2 each), chest 2 x 3 over the belt 2 x 1, the amulet over the two rings (1 x 1) over the boots 2 x 2, the quiver 2 x 3. 10 cells across and 4 down, as wide as the backpack. Checked in play mode in the editor. A contact sheet of all 69 item pictures: `ArtSource/pixel/previews/item_art_all.png`.

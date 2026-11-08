@@ -244,8 +244,9 @@ namespace ARPG
         // --- Paper doll ---------------------------------------------------------------------------------------------
 
         // Only the gear slots since 2026-10-18 (the owner: "Remove the character display in the inventory screen, just put
-        // the gear slots there"): two rows of five, so the backpack has more room.
-        const float DollHeight = 520f;
+        // the gear slots there"). Since 2026-11-08 each slot is the size its item takes in the backpack (the owner: "remake
+        // the gear slots to match the size of the items in bag"), laid out on the backpack's cells, 10 across and 4 down.
+        const float DollHeight = 4 * Cell + 3 * CellGap + 2 * GridPadding + 30f;
 
         // Where each block starts (negative, from the top), set by LayOut for the screen's height: the spare height
         // is shared out between the blocks, so the page fills the screen as the concept's does.
@@ -261,7 +262,16 @@ namespace ARPG
             materialsTop = statsTop - StatsHeight - gap;
             gridTop = materialsTop - MaterialsHeight - gap;
         }
-        const float SlotRowHeight = 230f, SlotGap = 16f;
+        // Where each slot's block starts, in backpack cells from the top left (its size is ItemSize's): the bow, the helm
+        // over the gloves, the chest over the belt, the amulet over the two rings over the boots, the quiver.
+        static readonly (ItemSlot place, float x, float y)[] SlotLayout =
+        {
+            (ItemSlot.Weapon, 0f, 0f),
+            (ItemSlot.Helm, 2f, 0f), (ItemSlot.Gloves, 2f, 2f),
+            (ItemSlot.Chest, 4f, 0f), (ItemSlot.Belt, 4f, 3f),
+            (ItemSlot.Amulet, 6.5f, 0f), (ItemSlot.Ring, 6f, 1f), (ItemSlot.Ring2, 7f, 1f), (ItemSlot.Boots, 6f, 2f),
+            (ItemSlot.OffHand, 8f, 0.5f),
+        };
 
         void BuildDoll(GameSession current)
         {
@@ -274,32 +284,33 @@ namespace ARPG
             rect.offsetMax = new Vector2(-16f, dollTop);
             var inside = UiStyle.FillOf(doll).transform;
 
-            // Weapons and the head on the top row, the body below: bow, helm, amulet, ring, quiver; gloves, chest,
-            // belt, ring, boots.
+            // The slots on a grid as wide as the backpack's, centred.
+            var grid = UiStyle.Rect(inside, "Slots");
+            grid.anchorMin = grid.anchorMax = new Vector2(0.5f, 1f);
+            grid.pivot = new Vector2(0.5f, 1f);
+            grid.sizeDelta = new Vector2(10 * Cell + 9 * CellGap, 4 * Cell + 3 * CellGap + 2f * GridPadding);
             var equipment = current.Equipment;
-            var rows = new[]
-            {
-                new[] { ItemSlot.Weapon, ItemSlot.Helm, ItemSlot.Amulet, ItemSlot.Ring, ItemSlot.OffHand },
-                new[] { ItemSlot.Gloves, ItemSlot.Chest, ItemSlot.Belt, ItemSlot.Ring2, ItemSlot.Boots },
-            };
-            for (var row = 0; row < rows.Length; row++)
-                for (var column = 0; column < rows[row].Length; column++)
-                    SlotInRow(inside, equipment, rows[row][column], column, rows[row].Length, row);
+            foreach (var (place, x, y) in SlotLayout)
+                Slot(grid, equipment, place, x, y);
         }
 
-        // A slot in the grid of slots: a fifth of the width, a row of SlotRowHeight, a gap all round.
-        void SlotInRow(Transform parent, EquipmentState equipment, ItemSlot place, int column, int columns, int row)
+        // A slot over the cells its item would take in the backpack.
+        void Slot(RectTransform grid, EquipmentState equipment, ItemSlot place, float x, float y)
         {
             var item = equipment.Get(place);
-            var tile = ItemTile(parent, item, UiStyle.SlotLabel(place), 28);
+            var size = ItemSize.Of(place);
+            var tile = ItemTile(grid, item, UiStyle.SlotLabel(place), size.x * size.y == 1 ? 18 : 24);
             if (item == null)
                 Ghost(tile, place);
+            // A one-cell slot's name runs past its sides rather than breaking ("Amule t").
+            var label = item == null ? tile.GetComponentInChildren<Text>() : null;
+            if (label != null && size.x * size.y == 1)
+                label.horizontalOverflow = HorizontalWrapMode.Overflow;
             var rect = tile.rectTransform;
-            rect.anchorMin = new Vector2(column / (float)columns, 1f);
-            rect.anchorMax = new Vector2((column + 1) / (float)columns, 1f);
-            rect.pivot = new Vector2(0.5f, 1f);
-            rect.offsetMin = new Vector2(SlotGap / 2f, -SlotGap - (row + 1) * SlotRowHeight - row * SlotGap);
-            rect.offsetMax = new Vector2(-SlotGap / 2f, -SlotGap - row * (SlotRowHeight + SlotGap));
+            rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
+            rect.pivot = new Vector2(0f, 1f);
+            rect.anchoredPosition = new Vector2(x * (Cell + CellGap), -(GridPadding + y * (Cell + CellGap)));
+            rect.sizeDelta = new Vector2(size.x * Cell + (size.x - 1) * CellGap, size.y * Cell + (size.y - 1) * CellGap);
             tile.gameObject.AddComponent<ItemDropTarget>().Place = place;
             var rim = tile.transform.GetChild(0).GetComponent<Image>();
             slotRims[place] = (rim, rim.color);
