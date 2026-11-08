@@ -14,6 +14,9 @@ namespace ARPG
         const float FlashAlpha = 0.35f;
         const float GentleFlashSeconds = 1.2f;
 
+        /// <summary>A framed bar's fill inside the drawn frame's border (3 menu pixels).</summary>
+        const float FrameInset = 9f;
+
         static readonly Color LifeColor = new Color(0.86f, 0.36f, 0.12f);
         static readonly Color StaggerColor = new Color(0.95f, 0.85f, 0.3f);
 
@@ -38,6 +41,9 @@ namespace ARPG
             scaler.referenceResolution = new Vector2(1170f, 2532f);
             scaler.matchWidthOrHeight = 0.5f;
 
+            // The menus' pixel look (2026-11-08, the owner: "make the health bars and boss bar pixel style"): the
+            // name in the title font, the bars in drawn frames, the fills on whole menu pixels.
+            PixelMenu.Attach(canvasObject);
             var bar = canvasObject.AddComponent<BossBar>();
             bar.Build(canvasObject.transform, bossName);
             return bar;
@@ -56,19 +62,19 @@ namespace ARPG
             rect.anchoredPosition = new Vector2(0f, -500f);
             rect.sizeDelta = new Vector2(Width, 120f);
 
-            title = NewText(panel.transform, bossName, 38, TextAnchor.LowerCenter);
+            title = NewText(panel.transform, bossName, 40, TextAnchor.LowerCenter);
             title.rectTransform.anchorMin = new Vector2(0f, 1f);
             title.rectTransform.anchorMax = new Vector2(1f, 1f);
             title.rectTransform.pivot = new Vector2(0.5f, 1f);
             title.rectTransform.sizeDelta = new Vector2(0f, 48f);
             title.rectTransform.anchoredPosition = Vector2.zero;
 
-            lifeFill = NewBar(panel.transform, -52f, 36f, LifeColor);
+            lifeFill = NewBar(panel.transform, -52f, 36f, LifeColor, true);
             // Phase markers where phases 2 and 3 begin.
             NewMarker(lifeFill.parent, BossPhases.PhaseTwoBelow);
             NewMarker(lifeFill.parent, BossPhases.PhaseThreeBelow);
 
-            staggerFill = NewBar(panel.transform, -94f, 12f, StaggerColor);
+            staggerFill = NewBar(panel.transform, -94f, 12f, StaggerColor, false);
             staggerLabel = NewText(panel.transform, "STAGGERED", 26, TextAnchor.MiddleCenter);
             staggerLabel.color = StaggerColor;
             staggerLabel.rectTransform.anchorMin = staggerLabel.rectTransform.anchorMax = new Vector2(0.5f, 1f);
@@ -88,11 +94,24 @@ namespace ARPG
 
         public void SetTitle(string text) => title.text = text;
 
-        public void SetLife(float fraction) => lifeFill.anchorMax = new Vector2(Mathf.Clamp01(fraction), 1f);
+        public void SetLife(float fraction) => lifeFill.anchorMax = new Vector2(Snap(fraction), 1f);
+
+        // A fill's end on a whole menu pixel when the pixel look is on (the bar's inner width is Width less 6).
+        static float Snap(float fraction)
+        {
+            fraction = Mathf.Clamp01(fraction);
+            if (!PixelUi.Available)
+                return fraction;
+            var pixels = (Width - 2f * FrameInset) / PixelMenu.Unit;
+            var filled = Mathf.Round(fraction * pixels);
+            if (fraction > 0f && filled < 1f)
+                filled = 1f;
+            return filled / pixels;
+        }
 
         public void SetStagger(float fraction, bool staggered)
         {
-            staggerFill.anchorMax = new Vector2(Mathf.Clamp01(fraction), 1f);
+            staggerFill.anchorMax = new Vector2(Snap(fraction), 1f);
             if (staggerLabel.gameObject.activeSelf != staggered)
                 staggerLabel.gameObject.SetActive(staggered);
         }
@@ -117,9 +136,16 @@ namespace ARPG
             flash.color = c;
         }
 
-        static RectTransform NewBar(Transform parent, float y, float height, Color color)
+        static RectTransform NewBar(Transform parent, float y, float height, Color color, bool framed)
         {
             var back = NewImage("Bar", parent, new Color(0f, 0f, 0f, 0.65f));
+            // The pixel look draws a frame round a bar with an outline (PixelMenu); its fill sits inside the frame.
+            var inset = 3f;
+            if (PixelUi.Available && framed)
+            {
+                back.gameObject.AddComponent<Outline>();
+                inset = FrameInset;
+            }
             var rect = back.rectTransform;
             rect.anchorMin = new Vector2(0f, 1f);
             rect.anchorMax = new Vector2(1f, 1f);
@@ -131,8 +157,8 @@ namespace ARPG
             var fillRect = fill.rectTransform;
             fillRect.anchorMin = Vector2.zero;
             fillRect.anchorMax = Vector2.one;
-            fillRect.offsetMin = new Vector2(3f, 3f);
-            fillRect.offsetMax = new Vector2(-3f, -3f);
+            fillRect.offsetMin = new Vector2(inset, inset);
+            fillRect.offsetMax = new Vector2(-inset, -inset);
             return fillRect;
         }
 

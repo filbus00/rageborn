@@ -23,7 +23,7 @@ namespace ARPG
         // The block right of the portrait, top down: the life bar, then the depth with the potion pips at its right,
         // then the boons. With one row of boons it ends level with the portrait's foot.
         const float LifeTop = Top + 24f, LifeHeight = 36f, RowGap = 10f;
-        const float DepthTop = LifeTop + LifeHeight + RowGap, DepthHeight = 40f, DepthWidth = 200f, BoonsTop = DepthTop + DepthHeight + RowGap;
+        const float DepthTop = LifeTop + LifeHeight + RowGap, DepthHeight = 64f, DepthWidth = 300f, BoonsTop = DepthTop + DepthHeight + RowGap;
 
         /// <summary>The icon buttons at the bottom left: square, a gap apart.</summary>
         public const float IconButtonSize = 132f;
@@ -249,11 +249,15 @@ namespace ARPG
             var label = rect.gameObject.AddComponent<DepthLabel>();
             label.text = rect.gameObject.AddComponent<Text>();
             label.text.font = UiStyle.Title;
-            label.text.fontSize = 40;
+            // 90: the pixel menu's title font at two menu pixels a pixel (2026-11-08, the owner: "the word DEPTH 1 does
+            // not seem to be in pixel style"; at one menu pixel a pixel it read as a plain small font beside the art).
+            label.text.fontSize = 90;
             label.text.color = UiStyle.Gold;
             label.text.alignment = TextAnchor.MiddleLeft;
             label.text.raycastTarget = false;
-            var shadow = rect.gameObject.AddComponent<Outline>();
+            label.text.horizontalOverflow = HorizontalWrapMode.Overflow;
+            label.text.verticalOverflow = VerticalWrapMode.Overflow;
+            var shadow = rect.gameObject.AddComponent<Shadow>();
             shadow.effectColor = new Color(0f, 0f, 0f, 0.85f);
             shadow.effectDistance = new Vector2(2f, -2f);
             return label;
