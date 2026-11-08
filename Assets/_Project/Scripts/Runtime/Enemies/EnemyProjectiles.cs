@@ -78,9 +78,10 @@ namespace ARPG
                 renderer.color = Color.white;
                 look.Body.transform.localScale = Vector3.one;
                 var fire = kind == ProjectileKind.Fireball;
-                glowSize = fire ? 1.5f : 0.9f;
-                trailLength = fire ? 1.0f : kind == ProjectileKind.Knife || kind == ProjectileKind.Plain ? 1.0f : 0.8f;
-                trailWidth = fire ? 0.35f : kind == ProjectileKind.Knife || kind == ProjectileKind.Plain ? 0.14f : 0.22f;
+                var arrow = kind == ProjectileKind.Plain || kind == ProjectileKind.Arrow;
+                glowSize = fire ? 1.5f : arrow ? 0f : 0.9f;
+                trailLength = fire ? 1.0f : kind == ProjectileKind.Knife ? 1.0f : arrow ? 0.6f : 0.8f;
+                trailWidth = fire ? 0.35f : kind == ProjectileKind.Knife ? 0.14f : arrow ? 0.08f : 0.22f;
             }
             else if (art != null)
             {
@@ -116,7 +117,8 @@ namespace ARPG
                 trailLength = bolt ? 1.0f : 1.1f;
                 trailWidth = bolt ? 0.22f : 0.2f;
             }
-            look.Glow.color = new Color(tint.r, tint.g, tint.b, art != null ? 0.4f : 0.55f);
+            // A drawn arrow has no soft glow (2026-11-08: it did not fit the pixel art), only a faint short trail.
+            look.Glow.color = new Color(tint.r, tint.g, tint.b, glowSize <= 0f ? 0f : art != null ? 0.4f : 0.55f);
             look.Glow.transform.localScale = new Vector3(glowSize, glowSize * 0.75f, 1f);
             look.Trail.color = new Color(tint.r, tint.g, tint.b, art != null ? 0.45f : 0.8f);
             look.Trail.transform.localScale = new Vector3(trailLength, trailWidth, 1f);

@@ -155,11 +155,11 @@ namespace ARPG
         // Made on first use and reused, one of each since a pooled instance can be any archetype.
         GroundMarker slamMarker;
         GroundMarker aimMarker;
-        GroundMarker auraMarker;
+        AuraRing auraMarker;
+        float auraRadius;
 
         // The rest of act 1's roster (2026-10-05): a charger's lunge (the line's wind-up, then the dash along it), a
         // cutthroat's second strike and its backing off, a bloat's burst.
-        static readonly Color AuraColor = new Color(1f, 0.55f, 0.15f, 0.45f);
         const float LungeLineWidth = 0.3f;
         float lungeCooldown;
         bool lungeAttack;
@@ -1204,15 +1204,15 @@ namespace ARPG
         /// <summary>A support's aura ring, following it (Docs/05: always shown).</summary>
         void ShowAura(EnemyManager world)
         {
-            if (auraMarker == null)
+            // A ring of turning amber dashes in the pixel art's style (2026-11-08, AuraRing).
+            if (auraMarker == null || auraRadius != definition.AuraRadius)
             {
-                auraMarker = GroundMarker.Ring(ground, definition.AuraRadius, 0.01f, AuraColor, world.transform);
-                return;
+                // A pooled body may come back as another kind: a ring the size of this one's aura.
+                auraMarker?.Hide();
+                auraMarker = AuraRing.Create(definition.AuraRadius, world.transform);
+                auraRadius = definition.AuraRadius;
             }
-            if (!auraMarker.IsVisible)
-                auraMarker.RestartCircle(ground, definition.AuraRadius, 0.01f);
-            else
-                auraMarker.MoveTo(ground);
+            auraMarker.Show(ground);
         }
 
         // Stands its ground while attacking or recovering, but is still pushed apart from the crowd and the player.

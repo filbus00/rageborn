@@ -90,6 +90,9 @@ namespace ARPG
         /// <summary>A heavy axe that flies out and comes back to its thrower, hurting her on the way out and on the way
         /// back (the Woodcutter, 2026-11-03).</summary>
         Returning,
+        /// <summary>A drawn arrow whatever the shot's colour (2026-11-08: the bowmen's volley had been drawn as glowing
+        /// bolts).</summary>
+        Arrow,
     }
 
     /// <summary>The kinds' numbers and the bounce off a wall. Claude's numbers, to review. Pure.</summary>

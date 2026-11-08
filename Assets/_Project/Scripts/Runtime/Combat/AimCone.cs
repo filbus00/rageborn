@@ -1,90 +1,89 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ARPG
 {
     /// <summary>
-    /// Her aim on the ground (the owner, 2026-10-17: "change the aming to partial circles around the character, the
-    /// partial circle shows the firing radius for the current movement speed. The partial circle should be present during
-    /// all of combat. It should have a background and the firing radius should be another foreground color"): a dark arc
-    /// round her feet facing her target (or where she last aimed), and on it, in white, amber or red, the arc her arrows
-    /// may stray over at her current pace (<see cref="AimRules"/>): a thin tick standing, wider walking, widest running.
-    /// Shown while she is in a fight. Drawn like the Focus arc (<see cref="RageArc"/>): an overlay that follows her feet,
-    /// so the dark floor and the enemies' bodies never hide it, with the arcs turned inside a parent squashed like the
-    /// floor (<see cref="IsoMath"/>). Added by <see cref="PlayerCombat"/>. (Until 2026-10-17 a wedge toward the target.)
+    /// Her aim, shown as a small crosshair on her target (2026-11-08, the owner: "remake the aim indicator. Maybe just a
+    /// subtle crosshair that is red and expands when she is mooving to match, yellow and less expanded when movig less and
+    /// green and not expanded when aiming true"): four short ticks round a gap, in the menus' pixels on an overlay, the
+    /// gap and the colour by <see cref="AimRules"/>: green and tight standing, yellow and wider walking, red and widest
+    /// running; the gap eases between them. It follows the target, and fades a moment after the fight. Added by
+    /// <see cref="PlayerCombat"/>. (Until 2026-11-08 an arc round her feet, and before 2026-10-17 a wedge.)
     /// </summary>
     public class AimCone : MonoBehaviour
     {
-        /// <summary>The arc's radius and band, in ground units, and the background's half span in degrees. Smaller,
-        /// thinner and fainter since 2026-11-03 (the owner: "make the aim indicator less conspicous. No need to have it
-        /// that big"; was 1.35 and 0.24).</summary>
-        public const float Radius = 0.95f;
-        public const float Band = 0.12f;
-        public const float BackgroundHalfDegrees = 45f;
+        /// <summary>The gap from the centre to each tick, in menu pixels, at each aim.</summary>
+        public const float SteadyGap = 2f, WalkingGap = 4f, RunningGap = 7f;
 
-        /// <summary>The foreground never thinner than this either side, so perfect aim still shows a tick.</summary>
-        public const float MinimumHalfDegrees = 3f;
+        /// <summary>A tick's length and thickness, in menu pixels.</summary>
+        const float TickLength = 3f, TickWidth = 1f;
 
-        /// <summary>How long the arc stays after the last target, so it does not flicker between enemies.</summary>
-        const float LingerSeconds = 1.5f;
-        const float TurnSpeed = 14f;
+        /// <summary>How long it stays after the last target, so it does not flicker between enemies.</summary>
+        const float LingerSeconds = 1.0f;
+        const float Ease = 14f;
 
-        static readonly Color Background = new Color(0.85f, 0.8f, 0.72f, 0.14f);
-        static readonly Color Steady = new Color(0.95f, 0.95f, 0.9f, 0.6f);
-        static readonly Color Walking = new Color(1f, 0.74f, 0.25f, 0.6f);
-        static readonly Color Running = new Color(1f, 0.3f, 0.2f, 0.6f);
+        static readonly Color Steady = new Color32(96, 214, 96, 230);
+        static readonly Color Walking = new Color32(236, 196, 64, 230);
+        static readonly Color Running = new Color32(228, 64, 48, 230);
+        static readonly Color Shadow = new Color32(8, 8, 12, 170);
+
+        /// <summary>The gap for an aim (pure, for tests and the look).</summary>
+        public static float GapFor(float aim) => aim >= 1f ? SteadyGap : aim >= AimRules.WalkingAim ? WalkingGap : RunningGap;
+
+        /// <summary>The colour for an aim.</summary>
+        public static Color ColourFor(float aim) => aim >= 1f ? Steady : aim >= AimRules.WalkingAim ? Walking : Running;
 
         PlayerCombat combat;
         PlayerController player;
-        RectTransform root;
-        RectTransform ground;
-        Image back;
-        Image front;
-        float angle;
-        bool hasAngle;
-        float shownAim = -1f;
-        float lastFight = -100f;
-
-        static readonly Dictionary<int, Sprite> Arcs = new Dictionary<int, Sprite>();
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics() => Arcs.Clear();
-
-        /// <summary>The foreground's half span for an aim, in degrees.</summary>
-        public static float FiringHalfDegrees(float aim) => Mathf.Max(MinimumHalfDegrees, AimRules.MaxStrayDegrees(aim));
-
         Canvas canvas;
+        RectTransform root;
+        readonly Image[] ticks = new Image[4];
+        readonly Image[] shadows = new Image[4];
+        EnemyController shownTarget;
+        Vector3 lastPoint;
+        float gap = SteadyGap;
+        float lastFight = -100f;
+        float scale = 1f;
 
         void Awake()
         {
             combat = GetComponent<PlayerCombat>();
-            var canvasObject = new GameObject("Aim Arc Canvas", typeof(Canvas));
-            canvasObject.transform.SetParent(transform, false);
-            canvas = canvasObject.GetComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvas.sortingOrder = 8; // Under the Focus arc (9) and the HUD.
-            var rootObject = new GameObject("Aim Arc", typeof(RectTransform));
-            rootObject.transform.SetParent(canvasObject.transform, false);
+            // Under the HUD, over the world and the loot names' overlay (5).
+            canvas = PixelUi.Available ? PixelUi.MakeCanvas(null, "Aim Canvas", 8) : MakePlainCanvas();
+            var raycaster = canvas.GetComponent<GraphicRaycaster>();
+            if (raycaster != null)
+                raycaster.enabled = false;
+            scale = PixelUi.Available ? PixelUi.Scale(Screen.width) : 1f;
+            var rootObject = new GameObject("Crosshair", typeof(RectTransform));
+            rootObject.transform.SetParent(canvas.transform, false);
             root = (RectTransform)rootObject.transform;
-            var groundObject = new GameObject("Ground", typeof(RectTransform));
-            groundObject.transform.SetParent(root, false);
-            ground = (RectTransform)groundObject.transform;
-            ground.localScale = new Vector3(1f, IsoMath.GroundSquash, 1f);
-            back = NewArc("Background");
-            back.sprite = ArcSprite(BackgroundHalfDegrees);
-            back.color = Background;
-            front = NewArc("Firing");
+            root.anchorMin = root.anchorMax = Vector2.zero;
+            for (var i = 0; i < 4; i++)
+            {
+                shadows[i] = Tick("Shadow " + i, Shadow);
+                ticks[i] = Tick("Tick " + i, Steady);
+            }
             Show(false);
         }
 
-        Image NewArc(string name)
+        static Canvas MakePlainCanvas()
+        {
+            var go = new GameObject("Aim Canvas", typeof(Canvas));
+            var c = go.GetComponent<Canvas>();
+            c.renderMode = RenderMode.ScreenSpaceOverlay;
+            c.sortingOrder = 8;
+            return c;
+        }
+
+        Image Tick(string name, Color color)
         {
             var go = new GameObject(name, typeof(RectTransform), typeof(Image));
-            go.transform.SetParent(ground, false);
+            go.transform.SetParent(root, false);
             var rect = (RectTransform)go.transform;
-            rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0.5f, 0.5f);
             var image = go.GetComponent<Image>();
+            image.color = color;
             image.raycastTarget = false;
             return image;
         }
@@ -99,105 +98,75 @@ namespace ARPG
         {
             if (player == null)
                 player = FindAnyObjectByType<PlayerController>();
-            if (player == null || combat == null)
+            var cam = Camera.main;
+            if (player == null || combat == null || cam == null)
             {
                 Show(false);
                 return;
             }
-
-            var origin = IsoMath.WorldToGround(player.transform.position);
             var target = combat.Target;
             if (target != null && target.IsAlive)
             {
                 lastFight = Time.time;
-                var toTarget = target.GroundPosition - origin;
-                if (toTarget.sqrMagnitude > 1e-4f)
-                {
-                    var wanted = Mathf.Atan2(toTarget.y, toTarget.x) * Mathf.Rad2Deg;
-                    angle = hasAngle ? Mathf.LerpAngle(angle, wanted, 1f - Mathf.Exp(-TurnSpeed * Time.deltaTime)) : wanted;
-                    hasAngle = true;
-                }
+                shownTarget = target;
             }
-            // All through the fight: from the first target until a moment after the last.
-            if (!hasAngle || Time.time - lastFight > LingerSeconds)
+            if (Time.time - lastFight > LingerSeconds)
             {
                 Show(false);
                 return;
             }
-
+            // On the target's body: a little above its feet, by its size.
+            if (shownTarget != null && shownTarget.IsAlive)
+            {
+                var size = shownTarget.Definition != null ? shownTarget.Definition.VisualScale : 1f;
+                lastPoint = shownTarget.transform.position + new Vector3(0f, 0.45f * size, 0f);
+            }
+            var screen = cam.WorldToScreenPoint(lastPoint);
+            if (screen.z < 0f)
+            {
+                Show(false);
+                return;
+            }
             var aim = AimRules.Aim(player.StickPush);
-            if (aim != shownAim)
+            gap = Mathf.Lerp(gap, GapFor(aim), 1f - Mathf.Exp(-Ease * Time.deltaTime));
+            var colour = ColourFor(aim);
+            // Fading out after the fight.
+            var fade = Mathf.Clamp01((LingerSeconds - (Time.time - lastFight)) / 0.3f);
+            colour.a *= fade;
+            var shadow = Shadow;
+            shadow.a *= fade;
+
+            // On whole menu pixels.
+            root.position = new Vector3(Mathf.Round(screen.x / scale) * scale, Mathf.Round(screen.y / scale) * scale, 0f);
+            var g = Mathf.Round(gap);
+            for (var i = 0; i < 4; i++)
             {
-                shownAim = aim;
-                front.sprite = ArcSprite(FiringHalfDegrees(aim));
-                front.color = aim >= 1f ? Steady : aim >= AimRules.WalkingAim ? Walking : Running;
+                // Right, up, left, down.
+                var horizontal = i % 2 == 0;
+                var sign = i < 2 ? 1f : -1f;
+                var along = sign * (g + TickLength / 2f);
+                var position = horizontal ? new Vector2(along, 0f) : new Vector2(0f, along);
+                var size = horizontal ? new Vector2(TickLength, TickWidth) : new Vector2(TickWidth, TickLength);
+                Place(ticks[i], position, size, colour);
+                Place(shadows[i], position + new Vector2(1f, -1f), size, shadow);
             }
-            var cam = Camera.main;
-            if (cam == null)
-            {
-                Show(false);
-                return;
-            }
-            // Sized from the camera each frame, so the arc keeps its size on the ground whatever the zoom.
-            var feet = Elevation.Lifted(player.transform.position);
-            var center = cam.WorldToScreenPoint(feet);
-            var unit = Mathf.Abs(cam.WorldToScreenPoint(feet + Vector3.right).x - center.x);
-            root.position = center;
-            var size = Vector2.one * (back.sprite.rect.width / PixelArt.PixelsPerUnit * unit);
-            back.rectTransform.sizeDelta = size;
-            front.rectTransform.sizeDelta = size;
-            var turn = Quaternion.Euler(0f, 0f, angle);
-            back.rectTransform.localRotation = turn;
-            front.rectTransform.localRotation = turn;
             Show(true);
+        }
+
+        static void Place(Image image, Vector2 position, Vector2 size, Color colour)
+        {
+            image.rectTransform.anchoredPosition = position;
+            image.rectTransform.sizeDelta = size;
+            image.color = colour;
         }
 
         void Show(bool on)
         {
-            back.enabled = on;
-            front.enabled = on;
-        }
-
-        /// <summary>A white ring arc, <see cref="Radius"/> across its middle and <see cref="Band"/> thick, spanning half
-        /// degrees either side of +x, at the pixel art's scale, its pivot at the ring's centre; a brighter rim on its
-        /// edges. Cached by span.</summary>
-        static Sprite ArcSprite(float halfDegrees)
-        {
-            var key = Mathf.RoundToInt(halfDegrees * 10f);
-            if (Arcs.TryGetValue(key, out var sprite) && sprite != null)
-                return sprite;
-            var ppu = PixelArt.PixelsPerUnit;
-            var outer = (Radius + Band * 0.5f) * ppu;
-            var inner = (Radius - Band * 0.5f) * ppu;
-            var size = Mathf.CeilToInt(outer * 2f) + 2;
-            var half = size / 2f;
-            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false)
+            for (var i = 0; i < 4; i++)
             {
-                name = "Aim Arc " + key,
-                filterMode = FilterMode.Point,
-                wrapMode = TextureWrapMode.Clamp,
-            };
-            var pixels = new Color32[size * size];
-            for (var y = 0; y < size; y++)
-                for (var x = 0; x < size; x++)
-                {
-                    var dx = x + 0.5f - half;
-                    var dy = y + 0.5f - half;
-                    var r = Mathf.Sqrt(dx * dx + dy * dy);
-                    var a = Mathf.Abs(Mathf.Atan2(dy, dx) * Mathf.Rad2Deg);
-                    byte alpha = 0;
-                    if (r >= inner && r <= outer && a <= halfDegrees)
-                    {
-                        var edge = r - inner < 1.5f || outer - r < 1.5f || (halfDegrees - a) * Mathf.Deg2Rad * r < 1.5f;
-                        alpha = (byte)(edge ? 255 : 170);
-                    }
-                    pixels[x + y * size] = new Color32(255, 255, 255, alpha);
-                }
-            texture.SetPixels32(pixels);
-            texture.Apply(false, true);
-            // Full rect, no physics shape: the texture is no longer readable (CLAUDE.md, pixel art).
-            sprite = Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), ppu, 0, SpriteMeshType.FullRect, Vector4.zero, false);
-            return Arcs[key] = sprite;
+                ticks[i].enabled = on;
+                shadows[i].enabled = on;
+            }
         }
     }
 }

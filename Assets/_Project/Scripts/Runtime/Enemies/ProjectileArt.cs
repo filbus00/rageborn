@@ -75,6 +75,7 @@ namespace ARPG
                 ProjectileKind.Bomb => "projectile_bomb",
                 ProjectileKind.Bouncing => "projectile_blade",
                 ProjectileKind.Fireball => "projectile_fireball",
+                ProjectileKind.Arrow => "projectile_arrow",
                 _ => coloured ? null : "projectile_arrow",
             };
             return name != null ? WorldArt.Get(name) : null;
