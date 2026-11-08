@@ -212,8 +212,8 @@ def stump(w=15, h=11, axe=False):
         # The blade sunk in the cut top, the handle rising from it.
         im.rect(cx - 1, oy + 2, cx + 1, oy + 4, PAL["stone"][3])
         im.set(cx - 1, oy + 4, PAL["stone"][2]); im.set(cx, oy + 4, PAL["stone"][2])
-        im.line(cx - 1, oy + 1, cx - 2, 0, PAL["wood"][2])
-        im.line(cx, oy + 1, cx - 1, 0, PAL["wood"][1])
+        im.line(cx, oy + 1, cx + 3, 0, PAL["wood"][2])
+        im.line(cx + 1, oy + 1, cx + 3, 1, PAL["wood"][1])
     return im.outline()
 
 
