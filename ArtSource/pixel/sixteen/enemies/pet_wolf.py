@@ -1,3 +1,4 @@
+# Replaced on 2026-11-08 by ../wolf_16.py, which writes the same pet_wolf sheets: running this would bring the old wolf back.
 # The pet wolf (2026-11-07): grey with a darker back, a bushy tail, a pale chest and muzzle, a red harness; the same
 # 16x16 build as the Ash Jackal, a little heavier. Replaces the baked fox-wolf (Import Drawn Characters).
 import sys, os
