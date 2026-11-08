@@ -42,10 +42,30 @@ namespace ARPG
         /// <summary>The instance in the current scene, or null when it has none.</summary>
         public static DamageNumbers Current { get; private set; }
 
+        /// <summary>In the menus' pixel fonts (2026-11-08, the owner: "make the damage numbers pixel font too"): the
+        /// canvas at the menus' pixel size, numbers in the body font, crits and callouts in the title font, an outline a
+        /// pixel wide, placed on whole menu pixels.</summary>
+        bool pixel;
+        float pixelScale = 1f;
+
         void Awake()
         {
             Current = this;
             cam = Camera.main;
+            pixel = PixelUi.Available && pool != null;
+            if (pixel)
+            {
+                pixelScale = PixelUi.Scale(Screen.width);
+                var canvas = pool.GetComponentInParent<Canvas>();
+                if (canvas != null)
+                    canvas.pixelPerfect = true;
+                var scaler = pool.GetComponentInParent<CanvasScaler>();
+                if (scaler != null)
+                {
+                    scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+                    scaler.scaleFactor = pixelScale;
+                }
+            }
             slots = new Slot[PoolSize];
             for (var i = 0; i < slots.Length; i++)
                 slots[i] = CreateSlot();
@@ -63,15 +83,23 @@ namespace ARPG
             go.transform.SetParent(pool, false);
 
             var text = go.GetComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            text.fontStyle = FontStyle.Bold;
+            text.font = pixel ? PixelUi.BodyFont : Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            text.fontStyle = pixel ? FontStyle.Normal : FontStyle.Bold;
             text.alignment = TextAnchor.MiddleCenter;
             text.horizontalOverflow = HorizontalWrapMode.Overflow; // a callout like "LEVEL 12" is wider than a number
+            text.verticalOverflow = VerticalWrapMode.Overflow;
             text.raycastTarget = false;
-            go.AddComponent<Shadow>().effectDistance = new Vector2(2f, -2f);
+            if (pixel)
+            {
+                var outline = go.AddComponent<Outline>();
+                outline.effectColor = new Color(0f, 0f, 0f, 0.85f);
+                outline.effectDistance = new Vector2(1f, -1f);
+            }
+            else
+                go.AddComponent<Shadow>().effectDistance = new Vector2(2f, -2f);
 
             var rect = go.GetComponent<RectTransform>();
-            rect.sizeDelta = new Vector2(320f, 90f);
+            rect.sizeDelta = pixel ? new Vector2(120f, 20f) : new Vector2(320f, 90f);
             go.SetActive(false);
 
             return new Slot { Rect = rect, Label = text };
@@ -90,7 +118,7 @@ namespace ARPG
             slots[index].Active = true;
             slots[index].Label.text = Mathf.RoundToInt(amount).ToString();
             slots[index].Label.color = isDamageToPlayer ? PlayerDamageColor : critical ? CriticalColor : NormalColor;
-            slots[index].Label.fontSize = critical ? CriticalFontSize : NormalFontSize;
+            SetSize(slots[index].Label, critical ? CriticalFontSize : NormalFontSize);
             slots[index].Rect.gameObject.SetActive(true);
 
             if (cam != null)
@@ -110,7 +138,7 @@ namespace ARPG
             slots[index].Active = true;
             slots[index].Label.text = text;
             slots[index].Label.color = color;
-            slots[index].Label.fontSize = fontSize;
+            SetSize(slots[index].Label, fontSize);
             slots[index].Rect.gameObject.SetActive(true);
 
             if (cam != null)
@@ -155,11 +183,29 @@ namespace ARPG
             }
         }
 
+        // A pixel font has one size: the title font for crits and big callouts, the body font for the rest.
+        void SetSize(Text label, int size)
+        {
+            if (!pixel)
+            {
+                label.fontSize = size;
+                return;
+            }
+            var font = size >= CriticalFontSize ? PixelUi.TitleFont : PixelUi.BodyFont;
+            label.font = font;
+            label.fontSize = font.fontSize;
+        }
+
         void Reposition(ref Slot slot)
         {
             var t = slot.Elapsed / DurationSeconds;
             var screen = cam.WorldToScreenPoint(slot.WorldOrigin);
             screen.y += RiseScreenPixels * t;
+            if (pixel)
+            {
+                screen.x = Mathf.Round(screen.x / pixelScale) * pixelScale;
+                screen.y = Mathf.Round(screen.y / pixelScale) * pixelScale;
+            }
             slot.Rect.position = screen;
 
             var color = slot.Label.color;
