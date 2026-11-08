@@ -280,9 +280,9 @@ def clips(d):
     back = -1 if d in ("e", "se", "ne") else 1      # away from where she faces, across the screen
     c = {}
     c["idle"] = [place(idle), place(idle), place(idle, dy=1), place(idle)]
-    # A step, the passing pose (her standing frame, risen a pixel), the other step, the passing pose (2026-11-08: each
-    # step had been held for two frames).
-    c["walk"] = [place(walk[0]), place(idle, dy=-1), place(walk[1]), place(idle, dy=-1)]
+    # The two steps in turn, rising a pixel on the second (2026-11-08: her standing frame put between the steps is drawn
+    # a little bigger, so she seemed to grow and shrink as she walked; each step held two frames had looked stiff).
+    c["walk"] = [place(walk[0]), place(walk[1], dy=-1), place(walk[0]), place(walk[1], dy=-1)]
     c["run"] = c["walk"]
     c["run_back"] = c["walk"]
     for way in ("forward", "back", "left", "right"):

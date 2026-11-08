@@ -51,31 +51,32 @@ def boxes(mask, min_area=600):
 
 
 def grid_sample(img, box, step):
-    """Reads the figure at the pixel size that best fits it: tries every offset, keeps the one whose blocks are the
-    most even, and takes each block's middle."""
+    """Reads the figure at the pixel size that best fits it (step, or (across, down) for different sizes each way):
+    tries every offset, keeps the one whose blocks are the most even, and takes each block's middle."""
+    sx, sy = (step, step) if not isinstance(step, tuple) else step
     x0, y0, x1, y1 = box
     best = None
-    for ox in range(int(step)):
-        for oy in range(int(step)):
-            xs = np.arange(x0 - step + ox, x1 + step, step)
-            ys = np.arange(y0 - step + oy, y1 + step, step)
+    for ox in range(int(sx)):
+        for oy in range(int(sy)):
+            xs = np.arange(x0 - sx + ox, x1 + sx, sx)
+            ys = np.arange(y0 - sy + oy, y1 + sy, sy)
             spread = 0.0
             for yy in ys[1:-1:2]:
                 for xx in xs[1:-1:2]:
-                    blk = img[int(yy):int(yy + step), int(xx):int(xx + step), :3]
+                    blk = img[int(yy):int(yy + sy), int(xx):int(xx + sx), :3]
                     if blk.size:
                         spread += blk.std(axis=(0, 1)).sum()
             if best is None or spread < best[0]:
                 best = (spread, ox, oy)
     _, ox, oy = best
-    xs = np.arange(x0 - step + ox, x1 + step, step)
-    ys = np.arange(y0 - step + oy, y1 + step, step)
+    xs = np.arange(x0 - sx + ox, x1 + sx, sx)
+    ys = np.arange(y0 - sy + oy, y1 + sy, sy)
     h, w = len(ys) - 1, len(xs) - 1
     out = np.zeros((h, w, 3), np.float32)
     for j in range(h):
         for i in range(w):
-            c0, c1 = int(xs[i] + step * 0.3), int(xs[i] + step * 0.7)
-            r0, r1 = int(ys[j] + step * 0.3), int(ys[j] + step * 0.7)
+            c0, c1 = int(xs[i] + sx * 0.3), int(xs[i] + sx * 0.7)
+            r0, r1 = int(ys[j] + sy * 0.3), int(ys[j] + sy * 0.7)
             out[j, i] = np.median(img[r0:r1, c0:c1, :3].reshape(-1, 3), axis=0)
     return out
 
@@ -114,17 +115,15 @@ for name, path in SHEETS.items():
     # Both sheets at one size of her (about 24 pixels tall): the archery sheet's figures are about 190 tall, the idle
     # sheet's about 280.
     step = 8.0 if name == "shoot" else 11.6
+    STEP[name] = step
     # One size of her across the sheets (2026-11-08, the owner: "she seems to grown when the attack animations are
-    # triggered"): measured by her head's width (the top 9 rows), the archery sheet draws her about a quarter bigger than
-    # the idle figures and the walking figures about a sixth smaller, and it draws her stockier, so matching the heads
-    # exactly would make her shooting body short. Read the archery figures 10 percent smaller and the walking ones 12
-    # percent bigger.
+    # triggered", then "she seems to be growing and shrinking"): the archery sheet draws her wider, not taller, than the
+    # idle figures (her head a quarter wider, her height the same), so its figures are read narrower across than down:
+    # her head and her height then both match standing. The walking figures are drawn about 12 percent smaller.
     def step_for(index):
         if name == "shoot":
-            return 8.0 / 0.9
+            return (8.0 / 0.8, 8.0 / 0.98)
         return 11.6 if index < 4 else 11.6 / 1.12
-    STEP[name] = step
-    print(name, "pixel size", step, {st: round(score(st), 3) for st in steps})
     frames[name] = [(b, grid_sample(img, b, step_for(i))) for i, b in enumerate(found)]
     print(name, len(found), "figures", [ (b[2]-b[0], b[3]-b[1]) for b in found][:6])
 
