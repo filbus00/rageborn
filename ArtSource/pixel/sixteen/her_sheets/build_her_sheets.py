@@ -31,10 +31,26 @@ def clean(idx):
                     continue
                 near = [(y + dy, x + dx) for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1))]
                 open_ = sum(1 for yy, xx in near if not (0 <= yy < h and 0 <= xx < w) or f[yy, xx] < 0)
-                if (lum[y, x] > 0.7 and open_ >= 1) or open_ >= 3:
+                if (lum[y, x] > 0.62 and open_ >= 1) or open_ >= 3:
                     f[y, x] = -1
     ys, xs = np.where(f >= 0)
-    return f[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+    f = f[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+    # One clean outline (2026-11-08): wherever her edge has no dark pixel, a pixel of the darkest colour outside it.
+    dark = int(np.argmin(PAL.sum(1)))
+    darkish = set(int(k) for k in np.argsort(PAL.sum(1))[:3])
+    g = -np.ones((f.shape[0] + 2, f.shape[1] + 2), int)
+    g[1:-1, 1:-1] = f
+    out = g.copy()
+    for y in range(g.shape[0]):
+        for x in range(g.shape[1]):
+            if g[y, x] >= 0:
+                continue
+            for yy, xx in ((y + 1, x), (y - 1, x), (y, x + 1), (y, x - 1)):
+                if 0 <= yy < g.shape[0] and 0 <= xx < g.shape[1] and g[yy, xx] >= 0 and g[yy, xx] not in darkish:
+                    out[y, x] = dark
+                    break
+    ys, xs = np.where(out >= 0)
+    return out[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
 
 
 shoot = [clean(i) for _, i in D["shoot"] if i.shape[0] > 12]
@@ -254,7 +270,7 @@ for clip in SHOWN:
     strips.append(np.tile(np.array([0.08, 0.1, 0.06, 1], np.float32), (2, width, 1)))
 save(np.repeat(np.repeat(np.concatenate(strips, 0), 3, 0), 3, 1), os.path.join(P, "ArtSource", "pixel", "previews", "wild_arrow_sheets_moves.png"))
 close = []
-for d, clip in (("nw", "idle"), ("nw", "walk"), ("ne", "walk"), ("sw", "walk"), ("e", "dive"), ("w", "dive"), ("n", "dive"), ("e", "death")):
+for d, clip in (("s", "idle"), ("s", "walk"), ("s", "attack"), ("w", "idle"), ("w", "walk"), ("w", "attack"), ("n", "idle"), ("n", "attack")):
     strip = np.concatenate([np.where(rgba(f)[..., 3:4] > 0.5, rgba(f), BG) for f in every[d][clip]], 1)
     close.append(np.concatenate([strip, np.tile(BG, (CH, 8 * CW - strip.shape[1], 1))], 1))
 save(np.repeat(np.repeat(np.concatenate(close, 0), 5, 0), 5, 1), os.path.join(P, "ArtSource", "pixel", "previews", "wild_arrow_sheets_close.png"))

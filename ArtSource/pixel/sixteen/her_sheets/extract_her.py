@@ -114,9 +114,18 @@ for name, path in SHEETS.items():
     # Both sheets at one size of her (about 24 pixels tall): the archery sheet's figures are about 190 tall, the idle
     # sheet's about 280.
     step = 8.0 if name == "shoot" else 11.6
+    # One size of her across the sheets (2026-11-08, the owner: "she seems to grown when the attack animations are
+    # triggered"): measured by her head's width (the top 9 rows), the archery sheet draws her about a quarter bigger than
+    # the idle figures and the walking figures about a sixth smaller, and it draws her stockier, so matching the heads
+    # exactly would make her shooting body short. Read the archery figures 10 percent smaller and the walking ones 12
+    # percent bigger.
+    def step_for(index):
+        if name == "shoot":
+            return 8.0 / 0.9
+        return 11.6 if index < 4 else 11.6 / 1.12
     STEP[name] = step
     print(name, "pixel size", step, {st: round(score(st), 3) for st in steps})
-    frames[name] = [(b, grid_sample(img, b, step)) for b in found]
+    frames[name] = [(b, grid_sample(img, b, step_for(i))) for i, b in enumerate(found)]
     print(name, len(found), "figures", [ (b[2]-b[0], b[3]-b[1]) for b in found][:6])
 
 # One palette for all: the figure's colours (not the white).
