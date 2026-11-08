@@ -119,7 +119,7 @@ for name, rows in REST.items():
 
 
 # Legs: each leg's column and the way its foot points, per view; the bow hand at rest and the bow's place when she aims.
-LEGS = {"s": ((6, -1), (9, 1)), "se": ((6, 1), (9, 1)), "e": ((6, 1), (8, 1)), "ne": ((6, -1), (9, 1)), "n": ((6, -1), (9, 1))}
+LEGS = {"s": ((5, -1), (9, 1)), "se": ((5, 1), (9, 1)), "e": ((6, 1), (8, 1)), "ne": ((5, -1), (9, 1)), "n": ((5, -1), (9, 1))}
 # Where the bow stands when she holds it down (its column, top and bottom rows) and when she aims (column, top, bottom,
 # the way the shot goes: 1 to the right, 0 at or away from the camera), and her shoulder for the raised arm.
 BOW_REST = {"s": (14, 7, 17), "se": (14, 7, 17), "e": (11, 8, 18), "ne": (13, 7, 17), "n": (1, 7, 17)}
@@ -150,15 +150,23 @@ def outline(cell, pixels):
                 put(cell, x + ox, y + oy, "K", over=False)
 
 
-def legs(cell, view, dy=0, lift=None, tucked=False, kneel=0):
-    """Thighs of skin, then boots; a lifted leg is drawn short, its foot off the ground."""
+def legs(cell, view, dy=0, lift=None, tucked=False, kneel=0, stride=0, raise_=2):
+    """Thighs of skin, then boots; a lifted leg is drawn short, its foot off the ground. A stride puts the front leg
+    ahead and the back one behind: across the screen in the side views, down and up it in the front and back views."""
     if tucked:
         return
     ground = Y0 + 19
     for i, (x, toe) in enumerate(LEGS[view]):
         x += X0
         top = Y0 + 16 + dy
-        bottom = ground - (2 if i == lift else 0) - kneel
+        bottom = ground - (raise_ if i == lift else 0) - kneel
+        ahead = stride if i == 1 else -stride
+        if view in ("e", "se", "ne"):
+            x += ahead
+        elif view == "s":
+            bottom += max(0, ahead)
+        else:
+            bottom -= max(0, ahead)
         pixels = []
         for y in range(top, bottom + 1):
             pixels.append((x, y, "s" if y < bottom - 1 else "m"))
@@ -185,17 +193,19 @@ def bow_rest(cell, view, dx=0, dy=0):
     outline(cell, pixels)
 
 
-def bow_aim(cell, view, draw=0.0, loosed=False, dx=0, dy=0):
+def bow_aim(cell, view, draw=0.0, loosed=False, dx=0, dy=0, flex=False):
     """The bow raised before her, its string pulled back by draw (0 to 1), an arrow on it until loosed, and her arm from
     the shoulder to the grip."""
     if view in LEVEL:
-        bow_level(cell, view, draw, loosed, dx, dy)
+        bow_level(cell, view, draw, loosed, dx, dy, flex)
         return
     x, top, bottom, way = BOW_AIM[view]
     x, top, bottom = X0 + x + dx, Y0 + top + dy, Y0 + bottom + dy
     mid = (top + bottom) // 2
     bend = 1 if way else 0
-    pixels = [(x - bend, top, "i"), (x - bend, bottom, "i")]
+    # Just loosed (flex), the limbs spring forward past rest: the tips level with the grip.
+    tip = x - bend + (1 if flex and way else 0)
+    pixels = [(tip, top, "i"), (tip, bottom, "i")]
     pixels += [(x + (bend if top + 1 < y < bottom - 1 else 0), y, "b") for y in range(top + 1, bottom)]
     # The arm: skin from the shoulder to the grip.
     sx, sy = SHOULDER[view]
@@ -229,11 +239,12 @@ def bow_aim(cell, view, draw=0.0, loosed=False, dx=0, dy=0):
 LEVEL = {"s": (9, 0, 15, 1), "n": (9, -1, 16, -1)}
 
 
-def bow_level(cell, view, draw, loosed, dx=0, dy=0):
+def bow_level(cell, view, draw, loosed, dx=0, dy=0, flex=False):
     row, a, b, way = LEVEL[view]
     row, a, b = Y0 + row + dy, X0 + a + dx, X0 + b + dx
     mid = (a + b) // 2
-    bow = [(a, row, "i"), (b, row, "i")] + [(x, row + (way if a + 1 < x < b - 1 else 0), "b") for x in range(a + 1, b)]
+    tips = row + (way if flex else 0)
+    bow = [(a, tips, "i"), (b, tips, "i")] + [(x, row + (way if a + 1 < x < b - 1 else 0), "b") for x in range(a + 1, b)]
     for px, py, ch in bow:
         put(cell, px, py, ch)
     outline(cell, bow)
@@ -275,12 +286,14 @@ def streak(cell, view, dx=0, dy=0):
             put(cell, x, mid - 2 - k, "n", over=False)
 
 
-def pose(view, aim=None, draw=0.0, loosed=False, flew=False, dx=0, dy=0, lift=None, tucked=False, eyes=True, kneel=0):
+def pose(view, aim=None, draw=0.0, loosed=False, flew=False, dx=0, dy=0, lift=None, tucked=False, eyes=True, kneel=0,
+         stride=0, raise_=2, flex=False, bow=True, sway=0):
     cell = blank()
-    behind = view in ("n", "ne")
+    # The bow behind her when she faces away; shooting up and to the right it is drawn in front, so the bow hand shows.
+    behind = view == "n" or (view == "ne" and aim is None)
     if aim is not None and view == "n":
-        bow_aim(cell, view, draw, loosed, dx, dy)
-        legs(cell, view, dy, lift, tucked, kneel)
+        bow_aim(cell, view, draw, loosed, dx, dy, flex)
+        legs(cell, view, dy, lift, tucked, kneel, stride, raise_)
         body(cell, view, dx, dy, eyes)
         if not loosed:
             put(cell, X0 + 7 + dx, Y0 + dy - 1, "n")
@@ -288,15 +301,15 @@ def pose(view, aim=None, draw=0.0, loosed=False, flew=False, dx=0, dy=0, lift=No
             streak(cell, view, dx, dy)
         return cell
     if aim is not None and behind:
-        bow_aim(cell, view, draw, loosed, dx, dy)
-    elif aim is None and behind:
-        bow_rest(cell, view, dx, dy)
-    legs(cell, view, dy, lift, tucked, kneel)
+        bow_aim(cell, view, draw, loosed, dx, dy, flex)
+    elif aim is None and behind and bow:
+        bow_rest(cell, view, dx + sway, dy)
+    legs(cell, view, dy, lift, tucked, kneel, stride, raise_)
     body(cell, view, dx, dy, eyes)
     if aim is not None and not behind:
-        bow_aim(cell, view, draw, loosed, dx, dy)
-    elif aim is None and not behind:
-        bow_rest(cell, view, dx, dy)
+        bow_aim(cell, view, draw, loosed, dx, dy, flex)
+    elif aim is None and not behind and bow:
+        bow_rest(cell, view, dx + sway, dy)
     if flew:
         streak(cell, view, dx, dy)
     return cell
@@ -334,6 +347,10 @@ def ball(quarters, squash=False, lift=0):
     cell = blank()
     top = Y0 + 19 - len(rows) + 1 - lift
     pixels = [(X0 + 2 + x, top + y, ch) for y, row in enumerate(rows) for x, ch in enumerate(row) if ch != "."]
+    # Her hair trailing behind the ball, whichever way it has turned, waving a pixel each frame.
+    left = min(px for px, py, ch in pixels if py == top + 3)
+    wave = quarters % 2
+    pixels += [(left - 1, top + 3, "h"), (left - 2, top + 3 - wave, "H"), (left - 3, top + 3 - wave, "h"), (left - 4, top + 2, "j")]
     for px, py, ch in pixels:
         put(cell, px, py, ch)
     outline(cell, pixels)
@@ -351,21 +368,43 @@ def dive_frame(view, k):
         body(cell, view, dx=1, dy=5, rows=[rows[i] for i in (0, 2, 3, 4, 5, 6, 8, 9, 11, 13, 14)])
         return cell
     t = k - 2
-    return ball(t, squash=t == 4, lift=1 if t in (1, 2) else 0)
+    # An arc: up off the ground through the turn, down onto it to land.
+    return ball(t, squash=t == 4, lift=(2, 4, 4, 2, 0)[t])
+
+
+def ground_bow(cell, fallen=True):
+    """The bow on the ground beside her, or (fallen False) dropping out of her hand at a slant."""
+    ground = Y0 + 19
+    if fallen:
+        pixels = [(x, ground, "b") for x in range(X0 + 13, X0 + 23)] + [(X0 + 12, ground, "i"), (X0 + 23, ground, "i")]
+    else:
+        pixels = [(X0 + 14 + k // 2, Y0 + 9 + k, "b") for k in range(1, 10)] + [(X0 + 14, Y0 + 9, "i"), (X0 + 19, Y0 + 19, "i")]
+    for px, py, ch in pixels:
+        put(cell, px, py, ch)
+    outline(cell, pixels)
 
 
 def death_frame(view, k):
+    """Hit and knocked back, the knees buckling as the bow drops from her hand, on her knees, falling forward, the
+    impact flat, a small bounce, still."""
     if k == 0:
-        return pose(view, eyes=False)
+        return pose(view, dx=-1, dy=-1, eyes=False)
+    if k == 1:
+        cell = pose(view, dy=2, kneel=2, eyes=False, bow=False)
+        ground_bow(cell, fallen=False)
+        return cell
+    if k == 2:
+        cell = blank()
+        ground_bow(cell)
+        merged = pose(view, dy=4, kneel=4, eyes=False, bow=False)
+        for y in range(CH):
+            for x in range(CW):
+                put(cell, x, y, merged[y][x])
+        return cell
     cell = blank()
     ground = Y0 + 19
-    # The bow on the ground beside her.
-    for x in range(X0 + 13, X0 + 23):
-        put(cell, x, ground, "b")
-        put(cell, x, ground - 1, "K", over=False)
-    put(cell, X0 + 12, ground, "i")
-    put(cell, X0 + 23, ground, "i")
-    sink = (0, 3, 6, 9, 11, 12)[k]
+    ground_bow(cell)
+    sink = (0, 0, 0, 7, 12, 11, 12)[k]
     rows = REST[view]
     for y, row in enumerate(rows):
         shift = sink + 4 if y < 8 else sink + 4 + sink // 2
@@ -375,32 +414,36 @@ def death_frame(view, k):
     return cell
 
 
-def walking(view, **kw):
-    return [pose(view, **kw), pose(view, lift=0, dy=-1, **kw), pose(view, **kw), pose(view, lift=1, dy=-1, **kw)]
+def walking(view, stride=1, bounce=1, **kw):
+    """Contact (legs apart, low), passing (a leg lifted, up), the other contact, the other passing. The run strides
+    further, lifts its feet higher and bounces higher."""
+    return [pose(view, stride=stride, **kw), pose(view, lift=0, dy=-bounce, raise_=1 + bounce, **kw),
+            pose(view, stride=-stride, **kw), pose(view, lift=1, dy=-bounce, raise_=1 + bounce, **kw)]
 
 
 def shot(view, legs_moving=False, hold=1):
     """A shot: raised, drawn (held for hold frames), loosed with the arrow away, settling."""
-    frames = [dict(aim=1, draw=0.0), dict(aim=1, draw=0.6)] + [dict(aim=1, draw=1.0)] * hold + \
-             [dict(aim=1, draw=0.0, loosed=True, flew=True), dict(aim=1, draw=0.0, loosed=True)]
+    frames = [dict(aim=1, draw=0.0), dict(aim=1, draw=0.6)] + [dict(aim=1, draw=1.0)] * (hold - 1) + \
+             [dict(aim=1, draw=1.34)] + \
+             [dict(aim=1, draw=0.0, loosed=True, flew=True, flex=True), dict(aim=1, draw=0.0, loosed=True)]
     out = []
     for i, f in enumerate(frames):
         lift = (None, 0, None, 1)[i % 4] if legs_moving else None
-        out.append(pose(view, lift=lift, dy=-1 if lift is not None else 0, **f))
+        out.append(pose(view, lift=lift, dy=-1 if lift is not None else 0, stride=(1, 0, -1, 0)[i % 4] if legs_moving else 0, **f))
     return out
 
 
 def clips(view):
     c = {
-        "idle": [pose(view), pose(view), pose(view, dy=1), pose(view, eyes=False)],
+        "idle": [pose(view), pose(view, dy=1, sway=1), pose(view, dy=1, sway=1), pose(view, eyes=False)],
         "walk": walking(view),
-        "run": walking(view),
+        "run": walking(view, stride=2, bounce=2),
         "attack": shot(view),
         "overdraw": shot(view, hold=3),
         "recoil": shot(view)[:3] + [pose(view, aim=1, loosed=True, flew=True, dx=-1, dy=-1), pose(view, aim=1, loosed=True, dx=-1)],
         "hit": [pose(view, dx=-1, dy=-1, eyes=False), pose(view)],
         "dive": [dive_frame(view, k) for k in range(8)],
-        "death": [death_frame(view, k) for k in range(6)],
+        "death": [death_frame(view, k) for k in range(7)],
     }
     c["run_back"] = c["run"]
     for way in ("forward", "back", "left", "right"):
