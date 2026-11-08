@@ -209,9 +209,11 @@ def stump(w=15, h=11, axe=False):
     im.blob(cx, oy + 4, 3, 1.3, [PAL["wood"][2]] * 4)
     im.set(cx - 6, oy + h - 2, PAL["wood"][1]); im.set(cx + 5, oy + h - 2, PAL["wood"][0])
     if axe:
-        im.line(cx + 1, oy + 4, cx + 4, 1, PAL["wood"][2])
-        im.rect(cx + 3, 0, cx + 6, 2, PAL["stone"][3])
-        im.set(cx + 6, 2, PAL["stone"][2])
+        # The blade sunk in the cut top, the handle rising from it.
+        im.rect(cx - 1, oy + 2, cx + 1, oy + 4, PAL["stone"][3])
+        im.set(cx - 1, oy + 4, PAL["stone"][2]); im.set(cx, oy + 4, PAL["stone"][2])
+        im.line(cx + 2, oy + 3, cx + 6, 0, PAL["wood"][2])
+        im.line(cx + 2, oy + 4, cx + 6, 1, PAL["wood"][1])
     return im.outline()
 
 
@@ -239,12 +241,13 @@ def mushrooms():
 
 def log():
     im = Img(19, 14)
-    for t in range(12):
-        x, y = 3 + t, 9 - t * 0.35
+    # From the far end (up the screen) to the near one, so the near end draws in front, its cut face to the camera.
+    for t in reversed(range(12)):
+        x, y = 4 + t, 9 - t * 0.35
         im.blob(x, y, 2.8, 2.8, [PAL["wood"][0], PAL["wood"][1], PAL["wood"][2], PAL["wood"][2]])
-    im.blob(15.5, 5, 2.4, 2.8, [PAL["wood"][2], PAL["wood"][3], PAL["wood"][3], PAL["wood"][3]])
-    im.set(15, 5, PAL["wood"][1])
-    im.set(8, 6, PAL["green"][3]); im.set(9, 6, PAL["green"][2]); im.set(5, 7, PAL["green"][2])
+    im.blob(3.2, 9.2, 2.4, 2.8, [PAL["wood"][2], PAL["wood"][3], PAL["wood"][3], PAL["wood"][3]])
+    im.set(3, 9, PAL["wood"][1])
+    im.set(11, 5, PAL["green"][3]); im.set(12, 5, PAL["green"][2]); im.set(8, 6, PAL["green"][2])
     return im.outline()
 
 
@@ -284,7 +287,7 @@ def campfire():
         im.blob(6 + 4.2 * math.cos(a), 16 + 2.2 * math.sin(a), 1.2, 0.9, PAL["stone"][1:])
     im.line(3, 17, 9, 14, PAL["wood"][1]); im.line(3, 14, 9, 17, PAL["wood"][2])
     for y in range(6, 16):
-        half = (16 - y) * 0.28 + 0.3
+        half = (y - 6) * 0.28 + 0.3     # a point at the top, widest over the logs
         for x in range(int(6 - half), int(6 + half) + 1):
             d = abs(x + 0.5 - 6) / max(half, 0.5)
             k = 3 if d < 0.3 and y > 11 else 2 if d < 0.6 else 1 if d < 0.9 else 0
