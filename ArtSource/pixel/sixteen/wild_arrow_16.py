@@ -302,15 +302,56 @@ def pose(view, aim=None, draw=0.0, loosed=False, flew=False, dx=0, dy=0, lift=No
     return cell
 
 
-def dive_frame(view, k):
-    """The dive: crouched, a low leap with the body curled (rows squeezed), rolled, landing crouched."""
-    if k in (0, 3):
-        return pose(view, dy=2, kneel=2)
+# The roll's ball (2026-11-08, the owner: "work on the characters roll animation, it looks bad now"): her body curled
+# up, facing right, head first: the wolf hood and its ears, her face tucked to her knees, the quiver and its red
+# fletching on her back, her hair, her boots. The roll turns it a quarter at a time.
+BALL = [
+    ".....pP.pP...",
+    "...ppppppPP..",
+    "..pppppppPPP.",
+    "hhppppppPPhhP",
+    ".hhpppppPhssS",
+    "..qpppPPhsEsS",
+    ".qqfPPllhsssS",
+    ".qqlllllssSs.",
+    ".llllltTsssS.",
+    "..lllllTsSS..",
+    "..mmmmlllmm..",
+    "...mmmmmmm...",
+    ".............",
+]
+assert len(BALL) == 13 and all(len(r) == 13 for r in BALL)
+
+
+def ball(quarters, squash=False, lift=0):
+    """The curled body turned clockwise by quarters, its foot on the ground, outlined; squashed a row on landing."""
+    grid = [list(r) for r in BALL]
+    for _ in range(quarters % 4):
+        grid = [[grid[12 - c][r] for c in range(13)] for r in range(13)]
+    rows = [r for r in grid if any(ch != "." for ch in r)]
+    if squash:
+        rows = rows[:len(rows) // 2] + rows[len(rows) // 2 + 1:]
     cell = blank()
-    rows = REST[view]
-    squeezed = [rows[i] for i in (0, 2, 3, 4, 5, 6, 8, 9, 11, 13, 14, 15)]
-    body(cell, view, dx=1 if k == 1 else 2, dy=6 if k == 1 else 7, rows=squeezed)
+    top = Y0 + 19 - len(rows) + 1 - lift
+    pixels = [(X0 + 2 + x, top + y, ch) for y, row in enumerate(rows) for x, ch in enumerate(row) if ch != "."]
+    for px, py, ch in pixels:
+        put(cell, px, py, ch)
+    outline(cell, pixels)
     return cell
+
+
+def dive_frame(view, k):
+    """The dive, 8 frames over the dodge's 0.42 s: a crouch, a launch with her body stretched low, the ball turning once
+    (the same ball every way: seen from the front or back it turns like a wheel), landing squashed, a rising crouch."""
+    if k in (0, 7):
+        return pose(view, dy=2, kneel=2)
+    if k == 1:
+        cell = blank()
+        rows = REST[view]
+        body(cell, view, dx=1, dy=5, rows=[rows[i] for i in (0, 2, 3, 4, 5, 6, 8, 9, 11, 13, 14)])
+        return cell
+    t = k - 2
+    return ball(t, squash=t == 4, lift=1 if t in (1, 2) else 0)
 
 
 def death_frame(view, k):
@@ -358,7 +399,7 @@ def clips(view):
         "overdraw": shot(view, hold=3),
         "recoil": shot(view)[:3] + [pose(view, aim=1, loosed=True, flew=True, dx=-1, dy=-1), pose(view, aim=1, loosed=True, dx=-1)],
         "hit": [pose(view, dx=-1, dy=-1, eyes=False), pose(view)],
-        "dive": [dive_frame(view, k) for k in range(4)],
+        "dive": [dive_frame(view, k) for k in range(8)],
         "death": [death_frame(view, k) for k in range(6)],
     }
     c["run_back"] = c["run"]
@@ -426,9 +467,9 @@ for name in SHOWN:
     for _, view, mirror in [DIRECTIONS[i] for i in (0, 2, 4, 6)]:
         frames = [on_bg(to_rgba(f, mirror)) for f in views[view][name]]
         strip = np.concatenate(frames, 1)
-        width = 7 * CW
+        width = 8 * CW
         strips.append(np.concatenate([strip, np.tile(BG, (CH, width - strip.shape[1], 1))], 1))
-    strips.append(np.tile(np.array([0.08, 0.1, 0.06, 1], np.float32), (1, 7 * CW, 1)))
+    strips.append(np.tile(np.array([0.08, 0.1, 0.06, 1], np.float32), (1, 8 * CW, 1)))
 save(np.repeat(np.repeat(np.concatenate(strips, 0), 4, 0), 4, 1), os.path.join(P, "ArtSource", "pixel", "previews", "wild_arrow_16_moves.png"))
 big = [on_bg(to_rgba(pose(v))) for v in ("s", "se", "e", "ne", "n")] + [on_bg(to_rgba(pose("e", aim=1, draw=1.0))), on_bg(to_rgba(pose("s", aim=1, draw=1.0)))]
 save(np.repeat(np.repeat(np.concatenate(big, 1), 6, 0), 6, 1), os.path.join(P, "ArtSource", "pixel", "previews", "wild_arrow_16_views.png"))
@@ -439,7 +480,7 @@ focus = []
 for name, view, mirror in [("attack", "s", False), ("attack", "e", False), ("attack", "n", False), ("walk", "s", False),
                            ("walk", "e", False), ("dive", "e", False)]:
     strip = np.concatenate([on_bg(to_rgba(f, mirror)) for f in views[view][name]], 1)
-    focus.append(np.concatenate([strip, np.tile(BG, (CH, 5 * CW - strip.shape[1], 1))], 1))
+    focus.append(np.concatenate([strip, np.tile(BG, (CH, 8 * CW - strip.shape[1], 1))], 1))
 save(np.repeat(np.repeat(np.concatenate(focus, 0), 5, 0), 5, 1), os.path.join(P, "ArtSource", "pixel", "previews", "wild_arrow_16_focus.png"))
 
 # Animated: every clip playing in four directions at once, as numbered frames for Aseprite to make a GIF of.
