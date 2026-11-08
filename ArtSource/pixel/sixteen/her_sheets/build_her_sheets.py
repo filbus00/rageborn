@@ -56,7 +56,12 @@ def clean(idx):
 shoot = [clean(i) for _, i in D["shoot"] if i.shape[0] > 12]
 idlewalk = [clean(i) for _, i in D["idlewalk"]]
 assert len(shoot) == 24, len(shoot)
-SHOT = {"sw": shoot[0:6], "e": shoot[6:12], "ne": shoot[12:18], "w": shoot[18:24]}
+# The archery sheet's rows, by the way the bow points while she draws (2026-11-08, the owner: "when attacking enemy to the
+# right the bow points to the left"; looked at frame by frame): front, aiming down-right; front again, aiming right;
+# back, aiming up-right; left, aiming left. Each direction takes the row aiming its way, or its mirror.
+SHOT = {"front": shoot[0:6], "front2": shoot[6:12], "back": shoot[12:18], "left": shoot[18:24]}
+
+
 # The idle sheet's facings (2026-11-08, looked at one by one): front-left, three-quarter left, back, left; each with its
 # two walking frames.
 IDLE = {"s": idlewalk[0], "sw": idlewalk[1], "n": idlewalk[2], "w": idlewalk[3]}
@@ -143,22 +148,23 @@ def head_turned_away(f):
 # down-left the three-quarter ones, left the left ones; up the back; up-left the left ones with the head turned away;
 # the right side mirrors the left, but for the sheet's own shot to the right.
 def sources(d):
+    m = lambda frames: [mirror(f) for f in frames]
     if d == "s":
-        return SHOT["sw"], IDLE["s"], WALK["s"]
+        return SHOT["front"], IDLE["s"], WALK["s"]
     if d == "sw":
-        return SHOT["sw"], IDLE["sw"], WALK["sw"]
+        return m(SHOT["front"]), IDLE["sw"], WALK["sw"]
     if d == "se":
-        return [mirror(f) for f in SHOT["sw"]], mirror(IDLE["sw"]), [mirror(f) for f in WALK["sw"]]
+        return SHOT["front"], mirror(IDLE["sw"]), m(WALK["sw"])
     if d == "w":
-        return SHOT["w"], IDLE["w"], WALK["w"]
+        return SHOT["left"], IDLE["w"], WALK["w"]
     if d == "e":
-        return SHOT["e"], mirror(IDLE["w"]), [mirror(f) for f in WALK["w"]]
+        return m(SHOT["left"]), mirror(IDLE["w"]), m(WALK["w"])
     if d == "n":
-        return SHOT["ne"], IDLE["n"], WALK["n"]
+        return SHOT["back"], IDLE["n"], WALK["n"]
     if d == "nw":
-        return [mirror(f) for f in SHOT["ne"]], head_turned_away(IDLE["w"]), [head_turned_away(f) for f in WALK["w"]]
+        return m(SHOT["back"]), head_turned_away(IDLE["w"]), [head_turned_away(f) for f in WALK["w"]]
     # ne
-    return SHOT["ne"], mirror(head_turned_away(IDLE["w"])), [mirror(head_turned_away(f)) for f in WALK["w"]]
+    return SHOT["back"], mirror(head_turned_away(IDLE["w"])), m([head_turned_away(f) for f in WALK["w"]])
 
 
 def shear(f, lean):
