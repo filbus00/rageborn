@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ARPG
 {
@@ -176,7 +177,9 @@ namespace ARPG
         readonly List<Lance> lances = new List<Lance>();
         readonly List<Beam> beams = new List<Beam>();
         readonly List<Chain> chains = new List<Chain>();
-        readonly Dictionary<EnemyPack, TextMesh> labels = new Dictionary<EnemyPack, TextMesh>();
+        readonly Dictionary<EnemyPack, Component> labels = new Dictionary<EnemyPack, Component>();
+        Canvas labelCanvas;
+        float labelScale = 1f;
         readonly Dictionary<EnemyPack, List<EnemyController>> packElites = new Dictionary<EnemyPack, List<EnemyController>>();
         readonly List<EnemyPack> packBuffer = new List<EnemyPack>();
         float chainPulse;
@@ -496,20 +499,63 @@ namespace ARPG
                 var leader = pair.Value[0];
                 if (!labels.TryGetValue(pair.Key, out var label) || label == null)
                 {
-                    var go = new GameObject("Elite Affixes", typeof(TextMesh));
-                    go.transform.SetParent(parent, false);
-                    label = go.GetComponent<TextMesh>();
-                    label.anchor = TextAnchor.LowerCenter;
-                    label.characterSize = 0.06f;
-                    label.fontSize = 44;
-                    label.color = new Color(1f, 0.75f, 0.45f);
-                    label.text = EliteAffixRules.Names(leader.Modifiers);
-                    go.GetComponent<MeshRenderer>().sortingLayerName = GameSortingLayers.WorldUI;
+                    label = NewLabel(EliteAffixRules.Names(leader.Modifiers));
                     labels[pair.Key] = label;
                 }
                 var height = 1.5f * (leader.Definition != null ? leader.Definition.VisualScale : 1f);
-                label.transform.position = leader.transform.position + new Vector3(0f, height, 0f);
+                var at = leader.transform.position + new Vector3(0f, height, 0f);
+                if (label is Text text)
+                {
+                    // On the overlay, over the leader, on whole menu pixels (as the loot names).
+                    var cam = Camera.main;
+                    if (cam == null)
+                        continue;
+                    var screen = cam.WorldToScreenPoint(at);
+                    var s = labelScale;
+                    text.enabled = screen.z > 0f;
+                    text.rectTransform.position = new Vector3(Mathf.Round(screen.x / s) * s, Mathf.Round(screen.y / s) * s, 0f);
+                }
+                else
+                    label.transform.position = at;
             }
+        }
+
+        static readonly Color LabelColor = new Color(1f, 0.75f, 0.45f);
+
+        // A pack's affix names: in the menus' pixel font on an overlay (2026-11-08, the owner: "make the ... elite labels
+        // pixel font too"), else a world text as before.
+        Component NewLabel(string names)
+        {
+            if (PixelUi.Available)
+            {
+                if (labelCanvas == null)
+                {
+                    // Under the loot names (5) and the HUD.
+                    labelCanvas = PixelUi.MakeCanvas(parent, "Elite Names", 4);
+                    labelCanvas.GetComponent<GraphicRaycaster>().enabled = false;
+                    labelScale = PixelUi.Scale(Screen.width);
+                }
+                var text = PixelUi.Label(labelCanvas.transform, names, PixelUi.BodyFont, LabelColor, TextAnchor.LowerCenter);
+                text.horizontalOverflow = HorizontalWrapMode.Overflow;
+                var outline = text.gameObject.AddComponent<Outline>();
+                outline.effectColor = new Color(0f, 0f, 0f, 0.9f);
+                outline.effectDistance = new Vector2(1f, -1f);
+                var rect = text.rectTransform;
+                rect.anchorMin = rect.anchorMax = Vector2.zero;
+                rect.pivot = new Vector2(0.5f, 0f);
+                rect.sizeDelta = new Vector2(10f, 10f);
+                return text;
+            }
+            var go = new GameObject("Elite Affixes", typeof(TextMesh));
+            go.transform.SetParent(parent, false);
+            var mesh = go.GetComponent<TextMesh>();
+            mesh.anchor = TextAnchor.LowerCenter;
+            mesh.characterSize = 0.06f;
+            mesh.fontSize = 44;
+            mesh.color = LabelColor;
+            mesh.text = names;
+            go.GetComponent<MeshRenderer>().sortingLayerName = GameSortingLayers.WorldUI;
+            return mesh;
         }
 
         /// <summary>Clears every attack and label (a new level).</summary>

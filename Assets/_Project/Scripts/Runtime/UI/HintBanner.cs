@@ -35,7 +35,16 @@ namespace ARPG
             scaler.matchWidthOrHeight = 0.5f;
 
             var banner = canvasObject.AddComponent<HintBanner>();
-            banner.Build();
+            if (PixelUi.Available)
+            {
+                // The menus' pixel look (2026-11-08, the owner: "make the portal banner ... pixel font too").
+                scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+                scaler.scaleFactor = PixelUi.Scale(Screen.width);
+                canvas.pixelPerfect = true;
+                banner.BuildPixel();
+            }
+            else
+                banner.Build();
             Current = banner;
             return banner;
         }
@@ -85,9 +94,36 @@ namespace ARPG
             text.verticalOverflow = VerticalWrapMode.Overflow;
         }
 
+        // A framed panel in the company menu's look across the screen under the HUD's bars, the words in the body font.
+        void BuildPixel()
+        {
+            group = GetComponent<CanvasGroup>();
+            group.alpha = 0f;
+            group.blocksRaycasts = false;
+            var panel = PixelUi.Frame(transform, "Panel", "frame_panel_b4", true);
+            var rect = panel.rectTransform;
+            rect.anchorMin = new Vector2(0f, 0.78f);
+            rect.anchorMax = new Vector2(1f, 0.78f);
+            rect.pivot = new Vector2(0.5f, 1f);
+            rect.offsetMin = new Vector2(12f, -38f);
+            rect.offsetMax = new Vector2(-12f, 0f);
+            var button = panel.gameObject.AddComponent<Button>();
+            button.transition = Selectable.Transition.None;
+            button.onClick.AddListener(() => remaining = Mathf.Min(remaining, FadeSeconds));
+            text = PixelUi.Label(panel.transform, "", PixelUi.BodyFont, PixelUi.Text, TextAnchor.MiddleCenter);
+            var textRect = text.rectTransform;
+            textRect.anchorMin = Vector2.zero;
+            textRect.anchorMax = Vector2.one;
+            textRect.offsetMin = new Vector2(10f, 4f);
+            textRect.offsetMax = new Vector2(-10f, -4f);
+        }
+
+        // Tags the pixel font cannot show.
+        static readonly System.Text.RegularExpressions.Regex Tags = new System.Text.RegularExpressions.Regex(@"</?(size|b|i)(=[^>]*)?>");
+
         public void Show(string message)
         {
-            text.text = message;
+            text.text = PixelUi.Available ? Tags.Replace(message, "") : message;
             remaining = ShowSeconds;
             Sfx.Play(SoundId.Hint);
         }
