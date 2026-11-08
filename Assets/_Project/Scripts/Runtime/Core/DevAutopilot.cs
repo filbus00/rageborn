@@ -385,6 +385,8 @@ namespace ARPG
             }
             if (depth == 0 && TownSheets.AnyOpen)
                 TownSheets.CloseAny();
+            if (depth == 0 && RunSummaryScreen.IsOpen)
+                RunSummaryScreen.CloseOpen();
             if (probing && probeClock >= 0f && depth > 0 && health != null && health.IsAlive)
             {
                 probeClock += Time.deltaTime;

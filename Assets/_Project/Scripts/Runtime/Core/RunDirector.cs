@@ -141,7 +141,7 @@ namespace ARPG
             // The run's time in the dungeon, for its summary.
             if (session.RunStarted && SceneManager.GetActiveScene().name == SceneTravel.DungeonScene)
                 session.Run.Seconds += Time.deltaTime;
-            if (session.PendingBoons <= 0 || BoonScreen.IsOpen || TownSheets.AnyOpen || SceneTravel.IsTravelling)
+            if (session.PendingBoons <= 0 || BoonScreen.IsOpen || TownSheets.AnyOpen || RunSummaryScreen.IsOpen || SceneTravel.IsTravelling)
                 return;
             if (SceneManager.GetActiveScene().name != SceneTravel.DungeonScene || Time.timeSinceLevelLoad < 0.6f)
                 return;

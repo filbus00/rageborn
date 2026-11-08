@@ -325,46 +325,6 @@ namespace ARPG
     }
 
     /// <summary>
-    /// The run summary (2026-10-15): when a run ends, the town opens on what it came to (<see cref="RunSummary"/>): how it
-    /// ended, the depth, time, kills, coins, items and blueprints, and the boons she had.
-    /// </summary>
-    public class RunSummaryScreen : TownSheets
-    {
-        static RunSummaryScreen current;
-        RunSummary summary;
-
-        public static void Open(RunSummary summary)
-        {
-            if (current == null)
-                current = Make<RunSummaryScreen>("Run Summary");
-            current.summary = summary;
-            current.Show();
-            Sfx.Play(summary.End == RunEnd.Died ? SoundId.Death : SoundId.LevelUp, 0.6f);
-        }
-
-        protected override void Render()
-        {
-            if (summary == null)
-                return;
-            var color = summary.End == RunEnd.Died ? "#D06050" : "#E8C66A";
-            subtitle.text = $"<color={color}><b>{summary.Title}</b></color>\n<size=28>{summary.Headline}</size>";
-            foreach (var line in summary.Lines())
-                Line(line);
-            Heading(summary.Boons.Count > 0 ? $"Boons ({summary.Boons.Count})" : "No boons taken");
-            foreach (var (name, rank) in summary.Boons)
-            {
-                TalentNode node = null;
-                foreach (var each in TalentRules.Nodes)
-                    if (each.Name == name)
-                        node = each;
-                var pips = node != null ? SheetKit.Pips(rank, node.MaxRanks) : "";
-                SheetKit.Card(content, $"<b>{name}</b>{pips}", null, false, null, 76f, 0f, false, node != null ? BoonBar.SpriteFor(node) : null);
-            }
-            Line("<size=28><color=#999999>Coins buy the quarters' upgrades; Elara's vault keeps what you put in it.</color></size>", 28, 80f);
-        }
-    }
-
-    /// <summary>
     /// Thorin's forge (2026-10-15): every blueprint he has learned, forged for coins into a Rare piece that goes into the
     /// backpack and is the kit she starts a run in after a death (<see cref="GameSession.Forge"/>).
     /// </summary>

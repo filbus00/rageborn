@@ -67,8 +67,13 @@ namespace ARPG
             var textObject = new GameObject("Loot Name", typeof(RectTransform), typeof(Text), typeof(Outline));
             textObject.transform.SetParent(LabelCanvas, false);
             text = textObject.GetComponent<Text>();
-            text.font = UiStyle.Body;
-            text.fontStyle = FontStyle.Bold;
+            // In the menus' pixel font when it is in the build (2026-11-08, the owner: "the text on dropped items is not
+            // pixelated"), each font pixel a menu pixel (LabelCanvas is scaled to them).
+            pixelFont = PixelUi.Available;
+            text.font = pixelFont ? PixelUi.BodyFont : UiStyle.Body;
+            text.fontStyle = pixelFont ? FontStyle.Normal : FontStyle.Bold;
+            if (pixelFont)
+                text.fontSize = text.font.fontSize;
             text.alignment = TextAnchor.LowerCenter;
             text.horizontalOverflow = HorizontalWrapMode.Overflow;
             text.verticalOverflow = VerticalWrapMode.Overflow;
@@ -76,7 +81,7 @@ namespace ARPG
             text.supportRichText = true;
             var outline = textObject.GetComponent<Outline>();
             outline.effectColor = new Color(0f, 0f, 0f, 0.9f);
-            outline.effectDistance = new Vector2(2f, -2f);
+            outline.effectDistance = pixelFont ? new Vector2(1f, -1f) : new Vector2(2f, -2f);
             var rect = (RectTransform)textObject.transform;
             rect.pivot = new Vector2(0.5f, 0f);
             rect.sizeDelta = new Vector2(10f, 10f);
@@ -222,8 +227,9 @@ namespace ARPG
         /// <summary>The name's size in world units, as last drawn.</summary>
         public Vector2 LabelSize => IsGold || text == null || pixelsPerUnit <= 0f
             ? Vector2.zero
-            : new Vector2(text.preferredWidth / pixelsPerUnit, text.preferredHeight / pixelsPerUnit);
+            : new Vector2(text.preferredWidth * labelScale / pixelsPerUnit, text.preferredHeight * labelScale / pixelsPerUnit);
 
+        bool pixelFont;
         // Screen pixels a world unit spans, measured each frame from the camera; the name's size follows it, so it
         // keeps its size against the world when the view changes.
         float pixelsPerUnit;
@@ -242,6 +248,13 @@ namespace ARPG
             var at = label.position;
             var screen = cam.WorldToScreenPoint(at);
             pixelsPerUnit = Mathf.Abs(cam.WorldToScreenPoint(at + Vector3.right).x - screen.x);
+            if (pixelFont)
+            {
+                // On whole menu pixels, so every letter's pixels are the same size.
+                var s = labelScale;
+                text.rectTransform.position = new Vector3(Mathf.Round(screen.x / s) * s, Mathf.Round(screen.y / s) * s, 0f);
+                return;
+            }
             var size = Mathf.Max(15, Mathf.RoundToInt(pixelsPerUnit * NameHeight));
             if (text.fontSize != size)
                 text.fontSize = size;
@@ -250,8 +263,16 @@ namespace ARPG
 
         static Transform labelCanvas;
 
+        /// <summary>Screen pixels a unit of the names' overlay: the menus' pixel size, so a pixel font's pixel is that
+        /// many screen pixels (2 on the iPhone 11); 1 with the old font.</summary>
+        static float labelScale = 1f;
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics() => labelCanvas = null;
+        static void ResetStatics()
+        {
+            labelCanvas = null;
+            labelScale = 1f;
+        }
 
         // One overlay for every drop's name, under the HUD and the menus (sorting 5), kept across scenes as the drops
         // are.
@@ -261,11 +282,16 @@ namespace ARPG
             {
                 if (labelCanvas != null)
                     return labelCanvas;
-                var go = new GameObject("Loot Names", typeof(Canvas));
+                var go = new GameObject("Loot Names", typeof(Canvas), typeof(CanvasScaler));
                 DontDestroyOnLoad(go);
                 var canvas = go.GetComponent<Canvas>();
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
                 canvas.sortingOrder = 5;
+                labelScale = PixelUi.Available ? PixelUi.Scale(Screen.width) : 1f;
+                canvas.pixelPerfect = PixelUi.Available;
+                var scaler = go.GetComponent<CanvasScaler>();
+                scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+                scaler.scaleFactor = labelScale;
                 return labelCanvas = go.transform;
             }
         }

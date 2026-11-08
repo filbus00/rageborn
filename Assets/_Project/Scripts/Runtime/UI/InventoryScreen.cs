@@ -228,10 +228,11 @@ namespace ARPG
             var header = MenuChrome.Header(content, current, health != null ? health.Fraction : 1f, subtitle, Close);
             MenuChrome.Title(content, "Inventory", HeaderHeight);
 
-            // The portal home (2026-10-15): in the dungeon, ends the run keeping what she carries, after a short channel.
+            // The portal home (2026-10-15): in the dungeon, a portal opens where she stands (5 s, 2026-11-08), and
+            // stepping into it ends the run keeping what she carries.
             if (PortalChannel.CanOpen)
             {
-                var portal = UiStyle.Button(header, PortalChannel.IsOpening ? "Opening..." : "Portal home", () =>
+                var portal = UiStyle.Button(header, PortalChannel.IsOpen ? "Portal open" : PortalChannel.IsOpening ? "Opening..." : "Portal home", () =>
                 {
                     Close();
                     PortalChannel.Begin();
