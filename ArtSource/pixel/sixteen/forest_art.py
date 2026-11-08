@@ -198,22 +198,60 @@ BUSHES = {"forest_bush_1": lambda: bush(17, 14, "green", 1), "forest_bush_2": la
 
 
 # Props -----------------------------------------------------------------------------------------------------------
-def stump(w=15, h=11, axe=False):
-    im = Img(w + (6 if axe else 0), h + (4 if axe else 0))   # room for the axe's handle either side
-    oy = 4 if axe else 0
-    cx = im.w / 2
-    im.rect(cx - 5, oy + 4, cx + 4, oy + h - 2, PAL["wood"][1])
-    im.rect(cx - 5, oy + 4, cx - 4, oy + h - 2, PAL["wood"][2])
-    im.rect(cx + 3, oy + 4, cx + 4, oy + h - 2, PAL["wood"][0])
-    im.blob(cx, oy + 4, 5.5, 2.6, [PAL["wood"][2], PAL["wood"][3], PAL["wood"][3], PAL["wood"][3]])
-    im.blob(cx, oy + 4, 3, 1.3, [PAL["wood"][2]] * 4)
-    im.set(cx - 6, oy + h - 2, PAL["wood"][1]); im.set(cx + 5, oy + h - 2, PAL["wood"][0])
+def stump(axe=False):
+    """A cut stump: bark with grooves, roots at the foot, a pale top with growth rings and a crack. With the axe its
+    blade is sunk in the top, the head standing out of the wood and the handle rising to the right."""
+    W, top = (22, 7) if axe else (17, 1)
+    im = Img(W, top + 15)
+    cx, rx, ry = (W - 1) / 2 - (1.5 if axe else 0), 6.5, 2.6
+    ty, by = top + 3, top + 9            # the centres of the cut top and of the foot
+    bark = [PAL["wood"][0], PAL["wood"][1], PAL["wood"][2]]
+    # The trunk: shaded across, grooves, flaring into its roots at a rounded foot.
+    for y in range(int(ty), im.h):
+        rr = rx + max(0.0, y - by + 1.5) * 0.8
+        for x in range(W):
+            dx = (x + 0.5 - cx) / rr
+            if abs(dx) > 1 or y > by + ry * math.sqrt(1 - dx * dx):
+                continue
+            col = bark[2] if dx < -0.55 else bark[1] if dx < 0.45 else bark[0]
+            if x % 3 == 1 and (y + x) % 5 != 0:
+                col = bark[0] if dx > -0.55 else bark[1]
+            if abs((x + 0.5 - cx) / rx) > 1:
+                col = bark[1] if dx < 0 else bark[0]
+            im.set(x, y, col)
+    # The cut top: a bark rim, pale wood, rings, the pith, a crack.
+    im.blob(cx, ty, rx + 0.3, ry + 0.3, [bark[1]] * 4)
+    im.blob(cx, ty, rx - 0.7, ry - 0.5, [PAL["wood"][3]] * 4)
+    for k in (0.55,):
+        for a in range(48):
+            t = a / 48 * math.tau
+            im.set(cx + (rx - 0.7) * k * math.cos(t), ty + (ry - 0.5) * k * math.sin(t), PAL["wood"][2])
+    im.set(cx, ty, bark[1])
+    for x, y in [(cx - 4, ty - 1), (cx - 3, ty - 1), (cx - 2, ty - 2)]:
+        im.set(x, y, "e8c48a")
+    im.line(cx + 1, ty, cx + 4, ty + 1, bark[1])
     if axe:
-        # The blade sunk in the cut top, the handle rising from it.
-        im.rect(cx - 1, oy + 2, cx + 1, oy + 4, PAL["stone"][3])
-        im.set(cx - 1, oy + 4, PAL["stone"][2]); im.set(cx, oy + 4, PAL["stone"][2])
-        im.line(cx + 1, oy + 2, cx + 5, oy - 2, PAL["wood"][2])
-        im.line(cx + 2, oy + 2, cx + 6, oy - 2, PAL["wood"][1])
+        # The head: perpendicular to the handle, its poll up and left, its blade down and right into the wood
+        # (a dark slit where it goes in); the handle from its eye up to the right, a knob at the end.
+        hx, hy = cx - 1, ty - 1
+        steel = PAL["stone"]
+        head = [".ab.....",
+                "abcb....",
+                ".bccd...",
+                "..bcdd..",
+                "...bcde.",
+                "....KKKK"]
+        tone = {"a": steel[0], "b": steel[1], "c": steel[2], "d": steel[3], "e": "e8e8f0", "K": PAL["K"]}
+        for r, row in enumerate(head):
+            for c, ch in enumerate(row):
+                if ch != ".":
+                    im.set(hx - 3 + c, hy - 3 + r, tone[ch])
+        handle = [PAL["trunk"][0], PAL["trunk"][2], "a87848"]
+        for k in range(7):
+            x, y = hx + 1 + k, hy - 2 - k
+            im.set(x, y, handle[2] if k % 4 != 3 else handle[1])
+            im.set(x + 1, y, handle[1]); im.set(x + 1, y + 1, handle[0])
+        im.set(hx + 8, hy - 9, handle[0]); im.set(hx + 9, hy - 9, handle[0]); im.set(hx + 9, hy - 8, handle[0])
     return im.outline()
 
 
@@ -373,7 +411,7 @@ def tent():
     return im.outline()
 
 
-PROPS = {"prop_ferns": ferns, "prop_mushrooms": mushrooms, "prop_stump": stump, "prop_fallen_log": log,
+PROPS = {"prop_ferns": ferns, "prop_mushrooms": mushrooms, "prop_stump": lambda: stump(), "prop_fallen_log": log,
          "prop_standing_stone": standing_stone, "prop_axe_stump": lambda: stump(axe=True), "prop_bone_pile": bone_pile,
          "prop_web_sac": web_sac, "prop_campfire": campfire, "prop_sack": sack, "prop_crate": crate, "prop_barrel": barrel,
          "prop_weapon_rack": weapon_rack, "prop_cage": cage, "prop_carcass": carcass, "prop_bandit_tent": tent}
