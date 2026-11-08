@@ -32,8 +32,9 @@ namespace ARPG
         /// <summary>The portrait bake's scale over the game's sheets (WildArrowBakeSetup.BakePortrait).</summary>
         const int SharpTimes = 6;
 
-        /// <summary>How far up the canvas the drawn Wild Arrow's feet stand, in art pixels.</summary>
-        const float DrawnFeet = 26f;
+        /// <summary>How far up the canvas the drawn Wild Arrow's feet stand, in art pixels: her head and chest in the
+        /// round frame (20 since her frames from the owner's sheets, 2026-11-08; her head is 36 above her feet).</summary>
+        const float DrawnFeet = 20f;
         const string SharpCharacter = "wild_arrow_portrait";
 
         readonly int canvasSize;
@@ -141,11 +142,13 @@ namespace ARPG
                 var sprite = row[index % row.Length];
                 if (sprite == null)
                     continue;
-                // At true size, the sprite's pivot (its feet) on the canvas's feet point; pixel matrix y runs down.
+                // At true size, the sprite's pivot (its feet) on the canvas's feet point; pixel matrix y runs down. A tight
+                // sprite's drawn area starts inside its cell (textureRectOffset): without it she was drawn to the left
+                // (2026-11-08).
                 var r = sprite.textureRect;
                 var pivot = sprite.pivot;
-                var left = Mathf.Round(feet.x - pivot.x);
-                var bottom = Mathf.Round(feet.y - pivot.y);
+                var left = Mathf.Round(feet.x - pivot.x + sprite.textureRectOffset.x);
+                var bottom = Mathf.Round(feet.y - pivot.y + sprite.textureRectOffset.y);
                 var texture = sprite.texture;
                 var source = new Rect(r.x / texture.width, r.y / texture.height, r.width / texture.width, r.height / texture.height);
                 // White: the default colour is half grey, which the shader multiplies in (half as bright, half see-through).
