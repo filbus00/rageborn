@@ -417,8 +417,10 @@ def death_frame(view, k):
 def walking(view, stride=1, bounce=1, **kw):
     """Contact (legs apart, low), passing (a leg lifted, up), the other contact, the other passing. The run strides
     further, lifts its feet higher and bounces higher."""
-    return [pose(view, stride=stride, **kw), pose(view, lift=0, dy=-bounce, raise_=1 + bounce, **kw),
-            pose(view, stride=-stride, **kw), pose(view, lift=1, dy=-bounce, raise_=1 + bounce, **kw)]
+    # Running in a side view she leans into it: her body a pixel ahead of her legs.
+    lean = 1 if stride > 1 and view in ("e", "se", "ne") else 0
+    return [pose(view, stride=stride, dx=lean, **kw), pose(view, lift=0, dy=-bounce, raise_=1 + bounce, dx=lean, **kw),
+            pose(view, stride=-stride, dx=lean, **kw), pose(view, lift=1, dy=-bounce, raise_=1 + bounce, dx=lean, **kw)]
 
 
 def shot(view, legs_moving=False, hold=1):
@@ -469,17 +471,88 @@ LOOKS = {
 }
 
 
-def to_rgba(cell, mirror=False, look=None):
+# The shading pass (2026-11-08, the owner: "refine the animations and render", "same size, richer shading"): light from
+# the top left on the screen (after mirroring), so each material's pixels on its lit edge are lighter and on its far
+# edge darker, and the outline on the lit side takes a dark tint of what it wraps. Only the body's materials.
+SHADED = set("pPhHjsSlmtTq")
+LIGHT_TINT, SHADE_TINT = (1.0, 0.95, 0.86), (0.10, 0.06, 0.16)
+SHADING = True
+
+
+def rgb(h):
+    return [int(h[i:i + 2], 16) / 255 for i in (0, 2, 4)]
+
+
+def mix(c, t, k):
+    return [c[i] + (t[i] - c[i]) * k for i in range(3)]
+
+
+# Letters of one material, shaded as one round form.
+GROUPS = {c: k for k, letters in enumerate(("pP", "hHj", "sS", "lm", "tT", "q")) for c in letters}
+SHADING = "round"
+
+
+def to_rgba(cell, mirror=False, look=None, shading=None):
+    """The cell in colour. shading: None (SHADING), False (flat), "edge" (lit and dark material edges) or "round"
+    (each row of a material shaded across its width as a rounded form: light on its left third, dark on its right,
+    a light top where a wide form meets something above it, the lit side's outline tinted)."""
+    shading = SHADING if shading is None else shading
     rows = len(cell)
     cols = len(cell[0])
+    g = [[(cell[y][cols - 1 - x] if mirror else cell[y][x]) for x in range(cols)] for y in range(rows)]
     out = np.zeros((rows, cols, 4), np.float32)
     colours = dict(PALETTE, **LOOKS.get(look, {}))
+
+    def at(x, y):
+        return g[y][x] if 0 <= x < cols and 0 <= y < rows else "."
+
+    def group(x, y):
+        return GROUPS.get(at(x, y), -1)
+
+    # Each pixel's place across its row's run of the same material (0 its left end, 1 its right) and the run's width.
+    place = [[(0.5, 1)] * cols for _ in range(rows)]
+    if shading == "round":
+        for y in range(rows):
+            x = 0
+            while x < cols:
+                k = group(x, y)
+                if k < 0:
+                    x += 1
+                    continue
+                end = x
+                while end + 1 < cols and group(end + 1, y) == k:
+                    end += 1
+                n = end - x + 1
+                for i in range(x, end + 1):
+                    place[y][i] = ((i - x) / max(1, n - 1), n)
+                x = end + 1
+
     for y in range(rows):
         for x in range(cols):
-            ch = cell[y][cols - 1 - x] if mirror else cell[y][x]
-            if ch != ".":
-                h = colours[ch]
-                out[y, x] = [int(h[i:i + 2], 16) / 255 for i in (0, 2, 4)] + [1]
+            ch = g[y][x]
+            if ch == ".":
+                continue
+            c = rgb(colours[ch])
+            if shading == "edge" and ch in SHADED:
+                lit = at(x - 1, y) != ch and at(x, y - 1) != ch
+                dark = at(x + 1, y) != ch and at(x, y + 1) != ch
+                if lit and not dark:
+                    c = mix(c, LIGHT_TINT, 0.22)
+                elif dark and not lit:
+                    c = mix(c, SHADE_TINT, 0.24)
+            elif shading == "round" and ch in SHADED:
+                t, n = place[y][x]
+                if n >= 3 and t <= 0.25:
+                    c = mix(c, LIGHT_TINT, 0.2)
+                elif n >= 3 and t >= 0.75:
+                    c = mix(c, SHADE_TINT, 0.26)
+                elif n >= 5 and group(x, y - 1) != group(x, y) and t < 0.6:
+                    c = mix(c, LIGHT_TINT, 0.12)
+            elif shading and ch == "K":
+                inner = at(x + 1, y) if at(x + 1, y) in SHADED else at(x, y + 1) if at(x, y + 1) in SHADED else None
+                if inner is not None and at(x - 1, y) in ".K" and at(x, y - 1) in ".K":
+                    c = mix(rgb(colours[inner]), SHADE_TINT, 0.62)
+            out[y, x] = c + [1]
     return out
 
 
@@ -514,6 +587,10 @@ for name in SHOWN:
         strips.append(np.concatenate([strip, np.tile(BG, (CH, width - strip.shape[1], 1))], 1))
     strips.append(np.tile(np.array([0.08, 0.1, 0.06, 1], np.float32), (1, 8 * CW, 1)))
 save(np.repeat(np.repeat(np.concatenate(strips, 0), 4, 0), 4, 1), os.path.join(P, "ArtSource", "pixel", "previews", "wild_arrow_16_moves.png"))
+before = [on_bg(to_rgba(pose(v), shading=False)) for v in ("s", "se", "e", "ne", "n")] + [on_bg(to_rgba(pose("e", aim=1, draw=1.0), shading=False)), on_bg(to_rgba(pose("s", aim=1, draw=1.0), shading=False))]
+save(np.repeat(np.repeat(np.concatenate(before, 1), 6, 0), 6, 1), os.path.join(P, "ArtSource", "pixel", "previews", "wild_arrow_16_views_flat.png"))
+edge = [on_bg(to_rgba(pose(v), shading="edge")) for v in ("s", "se", "e", "ne", "n")] + [on_bg(to_rgba(pose("e", aim=1, draw=1.0), shading="edge")), on_bg(to_rgba(pose("s", aim=1, draw=1.0), shading="edge"))]
+save(np.repeat(np.repeat(np.concatenate(edge, 1), 6, 0), 6, 1), os.path.join(P, "ArtSource", "pixel", "previews", "wild_arrow_16_views_edge.png"))
 big = [on_bg(to_rgba(pose(v))) for v in ("s", "se", "e", "ne", "n")] + [on_bg(to_rgba(pose("e", aim=1, draw=1.0))), on_bg(to_rgba(pose("s", aim=1, draw=1.0)))]
 save(np.repeat(np.repeat(np.concatenate(big, 1), 6, 0), 6, 1), os.path.join(P, "ArtSource", "pixel", "previews", "wild_arrow_16_views.png"))
 print("wrote")
