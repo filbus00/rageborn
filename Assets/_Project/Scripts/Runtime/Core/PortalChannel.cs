@@ -11,7 +11,8 @@ namespace ARPG
     /// she opened it: it takes <see cref="Seconds"/> to open (a ring of runes drawn on the ground, a slit of light, a swirl
     /// widening; Resources/Art/World/portal_home, ArtSource/pixel/sixteen/portal_16.py), she moves and fights meanwhile,
     /// and once it is open, stepping into it ends the run with everything she carries kept
-    /// (<see cref="RunDirector.TakePortal"/>). A hit no longer breaks it. It stays open until she steps in or leaves.
+    /// (<see cref="RunDirector.TakePortal"/>). A hit no longer breaks it. It stays open until she steps in or leaves. No banner
+    /// tells of it (2026-11-08, the owner: "remove the info text when portaling back to town"): the portal shows itself.
     /// </summary>
     public class PortalChannel : MonoBehaviour
     {
@@ -78,7 +79,6 @@ namespace ARPG
             current.picture.spriteSortPoint = SpriteSortPoint.Pivot;
             current.picture.sprite = Frame(0);
             Sfx.Play(SoundId.Hint, 0.8f);
-            Banner("A portal home is opening...");
         }
 
         // The sheet cut into frames once.
@@ -117,7 +117,6 @@ namespace ARPG
                 open = true;
                 age = 0f;
                 Sfx.Play(SoundId.LevelUp, 0.6f);
-                Banner("The portal is open. Step into it to go home.");
             }
             picture.sprite = Frame(OpenFrames + Mathf.FloorToInt(age / LoopSeconds * LoopFrames) % LoopFrames);
             if ((IsoMath.WorldToGround(player.position) - ground).sqrMagnitude <= StepRadius * StepRadius && !SceneTravel.IsTravelling)
@@ -126,8 +125,6 @@ namespace ARPG
                 RunDirector.TakePortal();
             }
         }
-
-        static void Banner(string text) => (HintBanner.Current != null ? HintBanner.Current : HintBanner.Create()).Show(text);
 
         void OnDestroy()
         {
