@@ -196,6 +196,9 @@ def bow_rest(cell, view, dx=0, dy=0):
 def bow_aim(cell, view, draw=0.0, loosed=False, dx=0, dy=0, flex=False):
     """The bow raised before her, its string pulled back by draw (0 to 1), an arrow on it until loosed, and her arm from
     the shoulder to the grip."""
+    if view == "s":
+        bow_front(cell, draw, loosed, flex, dx, dy)
+        return
     if view in LEVEL:
         bow_level(cell, view, draw, loosed, dx, dy, flex)
         return
@@ -234,6 +237,64 @@ def bow_aim(cell, view, draw=0.0, loosed=False, dx=0, dy=0, flex=False):
             put(cell, x, mid, "f")
 
 
+def arms_raised(rows, cols=(3, 12), from_row=10):
+    """A view's rows with the arms hanging at its sides taken away (they rise to the bow), and any outline left
+    touching nothing removed."""
+    g = [list(r) for r in rows]
+    for y in range(from_row, len(g)):
+        for x in cols:
+            if g[y][x] in "sS":
+                g[y][x] = "."
+    for y in range(from_row, len(g)):
+        for x in range(len(g[y])):
+            if g[y][x] == "K" and not any(0 <= x + ox < len(g[y]) and 0 <= y + oy < len(g) and g[y + oy][x + ox] not in ".K"
+                                          for ox, oy in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+                g[y][x] = "."
+    return ["".join(r) for r in g]
+
+
+AIM_FRONT = arms_raised(REST["s"])
+
+
+def bow_front(cell, draw, loosed, flex, dx=0, dy=0):
+    """Shooting toward the camera (2026-11-08, the owner: "when facing down and attacking, she does not seem to be
+    holding the bow"): the bow held level before her chest, a little narrower than her, her left fist in its middle;
+    her right hand draws the string up toward her chest; the arrow points down at the viewer from her hand through the
+    fist; both arms reach from her shoulders to her hands."""
+    def line(x0, y0, x1, y1):
+        n = max(abs(x1 - x0), abs(y1 - y0), 1)
+        return [(round(x0 + (x1 - x0) * k / n), round(y0 + (y1 - y0) * k / n)) for k in range(n + 1)]
+    row, a, b = Y0 + 11 + dy, X0 + 2 + dx, X0 + 13 + dx
+    mid = X0 + 8 + dx
+    # Just loosed (flex) the limbs spring forward: the tips drop level with the middle.
+    tips = row if flex else row - 1
+    bow = [(a, tips, "i"), (b, tips, "i")] + [(x, row if a + 1 < x < b - 1 else tips, "b") for x in range(a + 1, b)]
+    # The draw hand: on the string at the bow undrawn, up at her chest drawn (further at the anchor).
+    hx, hy = mid - 1, round(row - 1 - draw * 2.3)
+    fist = [(mid, row, "s"), (mid + 1, row, "S"), (mid, row + 1, "S")]
+    arm_bow = [(x, y, "s") for x, y in line(X0 + 12 + dx, Y0 + 10 + dy, mid + 1, row)]
+    arm_draw = [(x, y, "s") for x, y in line(X0 + 3 + dx, Y0 + 10 + dy, hx, hy)]
+    for px, py, ch in arm_draw + arm_bow + bow:
+        put(cell, px, py, ch)
+    outline(cell, arm_draw + arm_bow + bow)
+    if not loosed:
+        # The strings from the tips to her hand, the arrow from her hand down through the fist.
+        for x, y in line(a + 1, tips, hx, hy) + line(hx, hy, b - 1, tips):
+            if cell[y][x] in ".K":
+                put(cell, x, y, "n")
+        for y in range(hy + 1, row + 3):
+            put(cell, hx, y, "a")
+        put(cell, hx, row + 3, "n")
+        put(cell, hx, hy - 1, "f")
+    else:
+        for x in range(a + 1, b):
+            if cell[tips - 1][x] in ".K":
+                put(cell, x, tips - 1, "n")
+    # Her fists over the bow and the arrow: the bow hand in the middle, the draw hand on the string.
+    for px, py, ch in fist + [(hx, hy, "s"), (hx - 1, hy, "S")]:
+        put(cell, px, py, ch)
+
+
 # Shooting toward the camera or away from it, the bow is held level across her (its row, from and to columns, and the
 # way the arrow points: 1 down the screen, -1 up it).
 LEVEL = {"s": (9, 0, 15, 1), "n": (9, -1, 16, -1)}
@@ -268,6 +329,11 @@ def bow_level(cell, view, draw, loosed, dx=0, dy=0, flex=False):
 
 def streak(cell, view, dx=0, dy=0):
     """The loosed arrow flying off: a white line ahead of the bow."""
+    if view == "s":
+        x, y = X0 + 7 + dx, Y0 + 14 + dy
+        for k in range(5):
+            put(cell, x, y + k, "n", over=False)
+        return
     if view in LEVEL:
         row, a, b, way = LEVEL[view]
         mid = X0 + (a + b) // 2 + dx
@@ -305,7 +371,7 @@ def pose(view, aim=None, draw=0.0, loosed=False, flew=False, dx=0, dy=0, lift=No
     elif aim is None and behind and bow:
         bow_rest(cell, view, dx + sway, dy)
     legs(cell, view, dy, lift, tucked, kneel, stride, raise_)
-    body(cell, view, dx, dy, eyes)
+    body(cell, view, dx, dy, eyes, rows=AIM_FRONT if aim is not None and view == "s" else None)
     if aim is not None and not behind:
         bow_aim(cell, view, draw, loosed, dx, dy, flex)
     elif aim is None and not behind and bow:
