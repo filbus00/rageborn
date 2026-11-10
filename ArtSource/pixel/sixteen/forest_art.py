@@ -338,93 +338,94 @@ def shadow(im, x0, x1, y):
             im.set(x, y, "1c2a18")
 
 
+# The bones are drawn at 70 percent of their first size (2026-11-10, the owner: "shrink the size of the bone props by
+# 30%"): redrawn smaller rather than scaled, so every pixel stays one pixel.
+
 def deer_skull():
     """A deer's skull lying in the grass (2026-11-10, the owner: the old one "looks bad"): a long pale skull facing left,
     a dark eye socket and nose, and two antlers spreading up and back behind it, the far one darker; a shadow under it."""
-    im = Img(28, 22)
+    im = Img(20, 16)
     bone = PAL["bone"]
     # The cranium at the back, then the face tapering to the snout, each row lit from above.
-    im.blob(17.5, 15, 4.0, 3.4, bone)
-    for x in range(3, 17):
-        f = (x - 3) / 13
-        top = 14.0 - f * 2.0
-        bottom = 16.8 + f * 1.0
+    im.blob(12.5, 10.6, 2.8, 2.4, bone)
+    for x in range(2, 12):
+        f = (x - 2) / 9
+        top = 9.8 - f * 1.4
+        bottom = 11.8 + f * 0.7
         for y in range(round(top), round(bottom) + 1):
-            k = 2 if y <= top + 1 else 1 if y < bottom - 0.5 else 0
+            k = 2 if y <= top + 0.6 else 1 if y < bottom - 0.5 else 0
             im.set(x, y, bone[k])
-    # The eye socket, the nose and the line of the jaw with its teeth.
-    im.rect(14, 13, 15, 14, PAL["K"]); im.set(15, 13, "3a3228")
-    im.set(4, 15, PAL["K"]); im.set(5, 15, "3a3228")
-    im.line(5, 17, 13, 18, bone[0])
-    for x in (7, 9, 11):
-        im.set(x, 17, bone[2])
+    # The eye socket, the nose and the line of the jaw.
+    im.set(8, 10, PAL["K"]); im.set(9, 10, PAL["K"]); im.set(9, 11, "3a3228")
+    im.set(3, 11, PAL["K"])
+    im.line(4, 12, 9, 12, bone[0])
+    im.set(6, 12, bone[2])
     outline_outside(im)
-    shadow(im, 4, 22, 19)
+    shadow(im, 3, 15, 14)
     # Antlers over it, unoutlined so they stay clean lines against the grass, each with a shade pixel under it: the far
     # one first and darker, a beam sweeping up and back, a brow tine forward, a tine up.
     def antler(dx, dy, main, shade):
-        segments = [((16, 12), (17, 9)), ((17, 9), (20, 6)), ((20, 6), (24, 3)), ((17, 9), (14, 7)), ((20, 6), (20, 2))]
+        segments = [((11, 8), (12, 6)), ((12, 6), (14, 4)), ((14, 4), (17, 2)), ((12, 6), (10, 5)), ((14, 4), (14, 1))]
         for (x0, y0), (x1, y1) in segments:
             im.line(x0 + dx, y0 + dy + 1, x1 + dx, y1 + dy + 1, shade)
         for (x0, y0), (x1, y1) in segments:
             im.line(x0 + dx, y0 + dy, x1 + dx, y1 + dy, main)
-    antler(5, 1, bone[0], "5a5040")
+    antler(2, 1, bone[0], "5a5040")
     antler(0, 0, bone[2], bone[0])
     return im
 
 
 def ribcage():
-    """A large animal's ribcage lying in the grass (2026-11-10): the spine along the top, five pairs of ribs arching
-    down and curling in, wide open between them so the grass shows, the far ribs darker; a shadow under it."""
-    im = Img(32, 20)
+    """A large animal's ribcage lying in the grass (2026-11-10): the spine along the top, four ribs arching down and
+    curling in, open between them so the grass shows, the far ribs darker; a shadow under it."""
+    im = Img(23, 14)
     bone = PAL["bone"]
     def rib(x0, col, depth, bulge):
         prev = None
-        for t in range(17):
-            f = t / 16
-            x = x0 - bulge * math.sin(math.pi * f) + 1.2 * f * f
-            y = 6 + depth * f
+        for t in range(13):
+            f = t / 12
+            x = x0 - bulge * math.sin(math.pi * f) + 0.9 * f * f
+            y = 4.4 + depth * f
             if prev:
                 im.line(prev[0], prev[1], x, y, col)
             prev = (x, y)
     # The spine: a row of knobbed vertebrae thinning to the tail, a short spine on every other one.
-    for k in range(14):
-        x = 3 + k * 2.0
-        r = 1.5 if k < 11 else 1.0
-        im.blob(x, 4.6, r, 1.2, bone)
-        if k % 2 == 1 and k < 11:
-            im.set(round(x), 2, bone[1]); im.set(round(x), 3, bone[1])
+    for k in range(10):
+        x = 2 + k * 2.0
+        im.blob(x, 3.4, 1.2 if k < 8 else 0.8, 1.0, bone)
+        if k % 2 == 1 and k < 8:
+            im.set(round(x), 1, bone[1])
     outline_outside(im)
-    shadow(im, 3, 29, 18)
+    shadow(im, 2, 20, 13)
     # The ribs under it, unoutlined so the grass shows clean between them: the far ribs dark, the near ones each with a
     # shade line on its right.
-    for k in range(5):
-        x0 = 9 + k * 4.8
-        depth = 11.5 - abs(k - 1.5) * 0.9
-        rib(x0 + 2.2, "6a5e4a", depth - 1.2, 3.0)
-    for k in range(5):
-        x0 = 9 + k * 4.8
-        depth = 11.5 - abs(k - 1.5) * 0.9
-        rib(x0 + 1, bone[0], depth, 3.6)
-        rib(x0, bone[2] if k < 3 else bone[1], depth, 3.6)
+    for k in range(4):
+        x0 = 6 + k * 3.8
+        depth = 8.0 - abs(k - 1.5) * 0.6
+        rib(x0 + 1.6, "6a5e4a", depth - 0.8, 2.1)
+    for k in range(4):
+        x0 = 6 + k * 3.8
+        depth = 8.0 - abs(k - 1.5) * 0.6
+        rib(x0 + 1, bone[0], depth, 2.6)
+        rib(x0, bone[2] if k < 2 else bone[1], depth, 2.6)
     return im
 
 
 def long_bone(mirror):
     """A long leg bone lying in the grass (2026-11-10): a pale shaft with knobbed ends, lit from above, shaded beneath,
     lying across the cell one way or the other (mirror), a soft shadow under it."""
-    im = Img(22, 12)
+    im = Img(16, 9)
     bone = PAL["bone"]
-    x0, y0, x1, y1 = 4, 8, 17, 4
+    x0, y0, x1, y1 = 3, 6, 12, 3
     # The shaft: a lit top line over a shaded one.
     im.line(x0, y0 + 1, x1, y1 + 1, bone[0])
     im.line(x0, y0, x1, y1, bone[2])
     # The ends: two knobs each, the far end a little darker.
     for (x, y), ramp in (((x0, y0), bone), ((x1, y1), [bone[0], bone[1], bone[1], bone[2]])):
-        im.blob(x - 0.6, y + 0.2, 1.6, 1.3, ramp)
-        im.blob(x + 0.6, y + 1.2, 1.4, 1.2, ramp)
+        im.blob(x - 0.4, y + 0.2, 1.2, 1.0, ramp)
+        im.blob(x + 0.5, y + 1.0, 1.0, 0.9, ramp)
     outline_outside(im)
-    shadow(im, 3, 18, 10)
+    shadow(im, 2, 13, 8)
     if mirror:
         im.c = [row[::-1] for row in im.c]
     return im
@@ -434,26 +435,26 @@ def pelvis():
     """An animal's pelvis lying in the grass (2026-11-10): two wings of bone flaring up and out from a short spine in
     the middle, below them two small rings round open holes meeting at the front, lit from the top left; the holes
     open so the grass shows through, a soft shadow under it."""
-    im = Img(24, 16)
+    im = Img(17, 12)
     bone = PAL["bone"]
     far = [bone[0], bone[1], bone[1], bone[2]]
     # The wings: broad fans tilted up and out, the right (far) one darker.
-    for k in range(5):
-        im.blob(9 - k * 1.3, 7 - k * 0.7, 2.6, 2.0, bone)
-        im.blob(15 + k * 1.3, 7 - k * 0.7, 2.6, 2.0, far)
-    # The spine down the middle, narrowing toward the front.
-    im.rect(11, 2, 13, 8, bone[2]); im.line(12, 2, 12, 8, bone[1]); im.set(12, 1, bone[1])
+    for k in range(4):
+        im.blob(6.5 - k * 0.9, 5.2 - k * 0.5, 1.9, 1.5, bone)
+        im.blob(10.5 + k * 0.9, 5.2 - k * 0.5, 1.9, 1.5, far)
+    # The spine down the middle.
+    im.rect(8, 1, 8, 6, bone[2]); im.set(8, 0, bone[1])
     # The rings below, round their holes, meeting at the front.
-    im.blob(9, 11, 2.8, 2.4, bone)
-    im.blob(15, 11, 2.8, 2.4, far)
-    im.rect(11, 12, 13, 13, bone[1])
-    holes = ((9, 11.2), (15, 11.2))
+    im.blob(6.3, 8.2, 2.0, 1.8, bone)
+    im.blob(10.7, 8.2, 2.0, 1.8, far)
+    im.set(8, 9, bone[1])
+    holes = ((6.3, 8.3), (10.7, 8.3))
     for y in range(im.h):
         for x in range(im.w):
-            if any(((x + 0.5 - cx) / 1.3) ** 2 + ((y + 0.5 - cy) / 1.0) ** 2 <= 1.0 for cx, cy in holes):
+            if any(((x + 0.5 - cx) / 0.9) ** 2 + ((y + 0.5 - cy) / 0.7) ** 2 <= 1.0 for cx, cy in holes):
                 im.c[y][x] = None
     outline_outside(im)
-    shadow(im, 4, 20, 14)
+    shadow(im, 3, 14, 11)
     return im
 
 

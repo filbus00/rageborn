@@ -2056,3 +2056,7 @@ The owner chose to finish the pixel-art pass on attacks. Every ground mark an en
 - lanes (`GroundMarker.Line`: the turned, stretched lane sprite hidden, a picture of the lane rasterised on the grid beside it, its fill drawn in 8 steps, `PixelMarks.Lane`; elite Lightning Lances, Arcane Beams, Fire Chains, Lines and Spew specials, boss charges);
 - the ring flying out where an attack lands (`Ring`, fading in three steps) and the old crypt boss's burning arena edge (`Band`).
 The Bandit King's leap now shows: he crouches a fifth of the fill, then flies up and over in an arc (`EnemyController.Aloft`, `LeapHeight` 1.6) onto the circle, a ring flying out as he lands (`EnemyHazards.LandingRing`); his whirl shows its reach as a circle following him with a pixel blade sweeping round it (`PixelMarks.Sweep`, 16 frames, 2.5 turns a second). Cut short, he is put back on the ground and the sweep hidden. Checked in play: test hazards beside her (a fire and a grey pool filling, a lightning lane) and the Bandit King at a third of his life (leap and whirl).
+
+### 2026-11-10: the bones 30 percent smaller
+
+The owner: "shrink the size of the bone props by 30%, redraw them if needed". All five bone props (`forest_art.py` `deer_skull`, `ribcage`, `long_bone`, `pelvis`) redrawn at 70 percent of their size (canvases and shapes scaled, details kept: the ribcage four ribs instead of five, the skull's eye and nose moved into the face so they still read), not scaled, so every pixel stays one pixel. Foot points a quarter unit up as before.
