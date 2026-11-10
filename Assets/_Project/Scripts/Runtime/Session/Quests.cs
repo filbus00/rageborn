@@ -680,10 +680,12 @@ namespace ARPG
         /// <summary>The step to show on the tracker line: the main quest's, else the first side quest's.</summary>
         public (QuestDefinition quest, QuestStep step) Tracked()
         {
-            foreach (var main in new[] { true, false })
-                foreach (var quest in QuestRules.All)
-                    if (quest.Main == main && IsActive(quest.Id))
-                        return (quest, CurrentStep(quest.Id));
+            // Indexed, with no array of passes: the tracker asks every frame (2026-11-10).
+            var all = QuestRules.All;
+            for (var pass = 0; pass < 2; pass++)
+                for (var k = 0; k < all.Count; k++)
+                    if (all[k].Main == (pass == 0) && IsActive(all[k].Id))
+                        return (all[k], CurrentStep(all[k].Id));
             return (null, null);
         }
 

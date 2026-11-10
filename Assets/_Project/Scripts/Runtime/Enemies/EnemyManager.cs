@@ -146,6 +146,10 @@ namespace ARPG
                     Nav.SetLow(cell, true);
                 foreach (var cell in level.Layout.Chasm)
                     Nav.SetLow(cell, true);
+                // Big props are walked around but shot over (2026-11-10).
+                foreach (var pair in level.Layout.Props)
+                    if (DungeonDressing.Blocks(pair.Value))
+                        Nav.SetLow(pair.Key, true);
                 // Raised and sunken floors, and a pit's steps, are drawn on their own tilemaps, not the ground the grid is
                 // baked from (2026-10-20).
                 foreach (var cell in level.Layout.Raised)
@@ -156,6 +160,15 @@ namespace ARPG
                         Nav.SetWalkable(cell, true);
                 foreach (var cell in level.Layout.TerraceStairs.Keys)
                     Nav.SetWalkable(cell, true);
+            }
+            // The pool holds the level's whole roster and a quarter more for splits, summons and adds (2026-11-10: the
+            // scene's 200 was short of a forest level's 230 or so, and each one over was made during the load).
+            if (level != null && level.Layout != null)
+            {
+                var planned = 0;
+                foreach (var pack in level.Layout.Packs)
+                    planned += pack.Count;
+                poolSize = Mathf.Max(poolSize, planned + planned / 4);
             }
             flow = new FlowField(Nav);
             Hash = CreateHash(Nav);

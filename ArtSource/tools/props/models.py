@@ -1917,7 +1917,7 @@ def cold_camp():
 
 
 ALL = {
-    "ritual_circle": ("world", ritual_circle, WORLD),
+    # "ritual_circle" removed 2026-11-10 (the owner: "Remove the pentagram prop").
     "prop_barrel": ("dungeon", barrel, PROP),
     "prop_crate": ("dungeon", crate, PROP),
     "prop_urn": ("dungeon", urn, PROP),

@@ -135,15 +135,33 @@ namespace ARPG
             SceneManager.LoadScene(SceneTravel.DungeonScene);
         }
 
+        // Whether the dungeon is the active scene, its name read once a scene (a scene's name is a new string on every
+        // read, 2026-11-10).
+        Scene seenScene;
+        bool sceneSeen, sceneIsDungeon;
+
+        bool InDungeon()
+        {
+            var scene = SceneManager.GetActiveScene();
+            if (!sceneSeen || scene != seenScene)
+            {
+                seenScene = scene;
+                sceneSeen = true;
+                sceneIsDungeon = scene.name == SceneTravel.DungeonScene;
+            }
+            return sceneIsDungeon;
+        }
+
         void Update()
         {
             var session = GameSession.Current;
             // The run's time in the dungeon, for its summary.
-            if (session.RunStarted && SceneManager.GetActiveScene().name == SceneTravel.DungeonScene)
+            var inDungeon = InDungeon();
+            if (session.RunStarted && inDungeon)
                 session.Run.Seconds += Time.deltaTime;
             if (session.PendingBoons <= 0 || BoonScreen.IsOpen || TownSheets.AnyOpen || RunSummaryScreen.IsOpen || SceneTravel.IsTravelling)
                 return;
-            if (SceneManager.GetActiveScene().name != SceneTravel.DungeonScene || Time.timeSinceLevelLoad < 0.6f)
+            if (!inDungeon || Time.timeSinceLevelLoad < 0.6f)
                 return;
             var bag = InventoryScreen.Current;
             if (bag != null && bag.IsOpen)

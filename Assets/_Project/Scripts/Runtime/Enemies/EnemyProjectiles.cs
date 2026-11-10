@@ -154,6 +154,12 @@ namespace ARPG
             });
         }
 
+        // The world the bounce test asks (a method, not a lambda over Tick's argument: that closure was made on every
+        // tick, 2026-11-10).
+        EnemyManager bounceWorld;
+
+        bool OpenToShots(Vector2Int cell) => bounceWorld != null && bounceWorld.Nav.IsOpenToShots(cell);
+
         public void Tick(float deltaTime, EnemyManager world)
         {
             for (var i = flying.Count - 1; i >= 0; i--)
@@ -166,7 +172,8 @@ namespace ARPG
                 if (outcome == EnemyProjectileFlight.Outcome.Blocked && shot.Bounces > 0)
                 {
                     shot.Bounces--;
-                    walkable ??= c => world.Nav.IsOpenToShots(c);
+                    bounceWorld = world;
+                    walkable ??= OpenToShots;
                     shot.Velocity = ProjectileKinds.Bounce(shot.Position, shot.Velocity, walkable);
                     outcome = EnemyProjectileFlight.Outcome.Flying;
                 }

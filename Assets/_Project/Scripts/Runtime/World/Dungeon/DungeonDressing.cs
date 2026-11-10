@@ -61,6 +61,15 @@ namespace ARPG
             PropKind.Barrel, PropKind.WeaponRack, PropKind.Cage, PropKind.Carcass,
         };
 
+        /// <summary>
+        /// Whether a prop is big enough to walk around (2026-11-10, the owner: "tents, logs, stumps, cages have hitcolision
+        /// that enemies and the character needs to walk around"): the level puts a blocker under it and the nav grid marks
+        /// it low, so she and the enemies go round it while sight and shots pass over it, as over a rim.
+        /// </summary>
+        public static bool Blocks(PropKind kind) =>
+            kind == PropKind.BanditTent || kind == PropKind.FallenLog || kind == PropKind.Stump || kind == PropKind.AxeStump ||
+            kind == PropKind.Cage || kind == PropKind.StandingStone || kind == PropKind.Campfire || kind == PropKind.WeaponRack;
+
         /// <summary>Whether a prop may stand on this level: in the forest only those drawn for it.</summary>
         public static bool Allowed(DungeonLayout layout, PropKind kind) =>
             !(layout.Theme == DungeonTheme.Cave && DungeonRules.Forest) || ForestDrawn.Contains(kind);
@@ -161,8 +170,6 @@ namespace ARPG
                         PlaceProps(layout, floor, spots, allDoors, random, layout.Depth);
                     PlaceDecals(layout, floor, room.Style, random);
                 }
-                if ((room.Kind == RoomKind.Combat || room.Kind == RoomKind.Elite) && random.Next(RitualOneIn) == 0)
-                    PlaceRitual(layout, room.Interior);
             }
             if (layout.Theme == DungeonTheme.Crypt)
                 PlaceBloodTrails(layout, random);
@@ -194,20 +201,6 @@ namespace ARPG
             }
         }
 
-        /// <summary>One combat or elite room in this many gets a summoning circle on its floor.</summary>
-        const int RitualOneIn = 4;
-
-        // A summoning circle in the room's middle, where the 3 x 3 cells under it are all open floor.
-        static void PlaceRitual(DungeonLayout layout, RectInt interior)
-        {
-            var middle = new Vector2Int(interior.xMin + interior.width / 2, interior.yMin + interior.height / 2);
-            for (var x = -1; x <= 1; x++)
-                for (var y = -1; y <= 1; y++)
-                    if (!layout.IsFloor(middle + new Vector2Int(x, y)))
-                        return;
-            layout.Rituals.Add(middle);
-        }
-
         /// <summary>
         /// Each pack's lair (2026-10-08): its theme from who lives there (<see cref="Lairs"/>), a fire or altar in its
         /// middle where the pack gathers, the theme's things standing around it just outside the pack, and marks on the
@@ -228,7 +221,7 @@ namespace ARPG
                     continue;
                 var center = IsoMath.CellToGround(pack.Cell);
                 var heart = Lairs.Heart(theme);
-                if (heart.HasValue && (!Allowed(layout, heart.Value) || UnderCanopy(layout, pack.Cell)))
+                if (heart.HasValue && (!Allowed(layout, heart.Value) || UnderCanopy(layout, pack.Cell) || NearForestEdge(layout, pack.Cell)))
                     heart = null;
                 if (heart.HasValue && layout.IsFloor(pack.Cell) && Clear(pack.Cell, doors, DoorClearance) && Clear(pack.Cell, spots, SpotClearance) && SafeToBlock(layout, pack.Cell))
                 {
@@ -250,7 +243,7 @@ namespace ARPG
                         if (d <= pack.Radius + 3f)
                             marks.Add(cell);
                         if (d >= pack.Radius + 0.6f && d <= pack.Radius + 3.5f && Clear(cell, doors, DoorClearance) && Clear(cell, spots, SpotClearance) &&
-                            !UnderCanopy(layout, cell))
+                            !UnderCanopy(layout, cell) && !NearForestEdge(layout, cell))
                             ring.Add(cell);
                     }
 
@@ -278,6 +271,9 @@ namespace ARPG
 
                 foreach (var (kind, min, max) in Lairs.Decals(theme))
                 {
+                    // No pentagrams or sigils in the forest (2026-11-10, the owner: "Remove the pentagram prop").
+                    if (IsForest(layout) && (kind == DecalKind.Ritual || kind == DecalKind.Sigil))
+                        continue;
                     var count = random.Next(min, max + 1);
                     for (var k = 0; k < count && marks.Count > 0; k++)
                     {
@@ -367,6 +363,12 @@ namespace ARPG
 
         static bool IsForest(DungeonLayout layout) => layout.Theme == DungeonTheme.Cave && DungeonRules.Forest;
 
+        /// <summary>Cells (Chebyshev) a forest prop keeps from the tree line (2026-11-10, the owner: "Keep props further
+        /// away from the forest edge"; was 1).</summary>
+        const int ForestEdgeGap = 3;
+
+        static bool NearForestEdge(DungeonLayout layout, Vector2Int cell) => IsForest(layout) && WallNear(layout, cell, ForestEdgeGap);
+
         /// <summary>
         /// Whether a tree or bush in front of a forest cell would hide what stands on it (2026-10-27, the owner: props with
         /// "a forest edge below them look bad when they get covered by trees"). A wall cell nearer the camera (a smaller x
@@ -424,20 +426,20 @@ namespace ARPG
             (PropKind.BonePile, new[] { PropKind.BonePile }, 1, 2, 6),
         };
 
-        /// <summary>One scene per this many floor cells of a forest clearing (200 since 2026-11-04, the owner: "Lessen the
-        /// frequency of the props by 40%"; was 120).</summary>
-        const int CellsPerForestGroup = 200;
+        /// <summary>One scene per this many floor cells of a forest clearing (285 since 2026-11-10, the owner: "Reduce the
+        /// amount of props by 30%"; 200 since 2026-11-04, 120 before).</summary>
+        const int CellsPerForestGroup = 285;
 
-        /// <summary>The share of a lair's props that stand (2026-11-04: 40 percent fewer), rounded, so a lair keeps at
-        /// least its one of each where it had one.</summary>
-        const float LairPropShare = 0.6f;
+        /// <summary>The share of a lair's props that stand (0.42 since 2026-11-10: 30 percent fewer again; 0.6 from
+        /// 2026-11-04), rounded.</summary>
+        const float LairPropShare = 0.42f;
         /// <summary>Cells (Chebyshev) between two scenes' middles.</summary>
         const int ForestGroupGap = 7;
 
         static void PlaceForestProps(DungeonLayout layout, List<Vector2Int> floor, List<Vector2Int> spots, List<Vector2Int> doors, System.Random random)
         {
             // A scene stands out in the clearing, a cell off the tree line, never where a tree in front would hide it.
-            bool Fits(Vector2Int cell) => layout.IsFloor(cell) && !WallNear(layout, cell, 1) && !UnderCanopy(layout, cell) &&
+            bool Fits(Vector2Int cell) => layout.IsFloor(cell) && !NearForestEdge(layout, cell) && !UnderCanopy(layout, cell) &&
                                           Clear(cell, doors, DoorClearance) && Clear(cell, spots, SpotClearance) && !InPack(layout, cell) &&
                                           SafeToBlock(layout, cell);
             var middles = new List<Vector2Int>();

@@ -702,9 +702,18 @@ os.makedirs(OUT, exist_ok=True)
 for old in os.listdir(OUT):
     if old.endswith(".png"):
         os.remove(os.path.join(OUT, old))
+# Clips drawn the same as another (2026-11-10): no sheet of their own, the game shows the other's
+# (AppearanceRules.SheetStandIn); listed with "shared" so their timing is still written.
+SHARED = {"run_back", "walk_aim_back", "walk_aim_left", "walk_aim_right", "attack_move_back", "attack_move_left",
+          "attack_move_right", "recoil_move", "recoil_move_back", "recoil_move_left", "recoil_move_right",
+          "overdraw_move_back", "overdraw_move_left", "overdraw_move_right"}
 animations = []
 for look in LOOKS:
     for clip, (seconds, speed) in TIMING.items():
+        if clip in SHARED:
+            animations.append({"name": f"body_{look}_1h_{clip}", "frames": len(views["s"][clip]), "seconds": seconds,
+                               "speed": speed, "key": "1h_" + clip, "shared": True})
+            continue
         rows = [np.concatenate([to_rgba(f, mirror, look) for f in views[view][clip]], 1) for _, view, mirror in DIRECTIONS]
         sheet_name = f"body_{look}_1h_{clip}"
         save(np.repeat(np.repeat(np.concatenate(rows, 0), SCALE, 0), SCALE, 1), os.path.join(OUT, f"wild_arrow_drawn_{sheet_name}.png"))

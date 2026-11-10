@@ -118,5 +118,16 @@ namespace ARPG.Tests
             Assert.AreEqual(0, AppearanceRules.DirectionRow(new Vector2(0.2f, -1f)), "nearly south is south");
             Assert.AreEqual(0, AppearanceRules.DirectionRow(Vector2.zero), "standing still defaults to south");
         }
+
+        [Test]
+        public void SheetStandIn_SharedClipsUseTheOneSheet_OthersHaveNone()
+        {
+            Assert.AreEqual("run", AppearanceRules.SheetStandIn("run_back"));
+            Assert.AreEqual("walk_aim_forward", AppearanceRules.SheetStandIn("walk_aim_left"));
+            Assert.AreEqual("attack_move", AppearanceRules.SheetStandIn("recoil_move_right"));
+            Assert.AreEqual("overdraw_move", AppearanceRules.SheetStandIn("overdraw_move_back"));
+            Assert.IsNull(AppearanceRules.SheetStandIn("attack_move"), "a stand-in has no stand-in of its own");
+            Assert.IsNull(AppearanceRules.SheetStandIn("idle"));
+        }
     }
 }

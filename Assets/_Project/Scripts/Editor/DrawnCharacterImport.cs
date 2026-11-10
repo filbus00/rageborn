@@ -44,6 +44,10 @@ namespace ARPG.Editor
             /// <summary>The timing file's key when it is not the clip's name (the drawn Wild Arrow's body sheets,
             /// "body_ranger_1h_idle", time as her baked "1h_idle").</summary>
             public string key;
+
+            /// <summary>Set when the clip is drawn the same as another and has no sheet of its own (2026-11-10): only its
+            /// timing is written; the game shows the other's sheet (AppearanceRules.SheetStandIn).</summary>
+            public bool shared;
         }
 
         /// <summary>Whether a character is drawn here, so the sprite bake leaves it alone.</summary>
@@ -73,6 +77,13 @@ namespace ARPG.Editor
             var timed = new HashSet<string>();
             foreach (var clip in sheet.animations)
             {
+                var key0 = string.IsNullOrEmpty(clip.key) ? clip.name : clip.key;
+                if (clip.shared)
+                {
+                    if (timed.Add(key0))
+                        timing.Add($"{key0} {clip.seconds.ToString("0.###", culture)}" + (clip.speed > 0f ? " " + clip.speed.ToString("0.###", culture) : ""));
+                    continue;
+                }
                 var path = $"{target}/{name}_{clip.name}.png";
                 File.Copy($"{Source}/{name}/{name}_{clip.name}.png", path, true);
                 written.Add(path);

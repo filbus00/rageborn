@@ -462,6 +462,10 @@ namespace ARPG
             var fallback = AppearanceRules.FallbackLook(layer, grip);
             if (sheet == null && fallback != null && fallback != look && Baked(layer, fallback, grip))
                 sheet = LoadCached(AppearanceRules.SheetName(character, layer, fallback, grip, animationName));
+            // A clip drawn the same as another ships only that one's sheet (2026-11-10).
+            var standIn = sheet == null ? AppearanceRules.SheetStandIn(animationName) : null;
+            if (standIn != null)
+                sheet = LoadLook(layer, look, grip, standIn);
             return sheet;
         }
 

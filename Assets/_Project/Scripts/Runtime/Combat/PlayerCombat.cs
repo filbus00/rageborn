@@ -281,7 +281,18 @@ namespace ARPG
         /// bow, 2026-10-07).</summary>
         public bool IsUnlocked(int skillIndex) =>
             skills != null && skillIndex >= 0 && skillIndex < skills.Length && skills[skillIndex] != null &&
-            GameSession.Current.Talents.Knows(skills[skillIndex].name);
+            GameSession.Current.Talents.Knows(SkillId(skillIndex));
+
+        // The skills' names, read once: a Unity object's name is a new string on every read, and IsUnlocked is asked
+        // every frame (2026-11-10, 390 bytes a frame).
+        string[] skillIds;
+
+        string SkillId(int skillIndex)
+        {
+            if (skillIds == null || skillIds.Length != skills.Length)
+                skillIds = new string[skills.Length];
+            return skillIds[skillIndex] ??= skills[skillIndex].name;
+        }
 
         /// <summary>The skill in a loadout slot, or null.</summary>
         public SkillDefinition SlotSkill(int slot) =>

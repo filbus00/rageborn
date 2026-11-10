@@ -229,6 +229,38 @@ namespace ARPG
         public static string SheetName(string character, AppearanceLayer layer, string look, CharacterGrip grip, string animation) =>
             $"{character}_{LayerCode(layer)}_{look}_{GripCode(grip)}_{animation}";
 
+        /// <summary>
+        /// The clip whose sheet a clip uses when it has none of its own (2026-11-10): the drawn Wild Arrow's moving shots
+        /// are one sheet for every way she moves, her aimed walks one, her backward run her run, so those copies are not
+        /// shipped (14 of her 26 sheets a look, about 55 MB). Null when a clip has no stand-in.
+        /// </summary>
+        public static string SheetStandIn(string animation)
+        {
+            switch (animation)
+            {
+                case "run_back":
+                    return "run";
+                case "walk_aim_back":
+                case "walk_aim_left":
+                case "walk_aim_right":
+                    return "walk_aim_forward";
+                case "attack_move_back":
+                case "attack_move_left":
+                case "attack_move_right":
+                case "recoil_move":
+                case "recoil_move_back":
+                case "recoil_move_left":
+                case "recoil_move_right":
+                    return "attack_move";
+                case "overdraw_move_back":
+                case "overdraw_move_left":
+                case "overdraw_move_right":
+                    return "overdraw_move";
+                default:
+                    return null;
+            }
+        }
+
         static readonly string[] EightDirections = { "s", "sw", "w", "nw", "n", "ne", "e", "se" };
 
         static readonly string[] SixteenDirections =

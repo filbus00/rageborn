@@ -185,7 +185,17 @@ namespace ARPG
 
         /// <summary>Any affix summed over everything worn, in its own unit (the Wild Arrow's affixes 90 to 100 are read
         /// this way where they land).</summary>
-        public float AffixTotal(AffixId id) => Sum(item => item.AffixSum(id));
+        public float AffixTotal(AffixId id)
+        {
+            // A loop, not Sum with a lambda: the lambda's closure was made on every call, and the pet asks every frame.
+            if (items == null)
+                return 0f;
+            var total = 0f;
+            for (var i = 0; i < items.Length; i++)
+                if (items[i] != null)
+                    total += items[i].AffixSum(id);
+            return total;
+        }
 
         /// <summary>Whether a named legendary is worn, for its power (Docs/03, 2026-10-01).</summary>
         public bool Wears(LegendaryId legendary)

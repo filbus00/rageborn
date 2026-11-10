@@ -301,9 +301,6 @@ namespace ARPG
         /// <summary>Each pack's lair (2026-10-08): its middle and what kind of home it is.</summary>
         public List<(Vector2Int cell, LairTheme theme)> Lairs { get; } = new List<(Vector2Int, LairTheme)>();
 
-        /// <summary>The middles of the summoning circles painted on some rooms' floors (3 x 3 cells, walked over).</summary>
-        public List<Vector2Int> Rituals { get; } = new List<Vector2Int>();
-
         /// <summary>The floor style of the room a cell lies in (an opening takes one of its rooms'), 0 outside rooms.</summary>
         public int StyleAt(Vector2Int cell)
         {

@@ -244,8 +244,9 @@ namespace ARPG
         /// 28: forest props in little scenes, none hidden behind trees; floor marks where they gather (2026-10-31).
         /// 29: smaller packs in the forest, 5 to 8 (2026-11-03).
         /// 30: 40 percent fewer props (2026-11-04).
+        /// 31: no summoning circles, forest props 3 cells off the tree line and 30 percent fewer (2026-11-10).
         /// </summary>
-        public const int Version = 30;
+        public const int Version = 31;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>

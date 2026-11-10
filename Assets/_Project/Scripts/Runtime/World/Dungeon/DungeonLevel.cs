@@ -405,7 +405,12 @@ namespace ARPG
                         wallTiles[index] = DungeonArt.Wall(cameraSide, cameraSide ? LowWallVariant(at.x, at.y) : freeStanding ? WallVariant(at.x, at.y) : TallWallVariant(at.x, at.y),
                             TouchesOpen(at));
                     else if (cell == DungeonCell.Prop && Layout.Props.TryGetValue(at, out var prop))
+                    {
                         propTiles[index] = DungeonArt.Prop(prop, (int)(WallHash(at.x, at.y, 11) * 1000f));
+                        // A big prop is walked around (2026-11-10); the nav grid marks it low (EnemyManager).
+                        if (DungeonDressing.Blocks(prop))
+                            wallTiles[index] = DungeonArt.Blocker;
+                    }
                     // Steps go on the floor's own layers, under whoever walks them (2026-10-20); a pit's sunk with it.
                     if (Layout.TerraceStairs.TryGetValue(at, out var down))
                     {
@@ -508,17 +513,6 @@ namespace ARPG
             }
 
             DressWalls(lights);
-
-            // Summoning circles on some rooms' floors, their candles lighting them a dim red.
-            foreach (var cell in Layout.Rituals)
-            {
-                var circle = WorldArt.Place("ritual_circle", lights, Elevation.World(IsoMath.CellToGround(cell)), true);
-                if (circle == null)
-                    break;
-                var glow = WorldLights.Add(circle.transform, new Color(1f, 0.35f, 0.25f), 0.9f, 0.4f, 3.5f, 0.3f);
-                if (glow != null)
-                    circle.gameObject.AddComponent<FlickerLight>().Init(glow, cell.x * 0.9f + cell.y);
-            }
         }
 
         const int MaxPropLights = 48;
