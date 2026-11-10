@@ -40,6 +40,12 @@ R = {
     "ink": ["1e3a6a", "3a6aa8"],
 }
 STRING = "dfe6ee"
+# Each ramp colour's ramp and step, for the bevel (the first ramp a colour appears in).
+STEP = {}
+for _ramp in R.values():
+    if len(_ramp) == 4:
+        for _i, _c in enumerate(_ramp):
+            STEP.setdefault(_c, (_ramp, _i))
 
 
 def hexc(h):
@@ -99,6 +105,39 @@ class Img:
                 if inside(x + 0.5, y + 0.5):
                     self.c[y][x] = None
 
+    def round_shade(self, ramp, x0=0, x1=None):
+        """A ramp's pixels shaded round across each row between x0 and x1 (2026-11-10): lit at the left of what the row
+        holds of it, in shadow at its right, as a rounded surface under a light from the top left."""
+        x1 = self.w - 1 if x1 is None else x1
+        for y in range(self.h):
+            xs = [x for x in range(x0, x1 + 1) if self.c[y][x] in ramp]
+            if len(xs) < 3:
+                continue
+            a, b = min(xs), max(xs)
+            for x in xs:
+                f = (x - a) / max(1, b - a)
+                self.c[y][x] = ramp[3] if f < 0.16 else ramp[2] if f < 0.55 else ramp[1] if f < 0.85 else ramp[0]
+        return self
+
+    def bevel(self):
+        """Volume for a flat-filled piece (2026-11-10): a pixel whose neighbour up or left is clear steps a tone lighter
+        in its ramp, one whose neighbour down or right is clear a tone darker (light from the top left)."""
+        out = [row[:] for row in self.c]
+        for y in range(self.h):
+            for x in range(self.w):
+                col = self.c[y][x]
+                if col is None or col not in STEP:
+                    continue
+                ramp, i = STEP[col]
+                lit = self.get(x - 1, y) is None or self.get(x, y - 1) is None
+                dark = self.get(x + 1, y) is None or self.get(x, y + 1) is None
+                if lit and not dark:
+                    out[y][x] = ramp[min(len(ramp) - 1, i + 1)]
+                elif dark and not lit:
+                    out[y][x] = ramp[max(0, i - 1)]
+        self.c = out
+        return self
+
     def outline(self):
         out = [row[:] for row in self.c]
         for y in range(self.h):
@@ -143,47 +182,74 @@ def gem(im, x, y, ramp, big=False):
 
 # Bows: 32 x 64, the limb bowed to the left, the string on the right -----------------------------------------------
 def bow(limb, length=58, bulge=9, thick=3, grip="dark", tips=None, recurve=0.0, bands=(), string=STRING, mark=None):
+    """A bow standing upright (redrawn 2026-11-10, the owner: the items again, the bows first): the limbs bowed to the
+    left, thick at the grip and tapering to slim tips, four tones across each limb lit from the top left (the back of
+    the limb bright, its belly in shadow), the upper limb lighter than the lower; a wrapped grip a pixel wider with an
+    arrow shelf above it; capped tips (tips) curling back on a recurve, the string knotted on at each."""
     im = Img(32, 64)
+    ramp = R[limb]
+    # Bolder than the first drawing (2026-11-10): a deeper bow that fills the slot's width, a limb a pixel thicker.
+    bulge, thick = bulge * 1.55, thick + 1
     top = (64 - length) // 2
     bot = top + length - 1
     mid = (top + bot) / 2
     half = (bot - top) / 2
-    sx = 22
-    centres = {}
+    sx = 23
+    centres, widths = {}, {}
     for y in range(top, bot + 1):
         u = (y - mid) / half
         x = sx - bulge * (1 - u * u) - 1
-        if recurve and abs(u) > 0.7:
-            x += recurve * ((abs(u) - 0.7) / 0.3) ** 2
-        w = thick + (1 if abs(u) < 0.18 else 0) - (1 if abs(u) > 0.85 else 0)
-        centres[y] = x
+        if recurve and abs(u) > 0.55:
+            # The tips curl forward, away from her, past the line of the string's ends.
+            x += recurve * 1.8 * ((abs(u) - 0.55) / 0.45) ** 2
+        w = max(2, round((thick + 1) - (thick - 1) * abs(u) ** 1.3))
+        centres[y], widths[y] = x, w
+    # The limbs: across each row from the back (left, lit) to the belly (right, in shadow); the lower limb a tone darker.
+    for y in range(top, bot + 1):
+        x, w = centres[y], widths[y]
+        lower = y > mid + 1
         for k in range(w):
-            ramp = R[limb]
-            tone = 3 if k == 0 else 2 if k < w - 1 else 1
-            if abs(u) > 0.5 and k == w - 1:
-                tone = 0 if w > 2 else 1
-            im.set(x - w / 2 + k + 0.5, y, ramp[tone])
-    # The string from tip to tip.
-    tx = centres[top] + 1
+            f = k / max(1, w - 1)
+            tone = 3 if f < 0.2 else 2 if f < 0.6 else 1
+            if lower:
+                tone = max(0, tone - 1) if f > 0.2 else 2
+            if w >= 3 and k == w - 1:
+                tone = 0
+            im.set(round(x - w / 2 + k), y, ramp[tone])
+    # Grain: a darker fleck now and then along the back of the limbs.
+    for y in range(top + 3, bot - 2, 6):
+        if abs(y - mid) > 5:
+            im.set(round(centres[y] - widths[y] / 2 + 1), y, ramp[1])
+    # The string from tip to tip, knotted on at each.
+    xt, xb = round(centres[top] + widths[top] / 2), round(centres[bot] + widths[bot] / 2)
     for y in range(top + 1, bot):
-        im.set(tx + (centres[bot] - centres[top]) * (y - top) / (bot - top) + 1, y, string)
-    # The grip, wrapped.
-    for y in range(int(mid) - 3, int(mid) + 4):
-        x = centres[y]
-        for k in range(thick + 1):
-            im.set(x - (thick + 1) / 2 + k + 0.5, y, R[grip][2 if (y + k) % 2 else 1])
-    for t in (top, bot):
-        if tips:
-            for d in range(3):
-                yy = t + d if t == top else t - d
-                im.set(centres[yy] - 1, yy, R[tips][3 if d == 0 else 2])
-                im.set(centres[yy], yy, R[tips][2 if d == 0 else 1])
-    for frac, ramp in bands:
+        im.set(round(xt + (xb - xt) * (y - top) / (bot - top)), y, string)
+    # The grip, a pixel wider, its wrap in two tones with a lit column, and the arrow shelf above it.
+    g = R[grip]
+    for y in range(int(mid) - 4, int(mid) + 5):
+        x, w = centres[y], widths[y] + 1
+        for k in range(w):
+            col = g[3] if k == 0 else g[2] if (y + k) % 3 else g[1]
+            if k == w - 1:
+                col = g[0]
+            im.set(round(x - w / 2 + k), y, col)
+    shelf = int(mid) - 5
+    im.set(round(centres[shelf] + widths[shelf] / 2), shelf, ramp[3])
+    # The tips: caps of the tip colour, two pixels, the nock lit.
+    tr = R[tips] if tips else ramp
+    for t, d in ((top, 1), (bot, -1)):
+        for k in range(3):
+            yy = t + d * k
+            x = centres[yy]
+            im.set(round(x - 1), yy, tr[3 if k == 0 else 2])
+            im.set(round(x), yy, tr[2 if k == 0 else 1])
+        im.set(round(centres[t]) + 1, t, string)
+    for frac, b in bands:
         y = int(top + frac * (bot - top))
         for yy in (y, y + 1):
-            x = centres[yy]
-            for k in range(thick + 2):
-                im.set(x - (thick + 2) / 2 + k + 0.5, yy, R[ramp][3 if k == 0 else 2 if yy == y else 1])
+            x, w = centres[yy], widths[yy] + 1
+            for k in range(w):
+                im.set(round(x - w / 2 + k), yy, R[b][3 if k == 0 else 2 if yy == y else 1])
     if mark:
         mark(im, centres, top, bot, mid)
     return im.outline()
@@ -250,29 +316,51 @@ def m_silence(im, c, top, bot, mid):
 
 # Quivers: 32 x 48, a tube leaning to the right, arrows showing at the top -----------------------------------------
 def quiver(body, trim="leather", fletch="red", studs=None, ribs=False, arrows=4, mark=None, shafts="wood"):
+    """A quiver leaning to the right (redrawn 2026-11-10): arrows standing out of it with two-tone fletching and their
+    nocks, the tube shaded round (lit on the left, in shadow on the right), a stitched seam down it, a rim and a rounded
+    base in the trim, a strap across it with a buckle."""
     im = Img(32, 48)
     lean = 0.22
     def at(y):
         return (y - 14) * lean
-    for k in range(arrows):
-        x0 = 9 + k * 3.2
-        im.line(x0 + 2, 15, x0, 4 + (k % 2) * 2, R[shafts][2])
-        fy = 2 + (k % 2) * 2
-        im.rect(x0 - 1, fy, x0 + 1, fy + 3, R[fletch], bias=-0.1)
-        im.set(x0, fy + 4, R[fletch][1])
-    im.poly([(7, 13), (21, 13), (21 + at(45), 45), (7 + at(45), 45)], R[body])
-    im.poly([(6, 12), (22, 12), (22 + at(16), 16), (6 + at(16), 16)], R[trim], bias=-0.1)
-    im.poly([(7 + at(41), 41), (21 + at(41), 41), (21 + at(45), 45), (7 + at(45), 45)], R[trim])
-    im.line(5, 18, 25, 36, R[trim][1])
-    im.line(5, 19, 25, 37, R[trim][2])
+    for k in range(arrows + 1 if arrows else 0):
+        x0 = 8 + k * 3.0
+        tipy = 4 + (k % 2) * 2 + (k % 3)
+        im.line(x0 + 2, 15, x0, tipy + 4, R[shafts][2])
+        f = R[fletch]
+        im.rect(x0 - 1, tipy, x0 - 1, tipy + 3, [f[1]] * 4)
+        im.rect(x0, tipy, x0, tipy + 3, [f[3]] * 4)
+        im.rect(x0 + 1, tipy + 1, x0 + 1, tipy + 3, [f[2]] * 4)
+        im.set(x0, tipy - 1, R["bone"][2])
+    b = R[body]
+    for y in range(13, 46):
+        x0, x1 = 7 + at(y), 21 + at(y)
+        if y >= 43:
+            x0, x1 = x0 + (y - 42), x1 - (y - 42)
+        for x in range(int(round(x0)), int(round(x1)) + 1):
+            f = (x - x0) / max(1, x1 - x0)
+            im.set(x, y, b[3] if f < 0.18 else b[2] if f < 0.55 else b[1] if f < 0.85 else b[0])
+    t = R[trim]
+    for y in range(12, 17):
+        for x in range(int(round(6 + at(y))), int(round(22 + at(y))) + 1):
+            im.set(x, y, t[3] if y == 12 else t[2] if x < 14 + at(y) else t[1])
+    for y in range(40, 44):
+        for x in range(int(round(7 + at(y))), int(round(21 + at(y))) + 1):
+            im.set(x, y, t[2] if y == 40 else t[1])
+    for y in range(18, 39, 2):
+        im.set(16 + at(y), y, b[0])
+    im.line(5, 18, 25, 36, t[1])
+    im.line(5, 19, 25, 37, t[2])
+    im.rect(14, 26, 16, 28, R["iron"])
     if studs:
         for y in range(20, 40, 5):
-            for x in (10, 17):
+            for x in (10, 19):
                 im.set(x + at(y), y, R[studs][3])
                 im.set(x + 1 + at(y), y + 1, R[studs][1])
     if ribs:
-        for y in range(20, 41, 4):
+        for y in range(20, 39, 4):
             im.line(8 + at(y), y, 20 + at(y), y, R["bone"][1])
+            im.line(8 + at(y), y + 1, 20 + at(y), y + 1, R["bone"][0])
     if mark:
         mark(im, at)
     return im.outline()
@@ -313,12 +401,33 @@ def q_hound(im, at):
 
 
 # Chest pieces: 32 x 48 -------------------------------------------------------------------------------------------
-def chest(body, trim, accent=None, pattern=None, collar=None, sleeves=None):
+def chest(body, trim, accent=None, pattern=None, collar=None, sleeves=None, shoulders=None, stitched=False):
+    """A chest piece laid flat (redrawn 2026-11-10): the body shaded round, lit down its left and in shadow down its
+    right, the sleeves a tone darker behind it; shoulder plates on the heavier ones, stitching down the front of the
+    leather ones, a darker hem and an edged neckline."""
     im = Img(32, 48)
     sl = sleeves or body
-    im.poly([(2, 11), (8, 6), (10, 8), (8, 26), (2, 25)], R[sl])
-    im.poly([(30, 11), (24, 6), (22, 8), (24, 26), (30, 25)], R[sl], bias=0.2)
+    im.poly([(2, 11), (8, 6), (10, 8), (8, 26), (2, 25)], R[sl], bias=0.15)
+    im.poly([(30, 11), (24, 6), (22, 8), (24, 26), (30, 25)], R[sl], bias=0.35)
     im.poly([(8, 6), (13, 5), (16, 9), (19, 5), (24, 6), (24, 30), (25, 44), (7, 44), (8, 30)], R[body])
+    # The body shaded round across its width.
+    b = R[body]
+    for y in range(5, 45):
+        xs = [x for x in range(7, 26) if im.get(x, y) in b]
+        if not xs:
+            continue
+        x0, x1 = min(xs), max(xs)
+        for x in xs:
+            f = (x - x0) / max(1, x1 - x0)
+            im.set(x, y, b[3] if f < 0.14 else b[2] if f < 0.6 else b[1] if f < 0.88 else b[0])
+    if stitched:
+        for y in range(12, 42, 2):
+            im.set(16, y, b[0])
+    if shoulders:
+        sh = R[shoulders]
+        for cx, bias in ((6.5, 0.0), (25.5, 0.3)):
+            im.ellipse(cx, 9.5, 4.6, 3.6, sh, bias)
+            im.line(cx - 3.5, 11.5, cx + 3.5, 11.5, sh[0])
     im.rect(8, 28, 24, 31, R[trim])
     im.set(16, 29, R["gold"][3]); im.set(16, 30, R["gold"][2])
     if pattern:
@@ -329,7 +438,16 @@ def chest(body, trim, accent=None, pattern=None, collar=None, sleeves=None):
     if collar:
         im.poly([(8, 6), (13, 4), (16, 9), (19, 4), (24, 6), (22, 10), (16, 12), (10, 10)], R[collar], bias=-0.2)
     im.clear(lambda x, y: abs(x - 16) < 2.2 and y < 9 - abs(x - 16))
-    return im.outline()
+    # The hem a tone darker, the neckline edged.
+    for x in range(7, 26):
+        col = im.get(x, 43)
+        if col in STEP:
+            ramp, i = STEP[col]
+            im.set(x, 43, ramp[max(0, i - 1)])
+    for x, y in ((13, 6), (14, 7), (15, 8), (17, 8), (18, 7), (19, 6)):
+        if im.get(x, y) is not None:
+            im.set(x, y, R[trim][3])
+    return im.bevel().outline()
 
 
 def p_scales(im):
@@ -409,7 +527,12 @@ def helm(kind, ramp, trim=None):
             im.set(x, 20, "0a080c")
         if trim:
             im.poly([(16, 3), (20, 0), (24, 1), (18, 6)], R[trim])
-    elif kind == "horned":
+    if kind in ("barbute", "visored", "horned"):
+        im.round_shade(R[ramp])
+        for x in range(8, 26, 4):
+            if im.get(x, 26) is not None:
+                im.set(x, 26, R[ramp][3]); im.set(x, 27, R[ramp][0])
+    if kind == "horned":
         im.rect(10, 13, 22, 15, ["0a080c"] * 4)
         im.rect(15, 15, 17, 22, R[ramp], bias=0.3)
         for side in (-1, 1):
@@ -417,7 +540,7 @@ def helm(kind, ramp, trim=None):
             im.poly(pts, R["bone"])
         if trim:
             im.line(5, 27, 27, 27, R[trim][2])
-    return im.outline()
+    return im.bevel().outline()
 
 
 def falconer():
@@ -448,6 +571,8 @@ def boots(ramp, kind="leather", trim=None):
         top = 4 if kind in ("sabatons", "spiked", "strapped") else 7
         im.poly([(ox + 2, top), (ox + 10, top), (ox + 10, 21), (ox + 13, 23), (ox + 14, 28), (ox + 1, 28), (ox + 1, 21)], R[ramp], bias)
         im.line(ox + 1, 28, ox + 14, 28, R[ramp][0])
+        # Shaded round first, so the wraps, straps and plates drawn on it keep their own tones.
+        im.round_shade(R[ramp], ox, ox + 14)
         if kind == "wrapped":
             for y in range(top + 2, 24, 3):
                 im.line(ox + 1, y, ox + 10, y + 1, R[ramp][3])
@@ -464,7 +589,12 @@ def boots(ramp, kind="leather", trim=None):
             im.poly([(ox + 13, 26), (ox + 16, 28), (ox + 13, 28)], R["bone"])
         if trim:
             im.rect(ox + 1, top, ox + 10, top + 2, R[trim])
-    return im.outline()
+        else:
+            im.line(ox + 1, top + 1, ox + 10, top + 1, R[ramp][3])
+        im.line(ox + 1, 29, ox + 14, 29, "2a1a12")
+    for ox in (2, 17):
+        im.set(ox + 12, 24, R[ramp][3]); im.set(ox + 13, 25, R[ramp][2])
+    return im.bevel().outline()
 
 
 def windrunner():
@@ -507,7 +637,13 @@ def glove(ramp, kind="gloves", trim=None, cuff=None):
             im.set(20, y, R["gold"][3])
     if trim:
         im.line(9, 23, 23, 23, R[trim][2])
-    return im.outline()
+    for x in (12, 16, 20):
+        for y in range(6, 13):
+            if im.get(x, y) is not None and im.get(x, y - 2) is not None:
+                im.set(x, y, R[ramp][0])
+    for x in (10, 14, 18, 22):
+        im.set(x, 14, R[ramp][3])
+    return im.bevel().outline()
 
 
 def fletcher():
@@ -551,7 +687,10 @@ def belt(ramp, kind="plain", buckle="iron"):
     if kind == "war_girdle":
         im.ellipse(15, 7, 3, 3, R["bone"])
         im.set(14, 6, K); im.set(16, 6, K)
-    return im.outline()
+    for x in range(3, 30, 2):
+        if im.get(x, top + 1) is not None and not 11 <= x <= 18:
+            im.set(x, top + 1, R[ramp][3] if x % 4 == 1 else im.get(x, top + 1))
+    return im.bevel().outline()
 
 
 def bandolier():
@@ -636,12 +775,12 @@ ITEMS = {
     "magpies_nest": lambda: quiver("rope", "black", "black", mark=q_magpie),
     "quiver_of_the_hollow_hound": lambda: quiver("fur", "black", "red", mark=q_hound),
     # Chest pieces by tier, then the legendaries.
-    "ranger": lambda: chest("leather", "leather", "teal", p_ranger),
-    "brigand": lambda: chest("brigand", "leather", None, p_brigand, sleeves="leather"),
-    "scale": lambda: chest("bronze", "leather", None, p_scales, sleeves="leather"),
-    "plate": lambda: chest("steel", "leather", None, p_plate),
-    "knight": lambda: chest("bright", "gold", None, p_knight, collar="gold"),
-    "stag_hide": lambda: chest("tan", "leather", None, p_stag, collar="bone"),
+    "ranger": lambda: chest("leather", "leather", "teal", p_ranger, stitched=True),
+    "brigand": lambda: chest("brigand", "leather", None, p_brigand, sleeves="leather", shoulders="leather"),
+    "scale": lambda: chest("bronze", "leather", None, p_scales, sleeves="leather", shoulders="bronze"),
+    "plate": lambda: chest("steel", "leather", None, p_plate, shoulders="steel"),
+    "knight": lambda: chest("bright", "gold", None, p_knight, collar="gold", shoulders="gold"),
+    "stag_hide": lambda: chest("tan", "leather", None, p_stag, collar="bone", stitched=True),
     "cinder_jerkin": lambda: chest("dark", "black", None, p_cinder, collar="ember"),
     # Helms.
     "hood": lambda: helm("hood", "cloth"),
@@ -694,6 +833,29 @@ existing = sorted(f[:-4] for f in os.listdir(OUT) if f.endswith(".png"))
 missing = [n for n in existing if n not in ITEMS]
 extra = [n for n in ITEMS if n not in existing]
 print("missing", missing, "extra", extra)
+
+import sys
+ARGS = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+if ARGS and ARGS[0] == "gear":
+    folder = ARGS[1] if len(ARGS) > 1 else OUT
+    os.makedirs(folder, exist_ok=True)
+    bows = {"splinterbough", "ember_tongue", "hunters_promise", "galeheart", "widows_draw", "gallowsreach", "stillwater_yew",
+            "the_long_silence", "yew_longbow"}
+    for name, make in ITEMS.items():
+        if not (name.endswith("_bow") or name in bows):
+            save(make().rgba(), os.path.join(folder, name + ".png"))
+    print("wrote gear into", folder)
+    raise SystemExit(0)
+if ARGS and ARGS[0] == "bows":
+    # Only the bows (2026-11-10), into ARGS[1] (a folder outside the game, to be looked at first) or the game's.
+    folder = ARGS[1] if len(ARGS) > 1 else OUT
+    os.makedirs(folder, exist_ok=True)
+    for name, make in ITEMS.items():
+        if name.endswith("_bow") or name in ("splinterbough", "ember_tongue", "hunters_promise", "galeheart", "widows_draw",
+                                              "gallowsreach", "stillwater_yew", "the_long_silence", "yew_longbow"):
+            save(make().rgba(), os.path.join(folder, name + ".png"))
+    print("wrote bows into", folder)
+    raise SystemExit(0)
 
 BG = np.array([0.1, 0.13, 0.09, 1], np.float32)
 tiles = []
