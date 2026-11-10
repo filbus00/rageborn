@@ -392,7 +392,7 @@ namespace ARPG
             var cleared = company.Cleared.Contains(chosen.Id);
             var card = Stack(content, "Chosen");
             PixelUi.Label(card, chosen.Name.ToUpperInvariant(), PixelUi.TitleFont, PixelUi.Gold);
-            PixelUi.Label(card, chosen.Region.ToUpperInvariant() + $" · DEPTHS {chosen.FirstDepth} TO {chosen.LastDepth}", PixelUi.BodyFont,
+            PixelUi.Label(card, chosen.Region.ToUpperInvariant() + $" · LEVELS {ContractRules.LevelCode(chosen.FirstDepth)} TO {ContractRules.LevelCode(chosen.LastDepth)}", PixelUi.BodyFont,
                 PixelUi.GoldDim);
             StackRule(card);
             PixelUi.Label(card, openNow ? chosen.Story : "Sealed. The company takes this contract once the one before it is cleared.", PixelUi.BodyFont,
@@ -597,7 +597,7 @@ namespace ARPG
                 PixelUi.At(name.rectTransform, 7f, 6f, 300f, 12f);
                 var place = PixelUi.Label(entry, $"- {dead.Contract},", PixelUi.BodyFont, PixelUi.Text);
                 PixelUi.At(place.rectTransform, 7f + name.preferredWidth + 5f, 8f, 200f, 10f);
-                var details = $"Depth {dead.Depth} <color=#CC342C>·</color> {dead.Kills:N0} Slain" +
+                var details = $"{ContractRules.LevelName(dead.Depth)} <color=#CC342C>·</color> {dead.Kills:N0} Slain" +
                               (dead.Bosses > 0 ? $" <color=#CC342C>·</color> {dead.Bosses} Boss{(dead.Bosses > 1 ? "es" : "")}" : "") +
                               $" <color=#CC342C>·</color> {RunSummary.Duration(dead.Seconds)} <color=#CC342C>·</color> {date:d MMM yyyy}";
                 var line = PixelUi.Label(entry, details, PixelUi.BodyFont, PixelUi.Text);

@@ -110,7 +110,7 @@ namespace ARPG
         public static string Where()
         {
             var dungeon = UnityEngine.Object.FindAnyObjectByType<DungeonLevel>();
-            return dungeon != null ? $"Depth {dungeon.Depth}" : Features.CompanyMenu ? "At the company" : "In town";
+            return dungeon != null ? ContractRules.LevelName(dungeon.Depth) : Features.CompanyMenu ? "At the company" : "In town";
         }
 
         /// <summary>The page's title, centred, with a rule and a diamond either side, in a band

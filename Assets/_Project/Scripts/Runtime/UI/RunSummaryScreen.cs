@@ -125,7 +125,7 @@ namespace ARPG
             var stats = Stack(content, "Numbers", "frame_panel_b4", 9, 2f);
             Heading(stats, "icon_scroll", "THE RUN");
             var s = summary.Stats;
-            Row(stats, "icon_key", "Depth reached", (summary.NewRecord ? "<color=#DEB258>new deepest</color>  " : "") + $"{summary.Depth}");
+            Row(stats, "icon_key", "Level reached", (summary.NewRecord ? "<color=#DEB258>new furthest</color>  " : "") + ContractRules.LevelCode(summary.Depth));
             Row(stats, "icon_eye", "Deepest ever", $"{summary.DeepestEver}");
             Row(stats, "icon_scroll", "Time", RunSummary.Duration(s.Seconds));
             Row(stats, "icon_skull", "Enemies slain", $"{s.Kills:N0}" + (s.Bosses > 0 ? $"  <color=#CC342C>·</color>  {s.Bosses} boss{(s.Bosses > 1 ? "es" : "")}" : ""));

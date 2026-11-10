@@ -79,6 +79,20 @@ namespace ARPG
             return All[0];
         }
 
+        /// <summary>
+        /// What a depth is called on screen (2026-11-10, the owner: "call it something else than depth. Maybe level.
+        /// Maybe level 1:1 - 2 -3 etc."): "Level " the contract's number, a dash, and the level within it, so the
+        /// Thornwood's depths are Level 1-1 to Level 1-12 and the Iron Gaol's Level 2-1 to 2-12.
+        /// </summary>
+        public static string LevelName(int depth) => "Level " + LevelCode(depth);
+
+        /// <summary>The level's number alone: "1-1".</summary>
+        public static string LevelCode(int depth)
+        {
+            var contract = At(depth);
+            return $"{Array.IndexOf(All, contract) + 1}-{Math.Max(1, depth - contract.FirstDepth + 1)}";
+        }
+
         /// <summary>The contract a depth belongs to.</summary>
         public static Contract At(int depth)
         {

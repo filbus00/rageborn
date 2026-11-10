@@ -23,7 +23,7 @@ namespace ARPG
         // The block right of the portrait, top down: the life bar, then the depth with the potion pips at its right,
         // then the boons. With one row of boons it ends level with the portrait's foot.
         const float LifeTop = Top + 24f, LifeHeight = 36f, RowGap = 10f;
-        const float DepthTop = LifeTop + LifeHeight + RowGap, DepthHeight = 64f, DepthWidth = 300f, BoonsTop = DepthTop + DepthHeight + RowGap;
+        const float DepthTop = LifeTop + LifeHeight + RowGap, DepthHeight = 40f, DepthWidth = 300f, BoonsTop = DepthTop + DepthHeight + RowGap;
 
         /// <summary>The icon buttons at the bottom left: square, a gap apart.</summary>
         public const float IconButtonSize = 132f;
@@ -251,7 +251,9 @@ namespace ARPG
             label.text.font = UiStyle.Title;
             // 90: the pixel menu's title font at two menu pixels a pixel (2026-11-08, the owner: "the word DEPTH 1 does
             // not seem to be in pixel style"; at one menu pixel a pixel it read as a plain small font beside the art).
-            label.text.fontSize = 90;
+            // 48: the title font at one menu pixel a pixel, half the size it was (2026-11-10, the owner: "make the depth
+            // label smaller").
+            label.text.fontSize = 48;
             label.text.color = UiStyle.Gold;
             label.text.alignment = TextAnchor.MiddleLeft;
             label.text.raycastTarget = false;
@@ -266,7 +268,7 @@ namespace ARPG
         void Start()
         {
             var level = FindAnyObjectByType<DungeonLevel>();
-            text.text = level != null ? "Depth " + level.Depth : "Town";
+            text.text = level != null ? ContractRules.LevelName(level.Depth) : "Town";
         }
     }
 }

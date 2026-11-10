@@ -753,6 +753,49 @@ def thrown(kind):
     return im.outline()
 
 
+def exit_gate():
+    """The way on out of a forest level (2026-11-10, the owner: the exits "do not look and often do not even show as
+    they are covered by forest. remake them"; and after a boss "it does not make sense that you go down stairs"): a
+    trail gate standing free on the path before the trees, two log posts and a crossbeam lashed with rope, a lantern
+    hanging lit from its middle, the company's red arrow mark nailed to the left post, a worn patch of path under it."""
+    im = Img(30, 40)
+    wood = PAL["wood"]
+    # The worn path under it, then the posts (a little apart at the foot), the beam across their tops.
+    for x in range(3, 27):
+        for y in (37, 38):
+            if (x + y) % 3:
+                im.set(x, y, PAL["trunk"][1] if y == 38 else PAL["trunk"][2])
+    for x0 in (4, 23):
+        im.rect(x0, 8, x0 + 2, 37, wood[2])
+        im.line(x0, 8, x0, 37, wood[3])
+        im.line(x0 + 2, 8, x0 + 2, 37, wood[1])
+        for y in range(12, 36, 5):
+            im.set(x0 + 1, y, wood[1])
+        im.set(x0 + 1, 7, wood[3])
+    im.rect(2, 6, 27, 8, wood[2])
+    im.line(2, 6, 27, 6, wood[3])
+    im.line(2, 8, 27, 8, wood[1])
+    im.set(1, 7, wood[1]); im.set(28, 7, wood[1])
+    # Rope lashings where the beam meets the posts.
+    for x0 in (4, 23):
+        for y in (9, 10):
+            im.line(x0, y, x0 + 2, y, PAL["canvas"][1 + (y % 2)])
+    # The lantern on a chain from the beam's middle: an iron cage round a flame, lit.
+    im.line(15, 9, 15, 12, PAL["stone"][1])
+    im.rect(13, 13, 17, 19, PAL["stone"][1])
+    im.rect(14, 14, 16, 18, PAL["fire"][2])
+    im.set(15, 15, PAL["fire"][3]); im.set(15, 16, PAL["fire"][3])
+    im.line(13, 13, 17, 13, PAL["stone"][2]); im.line(13, 19, 17, 19, PAL["stone"][0])
+    im.set(15, 20, PAL["stone"][0])
+    # The company's mark on the left post: a red arrow pointing up the path.
+    for k in range(4):
+        im.set(5, 16 + k, PAL["red"][1])
+    im.set(4, 17, PAL["red"][2]); im.set(6, 17, PAL["red"][2]); im.set(5, 15, PAL["red"][2])
+    im.set(4, 21, PAL["red"][0]); im.set(6, 21, PAL["red"][0])
+    im.outline()
+    return im
+
+
 def web_glob():
     """A spider's spit (2026-11-10, the owner: "The spiders need better looking ranged attacks"): a sticky white glob
     with strands trailing behind it, pointing along +x."""
@@ -796,7 +839,7 @@ def flask(kind):
 
 EXTRAS = {"chest_closed": chest, "chest_open": lambda: chest(True), "gold_coin": lambda: gold(0), "gold_pile_1": lambda: gold(1),
           "gold_pile_2": lambda: gold(2), "gold_pile_3": lambda: gold(3), "projectile_web": web_glob, "projectile_bolt": bolt,
-          "flask_molotov": lambda: flask("molotov"), "flask_poison": lambda: flask("poison")}
+          "flask_molotov": lambda: flask("molotov"), "flask_poison": lambda: flask("poison"), "exit_gate": exit_gate}
 EXTRAS.update({f"arrow_{k}": (lambda k=k: arrow(k)) for k in ("plain", "pierce", "fire", "frost", "lightning", "explosive")})
 EXTRAS.update({f"projectile_{k}": (lambda k=k: thrown(k)) for k in ("arrow", "knife", "axe", "blade", "bomb", "fireball")})
 

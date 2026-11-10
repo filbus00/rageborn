@@ -38,7 +38,7 @@ namespace ARPG
                     taken++;
             var level = UnityEngine.Object.FindAnyObjectByType<DungeonLevel>();
             subtitle.text = level != null
-                ? $"Depth {level.Depth}.  {taken} boon{(taken == 1 ? "" : "s")} this run; each new depth offers more."
+                ? $"{ContractRules.LevelName(level.Depth)}.  {taken} boon{(taken == 1 ? "" : "s")} this run; each new level offers more."
                 : taken > 0 ? $"{taken} boon{(taken == 1 ? "" : "s")} from this run." : "Each new depth of a run offers three boons to choose from.";
 
             Heading(taken > 0 ? "This run" : "This run: none yet");

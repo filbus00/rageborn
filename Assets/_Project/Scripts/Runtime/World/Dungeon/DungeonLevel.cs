@@ -774,7 +774,8 @@ namespace ARPG
         // the owner: "The stairs between levels are too small"; the piece is three cells wide, and WallStairs keeps the
         // wall straight there).
         bool IsStairsWall(Vector2Int cell) =>
-            Layout.StairsUpInto != Vector2Int.zero && InDoorway(cell, Layout.StairsUp + Layout.StairsUpInto, Layout.StairsUpInto) ||
+            // The forest's way on is a gate standing on the path (2026-11-10): its trees are drawn as any others.
+            !ForestLevel && Layout.StairsUpInto != Vector2Int.zero && InDoorway(cell, Layout.StairsUp + Layout.StairsUpInto, Layout.StairsUpInto) ||
             Layout.HasStairsDown && Layout.StairsDownInto != Vector2Int.zero && InDoorway(cell, Layout.StairsDown + Layout.StairsDownInto, Layout.StairsDownInto);
 
         static bool InDoorway(Vector2Int cell, Vector2Int middle, Vector2Int into)
@@ -1038,12 +1039,38 @@ namespace ARPG
                 body.position = position;
         }
 
+        bool ForestLevel => Layout.Theme == DungeonTheme.Cave && DungeonRules.Forest;
+
         void AddStairs(Transform parent, string objectName, Vector2Int cell, Vector2Int into, string scene, int depth, Arrival arriveBy)
         {
             var go = new GameObject(objectName, typeof(SpriteRenderer), typeof(CircleCollider2D));
             go.transform.SetParent(parent, false);
             go.transform.position = CellWorld(cell);
             SetLayer(go, GameLayers.Interactable);
+
+            // The forest's way on, after a boss too (2026-11-10, the owner: the exits "do not look and often do not even
+            // show as they are covered by forest. remake them", and after a boss "it does not make sense that you go down
+            // stairs"): a trail gate standing on the path before the trees, a lantern hanging lit in it, a warm glow on
+            // the ground under it; walking through it takes her on.
+            var gate = ForestLevel ? WorldArt.Get("exit_gate") : null;
+            if (gate != null)
+            {
+                var gateRenderer = go.GetComponent<SpriteRenderer>();
+                gateRenderer.sprite = gate;
+                gateRenderer.sortingLayerName = GameSortingLayers.Entities;
+                gateRenderer.spriteSortPoint = SpriteSortPoint.Pivot;
+                WorldArt.Lit(gateRenderer);
+                var glow = GroundMarker.NewSprite("Glow", PixelMarks.Glow(1.3f), new Color(1f, 0.78f, 0.38f, 0.55f), go.transform, 2);
+                glow.transform.localPosition = Vector3.zero;
+                var raised = Elevation.HeightAt(IsoMath.CellToGround(cell));
+                go.transform.position += new Vector3(0f, raised, 0f);
+                var gateTrigger = go.GetComponent<CircleCollider2D>();
+                gateTrigger.isTrigger = true;
+                gateTrigger.radius = 0.55f;
+                gateTrigger.offset = new Vector2(0f, -raised);
+                go.AddComponent<SceneExit>().Configure(scene, depth, arriveBy);
+                return;
+            }
 
             // A stairway set into a far wall (2026-10-10): its doorway drawn in the wall cell, standing and sorted like
             // the walls; walking into the cell before it takes her through.
