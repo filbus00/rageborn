@@ -314,7 +314,8 @@ namespace ARPG
         {
             var root = NewSprite("Telegraph", TelegraphArt.Rim, color, parent, 40);
             Place(root.transform, ground, radius);
-            var fillObject = NewSprite("Fill", TelegraphArt.FillDisc, color, root.transform, 41);
+            // The fill on the screen's grid at each size as it grows (2026-11-10; a smooth disc scaled until then).
+            var fillObject = NewSprite("Fill", null, color, root.transform, 41);
             fillObject.transform.localScale = Vector3.zero;
             var marker = new GroundMarker(root, fillObject.transform, duration, true, ground, radius);
             marker.FitRim();
@@ -326,7 +327,12 @@ namespace ARPG
         {
             var root = NewSprite("Fire Ring", TelegraphArt.Ring, color, parent, 39);
             Place(root.transform, ground, radius);
-            return new GroundMarker(root, null, duration, false, ground, radius);
+            var marker = new GroundMarker(root, null, duration, false, ground, radius);
+            // On the screen's grid (2026-11-10), its colour copied from the root as the rim's is.
+            marker.rimPixels = NewSprite("Band", PixelMarks.Band(radius), color, root.transform, 39).GetComponent<SpriteRenderer>();
+            marker.rimPixels.transform.localScale = Unsquashed(root.transform);
+            marker.rootRenderer.enabled = false;
+            return marker;
         }
 
         /// <summary>A thin line on the ground from one point to another (projectile and charge telegraphs).</summary>
@@ -338,7 +344,14 @@ namespace ARPG
             var fillObject = NewSprite("Fill", TelegraphArt.LaneFill, color, root.transform, 43);
             fillObject.transform.localPosition = new Vector3(-0.5f, 0f, 0f);
             fillObject.transform.localScale = new Vector3(0f, 1f, 1f);
-            return new GroundMarker(root, fillObject.transform, duration, false, from, 0f);
+            var marker = new GroundMarker(root, fillObject.transform, duration, false, from, 0f);
+            // Drawn on the screen's grid (2026-11-10): a lane turned and stretched as a sprite has uneven pixels, so the
+            // root and its fill stay unseen and a picture of the lane is drawn beside them, its fill in steps.
+            marker.root.GetComponent<SpriteRenderer>().enabled = false;
+            fillObject.GetComponent<SpriteRenderer>().enabled = false;
+            marker.lane = NewSprite("Lane Pixels", null, color, parent, 42).GetComponent<SpriteRenderer>();
+            marker.SetLane(from, to, width);
+            return marker;
         }
 
         /// <summary>Shows a circle marker again somewhere else, its fill starting over.</summary>
@@ -386,6 +399,39 @@ namespace ARPG
         {
             PlaceLine(root.transform, from, to, width);
             Restart(duration);
+            if (lane != null)
+                SetLane(from, to, width);
+        }
+
+        // A line's picture on the screen's grid: its ends in the world, its width, the texture reused for every redraw,
+        // and the fill's step last drawn.
+        SpriteRenderer lane;
+        Texture2D laneTexture;
+        Vector2 laneA, laneB;
+        float laneWidth;
+        int laneStep = -1;
+
+        void SetLane(Vector2 from, Vector2 to, float width)
+        {
+            laneA = Elevation.World2(from);
+            laneB = Elevation.World2(to);
+            laneWidth = width;
+            laneStep = -1;
+            lane.transform.position = (laneA + laneB) / 2f;
+            lane.gameObject.SetActive(true);
+            DrawLane(0f);
+        }
+
+        void DrawLane(float progress)
+        {
+            var step = Mathf.Clamp(Mathf.FloorToInt(progress * PixelMarks.LaneSteps), 0, PixelMarks.LaneSteps);
+            if (step == laneStep)
+                return;
+            laneStep = step;
+            var old = lane.sprite;
+            lane.sprite = PixelMarks.Lane(ref laneTexture, laneA, laneB, laneWidth, step / (float)PixelMarks.LaneSteps);
+            if (old != null)
+                UnityEngine.Object.Destroy(old);
         }
 
         /// <summary>Recolours the marker (a pooled marker used for another kind of hazard).</summary>
@@ -399,6 +445,8 @@ namespace ARPG
             if (edge != null)
                 edge.color = new Color(color.r, color.g, color.b, 0.55f);
             ShowRimColour();
+            if (lane != null)
+                lane.color = color;
             if (fill != null)
                 fill.GetComponent<SpriteRenderer>().color = color;
             if (bubbles != null)
@@ -445,10 +493,10 @@ namespace ARPG
                 var kind = drawnPool;
                 glowStrength = PoolLooks.GlowOf(kind);
                 if (glow == null)
-                {
-                    glow = NewSprite("Glow", TelegraphArt.Glow, Color.white, root.transform, 39).GetComponent<SpriteRenderer>();
-                    glow.transform.localScale = Vector3.one * 1.45f;
-                }
+                    glow = NewSprite("Glow", null, Color.white, root.transform, 39).GetComponent<SpriteRenderer>();
+                // In steps on the screen's grid (2026-11-10; a soft glow until then).
+                glow.sprite = PixelMarks.Glow(Radius * 1.45f);
+                glow.transform.localScale = Unsquashed(root.transform);
                 glowColor = PoolArt.Ramp(kind)[3];
                 glow.gameObject.SetActive(true);
                 sprayDebt = 0f;
@@ -461,11 +509,25 @@ namespace ARPG
                 edge.gameObject.SetActive(true);
                 return;
             }
-            rootRenderer.sprite = TelegraphArt.Pool;
-            rootRenderer.color = new Color(color.r, color.g, color.b, Mathf.Min(0.85f, color.a));
-            bubbles.color = Color.Lerp(color, Color.white, 0.35f);
-            bubbles.gameObject.SetActive(true);
+            rootRenderer.sprite = null;
+            bubbles.gameObject.SetActive(false);
+            fallbackPool = true;
+            if (pixels == null)
+                pixels = NewSprite("Pool", null, Color.white, root.transform, 41).GetComponent<SpriteRenderer>();
+            pixels.sprite = PixelMarks.Fill(Radius);
+            pixels.transform.localScale = Unsquashed(root.transform);
+            pixels.color = new Color(color.r, color.g, color.b, Mathf.Clamp(color.a + 0.2f, 0.6f, 0.9f));
+            pixels.gameObject.SetActive(true);
+            if (edge == null)
+                edge = NewSprite("Edge", TelegraphArt.Rim, color, root.transform, 42).GetComponent<SpriteRenderer>();
+            edge.sprite = TelegraphArt.PixelRim(Radius);
+            edge.transform.localScale = Unsquashed(root.transform);
+            edge.color = new Color(color.r, color.g, color.b, 0.8f);
+            edge.gameObject.SetActive(true);
         }
+
+        // A pool with no drawn look, shown as a still pixel pool.
+        bool fallbackPool;
 
         string drawnPool;
         SpriteRenderer edge, pixels, glow;
@@ -498,6 +560,8 @@ namespace ARPG
                 }
                 return;
             }
+            if (fallbackPool)
+                return;
             var breathe = 1f + 0.035f * Mathf.Sin(poolTime * 3.1f);
             root.transform.localScale = new Vector3(poolScale.x * breathe, poolScale.y * (2f - breathe), 1f);
             bubbles.transform.localRotation = Quaternion.Euler(0f, 0f, poolTime * 40f);
@@ -517,6 +581,8 @@ namespace ARPG
         {
             if (root != null)
                 root.SetActive(false);
+            if (lane != null)
+                lane.gameObject.SetActive(false);
         }
 
         void Restart(float duration)
@@ -543,6 +609,7 @@ namespace ARPG
             if (fill != null)
                 fill.localScale = IsCircle ? Vector3.zero : new Vector3(0f, 1f, 1f);
             root.SetActive(true);
+            fallbackPool = false;
         }
 
         /// <summary>Advances the fill. A ring fades in instead.</summary>
@@ -550,8 +617,16 @@ namespace ARPG
         {
             Elapsed += deltaSeconds;
             var t = Duration > 0f ? Mathf.Clamp01(Elapsed / Duration) : 1f;
-            if (fill != null)
+            if (fill != null && IsCircle && !pooled)
+            {
+                fillRenderer ??= fill.GetComponent<SpriteRenderer>();
+                fillRenderer.sprite = t > 0f ? PixelMarks.Fill(Radius * t) : null;
+                fill.localScale = Unsquashed(root.transform);
+            }
+            else if (fill != null)
                 fill.localScale = IsCircle ? new Vector3(t, t, 1f) : new Vector3(t, 1f, 1f);
+            if (lane != null)
+                DrawLane(t);
             // In the last quarter the rim pulses quicker and quicker: it is about to land (2026-10-18). Once it has
             // landed it holds its own colour again: a lasting zone (BossFight.LastingZone) or a marker kept until its
             // attack ends must not keep pulsing as if about to land.
@@ -564,13 +639,25 @@ namespace ARPG
             }
             if (!pooled)
                 ShowRimColour();
+            if (lane != null && rootRenderer != null)
+                lane.color = rootRenderer.color;
         }
+
+        SpriteRenderer fillRenderer;
 
         public void Destroy()
         {
             live.Remove(this);
             if (root != null)
                 UnityEngine.Object.Destroy(root);
+            if (lane != null)
+            {
+                if (lane.sprite != null)
+                    UnityEngine.Object.Destroy(lane.sprite);
+                UnityEngine.Object.Destroy(lane.gameObject);
+            }
+            if (laneTexture != null)
+                UnityEngine.Object.Destroy(laneTexture);
         }
 
         static void PlaceLine(Transform transform, Vector2 from, Vector2 to, float width)

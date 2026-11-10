@@ -59,6 +59,9 @@ namespace ARPG
         const float ShockSeconds = 0.3f;
         readonly List<Shock> shocks = new List<Shock>();
 
+        /// <summary>A ring flying out where something lands (a boss's leap, 2026-11-10).</summary>
+        public void LandingRing(Vector2 center, float radius, Color color) => ShockAt(center, radius, color);
+
         void ShockAt(Vector2 center, float radius, Color color)
         {
             Shock shock = null;
@@ -70,7 +73,7 @@ namespace ARPG
                 }
             if (shock == null)
             {
-                shock = new Shock { Renderer = GroundMarker.NewSprite("Shock", TelegraphArt.Shock, color, parent, 44).GetComponent<SpriteRenderer>() };
+                shock = new Shock { Renderer = GroundMarker.NewSprite("Shock", null, color, parent, 44).GetComponent<SpriteRenderer>() };
                 shocks.Add(shock);
             }
             shock.Center = center;
@@ -81,8 +84,9 @@ namespace ARPG
             shock.Renderer.transform.position = Elevation.World2(center);
             // Sized and coloured now: a shock made during a tick is first ticked next frame, and until then a new one
             // drew one unit across at full colour, a reused one at its last size.
-            var r = radius * 0.85f;
-            shock.Renderer.transform.localScale = new Vector3(r * 2f, r * 2f * IsoMath.GroundSquash, 1f);
+            // A pixel ring at each size as it flies out (2026-11-10; a smooth ring scaled until then).
+            shock.Renderer.sprite = PixelMarks.Ring(radius * 0.85f);
+            shock.Renderer.transform.localScale = Vector3.one;
             shock.Renderer.color = shock.Color;
         }
 
@@ -98,9 +102,10 @@ namespace ARPG
                     s.Renderer.gameObject.SetActive(false);
                     continue;
                 }
-                var r = s.Radius * (0.85f + 0.45f * s.Time);
-                s.Renderer.transform.localScale = new Vector3(r * 2f, r * 2f * IsoMath.GroundSquash, 1f);
-                s.Renderer.color = new Color(s.Color.r, s.Color.g, s.Color.b, s.Color.a * (1f - s.Time));
+                s.Renderer.sprite = PixelMarks.Ring(s.Radius * (0.85f + 0.45f * s.Time));
+                // Fading in three steps, as pixel art fades.
+                var fade = s.Time < 0.4f ? 1f : s.Time < 0.75f ? 0.6f : 0.3f;
+                s.Renderer.color = new Color(s.Color.r, s.Color.g, s.Color.b, s.Color.a * fade);
             }
         }
 

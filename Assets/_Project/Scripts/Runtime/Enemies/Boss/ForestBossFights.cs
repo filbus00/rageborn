@@ -77,15 +77,29 @@ namespace ARPG
             cooldown = 0.8f;
         }
 
-        // A leap onto where she stands: the landing circle fills, he lands there and the slam hits.
+        /// <summary>How high his leap rises at its middle, in world units.</summary>
+        const float LeapHeight = 1.6f;
+
+        // A leap onto where she stands: the landing circle fills while he crouches, then flies up and over in an arc
+        // onto it (2026-11-10, the owner: his "old attacks that look bad"; he vanished and reappeared until then), and
+        // the slam hits with a ring flying out.
         IEnumerator Leap(float radius)
         {
             var at = ClampToArena(manager.PlayerGround, radius);
             var marker = Track(GroundMarker.Circle(at, radius, 1.0f, TelegraphColor, transform));
+            var from = boss.GroundPosition;
             while (!marker.Done)
+            {
+                // A fifth crouched, then the arc.
+                var f = Mathf.Clamp01((marker.Progress - 0.2f) / 0.8f);
+                boss.ScriptedMove(Vector2.Lerp(from, at, f) - boss.GroundPosition);
+                boss.Aloft = 4f * LeapHeight * f * (1f - f);
                 yield return null;
+            }
+            boss.Aloft = 0f;
             Teleport(at);
             Sfx.Play(SoundId.EnemySlam, 0.9f);
+            manager.Hazards.LandingRing(at, radius, TelegraphColor);
             if (PlayerWithin(at, radius))
                 HitPlayer(1.7f, dodgeable: false);
             cooldown = 1.1f;
@@ -98,26 +112,56 @@ namespace ARPG
             cooldown = 0.9f;
         }
 
-        // Enraged: he spins, sword out, after her for three seconds; close to him she is cut twice a second.
+        /// <summary>The whirl's reach: inside it she is cut.</summary>
+        const float WhirlRadius = 1.7f;
+
+        SpriteRenderer whirlSweep;
+
+        // Enraged: he spins, sword out, after her for three seconds; close to him she is cut twice a second. The reach
+        // shows round him as a circle, a blade sweeping round it (2026-11-10: nothing showed until then).
         IEnumerator Whirl()
         {
             manager.Warnings?.Warn(boss, boss.GroundPosition, 0.6f, IncomingWarnings.LungeColor, IncomingWarnings.Shape.Diamond);
+            var zone = Track(GroundMarker.Circle(boss.GroundPosition, WhirlRadius, 0.6f, TelegraphColor, transform));
             yield return Wait(0.6f);
+            if (whirlSweep == null)
+                whirlSweep = GroundMarker.NewSprite("Whirl", null, KnifeColor, transform, 45).GetComponent<SpriteRenderer>();
+            whirlSweep.gameObject.SetActive(true);
             var left = 3f;
             var tick = 0f;
+            var turn = 0f;
             while (left > 0f)
             {
                 left -= frameDelta;
                 tick -= frameDelta;
+                turn += frameDelta * 2.5f;
                 WalkTowards(manager.PlayerGround, 0.2f);
-                if (tick <= 0f && PlayerWithin(boss.GroundPosition, 1.7f))
+                zone.MoveTo(boss.GroundPosition);
+                whirlSweep.transform.position = Elevation.World2(boss.GroundPosition);
+                whirlSweep.sprite = PixelMarks.Sweep(WhirlRadius, (int)(turn * PixelMarks.SweepFrames));
+                if (tick <= 0f && PlayerWithin(boss.GroundPosition, WhirlRadius))
                 {
                     tick = 0.5f;
                     HitPlayer(0.6f);
                 }
                 yield return null;
             }
+            whirlSweep.gameObject.SetActive(false);
+            ClearAttackMarkers();
             cooldown = 1.4f;
+        }
+
+        // Cut short (staggered, reset, killed): back on the ground, the sweep gone.
+        protected override void OnAttackCancelled() => StopMoves();
+
+        protected override void ClearFight() => StopMoves();
+
+        void StopMoves()
+        {
+            if (boss != null)
+                boss.Aloft = 0f;
+            if (whirlSweep != null)
+                whirlSweep.gameObject.SetActive(false);
         }
     }
 
