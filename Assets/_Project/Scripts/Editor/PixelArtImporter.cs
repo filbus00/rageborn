@@ -47,10 +47,19 @@ namespace ARPG.Editor
             var written = new HashSet<string>();
             var counts = new int[System.Enum.GetValues(typeof(ArtKind)).Length];
             var problems = 0;
+            // The forest's pieces drawn by forest_art.py are left as they are: not overwritten by an older source of the
+            // same name, not removed (2026-11-10).
+            var keep = DrawnElsewhere();
+            foreach (var name in keep)
+                written.Add($"{OutputFolder}/{name}.png");
+            if (keep.Count > 0)
+                report.AppendLine($"KEPT {keep.Count} pieces drawn by {DrawnListPath}: {string.Join(", ", keep)}").AppendLine();
 
             foreach (var path in Directory.GetFiles(SourceFolder, "*.png"))
             {
                 var name = Path.GetFileNameWithoutExtension(path).ToLowerInvariant();
+                if (keep.Contains(name))
+                    continue;
                 var kind = ArtNames.Parse(name, out _, out _);
                 if (kind == ArtKind.Unknown)
                 {
@@ -100,6 +109,8 @@ namespace ARPG.Editor
             foreach (var path in Directory.GetFiles(RenderScaleFolder, "*.png"))
             {
                 var name = Path.GetFileNameWithoutExtension(path).ToLowerInvariant();
+                if (keep.Contains(name))
+                    continue;
                 if (ArtNames.Parse(name, out _, out _) == ArtKind.Unknown)
                 {
                     report.AppendLine($"SKIPPED {Path.GetFileName(path)} (at the rendered scale): not a name the game reads.");
@@ -141,15 +152,20 @@ namespace ARPG.Editor
 
             AssetDatabase.Refresh();
             foreach (var asset in written)
+            {
+                // The kept pieces keep their own import settings too (the stumps' foot points were set by hand).
+                if (keep.Contains(Path.GetFileNameWithoutExtension(asset)))
+                    continue;
                 Configure(asset, atRenderScale.Contains(asset) ? RenderScaleUnit : PixelArt.PixelsPerUnit);
+            }
 
             report.AppendLine();
-            report.AppendLine($"Imported {written.Count}: {counts[(int)ArtKind.Floor]} floors, {counts[(int)ArtKind.Decal]} decals, " +
+            report.AppendLine($"Imported {written.Count - keep.Count} (kept {keep.Count}): {counts[(int)ArtKind.Floor]} floors, {counts[(int)ArtKind.Decal]} decals, " +
                 $"{counts[(int)ArtKind.Wall] + counts[(int)ArtKind.LowWall]} walls, {counts[(int)ArtKind.Prop]} props. Removed {removed}.");
             report.AppendLine($"Names the game reads: {ArtNames.Accepted()}");
             Directory.CreateDirectory(Path.GetDirectoryName(ReportPath));
             File.WriteAllText(ReportPath, report.ToString());
-            var summary = $"Pixel art: imported {written.Count}, removed {removed}, {problems} to check. See {ReportPath}.";
+            var summary = $"Pixel art: imported {written.Count - keep.Count}, kept {keep.Count}, removed {removed}, {problems} to check. See {ReportPath}.";
             if (problems > 0)
                 Debug.LogWarning(summary + "\n" + report);
             else
@@ -200,6 +216,29 @@ namespace ARPG.Editor
                     output[(6 + y) * newWidth + left + x] = c;
                 }
             return output;
+        }
+
+        /// <summary>The list of pieces forest_art.py writes, one "Folder/name width height" a line.</summary>
+        public const string DrawnListPath = "ArtSource/pixel/sixteen/forest_art_sizes.txt";
+
+        /// <summary>
+        /// The pieces in <see cref="OutputFolder"/> drawn by ArtSource/pixel/sixteen/forest_art.py (its Dungeon lines in
+        /// <see cref="DrawnListPath"/>): the forest's 16x16 props and floor marks. Older sources of the same names sit in
+        /// <see cref="SourceFolder"/> and <see cref="RenderScaleFolder"/>, so an import would have put them back over the
+        /// forest's (found 2026-11-10). Empty when the list is missing.
+        /// </summary>
+        public static HashSet<string> DrawnElsewhere()
+        {
+            var names = new HashSet<string>();
+            if (!File.Exists(DrawnListPath))
+                return names;
+            foreach (var line in File.ReadAllLines(DrawnListPath))
+            {
+                var entry = line.Trim().Split(' ')[0];
+                if (entry.StartsWith("Dungeon/"))
+                    names.Add(entry.Substring("Dungeon/".Length).ToLowerInvariant());
+            }
+            return names;
         }
 
         /// <summary>The processed pixels of one source image, and their size.</summary>
