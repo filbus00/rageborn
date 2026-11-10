@@ -309,6 +309,107 @@ def bone_pile():
     return im.outline()
 
 
+def outline_outside(im):
+    """The dark outline only round the outside: gaps inside a shape (between ribs, inside antlers) stay open, so the
+    grass shows through instead of filling with black (2026-11-10)."""
+    outside = set()
+    stack = [(x, y) for x in range(im.w) for y in (0, im.h - 1)] + [(x, y) for y in range(im.h) for x in (0, im.w - 1)]
+    while stack:
+        x, y = stack.pop()
+        if (x, y) in outside or not (0 <= x < im.w and 0 <= y < im.h) or im.c[y][x] is not None:
+            continue
+        outside.add((x, y))
+        stack += [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
+    out = [row[:] for row in im.c]
+    for x, y in outside:
+        for ox, oy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            n = im.get(x + ox, y + oy)
+            if n is not None and n != PAL["K"]:
+                out[y][x] = PAL["K"]
+                break
+    im.c = out
+    return im
+
+
+def shadow(im, x0, x1, y):
+    """A soft shadow on the ground along a row, under what is drawn, never over it nor outlined."""
+    for x in range(x0, x1 + 1):
+        if im.get(x, y) is None:
+            im.set(x, y, "1c2a18")
+
+
+def deer_skull():
+    """A deer's skull lying in the grass (2026-11-10, the owner: the old one "looks bad"): a long pale skull facing left,
+    a dark eye socket and nose, and two antlers spreading up and back behind it, the far one darker; a shadow under it."""
+    im = Img(28, 22)
+    bone = PAL["bone"]
+    # The cranium at the back, then the face tapering to the snout, each row lit from above.
+    im.blob(17.5, 15, 4.0, 3.4, bone)
+    for x in range(3, 17):
+        f = (x - 3) / 13
+        top = 14.0 - f * 2.0
+        bottom = 16.8 + f * 1.0
+        for y in range(round(top), round(bottom) + 1):
+            k = 2 if y <= top + 1 else 1 if y < bottom - 0.5 else 0
+            im.set(x, y, bone[k])
+    # The eye socket, the nose and the line of the jaw with its teeth.
+    im.rect(14, 13, 15, 14, PAL["K"]); im.set(15, 13, "3a3228")
+    im.set(4, 15, PAL["K"]); im.set(5, 15, "3a3228")
+    im.line(5, 17, 13, 18, bone[0])
+    for x in (7, 9, 11):
+        im.set(x, 17, bone[2])
+    outline_outside(im)
+    shadow(im, 4, 22, 19)
+    # Antlers over it, unoutlined so they stay clean lines against the grass, each with a shade pixel under it: the far
+    # one first and darker, a beam sweeping up and back, a brow tine forward, a tine up.
+    def antler(dx, dy, main, shade):
+        segments = [((16, 12), (17, 9)), ((17, 9), (20, 6)), ((20, 6), (24, 3)), ((17, 9), (14, 7)), ((20, 6), (20, 2))]
+        for (x0, y0), (x1, y1) in segments:
+            im.line(x0 + dx, y0 + dy + 1, x1 + dx, y1 + dy + 1, shade)
+        for (x0, y0), (x1, y1) in segments:
+            im.line(x0 + dx, y0 + dy, x1 + dx, y1 + dy, main)
+    antler(5, 1, bone[0], "5a5040")
+    antler(0, 0, bone[2], bone[0])
+    return im
+
+
+def ribcage():
+    """A large animal's ribcage lying in the grass (2026-11-10): the spine along the top, five pairs of ribs arching
+    down and curling in, wide open between them so the grass shows, the far ribs darker; a shadow under it."""
+    im = Img(32, 20)
+    bone = PAL["bone"]
+    def rib(x0, col, depth, bulge):
+        prev = None
+        for t in range(17):
+            f = t / 16
+            x = x0 - bulge * math.sin(math.pi * f) + 1.2 * f * f
+            y = 6 + depth * f
+            if prev:
+                im.line(prev[0], prev[1], x, y, col)
+            prev = (x, y)
+    # The spine: a row of knobbed vertebrae thinning to the tail, a short spine on every other one.
+    for k in range(14):
+        x = 3 + k * 2.0
+        r = 1.5 if k < 11 else 1.0
+        im.blob(x, 4.6, r, 1.2, bone)
+        if k % 2 == 1 and k < 11:
+            im.set(round(x), 2, bone[1]); im.set(round(x), 3, bone[1])
+    outline_outside(im)
+    shadow(im, 3, 29, 18)
+    # The ribs under it, unoutlined so the grass shows clean between them: the far ribs dark, the near ones each with a
+    # shade line on its right.
+    for k in range(5):
+        x0 = 9 + k * 4.8
+        depth = 11.5 - abs(k - 1.5) * 0.9
+        rib(x0 + 2.2, "6a5e4a", depth - 1.2, 3.0)
+    for k in range(5):
+        x0 = 9 + k * 4.8
+        depth = 11.5 - abs(k - 1.5) * 0.9
+        rib(x0 + 1, bone[0], depth, 3.6)
+        rib(x0, bone[2] if k < 3 else bone[1], depth, 3.6)
+    return im
+
+
 def web_sac():
     im = Img(14, 13)
     for x1, y1 in [(0, 0), (13, 1), (0, 12), (13, 12), (7, 0)]:
@@ -414,7 +515,8 @@ def tent():
 PROPS = {"prop_ferns": ferns, "prop_mushrooms": mushrooms, "prop_stump": lambda: stump(), "prop_fallen_log": log,
          "prop_standing_stone": standing_stone, "prop_axe_stump": lambda: stump(axe=True), "prop_bone_pile": bone_pile,
          "prop_web_sac": web_sac, "prop_campfire": campfire, "prop_sack": sack, "prop_crate": crate, "prop_barrel": barrel,
-         "prop_weapon_rack": weapon_rack, "prop_cage": cage, "prop_carcass": carcass, "prop_bandit_tent": tent}
+         "prop_weapon_rack": weapon_rack, "prop_cage": cage, "prop_carcass": carcass, "prop_bandit_tent": tent,
+         "prop_bone_pile_1": deer_skull, "prop_bone_pile_2": ribcage}
 
 
 # Floor marks (27 x 14 drawn: two cells' diamond) -----------------------------------------------------------------
@@ -667,6 +769,13 @@ for group, folder in ((TREES, "World"), (BUSHES, "World"), (STAIRS, "World"), (P
         written.append(f"{folder}/{name} {arr.shape[1]} {arr.shape[0]}")
         preview.append(arr)
 if ONLY is not None:
+    # The written pieces join the sizes list (the importer keeps every piece listed there, PixelArtImporter.DrawnElsewhere).
+    sizes = os.path.join(HERE, "forest_art_sizes.txt")
+    lines = [l for l in open(sizes).read().splitlines() if l.strip()] if os.path.exists(sizes) else []
+    names = {w.split(" ")[0] for w in written}
+    lines = [l for l in lines if l.split(" ")[0] not in names] + written
+    with open(sizes, "w") as f:
+        f.write("\n".join(lines) + "\n")
     print("wrote", written)
     raise SystemExit(0)
 for kind, name in (("grass", "forest_grass"), ("path", "forest_path")):

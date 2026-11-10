@@ -80,11 +80,6 @@ namespace ARPG.Editor
                 var notes = new List<string>();
                 var pixels = Convert(source, kind, notes, out var width, out var height);
                 Object.DestroyImmediate(source);
-                if (Doubled.Contains(name))
-                {
-                    pixels = DoubleUp(pixels, width, height, out width, out height);
-                    notes.Add("doubled");
-                }
 
                 var output = $"{OutputFolder}/{name}.png";
                 var texture = new Texture2D(width, height, TextureFormat.RGBA32, false);
@@ -170,52 +165,6 @@ namespace ARPG.Editor
                 Debug.LogWarning(summary + "\n" + report);
             else
                 Debug.Log(summary);
-        }
-
-        /// <summary>
-        /// Props shown twice as big as they come out (2026-11-10, the owner: the deer skull and the ribcage "are small and
-        /// need to be bigger"; "update the import so the bones stay big"): their sources draw them a game pixel a pixel,
-        /// finer than the 16x16 style's two.
-        /// </summary>
-        public static readonly HashSet<string> Doubled = new HashSet<string> { "prop_bone_pile_1", "prop_bone_pile_2" };
-
-        /// <summary>
-        /// A prop's drawing (<paramref name="width"/> by <paramref name="height"/>, rows from the bottom) cropped to what
-        /// is drawn, each pixel made 2 x 2, centred across a canvas at least a cell wide and standing 6 pixels up, so
-        /// it sits on the cell (the pivot is 10 up). Empty art comes back as it was.
-        /// </summary>
-        public static Color32[] DoubleUp(Color32[] pixels, int width, int height, out int newWidth, out int newHeight)
-        {
-            int x0 = width, y0 = height, x1 = -1, y1 = -1;
-            for (var y = 0; y < height; y++)
-                for (var x = 0; x < width; x++)
-                    if (pixels[y * width + x].a >= 128)
-                    {
-                        x0 = Mathf.Min(x0, x);
-                        x1 = Mathf.Max(x1, x);
-                        y0 = Mathf.Min(y0, y);
-                        y1 = Mathf.Max(y1, y);
-                    }
-            if (x1 < 0)
-            {
-                newWidth = width;
-                newHeight = height;
-                return pixels;
-            }
-            int bw = (x1 - x0 + 1) * 2, bh = (y1 - y0 + 1) * 2;
-            newWidth = Mathf.Max(ArtNames.Width, bw + 4);
-            newWidth += newWidth % 2;
-            newHeight = bh + 8;
-            var output = new Color32[newWidth * newHeight];
-            var left = (newWidth - bw) / 2;
-            for (var y = 0; y < bh; y++)
-                for (var x = 0; x < bw; x++)
-                {
-                    var c = pixels[(y0 + y / 2) * width + x0 + x / 2];
-                    c.a = c.a >= 128 ? (byte)255 : (byte)0;
-                    output[(6 + y) * newWidth + left + x] = c;
-                }
-            return output;
         }
 
         /// <summary>The list of pieces forest_art.py writes, one "Folder/name width height" a line.</summary>
