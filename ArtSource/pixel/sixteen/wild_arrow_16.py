@@ -168,16 +168,46 @@ def legs(cell, view, dy=0, lift=None, tucked=False, kneel=0, stride=0, raise_=2)
         else:
             bottom -= max(0, ahead)
         pixels = []
+        # A lifted leg in a side view bends at the knee: its boot kicks back behind her as it passes (2026-11-10).
+        kick = -1 if i == lift and view in ("e", "se", "ne") else 0
         for y in range(top, bottom + 1):
-            pixels.append((x, y, "s" if y < bottom - 1 else "m"))
-        pixels.append((x + toe, bottom, "m"))
+            pixels.append((x + (kick if y >= bottom - 1 else 0), y, "s" if y < bottom - 1 else "m"))
+        pixels.append((x + toe + kick, bottom, "m"))
         for px, py, ch in pixels:
             put(cell, px, py, ch)
         outline(cell, pixels)
 
 
-def body(cell, view, dx=0, dy=0, eyes=True, rows=None):
-    for y, row in enumerate(rows or REST[view]):
+def swing_arms(rows, swing):
+    """Her hands swinging (2026-11-10, the owner: "push it further"): each hand (an S in the row above her belt, row
+    13) a pixel up as it swings forward and a pixel down as it swings back, the hand on the left of the grid one way
+    and the one on the right the other (swing 1 or -1), the outline moved with it."""
+    if not swing:
+        return rows
+    g = [list(r) for r in rows]
+    hands = [x for x, ch in enumerate(g[13]) if ch == "S"]
+    if len(hands) < 1:
+        return rows
+    for k, x in enumerate(sorted(hands)):
+        d = -swing if k == 0 else swing
+        if d < 0 and g[12][x] in "sS":
+            # Forward: the hand a pixel higher, the old hand's place the arm's outline.
+            g[12][x] = "S"
+            g[13][x] = "K"
+        elif d > 0:
+            # Back: the arm a pixel longer, the hand below, outlined round.
+            g[13][x] = "s"
+            g[14][x] = "S"
+            if g[15][x] == ".":
+                g[15][x] = "K"
+            for ox in (-1, 1):
+                if 0 <= x + ox < len(g[14]) and g[14][x + ox] == ".":
+                    g[14][x + ox] = "K"
+    return ["".join(r) for r in g]
+
+
+def body(cell, view, dx=0, dy=0, eyes=True, rows=None, swing=0):
+    for y, row in enumerate(swing_arms(rows or REST[view], swing)):
         for x, ch in enumerate(row):
             if ch == "E" and not eyes:
                 ch = "s"
@@ -353,7 +383,7 @@ def streak(cell, view, dx=0, dy=0):
 
 
 def pose(view, aim=None, draw=0.0, loosed=False, flew=False, dx=0, dy=0, lift=None, tucked=False, eyes=True, kneel=0,
-         stride=0, raise_=2, flex=False, bow=True, sway=0):
+         stride=0, raise_=2, flex=False, bow=True, sway=0, swing=0):
     cell = blank()
     # The bow behind her when she faces away; shooting up and to the right it is drawn in front, so the bow hand shows.
     behind = view == "n" or (view == "ne" and aim is None)
@@ -371,7 +401,7 @@ def pose(view, aim=None, draw=0.0, loosed=False, flew=False, dx=0, dy=0, lift=No
     elif aim is None and behind and bow:
         bow_rest(cell, view, dx + sway, dy)
     legs(cell, view, dy, lift, tucked, kneel, stride, raise_)
-    body(cell, view, dx, dy, eyes, rows=AIM_FRONT if aim is not None and view == "s" else None)
+    body(cell, view, dx, dy, eyes, rows=AIM_FRONT if aim is not None and view == "s" else None, swing=swing if aim is None else 0)
     if aim is not None and not behind:
         bow_aim(cell, view, draw, loosed, dx, dy, flex)
     elif aim is None and not behind and bow:
@@ -481,12 +511,19 @@ def death_frame(view, k):
 
 
 def walking(view, stride=1, bounce=1, **kw):
-    """Contact (legs apart, low), passing (a leg lifted, up), the other contact, the other passing. The run strides
-    further, lifts its feet higher and bounces higher."""
+    """Six frames (2026-11-10, the owner: "refine her walk"; four until then): contact (legs apart), down (the front
+    foot takes her weight, her knees bend a pixel), passing (the back leg lifted and swinging through, her body up),
+    then the same on the other leg. The bow swings a pixel against her steps. The run strides further, lifts its feet
+    higher and bounces higher."""
     # Running in a side view she leans into it: her body a pixel ahead of her legs.
     lean = 1 if stride > 1 and view in ("e", "se", "ne") else 0
-    return [pose(view, stride=stride, dx=lean, **kw), pose(view, lift=0, dy=-bounce, raise_=1 + bounce, dx=lean, **kw),
-            pose(view, stride=-stride, dx=lean, **kw), pose(view, lift=1, dy=-bounce, raise_=1 + bounce, dx=lean, **kw)]
+    half = max(1, stride // 2)
+    frames = []
+    for side, leg in ((1, 0), (-1, 1)):
+        frames.append(pose(view, stride=side * stride, dx=lean, sway=side, swing=side, **kw))
+        frames.append(pose(view, stride=side * half, dy=1, dx=lean, sway=side, swing=side, **kw))
+        frames.append(pose(view, lift=leg, dy=-bounce, raise_=1 + bounce, dx=lean, sway=0, **kw))
+    return frames
 
 
 def shot(view, legs_moving=False, hold=1):
@@ -494,22 +531,34 @@ def shot(view, legs_moving=False, hold=1):
     frames = [dict(aim=1, draw=0.0), dict(aim=1, draw=0.6)] + [dict(aim=1, draw=1.0)] * (hold - 1) + \
              [dict(aim=1, draw=1.34)] + \
              [dict(aim=1, draw=0.0, loosed=True, flew=True, flex=True), dict(aim=1, draw=0.0, loosed=True)]
+    # Her body in the shot (2026-11-10, the owner: "we are doing all animations, even the attack ones"): leaning back
+    # into the draw in the side views (rising a little at full draw seen from the front or back), a pixel forward as
+    # the arrow goes, settling back; the same frames, so the release lands where the game times it.
+    side = view in ("e", "se", "ne")
     out = []
     for i, f in enumerate(frames):
         lift = (None, 0, None, 1)[i % 4] if legs_moving else None
-        out.append(pose(view, lift=lift, dy=-1 if lift is not None else 0, stride=(1, 0, -1, 0)[i % 4] if legs_moving else 0, **f))
+        drawn = f.get("draw", 0) >= 0.6 and not f.get("loosed")
+        released = f.get("flew", False)
+        dx = (-1 if drawn else 1 if released else 0) if side else 0
+        dy = -1 if lift is not None else (-1 if drawn and f.get("draw", 0) > 1.0 and not side else 0)
+        out.append(pose(view, lift=lift, dy=dy, dx=dx, stride=(1, 0, -1, 0)[i % 4] if legs_moving else 0, **f))
     return out
 
 
 def clips(view):
     c = {
-        "idle": [pose(view), pose(view, dy=1, sway=1), pose(view, dy=1, sway=1), pose(view, eyes=False)],
+        # Breathing: down a pixel and the bow swaying on the out breath, her hands drifting with it, a blink.
+        "idle": [pose(view), pose(view, dy=1, sway=1, swing=1), pose(view, dy=1, sway=1), pose(view, eyes=False)],
         "walk": walking(view),
         "run": walking(view, stride=2, bounce=2),
         "attack": shot(view),
         "overdraw": shot(view, hold=3),
         "recoil": shot(view)[:3] + [pose(view, aim=1, loosed=True, flew=True, dx=-1, dy=-1), pose(view, aim=1, loosed=True, dx=-1)],
-        "hit": [pose(view, dx=-1, dy=-1, eyes=False), pose(view)],
+        # Hit: knocked back off her feet a pixel, eyes shut, her arms flung (2026-11-10: a stronger jolt), then caught
+        # in a half crouch.
+        "hit": [pose(view, dx=-1 if view in ("e", "se", "ne") else 0, dy=-1, eyes=False, swing=-1, sway=-1),
+                pose(view, dy=1, kneel=1)],
         "dive": [dive_frame(view, k) for k in range(8)],
         "death": [death_frame(view, k) for k in range(7)],
     }
@@ -636,6 +685,54 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 P = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
 BG = np.array([0.16, 0.21, 0.13, 1], np.float32)
 views = {v: clips(v) for v in REST}
+
+# "-- walkpreview out.png": only the walk and the run in all eight directions, 6 times, nothing else written (2026-11-10).
+import sys as _sys
+_args = _sys.argv[_sys.argv.index("--") + 1:] if "--" in _sys.argv else []
+if _args and _args[0] == "frames":
+    # Every clip's frames in four directions saved to an .npz, to compare versions (2026-11-10).
+    out = {}
+    for name in views["s"]:
+        for d, view, mirror in [DIRECTIONS[i] for i in (0, 6, 4, 1)]:
+            out[f"{name}|{d}"] = np.stack([to_rgba(f, mirror) for f in views[view][name]])
+    np.savez(_args[1], **out)
+    print("wrote frames", _args[1])
+    raise SystemExit(0)
+if _args and _args[0] == "walkgif":
+    # Frames for an animated comparison: the old four-frame walk and run (each frame 3 ticks) above the new six-frame
+    # ones (each 2 ticks), 12 ticks to a cycle, in four directions; Aseprite makes the GIF.
+    def old_walking(view, stride=1, bounce=1):
+        lean = 1 if stride > 1 and view in ("e", "se", "ne") else 0
+        return [pose(view, stride=stride, dx=lean), pose(view, lift=0, dy=-bounce, raise_=1 + bounce, dx=lean),
+                pose(view, stride=-stride, dx=lean), pose(view, lift=1, dy=-bounce, raise_=1 + bounce, dx=lean)]
+    shown = [DIRECTIONS[i] for i in (0, 6, 4, 1)]
+    os.makedirs(_args[1], exist_ok=True)
+    for t in range(12):
+        rows = []
+        for clip, stride, bounce in (("walk", 1, 1), ("run", 2, 2)):
+            for old in (True, False):
+                cells = []
+                for _, view, mirror in shown:
+                    frames = old_walking(view, stride, bounce) if old else views[view][clip]
+                    f = frames[t // 3] if old else frames[t // 2]
+                    img = to_rgba(f, mirror)
+                    cells.append(np.where(img[..., 3:4] > 0.5, img, BG))
+                rows.append(np.concatenate(cells, 1))
+        save(np.repeat(np.repeat(np.concatenate(rows, 0), 5, 0), 5, 1), os.path.join(_args[1], f"f{t:02d}.png"))
+    print("wrote gif frames", _args[1])
+    raise SystemExit(0)
+if _args and _args[0] == "walkpreview":
+    rows = []
+    for clip in ("walk", "run"):
+        for _, view, mirror in DIRECTIONS:
+            frames = [on_bg(to_rgba(f, mirror)) if False else np.where(to_rgba(f, mirror)[..., 3:4] > 0.5, to_rgba(f, mirror), BG)
+                      for f in views[view][clip]]
+            strip = np.concatenate(frames, 1)
+            rows.append(np.concatenate([strip, np.tile(BG, (CH, 8 * CW - strip.shape[1], 1))], 1))
+        rows.append(np.tile(np.array([0.08, 0.1, 0.06, 1], np.float32), (2, 8 * CW, 1)))
+    save(np.repeat(np.repeat(np.concatenate(rows, 0), 4, 0), 4, 1), _args[1])
+    print("wrote walk preview", _args[1])
+    raise SystemExit(0)
 
 
 def on_bg(img):
