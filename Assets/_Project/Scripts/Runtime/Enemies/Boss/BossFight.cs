@@ -348,7 +348,8 @@ namespace ARPG
         }
 
         /// <summary>A fan of shots at the player, each shown as a line for 0.4 s first.</summary>
-        protected IEnumerator Fan(int count, float spreadDegrees, float speed, float radius, float multiplier, Color color, float slowFraction = 0f)
+        protected IEnumerator Fan(int count, float spreadDegrees, float speed, float radius, float multiplier, Color color, float slowFraction = 0f,
+            ProjectileKind kind = ProjectileKind.Plain)
         {
             var origin = boss.GroundPosition;
             var aim = (manager.PlayerGround - origin).normalized;
@@ -366,15 +367,28 @@ namespace ARPG
                 manager.Warnings?.Warn(boss, origin, 0.4f, IncomingWarnings.ShotColor, IncomingWarnings.Shape.Triangle);
             yield return Wait(0.4f);
             foreach (var direction in directions)
-                LaunchShot(origin, direction * speed, radius, multiplier, color, slowFraction);
+                LaunchShot(origin, direction * speed, radius, multiplier, color, slowFraction, kind);
         }
 
         /// <summary>A projectile from the boss; walls and the arena's edge stop it.</summary>
-        protected void LaunchShot(Vector2 origin, Vector2 velocity, float radius, float multiplier, Color color, float slowFraction = 0f)
+        protected void LaunchShot(Vector2 origin, Vector2 velocity, float radius, float multiplier, Color color, float slowFraction = 0f,
+            ProjectileKind kind = ProjectileKind.Plain)
         {
+            // Drawn in pixels like the enemies' throws (2026-11-10, the owner: the boss's "old attacks that look bad"; they
+            // were soft glowing embers): the kind's picture turned toward its flight, a coloured bolt tinted.
+            var picture = ProjectileArt.Drawn(kind, true);
             var go = GroundMarker.NewSprite("Shot", TelegraphArt.Ember, color, transform, 60);
-            go.GetComponent<SpriteRenderer>().sortingLayerName = GameSortingLayers.Effects;
-            go.transform.localScale = new Vector3(radius * 2f, radius * 2f, 1f);
+            var renderer = go.GetComponent<SpriteRenderer>();
+            renderer.sortingLayerName = GameSortingLayers.Effects;
+            if (picture != null)
+            {
+                var world = IsoMath.GroundToWorld(velocity);
+                var turned = TurnedArt.Toward(picture, Mathf.Atan2(world.y, world.x) * Mathf.Rad2Deg);
+                renderer.sprite = turned != null ? turned : picture;
+                renderer.color = ProjectileArt.IsTinted(kind, true) ? Color.Lerp(new Color(color.r, color.g, color.b, 1f), Color.white, 0.25f) : Color.white;
+            }
+            else
+                go.transform.localScale = new Vector3(radius * 2f, radius * 2f, 1f);
             go.transform.position = Elevation.World2(origin);
             shots.Add(new Shot { Transform = go.transform, Position = origin, Velocity = velocity, Radius = radius, Multiplier = multiplier, SlowFraction = slowFraction });
         }
@@ -402,6 +416,10 @@ namespace ARPG
                 }
             }
         }
+
+        /// <summary>A bottle or glob thrown from the boss to where a pool will be, landing after <paramref name="seconds"/>
+        /// (2026-11-10).</summary>
+        protected void Lob(Vector2 at, float seconds, FlaskKind kind) => manager?.Flasks?.Throw(boss.GroundPosition, at, seconds, kind);
 
         /// <summary>A lasting zone on the ground: it fades in over <paramref name="fillSeconds"/> (harmless until then),
         /// then for <paramref name="seconds"/> hurts the player standing in it (hits a second) and slows her.</summary>

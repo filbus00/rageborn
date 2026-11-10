@@ -96,6 +96,9 @@ namespace ARPG
         /// <summary>Burning ground and bursts left by enemies (EnemyHazards).</summary>
         public EnemyHazards Hazards { get; private set; }
 
+        /// <summary>The bottles thrown to make pools, flying in their arcs (2026-11-10).</summary>
+        public Flasks Flasks { get; private set; }
+
         /// <summary>The elites' attack affixes (EliteAffixes, 2026-10-08).</summary>
         public EliteAffixes Affixes { get; private set; }
 
@@ -175,6 +178,8 @@ namespace ARPG
             LoadTimer.Mark("nav grid");
             Projectiles = new EnemyProjectiles(transform);
             Hazards = new EnemyHazards(transform);
+            Flasks = new Flasks(transform);
+            Hazards.Flasks = Flasks;
             Affixes = new EliteAffixes(transform);
             Specials = new EnemySpecials();
             Warnings = gameObject.AddComponent<IncomingWarnings>();
@@ -246,6 +251,7 @@ namespace ARPG
 
             Projectiles.Tick(deltaTime, this);
             Hazards.Tick(deltaTime, this);
+            Flasks.Tick(deltaTime);
             Affixes.Tick(deltaTime, this);
             Specials.Tick(deltaTime, this);
         }

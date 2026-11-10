@@ -155,13 +155,19 @@ namespace ARPG
 
         /// <summary>A poison pool (Plagued): it spreads over <paramref name="fillSeconds"/> without hitting, then hurts
         /// while she stands in it.</summary>
-        public void Poison(Vector2 center, float radius, float fillSeconds, float seconds, float damagePerSecond, int level) =>
+        public void Poison(Vector2 center, float radius, float fillSeconds, float seconds, float damagePerSecond, int level)
+        {
+            nextFlask = FlaskKind.Poison;
             Add(center, radius, fillSeconds, seconds, 0f, damagePerSecond, level, PoisonColor);
+        }
 
         /// <summary>A poison pool in a colour that also strikes when it lands (the enemies' specials, 2026-10-11).</summary>
         public void Poison(Vector2 center, float radius, float fillSeconds, float seconds, float damagePerSecond, int level, Color color, float landDamage,
-            float poolDelay = 0f) =>
+            float poolDelay = 0f)
+        {
+            nextFlask = FlaskKind.Poison;
             Add(center, radius, fillSeconds, seconds, landDamage, damagePerSecond, level, color).Delay(poolDelay);
+        }
 
         /// <summary>
         /// A lane from <paramref name="from"/> to <paramref name="to"/>, <paramref name="width"/> wide, that fills and
@@ -229,12 +235,27 @@ namespace ARPG
         /// attacks): a pool made now warns toward it on her ring (2026-11-03). Null for pools nobody casts.</summary>
         public EnemyController Caster { get; set; }
 
+        /// <summary>The bottles' flights (set by the manager): a pool a caster makes with a fill is thrown there.</summary>
+        public Flasks Flasks { get; set; }
+
+        // The bottle the next pool is thrown as (Poison sets the poison bottle; fire is a molotov).
+        FlaskKind nextFlask = FlaskKind.Molotov;
+
+        /// <summary>A pool a known enemy makes, filling first, comes as a thrown bottle landing as it fills (2026-11-10).</summary>
+        void ThrowFor(Vector2 center, float fill, float burn)
+        {
+            if (Flasks != null && Caster != null && burn > 0f && fill > 0f)
+                Flasks.Throw(Caster.GroundPosition, center, fill, nextFlask);
+            nextFlask = FlaskKind.Molotov;
+        }
+
         /// <summary>How long a pool that hurts at once still warns (burning ground, which has no fill).</summary>
         const float LeastWarningSeconds = 0.6f;
 
         Hazard Add(Vector2 center, float radius, float fill, float burn, float damage, float burnPerSecond, int level, Color color)
         {
             Warnings?.WarnPool(center, radius, Mathf.Max(fill, LeastWarningSeconds), color, Caster);
+            ThrowFor(center, fill, burn);
             Hazard hazard = null;
             foreach (var h in hazards)
                 if (!h.Active && h.Marker != null)
@@ -347,6 +368,7 @@ namespace ARPG
         /// <summary>Clears every hazard (a new level).</summary>
         public void Clear()
         {
+            Flasks?.Clear();
             foreach (var h in hazards)
                 Finish(h);
             foreach (var s in shocks)

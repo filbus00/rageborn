@@ -985,6 +985,10 @@ namespace ARPG
                         slamMarker = GroundMarker.Circle(attackCenter, definition.SlamRadius, stateTimer, TelegraphColor, world.transform);
                     else
                         slamMarker.RestartCircle(attackCenter, definition.SlamRadius, stateTimer);
+                    // The burning circle comes as a molotov thrown onto it, landing as it fills (2026-11-10); the Rift
+                    // Caller's void pulses are cast, not thrown.
+                    if (definition.CastPulses <= 0)
+                        world.Flasks?.Throw(ground, attackCenter, stateTimer, FlaskKind.Molotov);
                     break;
 
                 case EnemyArchetype.Brute:

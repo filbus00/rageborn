@@ -123,7 +123,7 @@ namespace ARPG
             ("Blob", new EnemySpecial("Slime Glob", SpecialShape.Throw, 7f, 2f, 7f, 0.3f, 0.55f, 0.8f, Bile, length: 7f, speed: 8f, kind: ProjectileKind.Fireball)),
             // The forest's (2026-10-26): a spider spits a web that slows, a bandit throws a knife, a bowman looses a spread
             // of arrows; wolves only bite and lunge. Claude's choice, to review.
-            ("Spider", new EnemySpecial("Web", SpecialShape.Throw, 6.5f, 2f, 7f, 0.25f, 0.5f, 0.4f, Bone, length: 8f, speed: 11f, slow: 0.5f, slowSeconds: 2f)),
+            ("Spider", new EnemySpecial("Web", SpecialShape.Throw, 6.5f, 2f, 7f, 0.25f, 0.5f, 0.4f, Bone, length: 8f, speed: 11f, slow: 0.5f, slowSeconds: 2f, kind: ProjectileKind.Web)),
             // The Cutthroat throws only when she keeps her distance (the owner, 2026-11-02); up close he dashes and slashes.
             ("Bandit", new EnemySpecial("Thrown Knife", SpecialShape.Throw, 5f, 4f, 9f, 0.2f, 0.45f, 0.8f, Steel, length: 9f, speed: 16f, kind: ProjectileKind.Knife)),
             ("BanditArcher", new EnemySpecial("Volley", SpecialShape.Throw, 7f, 2.5f, 10f, 0.2f, 0.5f, 0.8f, Steel, count: 3, spread: 12f, length: 11f, speed: 15f, kind: ProjectileKind.Arrow)),

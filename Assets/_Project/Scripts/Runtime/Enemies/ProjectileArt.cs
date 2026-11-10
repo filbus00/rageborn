@@ -76,10 +76,17 @@ namespace ARPG
                 ProjectileKind.Bouncing => "projectile_blade",
                 ProjectileKind.Fireball => "projectile_fireball",
                 ProjectileKind.Arrow => "projectile_arrow",
-                _ => coloured ? null : "projectile_arrow",
+                ProjectileKind.Web => "projectile_web",
+                // Coloured bolts of magic are a grey bolt tinted by their colour (2026-11-10: they were soft glows).
+                _ => coloured ? BoltName : "projectile_arrow",
             };
             return name != null ? WorldArt.Get(name) : null;
         }
+
+        const string BoltName = "projectile_bolt";
+
+        /// <summary>Whether a drawn picture is the grey bolt, to be tinted by the shot's colour.</summary>
+        public static bool IsTinted(ProjectileKind kind, bool coloured) => kind == ProjectileKind.Plain && coloured;
 
         /// <summary>The kind's sprite, or null for the kinds drawn as an ember (plain bolts, fireballs).</summary>
         public static Sprite For(ProjectileKind kind)

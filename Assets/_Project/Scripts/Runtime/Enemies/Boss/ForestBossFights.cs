@@ -94,7 +94,7 @@ namespace ARPG
         // A fan of thrown knives.
         IEnumerator Knives()
         {
-            yield return Fan(phase >= 3 ? 7 : 5, 11f, 11f, 0.35f, 0.7f, KnifeColor);
+            yield return Fan(phase >= 3 ? 7 : 5, 11f, 11f, 0.35f, 0.7f, KnifeColor, kind: ProjectileKind.Knife);
             cooldown = 0.9f;
         }
 
@@ -156,6 +156,7 @@ namespace ARPG
                 return;
             webTimer = 4f;
             var at = ClampToArena(center + Random.insideUnitCircle * (arenaRadius - 2f), 1.6f);
+            Lob(at, 0.8f, FlaskKind.Web);
             LastingZone(at, 1.6f, 0.8f, 20f, 0f, 0.55f, WebColor);
         }
 
@@ -210,6 +211,7 @@ namespace ARPG
                 var at = ClampToArena(manager.PlayerGround + (i == 0 ? Vector2.zero : Random.insideUnitCircle * 3f), radius);
                 spots.Add(at);
                 Track(GroundMarker.Circle(at, radius, 0.9f, TelegraphColor, transform));
+                Lob(at, 0.9f, FlaskKind.Web);
             }
             yield return Wait(0.9f);
             foreach (var at in spots)
@@ -264,7 +266,10 @@ namespace ARPG
             manager.Warnings?.Warn(boss, origin, 0.8f, IncomingWarnings.ShotColor, IncomingWarnings.Shape.Round);
             var spots = new[] { origin + aim * 2f, origin + aim * 3.6f + side * 1.2f, origin + aim * 3.6f - side * 1.2f };
             foreach (var at in spots)
+            {
+                Lob(ClampToArena(at, 1.3f), 0.8f, FlaskKind.Poison);
                 LastingZone(ClampToArena(at, 1.3f), 1.3f, 0.8f, 4f, 0.5f, 0f, PoisonColor);
+            }
             yield return Wait(1f);
             cooldown = 1f;
         }

@@ -552,20 +552,6 @@ def gold(n):
     return im.outline()
 
 
-def ritual():
-    im = Img(30, 19)
-    for y in range(19):
-        for x in range(30):
-            d = ((x + 0.5 - 15) / 14) ** 2 + ((y + 0.5 - 9.5) / 9) ** 2
-            if 0.78 < d <= 1.0:
-                im.set(x, y, PAL["red"][1])
-    for k in range(5):
-        a = k * 2 * math.tau / 5 - math.pi / 2
-        b = (k + 1) * 2 * math.tau / 5 - math.pi / 2
-        im.line(15 + 12 * math.cos(a), 9.5 + 7.7 * math.sin(a), 15 + 12 * math.cos(b), 9.5 + 7.7 * math.sin(b), PAL["red"][0])
-    return im
-
-
 def arrow(kind):
     im = Img(12, 5)
     im.line(1, 2, 9, 2, PAL["wood"][3])
@@ -616,22 +602,73 @@ def thrown(kind):
     return im.outline()
 
 
+def web_glob():
+    """A spider's spit (2026-11-10, the owner: "The spiders need better looking ranged attacks"): a sticky white glob
+    with strands trailing behind it, pointing along +x."""
+    im = Img(13, 9)
+    for y0, y1 in ((4, 1), (4, 7), (4, 4), (3, 2), (5, 6)):
+        im.line(1, y1, 7, y0, PAL["web"][0])
+    im.blob(9, 4.5, 3.4, 3.2, ["8a8a96", PAL["web"][0], PAL["web"][1], "ffffff"])
+    im.set(10, 3, "ffffff"); im.set(8, 6, "8a8a96")
+    return im.outline()
+
+
+def bolt():
+    """A coloured bolt of magic in greys (2026-11-10), tinted in the game by the shot's colour: a bright head, a tail
+    that thins, pointing along +x."""
+    im = Img(13, 7)
+    for k in range(8):
+        r = 0.6 + k * 0.3
+        im.blob(2 + k, 3.5, r, r, ["7a7a7a", "a8a8a8", "d8d8d8", "ffffff"])
+    im.blob(10, 3.5, 2.6, 2.6, ["a8a8a8", "d8d8d8", "f0f0f0", "ffffff"])
+    return im.outline()
+
+
+def flask(kind):
+    """A thrown bottle that breaks into a pool (2026-11-10, the owner: "fire pools are molotovs, poison are poison
+    bottles"), upright: a molotov is a long brown bottle with a burning rag in its neck, a poison bottle a round green
+    flask with a cork and a skull mark."""
+    if kind == "molotov":
+        im = Img(7, 13)
+        im.rect(1, 6, 5, 12, "5a3a1e"); im.rect(2, 6, 4, 11, "8a5a2a"); im.line(2, 7, 2, 11, "c8904a")
+        im.rect(2, 3, 4, 5, "6a4a24"); im.set(3, 4, "a8743a")
+        im.line(3, 2, 3, 3, PAL["canvas"][1]); im.set(4, 2, PAL["canvas"][2])
+        im.set(3, 0, PAL["fire"][2]); im.set(2, 1, PAL["fire"][1]); im.set(3, 1, PAL["fire"][3]); im.set(4, 1, PAL["fire"][1])
+        return im.outline()
+    im = Img(9, 11)
+    im.blob(4.5, 7, 3.8, 3.6, ["2a5a1a", "4a8a22", "7ac232", "c8f06a"])
+    im.rect(3, 1, 5, 3, "3a6a2a"); im.set(4, 2, "6aa23a")
+    im.rect(3, 0, 5, 0, PAL["wood"][2])
+    im.set(4, 7, "f0f0e0"); im.set(3, 6, "f0f0e0"); im.set(5, 6, "f0f0e0")
+    return im.outline()
+
+
 EXTRAS = {"chest_closed": chest, "chest_open": lambda: chest(True), "gold_coin": lambda: gold(0), "gold_pile_1": lambda: gold(1),
-          "gold_pile_2": lambda: gold(2), "gold_pile_3": lambda: gold(3), "ritual_circle": ritual}
+          "gold_pile_2": lambda: gold(2), "gold_pile_3": lambda: gold(3), "projectile_web": web_glob, "projectile_bolt": bolt,
+          "flask_molotov": lambda: flask("molotov"), "flask_poison": lambda: flask("poison")}
 EXTRAS.update({f"arrow_{k}": (lambda k=k: arrow(k)) for k in ("plain", "pierce", "fire", "frost", "lightning", "explosive")})
 EXTRAS.update({f"projectile_{k}": (lambda k=k: thrown(k)) for k in ("arrow", "knife", "axe", "blade", "bomb", "fireball")})
 
 
 # Writing ---------------------------------------------------------------------------------------------------------
+# "-- only name ..." writes just those pieces (2026-11-10: new pieces added without redrawing the rest), no ground,
+# sizes list or preview.
+import sys
+ONLY = sys.argv[sys.argv.index("only") + 1:] if "only" in sys.argv else None
 written = []
 preview = []
 for group, folder in ((TREES, "World"), (BUSHES, "World"), (STAIRS, "World"), (PROPS, "Dungeon"), (DECALS, "Dungeon"), (EXTRAS, "World")):
     for name, make in group.items():
+        if ONLY is not None and name not in ONLY:
+            continue
         im = make()
         arr = im.rgba()
         save(arr, os.path.join(ART, folder, name + ".png"))
         written.append(f"{folder}/{name} {arr.shape[1]} {arr.shape[0]}")
         preview.append(arr)
+if ONLY is not None:
+    print("wrote", written)
+    raise SystemExit(0)
 for kind, name in (("grass", "forest_grass"), ("path", "forest_path")):
     save(ground(kind), os.path.join(ART, "Ground", name + ".png"))
 with open(os.path.join(HERE, "forest_art_sizes.txt"), "w") as f:

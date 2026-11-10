@@ -93,6 +93,8 @@ namespace ARPG
         /// <summary>A drawn arrow whatever the shot's colour (2026-11-08: the bowmen's volley had been drawn as glowing
         /// bolts).</summary>
         Arrow,
+        /// <summary>A sticky glob of web (the spiders, 2026-11-10).</summary>
+        Web,
     }
 
     /// <summary>The kinds' numbers and the bounce off a wall. Claude's numbers, to review. Pure.</summary>
@@ -116,6 +118,12 @@ namespace ARPG
         public const float BombFuse = 0.7f;
         public const int Bounces = 3;
         public const float BouncingReach = 16f;
+
+        /// <summary>How much further than its listed reach every enemy shot flies (2026-11-10, the owner: "Make all the
+        /// ranged attacks travel 30% further. That includes the boomerang axes"); a bomb still lands where she stood.</summary>
+        public const float ReachScale = 1.3f;
+
+        public static float Reach(ProjectileKind kind, float listed) => kind == ProjectileKind.Bomb ? listed : listed * ReachScale;
         public const float AxeSpinDegrees = 900f;
         public const float BladeSpinDegrees = 1400f;
 

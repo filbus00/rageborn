@@ -64,6 +64,7 @@ namespace ARPG
         public void Fire(EnemyController shooter, Vector2 origin, Vector2 velocity, float maxDistance, float damage, int level, float armorIgnore,
             Color color = default, ProjectileKind kind = ProjectileKind.Plain)
         {
+            maxDistance = ProjectileKinds.Reach(kind, maxDistance);
             var look = spare.Count > 0 ? spare.Pop() : Create();
             look.Root.gameObject.SetActive(true);
             var tint = color.a > 0f ? color : ArrowColor;
@@ -75,7 +76,7 @@ namespace ARPG
             {
                 // The owner's drawn projectile (2026-10-31), at its own size, its glow and trail in the shot's colour.
                 renderer.sprite = drawn;
-                renderer.color = Color.white;
+                renderer.color = ProjectileArt.IsTinted(kind, color.a > 0f) ? Color.Lerp(tint, Color.white, 0.25f) : Color.white;
                 look.Body.transform.localScale = Vector3.one;
                 var fire = kind == ProjectileKind.Fireball;
                 var arrow = kind == ProjectileKind.Plain || kind == ProjectileKind.Arrow;
@@ -117,10 +118,12 @@ namespace ARPG
                 trailLength = bolt ? 1.0f : 1.1f;
                 trailWidth = bolt ? 0.22f : 0.2f;
             }
-            // A drawn arrow has no soft glow (2026-11-08: it did not fit the pixel art), only a faint short trail.
-            look.Glow.color = new Color(tint.r, tint.g, tint.b, glowSize <= 0f ? 0f : art != null ? 0.4f : 0.55f);
+            // A drawn picture has no soft glow or streak (2026-11-08 for arrows; 2026-11-10 for all, the owner: "All enemies
+            // that have attacks that are not pixel art need to be pixel art").
+            var pixel = drawn != null;
+            look.Glow.color = new Color(tint.r, tint.g, tint.b, pixel || glowSize <= 0f ? 0f : art != null ? 0.4f : 0.55f);
             look.Glow.transform.localScale = new Vector3(glowSize, glowSize * 0.75f, 1f);
-            look.Trail.color = new Color(tint.r, tint.g, tint.b, art != null ? 0.45f : 0.8f);
+            look.Trail.color = new Color(tint.r, tint.g, tint.b, pixel ? 0f : art != null ? 0.45f : 0.8f);
             look.Trail.transform.localScale = new Vector3(trailLength, trailWidth, 1f);
             look.Root.position = Elevation.World2(origin);
             var world = IsoMath.GroundToWorld(velocity);
