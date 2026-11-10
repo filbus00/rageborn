@@ -207,9 +207,14 @@ found = tiles(src)
 print("tiles", len(found), "named", len(TILES))
 assert len(found) == len(TILES), (len(found), len(TILES))
 
+# The bows keep the old pictures (2026-11-10): their limbs are a pixel or two wide in Gemini's soft sheet and read
+# down muddy and dark.
+KEEP_OLD = {"ember_tongue", "galeheart", "gallowsreach", "great_bow", "horn_bow", "hunters_promise", "hunting_bow",
+            "recurve_bow", "splinterbough", "stillwater_yew", "the_long_silence", "war_bow", "widows_draw", "yew_longbow"}
+
 pairs = []
 for box, name in zip(found, TILES):
-    if name is None:
+    if name is None or name in KEEP_OLD:
         continue
     w, h = size_of(name)
     old = load(os.path.join(ART, name + ".png"))

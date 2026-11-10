@@ -2021,3 +2021,7 @@ The owner: "remove all changes and reinstate the old character". The six commits
 ### 2026-11-08: gear slots the size of their items
 
 The owner: "remake the gear slots to match the size of the items in bag". The Bag's gear slots (`InventoryScreen.BuildDoll`, `SlotLayout`) are now laid on the backpack's cells (104 units, 4 apart), each the block `ItemSize` gives its item: bow 2 x 4, helm over gloves (2 x 2 each), chest 2 x 3 over the belt 2 x 1, the amulet over the two rings (1 x 1) over the boots 2 x 2, the quiver 2 x 3. 10 cells across and 4 down, as wide as the backpack. Checked in play mode in the editor. A contact sheet of all 69 item pictures: `ArtSource/pixel/previews/item_art_all.png`.
+
+### 2026-11-10: item pictures from Gemini's sheet
+
+The owner's Gemini redraw of `item_art_all.png` (`ArtSource/pixel/sixteen/item_gemini/source.jpeg`, 800 x 1300, soft) is cut into the game's pictures by `extract_items.py`: each tile found, the item cut from the tile's flat colour (the bottom 13 rows are its name; only the biggest piece is kept, as JPEG noise on the rim shrank the small ones), read down to its size by median, its colours snapped to 6 or 12 of its own, an outline added outside bright edges. 54 pictures replaced; the 14 bows keep the old ones (their thin limbs read down muddy) and so do the bracers (not drawn). Gemini's sheet did not follow ours exactly; `TILES` names each tile by what is drawn there. Preview, old over new: `ArtSource/pixel/previews/item_art_gemini.png`.
