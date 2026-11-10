@@ -410,6 +410,53 @@ def ribcage():
     return im
 
 
+def long_bone(mirror):
+    """A long leg bone lying in the grass (2026-11-10): a pale shaft with knobbed ends, lit from above, shaded beneath,
+    lying across the cell one way or the other (mirror), a soft shadow under it."""
+    im = Img(22, 12)
+    bone = PAL["bone"]
+    x0, y0, x1, y1 = 4, 8, 17, 4
+    # The shaft: a lit top line over a shaded one.
+    im.line(x0, y0 + 1, x1, y1 + 1, bone[0])
+    im.line(x0, y0, x1, y1, bone[2])
+    # The ends: two knobs each, the far end a little darker.
+    for (x, y), ramp in (((x0, y0), bone), ((x1, y1), [bone[0], bone[1], bone[1], bone[2]])):
+        im.blob(x - 0.6, y + 0.2, 1.6, 1.3, ramp)
+        im.blob(x + 0.6, y + 1.2, 1.4, 1.2, ramp)
+    outline_outside(im)
+    shadow(im, 3, 18, 10)
+    if mirror:
+        im.c = [row[::-1] for row in im.c]
+    return im
+
+
+def pelvis():
+    """An animal's pelvis lying in the grass (2026-11-10): two wings of bone flaring up and out from a short spine in
+    the middle, below them two small rings round open holes meeting at the front, lit from the top left; the holes
+    open so the grass shows through, a soft shadow under it."""
+    im = Img(24, 16)
+    bone = PAL["bone"]
+    far = [bone[0], bone[1], bone[1], bone[2]]
+    # The wings: broad fans tilted up and out, the right (far) one darker.
+    for k in range(5):
+        im.blob(9 - k * 1.3, 7 - k * 0.7, 2.6, 2.0, bone)
+        im.blob(15 + k * 1.3, 7 - k * 0.7, 2.6, 2.0, far)
+    # The spine down the middle, narrowing toward the front.
+    im.rect(11, 2, 13, 8, bone[2]); im.line(12, 2, 12, 8, bone[1]); im.set(12, 1, bone[1])
+    # The rings below, round their holes, meeting at the front.
+    im.blob(9, 11, 2.8, 2.4, bone)
+    im.blob(15, 11, 2.8, 2.4, far)
+    im.rect(11, 12, 13, 13, bone[1])
+    holes = ((9, 11.2), (15, 11.2))
+    for y in range(im.h):
+        for x in range(im.w):
+            if any(((x + 0.5 - cx) / 1.3) ** 2 + ((y + 0.5 - cy) / 1.0) ** 2 <= 1.0 for cx, cy in holes):
+                im.c[y][x] = None
+    outline_outside(im)
+    shadow(im, 4, 20, 14)
+    return im
+
+
 def web_sac():
     im = Img(14, 13)
     for x1, y1 in [(0, 0), (13, 1), (0, 12), (13, 12), (7, 0)]:
@@ -516,7 +563,8 @@ PROPS = {"prop_ferns": ferns, "prop_mushrooms": mushrooms, "prop_stump": lambda:
          "prop_standing_stone": standing_stone, "prop_axe_stump": lambda: stump(axe=True), "prop_bone_pile": bone_pile,
          "prop_web_sac": web_sac, "prop_campfire": campfire, "prop_sack": sack, "prop_crate": crate, "prop_barrel": barrel,
          "prop_weapon_rack": weapon_rack, "prop_cage": cage, "prop_carcass": carcass, "prop_bandit_tent": tent,
-         "prop_bone_pile_1": deer_skull, "prop_bone_pile_2": ribcage}
+         "prop_bone_pile_1": deer_skull, "prop_bone_pile_2": ribcage, "prop_bone_pile_3": lambda: long_bone(False),
+         "prop_bone_pile_4": lambda: long_bone(True), "prop_bone_pile_5": pelvis}
 
 
 # Floor marks (27 x 14 drawn: two cells' diamond) -----------------------------------------------------------------
