@@ -133,9 +133,11 @@ namespace ARPG
             Layout = DungeonGenerator.Generate(levelSeed, depth, shapes, settings);
             GroundRules.ForestTrail.Clear();
             if (ForestLevel)
-                CutTrail();
+                CutTrails();
             // Raised and sunken floors are drawn at their height, and what stands on them lifted with them (2026-10-20).
             Elevation.Current = ElevationMap.From(Layout);
+            if (wayIn != null)
+                DarkenTrail(wayIn, transform);
             LoadTimer.Mark("generate");
 
             Paint();
@@ -149,6 +151,15 @@ namespace ARPG
                 // Back through the portal: it closes behind the player (as in Diablo 1).
                 PlacePlayerAt(session.PortalPosition);
                 session.ClosePortal();
+            }
+            else if (ForestLevel && wayIn != null && arrival == Arrival.FromAbove)
+            {
+                // Out of the way in (2026-11-10): from three cells in, in the dark, walking out onto the level.
+                var start = wayIn.Mouth + wayIn.Into * Mathf.Min(3, wayIn.Length);
+                PlacePlayer(start);
+                var player = FindAnyObjectByType<PlayerController>();
+                if (player != null)
+                    TrailWalk.Begin(player, StickToward(start, -wayIn.Into), CellWorld(wayIn.Mouth - wayIn.Into), 1.5f);
             }
             else
             {
@@ -1049,22 +1060,27 @@ namespace ARPG
         // The forest's way on (2026-11-10, the owner: the gate "is covered by the forest and does not seem to lead to
         // anything. It just looks like an arch leading into a forest wall"): a trail cut into the trees where the exit
         // is, three cells wide and six deep, its ground bare path going off into the dark, the trees just in front of it
-        // cleared so it shows.
+        // cleared so it shows. And the way in, the same where the stairs up would be: she arrives walking out of it
+        // (the owner: "do 1", arriving to match leaving).
+        sealed class Trail
+        {
+            public Vector2Int Mouth, Into;
+            public int Length;
+            public readonly List<Vector2Int> Cells = new List<Vector2Int>();
+        }
+
+        // Every trail's cells, for the drawing and the rock measure.
         readonly HashSet<Vector2Int> trail = new HashSet<Vector2Int>();
-        Vector2Int trailMouth, trailInto;
-        int trailLength;
-        bool hasTrail;
+        Trail wayOn, wayIn;
         public const int TrailDepth = 6;
 
-        void CutTrail()
+        void CutTrails()
         {
             var cell = Layout.StairsDown;
             var into = Layout.StairsDownInto;
-            if (into == Vector2Int.zero)
+            if (into == Vector2Int.zero && Layout.HasBossArena)
             {
                 // A boss arena's way on: into the nearer of its far walls from where the way on stands.
-                if (!Layout.HasBossArena)
-                    return;
                 int Reach(Vector2Int dir)
                 {
                     var k = 0;
@@ -1074,6 +1090,14 @@ namespace ARPG
                 }
                 into = Reach(Vector2Int.right) <= Reach(Vector2Int.up) ? Vector2Int.right : Vector2Int.up;
             }
+            if (into != Vector2Int.zero)
+                wayOn = CutTrail(cell, into);
+            if (Layout.StairsUpInto != Vector2Int.zero)
+                wayIn = CutTrail(Layout.StairsUp, Layout.StairsUpInto);
+        }
+
+        Trail CutTrail(Vector2Int cell, Vector2Int into)
+        {
             var mouth = cell;
             for (var k = 0; k < 20 && Layout.IsFloor(mouth + into); k++)
                 mouth += into;
@@ -1092,6 +1116,7 @@ namespace ARPG
                             return false;
                 return true;
             }
+            var cut = new Trail { Mouth = mouth, Into = into, Length = depth };
             for (var k = 1; k <= depth; k++)
                 for (var s = -2; s <= 1; s++)
                 {
@@ -1102,16 +1127,15 @@ namespace ARPG
                     if (Layout.Get(c) != DungeonCell.Wall)
                         continue;
                     Layout.Set(c.x, c.y, DungeonCell.Floor);
+                    cut.Cells.Add(c);
                     trail.Add(c);
                     GroundRules.ForestTrail.Add(c);
                 }
-            trailMouth = mouth;
-            trailInto = into;
-            trailLength = depth;
-            hasTrail = trail.Count > 0;
+            if (cut.Cells.Count == 0)
+                return null;
             // The trees in front of it (nearer the camera, below it on the screen) are bushes, so their crowns do not
             // cover it (2026-11-10: the first cut was hidden behind them).
-            foreach (var t in trail)
+            foreach (var t in cut.Cells)
                 for (var dx = 0; dx <= TrailFrontReach; dx++)
                     for (var dy = 0; dx + dy <= TrailFrontReach; dy++)
                     {
@@ -1119,6 +1143,7 @@ namespace ARPG
                         if (dx + dy > 0 && Mathf.Abs(dx - dy) <= 3 && Layout.Get(c) == DungeonCell.Wall)
                             trailFront.Add(c);
                     }
+            return cut;
         }
 
         // Steps (x + y) down the screen from the trail its front bushes reach.
@@ -1127,27 +1152,31 @@ namespace ARPG
 
         string TrailBush(Vector2Int at) => "forest_bush_" + (1 + Mathf.Abs(PieceHash(at)) % 3);
 
-        // The trail's look and its exit: the ground darkening into the trees in dithered steps, a lantern signpost at the
-        // mouth on the camera's side pointing in, the way on a little way in.
-        void DressTrail(GameObject exit)
+        // A trail's ground darkening into the trees in flat steps (a dither read as a net over the path).
+        void DarkenTrail(Trail cut, Transform parent)
         {
-            var side = new Vector2Int(trailInto.y, trailInto.x);
-            foreach (var c in trail)
+            foreach (var c in cut.Cells)
             {
-                var k = Vector2.Dot(c - trailMouth, trailInto);
+                var k = Vector2.Dot(c - cut.Mouth, cut.Into);
                 if (k < 2)
                     continue;
-                // Flat steps of shadow (a dither read as a net over the path).
                 var shade = Mathf.Min(0.95f, 0.15f + 0.2f * (k - 1));
-                var dark = GroundMarker.NewSprite("Trail Dark", PixelMarks.Darkness(4), new Color(0.02f, 0.03f, 0.02f, shade), exit.transform, 60);
+                var dark = GroundMarker.NewSprite("Trail Dark", PixelMarks.Darkness(4), new Color(0.02f, 0.03f, 0.02f, shade), parent, 60);
                 dark.transform.position = Elevation.World2(IsoMath.CellToGround(c));
             }
-            var postSprite = WorldArt.Get(trailInto == Vector2Int.right ? "exit_post_x" : "exit_post_y");
+        }
+
+        // The way on's look: its dark ground and a lantern signpost at the mouth on the camera's side pointing in.
+        void DressTrail(Trail cut, GameObject exit)
+        {
+            DarkenTrail(cut, exit.transform);
+            var side = new Vector2Int(cut.Into.y, cut.Into.x);
+            var postSprite = WorldArt.Get(cut.Into == Vector2Int.right ? "exit_post_x" : "exit_post_y");
             if (postSprite != null)
             {
                 var post = new GameObject("Signpost", typeof(SpriteRenderer));
                 post.transform.SetParent(exit.transform, false);
-                post.transform.position = Elevation.World2(IsoMath.CellToGround(trailMouth - side * 2));
+                post.transform.position = Elevation.World2(IsoMath.CellToGround(cut.Mouth - side * 2));
                 var r = post.GetComponent<SpriteRenderer>();
                 r.sprite = postSprite;
                 r.sortingLayerName = GameSortingLayers.Entities;
@@ -1157,6 +1186,9 @@ namespace ARPG
                 glow.transform.localPosition = Vector3.zero;
             }
         }
+
+        // The ground direction (as the stick gives it: screen x, y) a step along a trail takes.
+        Vector2 StickToward(Vector2Int from, Vector2Int step) => ((Vector2)(CellWorld(from + step) - CellWorld(from))).normalized;
 
         void AddStairs(Transform parent, string objectName, Vector2Int cell, Vector2Int into, string scene, int depth, Arrival arriveBy)
         {
@@ -1169,15 +1201,15 @@ namespace ARPG
             // show as they are covered by forest. remake them", and after a boss "it does not make sense that you go down
             // stairs"; then the gate, "an arch leading into a forest wall"): a trail cut into the trees going off into
             // the dark (CutTrail), a lantern signpost at its mouth; walking in takes her on.
-            if (ForestLevel && hasTrail)
+            if (ForestLevel && wayOn != null && arriveBy == Arrival.FromAbove)
             {
-                // Two cells in along the trail (less in a short one), across its width.
-                go.transform.position = CellWorld(trailMouth + trailInto * Mathf.Min(2, trailLength));
+                // A cell in along the trail, across its width; she walks on into the dark as the screen fades.
+                go.transform.position = CellWorld(wayOn.Mouth + wayOn.Into);
                 var trailTrigger = go.GetComponent<CircleCollider2D>();
                 trailTrigger.isTrigger = true;
                 trailTrigger.radius = 0.9f;
-                go.AddComponent<SceneExit>().Configure(scene, depth, arriveBy);
-                DressTrail(go);
+                go.AddComponent<SceneExit>().Configure(scene, depth, arriveBy, StickToward(wayOn.Mouth, wayOn.Into));
+                DressTrail(wayOn, go);
                 return;
             }
 

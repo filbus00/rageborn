@@ -2090,3 +2090,12 @@ The owner, on the gate: "it is covered by the forest and does not seem to lead t
 - The first try still drew trees on the trail's cells (they counted as rock for the darkening): the trail cells draw no piece now. The trees in front of it (up to 7 steps down the screen, within 3 to each side) are bushes, so no crown covers it.
 - A lantern signpost (`exit_post_x`, `exit_post_y`, `forest_art.py`) stands at the mouth on the camera's side, with a warm glow; the trigger is 2 cells in. Boss arenas cut theirs into the nearer far wall. The gate (`exit_gate`) is removed.
 - Checked in play on Level 1-1 (twice, different seeds) and after killing the boss on 1-6.
+
+### 2026-11-10: arriving out of a trail, leaving into one
+
+The owner chose "make arriving match leaving".
+- Every forest level also cuts a way in where its stairs up would be (`DungeonLevel.CutTrails`: `wayOn` and `wayIn`, the same `CutTrail` for both, darkened the same, no signpost and no trigger).
+- Arriving from above, she starts three cells into the way in, in the dark, and walks herself out to a cell past its mouth (`TrailWalk`: the stick steered until she passes the end point or 1.5 s, then handed back). The boon screen pauses the walk, so she steps out once a boon is taken.
+- Leaving, the way on's trigger is a cell in, and she walks on into the dark while the screen fades over 0.7 s (`SceneExit.Configure(..., walkOn)`).
+- The steering is `FloatingStickInput.Steered`, used in every build. `TestOverride` is for debug builds only.
+- Checked in play on Level 1-1: the walk out after the boon, then the walk into the way on, the fade, and the arrival on 1-2.

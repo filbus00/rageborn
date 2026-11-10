@@ -28,12 +28,19 @@ namespace ARPG
         [SerializeField] Arrival arrival;
 
         /// <summary>Sets a stairway up from code, as a generated dungeon level does, before it can be walked onto.</summary>
-        public void Configure(string scene, int depth, Arrival arriveBy)
+        public void Configure(string scene, int depth, Arrival arriveBy, Vector2 walkOn = default)
         {
             targetScene = scene;
             targetDepth = depth;
             arrival = arriveBy;
+            this.walkOn = walkOn;
         }
+
+        // The stick's way she walks on while the screen fades (the forest's trail, 2026-11-10), or zero to stop there.
+        Vector2 walkOn;
+
+        /// <summary>The fade when she walks on into a trail: long enough to see her go into the dark.</summary>
+        const float WalkOnFadeSeconds = 0.7f;
 
         static bool loading;
         float armedAt;
@@ -60,9 +67,14 @@ namespace ARPG
 
         IEnumerator Load()
         {
+            var stick = walkOn != Vector2.zero ? FindAnyObjectByType<FloatingStickInput>() : null;
+            if (stick != null)
+                stick.Steered = walkOn;
             var fade = ScreenFade.Current;
             if (fade != null)
-                yield return fade.FadeOut(fadeSeconds);
+                yield return fade.FadeOut(stick != null ? WalkOnFadeSeconds : fadeSeconds);
+            if (stick != null)
+                stick.Steered = null;
 
             // Also to the town (depth 0), which reads the arrival: up from the first level she comes out of the mausoleum.
             if (targetScene == SceneTravel.TownScene)

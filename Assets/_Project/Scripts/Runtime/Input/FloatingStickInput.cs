@@ -39,6 +39,10 @@ namespace ARPG
         /// test (no touches can be injected there). Null hands control back to the touch.</summary>
         public Vector2? TestOverride { get; set; }
 
+        /// <summary>A short walk the game drives itself, in every build (2026-11-10: out of the forest's way in when she
+        /// arrives, on into the way on as she leaves, <see cref="TrailWalk"/>). Null hands control back.</summary>
+        public Vector2? Steered { get; set; }
+
         /// <summary>Where the stick base sits, in screen pixels.</summary>
         public Vector2 BaseScreenPosition => origin;
 
@@ -77,6 +81,13 @@ namespace ARPG
 
         void Update()
         {
+            if (Steered.HasValue)
+            {
+                Value = Vector2.ClampMagnitude(Steered.Value, 1f);
+                Disengaged = false;
+                return;
+            }
+
             if (TestOverride.HasValue && Debug.isDebugBuild)
             {
                 Value = Vector2.ClampMagnitude(TestOverride.Value, 1f);
