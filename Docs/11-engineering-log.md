@@ -2060,3 +2060,7 @@ The Bandit King's leap now shows: he crouches a fifth of the fill, then flies up
 ### 2026-11-10: the bones 30 percent smaller
 
 The owner: "shrink the size of the bone props by 30%, redraw them if needed". All five bone props (`forest_art.py` `deer_skull`, `ribcage`, `long_bone`, `pelvis`) redrawn at 70 percent of their size (canvases and shapes scaled, details kept: the ribcage four ribs instead of five, the skull's eye and nose moved into the face so they still read), not scaled, so every pixel stays one pixel. Foot points a quarter unit up as before.
+
+### 2026-11-10: the trees' draw calls, tried and left
+
+The owner chose to cut the trees' draw calls. Measured on a depth 1 level, the frame frozen with her behind a tree: Individual mode 1,358 draw calls, `TilemapRenderer.Mode.SRPBatch` on Wall Art, Props and Walls 323. But SRP Batch draws the trees wrong: it ignores the per-tile darkening of the deep forest (the dark trees behind the first rows came out bright) and sorts the tiles in its own order (back trees over front ones), with the tile order BottomLeft or TopRight; 16 percent of the frame's pixels differed. Not used. The SetPass count is already about 40 a frame, so the SRP Batcher already makes those draws cheap; whether the trees are what heats the phone is not shown. Next step if wanted: measure on the phone (`DeviceBenchmark`: CPU and GPU frame times) before changing the trees.
