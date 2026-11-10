@@ -85,6 +85,36 @@ namespace ARPG
                 SpriteMeshType.FullRect, Vector4.zero, false);
         }
 
+        /// <summary>
+        /// A cell's diamond of the ground darkened in a dither (the forest's trail going off into the dark, 2026-11-10):
+        /// step 1 a quarter of its pixels, 2 half, 3 three quarters, 4 all; white, tinted by its renderer.
+        /// </summary>
+        public static Sprite Darkness(int step)
+        {
+            step = Mathf.Clamp(step, 1, 4);
+            var key = (6L << 40) | (uint)step;
+            if (cache.TryGetValue(key, out var sprite) && sprite != null)
+                return sprite;
+            var w = Mathf.RoundToInt(PixelsPerUnit) + 1;
+            w += w % 2;
+            var h = w / 2;
+            var pixels = new Color32[w * h];
+            for (var y = 0; y < h; y++)
+                for (var x = 0; x < w; x++)
+                {
+                    var u = Mathf.Abs(x + 0.5f - w / 2f) / (w / 2f) + Mathf.Abs(y + 0.5f - h / 2f) / (h / 2f);
+                    if (u > 1f)
+                        continue;
+                    var on = step == 4 || (step == 3 ? (x + y) % 2 == 0 || y % 2 == 0 : step == 2 ? (x + y) % 2 == 0 : x % 2 == 0 && y % 2 == 0);
+                    if (on)
+                        pixels[x + y * w] = new Color32(255, 255, 255, 255);
+                }
+            var texture = new Texture2D(w, h, TextureFormat.RGBA32, false) { name = "Darkness " + step, filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp };
+            texture.SetPixels32(pixels);
+            texture.Apply(false, true);
+            return cache[key] = Sprite.Create(texture, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), PixelsPerUnit, 0, SpriteMeshType.FullRect, Vector4.zero, false);
+        }
+
         /// <summary>The number of steps a lane's fill shows in.</summary>
         public const int LaneSteps = 8;
 

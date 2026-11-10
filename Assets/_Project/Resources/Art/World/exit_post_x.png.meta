@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3ecd9bd615f394d80b561477451ccc47
+guid: 63af699434b404b53b72cc581c3a2fa2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -915730234350966485
-    second: exit_gate_0
+      213: -9057742261420303096
+    second: exit_post_x_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -50,7 +50,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 9
-  spritePivot: {x: 0.5, y: 0.0625}
+  spritePivot: {x: 0.5, y: 0.05}
   spritePixelsToUnits: 27
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -141,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: exit_gate_0
+      name: exit_post_x_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
         y: 0
-        width: 60
-        height: 71
+        width: 33
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,8 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b29ec6f143caa43f0800000000000000
-      internalID: -915730234350966485
+      spriteID: 80ddff8376f6c4280800000000000000
+      internalID: -9057742261420303096
       vertices: []
       indices: 
       edges: []
@@ -176,7 +176,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      exit_gate_0: -915730234350966485
+      exit_post_x_0: -9057742261420303096
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

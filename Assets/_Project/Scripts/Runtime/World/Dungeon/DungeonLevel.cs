@@ -131,6 +131,9 @@ namespace ARPG
 
             levelSeed = DungeonRules.LevelSeed(session.DungeonSeed, depth);
             Layout = DungeonGenerator.Generate(levelSeed, depth, shapes, settings);
+            GroundRules.ForestTrail.Clear();
+            if (ForestLevel)
+                CutTrail();
             // Raised and sunken floors are drawn at their height, and what stands on them lifted with them (2026-10-20).
             Elevation.Current = ElevationMap.From(Layout);
             LoadTimer.Mark("generate");
@@ -359,14 +362,15 @@ namespace ARPG
                         continue;
                     }
                     // Rock further from the open floor than this is left out: darkness, the earth around the rooms.
-                    var rock = RockDistance(at);
+                    // The trail is open ground, though the trees round it stay dark as if it were not there.
+                    var rock = trail.Contains(at) ? 0 : RockDistance(at);
                     // The cathedral shows only the walls; beyond them is dark, as in Diablo 1 (2026-10-26: rock drawn behind
                     // the walls made them look several blocks thick).
                     if (rock > (Layout.Cathedral ? 1 : RockShown))
                         continue;
                     if (rock > 1)
                     {
-                        var rockPiece = DungeonArt.Piece(ThemePieces.Rock(theme, PieceHash(at)));
+                        var rockPiece = DungeonArt.Piece(trailFront.Contains(at) ? TrailBush(at) : ThemePieces.Rock(theme, PieceHash(at)));
                         if (rockPiece != null)
                             artTiles[index] = rockPiece;
                         else
@@ -390,7 +394,7 @@ namespace ARPG
                     // around the rooms is many thousand cells; colliders only where she can reach).
                     // The crypt or cave piece when imported (2026-10-10), over an invisible blocker; else the older walls.
                     var piece = cell == DungeonCell.Wall && !IsStairsWall(at)
-                        ? DungeonArt.Piece(CutWall(at, cameraSide, freeStanding) ??
+                        ? DungeonArt.Piece(trailFront.Contains(at) ? TrailBush(at) : CutWall(at, cameraSide, freeStanding) ??
                                            ThemePieces.Wall(theme, IsOpenCell, at.x, at.y, cameraSide, freeStanding, Layout.Ledges.Contains(at), PieceHash(at)))
                         : null;
                     if (piece != null)
@@ -691,7 +695,8 @@ namespace ARPG
             for (var x = b.xMin; x < b.xMax; x++)
                 for (var y = b.yMin; y < b.yMax; y++)
                 {
-                    var open = IsOpenCell(x, y);
+                    // The trail cut into the trees keeps the trees round it as deep and dark as before.
+                    var open = IsOpenCell(x, y) && !trail.Contains(new Vector2Int(x, y));
                     rockDistance[x - b.xMin, y - b.yMin] = open ? 0 : RockShown + 1;
                     if (open)
                         queue.Enqueue(new Vector2Int(x, y));
@@ -1041,6 +1046,118 @@ namespace ARPG
 
         bool ForestLevel => Layout.Theme == DungeonTheme.Cave && DungeonRules.Forest;
 
+        // The forest's way on (2026-11-10, the owner: the gate "is covered by the forest and does not seem to lead to
+        // anything. It just looks like an arch leading into a forest wall"): a trail cut into the trees where the exit
+        // is, three cells wide and six deep, its ground bare path going off into the dark, the trees just in front of it
+        // cleared so it shows.
+        readonly HashSet<Vector2Int> trail = new HashSet<Vector2Int>();
+        Vector2Int trailMouth, trailInto;
+        int trailLength;
+        bool hasTrail;
+        public const int TrailDepth = 6;
+
+        void CutTrail()
+        {
+            var cell = Layout.StairsDown;
+            var into = Layout.StairsDownInto;
+            if (into == Vector2Int.zero)
+            {
+                // A boss arena's way on: into the nearer of its far walls from where the way on stands.
+                if (!Layout.HasBossArena)
+                    return;
+                int Reach(Vector2Int dir)
+                {
+                    var k = 0;
+                    while (k < 20 && Layout.IsFloor(cell + dir * (k + 1)))
+                        k++;
+                    return k;
+                }
+                into = Reach(Vector2Int.right) <= Reach(Vector2Int.up) ? Vector2Int.right : Vector2Int.up;
+            }
+            var mouth = cell;
+            for (var k = 0; k < 20 && Layout.IsFloor(mouth + into); k++)
+                mouth += into;
+            var side = new Vector2Int(into.y, into.x);
+            // Never through to open ground beyond (a thin band of trees between two clearings): three cells of trees
+            // stay past its end, so it opens no way round.
+            var depth = 0;
+            while (depth < TrailDepth && Solid(depth + 1 + 3))
+                depth++;
+            // No floor from the second cell in to k (the first may be ragged edge).
+            bool Solid(int k)
+            {
+                for (var j = 2; j <= k; j++)
+                    for (var s = -3; s <= 2; s++)
+                        if (Layout.IsFloor(mouth + into * j + side * s))
+                            return false;
+                return true;
+            }
+            for (var k = 1; k <= depth; k++)
+                for (var s = -2; s <= 1; s++)
+                {
+                    // The column on the camera's side (-2) only near the mouth, so its trees do not hide the trail.
+                    if (s == -2 && k > 3)
+                        continue;
+                    var c = mouth + into * k + side * s;
+                    if (Layout.Get(c) != DungeonCell.Wall)
+                        continue;
+                    Layout.Set(c.x, c.y, DungeonCell.Floor);
+                    trail.Add(c);
+                    GroundRules.ForestTrail.Add(c);
+                }
+            trailMouth = mouth;
+            trailInto = into;
+            trailLength = depth;
+            hasTrail = trail.Count > 0;
+            // The trees in front of it (nearer the camera, below it on the screen) are bushes, so their crowns do not
+            // cover it (2026-11-10: the first cut was hidden behind them).
+            foreach (var t in trail)
+                for (var dx = 0; dx <= TrailFrontReach; dx++)
+                    for (var dy = 0; dx + dy <= TrailFrontReach; dy++)
+                    {
+                        var c = t - new Vector2Int(dx, dy);
+                        if (dx + dy > 0 && Mathf.Abs(dx - dy) <= 3 && Layout.Get(c) == DungeonCell.Wall)
+                            trailFront.Add(c);
+                    }
+        }
+
+        // Steps (x + y) down the screen from the trail its front bushes reach.
+        const int TrailFrontReach = 7;
+        readonly HashSet<Vector2Int> trailFront = new HashSet<Vector2Int>();
+
+        string TrailBush(Vector2Int at) => "forest_bush_" + (1 + Mathf.Abs(PieceHash(at)) % 3);
+
+        // The trail's look and its exit: the ground darkening into the trees in dithered steps, a lantern signpost at the
+        // mouth on the camera's side pointing in, the way on a little way in.
+        void DressTrail(GameObject exit)
+        {
+            var side = new Vector2Int(trailInto.y, trailInto.x);
+            foreach (var c in trail)
+            {
+                var k = Vector2.Dot(c - trailMouth, trailInto);
+                if (k < 2)
+                    continue;
+                // Flat steps of shadow (a dither read as a net over the path).
+                var shade = Mathf.Min(0.95f, 0.15f + 0.2f * (k - 1));
+                var dark = GroundMarker.NewSprite("Trail Dark", PixelMarks.Darkness(4), new Color(0.02f, 0.03f, 0.02f, shade), exit.transform, 60);
+                dark.transform.position = Elevation.World2(IsoMath.CellToGround(c));
+            }
+            var postSprite = WorldArt.Get(trailInto == Vector2Int.right ? "exit_post_x" : "exit_post_y");
+            if (postSprite != null)
+            {
+                var post = new GameObject("Signpost", typeof(SpriteRenderer));
+                post.transform.SetParent(exit.transform, false);
+                post.transform.position = Elevation.World2(IsoMath.CellToGround(trailMouth - side * 2));
+                var r = post.GetComponent<SpriteRenderer>();
+                r.sprite = postSprite;
+                r.sortingLayerName = GameSortingLayers.Entities;
+                r.spriteSortPoint = SpriteSortPoint.Pivot;
+                WorldArt.Lit(r);
+                var glow = GroundMarker.NewSprite("Glow", PixelMarks.Glow(0.9f), new Color(1f, 0.78f, 0.38f, 0.5f), post.transform, 2);
+                glow.transform.localPosition = Vector3.zero;
+            }
+        }
+
         void AddStairs(Transform parent, string objectName, Vector2Int cell, Vector2Int into, string scene, int depth, Arrival arriveBy)
         {
             var go = new GameObject(objectName, typeof(SpriteRenderer), typeof(CircleCollider2D));
@@ -1050,25 +1167,17 @@ namespace ARPG
 
             // The forest's way on, after a boss too (2026-11-10, the owner: the exits "do not look and often do not even
             // show as they are covered by forest. remake them", and after a boss "it does not make sense that you go down
-            // stairs"): a trail gate standing on the path before the trees, a lantern hanging lit in it, a warm glow on
-            // the ground under it; walking through it takes her on.
-            var gate = ForestLevel ? WorldArt.Get("exit_gate") : null;
-            if (gate != null)
+            // stairs"; then the gate, "an arch leading into a forest wall"): a trail cut into the trees going off into
+            // the dark (CutTrail), a lantern signpost at its mouth; walking in takes her on.
+            if (ForestLevel && hasTrail)
             {
-                var gateRenderer = go.GetComponent<SpriteRenderer>();
-                gateRenderer.sprite = gate;
-                gateRenderer.sortingLayerName = GameSortingLayers.Entities;
-                gateRenderer.spriteSortPoint = SpriteSortPoint.Pivot;
-                WorldArt.Lit(gateRenderer);
-                var glow = GroundMarker.NewSprite("Glow", PixelMarks.Glow(1.3f), new Color(1f, 0.78f, 0.38f, 0.55f), go.transform, 2);
-                glow.transform.localPosition = Vector3.zero;
-                var raised = Elevation.HeightAt(IsoMath.CellToGround(cell));
-                go.transform.position += new Vector3(0f, raised, 0f);
-                var gateTrigger = go.GetComponent<CircleCollider2D>();
-                gateTrigger.isTrigger = true;
-                gateTrigger.radius = 0.55f;
-                gateTrigger.offset = new Vector2(0f, -raised);
+                // Two cells in along the trail (less in a short one), across its width.
+                go.transform.position = CellWorld(trailMouth + trailInto * Mathf.Min(2, trailLength));
+                var trailTrigger = go.GetComponent<CircleCollider2D>();
+                trailTrigger.isTrigger = true;
+                trailTrigger.radius = 0.9f;
                 go.AddComponent<SceneExit>().Configure(scene, depth, arriveBy);
+                DressTrail(go);
                 return;
             }
 

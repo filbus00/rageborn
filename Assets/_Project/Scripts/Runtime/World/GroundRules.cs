@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ARPG
@@ -91,8 +92,17 @@ namespace ARPG
 
         /// <summary>How far into the grass a point is, 0 on the path to 1 in the grass, 0.5 on the edge between, across a
         /// band of <see cref="ForestEdge"/> in the noise (2026-10-27, the owner: the edge looked "a bit too cut out").</summary>
+        /// <summary>The cells of the forest's way on, cut into the trees (2026-11-10): bare path, set by the level as it is
+        /// laid out, empty otherwise.</summary>
+        public static readonly HashSet<Vector2Int> ForestTrail = new HashSet<Vector2Int>();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetTrail() => ForestTrail.Clear();
+
         public static float ForestGrassAmount(Vector2 ground)
         {
+            if (ForestTrail.Count > 0 && ForestTrail.Contains(IsoMath.GroundToCell(ground)))
+                return 0f;
             // Its outline roughened by a finer noise (2026-10-31: the patches looked like smooth blobs).
             var v = Smooth(ground.x / 4f, ground.y / 4f, 41) * 0.7f + Smooth(ground.x / 1.3f, ground.y / 1.3f, 43) * 0.3f +
                     (Smooth(ground.x / 0.45f, ground.y / 0.45f, 55) - 0.5f) * 0.07f;
