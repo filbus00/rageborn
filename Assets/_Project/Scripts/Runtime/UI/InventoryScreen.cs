@@ -205,8 +205,8 @@ namespace ARPG
             var current = GameSession.Current;
             LayOut();
             BuildHeader(current);
-            BuildDoll(current);
             BuildStats(current);
+            BuildDoll(current);
             if (atMerchant)
                 BuildSaleRow(current);
             else
@@ -222,23 +222,9 @@ namespace ARPG
 
         void BuildHeader(GameSession current)
         {
-            // The header and the page's title as the owner's concept art has them (2026-10-19, MenuChrome).
-            var where = Features.Roguelite ? MenuChrome.Where() : $"Level {current.Level}";
-            var subtitle = atMerchant ? $"{where}   ·   <color=#E0C040>At the merchant</color>" : where;
-            var header = MenuChrome.Header(content, current, health != null ? health.Fraction : 1f, subtitle, Close);
-            MenuChrome.Title(content, "Inventory", HeaderHeight);
-
-            // The portal home (2026-10-15): in the dungeon, a portal opens where she stands (5 s, 2026-11-08), and
-            // stepping into it ends the run keeping what she carries.
-            if (PortalChannel.CanOpen)
-            {
-                var portal = UiStyle.Button(header, PortalChannel.IsOpen ? "Portal open" : PortalChannel.IsOpening ? "Opening..." : "Portal home", () =>
-                {
-                    Close();
-                    PortalChannel.Begin();
-                }, 30, UiStyle.Blood);
-                UiStyle.Place((RectTransform)portal.transform, new Vector2(1f, 1f), new Vector2(-24f, -150f), new Vector2(300f, 64f));
-            }
+            // The short header every page shares (MenuChrome, 2026-11-11): the page's name, who she is and where.
+            var where = Features.Roguelite ? MenuChrome.WhoAndWhere(current) : $"Level {current.Level}";
+            MenuChrome.Header(content, current, atMerchant ? "Sell loot" : "The Bag", where, Close);
         }
 
         // --- Paper doll ---------------------------------------------------------------------------------------------
@@ -248,19 +234,24 @@ namespace ARPG
         // the gear slots to match the size of the items in bag"), laid out on the backpack's cells, 10 across and 4 down.
         const float DollHeight = 4 * Cell + 3 * CellGap + 2 * GridPadding + 30f;
 
-        // Where each block starts (negative, from the top), set by LayOut for the screen's height: the spare height
-        // is shared out between the blocks, so the page fills the screen as the concept's does.
-        float dollTop, statsTop, materialsTop, gridTop, gap;
+        // Where each block starts (negative, from the top), set by LayOut for the screen's height. Since 2026-11-11 the
+        // blocks lie one under the other a small gap apart (the spare height was shared out as five wide gaps, which
+        // read as a page falling apart): the header, her picture and numbers, what she wears, the backpack's row, the
+        // backpack. Her block takes the spare height: with room it shows her painted portrait beside the numbers
+        // and, with more, the contract's or the company's record under them; without (a short phone) only the
+        // numbers in two columns.
+        const float Gap = 10f, StatsLeast = 200f, StatsMost = 1060f, PortraitLeast = 380f, PortraitWidest = 470f, RecordLeast = 240f;
+        float dollTop, statsTop, statsHeight, materialsTop, gridTop;
 
         void LayOut()
         {
-            var used = HeaderHeight + MenuChrome.TitleHeight + DollHeight + StatsHeight + MaterialsHeight + GridFrameHeight + TabsHeight + 16f;
+            var fixedHeight = HeaderHeight + DollHeight + MaterialsHeight + GridFrameHeight + TabsHeight + 16f + Gap * 5f;
             var available = content != null ? content.rect.height : 0f;
-            gap = Mathf.Clamp((available - used) / 5f, 12f, 120f);
-            dollTop = -HeaderHeight - MenuChrome.TitleHeight;
-            statsTop = dollTop - DollHeight - gap;
-            materialsTop = statsTop - StatsHeight - gap;
-            gridTop = materialsTop - MaterialsHeight - gap;
+            statsHeight = Mathf.Clamp(available - fixedHeight, StatsLeast, StatsMost);
+            statsTop = -HeaderHeight - Gap;
+            dollTop = statsTop - statsHeight - Gap;
+            materialsTop = dollTop - DollHeight - Gap;
+            gridTop = materialsTop - MaterialsHeight - Gap;
         }
         // Where each slot's block starts, in backpack cells from the top left (its size is ItemSize's): the bow, the helm
         // over the gloves, the chest over the belt, the amulet over the two rings over the boots, the quiver.
@@ -492,8 +483,6 @@ namespace ARPG
 
         // --- Stats and materials ------------------------------------------------------------------------------------
 
-        const float StatsHeight = 200f;
-
         void BuildStats(GameSession current)
         {
             var panel = UiStyle.Framed(content, "Stats", UiStyle.Panel, 3f);
@@ -501,7 +490,7 @@ namespace ARPG
             rect.anchorMin = new Vector2(0f, 1f);
             rect.anchorMax = new Vector2(1f, 1f);
             rect.pivot = new Vector2(0.5f, 1f);
-            rect.offsetMin = new Vector2(16f, statsTop - StatsHeight);
+            rect.offsetMin = new Vector2(16f, statsTop - statsHeight);
             rect.offsetMax = new Vector2(-16f, statsTop);
             var inside = UiStyle.FillOf(panel).transform;
 
@@ -515,35 +504,131 @@ namespace ARPG
             var crit = equipment.CriticalChancePercent + tree.CriticalChance + attributes.CriticalChance;
             var speed = (equipment.AttackSpeedPercent / 100f + tree.AttackSpeed + attributes.AttackSpeed) * 100f;
 
-            StatLine(inside, 0, 0, MenuIcons.Kind.Heart, "Life", $"{life:0} / {maxLife:0}");
-            StatLine(inside, 1, 0, MenuIcons.Kind.Shield, "Defense", $"{armor:0}");
-            StatLine(inside, 0, 1, MenuIcons.Kind.Sword, "Damage / s", $"{power.DamagePerSecond:0}");
-            StatLine(inside, 1, 1, MenuIcons.Kind.Boot, "Move speed", $"+{equipment.MovementSpeedPercent + (tree.MoveSpeed + attributes.MoveSpeed) * 100f:0}%");
-            StatLine(inside, 0, 2, MenuIcons.Kind.Speed, "Attack speed", $"+{speed:0}%");
-            StatLine(inside, 1, 2, MenuIcons.Kind.Star, "Critical", $"{crit:0.#}%");
+            var lines = new (MenuIcons.Kind kind, string name, string value)[]
+            {
+                (MenuIcons.Kind.Heart, "Life", $"{life:0} / {maxLife:0}"),
+                (MenuIcons.Kind.Sword, "Damage / s", $"{power.DamagePerSecond:0}"),
+                (MenuIcons.Kind.Shield, "Defense", $"{armor:0}"),
+                (MenuIcons.Kind.Speed, "Attack speed", $"+{speed:0}%"),
+                (MenuIcons.Kind.Star, "Critical", $"{crit:0.#}%"),
+                (MenuIcons.Kind.Boot, "Move speed", $"+{equipment.MovementSpeedPercent + (tree.MoveSpeed + attributes.MoveSpeed) * 100f:0}%"),
+            };
 
-            var divider = UiStyle.Image(inside, "Divider", UiStyle.Frame);
-            divider.rectTransform.anchorMin = new Vector2(0.5f, 0f);
-            divider.rectTransform.anchorMax = new Vector2(0.5f, 1f);
-            divider.rectTransform.sizeDelta = new Vector2(2f, -24f);
+            var company = current.Company;
+            var who = company != null && !string.IsNullOrEmpty(company.Mercenary) ? company.Mercenary : "Wild Arrow";
+            // Her own face, painted from her name (as the company's page shows her), else the archer's picture.
+            var portrait = statsHeight >= PortraitLeast ? PortraitFaces.For(who) ?? PixelUi.Sprite("portrait_archer") : null;
+            if (portrait == null)
+            {
+                // No room for her picture: the numbers in two columns of three.
+                for (var i = 0; i < lines.Length; i++)
+                    StatLine(inside, new Vector2(i % 2 * 0.5f, 1f), new Vector2(i % 2 * 0.5f + 0.5f, 1f), 28f, 28f, 14f + 58f * (i / 2), 58f, lines[i]);
+                Divider(inside, 12f, 12f);
+                return;
+            }
+
+            // Her portrait at the top left, in whole steps of its own pixels, as tall as the block allows and no wider
+            // than two fifths of it.
+            var scale = Mathf.Max(1f, Mathf.Floor(Mathf.Min((statsHeight - 28f) / portrait.rect.height, PortraitWidest / portrait.rect.width)));
+            var size = new Vector2(portrait.rect.width, portrait.rect.height) * scale;
+            var picture = UiStyle.Image(inside, "Portrait", Color.white);
+            picture.sprite = portrait;
+            UiStyle.Place(picture.rectTransform, new Vector2(0f, 1f), new Vector2(14f, -14f), size);
+            picture.rectTransform.pivot = new Vector2(0f, 1f);
+
+            // Her name over the six numbers, one under the other, beside the picture.
+            var left = 14f + size.x + 30f;
+            var name = UiStyle.Text(inside, who, 40, UiStyle.Gold, TextAnchor.MiddleLeft, true);
+            name.rectTransform.anchorMin = new Vector2(0f, 1f);
+            name.rectTransform.anchorMax = new Vector2(1f, 1f);
+            name.rectTransform.pivot = new Vector2(0.5f, 1f);
+            name.rectTransform.offsetMin = new Vector2(left, -70f);
+            name.rectTransform.offsetMax = new Vector2(-20f, -14f);
+            Rule(inside, left, 20f, 74f);
+            var beside = Mathf.Min(statsHeight, size.y + 28f);
+            var each = Mathf.Min(80f, (beside - 100f) / lines.Length);
+            for (var i = 0; i < lines.Length; i++)
+                StatLine(inside, new Vector2(0f, 1f), new Vector2(1f, 1f), left, 20f, 86f + each * i, each, lines[i]);
+
+            // Under them, with room (a tall phone): the contract she is on, or the company's record between contracts,
+            // in two columns of three.
+            var under = size.y + 28f;
+            var room = statsHeight - under;
+            if (room < RecordLeast)
+                return;
+            var onContract = current.RunStarted;
+            var run = current.Run;
+            var record = onContract
+                ? new (MenuIcons.Kind kind, string name, string value)[]
+                {
+                    (MenuIcons.Kind.Portal, "Level", MenuChrome.Where()),
+                    (MenuIcons.Kind.Sword, "Kills", $"{run.Kills:N0}"),
+                    (MenuIcons.Kind.Star, "Bosses", $"{run.Bosses}"),
+                    (MenuIcons.Kind.LootBag, "Coins found", $"{run.Coins:N0}"),
+                    (MenuIcons.Kind.Backpack, "Items found", $"{run.Items}"),
+                    (MenuIcons.Kind.Speed, "Time", RunSummary.Duration(run.Seconds)),
+                }
+                : new (MenuIcons.Kind kind, string name, string value)[]
+                {
+                    (MenuIcons.Kind.Star, "Contracts cleared", $"{(company != null ? company.Cleared.Count : 0)} of {ContractRules.All.Length}"),
+                    (MenuIcons.Kind.Portal, "Deepest level", current.DeepestDepth > 0 ? ContractRules.LevelName(current.DeepestDepth) : "None"),
+                    (MenuIcons.Kind.Heart, "Archers fallen", $"{(company != null ? company.Fallen.Count : 0)}"),
+                    (MenuIcons.Kind.Book, "Blueprints known", $"{current.Meta.Blueprints.Count}"),
+                    (MenuIcons.Kind.Backpack, "In the vault", $"{current.Stash.Count}"),
+                    (MenuIcons.Kind.LootBag, "Coins", $"{current.Gold:N0}"),
+                };
+            var heading = UiStyle.Text(inside, onContract ? "THIS CONTRACT" : "THE COMPANY", 30, UiStyle.Gold, TextAnchor.MiddleLeft, true);
+            heading.rectTransform.anchorMin = new Vector2(0f, 1f);
+            heading.rectTransform.anchorMax = new Vector2(1f, 1f);
+            heading.rectTransform.pivot = new Vector2(0.5f, 1f);
+            heading.rectTransform.offsetMin = new Vector2(20f, -under - 50f);
+            heading.rectTransform.offsetMax = new Vector2(-20f, -under);
+            Rule(inside, 14f, 14f, under + 54f);
+            var row = Mathf.Min(100f, (room - 76f) / 3f);
+            for (var i = 0; i < record.Length; i++)
+                StatLine(inside, new Vector2(i % 2 * 0.5f, 1f), new Vector2(i % 2 * 0.5f + 0.5f, 1f), 20f, 24f, under + 62f + row * (i / 2), row, record[i]);
+            Divider(inside, 14f, under + 66f);
         }
 
-        static void StatLine(Transform parent, int column, int row, MenuIcons.Kind kind, string name, string value)
+        // A thin line across the block, this far under its top.
+        static void Rule(Transform parent, float left, float right, float top)
         {
-            var line = UiStyle.Rect(parent, name);
-            line.anchorMin = new Vector2(column * 0.5f, 1f);
-            line.anchorMax = new Vector2(column * 0.5f + 0.5f, 1f);
+            var rule = UiStyle.Image(parent, "Rule", new Color(UiStyle.Frame.r, UiStyle.Frame.g, UiStyle.Frame.b, 0.6f));
+            rule.rectTransform.anchorMin = new Vector2(0f, 1f);
+            rule.rectTransform.anchorMax = new Vector2(1f, 1f);
+            rule.rectTransform.pivot = new Vector2(0.5f, 1f);
+            rule.rectTransform.offsetMin = new Vector2(left, -top - 3f);
+            rule.rectTransform.offsetMax = new Vector2(-right, -top);
+        }
+
+        // The line between two columns, down the block's middle.
+        static void Divider(Transform parent, float bottom, float top)
+        {
+            var divider = UiStyle.Image(parent, "Divider", new Color(UiStyle.Frame.r, UiStyle.Frame.g, UiStyle.Frame.b, 0.6f));
+            divider.rectTransform.anchorMin = new Vector2(0.5f, 0f);
+            divider.rectTransform.anchorMax = new Vector2(0.5f, 1f);
+            divider.rectTransform.offsetMin = new Vector2(-1f, bottom);
+            divider.rectTransform.offsetMax = new Vector2(1f, -top);
+        }
+
+        // A stat's row: its icon, its name and the number at the right. Between the anchors, inset left and right,
+        // its top this far under the parent's.
+        static void StatLine(Transform parent, Vector2 anchorMin, Vector2 anchorMax, float left, float right, float top, float height,
+            (MenuIcons.Kind kind, string name, string value) stat)
+        {
+            var line = UiStyle.Rect(parent, stat.name);
+            line.anchorMin = anchorMin;
+            line.anchorMax = anchorMax;
             line.pivot = new Vector2(0.5f, 1f);
-            line.offsetMin = new Vector2(28f, -14f - 58f * (row + 1));
-            line.offsetMax = new Vector2(-28f, -14f - 58f * row);
-            // Each stat's icon at its left, as the concept art has it.
-            var icon = MenuChrome.Icon(line, kind, 40f);
+            line.offsetMin = new Vector2(left, -top - height);
+            line.offsetMax = new Vector2(-right, -top);
+            var icon = MenuChrome.Icon(line, stat.kind, 40f);
             icon.rectTransform.anchorMin = icon.rectTransform.anchorMax = new Vector2(0f, 0.5f);
             icon.rectTransform.anchoredPosition = new Vector2(20f, 0f);
-            var label = UiStyle.Text(line, name, 30, UiStyle.TextDim, TextAnchor.MiddleLeft, true);
+            var label = UiStyle.Text(line, stat.name, 30, UiStyle.TextDim, TextAnchor.MiddleLeft, true);
             UiStyle.Stretch(label.rectTransform);
             label.rectTransform.offsetMin = new Vector2(62f, 0f);
-            var number = UiStyle.Text(line, value, 32, UiStyle.TextMain, TextAnchor.MiddleRight, true);
+            var number = UiStyle.Text(line, stat.value, 32, UiStyle.TextMain, TextAnchor.MiddleRight, true);
             UiStyle.Stretch(number.rectTransform);
         }
 
@@ -583,6 +668,18 @@ namespace ARPG
             sortIcon.rectTransform.anchorMin = sortIcon.rectTransform.anchorMax = new Vector2(0f, 0.5f);
             sortIcon.rectTransform.anchoredPosition = new Vector2(44f, 0f);
             sort.GetComponentInChildren<Text>().rectTransform.offsetMin = new Vector2(58f, 8f);
+            // The portal home (2026-10-15): in the dungeon, a portal opens where she stands (5 s, 2026-11-08), and
+            // stepping into it ends the run keeping what she carries.
+            if (PortalChannel.CanOpen)
+            {
+                var portal = UiStyle.Button(inside, PortalChannel.IsOpen ? "Portal open" : PortalChannel.IsOpening ? "Opening..." : "Portal home", () =>
+                {
+                    Close();
+                    PortalChannel.Begin();
+                }, 30, UiStyle.Blood);
+                UiStyle.Place((RectTransform)portal.transform, new Vector2(1f, 0.5f), new Vector2(-244f, 0f), new Vector2(300f, 72f));
+                ((RectTransform)portal.transform).pivot = new Vector2(1f, 0.5f);
+            }
             for (var i = 0; i < entries.Count; i++)
             {
                 var (name, color, count) = entries[i];

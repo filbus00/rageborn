@@ -197,9 +197,7 @@ namespace ARPG
             Clear(list);
             Clear(chrome);
             var session = GameSession.Current;
-            var health = FindAnyObjectByType<PlayerHealth>();
-            MenuChrome.Header(chrome, session, health != null ? health.Fraction : 1f, MenuChrome.Where(), Close);
-            MenuChrome.Title(chrome, "Settings", MenuChrome.HeaderHeight);
+            MenuChrome.Header(chrome, session, "Settings", MenuChrome.WhoAndWhere(session), Close);
 
             var s = SettingsDirector.Current;
 

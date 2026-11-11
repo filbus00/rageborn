@@ -89,9 +89,8 @@ namespace ARPG
             new MetaUpgrade { Id = MetaUpgradeId.Reroll, Shop = MetaShop.Secrets, Name = "Second Thoughts", Text = "{0} rerolls of the boon choice a run.", MaxRanks = 3, BaseCost = 800, Growth = 2.5f },
             new MetaUpgrade { Id = MetaUpgradeId.FourthChoice, Shop = MetaShop.Secrets, Name = "A Fourth Path", Text = "Four boons to choose from, not three.", MaxRanks = 1, BaseCost = 3000 },
             new MetaUpgrade { Id = MetaUpgradeId.HiddenLore, Shop = MetaShop.Secrets, Name = "Hidden Lore", Text = "The rarer boons can be offered (talent rows up to {0}).", MaxRanks = 2, BaseCost = 2500, Growth = 2.4f },
-            new MetaUpgrade { Id = MetaUpgradeId.StartBow, Shop = MetaShop.Outfitting, Name = "A Better Bow", Text = "Start each run with a {0} bow.", MaxRanks = 2, BaseCost = 1000, Growth = 4f },
-            new MetaUpgrade { Id = MetaUpgradeId.StartQuiver, Shop = MetaShop.Outfitting, Name = "A Better Quiver", Text = "Start each run with a {0} quiver.", MaxRanks = 2, BaseCost = 800, Growth = 4f },
-            new MetaUpgrade { Id = MetaUpgradeId.StartArmour, Shop = MetaShop.Outfitting, Name = "Travelling Armour", Text = "Start each run wearing a {0} chest.", MaxRanks = 2, BaseCost = 1200, Growth = 4f },
+            // No starting kit for coins (2026-11-11, the owner: "Remove the possibility of buying starting gear. We already
+            // have the blueprints"): StartBow, StartQuiver and StartArmour stay in the enum for old saves, their ranks ignored.
             // The stash chest (the owner, 2026-10-15: "A stash (a chest) in town is available and can be expanded with
             // coin"): ten slots free, ten more a rank.
             new MetaUpgrade { Id = MetaUpgradeId.StashSlot, Shop = MetaShop.Stash, Name = "A Bigger Chest", Text = "{0} stash slots.", MaxRanks = 5, BaseCost = 500, Growth = 2f },
@@ -116,9 +115,6 @@ namespace ARPG
             return upgrade == null ? 0 : Mathf.RoundToInt(upgrade.BaseCost * Mathf.Pow(upgrade.Growth, rank) / 10f) * 10;
         }
 
-        /// <summary>A rarity's word for the starting kit's ranks.</summary>
-        public static ItemRarity KitRarity(int rank) => rank >= 2 ? ItemRarity.Rare : rank == 1 ? ItemRarity.Magic : ItemRarity.Common;
-
         /// <summary>An upgrade's text at a total rank (what it gives with that many ranks).</summary>
         public static string Describe(MetaUpgrade upgrade, int rank)
         {
@@ -134,11 +130,6 @@ namespace ARPG
                     break;
                 case MetaUpgradeId.HiddenLore:
                     value = (MetaProgress.BaseBoonTier + 2 * rank).ToString();
-                    break;
-                case MetaUpgradeId.StartBow:
-                case MetaUpgradeId.StartQuiver:
-                case MetaUpgradeId.StartArmour:
-                    value = KitRarity(rank).ToString().ToLowerInvariant();
                     break;
                 default:
                     var total = upgrade.PerRank * rank;

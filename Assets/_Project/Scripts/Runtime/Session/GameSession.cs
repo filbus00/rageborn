@@ -519,9 +519,6 @@ namespace ARPG
                 return false;
             Gold -= cost;
             Meta.Raise(id);
-            // A better kit piece goes on now in town, but only over nothing or a plain kit piece, never over what she found.
-            if (!RunStarted && MetaRules.Get(id)?.Shop == MetaShop.Outfitting)
-                PutOnKitWhereBare();
             return true;
         }
 
@@ -543,21 +540,6 @@ namespace ARPG
             RerollsLeft--;
             RaiseModified();
             return true;
-        }
-
-        /// <summary>Puts the kit's piece on in each place that is empty or holds a Common item (in town, after buying).</summary>
-        void PutOnKitWhereBare()
-        {
-            var kit = StartingKit();
-            var equipment = Equipment;
-            foreach (ItemSlot place in System.Enum.GetValues(typeof(ItemSlot)))
-            {
-                var piece = kit.Get(place);
-                var worn = equipment.Get(place);
-                if (piece != null && (worn == null || (worn.Rarity == ItemRarity.Common && worn.Legendary == LegendaryId.None)))
-                    equipment = equipment.With(place, piece);
-            }
-            Equip(equipment);
         }
 
         /// <summary>
@@ -619,19 +601,10 @@ namespace ARPG
             return true;
         }
 
-        /// <summary>The kit she starts a run with: a bow and a quiver, better as they are bought, and armour once bought.</summary>
+        /// <summary>The kit she starts a run with: a plain bow and quiver, and the pieces Thorin forged in their places.</summary>
         public EquipmentState StartingKit()
         {
-            var bow = MetaRules.KitRarity(Meta.Rank(MetaUpgradeId.StartBow));
-            var quiver = MetaRules.KitRarity(Meta.Rank(MetaUpgradeId.StartQuiver));
             var kit = EquipmentState.Starting;
-            if (bow != ItemRarity.Common)
-                kit = kit.With(ItemSlot.Weapon, Loot.RollItemOf(ItemSlot.Weapon, bow, 1));
-            if (quiver != ItemRarity.Common)
-                kit = kit.With(ItemSlot.OffHand, Loot.RollItemOf(ItemSlot.Shield, quiver, 1));
-            var armour = Meta.Rank(MetaUpgradeId.StartArmour);
-            if (armour > 0)
-                kit = kit.With(ItemSlot.Chest, Loot.RollItemOf(ItemSlot.Chest, MetaRules.KitRarity(armour), 1));
             // Thorin's forged pieces in their places (2026-10-15).
             foreach (var pair in Meta.Forged)
                 kit = kit.Equip(EquipmentState.PlacesFor(pair.Key)[0], pair.Value);
