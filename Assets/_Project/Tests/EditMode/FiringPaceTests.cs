@@ -11,11 +11,11 @@ namespace ARPG.Tests
         public void SlowBowRunsBetweenShots() => Assert.AreEqual(FiringPace.HoldSeconds, FiringPace.HoldFor(1.5f), 1e-5f);
 
         [Test]
-        public void FiringIsAboutHalfSpeed()
+        public void FiringIsAboutTwoThirdsSpeed()
         {
             var firing = new SlowDebuff();
             firing.Apply(FiringPace.MoveMultiplier, FiringPace.HoldFor(0.5f));
-            Assert.AreEqual(0.5f, firing.Multiplier, 1e-5f);
+            Assert.AreEqual(0.65f, firing.Multiplier, 1e-5f);
             firing.Tick(0.6f);
             Assert.AreEqual(1f, firing.Multiplier, 1e-5f);
         }

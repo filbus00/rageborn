@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: 7c2a6794ebdad42bfb6d4edc8596032a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8488166605656861890
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_0
+  - first:
+      213: -4491555736098914462
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_1
+  - first:
+      213: 2770805055032535466
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_2
+  - first:
+      213: -2293531045429057163
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_3
+  - first:
+      213: -8475464498286738311
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_4
+  - first:
+      213: 5823850622150389264
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_5
+  - first:
+      213: -4829952554264939502
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_6
+  - first:
+      213: -5101506706516962886
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_7
+  - first:
+      213: 8938191572577046012
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_8
+  - first:
+      213: -2369678762070450564
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_9
+  - first:
+      213: 597431950200243617
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_10
+  - first:
+      213: -1936053816720252469
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_11
+  - first:
+      213: 3687106291119920742
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_12
+  - first:
+      213: 1950698738477917538
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_13
+  - first:
+      213: -9121452225151043114
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_14
+  - first:
+      213: -8009611850838861108
+    second: wild_arrow_drawn_helm_unblinking_crown_1h_idle_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42a80bd602c4b4329995bb97691ccf9f
+      internalID: 1045779407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_s_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 336
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5469d9cb6fef84cd38abeae460c22653
+      internalID: 126185198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78f022c210bfd43948d1fa2ad0ca8814
+      internalID: 2129433875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_sw_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 288
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d86ecf0c3e90a4ce2925bbf10e270dad
+      internalID: 595736560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeddd248568eb45229eae1a7df5bd370
+      internalID: -1358931896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_w_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 240
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cdfe1e8bc4344f63b78d8cb2e982862
+      internalID: 1284893666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdd64a3b3799847af8d8576bd48f4f3a
+      internalID: 694843694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_nw_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 192
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 123f5f86e38c847b7917e52ce308f191
+      internalID: -1372149410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 585e66f3653714a5a89fee83f1505ceb
+      internalID: 557626418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_n_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 144
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5be35f16d1d7f48ecb3a9b0cd14c761f
+      internalID: 1880157725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad044fce61d024895b3ad0418c5ca6dc
+      internalID: -652116027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_ne_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dcb8452a70b4428aa60942c3ca8494f
+      internalID: -117848213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b710835526044cb6941d640032292f9
+      internalID: 1414565340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_e_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e738cd4f518aa4de9b2e69373543c069
+      internalID: -476269755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82ac3f2cbd47c4dedab2655996619947
+      internalID: 1688041659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild_arrow_drawn_helm_unblinking_crown_1h_idle_se_01
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020833334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 398e2caf65ef94772979187b90c6180b
+      internalID: 469497530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1c97393ffe0994ac6be2081a93a061eb
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_e_00: 1414565340
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_e_01: -476269755
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_n_00: 557626418
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_n_01: 1880157725
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_ne_00: -652116027
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_ne_01: -117848213
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_nw_00: 694843694
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_nw_01: -1372149410
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_s_00: 1045779407
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_s_01: 126185198
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_se_00: 1688041659
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_se_01: 469497530
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_sw_00: 2129433875
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_sw_01: 595736560
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_w_00: -1358931896
+      wild_arrow_drawn_helm_unblinking_crown_1h_idle_w_01: 1284893666
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

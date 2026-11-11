@@ -67,7 +67,7 @@ namespace ARPG.Editor
         };
 
         // Her walking pace while she fires (PlayerController's base speed of 4 at FiringPace.MoveMultiplier).
-        const float WalkGroundSpeed = 4f * FiringPace.MoveMultiplier;
+        const float WalkGroundSpeed = 2f;   // as baked, when the multiplier was a half (it is 0.65 since 2026-11-11)
 
         // The brief's frame counts (4.4), and where each clip comes from: the archer's file, or the Wrathborn's (legs only).
         static readonly (string name, int frames, bool loop, string path)[] Animations =

@@ -9,8 +9,9 @@ namespace ARPG
     /// </summary>
     public static class FiringPace
     {
-        /// <summary>Move speed while firing: about a walk next to her run.</summary>
-        public const float MoveMultiplier = 0.5f;
+        /// <summary>Move speed while firing: about a walk next to her run. 0.65 since 2026-11-11 (the owner: "make her
+        /// move 30% faster when she is aiming her bow"; half before).</summary>
+        public const float MoveMultiplier = 0.65f;
 
         /// <summary>How long one shot or skill keeps her walking, at most. A slower bow fires less often than this, so
         /// she breaks into a run between its shots.</summary>
