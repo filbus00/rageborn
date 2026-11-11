@@ -238,11 +238,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 364
-        width: 58
-        height: 52
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -259,12 +259,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_idle_s_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 364
-        width: 58
-        height: 52
+        x: 32
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -278,59 +278,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_s_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 364
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9403d9a66cdaf4d3a8f015fad23ba57e
-      internalID: -2076369900
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_s_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 364
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0db997af14f754ed0a8933e294b8b2bb
-      internalID: -1580235696
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_idle_sw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 312
-        width: 58
-        height: 52
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -347,12 +303,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_idle_sw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 312
-        width: 58
-        height: 52
+        x: 32
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -366,59 +322,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_sw_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 312
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc24403a7fabe437db95ef7d49743665
-      internalID: 1831432465
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_sw_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 312
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1194f52f1977d4f248679d62cf29bf49
-      internalID: 1667684868
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_idle_w_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 260
-        width: 58
-        height: 52
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -435,12 +347,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_idle_w_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 260
-        width: 58
-        height: 52
+        x: 32
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -454,59 +366,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_w_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 260
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a818f5eacc9848a294cbcec25ca656e
-      internalID: -678773156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_w_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 260
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d4cb33de9e5454759a16c1fa3675a68b
-      internalID: 658450422
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_idle_nw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 208
-        width: 58
-        height: 52
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -523,12 +391,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_idle_nw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 208
-        width: 58
-        height: 52
+        x: 32
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -542,59 +410,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_nw_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 208
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc5e80944bbfd409a8edde78cd4a1338
-      internalID: 1128389707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_nw_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 208
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d3792642a7bba4dad839fb668c737b5d
-      internalID: 1605127370
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_idle_n_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 156
-        width: 58
-        height: 52
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -611,12 +435,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_idle_n_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 156
-        width: 58
-        height: 52
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -630,59 +454,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_n_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 156
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 065ff2a5364b94a1ba36003fff2216d9
-      internalID: -1861408029
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_n_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 156
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: af2f81691b57342a7bd6fdca003e53ec
-      internalID: -1613826352
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_idle_ne_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 104
-        width: 58
-        height: 52
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -699,12 +479,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_idle_ne_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 104
-        width: 58
-        height: 52
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -718,59 +498,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_ne_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 104
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f7392958317f4911b6516e2df17bea4
-      internalID: 1838619853
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_ne_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 104
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75cb5b29fafda4b57976c1ecb31dfc6f
-      internalID: -1645002692
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_idle_e_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 52
-        width: 58
-        height: 52
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -787,12 +523,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_idle_e_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 52
-        width: 58
-        height: 52
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -806,59 +542,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_e_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 52
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e82ebbb7664c847239b81fd18eeaca9e
-      internalID: -1295353137
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_e_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 52
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 63b38d14744bf430094af997b811c911
-      internalID: 1647840570
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_idle_se_00
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -875,12 +567,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_idle_se_01
       rect:
         serializedVersion: 2
-        x: 58
+        x: 32
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -889,50 +581,6 @@ TextureImporter:
       bones: []
       spriteID: 8f1f5360ca9244415a65c735b38750f0
       internalID: 1958437814
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_se_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 0
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3f25fa3a373ca49719074d76df8817d6
-      internalID: 489855100
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_idle_se_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 0
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 115e63d5810b7463fb8085a9520da46b
-      internalID: 754688131
       vertices: []
       indices: 
       edges: []
@@ -953,36 +601,20 @@ TextureImporter:
     nameFileIdTable:
       wild_arrow_drawn_body_scale_1h_idle_e_00: 725696151
       wild_arrow_drawn_body_scale_1h_idle_e_01: 566742428
-      wild_arrow_drawn_body_scale_1h_idle_e_02: -1295353137
-      wild_arrow_drawn_body_scale_1h_idle_e_03: 1647840570
       wild_arrow_drawn_body_scale_1h_idle_n_00: 571149181
       wild_arrow_drawn_body_scale_1h_idle_n_01: 1044894671
-      wild_arrow_drawn_body_scale_1h_idle_n_02: -1861408029
-      wild_arrow_drawn_body_scale_1h_idle_n_03: -1613826352
       wild_arrow_drawn_body_scale_1h_idle_ne_00: 822093982
       wild_arrow_drawn_body_scale_1h_idle_ne_01: 437166741
-      wild_arrow_drawn_body_scale_1h_idle_ne_02: 1838619853
-      wild_arrow_drawn_body_scale_1h_idle_ne_03: -1645002692
       wild_arrow_drawn_body_scale_1h_idle_nw_00: 449756982
       wild_arrow_drawn_body_scale_1h_idle_nw_01: 2108120445
-      wild_arrow_drawn_body_scale_1h_idle_nw_02: 1128389707
-      wild_arrow_drawn_body_scale_1h_idle_nw_03: 1605127370
       wild_arrow_drawn_body_scale_1h_idle_s_00: -916007612
       wild_arrow_drawn_body_scale_1h_idle_s_01: -1780037181
-      wild_arrow_drawn_body_scale_1h_idle_s_02: -2076369900
-      wild_arrow_drawn_body_scale_1h_idle_s_03: -1580235696
       wild_arrow_drawn_body_scale_1h_idle_se_00: 155203443
       wild_arrow_drawn_body_scale_1h_idle_se_01: 1958437814
-      wild_arrow_drawn_body_scale_1h_idle_se_02: 489855100
-      wild_arrow_drawn_body_scale_1h_idle_se_03: 754688131
       wild_arrow_drawn_body_scale_1h_idle_sw_00: -1963798583
       wild_arrow_drawn_body_scale_1h_idle_sw_01: -1496256155
-      wild_arrow_drawn_body_scale_1h_idle_sw_02: 1831432465
-      wild_arrow_drawn_body_scale_1h_idle_sw_03: 1667684868
       wild_arrow_drawn_body_scale_1h_idle_w_00: 520301329
       wild_arrow_drawn_body_scale_1h_idle_w_01: 509244031
-      wild_arrow_drawn_body_scale_1h_idle_w_02: -678773156
-      wild_arrow_drawn_body_scale_1h_idle_w_03: 658450422
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

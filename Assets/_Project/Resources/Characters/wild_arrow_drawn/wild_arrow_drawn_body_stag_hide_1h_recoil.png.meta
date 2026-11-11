@@ -262,11 +262,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 364
-        width: 58
-        height: 52
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -283,12 +283,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_s_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 364
-        width: 58
-        height: 52
+        x: 32
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -305,12 +305,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_s_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 364
-        width: 58
-        height: 52
+        x: 64
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -327,12 +327,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_s_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 364
-        width: 58
-        height: 52
+        x: 96
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -346,37 +346,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_recoil_s_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 364
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 41b5be32bf2544601b6c8e5f664d3d69
-      internalID: -900551236
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_sw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 312
-        width: 58
-        height: 52
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -393,12 +371,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_sw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 312
-        width: 58
-        height: 52
+        x: 32
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -415,12 +393,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_sw_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 312
-        width: 58
-        height: 52
+        x: 64
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -437,12 +415,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_sw_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 312
-        width: 58
-        height: 52
+        x: 96
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -456,37 +434,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_recoil_sw_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 312
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8db958e72410e4b3d8cbece2563a1d0b
-      internalID: 1108002838
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_w_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 260
-        width: 58
-        height: 52
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -503,12 +459,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_w_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 260
-        width: 58
-        height: 52
+        x: 32
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -525,12 +481,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_w_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 260
-        width: 58
-        height: 52
+        x: 64
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -547,12 +503,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_w_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 260
-        width: 58
-        height: 52
+        x: 96
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -566,37 +522,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_recoil_w_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 260
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e2c8d254499849dbab0547dda6c726c
-      internalID: -385605422
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_nw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 208
-        width: 58
-        height: 52
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -613,12 +547,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_nw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 208
-        width: 58
-        height: 52
+        x: 32
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -635,12 +569,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_nw_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 208
-        width: 58
-        height: 52
+        x: 64
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -657,12 +591,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_nw_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 208
-        width: 58
-        height: 52
+        x: 96
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -676,37 +610,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_recoil_nw_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 208
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6527dbbc50194829973505f7647b5d9
-      internalID: 771964369
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_n_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 156
-        width: 58
-        height: 52
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -723,12 +635,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_n_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 156
-        width: 58
-        height: 52
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -745,12 +657,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_n_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 156
-        width: 58
-        height: 52
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -767,12 +679,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_n_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 156
-        width: 58
-        height: 52
+        x: 96
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -786,37 +698,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_recoil_n_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 156
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1646cf72124e64a9fb5fea95a2431abe
-      internalID: -50549843
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_ne_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 104
-        width: 58
-        height: 52
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -833,12 +723,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_ne_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 104
-        width: 58
-        height: 52
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -855,12 +745,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_ne_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 104
-        width: 58
-        height: 52
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -877,12 +767,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_ne_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 104
-        width: 58
-        height: 52
+        x: 96
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -896,37 +786,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_recoil_ne_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 104
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c80763d829ff14876b1ecacc21d16de2
-      internalID: -1118938990
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_e_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 52
-        width: 58
-        height: 52
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -943,12 +811,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_e_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 52
-        width: 58
-        height: 52
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -965,12 +833,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_e_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 52
-        width: 58
-        height: 52
+        x: 64
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -987,12 +855,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_e_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 52
-        width: 58
-        height: 52
+        x: 96
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1006,37 +874,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_recoil_e_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 52
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f508f3221be664669be0cb5ee6d4662c
-      internalID: -690561527
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_se_00
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1053,12 +899,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_se_01
       rect:
         serializedVersion: 2
-        x: 58
+        x: 32
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1075,12 +921,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_se_02
       rect:
         serializedVersion: 2
-        x: 116
+        x: 64
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1097,12 +943,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_recoil_se_03
       rect:
         serializedVersion: 2
-        x: 174
+        x: 96
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1111,28 +957,6 @@ TextureImporter:
       bones: []
       spriteID: 18e0762ec79304f859b0666121d6724e
       internalID: -2999142
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_recoil_se_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 0
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13b245ebb99c247d0a0f845efba03699
-      internalID: 102356873
       vertices: []
       indices: 
       edges: []
@@ -1155,42 +979,34 @@ TextureImporter:
       wild_arrow_drawn_body_stag_hide_1h_recoil_e_01: -337756971
       wild_arrow_drawn_body_stag_hide_1h_recoil_e_02: 428685608
       wild_arrow_drawn_body_stag_hide_1h_recoil_e_03: -1059315453
-      wild_arrow_drawn_body_stag_hide_1h_recoil_e_04: -690561527
       wild_arrow_drawn_body_stag_hide_1h_recoil_n_00: -722457077
       wild_arrow_drawn_body_stag_hide_1h_recoil_n_01: -659340964
       wild_arrow_drawn_body_stag_hide_1h_recoil_n_02: -472044513
       wild_arrow_drawn_body_stag_hide_1h_recoil_n_03: -15881731
-      wild_arrow_drawn_body_stag_hide_1h_recoil_n_04: -50549843
       wild_arrow_drawn_body_stag_hide_1h_recoil_ne_00: -727073875
       wild_arrow_drawn_body_stag_hide_1h_recoil_ne_01: 1696074570
       wild_arrow_drawn_body_stag_hide_1h_recoil_ne_02: -2098822779
       wild_arrow_drawn_body_stag_hide_1h_recoil_ne_03: 505307482
-      wild_arrow_drawn_body_stag_hide_1h_recoil_ne_04: -1118938990
       wild_arrow_drawn_body_stag_hide_1h_recoil_nw_00: -2056473401
       wild_arrow_drawn_body_stag_hide_1h_recoil_nw_01: -450785878
       wild_arrow_drawn_body_stag_hide_1h_recoil_nw_02: -361267312
       wild_arrow_drawn_body_stag_hide_1h_recoil_nw_03: -622491100
-      wild_arrow_drawn_body_stag_hide_1h_recoil_nw_04: 771964369
       wild_arrow_drawn_body_stag_hide_1h_recoil_s_00: -1557619709
       wild_arrow_drawn_body_stag_hide_1h_recoil_s_01: -1774195183
       wild_arrow_drawn_body_stag_hide_1h_recoil_s_02: -74588828
       wild_arrow_drawn_body_stag_hide_1h_recoil_s_03: -764299808
-      wild_arrow_drawn_body_stag_hide_1h_recoil_s_04: -900551236
       wild_arrow_drawn_body_stag_hide_1h_recoil_se_00: -1433149674
       wild_arrow_drawn_body_stag_hide_1h_recoil_se_01: 2071273881
       wild_arrow_drawn_body_stag_hide_1h_recoil_se_02: 1697614393
       wild_arrow_drawn_body_stag_hide_1h_recoil_se_03: -2999142
-      wild_arrow_drawn_body_stag_hide_1h_recoil_se_04: 102356873
       wild_arrow_drawn_body_stag_hide_1h_recoil_sw_00: -1192323704
       wild_arrow_drawn_body_stag_hide_1h_recoil_sw_01: -1114924851
       wild_arrow_drawn_body_stag_hide_1h_recoil_sw_02: -694294785
       wild_arrow_drawn_body_stag_hide_1h_recoil_sw_03: -141516951
-      wild_arrow_drawn_body_stag_hide_1h_recoil_sw_04: 1108002838
       wild_arrow_drawn_body_stag_hide_1h_recoil_w_00: 410643140
       wild_arrow_drawn_body_stag_hide_1h_recoil_w_01: 1973031504
       wild_arrow_drawn_body_stag_hide_1h_recoil_w_02: -1477038716
       wild_arrow_drawn_body_stag_hide_1h_recoil_w_03: -2064570859
-      wild_arrow_drawn_body_stag_hide_1h_recoil_w_04: -385605422
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

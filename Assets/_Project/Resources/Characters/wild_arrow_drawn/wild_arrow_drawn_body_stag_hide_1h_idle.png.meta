@@ -238,11 +238,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 364
-        width: 58
-        height: 52
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -259,12 +259,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_idle_s_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 364
-        width: 58
-        height: 52
+        x: 32
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -278,59 +278,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_s_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 364
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1be104a10816d47448409f0888224ab0
-      internalID: 996100401
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_s_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 364
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a46090a6bd0ff40cf83b2a7ee53698ea
-      internalID: -1470910308
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_idle_sw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 312
-        width: 58
-        height: 52
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -347,12 +303,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_idle_sw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 312
-        width: 58
-        height: 52
+        x: 32
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -366,59 +322,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_sw_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 312
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 756654c1106b3426eb431eea0823bcc4
-      internalID: -2115679188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_sw_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 312
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cce5256b8c24d49d882b226f9ddc1192
-      internalID: -1472597947
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_idle_w_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 260
-        width: 58
-        height: 52
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -435,12 +347,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_idle_w_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 260
-        width: 58
-        height: 52
+        x: 32
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -454,59 +366,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_w_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 260
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8defe649d48ea42988fd7d19a2bec99c
-      internalID: 1522949199
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_w_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 260
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0910f5e203625471ea75aee81c2289f2
-      internalID: 1821321015
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_idle_nw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 208
-        width: 58
-        height: 52
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -523,12 +391,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_idle_nw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 208
-        width: 58
-        height: 52
+        x: 32
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -542,59 +410,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_nw_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 208
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7fda2515e474b4a72a84fc2b939711ea
-      internalID: 2010207230
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_nw_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 208
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 25849f48236294cf18cc7840bfbd846d
-      internalID: 690904862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_idle_n_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 156
-        width: 58
-        height: 52
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -611,12 +435,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_idle_n_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 156
-        width: 58
-        height: 52
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -630,59 +454,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_n_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 156
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d1e840f221e9a4f6cba02f2ae6eddcf7
-      internalID: -1680142503
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_n_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 156
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d2bd5a1cff6ca4d3d814469396d29327
-      internalID: -1596979586
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_idle_ne_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 104
-        width: 58
-        height: 52
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -699,12 +479,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_idle_ne_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 104
-        width: 58
-        height: 52
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -718,59 +498,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_ne_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 104
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7147dd899dfde44c785860f975ea4f0a
-      internalID: -2073891266
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_ne_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 104
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eee0bbc37d70e4fdabbd44ee9aec0f88
-      internalID: 683704738
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_idle_e_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 52
-        width: 58
-        height: 52
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -787,12 +523,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_idle_e_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 52
-        width: 58
-        height: 52
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -806,59 +542,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_e_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 52
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0433937207d794ab8b902e2232a787be
-      internalID: 678103051
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_e_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 52
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 859d79d7d0e1f42e3bd984fd552d5957
-      internalID: 1232698255
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_stag_hide_1h_idle_se_00
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -875,12 +567,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_stag_hide_1h_idle_se_01
       rect:
         serializedVersion: 2
-        x: 58
+        x: 32
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -889,50 +581,6 @@ TextureImporter:
       bones: []
       spriteID: d4b987fecb18e4d04970cbe9ced37b48
       internalID: -45644179
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_se_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 0
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1dad94e1d52249bdb4fd3df69c34e41
-      internalID: 839640877
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_stag_hide_1h_idle_se_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 0
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0511862d891884b19ba817c0191f9b27
-      internalID: -24785908
       vertices: []
       indices: 
       edges: []
@@ -953,36 +601,20 @@ TextureImporter:
     nameFileIdTable:
       wild_arrow_drawn_body_stag_hide_1h_idle_e_00: 1643249281
       wild_arrow_drawn_body_stag_hide_1h_idle_e_01: 127101155
-      wild_arrow_drawn_body_stag_hide_1h_idle_e_02: 678103051
-      wild_arrow_drawn_body_stag_hide_1h_idle_e_03: 1232698255
       wild_arrow_drawn_body_stag_hide_1h_idle_n_00: -722621419
       wild_arrow_drawn_body_stag_hide_1h_idle_n_01: 1944055655
-      wild_arrow_drawn_body_stag_hide_1h_idle_n_02: -1680142503
-      wild_arrow_drawn_body_stag_hide_1h_idle_n_03: -1596979586
       wild_arrow_drawn_body_stag_hide_1h_idle_ne_00: 1873246656
       wild_arrow_drawn_body_stag_hide_1h_idle_ne_01: -791847217
-      wild_arrow_drawn_body_stag_hide_1h_idle_ne_02: -2073891266
-      wild_arrow_drawn_body_stag_hide_1h_idle_ne_03: 683704738
       wild_arrow_drawn_body_stag_hide_1h_idle_nw_00: 245529598
       wild_arrow_drawn_body_stag_hide_1h_idle_nw_01: -2001379495
-      wild_arrow_drawn_body_stag_hide_1h_idle_nw_02: 2010207230
-      wild_arrow_drawn_body_stag_hide_1h_idle_nw_03: 690904862
       wild_arrow_drawn_body_stag_hide_1h_idle_s_00: 1089467068
       wild_arrow_drawn_body_stag_hide_1h_idle_s_01: 1653228302
-      wild_arrow_drawn_body_stag_hide_1h_idle_s_02: 996100401
-      wild_arrow_drawn_body_stag_hide_1h_idle_s_03: -1470910308
       wild_arrow_drawn_body_stag_hide_1h_idle_se_00: 1564600668
       wild_arrow_drawn_body_stag_hide_1h_idle_se_01: -45644179
-      wild_arrow_drawn_body_stag_hide_1h_idle_se_02: 839640877
-      wild_arrow_drawn_body_stag_hide_1h_idle_se_03: -24785908
       wild_arrow_drawn_body_stag_hide_1h_idle_sw_00: -875665571
       wild_arrow_drawn_body_stag_hide_1h_idle_sw_01: 1528702513
-      wild_arrow_drawn_body_stag_hide_1h_idle_sw_02: -2115679188
-      wild_arrow_drawn_body_stag_hide_1h_idle_sw_03: -1472597947
       wild_arrow_drawn_body_stag_hide_1h_idle_w_00: -1339111721
       wild_arrow_drawn_body_stag_hide_1h_idle_w_01: 1064817924
-      wild_arrow_drawn_body_stag_hide_1h_idle_w_02: 1522949199
-      wild_arrow_drawn_body_stag_hide_1h_idle_w_03: 1821321015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -262,11 +262,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 364
-        width: 58
-        height: 52
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -283,12 +283,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_s_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 364
-        width: 58
-        height: 52
+        x: 32
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -305,12 +305,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_s_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 364
-        width: 58
-        height: 52
+        x: 64
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -327,12 +327,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_s_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 364
-        width: 58
-        height: 52
+        x: 96
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -346,37 +346,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_knight_1h_attack_move_s_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 364
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 107f704c65ed446878753467628a3d28
-      internalID: -283545826
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_knight_1h_attack_move_sw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 312
-        width: 58
-        height: 52
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -393,12 +371,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_sw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 312
-        width: 58
-        height: 52
+        x: 32
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -415,12 +393,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_sw_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 312
-        width: 58
-        height: 52
+        x: 64
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -437,12 +415,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_sw_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 312
-        width: 58
-        height: 52
+        x: 96
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -456,37 +434,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_knight_1h_attack_move_sw_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 312
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 081f3da4d56b04b669e7f135ae7d28aa
-      internalID: 1483454985
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_knight_1h_attack_move_w_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 260
-        width: 58
-        height: 52
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -503,12 +459,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_w_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 260
-        width: 58
-        height: 52
+        x: 32
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -525,12 +481,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_w_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 260
-        width: 58
-        height: 52
+        x: 64
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -547,12 +503,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_w_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 260
-        width: 58
-        height: 52
+        x: 96
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -566,37 +522,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_knight_1h_attack_move_w_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 260
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 483a39d0fa78d47c5927aab92188e369
-      internalID: 1448562128
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_knight_1h_attack_move_nw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 208
-        width: 58
-        height: 52
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -613,12 +547,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_nw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 208
-        width: 58
-        height: 52
+        x: 32
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -635,12 +569,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_nw_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 208
-        width: 58
-        height: 52
+        x: 64
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -657,12 +591,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_nw_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 208
-        width: 58
-        height: 52
+        x: 96
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -676,37 +610,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_knight_1h_attack_move_nw_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 208
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6cb71d800c4e440d0ab2fd6316f128f6
-      internalID: -59877697
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_knight_1h_attack_move_n_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 156
-        width: 58
-        height: 52
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -723,12 +635,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_n_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 156
-        width: 58
-        height: 52
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -745,12 +657,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_n_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 156
-        width: 58
-        height: 52
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -767,12 +679,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_n_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 156
-        width: 58
-        height: 52
+        x: 96
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -786,37 +698,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_knight_1h_attack_move_n_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 156
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 03de67357899845d780f440690337d82
-      internalID: -1742248683
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_knight_1h_attack_move_ne_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 104
-        width: 58
-        height: 52
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -833,12 +723,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_ne_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 104
-        width: 58
-        height: 52
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -855,12 +745,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_ne_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 104
-        width: 58
-        height: 52
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -877,12 +767,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_ne_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 104
-        width: 58
-        height: 52
+        x: 96
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -896,37 +786,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_knight_1h_attack_move_ne_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 104
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 36dc710fe863540f68835ea913146a69
-      internalID: 1114302054
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_knight_1h_attack_move_e_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 52
-        width: 58
-        height: 52
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -943,12 +811,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_e_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 52
-        width: 58
-        height: 52
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -965,12 +833,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_e_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 52
-        width: 58
-        height: 52
+        x: 64
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -987,12 +855,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_e_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 52
-        width: 58
-        height: 52
+        x: 96
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1006,37 +874,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_knight_1h_attack_move_e_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 52
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1c7872a7180234593b082f78a10a231d
-      internalID: 657863865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_knight_1h_attack_move_se_00
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1053,12 +899,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_se_01
       rect:
         serializedVersion: 2
-        x: 58
+        x: 32
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1075,12 +921,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_se_02
       rect:
         serializedVersion: 2
-        x: 116
+        x: 64
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1097,12 +943,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_knight_1h_attack_move_se_03
       rect:
         serializedVersion: 2
-        x: 174
+        x: 96
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1111,28 +957,6 @@ TextureImporter:
       bones: []
       spriteID: f22954dd469494610ad4a5499606ea3c
       internalID: 1341513302
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_knight_1h_attack_move_se_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 0
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37276618fca2641bca9f46aa3a348646
-      internalID: 1159482535
       vertices: []
       indices: 
       edges: []
@@ -1155,42 +979,34 @@ TextureImporter:
       wild_arrow_drawn_body_knight_1h_attack_move_e_01: -1485755305
       wild_arrow_drawn_body_knight_1h_attack_move_e_02: 1167884015
       wild_arrow_drawn_body_knight_1h_attack_move_e_03: 1369100537
-      wild_arrow_drawn_body_knight_1h_attack_move_e_04: 657863865
       wild_arrow_drawn_body_knight_1h_attack_move_n_00: -1307727213
       wild_arrow_drawn_body_knight_1h_attack_move_n_01: 63303654
       wild_arrow_drawn_body_knight_1h_attack_move_n_02: 813028886
       wild_arrow_drawn_body_knight_1h_attack_move_n_03: 283148497
-      wild_arrow_drawn_body_knight_1h_attack_move_n_04: -1742248683
       wild_arrow_drawn_body_knight_1h_attack_move_ne_00: -1706908161
       wild_arrow_drawn_body_knight_1h_attack_move_ne_01: 1928828630
       wild_arrow_drawn_body_knight_1h_attack_move_ne_02: 399386720
       wild_arrow_drawn_body_knight_1h_attack_move_ne_03: -378250576
-      wild_arrow_drawn_body_knight_1h_attack_move_ne_04: 1114302054
       wild_arrow_drawn_body_knight_1h_attack_move_nw_00: -1949436571
       wild_arrow_drawn_body_knight_1h_attack_move_nw_01: -335373042
       wild_arrow_drawn_body_knight_1h_attack_move_nw_02: -1261613288
       wild_arrow_drawn_body_knight_1h_attack_move_nw_03: 1299459319
-      wild_arrow_drawn_body_knight_1h_attack_move_nw_04: -59877697
       wild_arrow_drawn_body_knight_1h_attack_move_s_00: -385669875
       wild_arrow_drawn_body_knight_1h_attack_move_s_01: 117973242
       wild_arrow_drawn_body_knight_1h_attack_move_s_02: -1560550911
       wild_arrow_drawn_body_knight_1h_attack_move_s_03: 1036716546
-      wild_arrow_drawn_body_knight_1h_attack_move_s_04: -283545826
       wild_arrow_drawn_body_knight_1h_attack_move_se_00: -1803752279
       wild_arrow_drawn_body_knight_1h_attack_move_se_01: 808472357
       wild_arrow_drawn_body_knight_1h_attack_move_se_02: -1048928710
       wild_arrow_drawn_body_knight_1h_attack_move_se_03: 1341513302
-      wild_arrow_drawn_body_knight_1h_attack_move_se_04: 1159482535
       wild_arrow_drawn_body_knight_1h_attack_move_sw_00: 642096469
       wild_arrow_drawn_body_knight_1h_attack_move_sw_01: -749174530
       wild_arrow_drawn_body_knight_1h_attack_move_sw_02: 1633531597
       wild_arrow_drawn_body_knight_1h_attack_move_sw_03: -1612875940
-      wild_arrow_drawn_body_knight_1h_attack_move_sw_04: 1483454985
       wild_arrow_drawn_body_knight_1h_attack_move_w_00: 1828257104
       wild_arrow_drawn_body_knight_1h_attack_move_w_01: -2099214780
       wild_arrow_drawn_body_knight_1h_attack_move_w_02: 71054681
       wild_arrow_drawn_body_knight_1h_attack_move_w_03: -1104016490
-      wild_arrow_drawn_body_knight_1h_attack_move_w_04: 1448562128
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

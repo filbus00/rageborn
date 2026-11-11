@@ -310,11 +310,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 364
-        width: 58
-        height: 52
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -331,12 +331,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_s_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 364
-        width: 58
-        height: 52
+        x: 32
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -353,12 +353,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_s_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 364
-        width: 58
-        height: 52
+        x: 64
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -375,12 +375,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_s_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 364
-        width: 58
-        height: 52
+        x: 96
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -394,81 +394,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_s_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 364
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 11781071cb3fb4b63856f8caff007665
-      internalID: -1050464919
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_s_05
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 364
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8a946bdbaae0c4cbe8a9def21cc07459
-      internalID: 1274576229
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_s_06
-      rect:
-        serializedVersion: 2
-        x: 348
-        y: 364
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 49c53c84d2fd944d4b4aad28d6c71697
-      internalID: 249957824
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_sw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 312
-        width: 58
-        height: 52
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -485,12 +419,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_sw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 312
-        width: 58
-        height: 52
+        x: 32
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -507,12 +441,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_sw_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 312
-        width: 58
-        height: 52
+        x: 64
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -529,12 +463,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_sw_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 312
-        width: 58
-        height: 52
+        x: 96
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -548,81 +482,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_sw_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 312
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cce866f67495c4221ac2bf898ae9c2ed
-      internalID: -1094338098
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_sw_05
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 312
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8c57ce83347d4c559fbeb6474ff13e1
-      internalID: 1863580802
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_sw_06
-      rect:
-        serializedVersion: 2
-        x: 348
-        y: 312
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ad72b5ac3178a4105a8f05b7c2cf1dcb
-      internalID: -1916124892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_w_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 260
-        width: 58
-        height: 52
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -639,12 +507,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_w_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 260
-        width: 58
-        height: 52
+        x: 32
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -661,12 +529,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_w_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 260
-        width: 58
-        height: 52
+        x: 64
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -683,12 +551,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_w_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 260
-        width: 58
-        height: 52
+        x: 96
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -702,81 +570,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_w_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 260
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4518445d6e318486b8b114c7984dad85
-      internalID: 1315441396
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_w_05
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 260
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8590f8acf81774e27bc589cccb86877f
-      internalID: 568940080
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_w_06
-      rect:
-        serializedVersion: 2
-        x: 348
-        y: 260
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e04d0ebb7dc6c4da7b19f8cf1d233a8a
-      internalID: 178520771
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_nw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 208
-        width: 58
-        height: 52
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -793,12 +595,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_nw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 208
-        width: 58
-        height: 52
+        x: 32
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -815,12 +617,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_nw_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 208
-        width: 58
-        height: 52
+        x: 64
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -837,12 +639,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_nw_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 208
-        width: 58
-        height: 52
+        x: 96
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -856,81 +658,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_nw_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 208
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a320f528f127940e9a157981e8468b23
-      internalID: 1696472622
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_nw_05
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 208
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2dbafcbb2ab14bfa9db44f68f1af03b
-      internalID: -1034707493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_nw_06
-      rect:
-        serializedVersion: 2
-        x: 348
-        y: 208
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c124057092e1f4eaa93420dd69214544
-      internalID: 177502153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_n_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 156
-        width: 58
-        height: 52
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -947,12 +683,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_n_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 156
-        width: 58
-        height: 52
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -969,12 +705,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_n_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 156
-        width: 58
-        height: 52
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -991,12 +727,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_n_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 156
-        width: 58
-        height: 52
+        x: 96
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1010,81 +746,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_n_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 156
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 895bf334baa49496eac9c05d21bea491
-      internalID: 543940759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_n_05
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 156
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 349702b2101a74d56b5d950847c66eef
-      internalID: 697127244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_n_06
-      rect:
-        serializedVersion: 2
-        x: 348
-        y: 156
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: de203f94ff17c42c9b2826199e37c45d
-      internalID: 117357042
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_ne_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 104
-        width: 58
-        height: 52
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1101,12 +771,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_ne_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 104
-        width: 58
-        height: 52
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1123,12 +793,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_ne_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 104
-        width: 58
-        height: 52
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1145,12 +815,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_ne_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 104
-        width: 58
-        height: 52
+        x: 96
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1164,81 +834,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_ne_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 104
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e62ec380d393e44efb2ee70d26f83546
-      internalID: -632639438
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_ne_05
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 104
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6cd76c3596b674c9e9405eee737aa446
-      internalID: 762992726
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_ne_06
-      rect:
-        serializedVersion: 2
-        x: 348
-        y: 104
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1a6dda18e10a64edc8f43a2eaa57a229
-      internalID: -1794918027
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_e_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 52
-        width: 58
-        height: 52
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1255,12 +859,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_e_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 52
-        width: 58
-        height: 52
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1277,12 +881,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_e_02
       rect:
         serializedVersion: 2
-        x: 116
-        y: 52
-        width: 58
-        height: 52
+        x: 64
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1299,12 +903,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_e_03
       rect:
         serializedVersion: 2
-        x: 174
-        y: 52
-        width: 58
-        height: 52
+        x: 96
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1318,81 +922,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_e_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 52
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12c4d05512f674649b1a624b2f801c81
-      internalID: 1524889747
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_e_05
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 52
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d2bf450f1c5c14e1dbb507604cd6a2ae
-      internalID: 1174178197
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_e_06
-      rect:
-        serializedVersion: 2
-        x: 348
-        y: 52
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b0f34386e816c40158b15ead2920921b
-      internalID: 1838014074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_se_00
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1409,12 +947,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_se_01
       rect:
         serializedVersion: 2
-        x: 58
+        x: 32
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1431,12 +969,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_se_02
       rect:
         serializedVersion: 2
-        x: 116
+        x: 64
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1453,12 +991,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_scale_1h_overdraw_move_se_03
       rect:
         serializedVersion: 2
-        x: 174
+        x: 96
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1467,72 +1005,6 @@ TextureImporter:
       bones: []
       spriteID: 0fb1b170e9b884771aa2e7705936b90b
       internalID: -1214842850
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_se_04
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 0
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23f2f2bbe31644902867a934756f9fe3
-      internalID: 1713384761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_se_05
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 0
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e3ad667b45904483b84492e3ef762ce2
-      internalID: 769094707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_scale_1h_overdraw_move_se_06
-      rect:
-        serializedVersion: 2
-        x: 348
-        y: 0
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1842c6a650a32428c965fc5f3de3de66
-      internalID: -807892809
       vertices: []
       indices: 
       edges: []
@@ -1555,58 +1027,34 @@ TextureImporter:
       wild_arrow_drawn_body_scale_1h_overdraw_move_e_01: -47444342
       wild_arrow_drawn_body_scale_1h_overdraw_move_e_02: 1694772005
       wild_arrow_drawn_body_scale_1h_overdraw_move_e_03: -588209851
-      wild_arrow_drawn_body_scale_1h_overdraw_move_e_04: 1524889747
-      wild_arrow_drawn_body_scale_1h_overdraw_move_e_05: 1174178197
-      wild_arrow_drawn_body_scale_1h_overdraw_move_e_06: 1838014074
       wild_arrow_drawn_body_scale_1h_overdraw_move_n_00: -835571844
       wild_arrow_drawn_body_scale_1h_overdraw_move_n_01: -1540533953
       wild_arrow_drawn_body_scale_1h_overdraw_move_n_02: -1164926334
       wild_arrow_drawn_body_scale_1h_overdraw_move_n_03: 41823154
-      wild_arrow_drawn_body_scale_1h_overdraw_move_n_04: 543940759
-      wild_arrow_drawn_body_scale_1h_overdraw_move_n_05: 697127244
-      wild_arrow_drawn_body_scale_1h_overdraw_move_n_06: 117357042
       wild_arrow_drawn_body_scale_1h_overdraw_move_ne_00: 2794761
       wild_arrow_drawn_body_scale_1h_overdraw_move_ne_01: 1506285835
       wild_arrow_drawn_body_scale_1h_overdraw_move_ne_02: 1239061239
       wild_arrow_drawn_body_scale_1h_overdraw_move_ne_03: 471721808
-      wild_arrow_drawn_body_scale_1h_overdraw_move_ne_04: -632639438
-      wild_arrow_drawn_body_scale_1h_overdraw_move_ne_05: 762992726
-      wild_arrow_drawn_body_scale_1h_overdraw_move_ne_06: -1794918027
       wild_arrow_drawn_body_scale_1h_overdraw_move_nw_00: 1092963093
       wild_arrow_drawn_body_scale_1h_overdraw_move_nw_01: -617804732
       wild_arrow_drawn_body_scale_1h_overdraw_move_nw_02: 1751241624
       wild_arrow_drawn_body_scale_1h_overdraw_move_nw_03: 236890925
-      wild_arrow_drawn_body_scale_1h_overdraw_move_nw_04: 1696472622
-      wild_arrow_drawn_body_scale_1h_overdraw_move_nw_05: -1034707493
-      wild_arrow_drawn_body_scale_1h_overdraw_move_nw_06: 177502153
       wild_arrow_drawn_body_scale_1h_overdraw_move_s_00: -1710293281
       wild_arrow_drawn_body_scale_1h_overdraw_move_s_01: -100304348
       wild_arrow_drawn_body_scale_1h_overdraw_move_s_02: 1569160139
       wild_arrow_drawn_body_scale_1h_overdraw_move_s_03: -1601995539
-      wild_arrow_drawn_body_scale_1h_overdraw_move_s_04: -1050464919
-      wild_arrow_drawn_body_scale_1h_overdraw_move_s_05: 1274576229
-      wild_arrow_drawn_body_scale_1h_overdraw_move_s_06: 249957824
       wild_arrow_drawn_body_scale_1h_overdraw_move_se_00: 1210976746
       wild_arrow_drawn_body_scale_1h_overdraw_move_se_01: -536103544
       wild_arrow_drawn_body_scale_1h_overdraw_move_se_02: -1086181412
       wild_arrow_drawn_body_scale_1h_overdraw_move_se_03: -1214842850
-      wild_arrow_drawn_body_scale_1h_overdraw_move_se_04: 1713384761
-      wild_arrow_drawn_body_scale_1h_overdraw_move_se_05: 769094707
-      wild_arrow_drawn_body_scale_1h_overdraw_move_se_06: -807892809
       wild_arrow_drawn_body_scale_1h_overdraw_move_sw_00: 1839151505
       wild_arrow_drawn_body_scale_1h_overdraw_move_sw_01: 1903427801
       wild_arrow_drawn_body_scale_1h_overdraw_move_sw_02: 798454226
       wild_arrow_drawn_body_scale_1h_overdraw_move_sw_03: -343747153
-      wild_arrow_drawn_body_scale_1h_overdraw_move_sw_04: -1094338098
-      wild_arrow_drawn_body_scale_1h_overdraw_move_sw_05: 1863580802
-      wild_arrow_drawn_body_scale_1h_overdraw_move_sw_06: -1916124892
       wild_arrow_drawn_body_scale_1h_overdraw_move_w_00: 242924531
       wild_arrow_drawn_body_scale_1h_overdraw_move_w_01: 1673552557
       wild_arrow_drawn_body_scale_1h_overdraw_move_w_02: 2109280472
       wild_arrow_drawn_body_scale_1h_overdraw_move_w_03: -1234769497
-      wild_arrow_drawn_body_scale_1h_overdraw_move_w_04: 1315441396
-      wild_arrow_drawn_body_scale_1h_overdraw_move_w_05: 568940080
-      wild_arrow_drawn_body_scale_1h_overdraw_move_w_06: 178520771
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

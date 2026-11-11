@@ -238,11 +238,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 364
-        width: 58
-        height: 52
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -259,12 +259,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_brigand_1h_idle_s_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 364
-        width: 58
-        height: 52
+        x: 32
+        y: 224
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -278,59 +278,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_s_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 364
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e4fd1f876e9b04a6bb9a88fc136dd599
-      internalID: 54567646
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_s_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 364
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd2157c767c7b42009ec6804f9f0f05b
-      internalID: -136444568
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_brigand_1h_idle_sw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 312
-        width: 58
-        height: 52
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -347,12 +303,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_brigand_1h_idle_sw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 312
-        width: 58
-        height: 52
+        x: 32
+        y: 192
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -366,59 +322,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_sw_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 312
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 001d64c269f9c4546a97f820f029eac2
-      internalID: 1198917591
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_sw_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 312
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 607b8d4874ff54aa99fd4bbb6a5a35b7
-      internalID: 80579546
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_brigand_1h_idle_w_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 260
-        width: 58
-        height: 52
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -435,12 +347,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_brigand_1h_idle_w_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 260
-        width: 58
-        height: 52
+        x: 32
+        y: 160
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -454,59 +366,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_w_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 260
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bddcc92db93d44f379ee9cde1add912b
-      internalID: -1560098202
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_w_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 260
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b3e9a0746b26466699981e5c6455ba1
-      internalID: -1253623930
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_brigand_1h_idle_nw_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 208
-        width: 58
-        height: 52
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -523,12 +391,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_brigand_1h_idle_nw_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 208
-        width: 58
-        height: 52
+        x: 32
+        y: 128
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -542,59 +410,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_nw_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 208
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e01a5c341b4b547ea9306df7bcf8a5ca
-      internalID: -1027081210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_nw_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 208
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ad790caebacb467e9dc8171a99e75e2
-      internalID: 404079731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_brigand_1h_idle_n_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 156
-        width: 58
-        height: 52
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -611,12 +435,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_brigand_1h_idle_n_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 156
-        width: 58
-        height: 52
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -630,59 +454,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_n_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 156
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 21d898e7fb13a4a04acb8d59fb94f2c4
-      internalID: 393778382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_n_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 156
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 83ec2ec9f9eeb4ce5912edacdd075802
-      internalID: 1899930091
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_brigand_1h_idle_ne_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 104
-        width: 58
-        height: 52
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -699,12 +479,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_brigand_1h_idle_ne_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 104
-        width: 58
-        height: 52
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -718,59 +498,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_ne_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 104
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 81755026a37ff4879a4c3d85d0637757
-      internalID: 1687810458
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_ne_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 104
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dcf65d5c247f64ac7957d158d3c054bb
-      internalID: 1399776869
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_brigand_1h_idle_e_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 52
-        width: 58
-        height: 52
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -787,12 +523,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_brigand_1h_idle_e_01
       rect:
         serializedVersion: 2
-        x: 58
-        y: 52
-        width: 58
-        height: 52
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -806,59 +542,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_e_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 52
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e2c0553e3d4d84d44ae942e3dfc152d3
-      internalID: -245718308
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_e_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 52
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fba6e5d76fb57441484b318aa7d0e485
-      internalID: 1805890747
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wild_arrow_drawn_body_brigand_1h_idle_se_00
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -875,12 +567,12 @@ TextureImporter:
       name: wild_arrow_drawn_body_brigand_1h_idle_se_01
       rect:
         serializedVersion: 2
-        x: 58
+        x: 32
         y: 0
-        width: 58
-        height: 52
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
+      pivot: {x: 0.5, y: 0.03125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -889,50 +581,6 @@ TextureImporter:
       bones: []
       spriteID: e34d2c748612f46668d62c59efcf8878
       internalID: 127405390
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_se_02
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 0
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ba53e1762f2845c7aecadefb6042aec
-      internalID: 1584151348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wild_arrow_drawn_body_brigand_1h_idle_se_03
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 0
-        width: 58
-        height: 52
-      alignment: 9
-      pivot: {x: 0.5, y: 0.01923077}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbebee1eed84a4009b060da203c1e11c
-      internalID: 112369472
       vertices: []
       indices: 
       edges: []
@@ -953,36 +601,20 @@ TextureImporter:
     nameFileIdTable:
       wild_arrow_drawn_body_brigand_1h_idle_e_00: 1334605513
       wild_arrow_drawn_body_brigand_1h_idle_e_01: 1846119677
-      wild_arrow_drawn_body_brigand_1h_idle_e_02: -245718308
-      wild_arrow_drawn_body_brigand_1h_idle_e_03: 1805890747
       wild_arrow_drawn_body_brigand_1h_idle_n_00: 1290091419
       wild_arrow_drawn_body_brigand_1h_idle_n_01: -134122604
-      wild_arrow_drawn_body_brigand_1h_idle_n_02: 393778382
-      wild_arrow_drawn_body_brigand_1h_idle_n_03: 1899930091
       wild_arrow_drawn_body_brigand_1h_idle_ne_00: -632658246
       wild_arrow_drawn_body_brigand_1h_idle_ne_01: -256438222
-      wild_arrow_drawn_body_brigand_1h_idle_ne_02: 1687810458
-      wild_arrow_drawn_body_brigand_1h_idle_ne_03: 1399776869
       wild_arrow_drawn_body_brigand_1h_idle_nw_00: -1828425515
       wild_arrow_drawn_body_brigand_1h_idle_nw_01: 679520226
-      wild_arrow_drawn_body_brigand_1h_idle_nw_02: -1027081210
-      wild_arrow_drawn_body_brigand_1h_idle_nw_03: 404079731
       wild_arrow_drawn_body_brigand_1h_idle_s_00: 1991079952
       wild_arrow_drawn_body_brigand_1h_idle_s_01: 538790417
-      wild_arrow_drawn_body_brigand_1h_idle_s_02: 54567646
-      wild_arrow_drawn_body_brigand_1h_idle_s_03: -136444568
       wild_arrow_drawn_body_brigand_1h_idle_se_00: -1501162877
       wild_arrow_drawn_body_brigand_1h_idle_se_01: 127405390
-      wild_arrow_drawn_body_brigand_1h_idle_se_02: 1584151348
-      wild_arrow_drawn_body_brigand_1h_idle_se_03: 112369472
       wild_arrow_drawn_body_brigand_1h_idle_sw_00: -1504692357
       wild_arrow_drawn_body_brigand_1h_idle_sw_01: 450107652
-      wild_arrow_drawn_body_brigand_1h_idle_sw_02: 1198917591
-      wild_arrow_drawn_body_brigand_1h_idle_sw_03: 80579546
       wild_arrow_drawn_body_brigand_1h_idle_w_00: 175342339
       wild_arrow_drawn_body_brigand_1h_idle_w_01: 1662159945
-      wild_arrow_drawn_body_brigand_1h_idle_w_02: -1560098202
-      wild_arrow_drawn_body_brigand_1h_idle_w_03: -1253623930
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

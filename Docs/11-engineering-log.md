@@ -2099,3 +2099,17 @@ The owner chose "make arriving match leaving".
 - Leaving, the way on's trigger is a cell in, and she walks on into the dark while the screen fades over 0.7 s (`SceneExit.Configure(..., walkOn)`).
 - The steering is `FloatingStickInput.Steered`, used in every build. `TestOverride` is for debug builds only.
 - Checked in play on Level 1-1: the walk out after the boon, then the walk into the way on, the fade, and the arrival on 1-2.
+
+### 2026-11-11: her new sheets from the owner
+
+The owner: "check downloads, new sheets and animations for the character". `wild_arrow_archer_16x16.png` shows a blonde archer in green with a red cape. It has 16 x 16 cells, one row for each of the 8 directions in the game's order, and 14 columns: idle 0-1, walk 2-5, shot 6-9, and dive 10-13 (crouch, two rolls, up). The sheet, its preview GIF and the unused arrow sheet are kept in `ArtSource/pixel/sixteen/archer_sheets/`.
+- `build_archer_sheets.py` writes them as `wild_arrow_drawn`'s sheets (each pixel 2 game pixels, as the enemies: a 32 x 32 cell, pivot at the feet). Import Drawn Characters takes them in from there. `wild_arrow_16.py` would overwrite them.
+- Clip mapping:
+  - The walk serves every walk and run.
+  - The shot serves attack, overdraw and recoil, standing and moving.
+  - The sheet has no hit or death. The hit is the crouch and then idle. The death is the crouch and then her standing frame turned on its side.
+- Every armour look shows the same pictures (the old drawing was recoloured per look).
+- Loops run at the sheet's pace: idle 0.7 s, walk and run 0.52 s, with walk speeds scaled to match.
+- The arrow sheet (eight 10-pixel sticks, no head or fletching) is not used; her drawn arrows stay.
+- She is about 16 pixels tall against the old drawing's 21, so she now stands about two thirds of a Magpie's height.
+- Checked in play on Level 1-1: idle, walking out of the way in, and shooting east.
