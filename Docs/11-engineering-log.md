@@ -2114,3 +2114,11 @@ The owner: "check downloads, new sheets and animations for the character". `wild
 - She is about 16 pixels tall against the old drawing's 21, so she now stands about two thirds of a Magpie's height.
 - Checked in play on Level 1-1: idle, walking out of the way in, and shooting east.
 - The same day the owner redrew her in 24 x 24 cells (`wild_arrow_archer_24x24.png`, same layout; her figure about 22 pixels tall), after asking whether 24 would be too big. `build_archer_sheets.py` reads that one now (`C` 24, a 48 x 48 game-pixel cell). She stands about a Magpie's height, a little taller. Checked in play shooting at a Magpie pack.
+
+## 2026-11-11: she is 21 pixels tall, the wolf reworked and bigger
+
+The owner: "rework the character to be 21px tall. Rework the wolf also to look better and be a little bit bigger."
+
+- **Her**: the owner's 24 x 24 sheet draws her 23 pixels tall. `archer_sheets/build_archer_sheets.py` now takes two rows out of every frame (`shorten`): a row of the hair over her face and a row of her tunic, the rows that repeat a neighbour most, the same through a direction's standing frames; the crouches lose two rows, the rolls one. Her face rows are never taken (the first try took an eye row from some frames). The cell stays 24 x 24. The shortened frames are written to `archer_sheets/wild_arrow_archer_21.png`.
+- **The wolf** (`wolf_16.py`): SIZE 0.66 to 0.84, the cell 34 x 22 to 52 x 34. Built heavier: a bigger head, a longer muzzle, taller dark ears, pale cheek ruffs, a deeper chest and narrower waist, thicker legs, broader paws, a bushier tail. Its back is at her waist.
+- Checked in play on Level 1-1 in the editor. Not checked: the wolf's fight clips in play.

@@ -6,6 +6,10 @@
 # dark line where a near part crosses a far one. The same pose in every direction, so every clip turns as one.
 # Clips the pet plays: idle, walk, run, attack, hit, death; each drawn pixel is 2 game pixels, as every 16x16 character.
 # Writes ArtSource/pixel/characters/pet_wolf (Tools > ARPG > Import Drawn Characters) and previews.
+# Reworked (2026-11-11, the owner: "Rework the wolf also to look better and be a little bit bigger"): a quarter bigger
+# (SIZE 0.66 to 0.84, its back at the waist of her 21 pixels), and built heavier so it reads as a wolf at that size: a
+# bigger head with a longer muzzle and taller ears, a deep chest with a ruff, a narrower waist, thicker legs with
+# broader paws, a bushy tail.
 # Run: Blender -b -P ArtSource/pixel/sixteen/wolf_16.py
 import bpy, os, json, math
 import numpy as np
@@ -14,9 +18,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 P = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
 NAME = "pet_wolf"
 SCALE = 2
-CW, CH = 34, 22            # the cell, in drawn pixels
-GROUND = 18                # the row its paws stand on
-SIZE = 0.66                # the model's size: its back about her waist
+CW, CH = 52, 34            # the cell, in drawn pixels
+GROUND = 23                # the row its paws stand on
+SIZE = 0.84                # the model's size: its back about her waist
 BG = np.array([0.16, 0.21, 0.13, 1], np.float32)
 
 RAMPS = {
@@ -47,8 +51,8 @@ def leg(o, a, b, l1, l2, side, ramp):
         return np.array([math.sin(r), -math.cos(r), 0.0])
     k = o + l1 * d(a)
     p = k + l2 * d(a + b)
-    top = 2.5 if side in "lr" and l1 > 4.2 else 1.9      # the hind legs' heavy thighs
-    return [(o, k, top, 1.25, ramp, "leg"), (k, p, 1.2, 1.0, ramp, "leg"), (p, p + np.array([0.8, 0, 0]), 1.05, 0.95, "pale", "paw")]
+    top = 3.0 if side in "lr" and l1 > 4.2 else 2.3      # the hind legs' heavy thighs
+    return [(o, k, top, 1.55, ramp, "leg"), (k, p, 1.5, 1.25, ramp, "leg"), (p, p + np.array([1.1, 0, 0]), 1.4, 1.25, "pale", "paw")]
 
 
 def model(q):
@@ -68,25 +72,25 @@ def model(q):
 
     parts = []
     hip, chest = body(v(-6.0, 9.6 + arch, 0)), body(v(5.2, 9.9, 0))
-    parts += [(hip, chest, 3.6 * br, 4.4 * br, "fur", "torso"),
+    parts += [(hip, chest, 3.3 * br, 4.9 * br, "fur", "torso"),
               (body(v(-6.4, 10.0 + arch, 0)), body(v(-6.4, 10.0 + arch, 0)), 3.8 * br, 3.8 * br, "fur", "rump"),
-              (body(v(5.8, 9.4, 0)), body(v(6.8, 8.4, 0)), 4.2 * br, 3.4 * br, "pale", "chest")]
+              (body(v(6.0, 9.2, 0)), body(v(7.2, 7.9, 0)), 4.6 * br, 3.6 * br, "pale", "chest")]
     # The head on its neck.
     hdx, hdy, hp = q.get("hdx", 0), q.get("hdy", 0), math.radians(q.get("hpitch", 0))
     neck_a = body(v(6.4, 10.6, 0))
-    head = body(v(10.0 + hdx, 13.4 + hdy, 0))
-    parts.append((neck_a, head, 3.3, 2.8, "fur", "neck"))
-    parts.append((head, head, 3.0, 3.0, "fur", "head"))
+    head = body(v(10.4 + hdx, 13.8 + hdy, 0))
+    parts.append((neck_a, head, 3.9, 3.2, "fur", "neck"))
+    parts.append((head, head, 3.5, 3.5, "fur", "head"))
     for side in (1, -1):
         # The ruff of fur on its cheeks.
-        cheek = head + v(-0.4, -0.7, 1.7 * side)
-        parts.append((cheek, cheek + v(-0.6, -0.6, 0.3 * side), 2.0, 1.6, "fur", "ruff"))
+        cheek = head + v(-0.4, -0.9, 2.1 * side)
+        parts.append((cheek, cheek + v(-0.8, -0.9, 0.5 * side), 2.4, 1.8, "pale", "ruff"))
     s = v(math.cos(hp), -math.sin(hp), 0)       # the snout's way
     down = v(math.sin(hp), math.cos(hp), 0)
-    snout_a = head + v(1.8, -0.7, 0)
-    snout_b = snout_a + 3.2 * s
-    parts.append((snout_a, snout_b, 1.65, 1.05, "pale", "snout"))
-    parts.append((snout_b + 0.25 * s, snout_b + 0.25 * s, 0.75, 0.75, "nose", "nose"))
+    snout_a = head + v(2.2, -0.9, 0)
+    snout_b = snout_a + 3.9 * s
+    parts.append((snout_a, snout_b, 2.0, 1.3, "pale", "snout"))
+    parts.append((snout_b + 0.5 * s, snout_b + 0.5 * s, 0.95, 0.95, "nose", "nose"))
     mouth = q.get("mouth", 0)
     if mouth > 0:
         # The jaw drops open: a lower snout turned down, the inside red.
@@ -96,23 +100,23 @@ def model(q):
         parts.append((ja, ja + 2.6 * js, 0.9, 0.6, "pale", "jaw"))
         parts.append((snout_a - 0.4 * down + 0.6 * s, snout_a - 0.5 * down + 2.0 * s, 0.6, 0.4, "red", "mouth"))
     for side in (1, -1):
-        ear = head + v(-0.7, 2.3, 1.6 * side)
-        parts.append((ear, ear + v(-0.5 + q.get("ears", 0), 3.0, 0.5 * side), 1.3, 0.3, "fur", "ear"))
+        ear = head + v(-0.8, 2.6, 2.0 * side)
+        parts.append((ear, ear + v(-0.5 + q.get("ears", 0), 3.6, 0.6 * side), 1.6, 0.35, "dark", "ear"))
     # The harness: a band round the chest and a strap over the back.
-    parts.append((body(v(3.4, 9.9, 0)), body(v(3.4, 9.9, 0)), 4.45 * br, 4.45 * br, "red", "band"))
+    parts.append((body(v(3.4, 9.9, 0)), body(v(3.4, 9.9, 0)), 4.75 * br, 4.75 * br, "red", "band"))
     # The tail: up and waving by the pose.
     tu, wag = math.radians(q.get("tail", 0)), q.get("wag", 0)
     t0 = hip + v(-3.2, 1.0, 0)
     t1 = t0 + v(-3.3 * math.cos(tu), 3.3 * math.sin(tu) - 1.2, wag * 0.5)
     t2 = t1 + v(-3.2 * math.cos(tu * 1.3), 3.0 * math.sin(tu * 1.3) - 1.6, wag)
-    parts += [(t0, t1, 1.7, 2.4, "fur", "tail"), (t1, t2, 2.4, 1.4, "fur", "tail"), (t2, t2 + (t2 - t1) * 0.35, 1.4, 0.6, "pale", "tail")]
+    parts += [(t0, t1, 2.0, 3.0, "fur", "tail"), (t1, t2, 3.0, 2.0, "fur", "tail"), (t2, t2 + (t2 - t1) * 0.4, 2.0, 0.7, "pale", "tail")]
     # Legs: front from the shoulders, hind from the hips (each moves with the body).
     legs = dict(STAND, **q.get("legs", {}))
     for key, joint, l1, l2 in (("fl", v(5.8, 8.0, 2.7), 4.0, 4.3), ("fr", v(5.8, 8.0, -2.7), 4.0, 4.3),
                                ("hl", v(-6.0, 8.6 + arch, 2.9), 4.4, 4.7), ("hr", v(-6.0, 8.6 + arch, -2.9), 4.4, 4.7)):
         a, b = legs[key]
         parts += leg(body(joint), a, b, l1, l2, key[1], "fur")
-    eyes = [head + v(1.7, 0.5, 1.55), head + v(1.7, 0.5, -1.55)]
+    eyes = [head + v(2.1, 0.5, 1.8), head + v(2.1, 0.5, -1.8)]
     # Roll (death): turned about its length onto its side.
     roll = math.radians(q.get("roll", 0))
     if roll:

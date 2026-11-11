@@ -7,6 +7,10 @@
 # would overwrite them. The sheet has no hit or death: the hit is the crouch, the death the crouch and then her standing
 # frame laid on its side. Every armour look gets the same pictures. (wild_arrow_arrow_16x16.png, eight 10-pixel sticks,
 # and its 24 x 24 version are not used: her drawn arrows stay.)
+# 21 pixels tall (2026-11-11, the owner: "rework the character to be 21px tall"): the sheet draws her 23 tall, so two
+# rows are taken out of every frame (one out of the rolls), the rows that repeat a neighbour most: one in the hair
+# over her face, one in her tunic, the same rows through a direction's standing frames, a row either way where a frame
+# loses less. The frames as shortened are written to wild_arrow_archer_21.png beside the sheet.
 # Run: Blender -b -P ArtSource/pixel/sixteen/archer_sheets/build_archer_sheets.py, then Tools > ARPG > Import Drawn Characters.
 import bpy, os, json
 import numpy as np
@@ -41,8 +45,57 @@ def save(img, path):
 sheet = load(os.path.join(HERE, SOURCE))
 
 
-def cell(row, col):
+def raw(row, col):
     return sheet[row * C:(row + 1) * C, col * C:(col + 1) * C].copy()
+
+
+def cell(row, col):
+    return short[row][col].copy()
+
+
+TALL = 21
+
+
+def row_costs(frame):
+    """For each row, the pixels it does not share with the nearer-matching of its neighbours: what taking it out loses."""
+    drawn = np.concatenate([frame[..., :3] * frame[..., 3:], frame[..., 3:]], -1)
+    diff = (np.abs(drawn[1:] - drawn[:-1]).sum(-1) > 0.05).sum(1).astype(float)     # row i against i + 1
+    cost = np.full(C, 1e6)
+    cost[1:-1] = np.minimum(diff[:-1], diff[1:])
+    return cost
+
+
+def without(frame, rows):
+    keep = [y for y in range(C) if y not in rows]
+    out = np.zeros_like(frame)
+    out[len(rows):] = frame[keep]
+    return out
+
+
+def shorten(frames):
+    """A direction's 14 frames, her standing ones (0 to 9) 21 tall."""
+    costs = [row_costs(f) for f in frames]
+    tops = [int(np.where(f[..., 3] > 0.5)[0].min()) for f in frames]
+    top = min(tops[:10])
+    total = sum(costs[:10])
+    # Never her face: a row of the hair over it (the second or third she is drawn in), and one of her tunic.
+    body = top + 10 + int(np.argmin(total[top + 10:C - 6]))
+    out = []
+    for i, f in enumerate(frames):
+        height = C - tops[i]
+        if i < 10:
+            # A frame taller than her (a bow or an arm raised over her head) is measured from her own top.
+            head = max(tops[i], top)
+            rows = [min((head + 1, head + 2), key=lambda y: costs[i][y]),
+                    min((body - 1, body, body + 1), key=lambda y: costs[i][y] + (0.5 if y != body else 0))]
+        else:
+            # The dive: the crouches lose two rows, the rolls one, wherever it shows least.
+            order = [int(y) for y in np.argsort(costs[i]) if tops[i] < y < C - 1]
+            rows = [order[0]]
+            if height > 16:
+                rows.append(next(y for y in order[1:] if abs(y - order[0]) > 2))
+        out.append(without(f, rows))
+    return out
 
 
 def lying(frame, row):
@@ -57,6 +110,9 @@ def lying(frame, row):
     out[C - h:, left:left + w] = part
     return out
 
+
+short = [shorten([raw(row, col) for col in range(14)]) for row in range(8)]
+save(np.concatenate([np.concatenate(frames, 1) for frames in short], 0), os.path.join(HERE, "wild_arrow_archer_21.png"))
 
 # Each clip's frames by column; "lie" is the death's last frame.
 WALK = [2, 3, 4, 5]
