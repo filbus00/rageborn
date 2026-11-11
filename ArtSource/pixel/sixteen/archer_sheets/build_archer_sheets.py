@@ -1,11 +1,12 @@
 # The Wild Arrow from the owner's sheet (2026-11-11, the owner: "check downloads, new sheets and animations for the
-# character"): wild_arrow_archer_16x16.png, a blonde archer in green with a red cape, 16 x 16 cells, a row for each of
+# character"): a blonde archer in green with a red cape, first in 16 x 16 cells, then (the same day) wild_arrow_archer_24x24.png
+# in 24 x 24 cells, a row for each of
 # the 8 directions in the game's order (s, sw, w, nw, n, ne, e, se), 14 columns: idle 0-1, walk 2-5, shot 6-9, dive
 # (crouch, two rolls, up) 10-13; wild_arrow_archer_preview.gif shows them playing. Written as the game's sheets for the
 # drawn character "wild_arrow_drawn" (each pixel 2 game pixels, as the enemies), in place of wild_arrow_16.py's, which
 # would overwrite them. The sheet has no hit or death: the hit is the crouch, the death the crouch and then her standing
 # frame laid on its side. Every armour look gets the same pictures. (wild_arrow_arrow_16x16.png, eight 10-pixel sticks,
-# is not used: her drawn arrows stay.)
+# and its 24 x 24 version are not used: her drawn arrows stay.)
 # Run: Blender -b -P ArtSource/pixel/sixteen/archer_sheets/build_archer_sheets.py, then Tools > ARPG > Import Drawn Characters.
 import bpy, os, json
 import numpy as np
@@ -13,7 +14,8 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 P = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 OUT = os.path.join(P, "ArtSource", "pixel", "characters", "wild_arrow_drawn")
-C = 16
+C = 24
+SOURCE = "wild_arrow_archer_24x24.png"
 SCALE = 2
 LOOKS = ["bare", "ranger", "brigand", "scale", "plate", "knight", "stag_hide", "cinder_jerkin"]
 
@@ -36,7 +38,7 @@ def save(img, path):
     bpy.data.images.remove(im)
 
 
-sheet = load(os.path.join(HERE, "wild_arrow_archer_16x16.png"))
+sheet = load(os.path.join(HERE, SOURCE))
 
 
 def cell(row, col):

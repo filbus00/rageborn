@@ -2113,3 +2113,4 @@ The owner: "check downloads, new sheets and animations for the character". `wild
 - The arrow sheet (eight 10-pixel sticks, no head or fletching) is not used; her drawn arrows stay.
 - She is about 16 pixels tall against the old drawing's 21, so she now stands about two thirds of a Magpie's height.
 - Checked in play on Level 1-1: idle, walking out of the way in, and shooting east.
+- The same day the owner redrew her in 24 x 24 cells (`wild_arrow_archer_24x24.png`, same layout; her figure about 22 pixels tall), after asking whether 24 would be too big. `build_archer_sheets.py` reads that one now (`C` 24, a 48 x 48 game-pixel cell). She stands about a Magpie's height, a little taller. Checked in play shooting at a Magpie pack.
