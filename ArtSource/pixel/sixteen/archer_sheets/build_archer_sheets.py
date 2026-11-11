@@ -21,7 +21,6 @@ OUT = os.path.join(P, "ArtSource", "pixel", "characters", "wild_arrow_drawn")
 C = 24
 SOURCE = "wild_arrow_archer_24x24.png"
 SCALE = 2
-LOOKS = ["bare", "ranger", "brigand", "scale", "plate", "knight", "stag_hide", "cinder_jerkin"]
 
 
 def load(path):
@@ -188,13 +187,28 @@ def helm_frame(frame, spec, head, row):
     helm = np.zeros_like(frame)
     light, mid, dark = spec["ramp"]
     if head is None:
-        # A roll: the hair in the top of the ball.
-        if spec["dome"]:
-            top = int(np.where(frame[..., 3] > 0.5)[0].min())
-            for y in range(top, min(C, top + 7)):
-                for x in range(C):
-                    if is_colour(frame[y, x], HAIR):
-                        put(helm, frame, x, y, light if is_colour(frame[y, x], HAIR[:2]) else mid, [])
+        # A roll or a dive her head's dome is not found in: the head is the hair round her face (or, with no face
+        # showing, the top of the ball), and the helm covers it as it covers her standing head.
+        solid = frame[..., 3] > 0.5
+        face = [(x, y) for y in range(C) for x in range(C) if is_colour(frame[y, x], SKIN + [EYE]) and any(
+            0 <= x + dx < C and 0 <= y + dy < C and is_colour(frame[y + dy, x + dx], HAIR)
+            for dx in (-1, 0, 1) for dy in (-1, 0, 1))]
+        hair = [(x, y) for y in range(C) for x in range(C) if is_colour(frame[y, x], HAIR)]
+        if not hair:
+            return helm
+        if face:
+            mx, my = sum(x for x, _ in face) / len(face), sum(y for _, y in face) / len(face)
+        else:
+            top = min(y for _, y in hair)
+            near = [(x, y) for x, y in hair if y < top + 5]
+            mx, my = sum(x for x, _ in near) / len(near), sum(y for _, y in near) / len(near)
+        full = spec["dome"] > 0
+        for x, y in hair:
+            if max(abs(x - mx), abs(y - my)) <= 4.5 and (full or abs(y - my) < 1.0 and spec.get("band")):
+                put(helm, frame, x, y, light if is_colour(frame[y, x], HAIR[:2]) else mid, [])
+        for x, y in face:
+            if spec["face"] == "visor" or (spec["face"] == "mask" and y >= my):
+                put(helm, frame, x, y, INK if spec["face"] == "visor" and abs(y - my) < 0.6 else mid, [])
         return helm
     hx, hy = head
     stamped = []
@@ -231,10 +245,10 @@ def helm_frame(frame, spec, head, row):
     cx = hx + 4
     if extra == "horns":
         if side:
-            for dx, dy in ((0, 0), (1, 0), (1, -1), (2, -2)):
-                put(helm, frame, cx + (dx if not east else 1 - dx), hy + dy, BONE[0] if dy < 0 else BONE[1], stamped)
+            for dx, dy, c in ((0, 1, 1), (1, 1, 1), (1, 0, 1), (2, 0, 0), (2, -1, 0), (3, -1, 0), (3, -2, 0)):
+                put(helm, frame, cx + (dx if not east else 1 - dx), hy + dy, BONE[c], stamped)
         else:
-            for dx, dy, c in ((-1, 2, 1), (-2, 1, 0), (-2, 0, 0), (-3, -1, 0)):
+            for dx, dy, c in ((0, 2, 1), (-1, 2, 1), (-1, 1, 1), (-2, 1, 0), (-2, 0, 0), (-3, 0, 0), (-3, -1, 0), (-3, -2, 0)):
                 put(helm, frame, hx + dx, hy + dy, BONE[c], stamped)
                 put(helm, frame, hx + HEAD_WIDE - 1 - dx, hy + dy, BONE[c], stamped)
     elif extra == "plume":
@@ -248,7 +262,7 @@ def helm_frame(frame, spec, head, row):
         for x in range(hx + 1, hx + HEAD_WIDE - 1):
             if (x - hx) % 2 == 1 and hy + 1 < C and is_colour(frame[hy + 1, x], HAIR):
                 put(helm, frame, x, hy + 1, rgb(255, 232, 140), stamped)
-        if seen and faces[5] and max(faces[5]) - min(faces[5]) >= 3:
+        if row in (0, 1, 7) and faces[5] and max(faces[5]) - min(faces[5]) >= 3:
             gx = int(round((min(faces[5]) + max(faces[5])) / 2.0))
             for x in (gx, gx + (0 if (max(faces[5]) - min(faces[5])) % 2 == 0 else 1)):
                 if is_colour(frame[hy + 3, x], HAIR) or helm[hy + 3, x, 3] > 0.5:
@@ -285,6 +299,135 @@ for look in HELMS:
         block.append(np.concatenate(line, 1))
     sheet_of_helms.append(np.concatenate(block, 0))
 save(np.concatenate(sheet_of_helms, 1), os.path.join(HERE, "wild_arrow_helms_preview.png"))
+
+# --- Armour and bows (2026-11-11, the owner: "add sprites for armor and bows") -----------------------------------------
+# Chest armour is her body's own sheets with her tunic in the armour's colours (the game's body layer has a sheet a
+# look: "body_<look>"); a bow is a layer over her, her drawn bow and its string in the bow's colours ("weapon_<look>").
+GREENS = [rgb(116, 182, 92), rgb(62, 132, 66), rgb(36, 84, 50)]        # her tunic: light, mid, dark
+REDS = [rgb(192, 42, 46), rgb(122, 22, 38)]                             # her cape
+WOOD = [rgb(154, 104, 54), rgb(132, 86, 46), rgb(84, 52, 30)]           # her bow, belt and straps: light, mid, dark
+STRING = [rgb(242, 238, 222), rgb(228, 224, 202), rgb(214, 220, 230)]
+
+# ramp: the tunic's light, mid, dark; marks: (colour, every how many pixels) dotted over it; weave: light and mid
+# alternate (scales, mail); cape: her cape's two reds.
+ARMOUR = {
+    "bare": None,
+    "ranger": dict(ramp=[rgb(150, 148, 72), rgb(104, 106, 52), rgb(62, 68, 40)]),
+    "brigand": dict(ramp=[rgb(140, 84, 66), rgb(98, 56, 50), rgb(60, 36, 38)], marks=(rgb(206, 190, 160), 3)),
+    "scale": dict(ramp=[rgb(218, 170, 84), rgb(168, 116, 52), rgb(106, 70, 40)], weave=True),
+    "plate": dict(ramp=[rgb(196, 204, 216), rgb(138, 148, 166), rgb(82, 90, 110)]),
+    "knight": dict(ramp=[rgb(232, 236, 242), rgb(166, 176, 194), rgb(98, 106, 128)], marks=(rgb(240, 200, 104), 4),
+                   cape=[rgb(62, 98, 180), rgb(36, 54, 116)]),
+    "stag_hide": dict(ramp=[rgb(216, 172, 112), rgb(172, 126, 76), rgb(112, 80, 52)], marks=(rgb(242, 238, 222), 3)),
+    "cinder_jerkin": dict(ramp=[rgb(92, 84, 90), rgb(58, 52, 60), rgb(36, 32, 40)], marks=(rgb(244, 138, 44), 3),
+                          cape=[rgb(70, 62, 70), rgb(44, 38, 48)]),
+}
+# wood: light, mid, dark; string. The hunting bow is the one she is drawn with and needs no sheets.
+BOWS = {
+    "recurve_bow": dict(wood=[rgb(176, 84, 56), rgb(132, 52, 44), rgb(82, 30, 34)], string=rgb(242, 238, 222)),
+    "horn_bow": dict(wood=[rgb(226, 218, 190), rgb(170, 160, 136), rgb(104, 96, 88)], string=rgb(60, 48, 44)),
+    "yew_longbow": dict(wood=[rgb(232, 200, 130), rgb(196, 152, 86), rgb(128, 92, 52)], string=rgb(242, 238, 222)),
+    "war_bow": dict(wood=[rgb(120, 126, 140), rgb(74, 66, 66), rgb(44, 38, 42)], string=rgb(214, 220, 230)),
+    "great_bow": dict(wood=[rgb(240, 200, 104), rgb(60, 54, 70), rgb(34, 30, 44)], string=rgb(240, 200, 104)),
+    "splinterbough": dict(wood=[rgb(150, 190, 92), rgb(96, 120, 60), rgb(60, 70, 40)], string=rgb(206, 232, 150)),
+    "ember_tongue": dict(wood=[rgb(255, 196, 80), rgb(236, 112, 40), rgb(150, 40, 30)], string=rgb(255, 232, 150)),
+    "hunters_promise": dict(wood=[rgb(210, 220, 236), rgb(120, 146, 196), rgb(60, 78, 130)], string=rgb(242, 238, 222)),
+    "galeheart": dict(wood=[rgb(220, 250, 250), rgb(130, 214, 220), rgb(60, 140, 160)], string=rgb(240, 255, 255)),
+    "widows_draw": dict(wood=[rgb(170, 110, 200), rgb(104, 60, 140), rgb(52, 30, 78)], string=rgb(220, 190, 240)),
+    "gallowsreach": dict(wood=[rgb(170, 164, 150), rgb(112, 108, 100), rgb(62, 60, 60)], string=rgb(150, 120, 80)),
+    "stillwater_yew": dict(wood=[rgb(150, 220, 200), rgb(70, 160, 150), rgb(36, 96, 100)], string=rgb(220, 250, 240)),
+    "the_long_silence": dict(wood=[rgb(86, 84, 104), rgb(46, 44, 60), rgb(24, 22, 34)], string=rgb(200, 204, 220)),
+}
+
+
+def armour_frame(frame, spec):
+    """Her body with her tunic (and cape) in an armour's colours."""
+    if spec is None:
+        return frame
+    out = frame.copy()
+    for y in range(C):
+        for x in range(C):
+            px = frame[y, x]
+            if px[3] < 0.5:
+                continue
+            for i, green in enumerate(GREENS):
+                if is_colour(px, [green]):
+                    colour = spec["ramp"][i]
+                    if spec.get("weave") and i < 2 and (x + y) % 2 == 0:
+                        colour = spec["ramp"][1 - i]
+                    marks = spec.get("marks")
+                    if marks and i == 1 and x % marks[1] == 0 and y % marks[1] == 1:
+                        colour = marks[0]
+                    out[y, x, :3] = colour
+            if "cape" in spec:
+                for i, red in enumerate(REDS):
+                    if is_colour(px, [red]):
+                        out[y, x, :3] = spec["cape"][i]
+    return out
+
+
+def bow_frame(frame, spec, head, row):
+    """A bow's pixels over this frame: her drawn bow, its string and the arrow on it, in the bow's colours. Her belt
+    (wood with her tunic over and under it), the quiver's strap across her cape (seen from behind, wood with the cape on
+    both sides) and the feather in her hair are left."""
+    bow = np.zeros_like(frame)
+
+    def tunic(x, y, step):
+        y += step
+        while 0 <= y < C and is_colour(frame[y, x], WOOD):
+            y += step
+        return 0 <= y < C and is_colour(frame[y, x], GREENS)
+
+    def cape(x, y, step):
+        x += step
+        while 0 <= x < C and is_colour(frame[y, x], WOOD):
+            x += step
+        return 0 <= x < C and is_colour(frame[y, x], REDS)
+
+    for y in range(C):
+        for x in range(C):
+            px = frame[y, x]
+            if px[3] < 0.5:
+                continue
+            strap = row in (3, 4, 5) and cape(x, y, -1) and cape(x, y, 1)
+            for i, wood in enumerate(WOOD):
+                if is_colour(px, [wood]) and not strap and not (tunic(x, y, -1) and tunic(x, y, 1)):
+                    put(bow, frame, x, y, spec["wood"][i], [])
+            if is_colour(px, STRING):
+                feather = any(0 <= x + dx < C and 0 <= y + dy < C and is_colour(frame[y + dy, x + dx], HAIR)
+                              for dx in (-2, -1, 0, 1, 2) for dy in (-1, 0, 1))
+                if head is not None:
+                    feather = feather and head[1] <= y <= head[1] + 5
+                if not feather:
+                    put(bow, frame, x, y, spec["string"], [])
+    return bow
+
+
+armour_cells = {look: [[armour_frame(short[row][col], spec) for col in range(14)] for row in range(8)]
+                for look, spec in ARMOUR.items()}
+bow_cells = {look: [[bow_frame(short[row][col], spec, heads[row][col], row) for col in range(14)] for row in range(8)]
+             for look, spec in BOWS.items()}
+
+
+def looks_sheet(layers, path, cols=(0, 8)):
+    """Every look in a row a line, to look at: her standing and shooting in eight directions."""
+    lines = []
+    for body, over in layers:
+        line = []
+        for col in cols:
+            for row in range(8):
+                cellpx = body[row][col].copy()
+                if over is not None:
+                    o = over[row][col]
+                    cellpx[o[..., 3] > 0.5] = o[o[..., 3] > 0.5]
+                line.append(cellpx)
+        lines.append(np.concatenate(line, 1))
+    save(np.concatenate(lines, 0), path)
+
+
+looks_sheet([(armour_cells[look], None) for look in ARMOUR], os.path.join(HERE, "wild_arrow_armour_look.png"))
+looks_sheet([(short, None)] + [(short, bow_cells[look]) for look in BOWS], os.path.join(HERE, "wild_arrow_bows_look.png"))
+looks_sheet([(short, helm_cells[look]) for look in HELMS], os.path.join(HERE, "wild_arrow_helms_look.png"), cols=(0, 11))
 
 # Each clip's frames by column; "lie" is the death's last frame.
 WALK = [2, 3, 4, 5]
@@ -331,28 +474,19 @@ for old in os.listdir(OUT):
     if old.endswith(".png"):
         os.remove(os.path.join(OUT, old))
 animations = []
-strips = {}
-for look in LOOKS:
-    for clip, (seconds, speed) in TIMING.items():
-        name = f"body_{look}_1h_{clip}"
-        entry = {"name": name, "frames": len(CLIPS[clip]), "seconds": seconds, "speed": speed, "key": "1h_" + clip}
-        if clip in SHARED:
-            entry["shared"] = True
-        else:
-            if clip not in strips:
-                strips[clip] = strip(clip)
-            save(strips[clip], os.path.join(OUT, f"wild_arrow_drawn_{name}.png"))
-        animations.append(entry)
-for look in HELMS:
-    for clip, (seconds, speed) in TIMING.items():
-        name = f"helm_{look}_1h_{clip}"
-        entry = {"name": name, "frames": len(CLIPS[clip]), "seconds": seconds, "speed": speed, "key": "1h_" + clip}
-        if clip in SHARED:
-            entry["shared"] = True
-        else:
-            save(strip(clip, helm_cells[look]), os.path.join(OUT, f"wild_arrow_drawn_{name}.png"))
-        animations.append(entry)
+pictures = 0
+for layer, looks in (("body", armour_cells), ("helm", helm_cells), ("weapon", bow_cells)):
+    for look, cells in looks.items():
+        for clip, (seconds, speed) in TIMING.items():
+            name = f"{layer}_{look}_1h_{clip}"
+            entry = {"name": name, "frames": len(CLIPS[clip]), "seconds": seconds, "speed": speed, "key": "1h_" + clip}
+            if clip in SHARED:
+                entry["shared"] = True
+            else:
+                save(strip(clip, cells), os.path.join(OUT, f"wild_arrow_drawn_{name}.png"))
+                pictures += 1
+            animations.append(entry)
 with open(os.path.join(OUT, "sheet.json"), "w") as f:
     json.dump({"cellWidth": C * SCALE, "cellHeight": C * SCALE, "pivotX": C * SCALE // 2, "pivotY": SCALE // 2,
                "directions": 8, "animations": animations}, f)
-print("wrote", len(animations), "animations,", len(strips), "pictures a look")
+print("wrote", len(animations), "animations,", pictures, "pictures")
