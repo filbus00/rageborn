@@ -322,21 +322,23 @@ ARMOUR = {
     "cinder_jerkin": dict(ramp=[rgb(92, 84, 90), rgb(58, 52, 60), rgb(36, 32, 40)], marks=(rgb(244, 138, 44), 3),
                           cape=[rgb(70, 62, 70), rgb(44, 38, 48)]),
 }
-# wood: light, mid, dark; string. The hunting bow is the one she is drawn with and needs no sheets.
+# half: half its length in pixels; depth: how far its middle stands from the string; recurve: tips turned forward;
+# thick: two pixels through the middle; wood: light, mid, dark; string.
 BOWS = {
-    "recurve_bow": dict(wood=[rgb(176, 84, 56), rgb(132, 52, 44), rgb(82, 30, 34)], string=rgb(242, 238, 222)),
-    "horn_bow": dict(wood=[rgb(226, 218, 190), rgb(170, 160, 136), rgb(104, 96, 88)], string=rgb(60, 48, 44)),
-    "yew_longbow": dict(wood=[rgb(232, 200, 130), rgb(196, 152, 86), rgb(128, 92, 52)], string=rgb(242, 238, 222)),
-    "war_bow": dict(wood=[rgb(120, 126, 140), rgb(74, 66, 66), rgb(44, 38, 42)], string=rgb(214, 220, 230)),
-    "great_bow": dict(wood=[rgb(240, 200, 104), rgb(60, 54, 70), rgb(34, 30, 44)], string=rgb(240, 200, 104)),
-    "splinterbough": dict(wood=[rgb(150, 190, 92), rgb(96, 120, 60), rgb(60, 70, 40)], string=rgb(206, 232, 150)),
-    "ember_tongue": dict(wood=[rgb(255, 196, 80), rgb(236, 112, 40), rgb(150, 40, 30)], string=rgb(255, 232, 150)),
-    "hunters_promise": dict(wood=[rgb(210, 220, 236), rgb(120, 146, 196), rgb(60, 78, 130)], string=rgb(242, 238, 222)),
-    "galeheart": dict(wood=[rgb(220, 250, 250), rgb(130, 214, 220), rgb(60, 140, 160)], string=rgb(240, 255, 255)),
-    "widows_draw": dict(wood=[rgb(170, 110, 200), rgb(104, 60, 140), rgb(52, 30, 78)], string=rgb(220, 190, 240)),
-    "gallowsreach": dict(wood=[rgb(170, 164, 150), rgb(112, 108, 100), rgb(62, 60, 60)], string=rgb(150, 120, 80)),
-    "stillwater_yew": dict(wood=[rgb(150, 220, 200), rgb(70, 160, 150), rgb(36, 96, 100)], string=rgb(220, 250, 240)),
-    "the_long_silence": dict(wood=[rgb(86, 84, 104), rgb(46, 44, 60), rgb(24, 22, 34)], string=rgb(200, 204, 220)),
+    "hunting_bow": dict(half=5, depth=2, wood=WOOD, string=rgb(242, 238, 222)),
+    "recurve_bow": dict(half=5, depth=2.2, recurve=1.5, wood=[rgb(176, 84, 56), rgb(132, 52, 44), rgb(82, 30, 34)], string=rgb(242, 238, 222)),
+    "horn_bow": dict(half=4, depth=2.6, recurve=1, wood=[rgb(226, 218, 190), rgb(170, 160, 136), rgb(104, 96, 88)], string=rgb(60, 48, 44)),
+    "yew_longbow": dict(half=7, depth=2, wood=[rgb(232, 200, 130), rgb(196, 152, 86), rgb(128, 92, 52)], string=rgb(242, 238, 222)),
+    "war_bow": dict(half=7, depth=2.5, thick=True, wood=[rgb(156, 162, 178), rgb(96, 92, 100), rgb(44, 38, 42)], string=rgb(214, 220, 230)),
+    "great_bow": dict(half=8, depth=3, thick=True, wood=[rgb(112, 104, 132), rgb(240, 200, 104), rgb(44, 38, 58)], string=rgb(240, 200, 104)),
+    "splinterbough": dict(half=5, depth=2, wood=[rgb(150, 190, 92), rgb(96, 120, 60), rgb(60, 70, 40)], string=rgb(206, 232, 150)),
+    "ember_tongue": dict(half=6, depth=2.5, recurve=1, wood=[rgb(255, 196, 80), rgb(236, 112, 40), rgb(150, 40, 30)], string=rgb(255, 232, 150)),
+    "hunters_promise": dict(half=6, depth=2, wood=[rgb(210, 220, 236), rgb(120, 146, 196), rgb(60, 78, 130)], string=rgb(242, 238, 222)),
+    "galeheart": dict(half=5, depth=2.2, recurve=1.5, wood=[rgb(220, 250, 250), rgb(130, 214, 220), rgb(60, 140, 160)], string=rgb(240, 255, 255)),
+    "widows_draw": dict(half=6, depth=3, recurve=1, wood=[rgb(170, 110, 200), rgb(104, 60, 140), rgb(52, 30, 78)], string=rgb(220, 190, 240)),
+    "gallowsreach": dict(half=8, depth=2.5, wood=[rgb(170, 164, 150), rgb(112, 108, 100), rgb(62, 60, 60)], string=rgb(150, 120, 80)),
+    "stillwater_yew": dict(half=8, depth=2, wood=[rgb(150, 220, 200), rgb(70, 160, 150), rgb(36, 96, 100)], string=rgb(220, 250, 240)),
+    "the_long_silence": dict(half=9, depth=3, thick=True, wood=[rgb(132, 130, 164), rgb(78, 76, 104), rgb(24, 22, 34)], string=rgb(200, 204, 220)),
 }
 
 
@@ -366,8 +368,8 @@ def armour_frame(frame, spec):
     return out
 
 
-def bow_frame(frame, spec, head, row):
-    """A bow's pixels over this frame: her drawn bow, its string and the arrow on it, in the bow's colours. Her belt
+def bow_recolour(frame, spec, head, row):
+    """The dive's frames, where her drawn bow stays in her picture: her drawn bow, its string and the arrow on it, in the bow's colours. Her belt
     (wood with her tunic over and under it), the quiver's strap across her cape (seen from behind, wood with the cape on
     both sides) and the feather in her hair are left."""
     bow = np.zeros_like(frame)
@@ -403,10 +405,132 @@ def bow_frame(frame, spec, head, row):
     return bow
 
 
-armour_cells = {look: [[armour_frame(short[row][col], spec) for col in range(14)] for row in range(8)]
+def drawn_bow(frame, head, row):
+    """Where her drawn bow, its string and the arrow are in this frame (as bow_recolour picks them)."""
+    probe = bow_recolour(frame, dict(wood=[(1, 1, 1)] * 3, string=(1, 1, 1)), head, row)
+    return probe[..., 3] > 0.5
+
+
+def without_bow(frame, head, row):
+    """Her body with the drawn bow taken out: its pixels take the colour beside them, or go when nothing of her is
+    beside them; the outline is closed again."""
+    out = frame.copy()
+    todo = drawn_bow(frame, head, row)
+    ink = np.array([[is_colour(frame[y, x], [INK]) and frame[y, x, 3] > 0.5 for x in range(C)] for y in range(C)])
+    body = (frame[..., 3] > 0.5) & ~ink & ~todo
+    for _ in range(3):
+        filled = []
+        for y, x in zip(*np.where(todo)):
+            near = [(yy, xx) for yy, xx in ((y, x - 1), (y, x + 1), (y - 1, x), (y + 1, x))
+                    if 0 <= yy < C and 0 <= xx < C and body[yy, xx]]
+            if len(near) >= 2:
+                filled.append((y, x, out[near[0]].copy()))
+        for y, x, colour in filled:
+            out[y, x] = colour
+            body[y, x] = True
+            todo[y, x] = False
+    out[todo] = 0
+    for y, x in zip(*np.where(ink)):          # outline that outlined only the bow
+        if not body[max(0, y - 1):y + 2, max(0, x - 1):x + 2].any():
+            out[y, x] = 0
+    solid = out[..., 3] > 0.5
+    for y, x in zip(*np.where(body)):          # and the gaps the bow left in her outline
+        for yy, xx in ((y, x - 1), (y, x + 1), (y - 1, x), (y + 1, x)):
+            if 0 <= yy < C and 0 <= xx < C and not solid[yy, xx]:
+                out[yy, xx] = (*INK, 1)
+    return out
+
+
+# Where she holds a bow, by direction (s, sw, w, nw, n, ne, e, se): the grip, the way the bow's back faces, how much of
+# its curve shows (1 from the side, 0 edge on), whether it is beyond her (drawn only where she is not), and whether the
+# arrow on the string shows (it points at or away from the camera otherwise).
+# "carry": standing and walking, in her hand; "aim": the four frames of a shot.
+D = 0.447, 0.894
+BOW_POSES = {
+    "carry": [((3, 14), (-1, 0), 1, False, False), ((20, 14), (1, 0), 1, False, False),
+              ((5, 14), (-1, 0), 1, False, False), ((4, 13), (-1, 0), 0.7, False, False),
+              ((19, 13), (1, 0), 0.7, False, False), ((19, 13), (1, 0), 0.7, False, False),
+              ((18, 14), (1, 0), 1, False, False), ((3, 14), (-1, 0), 1, False, False)],
+    "aim": [((7, 15), (-1, 0), 0.5, False, False), ((4, 16), (-D[1], D[0]), 0.9, False, True),
+            ((4, 12), (-1, 0), 1, False, True), ((3, 11), (-D[1], -D[0]), 0.9, True, True),
+            ((20, 11), (1, 0), 0.5, False, False), ((20, 11), (D[1], -D[0]), 0.9, True, True),
+            ((19, 12), (1, 0), 1, False, True), ((19, 16), (D[1], D[0]), 0.9, False, True)],
+}
+PULL = {7: 2, 8: 3}      # the string drawn back, in pixels, by the shot's frame
+ARROW = rgb(206, 170, 120), rgb(236, 236, 240)
+
+
+def bow_frame(frame, spec, head, row, col):
+    """A bow's layer over this frame: the bow drawn at its own size where she holds it."""
+    if col >= 10:
+        return bow_recolour(frame, spec, head, row)
+    (gx, gy), (nx, ny), shows, beyond, arrow = BOW_POSES["aim" if col >= 6 else "carry"][row]
+    if head is not None and heads[row][0] is not None:
+        gx, gy = gx + head[0] - heads[row][0][0], gy + head[1] - heads[row][0][1]
+    ax, ay = -ny, nx
+    half, depth, recurve = spec["half"], spec["depth"] * shows, spec.get("recurve", 0) * shows
+    reach = half * abs(ay)                     # a long bow stays off the ground and in the picture
+    gy = min(gy, 22 - reach)
+    gy = max(gy, 1 + reach)
+    bow = np.zeros_like(frame)
+    wood = set()
+
+    def dot(x, y, colour, into=None):
+        x, y = int(round(x)), int(round(y))
+        if 0 <= x < C and 0 <= y < C and not (beyond and frame[y, x, 3] > 0.5):
+            bow[y, x] = (*colour, 1)
+            if into is not None:
+                into.add((x, y))
+
+    def line(x0, y0, x1, y1, colour):
+        steps = int(max(abs(x1 - x0), abs(y1 - y0)) * 2) + 1
+        for i in range(steps + 1):
+            dot(x0 + (x1 - x0) * i / steps, y0 + (y1 - y0) * i / steps, colour)
+
+    def bulge(t):
+        return -depth * t * t + recurve * max(0.0, abs(t) - 0.7) / 0.3
+
+    def limb(t):
+        return gx + ax * t * half + nx * bulge(t), gy + ay * t * half + ny * bulge(t)
+
+    pull = PULL.get(col, 0)
+    nock = gx - nx * (depth + pull), gy - ny * (depth + pull)
+    for tip in (limb(-1), limb(1)):
+        line(*tip, *nock, spec["string"])
+    if head is not None:                       # never a string across her face
+        bow[:int(head[1]) + 8][frame[:int(head[1]) + 8, :, 3] > 0.5] = 0
+    if pull and arrow:
+        line(*nock, gx + nx * 2, gy + ny * 2, ARROW[0])
+        dot(gx + nx * 3, gy + ny * 3, ARROW[1])
+    elif pull:
+        dot(*nock, ARROW[1])
+    light, mid, dark = spec["wood"]
+    for i in range(-48, 49):
+        t = i / 48
+        x, y = limb(t)
+        if spec.get("thick") and 0.14 <= abs(t) < 0.6:
+            dot(x + nx, y + ny, mid, wood)
+        dot(x, y, dark if abs(t) < 0.14 else mid if abs(t) > 0.85 else light, wood)
+    for x, y in wood:                          # outlined where it stands clear of her, not between wood and string
+        for xx, yy in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
+            if not (0 <= xx < C and 0 <= yy < C) or bow[yy, xx, 3] > 0.5 or frame[yy, xx, 3] > 0.5:
+                continue
+            t = ((xx - gx) * ax + (yy - gy) * ay) / half
+            out = (xx - gx) * nx + (yy - gy) * ny
+            if abs(t) <= 1 and out < bulge(t):
+                continue
+            bow[yy, xx] = (*INK, 1)
+    return bow
+
+
+# Her body without the bow she is drawn with (the dive keeps it: the bow's layer recolours it there).
+bowless = [[short[row][col] if col >= 10 else without_bow(short[row][col], heads[row][col], row) for col in range(14)]
+           for row in range(8)]
+armour_cells = {look: [[armour_frame(bowless[row][col], spec) for col in range(14)] for row in range(8)]
                 for look, spec in ARMOUR.items()}
-bow_cells = {look: [[bow_frame(short[row][col], spec, heads[row][col], row) for col in range(14)] for row in range(8)]
-             for look, spec in BOWS.items()}
+bow_cells = {look: [[bow_frame(bowless[row][col], spec, heads[row][col], row, col) if col < 10 else
+                     bow_recolour(short[row][col], spec, heads[row][col], row) for col in range(14)]
+                    for row in range(8)] for look, spec in BOWS.items()}
 
 
 def looks_sheet(layers, path, cols=(0, 8)):
@@ -426,7 +550,7 @@ def looks_sheet(layers, path, cols=(0, 8)):
 
 
 looks_sheet([(armour_cells[look], None) for look in ARMOUR], os.path.join(HERE, "wild_arrow_armour_look.png"))
-looks_sheet([(short, None)] + [(short, bow_cells[look]) for look in BOWS], os.path.join(HERE, "wild_arrow_bows_look.png"))
+looks_sheet([(armour_cells["bare"], bow_cells[look]) for look in BOWS], os.path.join(HERE, "wild_arrow_bows_look.png"), cols=(0, 3, 6, 8))
 looks_sheet([(short, helm_cells[look]) for look in HELMS], os.path.join(HERE, "wild_arrow_helms_look.png"), cols=(0, 11))
 
 # Each clip's frames by column; "lie" is the death's last frame.
