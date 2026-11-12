@@ -72,7 +72,7 @@ namespace ARPG
             {
                 var toward = manager.PlayerGround - boss.GroundPosition;
                 var at = boss.GroundPosition + (toward.sqrMagnitude > 1e-4f ? toward.normalized : Vector2.down) * 1.1f;
-                yield return CircleStrike(at, 1.4f, cut == 0 ? 0.6f : 0.4f, 1.3f);
+                yield return CircleStrike(at, 1.4f, cut == 0 ? 0.6f : 0.4f, 1.3f, KnifeColor);
             }
             cooldown = 0.8f;
         }
@@ -121,8 +121,8 @@ namespace ARPG
         // shows round him as a circle, a blade sweeping round it (2026-11-10: nothing showed until then).
         IEnumerator Whirl()
         {
-            manager.Warnings?.Warn(boss, boss.GroundPosition, 0.6f, IncomingWarnings.LungeColor, IncomingWarnings.Shape.Diamond);
-            var zone = Track(GroundMarker.Circle(boss.GroundPosition, WhirlRadius, 0.6f, TelegraphColor, transform));
+            manager.Warnings?.Warn(boss, boss.GroundPosition, 0.6f, KnifeColor, IncomingWarnings.Shape.Diamond);
+            var zone = Track(GroundMarker.Circle(boss.GroundPosition, WhirlRadius, 0.6f, KnifeColor, transform));
             yield return Wait(0.6f);
             if (whirlSweep == null)
                 whirlSweep = GroundMarker.NewSprite("Whirl", null, KnifeColor, transform, 45).GetComponent<SpriteRenderer>();
@@ -254,7 +254,7 @@ namespace ARPG
             {
                 var at = ClampToArena(manager.PlayerGround + (i == 0 ? Vector2.zero : Random.insideUnitCircle * 3f), radius);
                 spots.Add(at);
-                Track(GroundMarker.Circle(at, radius, 0.9f, TelegraphColor, transform));
+                Track(GroundMarker.Circle(at, radius, 0.9f, WarningOf(WebColor), transform));
                 Lob(at, 0.9f, FlaskKind.Web);
             }
             yield return Wait(0.9f);
@@ -307,7 +307,7 @@ namespace ARPG
             if (aim == Vector2.zero)
                 aim = Vector2.down;
             var side = new Vector2(-aim.y, aim.x);
-            manager.Warnings?.Warn(boss, origin, 0.8f, IncomingWarnings.ShotColor, IncomingWarnings.Shape.Round);
+            manager.Warnings?.Warn(boss, origin, 0.8f, PoisonColor, IncomingWarnings.Shape.Round);
             var spots = new[] { origin + aim * 2f, origin + aim * 3.6f + side * 1.2f, origin + aim * 3.6f - side * 1.2f };
             foreach (var at in spots)
             {

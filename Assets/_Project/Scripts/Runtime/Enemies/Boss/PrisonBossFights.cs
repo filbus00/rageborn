@@ -205,7 +205,7 @@ namespace ARPG
                 spots.Add(ClampToArena(manager.PlayerGround + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * 3.4f, radius));
             }
             foreach (var at in spots)
-                Track(GroundMarker.Circle(at, radius, 1f, TelegraphColor, transform));
+                Track(GroundMarker.Circle(at, radius, 1f, WarningOf(RopeColor), transform));
             yield return Wait(1f);
             Sfx.Play(SoundId.EnemySlam, 0.7f);
             foreach (var at in spots)

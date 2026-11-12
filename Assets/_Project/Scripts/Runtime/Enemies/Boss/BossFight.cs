@@ -25,7 +25,16 @@ namespace ARPG
         const float LeaveMargin = 3f;
         const float ZonePulseSeconds = 0.5f;
 
-        protected static readonly Color TelegraphColor = new Color(1f, 0.22f, 0.12f, 0.95f);
+        /// <summary>The warning of a blow with no colour of its own (a slam, a leap, a rush): red.</summary>
+        protected static readonly Color BlowColor = new Color(1f, 0.22f, 0.12f, 0.95f);
+
+        /// <summary>The colour of this boss's ground warnings where an attack names none: a boss of fire, water or the
+        /// void warns in that (the owner, 2026-11-12: "make the ground warnings match the colors of the attacks they warn
+        /// of"; every warning was red until then).</summary>
+        protected virtual Color TelegraphColor => BlowColor;
+
+        /// <summary>A warning in its attack's colour, as strong as any warning.</summary>
+        protected static Color WarningOf(Color attack) => new Color(attack.r, attack.g, attack.b, 0.95f);
 
         protected EnemyDefinition bossDefinition;
         protected EnemyDefinition addDefinition;
@@ -290,9 +299,9 @@ namespace ARPG
             GroundRules.SegmentDistance(manager.PlayerGround, from, to) <= width * 0.5f;
 
         /// <summary>A circle that fills, then hits whoever is inside (a ground shape, not dodgeable).</summary>
-        protected IEnumerator CircleStrike(Vector2 at, float radius, float fillSeconds, float multiplier)
+        protected IEnumerator CircleStrike(Vector2 at, float radius, float fillSeconds, float multiplier, Color? color = null)
         {
-            var marker = Track(GroundMarker.Circle(at, radius, fillSeconds, TelegraphColor, transform));
+            var marker = Track(GroundMarker.Circle(at, radius, fillSeconds, color ?? TelegraphColor, transform));
             while (!marker.Done)
                 yield return null;
             Sfx.Play(SoundId.EnemySlam, 0.8f);
@@ -301,9 +310,9 @@ namespace ARPG
         }
 
         /// <summary>A band that shows for its fill time, then hits whoever stands on it.</summary>
-        protected IEnumerator LineStrike(Vector2 from, Vector2 to, float width, float fillSeconds, float multiplier)
+        protected IEnumerator LineStrike(Vector2 from, Vector2 to, float width, float fillSeconds, float multiplier, Color? color = null)
         {
-            var marker = Track(GroundMarker.Line(from, to, width, fillSeconds, TelegraphColor, transform));
+            var marker = Track(GroundMarker.Line(from, to, width, fillSeconds, color ?? TelegraphColor, transform));
             while (!marker.Done)
                 yield return null;
             Sfx.Play(SoundId.EnemySlam, 0.7f);
@@ -347,7 +356,7 @@ namespace ARPG
             }
         }
 
-        /// <summary>A fan of shots at the player, each shown as a line for 0.4 s first.</summary>
+        /// <summary>A fan of shots at the player, each shown as a line for 0.4 s first, in the shots' colour.</summary>
         protected IEnumerator Fan(int count, float spreadDegrees, float speed, float radius, float multiplier, Color color, float slowFraction = 0f,
             ProjectileKind kind = ProjectileKind.Plain)
         {
@@ -361,10 +370,10 @@ namespace ARPG
                 var angle = (i - (count - 1) / 2f) * spreadDegrees * Mathf.Deg2Rad;
                 directions[i] = new Vector2(aim.x * Mathf.Cos(angle) - aim.y * Mathf.Sin(angle), aim.x * Mathf.Sin(angle) + aim.y * Mathf.Cos(angle));
                 if (!RingWarnings)
-                    Track(GroundMarker.Line(origin, origin + directions[i] * arenaRadius * 1.6f, 0.08f, 0.4f, TelegraphColor, transform));
+                    Track(GroundMarker.Line(origin, origin + directions[i] * arenaRadius * 1.6f, 0.08f, 0.4f, WarningOf(color), transform));
             }
             if (RingWarnings)
-                manager.Warnings?.Warn(boss, origin, 0.4f, IncomingWarnings.ShotColor, IncomingWarnings.Shape.Triangle);
+                manager.Warnings?.Warn(boss, origin, 0.4f, color, IncomingWarnings.Shape.Triangle);
             yield return Wait(0.4f);
             foreach (var direction in directions)
                 LaunchShot(origin, direction * speed, radius, multiplier, color, slowFraction, kind);

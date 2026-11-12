@@ -122,7 +122,8 @@ namespace ARPG
             warning.Elapsed = 0f;
             warning.Active = true;
             warning.Image.sprite = SymbolOf(shape);
-            warning.Image.color = color;
+            // The attack's colour at full strength: pools pass theirs faint.
+            warning.Image.color = new Color(color.r, color.g, color.b, 1f);
             warning.Image.enabled = false;
             warning.Near = 0f;
             warning.PoolRadius = 0f;

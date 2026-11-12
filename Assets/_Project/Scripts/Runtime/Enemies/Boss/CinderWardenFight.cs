@@ -40,6 +40,8 @@ namespace ARPG
 
         static readonly Color FireColor = new Color(1f, 0.45f, 0.1f, 0.8f);
         static readonly Color EmberColor = new Color(1f, 0.6f, 0.2f, 1f);
+        protected override Color TelegraphColor => WarningOf(FireColor);
+
 
         GroundMarker fireRing;
         float fireTickTimer;

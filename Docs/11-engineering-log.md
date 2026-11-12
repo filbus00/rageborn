@@ -2160,3 +2160,15 @@ The owner: "rework the bows. they seem to dissapear when character is viewed fro
 - The dive keeps her drawn bow in her body and the recolour as its layer.
 - Known flaws: in the front shot the bow stands upright at her left over her cape, not in her hands; in the back diagonals' shots only the parts beyond her show; the dive's bow is still her small one.
 - Checked: the builder wrote 754 animations, 348 pictures; previews of all eight directions (standing, walking, the shot) looked at for four bows; Import Drawn Characters; in play in the editor a Rare longbow showed `weapon_great_bow` beside her facing the camera. No C# changed.
+
+## 2026-11-12: ground warnings in their attack's colour
+
+The owner: "make the ground warnings match the colors of the attacks they warn of."
+
+- Already matching: `EnemyHazards` pools and blasts (marker and ring symbol in the attack's colour) and `EnemySpecials` (`s.Color`).
+- **Bosses**: `BossFight.TelegraphColor` was one red constant; it is now a virtual property (default `BlowColor`, the same red), overridden per boss with `WarningOf(colour)` (the colour at 0.95 alpha). `CircleStrike` and `LineStrike` take an optional colour for single attacks (the Magistrate's Verdict, the Bandit King's combo, the Brood Mother's webs). `Fan` warns on the ring in its shots' colour.
+- **Enemies**: a caster's circle is `EnemyHazards.FireWarning` (new, orange), or `VoidColor` when it pulses (the Rift Caller); the archer's ring symbol takes `definition.ProjectileColor` when it has one.
+- **Elites**: Mortar's three blasts and the Molten death burst pass `EnemyHazards.FireWarning`.
+- `IncomingWarnings.Warn` draws the symbol at alpha 1 whatever alpha the colour came with (pools pass faint ones).
+- Kept red or amber: brute slams, leaps and landings, the canopy drop, the Gaoler, lunges, charges and bites.
+- Checked: the compile check compiles; 763 tests pass, 5 fail, all `NavGridBakerTests` in the stubs' tilemap (not this change). In play in the editor, circles placed by hand in orange, purple and white drew in those colours with their ring symbols. No boss fight was played.

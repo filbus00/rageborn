@@ -14,6 +14,8 @@ namespace ARPG
         // The burning ground's look: ember orange, fainter than a telegraph.
         static readonly Color FireColor = new Color(1f, 0.45f, 0.1f, 0.6f);
         static readonly Color BlastColor = new Color(1f, 0.22f, 0.12f, 0.95f);
+        /// <summary>The warning of something that lands as fire (a fire circle, a mortar, a molten burst), 2026-11-12.</summary>
+        public static readonly Color FireWarning = new Color(1f, 0.45f, 0.1f, 0.95f);
         static readonly Color PoisonColor = new Color(0.45f, 0.85f, 0.25f, 0.6f);
         public static readonly Color VoidColor = new Color(0.6f, 0.3f, 0.85f, 0.9f);
         const float BurnPulseSeconds = 0.5f;

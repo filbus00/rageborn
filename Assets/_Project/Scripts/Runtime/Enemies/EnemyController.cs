@@ -981,10 +981,15 @@ namespace ARPG
                 case EnemyArchetype.Caster:
                     // Docs/05: a fire circle on the player's spot, filling for the wind-up.
                     attackCenter = playerGround;
+                    // In the colour of what lands (2026-11-12): fire orange, the Rift Caller's pulses void purple.
+                    var castColor = definition.CastPulses > 0 ? EnemyHazards.VoidColor : EnemyHazards.FireWarning;
                     if (slamMarker == null)
-                        slamMarker = GroundMarker.Circle(attackCenter, definition.SlamRadius, stateTimer, TelegraphColor, world.transform);
+                        slamMarker = GroundMarker.Circle(attackCenter, definition.SlamRadius, stateTimer, castColor, world.transform);
                     else
+                    {
+                        slamMarker.SetColor(castColor);
                         slamMarker.RestartCircle(attackCenter, definition.SlamRadius, stateTimer);
+                    }
                     // The burning circle comes as a molotov thrown onto it, landing as it fills (2026-11-10); the Rift
                     // Caller's void pulses are cast, not thrown.
                     if (definition.CastPulses <= 0)
@@ -1009,7 +1014,9 @@ namespace ARPG
                     attackAim = aim.sqrMagnitude > 1e-4f ? aim.normalized : Vector2.down;
                     // A warning round her on this archer's side, in place of the aim line along the ground (the owner,
                     // 2026-10-19).
-                    world.Warnings?.Warn(this, ground, stateTimer, IncomingWarnings.ShotColor, IncomingWarnings.Shape.Triangle);
+                    // In the shot's own colour when it has one (a fire bolt orange); a plain arrow's stays red.
+                    world.Warnings?.Warn(this, ground, stateTimer, definition.ProjectileColor.a > 0f ? definition.ProjectileColor : IncomingWarnings.ShotColor,
+                        IncomingWarnings.Shape.Triangle);
                     break;
             }
         }

@@ -276,11 +276,11 @@ namespace ARPG
             if ((m & EliteModifiers.Mortar) != 0 && (t.Mortar -= dt) <= 0f && Vector2.Distance(here, target) > EliteAffixRules.MortarMinRange)
             {
                 t.Mortar = EliteAffixRules.MortarEvery;
-                world.Hazards.Blast(target, EliteAffixRules.MortarRadius, EnemyRules.Telegraph(EliteAffixRules.MortarFill), hit * EliteAffixRules.MortarHit, level);
+                world.Hazards.Blast(target, EliteAffixRules.MortarRadius, EnemyRules.Telegraph(EliteAffixRules.MortarFill), hit * EliteAffixRules.MortarHit, level, EnemyHazards.FireWarning);
                 for (var k = 0; k < 2; k++)
                 {
                     var spot = target + Random.insideUnitCircle.normalized * EliteAffixRules.MortarSpread;
-                    world.Hazards.Blast(spot, EliteAffixRules.MortarRadius, EnemyRules.Telegraph(EliteAffixRules.MortarFill + 0.25f * (k + 1)), hit * EliteAffixRules.MortarHit, level);
+                    world.Hazards.Blast(spot, EliteAffixRules.MortarRadius, EnemyRules.Telegraph(EliteAffixRules.MortarFill + 0.25f * (k + 1)), hit * EliteAffixRules.MortarHit, level, EnemyHazards.FireWarning);
                 }
             }
             if ((m & EliteModifiers.Plagued) != 0 && (t.Plague -= dt) <= 0f)
@@ -325,7 +325,7 @@ namespace ARPG
             if (enemy.Definition == null || (enemy.Modifiers & EliteModifiers.Molten) == 0)
                 return;
             world.Hazards.Blast(enemy.GroundPosition, EliteAffixRules.MoltenDeathRadius, EnemyRules.Telegraph(EliteAffixRules.MoltenDeathFill),
-                Hit(enemy) * EliteAffixRules.MoltenDeathHit, enemy.Level);
+                Hit(enemy) * EliteAffixRules.MoltenDeathHit, enemy.Level, EnemyHazards.FireWarning);
         }
 
         static float LanceSeconds => EnemyRules.Telegraph(EliteAffixRules.LanceFill) + EliteAffixRules.LanceExtraSeconds;

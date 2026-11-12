@@ -17,6 +17,8 @@ namespace ARPG
     {
         public const string Name = "The Ash Archivist";
         static readonly Color FireColor = new Color(1f, 0.45f, 0.12f, 0.55f);
+        protected override Color TelegraphColor => WarningOf(FireColor);
+
 
         float addsTimer;
 
@@ -134,6 +136,8 @@ namespace ARPG
     {
         public const string Name = "The Rift Mother";
         static readonly Color VoidColor = new Color(0.7f, 0.35f, 0.95f, 0.9f);
+        protected override Color TelegraphColor => WarningOf(VoidColor);
+
 
         float broodTimer;
 

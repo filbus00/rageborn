@@ -18,6 +18,8 @@ namespace ARPG
     {
         public const string Name = "The Tidewife";
         static readonly Color WaterColor = new Color(0.25f, 0.55f, 0.85f, 0.55f);
+        protected override Color TelegraphColor => WarningOf(WaterColor);
+
 
         float addsTimer;
         int floodSide = 1;
@@ -139,6 +141,8 @@ namespace ARPG
         public const string Name = "Saint Marrow";
         static readonly Color BoneColor = new Color(0.85f, 0.82f, 0.7f, 1f);
         static readonly Color RingColor = new Color(0.75f, 0.9f, 0.55f, 0.75f);
+        protected override Color TelegraphColor => WarningOf(BoneColor);
+
 
         float addsTimer;
         float teleportTimer;
@@ -286,6 +290,8 @@ namespace ARPG
     {
         public const string Name = "The First Watchman";
         static readonly Color VoidColor = new Color(0.55f, 0.25f, 0.75f, 0.6f);
+        protected override Color TelegraphColor => WarningOf(VoidColor);
+
 
         float addsTimer;
         GroundMarker edge;
