@@ -2172,3 +2172,14 @@ The owner: "make the ground warnings match the colors of the attacks they warn o
 - `IncomingWarnings.Warn` draws the symbol at alpha 1 whatever alpha the colour came with (pools pass faint ones).
 - Kept red or amber: brute slams, leaps and landings, the canopy drop, the Gaoler, lunges, charges and bites.
 - Checked: the compile check compiles; 763 tests pass, 5 fail, all `NavGridBakerTests` in the stubs' tilemap (not this change). In play in the editor, circles placed by hand in orange, purple and white drew in those colours with their ring symbols. No boss fight was played.
+
+## 2026-11-12: the portraits remade
+
+The owner: "remake the character portrait and the character images in menus, like brunhilde and thorin and lyriel".
+
+- `ArtSource/pixel/sixteen/portraits_16.py` rewritten and now plain Python (`python3 ArtSource/pixel/sixteen/portraits_16.py`, no Blender; it writes its own PNGs). Every shape is lit as a rounded volume from the top left and drawn in five tones (its own dark line, shadow, middle, light, shine, the ramps in `R`); the faces' features are placed pixel by pixel.
+- **The archers**: the ten base faces (66 x 81, the same hair bases, regions and spots, so `PortraitFaces` paints them as before) wear the drawn Wild Arrow's green tunic and red cape (the hooded base a red hood); the base picture is blonde with long hair; eyes two rows tall with a light in them.
+- **The keepers** (35 x 32, written doubled at 70 x 64): their heads fill the frame. Brunhilde an open steel helm with a gold ridge, braids and a scar; Thorin bald with soot and a ginger beard with gold-ringed braids; Lyriel an elf in a green hood with ears, teal paint, a fur collar and a feather; Miranda, Sylthara, Garrett and Elara redrawn the same way.
+- `CompanyMenu.DrawHeader` shows her face four pixels lower (-32, was -28), so her chin is in the window.
+- Sizes and file names are unchanged. Outputs in `ArtSource/ui/faces` and `ArtSource/ui/pixel`, copied by Import Menu Art; the preview is `ArtSource/pixel/previews/portraits_16.png`.
+- Checked (2026-11-14): the copies in Resources match the sources; the compile check compiles, 763 tests pass, the 5 known `NavGridBakerTests` fail; in play in the editor the company header showed a painted archer with her chin in the window, the Yard Brunhilde and the Kennel Lyriel, no errors in the console. Not looked at in play: the Armoury (Thorin, Elara, Garrett), the Bag's character block, the phone.

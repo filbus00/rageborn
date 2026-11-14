@@ -289,7 +289,7 @@ namespace ARPG
                 UiStyle.Stretch(window, 2f);
                 window.gameObject.AddComponent<RectMask2D>();
                 portrait = PixelUi.Picture(window, "Archer", "portrait_archer");
-                PixelUi.At(portrait.rectTransform, -31f, -28f, portrait.rectTransform.sizeDelta.x, portrait.rectTransform.sizeDelta.y);
+                PixelUi.At(portrait.rectTransform, -31f, -32f, portrait.rectTransform.sizeDelta.x, portrait.rectTransform.sizeDelta.y);
 
                 nameText = PixelUi.Label(header, "", PixelUi.TitleFont, PixelUi.Gold);
                 PixelUi.Across(nameText.rectTransform, 11f, 12f, 78f, 40f);
