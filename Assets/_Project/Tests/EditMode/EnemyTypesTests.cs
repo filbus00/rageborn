@@ -163,6 +163,38 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void TheGaol_HasItsOwnRoster_OnItsLevelsOnly()
+        {
+            // The Iron Gaol (2026-11-14): levels 13 to 24 when the level is not a forest.
+            DungeonRules.Forest = false;
+            try
+            {
+                Assert.IsFalse(DungeonRules.GaolAt(12));
+                Assert.IsTrue(DungeonRules.GaolAt(13));
+                Assert.IsTrue(DungeonRules.GaolAt(24));
+                Assert.IsFalse(DungeonRules.GaolAt(25));
+                Assert.AreSame(PackComposition.GaolTable, PackComposition.RosterAt(18));
+                Assert.AreSame(PackComposition.Table, PackComposition.RosterAt(30));
+                var gaol = new System.Collections.Generic.HashSet<PackMember>(PackComposition.GaolTable.Select(e => e.Member));
+                Assert.AreEqual(10, gaol.Count);
+                for (var depth = 13; depth <= 24; depth++)
+                {
+                    foreach (var role in new[] { PackRole.Front, PackRole.Back, PackRole.Swarm })
+                        Assert.IsTrue(PackComposition.Has(role, depth), role + " at " + depth);
+                    for (var pack = 0; pack < 40; pack++)
+                        foreach (var member in PackComposition.Roll(depth, PackKind.Normal, 9, 4242, pack))
+                            Assert.IsTrue(member == PackMember.None || gaol.Contains(member), member + " at " + depth);
+                }
+                Assert.AreEqual(PackRole.Support, PackComposition.RoleOf(PackMember.LampWarden));
+            }
+            finally
+            {
+                DungeonRules.Forest = true;
+            }
+            Assert.IsFalse(DungeonRules.GaolAt(18), "a forest level is never the gaol");
+        }
+
+        [Test]
         public void EveryDepth_HasFrontFighters()
         {
             for (var depth = 1; depth <= DungeonRules.Depths; depth++)

@@ -179,13 +179,17 @@ namespace ARPG.Editor
         public static HashSet<string> DrawnElsewhere()
         {
             var names = new HashSet<string>();
-            if (!File.Exists(DrawnListPath))
-                return names;
-            foreach (var line in File.ReadAllLines(DrawnListPath))
+            // The forest's list and the gaol's (2026-11-14, gaol_art.py's props and floor marks).
+            foreach (var list in new[] { DrawnListPath, GaolArtImport.ListPath })
             {
-                var entry = line.Trim().Split(' ')[0];
-                if (entry.StartsWith("Dungeon/"))
-                    names.Add(entry.Substring("Dungeon/".Length).ToLowerInvariant());
+                if (!File.Exists(list))
+                    continue;
+                foreach (var line in File.ReadAllLines(list))
+                {
+                    var entry = line.Trim().Split(' ')[0];
+                    if (entry.StartsWith("Dungeon/"))
+                        names.Add(entry.Substring("Dungeon/".Length).ToLowerInvariant());
+                }
             }
             return names;
         }

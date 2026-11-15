@@ -143,6 +143,21 @@ namespace ARPG
             ("TuskedBoar", default),
             ("Wolf", default),
             ("BlobSmall", default),
+            // The Iron Gaol's (2026-11-14, Claude's choices and numbers, to review): no pools. The Turnkey throws his key
+            // ring, which bounces off the walls; the Rack Brute swings his chain round himself; the Iron Maiden shoots her
+            // spikes out in three lanes that slow; the Crossbow Warder looses two heavy bolts; the Brand Priest throws a
+            // hot iron that bursts; the Lamp Warden throws a lamp of oil with a fuse. The Shackled Wretch throws a link of
+            // his chain; rats, crows and mastiffs only bite, dart and lunge.
+            ("ShackledWretch", new EnemySpecial("Chain Link", SpecialShape.Throw, 7f, 2.5f, 8f, 0.25f, 0.5f, 0.8f, Steel, length: 8f, speed: 12f, kind: ProjectileKind.Knife)),
+            ("Turnkey", new EnemySpecial("Key Ring", SpecialShape.Throw, 6.5f, 3f, 9f, 0.3f, 0.5f, 1.0f, Brass, length: ProjectileKinds.BouncingReach, speed: 11f, kind: ProjectileKind.Bouncing)),
+            ("RackBrute", new EnemySpecial("Chain Sweep", SpecialShape.Ring, 7.5f, 0f, 3.5f, 3f, 1.1f, 1.3f, Steel)),
+            ("IronMaiden", new EnemySpecial("Spikes", SpecialShape.Throw, 7f, 1.5f, 8f, 0.25f, 0.6f, 1.1f, Steel, count: 3, spread: 22f, length: 9f, speed: 13f, slow: 0.6f, slowSeconds: 1.5f, kind: ProjectileKind.Knife)),
+            ("CrossbowWarder", new EnemySpecial("Heavy Bolts", SpecialShape.Throw, 7f, 3f, 11f, 0.25f, 0.6f, 1.2f, Steel, count: 2, spread: 8f, length: 12f, speed: 18f, kind: ProjectileKind.Arrow)),
+            ("BrandPriest", new EnemySpecial("Hot Iron", SpecialShape.Throw, 7f, 2.5f, 9f, 0.35f, 0.55f, 1.1f, Ember, length: 10f, speed: 9f, kind: ProjectileKind.Fireball)),
+            ("LampWarden", new EnemySpecial("Lamp Oil", SpecialShape.Throw, 7.5f, 3f, 8f, 0.35f, 0.55f, 1.2f, Ember, length: 8f, speed: 8f, kind: ProjectileKind.Bomb)),
+            ("CellRat", default),
+            ("GibbetCrow", default),
+            ("GaolMastiff", default),
             ("Rat", default),
             ("Bat", default),
             ("DarkCultist", new EnemySpecial("Fireball", SpecialShape.Throw, 7f, 2f, 9f, 0.35f, 0.55f, 1.0f, Fire, length: 10f, speed: 9f, kind: ProjectileKind.Fireball)),

@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: 59713434bee5249cd82c313291ad16a5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5646102471679402514
+    second: shackled_wretch_hit_0
+  - first:
+      213: -3310718027432181109
+    second: shackled_wretch_hit_1
+  - first:
+      213: 9082193073894109515
+    second: shackled_wretch_hit_2
+  - first:
+      213: 3132542594035102139
+    second: shackled_wretch_hit_3
+  - first:
+      213: -6792388671181915422
+    second: shackled_wretch_hit_4
+  - first:
+      213: -8803931087704004277
+    second: shackled_wretch_hit_5
+  - first:
+      213: -3180616408453581953
+    second: shackled_wretch_hit_6
+  - first:
+      213: 6977128119751161477
+    second: shackled_wretch_hit_7
+  - first:
+      213: 1422459395277088375
+    second: shackled_wretch_hit_8
+  - first:
+      213: 8557662656634974380
+    second: shackled_wretch_hit_9
+  - first:
+      213: 7549848193105316211
+    second: shackled_wretch_hit_10
+  - first:
+      213: 2558710371751223190
+    second: shackled_wretch_hit_11
+  - first:
+      213: 8780204970086411070
+    second: shackled_wretch_hit_12
+  - first:
+      213: -8209348725235470558
+    second: shackled_wretch_hit_13
+  - first:
+      213: -785368416825793880
+    second: shackled_wretch_hit_14
+  - first:
+      213: -8045984687928558677
+    second: shackled_wretch_hit_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shackled_wretch_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d5f91bad38654bbbafa91f0d09d81c9
+      internalID: 1214305126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65deb4ec3f5f74925b9e79472ed6741b
+      internalID: 1815522606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 716da99dd82b647518a9052a29f811f9
+      internalID: -616794959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57d25c6421d9240a58676f149cb1982c
+      internalID: -1916798253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e0af1e2440004db8ac304ca87d0e67f
+      internalID: -1339945164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86b275299942f4a6b89e8dcaf79d74b7
+      internalID: 1838804193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 977451325e6ec4212a378c665bc4ca27
+      internalID: -769510705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9becea3eb0f424bce9fb4a9105b105ee
+      internalID: 788082360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11ed5f9d00786466583c930fde488789
+      internalID: -1826287775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d937f1354f21a4ac9a2b5b2930a58b51
+      internalID: -1617741309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 390d39ddb302c44038359c640083675f
+      internalID: -348044845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 114e54f110ad6429babc8116ec3e09b1
+      internalID: 469634069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d5d24f9564824d94adcdecce27acaf9
+      internalID: -356201510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 654a532b923b843d79ec5b488fae38b9
+      internalID: -300284524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3382d05acc05d447a96aff11757bf60d
+      internalID: 1199593622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shackled_wretch_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b20f21e5a2a14bb1a72f74f18a348af
+      internalID: 1668720074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3c507d6f614744e8792b824389e5f6a9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      shackled_wretch_hit_e_00: -356201510
+      shackled_wretch_hit_e_01: -300284524
+      shackled_wretch_hit_n_00: -1826287775
+      shackled_wretch_hit_n_01: -1617741309
+      shackled_wretch_hit_ne_00: -348044845
+      shackled_wretch_hit_ne_01: 469634069
+      shackled_wretch_hit_nw_00: -769510705
+      shackled_wretch_hit_nw_01: 788082360
+      shackled_wretch_hit_s_00: 1214305126
+      shackled_wretch_hit_s_01: 1815522606
+      shackled_wretch_hit_se_00: 1199593622
+      shackled_wretch_hit_se_01: 1668720074
+      shackled_wretch_hit_sw_00: -616794959
+      shackled_wretch_hit_sw_01: -1916798253
+      shackled_wretch_hit_w_00: -1339945164
+      shackled_wretch_hit_w_01: 1838804193
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

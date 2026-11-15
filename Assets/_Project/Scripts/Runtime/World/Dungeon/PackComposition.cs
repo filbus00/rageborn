@@ -62,6 +62,19 @@ namespace ARPG
         /// <summary>The Bell Hermit (2026-11-07, the owner: "design a totally new and original enemy in 16x16"): drawn as
         /// pixel art (ArtSource/pixel/sixteen/bell_hermit_sheets.py), a support whose bell makes the pack hit harder.</summary>
         BellHermit,
+
+        // The Iron Gaol's own (2026-11-14, the owner: "lets start building the next stage. enemies, assets, levels";
+        // ten new kinds drawn in 16x16, ArtSource/pixel/sixteen/enemies): warders and what they kept.
+        ShackledWretch,
+        Turnkey,
+        RackBrute,
+        IronMaiden,
+        CellRat,
+        GibbetCrow,
+        GaolMastiff,
+        CrossbowWarder,
+        BrandPriest,
+        LampWarden,
     }
 
     /// <summary>Where a kind stands in a pack: in front, at the back, one behind the rest helping them, or in a pack
@@ -170,7 +183,34 @@ namespace ARPG
             new Entry(PackMember.BellHermit, PackRole.Support, 2, 48, 4),
         };
 
-        static Entry[] Current => DungeonRules.Forest ? ForestTable : Table;
+        /// <summary>
+        /// The Iron Gaol's own roster (2026-11-14), alone on its levels (13 to 24) when the level is not a forest: shackled
+        /// wretches, turnkeys, rack brutes and iron maidens up front, crossbow warders and brand priests behind, a lamp
+        /// warden leading, cell rats, gibbet crows and gaol mastiffs in swarms. Each kind arrives a level or two after
+        /// the last, so the gaol changes on the way down. Claude's numbers, to review.
+        /// </summary>
+        public static readonly Entry[] GaolTable =
+        {
+            new Entry(PackMember.ShackledWretch, PackRole.Front, 13, 24, 10),
+            new Entry(PackMember.Turnkey, PackRole.Front, 13, 24, 7),
+            new Entry(PackMember.RackBrute, PackRole.Front, 15, 24, 5),
+            new Entry(PackMember.IronMaiden, PackRole.Front, 17, 24, 3),
+            new Entry(PackMember.CellRat, PackRole.Swarm, 13, 24, 8),
+            new Entry(PackMember.GibbetCrow, PackRole.Swarm, 14, 24, 6),
+            new Entry(PackMember.GaolMastiff, PackRole.Swarm, 15, 24, 6),
+            new Entry(PackMember.CrossbowWarder, PackRole.Back, 13, 24, 8),
+            new Entry(PackMember.BrandPriest, PackRole.Back, 14, 24, 6),
+            new Entry(PackMember.LampWarden, PackRole.Support, 14, 24, 5),
+        };
+
+        /// <summary>The roster in force at a depth: the forest's on a forest level, the gaol's on the Iron Gaol's levels,
+        /// else the old concept roster by band.</summary>
+        public static Entry[] RosterAt(int depth) =>
+            DungeonRules.Forest ? ForestTable : DungeonRules.GaolAt(depth) ? GaolTable : Table;
+
+        /// <summary>The front fighter a level falls back on when a role has nobody.</summary>
+        static PackMember Fallback(int depth) =>
+            DungeonRules.Forest ? PackMember.Bandit : DungeonRules.GaolAt(depth) ? PackMember.ShackledWretch : PackMember.Zombie;
 
         public const int SwarmPercent = 20;
         // More packs with a ranged back row, and a bigger one (2026-10-17, steady pressure; was 60 percent, 2 or 3).
@@ -187,7 +227,7 @@ namespace ARPG
         /// <summary>The kinds of a role met at a depth.</summary>
         public static bool Has(PackRole role, int depth)
         {
-            foreach (var entry in Current)
+            foreach (var entry in RosterAt(depth))
                 if (entry.Role == role && WeightAt(entry, depth) > 0)
                     return true;
             return false;
@@ -236,13 +276,13 @@ namespace ARPG
         static PackMember Pick(PackRole role, int depth, uint hash)
         {
             var total = 0;
-            foreach (var entry in Current)
+            foreach (var entry in RosterAt(depth))
                 if (entry.Role == role)
                     total += WeightAt(entry, depth);
             if (total == 0)
-                return DungeonRules.Forest ? PackMember.Bandit : PackMember.Zombie;
+                return Fallback(depth);
             var roll = (int)(hash % (uint)total);
-            foreach (var entry in Current)
+            foreach (var entry in RosterAt(depth))
             {
                 if (entry.Role != role)
                     continue;
@@ -250,13 +290,16 @@ namespace ARPG
                 if (roll < 0)
                     return entry.Member;
             }
-            return DungeonRules.Forest ? PackMember.Bandit : PackMember.Zombie;
+            return Fallback(depth);
         }
 
         /// <summary>The role of a kind (swarms are their own packs).</summary>
         public static PackRole RoleOf(PackMember member)
         {
-            foreach (var entry in Current)
+            foreach (var entry in DungeonRules.Forest ? ForestTable : GaolTable)
+                if (entry.Member == member)
+                    return entry.Role;
+            foreach (var entry in GaolTable)
                 if (entry.Member == member)
                     return entry.Role;
             foreach (var entry in Table)

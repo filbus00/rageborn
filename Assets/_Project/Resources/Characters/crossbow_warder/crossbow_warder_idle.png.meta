@@ -1,0 +1,990 @@
+fileFormatVersion: 2
+guid: 6a3c1f96d57b24a0f922c582cb45f8a6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4965888216109306018
+    second: crossbow_warder_idle_0
+  - first:
+      213: -1643164070618301480
+    second: crossbow_warder_idle_1
+  - first:
+      213: 7050928001360626374
+    second: crossbow_warder_idle_2
+  - first:
+      213: 5851850712969886777
+    second: crossbow_warder_idle_3
+  - first:
+      213: 3201268584256981252
+    second: crossbow_warder_idle_4
+  - first:
+      213: -7839035636123927123
+    second: crossbow_warder_idle_5
+  - first:
+      213: -1954481679942395060
+    second: crossbow_warder_idle_6
+  - first:
+      213: -7190161727380023924
+    second: crossbow_warder_idle_7
+  - first:
+      213: -5531055520908588267
+    second: crossbow_warder_idle_8
+  - first:
+      213: -5434550338409952180
+    second: crossbow_warder_idle_9
+  - first:
+      213: 90590784207608234
+    second: crossbow_warder_idle_10
+  - first:
+      213: -5450036828920930538
+    second: crossbow_warder_idle_11
+  - first:
+      213: 1675948720458660369
+    second: crossbow_warder_idle_12
+  - first:
+      213: 1031316388408718908
+    second: crossbow_warder_idle_13
+  - first:
+      213: 4655485152437906515
+    second: crossbow_warder_idle_14
+  - first:
+      213: 995413613497470181
+    second: crossbow_warder_idle_15
+  - first:
+      213: 3822039903298179067
+    second: crossbow_warder_idle_16
+  - first:
+      213: 6341037593371256685
+    second: crossbow_warder_idle_17
+  - first:
+      213: -3634976345042932540
+    second: crossbow_warder_idle_18
+  - first:
+      213: -3736708956466598182
+    second: crossbow_warder_idle_19
+  - first:
+      213: 6525815496133978440
+    second: crossbow_warder_idle_20
+  - first:
+      213: -4488424935496491945
+    second: crossbow_warder_idle_21
+  - first:
+      213: -2644867380561643089
+    second: crossbow_warder_idle_22
+  - first:
+      213: -6617404937817985086
+    second: crossbow_warder_idle_23
+  - first:
+      213: 7939196653924578700
+    second: crossbow_warder_idle_24
+  - first:
+      213: 1301270847184332894
+    second: crossbow_warder_idle_25
+  - first:
+      213: -2746402300933056860
+    second: crossbow_warder_idle_26
+  - first:
+      213: -5343541353762829041
+    second: crossbow_warder_idle_27
+  - first:
+      213: 5548177126949847990
+    second: crossbow_warder_idle_28
+  - first:
+      213: -235761184624112414
+    second: crossbow_warder_idle_29
+  - first:
+      213: -3216459096682599499
+    second: crossbow_warder_idle_30
+  - first:
+      213: -4577746335318452655
+    second: crossbow_warder_idle_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: crossbow_warder_idle_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad4c511676dc145f6bbc23e1bb1935c6
+      internalID: -1366006240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_s_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 768886c2a28d742c8b339ebfcb2a4103
+      internalID: 906051101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_s_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04cb084c5cf8f4527984fad4222e9835
+      internalID: -1795023876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_s_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d8fa09272bb340c3b4407b078006977
+      internalID: -1150324121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 540e67606109240c69e6edd95277778e
+      internalID: 490335676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_sw_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1b48c53eb41444b581623f9df308b06
+      internalID: -1422896700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_sw_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5975721b0428341d9941aeebce003d37
+      internalID: -1402516520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_sw_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08e9c93e056dd48caa6fb3fa357212ab
+      internalID: 1526690977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a216bc848e8a747329187b22f0042a8d
+      internalID: 482594975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_w_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e1d580a1e03f4be18d0204cf769ae6d
+      internalID: 466908239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_w_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae20e66c91f8140c684ea98f19ade327
+      internalID: 1214452852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_w_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e41a1c37d3ace40b2bf99dd03e06a379
+      internalID: 1457421114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c7fae205b09e4c94bce673d44f8bdec
+      internalID: 1034103392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_nw_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d5b21099004744d7acb884cd385559b
+      internalID: 211723312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_nw_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f5aafa92985041048815516ce2e5449
+      internalID: 1648413869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_nw_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c1ed7e138e074ef1a2ceaf1dc8e66e6
+      internalID: 925865522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b0bd6be8a2ef48ec8ee2c7a02ec0f1f
+      internalID: 408162817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_n_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fad5baea02c614b5ba8118cb9e886b99
+      internalID: 1771844661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_n_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f563da6fa8ea4f6bbf84f715de36e52
+      internalID: -489190072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_n_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcd6fe59f03104068ab2917b7a0ac6a2
+      internalID: 76885993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c04787b33234423cb1f1909d15733d9
+      internalID: -1291738439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_ne_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9129257ae46ca4487a160be6357001a8
+      internalID: -1094285989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_ne_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2b4ec08c4af8424e92a6a0a2f19fddb
+      internalID: -1624279388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_ne_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 530cba875168248ddb6cba77ec26ab14
+      internalID: -1705043685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cccc67a7c43b48f8a492528251376cd
+      internalID: 514094945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_e_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ce8fd08bc62645b5bbca4b5893ab9de
+      internalID: -1491299370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_e_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dd353c834220412aa18fce566332f05
+      internalID: -310307278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_e_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a7b3bccaf1aa4749a53c32eb7c9f632
+      internalID: 184398603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 479722f770f3e4d659f41bf9a34c3adb
+      internalID: 1812521552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_se_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6b98e640c1914a23a28675c90e5223b
+      internalID: 244864535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_se_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64d079e4f6a32438c84b39a9b42156d1
+      internalID: -383338714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crossbow_warder_idle_se_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b93db4ffb4db49d788ef0582d2bb41e
+      internalID: -1743078426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d5ca55dda03ff47b2be017c9e58c3cf0
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      crossbow_warder_idle_e_00: 514094945
+      crossbow_warder_idle_e_01: -1491299370
+      crossbow_warder_idle_e_02: -310307278
+      crossbow_warder_idle_e_03: 184398603
+      crossbow_warder_idle_n_00: 408162817
+      crossbow_warder_idle_n_01: 1771844661
+      crossbow_warder_idle_n_02: -489190072
+      crossbow_warder_idle_n_03: 76885993
+      crossbow_warder_idle_ne_00: -1291738439
+      crossbow_warder_idle_ne_01: -1094285989
+      crossbow_warder_idle_ne_02: -1624279388
+      crossbow_warder_idle_ne_03: -1705043685
+      crossbow_warder_idle_nw_00: 1034103392
+      crossbow_warder_idle_nw_01: 211723312
+      crossbow_warder_idle_nw_02: 1648413869
+      crossbow_warder_idle_nw_03: 925865522
+      crossbow_warder_idle_s_00: -1366006240
+      crossbow_warder_idle_s_01: 906051101
+      crossbow_warder_idle_s_02: -1795023876
+      crossbow_warder_idle_s_03: -1150324121
+      crossbow_warder_idle_se_00: 1812521552
+      crossbow_warder_idle_se_01: 244864535
+      crossbow_warder_idle_se_02: -383338714
+      crossbow_warder_idle_se_03: -1743078426
+      crossbow_warder_idle_sw_00: 490335676
+      crossbow_warder_idle_sw_01: -1422896700
+      crossbow_warder_idle_sw_02: -1402516520
+      crossbow_warder_idle_sw_03: 1526690977
+      crossbow_warder_idle_w_00: 482594975
+      crossbow_warder_idle_w_01: 466908239
+      crossbow_warder_idle_w_02: 1214452852
+      crossbow_warder_idle_w_03: 1457421114
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

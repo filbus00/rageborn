@@ -1,0 +1,990 @@
+fileFormatVersion: 2
+guid: b8e2ad5cfc2ea4fe8af1671a194d316a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7148088514283083890
+    second: turnkey_run_0
+  - first:
+      213: 3411168884259949754
+    second: turnkey_run_1
+  - first:
+      213: -624293184188028445
+    second: turnkey_run_2
+  - first:
+      213: 5010868086427186956
+    second: turnkey_run_3
+  - first:
+      213: 1309443062531370220
+    second: turnkey_run_4
+  - first:
+      213: -6184421378981868776
+    second: turnkey_run_5
+  - first:
+      213: -6489438522749857717
+    second: turnkey_run_6
+  - first:
+      213: -3377015240399683267
+    second: turnkey_run_7
+  - first:
+      213: 8110440008831198333
+    second: turnkey_run_8
+  - first:
+      213: 5328001247606717920
+    second: turnkey_run_9
+  - first:
+      213: -2522775000658480147
+    second: turnkey_run_10
+  - first:
+      213: -5554091329636749880
+    second: turnkey_run_11
+  - first:
+      213: -3322300643294431654
+    second: turnkey_run_12
+  - first:
+      213: -7092264430010839592
+    second: turnkey_run_13
+  - first:
+      213: 1019619841153588617
+    second: turnkey_run_14
+  - first:
+      213: -4930355339892445885
+    second: turnkey_run_15
+  - first:
+      213: -2804235660663567605
+    second: turnkey_run_16
+  - first:
+      213: 4468357699309156558
+    second: turnkey_run_17
+  - first:
+      213: 3336786101371554979
+    second: turnkey_run_18
+  - first:
+      213: -7012259018385459886
+    second: turnkey_run_19
+  - first:
+      213: -4529983157807994671
+    second: turnkey_run_20
+  - first:
+      213: 7221069285496847210
+    second: turnkey_run_21
+  - first:
+      213: -2505584554962617785
+    second: turnkey_run_22
+  - first:
+      213: -197982477099475253
+    second: turnkey_run_23
+  - first:
+      213: 5083350928463168771
+    second: turnkey_run_24
+  - first:
+      213: -5646493701503570003
+    second: turnkey_run_25
+  - first:
+      213: 9185918364387344047
+    second: turnkey_run_26
+  - first:
+      213: -9192603151322939161
+    second: turnkey_run_27
+  - first:
+      213: 1813216216319863489
+    second: turnkey_run_28
+  - first:
+      213: -1275392418577569439
+    second: turnkey_run_29
+  - first:
+      213: 4782281566650812650
+    second: turnkey_run_30
+  - first:
+      213: 3934403413532390723
+    second: turnkey_run_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: turnkey_run_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12359a36dfe1b4402ba312b3be002998
+      internalID: -994041775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_s_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16844380ffa974fe1a73c655ac1b80a7
+      internalID: 773617157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_s_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 272908073e7a84f9e829fed1a5d5c8a9
+      internalID: -533449083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_s_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73941faf7e0864217b9c38e04f33e208
+      internalID: 1294213627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd33d84090ecc4b8b89f18bfc83d2bae
+      internalID: 420659054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_sw_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba66da3fd844c49d7a3e3c5d6944734c
+      internalID: -1053805329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_sw_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f42fcb4c0b5274547873f63c40dabd3e
+      internalID: -1804844204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_sw_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af9c02d1f2ef44c729c6f24b8faeeabe
+      internalID: 1391107991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5727ba87c661744f5ab53981328dad51
+      internalID: -445646705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_w_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eb47a19f1c5d4142899256d15f440ef
+      internalID: -418399983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_w_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee97398cca50045a3ab532a40a9a0691
+      internalID: 1653213629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_w_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eedd16c9c23e480c9c5890a318318ae
+      internalID: 228833638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8a25e59920a5428da885fc041d9e92f
+      internalID: -1238697613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_nw_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c086e45a64a0b45fc95f8a4ca9d3b92d
+      internalID: -1662829908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_nw_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85dad4befaef44b3e8174fec559576ff
+      internalID: -1399166604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_nw_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4518d6d2f138448c80f3870515304e7
+      internalID: -1155360152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6586de26675f4dc78f4d5e29cc07ff8
+      internalID: -2133498786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_n_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54f900702e0a54ed68d06c6dd12028df
+      internalID: 113079568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_n_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca2bf40d73cee4acea5311e58e93890d
+      internalID: -1122370363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_n_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee70f09dca5c44d84ba0be7466f1731a
+      internalID: 202234216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66b14ac2f67ab40ca990f69afb76185f
+      internalID: -549446060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_ne_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e358359ba39249deb6391b52634234a
+      internalID: 334807022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_ne_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dee9510c640449c4bca758f54e7eca4
+      internalID: -1419837594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_ne_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d02332bc79954d3e86ba7a45bcb4338
+      internalID: -623825746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fe82b404364a479da8fd5ea20ce935a
+      internalID: -857769056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_e_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ab186fd4e251426294d5756f6bfc9dd
+      internalID: 2089515071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_e_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73539e8c1ad8f4218b444caac278fafc
+      internalID: -850746434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_e_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bc97a0fc3f2a4d2db68fa1a7bb173b1
+      internalID: -1883915665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc0ef58b54044769a66287b95768b4d
+      internalID: 717940502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_se_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5eb098afddaf40d6a5fd67379e93722
+      internalID: -1798023937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_se_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd1fed3b5316c48fbaecdcbbffd4eed6
+      internalID: -1361282754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turnkey_run_se_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a755ef2ae4a724763abadb1733c75628
+      internalID: 1851804048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 92910863e777245a48737e396a6f93ba
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      turnkey_run_e_00: -857769056
+      turnkey_run_e_01: 2089515071
+      turnkey_run_e_02: -850746434
+      turnkey_run_e_03: -1883915665
+      turnkey_run_n_00: -2133498786
+      turnkey_run_n_01: 113079568
+      turnkey_run_n_02: -1122370363
+      turnkey_run_n_03: 202234216
+      turnkey_run_ne_00: -549446060
+      turnkey_run_ne_01: 334807022
+      turnkey_run_ne_02: -1419837594
+      turnkey_run_ne_03: -623825746
+      turnkey_run_nw_00: -1238697613
+      turnkey_run_nw_01: -1662829908
+      turnkey_run_nw_02: -1399166604
+      turnkey_run_nw_03: -1155360152
+      turnkey_run_s_00: -994041775
+      turnkey_run_s_01: 773617157
+      turnkey_run_s_02: -533449083
+      turnkey_run_s_03: 1294213627
+      turnkey_run_se_00: 717940502
+      turnkey_run_se_01: -1798023937
+      turnkey_run_se_02: -1361282754
+      turnkey_run_se_03: 1851804048
+      turnkey_run_sw_00: 420659054
+      turnkey_run_sw_01: -1053805329
+      turnkey_run_sw_02: -1804844204
+      turnkey_run_sw_03: 1391107991
+      turnkey_run_w_00: -445646705
+      turnkey_run_w_01: -418399983
+      turnkey_run_w_02: 1653213629
+      turnkey_run_w_03: 228833638
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

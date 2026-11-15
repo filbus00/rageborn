@@ -1,0 +1,990 @@
+fileFormatVersion: 2
+guid: e7fe7cf65f4a844e0bf8a5d07272a994
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7095519781888199543
+    second: cell_rat_walk_0
+  - first:
+      213: -8195526599442427926
+    second: cell_rat_walk_1
+  - first:
+      213: 7257638799281165125
+    second: cell_rat_walk_2
+  - first:
+      213: -1214946360294892063
+    second: cell_rat_walk_3
+  - first:
+      213: -3510583245424195568
+    second: cell_rat_walk_4
+  - first:
+      213: 7022499306434018416
+    second: cell_rat_walk_5
+  - first:
+      213: 4706875865604795719
+    second: cell_rat_walk_6
+  - first:
+      213: -6446279246946118314
+    second: cell_rat_walk_7
+  - first:
+      213: -5378921986956116240
+    second: cell_rat_walk_8
+  - first:
+      213: 876476711279291021
+    second: cell_rat_walk_9
+  - first:
+      213: -4907537225996513534
+    second: cell_rat_walk_10
+  - first:
+      213: -1827247961723254346
+    second: cell_rat_walk_11
+  - first:
+      213: -7843488151473582782
+    second: cell_rat_walk_12
+  - first:
+      213: -3255311499164005672
+    second: cell_rat_walk_13
+  - first:
+      213: -648291740895303928
+    second: cell_rat_walk_14
+  - first:
+      213: 4178872870144472701
+    second: cell_rat_walk_15
+  - first:
+      213: 1926115235264562653
+    second: cell_rat_walk_16
+  - first:
+      213: 5386149693801384949
+    second: cell_rat_walk_17
+  - first:
+      213: -5679063895357362681
+    second: cell_rat_walk_18
+  - first:
+      213: 5712411946770886820
+    second: cell_rat_walk_19
+  - first:
+      213: -157980819483472210
+    second: cell_rat_walk_20
+  - first:
+      213: -8670003963291994372
+    second: cell_rat_walk_21
+  - first:
+      213: -7695951506725621940
+    second: cell_rat_walk_22
+  - first:
+      213: 1977836963134498062
+    second: cell_rat_walk_23
+  - first:
+      213: -3889833671495574783
+    second: cell_rat_walk_24
+  - first:
+      213: 6828064778337486733
+    second: cell_rat_walk_25
+  - first:
+      213: -661015280232831023
+    second: cell_rat_walk_26
+  - first:
+      213: -5394517920024486372
+    second: cell_rat_walk_27
+  - first:
+      213: -2443794865090134037
+    second: cell_rat_walk_28
+  - first:
+      213: 5678450934664644126
+    second: cell_rat_walk_29
+  - first:
+      213: -899678652189443453
+    second: cell_rat_walk_30
+  - first:
+      213: -4784199383600070857
+    second: cell_rat_walk_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cell_rat_walk_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a336100cba95c4b0d9addc780542677d
+      internalID: -125585176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_s_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f6d53a010f084665aeabbada693b8ba
+      internalID: -384619945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_s_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e60f87b39eb9b408499d933122470d3a
+      internalID: -553307239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_s_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 364
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64497b7b00fcf4cbf9b06dfea36b32a4
+      internalID: 1280773167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36d8c6a40dac64c01ab8c8fc7965fc42
+      internalID: -702495403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_sw_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30f16c7d1e4cf4549bfb1d2b5e616369
+      internalID: 1254807470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_sw_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71cc6bd75c383428e975d8d40605ac0d
+      internalID: 946497800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_sw_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 312
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d56dce0b7fa0d4c24a829695b39e4a55
+      internalID: -893325935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9734447d37ed849ea86f8a8836ab9bb2
+      internalID: 1353078055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_w_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88421c38f5aed4ff9bb81900d5e7b6bf
+      internalID: -261586281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_w_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce6fcb49699e47b78f0f3dcdbeb9cb6
+      internalID: 1884850750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_w_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 260
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd2ca1ced7c1b4971b7b7777f7d7b75b
+      internalID: 1240123332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33713057c35d74570b521b3ea6f8b693
+      internalID: -175325319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_nw_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cb0ce902dba34a18a8cb38834647b47
+      internalID: -1022503475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_nw_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d411e918be7654745bb9109475cba424
+      internalID: -997639244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_nw_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 208
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03678267066174db9ab755e8e1f6ea36
+      internalID: -1562184773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95390f4f5b498467088606a1ad4fd5f0
+      internalID: 1943836266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_n_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 913d7ed78caed454dbf522121e609e1d
+      internalID: -969251995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_n_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c8506d2d4d24f0987ab21f6565cdec
+      internalID: -1396829640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_n_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 156
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d681fbdd56fbd450c82dac0018b23c77
+      internalID: 1824361649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 435dee7401b574bb0bea3a2a2874bad6
+      internalID: -102242554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_ne_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b9686a852e85474e9841e167256cd2d
+      internalID: -2147118967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_ne_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e76201afccf5f40219193fc0cad420c8
+      internalID: -26728773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_ne_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 104
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 533bf26d7efa140099c8f2b3d8cd8724
+      internalID: 757457814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30e06ed5183df4f14b86c958652385de
+      internalID: 1505719492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_e_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6f1afef4ffa3454586a8e2ae674b2e4
+      internalID: 992819064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_e_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4554c401820d149f3a791fa35b89c803
+      internalID: -1613523354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_e_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 52
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7890c004990404a89af7499576bf848c
+      internalID: -436991952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52c9ff65f77e74761a7e4ddaeeb8624f
+      internalID: 1403999381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_se_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ead6bd438e8c408f8f1382f26c3e4ed
+      internalID: -1547944695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_se_02
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eef940b6680e4cc396bbc56fe6f073a
+      internalID: -1607206781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell_rat_walk_se_03
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a3afab1b3b7f4bfdb33688ad14a621f
+      internalID: -1958125990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 54223bfcb34ff44d48dd94679eb9e234
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cell_rat_walk_e_00: 1505719492
+      cell_rat_walk_e_01: 992819064
+      cell_rat_walk_e_02: -1613523354
+      cell_rat_walk_e_03: -436991952
+      cell_rat_walk_n_00: 1943836266
+      cell_rat_walk_n_01: -969251995
+      cell_rat_walk_n_02: -1396829640
+      cell_rat_walk_n_03: 1824361649
+      cell_rat_walk_ne_00: -102242554
+      cell_rat_walk_ne_01: -2147118967
+      cell_rat_walk_ne_02: -26728773
+      cell_rat_walk_ne_03: 757457814
+      cell_rat_walk_nw_00: -175325319
+      cell_rat_walk_nw_01: -1022503475
+      cell_rat_walk_nw_02: -997639244
+      cell_rat_walk_nw_03: -1562184773
+      cell_rat_walk_s_00: -125585176
+      cell_rat_walk_s_01: -384619945
+      cell_rat_walk_s_02: -553307239
+      cell_rat_walk_s_03: 1280773167
+      cell_rat_walk_se_00: 1403999381
+      cell_rat_walk_se_01: -1547944695
+      cell_rat_walk_se_02: -1607206781
+      cell_rat_walk_se_03: -1958125990
+      cell_rat_walk_sw_00: -702495403
+      cell_rat_walk_sw_01: 1254807470
+      cell_rat_walk_sw_02: 946497800
+      cell_rat_walk_sw_03: -893325935
+      cell_rat_walk_w_00: 1353078055
+      cell_rat_walk_w_01: -261586281
+      cell_rat_walk_w_02: 1884850750
+      cell_rat_walk_w_03: 1240123332
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

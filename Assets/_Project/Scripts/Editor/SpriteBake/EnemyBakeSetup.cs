@@ -177,6 +177,11 @@ namespace ARPG.Editor
             ("BriarThrall", "stumpling", "briar_thrall"), ("Werewolf", "antler_fiend", "werewolf"), ("TuskedBoar", "bristleback", "tusked_boar"),
             // The forest's bosses (2026-11-03): baked at their VisualScale like every boss.
             ("BanditKing", "magpie_king", "bandit_king"), ("BroodMother", "brood_mother", null),
+            // The Iron Gaol (2026-11-14): ten kinds and the two bosses drawn in the 16x16 style.
+            ("ShackledWretch", "shackled_wretch", null), ("Turnkey", "turnkey", null), ("RackBrute", "rack_brute", null),
+            ("IronMaiden", "iron_maiden", null), ("CellRat", "cell_rat", null), ("GibbetCrow", "gibbet_crow", null),
+            ("GaolMastiff", "gaol_mastiff", null), ("CrossbowWarder", "crossbow_warder", null), ("BrandPriest", "brand_priest", null),
+            ("LampWarden", "lamp_warden", null),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the

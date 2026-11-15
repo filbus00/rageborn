@@ -48,6 +48,11 @@ namespace ARPG
         static Color32[] forestGrass, forestPath;
         static int forestGrassSize, forestPathSize;
         static float forestGrassMean;
+        // The Iron Gaol's flagstones as a drawn picture (2026-11-14, ArtSource/pixel/sixteen/gaol_art.py), read on the
+        // screen's grid in blocks like the forest's ground; null without it, and the prison darkens cobble and dirt.
+        public const string GaolFloorName = "gaol_floor";
+        static Color32[] gaolFloor;
+        static int gaolFloorSize;
         static readonly List<Object> made = new List<Object>();
         static readonly List<Vector3Int> positions = new List<Vector3Int>();
         static readonly List<TileBase> tiles = new List<TileBase>();
@@ -61,6 +66,7 @@ namespace ARPG
             cryptFloor = null;
             forestGrass = null;
             forestPath = null;
+            gaolFloor = null;
             made.Clear();
         }
 
@@ -111,7 +117,7 @@ namespace ARPG
             // The floor's tint (GradeRules.FloorTint; none since the darker floor of 2026-10-19 was too dark).
             ground.color = GradeRules.FloorTint;
             LoadTimer.Mark("ground: textures");
-            tileW = ForestOnScreenGrid(town) ? ForestTileUnit : SampleUnit;
+            tileW = ForestOnScreenGrid(town) || GaolOnScreenGrid(town) ? ForestTileUnit : SampleUnit;
             tileH = tileW / 2;
             if (cellPixels.Length != tileW * tileH)
                 cellPixels = new Color32[tileW * tileH];
@@ -236,6 +242,7 @@ namespace ARPG
             // The forest's slow light drift, from the cell's four corners (2026-11-03, the owner: "Loading times are getting
             // long"): two noises a pixel were a third of the ground's drawing, and the drift is over 2 and 6 cells.
             var forestFloor = !town && DungeonRules.Forest && dungeonTheme == DungeonTheme.Cave && forestGrass != null && forestPath != null;
+            var gaolFloorOn = GaolOnScreenGrid(town);
             float s00 = 0f, s10 = 0f, s01 = 0f, s11 = 0f;
             if (forestFloor)
             {
@@ -257,6 +264,13 @@ namespace ARPG
                     }
                     // The pixel's world offset from the cell's middle, then ground space (y doubled).
                     var g = new Vector2(centre.x + (x + 0.5f - tileW * 0.5f) / tileW, centre.y + 2f * (y + 0.5f - tileH * 0.5f) / tileW);
+                    if (gaolFloorOn)
+                    {
+                        // The gaol's flagstones, read on the screen's grid in blocks, under a slow damp drift.
+                        ForestBlockOf(g, out var fx, out var fy, out var fm);
+                        cellPixels[i] = Scale(gaolFloor[Wrap(fx, gaolFloorSize) + Wrap(fy, gaolFloorSize) * gaolFloorSize], GroundRules.GaolShade(fm));
+                        continue;
+                    }
                     if (!town && dungeonTheme == DungeonTheme.Crypt && cryptFloor != null)
                     {
                         var f = cryptFloor[Wrap(Mathf.FloorToInt(g.x * SampleUnit), cryptFloorSize) + Wrap(Mathf.FloorToInt(g.y * SampleUnit), cryptFloorSize) * cryptFloorSize];
@@ -363,6 +377,9 @@ namespace ARPG
         static bool ForestOnScreenGrid(bool town) =>
             !town && DungeonRules.Forest && dungeonTheme == DungeonTheme.Cave && forestGrass != null && forestPath != null;
 
+        // Whether this paint is the gaol's drawn floor on the screen's grid.
+        static bool GaolOnScreenGrid(bool town) => !town && dungeonTheme == DungeonTheme.Prison && gaolFloor != null;
+
         static float NearestPath(Vector2 ground)
         {
             var paths = GroundRules.TownPaths;
@@ -412,6 +429,7 @@ namespace ARPG
             cryptFloor = Picture(CryptFloorName, out cryptFloorSize);
             forestGrass = Picture(ForestGrassName, out forestGrassSize);
             forestPath = Picture(ForestPathName, out forestPathSize);
+            gaolFloor = Picture(GaolFloorName, out gaolFloorSize);
             forestGrassMean = 0f;
             if (forestGrass != null)
             {

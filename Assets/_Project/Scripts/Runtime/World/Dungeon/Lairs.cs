@@ -32,6 +32,12 @@ namespace ARPG
 
         /// <summary>Spiders (2026-10-26): egg sacs, webs, bones.</summary>
         Web,
+
+        /// <summary>The Iron Gaol's warders (2026-11-14): a brazier, a rack of weapons, stocks, barrels and crates.</summary>
+        GuardPost,
+
+        /// <summary>The Iron Gaol's confessors (2026-11-14): an altar, candles, a brazier, a rack to stretch a prisoner on.</summary>
+        Confessional,
     }
 
     /// <summary>A pack's lair: which theme its members make, and what it holds. Pure.</summary>
@@ -51,7 +57,8 @@ namespace ARPG
         }
 
         /// <summary>An elite pack's lair, by depth: a shrine above the middle of the dungeon, a nest below.</summary>
-        public static LairTheme EliteTheme(int depth) => depth >= 16 ? LairTheme.Nest : depth >= 7 ? LairTheme.Tomb : LairTheme.Shrine;
+        public static LairTheme EliteTheme(int depth) =>
+            DungeonRules.GaolAt(depth) ? LairTheme.GuardPost : depth >= 16 ? LairTheme.Nest : depth >= 7 ? LairTheme.Tomb : LairTheme.Shrine;
 
         public static LairTheme ThemeOf(PackMember member)
         {
@@ -74,6 +81,21 @@ namespace ARPG
                     return LairTheme.Shrine;
                 case PackMember.Spider:
                     return LairTheme.Web;
+                // The Iron Gaol's (2026-11-14): warders keep a guard post, the priest and the lamp a confessional, the
+                // kept and the beasts a den of straw and bones.
+                case PackMember.Turnkey:
+                case PackMember.CrossbowWarder:
+                case PackMember.RackBrute:
+                    return LairTheme.GuardPost;
+                case PackMember.BrandPriest:
+                case PackMember.LampWarden:
+                    return LairTheme.Confessional;
+                case PackMember.ShackledWretch:
+                case PackMember.CellRat:
+                case PackMember.IronMaiden:
+                case PackMember.GaolMastiff:
+                case PackMember.GibbetCrow:
+                    return LairTheme.Den;
                 case PackMember.Fallen:
                 case PackMember.Ogre:
                 case PackMember.Giant:
@@ -122,6 +144,8 @@ namespace ARPG
                 case LairTheme.Camp: return PropKind.Campfire;
                 case LairTheme.Shrine: return PropKind.Altar;
                 case LairTheme.Nest: return PropKind.Hellfire;
+                case LairTheme.GuardPost: return PropKind.Brazier;
+                case LairTheme.Confessional: return PropKind.Altar;
                 default: return null;
             }
         }
@@ -147,6 +171,10 @@ namespace ARPG
                     return new[] { (PropKind.FleshPod, 2, 5), (PropKind.Spikes, 2, 4), (PropKind.Stake, 0, 2) };
                 case LairTheme.Web:
                     return new[] { (PropKind.WebSac, 2, 4), (PropKind.BonePile, 1, 2) };
+                case LairTheme.GuardPost:
+                    return new[] { (PropKind.WeaponRack, 1, 1), (PropKind.Barrel, 1, 2), (PropKind.Crate, 1, 2), (PropKind.Stocks, 0, 1), (PropKind.Bucket, 0, 1) };
+                case LairTheme.Confessional:
+                    return new[] { (PropKind.Candles, 2, 4), (PropKind.Brazier, 1, 1), (PropKind.TortureBench, 0, 1) };
                 default:
                     return new (PropKind, int, int)[0];
             }
@@ -173,6 +201,10 @@ namespace ARPG
                     return new[] { (DecalKind.Gore, 4, 7), (DecalKind.Sigil, 1, 3), (DecalKind.Blood, 2, 4) };
                 case LairTheme.Web:
                     return new[] { (DecalKind.Net, 3, 6), (DecalKind.Bones, 2, 4), (DecalKind.Blood, 1, 2) };
+                case LairTheme.GuardPost:
+                    return new[] { (DecalKind.Straw, 1, 3), (DecalKind.Blood, 1, 2) };
+                case LairTheme.Confessional:
+                    return new[] { (DecalKind.Blood, 2, 4), (DecalKind.Skull, 1, 2) };
                 default:
                     return new (DecalKind, int, int)[0];
             }

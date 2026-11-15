@@ -273,12 +273,12 @@ namespace ARPG
                 case 18 when Deep("Gaoler") != null:
                     fight = new GameObject("Gaoler Fight").AddComponent<GaolerFight>();
                     definition = Deep("Gaoler");
-                    adds = Deep("Mummy") ?? normalEnemy;
+                    adds = Deep("ShackledWretch") ?? Deep("Mummy") ?? normalEnemy;
                     break;
                 case 24 when Deep("HangedMagistrate") != null:
                     fight = new GameObject("Hanged Magistrate Fight").AddComponent<HangedMagistrateFight>();
                     definition = Deep("HangedMagistrate");
-                    adds = Deep("SkeletonWarrior") ?? normalEnemy;
+                    adds = Deep("Turnkey") ?? Deep("SkeletonWarrior") ?? normalEnemy;
                     break;
                 // Each 12 deeper since the prison came between (2026-10-12).
                 case 30 when Deep("SaintMarrow") != null:
@@ -573,9 +573,12 @@ namespace ARPG
                     if (torch && torches >= MaxWallTorches)
                         name = "wall_chains";
                     name += faceX && (!faceY || WallHash(x, y, 4) < 0.5f) ? "_x" : "_y";
+                    // The gaol's own fittings, drawn for its walls (2026-11-14), when they are in.
+                    if (Layout.Theme == DungeonTheme.Prison && WorldArt.Get("gaol_" + name) != null)
+                        name = "gaol_" + name;
                     // A hair in front of its own block, so it draws over the wall and under anyone standing before it.
                     var detail = WorldArt.Place(name, parent, CellWorld(at) + new Vector3(0f, DrawLevel(at) * elevation.LevelHeight - 0.01f, 0f));
-                    if (detail == null || !torch || name == "wall_chains_x" || name == "wall_chains_y")
+                    if (detail == null || !torch || name.EndsWith("wall_chains_x") || name.EndsWith("wall_chains_y"))
                         continue;
                     torches++;
                     var glow = WorldLights.Add(detail.transform, new Color(1f, 0.55f, 0.25f), 1.0f, 0.3f, 3.5f, 0.5f);
@@ -1217,7 +1220,7 @@ namespace ARPG
             // the walls; walking into the cell before it takes her through.
             var down = objectName == "Stairs Down";
             var wallPiece = into == Vector2Int.zero ? null
-                : WorldArt.Get($"stairs_{(down ? "down" : "up")}_{(into.x != 0 ? "x" : "y")}_{(Layout.Theme == DungeonTheme.Cave ? (DungeonRules.Forest ? "forest" : "cave") : "crypt")}");
+                : WorldArt.Get($"stairs_{(down ? "down" : "up")}_{(into.x != 0 ? "x" : "y")}_{StairsTheme()}");
             if (wallPiece != null)
             {
                 var doorway = new GameObject("Doorway", typeof(SpriteRenderer));
@@ -1308,7 +1311,7 @@ namespace ARPG
             if (placement.Kind == PackKind.Elite)
             {
                 // The forest's elite packs are its own kinds raised to Elite, not the crypt's zombies (2026-11-03).
-                var elite = DungeonRules.Forest
+                var elite = DungeonRules.OwnRanks(depth)
                     ? Definition(PackComposition.Roll(depth, PackKind.Elite, 1, levelSeed, index)[0])?.Ranked(eliteEnemy) ?? eliteEnemy
                     : eliteEnemy;
                 pack.Configure(elite, null, placement.Count, placement.Radius, Layout.EnemyLevel);
@@ -1320,9 +1323,14 @@ namespace ARPG
             for (var i = 0; i < members.Length; i++)
                 perSlot[i] = Definition(members[i]);
             if (placement.Kind == PackKind.WithChampion && perSlot.Length > 0)
-                perSlot[0] = DungeonRules.Forest && perSlot[0] != null ? perSlot[0].Ranked(championEnemy) : championEnemy;
+                perSlot[0] = DungeonRules.OwnRanks(depth) && perSlot[0] != null ? perSlot[0].Ranked(championEnemy) : championEnemy;
             pack.Configure(perSlot, placement.Radius, Layout.EnemyLevel);
         }
+
+        // The theme in a stairway piece's name: the gaol's own doorway when it is drawn (2026-11-14), else the crypt's.
+        string StairsTheme() =>
+            Layout.Theme == DungeonTheme.Cave ? (DungeonRules.Forest ? "forest" : "cave")
+            : Layout.Theme == DungeonTheme.Prison && WorldArt.Get("stairs_down_x_gaol") != null ? "gaol" : "crypt";
 
         /// <summary>The definition a pack member uses here (for quest foes and the waves at a watch fire).</summary>
         public EnemyDefinition DefinitionOf(PackMember member) => Definition(member);

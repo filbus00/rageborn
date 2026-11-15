@@ -1,0 +1,990 @@
+fileFormatVersion: 2
+guid: b038ac555087d4af780132251f7f29c4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9185246419312250225
+    second: gaoler_idle_0
+  - first:
+      213: -3299792505127610979
+    second: gaoler_idle_1
+  - first:
+      213: 8349842941906116761
+    second: gaoler_idle_2
+  - first:
+      213: 8965237685267485428
+    second: gaoler_idle_3
+  - first:
+      213: -7263090788203395933
+    second: gaoler_idle_4
+  - first:
+      213: 9190196705252094073
+    second: gaoler_idle_5
+  - first:
+      213: 1758219972836458226
+    second: gaoler_idle_6
+  - first:
+      213: 1373156336114061098
+    second: gaoler_idle_7
+  - first:
+      213: -7182243352347151401
+    second: gaoler_idle_8
+  - first:
+      213: -8711994928924594473
+    second: gaoler_idle_9
+  - first:
+      213: -4288889537026311229
+    second: gaoler_idle_10
+  - first:
+      213: 2537272975798255006
+    second: gaoler_idle_11
+  - first:
+      213: -7180366673293735610
+    second: gaoler_idle_12
+  - first:
+      213: -4653227162712923113
+    second: gaoler_idle_13
+  - first:
+      213: 4052837621935770590
+    second: gaoler_idle_14
+  - first:
+      213: 4821784845772507372
+    second: gaoler_idle_15
+  - first:
+      213: -2523537969570178406
+    second: gaoler_idle_16
+  - first:
+      213: -3933214537045492769
+    second: gaoler_idle_17
+  - first:
+      213: 1217981808449767345
+    second: gaoler_idle_18
+  - first:
+      213: 6069136316792231203
+    second: gaoler_idle_19
+  - first:
+      213: -3870080197939781567
+    second: gaoler_idle_20
+  - first:
+      213: -1659869845073712784
+    second: gaoler_idle_21
+  - first:
+      213: -1410030367433418747
+    second: gaoler_idle_22
+  - first:
+      213: 798502605251841126
+    second: gaoler_idle_23
+  - first:
+      213: 8097115951487422479
+    second: gaoler_idle_24
+  - first:
+      213: 3361859361226891954
+    second: gaoler_idle_25
+  - first:
+      213: -6590399836225249972
+    second: gaoler_idle_26
+  - first:
+      213: 2306812856718767672
+    second: gaoler_idle_27
+  - first:
+      213: -1360558596952877165
+    second: gaoler_idle_28
+  - first:
+      213: 1396016463034359542
+    second: gaoler_idle_29
+  - first:
+      213: 1578980165880326169
+    second: gaoler_idle_30
+  - first:
+      213: -435204300894450375
+    second: gaoler_idle_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gaoler_idle_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 532
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce009c2895c9a4912ac92832cb34d19e
+      internalID: -907066277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_s_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 532
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1de9ef83a95ad403cb395cc2eb6bfeb5
+      internalID: -745072763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_s_02
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 532
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f9cc7f2619f2438da72699873fa1d87
+      internalID: -1285137495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_s_03
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 532
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b085edf94bea4abbb212206304b3e27
+      internalID: -1364962643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 456
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af0f890a7ea6141f5aaf6099e704a5fd
+      internalID: 438091162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_sw_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 456
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7f54111bb82c4ca6a49363a6e11374c
+      internalID: 1007436940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_sw_02
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 456
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e826e467abe8f4aac9953cc6ce01e36f
+      internalID: -23052692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_sw_03
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 456
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8024d7ac3d4c041fa8bb6ef1616d26c3
+      internalID: 406045543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 380
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c8e1bdf9d4de4d30b2ca4191c60b2e4
+      internalID: -629688476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_w_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 380
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2256c50d0b6684ef08617e89114b87fc
+      internalID: -1188935925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_w_02
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 380
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72f5d3b7f35604646b380d583559a925
+      internalID: 1696121225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_w_03
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 380
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34a7d50aafb014834911ee7dc1a4a676
+      internalID: -120369643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 304
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 528f7ca2241c64affa5e58d2304f1f8e
+      internalID: 1631427275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_nw_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 304
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9565f25b3e2a417d82e8b366d00d8ec
+      internalID: -1223007278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_nw_02
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 304
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52506317250a24e85bdb21ecee68c15b
+      internalID: 183443924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_nw_03
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 304
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c289b00fbb564e44b0f65412edc5680
+      internalID: 97523421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 228
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc2f2af7bba3942f6b93e963fb9ae1cd
+      internalID: 1653211158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_n_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 228
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adff218240e9b439586684387f2267fe
+      internalID: -542815832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_n_02
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 228
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92b422c0ad94f43deb5a04a1d2388782
+      internalID: -1493971532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_n_03
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 228
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6b21d5d8482c490bb2918e6e140afdd
+      internalID: -1355539366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 152
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92bdd89209db047e7b1d526de22bd6b6
+      internalID: 788118480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_ne_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 152
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae6578900d4b4699bd157c2b4d0bcff
+      internalID: 677749101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_ne_02
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 152
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1055c86f508a4e8ea9792f6b3ef0a72
+      internalID: -187786144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_ne_03
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 152
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feb5f36a507ef46289e0a128e08e0762
+      internalID: -26029456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 76
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dad3bff94967463cb963a789abec3c2
+      internalID: -2096720867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_e_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 76
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59cf8c660dc2945629c4e65f36375953
+      internalID: -1177366352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_e_02
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 76
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e660b9eb03fb4b23a72676e3a1ef720
+      internalID: 1419710295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_e_03
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 76
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1aa5d7d18acd4a7e9cd5bac700644e0
+      internalID: 1952383615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b40dd354c6aa481d869091c91bd8a68
+      internalID: -226172272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_se_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16b2a94db1fd54b9b8083182cd7f0e5d
+      internalID: -1447251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_se_02
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe2199cfd67ce461c881cf22d405b163
+      internalID: 1895105023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_idle_se_03
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7edab32a748a44939e6c5b950ba682f
+      internalID: -482459583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 484523072a9b94ed3acb43db20c0ac90
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      gaoler_idle_e_00: -2096720867
+      gaoler_idle_e_01: -1177366352
+      gaoler_idle_e_02: 1419710295
+      gaoler_idle_e_03: 1952383615
+      gaoler_idle_n_00: 1653211158
+      gaoler_idle_n_01: -542815832
+      gaoler_idle_n_02: -1493971532
+      gaoler_idle_n_03: -1355539366
+      gaoler_idle_ne_00: 788118480
+      gaoler_idle_ne_01: 677749101
+      gaoler_idle_ne_02: -187786144
+      gaoler_idle_ne_03: -26029456
+      gaoler_idle_nw_00: 1631427275
+      gaoler_idle_nw_01: -1223007278
+      gaoler_idle_nw_02: 183443924
+      gaoler_idle_nw_03: 97523421
+      gaoler_idle_s_00: -907066277
+      gaoler_idle_s_01: -745072763
+      gaoler_idle_s_02: -1285137495
+      gaoler_idle_s_03: -1364962643
+      gaoler_idle_se_00: -226172272
+      gaoler_idle_se_01: -1447251
+      gaoler_idle_se_02: 1895105023
+      gaoler_idle_se_03: -482459583
+      gaoler_idle_sw_00: 438091162
+      gaoler_idle_sw_01: 1007436940
+      gaoler_idle_sw_02: -23052692
+      gaoler_idle_sw_03: 406045543
+      gaoler_idle_w_00: -629688476
+      gaoler_idle_w_01: -1188935925
+      gaoler_idle_w_02: 1696121225
+      gaoler_idle_w_03: -120369643
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

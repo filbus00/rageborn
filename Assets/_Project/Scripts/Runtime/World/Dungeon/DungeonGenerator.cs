@@ -75,6 +75,15 @@ namespace ARPG
         /// </summary>
         public static bool Forest = true;
 
+        /// <summary>A level of the Iron Gaol (2026-11-14): the prison's depths when the level is not a forest. Its packs
+        /// are the gaol's own kinds (<see cref="PackComposition.GaolTable"/>), its champions and elites those kinds raised
+        /// to the rank, as in the forest.</summary>
+        public static bool GaolAt(int depth) => !Forest && depth >= PrisonFrom && depth < LibraryFrom;
+
+        /// <summary>Whether a level's champions and elites are its own kinds raised to the rank (the forest and the
+        /// gaol), not the crypt's old champion and elite.</summary>
+        public static bool OwnRanks(int depth) => Forest || GaolAt(depth);
+
         public static DungeonTheme ThemeAt(int depth) =>
             Forest ? DungeonTheme.Cave :
             depth >= CaveFrom ? DungeonTheme.Cave : depth >= LibraryFrom ? DungeonTheme.Library :

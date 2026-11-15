@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: 529da6fc27bd64c2190d8e30af091c2a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7890773437597112472
+    second: gaoler_hit_0
+  - first:
+      213: 6370581977636284818
+    second: gaoler_hit_1
+  - first:
+      213: -6875247921454021258
+    second: gaoler_hit_2
+  - first:
+      213: 8645233164055330477
+    second: gaoler_hit_3
+  - first:
+      213: 4984341981376794403
+    second: gaoler_hit_4
+  - first:
+      213: 4396300979589578497
+    second: gaoler_hit_5
+  - first:
+      213: 216151725597106670
+    second: gaoler_hit_6
+  - first:
+      213: -4352160321286477933
+    second: gaoler_hit_7
+  - first:
+      213: -5829697668556999445
+    second: gaoler_hit_8
+  - first:
+      213: -1886255899103306434
+    second: gaoler_hit_9
+  - first:
+      213: -8656285681266263932
+    second: gaoler_hit_10
+  - first:
+      213: -6181846111227227889
+    second: gaoler_hit_11
+  - first:
+      213: 8838957185489380928
+    second: gaoler_hit_12
+  - first:
+      213: 8630440129255650973
+    second: gaoler_hit_13
+  - first:
+      213: 6512445829652500762
+    second: gaoler_hit_14
+  - first:
+      213: 4972582163707394457
+    second: gaoler_hit_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gaoler_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 532
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f570a7078b8a34c449a6df686412bfd8
+      internalID: -1490127751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 532
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bca6323416b74288baa7986380376c7
+      internalID: -2051499585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 456
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccc040f077eb945b98b9e817ad0a82c2
+      internalID: 1716914484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 456
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4308ead1e7a404ee9aed3e987f563635
+      internalID: 362067464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 380
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f0dff79e2a3d47fc8116bc03a268b8f
+      internalID: -1759293052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 380
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c161ff918fac4b368fd509f7cbd58b5
+      internalID: -1775301117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 304
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21c0f149392e542af97900fab95a3905
+      internalID: 1470995817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 304
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9f8bf55ea5d34d4fb63a0da50d77e83
+      internalID: -898979506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 228
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a341b476f5dd848cfa455436fb59bb69
+      internalID: -1875130095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 228
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebec2a6c75fb243fa9567cd7e5d0e3bf
+      internalID: 1061604389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 152
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cfd9d0c12c954ab0ba4e7c3ea5bbb72
+      internalID: 1518672707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 152
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e6b020af3c4c4dff9fde96801b9eb33
+      internalID: -790373877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 76
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d6044ad80d940e28ccc562b61d1e07
+      internalID: -1867544632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 76
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22c436ce787d64c76a365c181a37b63f
+      internalID: 1342586898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 215af102f007548c295c872f34b96d0d
+      internalID: 485235924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gaoler_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74a481539a7a84fb7bf43d2ce579df05
+      internalID: -299482553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 96ed08b5acd4348969c765c5b63d1873
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      gaoler_hit_e_00: -1867544632
+      gaoler_hit_e_01: 1342586898
+      gaoler_hit_n_00: -1875130095
+      gaoler_hit_n_01: 1061604389
+      gaoler_hit_ne_00: 1518672707
+      gaoler_hit_ne_01: -790373877
+      gaoler_hit_nw_00: 1470995817
+      gaoler_hit_nw_01: -898979506
+      gaoler_hit_s_00: -1490127751
+      gaoler_hit_s_01: -2051499585
+      gaoler_hit_se_00: 485235924
+      gaoler_hit_se_01: -299482553
+      gaoler_hit_sw_00: 1716914484
+      gaoler_hit_sw_01: 362067464
+      gaoler_hit_w_00: -1759293052
+      gaoler_hit_w_01: -1775301117
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

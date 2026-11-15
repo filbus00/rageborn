@@ -104,6 +104,25 @@ namespace ARPG.Editor
                 so.FindProperty("splitInto").objectReferenceValue = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(Folder + "BlobSmall.asset");
                 so.FindProperty("splitCount").intValue = 2;
             });
+            // The Iron Gaol's (2026-11-14): each copied from the kind that fights its way. The wretch shuffles and swarms;
+            // the turnkey strikes twice and backs off like the cutthroat; the rack brute slams like the ghoul; the iron
+            // maiden is slow, armoured and her hits slow, like the drowned; rats swarm; crows fly and dart in like bats;
+            // mastiffs lunge like wolves; the warder shoots, the priest lays burning circles, the lamp warden's light
+            // makes those near him hit harder. Claude's numbers, to review.
+            Concept("ShackledWretch", "Swarmer", 1.3f, 2.9f, 1f);
+            Concept("Turnkey", "Cutthroat", 1.3f, 3.7f, 1.1f);
+            Concept("RackBrute", "Ghoul", 2.6f, 2.4f, 1.3f, so => F(so, "slamRadius", 2.2f));
+            Concept("IronMaiden", "Drowned", 3.2f, 1.9f, 1.4f, so =>
+            {
+                F(so, "armor", 60f);
+                F(so, "bodyRadius", 0.4f);
+            });
+            Concept("CellRat", "Rat", 0.4f, 4.4f, 0.65f);
+            Concept("GibbetCrow", "Bat", 0.5f, 4.2f, 0.75f);
+            Concept("GaolMastiff", "AshWolf", 1f, 4.6f, 1f);
+            Concept("CrossbowWarder", "BanditArcher", 1.1f, 0f, 1.15f, so => so.FindProperty("projectileColor").colorValue = new Color(0.8f, 0.82f, 0.85f, 1f));
+            Concept("BrandPriest", "EmberAcolyte", 1.1f, 0f, 1.1f);
+            Concept("LampWarden", "PyreKeeper", 1.7f, 0f, 1f);
         }
 
         [MenuItem("Tools/ARPG/Add Deep Roster")]

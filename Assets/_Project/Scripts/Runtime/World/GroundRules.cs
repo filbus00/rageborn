@@ -118,6 +118,16 @@ namespace ARPG
         public static float ForestShade(Vector2 ground) =>
             0.8f + 0.3f * (Smooth(ground.x / 6f, ground.y / 6f, 51) * 0.65f + Smooth(ground.x / 2f, ground.y / 2f, 53) * 0.35f);
 
+        /// <summary>
+        /// The gaol floor's damp at a point (2026-11-14): patches of darker, wetter stone over about 5 cells, in three flat
+        /// steps (0.82, 0.92, 1) so the flagstones stay pixel art and the picture's repeats do not look alike.
+        /// </summary>
+        public static float GaolShade(Vector2 ground)
+        {
+            var v = Smooth(ground.x / 5f, ground.y / 5f, 61) * 0.7f + Smooth(ground.x / 1.5f, ground.y / 1.5f, 67) * 0.3f;
+            return v < 0.38f ? 0.82f : v < 0.55f ? 0.92f : 1f;
+        }
+
         /// <summary>How dark the worn earth is beside the grass: trodden darker at its rim (0.78 on the edge), its own
         /// colour well inside (1 from a quarter of the way in).</summary>
         public static float PathRim(float amount) => amount >= 0.5f ? 0.78f : Mathf.Lerp(1f, 0.78f, Mathf.Clamp01((amount - 0.25f) / 0.25f));
