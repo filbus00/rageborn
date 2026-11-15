@@ -374,6 +374,8 @@ namespace ARPG
         // What a bite does beyond its damage, by the wolf's skills.
         void AfterBite(EnemyController target, float damage, bool killed)
         {
+            // Dread Howl (a boon, 2026-11-15): the bite frightens those round it.
+            PlayerCombat.Current?.OnWolfBite(target);
             // Rend: a bleed of a fifth of the bite a second a rank.
             var rend = GameSession.Current.Pets.ActiveRank(PetSkillId.Rend);
             if (rend > 0 && !killed && target.IsAlive)

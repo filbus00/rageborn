@@ -133,6 +133,14 @@ namespace ARPG
             };
         }
 
+        // A fun boon (2026-11-15): one rank, rare, offered from the first depth.
+        static TalentNode Fun(TalentTree tree, int tier, int column, string id, string name, PassiveEffect effect, string text)
+        {
+            var node = Rare(Passive(tree, tier, column, id, name, 1, effect, 1f, text), RareWeight);
+            node.AnyDepth = true;
+            return node;
+        }
+
         static TalentNode Rare(TalentNode node, float weight)
         {
             node.Weight = weight;
@@ -179,6 +187,19 @@ namespace ARPG
                 Improved(M, 3, 1, "split_arrow", "SplitArrow", "Split Arrow"),
                 Improved(M, 4, 0, "kill_shot", "KillShot", "Kill Shot"),
                 Skill(M, 5, 1, "barrage", "Barrage", "Barrage", "Learn Barrage: eight arrows over a second as she moves."),
+                // The fun boons (2026-11-15, the owner: "lets add some fun boons. One suggestion is dragon fire ... suggest
+                // more", then "add all of them as rare boons"): rare, offered from the first depth whatever their row
+                // (rows 0 and 1 are full). FunBoonRules holds their numbers, Claude's, to review (Docs/08).
+                Fun(M, 2, 0, "dragon_fire", "Dragon Fire", PassiveEffect.DragonFire,
+                    "Every fourth shot bursts as it leaves the bow: a cone of fire 4.5 long that strikes and sets burning all it touches."),
+                Fun(M, 2, 3, "storm_quiver", "Storm Quiver", PassiveEffect.StormQuiver,
+                    "Every fifth arrow calls lightning down on what it hits, and the bolt jumps to two enemies nearby."),
+                Fun(M, 3, 2, "boomerang_arrow", "Boomerang Arrow", PassiveEffect.BoomerangArrow,
+                    "Her arrows turn round where they end and fly back to her through every enemy on the way, at half damage."),
+                Fun(M, 3, 3, "rain_of_arrows", "Rain of Arrows", PassiveEffect.RainOfArrows,
+                    "After two seconds standing still in a fight, arrows rain on a circle round her target for as long as she stays put."),
+                Fun(M, 4, 1, "last_arrow", "Last Arrow", PassiveEffect.LastArrow,
+                    "Once a level, below a third of her life, her next shot is a great arrow: six times the damage, a certain crit, through everything."),
 
                 // Beast Mastery: arrows that hunt on after the hit.
                 Skill(B, 0, 0, "homing_arrow", "Homing Arrow", "HomingArrow", "Learn Homing Arrow: three arrows that seek their targets."),
@@ -207,6 +228,12 @@ namespace ARPG
                 Wolf(3, 1, PetSkillId.PackHowl),
                 Wolf(3, 2, PetSkillId.BloodFeast, "wolf_rend"),
                 Wolf(3, 3, PetSkillId.PackHunt),
+                Fun(B, 4, 0, "ghost_archer", "Ghost Archer", PassiveEffect.GhostArcher,
+                    "A pale copy of her stands where she dived from and keeps shooting for four seconds."),
+                Fun(B, 4, 2, "bone_arrows", "Bone Arrows", PassiveEffect.BoneArrows,
+                    "Her kills drop bone shards; each one she walks over adds a free arrow to her next shot, up to five."),
+                Fun(B, 4, 3, "dread_howl", "Dread Howl", PassiveEffect.DreadHowl,
+                    "The wolf's bite frightens the enemies round it: they are thrown back from her, slowed, and her arrows deal 30 percent more to them for three seconds."),
 
                 // Survival: fire, frost and lightning, and the heavy skills.
                 Skill(S, 0, 0, "knockback_shot", "Knockback Shot", "KnockbackShot", "Learn Knockback Shot: a heavy arrow that throws enemies back."),
@@ -227,6 +254,8 @@ namespace ARPG
                 Skill(S, 2, 0, "explosive_arrow", "Explosive Arrow", "ExplosiveArrow", "Learn Explosive Arrow: an arrow that bursts among a crowd."),
                 Improved(S, 3, 0, "explosive_arrow", "ExplosiveArrow", "Explosive Arrow"),
                 Improved(S, 4, 0, "knockback_shot", "KnockbackShot", "Knockback Shot"),
+                Fun(S, 2, 1, "frost_trail", "Frost Trail", PassiveEffect.FrostTrail,
+                    "Her dive leaves ice behind her for four seconds: enemies on it are slowed and chilled, and freeze if they stay."),
             };
         }
 

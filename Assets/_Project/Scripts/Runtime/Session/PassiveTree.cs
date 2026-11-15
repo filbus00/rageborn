@@ -30,6 +30,9 @@ namespace ARPG
 
         // Boons (2026-10-19, the owner: "The game is too hard ... Add 3 more powerfull boons").
         Executioner, ThickHide, BloodDrinker,
+
+        // Boons (2026-11-15, the owner: "lets add some fun boons ... add all of them as rare boons"): FunBoonRules.
+        DragonFire, StormQuiver, FrostTrail, BoomerangArrow, RainOfArrows, GhostArcher, BoneArrows, DreadHowl, LastArrow,
     }
 
     public sealed class PassiveNode
@@ -336,6 +339,9 @@ namespace ARPG
         /// (<see cref="SurvivalBoonRules"/>).</summary>
         public bool Executioner, ThickHide, BloodDrinker;
 
+        /// <summary>Boons (2026-11-15, the fun ones, each on or off; <see cref="FunBoonRules"/>).</summary>
+        public bool DragonFire, StormQuiver, FrostTrail, BoomerangArrow, RainOfArrows, GhostArcher, BoneArrows, DreadHowl, LastArrow;
+
         public void Add(PassiveEffect effect, float value)
         {
             switch (effect)
@@ -394,6 +400,15 @@ namespace ARPG
                 case PassiveEffect.Executioner: Executioner = true; break;
                 case PassiveEffect.ThickHide: ThickHide = true; break;
                 case PassiveEffect.BloodDrinker: BloodDrinker = true; break;
+                case PassiveEffect.DragonFire: DragonFire = true; break;
+                case PassiveEffect.StormQuiver: StormQuiver = true; break;
+                case PassiveEffect.FrostTrail: FrostTrail = true; break;
+                case PassiveEffect.BoomerangArrow: BoomerangArrow = true; break;
+                case PassiveEffect.RainOfArrows: RainOfArrows = true; break;
+                case PassiveEffect.GhostArcher: GhostArcher = true; break;
+                case PassiveEffect.BoneArrows: BoneArrows = true; break;
+                case PassiveEffect.DreadHowl: DreadHowl = true; break;
+                case PassiveEffect.LastArrow: LastArrow = true; break;
             }
         }
     }

@@ -164,6 +164,9 @@ namespace ARPG
             public float ExecuteMultiplier;
             // Thunder Arrow (a boon): lightning where it strikes, once.
             public bool Thunder;
+            // The fun boons (2026-11-15): Storm Quiver's bolt on its first hit, Boomerang Arrow's turn back to her.
+            public bool Storm;
+            public bool Returns;
             // What it looks like it carries (2026-10-18): fire, frost, lightning, each with its trail and its hit.
             public bool Fiery, Frosty, Charged;
         }
@@ -196,6 +199,8 @@ namespace ARPG
             public float Pulse;
             // Cinder-Stitched Jerkin's burning ground instead of blood: it burns and slows.
             public bool Burning;
+            // Frost Trail's ice (a boon, 2026-11-15): it slows and chills.
+            public bool Icy;
         }
 
         readonly List<GroundMark> marks = new List<GroundMark>(32);
@@ -596,6 +601,7 @@ namespace ARPG
                 first.Charged = true;
                 first.Glow = LightningColor;
             }
+            FunBoonsOnShot(ref first, origin, aim);
             shots.Add(first);
 
             // Galeheart: at full Momentum, two more arrows in a narrow fan.
@@ -628,6 +634,7 @@ namespace ARPG
             }
 
             AddExtraArrows(firstShot);
+            LooseBoneArrows(origin, aim);
             // Arrow Nova (a boon): every sixth shot, a ring of arrows all round her.
             if (session.Talents.Bonuses.ArrowNova && basicShotCount % NovaEvery == 0)
                 for (var k = 0; k < NovaArrows; k++)
@@ -1619,8 +1626,9 @@ namespace ARPG
                             continue;
                         done = HitEnemy(ref shot, enemy, direction);
                     }
-                    if (shot.Travelled >= shot.MaxDistance)
-                        done = true;
+                    // Spent at its end, unless it turns back to her (Boomerang Arrow).
+                    if (!done && shot.Travelled >= shot.MaxDistance)
+                        done = !TurnBack(ref shot, null);
                 }
 
                 if (done)
@@ -1753,12 +1761,20 @@ namespace ARPG
                     mark.Pulse += MarkPulseSeconds;
                     if (mark.Burning)
                         fx.Embers(Elevation.World2(mark.Center), mark.Radius * 2f, 2);
+                    if (mark.Icy)
+                        fx.FrostShards(Elevation.World2(mark.Center), Vector2.up, 0.1f, 0.5f);
                     enemies.QueryEnemies(mark.Center, mark.Radius + QueryMargin, nearby);
                     for (var n = 0; n < nearby.Count; n++)
                     {
                         var enemy = nearby[n];
                         if (!enemy.IsAlive || Vector2.Distance(enemy.GroundPosition, mark.Center) > mark.Radius + enemy.Definition.BodyRadius)
                             continue;
+                        if (mark.Icy)
+                        {
+                            enemy.ApplySlow(1f - FunBoonRules.IceSlow, MarkPulseSeconds * 2f);
+                            enemy.ApplyChill();
+                            continue;
+                        }
                         if (!mark.Burning)
                         {
                             enemy.ApplyBleed(Damage(enemy, Legendaries.GallowsBleedPerSecond, false), MarkPulseSeconds * 2f);
@@ -1810,6 +1826,11 @@ namespace ARPG
                 shot.Thunder = false;
                 Thunder(enemy, multiplier);
             }
+            if (shot.Storm)
+            {
+                shot.Storm = false;
+                Storm(enemy, multiplier);
+            }
             if (shot.KnockDistance > 0f)
                 KnockBack(enemy, direction, shot);
             HealOnHit(1);
@@ -1856,7 +1877,7 @@ namespace ARPG
                     return false;
                 }
             }
-            return true;
+            return !TurnBack(ref shot, enemy);
         }
 
         // The nearest living enemy to another within a radius that is not in a set (Ricochet's next mark).
@@ -2358,7 +2379,7 @@ namespace ARPG
         float ArrowMore(EnemyController enemy)
         {
             var equipment = session.Equipment;
-            var more = PreyMore(enemy);
+            var more = PreyMore(enemy) * FrightMore(enemy);
             if (equipment.Wears(LegendaryId.TheLongSilence) && player != null &&
                 Vector2.Distance(IsoMath.WorldToGround(player.transform.position), enemy.GroundPosition) > Legendaries.LongSilenceFar)
                 more *= 1f + Legendaries.LongSilenceBonus;

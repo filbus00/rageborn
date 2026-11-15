@@ -70,6 +70,16 @@ namespace ARPG
             "wildfire" => ("flame", new Color32(255, 160, 40, 255), new Color32(200, 40, 20, 255)),
             "shatter" => ("frost", Bone, new Color32(120, 200, 255, 255)),
             "explosive_arrow" => ("burst", new Color32(240, 120, 30, 255), new Color32(255, 220, 110, 255)),
+            // The fun boons (2026-11-15).
+            "dragon_fire" => ("flame", new Color32(255, 90, 30, 255), new Color32(255, 230, 120, 255)),
+            "storm_quiver" => ("bolt", new Color32(120, 170, 255, 255), new Color32(255, 240, 160, 255)),
+            "frost_trail" => ("frost", new Color32(190, 235, 255, 255), new Color32(90, 150, 230, 255)),
+            "boomerang_arrow" => ("bounce", new Color32(240, 200, 80, 255), Bone),
+            "rain_of_arrows" => ("arrows", new Color32(240, 200, 80, 255), Bone),
+            "ghost_archer" => ("seek", new Color32(170, 220, 255, 255), new Color32(110, 150, 220, 255)),
+            "bone_arrows" => ("skull", Bone, Wood),
+            "dread_howl" => ("paw", new Color32(200, 60, 50, 255), Bone),
+            "last_arrow" => ("burst", new Color32(255, 220, 110, 255), new Color32(220, 50, 40, 255)),
             // The boons of 2026-10-19.
             "executioner" => ("skull", new Color32(220, 60, 50, 255), Bone),
             "thick_hide" => ("shield", Wood, new Color32(120, 84, 50, 255)),

@@ -94,6 +94,8 @@ namespace ARPG
             var frozen = boons.Shatter && enemy.IsFrozen;
             if (burning || frozen)
                 boonDeaths.Add(new BoonDeath { Enemy = enemy, At = enemy.GroundPosition, Burning = burning, Frozen = frozen });
+            if (boons.BoneArrows)
+                DropShard(enemy.GroundPosition);
         }
 
         /// <summary>Once a frame, after the shots: the deaths that spread, the prey, and a dive's volley.</summary>
@@ -101,6 +103,7 @@ namespace ARPG
         {
             HookBoonKills();
             var boons = session.Talents.Bonuses;
+            UpdateFunBoons(origin, deltaTime, boons);
             for (var d = 0; d < boonDeaths.Count; d++)
                 SpreadDeath(boonDeaths[d]);
             boonDeaths.Clear();
@@ -193,7 +196,7 @@ namespace ARPG
         }
 
         // A basic arrow at each of the nearest enemies she can see within her reach (Dive Volley, Vengeful Quiver).
-        void LooseAtNearest(Vector2 origin, int count)
+        void LooseAtNearest(Vector2 origin, int count, float share = 1f)
         {
             if (enemies == null)
                 return;
@@ -222,7 +225,7 @@ namespace ARPG
                 boonNearby.RemoveAt(best);
                 if (aim.sqrMagnitude < 1e-6f)
                     continue;
-                shots.Add(NewArrow(origin, aim * ArrowSpeed, reach + ArrowOvershoot, 1f, ShotStyle.Basic, BasicTrailColor));
+                shots.Add(NewArrow(origin, aim * ArrowSpeed, reach + ArrowOvershoot, share, ShotStyle.Basic, BasicTrailColor));
             }
             Sfx.Play(SoundId.ArrowShot, 0.5f);
         }
