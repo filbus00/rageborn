@@ -51,17 +51,34 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void TheCrosshair_WidensAndWarmsWithPace()
+        public void TheArc_WidensAndWarmsWithPace()
         {
-            // The owner, 2026-11-08: green and tight aiming true, yellow and wider moving less, red and widest moving.
+            // The owner, 2026-11-08: green and tight aiming true, yellow and wider moving less, red and widest moving; since
+            // 2026-11-15 an arc of dashes round her feet, not a crosshair on the target.
             var standing = AimRules.Aim(0f);
             var walking = AimRules.Aim(0.7f);
             var running = AimRules.Aim(1f);
-            Assert.AreEqual(AimCone.SteadyGap, AimCone.GapFor(standing));
-            Assert.Greater(AimCone.GapFor(walking), AimCone.GapFor(standing));
-            Assert.Greater(AimCone.GapFor(running), AimCone.GapFor(walking));
+            Assert.AreEqual(AimCone.SteadyHalf, AimCone.HalfFor(standing));
+            Assert.Greater(AimCone.HalfFor(walking), AimCone.HalfFor(standing));
+            Assert.Greater(AimCone.HalfFor(running), AimCone.HalfFor(walking));
             Assert.Greater(AimCone.ColourFor(standing).g, AimCone.ColourFor(standing).r);
             Assert.Greater(AimCone.ColourFor(running).r, AimCone.ColourFor(running).g);
+        }
+
+        [Test]
+        public void TheArc_HasAMiddleDash_AndSpreadsEvenlyToItsEdges()
+        {
+            foreach (var half in new[] { AimCone.SteadyHalf, AimCone.WalkingHalf, AimCone.RunningHalf })
+            {
+                var count = AimCone.DashCount(half);
+                Assert.AreEqual(1, count % 2, "odd, so one dash points at the target");
+                Assert.GreaterOrEqual(count, 3);
+                Assert.LessOrEqual(count, 15);
+                Assert.AreEqual(-half, AimCone.AngleOf(0, count, half), 1e-4f);
+                Assert.AreEqual(half, AimCone.AngleOf(count - 1, count, half), 1e-4f);
+                Assert.AreEqual(0f, AimCone.AngleOf(count / 2, count, half), 1e-4f);
+            }
+            Assert.Greater(AimCone.DashCount(AimCone.RunningHalf), AimCone.DashCount(AimCone.SteadyHalf));
         }
     }
 }

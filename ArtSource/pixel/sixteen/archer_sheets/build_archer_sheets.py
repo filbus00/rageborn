@@ -276,12 +276,79 @@ def helm_frame(frame, spec, head, row):
     return helm
 
 
+GREENS = [rgb(116, 182, 92), rgb(62, 132, 66), rgb(36, 84, 50)]        # her tunic: light, mid, dark
+REDS = [rgb(192, 42, 46), rgb(122, 22, 38)]                             # her cape
+WOOD = [rgb(154, 104, 54), rgb(132, 86, 46), rgb(84, 52, 30)]           # her bow, belt and straps: light, mid, dark
+STRING = [rgb(242, 238, 222), rgb(228, 224, 202), rgb(214, 220, 230)]
+
+
+def quiver_pixels(frame, head, row):
+    """The quiver in her picture (2026-11-15, the owner: "when the character is viewed from the front there is quiver over
+    her shoulder but that is not shown when she is seen from the back. remove the quiver"): the cream fletching that shows
+    over her shoulder beside her hair in the views from the front (the pixels bow_recolour used to leave as a feather in her
+    hair) and the wood strap across her cape in the views from the back."""
+    todo = np.zeros((C, C), bool)
+
+    def cape(x, y, step):
+        x += step
+        while 0 <= x < C and is_colour(frame[y, x], WOOD):
+            x += step
+        return 0 <= x < C and is_colour(frame[y, x], REDS)
+
+    for y in range(C):
+        for x in range(C):
+            px = frame[y, x]
+            if px[3] < 0.5:
+                continue
+            if is_colour(px, STRING):
+                feather = any(0 <= x + dx < C and 0 <= y + dy < C and is_colour(frame[y + dy, x + dx], HAIR)
+                              for dx in (-2, -1, 0, 1, 2) for dy in (-1, 0, 1))
+                if head is not None:
+                    feather = feather and head[1] <= y <= head[1] + 5
+                todo[y, x] = feather
+            elif is_colour(px, WOOD) and row in (3, 4, 5) and cape(x, y, -1) and cape(x, y, 1):
+                todo[y, x] = True
+    return todo
+
+
+def remove_pixels(frame, todo):
+    """A frame with some of its pixels taken out: each takes the colour beside it, or goes when nothing of her is beside
+    it; the outline is closed again."""
+    out = frame.copy()
+    todo = todo.copy()
+    ink = np.array([[is_colour(frame[y, x], [INK]) and frame[y, x, 3] > 0.5 for x in range(C)] for y in range(C)])
+    body = (frame[..., 3] > 0.5) & ~ink & ~todo
+    for _ in range(3):
+        filled = []
+        for y, x in zip(*np.where(todo)):
+            near = [(yy, xx) for yy, xx in ((y, x - 1), (y, x + 1), (y - 1, x), (y + 1, x))
+                    if 0 <= yy < C and 0 <= xx < C and body[yy, xx]]
+            if len(near) >= 2:
+                filled.append((y, x, out[near[0]].copy()))
+        for y, x, colour in filled:
+            out[y, x] = colour
+            body[y, x] = True
+            todo[y, x] = False
+    out[todo] = 0
+    for y, x in zip(*np.where(ink)):          # outline that outlined only what was taken
+        if not body[max(0, y - 1):y + 2, max(0, x - 1):x + 2].any():
+            out[y, x] = 0
+    solid = out[..., 3] > 0.5
+    for y, x in zip(*np.where(body)):          # and the gaps it left in her outline
+        for yy, xx in ((y, x - 1), (y, x + 1), (y - 1, x), (y + 1, x)):
+            if 0 <= yy < C and 0 <= xx < C and not solid[yy, xx]:
+                out[yy, xx] = (*INK, 1)
+    return out
+
+
 heads = []
 for row in range(8):
     stand = short[row][0]
     top = int(np.where(stand[..., 3] > 0.5)[0].min())
     heads.append([find_head(short[row][col], stand, top) for col in range(14)])
     print("heads", row, heads[row])
+# No quiver on her, in any frame: everything below is made from these.
+short = [[remove_pixels(short[row][col], quiver_pixels(short[row][col], heads[row][col], row)) for col in range(14)] for row in range(8)]
 helm_cells = {look: [[helm_frame(short[row][col], spec, heads[row][col], row) for col in range(14)] for row in range(8)]
               for look, spec in HELMS.items()}
 # Every helm on her, to look at: a helm a block, her standing frame, a walk, a shot and the dive's four in 8 directions.
@@ -303,10 +370,6 @@ save(np.concatenate(sheet_of_helms, 1), os.path.join(HERE, "wild_arrow_helms_pre
 # --- Armour and bows (2026-11-11, the owner: "add sprites for armor and bows") -----------------------------------------
 # Chest armour is her body's own sheets with her tunic in the armour's colours (the game's body layer has a sheet a
 # look: "body_<look>"); a bow is a layer over her, her drawn bow and its string in the bow's colours ("weapon_<look>").
-GREENS = [rgb(116, 182, 92), rgb(62, 132, 66), rgb(36, 84, 50)]        # her tunic: light, mid, dark
-REDS = [rgb(192, 42, 46), rgb(122, 22, 38)]                             # her cape
-WOOD = [rgb(154, 104, 54), rgb(132, 86, 46), rgb(84, 52, 30)]           # her bow, belt and straps: light, mid, dark
-STRING = [rgb(242, 238, 222), rgb(228, 224, 202), rgb(214, 220, 230)]
 
 # ramp: the tunic's light, mid, dark; marks: (colour, every how many pixels) dotted over it; weave: light and mid
 # alternate (scales, mail); cape: her cape's two reds.
@@ -414,31 +477,7 @@ def drawn_bow(frame, head, row):
 def without_bow(frame, head, row):
     """Her body with the drawn bow taken out: its pixels take the colour beside them, or go when nothing of her is
     beside them; the outline is closed again."""
-    out = frame.copy()
-    todo = drawn_bow(frame, head, row)
-    ink = np.array([[is_colour(frame[y, x], [INK]) and frame[y, x, 3] > 0.5 for x in range(C)] for y in range(C)])
-    body = (frame[..., 3] > 0.5) & ~ink & ~todo
-    for _ in range(3):
-        filled = []
-        for y, x in zip(*np.where(todo)):
-            near = [(yy, xx) for yy, xx in ((y, x - 1), (y, x + 1), (y - 1, x), (y + 1, x))
-                    if 0 <= yy < C and 0 <= xx < C and body[yy, xx]]
-            if len(near) >= 2:
-                filled.append((y, x, out[near[0]].copy()))
-        for y, x, colour in filled:
-            out[y, x] = colour
-            body[y, x] = True
-            todo[y, x] = False
-    out[todo] = 0
-    for y, x in zip(*np.where(ink)):          # outline that outlined only the bow
-        if not body[max(0, y - 1):y + 2, max(0, x - 1):x + 2].any():
-            out[y, x] = 0
-    solid = out[..., 3] > 0.5
-    for y, x in zip(*np.where(body)):          # and the gaps the bow left in her outline
-        for yy, xx in ((y, x - 1), (y, x + 1), (y - 1, x), (y + 1, x)):
-            if 0 <= yy < C and 0 <= xx < C and not solid[yy, xx]:
-                out[yy, xx] = (*INK, 1)
-    return out
+    return remove_pixels(frame, drawn_bow(frame, head, row))
 
 
 # Where she holds a bow, by direction (s, sw, w, nw, n, ne, e, se): the grip, the way the bow's back faces, how much of
