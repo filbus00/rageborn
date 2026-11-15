@@ -508,6 +508,10 @@ namespace ARPG
             lit.Sort((a, b) => LightRank(a.Value).CompareTo(LightRank(b.Value)));
             if (lit.Count > MaxPropLights)
                 lit.RemoveRange(MaxPropLights, lit.Count - MaxPropLights);
+            // Sparks and smoke at every fire, lit or not, and what drifts in the air (2026-11-15).
+            foreach (var pair in Layout.Props)
+                if (DungeonDressing.IsLit(pair.Value))
+                    Fires.Add((Vector2)CellWorld(pair.Key) + new Vector2(0f, FlameHeight(pair.Value)), FireOf(pair.Value));
             foreach (var pair in lit)
             {
                 var go = new GameObject(pair.Value.ToString());
@@ -531,6 +535,20 @@ namespace ARPG
         }
 
         const int MaxPropLights = 48;
+
+        FireFx fires;
+
+        // Made when the first fire asks (the props' in Paint, or a stairway's torches before it).
+        FireFx Fires => fires != null ? fires
+            : fires = FireFx.Begin(transform, ForestLevel ? MoteKind.Fireflies : Layout.Theme == DungeonTheme.Prison ? MoteKind.Dust : MoteKind.None);
+
+        static FireKind FireOf(PropKind kind) =>
+            kind == PropKind.Campfire ? FireKind.Campfire : kind == PropKind.Brazier ? FireKind.Brazier : kind == PropKind.Torch ? FireKind.Torch
+            : kind == PropKind.Hellfire ? FireKind.Hellfire : kind == PropKind.BurningBooks ? FireKind.Campfire : FireKind.Candles;
+
+        // Where a prop's flame is over its cell's middle (world units), by its picture.
+        static float FlameHeight(PropKind kind) =>
+            kind == PropKind.Torch ? 0.95f : kind == PropKind.Brazier ? 0.8f : kind == PropKind.Candles ? 0.35f : 0.45f;
 
         static int LightRank(PropKind kind) =>
             kind == PropKind.Campfire || kind == PropKind.Hellfire ? 0 : kind == PropKind.Brazier || kind == PropKind.Torch ? 1 : 2;
@@ -581,6 +599,9 @@ namespace ARPG
                     if (detail == null || !torch || name.EndsWith("wall_chains_x") || name.EndsWith("wall_chains_y"))
                         continue;
                     torches++;
+                    // The gaol's torch burns on the block's face: left of its middle on the -x face, right on the -y.
+                    if (name.StartsWith("gaol_"))
+                        Fires.Add((Vector2)detail.transform.position + new Vector2(name.EndsWith("_x") ? -0.26f : 0.26f, 1.3f), FireKind.Torch);
                     var glow = WorldLights.Add(detail.transform, new Color(1f, 0.55f, 0.25f), 1.0f, 0.3f, 3.5f, 0.5f);
                     if (glow != null)
                         detail.gameObject.AddComponent<FlickerLight>().Init(glow, x * 1.3f + y * 0.7f);
@@ -1185,6 +1206,11 @@ namespace ARPG
                 r.sortingLayerName = GameSortingLayers.Entities;
                 r.spriteSortPoint = SpriteSortPoint.Pivot;
                 WorldArt.Lit(r);
+                // Its lantern: a few sparks and a pool of light (2026-11-15).
+                Fires.Add((Vector2)post.transform.position + new Vector2(0f, 1.1f), FireKind.Lantern);
+                var lantern = WorldLights.Add(post.transform, new Color(1f, 0.78f, 0.4f), 1.2f, 0.3f, 4f, 0.9f);
+                if (lantern != null)
+                    post.AddComponent<FlickerLight>().Init(lantern, cut.Mouth.x * 1.3f);
                 var glow = GroundMarker.NewSprite("Glow", PixelMarks.Glow(0.9f), new Color(1f, 0.78f, 0.38f, 0.5f), post.transform, 2);
                 glow.transform.localPosition = Vector3.zero;
             }
@@ -1232,6 +1258,14 @@ namespace ARPG
                 doorwayRenderer.sortingLayerName = GameSortingLayers.Entities;
                 doorwayRenderer.spriteSortPoint = SpriteSortPoint.Pivot;
                 WorldArt.Lit(doorwayRenderer);
+                // The gaol's doorway has a torch either side (gaol_art.py's doorway): sparks at each, mirrored for the
+                // doorway into a +y wall.
+                if (StairsTheme() == "gaol")
+                {
+                    var flip = into.x != 0 ? 1f : -1f;
+                    Fires.Add((Vector2)doorway.transform.position + new Vector2(-0.85f * flip, 1.6f), FireKind.Torch);
+                    Fires.Add((Vector2)doorway.transform.position + new Vector2(0.33f * flip, 1f), FireKind.Torch);
+                }
                 var trigger = go.GetComponent<CircleCollider2D>();
                 trigger.isTrigger = true;
                 // The doorway is three cells wide; the trigger reaches the cells before its sides.

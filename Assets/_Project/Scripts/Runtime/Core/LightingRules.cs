@@ -40,8 +40,28 @@ namespace ARPG
         /// <summary>The prison (2026-10-12, the concept art): dark, lit warm by torches and braziers.</summary>
         static readonly Color PrisonTorch = new Color(0.85f, 0.6f, 0.45f);
 
+        /// <summary>The forest (2026-11-15, lights back on): dusk under the trees, a little dimmer and cooler than plain
+        /// white, so a campfire's pool shows without the wood going dark. Claude's numbers, to review.</summary>
+        public static readonly Mood Forest = new Mood(new Color(0.78f, 0.86f, 0.98f), 0.62f, 0.95f);
+
+        /// <summary>The Iron Gaol (2026-11-15): clearly dark and cold, lit by its torches, braziers and her ember.</summary>
+        public static readonly Mood Gaol = new Mood(new Color(0.72f, 0.74f, 0.94f), 0.5f, 0.88f);
+
+        /// <summary>How strong a point light is in a scene by its ambient light: full in the old near-black dungeon,
+        /// less the brighter the scene, so a fire in the forest warms the ground without washing it out.</summary>
+        public static float LightScale(float ambientIntensity) => Mathf.Clamp(1.15f - ambientIntensity, 0.4f, 1f);
+
+        /// <summary>How far her ember reaches by the scene's ambient light: all of it in the old near-black dungeon (it
+        /// was all there was to see by), a little over half in the forest and the gaol, so the scene's own dimness shows
+        /// round her and each fire is its own pool.</summary>
+        public static float EmberReach(float ambientIntensity) => ambientIntensity > 0.3f ? 0.55f : 1f;
+
         public static Mood DungeonAt(int depth)
         {
+            if (DungeonRules.Forest)
+                return Forest;
+            if (DungeonRules.GaolAt(depth))
+                return Gaol;
             var t = Mathf.Clamp01((depth - 1) / (float)(DungeonRules.Depths - 1));
             var color = Color.Lerp(Dungeon.Ambient, new Color(0.72f, 0.46f, 0.58f), t);
             // The burnt library smoulders (2026-10-11): its light turns toward ember orange, most in its middle levels.

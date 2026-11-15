@@ -71,7 +71,8 @@ namespace ARPG
 
             var player = FindAnyObjectByType<PlayerController>();
             // Pellam's lantern and the great lamp (2026-10-08, quests) carry her light further below.
-            var reach = scene.name == SceneTravel.DungeonScene ? GameSession.Current.Quests.Boons.Light : 1f;
+            var reach = (scene.name == SceneTravel.DungeonScene ? GameSession.Current.Quests.Boons.Light : 1f) *
+                        LightingRules.EmberReach(mood.Value.AmbientIntensity);
             if (player != null)
                 Flicker(WorldLights.Add(player.transform, LightingRules.EmberColor, LightingRules.EmberIntensity,
                     LightingRules.EmberInnerRadius * reach, LightingRules.EmberOuterRadius * reach, 0.4f));
@@ -140,8 +141,10 @@ namespace ARPG
         /// <summary>A point light on an object, once (a second call returns the first). Null in a fully lit scene.</summary>
         public static Light2D Add(Transform owner, Color color, float intensity, float innerRadius, float outerRadius, float height = 0f)
         {
-            if (owner == null || !MoodOf(owner.gameObject.scene).HasValue)
+            var mood = owner != null ? MoodOf(owner.gameObject.scene) : null;
+            if (!mood.HasValue)
                 return null;
+            intensity *= LightingRules.LightScale(mood.Value.AmbientIntensity);
             var existing = owner.Find(LightName);
             if (existing != null)
                 return existing.GetComponent<Light2D>();

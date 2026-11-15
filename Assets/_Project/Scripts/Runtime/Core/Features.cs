@@ -38,7 +38,9 @@ namespace ARPG
         public static readonly bool PixelFilter = true;
 
         /// <summary>The scenes' moods: the dark dungeon and dusk town, the ember round her, torches and other point
-        /// lights, the shade on characters (LightingDirector). Off: plain full white light everywhere.</summary>
-        public static readonly bool MoodLighting = false;
+        /// lights, the shade on characters (LightingDirector). Off: plain full white light everywhere. On again since
+        /// 2026-11-15 (the owner: "Add some lights", choosing "Real lights, dimmer scenes"): the forest a little dimmer,
+        /// the gaol clearly dark (LightingRules.Forest, Gaol), pools of warm light at every fire.</summary>
+        public static readonly bool MoodLighting = true;
     }
 }
