@@ -81,7 +81,8 @@ namespace ARPG
         /// else carries her. True when she dives.</summary>
         public bool TryDodge(Vector2 groundDirection)
         {
-            if (IsDashing || groundDirection.sqrMagnitude < 1e-6f || !dodgeCharges.TryUse())
+            // A root holds her: no dive out of it (2026-11-15).
+            if (IsDashing || IsRooted || groundDirection.sqrMagnitude < 1e-6f || !dodgeCharges.TryUse())
                 return false;
             Dash(groundDirection, DodgeRules.Distance, DodgeRules.Speed);
             diveEase = true;
@@ -149,7 +150,17 @@ namespace ARPG
 
         /// <summary>Slows movement to <paramref name="multiplier"/> of normal speed for this many seconds, such as
         /// an elite's Frozen modifier. See <see cref="SlowDebuff"/> for how overlapping applications combine.</summary>
-        public void ApplySlow(float multiplier, float seconds) => slow.Apply(multiplier, seconds);
+        public void ApplySlow(float multiplier, float seconds)
+        {
+            var wasRooted = IsRooted;
+            slow.Apply(multiplier, seconds);
+            if (IsRooted && !wasRooted)
+                DamageNumbers.Current?.ShowText(Elevation.Lifted(transform.position) + new Vector3(0f, 1.9f, 0f), "ROOTED", new Color(0.45f, 0.9f, 0.6f), 36);
+        }
+
+        /// <summary>A root holds her where she stands (<see cref="MovementRules.RootBelow"/>): no walking, no dive, and her
+        /// speed is gone at once, not run down over the slow.</summary>
+        public bool IsRooted => MovementRules.IsRooted(slow.IsActive, slow.Multiplier);
 
         /// <summary>Carries the character along a ground direction for a distance at a speed, whatever the stick says.
         /// Walls still stop it, since the physics body moves.</summary>
@@ -213,9 +224,23 @@ namespace ARPG
             var stick = input != null ? input.Value : Vector2.zero;
             var steer = IsoMath.StickToGround(stick);
             InputDirection = steer.sqrMagnitude > 1e-6f ? steer.normalized : Vector2.zero;
-            var target = steer * effectiveMoveSpeed;
 
-            var maxChange = effectiveMoveSpeed / accelerationTime * Time.fixedDeltaTime;
+            // Rooted: she stands. The stick still turns her.
+            if (IsRooted)
+            {
+                groundVelocity = Vector2.zero;
+                body.linearVelocity = Vector2.zero;
+                stance.Tick(deltaTime, false);
+                return;
+            }
+
+            // Heading up or down the screen she goes faster on the ground, so she does not crawl there (the owner: "she
+            // seems to walk slower when walking diagonally"; half way, MovementRules.ScreenSpeedBlend).
+            var target = steer * effectiveMoveSpeed * MovementRules.DirectionFactor(steer);
+
+            // How fast her velocity may change follows her unslowed speed, not the slowed one: a slow or a shot's walk
+            // made her slow to start and stop, and a root left her gliding (the owner, 2026-11-15).
+            var maxChange = MovementRules.Acceleration(moveSpeed * QuickerPace, effectiveMoveSpeed, accelerationTime) * Time.fixedDeltaTime;
             groundVelocity = Vector2.MoveTowards(groundVelocity, target, maxChange);
 
             body.linearVelocity = IsoMath.GroundToWorld(groundVelocity);

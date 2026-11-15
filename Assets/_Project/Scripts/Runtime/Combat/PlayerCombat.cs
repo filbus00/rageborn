@@ -41,7 +41,11 @@ namespace ARPG
 
         // The basic arrow (Docs/02, the Wild Arrow): its flight speed, and how far past the reach it flies before it is
         // spent. The reach is the bow's (Docs/03: a short bow 7.5, a longbow 9).
-        const float ArrowSpeed = 14f;
+        /// <summary>Her arrows' speed: 14 a second until 2026-11-15, then 30 percent faster (the owner: "Speed up the arrows
+        /// that the characters shoots by 30%").</summary>
+        public const float BaseArrowSpeed = 14f;
+        public const float ArrowSpeedFactor = 1.3f;
+        public const float ArrowSpeed = BaseArrowSpeed * ArrowSpeedFactor;
         const float ArrowOvershoot = 2f;
 
         // The retired Wrathborn's Rending Spin hits within his old melee reach, not the bow's, until the Wild Arrow's own
