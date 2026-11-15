@@ -24,6 +24,9 @@ namespace ARPG.Editor
             "AshArchivist", "RiftMother",
             // The prison's bosses (2026-10-12).
             "Gaoler", "HangedMagistrate",
+            // The forest's bosses (2026-11-03). Left out of this list, Add Deep Roster dropped them from the scene's roster
+            // and depths 6 and 12 fell back to the Cinder Warden and the Tidewife (found 2026-11-15).
+            "BanditKing", "BroodMother",
             // Quest targets to break (2026-10-08): standing, no attack, drawn with a world sprite.
             "RiftHeart", "BonePyre",
             // A blob's pieces (2026-10-25).
@@ -147,10 +150,15 @@ namespace ARPG.Editor
         {
             var list = level.FindProperty("deepRoster");
             var found = new List<EnemyDefinition>();
+            // What the scene already holds stays (2026-11-15): replacing the list with Names alone is how the forest's two
+            // bosses were lost.
+            for (var i = 0; i < list.arraySize; i++)
+                if (list.GetArrayElementAtIndex(i).objectReferenceValue is EnemyDefinition kept && !found.Contains(kept))
+                    found.Add(kept);
             foreach (var name in Names)
             {
                 var definition = AssetDatabase.LoadAssetAtPath<EnemyDefinition>(Folder + name + ".asset");
-                if (definition != null)
+                if (definition != null && !found.Contains(definition))
                     found.Add(definition);
             }
             list.arraySize = found.Count;

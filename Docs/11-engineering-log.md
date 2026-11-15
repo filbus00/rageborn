@@ -2230,3 +2230,11 @@ The owner: arrows 30 percent faster; "check the movement, something seems broken
 - **Physics step**: `GameBootstrap` sets `Time.fixedDeltaTime` to 1/60 (it was 0.02): her only physics body moved on 50 steps against 60 frames.
 - Checked: the compile check compiles; 782 tests pass (8 new, `MovementRulesTests`), the 5 known `NavGridBakerTests` fail. In play in the editor after the changes: the root held her at speed 0 and 0.000 units moved for 1 s, a dive was refused, she walked on after; eight directions now reach 4.2 to 7.8 ground speed by Momentum. Not checked: on the phone, a real thumb, whether the extra speed up and down is too much, the lights' frame cost on the phone (not changed; if the unresponsiveness is partly a lower frame rate there, this does not fix it).
 
+## 2026-11-15: the forest's bosses lost from the roster (a bug of mine)
+
+The owner: "the depth 6 boss has been replaced by the placeholder cinder guardian. why? Is anything else messed up?"
+
+- **Cause**: running `Tools > ARPG > Add Deep Roster` on 2026-11-14 for the Iron Gaol rewrote the Dungeon scene's `deepRoster` from `DeepRosterBuilder.Names` alone, and `Names` never listed `BanditKing` or `BroodMother` (they had been put on the scene by hand on 2026-11-03). `DungeonLevel.Deep("BanditKing")` then found nothing, so depth 6 fell back to `bossEnemy` (the Cinder Warden, "to be sure the arena is never empty"), and depth 12 to the Tidewife's fight. The gaol commit `f0088f4b` carried the changed scene; the scene diff showed exactly those two guids removed and ten added.
+- **Fixed**: `Names` lists both; `Assign` keeps what the scene already holds and only adds; `DungeonLevel.SetUpBoss` logs an error when the forest's boss for depth 6 or 12 is missing; the roster rebuilt (70 entries).
+- **Else messed up?** Checked: the scene diff held only those roster changes; every name `DungeonLevel` looks up with `Deep(...)` is in the roster (the gaol's kinds, the prison bosses, the library and caves' bosses). In play in the editor: depth 6 the Bandit King (`BanditKingFight`), 12 the Brood Mother, 18 the Gaoler, 24 the Hanged Magistrate. Not run: depths 30, 36, 42 and 48 (their names were in the roster before and after). The phone has the broken scene until it is rebuilt.
+

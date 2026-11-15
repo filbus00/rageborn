@@ -246,6 +246,10 @@ namespace ARPG
 
             // The boss of this depth (2026-10-05: one every 6 levels) and the adds it calls; a missing deep boss falls
             // back to the Warden so the arena is never empty.
+            // A boss missing from the roster falls back to the Warden or the Tidewife without a word (found 2026-11-15, when
+            // Add Deep Roster had dropped the Bandit King and the Brood Mother): say so.
+            if (DungeonRules.Forest && (depth == 6 && Deep("BanditKing") == null || depth == 12 && Deep("BroodMother") == null))
+                Debug.LogError($"[ARPG] The forest's boss for depth {depth} is missing from the dungeon's deep roster: run Tools > ARPG > Add Deep Roster.");
             BossFight fight;
             EnemyDefinition definition = bossEnemy, adds = normalEnemy;
             switch (depth)
