@@ -377,12 +377,16 @@ namespace ARPG
             if (openNow)
                 PixelUi.Label(card, "Bosses: " + string.Join(" · ", chosen.Bosses), PixelUi.BodyFont, PixelUi.TextDim);
 
-            var take = Block("Take", ButtonHeight, openNow ? "frame_button_b5" : "frame_tab_b3");
-            var label = !openNow ? "SEALED" : cleared ? "TAKE IT AGAIN" : "TAKE THE CONTRACT";
-            var takeText = PixelUi.Label(take, label, PixelUi.TitleFont, openNow ? PixelUi.Gold : PixelUi.TextDim, TextAnchor.MiddleCenter);
+            // In a debug build a sealed contract can be taken all the same (2026-11-15, the owner: a shortcut into the Iron
+            // Gaol without clearing the Thornwood): the map still shows it sealed, and nothing is marked cleared.
+            var devTake = !openNow && DevTake;
+            var canTake = openNow || devTake;
+            var take = Block("Take", ButtonHeight, canTake ? "frame_button_b5" : "frame_tab_b3");
+            var label = devTake ? "DEV: TAKE IT SEALED" : !openNow ? "SEALED" : cleared ? "TAKE IT AGAIN" : "TAKE THE CONTRACT";
+            var takeText = PixelUi.Label(take, label, PixelUi.TitleFont, canTake ? PixelUi.Gold : PixelUi.TextDim, TextAnchor.MiddleCenter);
             UiStyle.Stretch(takeText.rectTransform);
             takeText.rectTransform.anchoredPosition = new Vector2(0f, 1f);
-            if (openNow)
+            if (canTake)
             {
                 var button = take.gameObject.AddComponent<Button>();
                 button.targetGraphic = take.GetComponent<Image>();
@@ -394,6 +398,8 @@ namespace ARPG
             var story = Stack(content, "Story", null, 6);
             PixelUi.Label(story, ContractRules.CompanyStory, PixelUi.BodyFont, PixelUi.TextDim, TextAnchor.UpperCenter);
         }
+
+        static bool DevTake => Debug.isDebugBuild;
 
         void DrawPlace(RectTransform land, Contract contract, int index)
         {
