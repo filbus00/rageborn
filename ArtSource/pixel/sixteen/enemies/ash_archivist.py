@@ -1,23 +1,78 @@
-# The Ash Archivist (2026-11-16): the Burnt Library's last boss (level 3-12), keeper of the records who burned the library
-# and burned with it: a stooped figure in a charcoal scholar's robe white with ash, a hood of living flame, two ember
-# eyes, a great burning ledger held open in both hands. 26 drawn pixels tall, at VisualScale 1.6.
+# The Ash Archivist (2026-11-16, redrawn the same day with his own side and back views): the Burnt Library's last boss
+# (level 3-12), its keeper burnt to ash and still at his work: a charcoal cowl crowned with flame, a dark face with two
+# ember eyes over a beard of ash, a great open book held before him, its pages lit from within, embers climbing the hem
+# of his robe. 26 drawn pixels tall, drawn at his VisualScale (1.6).
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kit
-from _rows import c, fit, variant
-W, H = 24, 26
-def r(s, off=0): return c(s, W, off)
-FRONT = fit([r("KeK"), r("KeeeK"), r("KeEeeEK"), r("KeEEeeEEeK"), r("KKeEEEEeKK"), r("KKfffffffKK"), r("KfFFFFFFfK"),
-             r("KfFqEFFEqFfK"), r("KfFqqFFqqFfK"), r("KfFFFKKFFFfK"), r("KKfFFFFFFfKK"), r("KKccccccccKK"),
-             r("KcCCcccccCCcK"), r("KcCpPPPPPPPCcK"), r("KcCpPeEPPEePCcK"), r("KsKpPPeEEePPPKsK"), r("KsKpPePPPPePKsK"),
-             r("KKKpPPPPPPPPKKK"), r("KcCpPPppPPpPCcK"), r("KcCCcKKKKccCCcK"), r("KcCcccccccccCcK"),
-             r("KcCcccaacccccCcK"), r("KcCccaaaaccccCcK"), r("KccCccccccccCccK"), r("KKccCccccCccKK"), r("KKKKKK  KKKKKK")], H, W)
-SIDE = variant(FRONT, {7: r("KfFFqEFFfK"), 8: r("KfFFqqFFfK"), 9: r("KfFFFKFFfK")})
-BACK = variant(FRONT, {7: r("KfFFFFFFFFfK"), 8: r("KfFFFFFFFFfK"), 9: r("KfFFFFFFFFfK")})
+
+
+def over(rows, pixels):
+    """Rows with single pixels drawn over them: (x, y, letter)."""
+    out = [list(r) for r in rows]
+    for x, y, ch in pixels:
+        out[y][x] = ch
+    return ["".join(r) for r in out]
+
+FRONT = ["...........ee...........",
+         "..........eyye..........",
+         ".........eeyyee.........",
+         "........KKeyyeKK........",
+         ".......KccccccccK.......",
+         "......KccCCCCCCccK......",
+         "......KcCqqqqqqCcK......",
+         "......KcCqEqqEqCcK......",
+         "......KcCqqqqqqCcK......",
+         "......KccCaaaaCccK......",
+         ".......KccaaaaccK.......",
+         "....KKKKccaaaaccKKKK....",
+         "...KccccccCaaCccccccK...",
+         "..KccCcKKKKKKKKKKcCccK..",
+         "..KccCKpPPPPKKPPPPpKccK.",
+         "..KssKKpPePPKKPPePpKssK.",
+         "...KKKKpPPePKKPePPpKKK..",
+         "......KKKKKKKKKKKKK.....",
+         ".......KcCccccccCcK.....",
+         ".......KcCccccccCcK.....",
+         "......KccCccccccCccK....",
+         "......KccCccceccCccK....",
+         ".....KcccCcceeccCcccK...",
+         ".....KcecCccceccCcecK...",
+         "....KcceccCccccCcceccK..",
+         "....KKKKKKKKKKKKKKKKKK.."]
+SIDE = ["...........ee...........",
+        "..........eyye..........",
+        ".........eeyyee.........",
+        ".........KKeyyeK........",
+        "........KccccccccK......",
+        ".......KccccCCCCcK......",
+        ".......KcccCqqqqqK......",
+        ".......KcccCqqEqqK......",
+        ".......KcccCqqqqK.......",
+        ".......KccccCaaaK.......",
+        "........KccccaaaK.......",
+        "......KKKccccaaK........",
+        ".....KccccccccaKKKKKK...",
+        "....KccCccccccKpPPPPpK..",
+        "....KccCccccsssKPePPpK..",
+        "....KccCcccKKKKKPPePpK..",
+        "....KccCccccK..KKKKKK...",
+        "....KccCccccK...........",
+        "....KccCccccK...........",
+        "....KccCcccccK..........",
+        "...KcccCcccccK..........",
+        "...KcccCccecccK.........",
+        "..KccccCceecccK.........",
+        "..KcecccCcecceK.........",
+        ".KcceccccCcccecK........",
+        ".KKKKKKKKKKKKKKK........"]
+BACK = FRONT[:4] + [".......KccccccccK.......", "......KccccccccccK......", "......KccCccccCccK......", "......KccCccccCccK......",
+                    "......KccCccccCccK......", "......KcccCccCcccK......", ".......KccccccccK.......", "....KKKKccccccccKKKK....",
+                    "...KccccccCccCccccccK...", "..KccCccccCccCccccCccK..", "..KccCcKccCccCccKcCccK..", "..KssK.KccCccCccK.KssK..",
+                    "...KK..KccCccCccK..KK...", ".......KccCccCccK.......", ".......KcCccccccCcK.....", ".......KcCccccccCcK....."] + FRONT[20:]
 kit.Character("ash_archivist", {"s": FRONT, "se": SIDE, "e": SIDE, "ne": SIDE, "n": BACK},
-              {"f": "5a5660", "F": "3a3640", "q": "1c1820", "c": "6a6670", "C": "4a4650", "a": "a8a4ac", "e": "ff7a2a",
-               "E": "ffd84a", "p": "e8dcc0", "P": "c8b890", "s": "8a8690"},
-              role="caster", baked_scale=1.6, step_rows=1, margin=(8, 10, 8, 2), glow="e",
-              hand={"s": (3, 15), "se": (3, 15), "e": (3, 15), "ne": (3, 15), "n": (3, 15)},
+              {"c": "5e5a66", "C": "3e3a46", "q": "1a161e", "a": "b0acb4", "e": "ff7a2a", "y": "ffd84a", "E": "ffb040",
+               "p": "c8b890", "P": "f0e4c4", "s": "8e8a94"},
+              role="caster", baked_scale=1.6, step_rows=1, margin=(8, 10, 8, 2), glow="y",
+              hand={"s": (12, 15), "se": (18, 14), "e": (18, 14), "ne": (18, 14), "n": (12, 15)},
               timing={"run": (0.6, 3.0), "walk": (1.1, 1.0)}).build()

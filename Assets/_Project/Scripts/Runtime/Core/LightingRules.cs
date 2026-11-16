@@ -47,8 +47,10 @@ namespace ARPG
         /// <summary>The Iron Gaol (2026-11-15): clearly dark and cold, lit by its torches, braziers and her ember.</summary>
         public static readonly Mood Gaol = new Mood(new Color(0.72f, 0.74f, 0.94f), 0.5f, 0.88f);
 
-        /// <summary>The Burnt Library (2026-11-16): dim and smouldering, warm grey, lit by its fires, candles and her ember.</summary>
-        public static readonly Mood Library = new Mood(new Color(0.9f, 0.72f, 0.64f), 0.52f, 0.88f);
+        /// <summary>The Burnt Library (2026-11-16): dim and smouldering, warm grey, lit by its fires, candles and her ember.
+        /// Lighter and less red since the rework the same day (0.9, 0.72, 0.64 at 0.52 before): its wood and dark tiles
+        /// went near black under that, and the shelves could not be read.</summary>
+        public static readonly Mood Library = new Mood(new Color(0.96f, 0.84f, 0.76f), 0.62f, 0.9f);
 
         /// <summary>How strong a point light is in a scene by its ambient light: full in the old near-black dungeon,
         /// less the brighter the scene, so a fire in the forest warms the ground without washing it out.</summary>

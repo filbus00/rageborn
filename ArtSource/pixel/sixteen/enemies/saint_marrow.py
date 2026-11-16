@@ -1,21 +1,84 @@
-# Saint Marrow (2026-11-16): the Burnt Library's first boss (level 3-6), the monks' saint, long dead and still leading
-# their prayer: a tall pointed mitre of bone and gold, a skull face with two marrow-yellow lights for eyes, a cope of
-# cream and gold lined in red, a staff topped with a bone cross. 26 drawn pixels tall, at VisualScale 1.6.
+# Saint Marrow (2026-11-16, redrawn the same day with his own side and back views): the Burnt Library's first boss (level
+# 3-6), the monks' saint, long dead and still leading their prayer: a tall mitre of gold with a red cross, a skull with
+# two marrow-yellow lights for eyes, a cream cope with gold and red bands, bone hands, a gold crozier. 26 drawn pixels
+# tall, drawn at his VisualScale (1.6) so the game does not stretch him.
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kit
-from _rows import c, fit, variant
-W, H = 24, 26
-def r(s, off=0): return c(s, W, off)
-FRONT = fit([r("KK"), r("KGGK"), r("KGgGK"), r("KGwwgGK"), r("KwwGGwwK"), r("KGGGGGGGGK"), r("KwwwwwwwwK"),
-             r("KwBBBBBBwK"), r("KwBEEBBEEBwK"), r("KwBBBKKBBBwK"), r("KwwBKKKKBwwK"), r("KKwBBBBBBwKK"),
-             r("KKGGwwwwwwGGKK"), r("KGgGwwwGGwwwGgGK"), r("KGgGRwwGGwwRGgGK"), r("KGgGRwwGGwwRGgGK"),
-             r("KGgGRRwwwwRRGgGK"), r("KGgGRRwGGwRRGgGK"), r("KGgGwwwGGwwwGgGK"), r("KwwGGwwwwwwGGwwK"),
-             r("KwwwwGGGGwwwwK"), r("KwwwwwGGwwwwwK"), r("KwwBwwwwwwBwwK"), r("KwBBwwwwwwBBwK"), r("KwBBKKKKKKBBwK"), r("KKKKK  KKKKK")], H, W)
-SIDE = variant(FRONT, {8: r("KwBBEEBBwK"), 9: r("KwBBBKKBwK"), 10: r("KwwBKKKBwK")})
-BACK = variant(FRONT, {8: r("KwBBBBBBBBwK"), 9: r("KwBBBBBBBBwK"), 10: r("KwwBBBBBBwwK")})
+
+
+def over(rows, pixels):
+    """Rows with single pixels drawn over them: (x, y, letter)."""
+    out = [list(r) for r in rows]
+    for x, y, ch in pixels:
+        out[y][x] = ch
+    return ["".join(r) for r in out]
+
+FRONT = ["...........KK...........",
+         "..........KGGK..........",
+         ".........KGGGGK.........",
+         ".........KGwwGK.........",
+         "........KGwRRwGK........",
+         "........KGRRRRGK........",
+         "........KGwRRwGK........",
+         "........KGGGGGGK........",
+         ".......KwwwwwwwwK.......",
+         ".......KwKKwwKKwK.......",
+         ".......KwKEwwEKwK.......",
+         ".......KwwwKKwwwK.......",
+         "........KwKwwKwK........",
+         ".....KKKKKBBBBKKKKK.....",
+         "....KGwwwGRwwRGwwwGK....",
+         "...KGwwwwGRwwRGwwwwGK...",
+         "...KGwwwwGRwwRGwwwwGK...",
+         "...KGwwKwGRwwRGwKwwGK...",
+         "...KBBBKwGRwwRGwKBBBK...",
+         "....KKKKwGRwwRGwKKKK....",
+         ".......KwGRwwRGwK.......",
+         ".......KwGRwwRGwK.......",
+         "......KwwGRwwRGwwK......",
+         "......KwwGGwwGGwwK......",
+         ".....KwwwwwwwwwwwwK.....",
+         ".....KKKKKKKKKKKKKK....."]
+CROOK = [(21, y, "g") for y in range(7, 26)] + [(21, 6, "G"), (21, 5, "G"), (21, 4, "G"), (20, 3, "G"), (19, 3, "G"), (18, 4, "G"),
+                                               (18, 5, "G"), (19, 6, "G")]
+FRONT = over(FRONT, CROOK)
+SIDE = ["............KK..........",
+        "...........KGGK.........",
+        "..........KGGGGK........",
+        "..........KGwwGK........",
+        ".........KGwwwRGK.......",
+        ".........KGwwRRGK.......",
+        ".........KGwwwRGK.......",
+        ".........KGGGGGGK.......",
+        ".........KwwwwwwwK......",
+        ".........KwwwwKKwK......",
+        ".........KwwwwKEwK......",
+        ".........KwwwwwwKK......",
+        "..........KwwKwKwK......",
+        ".......KKKKBBBKKK.......",
+        "......KGwwwwwwRGK.......",
+        ".....KGwwwwwwwRGK.......",
+        ".....KGwwwwwwwRGKKK.....",
+        ".....KGwwwwwKKKKBBK.....",
+        ".....KGwwwwwwwRGKK......",
+        ".....KGwwwwwwwRGK.......",
+        "......KwwwwwwwRGK.......",
+        "......KwwwwwwwRGK.......",
+        ".....KwwwwwwwwRGK.......",
+        ".....KwwwwwwwwGGK.......",
+        "....KwwwwwwwwwwwwK......",
+        "....KKKKKKKKKKKKKK......"]
+SIDE = over(SIDE, [(19, y, "g") for y in range(7, 26) if y != 17] + [(19, 6, "G"), (19, 5, "G"), (19, 4, "G"), (20, 3, "G"), (21, 3, "G"),
+                                                                    (22, 4, "G"), (22, 5, "G"), (21, 6, "G")])
+BACK = FRONT[:3] + [".........KGGGGK.........", "........KGGGGGGK........", "........KGggggGK........", "........KGGGGGGK........",
+                    "........KGGGGGGK........", ".......KwwwwwwwwK.......", ".......KwwwwwwwwK.......", ".......KwwBwwBwwK.......",
+                    ".......KwwwwwwwwK.......", "........KwwwwwwK........", ".....KKKKKBBBBKKKKK.....", "....KGwwwwGGGGwwwwGK....",
+                    "...KGwwwwwwGGwwwwwwGK...", "...KGwwwGGGGGGGGwwwGK...", "...KGwwKwwwGGwwwKwwGK...", "...KBBBKwwwGGwwwKBBBK...",
+                    "....KKKKwwwGGwwwKKKK....", ".......KwwwGGwwwK.......", ".......KwwwGGwwwK.......", "......KwwwwGGwwwwK......",
+                    "......KwwwwwwwwwwK......"] + FRONT[24:]
+BACK = over(BACK, CROOK)
 kit.Character("saint_marrow", {"s": FRONT, "se": SIDE, "e": SIDE, "ne": SIDE, "n": BACK},
-              {"w": "e8e0d0", "B": "b8ae98", "G": "d8b040", "g": "a07820", "R": "a02a2a", "E": "ffe060"},
+              {"w": "ece4d4", "B": "b8ae98", "G": "e0b840", "g": "a07820", "R": "a82a2a", "E": "ffe060"},
               role="melee", baked_scale=1.6, step_rows=2, margin=(8, 10, 8, 2),
               timing={"run": (0.5, 3.0), "walk": (1.0, 1.0)}).build()

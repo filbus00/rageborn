@@ -72,10 +72,20 @@ namespace ARPG
                 return "library_diag_" + diagonal + (cameraSide ? "_low" : "");
             if (cameraSide)
                 return "library_wall_low_" + (1 + hash % 2);
-            // Full shelves most often, then burnt-out ones, a fallen shelf, and bare scorched stone.
+            // A stone pier every fourth cell along a wall, cases of shelves between them (2026-11-16, the rework): full
+            // shelves most often (two pictures), then burnt-out ones, a ransacked case and a rack of scrolls. Without the
+            // rework's pieces, the first pass's mix.
+            if (LibraryPier(x, y))
+                return "library_wall_4";
             var roll = hash % 10;
-            return "library_wall_" + (roll < 4 ? 1 : roll < 7 ? 2 : roll < 9 ? 3 : 4);
+            if (WorldArt.Get("library_wall_6") == null)
+                return "library_wall_" + (roll < 4 ? 1 : roll < 7 ? 2 : roll < 9 ? 3 : 4);
+            return "library_wall_" + (roll < 3 ? 1 : roll < 6 ? 6 : roll < 8 ? 2 : roll < 9 ? 3 : 5);
         }
+
+        /// <summary>Whether a library wall cell is one of the stone piers between the cases: every fourth cell along a
+        /// wall either way (2026-11-16). The piers carry the sconces, portraits and hangings.</summary>
+        public static bool LibraryPier(int x, int y) => Mod(x + y, 4) == 0;
 
         /// <summary>
         /// The prison's piece (2026-10-12): built like the crypt in dark rough stone. A cage standing in a hall

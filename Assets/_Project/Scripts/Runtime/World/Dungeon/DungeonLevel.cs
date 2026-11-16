@@ -565,6 +565,7 @@ namespace ARPG
         // light their stretch of wall, at most MaxWallTorches a level.
         const float WallDetailChance = 0.11f;
         const int MaxWallTorches = 14;
+        const float LibraryPierChance = 0.6f;
         static readonly string[] FaceDetails = { "wall_torch", "wall_torch", "wall_torch", "wall_chains", "wall_banner" };
 
         void DressWalls(Transform parent)
@@ -575,11 +576,14 @@ namespace ARPG
                 for (var y = bounds.yMin; y < bounds.yMax; y++)
                 {
                     var at = new Vector2Int(x, y);
-                    if (Layout.Get(at) != DungeonCell.Wall || WallHash(x, y, 1) > WallDetailChance)
+                    // The burnt library's stone piers carry a fitting more often than not (2026-11-16): its light is theirs.
+                    var pier = Layout.Theme == DungeonTheme.Library && !Layout.FreeStanding.Contains(at) && ThemePieces.LibraryPier(x, y) &&
+                               WorldArt.Get("library_wall_torch_x") != null;
+                    if (Layout.Get(at) != DungeonCell.Wall || WallHash(x, y, 1) > (pier ? LibraryPierChance : WallDetailChance))
                         continue;
                     // Torches and banners hang on built walls: not on the caves' boulders or a cut corner (2026-10-10), nor on
                     // the burnt library's shelves (2026-10-11); in the prison on its walls, not on its cages' bars (2026-10-12).
-                    var built = Layout.Theme == DungeonTheme.Crypt || Layout.Theme == DungeonTheme.Prison && !Layout.FreeStanding.Contains(at);
+                    var built = pier || Layout.Theme == DungeonTheme.Crypt || Layout.Theme == DungeonTheme.Prison && !Layout.FreeStanding.Contains(at);
                     if (!built || ThemePieces.Diagonal(IsOpenCell, x, y) != null)
                         continue;
                     if (IsStairsWall(at) || IsStairsWall(at + Vector2Int.right) || IsStairsWall(at + Vector2Int.left) ||
@@ -599,14 +603,17 @@ namespace ARPG
                     // The gaol's own fittings, drawn for its walls (2026-11-14), when they are in.
                     if (Layout.Theme == DungeonTheme.Prison && WorldArt.Get("gaol_" + name) != null)
                         name = "gaol_" + name;
+                    // The library's: a sconce of candles, a portrait, a hanging (library_art.py).
+                    if (pier)
+                        name = "library_" + name;
                     // A hair in front of its own block, so it draws over the wall and under anyone standing before it.
                     var detail = WorldArt.Place(name, parent, CellWorld(at) + new Vector3(0f, DrawLevel(at) * elevation.LevelHeight - 0.01f, 0f));
                     if (detail == null || !torch || name.EndsWith("wall_chains_x") || name.EndsWith("wall_chains_y"))
                         continue;
                     torches++;
                     // The gaol's torch burns on the block's face: left of its middle on the -x face, right on the -y.
-                    if (name.StartsWith("gaol_"))
-                        Fires.Add((Vector2)detail.transform.position + new Vector2(name.EndsWith("_x") ? -0.26f : 0.26f, 1.3f), FireKind.Torch);
+                    if (name.StartsWith("gaol_") || name.StartsWith("library_"))
+                        Fires.Add((Vector2)detail.transform.position + new Vector2(name.EndsWith("_x") ? -0.26f : 0.26f, 1.3f), name.StartsWith("library_") ? FireKind.Candles : FireKind.Torch);
                     var glow = WorldLights.Add(detail.transform, new Color(1f, 0.55f, 0.25f), 1.0f, 0.3f, 3.5f, 0.5f);
                     if (glow != null)
                         detail.gameObject.AddComponent<FlickerLight>().Init(glow, x * 1.3f + y * 0.7f);
