@@ -66,6 +66,50 @@ namespace ARPG.Tests
         }
     
         [Test]
+        public void ABorderAndItsInside_MakeUpThePool_WithNothingInBoth()
+        {
+            // 2026-11-16: a pool's border and its inside are two pictures, so the borders of overlapping pools of one kind
+            // can lie under the fills and only the outer edge of the whole shows.
+            foreach (var name in new[] { "pool_fire", "pool_poison", "pool_frost", "pool_void", "pool_blood", "pool_water" })
+            {
+                var all = PoolArt.Frame(name, 1.2f, 3);
+                var rim = PoolArt.Frame(name, 1.2f, 3, PoolArt.PoolLayer.Rim);
+                var fill = PoolArt.Frame(name, 1.2f, 3, PoolArt.PoolLayer.Fill);
+                var rims = 0;
+                var fills = 0;
+                for (var i = 0; i < all.Length; i++)
+                {
+                    Assert.IsFalse(rim[i].a > 0 && fill[i].a > 0, name + ": a pixel is the border's or the inside's");
+                    Assert.AreEqual(all[i].a > 0, rim[i].a > 0 || fill[i].a > 0, name + ": together they are the pool");
+                    if (rim[i].a > 0)
+                        rims++;
+                    if (fill[i].a > 0)
+                        fills++;
+                }
+                Assert.Greater(rims, 20, name + " has a border");
+                Assert.Greater(fills, rims, name + " is mostly inside");
+                int w = PoolArt.WidthFor(1.2f), h = PoolArt.HeightFor(1.2f);
+                Assert.AreEqual(0, fill[w / 2 + 1 + 1 * w].a, name + ": the inside stops short of the edge");
+                Assert.AreEqual(255, fill[w / 2 + h / 2 * w].a, name + ": the middle is the inside's");
+            }
+        }
+
+        [Test]
+        public void EveryKind_DrawsItsBorderUnderItsFill_AndAboveTheKindsBeforeIt()
+        {
+            var names = new[] { "pool_fire", "pool_poison", "pool_frost", "pool_void", "pool_blood", "pool_water" };
+            foreach (var name in names)
+            {
+                Assert.Less(PoolArt.GlowOrder, PoolArt.RimOrder(name));
+                Assert.Less(PoolArt.RimOrder(name), PoolArt.FillOrder(name), name + ": the border under the fill");
+                Assert.Less(PoolArt.EdgeOrder(name), PoolArt.FillOrder(name));
+            }
+            for (var i = 1; i < names.Length; i++)
+                Assert.Greater(PoolArt.RimOrder(names[i]), PoolArt.FillOrder(names[i - 1]), "each kind above the last");
+            Assert.Less(PoolArt.FillOrder("pool_water"), 40, "under the telegraphs");
+        }
+
+        [Test]
         public void Pools_AreDrawnOnTheScreensGrid_AtTheirSize_AndMove()
         {
             // 2026-11-05: a pool of radius r is 2r units wide on screen at 27 a unit, half as tall, shown unscaled.

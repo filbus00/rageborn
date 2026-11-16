@@ -23,6 +23,15 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void MortarShells_Lob_HigherThanBottles_AndTurnSlowly()
+        {
+            Assert.AreEqual("projectile_bomb", FlaskRules.PictureOf(FlaskKind.Mortar));
+            Assert.Greater(FlaskRules.PeakOf(FlaskKind.Mortar, 6f), FlaskRules.PeakOf(FlaskKind.Molotov, 6f) * 2f);
+            Assert.AreEqual(FlaskRules.Peak(6f), FlaskRules.PeakOf(FlaskKind.Poison, 6f), 1e-5f);
+            Assert.Less(FlaskRules.SpinOf(FlaskKind.Mortar), FlaskRules.SpinOf(FlaskKind.Molotov));
+        }
+
+        [Test]
         public void EnemyShots_Fly30PercentFurther_ButBombsLandWhereSheStood()
         {
             Assert.AreEqual(13f, ProjectileKinds.Reach(ProjectileKind.Knife, 10f), 1e-4f);

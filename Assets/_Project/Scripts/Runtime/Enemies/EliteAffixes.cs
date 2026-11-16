@@ -276,11 +276,11 @@ namespace ARPG
             if ((m & EliteModifiers.Mortar) != 0 && (t.Mortar -= dt) <= 0f && Vector2.Distance(here, target) > EliteAffixRules.MortarMinRange)
             {
                 t.Mortar = EliteAffixRules.MortarEvery;
-                world.Hazards.Blast(target, EliteAffixRules.MortarRadius, EnemyRules.Telegraph(EliteAffixRules.MortarFill), hit * EliteAffixRules.MortarHit, level, EnemyHazards.FireWarning);
+                world.Hazards.Mortar(target, EliteAffixRules.MortarRadius, EnemyRules.Telegraph(EliteAffixRules.MortarFill), hit * EliteAffixRules.MortarHit, level, EnemyHazards.FireWarning);
                 for (var k = 0; k < 2; k++)
                 {
                     var spot = target + Random.insideUnitCircle.normalized * EliteAffixRules.MortarSpread;
-                    world.Hazards.Blast(spot, EliteAffixRules.MortarRadius, EnemyRules.Telegraph(EliteAffixRules.MortarFill + 0.25f * (k + 1)), hit * EliteAffixRules.MortarHit, level, EnemyHazards.FireWarning);
+                    world.Hazards.Mortar(spot, EliteAffixRules.MortarRadius, EnemyRules.Telegraph(EliteAffixRules.MortarFill + 0.25f * (k + 1)), hit * EliteAffixRules.MortarHit, level, EnemyHazards.FireWarning);
                 }
             }
             if ((m & EliteModifiers.Plagued) != 0 && (t.Plague -= dt) <= 0f)

@@ -75,7 +75,7 @@ namespace ARPG
                 }
             if (shock == null)
             {
-                shock = new Shock { Renderer = GroundMarker.NewSprite("Shock", null, color, parent, 44).GetComponent<SpriteRenderer>() };
+                shock = new Shock { Renderer = GroundMarker.NewSprite("Shock", null, color, parent, 60).GetComponent<SpriteRenderer>() };
                 shocks.Add(shock);
             }
             shock.Center = center;
@@ -139,6 +139,17 @@ namespace ARPG
         /// <summary>A blast in another colour (the Rift Caller's void pulses).</summary>
         public void Blast(Vector2 center, float radius, float fillSeconds, float damage, int level, Color color) =>
             Add(center, radius, fillSeconds, 0f, damage, 0f, level, color);
+
+        /// <summary>
+        /// A mortar's round (2026-11-16): a shell lobbed from the caster up through the air to where the circle fills, and
+        /// the circle's blast when it lands. With no caster the circle only fills.
+        /// </summary>
+        public void Mortar(Vector2 center, float radius, float fillSeconds, float damage, int level, Color color)
+        {
+            if (Flasks != null && Caster != null && fillSeconds > 0f)
+                Flasks.Throw(Caster.GroundPosition, center, fillSeconds, FlaskKind.Mortar);
+            Add(center, radius, fillSeconds, 0f, damage, 0f, level, color);
+        }
 
         /// <summary>Burning ground for <paramref name="seconds"/>, dealing this much a second in pulses while the player
         /// stands in it.</summary>

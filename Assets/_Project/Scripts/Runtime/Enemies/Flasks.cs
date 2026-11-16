@@ -9,6 +9,9 @@ namespace ARPG
         Molotov,
         Poison,
         Web,
+
+        /// <summary>A mortar's shell (2026-11-16): the bomb picture, lobbed high and turning slowly.</summary>
+        Mortar,
     }
 
     /// <summary>The arc of a thrown flask. Pure.</summary>
@@ -30,8 +33,19 @@ namespace ARPG
         /// <summary>Under this flight time a throw is not drawn (a pool that lands at once has nothing to show).</summary>
         public const float LeastSeconds = 0.2f;
 
+        /// <summary>A mortar's shell goes up higher than a thrown bottle, in a long lob (2026-11-16, the owner: the
+        /// mortar enemies "should shoot a mortar... A projectile should fly through the air").</summary>
+        public const float MortarLift = 2.2f;
+
+        /// <summary>The arc's peak for a throw of a kind.</summary>
+        public static float PeakOf(FlaskKind kind, float groundDistance) => Peak(groundDistance) * (kind == FlaskKind.Mortar ? MortarLift : 1f);
+
+        /// <summary>How fast a kind turns in the air (degrees a second): a shell hardly turns.</summary>
+        public static float SpinOf(FlaskKind kind) => kind == FlaskKind.Mortar ? 120f : SpinDegrees;
+
         public static string PictureOf(FlaskKind kind) =>
-            kind == FlaskKind.Poison ? "flask_poison" : kind == FlaskKind.Web ? "projectile_web" : "flask_molotov";
+            kind == FlaskKind.Poison ? "flask_poison" : kind == FlaskKind.Web ? "projectile_web" :
+            kind == FlaskKind.Mortar ? "projectile_bomb" : "flask_molotov";
     }
 
     /// <summary>
@@ -48,7 +62,7 @@ namespace ARPG
             public SpriteRenderer Renderer;
             public Sprite Picture;
             public Vector2 From, To;
-            public float Seconds, Time, Peak, Spin;
+            public float Seconds, Time, Peak, Spin, SpinRate;
             public bool Active;
         }
 
@@ -86,7 +100,8 @@ namespace ARPG
             flight.To = to;
             flight.Seconds = seconds;
             flight.Time = 0f;
-            flight.Peak = FlaskRules.Peak(Vector2.Distance(from, to));
+            flight.Peak = FlaskRules.PeakOf(kind, Vector2.Distance(from, to));
+            flight.SpinRate = FlaskRules.SpinOf(kind);
             flight.Spin = Random.Range(0f, 360f) * (Random.value < 0.5f ? 1f : -1f);
             flight.Active = true;
             flight.Renderer.gameObject.SetActive(true);
@@ -119,7 +134,7 @@ namespace ARPG
             var world = Elevation.World2(ground);
             flight.Renderer.transform.position = new Vector3(world.x, world.y + FlaskRules.Height(share, flight.Peak), 0f);
             // Turned in whole pixels (TurnedArt), not by the transform, so it stays pixel art.
-            var degrees = flight.Spin + FlaskRules.SpinDegrees * flight.Time * Mathf.Sign(flight.Spin == 0f ? 1f : flight.Spin);
+            var degrees = flight.Spin + flight.SpinRate * flight.Time * Mathf.Sign(flight.Spin == 0f ? 1f : flight.Spin);
             var turned = TurnedArt.Toward(flight.Picture, degrees);
             flight.Renderer.sprite = turned != null ? turned : flight.Picture;
         }

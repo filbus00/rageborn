@@ -77,9 +77,9 @@ namespace ARPG
         /// at <paramref name="radius"/>, on the screen's grid at <see cref="PoolArt.ScreenUnit"/> pixels a unit, shown
         /// unscaled (2026-11-05). Each size's frames are drawn when first shown.
         /// </summary>
-        public static Sprite DrawnPoolFrame(string name, float radius, int frame)
+        public static Sprite DrawnPoolFrame(string name, float radius, int frame, PoolArt.PoolLayer layer = PoolArt.PoolLayer.All)
         {
-            var key = (name, PoolArt.WidthFor(radius));
+            var key = (name, PoolArt.WidthFor(radius) * 4 + (int)layer);
             if (!drawnPools.TryGetValue(key, out var frames))
                 drawnPools[key] = frames = new Sprite[PoolArt.Frames];
             frame = ((frame % PoolArt.Frames) + PoolArt.Frames) % PoolArt.Frames;
@@ -92,7 +92,7 @@ namespace ARPG
             {
                 name = name + " " + w + " " + frame, filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp,
             };
-            texture.SetPixels32(PoolArt.Frame(name, drawn, frame));
+            texture.SetPixels32(PoolArt.Frame(name, drawn, frame, layer));
             texture.Apply(false, true);
             return frames[frame] = Sprite.Create(texture, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), (float)PoolArt.ScreenUnit / PoolArt.Block, 0,
                 SpriteMeshType.FullRect, Vector4.zero, false);
@@ -481,19 +481,33 @@ namespace ARPG
                 rootRenderer.sprite = null;
                 bubbles.gameObject.SetActive(false);
                 motion = PoolLooks.MotionOf(drawnPool);
+                // Two pictures (2026-11-16, the owner: "Only the outside edge of a damage pool should have a border. No
+                // borders on pools of the same kind"): its border under, its inside over, each kind a step higher than the
+                // last, so the borders of pools of one kind lie hidden under their fills and only the outer edge of the
+                // whole shows. Opaque, or a border would show through a fill.
                 if (pixels == null)
-                    pixels = NewSprite("Pool", null, Color.white, root.transform, 41).GetComponent<SpriteRenderer>();
+                    pixels = NewSprite("Pool", null, Color.white, root.transform, 0).GetComponent<SpriteRenderer>();
+                if (poolBorder == null)
+                    poolBorder = NewSprite("Pool Border", null, Color.white, root.transform, 0).GetComponent<SpriteRenderer>();
                 var scale = root.transform.localScale;
-                pixels.transform.localScale = new Vector3(1f / Mathf.Max(0.01f, scale.x), 1f / Mathf.Max(0.01f, scale.y), 1f);
-                pixelsAlpha = Mathf.Clamp(color.a + 0.15f, 0.7f, 0.92f);
-                pixels.sprite = TelegraphArt.DrawnPoolFrame(drawnPool, Radius, 0);
-                pixels.color = new Color(1f, 1f, 1f, pixelsAlpha);
+                var unsquash = new Vector3(1f / Mathf.Max(0.01f, scale.x), 1f / Mathf.Max(0.01f, scale.y), 1f);
+                pixels.transform.localScale = unsquash;
+                poolBorder.transform.localScale = unsquash;
+                pixels.sortingOrder = PoolArt.FillOrder(drawnPool);
+                poolBorder.sortingOrder = PoolArt.RimOrder(drawnPool);
+                pixelsAlpha = 1f;
+                pixels.sprite = TelegraphArt.DrawnPoolFrame(drawnPool, Radius, 0, PoolArt.PoolLayer.Fill);
+                poolBorder.sprite = TelegraphArt.DrawnPoolFrame(drawnPool, Radius, 0, PoolArt.PoolLayer.Rim);
+                pixels.color = Color.white;
+                poolBorder.color = Color.white;
                 pixels.gameObject.SetActive(true);
+                poolBorder.gameObject.SetActive(true);
                 // Its light on the ground round it (2026-11-03), in its brightest tone but one, breathing with it.
                 var kind = drawnPool;
                 glowStrength = PoolLooks.GlowOf(kind);
                 if (glow == null)
-                    glow = NewSprite("Glow", null, Color.white, root.transform, 39).GetComponent<SpriteRenderer>();
+                    glow = NewSprite("Glow", null, Color.white, root.transform, PoolArt.GlowOrder).GetComponent<SpriteRenderer>();
+                glow.sortingOrder = PoolArt.GlowOrder;
                 // In steps on the screen's grid (2026-11-10; a soft glow until then).
                 glow.sprite = PixelMarks.Glow(Radius * 1.45f);
                 glow.transform.localScale = Unsquashed(root.transform);
@@ -506,6 +520,8 @@ namespace ARPG
                 edge.sprite = TelegraphArt.PixelRim(Radius);
                 edge.transform.localScale = Unsquashed(root.transform);
                 edge.color = new Color(color.r, color.g, color.b, 0.55f);
+                // With the border, under its kind's fills, so it too shows only on the outer edge.
+                edge.sortingOrder = PoolArt.EdgeOrder(drawnPool);
                 edge.gameObject.SetActive(true);
                 return;
             }
@@ -523,6 +539,7 @@ namespace ARPG
             edge.sprite = TelegraphArt.PixelRim(Radius);
             edge.transform.localScale = Unsquashed(root.transform);
             edge.color = new Color(color.r, color.g, color.b, 0.8f);
+            edge.sortingOrder = 42;
             edge.gameObject.SetActive(true);
         }
 
@@ -530,7 +547,7 @@ namespace ARPG
         bool fallbackPool;
 
         string drawnPool;
-        SpriteRenderer edge, pixels, glow;
+        SpriteRenderer edge, pixels, glow, poolBorder;
         float pixelsAlpha;
         Color glowColor;
         float glowStrength;
@@ -549,8 +566,11 @@ namespace ARPG
                 // waves, so it never beats evenly), and it throws off its spray. It no longer breathes: a stretched
                 // picture has uneven pixels (2026-11-05).
                 var pulse = 1f - motion.PulseDepth * (0.5f + 0.5f * Mathf.Sin(poolTime * motion.PulseSpeed) * Mathf.Sin(poolTime * motion.PulseSpeed * 0.37f + 1.3f));
-                pixels.sprite = TelegraphArt.DrawnPoolFrame(drawnPool, Radius, (int)(poolTime * PoolArt.FrameRate));
+                var frame = (int)(poolTime * PoolArt.FrameRate);
+                pixels.sprite = TelegraphArt.DrawnPoolFrame(drawnPool, Radius, frame, PoolArt.PoolLayer.Fill);
+                poolBorder.sprite = TelegraphArt.DrawnPoolFrame(drawnPool, Radius, frame, PoolArt.PoolLayer.Rim);
                 pixels.color = new Color(pulse, pulse, pulse, pixelsAlpha);
+                poolBorder.color = new Color(pulse, pulse, pulse, pixelsAlpha);
                 glow.color = new Color(glowColor.r, glowColor.g, glowColor.b, glowStrength * (0.7f + 0.3f * Mathf.Sin(poolTime * motion.PulseSpeed * 0.6f)));
                 if (motion.Spray != PoolLooks.Spray.None && ArrowFx.Current != null)
                 {
@@ -597,6 +617,8 @@ namespace ARPG
                     edge.gameObject.SetActive(false);
                 if (pixels != null)
                     pixels.gameObject.SetActive(false);
+                if (poolBorder != null)
+                    poolBorder.gameObject.SetActive(false);
                 if (glow != null)
                     glow.gameObject.SetActive(false);
                 rootRenderer.sprite = TelegraphArt.Rim;

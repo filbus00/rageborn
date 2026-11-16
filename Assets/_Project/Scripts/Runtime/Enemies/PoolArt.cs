@@ -88,7 +88,36 @@ namespace ARPG
         /// <see cref="HeightFor"/>, row by row from the bottom: the picture, and over it its two copies at their strengths
         /// (<see cref="PoolLooks.Motion"/>), each turned by its own angle that rocks with the frame.
         /// </summary>
-        public static Color32[] Frame(string name, float radius, int frame)
+        public static Color32[] Frame(string name, float radius, int frame) => Frame(name, radius, frame, PoolLayer.All);
+
+        /// <summary>Which pixels of a pool a picture holds (2026-11-16, the owner: "Only the outside edge of a damage pool
+        /// should have a border. No borders on pools of the same kind"): the whole pool, only its border (the dark lip and
+        /// the lit band inside it), or only what lies inside the border. A pool shows its border under every fill of its
+        /// kind, so where pools of one kind overlap, the borders lie hidden under the fills and only the outer edge of the
+        /// whole shows.</summary>
+        public enum PoolLayer { All, Rim, Fill }
+
+        /// <summary>The order a kind's layers draw in, kind by kind (the border, then the fill over it).</summary>
+        public static int KindIndex(string name) => name switch
+        {
+            "pool_fire" => 0,
+            "pool_poison" => 1,
+            "pool_frost" => 2,
+            "pool_void" => 3,
+            "pool_blood" => 4,
+            _ => 5,
+        };
+
+        /// <summary>The lowest sorting order of the pools on the Decals layer, under the telegraphs (40) and above the
+        /// blood stains (4, 5): the glow at the bottom, then for each kind its border, its coloured edge and its fill.</summary>
+        public const int OrderBase = 10;
+
+        public static int GlowOrder => OrderBase - 1;
+        public static int RimOrder(string name) => OrderBase + 3 * KindIndex(name);
+        public static int EdgeOrder(string name) => RimOrder(name) + 1;
+        public static int FillOrder(string name) => RimOrder(name) + 2;
+
+        public static Color32[] Frame(string name, float radius, int frame, PoolLayer layer)
         {
             int w = WidthFor(radius), h = HeightFor(radius);
             var ramp = Ramp(name);
@@ -121,7 +150,28 @@ namespace ARPG
                     // Back to the nearest of its five tones, so the copies over it do not speckle it.
                     pixels[x + y * w] = Nearest(ramp, c);
                 }
-            return Despeckle(pixels, w, h);
+            pixels = Despeckle(pixels, w, h);
+            if (layer == PoolLayer.All)
+                return pixels;
+            // Keep only the layer's pixels.
+            for (var y = 0; y < h; y++)
+                for (var x = 0; x < w; x++)
+                {
+                    var rim = OnRim((x + 0.5f) / w * 2f - 1f, (y + 0.5f) / h * 2f - 1f, pixel, seed);
+                    if (rim != (layer == PoolLayer.Rim))
+                        pixels[x + y * w] = default;
+                }
+            return pixels;
+        }
+
+        // Whether a point of a pool is on its border: the lip and the lit band inside it (the same rings Tone draws).
+        static bool OnRim(float u, float v, float pixel, int seed)
+        {
+            var r = Mathf.Sqrt(u * u + v * v);
+            var a = Mathf.Atan2(v, u);
+            var edge = 0.86f + 0.06f * Mathf.Sin(a * 3f + seed) + 0.04f * Mathf.Sin(a * 5f + seed * 0.7f) + 0.025f * Mathf.Sin(a * 11f);
+            var lip = Mathf.Max(0.06f, pixel * 2.2f);
+            return r > edge - lip - Mathf.Max(0.07f, pixel * 2.2f);
         }
 
         // A lone pixel whose four neighbours share one other tone takes theirs, so the pattern reads as patches, not grain
