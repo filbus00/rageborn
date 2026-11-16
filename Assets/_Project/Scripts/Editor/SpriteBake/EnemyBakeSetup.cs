@@ -187,6 +187,11 @@ namespace ARPG.Editor
             ("ReliquaryGuard", "reliquary_guard", null), ("Bookworm", "bookworm", null), ("AshMoth", "ash_moth", null),
             ("EmberHound", "ember_hound", null), ("QuillScribe", "quill_scribe", null), ("FlameCantor", "flame_cantor", null),
             ("CandleBearer", "candle_bearer", null),
+            // The Rift Caves (2026-11-16): ten kinds drawn in the 16x16 style (the two bosses are wired above).
+            ("Riftspawn", "riftspawn", null), ("OathlessWatchman", "oathless_watchman", null), ("RiftBrute", "rift_brute", null),
+            ("ObsidianGuard", "obsidian_guard", null), ("RiftMite", "rift_mite", null), ("Gloomwing", "gloomwing", null),
+            ("RiftStalker", "rift_stalker", null), ("Voidspitter", "voidspitter", null), ("WoundSeer", "wound_seer", null),
+            ("BeaconThrall", "beacon_thrall", null),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the

@@ -10,7 +10,7 @@ namespace ARPG.Tests
         // The critters (2026-10-25) have only their bite and swipe.
         // The forest's Rotcap only bursts and its Werewolf leaps and claws (2026-11-03, the owner's choices).
         // The gaol's rats, crows and mastiffs only bite, dart and lunge (2026-11-14).
-        static readonly string[] Critters = { "Rat", "Bat", "Wolf", "Rotcap", "Werewolf", "TuskedBoar", "CellRat", "GibbetCrow", "GaolMastiff", "Bookworm", "AshMoth", "EmberHound" };
+        static readonly string[] Critters = { "Rat", "Bat", "Wolf", "Rotcap", "Werewolf", "TuskedBoar", "CellRat", "GibbetCrow", "GaolMastiff", "Bookworm", "AshMoth", "EmberHound", "RiftMite", "Gloomwing", "RiftStalker" };
 
         static readonly string[] Roster = System.Enum.GetNames(typeof(PackMember)).Where(n => n != "None" && !Critters.Contains(n))
             .Concat(new[] { "Swarmer", "SwarmerChampion", "SwarmerElite" }).ToArray();

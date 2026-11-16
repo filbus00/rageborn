@@ -49,7 +49,9 @@ namespace ARPG.Tests
             try
             {
                 Assert.AreEqual(LightingRules.Gaol.AmbientIntensity, LightingRules.DungeonAt(15).AmbientIntensity);
-                Assert.Less(LightingRules.DungeonAt(40).AmbientIntensity, LightingRules.Gaol.AmbientIntensity, "the old dark below");
+                Assert.AreEqual(LightingRules.Library.AmbientIntensity, LightingRules.DungeonAt(30).AmbientIntensity);
+                Assert.AreEqual(LightingRules.Rift.AmbientIntensity, LightingRules.DungeonAt(40).AmbientIntensity, "the Rift Caves (2026-11-16)");
+                Assert.Less(LightingRules.DungeonAt(10).AmbientIntensity, LightingRules.Gaol.AmbientIntensity, "the old crypt's dark");
             }
             finally
             {

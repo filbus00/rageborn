@@ -87,7 +87,17 @@ namespace ARPG
 
         /// <summary>Whether a level's champions and elites are its own kinds raised to the rank (the forest and the
         /// gaol), not the crypt's old champion and elite.</summary>
-        public static bool OwnRanks(int depth) => Forest || GaolAt(depth) || LibraryAt(depth);
+        public static bool OwnRanks(int depth) => Forest || GaolAt(depth) || LibraryAt(depth) || RiftAt(depth);
+
+        /// <summary>A level of the Rift Caves (2026-11-16, the last contract): the caves' depths when the level is not a
+        /// forest. Its packs are its own kinds (<see cref="PackComposition.RiftTable"/>), its champions and elites those
+        /// kinds raised to the rank.</summary>
+        public static bool RiftAt(int depth) => !Forest && depth >= CaveFrom;
+
+        /// <summary>Whether the caves' big rooms get raised terraces (2026-10-10). Off since the Rift Caves were drawn in
+        /// the 16x16 style (2026-11-16): the ledges and steps are not drawn in it yet, so the caves are level ground as the
+        /// forest is. The code is kept.</summary>
+        public static bool CaveTerraces = false;
 
         public static DungeonTheme ThemeAt(int depth) =>
             Forest ? DungeonTheme.Cave :
@@ -260,7 +270,8 @@ namespace ARPG
         /// 30: 40 percent fewer props (2026-11-04).
         /// 31: no summoning circles, forest props 3 cells off the tree line and 30 percent fewer (2026-11-10).
         /// </summary>
-        public const int Version = 31;
+        // 32 (2026-11-16): the caves have no terraces (the Rift Caves, CaveTerraces).
+        public const int Version = 32;
 
         /// <summary>Docs/05-world-and-content.md: an act boss fights in a circular arena of radius 12 units. 18 cells is
         /// 12.7 units; the arena is the largest room that fits, so the doorways stay on its rim.</summary>
@@ -528,7 +539,7 @@ namespace ARPG
             if (cave)
                 for (var i = 0; i < macros.Count; i++)
                     if (kinds[i] == RoomKind.Combat || kinds[i] == RoomKind.Elite || kinds[i] == RoomKind.Treasure)
-                        if (!DungeonRules.Forest)
+                        if (!DungeonRules.Forest && DungeonRules.CaveTerraces)
                             Terrace(layout, mains[i], doors[i], random);
 
             KeepReachable(layout, mains[0]);

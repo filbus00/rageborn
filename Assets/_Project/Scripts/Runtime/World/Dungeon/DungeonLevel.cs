@@ -300,12 +300,12 @@ namespace ARPG
                 case 42 when Deep("RiftMother") != null:
                     fight = new GameObject("Rift Mother Fight").AddComponent<RiftMotherFight>();
                     definition = Deep("RiftMother");
-                    adds = Deep("Imp") ?? normalEnemy;
+                    adds = Deep("Riftspawn") ?? Deep("Imp") ?? normalEnemy;
                     break;
                 case 48 when Deep("FirstWatchman") != null:
                     fight = new GameObject("First Watchman Fight").AddComponent<FirstWatchmanFight>();
                     definition = Deep("FirstWatchman");
-                    adds = Deep("Wraith") ?? normalEnemy;
+                    adds = Deep("OathlessWatchman") ?? Deep("Wraith") ?? normalEnemy;
                     break;
                 default:
                     fight = new GameObject("Cinder Warden Fight").AddComponent<CinderWardenFight>();
@@ -528,7 +528,8 @@ namespace ARPG
                 var light = campfire
                     ? WorldLights.Add(go.transform, new Color(1f, 0.6f, 0.3f), 1.4f, 0.3f, 5.5f, 0.3f)
                     : hellfire
-                        ? WorldLights.Add(go.transform, new Color(1f, 0.25f, 0.15f), 1.5f, 0.3f, 5f, 0.3f)
+                        // Red in the old deep; the Rift's own fire is violet (2026-11-16).
+                        ? WorldLights.Add(go.transform, RiftLevel ? new Color(0.72f, 0.45f, 1f) : new Color(1f, 0.25f, 0.15f), 1.5f, 0.3f, 5f, 0.3f)
                         : WorldLights.Add(go.transform, new Color(1f, 0.55f, 0.25f), brazier ? 1.3f : torch ? 1.1f : 0.9f, 0.3f,
                             brazier ? 4.5f : torch ? 4f : 3f, torch ? 1.2f : 0.3f);
                 if (light != null)
@@ -545,7 +546,7 @@ namespace ARPG
         // Made when the first fire asks (the props' in Paint, or a stairway's torches before it).
         FireFx Fires => fires != null ? fires
             : fires = FireFx.Begin(transform, ForestLevel ? MoteKind.Fireflies : Layout.Theme == DungeonTheme.Prison ? MoteKind.Dust :
-                Layout.Theme == DungeonTheme.Library ? MoteKind.Embers : MoteKind.None);
+                Layout.Theme == DungeonTheme.Library ? MoteKind.Embers : RiftLevel ? MoteKind.RiftSparks : MoteKind.None);
 
         static FireKind FireOf(PropKind kind) =>
             kind == PropKind.Campfire ? FireKind.Campfire : kind == PropKind.Brazier ? FireKind.Brazier : kind == PropKind.Torch ? FireKind.Torch
@@ -1093,6 +1094,9 @@ namespace ARPG
 
         bool ForestLevel => Layout.Theme == DungeonTheme.Cave && DungeonRules.Forest;
 
+        // A level of the Rift Caves (2026-11-16): the caves when the level is not a forest.
+        bool RiftLevel => Layout.Theme == DungeonTheme.Cave && !DungeonRules.Forest;
+
         // The forest's way on (2026-11-10, the owner: the gate "is covered by the forest and does not seem to lead to
         // anything. It just looks like an arch leading into a forest wall"): a trail cut into the trees where the exit
         // is, three cells wide and six deep, its ground bare path going off into the dark, the trees just in front of it
@@ -1272,11 +1276,11 @@ namespace ARPG
                 WorldArt.Lit(doorwayRenderer);
                 // The gaol's doorway has a torch either side (gaol_art.py's doorway): sparks at each, mirrored for the
                 // doorway into a +y wall.
-                if (StairsTheme() == "gaol" || StairsTheme() == "library")
+                if (StairsTheme() == "gaol" || StairsTheme() == "library" || StairsTheme() == "cave")
                 {
                     var flip = into.x != 0 ? 1f : -1f;
-                    Fires.Add((Vector2)doorway.transform.position + new Vector2(-0.85f * flip, 1.6f), FireKind.Torch);
-                    Fires.Add((Vector2)doorway.transform.position + new Vector2(0.33f * flip, 1f), FireKind.Torch);
+                    Fires.Add((Vector2)doorway.transform.position + new Vector2(-0.85f * flip, 1.6f), RiftLevel ? FireKind.Hellfire : FireKind.Torch);
+                    Fires.Add((Vector2)doorway.transform.position + new Vector2(0.33f * flip, 1f), RiftLevel ? FireKind.Hellfire : FireKind.Torch);
                 }
                 var trigger = go.GetComponent<CircleCollider2D>();
                 trigger.isTrigger = true;

@@ -44,6 +44,12 @@ namespace ARPG
 
         /// <summary>The Burnt Library's burning stacks (2026-11-16): fallen shelves, burning books, ash.</summary>
         Pyre,
+
+        /// <summary>The Rift Caves' spawn (2026-11-16): a rift fire, flesh pods, spikes, bones.</summary>
+        Breach,
+
+        /// <summary>The Rift Caves' turned Watch (2026-11-16): a brazier, stakes, a torch, rubble of the old road.</summary>
+        DeadWatch,
     }
 
     /// <summary>A pack's lair: which theme its members make, and what it holds. Pure.</summary>
@@ -64,7 +70,7 @@ namespace ARPG
 
         /// <summary>An elite pack's lair, by depth: a shrine above the middle of the dungeon, a nest below.</summary>
         public static LairTheme EliteTheme(int depth) =>
-            DungeonRules.LibraryAt(depth) ? LairTheme.Pyre : DungeonRules.GaolAt(depth) ? LairTheme.GuardPost : depth >= 16 ? LairTheme.Nest : depth >= 7 ? LairTheme.Tomb : LairTheme.Shrine;
+            DungeonRules.RiftAt(depth) ? LairTheme.Breach : DungeonRules.LibraryAt(depth) ? LairTheme.Pyre : DungeonRules.GaolAt(depth) ? LairTheme.GuardPost : depth >= 16 ? LairTheme.Nest : depth >= 7 ? LairTheme.Tomb : LairTheme.Shrine;
 
         public static LairTheme ThemeOf(PackMember member)
         {
@@ -115,6 +121,19 @@ namespace ARPG
                 case PackMember.AshMoth:
                 case PackMember.EmberHound:
                     return LairTheme.Pyre;
+                // The Rift Caves' (2026-11-16): what the Rift births keeps a breach, the turned Watch its dead post.
+                case PackMember.Riftspawn:
+                case PackMember.RiftBrute:
+                case PackMember.RiftMite:
+                case PackMember.Gloomwing:
+                case PackMember.RiftStalker:
+                case PackMember.Voidspitter:
+                    return LairTheme.Breach;
+                case PackMember.OathlessWatchman:
+                case PackMember.ObsidianGuard:
+                case PackMember.WoundSeer:
+                case PackMember.BeaconThrall:
+                    return LairTheme.DeadWatch;
                 case PackMember.Fallen:
                 case PackMember.Ogre:
                 case PackMember.Giant:
@@ -166,6 +185,8 @@ namespace ARPG
                 case LairTheme.GuardPost: return PropKind.Brazier;
                 case LairTheme.Scriptorium: return PropKind.Lectern;
                 case LairTheme.Pyre: return PropKind.BurningBooks;
+                case LairTheme.Breach: return PropKind.Hellfire;
+                case LairTheme.DeadWatch: return PropKind.Brazier;
                 case LairTheme.Confessional: return PropKind.Altar;
                 default: return null;
             }
@@ -200,6 +221,10 @@ namespace ARPG
                     return new[] { (PropKind.ReadingDesk, 1, 2), (PropKind.Candles, 2, 4), (PropKind.BookPile, 1, 3), (PropKind.Urn, 0, 1) };
                 case LairTheme.Pyre:
                     return new[] { (PropKind.FallenShelf, 1, 2), (PropKind.AshHeap, 1, 3), (PropKind.BookPile, 1, 2) };
+                case LairTheme.Breach:
+                    return new[] { (PropKind.FleshPod, 2, 4), (PropKind.Spikes, 1, 3), (PropKind.BonePile, 1, 2) };
+                case LairTheme.DeadWatch:
+                    return new[] { (PropKind.Stake, 1, 2), (PropKind.Torch, 1, 2), (PropKind.Rubble, 1, 3), (PropKind.BonePile, 0, 1) };
                 default:
                     return new (PropKind, int, int)[0];
             }
@@ -234,6 +259,10 @@ namespace ARPG
                     return new[] { (DecalKind.Ash, 1, 3), (DecalKind.Rubble, 0, 2) };
                 case LairTheme.Pyre:
                     return new[] { (DecalKind.Ash, 3, 6), (DecalKind.Blood, 0, 1) };
+                case LairTheme.Breach:
+                    return new[] { (DecalKind.Gore, 2, 4), (DecalKind.Cracks, 1, 3), (DecalKind.Bones, 1, 2) };
+                case LairTheme.DeadWatch:
+                    return new[] { (DecalKind.Rubble, 2, 4), (DecalKind.Skull, 1, 2), (DecalKind.Blood, 0, 2) };
                 default:
                     return new (DecalKind, int, int)[0];
             }

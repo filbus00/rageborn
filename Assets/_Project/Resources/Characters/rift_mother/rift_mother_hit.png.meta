@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: bf81357d81b4a49459b87fc7359d0fc7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6484799739963887893
+    second: rift_mother_hit_0
+  - first:
+      213: -1543231390892838303
+    second: rift_mother_hit_1
+  - first:
+      213: -7587070859796541305
+    second: rift_mother_hit_2
+  - first:
+      213: 1355464595525088473
+    second: rift_mother_hit_3
+  - first:
+      213: -5787699743601085434
+    second: rift_mother_hit_4
+  - first:
+      213: -3426083145313349450
+    second: rift_mother_hit_5
+  - first:
+      213: -9149744540532033421
+    second: rift_mother_hit_6
+  - first:
+      213: -2971730222736457289
+    second: rift_mother_hit_7
+  - first:
+      213: -7925548823746085581
+    second: rift_mother_hit_8
+  - first:
+      213: 8798525929717376255
+    second: rift_mother_hit_9
+  - first:
+      213: -5089904239291463041
+    second: rift_mother_hit_10
+  - first:
+      213: 1362241439256736440
+    second: rift_mother_hit_11
+  - first:
+      213: -260406986385114494
+    second: rift_mother_hit_12
+  - first:
+      213: -5215413337247754496
+    second: rift_mother_hit_13
+  - first:
+      213: -4014744924815781206
+    second: rift_mother_hit_14
+  - first:
+      213: 3480492887187389751
+    second: rift_mother_hit_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 27
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rift_mother_hit_s_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 532
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e90d9cdbcc7f4ac2a43d58a86d97309
+      internalID: 2032548795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_s_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 532
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eac627a01ee1440c19def059de704095
+      internalID: -257860353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_sw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 456
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd1c027bdd602436ea8af60519be9067
+      internalID: -1966508631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_sw_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 456
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a64e9ddd98e44f61aa6de582dbc7c4d
+      internalID: 1927541130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_w_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 380
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2e9ad670a77c47c6a86d369820e55d6
+      internalID: -634578396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_w_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 380
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3455d55dd383f46648a65d4192049276
+      internalID: 1685356727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_nw_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 304
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66fd877490c694cc591c4cda804d3617
+      internalID: -744488674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_nw_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 304
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9000fa0775a924ade84946689c61b607
+      internalID: 134887405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_n_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 228
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6323f503c3ea468d9bbb78512be0081
+      internalID: -1542867119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_n_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 228
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ad68d3fdf168488385a610a95426356
+      internalID: -172691103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_ne_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 152
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3eb89859650ce4aaf87b483f085eeb98
+      internalID: -1517329558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_ne_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 152
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 786f6d236fe02478d8b17b2dea2c3b85
+      internalID: -748041382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_e_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 76
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 176b8afb6b2284e0c9adf0f77ef2f7dc
+      internalID: -666684784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_e_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 76
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3585d81724f934d589570b4daec63d2c
+      internalID: 1087694143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_se_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0045d2ef115a1452d9e5e4830171701a
+      internalID: -613467696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rift_mother_hit_se_01
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065789476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c51f693ccd31c49fb97b6eff4db7e07f
+      internalID: -1978411141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 98d53a821e208402faa86e535360477d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      rift_mother_hit_e_00: -666684784
+      rift_mother_hit_e_01: 1087694143
+      rift_mother_hit_n_00: -1542867119
+      rift_mother_hit_n_01: -172691103
+      rift_mother_hit_ne_00: -1517329558
+      rift_mother_hit_ne_01: -748041382
+      rift_mother_hit_nw_00: -744488674
+      rift_mother_hit_nw_01: 134887405
+      rift_mother_hit_s_00: 2032548795
+      rift_mother_hit_s_01: -257860353
+      rift_mother_hit_se_00: -613467696
+      rift_mother_hit_se_01: -1978411141
+      rift_mother_hit_sw_00: -1966508631
+      rift_mother_hit_sw_01: 1927541130
+      rift_mother_hit_w_00: -634578396
+      rift_mother_hit_w_01: 1685356727
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

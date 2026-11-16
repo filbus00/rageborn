@@ -57,6 +57,10 @@ namespace ARPG
         public const string LibraryFloorName = "library_floor";
         static Color32[] libraryFloor;
         static int libraryFloorSize;
+        // The Rift Caves' rock the same way (2026-11-16, ArtSource/pixel/sixteen/rift_art.py).
+        public const string RiftFloorName = "rift_floor";
+        static Color32[] riftFloor;
+        static int riftFloorSize;
         // The drawn floor of the theme being painted, or null.
         static Color32[] ownFloor;
         static int ownFloorSize;
@@ -75,6 +79,7 @@ namespace ARPG
             forestPath = null;
             gaolFloor = null;
             libraryFloor = null;
+            riftFloor = null;
             ownFloor = null;
             made.Clear();
         }
@@ -404,6 +409,12 @@ namespace ARPG
                 ownFloorSize = libraryFloorSize;
                 return true;
             }
+            if (dungeonTheme == DungeonTheme.Cave && !DungeonRules.Forest && riftFloor != null)
+            {
+                ownFloor = riftFloor;
+                ownFloorSize = riftFloorSize;
+                return true;
+            }
             return false;
         }
 
@@ -458,6 +469,7 @@ namespace ARPG
             forestPath = Picture(ForestPathName, out forestPathSize);
             gaolFloor = Picture(GaolFloorName, out gaolFloorSize);
             libraryFloor = Picture(LibraryFloorName, out libraryFloorSize);
+            riftFloor = Picture(RiftFloorName, out riftFloorSize);
             forestGrassMean = 0f;
             if (forestGrass != null)
             {

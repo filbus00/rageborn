@@ -175,7 +175,8 @@ namespace ARPG.Tests
                 Assert.IsFalse(DungeonRules.GaolAt(25));
                 Assert.AreSame(PackComposition.GaolTable, PackComposition.RosterAt(18));
                 Assert.AreSame(PackComposition.LibraryTable, PackComposition.RosterAt(30));
-                Assert.AreSame(PackComposition.Table, PackComposition.RosterAt(40));
+                Assert.AreSame(PackComposition.RiftTable, PackComposition.RosterAt(40));
+                Assert.AreSame(PackComposition.Table, PackComposition.RosterAt(6));
                 var gaol = new System.Collections.Generic.HashSet<PackMember>(PackComposition.GaolTable.Select(e => e.Member));
                 Assert.AreEqual(10, gaol.Count);
                 for (var depth = 13; depth <= 24; depth++)
@@ -227,6 +228,40 @@ namespace ARPG.Tests
                 DungeonRules.Forest = true;
             }
             Assert.IsFalse(DungeonRules.LibraryAt(30), "a forest level is never the library");
+        }
+
+        [Test]
+        public void TheRift_HasItsOwnRoster_OnItsLevelsOnly()
+        {
+            // The Rift Caves (2026-11-16): levels 37 to 48 when the level is not a forest.
+            DungeonRules.Forest = false;
+            try
+            {
+                Assert.IsFalse(DungeonRules.RiftAt(36));
+                Assert.IsTrue(DungeonRules.RiftAt(37));
+                Assert.IsTrue(DungeonRules.RiftAt(48));
+                Assert.IsFalse(DungeonRules.LibraryAt(40), "the library ends at 36");
+                Assert.AreSame(PackComposition.RiftTable, PackComposition.RosterAt(42));
+                var rift = new System.Collections.Generic.HashSet<PackMember>(PackComposition.RiftTable.Select(e => e.Member));
+                Assert.AreEqual(10, rift.Count);
+                for (var depth = 37; depth <= 48; depth++)
+                {
+                    foreach (var role in new[] { PackRole.Front, PackRole.Back, PackRole.Swarm })
+                        Assert.IsTrue(PackComposition.Has(role, depth), role + " at " + depth);
+                    for (var pack = 0; pack < 40; pack++)
+                        foreach (var member in PackComposition.Roll(depth, PackKind.Normal, 9, 4243, pack))
+                            Assert.IsTrue(member == PackMember.None || rift.Contains(member), member + " at " + depth);
+                }
+                Assert.AreEqual(PackRole.Support, PackComposition.RoleOf(PackMember.BeaconThrall));
+                Assert.IsTrue(DungeonRules.OwnRanks(42));
+                Assert.AreEqual(LairTheme.Breach, Lairs.EliteTheme(42));
+                Assert.AreEqual(LairTheme.DeadWatch, Lairs.ThemeOf(PackMember.OathlessWatchman));
+            }
+            finally
+            {
+                DungeonRules.Forest = true;
+            }
+            Assert.IsFalse(DungeonRules.RiftAt(42), "a forest level is never the rift");
         }
 
         [Test]

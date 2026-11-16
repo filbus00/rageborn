@@ -167,6 +167,20 @@ namespace ARPG
             ("QuillScribe", new EnemySpecial("Quill Volley", SpecialShape.Throw, 6.5f, 3f, 11f, 0.2f, 0.5f, 0.8f, Steel, count: 3, spread: 10f, length: 12f, speed: 17f, kind: ProjectileKind.Arrow)),
             ("FlameCantor", new EnemySpecial("Burning Verse", SpecialShape.Throw, 7f, 2.5f, 10f, 0.35f, 0.6f, 1.0f, Fire, count: 3, spread: 18f, length: 11f, speed: 9f, kind: ProjectileKind.Fireball)),
             ("CandleBearer", new EnemySpecial("Hot Wax", SpecialShape.Throw, 7.5f, 3f, 8f, 0.35f, 0.55f, 1.1f, Ember, length: 8f, speed: 8f, kind: ProjectileKind.Bomb)),
+            // The Rift Caves' (2026-11-16, Claude's choices and numbers, to review): void, no pools. Riftspawn hurl a shard;
+            // the Oathless Watchman throws his spear; the Rift Brute pounds a ring round himself; the Obsidian Guard throws
+            // a glass blade that bounces; the Voidspitter spits three bolts; the Wound Seer calls three void orbs; the Beacon
+            // Thrall lobs a lump of beacon fire. Mites, gloomwings and stalkers only bite, dart and lunge.
+            ("Riftspawn", new EnemySpecial("Rift Shard", SpecialShape.Throw, 7f, 2.5f, 8f, 0.25f, 0.5f, 0.9f, Void, length: 8f, speed: 12f, kind: ProjectileKind.Knife)),
+            ("OathlessWatchman", new EnemySpecial("Thrown Spear", SpecialShape.Throw, 7f, 3f, 10f, 0.25f, 0.6f, 1.2f, Steel, length: 11f, speed: 16f, kind: ProjectileKind.Arrow)),
+            ("RiftBrute", new EnemySpecial("Ground Pound", SpecialShape.Ring, 7.5f, 0f, 3.5f, 3f, 1.1f, 1.4f, Void, slow: 0.7f, slowSeconds: 1.2f)),
+            ("ObsidianGuard", new EnemySpecial("Glass Blade", SpecialShape.Throw, 7.5f, 3f, 9f, 0.35f, 0.6f, 1.3f, Void, length: 12f, speed: 11f, kind: ProjectileKind.Bouncing)),
+            ("Voidspitter", new EnemySpecial("Void Spit", SpecialShape.Throw, 6.5f, 3f, 11f, 0.2f, 0.5f, 0.9f, Void, count: 3, spread: 12f, length: 12f, speed: 15f, kind: ProjectileKind.Arrow)),
+            ("WoundSeer", new EnemySpecial("Three Wounds", SpecialShape.Throw, 7f, 2.5f, 10f, 0.35f, 0.6f, 1.1f, Void, count: 3, spread: 18f, length: 11f, speed: 9f, kind: ProjectileKind.Fireball)),
+            ("BeaconThrall", new EnemySpecial("Beacon Fire", SpecialShape.Throw, 7.5f, 3f, 8f, 0.35f, 0.55f, 1.2f, Void, length: 8f, speed: 8f, kind: ProjectileKind.Bomb)),
+            ("RiftMite", default),
+            ("Gloomwing", default),
+            ("RiftStalker", default),
             ("Bookworm", default),
             ("AshMoth", default),
             ("EmberHound", default),

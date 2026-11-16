@@ -52,6 +52,10 @@ namespace ARPG
         /// went near black under that, and the shelves could not be read.</summary>
         public static readonly Mood Library = new Mood(new Color(0.96f, 0.84f, 0.76f), 0.62f, 0.9f);
 
+        /// <summary>The Rift Caves (2026-11-16): dark and violet, lit by the rift's own light, the Watch's old fires and her
+        /// ember. Claude's numbers, to review.</summary>
+        public static readonly Mood Rift = new Mood(new Color(0.86f, 0.8f, 1f), 0.66f, 0.9f);
+
         /// <summary>How strong a point light is in a scene by its ambient light: full in the old near-black dungeon,
         /// less the brighter the scene, so a fire in the forest warms the ground without washing it out.</summary>
         public static float LightScale(float ambientIntensity) => Mathf.Clamp(1.15f - ambientIntensity, 0.4f, 1f);
@@ -69,6 +73,8 @@ namespace ARPG
                 return Gaol;
             if (DungeonRules.LibraryAt(depth))
                 return Library;
+            if (DungeonRules.RiftAt(depth))
+                return Rift;
             var t = Mathf.Clamp01((depth - 1) / (float)(DungeonRules.Depths - 1));
             var color = Color.Lerp(Dungeon.Ambient, new Color(0.72f, 0.46f, 0.58f), t);
             // The burnt library smoulders (2026-10-11): its light turns toward ember orange, most in its middle levels.

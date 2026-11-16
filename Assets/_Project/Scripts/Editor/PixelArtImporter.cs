@@ -180,7 +180,7 @@ namespace ARPG.Editor
         {
             var names = new HashSet<string>();
             // The forest's list and the gaol's (2026-11-14, gaol_art.py's props and floor marks).
-            foreach (var list in new[] { DrawnListPath, GaolArtImport.ListPath, GaolArtImport.LibraryListPath })
+            foreach (var list in new[] { DrawnListPath, GaolArtImport.ListPath, GaolArtImport.LibraryListPath, GaolArtImport.RiftListPath })
             {
                 if (!File.Exists(list))
                     continue;

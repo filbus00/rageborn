@@ -88,6 +88,19 @@ namespace ARPG
         QuillScribe,
         FlameCantor,
         CandleBearer,
+
+        // The Rift Caves' own (2026-11-16, the owner: "finish the last stage"): what climbs out of the Rift, and the old
+        // Watch that guarded it, turned.
+        Riftspawn,
+        OathlessWatchman,
+        RiftBrute,
+        ObsidianGuard,
+        RiftMite,
+        Gloomwing,
+        RiftStalker,
+        Voidspitter,
+        WoundSeer,
+        BeaconThrall,
     }
 
     /// <summary>Where a kind stands in a pack: in front, at the back, one behind the rest helping them, or in a pack
@@ -236,15 +249,37 @@ namespace ARPG
             new Entry(PackMember.CandleBearer, PackRole.Support, 26, 36, 5),
         };
 
+        /// <summary>
+        /// The Rift Caves' own roster (2026-11-16), alone on their levels (37 to 48) when the level is not a forest:
+        /// riftspawn, oathless watchmen, rift brutes and obsidian guards up front, voidspitters and wound seers behind, a
+        /// beacon thrall leading, rift mites, gloomwings and rift stalkers in swarms. Each kind arrives a level or two after
+        /// the last. Claude's numbers, to review.
+        /// </summary>
+        public static readonly Entry[] RiftTable =
+        {
+            new Entry(PackMember.Riftspawn, PackRole.Front, 37, 48, 10),
+            new Entry(PackMember.OathlessWatchman, PackRole.Front, 37, 48, 7),
+            new Entry(PackMember.RiftBrute, PackRole.Front, 39, 48, 5),
+            new Entry(PackMember.ObsidianGuard, PackRole.Front, 41, 48, 3),
+            new Entry(PackMember.RiftMite, PackRole.Swarm, 37, 48, 8),
+            new Entry(PackMember.Gloomwing, PackRole.Swarm, 38, 48, 6),
+            new Entry(PackMember.RiftStalker, PackRole.Swarm, 39, 48, 6),
+            new Entry(PackMember.Voidspitter, PackRole.Back, 37, 48, 8),
+            new Entry(PackMember.WoundSeer, PackRole.Back, 38, 48, 6),
+            new Entry(PackMember.BeaconThrall, PackRole.Support, 38, 48, 5),
+        };
+
         /// <summary>The roster in force at a depth: the forest's on a forest level, the gaol's on the Iron Gaol's levels,
-        /// the library's on the Burnt Library's, else the old concept roster by band.</summary>
+        /// the library's on the Burnt Library's, the rift's in the Rift Caves, else the old concept roster by band (the
+        /// crypt's levels, which no contract plays now).</summary>
         public static Entry[] RosterAt(int depth) =>
-            DungeonRules.Forest ? ForestTable : DungeonRules.GaolAt(depth) ? GaolTable : DungeonRules.LibraryAt(depth) ? LibraryTable : Table;
+            DungeonRules.Forest ? ForestTable : DungeonRules.GaolAt(depth) ? GaolTable : DungeonRules.LibraryAt(depth) ? LibraryTable :
+            DungeonRules.RiftAt(depth) ? RiftTable : Table;
 
         /// <summary>The front fighter a level falls back on when a role has nobody.</summary>
         static PackMember Fallback(int depth) =>
             DungeonRules.Forest ? PackMember.Bandit : DungeonRules.GaolAt(depth) ? PackMember.ShackledWretch :
-            DungeonRules.LibraryAt(depth) ? PackMember.AshPenitent : PackMember.Zombie;
+            DungeonRules.LibraryAt(depth) ? PackMember.AshPenitent : DungeonRules.RiftAt(depth) ? PackMember.Riftspawn : PackMember.Zombie;
 
         public const int SwarmPercent = 20;
         // More packs with a ranged back row, and a bigger one (2026-10-17, steady pressure; was 60 percent, 2 or 3).
@@ -337,6 +372,9 @@ namespace ARPG
                 if (entry.Member == member)
                     return entry.Role;
             foreach (var entry in LibraryTable)
+                if (entry.Member == member)
+                    return entry.Role;
+            foreach (var entry in RiftTable)
                 if (entry.Member == member)
                     return entry.Role;
             foreach (var entry in Table)

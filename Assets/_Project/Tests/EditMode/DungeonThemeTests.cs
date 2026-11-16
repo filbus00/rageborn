@@ -97,9 +97,15 @@ namespace ARPG.Tests
             Assert.GreaterOrEqual(withAisles, 6, "most library levels have aisles of shelves");
         }
 
+        // The caves have no terraces in play since the Rift Caves were drawn (2026-11-16, DungeonRules.CaveTerraces); the
+        // code is kept and tested with the switch on.
+        [TearDown]
+        public void TerracesOffAgain() => DungeonRules.CaveTerraces = false;
+
         [Test]
         public void CaveTerraces_AreRingedByLedges_AndReachedByTheirSteps()
         {
+            DungeonRules.CaveTerraces = true;
             var withTerraces = 0;
             for (var seed = 1; seed <= 12; seed++)
             {

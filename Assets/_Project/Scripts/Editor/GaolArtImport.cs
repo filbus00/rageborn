@@ -20,6 +20,9 @@ namespace ARPG.Editor
 
         /// <summary>The Burnt Library's pieces (2026-11-16, library_art.py), set up the same way.</summary>
         public const string LibraryListPath = "ArtSource/pixel/sixteen/library_art_sizes.txt";
+
+        /// <summary>The Rift Caves' pieces (2026-11-16, rift_art.py), set up the same way.</summary>
+        public const string RiftListPath = "ArtSource/pixel/sixteen/rift_art_sizes.txt";
         const string Root = "Assets/_Project/Resources/Art/";
         const string FloorPath = Root + "Ground/gaol_floor.png";
 
@@ -36,6 +39,8 @@ namespace ARPG.Editor
             var lines = new System.Collections.Generic.List<string>(File.ReadAllLines(ListPath));
             if (File.Exists(LibraryListPath))
                 lines.AddRange(File.ReadAllLines(LibraryListPath));
+            if (File.Exists(RiftListPath))
+                lines.AddRange(File.ReadAllLines(RiftListPath));
             foreach (var line in lines)
             {
                 var parts = line.Trim().Split(' ');
@@ -73,7 +78,7 @@ namespace ARPG.Editor
 
             // The floors: plain readable textures, as the forest's grass and path.
             var floors = 0;
-            foreach (var path in new[] { FloorPath, Root + "Ground/library_floor.png" })
+            foreach (var path in new[] { FloorPath, Root + "Ground/library_floor.png", Root + "Ground/rift_floor.png" })
             {
                 var floor = AssetImporter.GetAtPath(path) as TextureImporter;
                 if (floor == null)

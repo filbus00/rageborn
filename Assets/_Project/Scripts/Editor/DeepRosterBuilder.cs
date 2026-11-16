@@ -144,6 +144,24 @@ namespace ARPG.Editor
             Concept("QuillScribe", "BanditArcher", 1.2f, 0f, 1.2f, so => so.FindProperty("projectileColor").colorValue = new Color(0.78f, 0.8f, 0.86f, 1f));
             Concept("FlameCantor", "EmberAcolyte", 1.2f, 0f, 1.2f);
             Concept("CandleBearer", "PyreKeeper", 1.9f, 0f, 1f);
+            // The Rift Caves' (2026-11-16): riftspawn swarm, the oathless watchman strikes twice and backs off, the brute
+            // slams, the obsidian guard is slow and armoured, mites swarm, gloomwings fly and dart in, stalkers lunge, the
+            // voidspitter shoots, the wound seer casts, the beacon thrall's light makes those near him hit harder. The last
+            // contract: a little over the library's. Claude's numbers, to review.
+            Concept("Riftspawn", "Swarmer", 1.6f, 3.2f, 1.15f);
+            Concept("OathlessWatchman", "Cutthroat", 1.7f, 3.7f, 1.25f);
+            Concept("RiftBrute", "Ghoul", 3.3f, 2.4f, 1.5f, so => F(so, "slamRadius", 2.4f));
+            Concept("ObsidianGuard", "Drowned", 3.9f, 2.0f, 1.6f, so =>
+            {
+                F(so, "armor", 80f);
+                F(so, "bodyRadius", 0.4f);
+            });
+            Concept("RiftMite", "Rat", 0.5f, 4.5f, 0.75f);
+            Concept("Gloomwing", "Bat", 0.6f, 4.3f, 0.85f);
+            Concept("RiftStalker", "AshWolf", 1.2f, 4.8f, 1.15f);
+            Concept("Voidspitter", "BanditArcher", 1.3f, 0f, 1.25f, so => so.FindProperty("projectileColor").colorValue = new Color(0.66f, 0.4f, 0.95f, 1f));
+            Concept("WoundSeer", "EmberAcolyte", 1.3f, 0f, 1.25f);
+            Concept("BeaconThrall", "PyreKeeper", 2.1f, 0f, 1f);
         }
 
         [MenuItem("Tools/ARPG/Add Deep Roster")]

@@ -23,6 +23,9 @@ namespace ARPG
 
         /// <summary>The Burnt Library's air (2026-11-16): embers rising and ash flakes drifting down.</summary>
         Embers,
+
+        /// <summary>The Rift Caves' air (2026-11-16): violet sparks drifting up out of the rock, glowing and going out.</summary>
+        RiftSparks,
     }
 
     /// <summary>The fire particles' numbers (2026-11-15, Claude's, to review). Pure, tested.</summary>
@@ -68,15 +71,22 @@ namespace ARPG
             new Color32(60, 14, 20, 255),
         };
 
+        // The Rift Caves' fire (2026-11-16): white to violet to a dark purple.
+        static readonly Color32[] RiftFire =
+        {
+            new Color32(240, 220, 255, 255), new Color32(206, 150, 255, 255), new Color32(150, 90, 230, 255), new Color32(90, 44, 160, 255),
+            new Color32(44, 22, 80, 255),
+        };
+
         static readonly Color32[] Smoke =
         {
             new Color32(70, 66, 72, 200), new Color32(58, 56, 62, 170), new Color32(46, 44, 50, 130), new Color32(36, 34, 40, 90),
         };
 
         /// <summary>A spark's colour by its age (0 to 1): in flat steps from white-yellow to dark red, never a fade.</summary>
-        public static Color32 Colour(float age, bool hell, bool smoke)
+        public static Color32 Colour(float age, bool hell, bool smoke, bool rift = false)
         {
-            var ramp = smoke ? Smoke : hell ? Hell : Fire;
+            var ramp = smoke ? Smoke : hell ? (rift ? RiftFire : Hell) : Fire;
             return ramp[Mathf.Clamp((int)(Mathf.Clamp01(age) * ramp.Length), 0, ramp.Length - 1)];
         }
 
@@ -156,7 +166,8 @@ namespace ARPG
                 motes[i] = NewRenderer("Mote");
                 motes[i].enabled = false;
                 moteDrift[i] = new Vector2(AmbienceRules.Spread(i, 5) * 0.12f, kind == MoteKind.Dust ? 0.03f + 0.02f * (i % 3) :
-                    kind == MoteKind.Embers ? (i % 2 == 0 ? 0.16f + 0.04f * (i % 3) : -0.07f) : AmbienceRules.Spread(i, 6) * 0.08f);
+                    kind == MoteKind.Embers ? (i % 2 == 0 ? 0.16f + 0.04f * (i % 3) : -0.07f) :
+                    kind == MoteKind.RiftSparks ? 0.1f + 0.05f * (i % 3) : AmbienceRules.Spread(i, 6) * 0.08f);
                 motePhase[i] = i * 0.37f;
             }
         }
@@ -236,7 +247,7 @@ namespace ARPG
                 r.transform.position = FireFxRules.Snap(at);
                 var size = FireFxRules.Size(age, p.Smoke);
                 r.transform.localScale = new Vector3(size, size, 1f);
-                r.color = FireFxRules.Colour(age, p.Hell, p.Smoke);
+                r.color = FireFxRules.Colour(age, p.Hell, p.Smoke, moteKind == MoteKind.RiftSparks);
                 r.sortingOrder = p.Smoke ? 0 : 1;
                 particles[i] = p;
             }
@@ -282,6 +293,8 @@ namespace ARPG
                 m.transform.position = p;
                 if (moteKind == MoteKind.Fireflies)
                     m.color = FireFxRules.FireflyLit(time, motePhase[i]) ? new Color32(214, 246, 110, 255) : new Color32(214, 246, 110, 0);
+                else if (moteKind == MoteKind.RiftSparks)
+                    m.color = FireFxRules.FireflyLit(time * 1.3f, motePhase[i]) ? new Color32(206, 150, 255, 255) : new Color32(110, 60, 190, 150);
                 else if (moteKind == MoteKind.Embers)
                     // Even ones are embers (orange, rising, glowing and going out), odd ones grey ash sinking.
                     m.color = i % 2 == 0 ? (FireFxRules.FireflyLit(time * 1.6f, motePhase[i]) ? new Color32(255, 150, 50, 255) : new Color32(160, 60, 30, 200))

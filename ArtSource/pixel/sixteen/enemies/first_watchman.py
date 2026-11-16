@@ -1,0 +1,70 @@
+# The First Watchman (2026-11-16, drawn new in the 16x16 style): the last boss (level 4-12), who guarded the Rift before
+# there were dukes, and turned: old plate of the Watch, a great helm split by a crack, violet light behind its slit and
+# through the crack, a torn blue cloak, the Watch's gold flame on his breast, a greatsword whose edge burns violet. 26
+# drawn pixels tall, drawn at his VisualScale (1.6).
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+import kit
+
+FRONT = ["..........KKKK..........",
+         "........KKiiiiKK........",
+         ".......KIiiiiiidK.......",
+         ".......KIiivviidK.......",
+         ".......KivvvvvvdK.......",
+         ".......KIiivviidK.......",
+         ".......KIiivvdvdK.......",
+         "........KKiiidKK.....K..",
+         "....KKKKKKiiiiKKKKKKKbK.",
+         "...KIiiidKttttKIiiidKbK.",
+         "..KIiiiidKtyytKIiiiidbK.",
+         "..KiiiidKttyyttKiiidsbsK",
+         "..KKiidKtttyytttKiidKgK.",
+         "..KcKKKKttttttttKKKcggg.",
+         "..KcKiiKKttttttKKicKKvK.",
+         "..KcKiiiKbbbbbbKiicK.vI.",
+         "..KcKssKKiiiiiiKKKcK.vI.",
+         "..KcCKKKiiidiiiiKcCK.vI.",
+         "..KccCKiiiKKKiiiKCcK.vI.",
+         "...KcCKiidK.KiidKCK..vI.",
+         "...KcCKiidK.KiidKCK..vI.",
+         "...KcKKiidK.KiidKKK..vI.",
+         "....K.KiidK.KiidK....vI.",
+         "......KiidK.KiidK....vI.",
+         ".....KIiidK.KIiidK...vK.",
+         ".....KKKKKK.KKKKKK...K.."]
+SIDE = ["..........KKKK..........",
+        "........KKiiiiK.........",
+        ".......KIiiiiiiK........",
+        ".......KIiiiivvK........",
+        ".......KIiiivvvK........",
+        ".......KIiiiivvK........",
+        ".......KIidiiiiK........",
+        "........KKiiiKK.....K...",
+        "......KKKKiiKKK....KbK..",
+        ".....KcKIiiiidK....KbK..",
+        "....KccKIiiiiidKKKKsbsK.",
+        "....KccKiiiytiiiiisKgK..",
+        "...KccCKttyyttKKKKKggg..",
+        "...KccCKtttttK.....KvK..",
+        "...KccCKKbbbbK......vI..",
+        "...KcCcKiiiiiK......vI..",
+        "...KcCcKiidiiK......vI..",
+        "...KcCKiiiKiiK......vI..",
+        "...KcCKiidKidK......vI..",
+        "....KCKiidKidK......vI..",
+        "....KCKiidKidK......vI..",
+        "....KKKiidKidK......vI..",
+        "......KiidKidK......vI..",
+        "......KiidKidK......vI..",
+        ".....KIiidKiidK.....vK..",
+        ".....KKKKKKKKKK.....K..."]
+BACK = FRONT[:3] + [".......KIiiiiiidK.......", ".......KIiiiiiidK.......", ".......KIiiiiiidK.......", ".......KIiiiidvdK......."] + FRONT[7:9] + [
+        "...KIiiidKccccKIiiidKbK.", "..KIiiiidKccccKIiiiidbK.", "..KiiiidKccCCccKiiidsbsK", "..KKiidKcccCCcccKiidKgK.",
+        "..KcKKKKccCccCccKKKcggg.", "..KcKccccCccccCccccKKvK.", "..KcKcccCccccccCcccK.vI.", "..KcKccCccccccccCccK.vI.",
+        "..KcCcccCccccccCcccK.vI.", "..KccCccccCccCccccCK.vI.", "...KcCcccCccccCcccK..vI.", "...KcCccCccKKccCccK..vI.",
+        "...KcKKcKKiK.KiKKcK..vI."] + FRONT[22:]
+kit.Character("first_watchman", {"s": FRONT, "se": SIDE, "e": SIDE, "ne": SIDE, "n": BACK},
+              {"i": "7a8494", "I": "aab4c4", "d": "4a5260", "v": "c080ff", "t": "34426a", "y": "e0b040", "c": "2e3a5e",
+               "C": "1e2742", "s": "9a94a4", "b": "5a4030", "g": "d8a040"},
+              role="melee", baked_scale=1.6, step_rows=3, margin=(8, 10, 8, 2), glow="v", eyes="E",
+              timing={"run": (0.5, 3.0), "walk": (1.0, 1.0)}).build()

@@ -39,10 +39,12 @@ namespace ARPG
             (PropKind.DeadAdventurer, 8), (PropKind.ColdCamp, 4), (PropKind.HangingCage, 5), (PropKind.Coffin, 4),
         };
 
+        // The Rift Caves since 2026-11-16 (rubble, bones, the Watch's old torches and braziers, the Rift's spikes, pods and
+        // fires, a stake); before it rubble, bones, torches, buckets, crates, barrels and braziers.
         static readonly (PropKind kind, int weight)[] CavePropWeights =
         {
-            (PropKind.Rubble, 30), (PropKind.BonePile, 18), (PropKind.Torch, 10), (PropKind.Bucket, 8), (PropKind.Crate, 8),
-            (PropKind.Barrel, 6), (PropKind.Brazier, 4),
+            (PropKind.Rubble, 26), (PropKind.BonePile, 16), (PropKind.Spikes, 14), (PropKind.FleshPod, 10), (PropKind.Torch, 8),
+            (PropKind.Hellfire, 8), (PropKind.Brazier, 5), (PropKind.Stake, 5),
         };
 
         // The forest (2026-10-26): logs, stumps, mushrooms, ferns, a standing stone now and then.
@@ -294,8 +296,8 @@ namespace ARPG
             var list = new List<(PropKind, int)>(theme == DungeonTheme.Cave && DungeonRules.Forest ? ForestPropWeights : theme == DungeonTheme.Cave ? CavePropWeights : theme == DungeonTheme.Library ? LibraryPropWeights :
                 theme == DungeonTheme.Prison ? PrisonPropWeights : CryptPropWeights);
             var extra = Mathf.RoundToInt(demonic * 120);
-            // The forest stays a forest at every depth (2026-10-27).
-            if (extra > 0 && !(theme == DungeonTheme.Cave && DungeonRules.Forest))
+            // The forest stays a forest at every depth (2026-10-27); the Rift Caves' own list has these already (2026-11-16).
+            if (extra > 0 && theme != DungeonTheme.Cave)
             {
                 list.Add((PropKind.FleshPod, extra * 3 / 10));
                 list.Add((PropKind.Spikes, extra * 3 / 10));
