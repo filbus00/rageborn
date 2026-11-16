@@ -673,83 +673,88 @@ def pivot_of(name, im):
     return w / 2.0, 6.75
 
 
-written, preview = [], []
-for group, folder in ((WALLS, "World"), (FITTINGS, "World"), (BARS, "World"), (STAIRS, "World"), (PROPS, "Dungeon"), (DECALS, "Dungeon")):
-    for name, make in group.items():
-        im = make()
-        write_png(os.path.join(ART, folder, name + ".png"), im.rows())
-        px, py = pivot_of(name, im)
-        written.append(f"{folder}/{name} {im.w * SCALE} {im.h * SCALE} {px:g} {py:g}")
-        preview.append(im)
-write_png(os.path.join(ART, "Ground", "gaol_floor.png"), floor())
-with open(os.path.join(HERE, "gaol_art_sizes.txt"), "w") as fh:
-    fh.write("\n".join(written) + "\n")
+def main():
+    written, preview = [], []
+    for group, folder in ((WALLS, "World"), (FITTINGS, "World"), (BARS, "World"), (STAIRS, "World"), (PROPS, "Dungeon"), (DECALS, "Dungeon")):
+        for name, make in group.items():
+            im = make()
+            write_png(os.path.join(ART, folder, name + ".png"), im.rows())
+            px, py = pivot_of(name, im)
+            written.append(f"{folder}/{name} {im.w * SCALE} {im.h * SCALE} {px:g} {py:g}")
+            preview.append(im)
+    write_png(os.path.join(ART, "Ground", "gaol_floor.png"), floor())
+    with open(os.path.join(HERE, "gaol_art_sizes.txt"), "w") as fh:
+        fh.write("\n".join(written) + "\n")
 
 
-def scene():
-    """A corner of a hall as the game lays it out: the floor, two walls meeting at the back, a cage, props."""
-    w, h = 150, 125
-    im = Img(w, h)
-    fl = floor()
-    for y in range(h):
-        for x in range(w):
-            r, g, b, _ = fl[y % 108][x % 108]
-            im.set(x, y, f"{r:02x}{g:02x}{b:02x}")
+    def scene():
+        """A corner of a hall as the game lays it out: the floor, two walls meeting at the back, a cage, props."""
+        w, h = 150, 125
+        im = Img(w, h)
+        fl = floor()
+        for y in range(h):
+            for x in range(w):
+                r, g, b, _ = fl[y % 108][x % 108]
+                im.set(x, y, f"{r:02x}{g:02x}{b:02x}")
 
-    def at(cx, cy):
-        # A cell's block corner on the canvas: x to the right and up, y to the left and up.
-        return round(75 + (cx - cy) * 6.75), round(112 - (cx + cy) * 3.375)
-    cells = []
-    for k in range(0, 9):
-        cells.append((k, 9, "x"))       # the wall along the top right (its -y face shows)
-        cells.append((9, k, "y"))
-    cells.append((9, 9, "c"))
-    names = ["prison_wall_2", "prison_wall_1", "prison_wall_3", "prison_wall_2", "prison_wall_4", "prison_wall_1", "prison_wall_5",
-             "prison_wall_2", "prison_wall_1"]
-    for cx, cy, kind in sorted(cells, key=lambda c: -(c[0] + c[1])):
-        ox, oy = at(cx, cy)
-        name = names[(cx if kind == "x" else cy) % len(names)] if kind != "c" else "prison_wall_1"
-        im.paste(WALLS[name](), ox - 7, oy - WALL_H - 3)
-    for name, cx, cy in (("prison_bars_we", 4, 5), ("prison_bars_we", 5, 5), ("prison_bars_ws", 6, 5), ("prison_bars_sn", 6, 4),
-                         ("prison_bars_n", 6, 3)):
-        ox, oy = at(cx, cy)
-        b = BARS[name]()
-        im.paste(b, ox - 3, oy - b.h + 3 - 3)
-    for name, cx, cy in (("prop_hanging_cage", 7, 7), ("prop_torture_bench", 3, 7), ("prop_stocks", 7, 2), ("prop_brazier", 5, 7),
-                         ("prop_straw_pile", 5, 4), ("prop_bucket", 2, 4), ("prop_altar", 3, 2), ("prop_torch", 8, 5),
-                         ("prop_floor_grate", 4, 3)):
-        ox, oy = at(cx, cy)
-        p = PROPS[name]()
-        im.paste(p, ox - p.w // 2, oy - p.h + (3 if name != "prop_floor_grate" else 6))
-    return im
+        def at(cx, cy):
+            # A cell's block corner on the canvas: x to the right and up, y to the left and up.
+            return round(75 + (cx - cy) * 6.75), round(112 - (cx + cy) * 3.375)
+        cells = []
+        for k in range(0, 9):
+            cells.append((k, 9, "x"))       # the wall along the top right (its -y face shows)
+            cells.append((9, k, "y"))
+        cells.append((9, 9, "c"))
+        names = ["prison_wall_2", "prison_wall_1", "prison_wall_3", "prison_wall_2", "prison_wall_4", "prison_wall_1", "prison_wall_5",
+                 "prison_wall_2", "prison_wall_1"]
+        for cx, cy, kind in sorted(cells, key=lambda c: -(c[0] + c[1])):
+            ox, oy = at(cx, cy)
+            name = names[(cx if kind == "x" else cy) % len(names)] if kind != "c" else "prison_wall_1"
+            im.paste(WALLS[name](), ox - 7, oy - WALL_H - 3)
+        for name, cx, cy in (("prison_bars_we", 4, 5), ("prison_bars_we", 5, 5), ("prison_bars_ws", 6, 5), ("prison_bars_sn", 6, 4),
+                             ("prison_bars_n", 6, 3)):
+            ox, oy = at(cx, cy)
+            b = BARS[name]()
+            im.paste(b, ox - 3, oy - b.h + 3 - 3)
+        for name, cx, cy in (("prop_hanging_cage", 7, 7), ("prop_torture_bench", 3, 7), ("prop_stocks", 7, 2), ("prop_brazier", 5, 7),
+                             ("prop_straw_pile", 5, 4), ("prop_bucket", 2, 4), ("prop_altar", 3, 2), ("prop_torch", 8, 5),
+                             ("prop_floor_grate", 4, 3)):
+            ox, oy = at(cx, cy)
+            p = PROPS[name]()
+            im.paste(p, ox - p.w // 2, oy - p.h + (3 if name != "prop_floor_grate" else 6))
+        return im
 
 
-rows, row, width = [], [], 0
-for im in preview:
-    if width + im.w > 250:
-        rows.append(row); row, width = [], 0
-    row.append(im); width += im.w + 3
-rows.append(row)
-sheet_h = sum(max(i.h for i in r) + 3 for r in rows)
-sheet = Img(256, sheet_h)
-for y in range(sheet_h):
-    for x in range(256):
-        sheet.set(x, y, "2a2c38")
-y = 0
-for r in rows:
-    hh = max(i.h for i in r)
-    x = 2
-    for im in r:
-        sheet.paste(im, x, y + hh - im.h)
-        x += im.w + 3
-    y += hh + 3
-sc = scene()
-write_png(os.path.join(P, "ArtSource", "pixel", "previews", "gaol_scene_16.png"), sc.rows(6))
-both = Img(max(256, sc.w), sheet.h + sc.h + 4)
-for yy in range(both.h):
-    for xx in range(both.w):
-        both.set(xx, yy, "2a2c38")
-both.paste(sc, 0, 0)
-both.paste(sheet, 0, sc.h + 4)
-write_png(os.path.join(P, "ArtSource", "pixel", "previews", "gaol_art_16.png"), both.rows(5))
-print("wrote", len(written), "pieces and the floor")
+    rows, row, width = [], [], 0
+    for im in preview:
+        if width + im.w > 250:
+            rows.append(row); row, width = [], 0
+        row.append(im); width += im.w + 3
+    rows.append(row)
+    sheet_h = sum(max(i.h for i in r) + 3 for r in rows)
+    sheet = Img(256, sheet_h)
+    for y in range(sheet_h):
+        for x in range(256):
+            sheet.set(x, y, "2a2c38")
+    y = 0
+    for r in rows:
+        hh = max(i.h for i in r)
+        x = 2
+        for im in r:
+            sheet.paste(im, x, y + hh - im.h)
+            x += im.w + 3
+        y += hh + 3
+    sc = scene()
+    write_png(os.path.join(P, "ArtSource", "pixel", "previews", "gaol_scene_16.png"), sc.rows(6))
+    both = Img(max(256, sc.w), sheet.h + sc.h + 4)
+    for yy in range(both.h):
+        for xx in range(both.w):
+            both.set(xx, yy, "2a2c38")
+    both.paste(sc, 0, 0)
+    both.paste(sheet, 0, sc.h + 4)
+    write_png(os.path.join(P, "ArtSource", "pixel", "previews", "gaol_art_16.png"), both.rows(5))
+    print("wrote", len(written), "pieces and the floor")
+
+
+if __name__ == "__main__":
+    main()

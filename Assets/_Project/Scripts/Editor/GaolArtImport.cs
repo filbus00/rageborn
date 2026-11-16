@@ -17,6 +17,9 @@ namespace ARPG.Editor
     public static class GaolArtImport
     {
         public const string ListPath = "ArtSource/pixel/sixteen/gaol_art_sizes.txt";
+
+        /// <summary>The Burnt Library's pieces (2026-11-16, library_art.py), set up the same way.</summary>
+        public const string LibraryListPath = "ArtSource/pixel/sixteen/library_art_sizes.txt";
         const string Root = "Assets/_Project/Resources/Art/";
         const string FloorPath = Root + "Ground/gaol_floor.png";
 
@@ -30,7 +33,10 @@ namespace ARPG.Editor
             }
             AssetDatabase.Refresh();
             var count = 0;
-            foreach (var line in File.ReadAllLines(ListPath))
+            var lines = new System.Collections.Generic.List<string>(File.ReadAllLines(ListPath));
+            if (File.Exists(LibraryListPath))
+                lines.AddRange(File.ReadAllLines(LibraryListPath));
+            foreach (var line in lines)
             {
                 var parts = line.Trim().Split(' ');
                 if (parts.Length < 5)
@@ -65,10 +71,14 @@ namespace ARPG.Editor
                 count++;
             }
 
-            // The floor: a plain readable texture, as the forest's grass and path.
-            var floor = AssetImporter.GetAtPath(FloorPath) as TextureImporter;
-            if (floor != null)
+            // The floors: plain readable textures, as the forest's grass and path.
+            var floors = 0;
+            foreach (var path in new[] { FloorPath, Root + "Ground/library_floor.png" })
             {
+                var floor = AssetImporter.GetAtPath(path) as TextureImporter;
+                if (floor == null)
+                    continue;
+                floors++;
                 floor.textureType = TextureImporterType.Default;
                 floor.isReadable = true;
                 floor.filterMode = FilterMode.Point;
@@ -78,7 +88,7 @@ namespace ARPG.Editor
                 floor.wrapMode = TextureWrapMode.Repeat;
                 floor.SaveAndReimport();
             }
-            Debug.Log($"[ARPG] Gaol art: {count} pieces set to {PixelArtImporter.RenderScaleUnit} a unit{(floor != null ? ", the floor readable" : ", no floor picture")}.");
+            Debug.Log($"[ARPG] Gaol and library art: {count} pieces set to {PixelArtImporter.RenderScaleUnit} a unit, {floors} floors readable.");
         }
     }
 }

@@ -53,6 +53,13 @@ namespace ARPG
         public const string GaolFloorName = "gaol_floor";
         static Color32[] gaolFloor;
         static int gaolFloorSize;
+        // The Burnt Library's scorched flagstones the same way (2026-11-16, ArtSource/pixel/sixteen/library_art.py).
+        public const string LibraryFloorName = "library_floor";
+        static Color32[] libraryFloor;
+        static int libraryFloorSize;
+        // The drawn floor of the theme being painted, or null.
+        static Color32[] ownFloor;
+        static int ownFloorSize;
         static readonly List<Object> made = new List<Object>();
         static readonly List<Vector3Int> positions = new List<Vector3Int>();
         static readonly List<TileBase> tiles = new List<TileBase>();
@@ -67,6 +74,8 @@ namespace ARPG
             forestGrass = null;
             forestPath = null;
             gaolFloor = null;
+            libraryFloor = null;
+            ownFloor = null;
             made.Clear();
         }
 
@@ -268,7 +277,7 @@ namespace ARPG
                     {
                         // The gaol's flagstones, read on the screen's grid in blocks, under a slow damp drift.
                         ForestBlockOf(g, out var fx, out var fy, out var fm);
-                        cellPixels[i] = Scale(gaolFloor[Wrap(fx, gaolFloorSize) + Wrap(fy, gaolFloorSize) * gaolFloorSize], GroundRules.GaolShade(fm));
+                        cellPixels[i] = Scale(ownFloor[Wrap(fx, ownFloorSize) + Wrap(fy, ownFloorSize) * ownFloorSize], GroundRules.GaolShade(fm));
                         continue;
                     }
                     if (!town && dungeonTheme == DungeonTheme.Crypt && cryptFloor != null)
@@ -378,7 +387,25 @@ namespace ARPG
             !town && DungeonRules.Forest && dungeonTheme == DungeonTheme.Cave && forestGrass != null && forestPath != null;
 
         // Whether this paint is the gaol's drawn floor on the screen's grid.
-        static bool GaolOnScreenGrid(bool town) => !town && dungeonTheme == DungeonTheme.Prison && gaolFloor != null;
+        // (the name is from the gaol, the first; it holds for the library's floor too)
+        static bool GaolOnScreenGrid(bool town)
+        {
+            if (town)
+                return false;
+            if (dungeonTheme == DungeonTheme.Prison && gaolFloor != null)
+            {
+                ownFloor = gaolFloor;
+                ownFloorSize = gaolFloorSize;
+                return true;
+            }
+            if (dungeonTheme == DungeonTheme.Library && libraryFloor != null)
+            {
+                ownFloor = libraryFloor;
+                ownFloorSize = libraryFloorSize;
+                return true;
+            }
+            return false;
+        }
 
         static float NearestPath(Vector2 ground)
         {
@@ -430,6 +457,7 @@ namespace ARPG
             forestGrass = Picture(ForestGrassName, out forestGrassSize);
             forestPath = Picture(ForestPathName, out forestPathSize);
             gaolFloor = Picture(GaolFloorName, out gaolFloorSize);
+            libraryFloor = Picture(LibraryFloorName, out libraryFloorSize);
             forestGrassMean = 0f;
             if (forestGrass != null)
             {

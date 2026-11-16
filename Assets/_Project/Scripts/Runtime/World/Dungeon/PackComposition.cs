@@ -75,6 +75,19 @@ namespace ARPG
         CrossbowWarder,
         BrandPriest,
         LampWarden,
+
+        // The Burnt Library's own (2026-11-16, the owner: "start building the third level, the one after the gaol. build
+        // enemies, assets, etc."): its monks, what they kept and what burns there.
+        AshPenitent,
+        CenserMonk,
+        TomeGolem,
+        ReliquaryGuard,
+        Bookworm,
+        AshMoth,
+        EmberHound,
+        QuillScribe,
+        FlameCantor,
+        CandleBearer,
     }
 
     /// <summary>Where a kind stands in a pack: in front, at the back, one behind the rest helping them, or in a pack
@@ -203,14 +216,35 @@ namespace ARPG
             new Entry(PackMember.LampWarden, PackRole.Support, 14, 24, 5),
         };
 
+        /// <summary>
+        /// The Burnt Library's own roster (2026-11-16), alone on its levels (25 to 36) when the level is not a forest: ash
+        /// penitents, censer monks, tome golems and reliquary guards up front, quill scribes and flame cantors behind, a
+        /// candle bearer leading, bookworms, ash moths and ember hounds in swarms. Each kind arrives a level or two after
+        /// the last. Claude's numbers, to review.
+        /// </summary>
+        public static readonly Entry[] LibraryTable =
+        {
+            new Entry(PackMember.AshPenitent, PackRole.Front, 25, 36, 10),
+            new Entry(PackMember.CenserMonk, PackRole.Front, 25, 36, 7),
+            new Entry(PackMember.TomeGolem, PackRole.Front, 27, 36, 5),
+            new Entry(PackMember.ReliquaryGuard, PackRole.Front, 29, 36, 3),
+            new Entry(PackMember.Bookworm, PackRole.Swarm, 25, 36, 8),
+            new Entry(PackMember.AshMoth, PackRole.Swarm, 26, 36, 6),
+            new Entry(PackMember.EmberHound, PackRole.Swarm, 27, 36, 6),
+            new Entry(PackMember.QuillScribe, PackRole.Back, 25, 36, 8),
+            new Entry(PackMember.FlameCantor, PackRole.Back, 26, 36, 6),
+            new Entry(PackMember.CandleBearer, PackRole.Support, 26, 36, 5),
+        };
+
         /// <summary>The roster in force at a depth: the forest's on a forest level, the gaol's on the Iron Gaol's levels,
-        /// else the old concept roster by band.</summary>
+        /// the library's on the Burnt Library's, else the old concept roster by band.</summary>
         public static Entry[] RosterAt(int depth) =>
-            DungeonRules.Forest ? ForestTable : DungeonRules.GaolAt(depth) ? GaolTable : Table;
+            DungeonRules.Forest ? ForestTable : DungeonRules.GaolAt(depth) ? GaolTable : DungeonRules.LibraryAt(depth) ? LibraryTable : Table;
 
         /// <summary>The front fighter a level falls back on when a role has nobody.</summary>
         static PackMember Fallback(int depth) =>
-            DungeonRules.Forest ? PackMember.Bandit : DungeonRules.GaolAt(depth) ? PackMember.ShackledWretch : PackMember.Zombie;
+            DungeonRules.Forest ? PackMember.Bandit : DungeonRules.GaolAt(depth) ? PackMember.ShackledWretch :
+            DungeonRules.LibraryAt(depth) ? PackMember.AshPenitent : PackMember.Zombie;
 
         public const int SwarmPercent = 20;
         // More packs with a ranged back row, and a bigger one (2026-10-17, steady pressure; was 60 percent, 2 or 3).
@@ -300,6 +334,9 @@ namespace ARPG
                 if (entry.Member == member)
                     return entry.Role;
             foreach (var entry in GaolTable)
+                if (entry.Member == member)
+                    return entry.Role;
+            foreach (var entry in LibraryTable)
                 if (entry.Member == member)
                     return entry.Role;
             foreach (var entry in Table)

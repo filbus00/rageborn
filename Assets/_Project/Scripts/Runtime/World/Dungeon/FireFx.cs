@@ -20,6 +20,9 @@ namespace ARPG
         None,
         Fireflies,
         Dust,
+
+        /// <summary>The Burnt Library's air (2026-11-16): embers rising and ash flakes drifting down.</summary>
+        Embers,
     }
 
     /// <summary>The fire particles' numbers (2026-11-15, Claude's, to review). Pure, tested.</summary>
@@ -152,7 +155,8 @@ namespace ARPG
             {
                 motes[i] = NewRenderer("Mote");
                 motes[i].enabled = false;
-                moteDrift[i] = new Vector2(AmbienceRules.Spread(i, 5) * 0.12f, kind == MoteKind.Dust ? 0.03f + 0.02f * (i % 3) : AmbienceRules.Spread(i, 6) * 0.08f);
+                moteDrift[i] = new Vector2(AmbienceRules.Spread(i, 5) * 0.12f, kind == MoteKind.Dust ? 0.03f + 0.02f * (i % 3) :
+                    kind == MoteKind.Embers ? (i % 2 == 0 ? 0.16f + 0.04f * (i % 3) : -0.07f) : AmbienceRules.Spread(i, 6) * 0.08f);
                 motePhase[i] = i * 0.37f;
             }
         }
@@ -278,6 +282,10 @@ namespace ARPG
                 m.transform.position = p;
                 if (moteKind == MoteKind.Fireflies)
                     m.color = FireFxRules.FireflyLit(time, motePhase[i]) ? new Color32(214, 246, 110, 255) : new Color32(214, 246, 110, 0);
+                else if (moteKind == MoteKind.Embers)
+                    // Even ones are embers (orange, rising, glowing and going out), odd ones grey ash sinking.
+                    m.color = i % 2 == 0 ? (FireFxRules.FireflyLit(time * 1.6f, motePhase[i]) ? new Color32(255, 150, 50, 255) : new Color32(160, 60, 30, 200))
+                        : new Color32(150, 146, 152, 140);
                 else
                     m.color = new Color32(200, 196, 210, (byte)(i % 2 == 0 ? 70 : 40));
             }

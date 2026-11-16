@@ -155,6 +155,21 @@ namespace ARPG
             ("CrossbowWarder", new EnemySpecial("Heavy Bolts", SpecialShape.Throw, 7f, 3f, 11f, 0.25f, 0.6f, 1.2f, Steel, count: 2, spread: 8f, length: 12f, speed: 18f, kind: ProjectileKind.Arrow)),
             ("BrandPriest", new EnemySpecial("Hot Iron", SpecialShape.Throw, 7f, 2.5f, 9f, 0.35f, 0.55f, 1.1f, Ember, length: 10f, speed: 9f, kind: ProjectileKind.Fireball)),
             ("LampWarden", new EnemySpecial("Lamp Oil", SpecialShape.Throw, 7.5f, 3f, 8f, 0.35f, 0.55f, 1.2f, Ember, length: 8f, speed: 8f, kind: ProjectileKind.Bomb)),
+            // The Burnt Library's (2026-11-16, Claude's choices and numbers, to review): fire and paper, no pools. The Ash
+            // Penitent flicks an ember; the Censer Monk swings a cloud of smoke round himself; the Tome Golem hurls three
+            // loose pages in a fan; the Reliquary Guard throws a blessed bomb; the Quill Scribe looses three quills; the
+            // Flame Cantor chants three fireballs; the Candle Bearer throws a lump of burning wax. Bookworms, ash moths
+            // and ember hounds only bite, dart and lunge.
+            ("AshPenitent", new EnemySpecial("Ember Flick", SpecialShape.Throw, 7f, 2.5f, 8f, 0.25f, 0.5f, 0.8f, Ember, length: 8f, speed: 12f, kind: ProjectileKind.Fireball)),
+            ("CenserMonk", new EnemySpecial("Smoke Censer", SpecialShape.Ring, 7.5f, 0f, 3.5f, 3f, 1.1f, 1.2f, Ember, slow: 0.7f, slowSeconds: 1.2f)),
+            ("TomeGolem", new EnemySpecial("Page Storm", SpecialShape.Throw, 7.5f, 2.5f, 9f, 0.25f, 0.55f, 0.9f, Bone, count: 3, spread: 20f, length: 9f, speed: 13f, kind: ProjectileKind.Knife)),
+            ("ReliquaryGuard", new EnemySpecial("Blessed Bomb", SpecialShape.Throw, 7.5f, 3f, 9f, 0.4f, 0.6f, 1.3f, Brass, length: 9f, speed: 8f, kind: ProjectileKind.Bomb)),
+            ("QuillScribe", new EnemySpecial("Quill Volley", SpecialShape.Throw, 6.5f, 3f, 11f, 0.2f, 0.5f, 0.8f, Steel, count: 3, spread: 10f, length: 12f, speed: 17f, kind: ProjectileKind.Arrow)),
+            ("FlameCantor", new EnemySpecial("Burning Verse", SpecialShape.Throw, 7f, 2.5f, 10f, 0.35f, 0.6f, 1.0f, Fire, count: 3, spread: 18f, length: 11f, speed: 9f, kind: ProjectileKind.Fireball)),
+            ("CandleBearer", new EnemySpecial("Hot Wax", SpecialShape.Throw, 7.5f, 3f, 8f, 0.35f, 0.55f, 1.1f, Ember, length: 8f, speed: 8f, kind: ProjectileKind.Bomb)),
+            ("Bookworm", default),
+            ("AshMoth", default),
+            ("EmberHound", default),
             ("CellRat", default),
             ("GibbetCrow", default),
             ("GaolMastiff", default),

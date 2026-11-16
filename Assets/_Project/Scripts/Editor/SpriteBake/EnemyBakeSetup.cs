@@ -182,6 +182,11 @@ namespace ARPG.Editor
             ("IronMaiden", "iron_maiden", null), ("CellRat", "cell_rat", null), ("GibbetCrow", "gibbet_crow", null),
             ("GaolMastiff", "gaol_mastiff", null), ("CrossbowWarder", "crossbow_warder", null), ("BrandPriest", "brand_priest", null),
             ("LampWarden", "lamp_warden", null),
+            // The Burnt Library (2026-11-16): ten kinds and the two bosses drawn in the 16x16 style.
+            ("AshPenitent", "ash_penitent", null), ("CenserMonk", "censer_monk", null), ("TomeGolem", "tome_golem", null),
+            ("ReliquaryGuard", "reliquary_guard", null), ("Bookworm", "bookworm", null), ("AshMoth", "ash_moth", null),
+            ("EmberHound", "ember_hound", null), ("QuillScribe", "quill_scribe", null), ("FlameCantor", "flame_cantor", null),
+            ("CandleBearer", "candle_bearer", null),
         };
 
         /// <summary>Bodies on a rig of their own (no humanoid): every clip is in the body's own file, named as the

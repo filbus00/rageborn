@@ -126,6 +126,24 @@ namespace ARPG.Editor
             Concept("CrossbowWarder", "BanditArcher", 1.1f, 0f, 1.15f, so => so.FindProperty("projectileColor").colorValue = new Color(0.8f, 0.82f, 0.85f, 1f));
             Concept("BrandPriest", "EmberAcolyte", 1.1f, 0f, 1.1f);
             Concept("LampWarden", "PyreKeeper", 1.7f, 0f, 1f);
+            // The Burnt Library's (2026-11-16): the monks shuffle and flick embers, the censer monk strikes twice and backs
+            // off, the golem slams, the guard is slow and armoured, bookworms swarm, moths fly and dart in, hounds lunge, the
+            // scribe shoots, the cantor throws fire, the bearer's light makes those near him hit harder. Claude's numbers,
+            // to review.
+            Concept("AshPenitent", "Swarmer", 1.5f, 2.9f, 1.1f);
+            Concept("CenserMonk", "Cutthroat", 1.5f, 3.6f, 1.2f);
+            Concept("TomeGolem", "Ghoul", 3.0f, 2.3f, 1.4f, so => F(so, "slamRadius", 2.3f));
+            Concept("ReliquaryGuard", "Drowned", 3.6f, 1.9f, 1.5f, so =>
+            {
+                F(so, "armor", 70f);
+                F(so, "bodyRadius", 0.4f);
+            });
+            Concept("Bookworm", "Rat", 0.45f, 4.4f, 0.7f);
+            Concept("AshMoth", "Bat", 0.55f, 4.2f, 0.8f);
+            Concept("EmberHound", "AshWolf", 1.1f, 4.7f, 1.1f);
+            Concept("QuillScribe", "BanditArcher", 1.2f, 0f, 1.2f, so => so.FindProperty("projectileColor").colorValue = new Color(0.78f, 0.8f, 0.86f, 1f));
+            Concept("FlameCantor", "EmberAcolyte", 1.2f, 0f, 1.2f);
+            Concept("CandleBearer", "PyreKeeper", 1.9f, 0f, 1f);
         }
 
         [MenuItem("Tools/ARPG/Add Deep Roster")]

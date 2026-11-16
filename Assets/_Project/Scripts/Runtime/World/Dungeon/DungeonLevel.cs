@@ -288,14 +288,14 @@ namespace ARPG
                 case 30 when Deep("SaintMarrow") != null:
                     fight = new GameObject("Saint Marrow Fight").AddComponent<SaintMarrowFight>();
                     definition = Deep("SaintMarrow");
-                    adds = Deep("SkeletonWarrior") ?? normalEnemy;
+                    adds = Deep("AshPenitent") ?? Deep("SkeletonWarrior") ?? normalEnemy;
                     break;
                 // The burnt library's end and the caves (2026-10-11): the Ash Archivist with his scribes, the Rift Mother
                 // with her brood, and the First Watchman at the bottom.
                 case 36 when Deep("AshArchivist") != null:
                     fight = new GameObject("Ash Archivist Fight").AddComponent<AshArchivistFight>();
                     definition = Deep("AshArchivist");
-                    adds = Deep("DarkCultist") ?? normalEnemy;
+                    adds = Deep("QuillScribe") ?? Deep("DarkCultist") ?? normalEnemy;
                     break;
                 case 42 when Deep("RiftMother") != null:
                     fight = new GameObject("Rift Mother Fight").AddComponent<RiftMotherFight>();
@@ -544,7 +544,8 @@ namespace ARPG
 
         // Made when the first fire asks (the props' in Paint, or a stairway's torches before it).
         FireFx Fires => fires != null ? fires
-            : fires = FireFx.Begin(transform, ForestLevel ? MoteKind.Fireflies : Layout.Theme == DungeonTheme.Prison ? MoteKind.Dust : MoteKind.None);
+            : fires = FireFx.Begin(transform, ForestLevel ? MoteKind.Fireflies : Layout.Theme == DungeonTheme.Prison ? MoteKind.Dust :
+                Layout.Theme == DungeonTheme.Library ? MoteKind.Embers : MoteKind.None);
 
         static FireKind FireOf(PropKind kind) =>
             kind == PropKind.Campfire ? FireKind.Campfire : kind == PropKind.Brazier ? FireKind.Brazier : kind == PropKind.Torch ? FireKind.Torch
@@ -1264,7 +1265,7 @@ namespace ARPG
                 WorldArt.Lit(doorwayRenderer);
                 // The gaol's doorway has a torch either side (gaol_art.py's doorway): sparks at each, mirrored for the
                 // doorway into a +y wall.
-                if (StairsTheme() == "gaol")
+                if (StairsTheme() == "gaol" || StairsTheme() == "library")
                 {
                     var flip = into.x != 0 ? 1f : -1f;
                     Fires.Add((Vector2)doorway.transform.position + new Vector2(-0.85f * flip, 1.6f), FireKind.Torch);
@@ -1368,7 +1369,8 @@ namespace ARPG
         // The theme in a stairway piece's name: the gaol's own doorway when it is drawn (2026-11-14), else the crypt's.
         string StairsTheme() =>
             Layout.Theme == DungeonTheme.Cave ? (DungeonRules.Forest ? "forest" : "cave")
-            : Layout.Theme == DungeonTheme.Prison && WorldArt.Get("stairs_down_x_gaol") != null ? "gaol" : "crypt";
+            : Layout.Theme == DungeonTheme.Prison && WorldArt.Get("stairs_down_x_gaol") != null ? "gaol"
+            : Layout.Theme == DungeonTheme.Library && WorldArt.Get("stairs_down_x_library") != null ? "library" : "crypt";
 
         /// <summary>The definition a pack member uses here (for quest foes and the waves at a watch fire).</summary>
         public EnemyDefinition DefinitionOf(PackMember member) => Definition(member);

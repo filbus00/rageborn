@@ -47,6 +47,9 @@ namespace ARPG
         /// <summary>The Iron Gaol (2026-11-15): clearly dark and cold, lit by its torches, braziers and her ember.</summary>
         public static readonly Mood Gaol = new Mood(new Color(0.72f, 0.74f, 0.94f), 0.5f, 0.88f);
 
+        /// <summary>The Burnt Library (2026-11-16): dim and smouldering, warm grey, lit by its fires, candles and her ember.</summary>
+        public static readonly Mood Library = new Mood(new Color(0.9f, 0.72f, 0.64f), 0.52f, 0.88f);
+
         /// <summary>How strong a point light is in a scene by its ambient light: full in the old near-black dungeon,
         /// less the brighter the scene, so a fire in the forest warms the ground without washing it out.</summary>
         public static float LightScale(float ambientIntensity) => Mathf.Clamp(1.15f - ambientIntensity, 0.4f, 1f);
@@ -62,6 +65,8 @@ namespace ARPG
                 return Forest;
             if (DungeonRules.GaolAt(depth))
                 return Gaol;
+            if (DungeonRules.LibraryAt(depth))
+                return Library;
             var t = Mathf.Clamp01((depth - 1) / (float)(DungeonRules.Depths - 1));
             var color = Color.Lerp(Dungeon.Ambient, new Color(0.72f, 0.46f, 0.58f), t);
             // The burnt library smoulders (2026-10-11): its light turns toward ember orange, most in its middle levels.

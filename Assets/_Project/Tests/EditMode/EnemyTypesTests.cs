@@ -174,7 +174,8 @@ namespace ARPG.Tests
                 Assert.IsTrue(DungeonRules.GaolAt(24));
                 Assert.IsFalse(DungeonRules.GaolAt(25));
                 Assert.AreSame(PackComposition.GaolTable, PackComposition.RosterAt(18));
-                Assert.AreSame(PackComposition.Table, PackComposition.RosterAt(30));
+                Assert.AreSame(PackComposition.LibraryTable, PackComposition.RosterAt(30));
+                Assert.AreSame(PackComposition.Table, PackComposition.RosterAt(40));
                 var gaol = new System.Collections.Generic.HashSet<PackMember>(PackComposition.GaolTable.Select(e => e.Member));
                 Assert.AreEqual(10, gaol.Count);
                 for (var depth = 13; depth <= 24; depth++)
@@ -192,6 +193,40 @@ namespace ARPG.Tests
                 DungeonRules.Forest = true;
             }
             Assert.IsFalse(DungeonRules.GaolAt(18), "a forest level is never the gaol");
+        }
+
+        [Test]
+        public void TheLibrary_HasItsOwnRoster_OnItsLevelsOnly()
+        {
+            // The Burnt Library (2026-11-16): levels 25 to 36 when the level is not a forest.
+            DungeonRules.Forest = false;
+            try
+            {
+                Assert.IsFalse(DungeonRules.LibraryAt(24));
+                Assert.IsTrue(DungeonRules.LibraryAt(25));
+                Assert.IsTrue(DungeonRules.LibraryAt(36));
+                Assert.IsFalse(DungeonRules.LibraryAt(37));
+                Assert.IsFalse(DungeonRules.GaolAt(30), "the gaol ends at 24");
+                Assert.AreSame(PackComposition.LibraryTable, PackComposition.RosterAt(30));
+                var library = new System.Collections.Generic.HashSet<PackMember>(PackComposition.LibraryTable.Select(e => e.Member));
+                Assert.AreEqual(10, library.Count);
+                for (var depth = 25; depth <= 36; depth++)
+                {
+                    foreach (var role in new[] { PackRole.Front, PackRole.Back, PackRole.Swarm })
+                        Assert.IsTrue(PackComposition.Has(role, depth), role + " at " + depth);
+                    for (var pack = 0; pack < 40; pack++)
+                        foreach (var member in PackComposition.Roll(depth, PackKind.Normal, 9, 4243, pack))
+                            Assert.IsTrue(member == PackMember.None || library.Contains(member), member + " at " + depth);
+                }
+                Assert.AreEqual(PackRole.Support, PackComposition.RoleOf(PackMember.CandleBearer));
+                Assert.IsTrue(DungeonRules.OwnRanks(30));
+                Assert.AreEqual(LairTheme.Pyre, Lairs.EliteTheme(30));
+            }
+            finally
+            {
+                DungeonRules.Forest = true;
+            }
+            Assert.IsFalse(DungeonRules.LibraryAt(30), "a forest level is never the library");
         }
 
         [Test]

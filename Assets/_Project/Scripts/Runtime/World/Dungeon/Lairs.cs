@@ -38,6 +38,12 @@ namespace ARPG
 
         /// <summary>The Iron Gaol's confessors (2026-11-14): an altar, candles, a brazier, a rack to stretch a prisoner on.</summary>
         Confessional,
+
+        /// <summary>The Burnt Library's monks (2026-11-16): lecterns, reading desks, candles, a few piled books.</summary>
+        Scriptorium,
+
+        /// <summary>The Burnt Library's burning stacks (2026-11-16): fallen shelves, burning books, ash.</summary>
+        Pyre,
     }
 
     /// <summary>A pack's lair: which theme its members make, and what it holds. Pure.</summary>
@@ -58,7 +64,7 @@ namespace ARPG
 
         /// <summary>An elite pack's lair, by depth: a shrine above the middle of the dungeon, a nest below.</summary>
         public static LairTheme EliteTheme(int depth) =>
-            DungeonRules.GaolAt(depth) ? LairTheme.GuardPost : depth >= 16 ? LairTheme.Nest : depth >= 7 ? LairTheme.Tomb : LairTheme.Shrine;
+            DungeonRules.LibraryAt(depth) ? LairTheme.Pyre : DungeonRules.GaolAt(depth) ? LairTheme.GuardPost : depth >= 16 ? LairTheme.Nest : depth >= 7 ? LairTheme.Tomb : LairTheme.Shrine;
 
         public static LairTheme ThemeOf(PackMember member)
         {
@@ -96,6 +102,19 @@ namespace ARPG
                 case PackMember.GaolMastiff:
                 case PackMember.GibbetCrow:
                     return LairTheme.Den;
+                // The Burnt Library's (2026-11-16): the monks and their scribes keep a scriptorium, what burns keeps a pyre.
+                case PackMember.AshPenitent:
+                case PackMember.CenserMonk:
+                case PackMember.QuillScribe:
+                case PackMember.FlameCantor:
+                case PackMember.CandleBearer:
+                    return LairTheme.Scriptorium;
+                case PackMember.TomeGolem:
+                case PackMember.ReliquaryGuard:
+                case PackMember.Bookworm:
+                case PackMember.AshMoth:
+                case PackMember.EmberHound:
+                    return LairTheme.Pyre;
                 case PackMember.Fallen:
                 case PackMember.Ogre:
                 case PackMember.Giant:
@@ -145,6 +164,8 @@ namespace ARPG
                 case LairTheme.Shrine: return PropKind.Altar;
                 case LairTheme.Nest: return PropKind.Hellfire;
                 case LairTheme.GuardPost: return PropKind.Brazier;
+                case LairTheme.Scriptorium: return PropKind.Lectern;
+                case LairTheme.Pyre: return PropKind.BurningBooks;
                 case LairTheme.Confessional: return PropKind.Altar;
                 default: return null;
             }
@@ -175,6 +196,10 @@ namespace ARPG
                     return new[] { (PropKind.WeaponRack, 1, 1), (PropKind.Barrel, 1, 2), (PropKind.Crate, 1, 2), (PropKind.Stocks, 0, 1), (PropKind.Bucket, 0, 1) };
                 case LairTheme.Confessional:
                     return new[] { (PropKind.Candles, 2, 4), (PropKind.Brazier, 1, 1), (PropKind.TortureBench, 0, 1) };
+                case LairTheme.Scriptorium:
+                    return new[] { (PropKind.ReadingDesk, 1, 2), (PropKind.Candles, 2, 4), (PropKind.BookPile, 1, 3), (PropKind.Urn, 0, 1) };
+                case LairTheme.Pyre:
+                    return new[] { (PropKind.FallenShelf, 1, 2), (PropKind.AshHeap, 1, 3), (PropKind.BookPile, 1, 2) };
                 default:
                     return new (PropKind, int, int)[0];
             }
@@ -205,6 +230,10 @@ namespace ARPG
                     return new[] { (DecalKind.Straw, 1, 3), (DecalKind.Blood, 1, 2) };
                 case LairTheme.Confessional:
                     return new[] { (DecalKind.Blood, 2, 4), (DecalKind.Skull, 1, 2) };
+                case LairTheme.Scriptorium:
+                    return new[] { (DecalKind.Ash, 1, 3), (DecalKind.Rubble, 0, 2) };
+                case LairTheme.Pyre:
+                    return new[] { (DecalKind.Ash, 3, 6), (DecalKind.Blood, 0, 1) };
                 default:
                     return new (DecalKind, int, int)[0];
             }

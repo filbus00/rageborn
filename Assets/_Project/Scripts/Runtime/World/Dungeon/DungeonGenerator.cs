@@ -80,9 +80,14 @@ namespace ARPG
         /// to the rank, as in the forest.</summary>
         public static bool GaolAt(int depth) => !Forest && depth >= PrisonFrom && depth < LibraryFrom;
 
+        /// <summary>A level of the Burnt Library (2026-11-16): the library's depths when the level is not a forest. Its packs
+        /// are its own kinds (<see cref="PackComposition.LibraryTable"/>), its champions and elites those kinds raised to
+        /// the rank.</summary>
+        public static bool LibraryAt(int depth) => !Forest && depth >= LibraryFrom && depth < CaveFrom;
+
         /// <summary>Whether a level's champions and elites are its own kinds raised to the rank (the forest and the
         /// gaol), not the crypt's old champion and elite.</summary>
-        public static bool OwnRanks(int depth) => Forest || GaolAt(depth);
+        public static bool OwnRanks(int depth) => Forest || GaolAt(depth) || LibraryAt(depth);
 
         public static DungeonTheme ThemeAt(int depth) =>
             Forest ? DungeonTheme.Cave :
