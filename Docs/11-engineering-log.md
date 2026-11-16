@@ -2284,3 +2284,13 @@ The owner: "start on the rift caves, i changed my mind, you can build it" (after
 - Checked in the editor: depth 37 (the four first kinds with ranks), 47 (all ten), 42 (the Rift Mother's arena, the fight object and her sheet; she was hidden behind damage numbers in the capture), the stair gate. Not seen: the fights, the First Watchman, the phone.
 - The wiring of definitions by `Wire Enemy Looks` rewrote about 40 tracked definitions; they were reverted with `git checkout`, as for the library.
 
+## 2026-11-16: code review
+
+The owner: "review the full code base, remove unused assets and fix bad code and bugs. also present what to do next besides playtesting".
+
+- What was checked, and found clean: compiler warnings with every warning on (only never-assigned serialized fields, three kept scene-reference fields in `DungeonLevel`, and stub events in the offline checker); mutable statics with no reset (34 files, all singletons that compare null once destroyed, or reset in Awake); hot paths (`Update`, `Tick`, `LateUpdate`, 278 files) for lookups, allocations, LINQ and string building (two lookups guarded by a rare state, the rest debug overlays); `foreach` loops that change their own collection (none); empty `catch`, TODO and HACK (none); sounds (all 30 ids played, every wav matches an id); literal art names against the files (only the town's `iron_fence_y` has no picture; the town is skipped).
+- Found and fixed: see Docs/08 (the bosses' lines, the silent fallback, the dead members, the unused art, `.utmp`). New tests `ContractLevelsTests` (every depth of every contract, six seeds: floor all reachable, stairs, chests, packs on floor, packs of the contract's own kinds, lairs by kind, a boss arena exactly on boss depths) and `EnemyDataTests` (read the project's files). Both passed on the first run, so the generator and the rosters of the gaol, the library and the Rift Caves are sound at every depth.
+- Kept on purpose, not dead: the retired Wrathborn code and skills, the crypt, cathedral and cave-terrace code behind switches, `Sandbox.unity`, the template scene, the old crypt enemies' definitions (they name sheets that were removed; no contract plays them, and `Wire Enemy Looks` empties them).
+- Unity's own EditMode run after the changes: 798 passed, 0 failed. The offline run: 793 passed, the 5 known `NavGridBakerTests` (the stub tilemap) failing.
+- Size: `ArtSource/models/forest` is 145 MB of the retired 3D sources of the old forest enemies, tracked in git; the repository is 2.9 GB. Left alone (the owner's sources).
+

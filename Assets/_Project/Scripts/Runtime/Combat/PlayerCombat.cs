@@ -230,7 +230,6 @@ namespace ARPG
 
         FocusPool focus;
         float[] cooldowns;
-        int[] castCounts;
         float attackTimer;
         float castTimer;
         Vector2 facing = Vector2.up;
@@ -281,11 +280,6 @@ namespace ARPG
                                     (GameSession.Current.Equipment.Wears(LegendaryId.TheLongSilence) ? Legendaries.LongSilenceReach : 0f)) *
                                    (player != null ? MomentumShots.ArrowFactor(player.Stance.Momentum) : 1f);
 
-        /// <summary>How many times the skill in a slot has fired since the scene started, for tests and tuning.</summary>
-        public int CastCount(int slot) => castCounts != null && slot >= 0 && slot < castCounts.Length ? castCounts[slot] : 0;
-
-        public float SkillCooldownRemaining(int slot) => cooldowns != null && slot >= 0 && slot < cooldowns.Length ? cooldowns[slot] : 0f;
-
         /// <summary>Whether the class skill at this index has been learned in the talent trees (she starts with only her
         /// bow, 2026-10-07).</summary>
         public bool IsUnlocked(int skillIndex) =>
@@ -303,31 +297,8 @@ namespace ARPG
             return skillIds[skillIndex] ??= skills[skillIndex].name;
         }
 
-        /// <summary>The skill in a loadout slot, or null.</summary>
-        public SkillDefinition SlotSkill(int slot) =>
-            slot >= 0 && slot < slotSkill.Length && slotSkill[slot] >= 0 ? skills[slotSkill[slot]] : null;
-
         /// <summary>Whether a channel (Rending Spin) is spinning now.</summary>
         public bool Channeling => channelTimer > 0f;
-
-        /// <summary>The class's skills with their unlock levels, in fill order, for the loadout.</summary>
-        public List<(string id, int unlockLevel)> ClassSkillList()
-        {
-            var list = new List<(string, int)>(skills.Length);
-            foreach (var skill in skills)
-                if (skill != null)
-                    list.Add((skill.name, skill.UnlockLevel));
-            return list;
-        }
-
-        /// <summary>The class skill with this asset name, or null.</summary>
-        public SkillDefinition FindSkill(string id)
-        {
-            foreach (var skill in skills)
-                if (skill != null && skill.name == id)
-                    return skill;
-            return null;
-        }
 
         void Awake()
         {
@@ -347,7 +318,6 @@ namespace ARPG
             // Focus starts full every time a level loads: a fight opens on skills (Docs/02).
             focus = new FocusPool();
             cooldowns = new float[skills.Length];
-            castCounts = new int[skills.Length];
 
             // Effects share a parent scaled to half height, which projects ground space onto the isometric view.
             var root = new GameObject("Sweep Effects");
@@ -911,7 +881,6 @@ namespace ARPG
             cooldowns[i] = cooldown * Mathf.Max(0.1f, 1f - cdr);
             castTimer = GlobalCastSeconds;
             SkillCastCount++;
-            castCounts[i]++;
             focus.MarkCombat();
             var direction = skillTarget != null ? (skillTarget.GroundPosition - origin).normalized : aim;
             SkillCast?.Invoke(skill, direction);

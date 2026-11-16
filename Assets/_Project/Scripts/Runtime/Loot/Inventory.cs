@@ -98,17 +98,6 @@ namespace ARPG
             return FindSpace(ItemSize.Of(item), Occupancy()).HasValue || Pack(With(item)) != null;
         }
 
-        /// <summary>Whether, with <paramref name="leaving"/> taken out, every item in <paramref name="arriving"/> would
-        /// also fit (the swap when equipping). Changes nothing.</summary>
-        public bool CanSwap(Item leaving, IList<Item> arriving)
-        {
-            var after = new List<Item>(items);
-            if (leaving != null)
-                after.Remove(leaving);
-            after.AddRange(arriving);
-            return Pack(after) != null;
-        }
-
         /// <summary>
         /// Takes <paramref name="leaving"/> out (may be null) and puts every item of <paramref name="arriving"/> in, all
         /// or nothing: each where it first fits as things lie, or, when one does not, the whole backpack repacked. Returns

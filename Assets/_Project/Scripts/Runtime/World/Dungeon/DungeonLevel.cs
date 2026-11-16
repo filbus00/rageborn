@@ -1391,8 +1391,21 @@ namespace ARPG
 
         // A pack member's definition by its name (the concept roster, 2026-10-13); a missing one falls back to the
         // zombie, so an older scene still fills its packs.
-        EnemyDefinition Definition(PackMember member) =>
-            member == PackMember.None ? null : Deep(member.ToString()) ?? normalEnemy;
+        EnemyDefinition Definition(PackMember member)
+        {
+            if (member == PackMember.None)
+                return null;
+            var definition = Deep(member.ToString());
+            if (definition != null)
+                return definition;
+            // The plain enemy stands in without a word otherwise (found 2026-11-15: two forest bosses were shown as the
+            // Cinder Warden and the Tidewife); Add Deep Roster puts the missing one in the scene's roster.
+            if (missingKinds.Add(member))
+                Debug.LogError($"[ARPG] No definition for {member} in the dungeon's deep roster; the plain enemy stands in. Run Tools > ARPG > Add Deep Roster.");
+            return normalEnemy;
+        }
+
+        readonly HashSet<PackMember> missingKinds = new HashSet<PackMember>();
 
         /// <summary>A deep enemy or boss definition by its asset's name, or null.</summary>
         EnemyDefinition Deep(string name)

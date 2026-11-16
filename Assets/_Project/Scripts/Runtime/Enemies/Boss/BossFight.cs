@@ -104,8 +104,10 @@ namespace ARPG
         protected virtual void OnAttackCancelled() { }
 
         /// <summary>Charges and fans warned by a symbol on her ring, not a line on the ground (the owner, 2026-11-02: "do
-        /// not use lines for indicating attacks on any enemy"); the forest's bosses. The older bosses keep their lines.</summary>
-        protected virtual bool RingWarnings => false;
+        /// not use lines for indicating attacks on any enemy"). The forest's bosses did from the start; the older bosses
+        /// (the gaol's, the library's, the Rift Caves', the crypt's) kept their lines until the code review of 2026-11-16,
+        /// which made every boss follow the rule. A lane that hurts (<see cref="LineStrike"/>) keeps its lane.</summary>
+        protected virtual bool RingWarnings => true;
 
         protected virtual float MoveSpeed => 2.4f;
         protected virtual float KeepDistance => 2.2f;

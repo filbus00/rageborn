@@ -36,13 +36,6 @@ namespace ARPG
         PlayerCombat combat;
         PlayerController player;
 
-        /// <summary>The town has no combat object, so its arc is made here, full (FIRST-RUN expects it there too).</summary>
-        public static void EnsureWithoutCombat(PlayerController player)
-        {
-            if (player != null && FindAnyObjectByType<PlayerCombat>() == null && FindAnyObjectByType<RageArc>() == null)
-                Create(null, player);
-        }
-
         public static RageArc Create(PlayerCombat combat, PlayerController player)
         {
             var canvasObject = new GameObject("Rage Arc Canvas", typeof(Canvas));
