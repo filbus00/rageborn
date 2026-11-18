@@ -744,6 +744,12 @@ namespace ARPG
 
         public bool IsBurning => burn.IsBurning;
 
+        /// <summary>How many burn stacks it has (0 to 3): the fiercer the fire the more flames <see cref="BurnFx"/> shows.</summary>
+        public int BurnStackCount => burn.Count;
+
+        /// <summary>How high its body reaches, in world units, where its flames and smoke rise to.</summary>
+        public float FlameHeight => BodyHeight;
+
         public bool IsFrozen => chill.IsFrozen;
 
         /// <summary>Adds a burn stack: this much damage a second, already through the hit formula, for 3 s (up to 3).</summary>
@@ -751,6 +757,9 @@ namespace ARPG
         {
             if (!IsAlive)
                 return;
+            // A fire catching shows: a flare of flame (BurnFx), when it was not burning already.
+            if (!burn.IsBurning)
+                BurnFx.Ignite(this);
             burn.Apply(damagePerSecond);
         }
 

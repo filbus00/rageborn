@@ -186,6 +186,9 @@ namespace ARPG
         }
 
         // One drawn pixel: 2 x 2 of the screen's.
+        /// <summary>The one-pixel sprite the fire particles use (shared with <see cref="BurnFx"/>).</summary>
+        public static Sprite Pixel => Dot;
+
         static Sprite Dot
         {
             get

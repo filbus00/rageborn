@@ -14,6 +14,11 @@ OUT = os.path.join(ROOT, "Assets", "_Project", "Resources", "Audio", "Sfx")
 rng = np.random.default_rng(7)
 
 
+def J(lo, hi):
+    """A random number in a range (each variant of a bank is its own draw, 2026-11-18)."""
+    return float(rng.uniform(lo, hi))
+
+
 def n(seconds):
     return int(seconds * RATE)
 
@@ -156,15 +161,22 @@ def bell(freq, seconds, decay):
 
 # ---------------------------------------------------------------- the sounds
 
-def arrow_shot():
+def arrow_shot(kind=None):
     # A bow's release is not a note: the string slaps the limbs and stops dead (a dull, very short thump with a hint
     # of wood), and the arrow hisses away. No sustained pitch (a plucked string read as an electric guitar).
-    thump = sweep(0.06, 210, 90, 0.018)
-    slap = bandpass(noise(0.04), 420, 1.5) * env(0.04, 0.01)
-    wood = modes(0.05, [(720, 0.6, 0.012), (1340, 0.3, 0.008)])
-    hiss = highpass(noise(0.16), 2500)
-    hiss = onepole(hiss, np.linspace(9000, 3000, len(hiss))) * env(0.16, 0.05, 0.004)
-    return finish(mix(thump, slap * 0.8, wood * 0.35, at(hiss * 0.55, 0.008)), 0.7)
+    # Three characters (2026-11-18, the owner: the shot "gets a bit repetitive", "more dynamic and varied"): a sharp slap
+    # of a light bow, a deep thrum of heavy limbs, a snappy click of wood; each draw of the parameters is its own sound.
+    k = int(rng.integers(0, 3)) if kind is None else kind % 3
+    f0 = J(190, 270) if k != 1 else J(125, 180)
+    thump = sweep(J(0.05, 0.08), f0, f0 * J(0.4, 0.55), J(0.014, 0.024))
+    slap = bandpass(noise(0.05), J(360, 560) if k != 1 else J(250, 380), J(1.2, 2.0)) * env(0.05, J(0.008, 0.014))
+    # The wood of the limbs is a short band of noise, not tuned partials (they rang like a woodblock, 2026-11-18).
+    body = bandpass(noise(0.04), J(900, 1500), 0.9) * env(0.04, J(0.008, 0.014))
+    length = J(0.12, 0.22)
+    hiss = highpass(noise(length), J(1500, 2200))
+    hiss = onepole(hiss, np.linspace(J(3500, 5500), J(1500, 2500), len(hiss))) * env(length, J(0.035, 0.07), 0.004)
+    parts = [thump * (1.0 if k != 2 else 0.7), slap * 0.8, body * (0.5 if k != 2 else 0.8), at(hiss * J(0.3, 0.5), J(0.004, 0.014))]
+    return finish(mix(*parts), 0.7)
 
 
 def heavy_shot():
@@ -176,26 +188,58 @@ def heavy_shot():
     return finish(mix(thump, slap * 0.9, wood * 0.35, at(whoosh * 0.6, 0.01)), 0.8)
 
 
-def hit():
-    thud = sweep(0.12, 110, 45, 0.04)
-    flesh = bandpass(noise(0.08), 1100, 1.2) * env(0.08, 0.02)
-    crack = highpass(noise(0.015), 2500) * env(0.015, 0.004)
-    return finish(mix(thud, flesh * 0.9, crack * 0.4), 0.6)
+def soften(x, cutoff=2200):
+    """The top taken off (the first rework's grains, clinks and clicks sounded like a box of pens)."""
+    return onepole(x, cutoff)
 
 
-def crit():
-    base = hit() / 0.6
-    ping = modes(0.35, [(2350, 0.6, 0.09), (3720, 0.4, 0.06), (5510, 0.2, 0.04)])
-    return finish(mix(base, at(ping * 0.5, 0.004)), 0.8)
+def hit(kind=None):
+    # An arrow into a target (2026-11-18, the owner: "make a thudding sound of an arrow hitting a target"): a thump with a
+    # muffled body and a short dull thwack, nothing high and nothing tuned. Made for a phone's speaker, which gives
+    # almost nothing below 150 Hz: the thump falls from about 250 to 90 Hz and the body is mostly 300 to 1200 Hz noise.
+    # Five kinds of thud, each drawn a little differently every time: a body thud, a heavy one, a straw target's soft
+    # thup, leather, and a light one.
+    k = int(rng.integers(0, 5)) if kind is None else kind % 5
+    # The thwack carries the thud on a phone's speaker: a dull band of noise at 450 to 750 Hz.
+    thwack = bandpass(noise(0.035), J(450, 750), 0.8) * env(0.035, 0.012) * 1.8
+    tip = bandpass(noise(0.006), J(900, 1400), 0.7) * env(0.006, 0.002)
+    if k == 0:
+        thud = sweep(0.12, J(210, 270), J(85, 110), J(0.035, 0.05))
+        body = onepole(noise(0.06), J(700, 1100)) * env(0.06, 0.02)
+        return finish(soften(mix(thud * 0.8, body * 0.9, thwack * 0.7, tip * 0.2)), 0.6)
+    if k == 1:
+        thud = sweep(0.14, J(200, 250), J(85, 105), J(0.04, 0.055))
+        body = onepole(noise(0.10), J(600, 900)) * env(0.10, 0.035)
+        return finish(soften(mix(thud * 0.6, body * 1.3, thwack * 0.6, tip * 0.15)), 0.62)
+    if k == 2:
+        body = onepole(noise(0.08), J(900, 1300)) * env(0.08, 0.025)
+        thup = sweep(0.07, J(240, 300), J(105, 125), 0.03)
+        return finish(soften(mix(body * 1.0, thup * 0.7, thwack * 0.6, tip * 0.15)), 0.55)
+    if k == 3:
+        thud = sweep(0.10, J(230, 280), J(100, 125), 0.04)
+        whump = bandpass(noise(0.05), J(400, 600), 0.7) * env(0.05, 0.018)
+        return finish(soften(mix(thud * 0.5, whump * 1.4, tip * 0.15)), 0.6)
+    thud = sweep(0.09, J(240, 300), J(105, 130), 0.03)
+    body = onepole(noise(0.05), 1100) * env(0.05, 0.015)
+    return finish(soften(mix(thud * 0.6, body * 1.1, thwack * 0.6)), 0.55)
 
 
-def kill():
-    thump = sweep(0.25, 90, 38, 0.08)
-    grains = np.zeros(n(0.3))
-    for k in range(6):
-        g = bandpass(noise(0.03), rng.uniform(500, 1500), 1.5) * env(0.03, 0.008)
-        grains = mix(grains, at(g, rng.uniform(0, 0.12)))
-    return finish(reverb(mix(thump * 1.2, grains * 0.6), 0.6, 0.15, 1500), 0.8)
+def crit(kind=None):
+    # A heavier thud with a sharper crack, still low: a deeper drop under it and a short dull snap.
+    base = hit((0, 1)[int(rng.integers(0, 2))] if kind is None else (0, 1)[kind % 2]) / 0.6
+    boom = sweep(J(0.16, 0.22), J(280, 340), J(90, 110), J(0.05, 0.08))
+    snap = bandpass(noise(0.04), J(800, 1200), 1.0) * env(0.04, J(0.01, 0.016))
+    return finish(soften(mix(base, boom * J(0.5, 0.8), at(snap * J(0.6, 0.9), 0.002)), 3000), 0.8)
+
+
+def kill(kind=None):
+    # A last heavy thud and a low rolling out, with a second, softer one after it in some.
+    thump = sweep(J(0.18, 0.26), J(220, 280), J(85, 105), J(0.06, 0.09))
+    rumble = onepole(noise(0.3), J(500, 900)) * env(0.3, J(0.07, 0.11), 0.004)
+    parts = [thump * J(0.6, 0.8), rumble * J(1.0, 1.4)]
+    if kind is not None and kind % 2 == 1:
+        parts.append(at(sweep(0.12, J(180, 220), 80, 0.04) * 0.5, J(0.09, 0.14)))
+    return finish(soften(reverb(mix(*parts), J(0.3, 0.5), J(0.08, 0.14), 1500), 2500), 0.8)
 
 
 def swing():
@@ -219,12 +263,13 @@ def explosion():
     return finish(mix(boom(1.1, 1.0), crack * 0.8, fire * 0.9), 0.95)
 
 
-def hurt():
-    thud = sweep(0.16, 130, 60, 0.05)
+def hurt(kind=None):
+    # The player's grunt, a different voice each time (2026-11-18).
+    thud = sweep(0.16, J(110, 150), J(50, 70), 0.05)
     x = t(0.24)
-    saw = 2 * ((x * np.linspace(165, 115, len(x))) % 1) - 1
-    grunt = bandpass(saw, 650, 2.0) * env(0.24, 0.08, 0.01)
-    return finish(mix(thud, grunt * 0.6, bandpass(noise(0.06), 900, 1) * env(0.06, 0.02) * 0.5), 0.7)
+    saw = 2 * ((x * np.linspace(J(140, 190), J(95, 130), len(x))) % 1) - 1
+    grunt = bandpass(saw, J(550, 800), J(1.6, 2.4)) * env(0.24, J(0.06, 0.1), 0.01)
+    return finish(mix(thud, grunt * 0.6, bandpass(noise(0.06), J(750, 1050), 1) * env(0.06, 0.02) * 0.5), 0.7)
 
 
 def drop_common():
@@ -433,9 +478,16 @@ def write(name, samples):
     print("REPORT %s %.2f s" % (name, len(samples) / RATE))
 
 
+# Sounds that play often come in banks (2026-11-18): the base file and Name_1 ... Name_N, each its own draw of the
+# generator (and its own kind where there are kinds); Sfx picks one at random, never the same twice running.
+BANKS = {"ArrowShot": 7, "Hit": 10, "Crit": 5, "Kill": 5, "Hurt": 4}
+
 wanted = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
 # The owner's own recordings (import_owner_sounds.py, 2026-10-12) are only remade here when asked for by name.
 OWNER = {"Gold", "Explosion", "FrostNova"}
 for name, make in SOUNDS.items():
     if (not wanted and name not in OWNER) or name in wanted:
         write(name, make())
+        for k in range(1, BANKS.get(name, 0) + 1):
+            rng = np.random.default_rng(1000 + 31 * k + sum(map(ord, name)))
+            write("%s_%d" % (name, k), make(k - 1))

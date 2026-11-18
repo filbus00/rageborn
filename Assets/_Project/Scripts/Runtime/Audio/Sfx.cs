@@ -28,6 +28,55 @@ namespace ARPG
     }
 
     /// <summary>
+    /// Which of a sound's variants plays next (2026-11-18, the owner: the bow and the arrow's hit "get a bit repetitive,
+    /// make them more dynamic and varied"): a random one that is not the last, and with four or more not the one before
+    /// it either, so the same two never alternate. <paramref name="roll"/> is a number in [0, 1). Pure.
+    /// </summary>
+    public static class SoundVariants
+    {
+        public static int Next(int count, int last, int beforeLast, float roll)
+        {
+            if (count <= 1)
+                return 0;
+            var avoidTwo = count >= 4;
+            var allowed = count - (last >= 0 ? 1 : 0) - (avoidTwo && beforeLast >= 0 && beforeLast != last ? 1 : 0);
+            var pick = Mathf.Clamp(Mathf.FloorToInt(roll * allowed), 0, allowed - 1);
+            for (var i = 0; i < count; i++)
+            {
+                if (i == last || (avoidTwo && i == beforeLast))
+                    continue;
+                if (pick-- == 0)
+                    return i;
+            }
+            return 0;
+        }
+    }
+
+    /// <summary>
+    /// How hard an arrow lands decides how it sounds (2026-11-18): the share of the target's life one hit takes sets the
+    /// pitch (a light prick high and quiet, a heavy blow low and full) and an elite's or a boss's body sounds deeper.
+    /// Pure.
+    /// </summary>
+    public static class HitSoundRules
+    {
+        /// <summary>A hit that takes a fifth of the target's life or more is a full blow.</summary>
+        const float FullBlowShare = 0.2f;
+
+        public static float Pitch(float damage, float maxLife, EnemyRank rank)
+        {
+            var heft = Mathf.Clamp01(damage / Mathf.Max(1f, maxLife) / FullBlowShare);
+            var pitch = Mathf.Lerp(1.12f, 0.9f, heft);
+            return rank == EnemyRank.Boss ? pitch * 0.88f : rank == EnemyRank.Elite ? pitch * 0.94f : pitch;
+        }
+
+        public static float Volume(float damage, float maxLife)
+        {
+            var heft = Mathf.Clamp01(damage / Mathf.Max(1f, maxLife) / FullBlowShare);
+            return Mathf.Lerp(0.7f, 1f, heft);
+        }
+    }
+
+    /// <summary>
     /// Plays the placeholder sounds (<see cref="SoundSynth"/>): <c>Sfx.Play(SoundId.Hit)</c> from anywhere. Created from
     /// code before the first scene and kept across scenes; it makes every clip once at startup. 16 voices, 2D (the camera
     /// follows the character, so everything that matters is near it), a little random pitch so repeats do not sound
@@ -45,6 +94,8 @@ namespace ARPG
         static Sfx instance;
 
         AudioClip[] clips;
+        AudioClip[][] banks;
+        int[] lastVariant, beforeLastVariant;
         AudioSource[] sources;
         readonly bool[] busy = new bool[Voices];
         readonly int[] priorities = new int[Voices];
@@ -63,6 +114,9 @@ namespace ARPG
         {
             var ids = (SoundId[])System.Enum.GetValues(typeof(SoundId));
             clips = new AudioClip[ids.Length];
+            banks = new AudioClip[ids.Length][];
+            lastVariant = new int[ids.Length];
+            beforeLastVariant = new int[ids.Length];
             lastPlayed = new float[ids.Length];
             foreach (var id in ids)
             {
@@ -80,6 +134,20 @@ namespace ARPG
                 clips[(int)id] = clip;
                 lastPlayed[(int)id] = -10f;
             }
+            // A sound that plays often has variants beside its file: Name_1, Name_2 ... (make_sfx.py banks, 2026-11-18).
+            foreach (var id in ids)
+            {
+                var bank = new System.Collections.Generic.List<AudioClip> { clips[(int)id] };
+                for (var k = 1; ; k++)
+                {
+                    var variant = Resources.Load<AudioClip>(DesignedFolder + id + "_" + k);
+                    if (variant == null)
+                        break;
+                    bank.Add(variant);
+                }
+                banks[(int)id] = bank.ToArray();
+                lastVariant[(int)id] = beforeLastVariant[(int)id] = -1;
+            }
 
             sources = new AudioSource[Voices];
             for (var i = 0; i < Voices; i++)
@@ -93,10 +161,10 @@ namespace ARPG
 
         /// <summary>Plays a sound, unless the same one played too recently or every voice is busy with more important
         /// sounds. <paramref name="volume"/> scales the sound's own level.</summary>
-        public static void Play(SoundId id, float volume = 1f)
+        public static void Play(SoundId id, float volume = 1f, float pitch = 1f)
         {
             if (instance != null)
-                instance.PlayInternal(id, volume);
+                instance.PlayInternal(id, volume, pitch);
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
             Played?.Invoke(id, volume);
 #endif
@@ -107,7 +175,7 @@ namespace ARPG
         public static event System.Action<SoundId, float> Played;
 #endif
 
-        void PlayInternal(SoundId id, float volume)
+        void PlayInternal(SoundId id, float volume, float pitchScale)
         {
             var index = (int)id;
             var now = Time.unscaledTime;
@@ -124,8 +192,16 @@ namespace ARPG
             priorities[voice] = Priority(id);
             startedAt[voice] = now;
             var source = sources[voice];
-            source.clip = clips[index];
-            var pitch = 1f + Random.Range(-0.06f, 0.06f);
+            var bank = banks[index];
+            var variant = SoundVariants.Next(bank.Length, lastVariant[index], beforeLastVariant[index], Random.value);
+            beforeLastVariant[index] = lastVariant[index];
+            lastVariant[index] = variant;
+            source.clip = bank[variant];
+            // A sound with variants is varied again on every play: a little pitch and a little quieter or not.
+            var varied = bank.Length > 1;
+            var pitch = (1f + Random.Range(varied ? -0.08f : -0.06f, varied ? 0.08f : 0.06f)) * pitchScale;
+            if (varied)
+                volume *= Random.Range(0.86f, 1f);
             if (id == SoundId.Gold)
             {
                 // Coins picked up one after another climb and soften rather than repeat (2026-10-12, CoinStreak).

@@ -2286,6 +2286,9 @@ namespace ARPG
 
             var world = Elevation.World2(enemy.GroundPosition);
             DamageNumbers.Current?.Show(new Vector3(world.x, world.y, 0f), damage, critical, isDamageToPlayer: false);
+            // How hard it lands decides how it sounds (HitSoundRules).
+            var soundPitch = HitSoundRules.Pitch(damage, enemy.MaxLife, enemy.Definition.Rank);
+            var soundVolume = HitSoundRules.Volume(damage, enemy.MaxLife);
 
             if (enemy.TakeDamage(damage))
             {
@@ -2297,10 +2300,10 @@ namespace ARPG
                     lastHitStop = Time.unscaledTime;
                     HitStop.Instance?.Trigger(HitStopOnKillSeconds);
                 }
-                Sfx.Play(SoundId.Kill);
+                Sfx.Play(SoundId.Kill, 1f, soundPitch);
                 return true;
             }
-            Sfx.Play(critical ? SoundId.Crit : SoundId.Hit);
+            Sfx.Play(critical ? SoundId.Crit : SoundId.Hit, soundVolume, soundPitch);
             return false;
         }
 
