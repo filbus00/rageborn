@@ -23,6 +23,8 @@ namespace ARPG.Editor
 
         /// <summary>The Rift Caves' pieces (2026-11-16, rift_art.py), set up the same way.</summary>
         public const string RiftListPath = "ArtSource/pixel/sixteen/rift_art_sizes.txt";
+        /// <summary>The mercenary camp's pieces (2026-11-18, camp_art.py), set up the same way.</summary>
+        public const string CampListPath = "ArtSource/pixel/sixteen/camp_art_sizes.txt";
         const string Root = "Assets/_Project/Resources/Art/";
         const string FloorPath = Root + "Ground/gaol_floor.png";
 
@@ -41,6 +43,8 @@ namespace ARPG.Editor
                 lines.AddRange(File.ReadAllLines(LibraryListPath));
             if (File.Exists(RiftListPath))
                 lines.AddRange(File.ReadAllLines(RiftListPath));
+            if (File.Exists(CampListPath))
+                lines.AddRange(File.ReadAllLines(CampListPath));
             foreach (var line in lines)
             {
                 var parts = line.Trim().Split(' ');

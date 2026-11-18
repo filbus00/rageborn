@@ -115,7 +115,7 @@ namespace ARPG
         public static string Where()
         {
             var dungeon = UnityEngine.Object.FindAnyObjectByType<DungeonLevel>();
-            return dungeon != null ? ContractRules.LevelName(dungeon.Depth) : Features.CompanyMenu ? "At the company" : "In town";
+            return dungeon != null ? ContractRules.LevelName(dungeon.Depth) : Features.Camp ? "At the camp" : Features.CompanyMenu ? "At the company" : "In town";
         }
 
         /// <summary>A small diamond: a square turned 45 degrees, centred on its anchor.</summary>

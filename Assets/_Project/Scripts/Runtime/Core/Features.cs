@@ -25,6 +25,15 @@ namespace ARPG
         /// </summary>
         public static readonly bool CompanyMenu = true;
 
+        /// <summary>The mercenary camp (the owner, 2026-11-18: "Lets revive the idea of a town. The town is the mercenary
+        /// camp. The contracts are selected from a billboard. The trainers and vendors are characters in town"): the hub
+        /// scene is a walkable camp again (<see cref="CampLayout"/>). The company's menu stays, no longer covering it:
+        /// the billboard opens its Contracts page, each keeper her place in Quarters, the grave stone the Fallen.</summary>
+        public static readonly bool Camp = true;
+
+        /// <summary>The hub scene's town is hidden under the company's menu (the menu on, the camp off).</summary>
+        public static bool TownHidden => CompanyMenu && !Camp;
+
         // The look reset (the owner, 2026-10-20: "lets reset the visuals. remove shaders and filters and lets start over";
         // asked how far: "Everything, lighting too"). Each part kept, to bring back one at a time.
 

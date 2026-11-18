@@ -55,7 +55,12 @@ namespace ARPG
             // second (2026-10-11, the owner: "the dog splits in two").
             if (pet == null || pet.gameObject.scene != scene)
                 pet = null;
-            if (scene.name == TownScene && !Features.CompanyMenu)
+            if (scene.name == TownScene && Features.Camp)
+            {
+                CampSpot.CreateAll();
+                vigilEmbers = -1;
+            }
+            else if (scene.name == TownScene && !Features.TownHidden)
             {
                 PetVendor.Create(IsoMath.CellToGround(VendorCell), null);
                 Merchant.Create(IsoMath.CellToGround(MerchantCell), null);
@@ -87,7 +92,7 @@ namespace ARPG
         // The Vigil fire, rebuilt when an ember comes home while she is in town.
         void RefreshVigilFire()
         {
-            if (SceneManager.GetActiveScene().name != TownScene || Features.CompanyMenu)
+            if (SceneManager.GetActiveScene().name != TownScene || Features.TownHidden || Features.Camp)
                 return;
             var embers = VigilFire.Embers(GameSession.Current.Quests);
             if (embers == vigilEmbers)
@@ -114,7 +119,7 @@ namespace ARPG
             if (pet != null || active == null)
                 return;
             // No pet at the company's menu: nobody walks there.
-            if (Features.CompanyMenu && SceneManager.GetActiveScene().name == TownScene)
+            if (Features.TownHidden && SceneManager.GetActiveScene().name == TownScene)
                 return;
             var player = FindAnyObjectByType<PlayerController>();
             if (player != null)

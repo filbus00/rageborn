@@ -118,6 +118,14 @@ namespace ARPG
             foreach (var cell in ground.cellBounds.allPositionsWithin)
                 if (ground.HasTile(cell))
                     cells.Add(new Vector2Int(cell.x, cell.y));
+            if (Features.Camp)
+            {
+                // The mercenary camp (2026-11-18): the forest's own grass and path, bare earth where the camp is trampled.
+                GroundRules.ForestTrail.Clear();
+                foreach (var trampled in CampLayout.TrampledCells())
+                    GroundRules.ForestTrail.Add(trampled);
+                return PaintDungeon(ground, cells, null, DungeonTheme.Cave, null, null);
+            }
             return Paint(ground, cells, true, null, false);
         }
 

@@ -81,9 +81,43 @@ namespace ARPG
                     selected = contract.Id;
                     break;
                 }
+            if (Features.Camp)
+            {
+                // The camp is walkable: the menu opens from its billboard, keepers and grave stone (CampSpot).
+                canvas.enabled = false;
+                return;
+            }
             canvas.enabled = true;
             HideTheTown();
             Redraw();
+        }
+
+        /// <summary>The billboard: the contracts on the map.</summary>
+        public static void OpenContracts() => current?.OpenAt(Page.Contracts, null);
+
+        /// <summary>The grave stone: the fallen.</summary>
+        public static void OpenFallen() => current?.OpenAt(Page.Fallen, null);
+
+        /// <summary>A keeper of the camp: the Yard (0), the Armoury (1) or the Kennel (2) in Quarters.</summary>
+        public static void OpenQuarters(int placeIndex) => current?.OpenAt(Page.Quarters, (Place)Mathf.Clamp(placeIndex, 0, 2));
+
+        /// <summary>Closes the menu over the camp.</summary>
+        public static void CloseCamp()
+        {
+            if (current != null && current.canvas != null && Features.Camp)
+                current.canvas.enabled = false;
+        }
+
+        void OpenAt(Page next, Place? at)
+        {
+            if (canvas == null || session == null || !Features.Camp)
+                return;
+            if (at.HasValue)
+                place = at.Value;
+            page = next;
+            canvas.enabled = true;
+            Redraw();
+            scroll.verticalNormalizedPosition = 1f;
         }
 
         // The hub scene still holds the town's player and HUD (the Bag lives on its canvas): the player is hidden and still.
@@ -170,12 +204,14 @@ namespace ARPG
             NavButton("QUARTERS", "icon_hammer", 1, () => Show(Page.Quarters), Page.Quarters);
             NavButton("THE FALLEN", "icon_grave", 2, () => Show(Page.Fallen), Page.Fallen);
             NavButton("THE BAG", "icon_bag", 3, () => InventoryScreen.Current?.Open(), null);
+            if (Features.Camp)
+                NavButton("CLOSE", "icon_hand", 4, CloseCamp, null);
         }
 
         // A button of the bar: its picture over its name. A page's button is lit while its page shows.
         void NavButton(string label, string icon, int index, Action onClick, Page? shows)
         {
-            const int count = 4;
+            var count = Features.Camp ? 5 : 4;
             var frame = PixelUi.Frame(body, label, shows.HasValue ? "frame_tab_b3" : "frame_button_b5", true);
             var rect = frame.rectTransform;
             rect.anchorMin = new Vector2(index / (float)count, 0f);

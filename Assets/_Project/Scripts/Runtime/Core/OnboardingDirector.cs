@@ -61,7 +61,7 @@ namespace ARPG
             bagButton = bag != null ? bag.transform : null;
 
             // The stick is taught where she first walks: in town, or with the company's menu on her first contract.
-            var walksHere = Features.CompanyMenu ? scene.name == SceneTravel.DungeonScene : scene.name == TownScene;
+            var walksHere = Features.TownHidden ? scene.name == SceneTravel.DungeonScene : scene.name == TownScene;
             if (walksHere && !session.Onboarding.StickTaught)
             {
                 var stick = FindAnyObjectByType<FloatingStickInput>();

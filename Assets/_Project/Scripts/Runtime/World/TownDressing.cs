@@ -25,14 +25,15 @@ namespace ARPG
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (scene.name != SceneTravel.TownScene || Features.CompanyMenu)
+            if (scene.name != SceneTravel.TownScene || Features.TownHidden)
                 return;
             var root = new GameObject("Town Pieces").transform;
             SceneManager.MoveGameObjectToScene(root.gameObject, scene);
             var obstacle = LayerMask.NameToLayer(GameLayers.Obstacle);
-            for (var i = 0; i < TownLayout.Pieces.Length; i++)
+            var pieces = Features.Camp ? CampLayout.Pieces : TownLayout.Pieces;
+            for (var i = 0; i < pieces.Length; i++)
             {
-                var piece = TownLayout.Pieces[i];
+                var piece = pieces[i];
                 var world = IsoMath.GroundToWorld(IsoMath.CellToGround(piece.Cell));
                 GameObject go;
                 if (piece.Name.Length == 0)
@@ -74,6 +75,14 @@ namespace ARPG
             // The stairs down are the mausoleum's doorway (2026-10-11): the scene's stairway moves there and shows nothing
             // of its own; the mausoleum piece draws the door and the steps going down inside.
             var stairs = GameObject.Find("Stairs Down");
+            if (Features.Camp)
+            {
+                // The camp has no stairs: the contracts are chosen from the billboard.
+                if (stairs != null)
+                    stairs.SetActive(false);
+                GameSession.Current.Travel = default;
+                return;
+            }
             if (stairs != null && WorldArt.Get("mausoleum") != null)
             {
                 var door = IsoMath.GroundToWorld(IsoMath.CellToGround(TownLayout.StairsCell));
