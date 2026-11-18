@@ -36,15 +36,15 @@ namespace ARPG
         bool released;
 
         /// <summary>Stands an archer at a cell of the range, shooting at its target cell. Null when her sheets are missing.</summary>
-        public static CampArcher Create(CampLayout.Archer place, string chest, string helm, string bow, int seed)
+        public static CampArcher Create(CampLayout.Archer place, string name, string chest, string helm, string bow, int seed)
         {
             var go = new GameObject("Camp Archer");
             go.transform.position = IsoMath.GroundToWorld(IsoMath.CellToGround(place.Cell));
             var archer = go.AddComponent<CampArcher>();
-            archer.Add("body_" + chest, 0);
-            archer.Add("weapon_" + bow, 1);
+            archer.Add("body_" + chest, 0, name);
+            archer.Add("weapon_" + bow, 1, null);
             if (helm.Length > 0)
-                archer.Add("helm_" + helm, 2);
+                archer.Add("helm_" + helm, 2, null);
             if (archer.layers.Count == 0)
             {
                 Destroy(go);
@@ -62,12 +62,18 @@ namespace ARPG
             return archer;
         }
 
-        void Add(string sheet, int order)
+        // A body takes its archer's portrait hair and skin (ArcherTint); a bow and a helm are as drawn.
+        void Add(string sheet, int order, string tintedFor)
         {
             var idle = CharacterSheets.Load(Folder + sheet + "_1h_idle");
             var shot = CharacterSheets.Load(Folder + sheet + "_1h_attack");
             if (idle == null || shot == null)
                 return;
+            if (tintedFor != null)
+            {
+                idle = ArcherTint.For(tintedFor, sheet + "_1h_idle", idle);
+                shot = ArcherTint.For(tintedFor, sheet + "_1h_attack", shot);
+            }
             var child = new GameObject(sheet, typeof(SpriteRenderer));
             child.transform.SetParent(transform, false);
             var renderer = child.GetComponent<SpriteRenderer>();

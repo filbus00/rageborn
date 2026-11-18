@@ -508,6 +508,9 @@ namespace ARPG
                 row = row * sheet.Rows.Length / directionCount;
                 directionCount = sheet.Rows.Length;
             }
+            // The drawn Wild Arrow's body in her portrait's hair and skin (2026-11-18).
+            if (ArcherTint.Applies(character, name))
+                return ArcherTint.For(GameSession.Current?.Company.Mercenary, name, sheet);
             return sheet;
         }
     }

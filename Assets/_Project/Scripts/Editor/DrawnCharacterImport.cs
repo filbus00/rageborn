@@ -50,6 +50,24 @@ namespace ARPG.Editor
             public bool shared;
         }
 
+        /// <summary>Makes the drawn Wild Arrow's body sheets readable without re-importing them (<see cref="ArcherTint"/>
+        /// reads their pixels to give each archer her portrait's hair and skin).</summary>
+        [MenuItem("Tools/ARPG/Make Archer Bodies Readable")]
+        public static void MakeBodiesReadable()
+        {
+            var count = 0;
+            foreach (var guid in AssetDatabase.FindAssets("wild_arrow_drawn_body_", new[] { "Assets/_Project/Resources/Characters/wild_arrow_drawn" }))
+            {
+                var path = AssetDatabase.GUIDToAssetPath(guid);
+                if (!path.EndsWith(".png") || !(AssetImporter.GetAtPath(path) is TextureImporter importer) || importer.isReadable)
+                    continue;
+                importer.isReadable = true;
+                importer.SaveAndReimport();
+                count++;
+            }
+            Debug.Log($"[ARPG] {count} drawn Wild Arrow body sheets made readable.");
+        }
+
         /// <summary>Whether a character is drawn here, so the sprite bake leaves it alone.</summary>
         public static bool IsDrawn(string name) => File.Exists($"{Source}/{name}/sheet.json");
 
@@ -116,6 +134,8 @@ namespace ARPG.Editor
             importer.mipmapEnabled = false;
             importer.filterMode = FilterMode.Point;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
+            // The drawn Wild Arrow's bodies are readable, so each archer's copy takes her portrait's hair and skin (ArcherTint).
+            importer.isReadable = name == "wild_arrow_drawn" && clip.name.StartsWith("body_");
             importer.SaveAndReimport();
 
             var factory = new SpriteDataProviderFactories();

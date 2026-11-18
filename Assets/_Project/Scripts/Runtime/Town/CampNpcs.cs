@@ -33,13 +33,14 @@ namespace ARPG
             // The company's archers at the range, each in her own kit.
             var looks = new[]
             {
-                ("ranger", "hood", "hunting_bow"), ("brigand", "", "recurve_bow"), ("stag_hide", "falconer", "horn_bow"),
-                ("scale", "mask", "war_bow"), ("ranger", "", "yew_longbow"),
+                ("Sigrun Hale", "ranger", "hood", "hunting_bow"), ("Maren Voss", "brigand", "", "recurve_bow"),
+                ("Ysolde Crane", "stag_hide", "falconer", "horn_bow"), ("Brenna Ash", "scale", "mask", "war_bow"),
+                ("Tova Reed", "ranger", "", "yew_longbow"),
             };
             for (var i = 0; i < CampLayout.Archers.Length; i++)
             {
                 var look = looks[i % looks.Length];
-                CampArcher.Create(CampLayout.Archers[i], look.Item1, look.Item2, look.Item3, 17 + i * 31);
+                CampArcher.Create(CampLayout.Archers[i], look.Item1, look.Item2, look.Item3, look.Item4, 17 + i * 31);
             }
         }
 

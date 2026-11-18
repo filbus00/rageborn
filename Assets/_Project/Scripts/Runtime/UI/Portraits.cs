@@ -234,6 +234,9 @@ namespace ARPG
             faces = null;
         }
 
+        /// <summary>The look of the archer with this name, as her portrait is painted (her sprite takes its hair and skin).</summary>
+        public static PortraitLook LookFor(string name) => PortraitLooks.For(name ?? "", Mathf.Max(1, Faces().Count));
+
         /// <summary>The portrait of the archer with this name, or null when there are no base faces.</summary>
         public static Sprite For(string name)
         {
