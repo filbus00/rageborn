@@ -102,6 +102,9 @@ Each act has one town above one dungeon. The dungeon is descended level by level
 
 ## Town
 
+**The mercenary camp (2026-11-18, the owner: "Lets revive the idea of a town. The town is the mercenary camp. The contracts are selected from a billboard. The trainers and vendors are characters in town").** The hub is the Wild Arrow Company's camp, a wide clearing in the Thornwood about 30 cells across, in the 16x16 style, ringed by single trees, a thickening wood and, at an irregular edge, a wall of trees that cannot be passed. At its heart a fire with benches; before the start the contracts billboard (walking onto it opens the contract map; the four contracts stay separate areas, not one descent); Brunhilde at the drill yard (drills, flasks and boon lore), Thorin at the forge (forge, vault, selling loot), Lyriel at the kennel (the wolf), a grave stone for the fallen. At the left a firing range where other archers of the company train, firing at targets and dummies. No stairs, no town portal. The walled town described below is the earlier design, kept in the code behind a switch.
+
+
 Each act has one town, a small safe scene the player walks through with the stick. There are no enemies and no combat. NPCs stand at fixed spots for the Forge, the Stash, the Class Trainer and the Waystone. Walking up to an NPC opens its bottom sheet panel, so nothing in the world needs a tap. The dungeon entrance is a stairway the player walks into. A new character begins in the act 1 town, at the ruined chapel. The Waystone jumps to any activated waypoint, see Getting around below.
 
 ### Getting around

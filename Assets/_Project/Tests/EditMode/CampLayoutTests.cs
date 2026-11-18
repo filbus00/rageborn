@@ -138,5 +138,32 @@ namespace ARPG.Tests
                 }
             }
         }
+
+        [Test]
+        public void TheStrollsKeepClearOfEveryPiece()
+        {
+            foreach (var stroll in CampLayout.Strolls)
+                for (var i = 0; i < stroll.Length; i++)
+                {
+                    var a = (Vector2)stroll[i];
+                    var b = (Vector2)stroll[(i + 1) % stroll.Length];
+                    var length = (b - a).magnitude;
+                    for (var t = 0f; t <= length; t += 0.25f)
+                    {
+                        var p = a + (b - a) * (t / Mathf.Max(length, 0.01f));
+                        foreach (var piece in CampLayout.Pieces)
+                            Assert.IsFalse(Mathf.Abs(piece.Cell.x - p.x) <= piece.Half.x + 0.7f && Mathf.Abs(piece.Cell.y - p.y) <= piece.Half.y + 0.7f,
+                                $"{piece.Name} at {piece.Cell} is on the walk from {a} to {b}");
+                    }
+                }
+        }
+
+        [Test]
+        public void TheStrollsStayInsideTheClearing()
+        {
+            foreach (var stroll in CampLayout.Strolls)
+                foreach (var cell in stroll)
+                    Assert.Less(Mathf.Max(Mathf.Abs(cell.x), Mathf.Abs(cell.y)), CampLayout.ClearingReach - 3);
+        }
     }
 }

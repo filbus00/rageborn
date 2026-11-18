@@ -4,11 +4,13 @@ using UnityEngine;
 namespace ARPG
 {
     /// <summary>
-    /// An archer of the company at the camp's firing range (the owner, 2026-11-18: "add other archers training and
-    /// firing at the dummies"): stands at the line in her drawn look (the player's sheets in
-    /// Resources/Characters/wild_arrow_drawn: a body, a bow and perhaps a helm, stacked), idles, turns to her target, draws
-    /// and looses an arrow that flies to it and stays stuck a while, then rests and does it again. Each has her own look
-    /// and her own pace. For show: nothing hits and nothing in the game reads them. Made by <see cref="CampSpot.CreateAll"/>.
+    /// An archer of the company about the camp (the owner, 2026-11-18: "add other archers training and firing at the
+    /// dummies", then "add some ambient life"): in her drawn look (the player's sheets in
+    /// Resources/Characters/wild_arrow_drawn: a body, a bow and perhaps a helm, stacked, the body in the hair and skin of
+    /// her own portrait, <see cref="ArcherTint"/>). Two kinds. At the range she idles, turns to her target, draws and
+    /// looses an arrow that flies to it and stays stuck a while, then rests and does it again. About the camp she walks a
+    /// route (<see cref="CampLayout.Strolls"/>), standing a while at each of its points. Each has her own look and pace.
+    /// For show: nothing hits and nothing in the game reads them. Made by <see cref="CampSpot.CreateAll"/>.
     /// </summary>
     public class CampArcher : MonoBehaviour
     {
@@ -18,12 +20,16 @@ namespace ARPG
         const float ReleaseShare = 0.62f;
         const float ArrowSpeed = 15f;
         const float ChestHeight = 0.7f;
+        // A walk cycle takes this long (her timing file's 1h_walk), and she walks this fast (ground units a second).
+        const float WalkCycle = 0.52f;
+        const float WalkSpeed = 1.2f;
 
         sealed class Layer
         {
             public SpriteRenderer Renderer;
             public CharacterSheet Idle;
             public CharacterSheet Shot;
+            public CharacterSheet Walk;
         }
 
         readonly List<Layer> layers = new List<Layer>();
@@ -35,11 +41,51 @@ namespace ARPG
         bool shooting;
         bool released;
 
+        // A walker's route (ground positions), where she is bound, and when she sets off again.
+        List<Vector2> route;
+        Vector2 ground;
+        int routeIndex;
+        bool walking;
+        float nextMove;
+
         /// <summary>Stands an archer at a cell of the range, shooting at its target cell. Null when her sheets are missing.</summary>
         public static CampArcher Create(CampLayout.Archer place, string name, string chest, string helm, string bow, int seed)
         {
+            var archer = Make(place.Cell, name, chest, helm, bow, seed);
+            if (archer == null)
+                return null;
+            var from = IsoMath.CellToGround(place.Cell);
+            var to = IsoMath.CellToGround(place.Target);
+            archer.groundDirection = (to - from).normalized;
+            var target = IsoMath.GroundToWorld(to);
+            archer.targetWorld = new Vector3(target.x, target.y + ChestHeight * 0.6f, 0f);
+            var random = new System.Random(seed);
+            archer.nextShot = Time.time + 1f + (float)random.NextDouble() * 4f;
+            return archer;
+        }
+
+        /// <summary>Stands an archer who walks a route of cells (ground space), standing a while at each. Null without her sheets.</summary>
+        public static CampArcher CreateWalker(Vector2Int[] cells, string name, string chest, string helm, string bow, int seed)
+        {
+            var archer = Make(cells[0], name, chest, helm, bow, seed);
+            if (archer == null)
+                return null;
+            archer.route = new List<Vector2>();
+            foreach (var cell in cells)
+                archer.route.Add(IsoMath.CellToGround(cell));
+            archer.ground = archer.route[0];
+            archer.routeIndex = 1 % archer.route.Count;
+            archer.groundDirection = (archer.route[archer.routeIndex] - archer.ground).normalized;
+            var random = new System.Random(seed);
+            archer.nextMove = Time.time + 0.5f + (float)random.NextDouble() * 3f;
+            archer.nextShot = float.MaxValue;
+            return archer;
+        }
+
+        static CampArcher Make(Vector2Int cell, string name, string chest, string helm, string bow, int seed)
+        {
             var go = new GameObject("Camp Archer");
-            go.transform.position = IsoMath.GroundToWorld(IsoMath.CellToGround(place.Cell));
+            go.transform.position = IsoMath.GroundToWorld(IsoMath.CellToGround(cell));
             var archer = go.AddComponent<CampArcher>();
             archer.Add("body_" + chest, 0, name);
             archer.Add("weapon_" + bow, 1, null);
@@ -50,15 +96,8 @@ namespace ARPG
                 Destroy(go);
                 return null;
             }
-            var from = IsoMath.CellToGround(place.Cell);
-            var to = IsoMath.CellToGround(place.Target);
-            archer.groundDirection = (to - from).normalized;
-            var target = IsoMath.GroundToWorld(to);
-            archer.targetWorld = new Vector3(target.x, target.y + ChestHeight * 0.6f, 0f);
-            // Each at her own pace, so they never loose together.
-            var random = new System.Random(seed);
-            archer.clock = (float)random.NextDouble() * 3f;
-            archer.nextShot = Time.time + 1f + (float)random.NextDouble() * 4f;
+            // Each at her own pace, so they never loose or set off together.
+            archer.clock = (float)new System.Random(seed).NextDouble() * 3f;
             return archer;
         }
 
@@ -67,12 +106,15 @@ namespace ARPG
         {
             var idle = CharacterSheets.Load(Folder + sheet + "_1h_idle");
             var shot = CharacterSheets.Load(Folder + sheet + "_1h_attack");
+            var walk = CharacterSheets.Load(Folder + sheet + "_1h_walk");
             if (idle == null || shot == null)
                 return;
             if (tintedFor != null)
             {
                 idle = ArcherTint.For(tintedFor, sheet + "_1h_idle", idle);
                 shot = ArcherTint.For(tintedFor, sheet + "_1h_attack", shot);
+                if (walk != null)
+                    walk = ArcherTint.For(tintedFor, sheet + "_1h_walk", walk);
             }
             var child = new GameObject(sheet, typeof(SpriteRenderer));
             child.transform.SetParent(transform, false);
@@ -81,13 +123,15 @@ namespace ARPG
             renderer.sortingOrder = order;
             renderer.spriteSortPoint = SpriteSortPoint.Pivot;
             WorldArt.Lit(renderer);
-            layers.Add(new Layer { Renderer = renderer, Idle = idle, Shot = shot });
+            layers.Add(new Layer { Renderer = renderer, Idle = idle, Shot = shot, Walk = walk ?? idle });
         }
 
         void Update()
         {
             clock += Time.deltaTime;
-            if (!shooting && Time.time >= nextShot)
+            if (route != null)
+                Stroll();
+            else if (!shooting && Time.time >= nextShot)
             {
                 shooting = true;
                 released = false;
@@ -95,7 +139,7 @@ namespace ARPG
             }
             foreach (var layer in layers)
             {
-                var sheet = shooting ? layer.Shot : layer.Idle;
+                var sheet = shooting ? layer.Shot : walking ? layer.Walk : layer.Idle;
                 var rowIndex = Mathf.Clamp(AppearanceRules.DirectionRow(groundDirection, sheet.Rows.Length), 0, sheet.Rows.Length - 1);
                 var frames = sheet.Rows[rowIndex].Length;
                 int frame;
@@ -117,10 +161,39 @@ namespace ARPG
                         Loose();
                     }
                 }
+                else if (walking)
+                    frame = Mathf.FloorToInt(clock / WalkCycle * frames) % frames;
                 else
                     frame = Mathf.FloorToInt(clock * FramesPerSecond * 0.5f) % frames;
                 layer.Renderer.sprite = sheet.Rows[rowIndex][Mathf.Clamp(frame, 0, frames - 1)];
             }
+        }
+
+        // Standing at a point, then walking to the next along a straight line.
+        void Stroll()
+        {
+            if (!walking)
+            {
+                if (Time.time < nextMove)
+                    return;
+                walking = true;
+            }
+            var to = route[routeIndex];
+            var offset = to - ground;
+            var step = WalkSpeed * Time.deltaTime;
+            if (offset.magnitude <= step)
+            {
+                ground = to;
+                walking = false;
+                routeIndex = (routeIndex + 1) % route.Count;
+                nextMove = Time.time + 1.5f + Hash(clock + routeIndex) * 3.5f;
+            }
+            else
+            {
+                groundDirection = offset.normalized;
+                ground += groundDirection * step;
+            }
+            transform.position = IsoMath.GroundToWorld(ground);
         }
 
         static float Hash(float seed) => Mathf.Abs(Mathf.Sin(seed * 12.9898f) * 43758.5453f) % 1f;

@@ -44,6 +44,19 @@ namespace ARPG
             new Archer(-18, 10, -26, 10), new Archer(-18, 15, -26, 15),
         };
 
+        /// <summary>The walks of the company's archers about the camp (ambient life, 2026-11-18): each loops through its
+        /// cells, standing a while at each. They keep clear of every piece (a test walks each line).</summary>
+        public static readonly Vector2Int[][] Strolls =
+        {
+            // About the fire, a wide round outside its benches, lamps and banners, in both senses.
+            new[] { new Vector2Int(-8, 8), new Vector2Int(8, 8), new Vector2Int(8, 16), new Vector2Int(-8, 16) },
+            new[] { new Vector2Int(8, 16), new Vector2Int(-8, 16), new Vector2Int(-8, 8), new Vector2Int(8, 8) },
+            // From the billboard to the fire and back, reading the notices on the way.
+            new[] { new Vector2Int(7, 6), new Vector2Int(2, 8) },
+            // Between the forge and the cart.
+            new[] { new Vector2Int(12, -8), new Vector2Int(20, -9) },
+        };
+
         /// <summary>The camp's clear ground reaches this far (cells, the larger of the two axes).</summary>
         public const int ClearingReach = 30;
 
@@ -85,6 +98,11 @@ namespace ARPG
                     foreach (var archer in Archers)
                         if ((p - archer.Cell).magnitude <= 1.8f)
                             near = true;
+                    foreach (var stroll in Strolls)
+                        for (var i = 0; i < stroll.Length; i++)
+                            if (stroll.Length > 2 || i == 0)
+                                if (DistanceToSegment(p, stroll[i], stroll[(i + 1) % stroll.Length]) <= 0.9f)
+                                    near = true;
                     if (near)
                         cells.Add(new Vector2Int(x, y));
                 }
@@ -199,6 +217,10 @@ namespace ARPG
                 if ((p - archer.Cell).magnitude < within + 1f || (p - archer.Target).magnitude < within
                     || DistanceToSegment(p, archer.Cell, archer.Target) < 1.8f)
                     return true;
+            foreach (var stroll in Strolls)
+                for (var i = 0; i < stroll.Length; i++)
+                    if (DistanceToSegment(p, stroll[i], stroll[(i + 1) % stroll.Length]) < 2f)
+                        return true;
             return false;
         }
 

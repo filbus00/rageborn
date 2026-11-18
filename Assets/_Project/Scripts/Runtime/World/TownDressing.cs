@@ -31,6 +31,8 @@ namespace ARPG
             SceneManager.MoveGameObjectToScene(root.gameObject, scene);
             var obstacle = LayerMask.NameToLayer(GameLayers.Obstacle);
             var pieces = Features.Camp ? CampLayout.Pieces : TownLayout.Pieces;
+            // The camp's fires throw sparks and smoke and fireflies drift in its dusk (FireFx, the forest levels' own).
+            var fx = Features.Camp ? FireFx.Begin(root, MoteKind.Fireflies) : null;
             for (var i = 0; i < pieces.Length; i++)
             {
                 var piece = pieces[i];
@@ -61,6 +63,8 @@ namespace ARPG
                     footprint.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
                     footprint.AddComponent<PolygonCollider2D>().points = TownLayout.Footprint(piece.Half);
                 }
+                if (fx != null)
+                    AddCampFire(fx, piece.Name, world);
                 switch (piece.Light)
                 {
                     case TownLayout.Glow.Fire:
@@ -105,6 +109,28 @@ namespace ARPG
                 }
             }
             session.Travel = default;
+        }
+
+        // Where each camp piece burns, from its drawing (camp_art.py): the fire's flames, the forge's hearth and the smoke
+        // from its chimney, a lamp's lantern and the billboard's.
+        static void AddCampFire(FireFx fx, string name, Vector2 world)
+        {
+            switch (name)
+            {
+                case "camp_fire":
+                    fx.Add(world + new Vector2(0f, 0.45f), FireKind.Campfire);
+                    break;
+                case "camp_forge":
+                    fx.Add(world + new Vector2(0.74f, 0.2f), FireKind.Brazier);
+                    fx.Add(world + new Vector2(0.74f, 2.0f), FireKind.Torch);
+                    break;
+                case "camp_lamp":
+                    fx.Add(world + new Vector2(0.15f, 1.3f), FireKind.Lantern);
+                    break;
+                case "camp_billboard":
+                    fx.Add(world + new Vector2(1.1f, 1.55f), FireKind.Lantern);
+                    break;
+            }
         }
 
         static void Flicker(UnityEngine.Rendering.Universal.Light2D light, int index)

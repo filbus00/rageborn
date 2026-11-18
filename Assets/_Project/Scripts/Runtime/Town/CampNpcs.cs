@@ -42,6 +42,18 @@ namespace ARPG
                 var look = looks[i % looks.Length];
                 CampArcher.Create(CampLayout.Archers[i], look.Item1, look.Item2, look.Item3, look.Item4, 17 + i * 31);
             }
+
+            // Others about the camp, walking their rounds (ambient life).
+            var walkers = new[]
+            {
+                ("Ingrid Moss", "scale", "", "hunting_bow"), ("Hesper Dunn", "ranger", "falconer", "recurve_bow"),
+                ("Calla Brandt", "stag_hide", "hood", "war_bow"), ("Odalys Fenn", "brigand", "", "horn_bow"),
+            };
+            for (var i = 0; i < CampLayout.Strolls.Length; i++)
+            {
+                var look = walkers[i % walkers.Length];
+                CampArcher.CreateWalker(CampLayout.Strolls[i], look.Item1, look.Item2, look.Item3, look.Item4, 101 + i * 37);
+            }
         }
 
         static void Create(Kind kind, Vector2Int cell, string label, Color colour, string body)
