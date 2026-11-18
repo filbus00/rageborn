@@ -112,6 +112,21 @@ namespace ARPG
         protected virtual float MoveSpeed => 2.4f;
         protected virtual float KeepDistance => 2.2f;
 
+        /// <summary>The attack running now, by its method's name ("Lockdown"), or "" between attacks; for development
+        /// tools (the boss probe), not gameplay.</summary>
+        public string AttackName
+        {
+            get
+            {
+                if (attack.Count == 0)
+                    return "";
+                var name = attack.Peek().GetType().Name;
+                var open = name.IndexOf('<');
+                var close = name.IndexOf('>');
+                return open >= 0 && close > open ? name.Substring(open + 1, close - open - 1) : name;
+            }
+        }
+
         public EnemyController Boss => boss;
         public int Phase => phase;
         public bool Engaged => engaged;
@@ -243,6 +258,7 @@ namespace ARPG
             Sfx.Play(SoundId.BossPhase);
             CancelAttack();
             cooldown = 1f;
+            lastPick = -1;
             OnPhase(newPhase);
         }
 
@@ -251,6 +267,8 @@ namespace ARPG
             ended = true;
             CancelAttack();
             ClearZones();
+            if (whirlSweep != null)
+                whirlSweep.gameObject.SetActive(false);
             foreach (var shot in shots)
                 Destroy(shot.Transform.gameObject);
             shots.Clear();
@@ -535,7 +553,178 @@ namespace ARPG
             OnAttackCancelled();
             attack.Clear();
             ClearAttackMarkers();
+            // Dropped part way through a leap or a whirl: back on the ground, the sweep gone (2026-11-16).
+            if (boss != null)
+                boss.Aloft = 0f;
+            if (whirlSweep != null)
+                whirlSweep.gameObject.SetActive(false);
         }
+
+
+        // --- Moves several bosses share (2026-11-16, the rework of the six unfinished fights) --------------------------
+
+        int lastPick = -1;
+
+        /// <summary>A random number from 0 to <paramref name="count"/> - 1 that is never the last one this phase gave (so
+        /// a boss does not repeat itself).</summary>
+        protected int Pick(int count)
+        {
+            if (count <= 1)
+                return 0;
+            var n = UnityEngine.Random.Range(0, count - 1);
+            if (lastPick >= 0 && lastPick < count && n >= lastPick)
+                n++;
+            return lastPick = n;
+        }
+
+        /// <summary>Walks toward her for up to <paramref name="seconds"/>, until within <paramref name="stopAt"/> of her.</summary>
+        protected IEnumerator Approach(float seconds, float stopAt)
+        {
+            while (seconds > 0f && Vector2.Distance(boss.GroundPosition, manager.PlayerGround) > stopAt)
+            {
+                seconds -= frameDelta;
+                WalkTowards(manager.PlayerGround, stopAt);
+                yield return null;
+            }
+        }
+
+        /// <summary>A leap onto a spot: the landing circle fills while he crouches, then he flies up and over in an arc onto
+        /// it and the slam hits with a ring flying out (the Bandit King's, shared).</summary>
+        protected IEnumerator Leap(Vector2 landing, float radius, float multiplier, float height = 1.6f, float fillSeconds = 1f, Color? color = null)
+        {
+            var at = ClampToArena(landing, radius);
+            var tint = color ?? TelegraphColor;
+            var marker = Track(GroundMarker.Circle(at, radius, fillSeconds, tint, transform));
+            var from = boss.GroundPosition;
+            while (!marker.Done)
+            {
+                // A fifth crouched, then the arc.
+                var f = Mathf.Clamp01((marker.Progress - 0.2f) / 0.8f);
+                boss.ScriptedMove(Vector2.Lerp(from, at, f) - boss.GroundPosition);
+                boss.Aloft = 4f * height * f * (1f - f);
+                yield return null;
+            }
+            boss.Aloft = 0f;
+            Teleport(at);
+            Sfx.Play(SoundId.EnemySlam, 0.9f);
+            manager.Hazards.LandingRing(at, radius, tint);
+            if (PlayerWithin(at, radius))
+                HitPlayer(multiplier, dodgeable: false);
+        }
+
+        SpriteRenderer whirlSweep;
+
+        /// <summary>A spin, a blade sweeping round a circle at his feet: inside it she is cut twice a second. It shows for
+        /// 0.6 s first, with a symbol on her ring, then lasts <paramref name="seconds"/>, following her or standing.</summary>
+        protected IEnumerator Whirl(float radius, float seconds, float multiplier, bool chase, Color color)
+        {
+            manager.Warnings?.Warn(boss, boss.GroundPosition, 0.6f, color, IncomingWarnings.Shape.Diamond);
+            var zone = Track(GroundMarker.Circle(boss.GroundPosition, radius, 0.6f, color, transform));
+            yield return Wait(0.6f);
+            if (whirlSweep == null)
+                whirlSweep = GroundMarker.NewSprite("Whirl", null, color, transform, 45).GetComponent<SpriteRenderer>();
+            whirlSweep.color = color;
+            whirlSweep.gameObject.SetActive(true);
+            var tick = 0f;
+            var turn = 0f;
+            while (seconds > 0f)
+            {
+                seconds -= frameDelta;
+                tick -= frameDelta;
+                turn += frameDelta * 2.5f;
+                if (chase)
+                    WalkTowards(manager.PlayerGround, 0.2f);
+                zone.MoveTo(boss.GroundPosition);
+                whirlSweep.transform.position = Elevation.World2(boss.GroundPosition);
+                whirlSweep.sprite = PixelMarks.Sweep(radius, (int)(turn * PixelMarks.SweepFrames));
+                if (tick <= 0f && PlayerWithin(boss.GroundPosition, radius))
+                {
+                    tick = 0.5f;
+                    HitPlayer(multiplier);
+                }
+                yield return null;
+            }
+            whirlSweep.gameObject.SetActive(false);
+            ClearAttackMarkers();
+        }
+
+        /// <summary>A circle that follows her for <paramref name="trackSeconds"/>, then holds still, brighter, for
+        /// <paramref name="lockSeconds"/> before it comes down: the lock is the time to leave it.</summary>
+        protected IEnumerator Tracking(float radius, float trackSeconds, float lockSeconds, float multiplier, Color color)
+        {
+            var at = ClampToArena(manager.PlayerGround, radius);
+            var marker = Track(GroundMarker.Circle(at, radius, trackSeconds + lockSeconds, color, transform));
+            var left = trackSeconds;
+            while (left > 0f)
+            {
+                left -= frameDelta;
+                at = Vector2.MoveTowards(at, ClampToArena(manager.PlayerGround, radius), 5.5f * frameDelta);
+                marker.MoveTo(at);
+                yield return null;
+            }
+            marker.SetColor(Color.Lerp(color, Color.white, 0.55f));
+            while (!marker.Done)
+                yield return null;
+            Sfx.Play(SoundId.EnemySlam, 0.9f);
+            manager.Hazards.LandingRing(at, radius, color);
+            if (PlayerWithin(at, radius))
+                HitPlayer(multiplier, dodgeable: false);
+        }
+
+        /// <summary>Circles that come down one after another, each <paramref name="gap"/> after the last and each landing
+        /// <paramref name="fill"/> after it shows; the player is hit once at most, by the first that catches her. The
+        /// spots are asked for at the time (so a barrage can follow her).</summary>
+        protected IEnumerator Barrage(int count, System.Func<int, Vector2> spotOf, float radius, float gap, float fill, float multiplier, Color color)
+        {
+            var spots = new List<(Vector2 at, GroundMarker marker)>();
+            for (var i = 0; i < count; i++)
+            {
+                var at = ClampToArena(spotOf(i), radius);
+                spots.Add((at, Track(GroundMarker.Circle(at, radius, fill, color, transform))));
+                yield return Wait(gap);
+            }
+            var landed = new bool[spots.Count];
+            var hit = false;
+            while (System.Array.IndexOf(landed, false) >= 0)
+            {
+                for (var i = 0; i < spots.Count; i++)
+                {
+                    if (landed[i] || !spots[i].marker.Done)
+                        continue;
+                    landed[i] = true;
+                    if (!hit && PlayerWithin(spots[i].at, radius))
+                    {
+                        hit = true;
+                        HitPlayer(multiplier, dodgeable: false);
+                    }
+                }
+                yield return null;
+            }
+        }
+
+        /// <summary>One add at a place (a cell door, a rift, a pew), if there is room for another and the ground is
+        /// walkable.</summary>
+        protected void SpawnAddAt(EnemyDefinition definition, Vector2 at, int max)
+        {
+            if (definition == null)
+                return;
+            adds.RemoveAll(a => a == null || !a.IsAlive);
+            at = ClampToArena(at, 1f);
+            if (adds.Count >= max || !manager.Nav.IsWalkable(IsoMath.GroundToCell(at)))
+                return;
+            adds.Add(manager.Spawn(definition, at, true, null, level));
+        }
+
+        /// <summary>A point on the arena's rim, as an angle in turns (0 to 1) from the east.</summary>
+        protected Vector2 RimPoint(float turns, float inset = 2f)
+        {
+            var a = turns * Mathf.PI * 2f;
+            return center + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * (arenaRadius - inset);
+        }
+
+        /// <summary>A circle of spots round a point, starting at an angle.</summary>
+        protected static Vector2 Round(Vector2 around, float radius, float turns) =>
+            around + new Vector2(Mathf.Cos(turns * Mathf.PI * 2f), Mathf.Sin(turns * Mathf.PI * 2f)) * radius;
 
         /// <summary>Steps the running attack by one frame. False when it has ended.</summary>
         bool StepAttack()

@@ -5,37 +5,43 @@ using UnityEngine;
 namespace ARPG
 {
     /// <summary>
-    /// The Gaoler, the boss at depth 18 in the middle of the prison (2026-10-12, the owner: two new prison bosses; the
-    /// story: when the fires died he kept the Iron Hold's doors locked with everyone inside). A huge jailer in iron and
-    /// leather swinging a chain. Phase 1: the Chain Lash (a band 7 long and 1.1 wide toward her, 0.75 s, 1.2) and the
-    /// Iron Ring (a circle of radius 3 round him, 0.9 s, 1.3). Phase 2: the Chains, three lashes at once in a fan 25
-    /// degrees apart; he lets prisoners (the hollowed) out of their cells every 13 s, 3 at a time, up to 8. Phase 3: he
-    /// rushes her (a charge, 1.5) and drops cages: three circles of radius 1.2 at and round her (0.8 s, 1.1) that hold
-    /// her, slowed by 40 percent for 1.5 s. Claude's design, to review. Tuning.
+    /// The Gaoler, the boss at depth 18 in the middle of the Iron Gaol (2026-10-12, reworked 2026-11-16 as the first of
+    /// the six unfinished fights; the story: when the fires died he kept the Iron Hold's doors locked with everyone
+    /// inside). A huge, slow jailer in an iron helm swinging a chain, a ring of keys at his belt. Warned by circles on the
+    /// ground and symbols on her ring, never lines. Phase 1, the Round: the Iron Ring (a circle of radius 3 round him),
+    /// the Key Toss (a fan of three bouncing keys) and the Hammer (a short leap onto her). Phase 2 (2/3 life): he swings
+    /// his chain, the Chain Whirl (a spin she must stay out of), and every 16 s opens three cells on the rim, each
+    /// marked a moment before the prisoners come out (up to 8). Phase 3 (1/3): the Lockdown, a ring of cages falling
+    /// round her with one gap to run through, the Rush (a charge), bigger hammers, and two cells at a time. Claude's
+    /// design, to review. Tuning.
     /// </summary>
     public class GaolerFight : BossFight
     {
         public const string Name = "The Gaoler";
+        static readonly Color BrassColor = new Color(0.95f, 0.78f, 0.3f, 0.9f);
+        static readonly Color CellColor = new Color(0.8f, 0.85f, 0.95f, 0.55f);
 
-        float prisonersTimer;
+        float cellsTimer;
 
         protected override string BossName => Name;
+        protected override float MoveSpeed => phase >= 3 ? 2.6f : 2.1f;
+        protected override float KeepDistance => 2.6f;
 
         protected override void OnPhase(int newPhase)
         {
             if (newPhase == 2)
-                prisonersTimer = 2f;
+                cellsTimer = 2f;
         }
 
         protected override void TickFight(Vector2 player)
         {
             if (phase < 2)
                 return;
-            prisonersTimer -= frameDelta;
-            if (prisonersTimer > 0f)
+            cellsTimer -= frameDelta;
+            if (cellsTimer > 0f)
                 return;
-            prisonersTimer = 13f;
-            SpawnAdds(addDefinition, 3, 8);
+            cellsTimer = phase >= 3 ? 20f : 16f;
+            OpenCells(phase >= 3 ? 2 : 3);
         }
 
         protected override IEnumerator NextAttack()
@@ -43,25 +49,55 @@ namespace ARPG
             switch (phase)
             {
                 case 1:
-                    return attackIndex % 2 == 0 ? Lash() : Ring();
+                    switch (Pick(3))
+                    {
+                        case 0: return Ring();
+                        case 1: return KeyToss();
+                        default: return Hammer(2.2f);
+                    }
                 case 2:
-                    return attackIndex % 3 == 0 ? Chains() : attackIndex % 3 == 1 ? Lash() : Ring();
+                    switch (Pick(4))
+                    {
+                        case 0: return Ring();
+                        case 1: return KeyToss();
+                        case 2: return Hammer(2.4f);
+                        default: return ChainWhirl();
+                    }
                 default:
-                    return attackIndex % 3 == 0 ? Rush() : attackIndex % 3 == 1 ? Cages() : Chains();
+                    switch (Pick(5))
+                    {
+                        case 0: return Lockdown();
+                        case 1: return Rush();
+                        case 2: return Hammer(3f);
+                        case 3: return ChainWhirl();
+                        default: return Ring();
+                    }
             }
         }
 
-        Vector2 Aim()
+        // The cells on the rim open one after another: a circle shows where, then the prisoners come out of it.
+        void OpenCells(int count)
         {
-            var aim = (manager.PlayerGround - boss.GroundPosition).normalized;
-            return aim == Vector2.zero ? Vector2.up : aim;
+            var turn = Random.value;
+            for (var i = 0; i < count; i++)
+            {
+                var at = RimPoint(turn + i / (float)count);
+                LastingZone(at, 1.5f, 1.4f, 0.05f, 0f, 0f, CellColor);
+                StartCoroutine(Release(at, 1.4f));
+            }
+            Sfx.Play(SoundId.EnemySlam, 0.4f);
         }
 
-        IEnumerator Lash()
+        // On its own clock, beside the boss's attacks.
+        IEnumerator Release(Vector2 at, float after)
         {
-            var from = boss.GroundPosition;
-            yield return LineStrike(from, from + Aim() * 7f, 1.1f, 0.75f, 1.2f);
-            cooldown = 0.9f;
+            while (after > 0f)
+            {
+                after -= Time.deltaTime;
+                yield return null;
+            }
+            if (boss != null && boss.IsAlive)
+                SpawnAddAt(addDefinition, at, 8);
         }
 
         IEnumerator Ring()
@@ -70,28 +106,27 @@ namespace ARPG
             cooldown = 1f;
         }
 
-        // Three lashes at once, fanned 25 degrees apart.
-        IEnumerator Chains()
+        // Three keys on his ring flung at her, bouncing off the walls.
+        IEnumerator KeyToss()
         {
-            var from = boss.GroundPosition;
-            var aim = Aim();
-            var ends = new Vector2[3];
-            for (var i = 0; i < 3; i++)
-            {
-                var a = (i - 1) * 25f * Mathf.Deg2Rad;
-                var d = new Vector2(aim.x * Mathf.Cos(a) - aim.y * Mathf.Sin(a), aim.x * Mathf.Sin(a) + aim.y * Mathf.Cos(a));
-                ends[i] = from + d * 7f;
-                Track(GroundMarker.Line(from, ends[i], 1.1f, 0.85f, TelegraphColor, transform));
-            }
-            yield return Wait(0.85f);
-            Sfx.Play(SoundId.EnemySlam, 0.8f);
-            foreach (var end in ends)
-                if (PlayerOnLine(from, end, 1.1f))
-                {
-                    HitPlayer(1.2f, dodgeable: false);
-                    break;
-                }
-            cooldown = 1.1f;
+            yield return Wait(0.3f);
+            yield return Fan(3, 16f, 7f, 0.45f, 0.9f, BrassColor, kind: ProjectileKind.Bouncing);
+            cooldown = 1f;
+        }
+
+        // A short leap onto where she stands and the slam.
+        IEnumerator Hammer(float radius)
+        {
+            yield return Approach(1.5f, 6f);
+            yield return Leap(manager.PlayerGround, radius, 1.6f, 1.2f, 1.1f);
+            cooldown = 1.2f;
+        }
+
+        // The chain swung round him: she keeps out of its reach while he lumbers after her.
+        IEnumerator ChainWhirl()
+        {
+            yield return Whirl(3.6f, 2.5f, 0.7f, true, CellColor);
+            cooldown = 1.3f;
         }
 
         IEnumerator Rush()
@@ -100,49 +135,54 @@ namespace ARPG
             cooldown = 1.2f;
         }
 
-        // Cages dropped on and round her: caught in one, she is held, slowed.
-        IEnumerator Cages()
+        // Cages fall in a ring round her and on her spot, all but one place: she runs through the gap before they land.
+        IEnumerator Lockdown()
         {
-            const float radius = 1.2f;
-            var spots = new List<Vector2> { ClampToArena(manager.PlayerGround, radius) };
-            for (var i = 0; i < 2; i++)
-                spots.Add(ClampToArena(manager.PlayerGround + Random.insideUnitCircle.normalized * 2.4f, radius));
-            foreach (var at in spots)
-                Track(GroundMarker.Circle(at, radius, 0.8f, TelegraphColor, transform));
-            yield return Wait(0.8f);
-            Sfx.Play(SoundId.EnemySlam, 0.9f);
-            foreach (var at in spots)
-                if (PlayerWithin(at, radius))
+            const float radius = 1.3f;
+            var around = manager.PlayerGround;
+            var gap = Random.Range(0, 8);
+            var spots = new List<Vector2> { ClampToArena(around, 1.4f) };
+            for (var i = 0; i < 8; i++)
+                if (i != gap)
+                    spots.Add(ClampToArena(Round(around, 2.6f, i / 8f), radius));
+            for (var i = 0; i < spots.Count; i++)
+                Track(GroundMarker.Circle(spots[i], i == 0 ? 1.4f : radius, 1.4f, TelegraphColor, transform));
+            yield return Wait(1.4f);
+            Sfx.Play(SoundId.EnemySlam, 1f);
+            for (var i = 0; i < spots.Count; i++)
+                if (PlayerWithin(spots[i], i == 0 ? 1.4f : radius))
                 {
-                    HitPlayer(1.1f, dodgeable: false);
+                    HitPlayer(1.4f, dodgeable: false);
                     SlowPlayer(0.4f, 1.5f);
                     break;
                 }
-            cooldown = 1f;
+            cooldown = 1.3f;
         }
     }
 
     /// <summary>
-    /// The Hanged Magistrate, the boss at depth 24 at the bottom of the prison (2026-10-12; the story: the Hold's fire
-    /// burned in his court, he was hanged by it and still passes sentence). A gaunt judge in a black robe and a powdered
-    /// wig, a noose round his neck and its rope trailing, drifting rather than walking. He keeps his distance. Phase 1:
-    /// the Sentence (a circle of radius 2.2 under her, 1.2 s, 1.4) and the Gavel (a fan of 5 bolts, 0.9). Phase 2: the
-    /// Verdict (a circle on her and six round her, radius 1.6, 1.0 s, 1.2, each leaving rope that holds for 2.5 s: 0.4 a
-    /// second, slowed 25 percent); his bailiffs (skeleton knights) come every 15 s, 2 at a time, up to 4. Phase 3: he
-    /// drifts across the court before each Sentence, which falls twice, and the Gavel goes 7 wide. Claude's design, to
-    /// review. Tuning.
+    /// The Hanged Magistrate, the boss at depth 24 at the bottom of the Iron Gaol (2026-10-12, reworked 2026-11-16; the
+    /// story: the Hold's fire burned in his court, he was hanged by it and still passes sentence). A gaunt judge in a black
+    /// robe and a powdered wig, a noose round his neck, drifting rather than walking, keeping his distance. Phase 1, the
+    /// Trial: the Sentence (a circle under her), the Gavel (a fan of five bolts) and the Noose (two rings of circles, the
+    /// outer then the inner, so she must step from one gap to the next). Phase 2 (2/3 life): the Verdict (a circle on her
+    /// and six round her, each leaving rope that holds her), and his bailiffs come every 15 s. Phase 3 (1/3): the
+    /// Execution, a big circle that follows her, then holds, then falls; the Sentence twice from a new place; the Gavel
+    /// seven wide. Claude's design, to review. Tuning.
     /// </summary>
     public class HangedMagistrateFight : BossFight
     {
         public const string Name = "The Hanged Magistrate";
         static readonly Color BoltColor = new Color(0.85f, 0.75f, 1f, 0.9f);
         static readonly Color RopeColor = new Color(0.55f, 0.32f, 0.2f, 0.55f);
+        static readonly Color CourtColor = new Color(0.82f, 0.78f, 0.95f, 0.9f);
 
         float bailiffTimer;
 
         protected override string BossName => Name;
 
         protected override float KeepDistance => 5f;
+        protected override float MoveSpeed => phase >= 3 ? 3f : 2.4f;
 
         protected override void OnPhase(int newPhase)
         {
@@ -166,11 +206,29 @@ namespace ARPG
             switch (phase)
             {
                 case 1:
-                    return attackIndex % 2 == 0 ? Sentence(1, false) : Gavel(5);
+                    switch (Pick(3))
+                    {
+                        case 0: return Sentence(1, false);
+                        case 1: return Gavel(5);
+                        default: return Noose();
+                    }
                 case 2:
-                    return attackIndex % 3 == 0 ? Verdict() : attackIndex % 3 == 1 ? Sentence(1, false) : Gavel(5);
+                    switch (Pick(4))
+                    {
+                        case 0: return Verdict();
+                        case 1: return Sentence(1, false);
+                        case 2: return Gavel(5);
+                        default: return Noose();
+                    }
                 default:
-                    return attackIndex % 3 == 0 ? Verdict() : attackIndex % 3 == 1 ? Sentence(2, true) : Gavel(7);
+                    switch (Pick(5))
+                    {
+                        case 0: return Execution();
+                        case 1: return Sentence(2, true);
+                        case 2: return Gavel(7);
+                        case 3: return Verdict();
+                        default: return Noose();
+                    }
             }
         }
 
@@ -193,17 +251,50 @@ namespace ARPG
             cooldown = 1.1f;
         }
 
+        // Two rings of circles round her, the outer one first and the inner a beat after: she steps between them.
+        IEnumerator Noose()
+        {
+            const float radius = 1.3f;
+            var around = manager.PlayerGround;
+            var turn = Random.value;
+            var outer = new List<Vector2>();
+            for (var i = 0; i < 6; i++)
+                outer.Add(ClampToArena(Round(around, 4.2f, turn + i / 6f), radius));
+            foreach (var at in outer)
+                Track(GroundMarker.Circle(at, radius, 1f, TelegraphColor, transform));
+            yield return Wait(1f);
+            Sfx.Play(SoundId.EnemySlam, 0.6f);
+            foreach (var at in outer)
+                if (PlayerWithin(at, radius))
+                {
+                    HitPlayer(1.1f, dodgeable: false);
+                    break;
+                }
+            ClearAttackMarkers();
+            var inner = new List<Vector2>();
+            for (var i = 0; i < 4; i++)
+                inner.Add(ClampToArena(Round(around, 1.9f, turn + 0.08f + i / 4f), radius));
+            foreach (var at in inner)
+                Track(GroundMarker.Circle(at, radius, 0.9f, TelegraphColor, transform));
+            yield return Wait(0.9f);
+            Sfx.Play(SoundId.EnemySlam, 0.6f);
+            foreach (var at in inner)
+                if (PlayerWithin(at, radius))
+                {
+                    HitPlayer(1.1f, dodgeable: false);
+                    break;
+                }
+            cooldown = 1.2f;
+        }
+
         // A circle on her and six round her; each leaves rope on the floor that holds and hurts a while.
         IEnumerator Verdict()
         {
             const float radius = 1.6f;
             var spots = new List<Vector2> { ClampToArena(manager.PlayerGround, radius) };
-            var turn = Random.value * Mathf.PI * 2f;
+            var turn = Random.value;
             for (var i = 0; i < 6; i++)
-            {
-                var a = turn + Mathf.PI * 2f * i / 6;
-                spots.Add(ClampToArena(manager.PlayerGround + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * 3.4f, radius));
-            }
+                spots.Add(ClampToArena(Round(manager.PlayerGround, 3.4f, turn + i / 6f), radius));
             foreach (var at in spots)
                 Track(GroundMarker.Circle(at, radius, 1f, WarningOf(RopeColor), transform));
             yield return Wait(1f);
@@ -217,6 +308,13 @@ namespace ARPG
             foreach (var at in spots)
                 LastingZone(at, radius, 0f, 2.5f, 0.4f, 0.25f, RopeColor);
             cooldown = 1.3f;
+        }
+
+        // The last sentence: a big circle follows her, holds still a moment, then falls.
+        IEnumerator Execution()
+        {
+            yield return Tracking(2.6f, 2.2f, 0.8f, 1.8f, CourtColor);
+            cooldown = 1.2f;
         }
     }
 }
