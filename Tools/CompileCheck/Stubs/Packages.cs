@@ -26,8 +26,22 @@ namespace UnityEngine.Tilemaps
     public sealed class Tilemap : GridLayout
     {
         public enum Orientation { XY, XZ, YX, YZ, ZX, ZY, Custom }
-        public BoundsInt cellBounds => default; public Vector3Int origin { get; set; } public Vector3Int size { get; set; } public Color color { get; set; } public Grid layoutGrid => null; public Vector3 tileAnchor { get; set; } public Orientation orientation { get; set; } public Bounds localBounds => default;
-        public TileBase GetTile(Vector3Int p) => null; public T GetTile<T>(Vector3Int p) where T : TileBase => null; public bool HasTile(Vector3Int p) => false; public void SetTile(Vector3Int p, TileBase t) { } public void SetTiles(Vector3Int[] p, TileBase[] t) { } public void SetTiles(TileChangeData[] tileChangeDataArray, bool ignoreLockFlags) { } public void SetTilesBlock(BoundsInt b, TileBase[] t) { } public TileBase[] GetTilesBlock(BoundsInt b) => new TileBase[0];
+        readonly System.Collections.Generic.Dictionary<Vector3Int, TileBase> tiles = new System.Collections.Generic.Dictionary<Vector3Int, TileBase>();
+        public BoundsInt cellBounds
+        {
+            get
+            {
+                // Like Unity's: always includes the origin cell.
+                int x0 = 0, y0 = 0, z0 = 0, x1 = 1, y1 = 1, z1 = 1;
+                foreach (var p in tiles.Keys)
+                {
+                    x0 = System.Math.Min(x0, p.x); y0 = System.Math.Min(y0, p.y); z0 = System.Math.Min(z0, p.z);
+                    x1 = System.Math.Max(x1, p.x + 1); y1 = System.Math.Max(y1, p.y + 1); z1 = System.Math.Max(z1, p.z + 1);
+                }
+                return new BoundsInt(x0, y0, z0, x1 - x0, y1 - y0, z1 - z0);
+            }
+        } public Vector3Int origin { get; set; } public Vector3Int size { get; set; } public Color color { get; set; } public Grid layoutGrid => null; public Vector3 tileAnchor { get; set; } public Orientation orientation { get; set; } public Bounds localBounds => default;
+        public TileBase GetTile(Vector3Int p) => tiles.TryGetValue(p, out var t) ? t : null; public T GetTile<T>(Vector3Int p) where T : TileBase => GetTile(p) as T; public bool HasTile(Vector3Int p) => tiles.ContainsKey(p); public void SetTile(Vector3Int p, TileBase t) { if (t == null) tiles.Remove(p); else tiles[p] = t; } public void SetTiles(Vector3Int[] p, TileBase[] t) { } public void SetTiles(TileChangeData[] tileChangeDataArray, bool ignoreLockFlags) { } public void SetTilesBlock(BoundsInt b, TileBase[] t) { } public TileBase[] GetTilesBlock(BoundsInt b) => new TileBase[0];
         public void ClearAllTiles() { } public void CompressBounds() { } public void RefreshAllTiles() { } public void RefreshTile(Vector3Int p) { } public void ResizeBounds() { }
         public void SetColor(Vector3Int p, Color c) { } public Color GetColor(Vector3Int p) => Color.white; public void SetTileFlags(Vector3Int p, TileFlags f) { } public void RemoveTileFlags(Vector3Int p, TileFlags f) { } public void AddTileFlags(Vector3Int p, TileFlags f) { } public TileFlags GetTileFlags(Vector3Int p) => default;
         public void SetTransformMatrix(Vector3Int p, Matrix4x4 m) { } public Matrix4x4 GetTransformMatrix(Vector3Int p) => default; public Sprite GetSprite(Vector3Int p) => null; public int GetUsedTilesCount() => 0;

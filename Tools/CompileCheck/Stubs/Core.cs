@@ -44,10 +44,11 @@ namespace UnityEngine
 
     public class Component : Object
     {
-        public GameObject gameObject => null;
-        public Transform transform => null;
+        internal GameObject owner;
+        public GameObject gameObject => owner;
+        public Transform transform => owner?.transform;
         public string tag { get; set; }
-        public T GetComponent<T>() => default;
+        public T GetComponent<T>() => owner != null ? owner.GetComponent<T>() : default;
         public Component GetComponent(Type t) => null;
         public bool TryGetComponent<T>(out T c) { c = default; return false; }
         public T GetComponentInChildren<T>() => default;
@@ -105,8 +106,16 @@ namespace UnityEngine
     {
         public GameObject() { }
         public GameObject(string name) { }
-        public GameObject(string name, params Type[] components) { }
-        public Transform transform => null;
+        public GameObject(string name, params Type[] components)
+        {
+            this.name = name;
+            foreach (var t in components)
+                AddComponent(t);
+        }
+        // Components added by type are kept so GetComponent finds them (the tilemap tests need it).
+        readonly List<Component> parts = new List<Component>();
+        Transform own;
+        public Transform transform => own ?? (own = new Transform { owner = this });
         public GameObject gameObject => this;
         public int layer { get; set; }
         public string tag { get; set; }
@@ -115,9 +124,23 @@ namespace UnityEngine
         public bool isStatic { get; set; }
         public SceneManagement.Scene scene => default;
         public void SetActive(bool v) { }
-        public T AddComponent<T>() where T : Component => null;
-        public Component AddComponent(Type t) => null;
-        public T GetComponent<T>() => default;
+        public T AddComponent<T>() where T : Component => (T)AddComponent(typeof(T));
+        public Component AddComponent(Type t)
+        {
+            Component c;
+            try { c = (Component)Activator.CreateInstance(t, true); }
+            catch (Exception) { return null; }
+            c.owner = this;
+            parts.Add(c);
+            return c;
+        }
+        public T GetComponent<T>()
+        {
+            foreach (var c in parts)
+                if (c is T hit)
+                    return hit;
+            return default;
+        }
         public Component GetComponent(Type t) => null;
         public bool TryGetComponent<T>(out T c) { c = default; return false; }
         public T GetComponentInChildren<T>() => default;
