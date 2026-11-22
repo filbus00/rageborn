@@ -129,7 +129,13 @@ namespace ARPG
         readonly List<Hazard> hazards = new List<Hazard>();
         readonly List<LineHazard> lines = new List<LineHazard>();
 
-        public EnemyHazards(Transform parent) => this.parent = parent;
+        public EnemyHazards(Transform parent)
+        {
+            this.parent = parent;
+            roots = new RootFx(parent);
+        }
+
+        readonly RootFx roots;
 
         /// <summary>A circle that fills over <paramref name="fillSeconds"/>, then deals <paramref name="damage"/> (already
         /// times the enemy's multipliers) to the player if she is inside. Not dodgeable: it is a ground shape.</summary>
@@ -313,6 +319,7 @@ namespace ARPG
         {
             TickLines(deltaTime, world);
             TickShocks(deltaTime);
+            roots.Tick(deltaTime);
             for (var i = 0; i < hazards.Count; i++)
             {
                 var h = hazards[i];
@@ -336,6 +343,9 @@ namespace ARPG
                         player.TakeHit(h.Damage, h.Level, 0f, dodgeable: false);
                         if (h.SlowMultiplier > 0f)
                             world.PlayerController?.ApplySlow(h.SlowMultiplier, h.SlowSeconds);
+                        // A rooting hit throws roots up round her feet (2026-11-22).
+                        if (h.SlowMultiplier > 0f && h.SlowMultiplier <= MovementRules.RootBelow)
+                            roots.Burst(world.PlayerGround, h.SlowSeconds);
                     }
                     if (h.BurnLeft <= 0f)
                     {
