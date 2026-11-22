@@ -39,6 +39,9 @@ namespace ARPG
         /// <summary>The thumb has left the stick's ring: she stops shooting, turns and runs (the owner, 2026-10-03).</summary>
         public bool Disengaged => input != null && input.Disengaged;
 
+        /// <summary>Two quick taps were made since this was last asked (Wild Volley).</summary>
+        public bool ConsumeDoubleTap() => input != null && input.ConsumeDoubleTap();
+
         /// <summary>How far the thumb is pushed from the stick's middle, 0 to 1 (her aim reads it, <see cref="AimRules"/>).</summary>
         public float StickPush => input != null ? input.Value.magnitude : 0f;
 

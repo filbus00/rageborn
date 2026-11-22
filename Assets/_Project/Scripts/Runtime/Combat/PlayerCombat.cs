@@ -205,6 +205,8 @@ namespace ARPG
             public bool Burning;
             // Frost Trail's ice (a boon, 2026-11-15): it slows and chills.
             public bool Icy;
+            // Wild Volley's thorny ground (2026-11-22): it slows.
+            public bool Thorny;
         }
 
         readonly List<GroundMark> marks = new List<GroundMark>(32);
@@ -433,6 +435,7 @@ namespace ARPG
                 UpdateExecute(origin, deltaTime);
             if (barrageLeft > 0 && !player.IsDodging)
                 UpdateBarrage(origin, deltaTime);
+            UpdateWildVolley(origin, deltaTime);
 
             enemies.QueryEnemies(origin, LongestReach() + QueryMargin, candidates);
             // Only what she can see on screen (the owner, 2026-10-04): an enemy beside her, in reach but past the
@@ -795,7 +798,7 @@ namespace ARPG
                         return true;
                     break;
                 case SkillKind.KnockbackShot:
-                    // Knockback Shot: the nearest enemy in sight within its short reach (2.5): one that has come close.
+                    // Knockback Shot: the nearest enemy in sight within its reach (5, 2026-11-22; it was 2.5 and rarely fired).
                     skillTarget = FindRangedTarget(origin, skill);
                     if (skillTarget == null)
                         return false;
@@ -1736,12 +1739,19 @@ namespace ARPG
                         fx.Embers(Elevation.World2(mark.Center), mark.Radius * 2f, 2);
                     if (mark.Icy)
                         fx.FrostShards(Elevation.World2(mark.Center), Vector2.up, 0.1f, 0.5f);
+                    if (mark.Thorny)
+                        fx.Sparks(Elevation.World2(mark.Center + Random.insideUnitCircle * mark.Radius * 0.7f), Vector2.up, 0.1f, VolleyColor, 3);
                     enemies.QueryEnemies(mark.Center, mark.Radius + QueryMargin, nearby);
                     for (var n = 0; n < nearby.Count; n++)
                     {
                         var enemy = nearby[n];
                         if (!enemy.IsAlive || Vector2.Distance(enemy.GroundPosition, mark.Center) > mark.Radius + enemy.Definition.BodyRadius)
                             continue;
+                        if (mark.Thorny)
+                        {
+                            enemy.ApplySlow(WildVolleyRules.ThornSlow, MarkPulseSeconds * 2f);
+                            continue;
+                        }
                         if (mark.Icy)
                         {
                             enemy.ApplySlow(1f - FunBoonRules.IceSlow, MarkPulseSeconds * 2f);
@@ -2145,6 +2155,8 @@ namespace ARPG
         // Knockback Shot: the enemy struck and every enemy within the radius around it are thrown back along the arrow's
         // flight (each from where it stands, away from the impact for those beside it), walls respected.
         readonly List<EnemyController> knocked = new List<EnemyController>(16);
+        const float KnockSlideSeconds = 0.22f;
+        const float KnockStaggerSeconds = 0.6f;
 
         void KnockBack(EnemyController struck, Vector2 direction, Shot shot)
         {
@@ -2156,7 +2168,7 @@ namespace ARPG
                 if (!enemy.IsAlive || (enemy != struck && Vector2.Distance(enemy.GroundPosition, impact) > shot.KnockRadius + enemy.Definition.BodyRadius))
                     continue;
                 var away = enemy == struck ? direction : (enemy.GroundPosition - impact + direction * 0.5f).normalized;
-                enemy.Push(away * shot.KnockDistance);
+                enemy.Knock(away * shot.KnockDistance, KnockSlideSeconds, KnockStaggerSeconds);
             }
             fx.Burst(Elevation.World2(impact), shot.KnockRadius, shot.Glow);
             Sfx.Play(SoundId.GroundBreaker, 0.6f);

@@ -20,11 +20,11 @@ MonoBehaviour:
   cooldownSeconds: 6
   damageMultiplier: 2
   arcDegrees: 180
-  range: 2.5
+  range: 5
   minRange: 0
   minEnemies: 1
   speed: 22
-  effectStrength: 3
+  effectStrength: 4
   effectSeconds: 0
   maxRage: 0
   minMomentum: 0
@@ -40,7 +40,7 @@ MonoBehaviour:
   windupSeconds: 0
   projectileCount: 1
   spreadDegrees: 0
-  burstRadius: 1.5
+  burstRadius: 2
   turnDegreesPerSecond: 360
   triggerText: An enemy within 2.5
   animationName: recoil

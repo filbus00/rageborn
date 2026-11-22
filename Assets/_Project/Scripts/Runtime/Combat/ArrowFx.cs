@@ -145,6 +145,34 @@ namespace ARPG
             }
         }
 
+        /// <summary>One lick of Dragon Fire's flame front (2026-11-22): white-hot near the bow, orange and then red toward the
+        /// tip, bigger and longer-lived the further out, with embers thrown off and a little smoke at the far end.
+        /// <paramref name="t"/> is how far along the cone it is, 0 to 1.</summary>
+        public void DragonJet(Vector2 ground, float height, float t)
+        {
+            var near = Color.Lerp(new Color(1f, 0.95f, 0.6f, 0.95f), new Color(1f, 0.5f, 0.1f, 0.9f), t);
+            // The body of the flame: a big soft tongue that swells as it burns out, then a hot core inside it.
+            Emit(ground, Vector2.zero, height, 0.9f, Random.Range(0.4f, 0.55f) + 0.15f * t, 0.3f + 0.2f * t, 0.65f + 0.5f * t, 1f, near, FlameRed, false, false);
+            Emit(ground + Random.insideUnitCircle * 0.15f, Vector2.zero, height * 0.9f, 1.4f, Random.Range(0.3f, 0.42f),
+                0.2f + 0.12f * t, 0.42f + 0.3f * t, 1f, FlameHot, FlameRed, false, false);
+            Emit(ground + Random.insideUnitCircle * 0.25f, Vector2.zero, height * 0.6f, 0.6f, Random.Range(0.35f, 0.5f),
+                0.22f, 0.5f + 0.3f * t, 1f, new Color(1f, 0.4f, 0.08f, 0.8f), FlameRed, false, false);
+            for (var i = 0; i < 3; i++)
+            {
+                var drift = Rotate(Vector2.right, Random.Range(0f, 360f)) * Random.Range(0.3f, 1.1f);
+                drift.y *= IsoMath.GroundSquash;
+                Emit(ground, drift, height * Random.Range(0.4f, 1f), Random.Range(1f, 2.4f), Random.Range(0.35f, 0.65f),
+                    Random.Range(0.06f, 0.1f), 0.02f, 1f, Color.Lerp(FlameHot, new Color(1f, 0.45f, 0.1f, 1f), Random.value), FlameRed, false, false, Ember());
+            }
+            if (t > 0.6f && Random.value < 0.5f)
+            {
+                var smoke = Fx("fx_smoke_small");
+                if (smoke != null)
+                    Emit(ground, Random.insideUnitCircle * 0.3f, height, Random.Range(0.6f, 1f), Random.Range(0.5f, 0.8f), 0.18f, 0.4f, 1f,
+                        new Color(0.6f, 0.55f, 0.5f, 0.5f), new Color(0.3f, 0.3f, 0.3f, 0f), false, false, smoke);
+            }
+        }
+
         /// <summary>A frost arrow chilling one: shards of ice thrown out and a pale breath of cold.</summary>
         public void FrostShards(Vector2 ground, Vector2 direction, float height, float amount)
         {

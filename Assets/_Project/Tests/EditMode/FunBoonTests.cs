@@ -70,11 +70,11 @@ namespace ARPG.Tests
             var origin = new Vector2(2f, 3f);
             var aim = Vector2.right;
             Assert.IsTrue(FunBoonRules.InCone(origin, aim, origin, 0.3f), "on her");
-            Assert.IsTrue(FunBoonRules.InCone(origin, aim, origin + new Vector2(4f, 0f), 0.3f));
-            Assert.IsTrue(FunBoonRules.InCone(origin, aim, origin + new Vector2(4.7f, 0f), 0.3f), "the body's radius counts");
-            Assert.IsFalse(FunBoonRules.InCone(origin, aim, origin + new Vector2(5f, 0f), 0.3f), "past its length");
-            Assert.IsTrue(FunBoonRules.InCone(origin, aim, origin + new Vector2(2f, 1f), 0.3f), "27 degrees off");
-            Assert.IsFalse(FunBoonRules.InCone(origin, aim, origin + new Vector2(2f, 1.5f), 0.3f), "37 degrees off");
+            Assert.IsTrue(FunBoonRules.InCone(origin, aim, origin + new Vector2(7.5f, 0f), 0.3f));
+            Assert.IsTrue(FunBoonRules.InCone(origin, aim, origin + new Vector2(8.2f, 0f), 0.3f), "the body's radius counts");
+            Assert.IsFalse(FunBoonRules.InCone(origin, aim, origin + new Vector2(8.5f, 0f), 0.3f), "past its length");
+            Assert.IsTrue(FunBoonRules.InCone(origin, aim, origin + new Vector2(4f, 0.8f), 0.3f), "11 degrees off");
+            Assert.IsFalse(FunBoonRules.InCone(origin, aim, origin + new Vector2(4f, 1.5f), 0.3f), "20 degrees off");
             Assert.IsFalse(FunBoonRules.InCone(origin, aim, origin + new Vector2(-1f, 0f), 0.3f), "behind her");
         }
 

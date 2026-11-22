@@ -191,7 +191,7 @@ namespace ARPG
                 // more", then "add all of them as rare boons"): rare, offered from the first depth whatever their row
                 // (rows 0 and 1 are full). FunBoonRules holds their numbers, Claude's, to review (Docs/08).
                 Fun(M, 2, 0, "dragon_fire", "Dragon Fire", PassiveEffect.DragonFire,
-                    "Every fourth shot bursts as it leaves the bow: a cone of fire 4.5 long that strikes and sets burning all it touches."),
+                    "Every fourth shot bursts as it leaves the bow: a long, narrow cone of fire (8) that strikes and sets burning all it touches."),
                 Fun(M, 2, 3, "storm_quiver", "Storm Quiver", PassiveEffect.StormQuiver,
                     "Every fifth arrow calls lightning down on what it hits, and the bolt jumps to two enemies nearby."),
                 Fun(M, 3, 2, "boomerang_arrow", "Boomerang Arrow", PassiveEffect.BoomerangArrow,

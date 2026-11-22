@@ -122,10 +122,10 @@ namespace ARPG.Editor
             // The held skills (the owner, 2026-10-04: Knockback Shot, Barrage, Kill Shot, Hunter's Breath and Wild Frenzy).
             var knockback = LoadOrCreate("KnockbackShot", so =>
             {
-                Set(so, SkillKind.KnockbackShot, "Knockback Shot", unlock: 1, cost: 0f, cooldown: 6f, multiplier: 2f, range: 2.5f, speed: 22f);
+                Set(so, SkillKind.KnockbackShot, "Knockback Shot", unlock: 1, cost: 0f, cooldown: 6f, multiplier: 2f, range: 5f, speed: 22f);
                 so.FindProperty("rageGain").floatValue = 15f;
-                so.FindProperty("effectStrength").floatValue = 3f;
-                so.FindProperty("burstRadius").floatValue = 1.5f;
+                so.FindProperty("effectStrength").floatValue = 4f;
+                so.FindProperty("burstRadius").floatValue = 2f;
                 so.FindProperty("effectColor").colorValue = new Color(0.85f, 0.85f, 0.75f, 0.95f);
             });
             var barrage = LoadOrCreate("Barrage", so =>

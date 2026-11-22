@@ -37,7 +37,15 @@ namespace ARPG
             MigrateFrom19, // 19 to 20: no run numbers were kept; a run under way starts them at zero.
             MigrateFrom20, // 20 to 21: backpack places were not kept; the backpack packs itself as before.
             MigrateFrom21, // 21 to 22: no company record existed; a new archer signs on, nothing is cleared, nobody has fallen.
+            MigrateFrom22, // 22 to 23: no boss kills were kept for the company; Wild Volley is not yet learned.
         };
+
+        static SaveData MigrateFrom22(SaveData data)
+        {
+            data.bossesFelled = 0;
+            data.finalBosses = new List<string>();
+            return data;
+        }
 
         static SaveData MigrateFrom21(SaveData data)
         {
@@ -319,6 +327,8 @@ namespace ARPG
                 contract = session.Company.ContractId,
             };
             data.clearedContracts.AddRange(session.Company.Cleared);
+            data.bossesFelled = session.Company.BossesFelled;
+            data.finalBosses.AddRange(session.Company.FinalBosses);
             foreach (var fallen in session.Company.Fallen)
                 data.fallen.Add(new FallenData
                 {
@@ -412,6 +422,9 @@ namespace ARPG
                 company.ContractId = ContractRules.Get(data.contract).Id;
             foreach (var id in data.clearedContracts ?? new List<string>())
                 company.Cleared.Add(id);
+            company.BossesFelled = data.bossesFelled;
+            foreach (var id in data.finalBosses ?? new List<string>())
+                company.FinalBosses.Add(id);
             foreach (var saved in data.fallen ?? new List<FallenData>())
                 company.Fallen.Add(new FallenMercenary
                 {

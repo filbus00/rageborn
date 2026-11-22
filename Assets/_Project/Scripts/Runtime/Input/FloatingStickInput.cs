@@ -22,6 +22,24 @@ namespace ARPG
         Vector2 thumb;
         int activeFinger = -1;
 
+        readonly DoubleTapDetector doubleTap = new DoubleTapDetector();
+        bool doubleTapped;
+
+        /// <summary>True once after two quick taps (Wild Volley, 2026-11-22), then false until the next pair.</summary>
+        public bool ConsumeDoubleTap()
+        {
+            var tapped = doubleTapped;
+            doubleTapped = false;
+            return tapped;
+        }
+
+        /// <summary>Editor and development builds only: a double tap a script makes (no touches can be injected there).</summary>
+        public void TestDoubleTap()
+        {
+            if (Debug.isDebugBuild)
+                doubleTapped = true;
+        }
+
         readonly List<RaycastResult> uiHits = new List<RaycastResult>();
         PointerEventData uiPointer;
         EventSystem uiPointerOwner;
@@ -114,6 +132,8 @@ namespace ARPG
 
                     if (touch.ended)
                     {
+                        if (doubleTap.Ended(Time.unscaledTime, touch.screenPosition, PixelsPerPoint))
+                            doubleTapped = true;
                         Release();
                         return;
                     }
@@ -125,6 +145,7 @@ namespace ARPG
                 }
 
                 // The touch vanished without an end event.
+                doubleTap.Cancel();
                 Release();
                 return;
             }
@@ -142,6 +163,7 @@ namespace ARPG
                     continue;
 
                 activeFinger = touch.finger.index;
+                doubleTap.Began(Time.unscaledTime, touch.screenPosition);
                 origin = touch.screenPosition;
                 thumb = origin;
                 Value = Vector2.zero;

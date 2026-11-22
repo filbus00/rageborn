@@ -88,7 +88,11 @@ namespace ARPG
             var run = GameSession.Current.Run;
             run.Kills++;
             if (enemy.Definition.Rank == EnemyRank.Boss)
+            {
                 run.Bosses++;
+                // The company learns Wild Volley with its first boss and it evolves with a contract's last (2026-11-22).
+                GameSession.Current.Company.BossFell(GameSession.Current.DeepestDepth);
+            }
         }
 
         void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;

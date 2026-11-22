@@ -76,6 +76,8 @@ namespace ARPG
                     child.gameObject.SetActive(false);
             }
             DepthLabel.Create(area, new Vector2(BarsLeft, -DepthTop), new Vector2(DepthWidth, DepthHeight));
+            // Wild Volley's cooldown, once the company has learned it (2026-11-22).
+            VolleyIndicator.Create(area);
             // The boons taken, as icons under the depth (2026-10-15).
             if (Features.Roguelite)
                 BoonBar.Create(area, new Vector2(BarsLeft, -BoonsTop));

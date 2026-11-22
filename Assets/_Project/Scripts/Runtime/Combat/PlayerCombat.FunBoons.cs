@@ -13,8 +13,13 @@ namespace ARPG
     {
         // Dragon Fire: every fourth basic shot, a cone of fire from the bow.
         public const int DragonEvery = 4;
-        public const float DragonLength = 4.5f;
-        public const float DragonHalfAngle = 30f;
+        // 2026-11-22 (the owner: shoot much further, the cone less wide but at least 60 percent longer): 8 long (was 4.5),
+        // 15 degrees either side (was 30).
+        public const float DragonLength = 8f;
+        public const float DragonHalfAngle = 15f;
+        /// <summary>The flame front reaches the end of the cone this long after the shot.</summary>
+        public const float DragonSweepSeconds = 0.45f;
+        public const int DragonRows = 20;
         public const float DragonShare = 0.9f;
 
         // Storm Quiver: every fifth basic arrow calls a bolt on what it hits, which jumps on.
@@ -163,6 +168,32 @@ namespace ARPG
                 DragonFire(origin, aim);
         }
 
+        struct DragonJet
+        {
+            public float Delay;
+            public Vector2 Point;
+            public float T;
+        }
+
+        readonly List<DragonJet> dragonJets = new List<DragonJet>(64);
+
+        // Dragon Fire's flame front: each jet lights when the front reaches it.
+        void UpdateDragon(float deltaTime)
+        {
+            for (var i = dragonJets.Count - 1; i >= 0; i--)
+            {
+                var jet = dragonJets[i];
+                jet.Delay -= deltaTime;
+                if (jet.Delay > 0f)
+                {
+                    dragonJets[i] = jet;
+                    continue;
+                }
+                fx.DragonJet(Elevation.World2(jet.Point), ArrowHeight * 0.7f, jet.T);
+                dragonJets.RemoveAt(i);
+            }
+        }
+
         // Dragon Fire: the cone strikes and sets burning every enemy in it she has a line to.
         void DragonFire(Vector2 origin, Vector2 aim)
         {
@@ -177,17 +208,19 @@ namespace ARPG
                     enemy.ApplyBurn(Damage(enemy, BurnShare / BurnStacks.Seconds, false) * BurnFactor);
                 fx.Flames(Elevation.World2(enemy.GroundPosition), ArrowHeight * 0.8f);
             }
-            // The fire: three rows of flames fanning out from the bow.
-            for (var row = 1; row <= 3; row++)
+            // The fire: a front of flame that runs out from the bow along the cone, wider as it goes (see UpdateDragon).
+            for (var row = 0; row < FunBoonRules.DragonRows; row++)
             {
-                var distance = FunBoonRules.DragonLength * row / 3f;
-                var across = row + 1;
-                for (var k = 0; k < across; k++)
+                var t = (row + 1f) / FunBoonRules.DragonRows;
+                var distance = FunBoonRules.DragonLength * t;
+                var lanes = row < 5 ? 1 : row < 11 ? 2 : 3;
+                for (var k = 0; k < lanes; k++)
                 {
-                    var angle = Mathf.Lerp(-FunBoonRules.DragonHalfAngle, FunBoonRules.DragonHalfAngle, across == 1 ? 0.5f : k / (float)(across - 1));
+                    var across = lanes == 1 ? 0f : Mathf.Lerp(-1f, 1f, k / (float)(lanes - 1));
+                    var angle = across * FunBoonRules.DragonHalfAngle * Mathf.Min(1f, 0.35f + t) * Random.Range(0.6f, 1f);
                     var at = origin + Rotate(aim, angle) * distance;
                     if (enemies.Nav.HasLineOfSight(origin, at))
-                        fx.Flames(Elevation.World2(at), ArrowHeight);
+                        dragonJets.Add(new DragonJet { Delay = t * FunBoonRules.DragonSweepSeconds, Point = at, T = t });
                 }
             }
             fx.Burst(Elevation.World2(origin + aim * 0.7f), 0.6f, FireGlow);
@@ -352,6 +385,7 @@ namespace ARPG
                 iceTimer = 0f;
 
             UpdateGhost(deltaTime);
+            UpdateDragon(deltaTime);
             if (boons.RainOfArrows)
                 UpdateRain(deltaTime);
             UpdateShards(origin, deltaTime);

@@ -199,6 +199,21 @@ namespace ARPG
         public readonly HashSet<string> Cleared = new HashSet<string>();
         public readonly List<FallenMercenary> Fallen = new List<FallenMercenary>();
 
+        /// <summary>Bosses the company has killed, ever (format 23): the first teaches the double tap, Wild Volley.</summary>
+        public int BossesFelled;
+
+        /// <summary>Contracts whose last boss has fallen (format 23): the first evolves Wild Volley.</summary>
+        public readonly HashSet<string> FinalBosses = new HashSet<string>();
+
+        /// <summary>A boss fell on the way down this contract at this depth.</summary>
+        public void BossFell(int depth)
+        {
+            BossesFelled++;
+            var contract = Contract;
+            if (depth >= contract.LastDepth)
+                FinalBosses.Add(contract.Id);
+        }
+
         public Contract Contract => ContractRules.Get(ContractId);
 
         /// <summary>A new archer signs on (the first, and after every death).</summary>

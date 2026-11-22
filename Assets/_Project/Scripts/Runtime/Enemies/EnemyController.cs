@@ -125,6 +125,11 @@ namespace ARPG
         Vector2 home;
         float leashTimer;
         float reactTimer;
+        // Knockback Shot (2026-11-22): a slide along an offset, then a stagger in which it does nothing.
+        float staggerLeft;
+        float knockSlideLeft;
+        float knockSlideTotal;
+        Vector2 knockOffset;
         float stateTimer;
         float life;
         float punchTimer;
@@ -317,6 +322,8 @@ namespace ARPG
             home = groundPosition;
             leashTimer = 0f;
             reactTimer = 0f;
+            staggerLeft = 0f;
+            knockSlideLeft = 0f;
             Perched = false;
             strollPace = Random.Range(WanderRules.MinStroll, WanderRules.MaxStroll);
             slow.Clear();
@@ -453,6 +460,18 @@ namespace ARPG
             markTimer = Mathf.Max(0f, markTimer - deltaTime);
             if (!IsAlive || Scripted || chill.IsFrozen)
                 return;
+            // Thrown back: it slides along the offset, then stands dazed before it chases or attacks again.
+            if (staggerLeft > 0f)
+            {
+                var slide = Mathf.Min(deltaTime, knockSlideLeft);
+                if (slide > 0f)
+                {
+                    Move(knockOffset * (slide / knockSlideTotal), world);
+                    knockSlideLeft -= slide;
+                }
+                staggerLeft -= deltaTime;
+                return;
+            }
 
             var playerGround = world.PlayerGround;
             var distance = Vector2.Distance(ground, playerGround);
@@ -1315,6 +1334,18 @@ namespace ARPG
         {
             if (manager != null && IsAlive && !Scripted)
                 Move(offset, manager);
+        }
+
+        /// <summary>Throws the enemy back: it slides along a ground offset over <paramref name="slideSeconds"/>, walls
+        /// respected, and then stands dazed for <paramref name="staggerSeconds"/> in all. A scripted boss is not moved.</summary>
+        public void Knock(Vector2 offset, float slideSeconds, float staggerSeconds)
+        {
+            if (manager == null || !IsAlive || Scripted)
+                return;
+            knockOffset = offset;
+            knockSlideTotal = Mathf.Max(0.01f, slideSeconds);
+            knockSlideLeft = knockSlideTotal;
+            staggerLeft = Mathf.Max(staggerSeconds, slideSeconds);
         }
 
         /// <summary>Moves a <see cref="Scripted"/> enemy by a ground step, walls respected (long steps go in pieces).</summary>

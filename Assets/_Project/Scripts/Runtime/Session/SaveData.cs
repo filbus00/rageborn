@@ -21,7 +21,7 @@ namespace ARPG
         /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses. 13: adds each
         /// item's named legendary and the legendaries seen (the Codex). 14: the deepest depth and the stash. 15: the talent
         /// trees' ranks (2026-10-07; skill levels and the loadout are kept in the file but no longer used).</summary>
-        public const int CurrentVersion = 22;
+        public const int CurrentVersion = 23;
 
         public int version;
 
@@ -141,6 +141,11 @@ namespace ARPG
         public string contract = "";
         public List<string> clearedContracts = new List<string>();
         public List<FallenData> fallen = new List<FallenData>();
+
+        // 23 (2026-11-22): Wild Volley, the double tap. Bosses the company has killed and the contracts whose last boss
+        // has fallen.
+        public int bossesFelled;
+        public List<string> finalBosses = new List<string>();
     }
 
     [Serializable]
