@@ -192,7 +192,8 @@ namespace ARPG
             {
                 var key = BlueprintRules.Key(item);
                 BlueprintRules.TryParse(key, out var kind, out var look);
-                power.text = session.Meta.Knows(key) ? "Thorin knows this one already." : "Bring it home through the portal: Thorin the smith learns it.";
+                power.text = session.Meta.BestLook(kind) >= look ? "Thorin knows this or better already: no use to him."
+                    : "Bring it home through the portal: Thorin the smith learns it.";
                 power.color = NeutralColor;
                 affixes.text = $"<color=#CCCCCC>Teaches Thorin to forge a Rare {ItemNames.LookName(kind, look)} " +
                                $"for {BlueprintRules.ForgeCost(look):N0} coins, worn at the start of every run after a death.</color>\n" +

@@ -105,6 +105,56 @@ namespace ARPG.Tests
         }
 
         [Test]
+        public void ABetterBlueprint_ReplacesTheLowerOnes_AndALesserOneTeachesNothing()
+        {
+            // The owner, 2026-11-22: "It feels somewhat stupid to be able to build poor quality gear when you have found
+            // better blueprints": a kind is one line that only moves up.
+            var meta = new MetaProgress();
+            Assert.AreEqual(-1, meta.BestLook(ItemSlot.Chest));
+            Assert.IsTrue(meta.Learn("Chest/1"));
+            Assert.IsTrue(meta.Learn("Chest/3"));
+            Assert.AreEqual(3, meta.BestLook(ItemSlot.Chest));
+            CollectionAssert.AreEquivalent(new[] { "Chest/3" }, meta.Blueprints, "the lower one is forgotten");
+            Assert.IsFalse(meta.Learn("Chest/2"), "a lesser blueprint teaches nothing");
+            Assert.IsFalse(meta.Learn("Chest/3"), "nor the same one");
+            Assert.IsTrue(meta.Learn("Helm/0"), "other kinds are their own lines");
+            Assert.AreEqual("Chest/3", meta.BestKey(ItemSlot.Chest));
+            Assert.IsNull(meta.BestKey(ItemSlot.Boots));
+        }
+
+        [Test]
+        public void ABlueprintRoll_NeverOffersALookNoBetterThanOneKnown()
+        {
+            var random = new System.Random(5);
+            var known = new List<string>();
+            foreach (var kind in BlueprintRules.Kinds)
+                known.Add(BlueprintRules.Key(kind, ItemNames.LookCount(kind) - 1));
+            Assert.IsNull(BlueprintRules.Roll(5, known, random), "the best of every kind is known");
+            known.Remove(BlueprintRules.Key(ItemSlot.Chest, ItemNames.LookCount(ItemSlot.Chest) - 1));
+            known.Add(BlueprintRules.Key(ItemSlot.Chest, 0));
+            for (var i = 0; i < 20; i++)
+            {
+                var roll = BlueprintRules.Roll(9, known, random);
+                Assert.IsNotNull(roll);
+                Assert.AreEqual(ItemSlot.Chest, roll.Slot, "only the kind that can still improve");
+            }
+            Assert.IsNull(BlueprintRules.Roll(1, known, random), "a look-0 blueprint for a chest he knows at 0 is no use");
+        }
+
+        [Test]
+        public void AnOlderSaveWithSeveralLooksOfAKind_FoldsIntoTheBest()
+        {
+            var session = new GameSession(1);
+            session.Meta.Learn("Chest/1");
+            var data = SaveCodec.Capture(session, 1);
+            data.metaBlueprints.Add("Chest/0");
+            data.metaBlueprints.Add("Chest/2");
+            Assert.IsTrue(SaveCodec.TryParse(SaveCodec.ToJson(data), out var parsed, out var error), error);
+            var restored = SaveCodec.Restore(parsed, 2);
+            CollectionAssert.AreEquivalent(new[] { "Chest/2" }, restored.Meta.Blueprints);
+        }
+
+        [Test]
         public void TheStashChest_StartsWithTenSlots_AndGrowsByTen()
         {
             var session = new GameSession(1);

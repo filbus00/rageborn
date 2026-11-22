@@ -116,13 +116,21 @@ namespace ARPG
                    int.TryParse(key.Substring(slash + 1), out lookIndex) && lookIndex >= 0 && lookIndex < ItemNames.LookCount(kind);
         }
 
-        /// <summary>A blueprint for a kind not yet known in the look of this item level, or null when every kind's is known.</summary>
+        /// <summary>A blueprint for a kind whose best known look is lower than this item level's, or null when he knows the
+        /// best of every kind already (a worse one would teach him nothing, 2026-11-22).</summary>
         public static Item Roll(int itemLevel, ICollection<string> known, System.Random random)
         {
             var open = new List<ItemSlot>();
             foreach (var kind in Kinds)
-                if (!known.Contains(Key(kind, ItemNames.LookIndex(kind, itemLevel))))
+            {
+                var look = ItemNames.LookIndex(kind, itemLevel);
+                var best = -1;
+                foreach (var key in known)
+                    if (TryParse(key, out var knownKind, out var knownLook) && knownKind == kind && knownLook > best)
+                        best = knownLook;
+                if (best < look)
                     open.Add(kind);
+            }
             if (open.Count == 0)
                 return null;
             var pick = open[random.Next(open.Count)];

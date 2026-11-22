@@ -400,8 +400,13 @@ namespace ARPG
                 if (TryParseEnum(entry.id, out MetaUpgradeId upgrade))
                     meta.Restore(upgrade, entry.rank);
             foreach (var key in data.metaBlueprints ?? new List<string>())
-                if (!meta.Learn(key))
+            {
+                // A kind is one line that only moves up (2026-11-22): an older save's lower looks fold into the best.
+                if (!BlueprintRules.TryParse(key, out _, out _))
                     warnings?.Add($"Left out an unknown blueprint ({key}).");
+                else
+                    meta.Learn(key);
+            }
             foreach (var saved in data.metaForged ?? new List<ItemData>())
                 meta.SetForged(RestoreItem(saved, warnings));
             session.RestoreMeta(meta);

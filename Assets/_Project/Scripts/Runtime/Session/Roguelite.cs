@@ -208,10 +208,35 @@ namespace ARPG
         public IReadOnlyCollection<string> Blueprints => blueprints;
         public bool Knows(string key) => key != null && blueprints.Contains(key);
 
+        /// <summary>The best look Thorin knows for a kind (0 the first), or -1 when he knows none (2026-11-22: a kind is one
+        /// line that only moves up).</summary>
+        public int BestLook(ItemSlot kind)
+        {
+            var best = -1;
+            foreach (var key in blueprints)
+                if (BlueprintRules.TryParse(key, out var known, out var look) && known == kind && look > best)
+                    best = look;
+            return best;
+        }
+
+        /// <summary>The key of the best blueprint of a kind, or null when he knows none.</summary>
+        public string BestKey(ItemSlot kind)
+        {
+            var best = BestLook(kind);
+            return best < 0 ? null : BlueprintRules.Key(kind, best);
+        }
+
+        /// <summary>
+        /// Thorin learns a blueprint (2026-11-22, the owner: "It feels somewhat stupid to be able to build poor quality gear
+        /// when you have found better blueprints"): each kind is one line that only moves up. A blueprint no better than the
+        /// one he knows teaches him nothing (false), a better one takes its place and the lower ones are forgotten.
+        /// </summary>
         public bool Learn(string key)
         {
-            if (!BlueprintRules.TryParse(key, out _, out _) || !blueprints.Add(key))
+            if (!BlueprintRules.TryParse(key, out var kind, out var look) || look <= BestLook(kind))
                 return false;
+            blueprints.RemoveWhere(other => BlueprintRules.TryParse(other, out var otherKind, out _) && otherKind == kind);
+            blueprints.Add(key);
             Changed?.Invoke();
             return true;
         }

@@ -344,9 +344,14 @@ namespace ARPG
         {
             var session = GameSession.Current;
             subtitle.text = $"{Gold(session.Gold)}.  Bring blueprints home through the portal and I learn them for good.";
+            // One row for each kind, the best look he knows (2026-11-22): a lesser blueprint never shows beside a better one.
             keys.Clear();
-            keys.AddRange(session.Meta.Blueprints);
-            keys.Sort(System.StringComparer.Ordinal);
+            foreach (var kind in BlueprintRules.Kinds)
+            {
+                var best = session.Meta.BestKey(kind);
+                if (best != null)
+                    keys.Add(best);
+            }
             if (keys.Count == 0)
             {
                 Row("<b>No blueprints yet</b>\n<size=28><color=#CCCCCC>They drop now and then, most often from bosses and elites.</color></size>",
@@ -360,6 +365,8 @@ namespace ARPG
                 var cost = BlueprintRules.ForgeCost(look);
                 var kit = session.Meta.ForgedFor(kind);
                 var now = kit != null ? $"Starting kit: {ItemComparison.Name(kit)}, item level {kit.ItemLevel}." : "Not yet forged.";
+                var next = look + 1 < ItemNames.LookCount(kind) ? $"  Better: {ItemNames.LookName(kind, look + 1)}, not yet found." : "  The best there is.";
+                now += next;
                 var captured = key;
                 var picture = ItemIcons.For(new Item(kind, ItemRarity.Rare, ItemNames.LevelOfLook(kind, look)));
                 Row($"<b>{ItemNames.LookName(kind, look)}</b>  <size=26><color=#999999>{ItemComparison.KindName(kind)}</color></size>\n" +

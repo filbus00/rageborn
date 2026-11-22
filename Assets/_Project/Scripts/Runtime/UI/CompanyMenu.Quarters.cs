@@ -116,9 +116,14 @@ namespace ARPG
         void DrawArmoury()
         {
             Heading("THE FORGE");
+            // One row for each kind, the best look he knows (2026-11-22): a lesser blueprint never shows beside a better one.
             blueprintKeys.Clear();
-            blueprintKeys.AddRange(session.Meta.Blueprints);
-            blueprintKeys.Sort(StringComparer.Ordinal);
+            foreach (var kind in BlueprintRules.Kinds)
+            {
+                var best = session.Meta.BestKey(kind);
+                if (best != null)
+                    blueprintKeys.Add(best);
+            }
             if (blueprintKeys.Count == 0)
                 Note("No blueprints yet. They drop now and then, most often from bosses and elites. Bring one home through the portal and " +
                      "Thorin knows it for good.");
@@ -135,6 +140,7 @@ namespace ARPG
                 var name = PixelUi.Label(card, ItemNames.LookName(kind, look).ToUpperInvariant(), PixelUi.TitleFont, PixelUi.Gold);
                 PixelUi.Across(name.rectTransform, 7f, 12f, 44f, 90f);
                 var now = kit != null ? $"Starting kit: {ItemComparison.Name(kit)}, level {kit.ItemLevel}" : "Not yet forged";
+                now += look + 1 < ItemNames.LookCount(kind) ? $" <color=#CC342C>·</color> Better: {ItemNames.LookName(kind, look + 1)}" : " <color=#CC342C>·</color> The best there is";
                 var text = PixelUi.Label(card, $"{ItemComparison.KindName(kind)} <color=#CC342C>·</color> {now}", PixelUi.BodyFont, PixelUi.Text);
                 PixelUi.Across(text.rectTransform, 23f, 12f, 44f, 90f);
                 var captured = key;
