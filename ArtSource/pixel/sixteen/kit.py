@@ -16,6 +16,9 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 P = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
+# KIT_OUT redirects every written file to another root (a trial render); KIT_POLISH=1 applies the polish pass below.
+OUT = os.environ.get("KIT_OUT", P)
+POLISH = os.environ.get("KIT_POLISH", "0") == "1"
 BG = np.array([0.16, 0.21, 0.13, 1], np.float32)
 SCALE = 2
 DIRECTIONS = [("s", "s", False), ("sw", "se", True), ("w", "e", True), ("nw", "ne", True), ("n", "n", False),
@@ -33,9 +36,13 @@ class Character:
         left, top, right, bottom round the views; swap: letters exchanged in the mirrored views (light and shade)."""
         self.name, self.views, self.role = name, views, role
         self.palette = dict(COMMON, **palette)
+        swap = dict(swap or {})
+        if POLISH:
+            self.views, swap = polish(views, self.palette, eyes, glow, swap)
+            views = self.views
         self.hand = hand or {}
         self.eyes = eyes
-        self.swap = swap or {}
+        self.swap = swap
         self.baked_scale = baked_scale
         self.step_rows = step_rows
         self.glow = glow
@@ -169,7 +176,7 @@ class Character:
 
     def build(self):
         views = {v: self.clips(v) for v in self.views}
-        out = os.path.join(P, "ArtSource", "pixel", "characters", self.name)
+        out = os.path.join(OUT, "ArtSource", "pixel", "characters", self.name)
         os.makedirs(out, exist_ok=True)
         for old in os.listdir(out):
             if old.endswith(".png"):
@@ -195,10 +202,82 @@ class Character:
                 strip = np.concatenate([on_bg(self.rgba(fr, mirror)) for fr in views[view][clip]], 1)
                 strips.append(np.concatenate([strip, np.tile(BG, (self.ch, width - strip.shape[1], 1))], 1))
             strips.append(np.tile(np.array([0.08, 0.1, 0.06, 1], np.float32), (1, width, 1)))
-        save(up(np.concatenate(strips, 0), 3), os.path.join(P, "ArtSource", "pixel", "previews", f"{self.name}_moves.png"))
+        save(up(np.concatenate(strips, 0), 3), os.path.join(OUT, "ArtSource", "pixel", "previews", f"{self.name}_moves.png"))
         big = np.concatenate([on_bg(self.rgba(self.frame(v), False)) for v in ("s", "se", "e", "ne", "n")], 1)
-        save(up(big, 6), os.path.join(P, "ArtSource", "pixel", "previews", f"{self.name}_views.png"))
+        save(up(big, 6), os.path.join(OUT, "ArtSource", "pixel", "previews", f"{self.name}_views.png"))
         print("wrote", self.name, len(animations), "clips")
+
+
+# The polish pass (2026-11-22, the owner: "rework the art for the camp and all the characters", "same style, redrawn
+# better"): light from the top left on every character. A pixel on a lit edge (the outline or the ground above or to
+# its left) takes a lighter tone of its colour, one on a shaded edge (below or to its right) a darker one, and an
+# outline pixel between two body colours (not against the ground) becomes a dark tone of its neighbour instead of black.
+def _tone(hexcolour, k):
+    r, g, b = (int(hexcolour[i:i + 2], 16) for i in (0, 2, 4))
+    if k > 0:
+        r, g, b = (round(c + (255 - c) * k) for c in (r, g, b))
+    else:
+        # Darker, and a little cooler (shadows lean blue-violet).
+        r, g, b = round(r * (1 + k) * 0.96), round(g * (1 + k) * 0.97), round(b * (1 + k * 0.8))
+    return "%02x%02x%02x" % (min(255, r), min(255, g), min(255, b))
+
+
+def polish(views, palette, eyes, glow, swap):
+    spare = list("0123456789!#$%&*+=<>?@^_~;:")
+    spare = [c for c in spare if c not in palette]
+    made = {}
+    palette = palette  # extended in place: the caller keeps the same dict
+    skip = set(eyes) | {glow, "K", "W", "n"}
+
+    def derive(c, k):
+        key = (c, k)
+        if key not in made:
+            letter = spare.pop(0)
+            palette[letter] = _tone(palette[c], k)
+            made[key] = letter
+        return made[key]
+
+    def luminance(c):
+        h = palette[c]
+        return (int(h[0:2], 16) * 3 + int(h[2:4], 16) * 6 + int(h[4:6], 16)) / 2550.0
+
+    out = {}
+    for name, rows in views.items():
+        h, w = len(rows), len(rows[0])
+
+        def at(x, y):
+            return rows[y][x] if 0 <= x < w and 0 <= y < h else "."
+
+        grid = [list(r) for r in rows]
+        for y in range(h):
+            for x in range(w):
+                c = rows[y][x]
+                if c == ".":
+                    continue
+                up, left, down, right = at(x, y - 1), at(x - 1, y), at(x, y + 1), at(x + 1, y)
+                if c == "K":
+                    around = [at(x, y - 1), at(x, y + 1), at(x - 1, y), at(x + 1, y)]
+                    if "." in around or any(a in skip and a != "K" for a in around):
+                        continue
+                    body = [a for a in (up, left, down, right) if a not in (".", "K")]
+                    if body:
+                        grid[y][x] = derive(body[0], -0.62)
+                    continue
+                if c in skip:
+                    continue
+                lit = up in (".", "K") or left in (".", "K")
+                shaded = down in (".", "K") or right in (".", "K")
+                if lit and not shaded and luminance(c) < 0.8:
+                    grid[y][x] = derive(c, 0.2)
+                elif shaded and not lit:
+                    grid[y][x] = derive(c, -0.22)
+        out[name] = ["".join(r) for r in grid]
+    # Mirrored views light from the other side: a highlight swaps with its shadow.
+    for (c, k), letter in made.items():
+        other = made.get((c, -0.22 if k > 0 else 0.2))
+        if k in (0.2, -0.22) and other:
+            swap[letter] = other
+    return out, swap
 
 
 def up(img, k):
