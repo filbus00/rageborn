@@ -51,6 +51,9 @@ namespace ARPG
                     if (renderer == null)
                         continue;
                     go = renderer.gameObject;
+                    // The camp's wolf breathes, flicks an ear and blinks like the keepers (2026-11-24).
+                    if (piece.Name == "camp_wolf")
+                        CampIdle.Attach(renderer, piece.Name);
                 }
                 if (piece.Half.x > 0f && piece.Half.y > 0f)
                 {

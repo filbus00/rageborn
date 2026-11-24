@@ -217,33 +217,49 @@ def lyriel():
     return keeper("lyriel")
 
 
-# The wolf of the pen, sitting three-quarters to the right: pointed ears, a long muzzle, a pale chest, a haunch and the tail curled
-# round, grey fur, yellow eyes, a red collar.
-WOLF = [
-    "..........kk..kk........",
-    ".........kGGkkGGk.......",
-    ".........kGgGGgGk.......",
-    "........kGGGGGGGGkk.....",
-    "........kGGeGGGGGGGkk...",
-    "........kGGGGGGGGGnnk...",
-    ".........kGGGGGGGGGnk...",
-    ".........kkGGGGmGGkk....",
-    "..........kRRRRRRk......",
-    ".........kGGwwwwGGk.....",
-    "........kGGGwwwwwGGk....",
-    ".......kGGGGwwwwwGGGk...",
-    ".......kGGGGGwwwwGGGk...",
-    "......kGGGGGGGGwwGGGk...",
-    ".....kGGGGGGGGGGGGGGk...",
-    "....kGGGggGGGGGGkGGGk...",
-    "...kGGGGggGGGGGGkGGGk...",
-    "..kGGGGGggGGGGGGkGGGk...",
-    "..kGGGGGGGGGGGGGGkGGk...",
-    "..kgggGGGGGGGGkkkkkkk...",
-    "...kkkkkkkkkkkgggGGk....",
+# The wolf of the pen (2026-11-24, the owner: "redraw the wolf in the camp too"): sitting, three-quarters to the right, in the
+# pet wolf's colours (wolf_16.py): grey with a darker back and a lighter top, a pale chest and muzzle, yellow eyes, the red
+# collar, its tail curled round its feet. Drawn like the keepers, with its own idle: a breath, an ear and the tail, a blink.
+WOLF_BODY = [
+    "............A..A....",
+    "...........AlAAlA...",
+    "...........AbbbbbA..",
+    "..........AlbbbEbbA.",
+    "..........AbbbbbbwwA",
+    "..........AbbbbwwwwN",
+    "...........AbbwwwwA.",
+    "...........ArrrrrA..",
+    "..........AdbbwwwwA.",
+    "......AAA.AdbbbwwwA.",
+    ".....AdddAAdbbbwwwA.",
+    "....AddbbdAbbbbwwwA.",
+    "....AdbbbbbAbbbAbwA.",
+    "...AdbbbbbbAbbbAbwA.",
+    ".AllbbbbbbbAbbbAwwA.",
+    "..AAAAAAAAAAAAAAAAA.",
 ]
-WOLF_PAL = {"k": "34363e", "g": "5a5e6a", "G": "8a8e9a", "w": "c0c4cc", "e": "ffd84a", "n": "140f1c", "m": "6a3a3a", "R": "a82e2a"}
+WOLF_PAL = {"A": OUTLINE, "N": OUTLINE, "b": "a4a8b0", "d": "5e6470", "l": "c8ccd4", "w": "e8eaee", "E": "ffd23f",
+            "r": "d0302a"}
 
 
-def wolf():
-    return from_grid(scaled(WOLF, 15), WOLF_PAL)
+def wolf_rows(frame=0):
+    rows = list(WOLF_BODY)
+    if frame == 1:
+        # The breath: head and chest a pixel down, a repeated body row taken out.
+        rows = ["." * len(rows[0])] + rows[:12] + rows[13:]
+    if frame == 2:
+        # An ear flicks back and the tail's tip lifts.
+        rows[0] = "...............A...."
+        rows[1] = "...........AlAAlA..."
+        rows[13] = "AlAdbbbbbbAbbbAbwA.."[:0] + "AlddbbbbbbbAbbbAbwA."
+        rows[14] = ".AAbbbbbbbbAbbbAwwA."
+    if frame == 3:
+        rows = [r.replace("E", "b") for r in rows]
+    return [r.ljust(20, ".") for r in rows]
+
+
+def wolf(frame=0):
+    return from_grid(wolf_rows(frame), WOLF_PAL)
+
+
+
