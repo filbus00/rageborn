@@ -48,153 +48,174 @@ def from_grid(rows, palette):
     return im.outline()
 
 
-# Brunhilde, the guard captain: auburn hair in a braid, the company's green tabard with a red trim, one steel pauldron, a red
-# cape, a sword at her hip, her hand on its hilt.
-BRUNHILDE = [
-    "........hhhhhh........",
-    "......hhHHHHHHhh......",
-    ".....hHHjjHHjjHHh.....",
-    "....hHHjHHHHHHjHHh....",
-    "....hHjHsSSSSsHjHh....",
-    "....hHHsSfFFfSsHHh....",
-    "....hHjSeSffSeSjHh....",
-    "....hHHSSSffSSSHHh....",
-    ".....hHsSSnnSSsHh.....",
-    ".....hhssSmmSssjh.....",
-    "......hjsSSSSsjHh.....",
-    ".......hhssssHHh......",
-    "..rr...hHsSSsHhh.rr...",
-    ".rRRiiiGGGllGGGIIqrr..",
-    ".rRiJJIGGGlllGGGIIqr..",
-    "rRRiJIIGGlGGGGGGGIIqr.",
-    "rRRiIiGGGlGGrRGGGgIqrr",
-    "rRqsSiGGgGGGRRgGGgSsrr",
-    "rRqSfiGGgGGGqRgGGgSsrr",
-    ".rRSfbbbbbbbbbbbbbSsr.",
-    ".rRqsSwwwxxwwwwwxJsrr.",
-    ".rRqGGGGGGGGGGGGGIIsr.",
-    "..rRGgrrrrrrrrrrgIIJ..",
-    "..rRGgGGGGGGGGGGgIIJ..",
-    "...rrGgGGGGGGGGgg.IJ..",
-    "....ddWWddddWWddd.Ii..",
-    "....ddWWdd..WWdd..bb..",
-    "....ddWWdd..WWdd......",
-    "...dWWWWdd..WWWWd.....",
-    "..dxWWWWWd..xWWWWd....",
-    "..dxxWWWdd..dxxWWd....",
-    "..dddddddd..dddddd....",
-]
-BRUNHILDE_PAL = dict(SKIN, h="5a2a14", H="8a4a24", j="b46a38", G="437c4a", g="2e5a3a", l="6aa060", r="7a1e1e", R="a82e2a",
-                     q="d0483a", i="3a3e4a", I="6a7080", J="9aa2b2", b="b88a22", w="4e3220", W="74502e", x="9a6a3a", d="2a1c12")
-
-# Thorin, the smith: bald, a grey beard, a leather apron over rolled sleeves, a hammer in his fist, tongs at his belt.
-THORIN = [
-    "........kkkkkk........",
-    "......kkKKKKKKkk......",
-    ".....kKKFFFFFFKKk.....",
-    "....kKFFfFFFFfFFKk....",
-    "....kKFfSSSSSSfFKk....",
-    "....kFfSSfSSfSSfFk....",
-    "....kFSSeSSSSeSSFk....",
-    "...bkFSSSSffSSSSFkb...",
-    "...bBkSSSBBBBSSSkBb...",
-    "...bBBkBBBbbBBBBkBBb..",
-    "....bBBBBBbbBBBBBBb...",
-    "....bbBBBBBBBBBBBbb...",
-    ".....bbBBBBBBBBBbb....",
-    "..ddddbbbbbbbbbbbbdd..",
-    ".dWWWdddAAAAAAAdddWWWd",
-    "dWxWWdAAaAAAAaAAdWWxWd",
-    "dWWWWdAAaaAAAAaadWWWWd",
-    "dWWsSdAAAAAAAAAAdSsWWd",
-    ".dsSfdAAaaAAaaAAdfSsd.",
-    ".dSfFdAAAAAAAAAAdFfSd.",
-    "..dsSdaAAaaaaAAadSsd..",
-    "...dd.aAAAAAAAAa.dd...",
-    "...tt.aAAaAAAAaa.hH...",
-    "...tT.aAAAAAAAAa.hH...",
-    "....uuAAAAAAAAAAuuhH..",
-    "......uUUu..uUUu.hH...",
-    "......uUUu..uUUu.IIII.",
-    "......uUUu..uUUu.IIJJ.",
-    "...kkkkkkk..kkkkkkk...",
-    "...kKKKKKk..kKKKKKk...",
-    "...kkkkkkk..kkkkkkk...",
-]
-THORIN_PAL = dict(SKIN, F="d9d9df", f="b4b6c0", S="c48a64", K="8a8c98", k="4a4c58", B="b4b6c0", b="8a8c98", A="74502e", a="4e3220",
-                  d="2a1c12", W="c48a64", x="e8b690", u="3e2a1c", U="5a4028", t="6a7080", T="9aa2b2", h="4e3220", H="74502e",
-                  I="6a7080", J="9aa2b2")
-
-# Lyriel, the scout: a hood and short cloak of forest green over a brown tunic, a feather in the hood, a short bow over her
-# shoulder, a leash in hand, trousers and boots.
-LYRIEL_HOOD = [
-    "..............wW......",
-    ".............wWWb.....",
-    "........ggggggwW......",
-    "......ggGGGGGGgg......",
-    ".....gGGlllllGGGg.....",
-    "....gGGllGGGGllGGg....",
-    "....gGlGgssSSsgGlGg...",
-    "....gGGgsSfFFfSgGGg...",
-    "....gGgsSeSffSeSgGg...",
-    "....gGgsSSSffSSSgGg...",
-    ".....gGgsSSnnSSsgGg...",
-    ".....gGGgsSmmSsgGGg...",
-    "......gGGGgsSSsGGGg...",
-]
+# The keepers, drawn the archer's size and way (2026-11-24, the owner: "redraw the keepers, they look bad", "give them idle
+# animations"): 21 pixels tall in a 24-pixel cell like wild_arrow_archer_21.png, an 8-row head, eyes a single dark pixel
+# each, a dark outline (A). Each row below is the figure's pixels, centred on the cell by keeper(); what they hold (her
+# sword, his hammer, her bow, the feather, the braid) is laid over by coordinates. Four idle frames each: still, a breath
+# (all above the waist a pixel down), their own small move, a blink.
+CELL = 24
+OUTLINE = "140f1c"
+FACE = {"A": OUTLINE, "E": "ecbe9a", "R": "c0866a", "G": "241c2c", "I": "e29684"}
 
 
-def _lyriel_rows():
-    g = [list(r) for r in LYRIEL_HOOD] + [["."] * 22 for _ in range(18)]
+def _centre(rows):
+    out = []
+    for r in rows:
+        lead = int(round(11.5 - len(r) / 2.0 + 0.01))
+        out.append(("." * lead + r).ljust(CELL, ".")[:CELL])
+    return ["." * CELL] * (CELL - len(rows)) + out
 
-    def put(x, y, c):
-        if 0 <= x < 22 and 0 <= y < len(g):
+
+def _over(rows, marks):
+    g = [list(r) for r in rows]
+    for x, y, c in marks:
+        if 0 <= y < len(g) and 0 <= x < CELL:
             g[y][x] = c
-    # The short cloak: shoulders then a flared hem, light on the left, dark on the right, a tunic panel down the front.
-    for y in range(13, 25):
-        hw = 6 + (1 if y >= 19 else 0) + (1 if y >= 22 else 0)
-        for x in range(10 - hw, 11 + hw + 1):
-            edge = x - (10 - hw)
-            c = "l" if edge == 1 and y % 3 else "G"
-            if x >= 11 + hw - 1:
-                c = "g"
-            if edge == 0:
-                c = "g"
-            put(x, y, c)
-        if y < 23:
-            for x in range(8, 13):
-                put(x, y, "T" if y < 20 else "U")
-    for x in range(7, 14):
-        put(x, 17, "W")
-    put(10, 17, "B")
-    # Her hands, one with the leash.
-    for (x, y) in ((5, 18), (6, 18), (5, 19), (6, 19)):
-        put(x, y, "S" if y == 18 else "s")
-    for (x, y) in ((15, 18), (16, 18), (15, 19), (16, 19)):
-        put(x, y, "s")
-    put(16, 20, "r"); put(16, 21, "r"); put(17, 22, "r"); put(17, 23, "R")
-    # Trousers and boots.
-    for y in range(25, 28):
-        for x in (8, 9, 12, 13):
-            put(x, y, "t")
-    for y in range(28, 31):
-        for x in (7, 8, 9, 10, 11, 12, 13, 14):
-            if x in (10, 11):
-                continue
-            put(x, y, "W" if y < 30 else "d")
-    # The bow over her right shoulder: a curve of wood standing behind her, with a string.
-    for y in range(8, 27):
-        x = 20 if y in (8, 9, 25, 26) else 21
-        if g[y][x] == ".":
-            g[y][x] = "W"
-    for y in range(10, 25):
-        if g[y][20] == ".":
-            g[y][20] = "w"
-    return ["".join(r) for r in g[:31]]
+    return ["".join(r) for r in g]
 
 
-LYRIEL = _lyriel_rows()
-LYRIEL_PAL = dict(SKIN, g="283a30", G="42584a", l="5c7a62", w="e8dcc0", W="74502e", b="9a6a3a", B="e8c050", d="2a1c12", x="9a6a3a", T="8a5a34", U="6a4426", t="2a3e32", r="a82e2a", R="d0483a")
+# Brunhilde, the guard captain: an auburn braid, the company's green tabard with its red hem, steel pauldrons, a red cape,
+# her sword at her hip.
+BRUNHILDE_BODY = [
+    "AAAAAA",
+    "AcCCCCcA",
+    "AcCCccCCcA",
+    "AccCccccCccA",
+    "AccEEEEEEccA",
+    "AcBEGEEGEBcA",
+    "AcBIEEEEIBcA",
+    "AcBBERREBBcA",
+    "AKLKANNNNAKLKA",
+    "AKKKMNOONMKKKA",
+    "AMKKMNOONMKKSA",
+    "AMEKMNNNNMKESA",
+    "AMEAHHJJHHAESA",
+    "AMSANNOONNASSA",
+    "AMSANNOONNASSA",
+    "AMSAMMMMMMASSA",
+    "AAAAFFAAFFAAAA",
+    "AFFAAFFA",
+    "AFFAAFFA",
+    "AQQAAQQA",
+    "AA..AA",
+]
+BRUNHILDE_PAL = dict(FACE, c="a85a2e", C="d07a3e", B="7a3a1e", K="8a92a2", L="d8dce4", k="4a5060", M="c02a2e", S="7a1626",
+                     N="3e8442", O="74b65c", H="54341e", J="e6c25c", F="84562e", Q="32221e")
+
+
+def _brunhilde_marks(frame):
+    sway = 1 if frame == 2 else 0
+    braid = [(16 + sway, 11, "C"), (16 + sway, 12, "c"), (16, 13, "c"), (16, 14, "C")]
+    sword = [(18, 14, "J"), (19, 14, "J"), (20, 14, "J"), (19, 13, "H")] + [(19, y, "L") for y in range(15, 21)] + [(19, 21, "k")]
+    return braid + sword
+
+
+# Thorin, the smith: bald, a white beard, a leather apron, his sleeves rolled, a hammer in his hand.
+THORIN_BODY = [
+    "AAAAAA",
+    "AEDDEEEA",
+    "AEDEEEEEEA",
+    "AwEEEEEEEEwA",
+    "AwREEEEEERwA",
+    "AwEGEEEEGEwA",
+    "AwRWWEEWWRwA",
+    "AAWWWWWWWWAA",
+    "ATTWWWVVWWWTTA",
+    "ATTAWWVVWWATTA",
+    "AEEAFWVVWFAEEA",
+    "AEEAFFWWFFAEEA",
+    "AREAFFFFFFAERA",
+    "AEEAFHFFHFAEEA",
+    "AAAAFFFFFFAAAA",
+    "AFHFFFFHFA",
+    "AFFFFFFFFA",
+    "AHHHHHHHHA",
+    "AHHAAHHA",
+    "AQQAAQQA",
+    "AA..AA",
+]
+THORIN_PAL = dict(FACE, D="f6d8b8", w="a8aab6", W="e4e4ec", V="9a9cab", T="9a6836", F="84562e", H="54341e", Q="32221e",
+                  K="8a92a2", L="d8dce4", k="4a5060")
+
+
+def _thorin_marks(frame):
+    lift = 2 if frame == 2 else 0
+    handle = [(19, y - lift, "F") for y in range(15, 19)]
+    head = [(18, 19 - lift, "L"), (19, 19 - lift, "K"), (20, 19 - lift, "K"), (21, 19 - lift, "K"),
+            (18, 20 - lift, "K"), (19, 20 - lift, "k"), (20, 20 - lift, "k"), (21, 20 - lift, "k")]
+    return handle + head
+
+
+# Lyriel, the scout: a green hood with a white feather, a short green cloak over a brown tunic, a short bow on her back.
+LYRIEL_BODY = [
+    "AAAAAA",
+    "ANOOOONA",
+    "ANOONNNNPA",
+    "ANNhhhhhhNPA",
+    "ANhEEEEEEhPA",
+    "ANhEGEEGEhPA",
+    "ANNIEEEEIPPA",
+    "ANNPEEEEPPPA",
+    "ANNOOFFFFOONNA",
+    "ANOOOFFJFFOONA",
+    "ANOOEFFFFFEONA",
+    "ANONHHHJHHHNOA",
+    "ANOOFFFFFFFOPA",
+    "ANOPFFFFFFPOPA",
+    "ANNOPPPPPPOPNA",
+    "AANNPPPPPPNNAA",
+    "AAPPAAPPAA",
+    "APPAAPPA",
+    "AFFAAFFA",
+    "AQQAAQQA",
+    "AA..AA",
+]
+LYRIEL_PAL = dict(FACE, N="356a3c", O="5a8e4c", P="1f4a2c", h="3e2a1e", F="84562e", H="54341e", J="e6c25c", Q="32221e",
+                  D="f2eede", M="c02a2e", b="9a6836", s="e4e0ca")
+
+
+def _lyriel_marks(frame):
+    tip = 1 if frame == 2 else 0
+    feather = [(14, 2, "M"), (15 + tip, 1, "D"), (16 + tip, 0, "D")]
+    bow = [(19, 5, "b"), (19, 6, "b"), (19, 18, "b"), (19, 19, "b")] + [(20, y, "b") for y in range(7, 18)] + \
+          [(19, y, "s") for y in range(7, 18)]
+    return feather + bow
+
+
+# The row the breath takes out (a row that repeats its neighbour), so the figure keeps its feet where they are.
+KEEPERS = {
+    "brunhilde": (BRUNHILDE_BODY, BRUNHILDE_PAL, _brunhilde_marks, 17),
+    "thorin": (THORIN_BODY, THORIN_PAL, _thorin_marks, 19),
+    "lyriel": (LYRIEL_BODY, LYRIEL_PAL, _lyriel_marks, 16),
+}
+
+
+def keeper_rows(name, frame=0):
+    body, pal, marks, squash = KEEPERS[name]
+    rows = _over(_centre(body), marks(frame))
+    if frame == 1:
+        # The breath: everything above the waist a pixel lower, a repeated row taken out.
+        rows = ["." * CELL] + rows[:squash] + rows[squash + 1:]
+    if frame == 3:
+        rows = [r.replace("G", "R") for r in rows]
+    return rows
+
+
+def keeper(name, frame=0):
+    return from_grid(keeper_rows(name, frame), KEEPERS[name][1])
+
+
+def brunhilde():
+    return keeper("brunhilde")
+
+
+def thorin():
+    return keeper("thorin")
+
+
+def lyriel():
+    return keeper("lyriel")
+
 
 # The wolf of the pen, sitting three-quarters to the right: pointed ears, a long muzzle, a pale chest, a haunch and the tail curled
 # round, grey fur, yellow eyes, a red collar.
@@ -222,27 +243,6 @@ WOLF = [
     "...kkkkkkkkkkkgggGGk....",
 ]
 WOLF_PAL = {"k": "34363e", "g": "5a5e6a", "G": "8a8e9a", "w": "c0c4cc", "e": "ffd84a", "n": "140f1c", "m": "6a3a3a", "R": "a82e2a"}
-
-
-def _fix(rows, fixes):
-    # The shrink blurs a face: set its eyes and mouth by hand (one pixel each).
-    rows = list(rows)
-    for i, text in fixes.items():
-        assert len(text) == len(rows[i]), (i, text, rows[i])
-        rows[i] = text
-    return rows
-
-
-def brunhilde():
-    return from_grid(_fix(scaled(BRUNHILDE, 22), {4: "...hHSeSSeSHh..", 6: "...hhsSSmSsh..."}), BRUNHILDE_PAL)
-
-
-def thorin():
-    return from_grid(scaled(THORIN, 22), THORIN_PAL)
-
-
-def lyriel():
-    return from_grid(_fix(scaled(LYRIEL, 22), {6: "...gGsSeffeSggW."}), LYRIEL_PAL)
 
 
 def wolf():

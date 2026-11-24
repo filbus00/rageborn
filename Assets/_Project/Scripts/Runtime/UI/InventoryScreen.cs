@@ -177,6 +177,7 @@ namespace ARPG
             LoadoutScreen.CloseIfOpen();
             TalentScreen.CloseIfOpen();
             BoonListScreen.CloseIfOpen();
+            TapSkillScreen.CloseIfOpen();
             PassiveTreeScreen.CloseIfOpen();
             StatsScreen.CloseIfOpen();
             CodexScreen.CloseIfOpen();
@@ -871,9 +872,13 @@ namespace ARPG
             var statPoints = current.Attributes.Available(current.Level);
             var tabs = new List<(string label, System.Action open, bool enabled, bool active)>
             {
-                ("Inventory", null, true, true),
+                // The Bag's own tab closes it (2026-11-24, the owner: "To the left there is a button called inventory. Make it
+                // so that button closes the bag when pressed").
+                ("Inventory", Close, true, true),
                 (Features.Roguelite ? "Boons" : skillPoints > 0 ? $"Talents +{skillPoints}" : "Talents",
                     Features.Roguelite ? BoonListScreen.Open : (System.Action)TalentScreen.Open, true, false),
+                // The double tap's skills (2026-11-24): learned from bosses' books, one chosen.
+                ("Skills", TapSkillScreen.Open, true, false),
             };
             // The roguelite (2026-10-13): no stat points and no quests.
             if (!Features.Roguelite)
@@ -919,6 +924,7 @@ namespace ARPG
             label.StartsWith("Inventory") ? MenuIcons.Kind.Backpack :
             label.StartsWith("Boons") || label.StartsWith("Talents") ? MenuIcons.Kind.Star :
             label.StartsWith("Stats") ? MenuIcons.Kind.Heart :
+            label.StartsWith("Skills") ? MenuIcons.Kind.Sword :
             label.StartsWith("Settings") ? MenuIcons.Kind.Cog : MenuIcons.Kind.Book;
 
         // --- Upgrade badge on the Bag button ------------------------------------------------------------------------

@@ -18,8 +18,9 @@ namespace ARPG
 
         readonly List<RainArrow> volleyRain = new List<RainArrow>(16);
 
-        /// <summary>Wild Volley's tier for the HUD and tests: 0 not learned, 1 learned, 2 evolved.</summary>
-        public int WildVolleyTier => WildVolleyRules.TierOf(session.Company);
+        /// <summary>Wild Volley's tier for the HUD and tests: 0 not learned (or another skill is chosen for the double tap),
+        /// 1 learned, 2 evolved.</summary>
+        public int WildVolleyTier => session != null && session.Company.ChosenTapSkill == TapSkillRules.WildVolley ? WildVolleyRules.TierOf(session.Company) : 0;
 
         /// <summary>How far the cooldown has come, 0 to 1; 1 when it is ready.</summary>
         public float WildVolleyReady => 1f - Mathf.Clamp01(volleyCooldown / WildVolleyRules.CooldownSeconds);
@@ -34,9 +35,16 @@ namespace ARPG
             UpdateVolleyRain(deltaTime);
             if (Time.timeScale <= 0f || !player.ConsumeDoubleTap())
                 return;
-            if (player.IsDodging || player.Disengaged || !WildVolleyRules.Ready(WildVolleyTier, volleyCooldown))
+            if (player.IsDodging || player.Disengaged)
                 return;
-            FireWildVolley(origin);
+            // The double tap fires the skill chosen in the Bag (2026-11-24); Wild Volley is the only one yet.
+            switch (session.Company.ChosenTapSkill)
+            {
+                case TapSkillRules.WildVolley:
+                    if (WildVolleyRules.Ready(WildVolleyTier, volleyCooldown))
+                        FireWildVolley(origin);
+                    break;
+            }
         }
 
         void FireWildVolley(Vector2 origin)

@@ -38,7 +38,20 @@ namespace ARPG
             MigrateFrom20, // 20 to 21: backpack places were not kept; the backpack packs itself as before.
             MigrateFrom21, // 21 to 22: no company record existed; a new archer signs on, nothing is cleared, nobody has fallen.
             MigrateFrom22, // 22 to 23: no boss kills were kept for the company; Wild Volley is not yet learned.
+            MigrateFrom23, // 23 to 24: no skill books existed; a company that had felled a boss knew Wild Volley and keeps it.
         };
+
+        static SaveData MigrateFrom23(SaveData data)
+        {
+            data.tapSkills = new List<string>();
+            data.chosenTapSkill = "";
+            if (data.bossesFelled > 0)
+            {
+                data.tapSkills.Add(TapSkillRules.WildVolley);
+                data.chosenTapSkill = TapSkillRules.WildVolley;
+            }
+            return data;
+        }
 
         static SaveData MigrateFrom22(SaveData data)
         {
@@ -329,6 +342,8 @@ namespace ARPG
             data.clearedContracts.AddRange(session.Company.Cleared);
             data.bossesFelled = session.Company.BossesFelled;
             data.finalBosses.AddRange(session.Company.FinalBosses);
+            data.tapSkills.AddRange(session.Company.TapSkills);
+            data.chosenTapSkill = session.Company.ChosenTapSkill;
             foreach (var fallen in session.Company.Fallen)
                 data.fallen.Add(new FallenData
                 {
@@ -430,6 +445,10 @@ namespace ARPG
             company.BossesFelled = data.bossesFelled;
             foreach (var id in data.finalBosses ?? new List<string>())
                 company.FinalBosses.Add(id);
+            foreach (var id in data.tapSkills ?? new List<string>())
+                if (TapSkillRules.Get(id) != null)
+                    company.TapSkills.Add(id);
+            company.ChooseTapSkill(data.chosenTapSkill ?? "");
             foreach (var saved in data.fallen ?? new List<FallenData>())
                 company.Fallen.Add(new FallenMercenary
                 {

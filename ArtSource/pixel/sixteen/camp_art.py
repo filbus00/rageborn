@@ -384,6 +384,8 @@ PIECES = {
     "camp_brunhilde": (camp_people.brunhilde, 2),
     "camp_thorin": (camp_people.thorin, 2),
     "camp_lyriel": (camp_people.lyriel, 2),
+    # Their idle frames (2026-11-24), played by CampIdle in the game.
+    **{f"camp_{who}_idle_{k}": ((lambda w=who, f=k: camp_people.keeper(w, f)), 2) for who in ("brunhilde", "thorin", "lyriel") for k in range(4)},
     "camp_wolf": (camp_people.wolf, 2),
 }
 

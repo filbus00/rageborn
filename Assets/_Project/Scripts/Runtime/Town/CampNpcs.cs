@@ -68,8 +68,14 @@ namespace ARPG
                 go.layer = layer;
             // A person is a drawn figure (camp_art.py) standing on the spot; the billboard and the grave stone are pieces of
             // the camp's layout, with only a name over them. Without the art, the placeholder figure.
-            if (body != null && WorldArt.Place(body, go.transform, go.transform.position) == null)
-                TravelArt.Figure(go.transform, colour);
+            if (body != null)
+            {
+                var figure = WorldArt.Place(body, go.transform, go.transform.position);
+                if (figure == null)
+                    TravelArt.Figure(go.transform, colour);
+                else
+                    CampIdle.Attach(figure, body);
+            }
             TravelArt.Label(go.transform, label, colour, body != null ? 1.7f : 1.8f);
             go.AddComponent<CampSpot>().kind = kind;
         }

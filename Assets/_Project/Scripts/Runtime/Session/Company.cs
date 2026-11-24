@@ -205,6 +205,29 @@ namespace ARPG
         /// <summary>Contracts whose last boss has fallen (format 23): the first evolves Wild Volley.</summary>
         public readonly HashSet<string> FinalBosses = new HashSet<string>();
 
+        /// <summary>The double tap's skills the company has learned from books (format 24), and the one the double tap fires.</summary>
+        public readonly HashSet<string> TapSkills = new HashSet<string>();
+        public string ChosenTapSkill = "";
+
+        /// <summary>A book read: the skill is learned for good, and chosen when none is. False when it was known already.</summary>
+        public bool LearnTapSkill(string id)
+        {
+            if (TapSkillRules.Get(id) == null || !TapSkills.Add(id))
+                return false;
+            if (string.IsNullOrEmpty(ChosenTapSkill) || !TapSkills.Contains(ChosenTapSkill))
+                ChosenTapSkill = id;
+            return true;
+        }
+
+        /// <summary>Picks the skill the double tap fires. False when it is not learned.</summary>
+        public bool ChooseTapSkill(string id)
+        {
+            if (!TapSkills.Contains(id))
+                return false;
+            ChosenTapSkill = id;
+            return true;
+        }
+
         /// <summary>A boss fell on the way down this contract at this depth.</summary>
         public void BossFell(int depth)
         {

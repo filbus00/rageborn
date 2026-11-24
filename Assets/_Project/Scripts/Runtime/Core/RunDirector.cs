@@ -90,8 +90,17 @@ namespace ARPG
             if (enemy.Definition.Rank == EnemyRank.Boss)
             {
                 run.Bosses++;
-                // The company learns Wild Volley with its first boss and it evolves with a contract's last (2026-11-22).
-                GameSession.Current.Company.BossFell(GameSession.Current.DeepestDepth);
+                // Wild Volley evolves with a contract's last boss (2026-11-22), and says so (2026-11-24).
+                var company = GameSession.Current.Company;
+                var tierBefore = WildVolleyRules.TierOf(company);
+                company.BossFell(GameSession.Current.DeepestDepth);
+                if (WildVolleyRules.Evolves(tierBefore, WildVolleyRules.TierOf(company)))
+                {
+                    SkillEvolution.Play("Wild Volley evolved! Nine arrows, then a rain of arrows on the target and thorny ground that slows.");
+                    SaveDirector.SaveNow();
+                }
+                // A boss drops the book of the first double-tap skill the company has not learned (2026-11-24).
+                SkillBook.Drop(TapSkillRules.BookFor(GameSession.Current.Company), enemy.GroundPosition);
             }
         }
 
