@@ -165,6 +165,10 @@ namespace ARPG
             {
                 PlacePlayer(ArrivalCell(arrival));
             }
+            // The way in closes behind her once she is out of it (2026-11-24, the owner: "It is also possible to walk back
+            // through an exit which should not be possible"): bushes grow across it and it blocks.
+            if (ForestLevel && wayIn != null)
+                CloseWayIn(wayIn);
 
             var root = new GameObject("Level " + depth).transform;
             // The roguelite (2026-10-13): a straight descent, no way back up.
@@ -1130,10 +1134,72 @@ namespace ARPG
                 }
                 into = Reach(Vector2Int.right) <= Reach(Vector2Int.up) ? Vector2Int.right : Vector2Int.up;
             }
+            // Into the forest's deep edge, never a small patch of trees between clearings (2026-11-24, the owner: "They also
+            // spawn in small forest patches which does not make sense"): the nearest edge with deep trees behind it.
             if (into != Vector2Int.zero)
+            {
+                (cell, into) = DeepEdge(cell, into, Layout.HasBossArena ? 8 : 14, null);
+                Layout.StairsDown = cell;
+                if (Layout.StairsDownInto != Vector2Int.zero)
+                    Layout.StairsDownInto = into;
                 wayOn = CutTrail(cell, into);
+            }
             if (Layout.StairsUpInto != Vector2Int.zero)
-                wayIn = CutTrail(Layout.StairsUp, Layout.StairsUpInto);
+            {
+                var (up, upInto) = DeepEdge(Layout.StairsUp, Layout.StairsUpInto, 14, wayOn != null ? wayOn.Mouth : (Vector2Int?)null);
+                Layout.StairsUp = up;
+                Layout.StairsUpInto = upInto;
+                wayIn = CutTrail(up, upInto);
+            }
+        }
+
+        /// <summary>How deep the trees run from a floor cell's edge in a direction: the cells in before any floor shows
+        /// in a band six wide (the trail's width and a margin), up to <paramref name="most"/>; past the map is trees.</summary>
+        int TreesDeep(Vector2Int edge, Vector2Int into, int most)
+        {
+            var side = new Vector2Int(into.y, into.x);
+            for (var k = 1; k <= most; k++)
+                for (var s = -3; s <= 2; s++)
+                    if (Layout.IsFloor(edge + into * k + side * s))
+                        return k - 1;
+            return most;
+        }
+
+        /// <summary>The floor cell near <paramref name="near"/>, and the way into the trees from it (away from the
+        /// camera: +x or +y, or the way first given), with the deepest trees behind it: 12 deep counts as the forest's
+        /// edge, then the nearer wins. Kept clear of <paramref name="avoid"/> (the other trail).</summary>
+        (Vector2Int, Vector2Int) DeepEdge(Vector2Int near, Vector2Int into, int radius, Vector2Int? avoid)
+        {
+            const int Enough = 12;
+            var ways = new[] { into, Vector2Int.right, Vector2Int.up };
+            var best = (near, into);
+            var bestScore = float.MinValue;
+            for (var dy = -radius; dy <= radius; dy++)
+                for (var dx = -radius; dx <= radius; dx++)
+                {
+                    var c = near + new Vector2Int(dx, dy);
+                    if (!Layout.IsFloor(c))
+                        continue;
+                    if (avoid.HasValue && Mathf.Max(Mathf.Abs(c.x - avoid.Value.x), Mathf.Abs(c.y - avoid.Value.y)) < 12)
+                        continue;
+                    foreach (var way in ways)
+                    {
+                        if (way == Vector2Int.zero || Layout.IsFloor(c + way))
+                            continue;
+                        // A mouth with floor either side of it, not a pinched corner.
+                        var side = new Vector2Int(way.y, way.x);
+                        if (!Layout.IsFloor(c + side) || !Layout.IsFloor(c - side))
+                            continue;
+                        var deep = TreesDeep(c, way, Enough + 4);
+                        var score = Mathf.Min(deep, Enough) * 10f - Mathf.Max(Mathf.Abs(dx), Mathf.Abs(dy)) + (way == into ? 0.5f : 0f);
+                        if (score > bestScore)
+                        {
+                            bestScore = score;
+                            best = (c, way);
+                        }
+                    }
+                }
+            return best;
         }
 
         Trail CutTrail(Vector2Int cell, Vector2Int into)
@@ -1186,6 +1252,21 @@ namespace ARPG
             return cut;
         }
 
+        void CloseWayIn(Trail cut)
+        {
+            var cells = new List<Vector3>();
+            foreach (var c in cut.Cells)
+            {
+                var k = Vector2.Dot(c - cut.Mouth, cut.Into);
+                if (k >= 1 && k <= 2)
+                    cells.Add(CellWorld(c));
+            }
+            if (cells.Count == 0)
+                return;
+            var gate = new GameObject("Way In Closed").AddComponent<TrailGate>();
+            gate.Init(cells, CellWorld(cut.Mouth), StickToward(cut.Mouth, cut.Into), TrailBush(cut.Mouth));
+        }
+
         // Steps (x + y) down the screen from the trail its front bushes reach.
         const int TrailFrontReach = 7;
         readonly HashSet<Vector2Int> trailFront = new HashSet<Vector2Int>();
@@ -1210,6 +1291,11 @@ namespace ARPG
         void DressTrail(Trail cut, GameObject exit)
         {
             DarkenTrail(cut, exit.transform);
+            // Plainer than a dark path and a lantern (2026-11-24, the owner: "they are still not too clear"): glowing
+            // arrows down the trail's middle pointing in, lit one after another, and its name over the mouth.
+            TrailArrows.Add(exit.transform, CellWorld(cut.Mouth), StickToward(cut.Mouth, cut.Into),
+                ((Vector2)(CellWorld(cut.Mouth + cut.Into) - CellWorld(cut.Mouth))).magnitude);
+            TravelArt.Label(exit.transform, "Onward", new Color(1f, 0.85f, 0.45f), 1.9f);
             var side = new Vector2Int(cut.Into.y, cut.Into.x);
             var postSprite = WorldArt.Get(cut.Into == Vector2Int.right ? "exit_post_x" : "exit_post_y");
             if (postSprite != null)

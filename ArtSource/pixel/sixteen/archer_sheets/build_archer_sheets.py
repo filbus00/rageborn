@@ -141,7 +141,10 @@ def is_colour(px, colours):
 # face: "open", "mask" (leather over all of it but the eyes, 2026-11-24), "barbute" (a T left open), "visor" (shut but a dark slit);
 # band: only a band over the hair (rows of the dome); extra: pixels put on top.
 HELMS = {
-    "hood": dict(ramp=[rgb(62, 132, 66), rgb(36, 84, 50), rgb(24, 56, 40)], dome=4, sides=True, face="open"),
+    # Redrawn 2026-11-24 (the owner: "redraw the hood helm too"; it read as her hair dyed green): a ranger's hood in a
+    # muted moss green apart from her tunic, a peak at its top leaning back, a cowl over her shoulders that hides her
+    # hair down her back.
+    "hood": dict(ramp=[rgb(104, 128, 78), rgb(68, 90, 56), rgb(40, 56, 38)], dome=4, sides=True, face="open", extra="peak", cowl=True),
     # Redrawn 2026-11-24 (the owner: "redraw the mask helm, it looks wierd and only covers the mouth and a strip of the
     # forehead"): a leather mask over her whole head, a brow ridge, the eyes showing in a dark band, a seam down the chin.
     "mask": dict(ramp=[rgb(150, 104, 64), rgb(108, 72, 44), rgb(64, 42, 28)], dome=4, sides=True, face="mask"),
@@ -266,6 +269,11 @@ def helm_frame(frame, spec, head, row):
     elif extra == "plume":
         for dx, dy, c in ((0, 0, 1), (1, 0, 1), (0, -1, 0), (1, -1, 0), (1, -2, 0)):
             put(helm, frame, cx + (dx if not east else 1 - dx), hy + dy, PLUME[c], stamped)
+    elif extra == "peak":
+        # The hood's point: up from the crown, leaning back (away from the way she faces) in the side views.
+        back = 0 if not side else (-1 if east else 1)
+        for dx, dy, c in ((0, -1, mid), (back, -2, dark)):
+            put(helm, frame, cx + dx, hy + dy, c, stamped)
     elif extra == "feather":
         for dx, dy, c in ((7, 1, 1), (8, 0, 0), (8, -1, 0), (9, -2, 0)):
             put(helm, frame, hx + (dx if not east else HEAD_WIDE - 1 - dx), hy + dy, BONE[c] if dy < 1 else PLUME[0], stamped)
@@ -279,6 +287,21 @@ def helm_frame(frame, spec, head, row):
             for x in (gx, gx + (0 if (max(faces[5]) - min(faces[5])) % 2 == 0 else 1)):
                 if is_colour(frame[hy + 3, x], HAIR) or helm[hy + 3, x, 3] > 0.5:
                     put(helm, frame, x, hy + 3, GEM, stamped)
+    # A hood's cowl: over her shoulders below the head, and over the hair hanging down her back.
+    if spec.get("cowl"):
+        light_c, mid_c, dark_c = spec["ramp"]
+        for r in range(HEAD_ROWS, HEAD_ROWS + 6):
+            y = hy + r
+            if y >= C:
+                break
+            for x in range(max(0, hx - 1), min(C, hx + HEAD_WIDE + 1)):
+                px = frame[y, x]
+                if px[3] < 0.5 or is_colour(px, [INK]) or is_colour(px, SKIN + [EYE]):
+                    continue
+                hair = is_colour(px, HAIR)
+                if hair or r < HEAD_ROWS + 2:
+                    shade = mid_c if r == HEAD_ROWS else dark_c if r == HEAD_ROWS + 1 else (light_c if is_colour(px, HAIR[:2]) else mid_c)
+                    put(helm, frame, x, y, shade, stamped)
     # An outline round what stands outside her.
     for x, y in stamped:
         for nx, ny in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
