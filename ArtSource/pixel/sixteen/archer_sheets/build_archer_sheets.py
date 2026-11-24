@@ -138,11 +138,13 @@ def is_colour(px, colours):
 
 
 # light, mid, dark; dome: how many rows of the dome it covers from the top (4 all); sides: the hair beside her face;
-# face: "open", "mask" (cloth over mouth and chin), "barbute" (a T left open), "visor" (shut but a dark slit);
+# face: "open", "mask" (leather over all of it but the eyes, 2026-11-24), "barbute" (a T left open), "visor" (shut but a dark slit);
 # band: only a band over the hair (rows of the dome); extra: pixels put on top.
 HELMS = {
     "hood": dict(ramp=[rgb(62, 132, 66), rgb(36, 84, 50), rgb(24, 56, 40)], dome=4, sides=True, face="open"),
-    "mask": dict(ramp=[rgb(92, 100, 112), rgb(60, 66, 80), rgb(40, 44, 56)], dome=0, band=[3], sides=False, face="mask"),
+    # Redrawn 2026-11-24 (the owner: "redraw the mask helm, it looks wierd and only covers the mouth and a strip of the
+    # forehead"): a leather mask over her whole head, a brow ridge, the eyes showing in a dark band, a seam down the chin.
+    "mask": dict(ramp=[rgb(150, 104, 64), rgb(108, 72, 44), rgb(64, 42, 28)], dome=4, sides=True, face="mask"),
     "barbute": dict(ramp=[rgb(176, 184, 196), rgb(120, 130, 148), rgb(72, 80, 100)], dome=4, sides=True, face="barbute"),
     "visored": dict(ramp=[rgb(210, 216, 226), rgb(150, 160, 178), rgb(90, 98, 120)], dome=4, sides=True, face="visor", extra="plume"),
     "horned": dict(ramp=[rgb(116, 116, 134), rgb(74, 74, 94), rgb(44, 44, 60)], dome=4, sides=True, face="visor", extra="horns"),
@@ -207,8 +209,10 @@ def helm_frame(frame, spec, head, row):
             if max(abs(x - mx), abs(y - my)) <= 4.5 and (full or abs(y - my) < 1.0 and spec.get("band")):
                 put(helm, frame, x, y, light if is_colour(frame[y, x], HAIR[:2]) else mid, [])
         for x, y in face:
-            if spec["face"] == "visor" or (spec["face"] == "mask" and y >= my):
-                put(helm, frame, x, y, INK if spec["face"] == "visor" and abs(y - my) < 0.6 else mid, [])
+            if spec["face"] == "visor":
+                put(helm, frame, x, y, INK if abs(y - my) < 0.6 else mid, [])
+            elif spec["face"] == "mask" and not is_colour(frame[y, x], [EYE]):
+                put(helm, frame, x, y, dark if abs(y - my) < 0.6 else mid, [])
         return helm
     hx, hy = head
     stamped = []
@@ -232,8 +236,16 @@ def helm_frame(frame, spec, head, row):
             elif r >= 4 and is_colour(px, SKIN + [EYE]) and faces[r]:
                 middle = (min(faces[5] or faces[r]) + max(faces[5] or faces[r])) / 2.0
                 face = spec["face"]
-                if face == "mask" and r >= 6:
-                    put(helm, frame, x, y, light if r == 6 else mid, stamped)
+                if face == "mask":
+                    # The brow, then a dark band the eyes look out of, then the lower face with a seam down its middle.
+                    if r == 4:
+                        put(helm, frame, x, y, mid, stamped)
+                    elif r == 5:
+                        if not is_colour(px, [EYE]):
+                            put(helm, frame, x, y, dark, stamped)
+                    else:
+                        seam = abs(x - middle) < 0.6
+                        put(helm, frame, x, y, dark if seam else light if r == 6 else mid, stamped)
                 elif face == "barbute" and (r == 4 or (r >= 6 and abs(x - middle) > 1)):
                     put(helm, frame, x, y, mid if r == 4 else light, stamped)
                 elif face == "visor":
