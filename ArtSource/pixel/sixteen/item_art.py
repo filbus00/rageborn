@@ -3,6 +3,7 @@
 # one palette, light from the top left, dark outlines, as the forest and the characters. Each armour tier takes the
 # colours of her chest look of that tier (wild_arrow_16.py LOOKS); legendaries have their own colours and a mark.
 # Writes over the old pictures (same names) and a preview, ArtSource/pixel/previews/item_art_16.png.
+# Replaced on 2026-11-26 by item_art_32.py (twice the pixels, rounded shading); running this would overwrite those pictures.
 # Run: Blender -b -P ArtSource/pixel/sixteen/item_art.py
 import bpy, os, math
 import numpy as np
@@ -749,6 +750,134 @@ def blueprint():
     return im.outline()
 
 
+
+# The jeweller's trinkets and the upgrade materials (2026-11-26), 16 x 16 like the rings.
+def tooth_trinket():
+    """A wolf's fang bound with a leather thong, a tuft of grey fur at its root: no chain, it is tied to the belt."""
+    im = Img(16, 16)
+    im.poly([(5, 4), (11, 4), (10, 9), (8, 15), (6, 9)], R["bone"])
+    im.line(7, 6, 7, 11, R["bone"][3])
+    im.rect(4, 3, 11, 5, R["leather"])
+    im.line(4, 4, 11, 4, R["leather"][3])
+    im.line(12, 4, 14, 8, R["leather"][2]); im.line(12, 5, 13, 9, R["leather"][1])
+    im.ellipse(8, 2, 3, 1.6, R["fur"])
+    return im.outline()
+
+
+def ember_trinket():
+    """A coal that never goes out, in a little iron cage with a ring to hang it by."""
+    im = Img(16, 16)
+    im.ellipse(8, 2.5, 1.8, 1.8, R["iron"]); im.c[2][8] = None
+    im.ellipse(8, 10, 3.6, 4, R["ember"])
+    im.set(7, 8, "ffffff"); im.set(8, 9, R["ember"][3])
+    for x in (4, 8, 12):
+        im.line(x, 5, x, 14, R["iron"][2])
+    im.line(4, 5, 12, 5, R["iron"][3]); im.line(4, 14, 12, 14, R["iron"][1])
+    return im.outline()
+
+
+def frost_trinket():
+    """Three ice beads on a knotted cord, loose, like a bracelet."""
+    im = Img(16, 16)
+    im.line(1, 4, 15, 12, R["rope"][2])
+    for x, y, r in ((4, 6, 1.8), (8, 8, 2.6), (12, 10, 1.8)):
+        im.ellipse(x, y, r, r, R["ice"])
+    im.set(7, 7, "ffffff"); im.set(3, 5, R["ice"][3]); im.set(11, 9, R["ice"][3])
+    im.set(1, 4, R["rope"][1]); im.set(15, 12, R["rope"][1])
+    return im.outline()
+
+
+def hare_trinket():
+    """A hare's foot, its fur bound in a brass cap with a loop."""
+    im = Img(16, 16)
+    im.ellipse(8, 2.5, 1.6, 1.6, R["gold"]); im.c[2][8] = None
+    im.rect(6, 4, 10, 5, R["gold"])
+    im.ellipse(8, 9.5, 3.2, 4.2, R["fur"])
+    for x in (6, 8, 10):
+        im.line(x, 13, x, 14, R["fur"][1])
+    im.set(7, 7, R["fur"][3])
+    return im.outline()
+
+
+def hawk_trinket():
+    im = Img(16, 16)
+    im.line(3, 13, 12, 2, R["tan"][1])
+    im.poly([(4, 13), (6, 6), (12, 1), (11, 6), (7, 12)], R["tan"])
+    for k in range(4):
+        im.line(6 + k, 10 - 2 * k, 9 + k, 10 - 2 * k, R["tan"][0])
+    im.rect(2, 13, 4, 15, R["gold"])
+    return im.outline()
+
+
+def blood_trinket():
+    """A knot of red cord round a dark red stone, a drop hanging from it."""
+    im = Img(16, 16)
+    im.ellipse(8, 7, 4.5, 4, R["red"])
+    im.clear(lambda x, y: ((x - 8) / 2.2) ** 2 + ((y - 7) / 1.8) ** 2 <= 1)
+    im.ellipse(8, 7, 2, 1.7, R["brigand"])
+    im.set(7, 6, "f6806a")
+    im.line(5, 10, 3, 14, R["red"][1]); im.line(11, 10, 13, 14, R["red"][1])
+    im.poly([(8, 11), (9.5, 13.5), (8, 15), (6.5, 13.5)], R["red"])
+    return im.outline()
+
+
+def huntsman_trinket():
+    """A loop of braided green cord tied in a hunter's knot, a flint arrowhead bound to it at the side."""
+    im = Img(16, 16)
+    im.ellipse(7, 6, 5.5, 4, R["green"])
+    im.clear(lambda x, y: ((x - 7) / 3.4) ** 2 + ((y - 6) / 2) ** 2 <= 1)
+    for x in range(2, 13, 2):
+        im.set(x, 2 if x < 7 else 3, R["green"][3])
+    im.ellipse(10, 10, 1.8, 1.6, R["green"])
+    im.poly([(11, 10), (15, 12), (13, 15.5), (10.5, 13)], R["steel"])
+    im.set(13, 12, R["steel"][3])
+    return im.outline()
+
+
+def thorn_trinket():
+    """An iron disc wound round with a thorny briar, a green stone in its heart."""
+    im = Img(16, 16)
+    im.ellipse(8, 8, 5.5, 5.5, R["iron"])
+    im.ellipse(8, 8, 2, 2, R["green"])
+    im.set(7, 7, "ffffff")
+    for x, y in ((8, 1), (14, 6), (13, 13), (3, 13), (2, 6), (11, 2), (5, 2)):
+        im.set(x, y, R["wood"][2])
+    for k in range(16):
+        import math as _m
+        a = k / 16 * _m.tau
+        im.set(8 + 5 * _m.cos(a), 8 + 5 * _m.sin(a), R["wood"][1] if k % 2 else R["wood"][3])
+    return im.outline()
+
+
+def iron_material():
+    im = Img(16, 16)
+    im.poly([(2, 10), (9, 7), (14, 9), (7, 13)], R["iron"])
+    im.poly([(2, 10), (7, 13), (7, 15), (2, 12)], R["iron"], -0.4)
+    im.poly([(7, 13), (14, 9), (14, 11), (7, 15)], R["iron"], -0.7)
+    im.poly([(4, 6), (9, 3), (12, 5), (7, 8)], R["steel"])
+    im.set(8, 4, R["steel"][3]); im.set(10, 10, R["iron"][3])
+    return im.outline()
+
+
+def heartwood_material():
+    im = Img(16, 16)
+    for i, y in enumerate((10, 7, 4)):
+        im.poly([(1 + i, y + 2), (12 + i, y - 2), (13 + i, y), (2 + i, y + 4)], R["wood"])
+        im.ellipse(13.2 + i, y - 0.8, 1.2, 1.6, R["tan"])
+        im.set(13 + i, y - 1, R["wood"][1])
+    im.line(4, 4, 6, 13, R["red"][2])
+    return im.outline()
+
+
+def gems_material():
+    im = Img(16, 16)
+    im.poly([(2, 12), (5, 7), (8, 12)], R["red"])
+    im.poly([(6, 13), (9, 6), (13, 9), (11, 14)], R["teal"])
+    im.poly([(9, 6), (11, 2), (14, 5), (13, 9)], R["violet"])
+    im.set(9, 9, "ffffff"); im.set(4, 9, "ffffff"); im.set(11, 4, "ffffff")
+    return im.outline()
+
+
 ITEMS = {
     # Bows, short (one-handed) and long.
     "hunting_bow": lambda: bow("wood", 46, 8, 2, "leather", "bone"),
@@ -827,6 +956,18 @@ ITEMS = {
     "jewelled_amulet": lambda: amulet("gold", stone="violet"),
     "eye_of_the_storm": storm_eye,
     "blueprint": blueprint,
+    # The jeweller's trinkets and the upgrade materials (2026-11-26).
+    "trinket_wolf_tooth": tooth_trinket,
+    "trinket_ember_charm": ember_trinket,
+    "trinket_frost_bead": frost_trinket,
+    "trinket_hare_foot": hare_trinket,
+    "trinket_hawk_feather": hawk_trinket,
+    "trinket_blood_knot": blood_trinket,
+    "trinket_huntsmans_knot": huntsman_trinket,
+    "trinket_thorn_sigil": thorn_trinket,
+    "material_iron": iron_material,
+    "material_heartwood": heartwood_material,
+    "material_gems": gems_material,
 }
 
 existing = sorted(f[:-4] for f in os.listdir(OUT) if f.endswith(".png"))
@@ -845,6 +986,12 @@ if ARGS and ARGS[0] == "gear":
         if not (name.endswith("_bow") or name in bows):
             save(make().rgba(), os.path.join(folder, name + ".png"))
     print("wrote gear into", folder)
+    raise SystemExit(0)
+if ARGS and ARGS[0] == "only":
+    # Only the named pictures (2026-11-26), into the game's folder.
+    for name in ARGS[1:]:
+        save(ITEMS[name]().rgba(), os.path.join(OUT, name + ".png"))
+    print("wrote", ARGS[1:])
     raise SystemExit(0)
 if ARGS and ARGS[0] == "bows":
     # Only the bows (2026-11-10), into ARGS[1] (a folder outside the game, to be looked at first) or the game's.

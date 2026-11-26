@@ -21,7 +21,7 @@ namespace ARPG
         /// Wrathborn's and is set aside for a clean start (the owner's decision), though it still parses. 13: adds each
         /// item's named legendary and the legendaries seen (the Codex). 14: the deepest depth and the stash. 15: the talent
         /// trees' ranks (2026-10-07; skill levels and the loadout are kept in the file but no longer used).</summary>
-        public const int CurrentVersion = 24;
+        public const int CurrentVersion = 25;
 
         public int version;
 
@@ -130,6 +130,14 @@ namespace ARPG
         /// <summary>Thorin's blueprints (format 18, 2026-10-15): the keys he knows and the items forged for each kind.</summary>
         public List<string> metaBlueprints = new List<string>();
         public List<ItemData> metaForged = new List<ItemData>();
+
+        // 25 (2026-11-26): the company's gear. Each kind's rank (by kind name), the upgrade materials (by name), the bow
+        // and the trinket issued, and the materials this run picked up.
+        public List<TalentData> metaGearRanks = new List<TalentData>();
+        public List<TalentData> metaMaterials = new List<TalentData>();
+        public string issuedBow = "";
+        public string issuedTrinket = "";
+        public int runMaterials;
         public int pendingBoons;
         public int rerollsLeft;
         public bool sentToStash;
@@ -210,6 +218,9 @@ namespace ARPG
 
         /// <summary>A blueprint, not a wearable item (2026-10-15).</summary>
         public bool blueprint;
+
+        /// <summary>The company's rank when a keeper issued it, 0 for loot (format 25).</summary>
+        public int issue;
     }
 
     [Serializable]

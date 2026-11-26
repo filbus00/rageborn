@@ -241,7 +241,7 @@ namespace ARPG
         // backpack. Her block takes the spare height: with room it shows her painted portrait beside the numbers
         // and, with more, the contract's or the company's record under them; without (a short phone) only the
         // numbers in two columns.
-        const float Gap = 10f, StatsLeast = 200f, StatsMost = 1060f, PortraitLeast = 380f, PortraitWidest = 470f, RecordLeast = 240f;
+        const float Gap = 10f, StatsLeast = 200f, StatsMost = 4000f, PortraitLeast = 380f, PortraitWidest = 470f, RecordLeast = 240f;
         float dollTop, statsTop, statsHeight, materialsTop, gridTop;
 
         void LayOut()
@@ -255,13 +255,14 @@ namespace ARPG
             gridTop = materialsTop - MaterialsHeight - Gap;
         }
         // Where each slot's block starts, in backpack cells from the top left (its size is ItemSize's): the bow, the helm
-        // over the gloves, the chest over the belt, the amulet over the two rings over the boots, the quiver.
+        // over the gloves, the chest over the belt, the amulet and the trinket (2026-11-26) over the two rings over the
+        // boots, the quiver.
         static readonly (ItemSlot place, float x, float y)[] SlotLayout =
         {
             (ItemSlot.Weapon, 0f, 0f),
             (ItemSlot.Helm, 2f, 0f), (ItemSlot.Gloves, 2f, 2f),
             (ItemSlot.Chest, 4f, 0f), (ItemSlot.Belt, 4f, 3f),
-            (ItemSlot.Amulet, 6.5f, 0f), (ItemSlot.Ring, 6f, 1f), (ItemSlot.Ring2, 7f, 1f), (ItemSlot.Boots, 6f, 2f),
+            (ItemSlot.Amulet, 6f, 0f), (ItemSlot.Trinket, 7f, 0f), (ItemSlot.Ring, 6f, 1f), (ItemSlot.Ring2, 7f, 1f), (ItemSlot.Boots, 6f, 2f),
             (ItemSlot.OffHand, 8f, 0.5f),
         };
 
@@ -433,7 +434,7 @@ namespace ARPG
         static void Ghost(Image tile, ItemSlot place)
         {
             var kind = place == ItemSlot.Ring2 ? ItemSlot.Ring : place == ItemSlot.OffHand ? ItemSlot.Shield : place;
-            var sprite = ItemIcons.For(kind, ItemRarity.Common);
+            var sprite = kind == ItemSlot.Trinket ? ItemIcons.Picture(ItemArtNames.ForTrinket(null)) : ItemIcons.For(kind, ItemRarity.Common);
             if (sprite == null)
                 return;
             var ghost = UiStyle.Image(tile.transform, "Ghost", new Color(0.75f, 0.68f, 0.6f, 0.16f));
@@ -515,47 +516,74 @@ namespace ARPG
                 (MenuIcons.Kind.Boot, "Move speed", $"+{equipment.MovementSpeedPercent + (tree.MoveSpeed + attributes.MoveSpeed) * 100f:0}%"),
             };
 
+            // Every other number she fights with (2026-11-26, the owner: "Make it so that more stats are displayed by the
+            // character and fill the unused blank space"), in two columns under her picture.
+            var reach = equipment.IsLongbow ? GripRules.ShortBowReach + GripRules.LongbowReach : GripRules.ShortBowReach;
+            var detail = new (MenuIcons.Kind kind, string name, string value)[]
+            {
+                (MenuIcons.Kind.Sword, "Arrow damage", $"{equipment.WeaponDamage + equipment.FlatWeaponDamageBonus:0}"),
+                (MenuIcons.Kind.Star, "Crit damage", $"+{equipment.CriticalDamagePercent + tree.CriticalDamage:0}%"),
+                (MenuIcons.Kind.Eye, "Range", $"{reach:0.#}"),
+                (MenuIcons.Kind.Speed, "Arrow speed", $"+{equipment.AffixTotal(AffixId.ArrowSpeed):0}%"),
+                (MenuIcons.Kind.Sword, "More damage", $"+{equipment.IncreasedDamagePercent + tree.IncreasedDamage * 100f:0}%"),
+                (MenuIcons.Kind.Cog, "Cooldowns", $"-{equipment.CooldownReductionPercent + tree.CooldownReduction * 100f:0}%"),
+                (MenuIcons.Kind.Shield, "Dodge", $"{equipment.DodgePercent + tree.Dodge * 100f:0.#}%"),
+                (MenuIcons.Kind.Heart, "Life on hit", $"{equipment.LifeOnHit + tree.LifeOnHit:0.#}"),
+                (MenuIcons.Kind.Star, "Extra arrow", $"{equipment.ExtraArrowPercent:0}%"),
+                (MenuIcons.Kind.Motion, "Fork", $"{equipment.AffixTotal(AffixId.ForkChance):0}%"),
+                (MenuIcons.Kind.Potion, "Ignite", $"{equipment.IgniteChancePercent + tree.IgniteChance * 100f:0}%"),
+                (MenuIcons.Kind.Potion, "Chill", $"{equipment.ChillChancePercent + tree.ChillChance * 100f:0}%"),
+                (MenuIcons.Kind.Potion, "Burn damage", $"+{equipment.AffixTotal(AffixId.BurnDamage):0}%"),
+                (MenuIcons.Kind.Eye, "Far damage", $"+{equipment.AffixTotal(AffixId.FarDamage):0}%"),
+                (MenuIcons.Kind.Heart, "Pet damage", $"+{equipment.AffixTotal(AffixId.PetDamage) + tree.PetDamage * 100f:0}%"),
+                (MenuIcons.Kind.Heart, "Pet life", $"+{equipment.AffixTotal(AffixId.PetLife) + tree.PetLife * 100f:0}%"),
+            };
+
             var company = current.Company;
             var who = company != null && !string.IsNullOrEmpty(company.Mercenary) ? company.Mercenary : "Wild Arrow";
             // Her own face, painted from her name (as the company's page shows her), else the archer's picture.
             var portrait = statsHeight >= PortraitLeast ? PortraitFaces.For(who) ?? PixelUi.Sprite("portrait_archer") : null;
+            float under;
             if (portrait == null)
             {
                 // No room for her picture: the numbers in two columns of three.
                 for (var i = 0; i < lines.Length; i++)
                     StatLine(inside, new Vector2(i % 2 * 0.5f, 1f), new Vector2(i % 2 * 0.5f + 0.5f, 1f), 28f, 28f, 14f + 58f * (i / 2), 58f, lines[i]);
-                Divider(inside, 12f, 12f);
-                return;
+                under = 14f + 58f * 3f + 8f;
+            }
+            else
+            {
+                // Her portrait at the top left, in whole steps of its own pixels, no taller than half the block and no wider
+                // than two fifths of it, so the numbers under it get the rest.
+                var scale = Mathf.Max(1f, Mathf.Floor(Mathf.Min(Mathf.Max(300f, statsHeight * 0.45f) / portrait.rect.height, PortraitWidest / portrait.rect.width)));
+                var size = new Vector2(portrait.rect.width, portrait.rect.height) * scale;
+                var picture = UiStyle.Image(inside, "Portrait", Color.white);
+                picture.sprite = portrait;
+                UiStyle.Place(picture.rectTransform, new Vector2(0f, 1f), new Vector2(14f, -14f), size);
+                picture.rectTransform.pivot = new Vector2(0f, 1f);
+
+                // Her name over the six numbers, one under the other, beside the picture.
+                var left = 14f + size.x + 30f;
+                var name = UiStyle.Text(inside, who, 40, UiStyle.Gold, TextAnchor.MiddleLeft, true);
+                name.rectTransform.anchorMin = new Vector2(0f, 1f);
+                name.rectTransform.anchorMax = new Vector2(1f, 1f);
+                name.rectTransform.pivot = new Vector2(0.5f, 1f);
+                name.rectTransform.offsetMin = new Vector2(left, -70f);
+                name.rectTransform.offsetMax = new Vector2(-20f, -14f);
+                Rule(inside, left, 20f, 74f);
+                var beside = Mathf.Max(size.y + 14f, 86f + 52f * lines.Length);
+                var each = (beside - 86f) / lines.Length;
+                for (var i = 0; i < lines.Length; i++)
+                    StatLine(inside, new Vector2(0f, 1f), new Vector2(1f, 1f), left, 20f, 86f + each * i, each, lines[i]);
+                under = beside + 14f;
             }
 
-            // Her portrait at the top left, in whole steps of its own pixels, as tall as the block allows and no wider
-            // than two fifths of it.
-            var scale = Mathf.Max(1f, Mathf.Floor(Mathf.Min((statsHeight - 28f) / portrait.rect.height, PortraitWidest / portrait.rect.width)));
-            var size = new Vector2(portrait.rect.width, portrait.rect.height) * scale;
-            var picture = UiStyle.Image(inside, "Portrait", Color.white);
-            picture.sprite = portrait;
-            UiStyle.Place(picture.rectTransform, new Vector2(0f, 1f), new Vector2(14f, -14f), size);
-            picture.rectTransform.pivot = new Vector2(0f, 1f);
-
-            // Her name over the six numbers, one under the other, beside the picture.
-            var left = 14f + size.x + 30f;
-            var name = UiStyle.Text(inside, who, 40, UiStyle.Gold, TextAnchor.MiddleLeft, true);
-            name.rectTransform.anchorMin = new Vector2(0f, 1f);
-            name.rectTransform.anchorMax = new Vector2(1f, 1f);
-            name.rectTransform.pivot = new Vector2(0.5f, 1f);
-            name.rectTransform.offsetMin = new Vector2(left, -70f);
-            name.rectTransform.offsetMax = new Vector2(-20f, -14f);
-            Rule(inside, left, 20f, 74f);
-            var beside = Mathf.Min(statsHeight, size.y + 28f);
-            var each = Mathf.Min(80f, (beside - 100f) / lines.Length);
-            for (var i = 0; i < lines.Length; i++)
-                StatLine(inside, new Vector2(0f, 1f), new Vector2(1f, 1f), left, 20f, 86f + each * i, each, lines[i]);
-
-            // Under them, with room (a tall phone): the contract she is on, or the company's record between contracts,
-            // in two columns of three.
-            var under = size.y + 28f;
-            var room = statsHeight - under;
-            if (room < RecordLeast)
+            // Under them, what fits of the detail, then the contract she is on or the company's record, the rows grown to
+            // share out what height is left so the block has no empty floor.
+            const float headingHeight = 66f, leastRow = 46f, mostRow = 86f;
+            var room = statsHeight - under - 14f;
+            var detailRows = Mathf.Clamp(Mathf.FloorToInt((room - headingHeight) / leastRow), 0, (detail.Length + 1) / 2);
+            if (detailRows < 2)
                 return;
             var onContract = current.RunStarted;
             var run = current.Run;
@@ -566,29 +594,55 @@ namespace ARPG
                     (MenuIcons.Kind.Sword, "Kills", $"{run.Kills:N0}"),
                     (MenuIcons.Kind.Star, "Bosses", $"{run.Bosses}"),
                     (MenuIcons.Kind.LootBag, "Coins found", $"{run.Coins:N0}"),
-                    (MenuIcons.Kind.Backpack, "Items found", $"{run.Items}"),
+                    (MenuIcons.Kind.Backpack, "Materials", $"{run.Materials}"),
                     (MenuIcons.Kind.Speed, "Time", RunSummary.Duration(run.Seconds)),
                 }
                 : new (MenuIcons.Kind kind, string name, string value)[]
                 {
-                    (MenuIcons.Kind.Star, "Contracts cleared", $"{(company != null ? company.Cleared.Count : 0)} of {ContractRules.All.Length}"),
-                    (MenuIcons.Kind.Portal, "Deepest level", current.DeepestDepth > 0 ? ContractRules.LevelName(current.DeepestDepth) : "None"),
-                    (MenuIcons.Kind.Heart, "Archers fallen", $"{(company != null ? company.Fallen.Count : 0)}"),
-                    (MenuIcons.Kind.Book, "Blueprints known", $"{current.Meta.Blueprints.Count}"),
+                    (MenuIcons.Kind.Star, "Contracts", $"{(company != null ? company.Cleared.Count : 0)} of {ContractRules.All.Length}"),
+                    (MenuIcons.Kind.Portal, "Deepest", current.DeepestDepth > 0 ? ContractRules.LevelName(current.DeepestDepth) : "None"),
+                    (MenuIcons.Kind.Heart, "Fallen", $"{(company != null ? company.Fallen.Count : 0)}"),
+                    (MenuIcons.Kind.Book, "Gear ranks", $"{CompanyRanks(current)}"),
                     (MenuIcons.Kind.Backpack, "In the vault", $"{current.Stash.Count}"),
                     (MenuIcons.Kind.LootBag, "Coins", $"{current.Gold:N0}"),
                 };
-            var heading = UiStyle.Text(inside, onContract ? "THIS CONTRACT" : "THE COMPANY", 30, UiStyle.Gold, TextAnchor.MiddleLeft, true);
+            var afterDetail = room - headingHeight - detailRows * leastRow;
+            var recordRows = afterDetail >= headingHeight + 3 * leastRow ? 3 : 0;
+            var spare = afterDetail - (recordRows > 0 ? headingHeight + recordRows * leastRow : 0f);
+            var row = Mathf.Min(mostRow, leastRow + spare / (detailRows + recordRows));
+
+            var top = Section(inside, "IN DETAIL", under);
+            for (var i = 0; i < detailRows * 2 && i < detail.Length; i++)
+                StatLine(inside, new Vector2(i % 2 * 0.5f, 1f), new Vector2(i % 2 * 0.5f + 0.5f, 1f), 20f, 24f, top + row * (i / 2), row, detail[i]);
+            Divider(inside, statsHeight - top - row * detailRows, top + 4f);
+            if (recordRows == 0)
+                return;
+            top = Section(inside, onContract ? "THIS CONTRACT" : "THE COMPANY", top + row * detailRows + 4f);
+            for (var i = 0; i < record.Length; i++)
+                StatLine(inside, new Vector2(i % 2 * 0.5f, 1f), new Vector2(i % 2 * 0.5f + 0.5f, 1f), 20f, 24f, top + row * (i / 2), row, record[i]);
+            Divider(inside, statsHeight - top - row * 3, top + 4f);
+        }
+
+        // The company's gear ranks raised in all (2026-11-26).
+        static int CompanyRanks(GameSession session)
+        {
+            var total = 0;
+            foreach (var kind in CompanyGearRules.Kinds)
+                total += session.Meta.GearRank(kind) - 1;
+            return total;
+        }
+
+        // A section's heading and rule this far under the block's top; returns where its rows begin.
+        static float Section(Transform inside, string title, float at)
+        {
+            var heading = UiStyle.Text(inside, title, 30, UiStyle.Gold, TextAnchor.MiddleLeft, true);
             heading.rectTransform.anchorMin = new Vector2(0f, 1f);
             heading.rectTransform.anchorMax = new Vector2(1f, 1f);
             heading.rectTransform.pivot = new Vector2(0.5f, 1f);
-            heading.rectTransform.offsetMin = new Vector2(20f, -under - 50f);
-            heading.rectTransform.offsetMax = new Vector2(-20f, -under);
-            Rule(inside, 14f, 14f, under + 54f);
-            var row = Mathf.Min(100f, (room - 76f) / 3f);
-            for (var i = 0; i < record.Length; i++)
-                StatLine(inside, new Vector2(i % 2 * 0.5f, 1f), new Vector2(i % 2 * 0.5f + 0.5f, 1f), 20f, 24f, under + 62f + row * (i / 2), row, record[i]);
-            Divider(inside, 14f, under + 66f);
+            heading.rectTransform.offsetMin = new Vector2(20f, -at - 50f);
+            heading.rectTransform.offsetMax = new Vector2(-20f, -at);
+            Rule(inside, 14f, 14f, at + 54f);
+            return at + 62f;
         }
 
         // A thin line across the block, this far under its top.
@@ -646,16 +700,13 @@ namespace ARPG
             rect.offsetMax = new Vector2(-16f, materialsTop);
             var inside = UiStyle.FillOf(panel).transform;
 
-            // With the Forge switched off (Features.Forge) the row shows only the backpack count.
-            var entries = new List<(string name, Color color, string count)>();
-            if (Features.Forge)
-            {
-                entries.Add(("Ash", LootColors.Of(ItemRarity.Common), current.Materials(CraftingMaterial.Ash).ToString()));
-                entries.Add(("Cinders", LootColors.Of(ItemRarity.Magic), current.Materials(CraftingMaterial.Cinders).ToString()));
-                entries.Add(("Bloodstone", LootColors.Of(ItemRarity.Rare), current.Materials(CraftingMaterial.Bloodstone).ToString()));
-                entries.Add(("Soulglass", LootColors.Of(ItemRarity.Legendary), current.Materials(CraftingMaterial.Soulglass).ToString()));
-            }
-            entries.Add(("Backpack", UiStyle.TextDim, $"{current.Inventory.CellsUsed}/{current.Inventory.CellCount} space"));
+            // The company's upgrade materials (2026-11-26) and the backpack's count, each a picture and a number.
+            var entries = new List<(string name, Sprite picture, Color color, string count)>();
+            if (Features.Roguelite)
+                foreach (CompanyMaterial material in System.Enum.GetValues(typeof(CompanyMaterial)))
+                    entries.Add((CompanyGearRules.MaterialName(material), ItemIcons.Picture(ItemArtNames.ForMaterial(material)),
+                        LootDrop.MaterialColour(material), current.Meta.Material(material).ToString()));
+            entries.Add(("Backpack", null, UiStyle.TextDim, $"{current.Inventory.CellsUsed}/{current.Inventory.CellCount}"));
             // The auto sort (2026-10-18): the backpack packed afresh, largest and best first.
             var sort = UiStyle.Button(inside, "Sort", () =>
             {
@@ -681,28 +732,37 @@ namespace ARPG
                 UiStyle.Place((RectTransform)portal.transform, new Vector2(1f, 0.5f), new Vector2(-244f, 0f), new Vector2(300f, 72f));
                 ((RectTransform)portal.transform).pivot = new Vector2(1f, 0.5f);
             }
+            // The entries share the room left of the buttons.
+            var buttons = PortalChannel.CanOpen ? 560f : 250f;
+            var area = UiStyle.Rect(inside, "Counts");
+            area.anchorMin = Vector2.zero;
+            area.anchorMax = Vector2.one;
+            area.offsetMin = new Vector2(8f, 0f);
+            area.offsetMax = new Vector2(-buttons, 0f);
             for (var i = 0; i < entries.Count; i++)
             {
-                var (name, color, count) = entries[i];
-                var cell = UiStyle.Rect(inside, name);
+                var (name, picture, color, count) = entries[i];
+                var cell = UiStyle.Rect(area, name);
                 cell.anchorMin = new Vector2(i / (float)entries.Count, 0f);
                 cell.anchorMax = new Vector2((i + 1) / (float)entries.Count, 1f);
                 cell.offsetMin = cell.offsetMax = Vector2.zero;
-                if (name != "Backpack")
+                if (picture != null)
                 {
-                    var dot = UiStyle.Disc(cell, "Dot", color);
-                    UiStyle.Place(dot.rectTransform, new Vector2(0f, 0.5f), new Vector2(18f, 0f), new Vector2(30f, 30f));
+                    var icon = UiStyle.Image(cell, "Icon", Color.white);
+                    icon.sprite = picture;
+                    icon.preserveAspect = true;
+                    UiStyle.Place(icon.rectTransform, new Vector2(0f, 0.5f), new Vector2(28f, 0f), new Vector2(48f, 48f));
                 }
                 else
                 {
-                    var pack = MenuChrome.Icon(cell, MenuIcons.Kind.Backpack, 46f);
+                    var pack = MenuChrome.Icon(cell, MenuIcons.Kind.Backpack, 42f);
                     pack.rectTransform.anchorMin = pack.rectTransform.anchorMax = new Vector2(0f, 0.5f);
-                    pack.rectTransform.anchoredPosition = new Vector2(38f, 0f);
+                    pack.rectTransform.anchoredPosition = new Vector2(28f, 0f);
                 }
-                var text = UiStyle.Text(cell, $"{count} <size=22><color=#9E948A>{name}</color></size>", 30, UiStyle.TextMain, TextAnchor.MiddleLeft, true);
+                var text = UiStyle.Text(cell, count, 30, picture != null ? color : UiStyle.TextMain, TextAnchor.MiddleLeft, true);
                 text.rectTransform.anchorMin = Vector2.zero;
                 text.rectTransform.anchorMax = Vector2.one;
-                text.rectTransform.offsetMin = new Vector2(name != "Backpack" ? 56f : 78f, 0f);
+                text.rectTransform.offsetMin = new Vector2(66f, 0f);
                 text.rectTransform.offsetMax = Vector2.zero;
             }
         }

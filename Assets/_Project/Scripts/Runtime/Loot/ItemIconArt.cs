@@ -49,7 +49,8 @@ namespace ARPG
                 case ItemSlot.Gloves: Gloves(canvas); break;
                 case ItemSlot.Boots: Boots(canvas); break;
                 case ItemSlot.Belt: Belt(canvas); break;
-                case ItemSlot.Amulet: Amulet(canvas); break;
+                case ItemSlot.Amulet:
+                case ItemSlot.Trinket: Amulet(canvas); break;
                 default: Ring(canvas); break;
             }
             PixelArt.Process(canvas.Pixels, width, height, true);

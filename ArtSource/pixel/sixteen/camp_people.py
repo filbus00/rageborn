@@ -217,6 +217,93 @@ def lyriel():
     return keeper("lyriel")
 
 
+# Oswin, the fletcher (2026-11-26): short brown hair, a stubble, a feather tucked behind his ear, a leather jerkin over a
+# green shirt, an apron of arrow bundles at his belt, an arrow he is checking along in one hand, a full quiver on his back.
+OSWIN_BODY = [
+    "AAAAAA",
+    "AhhhhhhA",
+    "AhhHHHHhhA",
+    "AhHEEEEEEhhA",
+    "AhEEEEEEEEhA",
+    "AhEGEEEEGEhA",
+    "AhIEEEEEEIhA",
+    "AAhEERREEhAA",
+    "ANNTTTTTTTTNNA",
+    "ANNTTOOOOTTNNA",
+    "AEEATTOOTTAEEA",
+    "AEEATTTTTTAEEA",
+    "AREAKKJJKKAERA",
+    "AEEAFFPPFFAEEA",
+    "AAAAFPPPPFAAAA",
+    "AFFFFFFFFA",
+    "AFFAAFFA",
+    "AFFAAFFA",
+    "AQQAAQQA",
+    "AA..AA",
+]
+OSWIN_PAL = dict(FACE, h="5a3a22", H="7e5634", s="a87454", T="7a4e2a", O="9a6a3a", N="3e6a3a", F="4a5a3a",
+                 K="54341e", J="c8a050", P="d8c8a0", Q="32221e", W="e8e2d0", r="c02a2e", w="9a6836", i="b8bcc6")
+
+
+def _oswin_marks(frame):
+    lift = 1 if frame == 2 else 0
+    # The quiver over his left shoulder, the fletchings showing.
+    quiver = [(5, y, "w") for y in range(12, 18)] + [(4, 11, "W"), (5, 10, "r"), (6, 11, "W")]
+    feather = [(17, 7, "W"), (18, 6, "W"), (17, 8, "r")]
+    # The arrow held up across his chest, sighted along it (lifted on his own frame).
+    arrow = [(x, 16 - lift - (x - 13) // 3, "w") for x in range(13, 21)] + [(21, 13 - lift, "i"), (12, 17 - lift, "W"), (12, 16 - lift, "r")]
+    return quiver + feather + arrow
+
+
+# Mirela, the jeweller (2026-11-26): dark hair in a high bun with a pin, gold rings in her ears, a deep blue gown with a gold
+# hem and a pale shawl, a loupe on a chain, a ring held up to the light in one hand that glints on her own frame.
+MIRELA_BODY = [
+    "..AAAA",
+    ".AhhhhA",
+    "AAhhhhAA",
+    "AhhhhhhhhA",
+    "AhhEEEEEEhhA",
+    "AhEEEEEEEEhA",
+    "AhJGEEEEGJhA",
+    "AhhIEEEEIhhA",
+    "AAhEEmEEEhAA",
+    "ASSSUUUUSSSA",
+    "ASSUUJJUUSSA",
+    "AEEAUUUUUAEEA",
+    "AEEAUUUUUAEEA",
+    "AAAAUUUUUAAAA",
+    "AUUUUUUUUUA",
+    "AUUUUUUUUUA",
+    "AUUUUUUUUUUA",
+    "AJJJJJJJJJJA",
+    "AAQQAAQQAA",
+    "AA..AA",
+]
+MIRELA_PAL = dict(FACE, h="2a1a24", J="e6c25c", U="2e3e7a", S="d8d0c0", m="c4786a", Q="32221e", L="ffffff", g="9ae0ff")
+
+
+def _mirela_marks(frame):
+    glint = frame == 2
+    pin = [(14, 5, "J"), (15, 4, "J")]
+    # The ring held up at the right hand, a gem that catches the light on her own frame.
+    ring = [(18, 14, "J"), (19, 13, "J"), (20, 14, "J"), (19, 15, "J"), (19, 12, "L" if glint else "g")]
+    if glint:
+        ring += [(20, 11, "L"), (18, 11, "L")]
+    return pin + ring
+
+
+KEEPERS["oswin"] = (OSWIN_BODY, OSWIN_PAL, _oswin_marks, 15)
+KEEPERS["mirela"] = (MIRELA_BODY, MIRELA_PAL, _mirela_marks, 15)
+
+
+def oswin():
+    return keeper("oswin")
+
+
+def mirela():
+    return keeper("mirela")
+
+
 # The wolf of the pen (2026-11-24, the owner: "redraw the wolf in the camp too"): sitting, three-quarters to the right, in the
 # pet wolf's colours (wolf_16.py): grey with a darker back and a lighter top, a pale chest and muzzle, yellow eyes, the red
 # collar, its tail curled round its feet. Drawn like the keepers, with its own idle: a breath, an ear and the tail, a blink.

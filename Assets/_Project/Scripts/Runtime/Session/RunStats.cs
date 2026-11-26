@@ -11,6 +11,8 @@ namespace ARPG
         public int Coins;
         public int Items;
         public int Blueprints;
+        /// <summary>Upgrade materials picked up (2026-11-26).</summary>
+        public int Materials;
         public float Seconds;
 
         /// <summary>The deepest depth ever when the run began, to tell a new record at its end.</summary>

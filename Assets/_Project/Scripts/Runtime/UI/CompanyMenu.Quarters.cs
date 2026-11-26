@@ -14,7 +14,8 @@ namespace ARPG
     /// </summary>
     public partial class CompanyMenu
     {
-        enum Place { Yard, Armoury, Kennel }
+        // The camp spots open these by number (CampSpot.Kind), so new places go at the end.
+        enum Place { Yard, Armoury, Kennel, Fletcher, Jeweller }
 
         Place place = Place.Yard;
 
@@ -23,7 +24,11 @@ namespace ARPG
             (Place.Yard, "THE YARD", "Brunhilde", "Captain of the company",
                 "Drills, flasks and old lore. What coins buy here, every archer after her keeps.", "emblem_sword", "portrait_brunhilde"),
             (Place.Armoury, "ARMOURY", "Thorin", "Blacksmith and keeper of the vault",
-                "Forges what your blueprints show, keeps what you store, and buys the rest.", "emblem_anvil", "portrait_thorin"),
+                "Furnishes the company's armour, takes found armour apart for iron, keeps the vault.", "emblem_anvil", "portrait_thorin"),
+            (Place.Fletcher, "FLETCHER", "Oswin", "Fletcher and bowyer",
+                "Makes the company's bows and quivers, and strips found ones for heartwood.", "emblem_feather", "portrait_oswin"),
+            (Place.Jeweller, "JEWELLER", "Mirela", "Jeweller and charm maker",
+                "Cuts the company's rings and amulet, and found jewellery into rough gems.", "emblem_goblet", "portrait_mirela"),
             (Place.Kennel, "KENNEL", "Lyriel", "Beastmaster",
                 "Trains the wolf that runs with every archer.", "emblem_paw", "portrait_lyriel"),
         };
@@ -40,10 +45,11 @@ namespace ARPG
                 var on = entry.place == place;
                 var frame = PixelUi.Frame(row, entry.name, on ? "frame_tab_on_b3" : "frame_tab_b3", true);
                 var rect = frame.rectTransform;
-                rect.anchorMin = new Vector2(i / 3f, 0f);
-                rect.anchorMax = new Vector2((i + 1) / 3f, 1f);
-                rect.offsetMin = new Vector2(i == 0 ? 0f : 2f, 0f);
-                rect.offsetMax = new Vector2(i == 2 ? 0f : -2f, 0f);
+                var n = (float)Places.Length;
+                rect.anchorMin = new Vector2(i / n, 0f);
+                rect.anchorMax = new Vector2((i + 1) / n, 1f);
+                rect.offsetMin = new Vector2(i == 0 ? 0f : 1f, 0f);
+                rect.offsetMax = new Vector2(i == Places.Length - 1 ? 0f : -1f, 0f);
                 var button = frame.gameObject.AddComponent<Button>();
                 button.targetGraphic = frame;
                 var target = entry.place;
@@ -60,11 +66,14 @@ namespace ARPG
             }
 
             // Who keeps it.
-            var here = Places[(int)place];
+            var here = Places[0];
+            foreach (var entry in Places)
+                if (entry.place == place)
+                    here = entry;
             var card = Block(here.keeper, 78f);
             var picture = PixelUi.Frame(card, "Picture", "frame_portrait_b3").rectTransform;
             PixelUi.At(picture, 4f, 4f, 77f, 70f);
-            var face = PixelUi.Picture(picture, "Portrait", here.portrait).rectTransform;
+            var face = PixelUi.Picture(picture, "Portrait", PixelUi.Sprite(here.portrait) != null ? here.portrait : "portrait_archer").rectTransform;
             UiStyle.Place(face, new Vector2(0.5f, 0.5f), Vector2.zero, face.sizeDelta);
             var name = PixelUi.Label(card, here.keeper.ToUpperInvariant(), PixelUi.TitleFont, PixelUi.Gold);
             PixelUi.At(name.rectTransform, 88f, 8f, 200f, 12f);
@@ -83,6 +92,12 @@ namespace ARPG
                     break;
                 case Place.Armoury:
                     DrawArmoury();
+                    break;
+                case Place.Fletcher:
+                    DrawFletcher();
+                    break;
+                case Place.Jeweller:
+                    DrawJeweller();
                     break;
                 default:
                     DrawKennel();
@@ -111,48 +126,10 @@ namespace ARPG
 
         // --- The Armoury ---------------------------------------------------------------------------------------------
 
-        readonly List<string> blueprintKeys = new List<string>();
-
         void DrawArmoury()
         {
-            Heading("THE FORGE");
-            // One row for each kind, the best look he knows (2026-11-22): a lesser blueprint never shows beside a better one.
-            blueprintKeys.Clear();
-            foreach (var kind in BlueprintRules.Kinds)
-            {
-                var best = session.Meta.BestKey(kind);
-                if (best != null)
-                    blueprintKeys.Add(best);
-            }
-            if (blueprintKeys.Count == 0)
-                Note("No blueprints yet. They drop now and then, most often from bosses and elites. Bring one home through the portal and " +
-                     "Thorin knows it for good.");
-            else
-                Note("A forged piece is Rare. It goes into the bag, and every new archer starts in it.");
-            foreach (var key in blueprintKeys)
-            {
-                if (!BlueprintRules.TryParse(key, out var kind, out var look))
-                    continue;
-                var cost = BlueprintRules.ForgeCost(look);
-                var kit = session.Meta.ForgedFor(kind);
-                var card = Block(key, 42f);
-                Tile(card, 4f, 4f, 34f, new Item(kind, ItemRarity.Rare, ItemNames.LevelOfLook(kind, look)), null);
-                var name = PixelUi.Label(card, ItemNames.LookName(kind, look).ToUpperInvariant(), PixelUi.TitleFont, PixelUi.Gold);
-                PixelUi.Across(name.rectTransform, 7f, 12f, 44f, 90f);
-                var now = kit != null ? $"Starting kit: {ItemComparison.Name(kit)}, level {kit.ItemLevel}" : "Not yet forged";
-                now += look + 1 < ItemNames.LookCount(kind) ? $" <color=#CC342C>·</color> Better: {ItemNames.LookName(kind, look + 1)}" : " <color=#CC342C>·</color> The best there is";
-                var text = PixelUi.Label(card, $"{ItemComparison.KindName(kind)} <color=#CC342C>·</color> {now}", PixelUi.BodyFont, PixelUi.Text);
-                PixelUi.Across(text.rectTransform, 23f, 12f, 44f, 90f);
-                var captured = key;
-                PriceButton(card, "FORGE", cost, session.Inventory.CanFit(new Item(kind, ItemRarity.Rare, 1)), () =>
-                {
-                    var item = session.Forge(captured);
-                    if (item == null)
-                        return;
-                    Sfx.Play(SoundId.LevelUp, 0.7f);
-                    (HintBanner.Current != null ? HintBanner.Current : HintBanner.Create()).Show($"Thorin forged a {ItemComparison.Name(item)}. It is in your bag.");
-                });
-            }
+            Heading("COMPANY ARMOUR");
+            CompanyGear(GearKeeper.Thorin);
 
             // The vault: what is in it is safe from every death. A tap moves an item between it and the bag.
             var slots = session.Meta.StashSlots;
@@ -178,7 +155,7 @@ namespace ARPG
             // Thorin buys what she brings home (Garrett's trade, 2026-10-17): the Bag opens with its prices.
             var loot = 0;
             foreach (var item in carried)
-                if (!item.IsBlueprint)
+                if (!item.IsBlueprint && !item.IsCompanyIssue)
                     loot++;
             var sell = Block("Sell", 42f);
             var title = PixelUi.Label(sell, "SELL LOOT", PixelUi.TitleFont, PixelUi.Gold);
@@ -187,6 +164,194 @@ namespace ARPG
                 PixelUi.BodyFont, PixelUi.Text);
             PixelUi.Across(count.rectTransform, 23f, 12f, 8f, 90f);
             TextButton(sell, "SELL", loot > 0, 78f, () => InventoryScreen.Current?.OpenAtMerchant());
+        }
+
+        // --- The fletcher and the jeweller (2026-11-26) --------------------------------------------------------------
+
+        void DrawFletcher()
+        {
+            Heading("THE BOW SHE IS ISSUED");
+            var choice = Block("Bow choice", 34f);
+            var label = PixelUi.Label(choice, "Every archer leaves camp with", PixelUi.BodyFont, PixelUi.Text, TextAnchor.MiddleLeft);
+            UiStyle.Stretch(label.rectTransform);
+            label.rectTransform.offsetMin = new Vector2(8f, 0f);
+            var longbow = session.Meta.IssuedBow == ItemSlot.TwoHandWeapon;
+            TextButton(choice, "LONGBOW", true, 76f, () => session.ChooseIssuedBow(ItemSlot.TwoHandWeapon), longbow);
+            var shortBow = Pressable(choice, "SHORT BOW", true, 76f, () => session.ChooseIssuedBow(ItemSlot.Weapon), !longbow);
+            shortBow.anchoredPosition = new Vector2(-86f, 0f);
+            var text = PixelUi.Label(shortBow, "SHORT BOW", PixelUi.BodyFont, PixelUi.Gold, TextAnchor.MiddleCenter);
+            UiStyle.Stretch(text.rectTransform);
+
+            Heading("COMPANY BOWS AND QUIVERS");
+            CompanyGear(GearKeeper.Fletcher);
+        }
+
+        void DrawJeweller()
+        {
+            Heading("COMPANY RINGS AND AMULET");
+            CompanyGear(GearKeeper.Jeweller);
+        }
+
+        // What the company's piece of each of a keeper's kinds is now, and raising it a rank with his material and coins.
+        void CompanyGear(GearKeeper keeper)
+        {
+            var material = CompanyGearRules.MaterialOf(keeper);
+            var stock = Block("Material", 26f);
+            var picture = ItemIcons.Picture(ItemArtNames.ForMaterial(material));
+            if (picture != null)
+            {
+                var icon = UiStyle.Image(stock, "Material", Color.white);
+                icon.sprite = picture;
+                PixelUi.At(icon.rectTransform, 6f, 5f, 16f, 16f);
+            }
+            var have = PixelUi.Label(stock, $"{CompanyGearRules.MaterialName(material).ToUpperInvariant()}  {session.Meta.Material(material)}",
+                PixelUi.TitleFont, PixelUi.Gold, TextAnchor.MiddleLeft);
+            UiStyle.Stretch(have.rectTransform);
+            have.rectTransform.offsetMin = new Vector2(28f, 0f);
+            var where = PixelUi.Label(stock, "Found in the levels, kept at once", PixelUi.BodyFont, PixelUi.TextDim, TextAnchor.MiddleRight);
+            UiStyle.Stretch(where.rectTransform);
+            where.rectTransform.offsetMax = new Vector2(-8f, 0f);
+
+            foreach (var kind in CompanyGearRules.KindsOf(keeper))
+                GearCard(kind);
+            Note("Every archer starts a contract in the company's gear; a rank raised is hers at once. Tap a piece to wear it again.");
+            Recycling(keeper, material);
+        }
+
+        // Found gear of the keeper's kinds in the bag, taken apart for his material (2026-11-26): a tap takes one, a
+        // button every Magic piece (never a named legendary, a trinket or an upgrade).
+        void Recycling(GearKeeper keeper, CompanyMaterial material)
+        {
+            var mine = new List<Item>();
+            foreach (var item in session.Inventory.Items)
+                if (CompanyGearRules.KeeperOf(item.Slot) == keeper && CompanyGearRules.RecycleYield(item) > 0)
+                    mine.Add(item);
+            var stuff = CompanyGearRules.MaterialName(material).ToLowerInvariant();
+            Heading("RECYCLE <color=#CC342C>·</color> TAP A PIECE IN THE BAG");
+            if (mine.Count == 0)
+            {
+                Note(keeper == GearKeeper.Jeweller
+                    ? $"No found rings, amulets or trinkets in the bag. Bring them home and she cuts them into {stuff}."
+                    : $"Nothing of his in the bag. Bring found gear home and he takes it apart for {stuff}.");
+                return;
+            }
+            Tiles("Recycle", mine, mine.Count, item =>
+            {
+                var gained = session.Recycle(item);
+                if (gained <= 0)
+                    return;
+                Sfx.Play(SoundId.Pickup);
+                (HintBanner.Current != null ? HintBanner.Current : HintBanner.Create()).Show($"{ItemComparison.Name(item)} gave {gained} {stuff}.");
+            });
+            var magic = 0;
+            foreach (var item in mine)
+                if (item.Rarity == ItemRarity.Magic && item.Legendary == LegendaryId.None && !PowerScore.IsUpgrade(session.Equipment, item, session.Level, session.Talents.Bonuses))
+                    magic += CompanyGearRules.RecycleYield(item);
+            var row = Block("Recycle all", 34f);
+            var label = PixelUi.Label(row, magic > 0 ? $"Every Magic piece but upgrades: {magic} {stuff}" : "No Magic pieces to spare.",
+                PixelUi.BodyFont, PixelUi.Text, TextAnchor.MiddleLeft);
+            UiStyle.Stretch(label.rectTransform);
+            label.rectTransform.offsetMin = new Vector2(8f, 0f);
+            TextButton(row, "ALL MAGIC", magic > 0, 84f, () =>
+            {
+                if (session.RecycleAll(keeper, ItemRarity.Magic) > 0)
+                    Sfx.Play(SoundId.Pickup);
+            });
+        }
+
+        void GearCard(ItemSlot kind)
+        {
+            var rank = session.Meta.GearRank(kind);
+            var piece = CompanyGearRules.Make(kind, rank);
+            var maxed = rank >= CompanyGearRules.MaxRank;
+            var card = Block(kind.ToString(), 52f);
+            var place = kind == ItemSlot.Shield ? ItemSlot.OffHand : kind == ItemSlot.TwoHandWeapon ? ItemSlot.Weapon : kind;
+            var bowNotIssued = (kind == ItemSlot.Weapon || kind == ItemSlot.TwoHandWeapon) && session.Meta.IssuedBow != kind;
+            Tile(card, 4f, 4f, 44f, piece, bowNotIssued ? null : _ =>
+            {
+                if (session.WearCompanyPiece(place))
+                    Sfx.Play(SoundId.Pickup);
+            });
+            var name = PixelUi.Label(card, ItemComparison.Name(piece).ToUpperInvariant(), PixelUi.TitleFont, LootColors.Of(piece.Rarity));
+            PixelUi.At(name.rectTransform, 54f, 5f, 200f, 12f);
+            var x = 54f + Mathf.Min(150f, name.preferredWidth) + 6f;
+            for (var i = 0; i < CompanyGearRules.MaxRank; i++)
+            {
+                var pip = UiStyle.Image(card, "Pip", i < rank ? PixelUi.Gold : PipOff);
+                PixelUi.At(pip.rectTransform, x + i * 5f, 9f, 3f, 4f);
+            }
+            var kindName = CompanyGearRules.KindName(kind) + (bowNotIssued ? " (not issued)" : "");
+            var info = PixelUi.Label(card, $"{kindName} <color=#CC342C>·</color> rank {rank} <color=#CC342C>·</color> item level {piece.ItemLevel}",
+                PixelUi.BodyFont, PixelUi.TextDim);
+            PixelUi.Across(info.rectTransform, 18f, 10f, 54f, 90f);
+            var line = PixelUi.Label(card, maxed ? AffixLine(piece) : NextLine(piece, CompanyGearRules.Make(kind, rank + 1)),
+                PixelUi.BodyFont, PixelUi.Text);
+            PixelUi.Across(line.rectTransform, 30f, 20f, 54f, 90f);
+            if (maxed)
+            {
+                var done = PixelUi.Label(card, "FINEST", PixelUi.BodyFont, PixelUi.GoldDim, TextAnchor.MiddleCenter);
+                UiStyle.Place(done.rectTransform, new Vector2(1f, 0.5f), new Vector2(-6f, 0f), new Vector2(78f, 28f));
+                return;
+            }
+            RaiseButton(card, kind, rank);
+        }
+
+        // The piece's affixes in a line ("Life 31 · Armor 12").
+        static string AffixLine(Item item)
+        {
+            if (item.Affixes.Count == 0)
+                return "No affixes yet";
+            var parts = new List<string>();
+            foreach (var affix in item.Affixes)
+                parts.Add($"{ItemComparison.AffixLabel(affix.Id)} {Number(affix.Id, affix.Value)}");
+            return string.Join(" <color=#CC342C>·</color> ", parts);
+        }
+
+        // What the next rank brings: a new affix, a better look, more of what it has.
+        static string NextLine(Item now, Item next)
+        {
+            var parts = new List<string>();
+            if (ItemComparison.Name(next) != ItemComparison.Name(now) && ItemNames.LookIndex(next.Slot, next.ItemLevel) != ItemNames.LookIndex(now.Slot, now.ItemLevel))
+                parts.Add(ItemNames.BaseName(next.Slot, next.ItemLevel));
+            foreach (var affix in next.Affixes)
+            {
+                if (now.AffixSum(affix.Id) <= 0f)
+                    parts.Add($"<color=#F0C840>new: {ItemComparison.AffixLabel(affix.Id)} {Number(affix.Id, affix.Value)}</color>");
+            }
+            if (parts.Count == 0)
+                parts.Add("every number up");
+            return "Next rank: " + string.Join(", ", parts);
+        }
+
+        static string Number(AffixId id, float value) => ItemComparison.IsPercent(id) ? $"+{value:0.#}%" : $"+{value:0.#}";
+
+        // A keeper's raise button: the material over the coins, dim and red where short.
+        void RaiseButton(RectTransform card, ItemSlot kind, int rank)
+        {
+            var material = CompanyGearRules.MaterialOf(kind);
+            var need = CompanyGearRules.MaterialCost(rank);
+            var cost = CompanyGearRules.CoinCost(rank);
+            var enough = session.Meta.Material(material) >= need;
+            var afford = session.Gold >= cost;
+            var frame = Pressable(card, "RAISE", enough && afford, 78f, () =>
+            {
+                if (!session.RaiseCompanyGear(kind))
+                    return;
+                Sfx.Play(SoundId.LevelUp, 0.7f);
+                var piece = CompanyGearRules.Make(kind, session.Meta.GearRank(kind));
+                (HintBanner.Current != null ? HintBanner.Current : HintBanner.Create()).Show($"The company's {ItemComparison.Name(piece)} is ready.");
+            }, false);
+            frame.sizeDelta = new Vector2(78f, 40f);
+            var top = PixelUi.Label(frame, "RAISE", PixelUi.BodyFont, enough && afford ? PixelUi.Gold : PixelUi.TextDim, TextAnchor.UpperCenter);
+            PixelUi.Across(top.rectTransform, 3f, 10f, 0f, 0f);
+            var stuff = PixelUi.Label(frame, $"{need} {CompanyGearRules.MaterialName(material).ToLowerInvariant()}", PixelUi.BodyFont,
+                enough ? PixelUi.Text : PixelUi.Red, TextAnchor.UpperCenter);
+            PixelUi.Across(stuff.rectTransform, 14f, 10f, 0f, 0f);
+            var price = PixelUi.Label(frame, cost.ToString("N0"), PixelUi.BodyFont, afford ? PixelUi.Text : PixelUi.Red, TextAnchor.UpperCenter);
+            PixelUi.Across(price.rectTransform, 25f, 10f, 0f, 11f);
+            var coin = PixelUi.Picture(frame, "Coin", "icon_coin").rectTransform;
+            UiStyle.Place(coin, new Vector2(0.5f, 1f), new Vector2(price.preferredWidth / 2f + 1f, -25f), coin.sizeDelta);
+            coin.pivot = new Vector2(0.5f, 1f);
         }
 
         // --- The Kennel ----------------------------------------------------------------------------------------------

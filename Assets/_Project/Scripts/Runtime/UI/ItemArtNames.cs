@@ -22,6 +22,8 @@ namespace ARPG
                 return "blueprint";
             if (item.Legendary != LegendaryId.None)
                 return ForLegendary(item.Legendary);
+            if (item.Slot == ItemSlot.Trinket)
+                return ForTrinket(TrinketRules.Of(item)?.Id);
             return ForLook(item.Slot, ItemNames.LookIndex(item.Slot, item.ItemLevel));
         }
 
@@ -32,6 +34,14 @@ namespace ARPG
             LegendaryId.EyeOfTheStorm => "eye_of_the_storm",
             _ => AppearanceRules.LegendaryLook(id),
         };
+
+        static readonly string[] TrinketPictures = System.Array.ConvertAll(TrinketRules.Designs, design => ForTrinket(design.Id));
+
+        /// <summary>A trinket design's picture (2026-11-26).</summary>
+        public static string ForTrinket(string design) => "trinket_" + (design ?? TrinketRules.Designs[0].Id);
+
+        /// <summary>An upgrade material's picture (2026-11-26).</summary>
+        public static string ForMaterial(CompanyMaterial material) => "material_" + material.ToString().ToLowerInvariant();
 
         /// <summary>The picture of a kind's look (0 the first).</summary>
         public static string ForLook(ItemSlot kind, int index)
@@ -48,6 +58,7 @@ namespace ARPG
                 ItemSlot.Shield or ItemSlot.OffHand => AppearanceRules.ShieldLooks,
                 ItemSlot.Ring or ItemSlot.Ring2 => Rings,
                 ItemSlot.Amulet => Amulets,
+                ItemSlot.Trinket => TrinketPictures,
                 _ => null,
             };
             return looks == null ? null : looks[System.Math.Max(0, System.Math.Min(index, looks.Length - 1))];

@@ -201,6 +201,60 @@ def fence(alongx=True):
     return im.outline()
 
 
+def fletcher_bench():
+    """Oswin's bench (2026-11-26): a trestle table with a bow laid on it, bundles of shafts and a pot of feathers, and a rack
+    behind it of bows hung to season."""
+    im = Img(34, 30)
+    # The rack behind: two posts, a bar, three bows hung from it.
+    im.rect(3, 2, 4, 20, W[1]); im.rect(29, 2, 30, 20, W[1]); im.rect(3, 2, 30, 3, W[2]); im.rect(3, 2, 30, 2, W[3])
+    for bx in (9, 16, 23):
+        for y in range(4, 17):
+            im.set(bx - round(2.2 * math.sin(math.pi * (y - 4) / 12)), y, W[3] if y < 10 else W[2])
+        im.line(bx, 4, bx, 16, P_[3])
+    # The table: its top in light wood, its front darker, legs.
+    poly(im, [(1, 18), (31, 15), (33, 19), (3, 23)], W[2])
+    poly(im, [(3, 23), (33, 19), (33, 21), (3, 25)], W[1])
+    im.line(1, 18, 31, 15, W[3])
+    for x, y in ((4, 24), (30, 20)):
+        im.rect(x, y, x + 1, y + 5, W[0])
+    # A bow being strung, laid on the table.
+    im.line(5, 19, 24, 16, W[3]); im.line(5, 20, 24, 17, P_[3])
+    # Bundles of shafts tied with red, and a pot of feathers.
+    for x in (25, 27):
+        im.rect(x, 11, x + 1, 17, P_[2]); im.set(x, 14, R[2]); im.set(x + 1, 14, R[2])
+    im.rect(14, 15, 17, 18, I[1]); im.rect(14, 15, 17, 15, I[2])
+    for x, c in ((14, R[3]), (15, "f2eede"), (16, R[2]), (17, "f2eede")):
+        im.set(x, 14, c); im.set(x, 13, c if x % 2 else R[1])
+    texture(im, 21)
+    return im.outline()
+
+
+def jeweller_table():
+    """Mirela's table (2026-11-26): a small table under a blue cloth with a gold fringe, a lamp, a little chest open on rings
+    and stones, a scale."""
+    im = Img(30, 28)
+    blue = ["1a2246", "2e3e7a", "4a62a8", "7a90d0"]
+    # The table under its cloth.
+    poly(im, [(2, 13), (24, 10), (28, 14), (6, 17)], blue[2])
+    poly(im, [(6, 17), (28, 14), (28, 22), (6, 26)], blue[1])
+    poly(im, [(2, 13), (6, 17), (6, 26), (2, 22)], blue[0])
+    im.line(2, 13, 24, 10, blue[3])
+    for x in range(6, 29, 2):
+        im.set(x, 26 - round((x - 6) * 4 / 22), B[2])
+    # The open chest of rings and stones.
+    im.rect(8, 10, 14, 13, W[1]); im.rect(8, 7, 14, 9, W[2]); im.rect(8, 7, 14, 7, W[3])
+    im.rect(9, 10, 13, 11, "3a1a24")
+    for x, c in ((9, "e33a2e"), (10, B[2]), (11, "2fd4c4"), (12, B[3]), (13, "8a4ac8")):
+        im.set(x, 10, c)
+    # A brass scale, its two pans.
+    im.rect(19, 4, 19, 11, B[1]); im.rect(16, 4, 22, 4, B[2]); im.rect(15, 6, 17, 6, B[2]); im.rect(21, 7, 23, 7, B[2])
+    im.line(16, 4, 15, 6, B[0]); im.line(22, 4, 23, 7, B[0])
+    # A little lamp at the back.
+    im.rect(24, 4, 25, 9, B[1]); im.set(24, 3, PAL["fire"][2]); im.set(25, 2, PAL["fire"][3])
+    texture(im, 22)
+    return im.outline()
+
+
 # name: (maker, foot) for the pieces redone here; camp_art.py takes these over its own.
 PIECES = {
     "camp_billboard": (billboard, 4),
@@ -219,4 +273,6 @@ PIECES = {
     "camp_lamp": (lamp, 2),
     "camp_banner": (banner, 2),
     "camp_grave": (grave, 6),
+    "camp_fletcher_bench": (fletcher_bench, 4),
+    "camp_jeweller_table": (jeweller_table, 4),
 }

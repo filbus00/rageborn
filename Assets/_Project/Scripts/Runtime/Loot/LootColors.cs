@@ -15,6 +15,7 @@ namespace ARPG
                 case ItemRarity.Common: return new Color32(0x9A, 0x9A, 0x9A, 255);
                 case ItemRarity.Magic: return new Color32(0x4A, 0x7B, 0xD4, 255);
                 case ItemRarity.Rare: return new Color32(0xE0, 0xC0, 0x40, 255);
+                case ItemRarity.Mythic: return new Color32(0x3C, 0xE8, 0xD2, 255);
                 default: return new Color32(0xE0, 0x7A, 0x20, 255);
             }
         }
@@ -30,6 +31,7 @@ namespace ARPG
                 case ItemRarity.Common: return 1.0f;
                 case ItemRarity.Magic: return 1.6f;
                 case ItemRarity.Rare: return 2.4f;
+                case ItemRarity.Mythic: return 5f;
                 default: return 3.6f;
             }
         }

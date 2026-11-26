@@ -99,7 +99,7 @@ namespace ARPG
         public static void OpenFallen() => current?.OpenAt(Page.Fallen, null);
 
         /// <summary>A keeper of the camp: the Yard (0), the Armoury (1) or the Kennel (2) in Quarters.</summary>
-        public static void OpenQuarters(int placeIndex) => current?.OpenAt(Page.Quarters, (Place)Mathf.Clamp(placeIndex, 0, 2));
+        public static void OpenQuarters(int placeIndex) => current?.OpenAt(Page.Quarters, (Place)Mathf.Clamp(placeIndex, 0, 4));
 
         /// <summary>Closes the menu over the camp.</summary>
         public static void CloseCamp()

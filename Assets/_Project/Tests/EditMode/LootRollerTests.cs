@@ -107,31 +107,31 @@ namespace ARPG.Tests
                 counts[item.Rarity] = n + 1;
             }
 
-            Assert.Greater(counts[ItemRarity.Common], counts[ItemRarity.Magic]);
+            // No Common drops since 2026-11-26: Common's weight falls to Magic.
+            Assert.IsFalse(counts.ContainsKey(ItemRarity.Common));
             Assert.Greater(counts[ItemRarity.Magic], counts[ItemRarity.Rare]);
             Assert.Greater(counts[ItemRarity.Rare], counts[ItemRarity.Legendary]);
             Assert.Greater(counts[ItemRarity.Legendary], 0);
         }
 
         [Test]
-        public void TheCommonShare_IsAboutSixtyPercent_OfDrops()
+        public void NoDropIsCommon_SoMagicTakesItsShare()
         {
+            // The owner, 2026-11-26: "Remove common quality items". Common's 60 percent falls to Magic (about 90).
             var roller = new LootRoller(33);
             var drops = 0;
-            var common = 0;
+            var magic = 0;
             for (var i = 0; i < 300_000; i++)
             {
                 var item = roller.RollDrop(LootSource.NormalEnemy, 1, 0f);
                 if (item == null)
                     continue;
                 drops++;
-                if (item.Rarity == ItemRarity.Common)
-                    common++;
+                Assert.AreNotEqual(ItemRarity.Common, item.Rarity);
+                if (item.Rarity == ItemRarity.Magic)
+                    magic++;
             }
-
-            // Bad luck protection raises the legendary weight most of the time (it kicks in after 300 kills without
-            // one, and a legendary is rare), which pulls the common share down a point or so from the base 60.
-            Assert.AreEqual(0.60f, common / (float)drops, 0.02f);
+            Assert.Greater(magic / (float)drops, 0.85f);
         }
 
         [Test]
@@ -191,24 +191,24 @@ namespace ARPG.Tests
         [Test]
         public void ADrop_CarriesAffixes_MatchingItsRarity()
         {
-            // Roll until a Common and a Rare of the same slot both drop, and check the docs' affix counts:
-            // Common 0, Rare 2 to 3 of each kind (capped by the slot's eligible pool).
+            // Roll until a Magic and a Rare of the same slot both drop, and check the docs' affix counts:
+            // Magic 1 of each kind, Rare 2 to 3 of each kind (capped by the slot's eligible pool). No Common drops since 2026-11-26.
             var roller = new LootRoller(7);
-            Item common = null, rare = null;
-            for (var i = 0; i < 20_000 && (common == null || rare == null); i++)
+            Item magic = null, rare = null;
+            for (var i = 0; i < 20_000 && (magic == null || rare == null); i++)
             {
                 var item = roller.RollDrop(LootSource.NormalEnemy, 60, 0f);
                 if (item == null || item.Slot != ItemSlot.Weapon)
                     continue;
-                if (item.Rarity == ItemRarity.Common)
-                    common ??= item;
+                if (item.Rarity == ItemRarity.Magic)
+                    magic ??= item;
                 else if (item.Rarity == ItemRarity.Rare)
                     rare ??= item;
             }
 
-            Assert.IsNotNull(common, "a common weapon should drop within 20000 kills");
+            Assert.IsNotNull(magic, "a magic weapon should drop within 20000 kills");
             Assert.IsNotNull(rare, "a rare weapon should drop within 20000 kills");
-            Assert.AreEqual(0, common.Affixes.Count);
+            Assert.LessOrEqual(magic.Affixes.Count, 2);
             Assert.GreaterOrEqual(rare.Affixes.Count, 2);
         }
 
@@ -350,20 +350,16 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void NormalEnemy_StillHasNoRarityFloor()
+        public void NormalEnemy_FloorIsMagic()
         {
-            // A regression check: adding Champion and Elite floors must not touch the normal enemy's own table.
+            // Since 2026-11-26 every kill's floor is Magic (no Common items).
             var roller = new LootRoller(21);
-            var sawCommon = false;
-
-            for (var i = 0; i < 2000 && !sawCommon; i++)
+            for (var i = 0; i < 2000; i++)
             {
                 var item = roller.RollDrop(LootSource.NormalEnemy, 1, 0f);
-                if (item != null && item.Rarity == ItemRarity.Common)
-                    sawCommon = true;
+                if (item != null)
+                    Assert.GreaterOrEqual(item.Rarity, ItemRarity.Magic);
             }
-
-            Assert.IsTrue(sawCommon);
         }
 
         [Test]

@@ -85,7 +85,7 @@ namespace ARPG.Tests
             Assert.AreEqual(1, next.Level);
             Assert.AreEqual(0, next.DeepestDepth);
             Assert.IsFalse(next.RunStarted);
-            Assert.AreEqual(ItemRarity.Common, next.Equipment.Weapon.Rarity, "the plain starting bow: no kit is bought (2026-11-11)");
+            Assert.AreEqual(1, next.Equipment.Weapon.Issue, "the company's rank 1 bow: no kit is bought (2026-11-11, 2026-11-26)");
             Assert.AreEqual(1, next.Meta.Rank(MetaUpgradeId.Might));
             Assert.AreEqual(1, next.Meta.Runs);
         }

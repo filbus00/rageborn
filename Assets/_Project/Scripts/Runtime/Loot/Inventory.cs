@@ -30,7 +30,7 @@ namespace ARPG
                     return new Vector2Int(2, 2);
                 case ItemSlot.Belt:
                     return new Vector2Int(2, 1);
-                default: // amulet and rings
+                default: // amulet, rings and the trinket
                     return new Vector2Int(1, 1);
             }
         }

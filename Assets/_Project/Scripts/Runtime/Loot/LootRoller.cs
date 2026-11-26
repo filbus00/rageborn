@@ -72,8 +72,15 @@ namespace ARPG
         {
             random = new System.Random(seed);
             legendaryRandom = new System.Random(seed ^ 0x5EED1E6);
+            trinketRandom = new System.Random(seed ^ 0x7121E7);
             KillsSinceLegendary = killsSinceLegendary < 0 ? 0 : killsSinceLegendary;
         }
+
+        // Trinkets (2026-11-26) roll from a stream of their own, so every other roll of a seed stays where it was.
+        readonly System.Random trinketRandom;
+
+        /// <summary>A trinket from a kill or a chest, far more rarely than a legendary (<see cref="TrinketRules"/>), or null.</summary>
+        public Item RollTrinket(LootSource source, int itemLevel) => TrinketRules.Roll(source, itemLevel, trinketRandom);
 
         /// <summary>Kills since the last legendary drop. Every kill counts, whether or not it dropped anything.</summary>
         public int KillsSinceLegendary { get; private set; }
@@ -263,7 +270,8 @@ namespace ARPG
                     // One roll for the whole drop, not per item: either every item from this kill floors at Rare or none do.
                     return random.NextDouble() < EliteRareFloorChance ? ItemRarity.Rare : ItemRarity.Magic;
                 default:
-                    return ItemRarity.Common;
+                    // No Common drops (2026-11-26, the owner: "Remove common quality items"): Magic at the least.
+                    return ItemRarity.Magic;
             }
         }
 

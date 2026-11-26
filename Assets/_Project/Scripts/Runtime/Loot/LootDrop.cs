@@ -47,6 +47,10 @@ namespace ARPG
 
         public bool IsGold => Item == null;
 
+        /// <summary>Upgrade material on the ground (2026-11-26), picked up like gold; null for gold or an item. Its amount is
+        /// <see cref="GoldAmount"/>.</summary>
+        public CompanyMaterial? MaterialKind { get; private set; }
+
         public Vector2 GroundPosition { get; private set; }
 
         /// <summary>Creates the two renderers. Called once when the drop is made.</summary>
@@ -94,6 +98,7 @@ namespace ARPG
         internal void ShowItem(Item item, Vector2 ground, Vector2 from)
         {
             Item = item;
+            MaterialKind = null;
             GoldAmount = 0;
             Place(ground);
             var start = Elevation.World2(from);
@@ -126,9 +131,37 @@ namespace ARPG
             Update();
         }
 
+        /// <summary>Shows upgrade material at <paramref name="ground"/>: its picture, a small glint, no name.</summary>
+        internal void ShowMaterial(CompanyMaterial material, int amount, Vector2 ground)
+        {
+            ShowGold(amount, ground);
+            MaterialKind = material;
+            var picture = ItemIcons.Picture(ItemArtNames.ForMaterial(material));
+            if (picture != null)
+            {
+                marker.sprite = picture;
+                marker.color = Color.white;
+                // About half a unit across, whatever the picture's own pixels per unit.
+                var size = MaterialSize / Mathf.Max(0.01f, picture.rect.width / picture.pixelsPerUnit);
+                marker.transform.localScale = new Vector3(size, size, 1f);
+            }
+            else
+                marker.color = MaterialColour(material);
+        }
+
+        const float MaterialSize = 0.45f;
+
+        public static Color MaterialColour(CompanyMaterial material) => material switch
+        {
+            CompanyMaterial.Iron => new Color(0.72f, 0.74f, 0.8f),
+            CompanyMaterial.Heartwood => new Color(0.78f, 0.52f, 0.28f),
+            _ => new Color(0.45f, 0.9f, 0.85f),
+        };
+
         internal void ShowGold(int amount, Vector2 ground, int pile = 0)
         {
             Item = null;
+            MaterialKind = null;
             GoldAmount = amount;
             Place(ground);
             flying = false;
@@ -152,6 +185,7 @@ namespace ARPG
         internal void Hide()
         {
             Item = null;
+            MaterialKind = null;
             GoldAmount = 0;
             gameObject.SetActive(false);
         }
@@ -350,8 +384,9 @@ namespace ARPG
             if (!flying)
             {
                 flying = true;
+                materialScale = marker.transform.localScale.y;
                 flyingSince = Time.time;
-                var coin = WorldArt.Get(FlyingCoinName);
+                var coin = MaterialKind == null ? WorldArt.Get(FlyingCoinName) : null;
                 if (coin != null)
                 {
                     marker.sprite = coin;
@@ -361,7 +396,7 @@ namespace ARPG
             }
             Place(ground);
             var (hop, face) = AutoLootRules.CoinFlight(Time.time - flyingSince);
-            var size = marker.sprite == coinSprite ? GoldScale : 1f;
+            var size = MaterialKind != null ? materialScale : marker.sprite == coinSprite ? GoldScale : 1f;
             marker.transform.localPosition = new Vector3(0f, hop, 0f);
             marker.transform.localScale = new Vector3(size * Mathf.Max(0.15f, Mathf.Abs(face)), size, 1f);
         }
@@ -370,6 +405,7 @@ namespace ARPG
         const string FlyingCoinName = "gold_coin";
         bool flying;
         float flyingSince;
+        float materialScale = 1f;
 
         void Place(Vector2 ground)
         {

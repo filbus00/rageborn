@@ -87,7 +87,7 @@ namespace ARPG.Tests
         }
 
         [Test]
-        public void Thorin_ForgesAKnownBlueprint_IntoTheBag_AndTheKitAfterADeath()
+        public void Thorin_ForgesAKnownBlueprint_IntoTheBag_ButTheKitAfterADeathIsTheCompanys()
         {
             var session = new GameSession(1);
             Assert.IsNull(session.Forge("Chest/2"), "unknown");
@@ -101,7 +101,8 @@ namespace ARPG.Tests
             Assert.AreEqual("Scale Mail", ItemComparison.Name(item));
             Assert.AreEqual(100000 - BlueprintRules.ForgeCost(2), session.Gold);
             CollectionAssert.Contains(new List<Item>(session.Inventory.Items), item);
-            Assert.AreSame(item, session.NextRun(2, false).Equipment.Chest);
+            // Since 2026-11-26 a death leaves her in the company's gear, not the forged piece.
+            Assert.IsTrue(session.NextRun(2, false).Equipment.Chest.IsCompanyIssue);
         }
 
         [Test]

@@ -36,7 +36,7 @@ namespace ARPG
         /// </summary>
         public static bool Wants(PickupRule rule, ItemRarity rarity, bool isUpgrade)
         {
-            if (rarity == ItemRarity.Legendary || isUpgrade)
+            if (rarity >= ItemRarity.Legendary || isUpgrade)
                 return true;
             switch (rule)
             {

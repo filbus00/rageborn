@@ -39,7 +39,28 @@ namespace ARPG
             MigrateFrom21, // 21 to 22: no company record existed; a new archer signs on, nothing is cleared, nobody has fallen.
             MigrateFrom22, // 22 to 23: no boss kills were kept for the company; Wild Volley is not yet learned.
             MigrateFrom23, // 23 to 24: no skill books existed; a company that had felled a boss knew Wild Volley and keeps it.
+            MigrateFrom24, // 24 to 25: no company gear existed; each kind's rank comes from the best blueprint Thorin knew.
         };
+
+        static SaveData MigrateFrom24(SaveData data)
+        {
+            data.metaGearRanks = new List<TalentData>();
+            data.metaMaterials = new List<TalentData>();
+            data.issuedBow = "";
+            data.issuedTrinket = "";
+            data.runMaterials = 0;
+            var best = new Dictionary<ItemSlot, int>();
+            foreach (var key in data.metaBlueprints ?? new List<string>())
+                if (BlueprintRules.TryParse(key, out var kind, out var look) && (!best.TryGetValue(kind, out var known) || look > known))
+                    best[kind] = look;
+            foreach (var pair in best)
+            {
+                var rank = CompanyGearRules.RankFromBlueprint(pair.Value);
+                if (rank > 1)
+                    data.metaGearRanks.Add(new TalentData { id = pair.Key.ToString(), rank = rank });
+            }
+            return data;
+        }
 
         static SaveData MigrateFrom23(SaveData data)
         {
@@ -358,6 +379,14 @@ namespace ARPG
                 (run.Kills, run.Bosses, run.Coins, run.Items, run.Blueprints, run.RecordBefore, run.Seconds);
             foreach (var pair in session.Meta.Forged)
                 data.metaForged.Add(CaptureItem(pair.Value));
+            foreach (var pair in session.Meta.GearRanks)
+                data.metaGearRanks.Add(new TalentData { id = pair.Key.ToString(), rank = pair.Value });
+            foreach (CompanyMaterial material in Enum.GetValues(typeof(CompanyMaterial)))
+                if (session.Meta.Material(material) > 0)
+                    data.metaMaterials.Add(new TalentData { id = material.ToString(), rank = session.Meta.Material(material) });
+            data.issuedBow = session.Meta.IssuedBow.ToString();
+            data.issuedTrinket = session.Meta.IssuedTrinket;
+            data.runMaterials = run.Materials;
 
             foreach (var item in session.Stash)
                 data.stash.Add(CaptureItem(item));
@@ -424,6 +453,16 @@ namespace ARPG
             }
             foreach (var saved in data.metaForged ?? new List<ItemData>())
                 meta.SetForged(RestoreItem(saved, warnings));
+            foreach (var entry in data.metaGearRanks ?? new List<TalentData>())
+                if (TryParseEnum(entry.id, out ItemSlot gearKind))
+                    meta.SetGearRank(gearKind, entry.rank);
+            foreach (var entry in data.metaMaterials ?? new List<TalentData>())
+                if (TryParseEnum(entry.id, out CompanyMaterial material))
+                    meta.AddMaterial(material, entry.rank);
+            if (TryParseEnum(data.issuedBow, out ItemSlot issuedBow) && (issuedBow == ItemSlot.Weapon || issuedBow == ItemSlot.TwoHandWeapon))
+                meta.IssuedBow = issuedBow;
+            if (!string.IsNullOrEmpty(data.issuedTrinket))
+                meta.IssuedTrinket = data.issuedTrinket;
             session.RestoreMeta(meta);
             // After the meta: its bought charges are the roguelite's whole capacity.
             session.RestorePotion(data.potionCharges, data.potionKillProgress);
@@ -431,6 +470,7 @@ namespace ARPG
             var stats = session.Run;
             (stats.Kills, stats.Bosses, stats.Coins, stats.Items, stats.Blueprints, stats.RecordBefore, stats.Seconds) =
                 (data.runKills, data.runBosses, data.runCoins, data.runItems, data.runBlueprints, data.runRecordBefore, data.runSeconds);
+            stats.Materials = data.runMaterials;
             session.RerollsLeft = data.rerollsLeft;
             session.SentToStash = data.sentToStash;
             session.RunStarted = data.runStarted;
@@ -619,6 +659,7 @@ namespace ARPG
                 tempers = item.Tempers,
                 legendary = item.Legendary == LegendaryId.None ? "" : item.Legendary.ToString(),
                 blueprint = item.IsBlueprint,
+                issue = item.Issue,
             };
             foreach (var affix in item.Affixes)
                 data.affixes.Add(new AffixData { id = affix.Id.ToString(), tier = affix.Tier, value = affix.Value });
@@ -690,7 +731,7 @@ namespace ARPG
                 warnings?.Add($"Kept a {rarity} {slot} whose legendary ({data.legendary}) is unknown, without its power.");
                 legendary = LegendaryId.None;
             }
-            return new Item(slot, rarity, data.itemLevel, affixes.ToArray(), data.reforges, data.tempers, legendary, data.blueprint);
+            return new Item(slot, rarity, data.itemLevel, affixes.ToArray(), data.reforges, data.tempers, legendary, data.blueprint, data.issue);
         }
 
         // Enum.TryParse also accepts numbers and any defined value's number, so "7" would parse as a slot that does not

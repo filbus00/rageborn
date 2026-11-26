@@ -63,7 +63,15 @@ namespace ARPG
                 if (!AutoLootRules.InRange(origin, drop.GroundPosition))
                     continue;
 
-                if (drop.IsGold)
+                if (drop.MaterialKind is CompanyMaterial material)
+                {
+                    session.AddCompanyMaterial(material, drop.GoldAmount);
+                    Sfx.Play(SoundId.Pickup, 0.6f);
+                    DamageNumbers.Current?.ShowText(Elevation.Lifted(player.transform.position) + new Vector3(0f, 2f, 0f),
+                        $"+{drop.GoldAmount} {CompanyGearRules.MaterialName(material)}", LootDrop.MaterialColour(material), 36);
+                    loot.Release(drop);
+                }
+                else if (drop.IsGold)
                 {
                     var coins = drop.GoldAmount;
                     session.AddGold(coins);

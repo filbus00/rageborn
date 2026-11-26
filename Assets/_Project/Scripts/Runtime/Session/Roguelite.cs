@@ -252,6 +252,58 @@ namespace ARPG
             Changed?.Invoke();
         }
 
+        // The company's gear (2026-11-26, CompanyGearRules): each kind's rank (1 when never raised), the materials
+        // picked up, which bow the fletcher issues and which trinket the jeweller does. Saved.
+        readonly Dictionary<ItemSlot, int> gearRanks = new Dictionary<ItemSlot, int>();
+        readonly Dictionary<CompanyMaterial, int> materials = new Dictionary<CompanyMaterial, int>();
+
+        public int GearRank(ItemSlot kind)
+        {
+            if (kind == ItemSlot.Ring2)
+                kind = ItemSlot.Ring;
+            return gearRanks.TryGetValue(kind, out var rank) ? rank : 1;
+        }
+
+        public void SetGearRank(ItemSlot kind, int rank)
+        {
+            if (kind == ItemSlot.Ring2)
+                kind = ItemSlot.Ring;
+            gearRanks[kind] = CompanyGearRules.Clamp(rank);
+            Changed?.Invoke();
+        }
+
+        public IEnumerable<KeyValuePair<ItemSlot, int>> GearRanks => gearRanks;
+
+        public int Material(CompanyMaterial material) => materials.TryGetValue(material, out var count) ? count : 0;
+
+        public void AddMaterial(CompanyMaterial material, int amount)
+        {
+            if (amount == 0)
+                return;
+            materials[material] = System.Math.Max(0, Material(material) + amount);
+            Changed?.Invoke();
+        }
+
+        /// <summary>The bow the fletcher issues: the short bow (<see cref="ItemSlot.Weapon"/>) or the longbow.</summary>
+        public ItemSlot IssuedBow { get; set; } = ItemSlot.Weapon;
+
+        /// <summary>Which trinket the jeweller issued, from the one day she made them (2026-11-26, before trinkets were
+        /// found). Saved, no longer used.</summary>
+        public string IssuedTrinket { get; set; } = "";
+
+        /// <summary>The company's piece for a place, as issued now: the chosen bow in the weapon place.</summary>
+        public Item CompanyPiece(ItemSlot place)
+        {
+            var kind = place switch
+            {
+                ItemSlot.Weapon or ItemSlot.TwoHandWeapon => IssuedBow,
+                ItemSlot.OffHand => ItemSlot.Shield,
+                ItemSlot.Ring2 => ItemSlot.Ring,
+                _ => place,
+            };
+            return kind == ItemSlot.Trinket ? null : CompanyGearRules.Make(kind, GearRank(kind));
+        }
+
         public void RecordDepth(int depth)
         {
             if (depth > DeepestEver)

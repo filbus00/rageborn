@@ -23,6 +23,9 @@ namespace ARPG
         public static readonly Vector2Int Armoury = new Vector2Int(18, -4);
         public static readonly Vector2Int Kennel = new Vector2Int(-4, -18);
         public static readonly Vector2Int GraveStone = new Vector2Int(12, 20);
+        // 2026-11-26: Oswin the fletcher below the range, Mirela the jeweller between the start and the cart.
+        public static readonly Vector2Int Fletcher = new Vector2Int(-14, -12);
+        public static readonly Vector2Int Jeweller = new Vector2Int(6, -10);
 
         /// <summary>An archer at the firing line, and the target it shoots at, in cells.</summary>
         public readonly struct Archer
@@ -75,7 +78,7 @@ namespace ARPG
         public static float PastEdge(int x, int y) => Mathf.Sqrt(x * x + y * y) - EdgeAt(Mathf.Atan2(y, x));
 
         /// <summary>The cells the camp's own points need open.</summary>
-        public static readonly Vector2Int[] KeptClear = { Start, Billboard, Yard, Armoury, Kennel, GraveStone };
+        public static readonly Vector2Int[] KeptClear = { Start, Billboard, Yard, Armoury, Kennel, GraveStone, Fletcher, Jeweller };
 
         /// <summary>
         /// The trampled ground (bare earth the forest's grass does not cover): a round of it about the fire, a yard before
@@ -85,7 +88,7 @@ namespace ARPG
         public static System.Collections.Generic.HashSet<Vector2Int> TrampledCells()
         {
             var fire = (Vector2)Fire;
-            var spots = new[] { Start, Billboard, Yard, Armoury, Kennel, GraveStone };
+            var spots = new[] { Start, Billboard, Yard, Armoury, Kennel, GraveStone, Fletcher, Jeweller };
             var cells = new System.Collections.Generic.HashSet<Vector2Int>();
             for (var x = -34; x <= 34; x++)
                 for (var y = -34; y <= 34; y++)
@@ -154,6 +157,9 @@ namespace ARPG
                 new TownLayout.Piece("camp_trough", -10, -21, 0.8f, 0.5f),
                 new TownLayout.Piece("camp_wolf", -9, -22, 0.5f, 0.4f),
                 new TownLayout.Piece("camp_tent_1", 6, -24, 1.9f, 1.5f),
+                // The fletcher's bench and the jeweller's table (2026-11-26), behind their keepers.
+                new TownLayout.Piece("camp_fletcher_bench", Fletcher.x - 3, Fletcher.y - 2, 1.4f, 0.5f),
+                new TownLayout.Piece("camp_jeweller_table", Jeweller.x + 3, Jeweller.y - 2, 1.0f, 0.5f, TownLayout.Glow.Lamp),
                 // The grave stone of the fallen, at the top right, with a tent behind.
                 new TownLayout.Piece("camp_grave", 17, 22, 1.6f, 0.8f),
                 new TownLayout.Piece("camp_tent_2", 0, 26, 1.9f, 1.5f),

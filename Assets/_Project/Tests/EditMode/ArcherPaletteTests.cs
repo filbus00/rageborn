@@ -53,5 +53,25 @@ namespace ARPG.Tests
             var pale = ArcherPalette.SkinRamp(new Color(0.66f, 0.49f, 0.39f));
             Assert.Less(Light(dark[0]), Light(pale[0]) * 0.5f);
         }
+
+        [Test]
+        public void TheTintCacheLetsGoOfTheLongestUnusedNotTheOnesInUse()
+        {
+            // The camp has nine archers and the player is a tenth: with the cache at 8 the first two lost their sheets
+            // while standing there (2026-11-19).
+            var recent = new System.Collections.Generic.List<string>();
+            var evicted = new System.Collections.Generic.List<string>();
+            for (var i = 0; i < 10; i++)
+                evicted.AddRange(ArcherTint.Touch(recent, "archer " + i, ArcherTint.Kept));
+            Assert.IsEmpty(evicted, "ten archers at once are all kept");
+            Assert.GreaterOrEqual(ArcherTint.Kept, 24);
+
+            // Asking again for the first moves it to the back; the oldest goes when the list overflows.
+            var small = new System.Collections.Generic.List<string> { "a", "b", "c" };
+            Assert.IsEmpty(ArcherTint.Touch(small, "a", 3));
+            CollectionAssert.AreEqual(new[] { "b", "c", "a" }, small);
+            CollectionAssert.AreEqual(new[] { "b" }, ArcherTint.Touch(small, "d", 3));
+            CollectionAssert.AreEqual(new[] { "c", "a", "d" }, small);
+        }
     }
 }

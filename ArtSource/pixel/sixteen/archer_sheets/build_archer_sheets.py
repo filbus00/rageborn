@@ -148,7 +148,11 @@ HELMS = {
     # Redrawn 2026-11-24 (the owner: "redraw the mask helm, it looks wierd and only covers the mouth and a strip of the
     # forehead"): a leather mask over her whole head, a brow ridge, the eyes showing in a dark band, a seam down the chin.
     "mask": dict(ramp=[rgb(150, 104, 64), rgb(108, 72, 44), rgb(64, 42, 28)], dome=4, sides=True, face="mask"),
-    "barbute": dict(ramp=[rgb(176, 184, 196), rgb(120, 130, 148), rgb(72, 80, 100)], dome=4, sides=True, face="barbute"),
+    # Redrawn 2026-11-26 (the owner: "redraw the barbute helm too"; it read as her hair turned grey): a steel barbute closed
+    # round the face by cheek plates, its T-shaped opening (a dark slit across the eyes, the eyes showing, a slot down to
+    # the chin), a ridge along the crown and a flared guard over the neck.
+    "barbute": dict(ramp=[rgb(200, 208, 220), rgb(132, 142, 162), rgb(70, 78, 98)], dome=4, sides=True, face="barbute", extra="crest",
+                    cowl=True, cowl_rows=2),
     "visored": dict(ramp=[rgb(210, 216, 226), rgb(150, 160, 178), rgb(90, 98, 120)], dome=4, sides=True, face="visor", extra="plume"),
     "horned": dict(ramp=[rgb(116, 116, 134), rgb(74, 74, 94), rgb(44, 44, 60)], dome=4, sides=True, face="visor", extra="horns"),
     "falconer": dict(ramp=[rgb(170, 118, 62), rgb(132, 86, 46), rgb(84, 52, 30)], dome=4, sides=True, face="open", extra="feather"),
@@ -249,8 +253,17 @@ def helm_frame(frame, spec, head, row):
                     else:
                         seam = abs(x - middle) < 0.6
                         put(helm, frame, x, y, dark if seam else light if r == 6 else mid, stamped)
-                elif face == "barbute" and (r == 4 or (r >= 6 and abs(x - middle) > 1)):
-                    put(helm, frame, x, y, mid if r == 4 else light, stamped)
+                elif face == "barbute":
+                    # The brow, the slit across the eyes (the eyes kept), then the cheek plates either side of a slot.
+                    if r == 4:
+                        put(helm, frame, x, y, mid, stamped)
+                    elif r == 5:
+                        if not is_colour(px, [EYE]):
+                            put(helm, frame, x, y, INK, stamped)
+                    else:
+                        slot = abs(x - middle) < 0.6
+                        edge = x in (min(faces[r]), max(faces[r]))
+                        put(helm, frame, x, y, INK if slot else dark if edge or r == HEAD_ROWS - 1 else light if r == 6 else mid, stamped)
                 elif face == "visor":
                     put(helm, frame, x, y, light if r == 4 else INK if r == 5 else mid if r == 6 else dark, stamped)
     # What stands on top. West-facing rows lean their pieces the other way.
@@ -269,6 +282,12 @@ def helm_frame(frame, spec, head, row):
     elif extra == "plume":
         for dx, dy, c in ((0, 0, 1), (1, 0, 1), (0, -1, 0), (1, -1, 0), (1, -2, 0)):
             put(helm, frame, cx + (dx if not east else 1 - dx), hy + dy, PLUME[c], stamped)
+    elif extra == "crest":
+        # A raised ridge along the crown: a bright line front to back, standing a pixel proud at the top.
+        for dy, c in ((-1, mid), (0, light), (1, light)):
+            if dy >= 0 and hy + dy < C and helm[hy + dy, cx, 3] < 0.5:
+                continue
+            put(helm, frame, cx, hy + dy, c, stamped)
     elif extra == "peak":
         # The hood's point: up from the crown, leaning back (away from the way she faces) in the side views.
         back = 0 if not side else (-1 if east else 1)
@@ -290,7 +309,7 @@ def helm_frame(frame, spec, head, row):
     # A hood's cowl: over her shoulders below the head, and over the hair hanging down her back.
     if spec.get("cowl"):
         light_c, mid_c, dark_c = spec["ramp"]
-        for r in range(HEAD_ROWS, HEAD_ROWS + 6):
+        for r in range(HEAD_ROWS, HEAD_ROWS + spec.get("cowl_rows", 6)):
             y = hy + r
             if y >= C:
                 break

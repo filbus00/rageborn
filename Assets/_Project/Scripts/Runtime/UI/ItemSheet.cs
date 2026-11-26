@@ -185,7 +185,8 @@ namespace ARPG
 
             var position = showingEquipped ? "equipped" : $"{index + 1} of {list.Count}, swipe for more";
             subtitle.text = $"Item level {item.ItemLevel}   ·   {position}" +
-                            (Selling && !showingEquipped && !item.IsBlueprint ? $"   ·   <color=#F0C840>sells for {GameSession.Current.SellPrice(item)} gold</color>" : "");
+                            (item.IsCompanyIssue ? $"   ·   <color=#C8B070>company issue, rank {item.Issue}</color>" : "") +
+                            (Selling && !showingEquipped && !item.IsBlueprint && !item.IsCompanyIssue ? $"   ·   <color=#F0C840>sells for {GameSession.Current.SellPrice(item)} gold</color>" : "");
 
             // A blueprint (2026-10-15): what it teaches, and that it must come home.
             if (item.IsBlueprint)
@@ -321,7 +322,7 @@ namespace ARPG
                     });
                 }
                 // Blueprints are not sold (2026-10-17): Thorin learns them.
-                var selling = Selling && !item.IsBlueprint;
+                var selling = Selling && !item.IsBlueprint && !item.IsCompanyIssue;
                 NewButton(selling ? $"Sell +{GameSession.Current.SellPrice(item)}" : "Discard", () =>
                 {
                     if (selling ? session.Sell(item) == 0 : !session.Discard(item))

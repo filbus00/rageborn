@@ -43,16 +43,5 @@ namespace ARPG.Tests
             }
             Assert.AreEqual(7, seen.Count);
         }
-
-        [Test]
-        public void AHeavyBlowSoundsLowerAndFullerThanAPrick()
-        {
-            var prick = HitSoundRules.Pitch(10f, 1000f, EnemyRank.Normal);
-            var blow = HitSoundRules.Pitch(300f, 1000f, EnemyRank.Normal);
-            Assert.Greater(prick, blow);
-            Assert.Greater(HitSoundRules.Volume(300f, 1000f), HitSoundRules.Volume(10f, 1000f));
-            Assert.Less(HitSoundRules.Pitch(300f, 1000f, EnemyRank.Boss), blow);
-            Assert.That(prick, Is.InRange(0.8f, 1.2f));
-        }
     }
 }

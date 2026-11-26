@@ -5,7 +5,7 @@ namespace ARPG
     /// <summary>
     /// The people and things of the mercenary camp (<see cref="CampLayout"/>; the owner, 2026-11-18): walked onto like
     /// every town trigger, each opens the company's menu at its page. Brunhilde at the drill yard (the Yard), Thorin at
-    /// the forge (the Armoury), Lyriel at the kennel (the Kennel), the billboard (the contracts) and the grave stone (the
+    /// the forge (the Armoury), Oswin the fletcher and Mirela the jeweller (2026-11-26), Lyriel at the kennel (the Kennel), the billboard (the contracts) and the grave stone (the
     /// Fallen). The keepers are the camp's 16x16 figures (`camp_art.py`).
     /// </summary>
     public class CampSpot : WalkOnTrigger
@@ -17,6 +17,8 @@ namespace ARPG
             Armoury,
             Kennel,
             Fallen,
+            Fletcher,
+            Jeweller,
         }
 
         Kind kind;
@@ -29,6 +31,11 @@ namespace ARPG
             Create(Kind.Armoury, CampLayout.Armoury, "Thorin", new Color(0.95f, 0.7f, 0.45f), "camp_thorin");
             Create(Kind.Kennel, CampLayout.Kennel, "Lyriel", new Color(0.8f, 0.95f, 0.7f), "camp_lyriel");
             Create(Kind.Fallen, CampLayout.GraveStone, "The Fallen", new Color(0.75f, 0.75f, 0.85f), null);
+            Create(Kind.Fletcher, CampLayout.Fletcher, "Oswin", new Color(0.85f, 0.8f, 0.55f), "camp_oswin");
+            Create(Kind.Jeweller, CampLayout.Jeweller, "Mirela", new Color(0.7f, 0.85f, 0.95f), "camp_mirela");
+            // Whatever she left empty the company fills, and its pieces are issued at their ranks (2026-11-26).
+            if (GameSession.Current != null && !GameSession.Current.RunStarted)
+                GameSession.Current.IssueCompanyKit();
 
             // The company's archers at the range, each in her own kit.
             var looks = new[]
@@ -91,6 +98,12 @@ namespace ARPG
                     break;
                 case Kind.Fallen:
                     CompanyMenu.OpenFallen();
+                    break;
+                case Kind.Fletcher:
+                    CompanyMenu.OpenQuarters(3);
+                    break;
+                case Kind.Jeweller:
+                    CompanyMenu.OpenQuarters(4);
                     break;
                 default:
                     CompanyMenu.OpenQuarters((int)kind - (int)Kind.Yard);

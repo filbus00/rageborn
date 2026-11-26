@@ -7,6 +7,10 @@ namespace ARPG
         Magic,
         Rare,
         Legendary,
+
+        // 2026-11-26 (the owner: trinkets "very rare. More rare than legendary items"): a found trinket's rarity, above
+        // Legendary. New values go at the end: rarities are saved by name and compared by order.
+        Mythic,
     }
 
     /// <summary>
@@ -30,6 +34,9 @@ namespace ARPG
         OffHand,
         Shield,
         TwoHandWeapon,
+
+        // 2026-11-26 (the owner: "A new trinket slot"): a charm the jeweller makes, worn in its own place.
+        Trinket,
     }
 
     /// <summary>
@@ -63,9 +70,10 @@ namespace ARPG
         /// <param name="blueprint">A blueprint (2026-10-15): not worn; brought home, it teaches Thorin the smith to forge
         /// the item of its kind and look (<see cref="BlueprintRules"/>).</param>
         public Item(ItemSlot slot, ItemRarity rarity, int itemLevel, AffixRoll[] affixes = null, int reforges = 0, int tempers = 0,
-            LegendaryId legendary = LegendaryId.None, bool blueprint = false)
+            LegendaryId legendary = LegendaryId.None, bool blueprint = false, int issue = 0)
         {
             IsBlueprint = blueprint;
+            Issue = issue < 0 ? 0 : issue;
             Legendary = legendary;
             Slot = slot;
             Rarity = rarity;
@@ -79,6 +87,12 @@ namespace ARPG
 
         /// <summary>A blueprint for the item of this kind and look (by its item level), not an item to wear. Saved.</summary>
         public bool IsBlueprint { get; }
+
+        /// <summary>The company's rank of this piece when a keeper issued it (<see cref="CompanyGearRules"/>, 2026-11-26),
+        /// 0 for loot. Saved.</summary>
+        public int Issue { get; }
+
+        public bool IsCompanyIssue => Issue > 0;
 
         /// <summary>The named legendary this is, with its power (<see cref="Legendaries"/>), or None. Saved by name.</summary>
         public LegendaryId Legendary { get; }

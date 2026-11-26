@@ -88,7 +88,10 @@ namespace ARPG
             var items = loot.RollDrops(source, level, MagicFind);
             for (var i = 0; i < items.Count; i++)
                 DropItem(items[i], at + Scatter(ItemScatterRadius), at);
-            DropBlueprint(source, level, at);
+            DropMaterial(source, at);
+            var trinket = loot.RollTrinket(source, level);
+            if (trinket != null)
+                DropItem(trinket, at + Scatter(ItemScatterRadius), at);
 
             if (Features.Forge)
                 GrantMaterials(source, at);
@@ -143,10 +146,30 @@ namespace ARPG
             var items = loot.RollDrops(LootSource.ZoneChest, itemLevel, MagicFind);
             for (var i = 0; i < items.Count; i++)
                 DropItem(items[i], ground + Scatter(ItemScatterRadius), ground);
-            DropBlueprint(LootSource.ZoneChest, itemLevel, ground);
+            DropMaterial(LootSource.ZoneChest, ground);
+            var trinket = loot.RollTrinket(LootSource.ZoneChest, itemLevel);
+            if (trinket != null)
+                DropItem(trinket, ground + Scatter(ItemScatterRadius), ground);
         }
 
-        // A rare blueprint for Thorin (2026-10-15), of a kind he does not know yet in this level's look.
+        // The company's upgrade materials (2026-11-26, CompanyGearRules), in place of the blueprints: a pile beside the
+        // kill, picked up like gold, kept by the company at once.
+        void DropMaterial(LootSource source, Vector2 at)
+        {
+            if (!Features.Roguelite)
+                return;
+            var session = GameSession.Current;
+            if (!CompanyGearRules.RollDrop(source, Mathf.Max(1, session.DeepestDepth), materialRandom, out var material, out var amount))
+                return;
+            var drop = TakeDrop();
+            drop.ShowMaterial(material, amount, at + Scatter(ScatterRadius));
+            active.Add(drop);
+        }
+
+        readonly System.Random materialRandom = new System.Random();
+
+        // A rare blueprint for Thorin (2026-10-15), of a kind he does not know yet in this level's look. Retired by the
+        // company's gear (2026-11-26): no longer dropped.
         void DropBlueprint(LootSource source, int itemLevel, Vector2 at)
         {
             if (!Features.Roguelite)

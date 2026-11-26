@@ -686,6 +686,46 @@ def keeper(name):
             im.tone(x, h.ey - 1, "gold", 2)
         im.line(13, 26, 17, 30, R["gold"][2]); im.line(22, 26, 18, 30, R["gold"][1])
         im.tone(17, 31, "gold", 4); im.tone(18, 31, "gold", 2)
+    elif name == "oswin":
+        # The fletcher (2026-11-26): short brown hair, a stubbled jaw, a red-and-white feather behind his ear, a green shirt
+        # under a leather jerkin, the quiver's strap across his chest and its fletchings over his shoulder.
+        h = Head(cx, 14.5, 8.6, 9.8, 0.7)
+        hair_back(im, h, "short", "brown")
+        shoulders(im, "leather", 25, 3)
+        im.shape(poly([(12, 25), (23, 25), (21, 30), (17.5, 32), (14, 30)]), (17.5, 27, 7, 5), "green", rim="full")
+        neck(im, h)
+        im.line(9, 25, 26, 33, R["apron"][1]); im.line(9, 26, 25, 33, R["apron"][3])
+        im.tone(14, 27, "gold", 3); im.tone(15, 27, "gold", 1)
+        for i, x in enumerate((27, 29, 31)):   # fletchings over his shoulder
+            im.shape(ellipse(x + 0.5, 23 - i * 0.6, 1.2, 2.4), (x, 23, 2, 3), "white" if i % 2 else "red", rim="full")
+            im.line(x - 1, 25, x - 2, 29, R["wood"][2])
+        h.face(im, eyes="4a6a2a", brows="brown", stern=0)
+        hair_front(im, h, "short", "brown")
+        feather = [(27, 14), (31, 5), (33, 4), (30, 12), (28, 16)]
+        im.shape(poly(feather), bounds(feather), "white", rim="full")
+        im.line(31, 6, 29, 12, R["red"][3])
+    elif name == "mirela":
+        # The jeweller (2026-11-26): black hair high in a bun with a gold pin, gold drops in her ears, a gold loupe over
+        # one eye, a deep teal gown with a pale shawl, a gem at her throat.
+        h = Head(cx, 15.0, 8.2, 9.6, 0.0)
+        hair_back(im, h, "bun", "brown")
+        shoulders(im, "teal", 25, 3, bias=-0.35)
+        im.shape(poly([(8, 25), (27, 25), (23, 29), (12, 29)]), (17.5, 26, 10, 4), "cream", rim="full")
+        neck(im, h)
+        h.face(im, eyes="3a2a4a", brows="brown", smile=True)
+        hair_front(im, h, "bun", "brown")
+        for x in range(12, 24):
+            im.tone(x, 2, "gold", 3 if x < 17 else 2)
+        im.tone(24, 1, "gold", 4); im.tone(25, 0, "gold", 3)
+        for side in (-1, 1):                  # earrings
+            x = int(cx + side * 9.2)
+            im.tone(x, 18, "gold", 3); im.tone(x, 19, "gold", 4); im.tone(x, 20, "teal", 3)
+        a = h.R0 + 4                          # the loupe ringed round her right eye
+        for (ox, oy) in ((-2, -1), (-2, 0), (-2, 1), (2, -1), (2, 0), (2, 1), (-1, 2), (0, 2), (1, 2), (-1, -2), (0, -2), (1, -2)):
+            im.tone(a + ox, h.ey + oy, "gold", 3)
+        im.line(a + 2, h.ey + 2, a + 5, h.ey + 10, R["gold"][1])
+        im.shape(ellipse(17.5, 29.5, 1.8, 1.8), (17.5, 29.5, 2, 2), "teal", rim="full")
+        im.tone(17, 29, "teal", 4)
     im.outline()
     return im
 
@@ -704,7 +744,7 @@ def main():
         busts.append(im.rows(4))
         if i == 1:
             save(im.rows(2), os.path.join(PIXEL, "portrait_archer.png"))
-    for name in ("brunhilde", "thorin", "lyriel", "miranda", "sylthara", "garrett", "elara"):
+    for name in ("brunhilde", "thorin", "lyriel", "miranda", "sylthara", "garrett", "elara", "oswin", "mirela"):
         im = keeper(name)
         save(im.rows(2), os.path.join(PIXEL, f"portrait_{name}.png"))
         small.append(im.rows(8))
@@ -719,7 +759,7 @@ def main():
                 row.extend([pad] * gap)
             rows.append(row)
         return rows
-    parts = [strip(busts[:5]), strip(busts[5:]), strip(small[:4]), strip(small[4:])]
+    parts = [strip(busts[:5]), strip(busts[5:]), strip(small[:5]), strip(small[5:])]
     wide = max(len(p[0]) for p in parts)
     sheet = []
     for p in parts:

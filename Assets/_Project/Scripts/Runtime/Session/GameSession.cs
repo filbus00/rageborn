@@ -212,9 +212,10 @@ namespace ARPG
 
         /// <summary>The gear a new character starts with (the owner, 2026-10-01): a Common level 1 short bow (the hunting
         /// bow's look) and a Common level 1 quiver (the hide quiver's, +5 percent attack speed), so the first Magic drop is
-        /// already an upgrade and the off-hand is seen to hold a quiver from the start.</summary>
-        public static EquipmentState Starting => new EquipmentState(new Item(ItemSlot.Weapon, ItemRarity.Common, 1))
-            .With(ItemSlot.OffHand, new Item(ItemSlot.Shield, ItemRarity.Common, 1));
+        /// already an upgrade and the off-hand is seen to hold a quiver from the start.
+        /// Since 2026-11-26 they are the company's rank 1 pieces (<see cref="CompanyGearRules"/>), the same numbers.</summary>
+        public static EquipmentState Starting => new EquipmentState(CompanyGearRules.Make(ItemSlot.Weapon, 1))
+            .With(ItemSlot.OffHand, CompanyGearRules.Make(ItemSlot.Shield, 1));
     }
 
     /// <summary>The equipment a dead character left behind, waiting where it died.</summary>
@@ -601,14 +602,143 @@ namespace ARPG
             return true;
         }
 
-        /// <summary>The kit she starts a run with: a plain bow and quiver, and the pieces Thorin forged in their places.</summary>
+        /// <summary>The places the company fills (2026-11-26): every place she wears gear in.</summary>
+        public static readonly ItemSlot[] CompanyPlaces =
+        {
+            ItemSlot.Weapon, ItemSlot.OffHand, ItemSlot.Helm, ItemSlot.Chest, ItemSlot.Gloves, ItemSlot.Boots, ItemSlot.Belt,
+            ItemSlot.Amulet, ItemSlot.Ring, ItemSlot.Ring2,
+        };
+
+        /// <summary>The kit she starts a run with after a death (2026-11-26): the company's gear, every piece at its rank.</summary>
         public EquipmentState StartingKit()
         {
-            var kit = EquipmentState.Starting;
-            // Thorin's forged pieces in their places (2026-10-15).
-            foreach (var pair in Meta.Forged)
-                kit = kit.Equip(EquipmentState.PlacesFor(pair.Key)[0], pair.Value);
+            var kit = EquipmentState.Empty;
+            foreach (var place in CompanyPlaces)
+                kit = kit.With(place, Meta.CompanyPiece(place));
             return kit;
+        }
+
+        /// <summary>In camp: every empty place gets the company's piece, and every company piece worn or carried is
+        /// issued again at its rank now (a rank raised, the bow or trinket changed). True when anything changed.</summary>
+        public bool IssueCompanyKit()
+        {
+            var changed = false;
+            foreach (var place in CompanyPlaces)
+            {
+                var worn = Equipment.Get(place);
+                if (worn != null && !worn.IsCompanyIssue)
+                    continue;
+                var piece = Meta.CompanyPiece(place);
+                if (worn != null && SamePiece(worn, piece))
+                    continue;
+                Equipment = Equipment.With(place, piece);
+                changed = true;
+            }
+            var carried = new List<Item>();
+            foreach (var item in Inventory.Items)
+                if (item.IsCompanyIssue && item.Slot != ItemSlot.Trinket)
+                    carried.Add(item);
+            foreach (var item in carried)
+            {
+                var piece = CompanyGearRules.Make(item.Slot, Meta.GearRank(item.Slot));
+                if (!SamePiece(item, piece) && Inventory.Replace(item, piece))
+                    changed = true;
+            }
+            if (changed)
+                NotifyChanged();
+            return changed;
+        }
+
+        static bool SamePiece(Item a, Item b) =>
+            a.Slot == b.Slot && a.Issue == b.Issue;
+
+        /// <summary>Why a company piece cannot be raised now, or null when it can.</summary>
+        public string CannotRaise(ItemSlot kind)
+        {
+            var rank = Meta.GearRank(kind);
+            if (rank >= CompanyGearRules.MaxRank)
+                return "Finest the company makes";
+            var material = CompanyGearRules.MaterialOf(kind);
+            if (Meta.Material(material) < CompanyGearRules.MaterialCost(rank))
+                return "Needs more " + CompanyGearRules.MaterialName(material).ToLowerInvariant();
+            if (Gold < CompanyGearRules.CoinCost(rank))
+                return "Needs more coins";
+            return null;
+        }
+
+        /// <summary>A keeper raises the company's piece of a kind a rank for good (2026-11-26): the material and coins
+        /// are spent and the new piece is issued at once. False when it cannot be (<see cref="CannotRaise"/>).</summary>
+        public bool RaiseCompanyGear(ItemSlot kind)
+        {
+            if (kind == ItemSlot.Ring2)
+                kind = ItemSlot.Ring;
+            if (CannotRaise(kind) != null)
+                return false;
+            var rank = Meta.GearRank(kind);
+            Meta.AddMaterial(CompanyGearRules.MaterialOf(kind), -CompanyGearRules.MaterialCost(rank));
+            Gold -= CompanyGearRules.CoinCost(rank);
+            Meta.SetGearRank(kind, rank + 1);
+            IssueCompanyKit();
+            NotifyChanged();
+            return true;
+        }
+
+        /// <summary>The bow the fletcher issues; a company bow she wears is swapped for it.</summary>
+        public void ChooseIssuedBow(ItemSlot bow)
+        {
+            if (bow != ItemSlot.Weapon && bow != ItemSlot.TwoHandWeapon)
+                return;
+            Meta.IssuedBow = bow;
+            IssueCompanyKit();
+            NotifyChanged();
+        }
+
+        /// <summary>A keeper takes a found piece from the backpack apart for his material (2026-11-26). Returns how much
+        /// it gave, 0 when it gives nothing (a company piece, a blueprint) or is not in the backpack.</summary>
+        public int Recycle(Item item)
+        {
+            var yield = CompanyGearRules.RecycleYield(item);
+            if (yield <= 0 || !Inventory.Remove(item))
+                return 0;
+            Meta.AddMaterial(CompanyGearRules.MaterialOf(item.Slot), yield);
+            NotifyChanged();
+            return yield;
+        }
+
+        /// <summary>Recycles every found piece of a keeper's kinds and a rarity in the backpack, keeping named legendaries,
+        /// trinkets and upgrades. Returns the material gained.</summary>
+        public int RecycleAll(GearKeeper keeper, ItemRarity rarity)
+        {
+            var taken = new List<Item>();
+            foreach (var item in Inventory.Items)
+                if (item.Rarity == rarity && CompanyGearRules.KeeperOf(item.Slot) == keeper && item.Legendary == LegendaryId.None &&
+                    item.Slot != ItemSlot.Trinket && !PowerScore.IsUpgrade(Equipment, item, Level, Talents.Bonuses))
+                    taken.Add(item);
+            var total = 0;
+            foreach (var item in taken)
+                total += Recycle(item);
+            return total;
+        }
+
+        /// <summary>Puts the company's piece back on in a place, what she wore there going to the backpack. False when it is
+        /// worn already or the backpack has no room.</summary>
+        public bool WearCompanyPiece(ItemSlot place)
+        {
+            var worn = Equipment.Get(place);
+            if (worn != null && worn.IsCompanyIssue)
+                return false;
+            if (worn != null && !Inventory.TryAdd(worn))
+                return false;
+            Equipment = Equipment.With(place, Meta.CompanyPiece(place));
+            NotifyChanged();
+            return true;
+        }
+
+        /// <summary>Material picked up in a level (2026-11-26): the company keeps it at once, a death or not.</summary>
+        public void AddCompanyMaterial(CompanyMaterial material, int amount)
+        {
+            Meta.AddMaterial(material, amount);
+            Run.Materials += amount;
         }
 
         /// <summary>
@@ -643,6 +773,8 @@ namespace ARPG
             }
             else
                 next.Equipment = next.StartingKit();
+            // The company fills what she left empty and issues its pieces at their ranks (2026-11-26).
+            next.IssueCompanyKit();
             next.LifeFraction = 1f;
             next.Potion.Refill();
             return next;

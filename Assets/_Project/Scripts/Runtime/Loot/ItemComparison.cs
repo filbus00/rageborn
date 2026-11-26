@@ -36,6 +36,7 @@ namespace ARPG
         public static string Name(Item item) =>
             item.LegendaryDefinition != null ? item.LegendaryDefinition.Name
             : item.IsBlueprint ? "Blueprint: " + ItemNames.BaseName(item.Slot, item.ItemLevel)
+            : item.IsCompanyIssue || item.Slot == ItemSlot.Trinket ? CompanyGearRules.Name(item)
             : ItemNames.BaseName(item.Slot, item.ItemLevel);
 
         /// <summary>An item kind's name for players: bows only (Docs/03, 2026-09-30), so Weapon is a short bow, the

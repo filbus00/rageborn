@@ -10,7 +10,7 @@ namespace ARPG
     public static class SellRules
     {
         /// <summary>Gold per rarity before the item level, Common to Legendary.</summary>
-        public const int CommonBase = 2, MagicBase = 6, RareBase = 15, LegendaryBase = 40;
+        public const int CommonBase = 2, MagicBase = 6, RareBase = 15, LegendaryBase = 40, MythicBase = 120;
 
         /// <summary>Each item level adds this fraction of the base.</summary>
         public const float PerItemLevel = 0.15f;
@@ -27,7 +27,7 @@ namespace ARPG
 
         public static int Price(Item item)
         {
-            if (item == null || item.IsBlueprint)
+            if (item == null || item.IsBlueprint || item.IsCompanyIssue)
                 return 0;
             float price = Base(item.Rarity) * (1f + PerItemLevel * System.Math.Max(1, item.ItemLevel));
             if (item.Legendary != LegendaryId.None)
@@ -37,7 +37,7 @@ namespace ARPG
 
         /// <summary>Whether a sale of all of a rarity takes this item: that rarity, not an upgrade, not a named legendary.</summary>
         public static bool InBulkSale(Item item, ItemRarity rarity, bool isUpgrade) =>
-            item != null && item.Rarity == rarity && !isUpgrade && item.Legendary == LegendaryId.None && !item.IsBlueprint;
+            item != null && item.Rarity == rarity && !isUpgrade && item.Legendary == LegendaryId.None && !item.IsBlueprint && !item.IsCompanyIssue;
 
         static int Base(ItemRarity rarity)
         {
@@ -46,6 +46,7 @@ namespace ARPG
                 case ItemRarity.Common: return CommonBase;
                 case ItemRarity.Magic: return MagicBase;
                 case ItemRarity.Rare: return RareBase;
+                case ItemRarity.Mythic: return MythicBase;
                 default: return LegendaryBase;
             }
         }
