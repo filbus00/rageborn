@@ -389,6 +389,28 @@ namespace ARPG
                         continue;
                     if (rock > 1)
                     {
+                        // The forest's depths spaced out (2026-11-24, ForestRules): a tree, a bush or the dark.
+                        if (ForestLevel && !trailFront.Contains(at))
+                        {
+                            var growth = Growth(at, false);
+                            if (growth == ForestGrowth.Bare)
+                            {
+                                // The forest floor between the trees, darker the deeper in (no hole of black).
+                                groundTiles[index] = DungeonArt.Floor(Layout.StyleAt(at), 0, -1);
+                                bareGround.Add((at, RockShade[Mathf.Min(rock, RockShade.Length - 1)] * 0.8f));
+                                continue;
+                            }
+                            jitter[at] = ForestRules.Offset(PieceHash(at));
+                            if (growth == ForestGrowth.Bush)
+                            {
+                                var bushPiece = DungeonArt.Piece(TrailBush(at));
+                                if (bushPiece != null)
+                                {
+                                    artTiles[index] = bushPiece;
+                                    continue;
+                                }
+                            }
+                        }
                         var rockPiece = DungeonArt.Piece(trailFront.Contains(at) ? TrailBush(at) : ThemePieces.Rock(theme, PieceHash(at)));
                         if (rockPiece != null)
                             artTiles[index] = rockPiece;
@@ -412,10 +434,18 @@ namespace ARPG
                     // Rock with no floor beside it is drawn the same but blocks nothing (2026-10-08: the rock between and
                     // around the rooms is many thousand cells; colliders only where she can reach).
                     // The crypt or cave piece when imported (2026-10-10), over an invisible blocker; else the older walls.
-                    var piece = cell == DungeonCell.Wall && !IsStairsWall(at)
-                        ? DungeonArt.Piece(trailFront.Contains(at) ? TrailBush(at) : CutWall(at, cameraSide, freeStanding) ??
-                                           ThemePieces.Wall(theme, IsOpenCell, at.x, at.y, cameraSide, freeStanding, Layout.Ledges.Contains(at), PieceHash(at)))
+                    var pieceName = cell == DungeonCell.Wall && !IsStairsWall(at)
+                        ? trailFront.Contains(at) ? TrailBush(at) : CutWall(at, cameraSide, freeStanding) ??
+                          ThemePieces.Wall(theme, IsOpenCell, at.x, at.y, cameraSide, freeStanding, Layout.Ledges.Contains(at), PieceHash(at))
                         : null;
+                    // The clearing's edge spaced out too (2026-11-24, ForestRules): bushes in the gaps between its trees.
+                    if (ForestLevel && pieceName != null && pieceName.StartsWith("forest_tree_"))
+                    {
+                        if (Growth(at, true) == ForestGrowth.Bush)
+                            pieceName = TrailBush(at);
+                        jitter[at] = ForestRules.Offset(PieceHash(at));
+                    }
+                    var piece = pieceName != null ? DungeonArt.Piece(pieceName) : null;
                     if (piece != null)
                     {
                         artTiles[index] = piece;
@@ -481,6 +511,12 @@ namespace ARPG
             {
                 ground.SetTilesBlock(area, groundTiles);
                 WorldLights.ShadeGround(ground);
+            }
+            foreach (var (bareCell, shade) in bareGround)
+            {
+                var at3 = new Vector3Int(bareCell.x, bareCell.y, 0);
+                ground.SetTileFlags(at3, TileFlags.None);
+                ground.SetColor(at3, new Color(shade, shade, shade, 1f));
             }
             LoadTimer.Mark("paint: ground");
             SetShaded(walls, area, wallTiles);
@@ -781,6 +817,20 @@ namespace ARPG
         // room (the owner, 2026-10-04: no per-room looks). Props keep their own colours. Rock away from the floor darkens.
         // Walls and rock darken away from the floor. Set with their tiles in one call (2026-10-11: four tilemap calls a
         // cell, after the tiles, took a good part of the load on the phone).
+        // The forest's bare cells among the trees and how dark their ground is drawn (2026-11-24).
+        readonly List<(Vector2Int, float)> bareGround = new List<(Vector2Int, float)>();
+
+        // Where each forest tree or bush stands off its cell's middle (2026-11-24, ForestRules.Offset).
+        readonly Dictionary<Vector2Int, Vector2> jitter = new Dictionary<Vector2Int, Vector2>();
+
+        // What grows on a forest cell: an edge cell (touching the floor) or one deeper in, spaced from its neighbours.
+        ForestGrowth Growth(Vector2Int at, bool edge)
+        {
+            bool Tree(Vector2Int c) => Layout.Get(c) == DungeonCell.Wall && !trail.Contains(c) &&
+                                       ForestRules.Raw(TouchesOpen(c), PieceHash(c)) == ForestGrowth.Tree;
+            return ForestRules.At(edge, PieceHash(at), Tree(at + Vector2Int.left), Tree(at + Vector2Int.down));
+        }
+
         void SetShaded(Tilemap map, BoundsInt area, TileBase[] tiles)
         {
             var changes = new List<TileChangeData>(tiles.Length / 2);
@@ -791,7 +841,8 @@ namespace ARPG
                     if (tile == null)
                         continue;
                     var at = new Vector2Int(area.xMin + x, area.yMin + y);
-                    changes.Add(new TileChangeData(new Vector3Int(at.x, at.y, 0), tile, WallTint(at), Matrix4x4.identity));
+                    var place = map == wallArt && jitter.TryGetValue(at, out var off) ? Matrix4x4.Translate(off) : Matrix4x4.identity;
+                    changes.Add(new TileChangeData(new Vector3Int(at.x, at.y, 0), tile, WallTint(at), place));
                 }
             map.SetTiles(changes.ToArray(), true);
         }

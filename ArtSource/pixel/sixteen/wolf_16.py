@@ -281,15 +281,64 @@ DEATH = [
     dict(roll=92, shut=True, tail=-16, legs={"fl": (44, -8), "fr": (34, -4), "hl": (-34, 12), "hr": (-24, 8)}, hdy=-1.8),
     dict(roll=92, shut=True, tail=-16, legs={"fl": (44, -8), "fr": (34, -4), "hl": (-34, 12), "hr": (-24, 8)}, hdy=-1.8, breathe=-1),
 ]
+# Moving more naturally (2026-11-24, the owner: "rework the wolf sprite sheets so that it looks better and moves more
+# naturally"): the walk and the run are no longer four held poses blended; each leg runs its own cycle (a stance that
+# sweeps back on the ground, a swing that lifts the paw and brings it forward), in a real gait's order: the walk a
+# four-beat lateral sequence (hind, fore on the same side, then the other side), the run a rotary gallop with a moment in
+# the air. The body bobs, pitches and arches with it, the head counters the bob, the tail sways. More frames for both.
+def gait(t, phases, duty, front_mid, front_amp, hind_mid, hind_amp, lift_f, lift_h):
+    legs = {}
+    for key, ph in phases.items():
+        u = (t - ph) % 1.0
+        hind = key[0] == "h"
+        mid, amp = (hind_mid, hind_amp) if hind else (front_mid, front_amp)
+        if u < duty:
+            s_ = u / duty
+            a = mid + amp * (1 - 2 * s_)          # on the ground: forward to back
+            b = -28 if hind else 0
+        else:
+            s_ = (u - duty) / (1 - duty)
+            a = mid - amp + 2 * amp * (0.5 - 0.5 * math.cos(math.pi * s_))   # swung forward, eased
+            bend = math.sin(math.pi * s_)
+            b = (-28 - lift_h * bend) if hind else lift_f * bend
+        legs[key] = (a, b)
+    return legs
+
+
+def walk_frames(n=12):
+    out = []
+    for i in range(n):
+        t = i / n
+        out.append(dict(legs=gait(t, {"hl": 0.0, "fl": 0.25, "hr": 0.5, "fr": 0.75}, 0.62, 4, 20, 18, 18, 48, 30),
+                        by=0.35 * abs(math.sin(2 * math.pi * t)), hdy=-0.3 * math.cos(4 * math.pi * t),
+                        tail=14, wag=0.9 * math.sin(2 * math.pi * t), pitch=0.8 * math.sin(4 * math.pi * t)))
+    return out
+
+
+def run_frames(n=8):
+    out = []
+    for i in range(n):
+        t = i / n
+        out.append(dict(legs=gait(t, {"hl": 0.0, "hr": 0.08, "fl": 0.45, "fr": 0.55}, 0.38, 6, 42, 14, 40, 70, 40),
+                        air=1.3 * max(0.0, math.sin(2 * math.pi * (t - 0.62))), pitch=4 * math.sin(2 * math.pi * (t + 0.1)),
+                        arch=0.7 * math.cos(2 * math.pi * t), hdy=-0.4 * math.sin(2 * math.pi * t), tail=6,
+                        wag=0.4 * math.sin(2 * math.pi * t), ears=-0.7))
+    return out
+
+
+# The idle: breathing, a look about, an ear flick, the tail now and then, one blink.
+IDLE = [dict(tail=22), dict(tail=22, breathe=0.6), dict(tail=22, breathe=1, hdx=0.3), dict(tail=24, breathe=0.6, hdx=0.3, wag=0.9),
+        dict(tail=24, wag=-0.9, ears=-0.5), dict(tail=22, breathe=0.6, ears=0), dict(tail=22, breathe=1, hdy=-0.2),
+        dict(tail=22, breathe=0.4, shut=True)]
 CLIPS = {
     "idle": IDLE,
-    "walk": cycle(WALK, 8),
-    "run": cycle(RUN, 6),
+    "walk": walk_frames(12),
+    "run": run_frames(8),
     "attack": ATTACK,
     "hit": HIT,
     "death": DEATH,
 }
-TIMING = {"idle": (1.6, 0), "walk": (0.9, 1.4), "run": (0.4, 3.6), "attack": (0.8, 0), "hit": (0.25, 0), "death": (0.9, 0)}
+TIMING = {"idle": (2.4, 0), "walk": (0.9, 1.4), "run": (0.4, 3.6), "attack": (0.8, 0), "hit": (0.25, 0), "death": (0.9, 0)}
 
 
 # Output -------------------------------------------------------------------------------------------------------------
@@ -347,7 +396,7 @@ for clip in CLIPS:
         strips.append(np.concatenate([strip, np.tile(BG, (CH, width - strip.shape[1], 1))], 1))
     strips.append(np.tile(np.array([0.08, 0.1, 0.06, 1], np.float32), (2, width, 1)))
 save(up(np.concatenate(strips, 0), 3), os.path.join(P, "ArtSource", "pixel", "previews", "pet_wolf_moves.png"))
-close = [np.concatenate([on_bg(rgba(f)) for f in drawn[view][clip]] + [np.tile(BG, (CH, (8 - len(CLIPS[clip])) * CW, 1))], 1)
+close = [np.concatenate([on_bg(rgba(f)) for f in drawn[view][clip]] + [np.tile(BG, (CH, (12 - len(CLIPS[clip])) * CW, 1))], 1)
          for view, clip in (("e", "run"), ("se", "run"), ("s", "run"), ("e", "walk"), ("e", "attack"), ("e", "death"))]
 save(up(np.concatenate(close, 0), 5), os.path.join(P, "ArtSource", "pixel", "previews", "pet_wolf_close.png"))
 print("wrote", NAME, len(animations), "clips")
